@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="UGMarkSixLotteryBetItem0Cell" reuseIdentifier="UGMarkSixLotteryBetItem0Cell" id="gTV-IL-0wX" customClass="UGMarkSixLotteryBetItem0Cell">
+            <rect key="frame" x="0.0" y="0.0" width="154" height="56"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="154" height="56"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="         " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c9f-f4-gM5">
+                        <rect key="frame" x="48" y="14" width="28" height="28"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="28" id="Lls-RN-CN0"/>
+                            <constraint firstAttribute="width" constant="28" id="zSX-lN-VXi"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="48.8" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZ5-cE-f3V">
+                        <rect key="frame" x="79" y="19.5" width="29.5" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="dZ5-cE-f3V" firstAttribute="leading" secondItem="c9f-f4-gM5" secondAttribute="trailing" constant="3" id="1Hj-GP-mak"/>
+                <constraint firstItem="c9f-f4-gM5" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="1gO-RH-HLh"/>
+                <constraint firstItem="dZ5-cE-f3V" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="Qvf-Wq-rm6"/>
+                <constraint firstItem="c9f-f4-gM5" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" constant="-15" id="jQM-4G-Xsd"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
+            <size key="customSize" width="154" height="56"/>
+            <connections>
+                <outlet property="leftLabel" destination="c9f-f4-gM5" id="4Al-Z2-cyM"/>
+                <outlet property="leftLabelCenterXConstraint" destination="jQM-4G-Xsd" id="MEA-Dd-Rzd"/>
+                <outlet property="rightLabel" destination="dZ5-cE-f3V" id="ULo-NV-IyQ"/>
+            </connections>
+            <point key="canvasLocation" x="213.04347826086959" y="154.6875"/>
+        </collectionViewCell>
+    </objects>
+</document>

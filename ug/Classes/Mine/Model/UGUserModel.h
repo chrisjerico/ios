@@ -1,0 +1,73 @@
+//
+//  UGUserModel.h
+//  ug
+//
+//  Created by ug on 2019/5/4.
+//  Copyright © 2019 ug. All rights reserved.
+//
+
+#import "UGModel.h"
+#import "MJExtension.h"
+
+NS_ASSUME_NONNULL_BEGIN
+//data =     {
+//
+//    curLevelTitle = "新手",
+//    nextLevelTitle = "初行者",
+//    curLevelGrade = "VIP1",
+//    nextLevelInt = "0.0000",
+//    taskRewardTitle = "积分",
+//    taskRewardTotal = "0.0000",
+//    curLevelInt = "0",
+//    nextLevelGrade = "无",
+//},
+@interface UGUserModel : UGModel
+//guest
+@property (nonatomic, strong) NSString *userId;
+@property (nonatomic, assign) BOOL isTest;
+@property (nonatomic, strong) NSString *serverTime;
+@property (nonatomic, strong) NSString *lastLoginTime;
+@property (nonatomic, strong) NSString *loginTime;
+@property (nonatomic, strong) NSString *money;
+//user
+@property (nonatomic, strong) NSString *sessid;
+@property (nonatomic, strong) NSString *token;
+@property (nonatomic, assign) BOOL autoLogin;
+@property (nonatomic, strong) NSString *username;
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *balance;
+@property (nonatomic, strong) NSString *avatar;
+@property (nonatomic, strong) NSString *email;
+@property (nonatomic, assign) BOOL enable;
+@property (nonatomic, strong) NSString *fullName;
+@property (nonatomic, assign) BOOL hasFundPwd;
+@property (nonatomic, assign) BOOL hasBankCard;
+@property (nonatomic, assign) NSInteger unreadFaq;
+@property (nonatomic, strong) NSString *unreadMsg;
+@property (nonatomic, assign) BOOL googleVerifier;
+@property (nonatomic, strong) NSString *phone;
+@property (nonatomic, strong) NSString *qq;
+@property (nonatomic, strong) NSString *result;
+@property (nonatomic, assign) BOOL showEdu;
+@property (nonatomic, assign) BOOL showReal;
+@property (nonatomic, assign) BOOL testFlag;
+@property (nonatomic, assign) NSInteger type;
+
+//积分
+@property (nonatomic, strong) NSString *curLevelTitle;
+@property (nonatomic, strong) NSString *nextLevelTitle;
+@property (nonatomic, strong) NSString *curLevelGrade;
+@property (nonatomic, strong) NSString *nextLevelInt;
+@property (nonatomic, strong) NSString *taskRewardTitle;
+@property (nonatomic, strong) NSString *taskRewardTotal;
+@property (nonatomic, strong) NSString *curLevelInt;
+@property (nonatomic, strong) NSString *nextLevelGrade;
+
+
++ (instancetype)currentUser;
+
++ (void)setCurrentUser:(UGUserModel *)user;
+
+@end
+
+NS_ASSUME_NONNULL_END

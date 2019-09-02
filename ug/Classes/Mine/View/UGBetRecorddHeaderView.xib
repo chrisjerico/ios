@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" restorationIdentifier="UGBetRecorddHeaderView" id="iN0-l3-epB" customClass="UGBetRecorddHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="458" height="69"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="期号/注单号" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dCF-Q9-R29">
+                    <rect key="frame" x="0.0" y="0.0" width="114.5" height="69"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="游戏名称" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GHa-yb-wfw">
+                    <rect key="frame" x="114.5" y="0.0" width="114.5" height="69"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="下注金额" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8d6-N7-Saj">
+                    <rect key="frame" x="229" y="0.0" width="114.5" height="69"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="可赢金额" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UuO-B3-4s2">
+                    <rect key="frame" x="343.5" y="0.0" width="114.5" height="69"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="8d6-N7-Saj" firstAttribute="width" secondItem="dCF-Q9-R29" secondAttribute="width" id="0mL-Co-thp"/>
+                <constraint firstItem="UuO-B3-4s2" firstAttribute="height" secondItem="dCF-Q9-R29" secondAttribute="height" id="4Ld-0U-GMv"/>
+                <constraint firstItem="dCF-Q9-R29" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="AGO-rx-eEy"/>
+                <constraint firstItem="UuO-B3-4s2" firstAttribute="leading" secondItem="8d6-N7-Saj" secondAttribute="trailing" id="Ch7-LQ-Xpi"/>
+                <constraint firstItem="GHa-yb-wfw" firstAttribute="height" secondItem="dCF-Q9-R29" secondAttribute="height" id="ERv-mk-raP"/>
+                <constraint firstAttribute="bottom" secondItem="GHa-yb-wfw" secondAttribute="bottom" id="OxS-6N-2xq"/>
+                <constraint firstItem="GHa-yb-wfw" firstAttribute="width" secondItem="dCF-Q9-R29" secondAttribute="width" id="TW8-xD-9sP"/>
+                <constraint firstAttribute="bottom" secondItem="dCF-Q9-R29" secondAttribute="bottom" id="TtN-Dd-TvM"/>
+                <constraint firstItem="GHa-yb-wfw" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="U3V-sl-Er2"/>
+                <constraint firstAttribute="trailing" secondItem="UuO-B3-4s2" secondAttribute="trailing" id="c9s-CJ-sBT"/>
+                <constraint firstItem="8d6-N7-Saj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="iOf-yq-paj"/>
+                <constraint firstAttribute="bottom" secondItem="UuO-B3-4s2" secondAttribute="bottom" id="jg7-FM-N5D"/>
+                <constraint firstItem="8d6-N7-Saj" firstAttribute="height" secondItem="dCF-Q9-R29" secondAttribute="height" id="kIg-dx-XIr"/>
+                <constraint firstItem="8d6-N7-Saj" firstAttribute="leading" secondItem="GHa-yb-wfw" secondAttribute="trailing" id="khp-bZ-rOO"/>
+                <constraint firstItem="dCF-Q9-R29" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="nFj-lA-7CI"/>
+                <constraint firstItem="UuO-B3-4s2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="nZY-ig-maX"/>
+                <constraint firstItem="GHa-yb-wfw" firstAttribute="leading" secondItem="dCF-Q9-R29" secondAttribute="trailing" id="rth-Sg-eKN"/>
+                <constraint firstAttribute="bottom" secondItem="8d6-N7-Saj" secondAttribute="bottom" id="wTw-dY-DHm"/>
+                <constraint firstItem="UuO-B3-4s2" firstAttribute="width" secondItem="dCF-Q9-R29" secondAttribute="width" id="z5E-1X-U6f"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="rightTitleLabel" destination="UuO-B3-4s2" id="jZp-N0-Q0Z"/>
+            </connections>
+            <point key="canvasLocation" x="79.710144927536234" y="-241.40625"/>
+        </view>
+    </objects>
+</document>

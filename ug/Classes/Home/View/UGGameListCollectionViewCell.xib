@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="UGGameListCollectionViewCell" id="gTV-IL-0wX" customClass="UGGameListCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="156" height="200"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="156" height="200"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder1" translatesAutoresizingMaskIntoConstraints="NO" id="uq1-30-c8Z">
+                        <rect key="frame" x="0.0" y="0.0" width="156" height="140"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="游戏名称" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h6n-qm-M3j">
+                        <rect key="frame" x="49.5" y="145" width="57.5" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="立刻游戏" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fDQ-dd-V69">
+                        <rect key="frame" x="38" y="167" width="80" height="25"/>
+                        <color key="backgroundColor" red="0.93621271848678589" green="0.54788851737976074" blue="0.20388418436050415" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="80" id="OeV-uj-Btf"/>
+                            <constraint firstAttribute="height" constant="25" id="g6c-cO-nCr"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="fDQ-dd-V69" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="Jzy-Pi-H4h"/>
+                <constraint firstAttribute="bottom" secondItem="uq1-30-c8Z" secondAttribute="bottom" constant="60" id="KlT-CT-nVW"/>
+                <constraint firstItem="uq1-30-c8Z" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="SAf-ti-3a2"/>
+                <constraint firstAttribute="trailing" secondItem="uq1-30-c8Z" secondAttribute="trailing" id="WVq-KQ-nPQ"/>
+                <constraint firstItem="h6n-qm-M3j" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="hNd-2I-SPH"/>
+                <constraint firstItem="fDQ-dd-V69" firstAttribute="top" secondItem="h6n-qm-M3j" secondAttribute="bottom" constant="5" id="mdf-bb-mkI"/>
+                <constraint firstItem="h6n-qm-M3j" firstAttribute="top" secondItem="uq1-30-c8Z" secondAttribute="bottom" constant="5" id="rfm-1r-JBr"/>
+                <constraint firstItem="uq1-30-c8Z" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="x3j-zx-qBm"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
+            <size key="customSize" width="156" height="200"/>
+            <connections>
+                <outlet property="imgView" destination="uq1-30-c8Z" id="mB4-Ml-U72"/>
+                <outlet property="nameLabel" destination="h6n-qm-M3j" id="8RK-FU-Fsg"/>
+                <outlet property="playLabel" destination="fDQ-dd-V69" id="6qx-hh-5Un"/>
+            </connections>
+            <point key="canvasLocation" x="214.49275362318843" y="202.90178571428569"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="placeholder1" width="158" height="154"/>
+    </resources>
+</document>

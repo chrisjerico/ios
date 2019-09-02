@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="UGPlatformNoticeCell" rowHeight="189" id="KGk-i7-Jjw" customClass="UGPlatformNoticeCell">
+            <rect key="frame" x="0.0" y="0.0" width="333" height="189"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="333" height="188.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="尊敬的会员，欢迎登录凤凰平台。尊敬的会员，欢迎登录凤凰平台。尊敬的会员，欢迎登录凤凰平台。尊敬的会员，欢迎登录凤凰平台。尊敬的会员，欢迎登录凤凰平台。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I4H-Rg-PbF">
+                        <rect key="frame" x="0.0" y="0.0" width="333" height="188.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="I4H-Rg-PbF" secondAttribute="trailing" id="1Oq-PP-Nfn"/>
+                    <constraint firstItem="I4H-Rg-PbF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="GCi-Kf-tFe"/>
+                    <constraint firstItem="I4H-Rg-PbF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="chO-GZ-iVg"/>
+                    <constraint firstAttribute="bottom" secondItem="I4H-Rg-PbF" secondAttribute="bottom" id="qwj-rc-e4A"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="contentLabel" destination="I4H-Rg-PbF" id="FCj-wd-z03"/>
+            </connections>
+            <point key="canvasLocation" x="147.10144927536234" y="201.22767857142856"/>
+        </tableViewCell>
+    </objects>
+</document>

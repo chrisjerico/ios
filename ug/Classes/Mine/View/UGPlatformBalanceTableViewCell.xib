@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="UGPlatformBalanceTableViewCell" selectionStyle="none" indentationWidth="10" reuseIdentifier="UGPlatformBalanceTableViewCell" rowHeight="60" id="KGk-i7-Jjw" customClass="UGPlatformBalanceTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="409" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="409" height="59.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kaiyuanqipai" translatesAutoresizingMaskIntoConstraints="NO" id="FMV-la-CEr">
+                        <rect key="frame" x="10" y="12.5" width="35" height="35"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="35" id="Z6z-xk-2JJ"/>
+                            <constraint firstAttribute="width" constant="35" id="wL7-lT-dUS"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="开元棋牌(新线路)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Xc-1y-zcc">
+                        <rect key="frame" x="70" y="21.5" width="110.5" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.2839455307" green="0.57867711779999997" blue="0.92549556489999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥*****" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0jt-js-ZbA">
+                        <rect key="frame" x="298.5" y="20" width="45.5" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.88285148143768311" green="0.3229069709777832" blue="0.25487560033798218" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r18-0s-7a0">
+                        <rect key="frame" x="369" y="17.5" width="25" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="OXy-vL-7Vi"/>
+                            <constraint firstAttribute="width" constant="25" id="XzA-fQ-pZt"/>
+                        </constraints>
+                        <state key="normal" image="shuaxindef"/>
+                        <connections>
+                            <action selector="refreshClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="5e4-5W-dxb"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="FMV-la-CEr" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="0Mt-OW-XCM"/>
+                    <constraint firstItem="r18-0s-7a0" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="1gz-Q0-W68"/>
+                    <constraint firstItem="0jt-js-ZbA" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="BWr-YK-asj"/>
+                    <constraint firstItem="3Xc-1y-zcc" firstAttribute="leading" secondItem="FMV-la-CEr" secondAttribute="trailing" constant="25" id="OZD-rQ-eW3"/>
+                    <constraint firstItem="r18-0s-7a0" firstAttribute="leading" secondItem="0jt-js-ZbA" secondAttribute="trailing" constant="25" id="P0p-WA-MUi"/>
+                    <constraint firstItem="3Xc-1y-zcc" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="gnV-3D-TS6"/>
+                    <constraint firstAttribute="trailing" secondItem="r18-0s-7a0" secondAttribute="trailing" constant="15" id="jDf-dK-Z9P"/>
+                    <constraint firstItem="FMV-la-CEr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="obT-za-rdj"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="balanceLabel" destination="0jt-js-ZbA" id="uFB-Ti-enh"/>
+                <outlet property="imgView" destination="FMV-la-CEr" id="bYR-Ow-C8P"/>
+                <outlet property="nameLabel" destination="3Xc-1y-zcc" id="auR-27-K0Z"/>
+                <outlet property="refreshButton" destination="r18-0s-7a0" id="ylJ-Zz-1gY"/>
+            </connections>
+            <point key="canvasLocation" x="202.17391304347828" y="158.03571428571428"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="kaiyuanqipai" width="41" height="35"/>
+        <image name="shuaxindef" width="32" height="32"/>
+    </resources>
+</document>
