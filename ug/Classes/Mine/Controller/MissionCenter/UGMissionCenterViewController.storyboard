@@ -199,6 +199,7 @@
                     </view>
                     <connections>
                         <outlet property="avaterImageView" destination="3en-hR-RLA" id="XP1-kt-9eL"/>
+                        <outlet property="balanceLabel" destination="dLF-Nu-icO" id="Sqs-RM-aqh"/>
                         <outlet property="levelNameLabel" destination="hhl-4h-JxL" id="7qT-vB-yq1"/>
                         <outlet property="missionTitleLabel" destination="Nu6-Cu-ZXI" id="YYb-AL-Xek"/>
                         <outlet property="progressView" destination="nIa-rW-eli" id="zkG-IX-UuG"/>

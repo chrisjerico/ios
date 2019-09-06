@@ -23,6 +23,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *levelNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *missionTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *balanceLabel;
+
 @property (weak, nonatomic) IBOutlet UILabel *missionLevelLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nextLevelLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nextLevelNumLabel;
@@ -85,6 +87,7 @@
         weakSelf.titleCollectionView.selectIndex = selectIndex;
     };
 
+    [self getUserInfo];
 }
 
 - (IBAction)backCick:(id)sender {
@@ -97,6 +100,8 @@
     }else {
         [self.refreshBalanceButton.layer removeAllAnimations];
     }
+    
+    [self getUserInfo];
     self.refreshBalanceButton.selected = !self.refreshBalanceButton.selected;
 }
 
@@ -167,6 +172,64 @@
         _missionCollectionView = [[UGMissionCollectionView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.titleCollectionView.frame), UGScreenW, UGScerrnH - CGRectGetMaxY(self.titleCollectionView.frame))];
     }
     return _missionCollectionView;
+}
+
+#pragma mark -- 网络请求
+- (void)getUserInfo {
+    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
+    [CMNetwork getUserInfoWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            UGUserModel *user = model.data;
+            UGUserModel *oldUser = [UGUserModel currentUser];
+            user.sessid = oldUser.sessid;
+            user.token = oldUser.token;
+            UGUserModel.currentUser = user;
+            [self setupUserInfo];
+            
+        } failure:^(id msg) {
+            
+            
+        }];
+    }];
+}
+
+- (void)setupUserInfo {
+    UGUserModel *user = [UGUserModel currentUser];
+    [self.avaterImageView sd_setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
+    self.userNameLabel.text = user.username;
+    self.levelNameLabel.text = user.curLevelGrade;
+    int int1String = [user.taskRewardTotal intValue];
+    NSLog(@"int1String = %d",int1String);
+    int int2String = [user.nextLevelInt intValue];
+    NSLog(@"int2String = %d",int2String);
+    self.missionTitleLabel.text = [NSString stringWithFormat:@"成长值（%d-%d）",int1String,int2String];
+    double floatString = [user.balance doubleValue];
+    self.balanceLabel.text =  [NSString stringWithFormat:@"%.2f",floatString];
+//    self.accountLabel.text = [NSString stringWithFormat:@"账号：%@",user.username];
+//    self.fullNameLabel.text = [NSString stringWithFormat:@"真实姓名：%@",user.fullName];
+//    self.qqLabel.text = [NSString stringWithFormat:@"QQ：%@",user.qq];
+//    self.phoneLabel.text = [NSString stringWithFormat:@"手机：%@",user.phone];
+//    self.emailLabel.text = [NSString stringWithFormat:@"邮箱：%@",user.email];
+//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//    [formatter setDateFormat:@"yyyy/MM/dd HH:mm:ss"];
+//    NSDate *date = [NSDate new];
+//    NSString *str = [formatter stringFromDate:date];
+//    self.timeLabel.text = str;
+//
+//    NSCalendar *calendar = [NSCalendar currentCalendar];
+//    NSUInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour;
+//    NSDateComponents *components = [calendar components:unitFlags fromDate:date];
+//    if (components.hour > 5 && components.hour < 12 ) {
+//        self.bgImgeView.image = [UIImage imageNamed:@"sun"];
+//    }else if (components.hour > 12 && components.hour < 18) {
+//        self.bgImgeView.image = [UIImage imageNamed:@"xiawu"];
+//    }else if (components.hour > 18 && components.hour < 21) {
+//        self.bgImgeView.image = [UIImage imageNamed:@"bangwan"];
+//    }else {
+//        self.bgImgeView.image = [UIImage imageNamed:@"wuye"];
+//
+//    }
+    
 }
 
 @end

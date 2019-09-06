@@ -52,11 +52,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL showReal;
 @property (nonatomic, assign) BOOL testFlag;
 @property (nonatomic, assign) NSInteger type;
+@property (nonatomic, assign) NSString* usr;
 
 //积分
 @property (nonatomic, strong) NSString *curLevelTitle;
 @property (nonatomic, strong) NSString *nextLevelTitle;
-@property (nonatomic, strong) NSString *curLevelGrade;
+@property (nonatomic, strong) NSString *curLevelGrade;//"VIP1",
 @property (nonatomic, strong) NSString *nextLevelInt;
 @property (nonatomic, strong) NSString *taskRewardTitle;
 @property (nonatomic, strong) NSString *taskRewardTotal;
