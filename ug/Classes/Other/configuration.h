@@ -157,6 +157,8 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 
 #define checkinUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=task&a=checkin"]
 
+#define checkinHistoryUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=task&a=checkinHistory"]
+
 
 #ifndef __OPTIMIZE__
 

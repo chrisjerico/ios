@@ -23,6 +23,7 @@
 #import "UGWithdrawLogsModel.h"
 #import "UGBalanceTransferLogsModel.h"
 #import "UGSignInModel.h"
+#import "UGSignInHistoryModel.h"
 
 @implementation CMNetwork (Mine)
 
@@ -607,6 +608,20 @@
                                          params:params
                                           model:nil
                                            post:YES
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
+
+//用户签到历史 http://test10.6yc.com/wjapp/api.php?c=task&a=checkinHistory?token=SNNn1AN33aO3404nlaA33ZXN  token
++ (void)checkinHistoryWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    
+    [self.manager requestInMainThreadWithMethod:[checkinHistoryUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:CMResultArrayClassMake(UGSignInHistoryModel.class)
+                                           post:NO
                                      completion:completionBlock];
     
     

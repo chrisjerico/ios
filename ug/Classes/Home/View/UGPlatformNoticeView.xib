@@ -78,7 +78,7 @@
                 <outlet property="closeButton" destination="gP2-4n-j4Y" id="GXD-Fr-EYX"/>
                 <outlet property="tableView" destination="dtL-fc-Lvb" id="Juo-0K-bxP"/>
             </connections>
-            <point key="canvasLocation" x="71.014492753623188" y="21.09375"/>
+            <point key="canvasLocation" x="833" y="-57"/>
         </view>
     </objects>
     <resources>

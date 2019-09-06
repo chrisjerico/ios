@@ -12,6 +12,10 @@
 #import "UGSignInHeaderView.h"
 #import "UGSignInScrHeaderView.h"
 #import "UGSignInScrFootView.h"
+#import "UGSignInHistoryView.h"
+
+#import "UGSignInHistoryModel.h"
+
 
 @interface UGSigInCodeViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>{
     
@@ -25,6 +29,8 @@
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray *collectionDataArray;
 @property (nonatomic, strong) UGSignInModel *checkinListModel;
+@property (nonatomic, strong) NSMutableArray *historyDataArray;
+
 @end
 
 @implementation UGSigInCodeViewController
@@ -35,8 +41,10 @@
     self.title = @"签到";
     self.view.backgroundColor = UGRGBColor(89, 109, 191);
     _collectionDataArray = [NSMutableArray new];
-    
+    _historyDataArray = [NSMutableArray new];
      [self getCheckinListData];
+    
+    
     
 
 }
@@ -61,13 +69,7 @@
            //签到记录
             NSLog(@"签到记录");
             
-             NSDate * nowDate = [NSDate date];
-             NSDateFormatter  *dateformatter=[[NSDateFormatter alloc] init];
-             [dateformatter setDateFormat:@"yyyy-MM-dd"];
-             NSString *  locationString=[dateformatter stringFromDate:nowDate];
-            NSLog(@"locationString= %@",locationString);
-
-            [weakSelf checkinDataWithType:@"0" Date:locationString];
+            [weakSelf getCheckinHistoryData ];
         };
     }
     [self.view addSubview:mUGSignInHeaderView];
@@ -351,7 +353,45 @@
     }];
 }
 
-
+//得到签到历史列表数据
+- (void)getCheckinHistoryData {
+    
+    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
+    
+    [SVProgressHUD showWithStatus:nil];
+    WeakSelf;
+    [CMNetwork checkinHistoryWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            
+            [SVProgressHUD showSuccessWithStatus:model.msg];
+            self->_historyDataArray = model.data;
+            NSLog(@"_historyDataArray = %@",self->_historyDataArray);
+            NSLog(@"model.data = %@",model.data);
+            
+         
+            [self showUGSignInHistoryView];
+            
+        } failure:^(id msg) {
+            
+            [SVProgressHUD showErrorWithStatus:msg];
+            
+        }];
+    }];
+}
+#pragma mark -- 其他方法
+- (void)showUGSignInHistoryView {
+    
+    UGSignInHistoryView *notiveView = [[UGSignInHistoryView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - 260)];
+    notiveView.dataArray = self->_historyDataArray;
+    notiveView.checkinMoney = self.checkinListModel.checkinMoney;
+    notiveView.checkinTimes= [NSString stringWithFormat:@"%@",self.checkinListModel.checkinTimes];
+    
+    if (![CMCommon arryIsNull:self->_historyDataArray]) {
+        [notiveView show];
+    }
+    
+   
+}
 /*
 #pragma mark - Navigation
 

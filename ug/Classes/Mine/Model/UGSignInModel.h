@@ -48,6 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UGSignInModel : UGModel<UGSignInModel>
 @property (nonatomic, strong) NSString *serverTime;//服务器时间
 @property (nonatomic, strong) NSNumber *checkinTimes;//连续签到多少天
+@property (nonatomic, strong) NSString *checkinMoney;//积分
 @property (nonatomic, strong) NSArray<UGCheckinListModel> *checkinList;
 @property (nonatomic, strong) NSArray<UGcheckinBonusModel> *checkinBonus;
 

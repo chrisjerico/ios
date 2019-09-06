@@ -367,6 +367,11 @@
 		D49A36DB22A64B85000057D2 /* UGUserLevelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D49A36DA22A64B85000057D2 /* UGUserLevelModel.m */; };
 		D49D359E22C79E7900318D73 /* UGNoticePopView.m in Sources */ = {isa = PBXBuildFile; fileRef = D49D359D22C79E7900318D73 /* UGNoticePopView.m */; };
 		D49D35A022C7A11100318D73 /* UGNoticePopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D49D359F22C7A11100318D73 /* UGNoticePopView.xib */; };
+		D4A02B5223224C32004D5894 /* UGSignInHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A02B5123224C32004D5894 /* UGSignInHistoryModel.m */; };
+		D4A02B5523225782004D5894 /* UGSignInHistoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A02B5423225782004D5894 /* UGSignInHistoryView.m */; };
+		D4A02B57232257D5004D5894 /* UGSignInHistoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4A02B56232257D5004D5894 /* UGSignInHistoryView.xib */; };
+		D4A02B5B23227B7D004D5894 /* UGSingInHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A02B5923227B7D004D5894 /* UGSingInHistoryTableViewCell.m */; };
+		D4A02B5C23227B7D004D5894 /* UGSingInHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4A02B5A23227B7D004D5894 /* UGSingInHistoryTableViewCell.xib */; };
 		D4AE1C0A22C0FCC400C142FE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AE1C0922C0FCC300C142FE /* AppDelegate.m */; };
 		D4AE63D922956E9600DD265A /* UGMissionLevelController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AE63D822956E9600DD265A /* UGMissionLevelController.m */; };
 		D4AE63DC2295734700DD265A /* UGMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AE63DB2295734700DD265A /* UGMessageModel.m */; };
@@ -1113,6 +1118,14 @@
 		D49D359C22C79E7900318D73 /* UGNoticePopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGNoticePopView.h; sourceTree = "<group>"; };
 		D49D359D22C79E7900318D73 /* UGNoticePopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGNoticePopView.m; sourceTree = "<group>"; };
 		D49D359F22C7A11100318D73 /* UGNoticePopView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGNoticePopView.xib; sourceTree = "<group>"; };
+		D4A02B5023224C32004D5894 /* UGSignInHistoryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGSignInHistoryModel.h; sourceTree = "<group>"; };
+		D4A02B5123224C32004D5894 /* UGSignInHistoryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGSignInHistoryModel.m; sourceTree = "<group>"; };
+		D4A02B5323225782004D5894 /* UGSignInHistoryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGSignInHistoryView.h; sourceTree = "<group>"; };
+		D4A02B5423225782004D5894 /* UGSignInHistoryView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGSignInHistoryView.m; sourceTree = "<group>"; };
+		D4A02B56232257D5004D5894 /* UGSignInHistoryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGSignInHistoryView.xib; sourceTree = "<group>"; };
+		D4A02B5823227B7D004D5894 /* UGSingInHistoryTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGSingInHistoryTableViewCell.h; sourceTree = "<group>"; };
+		D4A02B5923227B7D004D5894 /* UGSingInHistoryTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGSingInHistoryTableViewCell.m; sourceTree = "<group>"; };
+		D4A02B5A23227B7D004D5894 /* UGSingInHistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGSingInHistoryTableViewCell.xib; sourceTree = "<group>"; };
 		D4AE1C0922C0FCC300C142FE /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		D4AE63D822956E9600DD265A /* UGMissionLevelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGMissionLevelController.m; sourceTree = "<group>"; };
 		D4AE63DA2295734700DD265A /* UGMessageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGMessageModel.h; sourceTree = "<group>"; };
@@ -1332,6 +1345,8 @@
 				D41EDF7F2317AD95005798CC /* UGBalanceTransferLogsModel.m */,
 				D425281A2320EFFF007DE522 /* UGSignInModel.h */,
 				D425281B2320EFFF007DE522 /* UGSignInModel.m */,
+				D4A02B5023224C32004D5894 /* UGSignInHistoryModel.h */,
+				D4A02B5123224C32004D5894 /* UGSignInHistoryModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2422,6 +2437,12 @@
 				D425282A2321267C007DE522 /* UGSignInScrFootView.h */,
 				D425282B2321267C007DE522 /* UGSignInScrFootView.m */,
 				D425282D23212717007DE522 /* UGSignInScrFootView.xib */,
+				D4A02B5323225782004D5894 /* UGSignInHistoryView.h */,
+				D4A02B5423225782004D5894 /* UGSignInHistoryView.m */,
+				D4A02B56232257D5004D5894 /* UGSignInHistoryView.xib */,
+				D4A02B5823227B7D004D5894 /* UGSingInHistoryTableViewCell.h */,
+				D4A02B5923227B7D004D5894 /* UGSingInHistoryTableViewCell.m */,
+				D4A02B5A23227B7D004D5894 /* UGSingInHistoryTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2868,6 +2889,8 @@
 				D4145AA122B6349700D8165F /* UGGDKL10LotteryController.storyboard in Resources */,
 				D4704ECC22B7647F00528DC7 /* UGPK10SubResultCollectionViewCell.xib in Resources */,
 				D4D8DF89228714A300446BAF /* UGLotteryResultCollectionViewCell.xib in Resources */,
+				D4A02B57232257D5004D5894 /* UGSignInHistoryView.xib in Resources */,
+				D4A02B5C23227B7D004D5894 /* UGSingInHistoryTableViewCell.xib in Resources */,
 				D4D8DF7C2286F7F600446BAF /* UGTimeLotteryBetCollectionViewCell.xib in Resources */,
 				D40FA8D1229938FA003E596F /* ZZCircleProgress.bundle in Resources */,
 				D42528162320DDA2007DE522 /* UGSignInCollectionViewCell.xib in Resources */,
@@ -3063,6 +3086,7 @@
 				D405B1BB227972AD00F8C586 /* SDWebImageCompat.m in Sources */,
 				D405B1D5227972C100F8C586 /* AFHTTPSessionManager.m in Sources */,
 				D45F98C622E34DAB00194139 /* UGMineViewController.m in Sources */,
+				D4A02B5B23227B7D004D5894 /* UGSingInHistoryTableViewCell.m in Sources */,
 				D409C55B22AB86D90042A0DD /* UGFeedBackController.m in Sources */,
 				D4D8DF802287065F00446BAF /* UGTimeLotteryBetHeaderView.m in Sources */,
 				D41EDF7C2317A67E005798CC /* UGBalanceTransferLogsCell.m in Sources */,
@@ -3225,6 +3249,7 @@
 				D4145A8C22B513CE00D8165F /* UGGameListViewController.m in Sources */,
 				D4B6E6EF22D3325A0006B03F /* UGHomeTitleView.m in Sources */,
 				D4704EDD22B7BCE900528DC7 /* GLEncryptManager.m in Sources */,
+				D4A02B5523225782004D5894 /* UGSignInHistoryView.m in Sources */,
 				D422A585229E80EE0068D0AD /* UGYubaoConversionRecordController.m in Sources */,
 				D4DE2683229BCB960072A4A2 /* WMIconSegmentControl.m in Sources */,
 				D41C3DFA228E877E00BF6436 /* UGIntegralConvertRecordController.m in Sources */,
@@ -3232,6 +3257,7 @@
 				D405AFF322783DCC00F8C586 /* MASCompositeConstraint.m in Sources */,
 				D4DE269B229BDBC80072A4A2 /* SGImageButton.m in Sources */,
 				D405AFF722783DCC00F8C586 /* View+MASAdditions.m in Sources */,
+				D4A02B5223224C32004D5894 /* UGSignInHistoryModel.m in Sources */,
 				D405B2CF227ADC1100F8C586 /* UGGamePlatformCollectionViewCell.m in Sources */,
 				D40DE98F22F4292100974BAF /* UGLotteryAdPopView.m in Sources */,
 				D41FF76C22E8141A00FCCDD2 /* UGLotteryRecordCell.m in Sources */,

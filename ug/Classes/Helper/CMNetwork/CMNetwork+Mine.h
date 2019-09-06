@@ -129,6 +129,9 @@ NS_ASSUME_NONNULL_BEGIN
 //用户签到（签到类型：0是签到，1是补签）
 + (void)checkinWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 
+//用户签到历史
++ (void)checkinHistoryWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
 @end
 
 NS_ASSUME_NONNULL_END
