@@ -151,6 +151,12 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 
 #define fundLogsUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=user&a=fundLogs"]
 
+#define checkinListUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=task&a=checkinList"]
+
+#define checkinBonusUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=task&a=checkinBonus"]
+
+#define checkinUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=task&a=checkin"]
+
 
 #ifndef __OPTIMIZE__
 
@@ -174,6 +180,40 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 
 #define UGScreenW [UIScreen mainScreen].bounds.size.width
 #define UGScerrnH [UIScreen mainScreen].bounds.size.height
+/*
+ *判断设备是不是苹果X
+ */
+//判断是否是ipad
+#define isPad ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+//判断iPhone4系列
+#define kiPhone4 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) && !isPad : NO)
+//判断iPhone5系列
+#define kiPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) && !isPad : NO)
+//判断iPhone6 6s 7系列
+#define kiPhone6 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(750, 1334), [[UIScreen mainScreen] currentMode].size) && !isPad : NO)
+//判断iPhone6p 6sp 7p系列
+#define kiPhone6Plus ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242, 2208), [[UIScreen mainScreen] currentMode].size) && !isPad : NO)
+//判断iPhoneX，Xs（iPhoneX，iPhoneXs）
+#define IS_IPHONE_X ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) && !isPad : NO)
+//判断iPhoneXr
+#define IS_IPHONE_Xr ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(828, 1792), [[UIScreen mainScreen] currentMode].size) && !isPad : NO)
+//判断iPhoneXsMax
+#define IS_IPHONE_Xs_Max ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242, 2688), [[UIScreen mainScreen] currentMode].size)&& !isPad : NO)
+//判断iPhoneX所有系列
+//#define IS_PhoneXAll (IS_IPHONE_X || IS_IPHONE_Xr || IS_IPHONE_Xs_Max)
+#define IS_PhoneXAll \
+({BOOL isPhoneX = NO;\
+if (@available(iOS 11.0, *)) {\
+isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bottom > 0.0;\
+}\
+(isPhoneX);})
+#define k_Height_NavContentBar 44.0f
+#define k_Height_NavBar (IS_PhoneXAll ? 88.0 : 64.0)//导航栏
+#define k_Height_StatusBar (IS_PhoneXAll? 44.0 : 20.0)//状态栏
+#define k_Height_TabBar (IS_PhoneXAll ? 83.0 : 49.0)//标签栏的高度
+#define IPHONE_SAFEBOTTOMAREA_HEIGHT (IS_IPHONE_X ? 34 : 0)//安全的底部区域
+#define IPHONE_TOPSENSOR_HEIGHT      (IS_IPHONE_X ? 32 : 0)//高级传感器
+
 #define UGNavColor [UIColor colorWithRed:76/255.0 green:150/255.0 blue:236/255.0 alpha:1.0]
 #define UGBackgroundColor [UIColor colorWithRed:239/255.0 green:239/255.0 blue:244/255.0 alpha:1.0]
 #define UGRGBColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0] ///< 用10进制表示颜色，例如（255,255,255）黑色

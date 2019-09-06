@@ -120,6 +120,15 @@ NS_ASSUME_NONNULL_BEGIN
 //资金明细
 + (void)fundLogsWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 
+//用户签到列表
++ (void)checkinListWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+//领取连续签到奖励
++ (void)checkinBonusWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+//用户签到（签到类型：0是签到，1是补签）
++ (void)checkinWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -22,6 +22,8 @@
 #import "UGFundLogsModel.h"
 #import "UGWithdrawLogsModel.h"
 #import "UGBalanceTransferLogsModel.h"
+#import "UGSignInModel.h"
+
 @implementation CMNetwork (Mine)
 
 //游客登录
@@ -568,4 +570,46 @@
     
 }
 
+
+//用户签到列表  http://test10.6yc.com/wjapp/api.php?c=task&a=checkinList&token=vAUXLubL0X5LxV0U3wxVAvUl
++ (void)checkinListWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    
+    [self.manager requestInMainThreadWithMethod:[checkinListUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:CMResultClassMake(UGSignInModel.class)
+                                           post:NO
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
+
+//领取连续签到奖励  http://test10.6yc.com/wjapp/api.php?c=task&a=checkinBonus    token type
++ (void)checkinBonusWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    
+    [self.manager requestInMainThreadWithMethod:[checkinBonusUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
+                                           post:YES
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
+
+//用户签到（签到类型：0是签到，1是补签）http://test10.6yc.com/wjapp/api.php?c=task&a=checkin token type date
++ (void)checkinWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    
+    [self.manager requestInMainThreadWithMethod:[checkinUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
+                                           post:YES
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
 @end

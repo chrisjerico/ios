@@ -42,6 +42,19 @@
     
 }
 
+
+/**
+ *判断是不是空数组，如果返回yes，代表该该数组为空
+ */
++ (BOOL)arryIsNull:(NSArray *)array{
+    if (array != nil && ![array isKindOfClass:[NSNull class]] && array.count != 0){
+        //执行array不为空时的操作
+        return NO;
+    }else{
+        return YES;
+    }
+}
+
 static NSString *uuidKey =@"uuidKey";
 +(NSString *)createUUID{
     NSString *uuid;

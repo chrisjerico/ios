@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A0C64CB6AEB0CF1B2031BBB8 /* Pods_ug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6486EFF4C273BEA0AE8994DD /* Pods_ug.framework */; };
 		D405AFF122783DCC00F8C586 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D405AFD822783DCC00F8C586 /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		D405AFF222783DCC00F8C586 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D405AFE122783DCC00F8C586 /* ViewController+MASAdditions.m */; };
 		D405AFF322783DCC00F8C586 /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = D405AFE522783DCC00F8C586 /* MASCompositeConstraint.m */; };
@@ -17,7 +18,6 @@
 		D405AFF822783DCC00F8C586 /* MASConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = D405AFEC22783DCC00F8C586 /* MASConstraint.m */; };
 		D405AFF922783DCC00F8C586 /* MASViewConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = D405AFEE22783DCC00F8C586 /* MASViewConstraint.m */; };
 		D405AFFA22783DCC00F8C586 /* MASViewAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = D405AFEF22783DCC00F8C586 /* MASViewAttribute.m */; };
-		D405AFFB22783DCC00F8C586 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D405AFF022783DCC00F8C586 /* Info.plist */; };
 		D405AFFF227866A300F8C586 /* UGMineMenuCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D405AFFD227866A300F8C586 /* UGMineMenuCollectionViewCell.m */; };
 		D405B000227866A300F8C586 /* UGMineMenuCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D405AFFE227866A300F8C586 /* UGMineMenuCollectionViewCell.xib */; };
 		D405B1B1227972AD00F8C586 /* UIImage+WebP.m in Sources */ = {isa = PBXBuildFile; fileRef = D405B185227972AC00F8C586 /* UIImage+WebP.m */; };
@@ -248,6 +248,8 @@
 		D41A57792306924D00C26023 /* UGBackToastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D41A57762306924C00C26023 /* UGBackToastView.xib */; };
 		D41AEA6B22E58D9E003E28C3 /* UGAvatarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D41AEA6A22E58D9E003E28C3 /* UGAvatarModel.m */; };
 		D41AEA6E22E5D44F003E28C3 /* UGLotteryHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D41AEA6D22E5D44F003E28C3 /* UGLotteryHistoryModel.m */; };
+		D41B3CF1231FE1E900716512 /* UGSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D41B3CEF231FE1E900716512 /* UGSignInViewController.m */; };
+		D41B3CF2231FE1E900716512 /* UGSignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D41B3CF0231FE1E900716512 /* UGSignInViewController.xib */; };
 		D41C3DF4228E75F100BF6436 /* CAAnimation+WAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = D41C3DE7228E75F000BF6436 /* CAAnimation+WAnimation.m */; };
 		D41C3DF5228E75F100BF6436 /* UIBarButtonItem+WZLBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = D41C3DEC228E75F000BF6436 /* UIBarButtonItem+WZLBadge.m */; };
 		D41C3DF6228E75F100BF6436 /* UITabBarItem+WZLBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = D41C3DED228E75F000BF6436 /* UITabBarItem+WZLBadge.m */; };
@@ -315,6 +317,16 @@
 		D424DDE122E74DE60009E2E6 /* UGRealBetRecordViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D424DDE022E74DE60009E2E6 /* UGRealBetRecordViewController.storyboard */; };
 		D424DDE522E753C60009E2E6 /* UGRealBetRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D424DDE322E753C60009E2E6 /* UGRealBetRecordCell.m */; };
 		D424DDE622E753C60009E2E6 /* UGRealBetRecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D424DDE422E753C60009E2E6 /* UGRealBetRecordCell.xib */; };
+		D42528152320DDA2007DE522 /* UGSignInCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D42528132320DDA2007DE522 /* UGSignInCollectionViewCell.m */; };
+		D42528162320DDA2007DE522 /* UGSignInCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D42528142320DDA2007DE522 /* UGSignInCollectionViewCell.xib */; };
+		D42528192320EB01007DE522 /* UGSigInCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D42528182320EB01007DE522 /* UGSigInCodeViewController.m */; };
+		D425281C2320EFFF007DE522 /* UGSignInModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D425281B2320EFFF007DE522 /* UGSignInModel.m */; };
+		D4252822232102CA007DE522 /* UGSignInHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4252821232102CA007DE522 /* UGSignInHeaderView.m */; };
+		D4252824232103AA007DE522 /* UGSignInHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4252823232103AA007DE522 /* UGSignInHeaderView.xib */; };
+		D425282723210760007DE522 /* UGSignInScrHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D425282623210760007DE522 /* UGSignInScrHeaderView.m */; };
+		D4252829232107EE007DE522 /* UGSignInScrHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4252828232107EE007DE522 /* UGSignInScrHeaderView.xib */; };
+		D425282C2321267C007DE522 /* UGSignInScrFootView.m in Sources */ = {isa = PBXBuildFile; fileRef = D425282B2321267C007DE522 /* UGSignInScrFootView.m */; };
+		D425282E23212717007DE522 /* UGSignInScrFootView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D425282D23212717007DE522 /* UGSignInScrFootView.xib */; };
 		D42A06B122CA212E005488F8 /* UGHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D42A06B022CA212E005488F8 /* UGHomeViewController.m */; };
 		D42A06B322CA22D9005488F8 /* UGHomeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D42A06B222CA22D9005488F8 /* UGHomeViewController.storyboard */; };
 		D4527D1822828C27000EC1C2 /* UGPlatformBalanceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4527D1622828C27000EC1C2 /* UGPlatformBalanceTableViewCell.m */; };
@@ -445,6 +457,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		443C93C1135A8C900E47477A /* Pods-ug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ug.release.xcconfig"; path = "Target Support Files/Pods-ug/Pods-ug.release.xcconfig"; sourceTree = "<group>"; };
+		6486EFF4C273BEA0AE8994DD /* Pods_ug.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ug.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D405AFCD227823D800F8C586 /* configuration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = configuration.h; sourceTree = "<group>"; };
 		D405AFCE2278240A00F8C586 /* UGPCH.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGPCH.pch; sourceTree = "<group>"; };
 		D405AFD722783DCC00F8C586 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
@@ -900,6 +914,9 @@
 		D41AEA6A22E58D9E003E28C3 /* UGAvatarModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGAvatarModel.m; sourceTree = "<group>"; };
 		D41AEA6C22E5D44F003E28C3 /* UGLotteryHistoryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLotteryHistoryModel.h; sourceTree = "<group>"; };
 		D41AEA6D22E5D44F003E28C3 /* UGLotteryHistoryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLotteryHistoryModel.m; sourceTree = "<group>"; };
+		D41B3CEE231FE1E900716512 /* UGSignInViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGSignInViewController.h; sourceTree = "<group>"; };
+		D41B3CEF231FE1E900716512 /* UGSignInViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGSignInViewController.m; sourceTree = "<group>"; };
+		D41B3CF0231FE1E900716512 /* UGSignInViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGSignInViewController.xib; sourceTree = "<group>"; };
 		D41C3DE7228E75F000BF6436 /* CAAnimation+WAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAAnimation+WAnimation.m"; sourceTree = "<group>"; };
 		D41C3DE8228E75F000BF6436 /* CAAnimation+WAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAAnimation+WAnimation.h"; sourceTree = "<group>"; };
 		D41C3DEA228E75F000BF6436 /* UIBarButtonItem+WZLBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+WZLBadge.h"; sourceTree = "<group>"; };
@@ -1016,6 +1033,22 @@
 		D424DDE222E753C60009E2E6 /* UGRealBetRecordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGRealBetRecordCell.h; sourceTree = "<group>"; };
 		D424DDE322E753C60009E2E6 /* UGRealBetRecordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGRealBetRecordCell.m; sourceTree = "<group>"; };
 		D424DDE422E753C60009E2E6 /* UGRealBetRecordCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGRealBetRecordCell.xib; sourceTree = "<group>"; };
+		D42528122320DDA2007DE522 /* UGSignInCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGSignInCollectionViewCell.h; sourceTree = "<group>"; };
+		D42528132320DDA2007DE522 /* UGSignInCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGSignInCollectionViewCell.m; sourceTree = "<group>"; };
+		D42528142320DDA2007DE522 /* UGSignInCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGSignInCollectionViewCell.xib; sourceTree = "<group>"; };
+		D42528172320EB01007DE522 /* UGSigInCodeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGSigInCodeViewController.h; sourceTree = "<group>"; };
+		D42528182320EB01007DE522 /* UGSigInCodeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGSigInCodeViewController.m; sourceTree = "<group>"; };
+		D425281A2320EFFF007DE522 /* UGSignInModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGSignInModel.h; sourceTree = "<group>"; };
+		D425281B2320EFFF007DE522 /* UGSignInModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGSignInModel.m; sourceTree = "<group>"; };
+		D4252820232102CA007DE522 /* UGSignInHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGSignInHeaderView.h; sourceTree = "<group>"; };
+		D4252821232102CA007DE522 /* UGSignInHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGSignInHeaderView.m; sourceTree = "<group>"; };
+		D4252823232103AA007DE522 /* UGSignInHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGSignInHeaderView.xib; sourceTree = "<group>"; };
+		D425282523210760007DE522 /* UGSignInScrHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGSignInScrHeaderView.h; sourceTree = "<group>"; };
+		D425282623210760007DE522 /* UGSignInScrHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGSignInScrHeaderView.m; sourceTree = "<group>"; };
+		D4252828232107EE007DE522 /* UGSignInScrHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGSignInScrHeaderView.xib; sourceTree = "<group>"; };
+		D425282A2321267C007DE522 /* UGSignInScrFootView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGSignInScrFootView.h; sourceTree = "<group>"; };
+		D425282B2321267C007DE522 /* UGSignInScrFootView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGSignInScrFootView.m; sourceTree = "<group>"; };
+		D425282D23212717007DE522 /* UGSignInScrFootView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGSignInScrFootView.xib; sourceTree = "<group>"; };
 		D42A06AF22CA212E005488F8 /* UGHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGHomeViewController.h; sourceTree = "<group>"; };
 		D42A06B022CA212E005488F8 /* UGHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGHomeViewController.m; sourceTree = "<group>"; };
 		D42A06B222CA22D9005488F8 /* UGHomeViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UGHomeViewController.storyboard; sourceTree = "<group>"; };
@@ -1228,6 +1261,7 @@
 		D4FBBBE2228C034100153FB5 /* UGHallLotteryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGHallLotteryModel.m; sourceTree = "<group>"; };
 		D4FBBBE4228C5D5200153FB5 /* UGAllNextIssueListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGAllNextIssueListModel.h; sourceTree = "<group>"; };
 		D4FBBBE5228C5D5200153FB5 /* UGAllNextIssueListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGAllNextIssueListModel.m; sourceTree = "<group>"; };
+		E98695D8DC0D2512B92A7C32 /* Pods-ug.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ug.debug.xcconfig"; path = "Target Support Files/Pods-ug/Pods-ug.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1235,12 +1269,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0C64CB6AEB0CF1B2031BBB8 /* Pods_ug.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2AA8F6FD940D74819498256A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E98695D8DC0D2512B92A7C32 /* Pods-ug.debug.xcconfig */,
+				443C93C1135A8C900E47477A /* Pods-ug.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		2E2BF98637033623A296F5F9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6486EFF4C273BEA0AE8994DD /* Pods_ug.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D405AFCF22782C1D00F8C586 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -1278,6 +1330,8 @@
 				D420A780231558120089C0C5 /* UGYuebaoProfitReportModel.m */,
 				D41EDF7E2317AD95005798CC /* UGBalanceTransferLogsModel.h */,
 				D41EDF7F2317AD95005798CC /* UGBalanceTransferLogsModel.m */,
+				D425281A2320EFFF007DE522 /* UGSignInModel.h */,
+				D425281B2320EFFF007DE522 /* UGSignInModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1517,6 +1571,7 @@
 				D4145A7522B3BC1900D8165F /* CMNetwork */,
 				D4185E31231D2E1A008DB5F2 /* MOFSPickerManager */,
 				D40DE97022F335E300974BAF /* SDCycleScrollView */,
+				D405B325227DA8F700F8C586 /* ROP */,
 				D4DE2692229BDBC70072A4A2 /* SGSegmentedControl */,
 				D4DE2661229BCB960072A4A2 /* segmentListControl */,
 				D40FA8D42299798B003E596F /* WWWaveView */,
@@ -1526,7 +1581,6 @@
 				D40D58C7228AF7BA0025963A /* CountDown */,
 				D405B37D2281440000F8C586 /* SLWebView */,
 				D405B370228013CE00F8C586 /* SRActionSheet */,
-				D405B325227DA8F700F8C586 /* ROP */,
 				D405B2E9227C166900F8C586 /* XYYSegmentControl */,
 				D405B27B227981D400F8C586 /* UUMarqueeView */,
 				D405B253227974D000F8C586 /* Category */,
@@ -1779,6 +1833,18 @@
 				D4185E3E231D2E1A008DB5F2 /* MOFSAddressPickerView.m */,
 			);
 			path = MOFSPickerManager;
+			sourceTree = "<group>";
+		};
+		D41B3CED231FE18F00716512 /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				D41B3CEE231FE1E900716512 /* UGSignInViewController.h */,
+				D41B3CEF231FE1E900716512 /* UGSignInViewController.m */,
+				D41B3CF0231FE1E900716512 /* UGSignInViewController.xib */,
+				D42528172320EB01007DE522 /* UGSigInCodeViewController.h */,
+				D42528182320EB01007DE522 /* UGSigInCodeViewController.m */,
+			);
+			path = SignIn;
 			sourceTree = "<group>";
 		};
 		D41C3DE5228E75F000BF6436 /* WZLBadge */ = {
@@ -2052,6 +2118,8 @@
 			children = (
 				D4B75E0B2278025E0007047C /* ug */,
 				D4B75E0A2278025E0007047C /* Products */,
+				2AA8F6FD940D74819498256A /* Pods */,
+				2E2BF98637033623A296F5F9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2262,6 +2330,7 @@
 		D4B75E2C227811D50007047C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D41B3CED231FE18F00716512 /* SignIn */,
 				D48224DE22A0E83C00F7DE72 /* base */,
 				D422A57C229E74DE0068D0AD /* YuBao */,
 				D41E0EE5228D8C4400D6C42A /* MissionCenter */,
@@ -2341,6 +2410,18 @@
 				D422D67922D99F1E008E7065 /* UGAddressCollectionViewCell.h */,
 				D422D67A22D99F1E008E7065 /* UGAddressCollectionViewCell.m */,
 				D422D67B22D99F1E008E7065 /* UGAddressCollectionViewCell.xib */,
+				D42528122320DDA2007DE522 /* UGSignInCollectionViewCell.h */,
+				D42528132320DDA2007DE522 /* UGSignInCollectionViewCell.m */,
+				D42528142320DDA2007DE522 /* UGSignInCollectionViewCell.xib */,
+				D4252820232102CA007DE522 /* UGSignInHeaderView.h */,
+				D4252821232102CA007DE522 /* UGSignInHeaderView.m */,
+				D4252823232103AA007DE522 /* UGSignInHeaderView.xib */,
+				D425282523210760007DE522 /* UGSignInScrHeaderView.h */,
+				D425282623210760007DE522 /* UGSignInScrHeaderView.m */,
+				D4252828232107EE007DE522 /* UGSignInScrHeaderView.xib */,
+				D425282A2321267C007DE522 /* UGSignInScrFootView.h */,
+				D425282B2321267C007DE522 /* UGSignInScrFootView.m */,
+				D425282D23212717007DE522 /* UGSignInScrFootView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2677,9 +2758,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D4B75E1F227802600007047C /* Build configuration list for PBXNativeTarget "ug" */;
 			buildPhases = (
+				8B808422CD07BA86ABBD013F /* [CP] Check Pods Manifest.lock */,
 				D4B75E052278025E0007047C /* Sources */,
 				D4B75E062278025E0007047C /* Frameworks */,
 				D4B75E072278025E0007047C /* Resources */,
+				A999A02128473DB5B3C72792 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2733,10 +2816,10 @@
 				D422D67F22D9A766008E7065 /* address.json in Resources */,
 				D4F63F90228FD1A200EC93AA /* UGFastThreeThreeCollectionViewCell.xib in Resources */,
 				D405B22C227972DD00F8C586 /* SVProgressHUD.bundle in Resources */,
+				D4252829232107EE007DE522 /* UGSignInScrHeaderView.xib in Resources */,
 				D405B304227C38D200F8C586 /* UGRechargeRecordCell.xib in Resources */,
 				D4D8DF722286B23600446BAF /* UGSSCLotteryController.storyboard in Resources */,
 				D41F260E2318EFE4004FB9C6 /* UGChanglongBetRecrodCell.xib in Resources */,
-				D405AFFB22783DCC00F8C586 /* Info.plist in Resources */,
 				D40DE99122F42A3300974BAF /* UGLotteryAdPopView.xib in Resources */,
 				D417712C229D6C1500727B70 /* UGUserinfoView.xib in Resources */,
 				D4DE2688229BCB960072A4A2 /* tag_list_s@2x.png in Resources */,
@@ -2762,7 +2845,9 @@
 				D421B5E322E05C0F00BAD968 /* UGBetRecordTableViewController.storyboard in Resources */,
 				D4F63F95228FD3B000EC93AA /* UGFastThreeFourCollectionViewCell.xib in Resources */,
 				D41E0EE1228D88BC00D6C42A /* UGMissionLevelTableViewCell.xib in Resources */,
+				D4252824232103AA007DE522 /* UGSignInHeaderView.xib in Resources */,
 				D405B30F227C614800F8C586 /* UGFundDetailsCell.xib in Resources */,
+				D41B3CF2231FE1E900716512 /* UGSignInViewController.xib in Resources */,
 				D4090F63228D3E0E00D6DA43 /* UGAvaterSelectView.xib in Resources */,
 				D405B3862281620000F8C586 /* UGMessageTableViewCell.xib in Resources */,
 				D4090F68228D4F7200D6DA43 /* UGAvaterCollectionViewCell.xib in Resources */,
@@ -2785,6 +2870,7 @@
 				D4D8DF89228714A300446BAF /* UGLotteryResultCollectionViewCell.xib in Resources */,
 				D4D8DF7C2286F7F600446BAF /* UGTimeLotteryBetCollectionViewCell.xib in Resources */,
 				D40FA8D1229938FA003E596F /* ZZCircleProgress.bundle in Resources */,
+				D42528162320DDA2007DE522 /* UGSignInCollectionViewCell.xib in Resources */,
 				D41246AB2285537F006881E2 /* UGPromotionInfoController.storyboard in Resources */,
 				D4090F6A228D83B700D6DA43 /* UGMissionCenterViewController.storyboard in Resources */,
 				D463B4E12284489100EAC0F7 /* UGRightMenuView.xib in Resources */,
@@ -2808,6 +2894,7 @@
 				D4B75E16227802600007047C /* Assets.xcassets in Resources */,
 				D409B150229686C00053DA33 /* UGHKLHCLotteryController.storyboard in Resources */,
 				D4704EC722B7567B00528DC7 /* UGPK10NNLotteryController.storyboard in Resources */,
+				D425282E23212717007DE522 /* UGSignInScrFootView.xib in Resources */,
 				D4DE2687229BCB960072A4A2 /* icon_arrow_up@2x.png in Resources */,
 				D41EDF7D2317A67E005798CC /* UGBalanceTransferLogsCell.xib in Resources */,
 				D405B36C228007D900F8C586 /* UGRecordFilterCollectionViewCell.xib in Resources */,
@@ -2837,6 +2924,53 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		8B808422CD07BA86ABBD013F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ug-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A999A02128473DB5B3C72792 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ug/Pods-ug-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ug/Pods-ug-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D4B75E052278025E0007047C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -2860,6 +2994,7 @@
 				D40E1E5F22BFAEC4004D4664 /* UGPromoteDetailController.m in Sources */,
 				D40FA8C722992EA7003E596F /* UGYubaoConversionCenterController.m in Sources */,
 				D4F0477622E9E22E008EBB56 /* UGLinkNumCollectionViewCell.m in Sources */,
+				D41B3CF1231FE1E900716512 /* UGSignInViewController.m in Sources */,
 				D40DE98822F335E300974BAF /* TAAnimatedDotView.m in Sources */,
 				D4AE64112295871D00DD265A /* UIView+MJExtension.m in Sources */,
 				D405B2502279740A00F8C586 /* NSSet+HYBUnicodeReadable.m in Sources */,
@@ -2940,6 +3075,7 @@
 				D40DE98622F335E300974BAF /* TADotView.m in Sources */,
 				D49A36BF22A29C7A000057D2 /* UGLotteryRulesView.m in Sources */,
 				D405B1C1227972AD00F8C586 /* NSImage+WebCache.m in Sources */,
+				D425282C2321267C007DE522 /* UGSignInScrFootView.m in Sources */,
 				D4239BD122CCEC9D00700D8E /* UIWebView+DKProgress.m in Sources */,
 				D405B37C22805D6900F8C586 /* UGMissionCenterViewController.m in Sources */,
 				D4D8DF682286932200446BAF /* UGLotteryAssistantController.m in Sources */,
@@ -2955,6 +3091,7 @@
 				D416BB2822CE35C100BA0450 /* UGSegmentCollectionViewCell.m in Sources */,
 				D405B33D227DAD6E00F8C586 /* SANotDataView.m in Sources */,
 				D405B1BA227972AD00F8C586 /* UIImage+MultiFormat.m in Sources */,
+				D42528192320EB01007DE522 /* UGSigInCodeViewController.m in Sources */,
 				D41246B62285C64C006881E2 /* UGUserInfoViewController.m in Sources */,
 				D4DE2699229BDBC80072A4A2 /* UIView+SGExtension.m in Sources */,
 				D40DE99422F466FC00974BAF /* OpenUDID.m in Sources */,
@@ -2968,7 +3105,9 @@
 				D4B75E1C227802600007047C /* main.m in Sources */,
 				D4AE63DC2295734700DD265A /* UGMessageModel.m in Sources */,
 				D4F63F94228FD3B000EC93AA /* UGFastThreeFourCollectionViewCell.m in Sources */,
+				D425282723210760007DE522 /* UGSignInScrHeaderView.m in Sources */,
 				D405B1F4227972C900F8C586 /* JSONValueTransformer.m in Sources */,
+				D42528152320DDA2007DE522 /* UGSignInCollectionViewCell.m in Sources */,
 				D405B216227972D300F8C586 /* NSObject+MJCoding.m in Sources */,
 				D41246A122854518006881E2 /* UGPromotionsController.m in Sources */,
 				D405B1C0227972AD00F8C586 /* UIImageView+WebCache.m in Sources */,
@@ -3019,6 +3158,7 @@
 				D40FA8C222991142003E596F /* UGYubaoViewController.m in Sources */,
 				D405B30E227C614800F8C586 /* UGFundDetailsCell.m in Sources */,
 				D405B32F227DA8F700F8C586 /* SAROPSessionStorage.m in Sources */,
+				D425281C2320EFFF007DE522 /* UGSignInModel.m in Sources */,
 				D4AE641C2295871D00DD265A /* MJRefreshHeader.m in Sources */,
 				D40E1E5322BE6AB6004D4664 /* UGBannerModel.m in Sources */,
 				D41FF77122E880A800FCCDD2 /* UGSSCBetItem1Cell.m in Sources */,
@@ -3037,6 +3177,7 @@
 				D4AE640F2295871D00DD265A /* UIScrollView+MJExtension.m in Sources */,
 				D405B1B4227972AD00F8C586 /* SDWebImageDecoder.m in Sources */,
 				D41C3DF6228E75F100BF6436 /* UITabBarItem+WZLBadge.m in Sources */,
+				D4252822232102CA007DE522 /* UGSignInHeaderView.m in Sources */,
 				D463B4E522844D4A00EAC0F7 /* UGRightMenuTableViewCell.m in Sources */,
 				D4145A9022B52C8000D8165F /* UGGD11X5LotteryController.m in Sources */,
 				D405B1F9227972C900F8C586 /* JSONModelClassProperty.m in Sources */,
@@ -3304,6 +3445,7 @@
 		};
 		D4B75E20227802600007047C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E98695D8DC0D2512B92A7C32 /* Pods-ug.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -3326,6 +3468,7 @@
 		};
 		D4B75E21227802600007047C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 443C93C1135A8C900E47477A /* Pods-ug.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";

@@ -32,6 +32,9 @@
 #import "UGRealBetRecordViewController.h"
 #import "UGSystemConfigModel.h"
 
+#import "UGSigInCodeViewController.h"
+
+
 @interface UGMineViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIView *userInfoView;
 @property (weak, nonatomic) IBOutlet UIImageView *avaterImageView;
@@ -179,7 +182,11 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
         }];
     }else {
   
-        
+        //
+//        UGSignInViewController *vc = [[UGSignInViewController alloc] initWithNibName:@"UGSignInViewController" bundle:nil];
+        UGSigInCodeViewController *vc = [[UGSigInCodeViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+
     }
 }
 

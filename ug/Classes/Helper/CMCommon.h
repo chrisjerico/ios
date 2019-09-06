@@ -19,6 +19,11 @@
 + (BOOL)stringIsNull:(id)str;
 
 /**
+ *判断是不是空数组，如果返回yes，代表该该数组为空
+ */
++ (BOOL)arryIsNull:(NSArray *)array;
+
+/**
  *  手机唯一码
  *
  *  @return <#return value description#>
