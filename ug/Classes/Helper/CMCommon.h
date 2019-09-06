@@ -75,4 +75,12 @@
 
 //判断密码强度
 + (NSInteger)judgePasswordStrength:(NSString*) _password;
+
+/**
+ 比较两个日期的大小
+ 日期格式为:yyyy-MM-dd
+ [self compareDate:@"2019-09-06" withDate:@"2019-09-02" withFormat:@"yyyy-MM-dd"]
+ 返回：//小  -1 一样  0 大   1
+ */
++(int)compareDate:(NSString*)date01 withDate:(NSString*)date02  withFormat:(NSString *)format;
 @end

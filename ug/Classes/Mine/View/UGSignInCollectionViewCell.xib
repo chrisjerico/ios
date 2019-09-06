@@ -31,8 +31,8 @@
                         <rect key="frame" x="23" y="94" width="33" height="27"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="已签到" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ve3-FK-zGm">
-                        <rect key="frame" x="23" y="142" width="34" height="14"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="已签到" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ve3-FK-zGm">
+                        <rect key="frame" x="8" y="142" width="64" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -80,7 +80,7 @@
                 <outlet property="stateLable" destination="ve3-FK-zGm" id="zNq-9m-KDS"/>
                 <outlet property="weekLbl" destination="hzF-2X-eKd" id="HPu-3G-pdk"/>
             </connections>
-            <point key="canvasLocation" x="-178.98550724637681" y="67.299107142857139"/>
+            <point key="canvasLocation" x="-179.71014492753625" y="67.299107142857139"/>
         </collectionViewCell>
     </objects>
     <resources>

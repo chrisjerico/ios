@@ -16,21 +16,17 @@
             <rect key="frame" x="0.0" y="0.0" width="433" height="95"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="sign_convert" translatesAutoresizingMaskIntoConstraints="NO" id="baW-jz-Wwn">
-                    <rect key="frame" x="272.5" y="15" width="131.5" height="29"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="29" id="AWD-hY-Cm5"/>
-                    </constraints>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="sign_convert" translatesAutoresizingMaskIntoConstraints="NO" id="baW-jz-Wwn">
+                    <rect key="frame" x="245" y="15" width="159" height="29"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" ambiguous="YES" image="sign_integral" translatesAutoresizingMaskIntoConstraints="NO" id="11t-jJ-8nk">
-                    <rect key="frame" x="29" y="0.0" width="238.5" height="45"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="45" id="E4V-r3-PKo"/>
-                    </constraints>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" fixedFrame="YES" image="sign_integral" translatesAutoresizingMaskIntoConstraints="NO" id="11t-jJ-8nk">
+                    <rect key="frame" x="29" y="0.0" width="208" height="45"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DwR-kS-YUw">
                     <rect key="frame" x="96" y="52" width="240" height="39"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="已连续" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pth-ak-O5B">
                             <rect key="frame" x="47" y="10" width="56" height="22"/>
@@ -58,13 +54,6 @@
                 </view>
             </subviews>
             <color key="backgroundColor" red="0.4337427020072937" green="0.52625405788421631" blue="0.93333792686462402" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-            <constraints>
-                <constraint firstItem="baW-jz-Wwn" firstAttribute="leading" secondItem="11t-jJ-8nk" secondAttribute="trailing" constant="5" id="84S-pM-Ku9"/>
-                <constraint firstItem="11t-jJ-8nk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="29" id="9Lz-OG-AEf"/>
-                <constraint firstAttribute="trailing" secondItem="baW-jz-Wwn" secondAttribute="trailing" constant="29" id="Meg-vc-izw"/>
-                <constraint firstItem="11t-jJ-8nk" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="p6n-ls-AlC"/>
-                <constraint firstItem="baW-jz-Wwn" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="ttB-J2-APn"/>
-            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>

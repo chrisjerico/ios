@@ -85,21 +85,14 @@
     if (item.integral) {
         [self setNumber_gold_Str:[NSString stringWithFormat:@"+%@",item.integral]];
     }
-//     isCheckin;//false:当天没签到，true:当天签到了
-//     isMakeup;//true(当天可以补签)，false(当天不可以补签)
-    //2：3种状态2个场景
-    //1：显示已签到灰色按钮；
-    //isCheckin：true；当天签到了
-    //isMakeup：false：当天不能补签；
+    //isCheckin：true；当天签到了  ==》是显示已签到
+    //isCheckin：false；当天没签到了 isMakeup：true：当天不能补签；==》是显示签到
+    //isCheckin：false；当天没签到了 isMakeup：false：当天能补签；==》
     //
-    //2：显示补签的红色按钮；==》可以点击补签事件
-    //isCheckin：false；当天没签到了
-    //isMakeup：true：当天可以补签；
-    //3：显示签到的蓝色按钮；==》可以点击签到事件
-    //isCheckin：false；当天没签到了
-    //isMakeup：false：当天不能补签；
+    //如果日期大于今天，显示签到
+    //如果日期小于今天，是显示补签
     
-    if (item.isCheckin == true && item.isMakeup == false) {
+    if (item.isCheckin == true) {
         //按钮不可点击
         // 显示已签到灰色按钮；可以点击补签事件 已签到bg
         self.signInButton.userInteractionEnabled=NO;//交互关闭
@@ -110,15 +103,6 @@
     }
     else if(item.isCheckin == false && item.isMakeup == true){
         //按钮可点击
-        // 显示补签的红色按钮,未签到bg
-        self.signInButton.userInteractionEnabled=YES;//交互
-        self.signInButton.alpha= 1;//透明度
-        [self setStateStr:@"补签"];
-        [self setStateImageStr:@"signIn_red"];
-        [self setBgImageStr:@"nosign"];
-    }
-    else if(item.isCheckin == false && item.isMakeup == false){
-        //按钮可点击
         // 显示签到的蓝色按钮；可以点击签到事件 未签到bg
         self.signInButton.userInteractionEnabled=YES;//交互
         self.signInButton.alpha= 1;//透明度
@@ -126,6 +110,26 @@
         [self setStateImageStr:@"signIn_blue"];
         [self setBgImageStr:@"nosign"];
     }
+    else if(item.isCheckin == false && item.isMakeup == false){
+        //按钮可点击
+        //如果日期大于今天，显示签到
+        //如果日期小于今天，是显示补签
+        self.signInButton.userInteractionEnabled=YES;//交互
+        self.signInButton.alpha= 1;//透明度
+        
+        [self setBgImageStr:@"nosign"];
+        
+        int a = [CMCommon compareDate:item.serverTime withDate:item.whichDay withFormat:@"yyyy-MM-dd" ];
+        
+        if (a >= 0) {
+            [self setStateStr:@"签到"];
+            [self setStateImageStr:@"signIn_blue"];
+        } else {
+            [self setStateStr:@"补签"];
+            [self setStateImageStr:@"signIn_red"];
+        }
+    }
+    
     
     
     

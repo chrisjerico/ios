@@ -36,9 +36,12 @@
     self.view.backgroundColor = UGRGBColor(89, 109, 191);
     _collectionDataArray = [NSMutableArray new];
     
-    [self createUI];
-    [self getCheckinListData];
+     [self getCheckinListData];
+    
+
 }
+
+
 
 #pragma mark - UIS
 
@@ -58,7 +61,13 @@
            //签到记录
             NSLog(@"签到记录");
             
-            [weakSelf checkinDataWithType:@"0" Date:@"2019-09-04"];
+             NSDate * nowDate = [NSDate date];
+             NSDateFormatter  *dateformatter=[[NSDateFormatter alloc] init];
+             [dateformatter setDateFormat:@"yyyy-MM-dd"];
+             NSString *  locationString=[dateformatter stringFromDate:nowDate];
+            NSLog(@"locationString= %@",locationString);
+
+            [weakSelf checkinDataWithType:@"0" Date:locationString];
         };
     }
     [self.view addSubview:mUGSignInHeaderView];
@@ -83,8 +92,9 @@
     }
     [mUIScrollView addSubview:mUGSignInScrHeaderView];
     //-日期列表======================================
-    float itemW = 80.0;
+    float itemW = (UGScreenW - 10 - 40)/4;
     float itemH = 185.0;
+    
     UICollectionViewFlowLayout *layout = ({
         
         layout = [[UICollectionViewFlowLayout alloc] init];
@@ -92,17 +102,20 @@
         layout.itemSize = CGSizeMake(itemW, itemH);
         layout.minimumInteritemSpacing = 5;//最小间距
         layout.minimumLineSpacing = 5;//最小行距
-        layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;//水平
+        layout.scrollDirection = UICollectionViewScrollDirectionVertical;//水平
         layout;
         
     });
     UICollectionView *collectionView = ({
         float collectionViewH = 400;
         
-        collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(5, 5, UGScreenW - 10, collectionViewH) collectionViewLayout:layout];
-        collectionView.backgroundColor = [UIColor clearColor];
-        collectionView.layer.cornerRadius = 10;
+        collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(5, 95+15, UGScreenW - 10, collectionViewH) collectionViewLayout:layout];
+        collectionView.backgroundColor = [UIColor whiteColor];
+        collectionView.layer.cornerRadius = 4;
         collectionView.layer.masksToBounds = YES;
+        collectionView.layer.borderWidth = 4;
+        collectionView.layer.borderColor = [[UIColor colorWithRed:237.0/255.0 green:250.0/255.0 blue:254.0/255.0 alpha:1] CGColor];
+ 
         collectionView.dataSource = self;
         collectionView.delegate = self;
         [collectionView registerNib:[UINib nibWithNibName:@"UGSignInCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UGSignInCollectionViewCell"];
@@ -110,8 +123,9 @@
         collectionView;
         
     });
-    
-    self.collectionView = collectionView;
+     if (mUIScrollView == nil) {
+         self.collectionView = collectionView;
+     }
     [mUIScrollView addSubview:collectionView];
     //-连续签到礼包======================================
     if (mUGSignInScrFootView == nil) {
@@ -132,7 +146,9 @@
     }
     [mUIScrollView addSubview:mUGSignInScrFootView];
     //=================================================
-     mUIScrollView.contentSize = CGSizeMake(UGScreenW, 605);
+     mUIScrollView.contentSize = CGSizeMake(UGScreenW, 800);
+    
+    [self setUIData];
 }
 
 - (void)setUIData{
@@ -173,9 +189,6 @@
             mUGSignInScrFootView.sevenButtton.alpha= 0.4;//透明度
         }
         
-        
-        
-        
     }
 
     
@@ -191,9 +204,11 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
+    
     if (section == 0) {
         return 4;
-    } else {
+    }
+    else {
         return 3;
     }
     
@@ -210,22 +225,36 @@
     }
     UGCheckinListModel *model = [self.collectionDataArray objectAtIndex:row + indexPath.row];
     NSLog(@"row = %d,model = %@",row,model);
+    model.serverTime = self.checkinListModel.serverTime;
     cell.item = model;
     WeakSelf;
     cell.signInBlock = ^{
         //UICollectionViewCell 点击
         NSLog(@"UICollectionViewCell 点击");
-        if(cell.item.isCheckin == false && cell.item.isMakeup == true){
-            //显示补签的红色按钮；==》可以点击补签事件
-           NSLog(@"显示补签的红色按钮；==》可以点击补签事件");
-            [weakSelf checkinDataWithType:@"1" Date:@"2019-09-04"];
-        }
-        else if(cell.item.isCheckin == false && cell.item.isMakeup == false){
+       
+         if(cell.item.isCheckin == false && cell.item.isMakeup == true){
             // 显示签到的蓝色按钮；==》可以点击签到事件
            NSLog(@"显示签到的蓝色按钮；==》可以点击签到事件");
-            [weakSelf checkinDataWithType:@"0" Date:@"2019-09-04"];
+            
+              NSString *date = model.whichDay;
+            
+            [weakSelf checkinDataWithType:@"0" Date:date];
 
         }
+         else if(cell.item.isCheckin == false && cell.item.isMakeup == false){
+             //如果日期大于今天，显示签到
+             //如果日期小于今天，是显示补签
+            int a = [CMCommon compareDate:model.serverTime withDate:model.whichDay withFormat:@"yyyy-MM-dd" ];
+             
+               NSString *date = model.whichDay;
+             
+             if (a >= 0) {
+                [weakSelf checkinDataWithType:@"0" Date:date];
+             } else {
+                [weakSelf checkinDataWithType:@"1" Date:date];
+             }
+             
+         }
     };
     
    
@@ -238,6 +267,13 @@
     
 }
 
+//边距设置:整体边距的优先级，始终高于内部边距的优先级
+-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView
+                       layout:(UICollectionViewLayout *)collectionViewLayout
+       insetForSectionAtIndex:(NSInteger)section
+{
+    return UIEdgeInsetsMake(5, 5, 5, 5);//分别为上、左、下、右
+}
 #pragma mark -- 网络请求
 //得到日期列表数据
 - (void)getCheckinListData {
@@ -253,7 +289,8 @@
             weakSelf.checkinListModel = model.data;
             NSLog(@"checkinList = %@",weakSelf.checkinListModel);
             NSLog(@"serverTime = %@",weakSelf.checkinListModel.serverTime);
-            [self setUIData];
+             [self createUI];
+//
             
         } failure:^(id msg) {
             
@@ -277,6 +314,7 @@
             
             [SVProgressHUD showSuccessWithStatus:model.msg];
             
+             [self getCheckinListData];
             
         } failure:^(id msg) {
             
@@ -303,6 +341,7 @@
             
             [SVProgressHUD showSuccessWithStatus:model.msg];
             
+             [self getCheckinListData];
             
         } failure:^(id msg) {
             
