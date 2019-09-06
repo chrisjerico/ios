@@ -24,6 +24,7 @@
     UGSignInHeaderView *mUGSignInHeaderView;
     UGSignInScrHeaderView *mUGSignInScrHeaderView;
     UGSignInScrFootView *mUGSignInScrFootView;
+     UIButton *mUGSignInButton;
     
 }
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -58,6 +59,7 @@
     //滚动面版
     //已连续3天签到
     //日期列表
+    //今日签到
     //连续签到礼包
     
     //-签到按钮======================================
@@ -125,10 +127,40 @@
         collectionView;
         
     });
-     if (mUIScrollView == nil) {
+     if (self.collectionView == nil) {
          self.collectionView = collectionView;
      }
     [mUIScrollView addSubview:collectionView];
+    //-今日签到======================================
+    if (mUGSignInButton == nil) {
+        mUGSignInButton  = [UIButton buttonWithType:UIButtonTypeCustom];
+        mUGSignInButton.frame = CGRectMake(100, 100, 100, 40);
+        // 按钮的正常状态
+        [mUGSignInButton setTitle:@"马上签到" forState:UIControlStateNormal];
+        // 设置按钮的背景色
+        mUGSignInButton.backgroundColor = UGRGBColor(111, 126, 233);
+        // 设置正常状态下按钮文字的颜色，如果不写其他状态，默认都是用这个文字的颜色
+        [mUGSignInButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        // titleLabel：UILabel控件
+        mUGSignInButton.titleLabel.font = [UIFont systemFontOfSize:22];
+        
+        mUGSignInButton.layer.cornerRadius = 20;
+        
+        mUGSignInButton.layer.masksToBounds = YES;
+        
+        [mUGSignInButton addTarget:self action:@selector(mUGSignInButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    }
+    [mUIScrollView addSubview:mUGSignInButton];
+    
+    [mUGSignInButton mas_makeConstraints:^(MASConstraintMaker *make)
+     {
+         
+         make.top.mas_equalTo(self.collectionView.mas_bottom).offset(-20.0);
+         make.centerX.mas_equalTo(self.view.mas_centerX);
+         make.width.equalTo(@140);
+         make.height.equalTo(@40);
+     }];
+    
     //-连续签到礼包======================================
     if (mUGSignInScrFootView == nil) {
         mUGSignInScrFootView = [[UGSignInScrFootView alloc] initView];
@@ -192,6 +224,33 @@
         }
         
     }
+    //-今日签到======================================
+//    "serverTime": "2019-09-04",
+//    签到列表里去找今天的日期，isCheckin 就是他的状态
+//    如果是false ：马上签到==》点击签到
+//    已经签到了才只显示==》今日已签
+    BOOL kisCheckIn = NO;
+    for (int i = 0; i<_collectionDataArray.count; i++) {
+        UGCheckinListModel *model = [self.collectionDataArray objectAtIndex:i];
+        if ([model.whichDay isEqualToString:self.checkinListModel.serverTime]) {
+            
+            kisCheckIn = model.isCheckin;
+            
+            break;
+        }
+        
+    }
+    
+    if (kisCheckIn) {
+        [mUGSignInButton setTitle:@"今日已签" forState:UIControlStateNormal];
+        mUGSignInButton.userInteractionEnabled =NO;//交互关闭
+        mUGSignInButton.alpha= 0.8;//透明度
+    } else {
+        [mUGSignInButton setTitle:@"马上签到" forState:UIControlStateNormal];
+        mUGSignInButton.userInteractionEnabled =YES;//交互
+        mUGSignInButton.alpha= 1;//透明度
+    }
+    
 
     
 }
@@ -287,7 +346,7 @@
     [CMNetwork checkinListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             
-            [SVProgressHUD showSuccessWithStatus:model.msg];
+            [SVProgressHUD dismiss];
             weakSelf.checkinListModel = model.data;
             NSLog(@"checkinList = %@",weakSelf.checkinListModel);
             NSLog(@"serverTime = %@",weakSelf.checkinListModel.serverTime);
@@ -359,11 +418,11 @@
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
     
     [SVProgressHUD showWithStatus:nil];
-    WeakSelf;
+//    WeakSelf;
     [CMNetwork checkinHistoryWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             
-            [SVProgressHUD showSuccessWithStatus:model.msg];
+            [SVProgressHUD dismiss];
             self->_historyDataArray = model.data;
             NSLog(@"_historyDataArray = %@",self->_historyDataArray);
             NSLog(@"model.data = %@",model.data);
@@ -392,6 +451,17 @@
     
    
 }
+
+- (void)mUGSignInButtonClicked {
+    
+    NSString *date = self.checkinListModel.serverTime;
+    
+    [self checkinDataWithType:@"0" Date:date];
+    
+    
+}
+
+
 /*
 #pragma mark - Navigation
 
