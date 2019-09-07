@@ -24,6 +24,7 @@
 #import "UGBalanceTransferLogsModel.h"
 #import "UGSignInModel.h"
 #import "UGSignInHistoryModel.h"
+#import "UGMissionModel.h"
 
 @implementation CMNetwork (Mine)
 
@@ -622,6 +623,48 @@
                                          params:params
                                           model:CMResultArrayClassMake(UGSignInHistoryModel.class)
                                            post:NO
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
+
+//任务大厅 http://test10.6yc.com/wjapp/api.php?c=task&a=center&page=1&rows=20&token=SNNn1AN33aO3404nlaA33ZXN
++ (void)centerWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    
+    [self.manager requestInMainThreadWithMethod:[centerUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
+                                           post:NO
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
+
+//领取任务 http://test10.6yc.com/wjapp/api.php?c=task&a=get  mid token
++ (void)taskGetWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    
+    [self.manager requestInMainThreadWithMethod:[taskGetUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
+                                           post:YES
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
+
+//领取奖励 http://test10.6yc.com/wjapp/api.php?c=task&a=reward mid token
++ (void)taskRewardWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    
+    [self.manager requestInMainThreadWithMethod:[taskGetUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
+                                           post:YES
                                      completion:completionBlock];
     
     

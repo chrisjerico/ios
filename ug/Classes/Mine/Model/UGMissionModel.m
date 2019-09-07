@@ -13,6 +13,6 @@
 
 + (JSONKeyMapper *)keyMapper {
     
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"missionId":@"id"}];
+    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"missionId"}];
 }
 @end

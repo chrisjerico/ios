@@ -22,6 +22,10 @@ static NSString *missionCellid = @"UGMissionTableViewCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.dataArray = [NSMutableArray new];
+    
+    [self getCenterData];
+    
     self.tableView.estimatedRowHeight = 0;
     self.tableView.estimatedSectionHeaderHeight = 0;
     self.tableView.estimatedSectionFooterHeight = 0;
@@ -49,13 +53,31 @@ static NSString *missionCellid = @"UGMissionTableViewCell";
     cell.item = model;
     WeakSelf
     cell.receiveMissionBlock = ^{
-        if (model.status) {
+        
+        if ([model.status isEqualToString:@"3"]) {
+            //领奖励
+            [self taskRewardDataWithType:model.missionId];
+            
+        }else if ([model.status isEqualToString:@"1"]) {
+//            [self.goButton setTitle:@"去完成" forState:UIControlStateNormal];
             [QDAlertView showWithTitle:@"温馨提示" message:@"尚未达到任务完成条件，先去做任务吧"];
-        }else {
-            [QDAlertView showWithTitle:@"温馨提示" message:@"领取成功"];
-            model.status = 1;
-            [weakSelf.tableView reloadData];
+            
+        }else if ([model.status isEqualToString:@"0"]) {
+            //领任务
+            [self taskGetDataWithType:model.missionId];
+            
+        }else if ([model.status isEqualToString:@"2"]) {
+            
+//            [self.goButton setTitle:@"已完成" forState:UIControlStateNormal];
+                //已完成
         }
+//        if (model.status) {
+//            [QDAlertView showWithTitle:@"温馨提示" message:@"尚未达到任务完成条件，先去做任务吧"];
+//        }else {
+//            [QDAlertView showWithTitle:@"温馨提示" message:@"领取成功"];
+//            model.status = 1;
+//            [weakSelf.tableView reloadData];
+//        }
     };
     return cell;
 }
@@ -73,19 +95,105 @@ static NSString *missionCellid = @"UGMissionTableViewCell";
     
 }
 
-- (NSMutableArray *)dataArray {
-    if (_dataArray == nil) {
-        _dataArray = [NSMutableArray array];
-        for (int i = 0; i < 15; i++) {
-            UGMissionModel *model = [[UGMissionModel alloc] init];
-            model.status = 0;
-            model.missionName = @"fsddfs423342fdsfdsfd";
-            model.overTime = @"2019-06-29";
-            model.integral = @"1.0000";
-            [_dataArray addObject:model];
-        }
-    }
-    return _dataArray;
+#pragma mark -- 网络请求
+//得到日期列表数据
+- (void)getCenterData {
+    
+    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
+                             @"page":@"1",
+                             @"rows":@"20",
+                             
+                             };
+    
+    [SVProgressHUD showWithStatus:nil];
+    WeakSelf;
+    [CMNetwork centerWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            
+            [SVProgressHUD dismiss];
+          
+            NSDictionary *data =  model.data;
+            NSArray *list = [data objectForKey:@"list"];
+
+//            //字典转模型
+//            UserMembersShareBean *membersShare = [[UserMembersShareBean alloc]initWithDictionary:dic[kMsg]
+            //数组转模型数组
+            self.dataArray = [UGMissionModel arrayOfModelsFromDictionaries:list error:nil];
+            
+            NSLog(@"self.dataArray = %@",self.dataArray);
+            [self.tableView reloadData];
+            
+        } failure:^(id msg) {
+            
+            [SVProgressHUD showErrorWithStatus:msg];
+            
+        }];
+    }];
 }
+
+//领取任务
+- (void)taskGetDataWithType:(NSString *)mid {
+    
+    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
+                             @"mid":mid
+
+                             };
+    
+    [SVProgressHUD showWithStatus:nil];
+    //    WeakSelf;
+    [CMNetwork taskGetWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            
+            [SVProgressHUD showSuccessWithStatus:model.msg];
+            
+            [self getCenterData];
+            
+        } failure:^(id msg) {
+            
+            [SVProgressHUD showErrorWithStatus:msg];
+            
+        }];
+    }];
+}
+
+//领取奖励
+- (void)taskRewardDataWithType:(NSString *)mid {
+    
+    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
+                             @"mid":mid
+                             
+                             };
+    
+    [SVProgressHUD showWithStatus:nil];
+    //    WeakSelf;
+    [CMNetwork taskRewardWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            
+            [SVProgressHUD showSuccessWithStatus:model.msg];
+            
+            [self getCenterData];
+            
+        } failure:^(id msg) {
+            
+            [SVProgressHUD showErrorWithStatus:msg];
+            
+        }];
+    }];
+}
+
+//- (NSMutableArray *)dataArray {
+//    if (_dataArray == nil) {
+//        _dataArray = [NSMutableArray array];
+//        for (int i = 0; i < 15; i++) {
+//            UGMissionModel *model = [[UGMissionModel alloc] init];
+//            model.status = 0;
+//            model.missionName = @"fsddfs423342fdsfdsfd";
+//            model.overTime = @"2019-06-29";
+//            model.integral = @"1.0000";
+//            [_dataArray addObject:model];
+//        }
+//    }
+//    return _dataArray;
+//}
 
 @end

@@ -132,6 +132,15 @@ NS_ASSUME_NONNULL_BEGIN
 //用户签到历史
 + (void)checkinHistoryWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 
+//任务大厅
++ (void)centerWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+//领取任务
++ (void)taskGetWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+//领取奖励
++ (void)taskRewardWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
 @end
 
 NS_ASSUME_NONNULL_END
