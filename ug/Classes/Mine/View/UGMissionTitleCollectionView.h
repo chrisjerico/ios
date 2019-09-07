@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-typedef void(^MissionTitleSelectBlock)(NSInteger index);
+typedef void(^MissionTitleSelectBlock)(NSInteger index,NSString *title);
 @interface UGMissionTitleCollectionView : UIView
 @property (nonatomic, copy) MissionTitleSelectBlock titleSelectBlock;
 @property (nonatomic, assign) NSInteger selectIndex;

@@ -39,6 +39,7 @@
 @property (weak, nonatomic) IBOutlet UIView *userInfoView;
 @property (weak, nonatomic) IBOutlet UIImageView *avaterImageView;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *levelNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *taskRewardTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *curLevleGradeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nextLevelGradeLabel;
@@ -104,14 +105,16 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
     
     SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
         [self.refreshButton.layer removeAllAnimations];
-        [self setUserInfoWithHeaderImg:NO];
+        [self setupUserInfo:NO];
         [self.tableView reloadData];
     });
     SANotificationEventSubscribe(UGNotificationUserAvatarChanged, self, ^(typeof (self) self, id obj) {
         [self.avaterImageView sd_setImageWithURL:[NSURL URLWithString:[UGUserModel currentUser].avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
     });
-    [self setUserInfoWithHeaderImg:YES];
-    
+//    [self setUserInfoWithHeaderImg:YES];
+    [self getUserInfo];
+    [self.tableView reloadData];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -134,21 +137,21 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
 
 }
 
-- (void)setUserInfoWithHeaderImg:(BOOL)flag {
-    UGUserModel *user = [UGUserModel currentUser];
-    if (flag) {
-        
-        [self.avaterImageView sd_setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
-    }
-    self.userNameLabel.text = [NSString stringWithFormat:@"%@ %@",user.username,user.curLevelTitle];
-    self.balanceLabel.text = [NSString stringWithFormat:@"¥%@",[user.balance removeFloatAllZero]];
-    self.taskRewardTitleLabel.text = [NSString stringWithFormat:@"%@:\n%@",user.taskRewardTitle,user.curLevelInt];
-    self.nextLevelIntLabel.text = [NSString stringWithFormat:@"成长值(%@ - %@)",user.curLevelInt,user.nextLevelInt];
-    self.curLevleGradeLabel.text = user.curLevelGrade;
-    self.nextLevelGradeLabel.text = user.nextLevelGrade;
-    float per = user.curLevelInt.floatValue / user.nextLevelInt.floatValue;
-    self.progressLayer.path = [self progressPathWithProgress:per].CGPath;
-}
+//- (void)setUserInfoWithHeaderImg:(BOOL)flag {
+//    UGUserModel *user = [UGUserModel currentUser];
+//    if (flag) {
+//
+//        [self.avaterImageView sd_setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
+//    }
+//    self.userNameLabel.text = [NSString stringWithFormat:@"%@ %@",user.username,user.curLevelTitle];
+//    self.balanceLabel.text = [NSString stringWithFormat:@"¥%@",[user.balance removeFloatAllZero]];
+//    self.taskRewardTitleLabel.text = [NSString stringWithFormat:@"%@:\n%@",user.taskRewardTitle,user.curLevelInt];
+//    self.nextLevelIntLabel.text = [NSString stringWithFormat:@"成长值(%@ - %@)",user.curLevelInt,user.nextLevelInt];
+//    self.curLevleGradeLabel.text = user.curLevelGrade;
+//    self.nextLevelGradeLabel.text = user.nextLevelGrade;
+//    float per = user.curLevelInt.floatValue / user.nextLevelInt.floatValue;
+//    self.progressLayer.path = [self progressPathWithProgress:per].CGPath;
+//}
 
 - (void)showAvaterSelectView {
     UGAvaterSelectView *avaterView = [[UGAvaterSelectView alloc] initWithFrame:CGRectMake(0, UGScerrnH, UGScreenW, UGScreenW)];
@@ -416,6 +419,15 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
     
 }
 
+//刷新余额动画
+-(void)stopAnimation
+{
+    
+    [self.refreshButton.layer removeAllAnimations];
+    
+}
+
+
 - (CAShapeLayer *)containerLayer
 {
     if (!_containerLayer) {
@@ -457,5 +469,57 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
     layer.lineJoin = kCALineJoinRound;
     layer.frame = self.progressView.bounds;
     return layer;
+}
+
+
+
+
+#pragma mark - UIS
+- (void)setupUserInfo:(BOOL)flag  {
+    UGUserModel *user = [UGUserModel currentUser];
+    
+    if (flag) {
+        
+                [self.avaterImageView sd_setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
+            }
+   
+    self.userNameLabel.text = user.username;
+    self.levelNameLabel.text = user.curLevelGrade;
+    int int1String = [user.taskRewardTotal intValue];
+    NSLog(@"int1String = %d",int1String);
+    int int2String = [user.nextLevelInt intValue];
+    NSLog(@"int2String = %d",int2String);
+    self.nextLevelIntLabel.text = [NSString stringWithFormat:@"成长值（%d-%d）",int1String,int2String];
+    
+    
+    double floatString = [user.balance doubleValue];
+    self.balanceLabel.text =  [NSString stringWithFormat:@"￥%.2f",floatString];
+    //进度条
+    float floatProgress = (float)[user.taskRewardTotal doubleValue]/[user.nextLevelInt doubleValue];
+    self.progressLayer.path = [self progressPathWithProgress:floatProgress].CGPath;
+    
+}
+
+#pragma mark -- 网络请求
+- (void)getUserInfo {
+    [self startAnimation];
+    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
+    [CMNetwork getUserInfoWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            UGUserModel *user = model.data;
+            UGUserModel *oldUser = [UGUserModel currentUser];
+            user.sessid = oldUser.sessid;
+            user.token = oldUser.token;
+            UGUserModel.currentUser = user;
+            [self setupUserInfo:YES];
+            
+            [self stopAnimation];
+            
+        } failure:^(id msg) {
+            
+            [self stopAnimation];
+            
+        }];
+    }];
 }
 @end

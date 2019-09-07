@@ -141,6 +141,9 @@ NS_ASSUME_NONNULL_BEGIN
 //领取奖励
 + (void)taskRewardWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 
+//积分账变列表
++ (void)taskCreditsLogWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
 @end
 
 NS_ASSUME_NONNULL_END

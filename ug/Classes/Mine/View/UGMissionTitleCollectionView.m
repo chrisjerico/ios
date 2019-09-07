@@ -8,6 +8,7 @@
 
 #import "UGMissionTitleCollectionView.h"
 #import "UGMissionTitleCell.h"
+#import "UGSystemConfigModel.h"
 
 @interface UGMissionTitleCollectionView ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -22,7 +23,12 @@ static NSString *titleCellid = @"UGMissionTitleCell";
     self = [super initWithFrame:frame];
     if (self) {
         
-        self.titleArray = @[@"任务大厅",@"积分兑换",@"积分账变",@"VIP等级"];
+        UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
+        NSString *str1 = [NSString stringWithFormat:@"%@兑换",config.missionName];
+        NSString *str2 = [NSString stringWithFormat:@"%@账变",config.missionName];
+
+
+        self.titleArray = @[@"任务大厅",str1,str2,@"VIP等级"];
         self.imageArray = @[@"missions.27015d78",@"integral.ffe5f6cf",@"integralChange.a5a00618",@"vipGrade.d4d2d844"];
         [self initGameCollectionView];
         
@@ -37,7 +43,7 @@ static NSString *titleCellid = @"UGMissionTitleCell";
 
 - (void)initGameCollectionView {
     
-    float itemW = (UGScreenW - 40) / 3;
+    float itemW = (UGScreenW ) / 3;
     UICollectionViewFlowLayout *layout = ({
         
         layout = [[UICollectionViewFlowLayout alloc] init];
@@ -87,7 +93,7 @@ static NSString *titleCellid = @"UGMissionTitleCell";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     if (self.titleSelectBlock) {
-        self.titleSelectBlock(indexPath.row);
+        self.titleSelectBlock(indexPath.row,self.titleArray[indexPath.row]);
     }
 }
 

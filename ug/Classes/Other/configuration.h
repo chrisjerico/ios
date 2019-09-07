@@ -165,6 +165,8 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 
 #define taskRewardUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=task&a=reward"]
 
+#define taskCreditsLogUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=task&a=creditsLog"]
+
 
 #ifndef __OPTIMIZE__
 

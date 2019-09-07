@@ -82,12 +82,14 @@
     [self.view addSubview:self.missionCollectionView];
     self.titleCollectionView.selectIndex = 0;
     WeakSelf
-    self.titleCollectionView.titleSelectBlock = ^(NSInteger index) {
+    self.titleCollectionView.titleSelectBlock = ^(NSInteger index,NSString *title) {
         weakSelf.missionCollectionView.selectIndex = index;
+        weakSelf.title = title;
     };
     
     self.missionCollectionView.selectIndexBlock = ^(NSInteger selectIndex) {
         weakSelf.titleCollectionView.selectIndex = selectIndex;
+        
     };
 
     [self getUserInfo];

@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
+@class UGCreditsLogModel;
 
 @interface UGIntegarlConvertRecordCell : UITableViewCell
+
+@property (nonatomic, strong) UGCreditsLogModel *item;
 
 @end
 

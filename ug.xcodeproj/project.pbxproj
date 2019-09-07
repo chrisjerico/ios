@@ -353,6 +353,7 @@
 		D48224F522A10B5100F7DE72 /* UGNoticeHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D48224F422A10B5100F7DE72 /* UGNoticeHeaderView.m */; };
 		D48224F722A10B5F00F7DE72 /* UGNoticeHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D48224F622A10B5F00F7DE72 /* UGNoticeHeaderView.xib */; };
 		D48224FA22A120E500F7DE72 /* UGPlatformNoticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D48224F922A120E500F7DE72 /* UGPlatformNoticeModel.m */; };
+		D499B7A82323C67D00EF92C1 /* UGCreditsLogModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D499B7A72323C67D00EF92C1 /* UGCreditsLogModel.m */; };
 		D49A36BF22A29C7A000057D2 /* UGLotteryRulesView.m in Sources */ = {isa = PBXBuildFile; fileRef = D49A36BE22A29C7A000057D2 /* UGLotteryRulesView.m */; };
 		D49A36C122A29CCB000057D2 /* UGLotteryRulesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D49A36C022A29CCB000057D2 /* UGLotteryRulesView.xib */; };
 		D49A36C422A2C9DA000057D2 /* UGQXCLotteryController.m in Sources */ = {isa = PBXBuildFile; fileRef = D49A36C322A2C9DA000057D2 /* UGQXCLotteryController.m */; };
@@ -1096,6 +1097,8 @@
 		D48224F622A10B5F00F7DE72 /* UGNoticeHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGNoticeHeaderView.xib; sourceTree = "<group>"; };
 		D48224F822A120E500F7DE72 /* UGPlatformNoticeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGPlatformNoticeModel.h; sourceTree = "<group>"; };
 		D48224F922A120E500F7DE72 /* UGPlatformNoticeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGPlatformNoticeModel.m; sourceTree = "<group>"; };
+		D499B7A62323C67D00EF92C1 /* UGCreditsLogModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGCreditsLogModel.h; sourceTree = "<group>"; };
+		D499B7A72323C67D00EF92C1 /* UGCreditsLogModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGCreditsLogModel.m; sourceTree = "<group>"; };
 		D49A36BD22A29C7A000057D2 /* UGLotteryRulesView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLotteryRulesView.h; sourceTree = "<group>"; };
 		D49A36BE22A29C7A000057D2 /* UGLotteryRulesView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLotteryRulesView.m; sourceTree = "<group>"; };
 		D49A36C022A29CCB000057D2 /* UGLotteryRulesView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGLotteryRulesView.xib; sourceTree = "<group>"; };
@@ -1347,6 +1350,8 @@
 				D425281B2320EFFF007DE522 /* UGSignInModel.m */,
 				D4A02B5023224C32004D5894 /* UGSignInHistoryModel.h */,
 				D4A02B5123224C32004D5894 /* UGSignInHistoryModel.m */,
+				D499B7A62323C67D00EF92C1 /* UGCreditsLogModel.h */,
+				D499B7A72323C67D00EF92C1 /* UGCreditsLogModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3210,6 +3215,7 @@
 				D405B1BE227972AD00F8C586 /* SDWebImageDownloaderOperation.m in Sources */,
 				D405B1F5227972C900F8C586 /* JSONKeyMapper.m in Sources */,
 				D405B1B7227972AD00F8C586 /* FLAnimatedImageView.m in Sources */,
+				D499B7A82323C67D00EF92C1 /* UGCreditsLogModel.m in Sources */,
 				D4AE641E2295871D00DD265A /* MJRefreshAutoFooter.m in Sources */,
 				D41C3DF7228E75F100BF6436 /* UIView+WZLBadge.m in Sources */,
 				D4DE2691229BCB960072A4A2 /* WMTabControl.m in Sources */,

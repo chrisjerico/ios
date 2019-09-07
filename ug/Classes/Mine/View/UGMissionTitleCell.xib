@@ -26,8 +26,8 @@
                             <constraint firstAttribute="height" constant="35" id="aYY-HV-ldx"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="任务大厅" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eT6-NE-GNV">
-                        <rect key="frame" x="50" y="16" width="57.5" height="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="任务大厅" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eT6-NE-GNV">
+                        <rect key="frame" x="50" y="16" width="119" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -37,7 +37,7 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="YvS-Mp-qac" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="5aN-0c-R4s"/>
-                <constraint firstItem="eT6-NE-GNV" firstAttribute="leading" secondItem="YvS-Mp-qac" secondAttribute="trailing" constant="5" id="7qX-rU-eDG"/>
+                <constraint firstItem="eT6-NE-GNV" firstAttribute="leading" secondItem="YvS-Mp-qac" secondAttribute="trailing" constant="3" id="7qX-rU-eDG"/>
                 <constraint firstItem="YvS-Mp-qac" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="i5w-UK-thR"/>
                 <constraint firstItem="eT6-NE-GNV" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="zNz-bh-SCh"/>
             </constraints>

@@ -21,7 +21,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xx8-av-ouu">
                                 <rect key="frame" x="0.0" y="44" width="414" height="195"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultHead" translatesAutoresizingMaskIntoConstraints="NO" id="3en-hR-RLA">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="txp" translatesAutoresizingMaskIntoConstraints="NO" id="3en-hR-RLA">
                                         <rect key="frame" x="15" y="15" width="70" height="70"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="70" id="UCL-a3-ggM"/>
@@ -221,12 +221,12 @@
     </scenes>
     <resources>
         <image name="baibolang" width="187.5" height="24"/>
-        <image name="defaultHead" width="250" height="250"/>
         <image name="huangzhuan" width="50" height="50"/>
         <image name="huiyuanzhongxin" width="69" height="20"/>
         <image name="lvzhuan" width="50" height="50"/>
         <image name="meiriqiandao" width="69" height="20"/>
         <image name="shuaxin" width="24" height="24"/>
+        <image name="txp" width="100" height="100"/>
         <image name="vipdengji" width="150" height="50"/>
     </resources>
 </document>

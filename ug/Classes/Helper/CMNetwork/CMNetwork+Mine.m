@@ -670,4 +670,18 @@
     
     CMMETHOD_END;
 }
+
+//积分账变列表 http://test10.6yc.com/wjapp/api.php?c=task&a=creditsLog&page=1 &rows=20 &token=SNNn1AN33aO3404nlaA33ZXN
++ (void)taskCreditsLogWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    
+    [self.manager requestInMainThreadWithMethod:[taskCreditsLogUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
+                                           post:NO
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
 @end
