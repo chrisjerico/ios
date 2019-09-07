@@ -327,6 +327,7 @@
 		D4252829232107EE007DE522 /* UGSignInScrHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4252828232107EE007DE522 /* UGSignInScrHeaderView.xib */; };
 		D425282C2321267C007DE522 /* UGSignInScrFootView.m in Sources */ = {isa = PBXBuildFile; fileRef = D425282B2321267C007DE522 /* UGSignInScrFootView.m */; };
 		D425282E23212717007DE522 /* UGSignInScrFootView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D425282D23212717007DE522 /* UGSignInScrFootView.xib */; };
+		D4261EC72323D6BC006E0A5D /* UGlevelsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4261EC62323D6BC006E0A5D /* UGlevelsModel.m */; };
 		D42A06B122CA212E005488F8 /* UGHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D42A06B022CA212E005488F8 /* UGHomeViewController.m */; };
 		D42A06B322CA22D9005488F8 /* UGHomeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D42A06B222CA22D9005488F8 /* UGHomeViewController.storyboard */; };
 		D4527D1822828C27000EC1C2 /* UGPlatformBalanceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4527D1622828C27000EC1C2 /* UGPlatformBalanceTableViewCell.m */; };
@@ -1055,6 +1056,8 @@
 		D425282A2321267C007DE522 /* UGSignInScrFootView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGSignInScrFootView.h; sourceTree = "<group>"; };
 		D425282B2321267C007DE522 /* UGSignInScrFootView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGSignInScrFootView.m; sourceTree = "<group>"; };
 		D425282D23212717007DE522 /* UGSignInScrFootView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGSignInScrFootView.xib; sourceTree = "<group>"; };
+		D4261EC52323D6BC006E0A5D /* UGlevelsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGlevelsModel.h; sourceTree = "<group>"; };
+		D4261EC62323D6BC006E0A5D /* UGlevelsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGlevelsModel.m; sourceTree = "<group>"; };
 		D42A06AF22CA212E005488F8 /* UGHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGHomeViewController.h; sourceTree = "<group>"; };
 		D42A06B022CA212E005488F8 /* UGHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGHomeViewController.m; sourceTree = "<group>"; };
 		D42A06B222CA22D9005488F8 /* UGHomeViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UGHomeViewController.storyboard; sourceTree = "<group>"; };
@@ -1352,6 +1355,8 @@
 				D4A02B5123224C32004D5894 /* UGSignInHistoryModel.m */,
 				D499B7A62323C67D00EF92C1 /* UGCreditsLogModel.h */,
 				D499B7A72323C67D00EF92C1 /* UGCreditsLogModel.m */,
+				D4261EC52323D6BC006E0A5D /* UGlevelsModel.h */,
+				D4261EC62323D6BC006E0A5D /* UGlevelsModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3261,6 +3266,7 @@
 				D41C3DFA228E877E00BF6436 /* UGIntegralConvertRecordController.m in Sources */,
 				D405B1F6227972C900F8C586 /* JSONModel.m in Sources */,
 				D405AFF322783DCC00F8C586 /* MASCompositeConstraint.m in Sources */,
+				D4261EC72323D6BC006E0A5D /* UGlevelsModel.m in Sources */,
 				D4DE269B229BDBC80072A4A2 /* SGImageButton.m in Sources */,
 				D405AFF722783DCC00F8C586 /* View+MASAdditions.m in Sources */,
 				D4A02B5223224C32004D5894 /* UGSignInHistoryModel.m in Sources */,

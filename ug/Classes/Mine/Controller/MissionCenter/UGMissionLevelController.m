@@ -8,7 +8,8 @@
 
 #import "UGMissionLevelController.h"
 #import "UGMissionLevelTableViewCell.h"
-#import "UGMissionLevelModel.h"
+#import "UGlevelsModel.h"
+#import "UGSystemConfigModel.h"
 
 @interface UGMissionLevelController ()
 
@@ -21,6 +22,10 @@ static NSString *levelCellid = @"UGMissionLevelTableViewCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.dataArray = [NSMutableArray new];
+    
+    [self getLevelsData];
     
     self.tableView.rowHeight = 44;
     self.tableView.estimatedSectionHeaderHeight = 0;
@@ -43,58 +48,69 @@ static NSString *levelCellid = @"UGMissionLevelTableViewCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UGMissionLevelTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:levelCellid forIndexPath:indexPath];
-    if (indexPath.row == 0) {
-        cell.backgroundColor = [UIColor clearColor];
-        cell.showVIPView = NO;
-    }else {
-        cell.backgroundColor = [UIColor whiteColor];
-        cell.showVIPView = YES;
-    }
-    UGMissionLevelModel *item = self.dataArray[indexPath.row];
-    item.level = indexPath.row;
+   
+    UGlevelsModel *item = self.dataArray[indexPath.row];
     cell.item = item;
     
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0) {
-        return 50;
-    }
+
     return 44;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UGMissionLevelTableViewCell *headerView = (UGMissionLevelTableViewCell*)[[NSBundle mainBundle] loadNibNamed:@"UGMissionLevelTableViewCell" owner:self options:0].firstObject;
+    
+    UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
+    NSString *str1 = [NSString stringWithFormat:@"%@头衔",config.missionName];
+    NSString *str2 = [NSString stringWithFormat:@"成长%@",config.missionName];
+    
+    UGlevelsModel *model = [UGlevelsModel new];
+    model.levelName = @"";
+    model.integral = str1;
+    model.levelTitle = str2;
+
+    headerView.item = model;
+    
+    [headerView setSectionBgColor:UGRGBColor(239, 239, 244) levelsSectionStr:@"等级"];
+    
+    return headerView;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 0.001f;
+    return 44.0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 0.001f;
 }
 
-- (NSMutableArray *)dataArray {
-    if (_dataArray == nil) {
-        _dataArray = [NSMutableArray array];
-        for (int i = 0; i < 7; i++) {
-            if (i == 0) {
-                UGMissionLevelModel *model = [[UGMissionLevelModel alloc] init];
-                model.amount = @"可领工资";
-                model.integral = @"成长积分";
-                model.levelTitle = @"积分头衔";
-                model.levelName = @"等级";
-                [_dataArray addObject:model];
-            }else {
-                
-                UGMissionLevelModel *model = [[UGMissionLevelModel alloc] init];
-                model.amount = @"9";
-                model.integral = @"900";
-                model.levelTitle = @"黄金会员";
-                model.levelName = @"VIP3";
-                [_dataArray addObject:model];
-            }
-        }
-        
-    }
-    return _dataArray;
+#pragma mark -- 网络请求
+//得到等级列表数据
+- (void)getLevelsData {
+    
+    
+//     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
+    [SVProgressHUD showWithStatus:nil];
+    WeakSelf;
+    [CMNetwork taskLevelsWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            
+            [SVProgressHUD dismiss];
+            
+            self.dataArray = model.data;
+            
+            NSLog(@"self.dataArray = %@",self.dataArray);
+            [self.tableView reloadData];
+            
+        } failure:^(id msg) {
+            
+            [SVProgressHUD showErrorWithStatus:msg];
+            
+        }];
+    }];
 }
+
 @end

@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *levelNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *missionTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *balanceLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *vipImager;
 
 @property (weak, nonatomic) IBOutlet UILabel *missionLevelLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nextLevelLabel;
@@ -177,9 +178,26 @@
 #pragma mark - UIS
 - (void)setupUserInfo {
     UGUserModel *user = [UGUserModel currentUser];
-    [self.avaterImageView sd_setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
+    [self.avaterImageView sd_setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:[UIImage imageNamed:@"txp"]];
     self.userNameLabel.text = user.username;
     self.levelNameLabel.text = user.curLevelGrade;
+    
+    NSString *imagerStr = [user.curLevelGrade lowercaseString];
+    NSLog(@"imagerStr = %@",imagerStr);
+    
+    NSString *subStr = [user.curLevelGrade substringFromIndex:3];
+    
+    int levelsInt = [subStr intValue];
+    NSString *imgStr = @"";
+    if (levelsInt <11) {
+        imgStr = [NSString stringWithFormat:@"vip%d",levelsInt];
+    } else {
+        imgStr = @"vip11";
+    }
+    
+    [self.vipImager setImage: [UIImage imageNamed:imgStr]];
+
+    
     int int1String = [user.taskRewardTotal intValue];
     NSLog(@"int1String = %d",int1String);
     int int2String = [user.nextLevelInt intValue];

@@ -144,6 +144,9 @@ NS_ASSUME_NONNULL_BEGIN
 //积分账变列表
 + (void)taskCreditsLogWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 
+//vip等级
++ (void)taskLevelsWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
 @end
 
 NS_ASSUME_NONNULL_END

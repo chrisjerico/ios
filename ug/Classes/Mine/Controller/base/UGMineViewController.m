@@ -44,6 +44,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *curLevleGradeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nextLevelGradeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nextLevelIntLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *vipImager;
 
 @property (weak, nonatomic) IBOutlet UIView *progressView;
 @property (weak, nonatomic) IBOutlet UIView *waveBgView;
@@ -485,6 +486,22 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
    
     self.userNameLabel.text = user.username;
     self.levelNameLabel.text = user.curLevelGrade;
+    
+    NSString *imagerStr = [user.curLevelGrade lowercaseString];
+    NSLog(@"imagerStr = %@",imagerStr);
+    
+    NSString *subStr = [user.curLevelGrade substringFromIndex:3];
+    
+    int levelsInt = [subStr intValue];
+    NSString *imgStr = @"";
+    if (levelsInt <11) {
+        imgStr = [NSString stringWithFormat:@"vip%d",levelsInt];
+    } else {
+        imgStr = @"vip11";
+    }
+    
+    [self.vipImager setImage: [UIImage imageNamed:imgStr]];
+    
     int int1String = [user.taskRewardTotal intValue];
     NSLog(@"int1String = %d",int1String);
     int int2String = [user.nextLevelInt intValue];

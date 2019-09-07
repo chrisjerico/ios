@@ -221,6 +221,7 @@
                         <outlet property="tableView" destination="yjU-qP-SOa" id="ycM-uH-HH1"/>
                         <outlet property="userInfoView" destination="sZN-HM-pyE" id="5RH-u2-b2a"/>
                         <outlet property="userNameLabel" destination="W30-eP-iKR" id="R3P-eO-eSp"/>
+                        <outlet property="vipImager" destination="9Vn-w4-68W" id="Zer-Eb-CgF"/>
                         <outlet property="waveBgView" destination="hgQ-MW-xpx" id="XQs-sn-eIl"/>
                         <outlet property="waveBottomView" destination="rkF-1f-eNW" id="9eA-xF-OBG"/>
                     </connections>

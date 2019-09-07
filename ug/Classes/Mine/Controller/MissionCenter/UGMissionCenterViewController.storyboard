@@ -40,7 +40,7 @@
                                             <constraint firstAttribute="width" constant="80" id="hYm-Lz-6bi"/>
                                             <constraint firstAttribute="height" constant="26" id="z89-Lr-lVz"/>
                                         </constraints>
-                                        <state key="normal" backgroundImage="huiyuanzhongxin"/>
+                                        <state key="normal" image="usercenter0"/>
                                         <connections>
                                             <action selector="backCick:" destination="2Vo-rA-yjY" eventType="touchUpInside" id="Dt0-2h-z6M"/>
                                         </connections>
@@ -51,7 +51,7 @@
                                             <constraint firstAttribute="width" constant="80" id="J0l-Ar-m43"/>
                                             <constraint firstAttribute="height" constant="26" id="luP-6f-tZJ"/>
                                         </constraints>
-                                        <state key="normal" backgroundImage="meiriqiandao"/>
+                                        <state key="normal" image="dailysign"/>
                                         <connections>
                                             <action selector="goSigInCode:" destination="2Vo-rA-yjY" eventType="touchUpInside" id="BqT-PT-8rI"/>
                                         </connections>
@@ -210,6 +210,7 @@
                         <outlet property="refreshBalanceButton" destination="C1V-e8-RRS" id="UOp-cR-djT"/>
                         <outlet property="userInfoView" destination="Xx8-av-ouu" id="AZB-57-HTW"/>
                         <outlet property="userNameLabel" destination="Fgr-cv-rxZ" id="bzg-tR-Bpy"/>
+                        <outlet property="vipImager" destination="gYa-0u-6vs" id="fzc-y0-v42"/>
                         <outlet property="waveBgView" destination="QRf-tD-WHm" id="XGy-21-bDG"/>
                         <outlet property="waveBottomView" destination="qik-ZV-Go7" id="AAE-NZ-Rmz"/>
                     </connections>
@@ -221,12 +222,12 @@
     </scenes>
     <resources>
         <image name="baibolang" width="187.5" height="24"/>
+        <image name="dailysign" width="75" height="19.5"/>
         <image name="huangzhuan" width="50" height="50"/>
-        <image name="huiyuanzhongxin" width="69" height="20"/>
         <image name="lvzhuan" width="50" height="50"/>
-        <image name="meiriqiandao" width="69" height="20"/>
         <image name="shuaxin" width="24" height="24"/>
         <image name="txp" width="100" height="100"/>
+        <image name="usercenter0" width="75" height="19.5"/>
         <image name="vipdengji" width="150" height="50"/>
     </resources>
 </document>

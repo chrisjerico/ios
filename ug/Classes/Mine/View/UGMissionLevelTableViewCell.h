@@ -7,14 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-@class UGMissionLevelModel;
+@class UGlevelsModel;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UGMissionLevelTableViewCell : UITableViewCell
 
-@property (nonatomic, strong) UGMissionLevelModel *item;
+@property (nonatomic, strong) UGlevelsModel *item;
 
-@property (nonatomic, assign) BOOL showVIPView;
+-(void)setSectionBgColor:(UIColor *)bgColor levelsSectionStr:(NSString *)levelsSectionStr;
+
 @end
 
 NS_ASSUME_NONNULL_END

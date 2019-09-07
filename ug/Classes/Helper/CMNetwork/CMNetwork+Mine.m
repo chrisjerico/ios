@@ -25,6 +25,7 @@
 #import "UGSignInModel.h"
 #import "UGSignInHistoryModel.h"
 #import "UGMissionModel.h"
+#import "UGlevelsModel.h"
 
 @implementation CMNetwork (Mine)
 
@@ -678,6 +679,20 @@
     [self.manager requestInMainThreadWithMethod:[taskCreditsLogUrl stringToRestfulUrlWithFlag:RESTFUL]
                                          params:params
                                           model:nil
+                                           post:NO
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
+
+//vip等级 http://test10.6yc.com/wjapp/api.php?c=task&a=levels
++ (void)taskLevelsWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    
+    [self.manager requestInMainThreadWithMethod:[taskLevelsLogUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:CMResultArrayClassMake(UGlevelsModel.class)
                                            post:NO
                                      completion:completionBlock];
     

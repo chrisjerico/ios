@@ -7,16 +7,16 @@
 //
 
 #import "UGMissionLevelTableViewCell.h"
-#import "UGMissionLevelModel.h"
+#import "UGlevelsModel.h"
 
 @interface UGMissionLevelTableViewCell ()
+@property (weak, nonatomic) IBOutlet UIImageView *levelsImager;
+@property (weak, nonatomic) IBOutlet UILabel *levelsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *levelTitleLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *levelImageView;
-@property (weak, nonatomic) IBOutlet UILabel *levelLabel;
-@property (weak, nonatomic) IBOutlet UILabel *levelNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *integralLabel;
-@property (weak, nonatomic) IBOutlet UILabel *amountLabel;
-@property (weak, nonatomic) IBOutlet UIView *VIPView;
+
+@property (weak, nonatomic) IBOutlet UIView *levelsView;
+@property (weak, nonatomic) IBOutlet UILabel *levelsSectionLabel;
 
 @end
 @implementation UGMissionLevelTableViewCell
@@ -26,41 +26,25 @@
     // Initialization code
 }
 
-- (void)setShowVIPView:(BOOL)showVIPView {
-    _showVIPView = showVIPView;
-    
-    self.VIPView.hidden = !showVIPView;
-    if (showVIPView) {
-        self.levelLabel.textColor = [UIColor grayColor];
-        self.levelNameLabel.textColor = [UIColor grayColor];
-        self.integralLabel.textColor = [UIColor grayColor];
-        self.amountLabel.textColor = [UIColor grayColor];
-    }else {
-        self.levelLabel.textColor = [UIColor blackColor];
-        self.levelNameLabel.textColor = [UIColor blackColor];
-        self.integralLabel.textColor = [UIColor blackColor];
-        self.amountLabel.textColor = [UIColor blackColor];
-        
-    }
-}
 
-- (void)setItem:(UGMissionLevelModel *)item {
+
+
+- (void)setItem:(UGlevelsModel *)item {
     _item = item;
-    self.levelLabel.text = item.levelName;
-    self.levelNameLabel.text = item.levelTitle;
+    self.levelsLabel.text = item.levelName;
+    self.levelTitleLabel.text = item.levelTitle;
     self.integralLabel.text = item.integral;
-    self.amountLabel.text = item.amount;
     
-    if (item.level == 1) {
-        self.levelImageView.image = [UIImage imageNamed:@"VIP1.c9922627"];
-    }else if (item.level == 2) {
-        self.levelImageView.image = [UIImage imageNamed:@"VIP2.ec01ea3e"];
-    }else if (item.level == 3) {
-        self.levelImageView.image = [UIImage imageNamed:@"VIP3.34187a4f"];
-    }else {
-        self.levelImageView.image = [UIImage imageNamed:@"VIP4.840a7619"];
-
+    int levelsInt = [item.levelsId intValue];
+    NSString *imgStr = @"";
+    if (levelsInt <11) {
+      imgStr = [NSString stringWithFormat:@"vip%d",levelsInt];
+    } else {
+      imgStr = @"vip11";
     }
+
+    [self.levelsImager setImage: [UIImage imageNamed:imgStr]];
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -69,4 +53,13 @@
     // Configure the view for the selected state
 }
 
+-(void)setSectionBgColor:(UIColor *)bgColor levelsSectionStr:(NSString *)levelsSectionStr{
+    [self setBackgroundColor:bgColor];
+    [self.levelTitleLabel setBackgroundColor:bgColor];
+    [self.integralLabel setBackgroundColor:bgColor];
+    [self.levelsSectionLabel setBackgroundColor:bgColor];
+    [self.levelsSectionLabel setHidden:NO];
+    self.levelsSectionLabel.text = levelsSectionStr;
+    [self.levelsView setHidden:YES];
+}
 @end
