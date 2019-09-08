@@ -64,6 +64,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *curLevelInt;
 @property (nonatomic, strong) NSString *nextLevelGrade;
 
+@property (nonatomic, strong) NSString *taskReward;
+
 
 + (instancetype)currentUser;
 

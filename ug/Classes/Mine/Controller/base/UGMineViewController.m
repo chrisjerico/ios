@@ -46,6 +46,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *nextLevelIntLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *vipImager;
 
+@property (weak, nonatomic) IBOutlet UIImageView *curLevelImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *nextLevelImageView;
+
 @property (weak, nonatomic) IBOutlet UIView *progressView;
 @property (weak, nonatomic) IBOutlet UIView *waveBgView;
 @property (weak, nonatomic) IBOutlet UIView *waveBottomView;
@@ -501,6 +504,28 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
     }
     
     [self.vipImager setImage: [UIImage imageNamed:imgStr]];
+    
+    NSString *img2Str = @"";
+    if (levelsInt <11) {
+        img2Str = [NSString stringWithFormat:@"grade_%d",levelsInt];
+    } else {
+        img2Str = @"grade_11";
+    }
+    
+    [self.curLevelImageView setImage: [UIImage imageNamed:img2Str]];
+    
+    NSString *sub2Str = [user.nextLevelGrade substringFromIndex:3];
+    
+    int levels2Int = [sub2Str intValue];
+    
+    NSString *img2_1Str = @"";
+    if (levels2Int <11) {
+        img2_1Str = [NSString stringWithFormat:@"grade_%d",levels2Int];
+    } else {
+        img2_1Str = @"grade_11";
+    }
+    
+    [self.nextLevelImageView setImage: [UIImage imageNamed:img2_1Str]];
     
     int int1String = [user.taskRewardTotal intValue];
     NSLog(@"int1String = %d",int1String);

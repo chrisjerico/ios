@@ -26,6 +26,8 @@
 #import "UGSignInHistoryModel.h"
 #import "UGMissionModel.h"
 #import "UGlevelsModel.h"
+#import "UGinviteInfoModel.h"
+
 
 @implementation CMNetwork (Mine)
 
@@ -693,6 +695,71 @@
     [self.manager requestInMainThreadWithMethod:[taskLevelsLogUrl stringToRestfulUrlWithFlag:RESTFUL]
                                          params:params
                                           model:CMResultArrayClassMake(UGlevelsModel.class)
+                                           post:NO
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
+
+//积分兑换 http://test10.6yc.com/wjapp/api.php?c=task&a=creditsExchange token money
++ (void)taskCreditsExchangeWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    [self.manager requestInMainThreadWithMethod:[taskCreditsExchangeLogUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
+                                           post:YES
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
+
+//推荐信息 http://test10.6yc.com/wjapp/api.php?c=team&a=inviteInfo&token=SNNn1AN33aO3404nlaA33ZXN
++ (void)teamInviteInfoWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    [self.manager requestInMainThreadWithMethod:[teamInviteInfoUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:CMResultClassMake(UGinviteInfoModel.class)
+                                           post:NO
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
+
+//下线信息 http://test10.6yc.com/wjapp/api.php?c=team&a=inviteList&token=2BoZKf4o22q8oKQz8OoDdd3Q
++ (void)teamInviteListWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    [self.manager requestInMainThreadWithMethod:[teamInviteListUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
+                                           post:NO
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
+
+//投注报表信息 http://test10.6yc.com/wjapp/api.php?c=team&a=betStat&token=fJJWVq81cwzjWrVDcjZdSSR1&page=1&rows=20
++ (void)teamBetStatWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    [self.manager requestInMainThreadWithMethod:[teamBetStatUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
+                                           post:NO
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
+
+//投注记录信息 http://test10.6yc.com/wjapp/api.php?c=team&a=betList&token=fJJWVq81cwzjWrVDcjZdSSR1&page=1&rows=20
++ (void)teamBetListWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    [self.manager requestInMainThreadWithMethod:[teamBetListUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
                                            post:NO
                                      completion:completionBlock];
     

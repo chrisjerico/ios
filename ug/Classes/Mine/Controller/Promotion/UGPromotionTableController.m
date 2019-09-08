@@ -8,8 +8,15 @@
 
 #import "UGPromotionTableController.h"
 #import "YBPopupMenu.h"
+#import "UGPromotion4rowTableViewCell.h"
+#import "UGPromotion5rowButtonTableViewCell.h"
+#import "UGPromotion2rowTableViewCell.h"
+#import "UGinviteLisModel.h"
+#import "UGbetStatModel.h"
+#import "UGBetListModel.h"
 
-@interface UGPromotionTableController ()<YBPopupMenuDelegate>
+
+@interface UGPromotionTableController ()<YBPopupMenuDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) UIView *titleView;
 @property (nonatomic, strong) NSArray *titleArray;
@@ -18,7 +25,10 @@
 @property (nonatomic, assign) PromotionTableType tableType;
 @property (nonatomic, strong) UIImageView *arrowImageView;
 
-
+#pragma mark - 表格
+@property (nonatomic,strong)UITableView *tableView;
+#pragma mark - 数据 （NSMutableArray 可变数组;NSArray 数组）
+@property (nonatomic,strong)NSMutableArray *dataArray;
 @end
 
 @implementation UGPromotionTableController
@@ -36,29 +46,35 @@
     
     self.view.backgroundColor = UGBackgroundColor;
     switch (self.tableType) {
-        case PromotionTableTypeMember:
-            self.titleArray = @[@"分级",@"用户名",@"状态",@"最近登录",@"注册时间"];
+        case PromotionTableTypeMember://会员管理
+            self.titleArray = @[@"分级",@"用户名",@"最近登录",@"注册时间",@"状态"];//5 == 按钮
             break;
-        case PromotionTableTypeBettingReport:
-            self.titleArray = @[@"分级",@"日期",@"投注金额",@"佣金"];
+        case PromotionTableTypeBettingReport://投注报表
+            self.titleArray = @[@"分级",@"日期",@"投注金额",@"佣金"];//4
             break;
-        case PromotionTableTypeBettingRecord:
-            self.titleArray = @[@"分级",@"用户",@"日期",@"金额"];
+        case PromotionTableTypeBettingRecord://投注记录
+            self.titleArray = @[@"分级",@"用户",@"日期",@"金额"];//4
             break;
-        case PromotionTableTypeDomainBinding:
-            self.titleArray = @[@"分级",@"日期",@"存款金额",@"提款记录"];
+        case PromotionTableTypeDomainBinding://域名绑定
+            self.titleArray = @[@"首页推荐链接",@"注册推荐链接"];//2
             break;
-        case PromotionTableTypeDepositStatement:
-            self.titleArray = @[@"分级",@"日期",@"存款金额",@"存款人数"];
+        case PromotionTableTypeDepositStatement://存款报表
+            self.titleArray = @[@"分级",@"日期",@"存款金额",@"存款人数"];//4
             break;
-        case PromotionTableTypeDepositRecord:
-            self.titleArray = @[@"分级",@"用户",@"日期",@"存款金额"];
+        case PromotionTableTypeDepositRecord://存款记录
+            self.titleArray = @[@"分级",@"用户",@"日期",@"存款金额"];//4
             break;
-        case PromotionTableTypeWithdrawalReport:
-            self.titleArray = @[@"分级",@"日期",@"提款金额",@"提款人数"];
+        case PromotionTableTypeWithdrawalReport://提款报表
+            self.titleArray = @[@"分级",@"日期",@"提款金额",@"提款人数"];//4
             break;
-        case PromotionTableTypeWithdrawalRcord:
-            self.titleArray = @[@"分级",@"用户名",@"日期",@"提款金额"];
+        case PromotionTableTypeWithdrawalRcord://提款记录
+            self.titleArray = @[@"分级",@"用户名",@"日期",@"提款金额"];//4
+            break;
+        case PromotionTableTypeRealityReport://真人报表
+            self.titleArray = @[@"分级",@"日期",@"投注金额",@"会员输赢"];//4
+            break;
+        case PromotionTableTypeRealityRcord://真人记录
+            self.titleArray = @[@"分级",@"游戏",@"日期",@"投注金额",@"会员输赢"];//5
             break;
         default:
             break;
@@ -66,6 +82,93 @@
     
     self.levelArray = @[@"1级下线",@"2级下线",@"3级下线"];
     [self.view addSubview:self.titleView];
+    
+    if(_tableView == nil){
+        //bounds 和 frame 区别:bounds,指的是空间本身大小，x=0，y=0；frame，x指的是在父控件的位置和大小
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0,45, UGScreenW , UGScerrnH- 45-45-k_Height_NavBar) style:UITableViewStylePlain];
+        //        [UIScreen mainScreen].bounds;指的是屏幕大小
+        _tableView.dataSource = self;//遵循数据源
+        _tableView.delegate = self;//遵循协议
+        
+        self.tableView.estimatedRowHeight = 0;
+        self.tableView.estimatedSectionHeaderHeight = 0;
+        self.tableView.estimatedSectionFooterHeight = 0;
+        [self.tableView registerNib:[UINib nibWithNibName:@"UGPromotion4rowTableViewCell" bundle:nil] forCellReuseIdentifier:@"UGPromotion4rowTableViewCell"];
+        [self.tableView registerNib:[UINib nibWithNibName:@"UGPromotion5rowButtonTableViewCell" bundle:nil] forCellReuseIdentifier:@"UGPromotion5rowButtonTableViewCell"];
+         [self.tableView registerNib:[UINib nibWithNibName:@"UGPromotion2rowTableViewCell" bundle:nil] forCellReuseIdentifier:@"UGPromotion2rowTableViewCell"];
+        self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 120, 0);
+        self.tableView.rowHeight = 44;
+    }
+    [self.view addSubview:_tableView];
+    
+
+    _dataArray = [NSMutableArray array];//初始化数据
+    
+    
+    switch (self.tableType) {
+        case PromotionTableTypeMember://会员管理
+            //5 == 按钮
+        {
+            [self teamInviteListData];
+        }
+            break;
+        case PromotionTableTypeBettingReport://投注报表
+            //4
+        {
+            [self teamBetStatData];
+        }
+            break;
+        case PromotionTableTypeBettingRecord://投注记录
+            //4
+        {
+            [self teamBetListData];
+        }
+            break;
+        case PromotionTableTypeDomainBinding://域名绑定
+            //2
+        {
+           
+        }
+            break;
+        case PromotionTableTypeDepositStatement://存款报表
+            //4
+        {
+           
+        }
+            break;
+        case PromotionTableTypeDepositRecord://存款记录
+            //4
+        {
+           
+        }
+            break;
+        case PromotionTableTypeWithdrawalReport://提款报表
+            //4
+        {
+            
+        }
+            break;
+        case PromotionTableTypeWithdrawalRcord://提款记录
+            //4
+        {
+            
+        }
+            break;
+        case PromotionTableTypeRealityReport://真人报表
+            //4
+        {
+           
+        }
+            break;
+        case PromotionTableTypeRealityRcord://真人记录
+            //5
+        {
+            
+        }
+            break;
+            
+    }
+    
 }
 
 - (void)levelClick {
@@ -126,4 +229,276 @@
     return _titleView;
 }
 
+//UI +tableView
+#pragma mark - UITableViewDelegate,UITableViewDataSource
+//表格组数 Sections 组
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+//每组返回行数 Rows 行
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.dataArray.count;
+}
+//每个单元格的e内容
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    switch (self.tableType) {
+        case PromotionTableTypeMember://会员管理
+           //5 == 按钮
+        {
+            UGPromotion5rowButtonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UGPromotion5rowButtonTableViewCell" forIndexPath:indexPath];
+            UGinviteLisModel *model = (UGinviteLisModel *)self.dataArray[indexPath.row];
+            cell.firstLabel.text = [NSString stringWithFormat:@"%@级下线",model.level];
+            cell.secondLabel.text = model.username;
+            if ([CMCommon stringIsNull:model.accessTime]) {
+                cell.thirdLabel.text = @"--";
+            } else {
+               cell.thirdLabel.text = model.accessTime;
+            }
+            if ([CMCommon stringIsNull:model.regtime]) {
+                cell.fourthLabel.text = @"--";
+            } else {
+                cell.fourthLabel.text = model.regtime;
+            }
+        
+            [cell.fifthButton setHidden:NO];
+            [cell.fifthLabel setHidden:YES];
+            
+            if ([model.is_setting isEqualToString:@"1"]) {
+                //去充值
+                 [cell.fifthButton setAlpha:1.0];
+            } else {
+                [cell.fifthButton setAlpha:0.8];
+            }
+            
+            cell.promotion5rowButtonBlock = ^{
+                
+               
+                if ([model.is_setting isEqualToString:@"1"]) {
+                    //去充值
+                } else {
+                    
+                }
+            };
+            return cell;
+        }
+            break;
+        case PromotionTableTypeBettingReport://投注报表
+            //4
+        {
+            UGPromotion4rowTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UGPromotion4rowTableViewCell" forIndexPath:indexPath];
+            UGbetStatModel *model = (UGbetStatModel *)self.dataArray[indexPath.row];
+            int intLevel = [model.level intValue];
+            
+            cell.firstLabel.text = [NSString stringWithFormat:@"%d级下线",intLevel+1];
+            if ([CMCommon stringIsNull:model.date]) {
+                cell.secondLabel.text = @"--";
+            } else {
+                cell.secondLabel.text = model.date;
+            }
+            cell.thirdLabel.text = model.bet_sum;
+            cell.fourthLabel.text = model.fandian_sum;
+            return cell;
+        }
+            break;
+        case PromotionTableTypeBettingRecord://投注记录
+            //4
+        {
+            UGPromotion4rowTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UGPromotion4rowTableViewCell" forIndexPath:indexPath];
+            UGBetListModel *model = (UGBetListModel *)self.dataArray[indexPath.row];
+            int intLevel = [model.level intValue];
+            
+            cell.firstLabel.text = [NSString stringWithFormat:@"%d级下线",intLevel];
+            
+            cell.secondLabel.text = model.username;
+            
+            if ([CMCommon stringIsNull:model.date]) {
+                cell.thirdLabel.text = @"--";
+            } else {
+                cell.thirdLabel.text = model.date;
+            }
+           
+            cell.fourthLabel.text = model.money;
+            return cell;
+        }
+            break;
+        case PromotionTableTypeDomainBinding://域名绑定
+          //2
+        {
+            UGPromotion2rowTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UGPromotion2rowTableViewCell" forIndexPath:indexPath];
+            
+            return cell;
+        }
+            break;
+        case PromotionTableTypeDepositStatement://存款报表
+            //4
+        {
+            UGPromotion4rowTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UGPromotion4rowTableViewCell" forIndexPath:indexPath];
+            
+            return cell;
+        }
+            break;
+        case PromotionTableTypeDepositRecord://存款记录
+            //4
+        {
+            UGPromotion4rowTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UGPromotion4rowTableViewCell" forIndexPath:indexPath];
+            
+            return cell;
+        }
+            break;
+        case PromotionTableTypeWithdrawalReport://提款报表
+            //4
+        {
+            UGPromotion4rowTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UGPromotion4rowTableViewCell" forIndexPath:indexPath];
+            
+            return cell;
+        }
+            break;
+        case PromotionTableTypeWithdrawalRcord://提款记录
+            //4
+        {
+            UGPromotion4rowTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UGPromotion4rowTableViewCell" forIndexPath:indexPath];
+            
+            return cell;
+        }
+            break;
+        case PromotionTableTypeRealityReport://真人报表
+            //4
+        {
+            UGPromotion4rowTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UGPromotion4rowTableViewCell" forIndexPath:indexPath];
+            
+            return cell;
+        }
+            break;
+        case PromotionTableTypeRealityRcord://真人记录
+            //5
+        {
+            UGPromotion5rowButtonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UGPromotion5rowButtonTableViewCell" forIndexPath:indexPath];
+            [cell.fifthButton setHidden:YES];
+            return cell;
+        }
+            break;
+ 
+    }
+    
+    
+   
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 0.001f;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 0.001f;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+//网络请求
+#pragma mark -- 网络请求
+//得到下线信息列表数据
+- (void)teamInviteListData {
+    
+    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid
+                             };
+    
+    [SVProgressHUD showWithStatus:nil];
+    WeakSelf;
+    [CMNetwork teamInviteListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            
+            [SVProgressHUD dismiss];
+            
+            NSDictionary *data =  model.data;
+            NSArray *list = [data objectForKey:@"list"];
+            
+            //            //字典转模型
+            //            UserMembersShareBean *membersShare = [[UserMembersShareBean alloc]initWithDictionary:dic[kMsg]
+            
+            //数组转模型数组
+            self.dataArray = [UGinviteLisModel arrayOfModelsFromDictionaries:list error:nil];
+            
+            NSLog(@"self.dataArray = %@",self.dataArray);
+            [self.tableView reloadData];
+            
+        } failure:^(id msg) {
+            
+            [SVProgressHUD showErrorWithStatus:msg];
+            
+        }];
+    }];
+}
+
+//得到投注报表列表数据
+- (void)teamBetStatData {
+    
+    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
+                             @"page":@"1",
+                             @"rows":@"20"
+                             };
+    
+    [SVProgressHUD showWithStatus:nil];
+    WeakSelf;
+    [CMNetwork teamBetStatWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            
+            [SVProgressHUD dismiss];
+            
+            NSDictionary *data =  model.data;
+            NSArray *list = [data objectForKey:@"list"];
+            
+            //            //字典转模型
+            //            UserMembersShareBean *membersShare = [[UserMembersShareBean alloc]initWithDictionary:dic[kMsg]
+            
+            //数组转模型数组
+            self.dataArray = [UGbetStatModel arrayOfModelsFromDictionaries:list error:nil];
+            
+            NSLog(@"self.dataArray = %@",self.dataArray);
+            [self.tableView reloadData];
+            
+        } failure:^(id msg) {
+            
+            [SVProgressHUD showErrorWithStatus:msg];
+            
+        }];
+    }];
+}
+
+//得到投注记录列表数据
+- (void)teamBetListData {
+    
+    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
+                             @"page":@"1",
+                             @"rows":@"20"
+                             };
+    
+    [SVProgressHUD showWithStatus:nil];
+    WeakSelf;
+    [CMNetwork teamBetListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            
+            [SVProgressHUD dismiss];
+            
+            NSDictionary *data =  model.data;
+            NSArray *list = [data objectForKey:@"list"];
+            
+            //            //字典转模型
+            //            UserMembersShareBean *membersShare = [[UserMembersShareBean alloc]initWithDictionary:dic[kMsg]
+            
+            //数组转模型数组
+            self.dataArray = [UGBetListModel arrayOfModelsFromDictionaries:list error:nil];
+            
+            NSLog(@"self.dataArray = %@",self.dataArray);
+            [self.tableView reloadData];
+            
+        } failure:^(id msg) {
+            
+            [SVProgressHUD showErrorWithStatus:msg];
+            
+        }];
+    }];
+}
 @end

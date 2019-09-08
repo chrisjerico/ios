@@ -7,25 +7,31 @@
 //
 
 #import "UGPromotionInfoController.h"
+#import "UGinviteInfoModel.h"
 
 @interface UGPromotionInfoController ()
 @property (weak, nonatomic) IBOutlet UIImageView *headerImageView;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *promotionIdlabel;
-@property (weak, nonatomic) IBOutlet UILabel *promotionUrlLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *promotionQrcodeImageView;
-@property (weak, nonatomic) IBOutlet UILabel *registerUrlLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *registerQrcodeImageView;
-@property (weak, nonatomic) IBOutlet UILabel *incomeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *monthMembers;
-@property (weak, nonatomic) IBOutlet UILabel *totalMembers;
+@property (weak, nonatomic) IBOutlet UILabel *promotionUrlLabel;//首页推广地址
+@property (weak, nonatomic) IBOutlet UIImageView *promotionQrcodeImageView;//首页推广2微码
+@property (weak, nonatomic) IBOutlet UILabel *registerUrlLabel;//注册推广地址
+@property (weak, nonatomic) IBOutlet UIImageView *registerQrcodeImageView;////注册推广地址2微码
+@property (weak, nonatomic) IBOutlet UILabel *incomeLabel;//本月推荐收益
+@property (weak, nonatomic) IBOutlet UILabel *monthMembers;//本月推荐会员
+@property (weak, nonatomic) IBOutlet UILabel *totalMembers;//本月推荐总数
 @property (weak, nonatomic) IBOutlet UIButton *urlCopyButton1;
 @property (weak, nonatomic) IBOutlet UISwitch *qrcodeSwitch1;
 @property (weak, nonatomic) IBOutlet UIButton *urlCopyButton2;
 @property (weak, nonatomic) IBOutlet UISwitch *qrcodeSwitch2;
 
+
+
 @property (nonatomic, assign) BOOL showHomeUrl;
 @property (nonatomic, assign) BOOL showRegisterUrl;
+
+@property (strong, nonatomic)  UGinviteInfoModel *mUGinviteInfoModel;
+
 
 @end
 
@@ -41,6 +47,7 @@
     self.urlCopyButton2.layer.cornerRadius = 3;
     self.urlCopyButton2.layer.masksToBounds = YES;
     
+    [self teamInviteInfoData];
 }
 - (IBAction)homeUrlCopy:(id)sender {
     
@@ -98,5 +105,43 @@
         return [super tableView:tableView heightForRowAtIndexPath:indexPath];
     }
     
+}
+
+#pragma mark -- 网络请求
+//得到推荐信息数据
+- (void)teamInviteInfoData {
+    
+    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
+    
+    [SVProgressHUD showWithStatus:nil];
+    WeakSelf;
+    [CMNetwork teamInviteInfoWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            
+            [SVProgressHUD dismiss];
+            weakSelf.mUGinviteInfoModel = model.data;
+            NSLog(@"rid = %@",weakSelf.mUGinviteInfoModel.rid);
+           
+            [weakSelf setUIDate];
+            //
+            
+        } failure:^(id msg) {
+            
+            [SVProgressHUD showErrorWithStatus:msg];
+            
+        }];
+    }];
+}
+
+#pragma mark -- UI数据
+-(void)setUIDate{
+    self.userNameLabel.text = self.mUGinviteInfoModel.username;
+    self.promotionIdlabel.text =self.mUGinviteInfoModel.rid;
+    self.promotionUrlLabel.text = self.mUGinviteInfoModel.link_i;
+    self.registerUrlLabel.text = self.mUGinviteInfoModel.link_r;
+    self.incomeLabel.text = self.mUGinviteInfoModel.month_earn;
+    self.totalMembers.text = self.mUGinviteInfoModel.total_member;
+    self.monthMembers.text = self.mUGinviteInfoModel.month_member;
+
 }
 @end

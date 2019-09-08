@@ -214,7 +214,9 @@
                     <connections>
                         <outlet property="avaterImageView" destination="Sto-er-UaK" id="WDY-At-VVI"/>
                         <outlet property="balanceLabel" destination="Jc7-Kv-bj0" id="9bC-79-HI2"/>
+                        <outlet property="curLevelImageView" destination="fcP-3f-B4P" id="CJC-Cn-tIX"/>
                         <outlet property="levelNameLabel" destination="0Hb-1T-dpa" id="aP8-NQ-2OB"/>
+                        <outlet property="nextLevelImageView" destination="y8k-sV-qnW" id="LvT-wL-fvt"/>
                         <outlet property="nextLevelIntLabel" destination="loV-am-pxQ" id="CKz-ia-Rd0"/>
                         <outlet property="progressView" destination="781-zz-xjj" id="Rmw-M6-KzJ"/>
                         <outlet property="refreshButton" destination="4vW-BY-Jru" id="Hkr-ad-xKN"/>

@@ -9,6 +9,8 @@
 #import "UGIntegralConvertController.h"
 #import "UGConvertCollectionViewCell.h"
 #import "UGMissionLevelModel.h"
+#import "UGSystemConfigModel.h"
+
 
 @interface UGIntegralConvertController ()<UITextFieldDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -20,6 +22,7 @@
 @property (nonatomic, strong) UICollectionView *collectionView;
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
+
 
 @end
 
@@ -38,10 +41,18 @@ static NSString *integralCellid = @"UGConvertCollectionViewCell";
     self.submitButton.layer.masksToBounds = YES;
     self.inputTextF.delegate = self;
     [self initCollectionView];
+    
+     UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
+    NSString *str1 = [NSString stringWithFormat:@"%@%@:1元人民币",config.missionBili,config.missionName];
+    self.titleLabel.text = str1;
+    
 }
 
 - (IBAction)submitButton:(id)sender {
     
+
+        [self creditsExchangeData:self.inputTextF.text];
+
     
 }
 
@@ -97,8 +108,23 @@ static NSString *integralCellid = @"UGConvertCollectionViewCell";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     UGMissionLevelModel *model = self.dataArray[indexPath.row];
-    self.inputTextF.text = model.integral;
-    self.amountLabel.text = [NSString stringWithFormat:@"%.4lf",model.integral.floatValue / 5.6200];
+    
+    if ([model.integral isEqualToString:@"全部兑换"]) {
+        UGUserModel *user = [UGUserModel currentUser];
+        self.inputTextF.text = user.taskReward;
+        UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
+         double biliDouble = [ config.missionBili doubleValue];
+        NSLog(@"biliDouble = %f",biliDouble);
+         double taskRewardDouble = [ user.taskReward doubleValue];
+        self.amountLabel.text = [NSString stringWithFormat:@"%.4lf",taskRewardDouble / biliDouble];
+    } else {
+        self.inputTextF.text = model.integral;
+        UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
+        double biliDouble = [ config.missionBili doubleValue];
+        NSLog(@"biliDouble = %f",biliDouble);
+        self.amountLabel.text = [NSString stringWithFormat:@"%.4lf",model.integral.doubleValue / biliDouble];
+    }
+  
     
 }
 
@@ -116,8 +142,9 @@ static NSString *integralCellid = @"UGConvertCollectionViewCell";
     }
     NSString *text =  [textField.text stringByReplacingCharactersInRange:range withString:string];
     if (text) {
-        
-        self.amountLabel.text = [NSString stringWithFormat:@"%.4lf",text.floatValue / 5.6200];
+        UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
+        double biliDouble = [ config.missionBili doubleValue];
+        self.amountLabel.text = [NSString stringWithFormat:@"%.4lf",text.doubleValue / biliDouble];
     }else {
         self.amountLabel.text = @"获得人民币";
     }
@@ -128,16 +155,16 @@ static NSString *integralCellid = @"UGConvertCollectionViewCell";
     if (_dataArray == nil) {
         _dataArray = [NSMutableArray array];
         UGMissionLevelModel *model0 =  [[UGMissionLevelModel alloc] init];
-        model0.integral = @"5.6200";
+        model0.integral = @"10.0000";
         
         UGMissionLevelModel *model1 =  [[UGMissionLevelModel alloc] init];
-        model1.integral = @"28.1000";
+        model1.integral = @"50.0000";
         
         UGMissionLevelModel *model2 =  [[UGMissionLevelModel alloc] init];
-        model2.integral = @"56.2000";
+        model2.integral = @"100.0000";
         
         UGMissionLevelModel *model3 =  [[UGMissionLevelModel alloc] init];
-        model3.integral = @"281.0000";
+        model3.integral = @"500.0000";
         
         UGMissionLevelModel *model4 =  [[UGMissionLevelModel alloc] init];
         model4.integral = @"全部兑换";
@@ -151,4 +178,28 @@ static NSString *integralCellid = @"UGConvertCollectionViewCell";
     return _dataArray;
 }
 
+#pragma mark -- 网络请求
+
+//积分兑换
+- (void)creditsExchangeData:(NSString *)money {
+    
+    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
+                             @"money":money
+                             };
+    
+    [SVProgressHUD showWithStatus:nil];
+    //    WeakSelf;
+    [CMNetwork taskCreditsExchangeWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            
+            [SVProgressHUD showSuccessWithStatus:model.msg];
+            
+            
+        } failure:^(id msg) {
+            
+            [SVProgressHUD showErrorWithStatus:msg];
+            
+        }];
+    }];
+}
 @end

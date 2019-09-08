@@ -169,6 +169,17 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 
 #define taskLevelsLogUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=task&a=levels"]
 
+#define taskCreditsExchangeLogUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=task&a=creditsExchange"]
+
+#define teamInviteInfoUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=team&a=inviteInfo"]
+
+#define teamInviteListUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=team&a=inviteList"]
+
+#define teamBetStatUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=team&a=betStat"]
+
+#define teamBetListUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=team&a=betList"]
+
+
 #ifndef __OPTIMIZE__
 
 #define NSLog(...) NSLog(__VA_ARGS__)

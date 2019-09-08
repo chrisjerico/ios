@@ -11,14 +11,16 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_OPTIONS(NSInteger, PromotionTableType) {
-    PromotionTableTypeMember,//会员管理
-    PromotionTableTypeBettingReport,//投注报表
-    PromotionTableTypeBettingRecord,//投注记录
-    PromotionTableTypeDomainBinding,//域名绑定
-    PromotionTableTypeDepositStatement,//存款报表
-    PromotionTableTypeDepositRecord,//存款记录
-    PromotionTableTypeWithdrawalReport,//提款报表
-    PromotionTableTypeWithdrawalRcord //提款记录
+    PromotionTableTypeMember,//会员管理 1
+    PromotionTableTypeBettingReport,//投注报表 2
+    PromotionTableTypeBettingRecord,//投注记录 3
+    PromotionTableTypeDomainBinding,//域名绑定 4
+    PromotionTableTypeDepositStatement,//存款报表 5
+    PromotionTableTypeDepositRecord,//存款记录 6
+    PromotionTableTypeWithdrawalReport,//提款报表 7
+    PromotionTableTypeWithdrawalRcord, //提款记录 8
+    PromotionTableTypeRealityReport,//真人报表 9
+    PromotionTableTypeRealityRcord //真人记录 10
     
 };
 @interface UGPromotionTableController : UIViewController

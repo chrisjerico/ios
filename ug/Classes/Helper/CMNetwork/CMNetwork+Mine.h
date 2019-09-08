@@ -147,6 +147,21 @@ NS_ASSUME_NONNULL_BEGIN
 //vip等级
 + (void)taskLevelsWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 
+//积分兑换
++ (void)taskCreditsExchangeWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+//推荐信息
++ (void)teamInviteInfoWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+//下线信息==会员管理
++ (void)teamInviteListWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+//投注报表信息
++ (void)teamBetStatWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+//投注记录信息
++ (void)teamBetListWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -25,13 +25,33 @@
     self.navigationItem.title = @"推荐收益";
     self.view.backgroundColor = UGBackgroundColor;
     [self buildSegment];
+    [self setupRightItem];
     
 }
+
+#pragma mark 设置右上角按钮
+- (void)setupRightItem{
+    UIButton *rightButton = [[UIButton alloc] initWithFrame:CGRectMake(UGScreenW - 50,100, 50, 50)];
+     UGUserModel *user = [UGUserModel currentUser];
+    [rightButton setTitle:user.fullName forState:UIControlStateNormal];
+    [rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    rightButton.titleLabel.font = [UIFont systemFontOfSize:14];
+    [rightButton addTarget:self action:@selector(rightClicked) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem* rightItem = [[UIBarButtonItem alloc]initWithCustomView:rightButton];
+    self.navigationItem.rightBarButtonItem = rightItem;
+    
+}
+#pragma mark 右上角按钮的点击方法
+- (void)rightClicked{
+
+    
+}
+
 
 #pragma mark - 配置segment
 -(void)buildSegment
 {
-    self.itemArray = @[@"推荐信息",@"会员管理",@"投注报表",@"投注记录",@"域名绑定",@"存款报表",@"存款记录",@"提款报表",@"提款记录"];
+    self.itemArray = @[@"推荐信息",@"会员管理",@"投注报表",@"投注记录",@"域名绑定",@"存款报表",@"存款记录",@"提款报表",@"提款记录",@"真人报表",@"真人记录"];
     self.slideSwitchView = [[XYYSegmentControl alloc] initWithFrame:CGRectMake(0 , 0, self.view.width, self.view.height) channelName:self.itemArray source:self];
     [self.slideSwitchView setUserInteractionEnabled:YES];
     self.slideSwitchView.segmentControlDelegate = self;
@@ -83,8 +103,16 @@
     }else if (number == 7) {
         UGPromotionTableController *tableVC = [[UGPromotionTableController alloc] initWithTableType:PromotionTableTypeWithdrawalReport];
         return tableVC;
-    }else {
+    }else if (number == 8) {
         UGPromotionTableController *tableVC = [[UGPromotionTableController alloc] initWithTableType:PromotionTableTypeWithdrawalRcord];
+        return tableVC;
+        
+    }else if (number == 9) {
+        UGPromotionTableController *tableVC = [[UGPromotionTableController alloc] initWithTableType:PromotionTableTypeRealityReport];
+        return tableVC;
+        
+    }else  {
+        UGPromotionTableController *tableVC = [[UGPromotionTableController alloc] initWithTableType:PromotionTableTypeRealityRcord];
         return tableVC;
         
     }

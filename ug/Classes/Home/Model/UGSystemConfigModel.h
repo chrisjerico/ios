@@ -30,7 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL allowreg;//是否开启注册功能。
 @property (nonatomic, strong) NSString *closeregreason;//关闭注册功能提示内容
 @property (nonatomic, strong) NSString *missionName;//哇咔豆
-
+@property (nonatomic, strong) NSString *missionBili;
+@property (nonatomic, strong) NSString *isIntToMoney;
 
 + (instancetype)currentConfig;
 

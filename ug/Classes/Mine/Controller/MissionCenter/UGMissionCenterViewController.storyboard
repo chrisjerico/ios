@@ -203,9 +203,11 @@
                     <connections>
                         <outlet property="avaterImageView" destination="3en-hR-RLA" id="XP1-kt-9eL"/>
                         <outlet property="balanceLabel" destination="dLF-Nu-icO" id="Sqs-RM-aqh"/>
+                        <outlet property="curLevelImageView" destination="wyM-eP-2gj" id="ctt-Xy-7VA"/>
                         <outlet property="integralLabel" destination="qPa-Eg-ssg" id="8pN-m8-0iH"/>
                         <outlet property="levelNameLabel" destination="hhl-4h-JxL" id="7qT-vB-yq1"/>
                         <outlet property="missionTitleLabel" destination="Nu6-Cu-ZXI" id="YYb-AL-Xek"/>
+                        <outlet property="nextLevelImageView" destination="f5t-Fe-xPH" id="COt-YQ-2Je"/>
                         <outlet property="progressView" destination="nIa-rW-eli" id="zkG-IX-UuG"/>
                         <outlet property="refreshBalanceButton" destination="C1V-e8-RRS" id="UOp-cR-djT"/>
                         <outlet property="userInfoView" destination="Xx8-av-ouu" id="AZB-57-HTW"/>
