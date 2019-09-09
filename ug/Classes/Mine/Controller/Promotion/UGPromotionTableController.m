@@ -14,7 +14,14 @@
 #import "UGinviteLisModel.h"
 #import "UGbetStatModel.h"
 #import "UGBetListModel.h"
-
+#import "UGPormotionUserInfoView.h"
+#import "UGinviteDomainModel.h"
+#import "UGdepositStatModel.h"
+#import "UGdepositListModel.h"
+#import "UGwithdrawStatModel.h"
+#import "UGwithdrawListModel.h"
+#import "UGrealBetStatModel.h"
+#import "UGrealBetListModel.h"
 
 @interface UGPromotionTableController ()<YBPopupMenuDelegate,UITableViewDelegate,UITableViewDataSource>
 
@@ -80,7 +87,7 @@
             break;
     }
     
-    self.levelArray = @[@"1级下线",@"2级下线",@"3级下线"];
+    self.levelArray = @[@"全部",@"1级下线",@"2级下线",@"3级下线"];
     [self.view addSubview:self.titleView];
     
     if(_tableView == nil){
@@ -109,61 +116,61 @@
         case PromotionTableTypeMember://会员管理
             //5 == 按钮
         {
-            [self teamInviteListData];
+            [self teamInviteListData:0];
         }
             break;
         case PromotionTableTypeBettingReport://投注报表
             //4
         {
-            [self teamBetStatData];
+            [self teamBetStatData:0];
         }
             break;
         case PromotionTableTypeBettingRecord://投注记录
             //4
         {
-            [self teamBetListData];
+            [self teamBetListData:0];
         }
             break;
         case PromotionTableTypeDomainBinding://域名绑定
             //2
         {
-           
+            [self teamInviteDomainData];
         }
             break;
         case PromotionTableTypeDepositStatement://存款报表
             //4
         {
-           
+            [self teamDepositStatData:0];
         }
             break;
         case PromotionTableTypeDepositRecord://存款记录
             //4
         {
-           
+            [self  teamDepositListData:0];
         }
             break;
         case PromotionTableTypeWithdrawalReport://提款报表
             //4
         {
-            
+            [self teamWithdrawStatData:0];
         }
             break;
         case PromotionTableTypeWithdrawalRcord://提款记录
             //4
         {
-            
+            [self teamWithdrawListData:0];
         }
             break;
         case PromotionTableTypeRealityReport://真人报表
             //4
         {
-           
+            [self teamRealBetStatData:0];
         }
             break;
         case PromotionTableTypeRealityRcord://真人记录
             //5
         {
-            
+            [self teamRealBetListData:0];
         }
             break;
             
@@ -175,7 +182,7 @@
     CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI);
     self.arrowImageView.transform = transform;
     
-    YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:self.levelArray icons:nil menuWidth:CGSizeMake(UGScreenW / self.titleArray.count + 40, 140) delegate:self];
+    YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:self.levelArray icons:nil menuWidth:CGSizeMake(UGScreenW / self.titleArray.count + 40, 180) delegate:self];
     popView.type = YBPopupMenuTypeDefault;
     popView.fontSize = 15;
     [popView showRelyOnView:self.levelButton];
@@ -186,6 +193,70 @@
 
 - (void)ybPopupMenuDidSelectedAtIndex:(NSInteger)index ybPopupMenu:(YBPopupMenu *)ybPopupMenu {
     if (index >= 0) {
+        
+        switch (self.tableType) {
+            case PromotionTableTypeMember://会员管理
+                //5 == 按钮
+            {
+               [self teamInviteListData:index];
+            }
+                break;
+            case PromotionTableTypeBettingReport://投注报表
+                //4
+            {
+                 [self teamBetStatData:index];
+            }
+                break;
+            case PromotionTableTypeBettingRecord://投注记录
+                //4
+            {
+                [self teamBetListData:index];
+            }
+                break;
+            case PromotionTableTypeDomainBinding://域名绑定
+                //2
+            {
+                [self teamInviteDomainData];
+            }
+                break;
+            case PromotionTableTypeDepositStatement://存款报表
+                //4
+            {
+                 [self teamDepositStatData:index];
+            }
+                break;
+            case PromotionTableTypeDepositRecord://存款记录
+                //4
+            {
+                 [self  teamDepositListData:index];
+            }
+                break;
+            case PromotionTableTypeWithdrawalReport://提款报表
+                //4
+            {
+                 [self teamWithdrawStatData:index];
+            }
+                break;
+            case PromotionTableTypeWithdrawalRcord://提款记录
+                //4
+            {
+               [self teamWithdrawListData:index];
+            }
+                break;
+            case PromotionTableTypeRealityReport://真人报表
+                //4
+            {
+                [self teamRealBetStatData:index];
+            }
+                break;
+            case PromotionTableTypeRealityRcord://真人记录
+                //5
+            {
+                [self teamRealBetListData:index];
+            }
+                break;
+                
+        }
         
     }
     
@@ -200,17 +271,21 @@
         _titleView.backgroundColor = [UIColor clearColor];
         for (int i = 0; i < self.titleArray.count; i++) {
             UIView *view = [[UIView alloc] initWithFrame:CGRectMake(UGScreenW / self.titleArray.count * i, 0, UGScreenW / self.titleArray.count, 44)];
-            if (i == 0) {
-                UIButton *button = [[UIButton alloc] initWithFrame:view.bounds];
-                button.backgroundColor = [UIColor clearColor];
-                [button addTarget:self action:@selector(levelClick)];
-                self.levelButton = button;
-                [view addSubview:button];
-                UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(view.width - 18, (view.height - 18) / 2, 18, 18)];
-                imgView.image = [UIImage imageNamed:@"jiantou"];
-                [view addSubview:imgView];
-                self.arrowImageView = imgView;
+            
+            if (self.tableType != PromotionTableTypeDomainBinding) {
+                if (i == 0) {
+                    UIButton *button = [[UIButton alloc] initWithFrame:view.bounds];
+                    button.backgroundColor = [UIColor clearColor];
+                    [button addTarget:self action:@selector(levelClick)];
+                    self.levelButton = button;
+                    [view addSubview:button];
+                    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(view.width - 18, (view.height - 18) / 2, 18, 18)];
+                    imgView.image = [UIImage imageNamed:@"jiantou"];
+                    [view addSubview:imgView];
+                    self.arrowImageView = imgView;
+                }
             }
+            
             
             UILabel *titleLabel = [[UILabel alloc] initWithFrame:view.bounds];
             titleLabel.text = self.titleArray[i];
@@ -276,6 +351,8 @@
                
                 if ([model.is_setting isEqualToString:@"1"]) {
                     //去充值
+                    [self showUGPormotionUserInfoViewWithModel:model];
+                    
                 } else {
                     
                 }
@@ -290,7 +367,7 @@
             UGbetStatModel *model = (UGbetStatModel *)self.dataArray[indexPath.row];
             int intLevel = [model.level intValue];
             
-            cell.firstLabel.text = [NSString stringWithFormat:@"%d级下线",intLevel+1];
+            cell.firstLabel.text = [NSString stringWithFormat:@"%d级下线",intLevel];
             if ([CMCommon stringIsNull:model.date]) {
                 cell.secondLabel.text = @"--";
             } else {
@@ -326,7 +403,9 @@
           //2
         {
             UGPromotion2rowTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UGPromotion2rowTableViewCell" forIndexPath:indexPath];
-            
+            UGinviteDomainModel *model = (UGinviteDomainModel *)self.dataArray[indexPath.row];
+            cell.firstLabel.text = model.domain;
+            cell.secondLabel.text = model.domain;
             return cell;
         }
             break;
@@ -334,6 +413,22 @@
             //4
         {
             UGPromotion4rowTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UGPromotion4rowTableViewCell" forIndexPath:indexPath];
+            UGdepositStatModel *model = (UGdepositStatModel *)self.dataArray[indexPath.row];
+            int intLevel = [model.level intValue];
+            
+            cell.firstLabel.text = [NSString stringWithFormat:@"%d级下线",intLevel];
+            if ([CMCommon stringIsNull:model.date]) {
+                cell.secondLabel.text = @"--";
+            } else {
+                cell.secondLabel.text = model.date;
+            }
+            cell.thirdLabel.text = model.amount;
+            int intMember = [model.member intValue];
+            if (intMember) {
+                 cell.fourthLabel.text = [NSString stringWithFormat:@"%d人",intMember];
+            } else {
+                cell.fourthLabel.text = @"--";
+            }
             
             return cell;
         }
@@ -342,7 +437,19 @@
             //4
         {
             UGPromotion4rowTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UGPromotion4rowTableViewCell" forIndexPath:indexPath];
+            UGdepositListModel *model = (UGdepositListModel *)self.dataArray[indexPath.row];
+            int intLevel = [model.level intValue];
             
+            cell.firstLabel.text = [NSString stringWithFormat:@"%d级下线",intLevel];
+            cell.secondLabel.text = model.username;
+            
+            if ([CMCommon stringIsNull:model.date]) {
+                cell.thirdLabel.text = @"--";
+            } else {
+                cell.thirdLabel.text = model.date;
+            }
+            cell.fourthLabel.text = model.amount;
+          
             return cell;
         }
             break;
@@ -350,7 +457,22 @@
             //4
         {
             UGPromotion4rowTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UGPromotion4rowTableViewCell" forIndexPath:indexPath];
+            UGwithdrawStatModel *model = (UGwithdrawStatModel *)self.dataArray[indexPath.row];
+            int intLevel = [model.level intValue];
             
+            cell.firstLabel.text = [NSString stringWithFormat:@"%d级下线",intLevel];
+            if ([CMCommon stringIsNull:model.date]) {
+                cell.secondLabel.text = @"--";
+            } else {
+                cell.secondLabel.text = model.date;
+            }
+            cell.thirdLabel.text = model.amount;
+            int intMember = [model.member intValue];
+            if (intMember) {
+                cell.fourthLabel.text = [NSString stringWithFormat:@"%d人",intMember];
+            } else {
+                cell.fourthLabel.text = @"--";
+            }
             return cell;
         }
             break;
@@ -358,6 +480,18 @@
             //4
         {
             UGPromotion4rowTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UGPromotion4rowTableViewCell" forIndexPath:indexPath];
+            UGwithdrawListModel *model = (UGwithdrawListModel *)self.dataArray[indexPath.row];
+            int intLevel = [model.level intValue];
+            
+            cell.firstLabel.text = [NSString stringWithFormat:@"%d级下线",intLevel];
+            cell.secondLabel.text = model.username;
+            
+            if ([CMCommon stringIsNull:model.date]) {
+                cell.thirdLabel.text = @"--";
+            } else {
+                cell.thirdLabel.text = model.date;
+            }
+            cell.fourthLabel.text = model.amount;
             
             return cell;
         }
@@ -366,7 +500,19 @@
             //4
         {
             UGPromotion4rowTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UGPromotion4rowTableViewCell" forIndexPath:indexPath];
+            UGrealBetStatModel *model = (UGrealBetStatModel *)self.dataArray[indexPath.row];
+            int intLevel = [model.level intValue];
             
+            cell.firstLabel.text = [NSString stringWithFormat:@"%d级下线",intLevel];
+            if ([CMCommon stringIsNull:model.date]) {
+                cell.secondLabel.text = @"--";
+            } else {
+                cell.secondLabel.text = model.date;
+            }
+            cell.thirdLabel.text = model.validBetAmount;
+          
+            cell.fourthLabel.text =  model.netAmount;
+         
             return cell;
         }
             break;
@@ -375,6 +521,21 @@
         {
             UGPromotion5rowButtonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UGPromotion5rowButtonTableViewCell" forIndexPath:indexPath];
             [cell.fifthButton setHidden:YES];
+            
+            UGrealBetListModel *model = (UGrealBetListModel *)self.dataArray[indexPath.row];
+            int intLevel = [model.level intValue];
+            
+            cell.firstLabel.text = [NSString stringWithFormat:@"%d级下线",intLevel];
+            cell.secondLabel.text = model.username;
+            if ([CMCommon stringIsNull:model.date]) {
+                cell.thirdLabel.text = @"--";
+            } else {
+                cell.thirdLabel.text = model.date;
+            }
+            cell.fourthLabel.text = model.validBetAmount;
+            
+            cell.fifthLabel.text =  model.comNetAmount;
+            
             return cell;
         }
             break;
@@ -400,13 +561,16 @@
 //网络请求
 #pragma mark -- 网络请求
 //得到下线信息列表数据
-- (void)teamInviteListData {
+- (void)teamInviteListData:(NSInteger)level {
     
-    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid
+    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
+                             @"level":[NSString stringWithFormat:@"%ld",(long)level],
+                             @"page":@"1",
+                             @"rows":@"20"
                              };
     
     [SVProgressHUD showWithStatus:nil];
-    WeakSelf;
+//    WeakSelf;
     [CMNetwork teamInviteListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             
@@ -433,15 +597,16 @@
 }
 
 //得到投注报表列表数据
-- (void)teamBetStatData {
+- (void)teamBetStatData :(NSInteger)level {
     
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
+                             @"level":[NSString stringWithFormat:@"%ld",(long)level],
                              @"page":@"1",
                              @"rows":@"20"
                              };
     
     [SVProgressHUD showWithStatus:nil];
-    WeakSelf;
+//    WeakSelf;
     [CMNetwork teamBetStatWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             
@@ -468,15 +633,16 @@
 }
 
 //得到投注记录列表数据
-- (void)teamBetListData {
+- (void)teamBetListData:(NSInteger)level {
     
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
+                             @"level":[NSString stringWithFormat:@"%ld",(long)level],
                              @"page":@"1",
                              @"rows":@"20"
                              };
     
     [SVProgressHUD showWithStatus:nil];
-    WeakSelf;
+//    WeakSelf;
     [CMNetwork teamBetListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             
@@ -500,5 +666,266 @@
             
         }];
     }];
+}
+
+//得到代理域名信息列表数据
+- (void)teamInviteDomainData{
+    
+    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
+                             @"page":@"1",
+                             @"rows":@"20"
+                             };
+    
+    [SVProgressHUD showWithStatus:nil];
+//    WeakSelf;
+    [CMNetwork teamInviteDomainWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            
+            [SVProgressHUD dismiss];
+            
+            NSDictionary *data =  model.data;
+            NSArray *list = [data objectForKey:@"list"];
+            
+            //            //字典转模型
+            //            UserMembersShareBean *membersShare = [[UserMembersShareBean alloc]initWithDictionary:dic[kMsg]
+            
+            //数组转模型数组
+            self.dataArray = [UGinviteDomainModel arrayOfModelsFromDictionaries:list error:nil];
+            
+            NSLog(@"self.dataArray = %@",self.dataArray);
+            [self.tableView reloadData];
+            
+        } failure:^(id msg) {
+            
+            [SVProgressHUD showErrorWithStatus:msg];
+            
+        }];
+    }];
+}
+
+//得到存款报表列表数据
+- (void)teamDepositStatData:(NSInteger)level {
+    
+    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
+                             @"level":[NSString stringWithFormat:@"%ld",(long)level],
+                             @"page":@"1",
+                             @"rows":@"20"
+                             };
+    
+    [SVProgressHUD showWithStatus:nil];
+//    WeakSelf;
+    [CMNetwork teamDepositStatWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            
+            [SVProgressHUD dismiss];
+            
+            NSDictionary *data =  model.data;
+            NSArray *list = [data objectForKey:@"list"];
+            
+            //            //字典转模型
+            //            UserMembersShareBean *membersShare = [[UserMembersShareBean alloc]initWithDictionary:dic[kMsg]
+            
+            //数组转模型数组
+            self.dataArray = [UGdepositStatModel arrayOfModelsFromDictionaries:list error:nil];
+            
+            NSLog(@"self.dataArray = %@",self.dataArray);
+            [self.tableView reloadData];
+            
+        } failure:^(id msg) {
+            
+            [SVProgressHUD showErrorWithStatus:msg];
+            
+        }];
+    }];
+}
+
+//得到存款记录列表数据
+- (void)teamDepositListData:(NSInteger)level {
+    
+    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
+                             @"level":[NSString stringWithFormat:@"%ld",(long)level],
+                             @"page":@"1",
+                             @"rows":@"20"
+                             };
+    
+    [SVProgressHUD showWithStatus:nil];
+//    WeakSelf;
+    [CMNetwork teamDepositListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            
+            [SVProgressHUD dismiss];
+            
+            NSDictionary *data =  model.data;
+            NSArray *list = [data objectForKey:@"list"];
+            
+            //            //字典转模型
+            //            UserMembersShareBean *membersShare = [[UserMembersShareBean alloc]initWithDictionary:dic[kMsg]
+            
+            //数组转模型数组
+            self.dataArray = [UGdepositListModel arrayOfModelsFromDictionaries:list error:nil];
+            
+            NSLog(@"self.dataArray = %@",self.dataArray);
+            [self.tableView reloadData];
+            
+        } failure:^(id msg) {
+            
+            [SVProgressHUD showErrorWithStatus:msg];
+            
+        }];
+    }];
+}
+
+//得到提款报表列表数据
+- (void)teamWithdrawStatData:(NSInteger)level {
+    
+    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
+                             @"level":[NSString stringWithFormat:@"%ld",(long)level],
+                             @"page":@"1",
+                             @"rows":@"20"
+                             };
+    
+    [SVProgressHUD showWithStatus:nil];
+    //    WeakSelf;
+    [CMNetwork teamWithdrawStatWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            
+            [SVProgressHUD dismiss];
+            
+            NSDictionary *data =  model.data;
+            NSArray *list = [data objectForKey:@"list"];
+            
+            //            //字典转模型
+            //            UserMembersShareBean *membersShare = [[UserMembersShareBean alloc]initWithDictionary:dic[kMsg]
+            
+            //数组转模型数组
+            self.dataArray = [UGwithdrawStatModel arrayOfModelsFromDictionaries:list error:nil];
+            
+            NSLog(@"self.dataArray = %@",self.dataArray);
+            [self.tableView reloadData];
+            
+        } failure:^(id msg) {
+            
+            [SVProgressHUD showErrorWithStatus:msg];
+            
+        }];
+    }];
+}
+
+//得到提款记录列表数据
+- (void)teamWithdrawListData :(NSInteger)level {
+    
+    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
+                             @"level":[NSString stringWithFormat:@"%ld",(long)level],
+                             @"page":@"1",
+                             @"rows":@"20"
+                             };
+    
+    [SVProgressHUD showWithStatus:nil];
+    //    WeakSelf;
+    [CMNetwork teamWithdrawListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            
+            [SVProgressHUD dismiss];
+            
+            NSDictionary *data =  model.data;
+            NSArray *list = [data objectForKey:@"list"];
+            
+            //            //字典转模型
+            //            UserMembersShareBean *membersShare = [[UserMembersShareBean alloc]initWithDictionary:dic[kMsg]
+            
+            //数组转模型数组
+            self.dataArray = [UGwithdrawListModel arrayOfModelsFromDictionaries:list error:nil];
+            
+            NSLog(@"self.dataArray = %@",self.dataArray);
+            [self.tableView reloadData];
+            
+        } failure:^(id msg) {
+            
+            [SVProgressHUD showErrorWithStatus:msg];
+            
+        }];
+    }];
+}
+
+//得到真人报表列表数据
+- (void)teamRealBetStatData :(NSInteger)level {
+    
+    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
+                             @"level":[NSString stringWithFormat:@"%ld",(long)level],
+                             @"page":@"1",
+                             @"rows":@"20"
+                             };
+    
+    [SVProgressHUD showWithStatus:nil];
+    //    WeakSelf;
+    [CMNetwork teamRealBetStatWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            
+            [SVProgressHUD dismiss];
+            
+            NSDictionary *data =  model.data;
+            NSArray *list = [data objectForKey:@"list"];
+            
+            //            //字典转模型
+            //            UserMembersShareBean *membersShare = [[UserMembersShareBean alloc]initWithDictionary:dic[kMsg]
+            
+            //数组转模型数组
+            self.dataArray = [UGrealBetStatModel arrayOfModelsFromDictionaries:list error:nil];
+            
+            NSLog(@"self.dataArray = %@",self.dataArray);
+            [self.tableView reloadData];
+            
+        } failure:^(id msg) {
+            
+            [SVProgressHUD showErrorWithStatus:msg];
+            
+        }];
+    }];
+}
+
+//得到真人记录列表数据
+- (void)teamRealBetListData :(NSInteger)level {
+    
+    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
+                             @"level":[NSString stringWithFormat:@"%ld",(long)level],
+                             @"page":@"1",
+                             @"rows":@"20"
+                             };
+    
+    [SVProgressHUD showWithStatus:nil];
+    //    WeakSelf;
+    [CMNetwork teamRealBetListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            
+            [SVProgressHUD dismiss];
+            
+            NSDictionary *data =  model.data;
+            NSArray *list = [data objectForKey:@"list"];
+            
+            //            //字典转模型
+            //            UserMembersShareBean *membersShare = [[UserMembersShareBean alloc]initWithDictionary:dic[kMsg]
+            
+            //数组转模型数组
+            self.dataArray = [UGrealBetListModel arrayOfModelsFromDictionaries:list error:nil];
+            
+            NSLog(@"self.dataArray = %@",self.dataArray);
+            [self.tableView reloadData];
+            
+        } failure:^(id msg) {
+            
+            [SVProgressHUD showErrorWithStatus:msg];
+            
+        }];
+    }];
+}
+#pragma mark -- 其他方法
+- (void)showUGPormotionUserInfoViewWithModel :(UGinviteLisModel *)model{
+    
+    UGPormotionUserInfoView *notiveView = [[UGPormotionUserInfoView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, 430)];
+    
+    notiveView.item = model;
+   
+    [notiveView show];
+   
 }
 @end

@@ -766,4 +766,111 @@
     
     CMMETHOD_END;
 }
+
+//线下充值信息 http://test10.6yc.com/wjapp/api.php?c=team&a=transfer  token coin uid
++ (void)teamTransferWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    [self.manager requestInMainThreadWithMethod:[teamTransferUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
+                                           post:YES
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
+
+//代理域名信息 http://test10.6yc.com/wjapp/api.php?c=team&a=inviteDomain&token=fJJWVq81cwzjWrVDcjZdSSR1&page=1&rows=20
++ (void)teamInviteDomainWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    [self.manager requestInMainThreadWithMethod:[teamInviteDomainUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
+                                           post:NO
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
+
+//存款报表信息
++ (void)teamDepositStatWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    [self.manager requestInMainThreadWithMethod:[teamDepositStatUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
+                                           post:NO
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
+
+//存款记录信息  http://test10.6yc.com/wjapp/api.php?c=team&a=depositList&token=fJJWVq81cwzjWrVDcjZdSSR1&page=1&rows=20
++ (void)teamDepositListWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    [self.manager requestInMainThreadWithMethod:[teamDepositListUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
+                                           post:NO
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
+
+//提款报表信息 http://test10.6yc.com/wjapp/api.php?c=team&a=withdrawStat&token=fJJWVq81cwzjWrVDcjZdSSR1&page=1&rows=20
++ (void)teamWithdrawStatWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    [self.manager requestInMainThreadWithMethod:[teamWithdrawStatUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
+                                           post:NO
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
+
+//提款记录信息 http://test10.6yc.com/wjapp/api.php?c=team&a=withdrawList&token=fJJWVq81cwzjWrVDcjZdSSR1&page=1&rows=20
++ (void)teamWithdrawListWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    [self.manager requestInMainThreadWithMethod:[teamWithdrawListUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
+                                           post:NO
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
+
+
+//真人报表信息 http://test10.6yc.com/wjapp/api.php?c=team&a=realBetStat&token=fJJWVq81cwzjWrVDcjZdSSR1&page=1&rows=20
++ (void)teamRealBetStatWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    [self.manager requestInMainThreadWithMethod:[teamRealBetStatUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
+                                           post:NO
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
+
+
+//真人记录信息 http://test10.6yc.com/wjapp/api.php?c=team&a=realBetList&token=fJJWVq81cwzjWrVDcjZdSSR1&page=1&rows=20
++ (void)teamRealBetListWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    [self.manager requestInMainThreadWithMethod:[teamRealBetListUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
+                                           post:NO
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
 @end
+

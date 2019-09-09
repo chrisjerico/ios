@@ -379,6 +379,10 @@
 		D49A36DB22A64B85000057D2 /* UGUserLevelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D49A36DA22A64B85000057D2 /* UGUserLevelModel.m */; };
 		D49D359E22C79E7900318D73 /* UGNoticePopView.m in Sources */ = {isa = PBXBuildFile; fileRef = D49D359D22C79E7900318D73 /* UGNoticePopView.m */; };
 		D49D35A022C7A11100318D73 /* UGNoticePopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D49D359F22C7A11100318D73 /* UGNoticePopView.xib */; };
+		D49F41AB2326132C00A381AD /* UGPormotionUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = D49F41AA2326132C00A381AD /* UGPormotionUserInfoView.m */; };
+		D49F41AD2326149B00A381AD /* UGPormotionUserInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D49F41AC2326149B00A381AD /* UGPormotionUserInfoView.xib */; };
+		D49F41B02326346D00A381AD /* UGinviteDomainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D49F41AF2326346D00A381AD /* UGinviteDomainModel.m */; };
+		D49F41B3232638D100A381AD /* UGdepositStatModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D49F41B2232638D100A381AD /* UGdepositStatModel.m */; };
 		D4A02B5223224C32004D5894 /* UGSignInHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A02B5123224C32004D5894 /* UGSignInHistoryModel.m */; };
 		D4A02B5523225782004D5894 /* UGSignInHistoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A02B5423225782004D5894 /* UGSignInHistoryView.m */; };
 		D4A02B57232257D5004D5894 /* UGSignInHistoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4A02B56232257D5004D5894 /* UGSignInHistoryView.xib */; };
@@ -417,6 +421,11 @@
 		D4C93B3E22D8751F00608B67 /* UGFeedbackDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C93B3D22D8751F00608B67 /* UGFeedbackDetailController.m */; };
 		D4C93B4122D8759400608B67 /* UGFeedbackDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C93B4022D8759400608B67 /* UGFeedbackDetailCell.m */; };
 		D4C93B4422D8C02000608B67 /* UGLoginAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C93B4322D8C02000608B67 /* UGLoginAddressModel.m */; };
+		D4D4224F23264340006E680B /* UGdepositListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4D4224E23264340006E680B /* UGdepositListModel.m */; };
+		D4D422522326469C006E680B /* UGwithdrawStatModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4D422512326469C006E680B /* UGwithdrawStatModel.m */; };
+		D4D4225523264B94006E680B /* UGwithdrawListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4D4225423264B94006E680B /* UGwithdrawListModel.m */; };
+		D4D4225B232656D2006E680B /* UGrealBetStatModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4D4225A232656D2006E680B /* UGrealBetStatModel.m */; };
+		D4D4225E232658F9006E680B /* UGrealBetListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4D4225D232658F9006E680B /* UGrealBetListModel.m */; };
 		D4D8DF682286932200446BAF /* UGLotteryAssistantController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4D8DF672286932200446BAF /* UGLotteryAssistantController.m */; };
 		D4D8DF6A228693ED00446BAF /* UGLotteryAssistantController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4D8DF69228693ED00446BAF /* UGLotteryAssistantController.storyboard */; };
 		D4D8DF6D22869B2D00446BAF /* UGLotteryAssistantTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4D8DF6C22869B2D00446BAF /* UGLotteryAssistantTableViewCell.m */; };
@@ -1151,6 +1160,13 @@
 		D49D359C22C79E7900318D73 /* UGNoticePopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGNoticePopView.h; sourceTree = "<group>"; };
 		D49D359D22C79E7900318D73 /* UGNoticePopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGNoticePopView.m; sourceTree = "<group>"; };
 		D49D359F22C7A11100318D73 /* UGNoticePopView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGNoticePopView.xib; sourceTree = "<group>"; };
+		D49F41A92326132C00A381AD /* UGPormotionUserInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGPormotionUserInfoView.h; sourceTree = "<group>"; };
+		D49F41AA2326132C00A381AD /* UGPormotionUserInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGPormotionUserInfoView.m; sourceTree = "<group>"; };
+		D49F41AC2326149B00A381AD /* UGPormotionUserInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGPormotionUserInfoView.xib; sourceTree = "<group>"; };
+		D49F41AE2326346D00A381AD /* UGinviteDomainModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGinviteDomainModel.h; sourceTree = "<group>"; };
+		D49F41AF2326346D00A381AD /* UGinviteDomainModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGinviteDomainModel.m; sourceTree = "<group>"; };
+		D49F41B1232638D100A381AD /* UGdepositStatModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGdepositStatModel.h; sourceTree = "<group>"; };
+		D49F41B2232638D100A381AD /* UGdepositStatModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGdepositStatModel.m; sourceTree = "<group>"; };
 		D4A02B5023224C32004D5894 /* UGSignInHistoryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGSignInHistoryModel.h; sourceTree = "<group>"; };
 		D4A02B5123224C32004D5894 /* UGSignInHistoryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGSignInHistoryModel.m; sourceTree = "<group>"; };
 		D4A02B5323225782004D5894 /* UGSignInHistoryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGSignInHistoryView.h; sourceTree = "<group>"; };
@@ -1222,6 +1238,16 @@
 		D4C93B4022D8759400608B67 /* UGFeedbackDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGFeedbackDetailCell.m; sourceTree = "<group>"; };
 		D4C93B4222D8C02000608B67 /* UGLoginAddressModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLoginAddressModel.h; sourceTree = "<group>"; };
 		D4C93B4322D8C02000608B67 /* UGLoginAddressModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLoginAddressModel.m; sourceTree = "<group>"; };
+		D4D4224D23264340006E680B /* UGdepositListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGdepositListModel.h; sourceTree = "<group>"; };
+		D4D4224E23264340006E680B /* UGdepositListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGdepositListModel.m; sourceTree = "<group>"; };
+		D4D422502326469C006E680B /* UGwithdrawStatModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGwithdrawStatModel.h; sourceTree = "<group>"; };
+		D4D422512326469C006E680B /* UGwithdrawStatModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGwithdrawStatModel.m; sourceTree = "<group>"; };
+		D4D4225323264B94006E680B /* UGwithdrawListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGwithdrawListModel.h; sourceTree = "<group>"; };
+		D4D4225423264B94006E680B /* UGwithdrawListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGwithdrawListModel.m; sourceTree = "<group>"; };
+		D4D42259232656D2006E680B /* UGrealBetStatModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGrealBetStatModel.h; sourceTree = "<group>"; };
+		D4D4225A232656D2006E680B /* UGrealBetStatModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGrealBetStatModel.m; sourceTree = "<group>"; };
+		D4D4225C232658F9006E680B /* UGrealBetListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGrealBetListModel.h; sourceTree = "<group>"; };
+		D4D4225D232658F9006E680B /* UGrealBetListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGrealBetListModel.m; sourceTree = "<group>"; };
 		D4D8DF662286932200446BAF /* UGLotteryAssistantController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLotteryAssistantController.h; sourceTree = "<group>"; };
 		D4D8DF672286932200446BAF /* UGLotteryAssistantController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLotteryAssistantController.m; sourceTree = "<group>"; };
 		D4D8DF69228693ED00446BAF /* UGLotteryAssistantController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UGLotteryAssistantController.storyboard; sourceTree = "<group>"; };
@@ -1392,6 +1418,20 @@
 				D422FE6A232553790063EA4E /* UGbetStatModel.m */,
 				D422FE6C232559BF0063EA4E /* UGBetListModel.h */,
 				D422FE6D232559BF0063EA4E /* UGBetListModel.m */,
+				D49F41AE2326346D00A381AD /* UGinviteDomainModel.h */,
+				D49F41AF2326346D00A381AD /* UGinviteDomainModel.m */,
+				D49F41B1232638D100A381AD /* UGdepositStatModel.h */,
+				D49F41B2232638D100A381AD /* UGdepositStatModel.m */,
+				D4D4224D23264340006E680B /* UGdepositListModel.h */,
+				D4D4224E23264340006E680B /* UGdepositListModel.m */,
+				D4D422502326469C006E680B /* UGwithdrawStatModel.h */,
+				D4D422512326469C006E680B /* UGwithdrawStatModel.m */,
+				D4D4225323264B94006E680B /* UGwithdrawListModel.h */,
+				D4D4225423264B94006E680B /* UGwithdrawListModel.m */,
+				D4D42259232656D2006E680B /* UGrealBetStatModel.h */,
+				D4D4225A232656D2006E680B /* UGrealBetStatModel.m */,
+				D4D4225C232658F9006E680B /* UGrealBetListModel.h */,
+				D4D4225D232658F9006E680B /* UGrealBetListModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2497,6 +2537,9 @@
 				D422FE61232532C00063EA4E /* UGPromotion2rowTableViewCell.h */,
 				D422FE62232532C00063EA4E /* UGPromotion2rowTableViewCell.m */,
 				D422FE63232532C00063EA4E /* UGPromotion2rowTableViewCell.xib */,
+				D49F41A92326132C00A381AD /* UGPormotionUserInfoView.h */,
+				D49F41AA2326132C00A381AD /* UGPormotionUserInfoView.m */,
+				D49F41AC2326149B00A381AD /* UGPormotionUserInfoView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2935,6 +2978,7 @@
 				D405B2FF227C310600F8C586 /* UGWithdrawalViewController.storyboard in Resources */,
 				D422D67822D997AA008E7065 /* UGSafety.storyboard in Resources */,
 				D4145A9C22B61C6A00D8165F /* UGBJKL8LotteryController.storyboard in Resources */,
+				D49F41AD2326149B00A381AD /* UGPormotionUserInfoView.xib in Resources */,
 				D4185E3F231D2E1B008DB5F2 /* province_data.xml in Resources */,
 				D4B6E6F122D332720006B03F /* UGHomeTitleView.xib in Resources */,
 				D4D8DF812287065F00446BAF /* UGTimeLotteryBetHeaderView.xib in Resources */,
@@ -3092,6 +3136,7 @@
 				D40FA8CA22992F42003E596F /* UGYubaoConversionViewController.m in Sources */,
 				D405B218227972D300F8C586 /* NSObject+MJProperty.m in Sources */,
 				D4087DB222952D4A000C4CB0 /* UGMissionModel.m in Sources */,
+				D49F41B02326346D00A381AD /* UGinviteDomainModel.m in Sources */,
 				D422A58E229EBF7C0068D0AD /* WavesView.m in Sources */,
 				D420A77B231505BB0089C0C5 /* UGYuebaoInfoModel.m in Sources */,
 				D405B324227D839B00F8C586 /* CMCommon.m in Sources */,
@@ -3118,6 +3163,7 @@
 				D405B307227C3A1900F8C586 /* UGRechargeRecordTableViewController.m in Sources */,
 				D41C3E09228EA09000BF6436 /* UGBetRecordTableViewController.m in Sources */,
 				D422FE6E232559BF0063EA4E /* UGBetListModel.m in Sources */,
+				D4D4225B232656D2006E680B /* UGrealBetStatModel.m in Sources */,
 				D4185E45231D2E1B008DB5F2 /* MOFSAddressPickerView.m in Sources */,
 				D4DE268E229BCB960072A4A2 /* WMMenuHead.m in Sources */,
 				D405B1B6227972AD00F8C586 /* FLAnimatedImage.m in Sources */,
@@ -3175,6 +3221,7 @@
 				D4145A9F22B6348500D8165F /* UGGDKL10LotteryController.m in Sources */,
 				D416BB2822CE35C100BA0450 /* UGSegmentCollectionViewCell.m in Sources */,
 				D405B33D227DAD6E00F8C586 /* SANotDataView.m in Sources */,
+				D49F41B3232638D100A381AD /* UGdepositStatModel.m in Sources */,
 				D405B1BA227972AD00F8C586 /* UIImage+MultiFormat.m in Sources */,
 				D42528192320EB01007DE522 /* UGSigInCodeViewController.m in Sources */,
 				D41246B62285C64C006881E2 /* UGUserInfoViewController.m in Sources */,
@@ -3241,7 +3288,9 @@
 				D405B1C3227972AD00F8C586 /* UIView+WebCacheOperation.m in Sources */,
 				D40FA8D2229938FA003E596F /* ZZCountingLabel.m in Sources */,
 				D424DDDC22E72E940009E2E6 /* UGSystemConfigModel.m in Sources */,
+				D49F41AB2326132C00A381AD /* UGPormotionUserInfoView.m in Sources */,
 				D49D359E22C79E7900318D73 /* UGNoticePopView.m in Sources */,
+				D4D422522326469C006E680B /* UGwithdrawStatModel.m in Sources */,
 				D41F260D2318EFE4004FB9C6 /* UGChanglongBetRecrodCell.m in Sources */,
 				D40FA8C222991142003E596F /* UGYubaoViewController.m in Sources */,
 				D405B30E227C614800F8C586 /* UGFundDetailsCell.m in Sources */,
@@ -3323,6 +3372,7 @@
 				D4261EC72323D6BC006E0A5D /* UGlevelsModel.m in Sources */,
 				D4DE269B229BDBC80072A4A2 /* SGImageButton.m in Sources */,
 				D405AFF722783DCC00F8C586 /* View+MASAdditions.m in Sources */,
+				D4D4225523264B94006E680B /* UGwithdrawListModel.m in Sources */,
 				D4A02B5223224C32004D5894 /* UGSignInHistoryModel.m in Sources */,
 				D405B2CF227ADC1100F8C586 /* UGGamePlatformCollectionViewCell.m in Sources */,
 				D40DE98F22F4292100974BAF /* UGLotteryAdPopView.m in Sources */,
@@ -3355,6 +3405,7 @@
 				D4DE268C229BCB960072A4A2 /* WMPickupList.m in Sources */,
 				D405B25C227974D000F8C586 /* UIView+CTop.m in Sources */,
 				D41C3DF5228E75F100BF6436 /* UIBarButtonItem+WZLBadge.m in Sources */,
+				D4D4225E232658F9006E680B /* UGrealBetListModel.m in Sources */,
 				D405B1BF227972AD00F8C586 /* NSData+ImageContentType.m in Sources */,
 				D40D32C72297CEAF00B89398 /* UGMarkSixLotteryBetItem1Cell.m in Sources */,
 				D4090F61228D3D7B00D6DA43 /* UGAvaterSelectView.m in Sources */,
@@ -3395,6 +3446,7 @@
 				D424941B22C6512A0011A5F3 /* UGChatsViewController.m in Sources */,
 				D405B217227972D300F8C586 /* MJExtensionConst.m in Sources */,
 				D49A36C922A2CF57000057D2 /* UGPCDDLotteryController.m in Sources */,
+				D4D4224F23264340006E680B /* UGdepositListModel.m in Sources */,
 				D405B2CA227ADA4E00F8C586 /* UGGameTypeColletionViewCell.m in Sources */,
 				D411D3962292E1780072603B /* UGChanglongaideModel.m in Sources */,
 				D405B2F2227C17CE00F8C586 /* UGFundsViewController.m in Sources */,

@@ -29,7 +29,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2009-09-09" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ovm-w6-O27">
                         <rect key="frame" x="160" y="0.0" width="160" height="44"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES"/>
-                        <color key="backgroundColor" red="0.89789026979999997" green="0.90878230329999998" blue="0.99215859169999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="1" green="0.99998801946640015" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>

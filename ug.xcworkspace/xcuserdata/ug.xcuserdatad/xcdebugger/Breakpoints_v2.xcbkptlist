@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ug/Classes/Mine/Controller/Promotion/UGPromotionTableController.m"
-            timestampString = "589650895.977064"
+            timestampString = "589725558.457812"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "451"
-            endingLineNumber = "451"
-            landmarkName = "-teamBetStatData"
+            startingLineNumber = "658"
+            endingLineNumber = "658"
+            landmarkName = "-teamBetListData:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,12 +26,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ug/Classes/Mine/Controller/Promotion/UGPromotionTableController.m"
-            timestampString = "589650895.9774849"
+            timestampString = "589725558.458467"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "459"
-            endingLineNumber = "459"
-            landmarkName = "-teamBetStatData"
+            startingLineNumber = "385"
+            endingLineNumber = "385"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ug/Classes/Mine/Controller/Promotion/UGPromotionTableController.m"
+            timestampString = "589725558.458773"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "213"
+            endingLineNumber = "213"
+            landmarkName = "-ybPopupMenuDidSelectedAtIndex:ybPopupMenu:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

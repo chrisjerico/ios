@@ -162,6 +162,30 @@ NS_ASSUME_NONNULL_BEGIN
 //投注记录信息
 + (void)teamBetListWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 
+//线下充值信息
++ (void)teamTransferWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+//代理域名信息
++ (void)teamInviteDomainWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+//存款报表信息
++ (void)teamDepositStatWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+//存款记录信息
++ (void)teamDepositListWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+//提款报表信息 http://test10.6yc.com/wjapp/api.php?c=team&a=withdrawStat&token=fJJWVq81cwzjWrVDcjZdSSR1&page=1&rows=20
++ (void)teamWithdrawStatWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+//提款记录信息 http://test10.6yc.com/wjapp/api.php?c=team&a=withdrawList&token=fJJWVq81cwzjWrVDcjZdSSR1&page=1&rows=20
++ (void)teamWithdrawListWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+//真人报表信息 http://test10.6yc.com/wjapp/api.php?c=team&a=realBetStat&token=fJJWVq81cwzjWrVDcjZdSSR1&page=1&rows=20
++ (void)teamRealBetStatWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+//真人记录信息 http://test10.6yc.com/wjapp/api.php?c=team&a=realBetList&token=fJJWVq81cwzjWrVDcjZdSSR1&page=1&rows=20
++ (void)teamRealBetListWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 @end
 
 NS_ASSUME_NONNULL_END
+

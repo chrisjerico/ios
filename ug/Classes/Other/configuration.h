@@ -179,6 +179,22 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 
 #define teamBetListUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=team&a=betList"]
 
+#define teamTransferUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=team&a=transfer"]
+
+#define teamInviteDomainUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=team&a=inviteDomain"]
+
+#define teamDepositStatUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=team&a=depositStat"]
+
+#define teamDepositListUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=team&a=depositList"]
+
+#define teamWithdrawStatUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=team&a=withdrawStat"]
+
+#define teamWithdrawListUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=team&a=withdrawList"]
+
+#define teamRealBetStatUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=team&a=realBetStat"]
+
+#define teamRealBetListUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=team&a=realBetList"]
+
 
 #ifndef __OPTIMIZE__
 
