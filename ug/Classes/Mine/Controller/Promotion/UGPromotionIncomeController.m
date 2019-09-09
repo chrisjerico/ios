@@ -10,8 +10,12 @@
 #import "XYYSegmentControl.h"
 #import "UGPromotionTableController.h"
 #import "UGPromotionInfoController.h"
+#import "UGPormotionView.h"
+
 
 @interface UGPromotionIncomeController ()<XYYSegmentControlDelegate>
+
+@property (nonatomic, strong) UGPormotionView *uGPormotionView;
 
 @property (nonatomic, strong) XYYSegmentControl *slideSwitchView;
 @property (nonatomic, strong) NSArray *itemArray;
@@ -24,8 +28,27 @@
     
     self.navigationItem.title = @"推荐收益";
     self.view.backgroundColor = UGBackgroundColor;
+    
+  
+    
     [self buildSegment];
     [self setupRightItem];
+    
+    //-签到按钮======================================
+    if (_uGPormotionView == nil) {
+        _uGPormotionView = [[UGPormotionView alloc] initWithFrame:CGRectMake(0,0 ,UGScreenW, 128+k_Height_NavBar)];
+        
+    }
+    [self.view addSubview:_uGPormotionView];
+    
+    [self.uGPormotionView  mas_makeConstraints:^(MASConstraintMaker *make)
+     {
+         make.left.equalTo(self.view.mas_left).with.offset(0);
+         make.right.equalTo(self.view.mas_right).with.offset(0);
+         make.width.equalTo(self.view.mas_width);
+         make.height.mas_equalTo(128.0);
+         
+     }];
     
 }
 
@@ -52,7 +75,7 @@
 -(void)buildSegment
 {
     self.itemArray = @[@"推荐信息",@"会员管理",@"投注报表",@"投注记录",@"域名绑定",@"存款报表",@"存款记录",@"提款报表",@"提款记录",@"真人报表",@"真人记录"];
-    self.slideSwitchView = [[XYYSegmentControl alloc] initWithFrame:CGRectMake(0 , 0, self.view.width, self.view.height) channelName:self.itemArray source:self];
+    self.slideSwitchView = [[XYYSegmentControl alloc] initWithFrame:CGRectMake(0 , 128.0, self.view.width, self.view.height-128.0) channelName:self.itemArray source:self];
     [self.slideSwitchView setUserInteractionEnabled:YES];
     self.slideSwitchView.segmentControlDelegate = self;
     //设置tab 颜色(可选)

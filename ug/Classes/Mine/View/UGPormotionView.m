@@ -29,18 +29,51 @@
         self = [[NSBundle mainBundle] loadNibNamed:@"UGPormotionView" owner:self options:0].firstObject;
         self.frame = frame;
         
-        self.waveView = [[WavesView alloc] initWithFrame:self.waveBgView.bounds];
-        [self.waveBgView addSubview:self.waveView];
-        self.waveView.backgroundColor = [UIColor clearColor];
-        self.waveBottomView.backgroundColor = UGRGBColor(84, 171, 238);
-        self.waveView.realWaveColor = UGRGBColor(84, 171, 238);
-        self.waveView.maskWaveColor = [UIColor clearColor];
-        self.waveView.waveHeight = 10;
-        [self.waveView startWaveAnimation];
+       
+        
+        [self setupUserInfo];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            // 通知主线程刷新 神马的
+            [self waveAnimation];
+        });
+
     }
     return self;
 }
 
+-(void)waveAnimation{
+    [self.waveBottomView  mas_makeConstraints:^(MASConstraintMaker *make)
+     {
+         make.left.equalTo(self.mas_left).with.offset(0);
+         make.right.equalTo(self.mas_right).with.offset(0);
+         make.width.equalTo(self.mas_width);
+         make.height.mas_equalTo(20.0);
+         make.bottom.equalTo(self.mas_bottom);
+         
+     }];
+    
+    [self.waveBgView  mas_makeConstraints:^(MASConstraintMaker *make)
+     {
+         make.left.equalTo(self.mas_left).with.offset(0);
+         make.right.equalTo(self.mas_right).with.offset(0);
+         make.width.equalTo(self.mas_width);
+         make.height.mas_equalTo(20.0);
+         make.bottom.equalTo(self.mas_bottom).offset(-20);
+         
+     }];
+    
+    self.waveView = [[WavesView alloc] initWithFrame:self.waveBgView.bounds];
+    [self.waveBgView addSubview:self.waveView];
+    [self.waveBgView addSubview:self.waveView];
+    self.waveView.backgroundColor = [UIColor clearColor];
+    self.waveBottomView.backgroundColor = UGRGBColor(84, 171, 238);
+    self.waveView.realWaveColor = UGRGBColor(84, 171, 238);
+    self.waveView.maskWaveColor = [UIColor clearColor];
+    self.waveView.waveHeight = 10;
+    [self.waveView startWaveAnimation];
+}
 
 //刷新余额动画
 -(void)startAnimation
@@ -87,6 +120,9 @@
             [self setupUserInfo];
             
             [self stopAnimation];
+            
+            
+           
             
         } failure:^(id msg) {
             

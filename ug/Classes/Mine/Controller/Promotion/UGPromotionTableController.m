@@ -52,6 +52,7 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = UGBackgroundColor;
+//    self.view.backgroundColor = [UIColor redColor];
     switch (self.tableType) {
         case PromotionTableTypeMember://会员管理
             self.titleArray = @[@"分级",@"用户名",@"最近登录",@"注册时间",@"状态"];//5 == 按钮
@@ -103,7 +104,7 @@
         [self.tableView registerNib:[UINib nibWithNibName:@"UGPromotion4rowTableViewCell" bundle:nil] forCellReuseIdentifier:@"UGPromotion4rowTableViewCell"];
         [self.tableView registerNib:[UINib nibWithNibName:@"UGPromotion5rowButtonTableViewCell" bundle:nil] forCellReuseIdentifier:@"UGPromotion5rowButtonTableViewCell"];
          [self.tableView registerNib:[UINib nibWithNibName:@"UGPromotion2rowTableViewCell" bundle:nil] forCellReuseIdentifier:@"UGPromotion2rowTableViewCell"];
-        self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 120, 0);
+        self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 150, 0);
         self.tableView.rowHeight = 44;
     }
     [self.view addSubview:_tableView];
