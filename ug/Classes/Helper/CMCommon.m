@@ -455,4 +455,24 @@ static NSString *uuidKey =@"uuidKey";
     return ci;
 }
 
+
+#pragma mark: - 判断是否能够被整除
+/*
+ [self judgeStr:9 with:3]
+ 返回：
+ */
++(BOOL)judgeStr:(int )number1 with:(int )number2
+{
+    
+    
+    if (fmod(number1, number2)== 0) {
+        
+        return YES;
+    }
+    else{
+        return NO;
+    }
+    
+}
+
 @end

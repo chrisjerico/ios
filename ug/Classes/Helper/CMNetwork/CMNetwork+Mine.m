@@ -28,6 +28,7 @@
 #import "UGlevelsModel.h"
 #import "UGinviteInfoModel.h"
 
+#import "UGdepositModel.h"
 
 @implementation CMNetwork (Mine)
 
@@ -872,5 +873,21 @@
     
     CMMETHOD_END;
 }
+
+
+//支付通道列表信息 http://test10.6yc.com/wjapp/api.php?c=recharge&a=cashier&token=U24XC4GL9UAC929UCb0c93AD
++ (void)rechargeCashierWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    [self.manager requestInMainThreadWithMethod:[rechargeCashierUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:CMResultClassMake(UGdepositModel.class)
+                                           post:NO
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
+
+
 @end
 

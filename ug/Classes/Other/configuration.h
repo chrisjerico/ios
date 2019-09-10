@@ -195,6 +195,8 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 
 #define teamRealBetListUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=team&a=realBetList"]
 
+#define rechargeCashierUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=recharge&a=cashier"]
+
 
 #ifndef __OPTIMIZE__
 

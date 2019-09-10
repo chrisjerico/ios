@@ -185,6 +185,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 //真人记录信息 http://test10.6yc.com/wjapp/api.php?c=team&a=realBetList&token=fJJWVq81cwzjWrVDcjZdSSR1&page=1&rows=20
 + (void)teamRealBetListWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+//支付通道列表信息 http://test10.6yc.com/wjapp/api.php?c=recharge&a=cashier&token=U24XC4GL9UAC929UCb0c93AD
++ (void)rechargeCashierWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

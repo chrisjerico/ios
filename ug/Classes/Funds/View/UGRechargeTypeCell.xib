@@ -26,21 +26,32 @@
                             <constraint firstAttribute="width" constant="60" id="pnv-S8-KFt"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="支付宝在线支付" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c8n-BH-gct">
-                        <rect key="frame" x="85" y="30" width="100" height="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="支付宝在线支付" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c8n-BH-gct">
+                        <rect key="frame" x="83" y="0.0" width="202" height="44"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="支付宝在线支付" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0h8-6r-IqO">
+                        <rect key="frame" x="83" y="37" width="202" height="31"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.37063515190000001" green="0.57926970720000004" blue="0.89804404969999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="c8n-BH-gct" firstAttribute="leading" secondItem="GYb-lC-NJt" secondAttribute="trailing" constant="10" id="31R-93-R3e"/>
                     <constraint firstItem="GYb-lC-NJt" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="EQ5-Nd-syY"/>
                     <constraint firstItem="GYb-lC-NJt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="hel-Jm-Zvy"/>
-                    <constraint firstItem="c8n-BH-gct" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="tiW-Uo-ep9"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="headerImageView" destination="GYb-lC-NJt" id="K6l-02-v2p"/>
+                <outlet property="nameLabel" destination="c8n-BH-gct" id="DXY-SQ-g8S"/>
+                <outlet property="tipLabel" destination="0h8-6r-IqO" id="CNM-NI-Aeg"/>
+            </connections>
             <point key="canvasLocation" x="139.85507246376812" y="163.72767857142856"/>
         </tableViewCell>
     </objects>

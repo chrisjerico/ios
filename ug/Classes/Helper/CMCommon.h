@@ -83,4 +83,10 @@
  返回：//小  -1 一样  0 大   1
  */
 +(int)compareDate:(NSString*)date01 withDate:(NSString*)date02  withFormat:(NSString *)format;
+
+/*
+ [self judgeStr:9 with:3]
+ 返回：
+ */
++(BOOL)judgeStr:(int )number1 with:(int )number2;
 @end

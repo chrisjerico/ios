@@ -4,13 +4,17 @@
 //
 //  Created by ug on 2019/5/3.
 //  Copyright © 2019 ug. All rights reserved.
-//
+//  存款界面==
 
 #import "UGRechargeTypeTableViewController.h"
 #import "UGRechargeTypeCell.h"
+#import "UGdepositModel.h"
+#import "UGDepositDetailsViewController.h"
+
 
 @interface UGRechargeTypeTableViewController ()
-
+@property (nonatomic, strong) UGdepositModel *mUGdepositModel;
+@property (nonatomic, strong) NSMutableArray *tableViewDataArray;
 @end
 
 static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
@@ -18,6 +22,7 @@ static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     
     [self.tableView registerNib:[UINib nibWithNibName:@"UGRechargeTypeCell" bundle:nil] forCellReuseIdentifier:rechargeTypeCellid];
     self.tableView.estimatedRowHeight = 0;
@@ -29,6 +34,12 @@ static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
     }else {
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
+    
+     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 130, 0);
+    
+    self.tableViewDataArray = [NSMutableArray new];
+    
+    [self rechargeCashierData];
 
 }
 
@@ -41,13 +52,18 @@ static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return 5;
+    return self.tableViewDataArray.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UGRechargeTypeCell *cell = [tableView dequeueReusableCellWithIdentifier:rechargeTypeCellid forIndexPath:indexPath];
+    
+    UGpaymentModel *model = self.tableViewDataArray[indexPath.row];
+    cell.item = model;
+    
+    
 
     return cell;
 }
@@ -69,7 +85,52 @@ static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    UGpaymentModel *model = self.tableViewDataArray[indexPath.row];
+    
+    UGDepositDetailsViewController *vc = [UGDepositDetailsViewController new];
+    vc.item = model;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
+
+#pragma mark -- 网络请求
+//得到支付列表数据
+- (void)rechargeCashierData {
+    
+    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
+    
+    [SVProgressHUD showWithStatus:nil];
+    WeakSelf;
+    [CMNetwork rechargeCashierWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            
+            [SVProgressHUD dismiss];
+            self.mUGdepositModel = model.data;
+            NSLog(@"odel.data = %@",model.data);
+            
+//            self.tableViewDataArray = self.mUGdepositModel.payment;
+            
+            for (int i = 0; i<self.mUGdepositModel.payment.count; i++) {
+                
+                UGpaymentModel *uGpaymentModel =  (UGpaymentModel*)[self.mUGdepositModel.payment objectAtIndex:i];
+                if(![CMCommon arryIsNull:uGpaymentModel.channel]){
+                    [self.tableViewDataArray addObject:uGpaymentModel];
+                    uGpaymentModel.quickAmount = self.mUGdepositModel.quickAmount;
+                    uGpaymentModel.transferPrompt = self.mUGdepositModel.transferPrompt;
+                    uGpaymentModel.depositPrompt = self.mUGdepositModel.depositPrompt;
+                }
+            }
+            
+            [self.tableView reloadData];
+
+            
+        } failure:^(id msg) {
+            
+            [SVProgressHUD showErrorWithStatus:msg];
+            
+        }];
+    }];
+}
 
 @end

@@ -8,9 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@class UGpaymentModel;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UGRechargeTypeCell : UITableViewCell
+
+@property (nonatomic, strong) NSString *nameStr;
+@property (nonatomic, strong) NSString *tipStr;
+@property (nonatomic, strong) NSString *headerImageStr;
+
+
+@property (nonatomic, strong) UGpaymentModel *item;
 
 @end
 
