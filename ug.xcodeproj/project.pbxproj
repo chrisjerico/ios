@@ -320,6 +320,11 @@
 		D422FE6E232559BF0063EA4E /* UGBetListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D422FE6D232559BF0063EA4E /* UGBetListModel.m */; };
 		D4239BD022CCEC9D00700D8E /* DKProgressLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D4239BCD22CCEC9D00700D8E /* DKProgressLayer.m */; };
 		D4239BD122CCEC9D00700D8E /* UIWebView+DKProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = D4239BCF22CCEC9D00700D8E /* UIWebView+DKProgress.m */; };
+		D4241C39232914FE00BF4DE1 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = D4241C37232914FE00BF4DE1 /* UIView+Extension.m */; };
+		D4241C41232A1A6900BF4DE1 /* UGFundsBankView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4241C40232A1A6900BF4DE1 /* UGFundsBankView.m */; };
+		D4241C43232A1A8200BF4DE1 /* UGFundsBankView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4241C42232A1A8200BF4DE1 /* UGFundsBankView.xib */; };
+		D4241C47232A2F0100BF4DE1 /* UGOneTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4241C45232A2F0100BF4DE1 /* UGOneTitleTableViewCell.m */; };
+		D4241C48232A2F0100BF4DE1 /* UGOneTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4241C46232A2F0100BF4DE1 /* UGOneTitleTableViewCell.xib */; };
 		D424941B22C6512A0011A5F3 /* UGChatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D424941A22C6512A0011A5F3 /* UGChatsViewController.m */; };
 		D424DDDC22E72E940009E2E6 /* UGSystemConfigModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D424DDDB22E72E940009E2E6 /* UGSystemConfigModel.m */; };
 		D424DDDF22E74DA40009E2E6 /* UGRealBetRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D424DDDE22E74DA40009E2E6 /* UGRealBetRecordViewController.m */; };
@@ -447,6 +452,9 @@
 		D4D8DF89228714A300446BAF /* UGLotteryResultCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4D8DF87228714A300446BAF /* UGLotteryResultCollectionViewCell.xib */; };
 		D4D8DF8D2287155800446BAF /* UGLotterySubResultCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4D8DF8B2287155800446BAF /* UGLotterySubResultCollectionViewCell.m */; };
 		D4D8DF8E2287155800446BAF /* UGLotterySubResultCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4D8DF8C2287155800446BAF /* UGLotterySubResultCollectionViewCell.xib */; };
+		D4DCDBD02328B5B400CF4CEE /* YLEdgeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4DCDBCF2328B5B400CF4CEE /* YLEdgeLabel.m */; };
+		D4DCDBD42328D1AC00CF4CEE /* UGDepositDetailsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4DCDBD22328D1AC00CF4CEE /* UGDepositDetailsTableViewCell.m */; };
+		D4DCDBD52328D1AC00CF4CEE /* UGDepositDetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4DCDBD32328D1AC00CF4CEE /* UGDepositDetailsTableViewCell.xib */; };
 		D4DE2681229BCB960072A4A2 /* WMSegmentControl.m in Sources */ = {isa = PBXBuildFile; fileRef = D4DE2664229BCB960072A4A2 /* WMSegmentControl.m */; };
 		D4DE2682229BCB960072A4A2 /* WMMaskSegmentControl.m in Sources */ = {isa = PBXBuildFile; fileRef = D4DE2666229BCB960072A4A2 /* WMMaskSegmentControl.m */; };
 		D4DE2683229BCB960072A4A2 /* WMIconSegmentControl.m in Sources */ = {isa = PBXBuildFile; fileRef = D4DE2667229BCB960072A4A2 /* WMIconSegmentControl.m */; };
@@ -1070,6 +1078,14 @@
 		D4239BCD22CCEC9D00700D8E /* DKProgressLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DKProgressLayer.m; sourceTree = "<group>"; };
 		D4239BCE22CCEC9D00700D8E /* DKProgressLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DKProgressLayer.h; sourceTree = "<group>"; };
 		D4239BCF22CCEC9D00700D8E /* UIWebView+DKProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+DKProgress.m"; sourceTree = "<group>"; };
+		D4241C37232914FE00BF4DE1 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
+		D4241C38232914FE00BF4DE1 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
+		D4241C3F232A1A6900BF4DE1 /* UGFundsBankView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGFundsBankView.h; sourceTree = "<group>"; };
+		D4241C40232A1A6900BF4DE1 /* UGFundsBankView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGFundsBankView.m; sourceTree = "<group>"; };
+		D4241C42232A1A8200BF4DE1 /* UGFundsBankView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGFundsBankView.xib; sourceTree = "<group>"; };
+		D4241C44232A2F0100BF4DE1 /* UGOneTitleTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGOneTitleTableViewCell.h; sourceTree = "<group>"; };
+		D4241C45232A2F0100BF4DE1 /* UGOneTitleTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGOneTitleTableViewCell.m; sourceTree = "<group>"; };
+		D4241C46232A2F0100BF4DE1 /* UGOneTitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGOneTitleTableViewCell.xib; sourceTree = "<group>"; };
 		D424941922C6512A0011A5F3 /* UGChatsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGChatsViewController.h; sourceTree = "<group>"; };
 		D424941A22C6512A0011A5F3 /* UGChatsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGChatsViewController.m; sourceTree = "<group>"; };
 		D424DDDA22E72E940009E2E6 /* UGSystemConfigModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGSystemConfigModel.h; sourceTree = "<group>"; };
@@ -1287,6 +1303,11 @@
 		D4D8DF8A2287155800446BAF /* UGLotterySubResultCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLotterySubResultCollectionViewCell.h; sourceTree = "<group>"; };
 		D4D8DF8B2287155800446BAF /* UGLotterySubResultCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLotterySubResultCollectionViewCell.m; sourceTree = "<group>"; };
 		D4D8DF8C2287155800446BAF /* UGLotterySubResultCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGLotterySubResultCollectionViewCell.xib; sourceTree = "<group>"; };
+		D4DCDBCE2328B5B400CF4CEE /* YLEdgeLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YLEdgeLabel.h; sourceTree = "<group>"; };
+		D4DCDBCF2328B5B400CF4CEE /* YLEdgeLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YLEdgeLabel.m; sourceTree = "<group>"; };
+		D4DCDBD12328D1AC00CF4CEE /* UGDepositDetailsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGDepositDetailsTableViewCell.h; sourceTree = "<group>"; };
+		D4DCDBD22328D1AC00CF4CEE /* UGDepositDetailsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGDepositDetailsTableViewCell.m; sourceTree = "<group>"; };
+		D4DCDBD32328D1AC00CF4CEE /* UGDepositDetailsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGDepositDetailsTableViewCell.xib; sourceTree = "<group>"; };
 		D4DE2663229BCB960072A4A2 /* WMIconSegmentControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMIconSegmentControl.h; sourceTree = "<group>"; };
 		D4DE2664229BCB960072A4A2 /* WMSegmentControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMSegmentControl.m; sourceTree = "<group>"; };
 		D4DE2665229BCB960072A4A2 /* WMNavTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMNavTabBar.h; sourceTree = "<group>"; };
@@ -1684,6 +1705,7 @@
 		D405B22D227973C500F8C586 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				D4241C36232914D100BF4DE1 /* Extenslon */,
 				D4145A7522B3BC1900D8165F /* CMNetwork */,
 				D4185E31231D2E1A008DB5F2 /* MOFSPickerManager */,
 				D40DE97022F335E300974BAF /* SDCycleScrollView */,
@@ -1724,6 +1746,8 @@
 				D4704EDC22B7BCE900528DC7 /* GLEncryptManager.m */,
 				D40DE99922F532EC00974BAF /* WKProxy.h */,
 				D40DE99822F532EC00974BAF /* WKProxy.m */,
+				D4DCDBCE2328B5B400CF4CEE /* YLEdgeLabel.h */,
+				D4DCDBCF2328B5B400CF4CEE /* YLEdgeLabel.m */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -2048,6 +2072,15 @@
 				D422A584229E80EE0068D0AD /* UGYubaoConversionRecordController.m */,
 			);
 			path = YuBao;
+			sourceTree = "<group>";
+		};
+		D4241C36232914D100BF4DE1 /* Extenslon */ = {
+			isa = PBXGroup;
+			children = (
+				D4241C38232914FE00BF4DE1 /* UIView+Extension.h */,
+				D4241C37232914FE00BF4DE1 /* UIView+Extension.m */,
+			);
+			path = Extenslon;
 			sourceTree = "<group>";
 		};
 		D424785C22DDF5860062A6D4 /* Resources */ = {
@@ -2630,6 +2663,15 @@
 				D41F2615231BE521004FB9C6 /* UGWithdrawRecordDetailView.h */,
 				D41F2616231BE521004FB9C6 /* UGWithdrawRecordDetailView.m */,
 				D41F2618231BE536004FB9C6 /* UGWithdrawRecordDetailView.xib */,
+				D4DCDBD12328D1AC00CF4CEE /* UGDepositDetailsTableViewCell.h */,
+				D4DCDBD22328D1AC00CF4CEE /* UGDepositDetailsTableViewCell.m */,
+				D4DCDBD32328D1AC00CF4CEE /* UGDepositDetailsTableViewCell.xib */,
+				D4241C3F232A1A6900BF4DE1 /* UGFundsBankView.h */,
+				D4241C40232A1A6900BF4DE1 /* UGFundsBankView.m */,
+				D4241C42232A1A8200BF4DE1 /* UGFundsBankView.xib */,
+				D4241C44232A2F0100BF4DE1 /* UGOneTitleTableViewCell.h */,
+				D4241C45232A2F0100BF4DE1 /* UGOneTitleTableViewCell.m */,
+				D4241C46232A2F0100BF4DE1 /* UGOneTitleTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3031,14 +3073,17 @@
 				D4090F6A228D83B700D6DA43 /* UGMissionCenterViewController.storyboard in Resources */,
 				D463B4E12284489100EAC0F7 /* UGRightMenuView.xib in Resources */,
 				D41C3E0E228ED0EE00BF6436 /* UGBetRecordDetailViewController.storyboard in Resources */,
+				D4241C48232A2F0100BF4DE1 /* UGOneTitleTableViewCell.xib in Resources */,
 				D405B2CB227ADA4E00F8C586 /* UGGameTypeColletionViewCell.xib in Resources */,
 				D4527D1922828C27000EC1C2 /* UGPlatformBalanceTableViewCell.xib in Resources */,
 				D4E8A41122A0326C00EFE171 /* UGBetRecorddHeaderView.xib in Resources */,
 				D4DE268A229BCB960072A4A2 /* icon_arrow@3x.png in Resources */,
 				D405B2E8227BFE5F00F8C586 /* UGLotteryCollectionViewCell.xib in Resources */,
+				D4241C43232A1A8200BF4DE1 /* UGFundsBankView.xib in Resources */,
 				D41246B82285C65D006881E2 /* UGUserInfoViewController.storyboard in Resources */,
 				D409C55D22AB87480042A0DD /* UGFeedBackController.storyboard in Resources */,
 				D41C3E06228E9D8900BF6436 /* UGBetRecordTableViewCell.xib in Resources */,
+				D4DCDBD52328D1AC00CF4CEE /* UGDepositDetailsTableViewCell.xib in Resources */,
 				D416BB2922CE35C100BA0450 /* UGSegmentCollectionViewCell.xib in Resources */,
 				D424DDE622E753C60009E2E6 /* UGRealBetRecordCell.xib in Resources */,
 				D49A36D522A40212000057D2 /* UGLotteryRecordTableViewCell.xib in Resources */,
@@ -3287,6 +3332,7 @@
 				D4DE269A229BDBC80072A4A2 /* SGSegmentedControl.m in Sources */,
 				D4D8DF7B2286F7F600446BAF /* UGTimeLotteryBetCollectionViewCell.m in Sources */,
 				D4AE641B2295871D00DD265A /* MJRefreshFooter.m in Sources */,
+				D4241C47232A2F0100BF4DE1 /* UGOneTitleTableViewCell.m in Sources */,
 				D4F63F8F228FD1A200EC93AA /* UGFastThreeThreeCollectionViewCell.m in Sources */,
 				D422FE6B232553790063EA4E /* UGbetStatModel.m in Sources */,
 				D405B38C22816D1400F8C586 /* UGSecurityCenterViewController.m in Sources */,
@@ -3331,6 +3377,7 @@
 				D49D359E22C79E7900318D73 /* UGNoticePopView.m in Sources */,
 				D4D422522326469C006E680B /* UGwithdrawStatModel.m in Sources */,
 				D41F260D2318EFE4004FB9C6 /* UGChanglongBetRecrodCell.m in Sources */,
+				D4DCDBD42328D1AC00CF4CEE /* UGDepositDetailsTableViewCell.m in Sources */,
 				D40FA8C222991142003E596F /* UGYubaoViewController.m in Sources */,
 				D405B30E227C614800F8C586 /* UGFundDetailsCell.m in Sources */,
 				D405B32F227DA8F700F8C586 /* SAROPSessionStorage.m in Sources */,
@@ -3455,6 +3502,7 @@
 				D405B334227DA98500F8C586 /* CMNetworkStorage.m in Sources */,
 				D424DDDF22E74DA40009E2E6 /* UGRealBetRecordViewController.m in Sources */,
 				D405B241227973F200F8C586 /* STBarButtonItem.m in Sources */,
+				D4241C39232914FE00BF4DE1 /* UIView+Extension.m in Sources */,
 				D405B1B2227972AD00F8C586 /* MKAnnotationView+WebCache.m in Sources */,
 				D405B1F8227972C900F8C586 /* JSONModelArray.m in Sources */,
 				D405B1FC227972C900F8C586 /* JSONModel+networking.m in Sources */,
@@ -3464,6 +3512,7 @@
 				D4DE2690229BCB960072A4A2 /* WMDropDownView.m in Sources */,
 				D405B318227D726000F8C586 /* UGLoginViewController.m in Sources */,
 				D41C3E05228E9D8900BF6436 /* UGBetRecordTableViewCell.m in Sources */,
+				D4DCDBD02328B5B400CF4CEE /* YLEdgeLabel.m in Sources */,
 				D405AFF122783DCC00F8C586 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				D417712F229D786000727B70 /* UGMissionTitleCollectionView.m in Sources */,
 				D40DE99A22F532ED00974BAF /* WKProxy.m in Sources */,
@@ -3498,6 +3547,7 @@
 				D405B389228162C000F8C586 /* UGMailBoxTableViewController.m in Sources */,
 				D4185E43231D2E1B008DB5F2 /* MOFSPickerView.m in Sources */,
 				D4B75E3E227812A70007047C /* UGTabbarController.m in Sources */,
+				D4241C41232A1A6900BF4DE1 /* UGFundsBankView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
