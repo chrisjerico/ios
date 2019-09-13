@@ -396,6 +396,9 @@
 		D4A02B57232257D5004D5894 /* UGSignInHistoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4A02B56232257D5004D5894 /* UGSignInHistoryView.xib */; };
 		D4A02B5B23227B7D004D5894 /* UGSingInHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A02B5923227B7D004D5894 /* UGSingInHistoryTableViewCell.m */; };
 		D4A02B5C23227B7D004D5894 /* UGSingInHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4A02B5A23227B7D004D5894 /* UGSingInHistoryTableViewCell.xib */; };
+		D4A1E90E232BC4A50045F5B4 /* NSDate+XHCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A1E908232BC4A50045F5B4 /* NSDate+XHCategory.m */; };
+		D4A1E90F232BC4A50045F5B4 /* NSString+XHDateFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A1E90A232BC4A50045F5B4 /* NSString+XHDateFormat.m */; };
+		D4A1E910232BC4A50045F5B4 /* NSDateComponents+XHCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A1E90C232BC4A50045F5B4 /* NSDateComponents+XHCategory.m */; };
 		D4AE1C0A22C0FCC400C142FE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AE1C0922C0FCC300C142FE /* AppDelegate.m */; };
 		D4AE63D922956E9600DD265A /* UGMissionLevelController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AE63D822956E9600DD265A /* UGMissionLevelController.m */; };
 		D4AE63DC2295734700DD265A /* UGMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AE63DB2295734700DD265A /* UGMessageModel.m */; };
@@ -425,6 +428,18 @@
 		D4B75E19227802600007047C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B75E17227802600007047C /* LaunchScreen.storyboard */; };
 		D4B75E1C227802600007047C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D4B75E1B227802600007047C /* main.m */; };
 		D4B75E3E227812A70007047C /* UGTabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4B75E3D227812A70007047C /* UGTabbarController.m */; };
+		D4BBFBFF232A797600147C4A /* TGWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BBFBFC232A797600147C4A /* TGWebViewController.m */; };
+		D4BBFC00232A797600147C4A /* NSTimer+addition.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BBFBFD232A797600147C4A /* NSTimer+addition.m */; };
+		D4BBFC01232A797600147C4A /* TGWebProgressLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BBFBFE232A797600147C4A /* TGWebProgressLayer.m */; };
+		D4BBFC04232A801700147C4A /* UGFundsTransferView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BBFC03232A801700147C4A /* UGFundsTransferView.m */; };
+		D4BBFC06232A80A800147C4A /* UGFundsTransferView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4BBFC05232A80A800147C4A /* UGFundsTransferView.xib */; };
+		D4BBFC0A232A852200147C4A /* UGFundsTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BBFC08232A852200147C4A /* UGFundsTestViewController.m */; };
+		D4BBFC0B232A852200147C4A /* UGFundsTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4BBFC09232A852200147C4A /* UGFundsTestViewController.xib */; };
+		D4C46F8F232B56CB0062564D /* UGDepositDetailsNoLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C46F8E232B56CB0062564D /* UGDepositDetailsNoLineViewController.m */; };
+		D4C46F92232B88BF0062564D /* UGFunds2microcodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C46F91232B88BF0062564D /* UGFunds2microcodeView.m */; };
+		D4C46F94232B88D80062564D /* UGFunds2microcodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4C46F93232B88D80062564D /* UGFunds2microcodeView.xib */; };
+		D4C46F97232B8DB30062564D /* UGFundsTransfer2View.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C46F96232B8DB30062564D /* UGFundsTransfer2View.m */; };
+		D4C46F99232B8DCC0062564D /* UGFundsTransfer2View.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4C46F98232B8DCC0062564D /* UGFundsTransfer2View.xib */; };
 		D4C93B3B22D8560500608B67 /* UGFeedbackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C93B3A22D8560500608B67 /* UGFeedbackTableViewCell.m */; };
 		D4C93B3E22D8751F00608B67 /* UGFeedbackDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C93B3D22D8751F00608B67 /* UGFeedbackDetailController.m */; };
 		D4C93B4122D8759400608B67 /* UGFeedbackDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C93B4022D8759400608B67 /* UGFeedbackDetailCell.m */; };
@@ -1202,6 +1217,13 @@
 		D4A02B5823227B7D004D5894 /* UGSingInHistoryTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGSingInHistoryTableViewCell.h; sourceTree = "<group>"; };
 		D4A02B5923227B7D004D5894 /* UGSingInHistoryTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGSingInHistoryTableViewCell.m; sourceTree = "<group>"; };
 		D4A02B5A23227B7D004D5894 /* UGSingInHistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGSingInHistoryTableViewCell.xib; sourceTree = "<group>"; };
+		D4A1E907232BC4A50045F5B4 /* NSDateComponents+XHCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateComponents+XHCategory.h"; sourceTree = "<group>"; };
+		D4A1E908232BC4A50045F5B4 /* NSDate+XHCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+XHCategory.m"; sourceTree = "<group>"; };
+		D4A1E909232BC4A50045F5B4 /* XHDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHDate.h; sourceTree = "<group>"; };
+		D4A1E90A232BC4A50045F5B4 /* NSString+XHDateFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+XHDateFormat.m"; sourceTree = "<group>"; };
+		D4A1E90B232BC4A50045F5B4 /* NSDate+XHCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+XHCategory.h"; sourceTree = "<group>"; };
+		D4A1E90C232BC4A50045F5B4 /* NSDateComponents+XHCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateComponents+XHCategory.m"; sourceTree = "<group>"; };
+		D4A1E90D232BC4A50045F5B4 /* NSString+XHDateFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+XHDateFormat.h"; sourceTree = "<group>"; };
 		D4AE1C0922C0FCC300C142FE /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		D4AE63D822956E9600DD265A /* UGMissionLevelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGMissionLevelController.m; sourceTree = "<group>"; };
 		D4AE63DA2295734700DD265A /* UGMessageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGMessageModel.h; sourceTree = "<group>"; };
@@ -1257,6 +1279,26 @@
 		D4B75E1B227802600007047C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D4B75E3C227812A70007047C /* UGTabbarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGTabbarController.h; sourceTree = "<group>"; };
 		D4B75E3D227812A70007047C /* UGTabbarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGTabbarController.m; sourceTree = "<group>"; };
+		D4BBFBF9232A797600147C4A /* NSTimer+addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+addition.h"; sourceTree = "<group>"; };
+		D4BBFBFA232A797600147C4A /* TGWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGWebViewController.h; sourceTree = "<group>"; };
+		D4BBFBFB232A797600147C4A /* TGWebProgressLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGWebProgressLayer.h; sourceTree = "<group>"; };
+		D4BBFBFC232A797600147C4A /* TGWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGWebViewController.m; sourceTree = "<group>"; };
+		D4BBFBFD232A797600147C4A /* NSTimer+addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+addition.m"; sourceTree = "<group>"; };
+		D4BBFBFE232A797600147C4A /* TGWebProgressLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGWebProgressLayer.m; sourceTree = "<group>"; };
+		D4BBFC02232A801700147C4A /* UGFundsTransferView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGFundsTransferView.h; sourceTree = "<group>"; };
+		D4BBFC03232A801700147C4A /* UGFundsTransferView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGFundsTransferView.m; sourceTree = "<group>"; };
+		D4BBFC05232A80A800147C4A /* UGFundsTransferView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGFundsTransferView.xib; sourceTree = "<group>"; };
+		D4BBFC07232A852200147C4A /* UGFundsTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGFundsTestViewController.h; sourceTree = "<group>"; };
+		D4BBFC08232A852200147C4A /* UGFundsTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGFundsTestViewController.m; sourceTree = "<group>"; };
+		D4BBFC09232A852200147C4A /* UGFundsTestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGFundsTestViewController.xib; sourceTree = "<group>"; };
+		D4C46F8D232B56CB0062564D /* UGDepositDetailsNoLineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGDepositDetailsNoLineViewController.h; sourceTree = "<group>"; };
+		D4C46F8E232B56CB0062564D /* UGDepositDetailsNoLineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGDepositDetailsNoLineViewController.m; sourceTree = "<group>"; };
+		D4C46F90232B88BF0062564D /* UGFunds2microcodeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGFunds2microcodeView.h; sourceTree = "<group>"; };
+		D4C46F91232B88BF0062564D /* UGFunds2microcodeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGFunds2microcodeView.m; sourceTree = "<group>"; };
+		D4C46F93232B88D80062564D /* UGFunds2microcodeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGFunds2microcodeView.xib; sourceTree = "<group>"; };
+		D4C46F95232B8DB30062564D /* UGFundsTransfer2View.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGFundsTransfer2View.h; sourceTree = "<group>"; };
+		D4C46F96232B8DB30062564D /* UGFundsTransfer2View.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGFundsTransfer2View.m; sourceTree = "<group>"; };
+		D4C46F98232B8DCC0062564D /* UGFundsTransfer2View.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGFundsTransfer2View.xib; sourceTree = "<group>"; };
 		D4C93B3922D8560500608B67 /* UGFeedbackTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGFeedbackTableViewCell.h; sourceTree = "<group>"; };
 		D4C93B3A22D8560500608B67 /* UGFeedbackTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGFeedbackTableViewCell.m; sourceTree = "<group>"; };
 		D4C93B3C22D8751F00608B67 /* UGFeedbackDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGFeedbackDetailController.h; sourceTree = "<group>"; };
@@ -1705,8 +1747,9 @@
 		D405B22D227973C500F8C586 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				D4241C36232914D100BF4DE1 /* Extenslon */,
 				D4145A7522B3BC1900D8165F /* CMNetwork */,
+				D4A1E905232BC3AC0045F5B4 /* CMCommon */,
+				D4241C36232914D100BF4DE1 /* Extenslon */,
 				D4185E31231D2E1A008DB5F2 /* MOFSPickerManager */,
 				D40DE97022F335E300974BAF /* SDCycleScrollView */,
 				D405B325227DA8F700F8C586 /* ROP */,
@@ -1725,9 +1768,11 @@
 				D405B2472279740A00F8C586 /* HYBUnicodeReadable */,
 				D405B234227973F200F8C586 /* STKit */,
 				D405B22E227973C500F8C586 /* FDFullscreenPopGesture */,
+				D4BBFBF8232A797500147C4A /* TGWebController */,
+				D4A1E906232BC4A50045F5B4 /* XHDate */,
+				D4111429230A9C2B00A4EE67 /* UGAppVersionManager.m */,
 				D405B260227974F200F8C586 /* CheckParameter.h */,
 				D4111428230A9C2A00A4EE67 /* UGAppVersionManager.h */,
-				D4111429230A9C2B00A4EE67 /* UGAppVersionManager.m */,
 				D405B3772280516F00F8C586 /* YBPopupMenu.h */,
 				D405B3782280516F00F8C586 /* YBPopupMenu.m */,
 				D40DE99222F466FC00974BAF /* OpenUDID.h */,
@@ -1736,8 +1781,6 @@
 				D405B33B227DAD6D00F8C586 /* SANotDataView.m */,
 				D405B341227DB0D500F8C586 /* SANotificationEvent.h */,
 				D405B342227DB0D600F8C586 /* SANotificationEvent.m */,
-				D405B322227D839A00F8C586 /* CMCommon.h */,
-				D405B323227D839A00F8C586 /* CMCommon.m */,
 				D405B33F227DAEEF00F8C586 /* QDAlertView.h */,
 				D405B33E227DAEEF00F8C586 /* QDAlertView.m */,
 				D49A36D622A62939000057D2 /* UGEncryptUtil.h */,
@@ -2165,6 +2208,29 @@
 				D4C93B3D22D8751F00608B67 /* UGFeedbackDetailController.m */,
 			);
 			path = base;
+			sourceTree = "<group>";
+		};
+		D4A1E905232BC3AC0045F5B4 /* CMCommon */ = {
+			isa = PBXGroup;
+			children = (
+				D405B322227D839A00F8C586 /* CMCommon.h */,
+				D405B323227D839A00F8C586 /* CMCommon.m */,
+			);
+			path = CMCommon;
+			sourceTree = "<group>";
+		};
+		D4A1E906232BC4A50045F5B4 /* XHDate */ = {
+			isa = PBXGroup;
+			children = (
+				D4A1E907232BC4A50045F5B4 /* NSDateComponents+XHCategory.h */,
+				D4A1E908232BC4A50045F5B4 /* NSDate+XHCategory.m */,
+				D4A1E909232BC4A50045F5B4 /* XHDate.h */,
+				D4A1E90A232BC4A50045F5B4 /* NSString+XHDateFormat.m */,
+				D4A1E90B232BC4A50045F5B4 /* NSDate+XHCategory.h */,
+				D4A1E90C232BC4A50045F5B4 /* NSDateComponents+XHCategory.m */,
+				D4A1E90D232BC4A50045F5B4 /* NSString+XHDateFormat.h */,
+			);
+			path = XHDate;
 			sourceTree = "<group>";
 		};
 		D4AE63DD2295871D00DD265A /* MJRefresh */ = {
@@ -2623,6 +2689,11 @@
 				D405B309227C60A500F8C586 /* UGFundDetailsTableViewController.m */,
 				D481EFF82327C8DA000611ED /* UGDepositDetailsViewController.h */,
 				D481EFF92327C8DA000611ED /* UGDepositDetailsViewController.m */,
+				D4BBFC07232A852200147C4A /* UGFundsTestViewController.h */,
+				D4BBFC08232A852200147C4A /* UGFundsTestViewController.m */,
+				D4BBFC09232A852200147C4A /* UGFundsTestViewController.xib */,
+				D4C46F8D232B56CB0062564D /* UGDepositDetailsNoLineViewController.h */,
+				D4C46F8E232B56CB0062564D /* UGDepositDetailsNoLineViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2672,6 +2743,15 @@
 				D4241C44232A2F0100BF4DE1 /* UGOneTitleTableViewCell.h */,
 				D4241C45232A2F0100BF4DE1 /* UGOneTitleTableViewCell.m */,
 				D4241C46232A2F0100BF4DE1 /* UGOneTitleTableViewCell.xib */,
+				D4BBFC02232A801700147C4A /* UGFundsTransferView.h */,
+				D4BBFC03232A801700147C4A /* UGFundsTransferView.m */,
+				D4BBFC05232A80A800147C4A /* UGFundsTransferView.xib */,
+				D4C46F90232B88BF0062564D /* UGFunds2microcodeView.h */,
+				D4C46F91232B88BF0062564D /* UGFunds2microcodeView.m */,
+				D4C46F93232B88D80062564D /* UGFunds2microcodeView.xib */,
+				D4C46F95232B8DB30062564D /* UGFundsTransfer2View.h */,
+				D4C46F96232B8DB30062564D /* UGFundsTransfer2View.m */,
+				D4C46F98232B8DCC0062564D /* UGFundsTransfer2View.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2859,6 +2939,19 @@
 			path = Other;
 			sourceTree = "<group>";
 		};
+		D4BBFBF8232A797500147C4A /* TGWebController */ = {
+			isa = PBXGroup;
+			children = (
+				D4BBFBF9232A797600147C4A /* NSTimer+addition.h */,
+				D4BBFBFA232A797600147C4A /* TGWebViewController.h */,
+				D4BBFBFB232A797600147C4A /* TGWebProgressLayer.h */,
+				D4BBFBFC232A797600147C4A /* TGWebViewController.m */,
+				D4BBFBFD232A797600147C4A /* NSTimer+addition.m */,
+				D4BBFBFE232A797600147C4A /* TGWebProgressLayer.m */,
+			);
+			path = TGWebController;
+			sourceTree = "<group>";
+		};
 		D4D4226823276BE6006E680B /* deposit */ = {
 			isa = PBXGroup;
 			children = (
@@ -3011,6 +3104,7 @@
 				D4F63F90228FD1A200EC93AA /* UGFastThreeThreeCollectionViewCell.xib in Resources */,
 				D405B22C227972DD00F8C586 /* SVProgressHUD.bundle in Resources */,
 				D4252829232107EE007DE522 /* UGSignInScrHeaderView.xib in Resources */,
+				D4C46F94232B88D80062564D /* UGFunds2microcodeView.xib in Resources */,
 				D405B304227C38D200F8C586 /* UGRechargeRecordCell.xib in Resources */,
 				D4D8DF722286B23600446BAF /* UGSSCLotteryController.storyboard in Resources */,
 				D41F260E2318EFE4004FB9C6 /* UGChanglongBetRecrodCell.xib in Resources */,
@@ -3057,6 +3151,7 @@
 				D4145A9C22B61C6A00D8165F /* UGBJKL8LotteryController.storyboard in Resources */,
 				D49F41AD2326149B00A381AD /* UGPormotionUserInfoView.xib in Resources */,
 				D4185E3F231D2E1B008DB5F2 /* province_data.xml in Resources */,
+				D4BBFC06232A80A800147C4A /* UGFundsTransferView.xib in Resources */,
 				D4B6E6F122D332720006B03F /* UGHomeTitleView.xib in Resources */,
 				D4D8DF812287065F00446BAF /* UGTimeLotteryBetHeaderView.xib in Resources */,
 				D4DE2689229BCB960072A4A2 /* icon_arrow_up@3x.png in Resources */,
@@ -3067,6 +3162,7 @@
 				D4A02B57232257D5004D5894 /* UGSignInHistoryView.xib in Resources */,
 				D4A02B5C23227B7D004D5894 /* UGSingInHistoryTableViewCell.xib in Resources */,
 				D4D8DF7C2286F7F600446BAF /* UGTimeLotteryBetCollectionViewCell.xib in Resources */,
+				D4C46F99232B8DCC0062564D /* UGFundsTransfer2View.xib in Resources */,
 				D40FA8D1229938FA003E596F /* ZZCircleProgress.bundle in Resources */,
 				D42528162320DDA2007DE522 /* UGSignInCollectionViewCell.xib in Resources */,
 				D41246AB2285537F006881E2 /* UGPromotionInfoController.storyboard in Resources */,
@@ -3122,6 +3218,7 @@
 				D463B4E622844D4A00EAC0F7 /* UGRightMenuTableViewCell.xib in Resources */,
 				D41C3E13228EF13D00BF6436 /* UGFastThreeOneCollectionViewCell.xib in Resources */,
 				D40FA8BF229910EF003E596F /* yuebaoMone.gif in Resources */,
+				D4BBFC0B232A852200147C4A /* UGFundsTestViewController.xib in Resources */,
 				D422FE5B23251E190063EA4E /* UGPromotion4rowTableViewCell.xib in Resources */,
 				D40D32C82297CEAF00B89398 /* UGMarkSixLotteryBetItem1Cell.xib in Resources */,
 			);
@@ -3162,12 +3259,14 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ug/Pods-ug-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${BUILT_PRODUCTS_DIR}/Toast/Toast.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3189,6 +3288,7 @@
 				D4145A9522B6109D00D8165F /* UGXYNCLotteryController.m in Sources */,
 				D481EFFE2327CAD8000611ED /* UGDepositDetailsCollectionViewCell.m in Sources */,
 				D422A57B229E3EE80068D0AD /* UGMissionCollectionView.m in Sources */,
+				D4BBFBFF232A797600147C4A /* TGWebViewController.m in Sources */,
 				D405B1F3227972C900F8C586 /* NSArray+JSONModel.m in Sources */,
 				D405AFF922783DCC00F8C586 /* MASViewConstraint.m in Sources */,
 				D405B2DE227B3CCB00F8C586 /* UGLotteryHomeController.m in Sources */,
@@ -3196,6 +3296,7 @@
 				D405B1B1227972AD00F8C586 /* UIImage+WebP.m in Sources */,
 				D40E1E5C22BFA391004D4664 /* UGPromoteModel.m in Sources */,
 				D4AE641D2295871D00DD265A /* MJRefreshBackFooter.m in Sources */,
+				D4BBFC04232A801700147C4A /* UGFundsTransferView.m in Sources */,
 				D405B1FB227972C900F8C586 /* JSONAPI.m in Sources */,
 				D40E1E5F22BFAEC4004D4664 /* UGPromoteDetailController.m in Sources */,
 				D40FA8C722992EA7003E596F /* UGYubaoConversionCenterController.m in Sources */,
@@ -3235,7 +3336,9 @@
 				D4D8DF6D22869B2D00446BAF /* UGLotteryAssistantTableViewCell.m in Sources */,
 				D4C93B3B22D8560500608B67 /* UGFeedbackTableViewCell.m in Sources */,
 				D40DE99722F4866600974BAF /* UGImgVcodeModel.m in Sources */,
+				D4C46F92232B88BF0062564D /* UGFunds2microcodeView.m in Sources */,
 				D4AE640D2295871D00DD265A /* MJRefreshConst.m in Sources */,
+				D4BBFC0A232A852200147C4A /* UGFundsTestViewController.m in Sources */,
 				D405B228227972DD00F8C586 /* SVRadialGradientLayer.m in Sources */,
 				D4D8DF762286F01100446BAF /* UGTimeLotteryLeftTitleCell.m in Sources */,
 				D4087DAF22951F15000C4CB0 /* CMNetwork+Mine.m in Sources */,
@@ -3282,6 +3385,7 @@
 				D4D8DF802287065F00446BAF /* UGTimeLotteryBetHeaderView.m in Sources */,
 				D41EDF7C2317A67E005798CC /* UGBalanceTransferLogsCell.m in Sources */,
 				D416BB2122CE2E6D00BA0450 /* UGSegmentView.m in Sources */,
+				D4C46F8F232B56CB0062564D /* UGDepositDetailsNoLineViewController.m in Sources */,
 				D405B22A227972DD00F8C586 /* SVProgressHUD.m in Sources */,
 				D40DE98922F335E300974BAF /* TAAbstractDotView.m in Sources */,
 				D405B2EF227C166900F8C586 /* XYYSegmentControl.m in Sources */,
@@ -3312,6 +3416,7 @@
 				D4DE2699229BDBC80072A4A2 /* UIView+SGExtension.m in Sources */,
 				D40DE99422F466FC00974BAF /* OpenUDID.m in Sources */,
 				D405B39522817AB700F8C586 /* UGModifyLoginPlaceController.m in Sources */,
+				D4A1E90F232BC4A50045F5B4 /* NSString+XHDateFormat.m in Sources */,
 				D405B21B227972D300F8C586 /* MJPropertyKey.m in Sources */,
 				D405B2DB227B122000F8C586 /* UGPlatformTitleCollectionView.m in Sources */,
 				D422D67C22D99F1E008E7065 /* UGAddressCollectionViewCell.m in Sources */,
@@ -3354,6 +3459,7 @@
 				D40E1E5922BF7483004D4664 /* UGRankModel.m in Sources */,
 				D40DE98222F335E300974BAF /* CustomCollectionViewCell.m in Sources */,
 				D4090F67228D4F7200D6DA43 /* UGAvaterCollectionViewCell.m in Sources */,
+				D4C46F97232B8DB30062564D /* UGFundsTransfer2View.m in Sources */,
 				D4527D1C2282FBD8000EC1C2 /* UGBalanceConversionRecordController.m in Sources */,
 				D4704ECB22B7647F00528DC7 /* UGPK10SubResultCollectionViewCell.m in Sources */,
 				D405B36B228007D900F8C586 /* UGRecordFilterCollectionViewCell.m in Sources */,
@@ -3416,6 +3522,7 @@
 				D41EDF832317BE06005798CC /* UGFundRecordDetailView.m in Sources */,
 				D405B373228013E600F8C586 /* SRActionSheet.m in Sources */,
 				D405B2FD227C30F700F8C586 /* UGWithdrawalViewController.m in Sources */,
+				D4BBFC01232A797600147C4A /* TGWebProgressLayer.m in Sources */,
 				D41246A92285525A006881E2 /* UGPromotionInfoController.m in Sources */,
 				D405B331227DA8F700F8C586 /* SAROPSession.m in Sources */,
 				D4D8DF702286B14C00446BAF /* UGSSCLotteryController.m in Sources */,
@@ -3423,6 +3530,7 @@
 				D405B245227973F200F8C586 /* UIImage+ST.m in Sources */,
 				D4DFBE7322E353B1002BAFB0 /* UGMenuTableViewCell.m in Sources */,
 				D4AE64152295871D00DD265A /* MJRefreshAutoStateFooter.m in Sources */,
+				D4A1E910232BC4A50045F5B4 /* NSDateComponents+XHCategory.m in Sources */,
 				D40D32CC2297DD1C00B89398 /* WSLWaterFlowLayout.m in Sources */,
 				D49A36C422A2C9DA000057D2 /* UGQXCLotteryController.m in Sources */,
 				D405AFF622783DCC00F8C586 /* NSArray+MASAdditions.m in Sources */,
@@ -3437,6 +3545,7 @@
 				D48224FA22A120E500F7DE72 /* UGPlatformNoticeModel.m in Sources */,
 				D4C93B3E22D8751F00608B67 /* UGFeedbackDetailController.m in Sources */,
 				D405B3812281442B00F8C586 /* SLWebViewController.m in Sources */,
+				D4BBFC00232A797600147C4A /* NSTimer+addition.m in Sources */,
 				D409B14E2296826D0053DA33 /* UGHKLHCLotteryController.m in Sources */,
 				D405AFF222783DCC00F8C586 /* ViewController+MASAdditions.m in Sources */,
 				D409C56022ABA3B80042A0DD /* UGFeedBackRecordController.m in Sources */,
@@ -3499,6 +3608,7 @@
 				D40E1E5622BF5409004D4664 /* UGNoticeModel.m in Sources */,
 				D405B219227972D300F8C586 /* NSObject+MJClass.m in Sources */,
 				D4DE2684229BCB960072A4A2 /* WMNavTabBar.m in Sources */,
+				D4A1E90E232BC4A50045F5B4 /* NSDate+XHCategory.m in Sources */,
 				D405B334227DA98500F8C586 /* CMNetworkStorage.m in Sources */,
 				D424DDDF22E74DA40009E2E6 /* UGRealBetRecordViewController.m in Sources */,
 				D405B241227973F200F8C586 /* STBarButtonItem.m in Sources */,

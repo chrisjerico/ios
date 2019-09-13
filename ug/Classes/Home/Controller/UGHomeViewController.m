@@ -285,10 +285,14 @@
     [CMNetwork getGotoGameUrlWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             [SVProgressHUD dismiss];
-            QDWebViewController *qdwebVC = [[QDWebViewController alloc] init];
-            qdwebVC.urlString = model.data;
-            qdwebVC.enterGame = YES;
-            [self.navigationController pushViewController:qdwebVC  animated:YES];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                QDWebViewController *qdwebVC = [[QDWebViewController alloc] init];
+                qdwebVC.urlString = model.data;
+                qdwebVC.enterGame = YES;
+                [self.navigationController pushViewController:qdwebVC  animated:YES];
+            });
+           
             
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
@@ -362,11 +366,15 @@
 //                NSAttributedString *attStr = [[NSAttributedString alloc] initWithData:[notice.content dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
                 [self.leftwardMarqueeViewData addObject:notice.title];
             }
-            [self.leftwardMarqueeView reloadData];
-            if (self.popNoticeArray.count) {
+            dispatch_async(dispatch_get_main_queue(), ^{
                 
-                [self showPlatformNoticeView];
-            }
+                [self.leftwardMarqueeView reloadData];
+                if (self.popNoticeArray.count) {
+                    
+                    [self showPlatformNoticeView];
+                }
+            });
+           
             
         } failure:^(id msg) {
             

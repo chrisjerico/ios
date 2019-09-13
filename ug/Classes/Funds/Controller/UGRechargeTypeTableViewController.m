@@ -10,6 +10,10 @@
 #import "UGRechargeTypeCell.h"
 #import "UGdepositModel.h"
 #import "UGDepositDetailsViewController.h"
+#import "UGDepositDetailsNoLineViewController.h"
+
+#import "UGFundsTestViewController.h"
+
 
 
 @interface UGRechargeTypeTableViewController ()
@@ -88,9 +92,39 @@ static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
     
     UGpaymentModel *model = self.tableViewDataArray[indexPath.row];
     
-    UGDepositDetailsViewController *vc = [UGDepositDetailsViewController new];
-    vc.item = model;
-    [self.navigationController pushViewController:vc animated:YES];
+    
+    NSArray *array = [model.pid componentsSeparatedByString:@"_"];
+    
+    if (![CMCommon arryIsNull:array]) {
+        
+        if (array.count>=2) {
+            NSString *str = [array objectAtIndex:array.count-1];
+            if ([str isEqualToString:@"online"]) {
+                UGDepositDetailsViewController *vc = [UGDepositDetailsViewController new];
+                vc.item = model;
+                [self.navigationController pushViewController:vc animated:YES];
+            } else {
+                
+                UGDepositDetailsNoLineViewController *vc = [UGDepositDetailsNoLineViewController new];
+                vc.item = model;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+
+        }
+        else{
+            NSLog(@"name 数据有问题=%@",model.name);
+        }
+       
+    }else{
+        NSLog(@"name 数据有问题=%@",model.name);
+    }
+  
+   
+   
+    
+    
+//    UGFundsTestViewController *vc = [UGFundsTestViewController new];
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 
@@ -110,19 +144,27 @@ static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
             NSLog(@"odel.data = %@",model.data);
             
 //            self.tableViewDataArray = self.mUGdepositModel.payment;
-            
-            for (int i = 0; i<self.mUGdepositModel.payment.count; i++) {
-                
-                UGpaymentModel *uGpaymentModel =  (UGpaymentModel*)[self.mUGdepositModel.payment objectAtIndex:i];
-                if(![CMCommon arryIsNull:uGpaymentModel.channel]){
-                    [self.tableViewDataArray addObject:uGpaymentModel];
-                    uGpaymentModel.quickAmount = self.mUGdepositModel.quickAmount;
-                    uGpaymentModel.transferPrompt = self.mUGdepositModel.transferPrompt;
-                    uGpaymentModel.depositPrompt = self.mUGdepositModel.depositPrompt;
+            NSOperationQueue *waitQueue = [[NSOperationQueue alloc] init];
+            [waitQueue addOperationWithBlock:^{
+                for (int i = 0; i<self.mUGdepositModel.payment.count; i++) {
+                    
+                    UGpaymentModel *uGpaymentModel =  (UGpaymentModel*)[self.mUGdepositModel.payment objectAtIndex:i];
+                    if(![CMCommon arryIsNull:uGpaymentModel.channel]){
+                        [self.tableViewDataArray addObject:uGpaymentModel];
+                        uGpaymentModel.quickAmount = self.mUGdepositModel.quickAmount;
+                        uGpaymentModel.transferPrompt = self.mUGdepositModel.transferPrompt;
+                        uGpaymentModel.depositPrompt = self.mUGdepositModel.depositPrompt;
+                    }
+                    
                 }
-            }
+                // 同步到主线程
+                dispatch_async(dispatch_get_main_queue(), ^{
+                     [self.tableView reloadData];
+                });
+             }];
+           
             
-            [self.tableView reloadData];
+           
 
             
         } failure:^(id msg) {

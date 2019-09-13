@@ -6,5 +6,6 @@ inhibit_all_warnings!
 
 pod 'Masonry'
 
+pod 'Toast', '~> 4.0.0'
 
 end

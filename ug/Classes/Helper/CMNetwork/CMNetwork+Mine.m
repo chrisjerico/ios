@@ -888,6 +888,30 @@
     CMMETHOD_END;
 }
 
+//在线支付 http://test10.6yc.com/wjapp/api.php?c=recharge&a=onlinePay
++ (void)rechargeOnlinePayWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    [self.manager requestInMainThreadWithMethod:[rechargeOnlinePayUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
+                                           post:YES
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
 
+//线下支付 http://test10.6yc.com/wjapp/api.php?c=recharge&a=transfer
++ (void)rechargeTransferWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    [self.manager requestInMainThreadWithMethod:[rechargeTransferUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
+                                           post:YES
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
 @end
 

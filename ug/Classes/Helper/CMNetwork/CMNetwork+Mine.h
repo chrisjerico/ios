@@ -189,7 +189,11 @@ NS_ASSUME_NONNULL_BEGIN
 //支付通道列表信息 http://test10.6yc.com/wjapp/api.php?c=recharge&a=cashier&token=U24XC4GL9UAC929UCb0c93AD
 + (void)rechargeCashierWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 
+//在线支付 http://test10.6yc.com/wjapp/api.php?c=recharge&a=onlinePay
++ (void)rechargeOnlinePayWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 
+//线下支付 http://test10.6yc.com/wjapp/api.php?c=recharge&a=transfer
++ (void)rechargeTransferWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 @end
 
 NS_ASSUME_NONNULL_END

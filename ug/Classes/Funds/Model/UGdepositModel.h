@@ -33,6 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 @interface UGchannelModel : UGModel<UGchannelModel>
 
+@property (nonatomic, strong) NSString *pid;//
 @property (nonatomic, strong) NSString *payeeName;//标题
 @property (nonatomic, strong) NSString *branchAddress;//支行地址
 @property (nonatomic, strong) NSString *address;//地址
@@ -40,6 +41,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *name;//名字
 @property (nonatomic, strong) NSString *account;//银行账户
 @property (nonatomic, strong) NSString *qrcode;//银行账户
+@property (nonatomic, strong) NSString *paymentid;//
 
 @property (nonatomic, strong) UGparaModel *para;//银行+按钮数组
 @end

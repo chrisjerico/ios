@@ -197,6 +197,9 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 
 #define rechargeCashierUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=recharge&a=cashier"]
 
+#define rechargeOnlinePayUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=recharge&a=onlinePay"]
+
+#define rechargeTransferUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=recharge&a=transfer"]
 
 #ifndef __OPTIMIZE__
 
@@ -251,8 +254,8 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 #define k_Height_NavBar (IS_PhoneXAll ? 88.0 : 64.0)//导航栏
 #define k_Height_StatusBar (IS_PhoneXAll? 44.0 : 20.0)//状态栏
 #define k_Height_TabBar (IS_PhoneXAll ? 83.0 : 49.0)//标签栏的高度
-#define IPHONE_SAFEBOTTOMAREA_HEIGHT (IS_IPHONE_X ? 34 : 0)//安全的底部区域
-#define IPHONE_TOPSENSOR_HEIGHT      (IS_IPHONE_X ? 32 : 0)//高级传感器
+#define IPHONE_SAFEBOTTOMAREA_HEIGHT (IS_PhoneXAll ? 34 : 0)//安全的底部区域
+#define IPHONE_TOPSENSOR_HEIGHT      (IS_PhoneXAll ? 32 : 0)//高级传感器
 
 #define UGNavColor [UIColor colorWithRed:76/255.0 green:150/255.0 blue:236/255.0 alpha:1.0]
 #define UGBackgroundColor [UIColor colorWithRed:239/255.0 green:239/255.0 blue:244/255.0 alpha:1.0]

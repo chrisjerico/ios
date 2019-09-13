@@ -24,7 +24,11 @@
 @end
 
 @implementation UGchannelModel
-
++ (JSONKeyMapper *)keyMapper {
+    
+    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"pid"
+                                                       }];
+}
 @end
 
 @implementation UGpaymentModel
