@@ -15,6 +15,9 @@
 #import "UITabBarController+ShowViewController.h"
 #import "QDWebViewController.h"
 #import "UGAppVersionManager.h"
+
+
+
 @interface AppDelegate ()<UITabBarControllerDelegate>
 
 @end
@@ -34,10 +37,20 @@
     [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
     
+    [IQKeyboardManager sharedManager].enable = YES;
+    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
+    
+     [self ug_setupAppDelegate];
 //    版本更新
 //    [[UGAppVersionManager shareInstance] updateVersionNow:YES];
-    
+      [self ug_setupAppDelegate];
     return YES;
+}
+
+#pragma mark - 系统配置
+- (void)ug_setupAppDelegate
+{
+
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

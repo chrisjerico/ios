@@ -19,6 +19,7 @@ typedef void(^Promotion5rowButtonBlock)(void);
 @property (weak, nonatomic) IBOutlet UILabel *fifthLabel;
 
 @property (weak, nonatomic) IBOutlet UIButton *fifthButton;
+@property (weak, nonatomic) IBOutlet UIView *pointView;
 
 @property (nonatomic, copy) Promotion5rowButtonBlock promotion5rowButtonBlock;
 

@@ -194,6 +194,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 //线下支付 http://test10.6yc.com/wjapp/api.php?c=recharge&a=transfer
 + (void)rechargeTransferWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+//会员申请代理接口 http://test10.6yc.com/wjapp/api.php?c=team&a=agentApply
++ (void)teamAgentApplyWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 @end
 
 NS_ASSUME_NONNULL_END

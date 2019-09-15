@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *betAmount;//
 @property (nonatomic, strong) NSString *netAmount;//
 @property (nonatomic, strong) NSString *comNetAmount;//
-
+@property (nonatomic, strong) NSString *platform;//
 @end
 
 NS_ASSUME_NONNULL_END

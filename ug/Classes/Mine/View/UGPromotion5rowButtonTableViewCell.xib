@@ -59,18 +59,24 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kyE-s1-BSc">
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kyE-s1-BSc">
                         <rect key="frame" x="266" y="8" width="45" height="27"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
-                        <color key="backgroundColor" red="0.40180855989999997" green="0.67699187989999998" blue="0.35686457160000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="1" green="0.99998801950000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <state key="normal" title="充值">
-                            <color key="titleColor" red="0.95686918499999996" green="0.95685130360000004" blue="0.95686346290000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                         </state>
                         <connections>
                             <action selector="signInClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="X28-ko-Luf"/>
                         </connections>
                     </button>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iUH-AU-nlF">
+                        <rect key="frame" x="301" y="8" width="10" height="10"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="yJb-iq-VUh"/>
+                    </view>
                 </subviews>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
@@ -79,6 +85,7 @@
                 <outlet property="fifthLabel" destination="hpA-Zq-aZQ" id="PGR-oC-3ar"/>
                 <outlet property="firstLabel" destination="SLE-Ba-JvN" id="AN8-bF-MeK"/>
                 <outlet property="fourthLabel" destination="R0T-SD-pLW" id="rwN-T9-JlH"/>
+                <outlet property="pointView" destination="iUH-AU-nlF" id="08h-DM-ywz"/>
                 <outlet property="secondLabel" destination="g7G-Y2-5HJ" id="87L-nn-3X9"/>
                 <outlet property="thirdLabel" destination="ypb-ci-fi4" id="5Ra-6P-jZi"/>
             </connections>

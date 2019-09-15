@@ -913,5 +913,18 @@
     
     CMMETHOD_END;
 }
+
+//会员申请代理接口 http://test10.6yc.com/wjapp/api.php?c=team&a=agentApply
++ (void)teamAgentApplyWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    [self.manager requestInMainThreadWithMethod:[teamAgentApplyUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
+                                           post:YES
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
 @end
 

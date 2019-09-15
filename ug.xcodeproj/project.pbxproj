@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		A0C64CB6AEB0CF1B2031BBB8 /* Pods_ug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6486EFF4C273BEA0AE8994DD /* Pods_ug.framework */; };
+		D4000C45232E4EDD000705B1 /* UGAgentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4000C43232E4EDD000705B1 /* UGAgentViewController.m */; };
+		D4000C46232E4EDD000705B1 /* UGAgentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4000C44232E4EDD000705B1 /* UGAgentViewController.xib */; };
+		D4000C59232E51C4000705B1 /* UITextView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = D4000C58232E51C4000705B1 /* UITextView+Extension.m */; };
 		D405AFF122783DCC00F8C586 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D405AFD822783DCC00F8C586 /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		D405AFF222783DCC00F8C586 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D405AFE122783DCC00F8C586 /* ViewController+MASAdditions.m */; };
 		D405AFF322783DCC00F8C586 /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = D405AFE522783DCC00F8C586 /* MASCompositeConstraint.m */; };
@@ -514,6 +517,11 @@
 /* Begin PBXFileReference section */
 		443C93C1135A8C900E47477A /* Pods-ug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ug.release.xcconfig"; path = "Target Support Files/Pods-ug/Pods-ug.release.xcconfig"; sourceTree = "<group>"; };
 		6486EFF4C273BEA0AE8994DD /* Pods_ug.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ug.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4000C42232E4EDD000705B1 /* UGAgentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGAgentViewController.h; sourceTree = "<group>"; };
+		D4000C43232E4EDD000705B1 /* UGAgentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGAgentViewController.m; sourceTree = "<group>"; };
+		D4000C44232E4EDD000705B1 /* UGAgentViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGAgentViewController.xib; sourceTree = "<group>"; };
+		D4000C57232E51C4000705B1 /* UITextView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+Extension.h"; sourceTree = "<group>"; };
+		D4000C58232E51C4000705B1 /* UITextView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+Extension.m"; sourceTree = "<group>"; };
 		D405AFCD227823D800F8C586 /* configuration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = configuration.h; sourceTree = "<group>"; };
 		D405AFCE2278240A00F8C586 /* UGPCH.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGPCH.pch; sourceTree = "<group>"; };
 		D405AFD722783DCC00F8C586 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
@@ -1444,6 +1452,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D4000C0E232E2CCB000705B1 /* AppDelegate+ */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "AppDelegate+";
+			sourceTree = "<group>";
+		};
 		D405AFCF22782C1D00F8C586 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -2120,6 +2135,8 @@
 		D4241C36232914D100BF4DE1 /* Extenslon */ = {
 			isa = PBXGroup;
 			children = (
+				D4000C57232E51C4000705B1 /* UITextView+Extension.h */,
+				D4000C58232E51C4000705B1 /* UITextView+Extension.m */,
 				D4241C38232914FE00BF4DE1 /* UIView+Extension.h */,
 				D4241C37232914FE00BF4DE1 /* UIView+Extension.m */,
 			);
@@ -2148,6 +2165,9 @@
 				D41246A72285525A006881E2 /* UGPromotionInfoController.h */,
 				D41246A82285525A006881E2 /* UGPromotionInfoController.m */,
 				D41246AA2285537F006881E2 /* UGPromotionInfoController.storyboard */,
+				D4000C42232E4EDD000705B1 /* UGAgentViewController.h */,
+				D4000C43232E4EDD000705B1 /* UGAgentViewController.m */,
+				D4000C44232E4EDD000705B1 /* UGAgentViewController.xib */,
 			);
 			path = Promotion;
 			sourceTree = "<group>";
@@ -2927,6 +2947,7 @@
 		D4B75E3B2278122B0007047C /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				D4000C0E232E2CCB000705B1 /* AppDelegate+ */,
 				D4B75E0C2278025E0007047C /* AppDelegate.h */,
 				D4AE1C0922C0FCC300C142FE /* AppDelegate.m */,
 				D4B75E1B227802600007047C /* main.m */,
@@ -3114,6 +3135,7 @@
 				D481EFFF2327CAD8000611ED /* UGDepositDetailsCollectionViewCell.xib in Resources */,
 				D49D35A022C7A11100318D73 /* UGNoticePopView.xib in Resources */,
 				D41C3E18228EF2A600BF6436 /* UGFastThreeTwoCollectionViewCell.xib in Resources */,
+				D4000C46232E4EDD000705B1 /* UGAgentViewController.xib in Resources */,
 				D4D8DF6A228693ED00446BAF /* UGLotteryAssistantController.storyboard in Resources */,
 				D41C3E1D228EF72600BF6436 /* UGJSK3LotteryController.storyboard in Resources */,
 				D4145A9222B52D0600D8165F /* UGGD11X5LotteryController.storyboard in Resources */,
@@ -3258,6 +3280,8 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ug/Pods-ug-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
+				"${BUILT_PRODUCTS_DIR}/LEEAlert/LEEAlert.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast/Toast.framework",
 			);
@@ -3265,6 +3289,8 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LEEAlert.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast.framework",
 			);
@@ -3307,6 +3333,7 @@
 				D405B2502279740A00F8C586 /* NSSet+HYBUnicodeReadable.m in Sources */,
 				D405B38F22817A3F00F8C586 /* UGModifyLoginPwdController.m in Sources */,
 				D4216F5122EEB8C2000F1F66 /* UGLotterySettingModel.m in Sources */,
+				D4000C59232E51C4000705B1 /* UITextView+Extension.m in Sources */,
 				D4AE64132295871D00DD265A /* MJRefreshBackStateFooter.m in Sources */,
 				D405B321227D816500F8C586 /* CMNetwork.m in Sources */,
 				D48224EA22A0FDD000F7DE72 /* UGPlatformNoticeCell.m in Sources */,
@@ -3553,6 +3580,7 @@
 				D463B4DF2284488200EAC0F7 /* UGRightMenuView.m in Sources */,
 				D405B1B8227972AD00F8C586 /* SDWebImageDownloader.m in Sources */,
 				D4AE64142295871D00DD265A /* MJRefreshBackNormalFooter.m in Sources */,
+				D4000C45232E4EDD000705B1 /* UGAgentViewController.m in Sources */,
 				D405B1BD227972AD00F8C586 /* SDImageCache.m in Sources */,
 				D40F0D0922AE29CD0087A300 /* UGGameplayModel.m in Sources */,
 				D4145A8C22B513CE00D8165F /* UGGameListViewController.m in Sources */,

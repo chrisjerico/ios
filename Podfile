@@ -4,8 +4,14 @@ target "ug" do
     #消除第三方库警告
 inhibit_all_warnings!
 
+ # 布局自动适应库
 pod 'Masonry'
-
+ # 类似Android提示库
 pod 'Toast', '~> 4.0.0'
+ # 键盘库
+pod 'IQKeyboardManager'
+ # alert提示框
+pod 'LEEAlert'
+
 
 end

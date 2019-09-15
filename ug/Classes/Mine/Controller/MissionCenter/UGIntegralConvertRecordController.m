@@ -83,7 +83,8 @@ static NSString *convertRecordCellid = @"UGIntegarlConvertRecordCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UGIntegarlConvertRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:convertRecordCellid forIndexPath:indexPath];
-    
+     UGCreditsLogModel *model = self.tableDataArray[indexPath.row];
+    cell.item = model;
     return cell;
 }
 

@@ -88,7 +88,7 @@
             break;
     }
     
-    self.levelArray = @[@"全部",@"1级下线",@"2级下线",@"3级下线"];
+    self.levelArray = @[@"1级下线",@"2级下线",@"3级下线"];
     [self.view addSubview:self.titleView];
     
     if(_tableView == nil){
@@ -117,19 +117,19 @@
         case PromotionTableTypeMember://会员管理
             //5 == 按钮
         {
-            [self teamInviteListData:0];
+            [self teamInviteListData:1];
         }
             break;
         case PromotionTableTypeBettingReport://投注报表
             //4
         {
-            [self teamBetStatData:0];
+            [self teamBetStatData:1];
         }
             break;
         case PromotionTableTypeBettingRecord://投注记录
             //4
         {
-            [self teamBetListData:0];
+            [self teamBetListData:1];
         }
             break;
         case PromotionTableTypeDomainBinding://域名绑定
@@ -141,37 +141,37 @@
         case PromotionTableTypeDepositStatement://存款报表
             //4
         {
-            [self teamDepositStatData:0];
+            [self teamDepositStatData:1];
         }
             break;
         case PromotionTableTypeDepositRecord://存款记录
             //4
         {
-            [self  teamDepositListData:0];
+            [self  teamDepositListData:1];
         }
             break;
         case PromotionTableTypeWithdrawalReport://提款报表
             //4
         {
-            [self teamWithdrawStatData:0];
+            [self teamWithdrawStatData:1];
         }
             break;
         case PromotionTableTypeWithdrawalRcord://提款记录
             //4
         {
-            [self teamWithdrawListData:0];
+            [self teamWithdrawListData:1];
         }
             break;
         case PromotionTableTypeRealityReport://真人报表
             //4
         {
-            [self teamRealBetStatData:0];
+            [self teamRealBetStatData:1];
         }
             break;
         case PromotionTableTypeRealityRcord://真人记录
             //5
         {
-            [self teamRealBetListData:0];
+            [self teamRealBetListData:1];
         }
             break;
             
@@ -199,19 +199,19 @@
             case PromotionTableTypeMember://会员管理
                 //5 == 按钮
             {
-               [self teamInviteListData:index];
+               [self teamInviteListData:index+1];
             }
                 break;
             case PromotionTableTypeBettingReport://投注报表
                 //4
             {
-                 [self teamBetStatData:index];
+                 [self teamBetStatData:index+1];
             }
                 break;
             case PromotionTableTypeBettingRecord://投注记录
                 //4
             {
-                [self teamBetListData:index];
+                [self teamBetListData:index+1];
             }
                 break;
             case PromotionTableTypeDomainBinding://域名绑定
@@ -223,37 +223,37 @@
             case PromotionTableTypeDepositStatement://存款报表
                 //4
             {
-                 [self teamDepositStatData:index];
+                 [self teamDepositStatData:index+1];
             }
                 break;
             case PromotionTableTypeDepositRecord://存款记录
                 //4
             {
-                 [self  teamDepositListData:index];
+                 [self  teamDepositListData:index+1];
             }
                 break;
             case PromotionTableTypeWithdrawalReport://提款报表
                 //4
             {
-                 [self teamWithdrawStatData:index];
+                 [self teamWithdrawStatData:index+1];
             }
                 break;
             case PromotionTableTypeWithdrawalRcord://提款记录
                 //4
             {
-               [self teamWithdrawListData:index];
+               [self teamWithdrawListData:index+1];
             }
                 break;
             case PromotionTableTypeRealityReport://真人报表
                 //4
             {
-                [self teamRealBetStatData:index];
+                [self teamRealBetStatData:index+1];
             }
                 break;
             case PromotionTableTypeRealityRcord://真人记录
                 //5
             {
-                [self teamRealBetListData:index];
+                [self teamRealBetListData:index+1];
             }
                 break;
                 
@@ -345,6 +345,14 @@
                  [cell.fifthButton setAlpha:1.0];
             } else {
                 [cell.fifthButton setAlpha:0.8];
+            }
+            
+            
+            if ([model.enable isEqualToString:@"正常"]) {
+                
+                [cell.pointView setBackgroundColor:[UIColor greenColor]];
+            } else {
+                [cell.pointView setBackgroundColor:[UIColor redColor]];
             }
             
             cell.promotion5rowButtonBlock = ^{
@@ -527,7 +535,12 @@
             int intLevel = [model.level intValue];
             
             cell.firstLabel.text = [NSString stringWithFormat:@"%d级下线",intLevel];
-            cell.secondLabel.text = model.username;
+           
+            if ([CMCommon stringIsNull:model.platform]) {
+                cell.secondLabel.text = @"--";
+            } else {
+               cell.secondLabel.text = model.platform;
+            }
             if ([CMCommon stringIsNull:model.date]) {
                 cell.thirdLabel.text = @"--";
             } else {
@@ -558,6 +571,100 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    switch (self.tableType) {
+        case PromotionTableTypeMember://会员管理
+            //5 == 按钮
+        {
+            
+        }
+            break;
+        case PromotionTableTypeBettingReport://投注报表
+            //4
+        {
+            
+        }
+            break;
+        case PromotionTableTypeBettingRecord://投注记录
+            //4
+        {
+            
+            
+            UGBetListModel *model = (UGBetListModel *)self.dataArray[indexPath.row];
+            
+    
+            
+            NSString *str = [NSString stringWithFormat:@"游戏名称：%@ \n投注日期：%@ \n投注期数：%@ \n投注号码：%@ \n玩法：%@ \n开奖号码：%@ \n赔率：%@ \n中奖金额：%@",
+             model.lottery_name,
+             model.date,
+             model.actionNo,
+             model.actionData,
+             model.Groupname,
+             model.lotteryNo,
+             model.odds,
+             model.bonus];
+            
+            [LEEAlert alert].config
+            .LeeAddTitle(^(UILabel *label) {
+                
+                label.text = @"下注记录详情";
+            })
+            .LeeAddContent(^(UILabel *label) {
+                
+                label.text = str;
+                
+                label.textAlignment = NSTextAlignmentLeft;
+            })
+            .LeeAction(@"取消", nil)
+            .LeeAction(@"确定", nil)
+            .LeeShow();
+        }
+            break;
+        case PromotionTableTypeDomainBinding://域名绑定
+            //2
+        {
+           
+        }
+            break;
+        case PromotionTableTypeDepositStatement://存款报表
+            //4
+        {
+           
+        }
+            break;
+        case PromotionTableTypeDepositRecord://存款记录
+            //4
+        {
+           
+        }
+            break;
+        case PromotionTableTypeWithdrawalReport://提款报表
+            //4
+        {
+            
+        }
+            break;
+        case PromotionTableTypeWithdrawalRcord://提款记录
+            //4
+        {
+           
+        }
+            break;
+        case PromotionTableTypeRealityReport://真人报表
+            //4
+        {
+            
+        }
+            break;
+        case PromotionTableTypeRealityRcord://真人记录
+            //5
+        {
+           
+        }
+            break;
+            
+    }
+ 
 }
 //网络请求
 #pragma mark -- 网络请求

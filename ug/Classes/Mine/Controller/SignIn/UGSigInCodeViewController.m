@@ -210,17 +210,27 @@
         if (checkinBonusModel1.isComplete) {
             mUGSignInScrFootView.fiveButton.userInteractionEnabled =YES;//交互
             mUGSignInScrFootView.fiveButton.alpha= 1;//透明度
+            [mUGSignInScrFootView.fiveButton setBackgroundColor:UGRGBColor(114, 108, 227)];
+            [mUGSignInScrFootView.fiveButton setTitle:@"领取" forState:UIControlStateNormal];
+
         } else {
             mUGSignInScrFootView.fiveButton.userInteractionEnabled =NO;//交互关闭
             mUGSignInScrFootView.fiveButton.alpha= 0.4;//透明度
+             [mUGSignInScrFootView.fiveButton setBackgroundColor:UGRGBColor(244, 246, 254)];
+            [mUGSignInScrFootView.fiveButton setTitle:@"已领取" forState:UIControlStateNormal];
         }
         
         if (checkinBonusModel2.isComplete) {
             mUGSignInScrFootView.sevenButtton.userInteractionEnabled =YES;//交互
             mUGSignInScrFootView.sevenButtton.alpha= 1;//透明度
+             [mUGSignInScrFootView.sevenButtton setBackgroundColor:UGRGBColor(114, 108, 227)];
+            [mUGSignInScrFootView.fiveButton setTitle:@"领取" forState:UIControlStateNormal];
+
         } else {
             mUGSignInScrFootView.sevenButtton.userInteractionEnabled =NO;//交互关闭
             mUGSignInScrFootView.sevenButtton.alpha= 0.4;//透明度
+            [mUGSignInScrFootView.sevenButtton setBackgroundColor:UGRGBColor(244, 246, 254)];
+            [mUGSignInScrFootView.fiveButton setTitle:@"已领取" forState:UIControlStateNormal];
         }
         
     }
@@ -299,7 +309,7 @@
             
               NSString *date = model.whichDay;
             
-            [weakSelf checkinDataWithType:@"0" Date:date];
+            [weakSelf checkinDataWithType:@"1" Date:date];
 
         }
          else if(cell.item.isCheckin == false && cell.item.isMakeup == false){
@@ -309,11 +319,11 @@
              
                NSString *date = model.whichDay;
              
-             if (a >= 0) {
+//             if (a >= 0) {
                 [weakSelf checkinDataWithType:@"0" Date:date];
-             } else {
-                [weakSelf checkinDataWithType:@"1" Date:date];
-             }
+//             } else {
+//                [weakSelf checkinDataWithType:@"1" Date:date];
+//             }
              
          }
     };

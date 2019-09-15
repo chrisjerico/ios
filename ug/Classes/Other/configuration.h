@@ -201,6 +201,8 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 
 #define rechargeTransferUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=recharge&a=transfer"]
 
+#define teamAgentApplyUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=team&a=agentApply"]
+
 #ifndef __OPTIMIZE__
 
 #define NSLog(...) NSLog(__VA_ARGS__)

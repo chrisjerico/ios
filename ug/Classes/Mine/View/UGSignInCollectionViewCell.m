@@ -86,8 +86,8 @@
         [self setNumber_gold_Str:[NSString stringWithFormat:@"+%@",item.integral]];
     }
     //isCheckin：true；当天签到了  ==》是显示已签到
-    //isCheckin：false；当天没签到了 isMakeup：true：当天不能补签；==》是显示签到
-    //isCheckin：false；当天没签到了 isMakeup：false：当天能补签；==》
+    //isCheckin：false；当天没签到了 isMakeup：true：当天能补签；==》是显示补签到
+    //isCheckin：false；当天没签到了 isMakeup：false：当天不能补签；==》
     //
     //如果日期大于今天，显示签到
     //如果日期小于今天，是显示补签
@@ -106,8 +106,8 @@
         // 显示签到的蓝色按钮；可以点击签到事件 未签到bg
         self.signInButton.userInteractionEnabled=YES;//交互
         self.signInButton.alpha= 1;//透明度
-        [self setStateStr:@"签到"];
-        [self setStateImageStr:@"signIn_blue"];
+        [self setStateStr:@"补签"];
+        [self setStateImageStr:@"signIn_red"];
         [self setBgImageStr:@"nosign"];
     }
     else if(item.isCheckin == false && item.isMakeup == false){
@@ -119,15 +119,15 @@
         
         [self setBgImageStr:@"nosign"];
         
-        int a = [CMCommon compareDate:item.serverTime withDate:item.whichDay withFormat:@"yyyy-MM-dd" ];
+//        int a = [CMCommon compareDate:item.serverTime withDate:item.whichDay withFormat:@"yyyy-MM-dd" ];
         
-        if (a >= 0) {
+//        if (a >= 0) {
             [self setStateStr:@"签到"];
             [self setStateImageStr:@"signIn_blue"];
-        } else {
-            [self setStateStr:@"补签"];
-            [self setStateImageStr:@"signIn_red"];
-        }
+//        } else {
+//            [self setStateStr:@"补签"];
+//            [self setStateImageStr:@"signIn_red"];
+//        }
     }
     
     

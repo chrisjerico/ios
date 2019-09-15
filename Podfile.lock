@@ -1,20 +1,28 @@
 PODS:
+  - IQKeyboardManager (6.4.0)
+  - LEEAlert (1.2.6)
   - Masonry (1.1.0)
   - Toast (4.0.0)
 
 DEPENDENCIES:
+  - IQKeyboardManager
+  - LEEAlert
   - Masonry
   - Toast (~> 4.0.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - IQKeyboardManager
+    - LEEAlert
     - Masonry
     - Toast
 
 SPEC CHECKSUMS:
+  IQKeyboardManager: fcef267266379c003181fc3592f6bdb8bf4db839
+  LEEAlert: 8a612d6c50b74c84cebda2a9b16eeb18535b6782
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
 
-PODFILE CHECKSUM: bb795747a9e79d0dc794a407aa684f0ff2edc7d8
+PODFILE CHECKSUM: 4f28cb40f14042c2b654fcc13123c5369ad098dd
 
 COCOAPODS: 1.6.1
