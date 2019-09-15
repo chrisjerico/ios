@@ -13,11 +13,13 @@
 @property (weak, nonatomic) IBOutlet UIButton *goButton;
 @property (weak, nonatomic) IBOutlet UIImageView *headerImageVeiw;
 @property (weak, nonatomic) IBOutlet UIImageView *leftImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *rightImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *integralLabel;
 @property (weak, nonatomic) IBOutlet UILabel *overTimeLabel;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerImageViewLeading;
 @property (weak, nonatomic) IBOutlet UILabel *typeLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerImageViewLeading;
+
 
 
 @end
@@ -41,7 +43,44 @@
 -(void)setItem:(UGMissionModel *)item {
     _item = item;
     self.headerImageVeiw.hidden = YES;
-    self.titleLabel.text = item.missionName;
+    [self.titleLabel setText:item.missionName];
+    //==============================================================
+//    [self.titleLabel  mas_remakeConstraints:^(MASConstraintMaker *make)
+//     {
+//         make.left.equalTo(self.mas_left).with.offset(30);
+//         make.right.equalTo(self.mas_right).with.offset(-66);
+//         make.top.equalTo(self.mas_top).offset(30);
+//
+//     }];
+//    [self.titleLabel setText:item.missionName];
+//    [self.titleLabel sizeToFit];
+//
+//    NSLog(@"%@",NSStringFromCGRect(self.titleLabel.frame));
+//    //==============================================================
+//    [self.rightImageView  mas_remakeConstraints:^(MASConstraintMaker *make)
+//     {
+//         make.left.equalTo(self.mas_right).with.offset(40);
+//         make.top.equalTo(self.leftImageView.mas_bottom).offset(0);
+//         make.height.mas_equalTo(25);
+//         make.width.mas_equalTo(20);
+//     }];
+//    //==============================================================
+//    [self.integralLabel  mas_remakeConstraints:^(MASConstraintMaker *make)
+//     {
+//         make.left.equalTo(self.rightImageView.mas_right).with.offset(5);
+//         make.right.equalTo(self.overTimeLabel.mas_left).with.offset(10);
+//         make.top.equalTo(self.titleLabel.mas_bottom).offset(20.5);
+//         make.height.mas_equalTo(14.5);
+//     }];
+//    //==============================================================
+//    [self.overTimeLabel  mas_remakeConstraints:^(MASConstraintMaker *make)
+//     {
+//         make.left.equalTo(self.integralLabel.mas_right).with.offset(5);
+//         make.top.equalTo(self.titleLabel.mas_bottom).offset(20.5);
+//         make.height.mas_equalTo(14.5);
+//         make.width.mas_equalTo(200);
+//     }];
+    
     self.integralLabel.text = [NSString stringWithFormat:@"+%@积分",item.integral];
     
     if ([CMCommon stringIsNull:item.overTime]) {

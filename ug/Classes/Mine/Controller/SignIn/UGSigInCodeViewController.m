@@ -215,7 +215,7 @@
 
         } else {
             mUGSignInScrFootView.fiveButton.userInteractionEnabled =NO;//交互关闭
-            mUGSignInScrFootView.fiveButton.alpha= 0.4;//透明度
+            mUGSignInScrFootView.fiveButton.alpha= 1;//透明度
              [mUGSignInScrFootView.fiveButton setBackgroundColor:UGRGBColor(244, 246, 254)];
             [mUGSignInScrFootView.fiveButton setTitle:@"已领取" forState:UIControlStateNormal];
         }
@@ -224,13 +224,13 @@
             mUGSignInScrFootView.sevenButtton.userInteractionEnabled =YES;//交互
             mUGSignInScrFootView.sevenButtton.alpha= 1;//透明度
              [mUGSignInScrFootView.sevenButtton setBackgroundColor:UGRGBColor(114, 108, 227)];
-            [mUGSignInScrFootView.fiveButton setTitle:@"领取" forState:UIControlStateNormal];
+            [mUGSignInScrFootView.sevenButtton setTitle:@"领取" forState:UIControlStateNormal];
 
         } else {
             mUGSignInScrFootView.sevenButtton.userInteractionEnabled =NO;//交互关闭
-            mUGSignInScrFootView.sevenButtton.alpha= 0.4;//透明度
+            mUGSignInScrFootView.sevenButtton.alpha= 1;//透明度
             [mUGSignInScrFootView.sevenButtton setBackgroundColor:UGRGBColor(244, 246, 254)];
-            [mUGSignInScrFootView.fiveButton setTitle:@"已领取" forState:UIControlStateNormal];
+            [mUGSignInScrFootView.sevenButtton setTitle:@"已领取" forState:UIControlStateNormal];
         }
         
     }

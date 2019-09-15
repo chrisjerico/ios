@@ -10,23 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ug/Classes/Mine/Controller/SignIn/UGSigInCodeViewController.m"
-            timestampString = "590246665.254621"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "211"
-            endingLineNumber = "211"
-            landmarkName = "-setUIData"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ug/Classes/Mine/Controller/SignIn/UGSigInCodeViewController.m"
-            timestampString = "590246665.254716"
+            timestampString = "590253016.948107"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "224"
@@ -42,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ug/Classes/Mine/Controller/SignIn/UGSigInCodeViewController.m"
-            timestampString = "590246665.254761"
+            timestampString = "590253016.9484921"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "230"
@@ -58,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ug/Classes/Mine/Controller/SignIn/UGSigInCodeViewController.m"
-            timestampString = "590246665.254804"
+            timestampString = "590253016.948719"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "217"
@@ -138,7 +122,7 @@
                   moduleName = "ug"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ug/Desktop/fhcpIOSapp/ug/Classes/Mine/Controller/MissionCenter/UGIntegralConvertRecordController.m"
-                  timestampString = "590246665.449792"
+                  timestampString = "590253017.16706"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "114"
@@ -153,7 +137,7 @@
                   moduleName = "ug"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ug/Desktop/fhcpIOSapp/ug/Classes/Mine/Controller/MissionCenter/UGIntegralConvertRecordController.m"
-                  timestampString = "590246665.4512841"
+                  timestampString = "590253017.168644"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "114"
@@ -176,6 +160,86 @@
             startingLineNumber = "120"
             endingLineNumber = "120"
             landmarkName = "-checkinDataWithType:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ug/Classes/Mine/Controller/base/UGMineViewController.m"
+            timestampString = "590250469.853983"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ug/Classes/Mine/Controller/base/UGMineViewController.m"
+            timestampString = "590250480.440565"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "336"
+            endingLineNumber = "336"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ug/Classes/Mine/Controller/base/UGMineViewController.m"
+            timestampString = "590250481.612525"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "339"
+            endingLineNumber = "339"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ug/Classes/Mine/Controller/base/UGMineViewController.m"
+            timestampString = "590250483.245222"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "331"
+            endingLineNumber = "331"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ug/Classes/Mine/Controller/SignIn/UGSigInCodeViewController.m"
+            timestampString = "590253016.9490221"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "213"
+            endingLineNumber = "213"
+            landmarkName = "-setUIData"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

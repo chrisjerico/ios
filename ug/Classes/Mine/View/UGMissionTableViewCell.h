@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 typedef void(^ReceiveMissionBlock)(void);
 @interface UGMissionTableViewCell : UITableViewCell
 
+
+
 @property (nonatomic, strong) UGMissionModel *item;
 @property (nonatomic, copy) ReceiveMissionBlock receiveMissionBlock;
 @end

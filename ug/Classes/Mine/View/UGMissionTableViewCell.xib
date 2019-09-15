@@ -91,18 +91,20 @@
                     <constraint firstItem="fSL-QD-siQ" firstAttribute="leading" secondItem="ujG-h0-8te" secondAttribute="trailing" constant="10" id="6Lz-58-cDd"/>
                     <constraint firstItem="ujG-h0-8te" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ET6-cP-Cac"/>
                     <constraint firstItem="78R-vh-vR2" firstAttribute="leading" secondItem="fSL-QD-siQ" secondAttribute="leading" constant="-10" id="F1z-yk-3pz"/>
+                    <constraint firstItem="fSL-QD-siQ" firstAttribute="leading" secondItem="ujG-h0-8te" secondAttribute="trailing" constant="10" id="F2r-NI-wgk"/>
                     <constraint firstItem="fSL-QD-siQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="30" id="FAe-ds-DEf"/>
                     <constraint firstItem="DCG-WX-51f" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="160" id="GQo-3F-cVs"/>
-                    <constraint firstAttribute="bottom" secondItem="ck2-Pt-mi4" secondAttribute="bottom" constant="7.5" id="IwB-6q-oTM"/>
                     <constraint firstItem="KHb-8y-GjC" firstAttribute="leading" secondItem="78R-vh-vR2" secondAttribute="trailing" constant="5" id="Prw-4r-UH8"/>
                     <constraint firstItem="ck2-Pt-mi4" firstAttribute="leading" secondItem="KHb-8y-GjC" secondAttribute="trailing" constant="10" id="Qq8-c2-plH"/>
                     <constraint firstItem="xGW-ov-Sxf" firstAttribute="centerY" secondItem="fSL-QD-siQ" secondAttribute="centerY" id="R3Y-S2-mGp"/>
                     <constraint firstItem="xGW-ov-Sxf" firstAttribute="leading" secondItem="fSL-QD-siQ" secondAttribute="trailing" constant="7.5" id="WfG-gl-Ybx"/>
                     <constraint firstAttribute="trailing" secondItem="Sdf-XI-AAw" secondAttribute="trailing" constant="10" id="ZnJ-7D-n0k"/>
                     <constraint firstItem="Sdf-XI-AAw" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="cC4-0P-ezP"/>
-                    <constraint firstAttribute="bottom" secondItem="KHb-8y-GjC" secondAttribute="bottom" constant="8" id="g2E-2h-J5k"/>
                     <constraint firstItem="fSL-QD-siQ" firstAttribute="top" secondItem="DCG-WX-51f" secondAttribute="bottom" id="gpf-TM-GMa"/>
+                    <constraint firstItem="ck2-Pt-mi4" firstAttribute="top" secondItem="fSL-QD-siQ" secondAttribute="bottom" constant="20.5" id="hfL-ZG-PWz"/>
+                    <constraint firstItem="xGW-ov-Sxf" firstAttribute="leading" secondItem="fSL-QD-siQ" secondAttribute="trailing" constant="7.5" id="mDO-GU-0Ia"/>
                     <constraint firstItem="ujG-h0-8te" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="nec-Lq-xaI"/>
+                    <constraint firstItem="KHb-8y-GjC" firstAttribute="top" secondItem="fSL-QD-siQ" secondAttribute="bottom" constant="20.5" id="o0z-Je-0r1"/>
                     <constraint firstAttribute="bottom" secondItem="78R-vh-vR2" secondAttribute="bottom" constant="5" id="seo-Cb-0Ak"/>
                 </constraints>
             </tableViewCellContentView>
@@ -115,6 +117,7 @@
                 <outlet property="integralLabel" destination="KHb-8y-GjC" id="0Ke-Za-kwc"/>
                 <outlet property="leftImageView" destination="ujG-h0-8te" id="NTA-s9-cLw"/>
                 <outlet property="overTimeLabel" destination="ck2-Pt-mi4" id="fYq-j0-gau"/>
+                <outlet property="rightImageView" destination="78R-vh-vR2" id="MHn-Ky-y9Q"/>
                 <outlet property="titleLabel" destination="fSL-QD-siQ" id="tjg-mj-Uwy"/>
                 <outlet property="typeLabel" destination="xGW-ov-Sxf" id="nV1-6v-OyD"/>
             </connections>
