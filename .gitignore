@@ -1,7 +1,4 @@
-*~
-.DS_Store
-*.xcodeproj
-*.xcworkspace
-xcuserdata
-*.lock
+*.xcworkspace 
+xcuserdata 
+*.lock 
 Pods

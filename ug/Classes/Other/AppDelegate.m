@@ -16,7 +16,7 @@
 #import "QDWebViewController.h"
 #import "UGAppVersionManager.h"
 #ifdef DEBUG
-#import <DoraemonKit/DoraemonManager.h>
+//#import <DoraemonKit/DoraemonManager.h>
 #endif
 #import "AppDelegate+HgBugly.h"
 
