@@ -203,6 +203,14 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 
 #define teamAgentApplyUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=team&a=agentApply"]
 
+#define activityRedBagDetailUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=activity&a=redBagDetail"]
+
+#define activityGetRedBagUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=activity&a=getRedBag"]
+
+#define activityWinApplyListUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=activity&a=winApplyList"]
+
+#define activityApplyWinLogUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=activity&a=applyWinLog"]
+
 #ifndef __OPTIMIZE__
 
 #define NSLog(...) NSLog(__VA_ARGS__)

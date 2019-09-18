@@ -197,6 +197,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 //会员申请代理接口 http://test10.6yc.com/wjapp/api.php?c=team&a=agentApply
 + (void)teamAgentApplyWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+//获取申请活动彩金列表 http://test10.6yc.com/wjapp/api.php?c=activity&a=winApplyList&token=2OMm3aqQ46wX84Axb9o7wb29
++ (void)activityWinApplyListWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+//获取申请活动彩金记录 http://test10.6yc.com/wjapp/api.php?c=activity&a=applyWinLog&token=2OMm3aqQ46wX84Axb9o7wb29
++ (void)activityApplyWinLogWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 @end
 
 NS_ASSUME_NONNULL_END

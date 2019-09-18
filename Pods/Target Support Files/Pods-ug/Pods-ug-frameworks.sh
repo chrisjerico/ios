@@ -153,16 +153,31 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/AvoidCrash/AvoidCrash.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/BSBacktraceLogger/BSBacktraceLogger.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/DoraemonKit/DoraemonKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/LEEAlert/LEEAlert.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/PNChart/PNChart.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Toast/Toast.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/UICountingLabel/UICountingLabel.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/UITextView+Placeholder/UITextView_Placeholder.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/fishhook/fishhook.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/AvoidCrash/AvoidCrash.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/BSBacktraceLogger/BSBacktraceLogger.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/LEEAlert/LEEAlert.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/PNChart/PNChart.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Toast/Toast.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/UICountingLabel/UICountingLabel.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/UITextView+Placeholder/UITextView_Placeholder.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/fishhook/fishhook.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

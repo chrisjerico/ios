@@ -926,5 +926,33 @@
     
     CMMETHOD_END;
 }
+
+
+//获取申请活动彩金列表 http://test10.6yc.com/wjapp/api.php?c=activity&a=winApplyList&token=2OMm3aqQ46wX84Axb9o7wb29
++ (void)activityWinApplyListWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    [self.manager requestInMainThreadWithMethod:[activityWinApplyListUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
+                                           post:NO
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
+
+
+//获取申请活动彩金记录 http://test10.6yc.com/wjapp/api.php?c=activity&a=applyWinLog&token=2OMm3aqQ46wX84Axb9o7wb29
++ (void)activityApplyWinLogWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    [self.manager requestInMainThreadWithMethod:[activityApplyWinLogUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
+                                           post:NO
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
 @end
 

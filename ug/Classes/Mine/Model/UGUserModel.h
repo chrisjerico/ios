@@ -54,6 +54,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSInteger type;
 @property (nonatomic, assign) NSString* usr;
 @property (nonatomic, assign) BOOL isAgent;//是否是代理
+@property (nonatomic, assign) BOOL checkinSwitch;//是否签到开关：
 
 //积分
 @property (nonatomic, strong) NSString *curLevelTitle;

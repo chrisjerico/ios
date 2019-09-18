@@ -54,6 +54,11 @@
 #import "UGLotteryRecordController.h"
 #import "UGMailBoxTableViewController.h"
 #import "UGAllNextIssueListModel.h"
+
+#import "UGredEnvelopeView.h"
+#import "UGredActivityView.h"
+
+
 @interface UGHomeViewController ()<SDCycleScrollViewDelegate,UUMarqueeViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -86,6 +91,10 @@
 @property (nonatomic, strong) NSArray *rankArray;
 @property (nonatomic, strong) NSArray *lotteryGamesArray;
 @property (nonatomic, assign) BOOL initSubview;
+
+@property (strong, nonatomic)  UGredEnvelopeView *uGredEnvelopeView;
+@property (strong, nonatomic)  UGredActivityView *uGredActivityView;
+
 @end
 
 @implementation UGHomeViewController
@@ -128,6 +137,7 @@
     [self getRankList];
     [self getAllNextIssueData];
     [self getUserInfo];
+    [self getCheckinListData];
     
     self.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self getSystemConfig];
@@ -137,6 +147,7 @@
         [self getRankList];
         [self getUserInfo];
         [self getAllNextIssueData];
+        [self getCheckinListData];
     }];
     
     UGGameTypeCollectionView *gameView = [[UGGameTypeCollectionView alloc] initWithFrame:self.gameTypeView.bounds];
@@ -158,6 +169,44 @@
     };
     
     self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+    
+    self.uGredEnvelopeView = [[UGredEnvelopeView alloc] initWithFrame:CGRectMake(UGScreenW-100, 150, 95, 95) ];
+    
+    [self.view addSubview:_uGredEnvelopeView];
+    
+    [self.uGredEnvelopeView setHidden:YES];
+    
+    [self.uGredEnvelopeView  mas_remakeConstraints:^(MASConstraintMaker *make)
+     {
+        
+         make.right.equalTo(self.view.mas_right).with.offset(-10);
+         make.width.mas_equalTo(95.0);
+         make.height.mas_equalTo(95.0);
+         make.top.equalTo(self.view.mas_top).offset(150);
+         
+     }];
+    
+    self.uGredEnvelopeView.cancelClickBlock = ^(void) {
+        [weakSelf.uGredEnvelopeView setHidden:YES];
+    };
+    
+    
+
+    
+    self.uGredEnvelopeView.redClickBlock = ^(void) {
+//        [weakSelf.uGredEnvelopeView setHidden:YES];
+
+        
+        weakSelf.uGredActivityView = [[UGredActivityView alloc] initWithFrame:CGRectMake(20,100, UGScreenW-50, UGScreenW-50+150) ];
+        
+        weakSelf.uGredActivityView.item = weakSelf.uGredEnvelopeView.item;
+            if (weakSelf.uGredEnvelopeView.item) {
+                [weakSelf.uGredActivityView show];
+            }
+
+    };
+    
+    
 
 }
 
@@ -397,6 +446,34 @@
                 self.rankingView.hidden = YES;
             }
         } failure:^(id msg) {
+            
+        }];
+    }];
+}
+
+//得到红包详情数据
+- (void)getCheckinListData {
+    
+    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
+    
+    [SVProgressHUD showWithStatus:nil];
+    WeakSelf;
+    [CMNetwork activityRedBagDetailWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            
+            [SVProgressHUD dismiss];
+            
+             self.uGredEnvelopeView.item = (UGRedEnvelopeModel*)model.data;
+            [self.uGredEnvelopeView setHidden:NO];
+        
+           
+            //
+            
+        } failure:^(id msg) {
+            
+            [self.uGredEnvelopeView setHidden:YES];
+            
+            [SVProgressHUD showErrorWithStatus:msg];
             
         }];
     }];

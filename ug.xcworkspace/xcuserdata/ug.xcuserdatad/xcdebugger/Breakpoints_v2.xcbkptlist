@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ug/Classes/Mine/Controller/SignIn/UGSigInCodeViewController.m"
-            timestampString = "590253016.948107"
+            timestampString = "590411145.565245"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "224"
@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ug/Classes/Mine/Controller/SignIn/UGSigInCodeViewController.m"
-            timestampString = "590253016.9484921"
+            timestampString = "590411145.565359"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "230"
@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ug/Classes/Mine/Controller/SignIn/UGSigInCodeViewController.m"
-            timestampString = "590253016.948719"
+            timestampString = "590411145.565402"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "217"
@@ -122,7 +122,7 @@
                   moduleName = "ug"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ug/Desktop/fhcpIOSapp/ug/Classes/Mine/Controller/MissionCenter/UGIntegralConvertRecordController.m"
-                  timestampString = "590253017.16706"
+                  timestampString = "590474031.1698509"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "114"
@@ -137,7 +137,7 @@
                   moduleName = "ug"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ug/Desktop/fhcpIOSapp/ug/Classes/Mine/Controller/MissionCenter/UGIntegralConvertRecordController.m"
-                  timestampString = "590253017.168644"
+                  timestampString = "590474031.171367"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "114"
@@ -160,22 +160,6 @@
             startingLineNumber = "120"
             endingLineNumber = "120"
             landmarkName = "-checkinDataWithType:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ug/Classes/Mine/Controller/base/UGMineViewController.m"
-            timestampString = "590250469.853983"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
-            landmarkName = "-viewDidLoad"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -234,12 +218,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ug/Classes/Mine/Controller/SignIn/UGSigInCodeViewController.m"
-            timestampString = "590253016.9490221"
+            timestampString = "590411145.565666"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "213"
             endingLineNumber = "213"
             landmarkName = "-setUIData"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ug/Classes/Mine/Controller/base/UGLoginViewController.m"
+            timestampString = "590389284.26964"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "-loginClick:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

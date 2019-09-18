@@ -13,5 +13,12 @@ pod 'IQKeyboardManager'
  # alert提示框
 pod 'LEEAlert'
 
+  # 防奔溃
+    pod 'AvoidCrash'
+
+   # 线下开发、测试工具组
+    pod 'DoraemonKit/Core', '~> 1.1.4', :configurations => ['Debug']
+    pod 'DoraemonKit/WithLogger', '~> 1.1.4', :configurations => ['Debug']
+
 
 end

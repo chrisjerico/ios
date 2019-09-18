@@ -15,7 +15,10 @@
 #import "UITabBarController+ShowViewController.h"
 #import "QDWebViewController.h"
 #import "UGAppVersionManager.h"
-
+#ifdef DEBUG
+#import <DoraemonKit/DoraemonManager.h>
+#endif
+#import "AppDelegate+HgBugly.h"
 
 
 @interface AppDelegate ()<UITabBarControllerDelegate>
@@ -43,14 +46,43 @@
      [self ug_setupAppDelegate];
 //    版本更新
 //    [[UGAppVersionManager shareInstance] updateVersionNow:YES];
-      [self ug_setupAppDelegate];
+    
+   
     return YES;
 }
 
+//获得userAgent
+-(void)userAgent{
+    //获得userAgent
+    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
+    NSString *oldAgent = [webView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"] ?:@"";
+    
+    //add my info to the new agent
+    NSString *systemVersion  = [[UIDevice currentDevice] systemVersion];
+    NSString *currentVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    CGFloat  iphoneScale     = [[UIScreen mainScreen] scale];
+    NSString *model          = [[UIDevice currentDevice] model];
+    NSString *localeIdentifier = [[NSLocale currentLocale] localeIdentifier];
+    
+    NSString *identifier = [[NSBundle mainBundle] bundleIdentifier];
+    NSString *appendAgent = [NSString stringWithFormat:@"%@/%@ (%@/%@ ; %@; Scale/%0.2f)", identifier,currentVersion, model,systemVersion,localeIdentifier,iphoneScale];
+    if ([oldAgent rangeOfString:appendAgent].location == NSNotFound) {
+        NSString *newAgent  = [NSString stringWithFormat:@"%@ %@", oldAgent,appendAgent];
+        NSLog(@"new agent :%@", newAgent);
+        [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"UserAgent": newAgent,@"HTTPUserAgent":appendAgent}];
+    }
+}
 #pragma mark - 系统配置
 - (void)ug_setupAppDelegate
 {
-
+#ifdef DEBUG
+    //默认
+//    [[DoraemonManager shareInstance] install];
+    // 或者使用传入位置,解决遮挡关键区域,减少频繁移动
+    //[[DoraemonManager shareInstance] installWithStartingPosition:CGPointMake(66, 66)];
+#endif
+     [self initBugly];
+    [self userAgent];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

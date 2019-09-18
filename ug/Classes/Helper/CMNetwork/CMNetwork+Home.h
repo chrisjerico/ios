@@ -38,6 +38,12 @@ NS_ASSUME_NONNULL_BEGIN
 //检查app版本
 + (void)checkVersionWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 
+//红包详情 http://test10.6yc.com/wjapp/api.php?c=activity&a=redBagDetail
++ (void)activityRedBagDetailWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+//领红包 {{TEST_HOST}}?c=activity&a=getRedBag
++ (void)activityGetRedBagWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
 @end
 
 NS_ASSUME_NONNULL_END

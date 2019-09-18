@@ -14,6 +14,7 @@
 #import "UGPromoteModel.h"
 #import "UGSystemConfigModel.h"
 #import "UGAPPVersionModel.h"
+#import "UGRedEnvelopeModel.h"
 
 @implementation CMNetwork (Home)
 
@@ -149,4 +150,31 @@
     
 }
 
+
+//红包详情 http://test10.6yc.com/wjapp/api.php?c=activity&a=redBagDetail
++ (void)activityRedBagDetailWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    
+    [self.manager requestInMainThreadWithMethod:[activityRedBagDetailUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:CMResultClassMake(UGRedEnvelopeModel.class)
+                                           post:NO
+                                     completion:completionBlock];
+    
+    CMMETHOD_END;
+    
+}
+//领红包 {{TEST_HOST}}?c=activity&a=getRedBag
++ (void)activityGetRedBagWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    
+    CMMETHOD_BEGIN;
+    
+    [self.manager requestInMainThreadWithMethod:[activityGetRedBagUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:CMResultClassMake(UGRedEnvelopeModel.class)
+                                           post:YES
+                                     completion:completionBlock];
+    
+    CMMETHOD_END;
+}
 @end
