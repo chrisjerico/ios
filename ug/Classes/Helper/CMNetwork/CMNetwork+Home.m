@@ -48,6 +48,22 @@
     CMMETHOD_END;
 }
 
+//查询自定义游戏列表
++(void)getCustomGamesWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock {
+	
+	CMMETHOD_BEGIN;
+	
+	[self.manager requestInMainThreadWithMethod:[getCustomGamesUrl stringToRestfulUrlWithFlag:RESTFUL]
+										 params:params
+										  model:CMResultArrayClassMake(UGPlatformModel.class)
+										   post:NO
+									 completion:completionBlock];
+	
+	
+	CMMETHOD_END;
+	
+}
+
 //查询各平台下级游戏列表
 + (void)getGameListWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock {
     

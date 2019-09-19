@@ -17,6 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 //查询各平台游戏列表
 + (void)getPlatformGamesWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 
+//查询自定义游戏列表
++(void)getCustomGamesWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
 //查询各平台下级游戏列表
 + (void)getGameListWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 

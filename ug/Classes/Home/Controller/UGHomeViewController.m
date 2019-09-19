@@ -131,6 +131,7 @@
     });
     
     [self getSystemConfig];
+//	[self getBannerList];
     [self getPlatformGamesList];
 //    [self getBannerList];
     [self getNoticeList];
@@ -291,7 +292,36 @@
 
 - (void)getPlatformGamesList {
     
-    [SVProgressHUD showWithStatus: nil];
+//    [SVProgressHUD showWithStatus: nil];
+//	[CMNetwork getCustomGamesWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+//		[self.scrollView.mj_header endRefreshing];
+//		[CMResult processWithResult:model success:^{
+//			[SVProgressHUD dismiss];
+//			if (model.data) {
+//				dispatch_async(dispatch_get_main_queue(), ^{
+//					NSLog(@"%@", model.data);
+//					self.gameTypeArray = model.data;
+//					float itemH = UGScreenW / 3;
+//					NSInteger count = 0;
+//					for (UGPlatformModel *gameType in self.gameTypeArray) {
+//						count = gameType.games.count > count ? gameType.games.count : count;
+//					}
+//					float collectionViewH = ((count - 1) / 3 + 1) *itemH;
+//					self.gameTypeViewHeightConstraint.constant = collectionViewH + 80;
+//					self.scrollContentHeightConstraints.constant = CGRectGetMaxY(self.rankingView.frame);
+//					self.scrollView.contentSize = CGSizeMake(UGScreenW, self.scrollContentHeightConstraints.constant + 200);
+//					[self.view layoutIfNeeded];
+//
+//					self.gameTypeCollectionView.gameTypeArray = self.gameTypeArray;
+//				});
+//
+//			}
+//
+//		} failure:^(id msg) {
+//			[SVProgressHUD showErrorWithStatus:msg];
+//		}];
+//
+//	}];
     [CMNetwork getPlatformGamesWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
          [self.scrollView.mj_header endRefreshing];
         //     fixbug:这个接口后再请求轮播图，否则看不到轮播图
@@ -300,7 +330,7 @@
             [SVProgressHUD dismiss];
             if (model.data) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    
+
                     self.gameTypeArray = model.data;
                     float itemH = UGScreenW / 3;
                     NSInteger count = 0;
@@ -312,15 +342,15 @@
                     self.scrollContentHeightConstraints.constant = CGRectGetMaxY(self.rankingView.frame);
                     self.scrollView.contentSize = CGSizeMake(UGScreenW, self.scrollContentHeightConstraints.constant + 200);
                     [self.view layoutIfNeeded];
-                    
+
                     self.gameTypeCollectionView.gameTypeArray = self.gameTypeArray;
                 });
-                
+
             }
-            
+
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
-            
+
         }];
     }];
 }
