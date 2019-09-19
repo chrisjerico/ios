@@ -203,6 +203,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 //获取申请活动彩金记录 http://test10.6yc.com/wjapp/api.php?c=activity&a=applyWinLog&token=2OMm3aqQ46wX84Axb9o7wb29
 + (void)activityApplyWinLogWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+//申请彩金 http://test10.6yc.com/wjapp/api.php?c=activity&a=applyWin
++ (void)activityApplyWinWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+//获取申请活动彩金记录详情 http://test10.6yc.com/wjapp/api.php?c=activity&a=applyWinLogDetail&token=6DMCw655Dhu5mB83bVD4McbB&id=120
++ (void)activityApplyWinLogDetailWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 @end
 
 NS_ASSUME_NONNULL_END

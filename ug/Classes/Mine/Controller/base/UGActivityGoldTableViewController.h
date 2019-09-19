@@ -1,5 +1,5 @@
 //
-//  UGMosaicGoldController.h
+//  UGActivityGoldTableViewController.h
 //  ug
 //
 //  Created by ug on 2019/9/18.
@@ -10,10 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGMosaicGoldController : UITableViewController
-
+@interface UGActivityGoldTableViewController : UITableViewController
 -(void)rootLoadData;
-
 @end
 
 NS_ASSUME_NONNULL_END

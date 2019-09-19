@@ -34,6 +34,7 @@
 
 #import "UGSigInCodeViewController.h"
 #import "UGAgentViewController.h"
+#import "UGMosaicGoldViewController.h"
 
 
 @interface UGMineViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -86,14 +87,14 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showAvaterSelectView)];
     [self.avaterImageView addGestureRecognizer:tap];
 
-    self.imageNameArray = @[@"chongzhi",@"tixian",@"zaixiankefu",@"yinhangqia",@"lixibao",@"change",@"shouyi",@"ziyuan",@"zhanneixin",@"zdgl",@"zdgl",@"huiyuanxinxi",@"jianyi"];
+    self.imageNameArray = @[@"chongzhi",@"tixian",@"zaixiankefu",@"yinhangqia",@"lixibao",@"change",@"shouyi",@"ziyuan",@"zhanneixin",@"zdgl",@"zdgl",@"huiyuanxinxi",@"jianyi",@"zdgl"];
    
     
     UGUserModel *user = [UGUserModel currentUser];
     if (user.isAgent) {
-         self.menuNameArray = @[@"存款",@"取款",@"在线客服",@"银行卡管理",@"利息宝",@"额度转换",@"推荐收益",@"安全中心",@"站内信",@"彩票注单记录",@"其他注单记录",@"个人信息",@"建议反馈"];
+         self.menuNameArray = @[@"存款",@"取款",@"在线客服",@"银行卡管理",@"利息宝",@"额度转换",@"推荐收益",@"安全中心",@"站内信",@"彩票注单记录",@"其他注单记录",@"个人信息",@"建议反馈",@"活动彩金"];
     } else {
-       self.menuNameArray = @[@"存款",@"取款",@"在线客服",@"银行卡管理",@"利息宝",@"额度转换",@"代理申请",@"安全中心",@"站内信",@"彩票注单记录",@"其他注单记录",@"个人信息",@"建议反馈"];
+       self.menuNameArray = @[@"存款",@"取款",@"在线客服",@"银行卡管理",@"利息宝",@"额度转换",@"代理申请",@"安全中心",@"站内信",@"彩票注单记录",@"其他注单记录",@"个人信息",@"建议反馈",@"活动彩金"];
     }
     self.tableView.rowHeight = 50;
     self.tableView.estimatedSectionHeaderHeight = 0;
@@ -406,7 +407,24 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
             [self.navigationController pushViewController:userInfoVC animated:YES];
         }
         
-    }else {
+    }
+    else if (indexPath.row == 12) {
+        UGUserModel *user = [UGUserModel currentUser];
+        if (user.isTest) {
+            [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                if (buttonIndex == 1) {
+                    SANotificationEventPost(UGNotificationShowLoginView, nil);
+                }
+            }];
+        }else {
+            
+            
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGFeedBackController" bundle:nil];
+            UGFeedBackController *feedbackVC = [storyboard instantiateInitialViewController];
+            [self.navigationController pushViewController:feedbackVC animated:YES];
+        }
+    }
+    else {
         UGUserModel *user = [UGUserModel currentUser];
         if (user.isTest) {
             [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
@@ -417,9 +435,8 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
         }else {
             
     
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGFeedBackController" bundle:nil];
-            UGFeedBackController *feedbackVC = [storyboard instantiateInitialViewController];
-            [self.navigationController pushViewController:feedbackVC animated:YES];
+            UGMosaicGoldViewController *vc = [[UGMosaicGoldViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
         }
     }
 }

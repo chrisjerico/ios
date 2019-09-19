@@ -8,6 +8,8 @@
 
 #import "UGMosaicGoldViewController.h"
 #import "XYYSegmentControl.h"
+#import "UGActivityGoldTableViewController.h"
+#import "UGMosaicGoldController.h"
 
 @interface UGMosaicGoldViewController ()<XYYSegmentControlDelegate>
 @property (nonatomic, strong) XYYSegmentControl *slideSwitchView;
@@ -57,23 +59,36 @@
 
 
 ///待加载的控制器
-//-(UIViewController *)slideSwitchView:(XYYSegmentControl *)view viewOfTab:(NSUInteger)number
-//{
-//    if (number == 0) {
-//       
-//    
-//    }
-//    else {
-//        
-//     
-//        
-//    }
-//    
-//}
+-(UIViewController *)slideSwitchView:(XYYSegmentControl *)view viewOfTab:(NSUInteger)number
+{
+    if (number == 0) {
+       
+        UGMosaicGoldController *vc = [[UGMosaicGoldController alloc] init];
+        return  vc;
+        
+    }
+    else {
+        
+        UGActivityGoldTableViewController *vc = [[UGActivityGoldTableViewController alloc] init];
+        return  vc;
+        
+        
+    }
+    
+}
 
 -(void)slideSwitchView:(XYYSegmentControl *)view didselectTab:(NSUInteger)number
 {
     
-    
+    if (number == 0) {
+        UGMosaicGoldController *vc  = (UGMosaicGoldController *) view.viewArray[number];
+        [vc rootLoadData];
+     
+    }
+    else {
+        UGActivityGoldTableViewController *vc  = (UGActivityGoldTableViewController *) view.viewArray[number];
+        [vc rootLoadData];
+        
+    }
 }
 @end

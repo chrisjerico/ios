@@ -29,6 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *quickAmount10;//
 @property (nonatomic, strong) NSString *quickAmount11;//
 @property (nonatomic, strong) NSString *quickAmount12;//
+@property (nonatomic, strong) NSString *mid;//
 @end
 
 

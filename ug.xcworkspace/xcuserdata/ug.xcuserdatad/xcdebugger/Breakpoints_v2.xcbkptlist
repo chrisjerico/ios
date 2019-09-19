@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ug/Classes/Mine/Controller/SignIn/UGSigInCodeViewController.m"
-            timestampString = "590411145.565245"
+            timestampString = "590589948.369316"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "224"
@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ug/Classes/Mine/Controller/SignIn/UGSigInCodeViewController.m"
-            timestampString = "590411145.565359"
+            timestampString = "590589948.36979"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "230"
@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ug/Classes/Mine/Controller/SignIn/UGSigInCodeViewController.m"
-            timestampString = "590411145.565402"
+            timestampString = "590589948.370144"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "217"
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ug/Classes/Helper/CMNetwork/CMNetwork+Mine.m"
-            timestampString = "590246665.2554801"
+            timestampString = "590590156.751484"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "682"
-            endingLineNumber = "682"
+            startingLineNumber = "683"
+            endingLineNumber = "683"
             landmarkName = "+taskCreditsLogWithParams:completion:"
             landmarkType = "7">
          </BreakpointContent>
@@ -122,7 +122,7 @@
                   moduleName = "ug"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ug/Desktop/fhcpIOSapp/ug/Classes/Mine/Controller/MissionCenter/UGIntegralConvertRecordController.m"
-                  timestampString = "590474031.1698509"
+                  timestampString = "590589765.690322"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "114"
@@ -137,7 +137,7 @@
                   moduleName = "ug"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ug/Desktop/fhcpIOSapp/ug/Classes/Mine/Controller/MissionCenter/UGIntegralConvertRecordController.m"
-                  timestampString = "590474031.171367"
+                  timestampString = "590589765.6917599"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "114"
@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ug/Classes/Mine/Controller/base/UGMineViewController.m"
-            timestampString = "590250480.440565"
+            timestampString = "590515164.702569"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "336"
-            endingLineNumber = "336"
+            startingLineNumber = "337"
+            endingLineNumber = "337"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -186,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ug/Classes/Mine/Controller/base/UGMineViewController.m"
-            timestampString = "590250481.612525"
+            timestampString = "590515164.702623"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "339"
-            endingLineNumber = "339"
+            startingLineNumber = "340"
+            endingLineNumber = "340"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -202,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ug/Classes/Mine/Controller/base/UGMineViewController.m"
-            timestampString = "590250483.245222"
+            timestampString = "590515164.7026629"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "331"
-            endingLineNumber = "331"
+            startingLineNumber = "332"
+            endingLineNumber = "332"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -218,7 +218,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ug/Classes/Mine/Controller/SignIn/UGSigInCodeViewController.m"
-            timestampString = "590411145.565666"
+            timestampString = "590589948.370657"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "213"
@@ -233,13 +233,45 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ug/Classes/Mine/Controller/base/UGLoginViewController.m"
-            timestampString = "590389284.26964"
+            filePath = "ug/Classes/Promote/Controller/UGPromoteDetailController.m"
+            timestampString = "590515164.702754"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "-loginClick:"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "-setItem:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ug/Classes/Mine/View/UGActivityGoldView.m"
+            timestampString = "590590156.751691"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "480"
+            endingLineNumber = "480"
+            landmarkName = "-activityApplyWinWithParams"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ug/Classes/Helper/CMNetwork/CMNetwork+Mine.m"
+            timestampString = "590590156.752215"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "962"
+            endingLineNumber = "962"
+            landmarkName = "+activityApplyWinWithParams:completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

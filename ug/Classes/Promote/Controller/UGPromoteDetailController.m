@@ -11,7 +11,7 @@
 
 @interface UGPromoteDetailController ()
 @property (strong, nonatomic) UILabel *titleLabel;
-@property (strong, nonatomic) UITextView *contentTextView;
+@property (strong, nonatomic) UILabel *contentTextView;
 @property (nonatomic, strong) UIActivityIndicatorView *activity;
 
 @end
@@ -41,7 +41,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.activity stopAnimating];
             self.contentTextView.attributedText = attStr;
-    
+   
         });
     });
 }
@@ -72,10 +72,10 @@
     return _titleLabel;
 }
 
-- (UITextView *)contentTextView
+- (UILabel *)contentTextView
 {
     if (!_contentTextView) {
-        _contentTextView = [[UITextView alloc]init];
+        _contentTextView = [[UILabel alloc]init];
         _contentTextView.font = [UIFont systemFontOfSize:17];
     }
     return _contentTextView;
