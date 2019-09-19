@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "QDWebViewController.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UGTabbarController : UITabBarController
+
+@property (strong, nonatomic) QDWebViewController *qdwebVC;
 
 @end
 

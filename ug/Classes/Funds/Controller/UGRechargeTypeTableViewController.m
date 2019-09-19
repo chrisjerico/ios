@@ -158,7 +158,7 @@ static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
                     
                 }
                 // 同步到主线程
-                dispatch_async(dispatch_get_main_queue(), ^{
+                 dispatch_async(dispatch_get_main_queue(), ^{
                      [self.tableView reloadData];
                 });
              }];

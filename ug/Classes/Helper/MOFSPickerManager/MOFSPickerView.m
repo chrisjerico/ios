@@ -30,7 +30,7 @@
 
 - (void)setAttributes:(NSDictionary<NSAttributedStringKey,id> *)attributes {
     _attributes = attributes;
-    dispatch_async(dispatch_get_main_queue(), ^{
+     dispatch_async(dispatch_get_main_queue(), ^{
         [self reloadAllComponents];
     });
 }

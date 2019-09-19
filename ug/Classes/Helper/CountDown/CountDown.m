@@ -39,7 +39,7 @@
                 if(timeout<=0){ //倒计时结束，关闭
                     dispatch_source_cancel(_timer);
                     _timer = nil;
-                    dispatch_async(dispatch_get_main_queue(), ^{
+                     dispatch_async(dispatch_get_main_queue(), ^{
                         completeBlock(0,0,0,0);
                     });
                 }else{
@@ -47,7 +47,7 @@
                     int hours = (int)((timeout-days*24*3600)/3600);
                     int minute = (int)(timeout-days*24*3600-hours*3600)/60;
                     int second = timeout-days*24*3600-hours*3600-minute*60;
-                    dispatch_async(dispatch_get_main_queue(), ^{
+                     dispatch_async(dispatch_get_main_queue(), ^{
                         completeBlock(days,hours,minute,second);
                     });
                     timeout--;
@@ -63,7 +63,7 @@
             _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
             dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0); //每秒执行
             dispatch_source_set_event_handler(_timer, ^{
-                dispatch_async(dispatch_get_main_queue(), ^{
+                 dispatch_async(dispatch_get_main_queue(), ^{
                     PER_SECBlock();
                 });
             });
@@ -77,7 +77,7 @@
         _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
         dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),sec *NSEC_PER_SEC, 0); //每sec秒执行
         dispatch_source_set_event_handler(_timer, ^{
-            dispatch_async(dispatch_get_main_queue(), ^{
+             dispatch_async(dispatch_get_main_queue(), ^{
                 PER_SECBlock();
             });
         });
@@ -107,7 +107,7 @@
                 if(timeout<=0){ //倒计时结束，关闭
                     dispatch_source_cancel(_timer);
                     _timer = nil;
-                    dispatch_async(dispatch_get_main_queue(), ^{
+                     dispatch_async(dispatch_get_main_queue(), ^{
                         completeBlock(0,0,0,0);
                     });
                 }else{
@@ -115,7 +115,7 @@
                     int hours = (int)((timeout-days*24*3600)/3600);
                     int minute = (int)(timeout-days*24*3600-hours*3600)/60;
                     int second = timeout-days*24*3600-hours*3600-minute*60;
-                    dispatch_async(dispatch_get_main_queue(), ^{
+                     dispatch_async(dispatch_get_main_queue(), ^{
                         completeBlock(days,hours,minute,second);
                     });
                     timeout--;

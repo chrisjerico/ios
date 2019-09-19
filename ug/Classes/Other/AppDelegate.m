@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "UGTabbarController.h"
 #import "UGNavigationController.h"
 #import "UGMineViewController.h"
 #import "UGLotteryHomeController.h"
@@ -26,11 +25,12 @@
 @end
 
 @implementation AppDelegate
+@synthesize tabbar;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    UGTabbarController *tabbar = [[UGTabbarController alloc] init];
+    tabbar = [[UGTabbarController alloc] init];
     tabbar.delegate = self;
     self.window.rootViewController = tabbar;
     [self.window makeKeyAndVisible];
