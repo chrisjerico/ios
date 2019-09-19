@@ -81,7 +81,9 @@
     
     QDWebViewController *qdwebVC = [[QDWebViewController alloc] init];
     qdwebVC.navigationTitle = @"聊天室";
-    qdwebVC.urlString = [NSString stringWithFormat:@"%@%@",baseServerUrl,chatRoomUrl];
+//    qdwebVC.urlString = [NSString stringWithFormat:@"%@%@",baseServerUrl,chatRoomUrl];
+    
+     qdwebVC.urlString = @"http://test10.6yc.com/dist/#/home?from=app&logintoken=87f2c1f02045f209b99b233214e36eaa&sessiontoken=sid3m3sdYLqh3hg44SOdW44I49g";
     [self addOneChildViewController:[[UGNavigationController alloc]initWithRootViewController:qdwebVC]
                           WithTitle:@"聊天室"
                           imageName:@"liaotian"

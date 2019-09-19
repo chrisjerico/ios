@@ -475,4 +475,49 @@ static NSString *uuidKey =@"uuidKey";
     
 }
 
+/*
+ 有时候需要让view显示某一侧的边框线，这时设置layer的border是达不到效果的。在网上查阅资料发现有一个投机取巧的办法，原理是给view的layer再添加一个layer，让这个layer充当边框线的角色。
+ 返回：
+ */
++ (void)setBorderWithView:(UIView *)view top:(BOOL)top left:(BOOL)left bottom:(BOOL)bottom right:(BOOL)right borderColor:(UIColor *)color borderWidth:(CGFloat)width
+{
+    if (top) {
+        CALayer *layer = [CALayer layer];
+        layer.frame = CGRectMake(0, 0, view.frame.size.width, width);
+        layer.backgroundColor = color.CGColor;
+        [view.layer addSublayer:layer];
+    }
+    if (left) {
+        CALayer *layer = [CALayer layer];
+        layer.frame = CGRectMake(0, 0, width, view.frame.size.height);
+        layer.backgroundColor = color.CGColor;
+        [view.layer addSublayer:layer];
+    }
+    if (bottom) {
+        CALayer *layer = [CALayer layer];
+        layer.frame = CGRectMake(0, view.frame.size.height - width, view.frame.size.width, width);
+        layer.backgroundColor = color.CGColor;
+        [view.layer addSublayer:layer];
+    }
+    if (right) {
+        CALayer *layer = [CALayer layer];
+        layer.frame = CGRectMake(view.frame.size.width - width, 0, width, view.frame.size.height);
+        layer.backgroundColor = color.CGColor;
+        [view.layer addSublayer:layer];
+    }
+}
+
+/**
+ *  根据内容自动算高度
+ *
+ *  @param 内容
+ *
+ *  @return 高度
+ */
++ (CGFloat)getLabelWidthWithText:(NSString *)text stringFont:(UIFont *)font allowHeight:(CGFloat)height{
+    CGFloat width;
+    CGRect rect = [text boundingRectWithSize:CGSizeMake(2000, height) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:font} context:nil];
+    width = rect.size.width;
+    return width;
+}
 @end

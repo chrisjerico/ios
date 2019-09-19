@@ -87,12 +87,7 @@
         
         self->_blankDataArray = bankModel.bankList ;//显示银行数据
         
-        if ([CMCommon arryIsNull:self->_blankDataArray]) {
-            [self->_blank_button setHidden:YES];
-        } else {
-            [self->_blank_button setHidden:NO];
-        }
-        
+       
         if ([CMCommon stringIsNull:bankModel.fixedAmount]) {
             
             self.amountDataArray = [[NSMutableArray alloc] initWithArray:self->_item.quickAmount];
@@ -119,6 +114,13 @@
 
         // 同步到主线程
         dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if ([CMCommon arryIsNull:self->_blankDataArray]) {
+                [self->_blank_button setHidden:YES];
+            } else {
+                [self->_blank_button setHidden:NO];
+            }
+            
             [self.collectionView reloadData];
             
             [self.collectionView  mas_remakeConstraints:^(MASConstraintMaker *make)
