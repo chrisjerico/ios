@@ -299,7 +299,7 @@
         [CMResult processWithResult:model success:^{
             [SVProgressHUD dismiss];
             if (model.data) {
-                dispatch_async(dispatch_get_main_queue(), ^{
+                 dispatch_async(dispatch_get_main_queue(), ^{
                     
                     self.gameTypeArray = model.data;
                     float itemH = UGScreenW / 3;
@@ -334,7 +334,7 @@
     [CMNetwork getGotoGameUrlWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             [SVProgressHUD dismiss];
-            dispatch_async(dispatch_get_main_queue(), ^{
+             dispatch_async(dispatch_get_main_queue(), ^{
                 
                 QDWebViewController *qdwebVC = [[QDWebViewController alloc] init];
                 qdwebVC.urlString = model.data;
@@ -372,7 +372,7 @@
             [SVProgressHUD showSuccessWithStatus:model.msg];
             self.titleView.showLoginView = YES;
             UGUserModel.currentUser = nil;
-            dispatch_async(dispatch_get_main_queue(), ^{
+             dispatch_async(dispatch_get_main_queue(), ^{
                 
                 [self.tabBarController setSelectedIndex:0];
             });
@@ -388,14 +388,19 @@
     [CMNetwork getBannerListWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
          [self.scrollView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
-            self.bannerArray = model.data;
-            NSMutableArray *mutArr = [NSMutableArray array];
-            if (self.bannerArray.count) {
-                for (UGBannerModel *banner in self.bannerArray) {
-                    [mutArr addObject:banner.pic];
+            
+             dispatch_async(dispatch_get_main_queue(), ^{
+                // 需要在主线程执行的代码
+                self.bannerArray = model.data;
+                NSMutableArray *mutArr = [NSMutableArray array];
+                if (self.bannerArray.count) {
+                    for (UGBannerModel *banner in self.bannerArray) {
+                        [mutArr addObject:banner.pic];
+                    }
+                    self.bannerView.imageURLStringsGroup = mutArr.mutableCopy;
                 }
-                self.bannerView.imageURLStringsGroup = mutArr.mutableCopy;
-            }
+            });
+           
         } failure:^(id msg) {
             
         }];
@@ -408,15 +413,17 @@
     [CMNetwork getNoticeListWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
          [self.scrollView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
-            UGNoticeTypeModel *type = model.data;
-            self.noticeTypeModel = model.data;
-            self.popNoticeArray = type.popup.mutableCopy;
-            for (UGNoticeModel *notice in type.scroll) {
-//                NSAttributedString *attStr = [[NSAttributedString alloc] initWithData:[notice.content dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
-                [self.leftwardMarqueeViewData addObject:notice.title];
-            }
-            dispatch_async(dispatch_get_main_queue(), ^{
-                
+            
+            
+  
+             dispatch_async(dispatch_get_main_queue(), ^{
+                UGNoticeTypeModel *type = model.data;
+                self.noticeTypeModel = model.data;
+                self.popNoticeArray = type.popup.mutableCopy;
+                for (UGNoticeModel *notice in type.scroll) {
+                    //                NSAttributedString *attStr = [[NSAttributedString alloc] initWithData:[notice.content dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+                    [self.leftwardMarqueeViewData addObject:notice.title];
+                }
                 [self.leftwardMarqueeView reloadData];
                 if (self.popNoticeArray.count) {
                     
@@ -436,15 +443,20 @@
     [CMNetwork getRankListWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
          [self.scrollView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
-            UGRankListModel *rank = model.data;
-            self.rankListModel = rank;
-            self.rankArray = rank.list.mutableCopy;
-            if (rank.show) {
-                self.rankingView.hidden = NO;
-                [self.upwardMultiMarqueeView reloadData];
-            }else {
-                self.rankingView.hidden = YES;
-            }
+            
+             dispatch_async(dispatch_get_main_queue(), ^{
+                // 需要在主线程执行的代码
+                UGRankListModel *rank = model.data;
+                self.rankListModel = rank;
+                self.rankArray = rank.list.mutableCopy;
+                if (rank.show) {
+                    self.rankingView.hidden = NO;
+                    [self.upwardMultiMarqueeView reloadData];
+                }else {
+                    self.rankingView.hidden = YES;
+                }
+            });
+            
         } failure:^(id msg) {
             
         }];
@@ -461,11 +473,15 @@
     [CMNetwork activityRedBagDetailWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             
-            [SVProgressHUD dismiss];
-            
-             self.uGredEnvelopeView.item = (UGRedEnvelopeModel*)model.data;
-            [self.uGredEnvelopeView setHidden:NO];
-        
+             dispatch_async(dispatch_get_main_queue(), ^{
+                // 需要在主线程执行的代码
+                [SVProgressHUD dismiss];
+                
+                self.uGredEnvelopeView.item = (UGRedEnvelopeModel*)model.data;
+                [self.uGredEnvelopeView setHidden:NO];
+                
+            });
+           
            
             //
             

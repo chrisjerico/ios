@@ -216,7 +216,7 @@ didCompleteWithError:(NSError *)error
                 self.completionHandler(task.response, responseObject, error);
             }
 
-            dispatch_async(dispatch_get_main_queue(), ^{
+             dispatch_async(dispatch_get_main_queue(), ^{
                 [[NSNotificationCenter defaultCenter] postNotificationName:AFNetworkingTaskDidCompleteNotification object:task userInfo:userInfo];
             });
         });
@@ -242,7 +242,7 @@ didCompleteWithError:(NSError *)error
                     self.completionHandler(task.response, responseObject, serializationError);
                 }
 
-                dispatch_async(dispatch_get_main_queue(), ^{
+                 dispatch_async(dispatch_get_main_queue(), ^{
                     [[NSNotificationCenter defaultCenter] postNotificationName:AFNetworkingTaskDidCompleteNotification object:task userInfo:userInfo];
                 });
             });
@@ -530,7 +530,7 @@ static NSString * const AFNSURLSessionTaskDidSuspendNotification = @"com.alamofi
     NSURLSessionTask *task = notification.object;
     if ([task respondsToSelector:@selector(taskDescription)]) {
         if ([task.taskDescription isEqualToString:self.taskDescriptionForSessionTasks]) {
-            dispatch_async(dispatch_get_main_queue(), ^{
+             dispatch_async(dispatch_get_main_queue(), ^{
                 [[NSNotificationCenter defaultCenter] postNotificationName:AFNetworkingTaskDidResumeNotification object:task];
             });
         }
@@ -541,7 +541,7 @@ static NSString * const AFNSURLSessionTaskDidSuspendNotification = @"com.alamofi
     NSURLSessionTask *task = notification.object;
     if ([task respondsToSelector:@selector(taskDescription)]) {
         if ([task.taskDescription isEqualToString:self.taskDescriptionForSessionTasks]) {
-            dispatch_async(dispatch_get_main_queue(), ^{
+             dispatch_async(dispatch_get_main_queue(), ^{
                 [[NSNotificationCenter defaultCenter] postNotificationName:AFNetworkingTaskDidSuspendNotification object:task];
             });
         }
@@ -1124,7 +1124,7 @@ didBecomeDownloadTask:(NSURLSessionDownloadTask *)downloadTask
 
 - (void)URLSessionDidFinishEventsForBackgroundURLSession:(NSURLSession *)session {
     if (self.didFinishEventsForBackgroundURLSession) {
-        dispatch_async(dispatch_get_main_queue(), ^{
+         dispatch_async(dispatch_get_main_queue(), ^{
             self.didFinishEventsForBackgroundURLSession(session);
         });
     }

@@ -426,7 +426,7 @@ forHTTPHeaderField:(NSString *)field
     NSOutputStream *outputStream = [[NSOutputStream alloc] initWithURL:fileURL append:NO];
     __block NSError *error = nil;
 
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+     dispatch_async(dispatch_get_main_queue(), ^{
         [inputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
         [outputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
 
@@ -457,7 +457,7 @@ forHTTPHeaderField:(NSString *)field
         [inputStream close];
 
         if (handler) {
-            dispatch_async(dispatch_get_main_queue(), ^{
+             dispatch_async(dispatch_get_main_queue(), ^{
                 handler(error);
             });
         }

@@ -112,6 +112,11 @@ UIActionSheetDelegate> {
     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.startPage]]];
     self.deleteJSDate = 1;
     
+    if ([self.navigationTitle isEqualToString:@"聊天室"]) {
+        self.navigationController.navigationBarHidden = YES;
+    }
+    
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -122,6 +127,11 @@ UIActionSheetDelegate> {
     if ([[UIDevice currentDevice]respondsToSelector:@selector(setOrientation:)]) {
         [self orientationToPortrait:UIInterfaceOrientationPortrait];
     }
+    
+    if ([self.navigationTitle isEqualToString:@"聊天室"]) {
+        self.navigationController.navigationBarHidden = NO;
+    }
+        
 }
 
 - (void)backClick{

@@ -585,7 +585,7 @@
     if (self.timer != nil) {
         return;
     }
-    dispatch_async(dispatch_get_main_queue(), ^{
+     dispatch_async(dispatch_get_main_queue(), ^{
         if (self.timer != nil) {
             return;
         }

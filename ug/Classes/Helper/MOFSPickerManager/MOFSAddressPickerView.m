@@ -35,7 +35,7 @@
 
 - (void)setAttributes:(NSDictionary<NSAttributedStringKey,id> *)attributes {
     _attributes = attributes;
-    dispatch_async(dispatch_get_main_queue(), ^{
+     dispatch_async(dispatch_get_main_queue(), ^{
         [self reloadAllComponents];
     });
 }
@@ -46,7 +46,7 @@
     } else {
         _numberOfSection = numberOfSection;
     }
-    dispatch_async(dispatch_get_main_queue(), ^{
+     dispatch_async(dispatch_get_main_queue(), ^{
         [self reloadAllComponents];
     });
 }
@@ -80,12 +80,12 @@
         self.dataSource = self;
         
         [self initBgView];
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+         dispatch_async(dispatch_get_main_queue(), ^{
             
             [self getData];
             dispatch_queue_t queue = dispatch_queue_create("my.current.queue", DISPATCH_QUEUE_CONCURRENT);
             dispatch_barrier_async(queue, ^{
-                dispatch_async(dispatch_get_main_queue(), ^{
+                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self reloadAllComponents];
                 });
             });
@@ -327,7 +327,7 @@
         self.getDataCompleteBlock = ^{
             if (block) {
                 
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                 dispatch_async(dispatch_get_main_queue(), ^{
                     block([weakSelf searchByKey:key valueName:valueName type:type]);
                 });
                 
@@ -336,7 +336,7 @@
         };
     } else {
         if (block) {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+             dispatch_async(dispatch_get_main_queue(), ^{
                 block([self searchByKey:key valueName:valueName type:type]);
             });
             dispatch_semaphore_signal(self.semaphore);

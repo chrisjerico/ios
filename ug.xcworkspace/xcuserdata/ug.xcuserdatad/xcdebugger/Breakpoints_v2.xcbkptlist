@@ -90,7 +90,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ug/Classes/Helper/CMNetwork/CMNetwork+Mine.m"
-            timestampString = "590590156.751484"
+            timestampString = "590598150.171023"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "683"
@@ -122,12 +122,12 @@
                   moduleName = "ug"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ug/Desktop/fhcpIOSapp/ug/Classes/Mine/Controller/MissionCenter/UGIntegralConvertRecordController.m"
-                  timestampString = "590589765.690322"
+                  timestampString = "590597858.791479"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "114"
                   endingLineNumber = "114"
-                  offsetFromSymbolStart = "379">
+                  offsetFromSymbolStart = "420">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -137,12 +137,12 @@
                   moduleName = "ug"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ug/Desktop/fhcpIOSapp/ug/Classes/Mine/Controller/MissionCenter/UGIntegralConvertRecordController.m"
-                  timestampString = "590589765.6917599"
+                  timestampString = "590597858.792725"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "114"
                   endingLineNumber = "114"
-                  offsetFromSymbolStart = "15">
+                  offsetFromSymbolStart = "16">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -234,7 +234,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ug/Classes/Promote/Controller/UGPromoteDetailController.m"
-            timestampString = "590515164.702754"
+            timestampString = "590600988.821963"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "36"
@@ -266,12 +266,92 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ug/Classes/Helper/CMNetwork/CMNetwork+Mine.m"
-            timestampString = "590590156.752215"
+            timestampString = "590598150.171134"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "962"
             endingLineNumber = "962"
             landmarkName = "+activityApplyWinWithParams:completion:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ug/Classes/Home/Controller/UGHomeViewController.m"
+            timestampString = "590600988.8220659"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "726"
+            endingLineNumber = "726"
+            landmarkName = "-tryPlayClick"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ug/Classes/Home/Controller/UGHomeViewController.m"
+            timestampString = "590600988.822119"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "723"
+            endingLineNumber = "723"
+            landmarkName = "-tryPlayClick"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[UGHomeViewController tryPlayClick]"
+                  moduleName = "ug"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ug/Desktop/fhcpIOSapp/ug/Classes/Home/Controller/UGHomeViewController.m"
+                  timestampString = "590597858.8173701"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "707"
+                  endingLineNumber = "707"
+                  offsetFromSymbolStart = "220">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__36-[UGHomeViewController tryPlayClick]_block_invoke"
+                  moduleName = "ug"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ug/Desktop/fhcpIOSapp/ug/Classes/Home/Controller/UGHomeViewController.m"
+                  timestampString = "590597858.8186181"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "708"
+                  endingLineNumber = "708"
+                  offsetFromSymbolStart = "116">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ug/Classes/Helper/CMNetwork/CMNetwork+Mine.m"
+            timestampString = "590598150.17119"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "+userLoginWithParams:completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

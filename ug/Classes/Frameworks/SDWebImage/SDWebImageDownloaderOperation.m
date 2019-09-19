@@ -184,7 +184,7 @@ typedef NSMutableDictionary<NSString *, id> SDCallbacksDictionary;
             progressBlock(0, NSURLResponseUnknownLength, self.request.URL);
         }
         __weak typeof(self) weakSelf = self;
-        dispatch_async(dispatch_get_main_queue(), ^{
+         dispatch_async(dispatch_get_main_queue(), ^{
             [[NSNotificationCenter defaultCenter] postNotificationName:SDWebImageDownloadStartNotification object:weakSelf];
         });
     } else {
@@ -217,7 +217,7 @@ typedef NSMutableDictionary<NSString *, id> SDCallbacksDictionary;
     if (self.dataTask) {
         [self.dataTask cancel];
         __weak typeof(self) weakSelf = self;
-        dispatch_async(dispatch_get_main_queue(), ^{
+         dispatch_async(dispatch_get_main_queue(), ^{
             [[NSNotificationCenter defaultCenter] postNotificationName:SDWebImageDownloadStopNotification object:weakSelf];
         });
 
@@ -297,7 +297,7 @@ didReceiveResponse:(NSURLResponse *)response
         self.imageData = [[NSMutableData alloc] initWithCapacity:expected];
         self.response = response;
         __weak typeof(self) weakSelf = self;
-        dispatch_async(dispatch_get_main_queue(), ^{
+         dispatch_async(dispatch_get_main_queue(), ^{
             [[NSNotificationCenter defaultCenter] postNotificationName:SDWebImageDownloadReceiveResponseNotification object:weakSelf];
         });
     } else {
@@ -311,7 +311,7 @@ didReceiveResponse:(NSURLResponse *)response
             [self.dataTask cancel];
         }
         __weak typeof(self) weakSelf = self;
-        dispatch_async(dispatch_get_main_queue(), ^{
+         dispatch_async(dispatch_get_main_queue(), ^{
             [[NSNotificationCenter defaultCenter] postNotificationName:SDWebImageDownloadStopNotification object:weakSelf];
         });
         
@@ -446,7 +446,7 @@ didReceiveResponse:(NSURLResponse *)response
     @synchronized(self) {
         self.dataTask = nil;
         __weak typeof(self) weakSelf = self;
-        dispatch_async(dispatch_get_main_queue(), ^{
+         dispatch_async(dispatch_get_main_queue(), ^{
             [[NSNotificationCenter defaultCenter] postNotificationName:SDWebImageDownloadStopNotification object:weakSelf];
             if (!error) {
                 [[NSNotificationCenter defaultCenter] postNotificationName:SDWebImageDownloadFinishNotification object:weakSelf];

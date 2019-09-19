@@ -113,7 +113,7 @@
         NSLog(@"height = %f",height);
 
         // 同步到主线程
-        dispatch_async(dispatch_get_main_queue(), ^{
+         dispatch_async(dispatch_get_main_queue(), ^{
             
             if ([CMCommon arryIsNull:self->_blankDataArray]) {
                 [self->_blank_button setHidden:YES];
