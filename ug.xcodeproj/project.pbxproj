@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		030BE80A23337AE3004AB19A /* CustomGameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 030BE80923337AE3004AB19A /* CustomGameModel.m */; };
 		A0C64CB6AEB0CF1B2031BBB8 /* Pods_ug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6486EFF4C273BEA0AE8994DD /* Pods_ug.framework */; };
 		D4000C45232E4EDD000705B1 /* UGAgentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4000C43232E4EDD000705B1 /* UGAgentViewController.m */; };
 		D4000C46232E4EDD000705B1 /* UGAgentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4000C44232E4EDD000705B1 /* UGAgentViewController.xib */; };
@@ -529,6 +530,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		030BE80823337AE3004AB19A /* CustomGameModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomGameModel.h; sourceTree = "<group>"; };
+		030BE80923337AE3004AB19A /* CustomGameModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomGameModel.m; sourceTree = "<group>"; };
 		443C93C1135A8C900E47477A /* Pods-ug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ug.release.xcconfig"; path = "Target Support Files/Pods-ug/Pods-ug.release.xcconfig"; sourceTree = "<group>"; };
 		6486EFF4C273BEA0AE8994DD /* Pods_ug.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ug.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4000C42232E4EDD000705B1 /* UGAgentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGAgentViewController.h; sourceTree = "<group>"; };
@@ -2484,6 +2487,8 @@
 				D48224F922A120E500F7DE72 /* UGPlatformNoticeModel.m */,
 				D4145A7922B3C0F900D8165F /* UGPlatformGameModel.h */,
 				D4145A7A22B3C0F900D8165F /* UGPlatformGameModel.m */,
+				030BE80823337AE3004AB19A /* CustomGameModel.h */,
+				030BE80923337AE3004AB19A /* CustomGameModel.m */,
 				D40E1E5122BE6AB6004D4664 /* UGBannerModel.h */,
 				D40E1E5222BE6AB6004D4664 /* UGBannerModel.m */,
 				D40E1E5422BF5409004D4664 /* UGNoticeModel.h */,
@@ -3461,6 +3466,7 @@
 				D405B24E2279740A00F8C586 /* NSArray+HYBUnicodeReadable.m in Sources */,
 				D405AFFA22783DCC00F8C586 /* MASViewAttribute.m in Sources */,
 				D405B1D6227972C100F8C586 /* AFURLSessionManager.m in Sources */,
+				030BE80A23337AE3004AB19A /* CustomGameModel.m in Sources */,
 				D481AB4B2331FA5E0099685B /* UGMosaicGoldModel.m in Sources */,
 				D4AE64182295871D00DD265A /* MJRefreshNormalHeader.m in Sources */,
 				D405B31B227D727D00F8C586 /* UGRegisterViewController.m in Sources */,

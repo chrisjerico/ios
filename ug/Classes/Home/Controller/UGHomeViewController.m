@@ -131,9 +131,9 @@
     });
     
     [self getSystemConfig];
-//	[self getBannerList];
-    [self getPlatformGamesList];
-//    [self getBannerList];
+//    [self getPlatformGamesList];
+	[self getCustomGameList];
+    [self getBannerList];
     [self getNoticeList];
     [self getRankList];
     [self getAllNextIssueData];
@@ -142,8 +142,9 @@
     
     self.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self getSystemConfig];
-        [self getPlatformGamesList];
-//        [self getBannerList];
+//        [self getPlatformGamesList];
+		[self getCustomGameList];
+        [self getBannerList];
         [self getNoticeList];
         [self getRankList];
         [self getUserInfo];
@@ -289,7 +290,39 @@
     }];
     
 }
+- (void)getCustomGameList {
+	
+	[SVProgressHUD showWithStatus: nil];
+	[CMNetwork getCustomGamesWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+		[self.scrollView.mj_header endRefreshing];
+		[CMResult processWithResult:model success:^{
+			[SVProgressHUD dismiss];
+			if (model.data) {
+				dispatch_async(dispatch_get_main_queue(), ^{
+					NSLog(@"%@", model.data);
+					self.gameTypeArray = model.data;
+					float itemH = UGScreenW / 3;
+					NSInteger count = 0;
+					for (UGPlatformModel *gameType in self.gameTypeArray) {
+						count = gameType.games.count > count ? gameType.games.count : count;
+					}
+					float collectionViewH = ((count - 1) / 3 + 1) *itemH;
+					self.gameTypeViewHeightConstraint.constant = collectionViewH + 80;
+					self.scrollContentHeightConstraints.constant = CGRectGetMaxY(self.rankingView.frame);
+					self.scrollView.contentSize = CGSizeMake(UGScreenW, self.scrollContentHeightConstraints.constant + 200);
+					[self.view layoutIfNeeded];
 
+					self.gameTypeCollectionView.gameTypeArray = self.gameTypeArray;
+				});
+
+			}
+
+		} failure:^(id msg) {
+			[SVProgressHUD showErrorWithStatus:msg];
+		}];
+
+	}];
+}
 - (void)getPlatformGamesList {
     
 //    [SVProgressHUD showWithStatus: nil];
