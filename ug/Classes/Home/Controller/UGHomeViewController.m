@@ -101,116 +101,237 @@
 @implementation UGHomeViewController
 
 - (void)viewDidLoad {
-	[super viewDidLoad];
-	SANotificationEventSubscribe(UGNotificationLoginComplete, self, ^(typeof (self) self, id obj) {
-		[self getUserInfo];
-		self.titleView.showLoginView = NO;
-		
-	});
-	SANotificationEventSubscribe(UGNotificationUserLogout, self, ^(typeof (self) self, id obj) {
-		[self userLogout];
-	});
-	SANotificationEventSubscribe(UGNotificationloginTimeout, self, ^(typeof (self) self, id obj) {
-		[QDAlertView showWithTitle:@"提示" message:@"您的账号已经登录超时，请重新登录。" cancelButtonTitle:nil otherButtonTitle:@"确定" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-			self.titleView.showLoginView = YES;
-			UGUserModel.currentUser = nil;
-			[self.tabBarController setSelectedIndex:0];
-			[self loginClick];
-			
-		}];
-	});
-	SANotificationEventSubscribe(UGNotificationShowLoginView, self, ^(typeof (self) self, id obj) {
-		[self loginClick];
-	});
-	SANotificationEventSubscribe(UGNotificationGetUserInfo, self, ^(typeof (self) self, id obj) {
-		[self getUserInfo];
-		
-	});
-	SANotificationEventSubscribe(UGNotificationAutoTransferOut, self, ^(typeof (self) self, id obj) {
-		[self autoTransferOut];
-	});
-	
-	[self getSystemConfig];
-	[self getNoticeList];
-	
-	[self getCustomGameList];
-	[self getRankList];
-	[self getAllNextIssueData];
-	[self getUserInfo];
-	[self getCheckinListData];
-	
-	self.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-		[self getSystemConfig];
-		//		[self getBannerList];
-		//		[self getNoticeList];
-		[self getCustomGameList];
-		[self getRankList];
-		[self getUserInfo];
-		[self getAllNextIssueData];
-		[self getCheckinListData];
-	}];
-	
-	[self.gameTypeView addSubview:self.gameTypeCollectionView];
-	[self.gameTypeCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.edges.equalTo(self.gameTypeView);
-	}];
-	WeakSelf
-	self.gameTypeCollectionView.platformSelectBlock = ^(NSInteger selectIndex) {
+//<<<<<<< HEAD
+//	[super viewDidLoad];
+//	SANotificationEventSubscribe(UGNotificationLoginComplete, self, ^(typeof (self) self, id obj) {
+//		[self getUserInfo];
+//		self.titleView.showLoginView = NO;
+//		
+//	});
+//	SANotificationEventSubscribe(UGNotificationUserLogout, self, ^(typeof (self) self, id obj) {
+//		[self userLogout];
+//	});
+//	SANotificationEventSubscribe(UGNotificationloginTimeout, self, ^(typeof (self) self, id obj) {
+//		[QDAlertView showWithTitle:@"提示" message:@"您的账号已经登录超时，请重新登录。" cancelButtonTitle:nil otherButtonTitle:@"确定" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+//			self.titleView.showLoginView = YES;
+//			UGUserModel.currentUser = nil;
+//			[self.tabBarController setSelectedIndex:0];
+//			[self loginClick];
+//			
+//		}];
+//	});
+//	SANotificationEventSubscribe(UGNotificationShowLoginView, self, ^(typeof (self) self, id obj) {
+//		[self loginClick];
+//	});
+//	SANotificationEventSubscribe(UGNotificationGetUserInfo, self, ^(typeof (self) self, id obj) {
+//		[self getUserInfo];
+//		
+//	});
+//	SANotificationEventSubscribe(UGNotificationAutoTransferOut, self, ^(typeof (self) self, id obj) {
+//		[self autoTransferOut];
+//	});
+//	
+//	[self getSystemConfig];
+//	[self getNoticeList];
+//	
+//	[self getCustomGameList];
+//	[self getRankList];
+//	[self getAllNextIssueData];
+//	[self getUserInfo];
+//	[self getCheckinListData];
+//	
+//	self.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+//		[self getSystemConfig];
+//		//		[self getBannerList];
+//		//		[self getNoticeList];
+//		[self getCustomGameList];
+//		[self getRankList];
+//		[self getUserInfo];
+//		[self getAllNextIssueData];
+//		[self getCheckinListData];
+//	}];
+//	
+//	[self.gameTypeView addSubview:self.gameTypeCollectionView];
+//	[self.gameTypeCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+//		make.edges.equalTo(self.gameTypeView);
+//	}];
+//	WeakSelf
+//	self.gameTypeCollectionView.platformSelectBlock = ^(NSInteger selectIndex) {
+//
+////		float itemH = UGScreenW / 3;
+//		GameCategoryModel *model = weakSelf.gameCategorys[selectIndex];
+//		float collectionViewH = ((model.list.count - 1) / 3 + 1) * 100;
+//		weakSelf.gameTypeViewHeightConstraint.constant = collectionViewH + 80;
+//		weakSelf.scrollContentHeightConstraints.constant = CGRectGetMaxY(weakSelf.rankingView.frame);
+//		weakSelf.scrollView.contentSize = CGSizeMake(UGScreenW, weakSelf.scrollContentHeightConstraints.constant);
+//		
+//		CGRect previousRect = weakSelf.gameTypeView.frame;
+//		weakSelf.gameTypeView.frame = CGRectMake(previousRect.origin.x, previousRect.origin.y, previousRect.size.width, weakSelf.gameTypeCollectionView.totalHeight);
+//	
+//		
+//		[weakSelf.view layoutIfNeeded];
+//	};
+//	self.gameTypeCollectionView.gameItemSelectBlock = ^(GameModel * _Nonnull game) {
+//		[weakSelf showGameVC: game];
+//	};
+//	
+//	self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+//	
+//	self.uGredEnvelopeView = [[UGredEnvelopeView alloc] initWithFrame:CGRectMake(UGScreenW-100, 150, 95, 95) ];
+//	
+//	[self.view addSubview:_uGredEnvelopeView];
+//	
+//	[self.uGredEnvelopeView setHidden:YES];
+//	
+//	[self.uGredEnvelopeView  mas_remakeConstraints:^(MASConstraintMaker *make)
+//	 {
+//		
+//		make.right.equalTo(self.view.mas_right).with.offset(-10);
+//		make.width.mas_equalTo(95.0);
+//		make.height.mas_equalTo(95.0);
+//		make.top.equalTo(self.view.mas_top).offset(150);
+//		
+//	}];
+//	
+//	self.uGredEnvelopeView.cancelClickBlock = ^(void) {
+//		[weakSelf.uGredEnvelopeView setHidden:YES];
+//	};
+//	
+//	
+//	
+//	
+//	self.uGredEnvelopeView.redClickBlock = ^(void) {
+//		//        [weakSelf.uGredEnvelopeView setHidden:YES];
+//		
+//		
+//		weakSelf.uGredActivityView = [[UGredActivityView alloc] initWithFrame:CGRectMake(20,100, UGScreenW-50, UGScreenW-50+150) ];
+//		
+//		weakSelf.uGredActivityView.item = weakSelf.uGredEnvelopeView.item;
+//		if (weakSelf.uGredEnvelopeView.item) {
+//			[weakSelf.uGredActivityView show];
+//		}
+//		
+//	};
+//=======
+    [super viewDidLoad];
 
-//		float itemH = UGScreenW / 3;
-		GameCategoryModel *model = weakSelf.gameCategorys[selectIndex];
-		float collectionViewH = ((model.list.count - 1) / 3 + 1) * 100;
-		weakSelf.gameTypeViewHeightConstraint.constant = collectionViewH + 80;
-		weakSelf.scrollContentHeightConstraints.constant = CGRectGetMaxY(weakSelf.rankingView.frame);
-		weakSelf.scrollView.contentSize = CGSizeMake(UGScreenW, weakSelf.scrollContentHeightConstraints.constant);
-		
-		CGRect previousRect = weakSelf.gameTypeView.frame;
-		weakSelf.gameTypeView.frame = CGRectMake(previousRect.origin.x, previousRect.origin.y, previousRect.size.width, weakSelf.gameTypeCollectionView.totalHeight);
-	
-		
-		[weakSelf.view layoutIfNeeded];
-	};
-	self.gameTypeCollectionView.gameItemSelectBlock = ^(GameModel * _Nonnull game) {
-		[weakSelf showGameVC: game];
-	};
-	
-	self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
-	
-	self.uGredEnvelopeView = [[UGredEnvelopeView alloc] initWithFrame:CGRectMake(UGScreenW-100, 150, 95, 95) ];
-	
-	[self.view addSubview:_uGredEnvelopeView];
-	
-	[self.uGredEnvelopeView setHidden:YES];
-	
-	[self.uGredEnvelopeView  mas_remakeConstraints:^(MASConstraintMaker *make)
-	 {
-		
-		make.right.equalTo(self.view.mas_right).with.offset(-10);
-		make.width.mas_equalTo(95.0);
-		make.height.mas_equalTo(95.0);
-		make.top.equalTo(self.view.mas_top).offset(150);
-		
-	}];
-	
-	self.uGredEnvelopeView.cancelClickBlock = ^(void) {
-		[weakSelf.uGredEnvelopeView setHidden:YES];
-	};
-	
-	
-	
-	
-	self.uGredEnvelopeView.redClickBlock = ^(void) {
-		//        [weakSelf.uGredEnvelopeView setHidden:YES];
-		
-		
-		weakSelf.uGredActivityView = [[UGredActivityView alloc] initWithFrame:CGRectMake(20,100, UGScreenW-50, UGScreenW-50+150) ];
-		
-		weakSelf.uGredActivityView.item = weakSelf.uGredEnvelopeView.item;
-		if (weakSelf.uGredEnvelopeView.item) {
-			[weakSelf.uGredActivityView show];
-		}
-		
-	};
+    SANotificationEventSubscribe(UGNotificationLoginComplete, self, ^(typeof (self) self, id obj) {
+        [self getUserInfo];
+        self.titleView.showLoginView = NO;
+      
+    });
+    SANotificationEventSubscribe(UGNotificationUserLogout, self, ^(typeof (self) self, id obj) {
+        [self userLogout];
+    });
+    SANotificationEventSubscribe(UGNotificationloginTimeout, self, ^(typeof (self) self, id obj) {
+        [QDAlertView showWithTitle:@"提示" message:@"您的账号已经登录超时，请重新登录。" cancelButtonTitle:nil otherButtonTitle:@"确定" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+            self.titleView.showLoginView = YES;
+            UGUserModel.currentUser = nil;
+            [self.tabBarController setSelectedIndex:0];
+            [self loginClick];
+            
+        }];
+    });
+    SANotificationEventSubscribe(UGNotificationShowLoginView, self, ^(typeof (self) self, id obj) {
+        [self loginClick];
+    });
+    SANotificationEventSubscribe(UGNotificationGetUserInfo, self, ^(typeof (self) self, id obj) {
+        [self getUserInfo];
+        
+    });
+    SANotificationEventSubscribe(UGNotificationAutoTransferOut, self, ^(typeof (self) self, id obj) {
+        [self autoTransferOut];
+    });
+    
+    [self getSystemConfig];
+    [self getPlatformGamesList];
+//    [self getBannerList];
+    [self getNoticeList];
+    [self getRankList];
+    [self getAllNextIssueData];
+    [self getUserInfo];
+    [self getCheckinListData];
+    
+    self.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self getSystemConfig];
+        [self getPlatformGamesList];
+//        [self getBannerList];
+        [self getNoticeList];
+        [self getRankList];
+        [self getUserInfo];
+        [self getAllNextIssueData];
+        [self getCheckinListData];
+    }];
+    
+    UGGameTypeCollectionView *gameView = [[UGGameTypeCollectionView alloc] initWithFrame:self.gameTypeView.bounds];
+    [self.gameTypeView addSubview:gameView];
+    self.gameTypeCollectionView = gameView;
+      WeakSelf
+//    self.gameTypeCollectionView.platformSelectBlock = ^(NSInteger selectIndex) {
+//
+//        float itemH = UGScreenW / 3;
+//        UGPlatformModel *model = weakSelf.gameTypeArray[selectIndex];
+//        float collectionViewH = ((model.games.count - 1) / 3 + 1) * itemH;
+//        weakSelf.gameTypeViewHeightConstraint.constant = collectionViewH + 80;
+//                weakSelf.scrollContentHeightConstraints.constant = CGRectGetMaxY(weakSelf.rankingView.frame);
+//                weakSelf.scrollView.contentSize = CGSizeMake(UGScreenW, weakSelf.scrollContentHeightConstraints.constant);
+//        [weakSelf.view layoutIfNeeded];
+//    };
+    self.gameTypeCollectionView.gameItemSelectBlock = ^(UGPlatformGameModel * _Nonnull game) {
+        [weakSelf showGameVC: game];
+    };
+    
+    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+    
+    self.uGredEnvelopeView = [[UGredEnvelopeView alloc] initWithFrame:CGRectMake(UGScreenW-100, 150, 95, 95) ];
+    
+    [self.view addSubview:_uGredEnvelopeView];
+    
+    [self.uGredEnvelopeView setHidden:YES];
+    
+    [self.uGredEnvelopeView  mas_remakeConstraints:^(MASConstraintMaker *make)
+     {
+        
+         make.right.equalTo(self.view.mas_right).with.offset(-10);
+         make.width.mas_equalTo(95.0);
+         make.height.mas_equalTo(95.0);
+         make.top.equalTo(self.view.mas_top).offset(150);
+         
+     }];
+    
+    self.uGredEnvelopeView.cancelClickBlock = ^(void) {
+        [weakSelf.uGredEnvelopeView setHidden:YES];
+    };
+    
+    
+
+    
+    self.uGredEnvelopeView.redClickBlock = ^(void) {
+//        [weakSelf.uGredEnvelopeView setHidden:YES];
+
+        
+        if ([UGUserModel currentUser].isTest) {
+            [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                if (buttonIndex == 1) {
+                    SANotificationEventPost(UGNotificationShowLoginView, nil);
+                }
+            }];
+        }else {
+            
+            weakSelf.uGredActivityView = [[UGredActivityView alloc] initWithFrame:CGRectMake(20,100, UGScreenW-50, UGScreenW-50+150) ];
+            
+            weakSelf.uGredActivityView.item = weakSelf.uGredEnvelopeView.item;
+            if (weakSelf.uGredEnvelopeView.item) {
+                [weakSelf.uGredActivityView show];
+            }
+        }
+        
+        
+
+    };
+    
+    
+//>>>>>>> 修bug，连上聊天
 
 }
 
@@ -700,7 +821,16 @@
                 [SVProgressHUD dismiss];
                 
                 self.uGredEnvelopeView.item = (UGRedEnvelopeModel*)model.data;
-                [self.uGredEnvelopeView setHidden:NO];
+                 
+                 if ([UGUserModel currentUser].isTest) {
+                     [self.uGredEnvelopeView setHidden:YES];
+                 }else {
+                     
+                     [self.uGredEnvelopeView setHidden:NO];
+                 }
+                 
+                 
+               
                 
             });
            

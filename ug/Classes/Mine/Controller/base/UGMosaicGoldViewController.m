@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.title = @"资金管理";
+    self.navigationItem.title = @"活动彩金";
     [self buildSegment];
 }
 
@@ -34,7 +34,7 @@
 #pragma mark - 配置segment
 -(void)buildSegment
 {
-    self.itemArray = @[@"申请彩金",@"取款"];
+    self.itemArray = @[@"申请彩金",@"申请反馈"];
     self.slideSwitchView = [[XYYSegmentControl alloc] initWithFrame:CGRectMake(0 , 0, self.view.width, self.view.height) channelName:self.itemArray source:self];
     [self.slideSwitchView setUserInteractionEnabled:YES];
     self.slideSwitchView.segmentControlDelegate = self;

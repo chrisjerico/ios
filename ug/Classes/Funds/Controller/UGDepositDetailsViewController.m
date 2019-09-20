@@ -14,6 +14,7 @@
 #import "UGFundsBankView.h"
 #import "SLWebViewController.h"
 #import "TGWebViewController.h"
+#import "BAWebViewController.h"
 
 @interface UGDepositDetailsViewController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -564,10 +565,18 @@
 //                    [self.navigationController pushViewController:webVC animated:YES];
 
                 
-                QDWebViewController *qdwebVC = [[QDWebViewController alloc] init];
-                qdwebVC.urlString = model.data;
-                qdwebVC.enterGame = YES;
-                [self.navigationController pushViewController:qdwebVC  animated:YES];
+//                QDWebViewController *qdwebVC = [[QDWebViewController alloc] init];
+//                qdwebVC.urlString = model.data;
+//                qdwebVC.enterGame = YES;
+//                [self.navigationController pushViewController:qdwebVC  animated:YES];
+                
+                BAWebViewController *webVC = [BAWebViewController new];
+                webVC.ba_web_progressTintColor = [UIColor cyanColor];
+                webVC.ba_web_progressTrackTintColor = [UIColor whiteColor];
+                
+                [webVC ba_web_loadURLString:model.data];
+                
+                [self.navigationController pushViewController:webVC animated:YES];
             }
             
         } failure:^(id msg) {

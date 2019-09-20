@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)show;
 
+-(void)setDateUI;
+
 @end
 
 NS_ASSUME_NONNULL_END

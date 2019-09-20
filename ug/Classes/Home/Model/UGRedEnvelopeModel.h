@@ -30,6 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL isTest;
 @property (nonatomic, assign) BOOL hasLogin;
 
+@property (nonatomic, assign) BOOL canGet;//是否可以抢 的字段
+
 @property (nonatomic, strong) NSString *username;//账号
 @property (nonatomic, strong) NSString *intro;//备注
 @property (nonatomic, strong) NSString *leftCount;//数量
