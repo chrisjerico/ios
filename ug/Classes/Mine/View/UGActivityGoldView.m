@@ -45,15 +45,15 @@
 
 @end
 @implementation UGActivityGoldView
+@synthesize item;
 //移除观察者
 
 -(void)dealloc
 
 {
     
-    [self.contentWebView.scrollView removeObserver:self
-     
-                                     forKeyPath:@"contentSize" context:nil];
+    [self.contentWebView removeObserver:self forKeyPath:@"scrollView.contentSize" context:@"DJWebKitContext"];
+
     
 }
 #pragma mark - 初始化
@@ -79,42 +79,39 @@
 }
 
 #pragma mark - 初始化数据
-- (void)setItem:(UGMosaicGoldParamModel *)item {
-    //初始化子视图
-    [self initSubview];
+
+
+-(void)setDateUI{
     
-    _item = item;
-    
-    _quickAmountArray = [NSMutableArray new];
-    for (int i = 1 ; i<=12; i++) {
-        NSString *str = [self.item valueForKey: [NSString stringWithFormat:@"quickAmount%d",i]];
-        if (![CMCommon stringIsNull:str]) {
-            
-            float floatStr = [str floatValue];
-            if (floatStr>0) {
-                 [_quickAmountArray addObject:str];
+    if (self.item) {
+        _quickAmountArray = [NSMutableArray new];
+        for (int i = 1 ; i<=12; i++) {
+            NSString *str = [self.item valueForKey: [NSString stringWithFormat:@"quickAmount%d",i]];
+            if (![CMCommon stringIsNull:str]) {
+                
+                float floatStr = [str floatValue];
+                if (floatStr>0) {
+                    [_quickAmountArray addObject:str];
+                }
+                
             }
-           
         }
-    }
-    
-    NSLog(@"self.item.win_apply_content = %@",self.item.win_apply_content);
-    
-    NSString *str = [NSString stringWithFormat:@"<head><style>img{width:%f !important;height:auto}</style></head>%@",self.size.width - 10,self.item.win_apply_content];
-    
         
-
-    
-    [self.contentWebView loadHTMLString:str baseURL:nil];
-    
-    //监听webview
-    
-    [self.contentWebView.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
-
-            
-//        });
-
+        NSLog(@"self.item.win_apply_content = %@",self.item.win_apply_content);
+        
+        
+     
+            // 需要在主线程执行的代码
+            NSString *str = [NSString stringWithFormat:@"<head><style>img{width:%f !important;height:auto}</style></head>%@",self.size.width - 10,self.item.win_apply_content];
+            [self.contentWebView loadHTMLString:str baseURL:nil];
+            //监听webview
+//            [self.contentWebView.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
+        
+        [self.contentWebView addObserver:self forKeyPath:@"scrollView.contentSize" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:@"DJWebKitContext"];
+   
+    }
 }
+
 #pragma mark - 初始化数据
 
 - (void)initData{
@@ -128,8 +125,7 @@
 #pragma mark - 初始化子视图
 
 - (void)initSubview{
-    
-    self.layer.cornerRadius = 5; 
+    self.layer.cornerRadius=5; 
     self.layer.masksToBounds = YES;
 
     
@@ -165,15 +161,13 @@
         make.width.mas_equalTo(100);
     }];
     
-    
-    self.closeButton.layer.cornerRadius = 5; 
+
+    self.closeButton.layer.cornerRadius=5; 
     self.closeButton.layer.masksToBounds = YES;
-    self.closeButton.layer.borderWidth = 1; 
+    self.closeButton.layer.borderWidth =1; 
     self.closeButton.layer.borderColor =  [UIColor blackColor].CGColor;
-    
     self.okButton.layer.cornerRadius = 5; 
     self.okButton.layer.masksToBounds = YES;
-
     self.myScrollView.showsVerticalScrollIndicator = NO;
     self.myScrollView.contentInset = UIEdgeInsetsMake(0, 0, 100, 0);
 
@@ -200,6 +194,11 @@
     self.contentWebView.delegate = self;
     self.contentWebView.scalesPageToFit = YES;
     self.contentWebView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    self.contentWebView.scrollView.scrollEnabled = NO;
+    //这个属性不加,webview会显示很大.
+    self.contentWebView.delegate = self;
+    
+    self.contentWebView.scrollView.delegate = self;
     
     //-滚动面版======================================
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
@@ -213,139 +212,157 @@
     self.collectionView.alwaysBounceHorizontal = NO;
     self.collectionView.showsHorizontalScrollIndicator = NO;
     
-     [_myTextView setPlaceholderWithText:@"申请说明" Color:UGRGBColor(205, 205, 209)];
-    _myTextView.layer.cornerRadius = 5; 
-    _myTextView.layer.masksToBounds = YES;
-    _myTextView.layer.borderWidth = 1; 
+    [_myTextView setPlaceholderWithText:@"申请说明" Color:UGRGBColor(205, 205, 209)];
+    _myTextView.layer.cornerRadius=5; 
+    _myTextView.layer.masksToBounds=YES;
+    _myTextView.layer.borderWidth=1;
     _myTextView.layer.borderColor =  UGRGBColor(239, 239, 239).CGColor;
 }
 
 #pragma mark - UIWebViewDelegate
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    webView.scrollView.scrollEnabled = NO;
+
+    float htmlheight = [[self.contentWebView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"] floatValue];
+
+    NSLog(@"htmlheight = %f",htmlheight);
+    
+    [self setUI:htmlheight];
 }
 
+
+-(void)setUI :(CGFloat ) webHeight{
+    
+#pragma mark - 设置自动布局
+    dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+
+        float  collectionViewHeight = 0.0 ;
+        
+        [self.contentWebView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(38);
+            make.left.equalTo(self.mas_left).with.offset(10);
+            make.right.equalTo(self.mas_right).with.offset(-10);
+            make.height.mas_equalTo(webHeight);
+        }];
+           [self.my1TextField setHidden:NO];
+        if (self.item.showWinAmount) {
+            
+            [self.title2Label  mas_remakeConstraints:^(MASConstraintMaker *make)
+             {
+                 make.left.equalTo(self.mas_left).with.offset(10);
+                 make.right.equalTo(self.mas_right).with.offset(-10);
+                 make.top.equalTo(self.contentWebView.mas_bottom).offset(0.0);
+                 make.height.mas_equalTo(21.0);
+             }];
+            
+            float  collectionViewHeight =  self.collectionView.collectionViewLayout.collectionViewContentSize.height;
+            
+            [self.collectionView setHidden:NO];
+            
+            [self.collectionView  mas_remakeConstraints:^(MASConstraintMaker *make)
+             {
+                 make.left.equalTo(self.mas_left).with.offset(10);
+                 make.right.equalTo(self.mas_right).with.offset(-10);
+                 make.height.mas_equalTo(collectionViewHeight);
+                 make.top.equalTo(self.title2Label.mas_bottom).offset(0);
+                 
+             }];
+            
+            [self.my1TextField  mas_remakeConstraints:^(MASConstraintMaker *make)
+             {
+                 make.left.equalTo(self.mas_left).with.offset(10);
+                 make.right.equalTo(self.mas_right).with.offset(-10);
+                 make.top.equalTo(self.collectionView.mas_bottom).offset(5.0);
+                 make.height.mas_equalTo(30.0);
+                 
+             }];
+        }
+        else{
+            
+            [self.title2Label setHidden:YES];
+            [self.collectionView setHidden:YES];
+            
+            [self.my1TextField  mas_remakeConstraints:^(MASConstraintMaker *make)
+             {
+                 make.left.equalTo(self.mas_left).with.offset(10);
+                 make.right.equalTo(self.mas_right).with.offset(-10);
+                 make.top.equalTo(self.contentWebView.mas_bottom).offset(5.0);
+                 make.height.mas_equalTo(30.0);
+                 
+             }];
+            
+        }
+         [self.myTextView setHidden:NO];
+        [self.myTextView  mas_remakeConstraints:^(MASConstraintMaker *make)
+         {
+             make.left.equalTo(self.mas_left).with.offset(10);
+             make.right.equalTo(self.mas_right).with.offset(-10);
+             make.top.equalTo(self.my1TextField.mas_bottom).offset(5.0);
+             make.height.mas_equalTo(100.0);
+             
+         }];
+         [self.my2TextField setHidden:NO];
+        [self.my2TextField  mas_remakeConstraints:^(MASConstraintMaker *make)
+         {
+             make.left.equalTo(self.mas_left).with.offset(10);
+             
+             make.top.equalTo(self.myTextView.mas_bottom).offset(5.0);
+             make.height.mas_equalTo(30.0);
+             make.width.mas_equalTo(self.size.width*2/3);
+         }];
+        
+        [self.validationImageView  mas_remakeConstraints:^(MASConstraintMaker *make)
+         {
+             make.left.equalTo(self.my2TextField.mas_right).with.offset(-40);
+             
+             make.top.equalTo(self.myTextView.mas_bottom).offset(5.0);
+             make.height.mas_equalTo(30.0);
+             make.width.mas_equalTo(self.size.width*1/3+40);
+         }];
+        
+        [self.imageButton  mas_remakeConstraints:^(MASConstraintMaker *make)
+         {
+             make.left.equalTo(self.my2TextField.mas_right).with.offset(-40);
+             
+             make.top.equalTo(self.myTextView.mas_bottom).offset(5.0);
+             make.height.mas_equalTo(30.0);
+             make.width.mas_equalTo(self.size.width*1/3+40);
+         }];
+        
+        
+        if (self.item.showWinAmount) {
+            self->_myScrollView.contentSize = CGSizeMake(self.frame.size.width,290+collectionViewHeight+webHeight);
+        }
+        else{
+            self->_myScrollView.contentSize = CGSizeMake(self.frame.size.width,270+webHeight);
+        }
+        
+        
+    });
+}
 
 #pragma mark - KVO
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if ([keyPath isEqualToString:@"contentSize"]) {
-        
-        CGPoint point = [change[@"new"] CGPointValue];
-        
-        CGFloat height = point.y;
-        NSLog(@"point.y---%f",height);
-        
-        CGSize fittingSize = [self.contentWebView sizeThatFits:CGSizeZero];
-        
-        CGFloat webHeight = fittingSize.height;
-        
-        float  collectionViewHeight ;
-#pragma mark - 设置自动布局
-        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+   
+    
+    if (!self.contentWebView.isLoading) {
+        if([keyPath isEqualToString:@"scrollView.contentSize"]){
             
-            [self.contentWebView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.top.mas_equalTo(38);
-                make.left.equalTo(self.mas_left).with.offset(10);
-                make.right.equalTo(self.mas_right).with.offset(-10);
-                make.height.mas_equalTo(webHeight);
-            }];
-            
-            if (self.item.showWinAmount) {
-                
-                [self.title2Label  mas_remakeConstraints:^(MASConstraintMaker *make)
-                 {
-                     make.left.equalTo(self.mas_left).with.offset(10);
-                     make.right.equalTo(self.mas_right).with.offset(-10);
-                     make.top.equalTo(self.contentWebView.mas_bottom).offset(0.0);
-                     make.height.mas_equalTo(21.0);
-                 }];
-                
-                float  collectionViewHeight =  self.collectionView.collectionViewLayout.collectionViewContentSize.height;
-                
-                [self.collectionView  mas_remakeConstraints:^(MASConstraintMaker *make)
-                 {
-                     make.left.equalTo(self.mas_left).with.offset(10);
-                     make.right.equalTo(self.mas_right).with.offset(-10);
-                     make.height.mas_equalTo(collectionViewHeight);
-                     make.top.equalTo(self.title2Label.mas_bottom).offset(0);
-                     
-                 }];
+            CGPoint point = [change[@"new"] CGPointValue];
         
-                [self.my1TextField  mas_remakeConstraints:^(MASConstraintMaker *make)
-                 {
-                     make.left.equalTo(self.mas_left).with.offset(10);
-                     make.right.equalTo(self.mas_right).with.offset(-10);
-                     make.top.equalTo(self.collectionView.mas_bottom).offset(5.0);
-                     make.height.mas_equalTo(30.0);
+            CGFloat height = point.y;
+            NSLog(@"point.y---%f",height);
         
-                 }];
-            }
-            else{
-                
-                [self.title2Label setHidden:YES];
-                [self.collectionView setHidden:YES];
-                
-                [self.my1TextField  mas_remakeConstraints:^(MASConstraintMaker *make)
-                 {
-                     make.left.equalTo(self.mas_left).with.offset(10);
-                     make.right.equalTo(self.mas_right).with.offset(-10);
-                     make.top.equalTo(self.contentWebView.mas_bottom).offset(5.0);
-                     make.height.mas_equalTo(30.0);
+            CGSize fittingSize = [self.contentWebView sizeThatFits:CGSizeZero];
         
-                 }];
-                
-            }
-            
-            [self.myTextView  mas_remakeConstraints:^(MASConstraintMaker *make)
-             {
-                 make.left.equalTo(self.mas_left).with.offset(10);
-                 make.right.equalTo(self.mas_right).with.offset(-10);
-                 make.top.equalTo(self.my1TextField.mas_bottom).offset(5.0);
-                 make.height.mas_equalTo(100.0);
-                 
-             }];
-            
-            [self.my2TextField  mas_remakeConstraints:^(MASConstraintMaker *make)
-             {
-                 make.left.equalTo(self.mas_left).with.offset(10);
+            CGFloat webHeight = fittingSize.height;
         
-                 make.top.equalTo(self.myTextView.mas_bottom).offset(5.0);
-                 make.height.mas_equalTo(30.0);
-                 make.width.mas_equalTo(self.size.width*2/3);
-             }];
         
-            [self.validationImageView  mas_remakeConstraints:^(MASConstraintMaker *make)
-             {
-                 make.left.equalTo(self.my2TextField.mas_right).with.offset(-40);
-        
-                 make.top.equalTo(self.myTextView.mas_bottom).offset(5.0);
-                 make.height.mas_equalTo(30.0);
-                 make.width.mas_equalTo(self.size.width*1/3+40);
-             }];
-            
-            [self.imageButton  mas_remakeConstraints:^(MASConstraintMaker *make)
-             {
-                 make.left.equalTo(self.my2TextField.mas_right).with.offset(-40);
-                 
-                 make.top.equalTo(self.myTextView.mas_bottom).offset(5.0);
-                 make.height.mas_equalTo(30.0);
-                 make.width.mas_equalTo(self.size.width*1/3+40);
-             }];
-           
-            
-              if (self.item.showWinAmount) {
-                    self->_myScrollView.contentSize = CGSizeMake(self.frame.size.width,290+collectionViewHeight+webHeight);
-              }
-             else{
-                   self->_myScrollView.contentSize = CGSizeMake(self.frame.size.width,270+webHeight);
-             }
-          
-            
-        });
-       
+            [self setUI:webHeight];
+        }
     }
+  
 }
 #pragma mark - UICollectionViewDelegate, UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {

@@ -33,6 +33,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *missionBili;
 @property (nonatomic, strong) NSString *isIntToMoney;
 
+@property (nonatomic, assign) BOOL checkinSwitch;//签到开关
+@property (nonatomic, assign) BOOL mkCheckinSwitch;//补签开关：
+
 + (instancetype)currentConfig;
 
 + (void)setCurrentConfig:(UGSystemConfigModel *)config;

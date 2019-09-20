@@ -187,6 +187,7 @@
    
     notiveView.item = model.param;
     
+    [notiveView setDateUI];
     
     [notiveView show];
 

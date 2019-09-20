@@ -154,6 +154,7 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/AvoidCrash/AvoidCrash.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/BAWKWebView/BAWKWebView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/LEEAlert/LEEAlert.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework"
@@ -161,6 +162,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/AvoidCrash/AvoidCrash.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/BAWKWebView/BAWKWebView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/LEEAlert/LEEAlert.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework"

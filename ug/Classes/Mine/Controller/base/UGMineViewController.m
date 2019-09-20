@@ -68,6 +68,8 @@
 @property (nonatomic, strong) CAShapeLayer *containerLayer;
 @property (nonatomic, strong) CAShapeLayer *progressLayer;
 
+@property (weak, nonatomic) IBOutlet UIButton *signButton;
+
 @end
 
 static  NSString *menuCollectionViewCellid = @"UGMineMenuCollectionViewCell";
@@ -208,7 +210,9 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
 
 - (IBAction)refreshBalance:(id)sender {
 
-    SANotificationEventPost(UGNotificationGetUserInfo, nil);
+//    SANotificationEventPost(UGNotificationGetUserInfo, nil);
+    
+    [self getUserInfo];
 
 }
 
@@ -512,6 +516,15 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
 - (void)setupUserInfo:(BOOL)flag  {
     UGUserModel *user = [UGUserModel currentUser];
     
+    
+    UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
+    if (config.checkinSwitch) {
+        [self.signButton setHidden:NO];
+    } else {
+        [self.signButton setHidden:YES];
+    }
+    
+    
     if (flag) {
         
                 [self.avaterImageView sd_setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
@@ -583,13 +596,37 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
             user.sessid = oldUser.sessid;
             user.token = oldUser.token;
             UGUserModel.currentUser = user;
-            [self setupUserInfo:YES];
+            NSLog(@"签到==%d",[UGUserModel currentUser].checkinSwitch);
             
-            [self stopAnimation];
+            [self getSystemConfig];
+            
+           
+            
+            
             
         } failure:^(id msg) {
             
             [self stopAnimation];
+            
+        }];
+    }];
+}
+
+
+- (void)getSystemConfig {
+    
+    [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            UGSystemConfigModel *config = model.data;
+            UGSystemConfigModel.currentConfig = config;
+            
+            
+              NSLog(@"签到==%d",[UGSystemConfigModel  currentConfig].checkinSwitch);
+            
+             [self setupUserInfo:YES];
+             [self stopAnimation];
+            
+        } failure:^(id msg) {
             
         }];
     }];

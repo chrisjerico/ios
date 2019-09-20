@@ -72,12 +72,11 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ywL-Ur-4lA">
-                    <rect key="frame" x="269" y="0.0" width="46" height="83"/>
+                    <rect key="frame" x="285" y="0.0" width="30" height="83"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="83" id="Rf8-6b-eG1"/>
                     </constraints>
-                    <state key="normal" title="Button"/>
                     <connections>
                         <action selector="cancelButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="YuG-vd-CWM"/>
                     </connections>

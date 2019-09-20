@@ -197,12 +197,23 @@
 //        [weakSelf.uGredEnvelopeView setHidden:YES];
 
         
-        weakSelf.uGredActivityView = [[UGredActivityView alloc] initWithFrame:CGRectMake(20,100, UGScreenW-50, UGScreenW-50+150) ];
-        
-        weakSelf.uGredActivityView.item = weakSelf.uGredEnvelopeView.item;
+        if ([UGUserModel currentUser].isTest) {
+            [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                if (buttonIndex == 1) {
+                    SANotificationEventPost(UGNotificationShowLoginView, nil);
+                }
+            }];
+        }else {
+            
+            weakSelf.uGredActivityView = [[UGredActivityView alloc] initWithFrame:CGRectMake(20,100, UGScreenW-50, UGScreenW-50+150) ];
+            
+            weakSelf.uGredActivityView.item = weakSelf.uGredEnvelopeView.item;
             if (weakSelf.uGredEnvelopeView.item) {
                 [weakSelf.uGredActivityView show];
             }
+        }
+        
+        
 
     };
     
@@ -478,7 +489,16 @@
                 [SVProgressHUD dismiss];
                 
                 self.uGredEnvelopeView.item = (UGRedEnvelopeModel*)model.data;
-                [self.uGredEnvelopeView setHidden:NO];
+                 
+                 if ([UGUserModel currentUser].isTest) {
+                     [self.uGredEnvelopeView setHidden:YES];
+                 }else {
+                     
+                     [self.uGredEnvelopeView setHidden:NO];
+                 }
+                 
+                 
+               
                 
             });
            

@@ -64,6 +64,12 @@
     self.leftAmountLabel.text = item.leftAmount;
     self.introTextView.text = item.intro;
     
+    if (item.canGet) {
+        [self.redButton setTitle:@"立即开抢" forState:UIControlStateNormal];
+    } else {
+         [self.redButton setTitle:@"已参与活动" forState:UIControlStateNormal];
+    }
+    
 }
 
 
@@ -80,13 +86,34 @@
     //    WeakSelf;
     [CMNetwork activityGetRedBagWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
+             [SVProgressHUD dismiss];
             
-            [SVProgressHUD showSuccessWithStatus:model.msg];
+            NSString *count = (NSString *)model.data;
             
-                [self hiddenSelf];
+            NSString *str = [NSString stringWithFormat:@"恭喜您获得了%@元红包",count];
+            
+            if ([CMCommon stringIsNull:count]) {
+                  [SVProgressHUD showSuccessWithStatus:model.msg];
+            } else {
+                [LEEAlert alert].config
+                .LeeTitle(@"温馨提示")
+                .LeeContent(str)
+                .LeeAction(@"确定", ^{
+                    
+                    // 确认点击事件Block
+                    [self hiddenSelf];
+                })
+                .LeeShow(); // 设置完成后 别忘记调用Show来显示
+            }
+            
+          
+            
+           
+            
+            
             
         } failure:^(id msg) {
-            
+            [SVProgressHUD dismiss];
             [SVProgressHUD showErrorWithStatus:msg];
             
                 [self hiddenSelf];

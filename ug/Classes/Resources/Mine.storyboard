@@ -220,6 +220,7 @@
                         <outlet property="nextLevelIntLabel" destination="loV-am-pxQ" id="CKz-ia-Rd0"/>
                         <outlet property="progressView" destination="781-zz-xjj" id="Rmw-M6-KzJ"/>
                         <outlet property="refreshButton" destination="4vW-BY-Jru" id="Hkr-ad-xKN"/>
+                        <outlet property="signButton" destination="fSP-DS-itM" id="vU6-V4-yV3"/>
                         <outlet property="tableView" destination="yjU-qP-SOa" id="ycM-uH-HH1"/>
                         <outlet property="userInfoView" destination="sZN-HM-pyE" id="5RH-u2-b2a"/>
                         <outlet property="userNameLabel" destination="W30-eP-iKR" id="R3P-eO-eSp"/>
