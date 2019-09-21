@@ -87,7 +87,7 @@
                 AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
                 
                 appDelegate.tabbar.qdwebVC.urlString = [NSString stringWithFormat:@"%@%@%@&sessiontoken=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid];
-
+              
                 
                 [self.navigationController popToRootViewControllerAnimated:YES];
             } failure:^(id msg) {

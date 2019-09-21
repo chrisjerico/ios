@@ -35,7 +35,7 @@
 #import "UGSigInCodeViewController.h"
 #import "UGAgentViewController.h"
 #import "UGMosaicGoldViewController.h"
-
+#import "UGSystemConfigModel.h"
 
 @interface UGMineViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIView *userInfoView;
@@ -76,8 +76,37 @@ static  NSString *menuCollectionViewCellid = @"UGMineMenuCollectionViewCell";
 static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
 @implementation UGMineViewController
 
+
+
+-(void)menuNameArrayDate{
+    UGUserModel *user = [UGUserModel currentUser];
+    
+    NSLog(@"isAgent= %d",user.isAgent);
+    if (user.isAgent) {
+        self.menuNameArray = @[@"存款",@"取款",@"在线客服",@"银行卡管理",@"利息宝",@"额度转换",@"推荐收益",@"安全中心",@"站内信",@"彩票注单记录",@"其他注单记录",@"个人信息",@"建议反馈",@"活动彩金"];
+        
+         self.imageNameArray = @[@"chongzhi",@"tixian",@"zaixiankefu",@"yinhangqia",@"lixibao",@"change",@"shouyi",@"ziyuan",@"zhanneixin",@"zdgl",@"zdgl",@"huiyuanxinxi",@"jianyi",@"zdgl"];
+    } else {
+        
+        UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
+        
+         if (config.agent_m_apply) {
+                  self.menuNameArray = @[@"存款",@"取款",@"在线客服",@"银行卡管理",@"利息宝",@"额度转换",@"代理申请",@"安全中心",@"站内信",@"彩票注单记录",@"其他注单记录",@"个人信息",@"建议反馈",@"活动彩金"];
+                  self.imageNameArray = @[@"chongzhi",@"tixian",@"zaixiankefu",@"yinhangqia",@"lixibao",@"change",@"shouyi",@"ziyuan",@"zhanneixin",@"zdgl",@"zdgl",@"huiyuanxinxi",@"jianyi",@"zdgl"];
+         } else {
+                   self.menuNameArray = @[@"存款",@"取款",@"在线客服",@"银行卡管理",@"利息宝",@"额度转换",@"安全中心",@"站内信",@"彩票注单记录",@"其他注单记录",@"个人信息",@"建议反馈",@"活动彩金"];
+                  self.imageNameArray = @[@"chongzhi",@"tixian",@"zaixiankefu",@"yinhangqia",@"lixibao",@"change",@"ziyuan",@"zhanneixin",@"zdgl",@"zdgl",@"huiyuanxinxi",@"jianyi",@"zdgl"];
+         }
+  
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    SANotificationEventSubscribe(UGNotificationUserLogout, self, ^(typeof (self) self, id obj) {
+        [self menuNameArrayDate];
+    });
     
 //    self.fd_prefersNavigationBarHidden = YES;
     self.navigationItem.title = @"我的";
@@ -89,15 +118,11 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showAvaterSelectView)];
     [self.avaterImageView addGestureRecognizer:tap];
 
-    self.imageNameArray = @[@"chongzhi",@"tixian",@"zaixiankefu",@"yinhangqia",@"lixibao",@"change",@"shouyi",@"ziyuan",@"zhanneixin",@"zdgl",@"zdgl",@"huiyuanxinxi",@"jianyi",@"zdgl"];
+   
    
     
-    UGUserModel *user = [UGUserModel currentUser];
-    if (user.isAgent) {
-         self.menuNameArray = @[@"存款",@"取款",@"在线客服",@"银行卡管理",@"利息宝",@"额度转换",@"推荐收益",@"安全中心",@"站内信",@"彩票注单记录",@"其他注单记录",@"个人信息",@"建议反馈",@"活动彩金"];
-    } else {
-       self.menuNameArray = @[@"存款",@"取款",@"在线客服",@"银行卡管理",@"利息宝",@"额度转换",@"代理申请",@"安全中心",@"站内信",@"彩票注单记录",@"其他注单记录",@"个人信息",@"建议反馈",@"活动彩金"];
-    }
+    [self menuNameArrayDate];
+    
     self.tableView.rowHeight = 50;
     self.tableView.estimatedSectionHeaderHeight = 0;
     self.tableView.estimatedSectionFooterHeight = 0;
@@ -119,6 +144,7 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
    
     
     SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
+        [self menuNameArrayDate];
         [self.refreshButton.layer removeAllAnimations];
         [self setupUserInfo:NO];
         [self.tableView reloadData];

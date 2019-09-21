@@ -349,7 +349,12 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-	self.initSubview = YES;
+//<<<<<<< HEAD
+//	self.initSubview = YES;
+//=======
+    [self.leftwardMarqueeView pause];//fixbug  发热  掉电快
+    self.initSubview = YES;
+//>>>>>>> 修复bug2
 }
 
 - (void)viewWillLayoutSubviews {
@@ -816,7 +821,8 @@
     [CMNetwork activityRedBagDetailWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             
-             dispatch_async(dispatch_get_main_queue(), ^{
+//             dispatch_async(dispatch_get_main_queue(), ^{
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 // 需要在主线程执行的代码
                 [SVProgressHUD dismiss];
                 

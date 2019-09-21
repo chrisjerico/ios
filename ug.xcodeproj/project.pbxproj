@@ -15,6 +15,8 @@
 		D4000C45232E4EDD000705B1 /* UGAgentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4000C43232E4EDD000705B1 /* UGAgentViewController.m */; };
 		D4000C46232E4EDD000705B1 /* UGAgentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4000C44232E4EDD000705B1 /* UGAgentViewController.xib */; };
 		D4000C59232E51C4000705B1 /* UITextView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = D4000C58232E51C4000705B1 /* UITextView+Extension.m */; };
+		D40499C12335E5B30019C249 /* UGPromotion6rowButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D40499BF2335E5B30019C249 /* UGPromotion6rowButtonTableViewCell.m */; };
+		D40499C22335E5B30019C249 /* UGPromotion6rowButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D40499C02335E5B30019C249 /* UGPromotion6rowButtonTableViewCell.xib */; };
 		D405AFF122783DCC00F8C586 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D405AFD822783DCC00F8C586 /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		D405AFF222783DCC00F8C586 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D405AFE122783DCC00F8C586 /* ViewController+MASAdditions.m */; };
 		D405AFF322783DCC00F8C586 /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = D405AFE522783DCC00F8C586 /* MASCompositeConstraint.m */; };
@@ -217,7 +219,7 @@
 		D41246A522854626006881E2 /* UGPromotionsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D41246A322854626006881E2 /* UGPromotionsTableViewCell.m */; };
 		D41246A622854626006881E2 /* UGPromotionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D41246A422854626006881E2 /* UGPromotionsTableViewCell.xib */; };
 		D41246A92285525A006881E2 /* UGPromotionInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = D41246A82285525A006881E2 /* UGPromotionInfoController.m */; };
-		D41246AB2285537F006881E2 /* UGPromotionInfoController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D41246AA2285537F006881E2 /* UGPromotionInfoController.storyboard */; };
+		D41246AB2285537F006881E2 /* UGPromotionInfoController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D41246AA2285537F006881E2 /* UGPromotionInfoController.storyboard */; settings = {ASSET_TAGS = (1, ); }; };
 		D41246AE2285B599006881E2 /* UGMissionListController.m in Sources */ = {isa = PBXBuildFile; fileRef = D41246AD2285B599006881E2 /* UGMissionListController.m */; };
 		D41246B22285B5CB006881E2 /* UGMissionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D41246B02285B5CB006881E2 /* UGMissionTableViewCell.m */; };
 		D41246B32285B5CB006881E2 /* UGMissionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D41246B12285B5CB006881E2 /* UGMissionTableViewCell.xib */; };
@@ -561,6 +563,9 @@
 		D4000C44232E4EDD000705B1 /* UGAgentViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGAgentViewController.xib; sourceTree = "<group>"; };
 		D4000C57232E51C4000705B1 /* UITextView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+Extension.h"; sourceTree = "<group>"; };
 		D4000C58232E51C4000705B1 /* UITextView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+Extension.m"; sourceTree = "<group>"; };
+		D40499BE2335E5B30019C249 /* UGPromotion6rowButtonTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGPromotion6rowButtonTableViewCell.h; sourceTree = "<group>"; };
+		D40499BF2335E5B30019C249 /* UGPromotion6rowButtonTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGPromotion6rowButtonTableViewCell.m; sourceTree = "<group>"; };
+		D40499C02335E5B30019C249 /* UGPromotion6rowButtonTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGPromotion6rowButtonTableViewCell.xib; sourceTree = "<group>"; };
 		D405AFCD227823D800F8C586 /* configuration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = configuration.h; sourceTree = "<group>"; };
 		D405AFCE2278240A00F8C586 /* UGPCH.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGPCH.pch; sourceTree = "<group>"; };
 		D405AFD722783DCC00F8C586 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
@@ -2844,6 +2849,9 @@
 				D41FF9382333471F00FE3F70 /* UGContentMoneyCollectionViewCell.h */,
 				D41FF9392333471F00FE3F70 /* UGContentMoneyCollectionViewCell.m */,
 				D41FF93A2333471F00FE3F70 /* UGContentMoneyCollectionViewCell.xib */,
+				D40499BE2335E5B30019C249 /* UGPromotion6rowButtonTableViewCell.h */,
+				D40499BF2335E5B30019C249 /* UGPromotion6rowButtonTableViewCell.m */,
+				D40499C02335E5B30019C249 /* UGPromotion6rowButtonTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3255,6 +3263,9 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = UG;
+				KnownAssetTags = (
+					1,
+				);
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = ug;
 				TargetAttributes = {
@@ -3413,6 +3424,7 @@
 				D41A57792306924D00C26023 /* UGBackToastView.xib in Resources */,
 				D463B4E622844D4A00EAC0F7 /* UGRightMenuTableViewCell.xib in Resources */,
 				D41C3E13228EF13D00BF6436 /* UGFastThreeOneCollectionViewCell.xib in Resources */,
+				D40499C22335E5B30019C249 /* UGPromotion6rowButtonTableViewCell.xib in Resources */,
 				D40FA8BF229910EF003E596F /* yuebaoMone.gif in Resources */,
 				D4BBFC0B232A852200147C4A /* UGFundsTestViewController.xib in Resources */,
 				D422FE5B23251E190063EA4E /* UGPromotion4rowTableViewCell.xib in Resources */,
@@ -3605,6 +3617,7 @@
 				D49A36BF22A29C7A000057D2 /* UGLotteryRulesView.m in Sources */,
 				D405B1C1227972AD00F8C586 /* NSImage+WebCache.m in Sources */,
 				D425282C2321267C007DE522 /* UGSignInScrFootView.m in Sources */,
+				D40499C12335E5B30019C249 /* UGPromotion6rowButtonTableViewCell.m in Sources */,
 				D4239BD122CCEC9D00700D8E /* UIWebView+DKProgress.m in Sources */,
 				D405B37C22805D6900F8C586 /* UGMissionCenterViewController.m in Sources */,
 				D4D8DF682286932200446BAF /* UGLotteryAssistantController.m in Sources */,

@@ -37,7 +37,16 @@
     
     NSString *remarkStr = [_remarkTextView.text  stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     
-    if ([CMCommon stringIsNull:qqStr ] || [CMCommon stringIsNull:phoneStr ] ) {
+
+    
+    BOOL isOk = [CMCommon stringIsNull:phoneStr ];
+    
+     BOOL isOk2 = [CMCommon stringIsNull:qqStr ];
+    
+    if (![CMCommon stringIsNull:qqStr ] || ![CMCommon stringIsNull:phoneStr ] ) {
+       
+    }
+    else{
         [self.view makeToast:@"QQ号和手机号必须填一个"];
         return;
     }
@@ -59,7 +68,7 @@
         [CMResult processWithResult:model success:^{
             
             [SVProgressHUD showSuccessWithStatus:model.msg];
-            
+            [self.navigationController popViewControllerAnimated:YES];
         } failure:^(id msg) {
             
             [SVProgressHUD showErrorWithStatus:msg];
