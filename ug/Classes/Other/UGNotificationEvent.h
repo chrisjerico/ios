@@ -22,6 +22,7 @@ FOUNDATION_EXTERN NSString *UGNotificationGetYuebaoInfo;
 FOUNDATION_EXTERN NSString *UGNotificationFundTitlesTap;
 FOUNDATION_EXTERN NSString *UGNotificationGetChanglongBetRecrod;
 
+FOUNDATION_EXTERN NSString *UGNotificationDepositSuccessfully;
 
 /// 登录授权
 ///

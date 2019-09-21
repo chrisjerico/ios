@@ -582,6 +582,11 @@
         [CMResult processWithResult:model success:^{
             
                 [SVProgressHUD showSuccessWithStatus:model.msg];
+            
+            //返回上个界面
+            //发送通知到存款记录
+            
+             SANotificationEventPost(UGNotificationDepositSuccessfully, nil);
 
         } failure:^(id msg) {
             
