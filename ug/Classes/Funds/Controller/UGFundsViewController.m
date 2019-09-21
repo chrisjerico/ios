@@ -36,6 +36,12 @@
 #pragma mark - 配置segment
 -(void)buildSegment
 {
+    SANotificationEventSubscribe(UGNotificationDepositSuccessfully, self, ^(typeof (self) self, id obj) {
+       
+        [self.slideSwitchView changeSlideAtSegmentIndex:2];
+        
+    });
+    
     self.itemArray = @[@"存款",@"取款",@"存款记录",@"取款记录",@"资金明细"];
     self.slideSwitchView = [[XYYSegmentControl alloc] initWithFrame:CGRectMake(0 , 0, self.view.width, self.view.height) channelName:self.itemArray source:self];
     [self.slideSwitchView setUserInteractionEnabled:YES];

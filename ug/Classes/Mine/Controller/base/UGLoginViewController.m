@@ -86,7 +86,7 @@
                 
                 AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
                 
-                appDelegate.tabbar.qdwebVC.urlString = [NSString stringWithFormat:@"%@%@%@&sessiontoken=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid];
+                appDelegate.tabbar.qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&sessiontoken=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid];
               
                 
                 [self.navigationController popToRootViewControllerAnimated:YES];
