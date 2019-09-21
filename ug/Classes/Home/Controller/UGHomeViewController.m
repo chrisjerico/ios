@@ -170,7 +170,7 @@
 //                weakSelf.scrollView.contentSize = CGSizeMake(UGScreenW, weakSelf.scrollContentHeightConstraints.constant);
 //        [weakSelf.view layoutIfNeeded];
 //    };
-    self.gameTypeCollectionView.gameItemSelectBlock = ^(UGPlatformGameModel * _Nonnull game) {
+    self.gameTypeCollectionView.gameItemSelectBlock = ^(GameModel * _Nonnull game) {
         [weakSelf showGameVC: game];
     };
     
@@ -826,12 +826,12 @@
     
 }
 
-- (void)showGameVC:(UGPlatformGameModel *)model {
+- (void)showGameVC:(GameModel *)model {
     if (!UGLoginIsAuthorized()) {
         SANotificationEventPost(UGNotificationShowLoginView, nil);
         return;
     }
-
+/***
     if ([@"cqssc" isEqualToString:model.gameType]) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGSSCLotteryController" bundle:nil];
         UGSSCLotteryController *lotteryVC = [storyboard instantiateInitialViewController];
@@ -926,6 +926,7 @@
             
         }
     }
+ ***/
 
 }
 

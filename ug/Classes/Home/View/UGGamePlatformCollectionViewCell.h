@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UGGameSubCollectionView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @class UGPlatformModel;
@@ -19,4 +20,14 @@ typedef void(^GameTypeSelectBlock)(NSInteger index);
 
 @end
 
+
+
+@interface CollectionFooter : UICollectionReusableView
+
+@property (nonatomic, strong) UGGameSubCollectionView * gameSubCollectionView;
+@property(nonatomic, strong)NSArray<GameSubModel*> *sourceData;
+
+
+
+@end
 NS_ASSUME_NONNULL_END

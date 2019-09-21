@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		030BE80A23337AE3004AB19A /* GameCategoryDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 030BE80923337AE3004AB19A /* GameCategoryDataModel.m */; };
+		030BE80D233604B3004AB19A /* UGGameSubCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 030BE80C233604B3004AB19A /* UGGameSubCollectionView.m */; };
 		A0C64CB6AEB0CF1B2031BBB8 /* Pods_ug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6486EFF4C273BEA0AE8994DD /* Pods_ug.framework */; };
 		D4000C45232E4EDD000705B1 /* UGAgentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4000C43232E4EDD000705B1 /* UGAgentViewController.m */; };
 		D4000C46232E4EDD000705B1 /* UGAgentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4000C44232E4EDD000705B1 /* UGAgentViewController.xib */; };
@@ -532,6 +533,8 @@
 /* Begin PBXFileReference section */
 		030BE80823337AE3004AB19A /* GameCategoryDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameCategoryDataModel.h; sourceTree = "<group>"; };
 		030BE80923337AE3004AB19A /* GameCategoryDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameCategoryDataModel.m; sourceTree = "<group>"; };
+		030BE80B233604B3004AB19A /* UGGameSubCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGGameSubCollectionView.h; sourceTree = "<group>"; };
+		030BE80C233604B3004AB19A /* UGGameSubCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGGameSubCollectionView.m; sourceTree = "<group>"; };
 		443C93C1135A8C900E47477A /* Pods-ug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ug.release.xcconfig"; path = "Target Support Files/Pods-ug/Pods-ug.release.xcconfig"; sourceTree = "<group>"; };
 		6486EFF4C273BEA0AE8994DD /* Pods_ug.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ug.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4000C42232E4EDD000705B1 /* UGAgentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGAgentViewController.h; sourceTree = "<group>"; };
@@ -2518,6 +2521,8 @@
 				D405B2CC227ADC1100F8C586 /* UGGamePlatformCollectionViewCell.h */,
 				D405B2CD227ADC1100F8C586 /* UGGamePlatformCollectionViewCell.m */,
 				D405B2CE227ADC1100F8C586 /* UGGamePlatformCollectionViewCell.xib */,
+				030BE80B233604B3004AB19A /* UGGameSubCollectionView.h */,
+				030BE80C233604B3004AB19A /* UGGameSubCollectionView.m */,
 				D405B2D4227B0FE100F8C586 /* UGPlatformTitleCollectionViewCell.h */,
 				D405B2D5227B0FE100F8C586 /* UGPlatformTitleCollectionViewCell.m */,
 				D405B2D6227B0FE100F8C586 /* UGPlatformTitleCollectionViewCell.xib */,
@@ -3414,6 +3419,7 @@
 				D422FE64232532C00063EA4E /* UGPromotion2rowTableViewCell.m in Sources */,
 				D409B1542296E0020053DA33 /* UGMarkSixLotteryBetItem0Cell.m in Sources */,
 				D405B243227973F200F8C586 /* UIColor+ST.m in Sources */,
+				030BE80D233604B3004AB19A /* UGGameSubCollectionView.m in Sources */,
 				D481EFFA2327C8DA000611ED /* UGDepositDetailsViewController.m in Sources */,
 				D405B213227972D300F8C586 /* MJPropertyType.m in Sources */,
 				D422FE5A23251E190063EA4E /* UGPromotion4rowTableViewCell.m in Sources */,

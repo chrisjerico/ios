@@ -18,6 +18,7 @@
 
 @property (nonatomic, strong) NSMutableArray * sectionedDataArray;
 
+
 @end
 
 static NSString *gameCellid = @"UGGameTypeColletionViewCell";
@@ -50,6 +51,7 @@ static NSString *const footerId = @"footerId";
 
 - (void)setDataArray:(NSArray *)dataArray {
     _dataArray = dataArray;
+	_selectedPath = nil;
 	if (dataArray.count <= 0) {
 		return;
 	}
@@ -93,7 +95,7 @@ static NSString *const footerId = @"footerId";
 }
 
 
-////3.添加header
+////3.添加header&footer
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
 	
 	if([kind isEqualToString:UICollectionElementKindSectionHeader])
@@ -109,13 +111,10 @@ static NSString *const footerId = @"footerId";
 	}
 	else if([kind isEqualToString:UICollectionElementKindSectionFooter])
 	{
-		UICollectionReusableView *footerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:footerId forIndexPath:indexPath];
-		if(footerView == nil)
-		{
-			footerView = [[UICollectionReusableView alloc] init];
-		}
-		footerView.backgroundColor = [UIColor clearColor];
-		
+		CollectionFooter *footerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:footerId forIndexPath:indexPath];
+
+		footerView.sourceData = ((GameModel*)self.sectionedDataArray[_selectedPath.section][_selectedPath.row]).subType;
+
 		return footerView;
 	}
 	
@@ -157,10 +156,13 @@ static NSString *const footerId = @"footerId";
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
 {
-	if (_selectedPath) {
-		return (CGSize){UGScreenW,40};
+	if (_selectedPath && _selectedPath.section == section) {
+		
+		GameModel * model = self.sectionedDataArray[section][_selectedPath.item];
+		
+		return (CGSize){UGScreenW,((model.subType.count)/3 + 1) * 40};
 	} else {
-		return (CGSize){UGScreenW,1};
+		return (CGSize){UGScreenW,0};
 	}
 	
 }
@@ -172,8 +174,10 @@ static NSString *const footerId = @"footerId";
     }
 	if (!_selectedPath) {
 		_selectedPath = indexPath;
-	} else {
+	} else if (_selectedPath == indexPath ) {
 		_selectedPath = nil;
+	} else {
+		_selectedPath = indexPath;
 	}
 	[collectionView reloadData];
 }
@@ -197,23 +201,16 @@ static NSString *const footerId = @"footerId";
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
         layout;
     });
-    
-    float itemH = UGScreenW / 3;
-    NSInteger count = 0;
-//    for (UGPlatformModel *model in self.gameTypeArray) {
-//        count = model.games.count > count ? model.games.count : count;
-//    }
-    float collectionViewH = ((10 - 1) / 3 + 1) * itemH;
-    
+	
     UICollectionView *collectionView = ({
-        collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(10, 0, UGScreenW - 20, collectionViewH) collectionViewLayout:layout];
+        collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(10, 0, UGScreenW - 20, 1000) collectionViewLayout:layout];
         collectionView.backgroundColor = [UIColor clearColor];
         collectionView.dataSource = self;
         collectionView.delegate = self;
         [collectionView registerNib:[UINib nibWithNibName:@"UGGameTypeColletionViewCell" bundle:nil] forCellWithReuseIdentifier:gameCellid];
 		
 		[collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerId];
-		[collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:footerId];
+		[collectionView registerClass:[CollectionFooter class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:footerId];
 		
         [collectionView setShowsHorizontalScrollIndicator:NO];
         collectionView;
@@ -224,4 +221,33 @@ static NSString *const footerId = @"footerId";
     
 }
 
+@end
+
+
+@implementation CollectionFooter
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+	self = [super initWithFrame:frame];
+	if (self) {
+		[self addSubview:self.gameSubCollectionView];
+		[self.gameSubCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.edges.equalTo(self);
+		}];
+	}
+	return self;
+}
+- (UGGameSubCollectionView *)gameSubCollectionView {
+	if (!_gameSubCollectionView) {
+		_gameSubCollectionView = [[UGGameSubCollectionView alloc] initWithFrame:self.bounds];
+		_gameSubCollectionView.backgroundColor = [UIColor whiteColor];
+	}
+	return _gameSubCollectionView;
+}
+
+-(void)setSourceData:(NSArray<GameSubModel *> *)sourceData {
+	_sourceData = sourceData;
+	self.gameSubCollectionView.sourceData = sourceData;
+	[self.gameSubCollectionView reloadData];
+}
 @end

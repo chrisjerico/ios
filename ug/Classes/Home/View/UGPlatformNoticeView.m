@@ -96,13 +96,12 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	return 100.0;
-//    UGNoticeModel *model = self.dataArray[indexPath.row];
-//    NSString *str = [NSString stringWithFormat:@"<head><style>img{width:%f !important;height:auto}</style></head>%@",self.width,model.content];
-//    NSAttributedString *attStr = [[NSAttributedString alloc] initWithData:[str dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
-//    UILabel *content = [[UILabel alloc] init];
-//    content.attributedText = attStr;
-//    return content.intrinsicContentSize.height;
+    UGNoticeModel *model = self.dataArray[indexPath.row];
+    NSString *str = [NSString stringWithFormat:@"<head><style>img{width:%f !important;height:auto}</style></head>%@",self.width,model.content];
+    NSAttributedString *attStr = [[NSAttributedString alloc] initWithData:[str dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+    UILabel *content = [[UILabel alloc] init];
+    content.attributedText = attStr;
+    return content.intrinsicContentSize.height;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
