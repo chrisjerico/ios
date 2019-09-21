@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GameCategoryDataModel.h"
+
 @class UGPlatformGameModel;
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *imgName;
-@property (nonatomic, strong) UGPlatformGameModel *item;
+@property (nonatomic, strong) GameModel *item;
 
 @end
 

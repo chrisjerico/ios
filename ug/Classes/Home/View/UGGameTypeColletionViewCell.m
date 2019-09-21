@@ -42,12 +42,12 @@
     
 }
 
-- (void)setItem:(UGPlatformGameModel *)item {
+- (void)setItem:(GameModel *)item {
     _item = item;
     self.nameLabel.text = item.title;
-    self.hotImageView.hidden = !item.isHot;
-    [self.imgView sd_setImageWithURL:[NSURL URLWithString:item.pic] placeholderImage:[UIImage imageNamed:@"zwt"]];
-    
+//    self.hotImageView.hidden = !item.isHot;
+    [self.imgView sd_setImageWithURL:[NSURL URLWithString:item.icon] placeholderImage:[UIImage imageNamed:@"zwt"]];
+	
 }
 
 @end

@@ -7,6 +7,9 @@
 //
 
 #import "UGBannerModel.h"
+@implementation UGBannerCellModel
+
+@end
 
 @implementation UGBannerModel
 

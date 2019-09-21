@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GameCategoryDataModel.h"
+
 @class UGPlatformModel;
 @class UGPlatformGameModel;
 NS_ASSUME_NONNULL_BEGIN
@@ -18,7 +20,7 @@ typedef void(^GameItemSelectBlock)(UGPlatformGameModel *game);
 @property (nonatomic, copy)  PlatformSelectBlock platformSelectBlock;
 @property (nonatomic, copy) GameItemSelectBlock gameItemSelectBlock;
 @property (nonatomic, assign) NSInteger selectIndex;
-@property (nonatomic, strong) NSArray *gameTypeArray;
+@property (nonatomic, strong) NSArray<GameCategoryModel*> *gameTypeArray;
 
 @end
 

@@ -15,6 +15,7 @@
 #import "UGSystemConfigModel.h"
 #import "UGAPPVersionModel.h"
 #import "UGRedEnvelopeModel.h"
+#import "GameCategoryDataModel.h"
 
 @implementation CMNetwork (Home)
 
@@ -55,7 +56,7 @@
 	
 	[self.manager requestInMainThreadWithMethod:[getCustomGamesUrl stringToRestfulUrlWithFlag:RESTFUL]
 										 params:params
-										  model:CMResultArrayClassMake(UGPlatformModel.class)
+										  model:CMResultClassMake(GameCategoryDataModel.class)
 										   post:NO
 									 completion:completionBlock];
 	
@@ -98,7 +99,7 @@
     
     [self.manager requestInMainThreadWithMethod:[getBannerListUrl stringToRestfulUrlWithFlag:RESTFUL]
                                          params:params
-                                          model:CMResultArrayClassMake(UGBannerModel.class)
+                                          model:CMResultClassMake(UGBannerModel.class)
                                            post:NO
                                      completion:completionBlock];
     

@@ -15,10 +15,7 @@ typedef void(^GameTypeSelectBlock)(NSInteger index);
 
 @property (nonatomic, copy) GameTypeSelectBlock gameTypeSelectBlock;
 
-@property (nonatomic, strong) NSString *title;
-@property (nonatomic, strong) NSString *imgName;
 @property (nonatomic, strong) NSArray *dataArray;
-@property (nonatomic, strong) NSArray *gameTypeArray;
 
 @end
 

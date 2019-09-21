@@ -57,10 +57,10 @@
 
 #import "UGredEnvelopeView.h"
 #import "UGredActivityView.h"
+#import "GameCategoryDataModel.h"
 
 
 @interface UGHomeViewController ()<SDCycleScrollViewDelegate,UUMarqueeViewDelegate>
-
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
 @property (weak, nonatomic) IBOutlet UIView *bannerBgView;
@@ -82,7 +82,7 @@
 @property (nonatomic, strong) NSMutableArray *upwardMultiMarqueeViewData;
 @property (nonatomic, strong) NSMutableArray *popNoticeArray;
 
-@property (nonatomic, strong) NSMutableArray *gameTypeArray;
+@property (nonatomic, strong) NSMutableArray *gameCategorys;
 @property (nonatomic, strong) UGNoticeTypeModel *noticeTypeModel;
 @property (nonatomic, strong) UGRankListModel *rankListModel;
 
@@ -95,12 +95,14 @@
 @property (strong, nonatomic)  UGredEnvelopeView *uGredEnvelopeView;
 @property (strong, nonatomic)  UGredActivityView *uGredActivityView;
 
+
 @end
 
 @implementation UGHomeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	[self setupSubView];
 
     SANotificationEventSubscribe(UGNotificationLoginComplete, self, ^(typeof (self) self, id obj) {
         [self getUserInfo];
@@ -132,9 +134,10 @@
     
     [self getSystemConfig];
 //    [self getPlatformGamesList];
+	[self getBannerList];
+	[self getNoticeList];
+
 	[self getCustomGameList];
-    [self getBannerList];
-    [self getNoticeList];
     [self getRankList];
     [self getAllNextIssueData];
     [self getUserInfo];
@@ -142,10 +145,11 @@
     
     self.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self getSystemConfig];
+//		[self getBannerList];
+//		[self getNoticeList];
+
 //        [self getPlatformGamesList];
 		[self getCustomGameList];
-        [self getBannerList];
-        [self getNoticeList];
         [self getRankList];
         [self getUserInfo];
         [self getAllNextIssueData];
@@ -159,7 +163,7 @@
 //    self.gameTypeCollectionView.platformSelectBlock = ^(NSInteger selectIndex) {
 //
 //        float itemH = UGScreenW / 3;
-//        UGPlatformModel *model = weakSelf.gameTypeArray[selectIndex];
+//        UGPlatformModel *model = weakSelf.gameCategorys[selectIndex];
 //        float collectionViewH = ((model.games.count - 1) / 3 + 1) * itemH;
 //        weakSelf.gameTypeViewHeightConstraint.constant = collectionViewH + 80;
 //                weakSelf.scrollContentHeightConstraints.constant = CGRectGetMaxY(weakSelf.rankingView.frame);
@@ -233,7 +237,7 @@
   
     if (!self.initSubview) {
         
-        [self setupSubView];
+//        [self setupSubView];
     }
 
 }
@@ -299,20 +303,28 @@
 			[SVProgressHUD dismiss];
 			if (model.data) {
 				dispatch_async(dispatch_get_main_queue(), ^{
-					NSLog(@"%@", model.data);
-					self.gameTypeArray = model.data;
+					GameCategoryDataModel * customGameModel = (GameCategoryDataModel*)model.data;
+					[self.gameCategorys removeAllObjects];
+					[self.gameCategorys addObject:customGameModel.lottery];
+					[self.gameCategorys addObject:customGameModel.real];
+					[self.gameCategorys addObject:customGameModel.fish];
+					[self.gameCategorys addObject:customGameModel.game];
+					[self.gameCategorys addObject:customGameModel.card];
+					[self.gameCategorys addObject:customGameModel.sport];
+
+				
 					float itemH = UGScreenW / 3;
 					NSInteger count = 0;
-					for (UGPlatformModel *gameType in self.gameTypeArray) {
-						count = gameType.games.count > count ? gameType.games.count : count;
+					for (GameCategoryModel *gameType in self.gameCategorys) {
+						count = gameType.list.count > count ? gameType.list.count : count;
 					}
-					float collectionViewH = ((count - 1) / 3 + 1) *itemH;
+					float collectionViewH = ((customGameModel.lottery.list.count - 1) / 3 + 1) *itemH;
 					self.gameTypeViewHeightConstraint.constant = collectionViewH + 80;
 					self.scrollContentHeightConstraints.constant = CGRectGetMaxY(self.rankingView.frame);
 					self.scrollView.contentSize = CGSizeMake(UGScreenW, self.scrollContentHeightConstraints.constant + 200);
 					[self.view layoutIfNeeded];
 
-					self.gameTypeCollectionView.gameTypeArray = self.gameTypeArray;
+					self.gameTypeCollectionView.gameTypeArray = self.gameCategorys;
 				});
 
 			}
@@ -324,37 +336,7 @@
 	}];
 }
 - (void)getPlatformGamesList {
-    
-//    [SVProgressHUD showWithStatus: nil];
-//	[CMNetwork getCustomGamesWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-//		[self.scrollView.mj_header endRefreshing];
-//		[CMResult processWithResult:model success:^{
-//			[SVProgressHUD dismiss];
-//			if (model.data) {
-//				dispatch_async(dispatch_get_main_queue(), ^{
-//					NSLog(@"%@", model.data);
-//					self.gameTypeArray = model.data;
-//					float itemH = UGScreenW / 3;
-//					NSInteger count = 0;
-//					for (UGPlatformModel *gameType in self.gameTypeArray) {
-//						count = gameType.games.count > count ? gameType.games.count : count;
-//					}
-//					float collectionViewH = ((count - 1) / 3 + 1) *itemH;
-//					self.gameTypeViewHeightConstraint.constant = collectionViewH + 80;
-//					self.scrollContentHeightConstraints.constant = CGRectGetMaxY(self.rankingView.frame);
-//					self.scrollView.contentSize = CGSizeMake(UGScreenW, self.scrollContentHeightConstraints.constant + 200);
-//					[self.view layoutIfNeeded];
-//
-//					self.gameTypeCollectionView.gameTypeArray = self.gameTypeArray;
-//				});
-//
-//			}
-//
-//		} failure:^(id msg) {
-//			[SVProgressHUD showErrorWithStatus:msg];
-//		}];
-//
-//	}];
+
     [CMNetwork getPlatformGamesWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
          [self.scrollView.mj_header endRefreshing];
         //     fixbug:这个接口后再请求轮播图，否则看不到轮播图
@@ -364,10 +346,10 @@
             if (model.data) {
                 dispatch_async(dispatch_get_main_queue(), ^{
 
-                    self.gameTypeArray = model.data;
+                    self.gameCategorys = model.data;
                     float itemH = UGScreenW / 3;
                     NSInteger count = 0;
-                    for (UGPlatformModel *gameType in self.gameTypeArray) {
+                    for (UGPlatformModel *gameType in self.gameCategorys) {
                         count = gameType.games.count > count ? gameType.games.count : count;
                     }
                     float collectionViewH = ((count - 1) / 3 + 1) *itemH;
@@ -376,7 +358,7 @@
                     self.scrollView.contentSize = CGSizeMake(UGScreenW, self.scrollContentHeightConstraints.constant + 200);
                     [self.view layoutIfNeeded];
 
-                    self.gameTypeCollectionView.gameTypeArray = self.gameTypeArray;
+                    self.gameTypeCollectionView.gameTypeArray = self.gameCategorys;
                 });
 
             }
@@ -451,10 +433,11 @@
     [CMNetwork getBannerListWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
          [self.scrollView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
-            self.bannerArray = model.data;
+			UGBannerModel * bannerData = model.data;
+            self.bannerArray = bannerData.list;
             NSMutableArray *mutArr = [NSMutableArray array];
             if (self.bannerArray.count) {
-                for (UGBannerModel *banner in self.bannerArray) {
+                for (UGBannerCellModel *banner in self.bannerArray) {
                     [mutArr addObject:banner.pic];
                 }
                 self.bannerView.imageURLStringsGroup = mutArr.mutableCopy;
@@ -552,7 +535,7 @@
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
 {
     
-    UGBannerModel *banner = self.bannerArray[index];
+    UGBannerCellModel *banner = self.bannerArray[index];
     if (banner.url.length) {
         SLWebViewController *webVC = [[SLWebViewController alloc] init];
         webVC.urlStr = banner.url;
@@ -984,9 +967,9 @@
     self.bannerView.delegate = self;
     [self.bannerBgView addSubview:self.bannerView];
     
-    self.leftwardMarqueeView.direction = UUMarqueeViewDirectionLeftward;
+    self.leftwardMarqueeView.direction = UUMarqueeViewDirectionUpward;
     self.leftwardMarqueeView.delegate = self;
-    self.leftwardMarqueeView.timeIntervalPerScroll = 0.0f;
+    self.leftwardMarqueeView.timeIntervalPerScroll = 0.5f;
     self.leftwardMarqueeView.scrollSpeed = 60.0f;
     self.leftwardMarqueeView.itemSpacing = 20.0f;
     self.leftwardMarqueeView.touchEnabled = YES;
@@ -1024,11 +1007,11 @@
     return _popNoticeArray;
 }
 
-- (NSMutableArray *)gameTypeArray {
-    if (_gameTypeArray == nil) {
-        _gameTypeArray = [NSMutableArray array];
+- (NSMutableArray *)gameCategorys {
+    if (_gameCategorys == nil) {
+        _gameCategorys = [NSMutableArray array];
     }
-    return _gameTypeArray;
+    return _gameCategorys;
 }
 
 @end

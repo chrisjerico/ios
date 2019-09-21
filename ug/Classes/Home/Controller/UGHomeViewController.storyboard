@@ -97,14 +97,14 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g3O-cs-ZTw">
-                                                <rect key="frame" x="0.0" y="254" width="414" height="1000"/>
+                                                <rect key="frame" x="0.0" y="254" width="414" height="100"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="1000" id="ig1-8R-drJ"/>
+                                                    <constraint firstAttribute="height" constant="100" id="ig1-8R-drJ"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="crl-J7-sLe">
-                                                <rect key="frame" x="0.0" y="1254" width="414" height="200"/>
+                                                <rect key="frame" x="0.0" y="354" width="414" height="200"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="中奖排行榜" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7pj-to-Bil">
                                                         <rect key="frame" x="23" y="10.5" width="82" height="19.5"/>

@@ -11,6 +11,8 @@
 #import "UGPlatformGameModel.h"
 #import "WSLWaterFlowLayout.h"
 #import "UGPlatformTitleCollectionView.h"
+#import "GameCategoryDataModel.h"
+
 
 @interface UGGameTypeCollectionView ()<UICollectionViewDataSource,UICollectionViewDelegate>
 
@@ -83,13 +85,12 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UGGamePlatformCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:platformCellid forIndexPath:indexPath];
-    cell.gameTypeArray = self.gameTypeArray;
-    UGPlatformModel *model = self.gameTypeArray[indexPath.row];
-    cell.dataArray = model.games;
+    GameCategoryModel *model = self.gameTypeArray[indexPath.row];
+    cell.dataArray = model.list;
     WeakSelf
     cell.gameTypeSelectBlock = ^(NSInteger index) {
         if (weakSelf.gameItemSelectBlock) {
-            weakSelf.gameItemSelectBlock(model.games[index]);
+            weakSelf.gameItemSelectBlock(model.list[index]);
         }
     };
     return cell;
@@ -106,11 +107,11 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
 
 - (void)initCollectionView {
     float itemH = UGScreenW / 3;
-    NSInteger count = 0;
-    for (UGPlatformModel *model in self.gameTypeArray) {
-        count = model.games.count > count ? model.games.count : count;
-    }
-    float collectionViewH = ((count - 1) / 3 + 1) * itemH;
+//    NSInteger count = 0;
+//    for (NSDictionary *model in self.gameTypeArray) {
+//        count = model.games.count > count ? model.games.count : count;
+//    }
+    float collectionViewH = ((10 - 1) / 3 + 1) * itemH;
     UICollectionViewFlowLayout *layout = ({
 
         layout = [[UICollectionViewFlowLayout alloc] init];
