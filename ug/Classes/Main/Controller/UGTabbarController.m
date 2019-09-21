@@ -79,25 +79,23 @@
                           imageName:@"dating"
                   selectedImageName:@"datongsel"];
     
-    qdwebVC = [[QDWebViewController alloc] init];
-    qdwebVC.navigationTitle = @"聊天室";
+    qdwebVC = [[UGChatViewController alloc] init];
+    
+    
+
+    qdwebVC.webTitle = @"聊天室";
    
     
     
     if (![CMCommon stringIsNull:[UGUserModel currentUser].token]) {
-         qdwebVC.urlString = [NSString stringWithFormat:@"%@%@%@&sessiontoken=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid];
+         qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid];
     } else {
-//        qdwebVC.urlString = @"http://test10.6yc.com/dist/#/home?from=app&logintoken=87f2c1f02045f209b99b233214e36eaa&sessiontoken=sid3m3sdYLqh3hg44SOdW44I49g";
-         qdwebVC.urlString = @"https://www.baidu.com";
+         qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid];
     }
 
     
-    NSLog(@"qdwebVC.urlString= %@",qdwebVC.urlString);
-//    http://test10.6yc.com/dist/#/home?from=app&logintoken=(null)&sessiontoken=(null)
-//    http://test10.6yc.com/dist/#/home?from=app&logintoken=87f2c1f02045f209b99b233214e36eaa&sessiontoken=sid3m3sdYLqh3hg44SOdW44I49g
-//
-//    @"http://test10.6yc.com";
-//     qdwebVC.urlString = @"http://test10.6yc.com/dist/#/home?from=app&logintoken=87f2c1f02045f209b99b233214e36eaa&sessiontoken=sid3m3sdYLqh3hg44SOdW44I49g";
+    NSLog(@"qdwebVC.urlString= %@",[NSString stringWithFormat:@"%@%@%@&loginsessid=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid]);
+
     [self addOneChildViewController:[[UGNavigationController alloc]initWithRootViewController:qdwebVC]
                           WithTitle:@"聊天室"
                           imageName:@"liaotian"

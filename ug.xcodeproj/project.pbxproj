@@ -259,6 +259,7 @@
 		D4185E43231D2E1B008DB5F2 /* MOFSPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4185E3A231D2E1A008DB5F2 /* MOFSPickerView.m */; };
 		D4185E44231D2E1B008DB5F2 /* AddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4185E3B231D2E1A008DB5F2 /* AddressModel.m */; };
 		D4185E45231D2E1B008DB5F2 /* MOFSAddressPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4185E3E231D2E1A008DB5F2 /* MOFSAddressPickerView.m */; };
+		D419DF35233664E6009636F0 /* UGChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D419DF34233664E6009636F0 /* UGChatViewController.m */; };
 		D41A57782306924D00C26023 /* UGBackToastView.m in Sources */ = {isa = PBXBuildFile; fileRef = D41A57752306924B00C26023 /* UGBackToastView.m */; };
 		D41A57792306924D00C26023 /* UGBackToastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D41A57762306924C00C26023 /* UGBackToastView.xib */; };
 		D41AEA6B22E58D9E003E28C3 /* UGAvatarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D41AEA6A22E58D9E003E28C3 /* UGAvatarModel.m */; };
@@ -531,6 +532,7 @@
 		D4DFBE7222E353B1002BAFB0 /* UGMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4DFBE6F22E353AF002BAFB0 /* UGMenuTableViewCell.xib */; };
 		D4DFBE7322E353B1002BAFB0 /* UGMenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4DFBE7022E353B0002BAFB0 /* UGMenuTableViewCell.m */; };
 		D4DFBE7522E35460002BAFB0 /* Mine.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4DFBE7422E3545E002BAFB0 /* Mine.storyboard */; };
+		D4E1F6212336538D0022A1DC /* UGTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E1F6202336538D0022A1DC /* UGTestViewController.m */; };
 		D4E2876D22B666EB0002B2BF /* UGFC3DLotteryController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E2876C22B666EB0002B2BF /* UGFC3DLotteryController.m */; };
 		D4E2876F22B666FE0002B2BF /* UGFC3DLotteryController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4E2876E22B666FE0002B2BF /* UGFC3DLotteryController.storyboard */; };
 		D4E8A40F22A0323300EFE171 /* UGBetRecorddHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E8A40E22A0323300EFE171 /* UGBetRecorddHeaderView.m */; };
@@ -1024,6 +1026,8 @@
 		D4185E3C231D2E1A008DB5F2 /* MOFSToolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOFSToolView.h; sourceTree = "<group>"; };
 		D4185E3D231D2E1A008DB5F2 /* MOFSDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOFSDatePicker.h; sourceTree = "<group>"; };
 		D4185E3E231D2E1A008DB5F2 /* MOFSAddressPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOFSAddressPickerView.m; sourceTree = "<group>"; };
+		D419DF33233664E6009636F0 /* UGChatViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGChatViewController.h; sourceTree = "<group>"; };
+		D419DF34233664E6009636F0 /* UGChatViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGChatViewController.m; sourceTree = "<group>"; };
 		D41A57752306924B00C26023 /* UGBackToastView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGBackToastView.m; sourceTree = "<group>"; };
 		D41A57762306924C00C26023 /* UGBackToastView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UGBackToastView.xib; sourceTree = "<group>"; };
 		D41A57772306924C00C26023 /* UGBackToastView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGBackToastView.h; sourceTree = "<group>"; };
@@ -1490,6 +1494,8 @@
 		D4DFBE7022E353B0002BAFB0 /* UGMenuTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGMenuTableViewCell.m; sourceTree = "<group>"; };
 		D4DFBE7122E353B0002BAFB0 /* UGMenuTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGMenuTableViewCell.h; sourceTree = "<group>"; };
 		D4DFBE7422E3545E002BAFB0 /* Mine.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Mine.storyboard; sourceTree = "<group>"; };
+		D4E1F61F2336538D0022A1DC /* UGTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGTestViewController.h; sourceTree = "<group>"; };
+		D4E1F6202336538D0022A1DC /* UGTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGTestViewController.m; sourceTree = "<group>"; };
 		D4E2876B22B666EB0002B2BF /* UGFC3DLotteryController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGFC3DLotteryController.h; sourceTree = "<group>"; };
 		D4E2876C22B666EB0002B2BF /* UGFC3DLotteryController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGFC3DLotteryController.m; sourceTree = "<group>"; };
 		D4E2876E22B666FE0002B2BF /* UGFC3DLotteryController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UGFC3DLotteryController.storyboard; sourceTree = "<group>"; };
@@ -2519,6 +2525,7 @@
 		D4B75E22227811D50007047C /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				D4E1F622233664680022A1DC /* Chat */,
 				D4B75E33227811D50007047C /* Main */,
 				D4B75E23227811D50007047C /* Home */,
 				D4B75E37227811D50007047C /* Lottery */,
@@ -3131,6 +3138,8 @@
 				D405AFCE2278240A00F8C586 /* UGPCH.pch */,
 				D405B344227DB22100F8C586 /* UGNotificationEvent.h */,
 				D405B345227DB22100F8C586 /* UGNotificationEvent.m */,
+				D4E1F61F2336538D0022A1DC /* UGTestViewController.h */,
+				D4E1F6202336538D0022A1DC /* UGTestViewController.m */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -3232,6 +3241,15 @@
 				D4DE2698229BDBC70072A4A2 /* UIView+SGExtension.h */,
 			);
 			path = SGSegmentedControl;
+			sourceTree = "<group>";
+		};
+		D4E1F622233664680022A1DC /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				D419DF33233664E6009636F0 /* UGChatViewController.h */,
+				D419DF34233664E6009636F0 /* UGChatViewController.m */,
+			);
+			path = Chat;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -3606,6 +3624,7 @@
 				D409C55B22AB86D90042A0DD /* UGFeedBackController.m in Sources */,
 				D4D8DF802287065F00446BAF /* UGTimeLotteryBetHeaderView.m in Sources */,
 				D41EDF7C2317A67E005798CC /* UGBalanceTransferLogsCell.m in Sources */,
+				D4E1F6212336538D0022A1DC /* UGTestViewController.m in Sources */,
 				D416BB2122CE2E6D00BA0450 /* UGSegmentView.m in Sources */,
 				D4C46F8F232B56CB0062564D /* UGDepositDetailsNoLineViewController.m in Sources */,
 				D405B22A227972DD00F8C586 /* SVProgressHUD.m in Sources */,
@@ -3675,6 +3694,7 @@
 				D420A781231558120089C0C5 /* UGYuebaoProfitReportModel.m in Sources */,
 				D405B33A227DAC4800F8C586 /* UGUserModel.m in Sources */,
 				033177AF2338E026000D7663 /* UGBetResultView.m in Sources */,
+				D419DF35233664E6009636F0 /* UGChatViewController.m in Sources */,
 				D4145A7B22B3C0F900D8165F /* UGPlatformGameModel.m in Sources */,
 				D405B337227DABD200F8C586 /* UGModel.m in Sources */,
 				D41E0EF1228DA44500D6C42A /* UGConvertCollectionViewCell.m in Sources */,

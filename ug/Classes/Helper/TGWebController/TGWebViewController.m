@@ -26,7 +26,11 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.title = self.webTitle;
     [self setUpUI];
+    
+   
 }
+
+
 
 - (void)setUpUI {
     
@@ -42,8 +46,14 @@
     self.webProgressLayer.frame = CGRectMake(0, self.navigationController.navigationBar.height-2, WIDTH, 2);
     self.webProgressLayer.strokeColor = self.progressColor.CGColor;
     [self.navigationController.navigationBar.layer addSublayer:self.webProgressLayer];
+    
+   
+   
 }
 
+-(void)setWebViewFrame:(CGRect )frame{
+    self.tgWebView.frame = frame;
+}
 
 #pragma mark - UIWebViewDelegate
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {

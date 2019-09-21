@@ -74,7 +74,7 @@
                   moduleName = "ug"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ug/Desktop/fhcpIOSapp/ug/Classes/Mine/Controller/MissionCenter/UGIntegralConvertRecordController.m"
-                  timestampString = "590746647.2057461"
+                  timestampString = "590766782.367169"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "114"
@@ -89,7 +89,7 @@
                   moduleName = "ug"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ug/Desktop/fhcpIOSapp/ug/Classes/Mine/Controller/MissionCenter/UGIntegralConvertRecordController.m"
-                  timestampString = "590746647.207137"
+                  timestampString = "590766782.368458"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "114"
@@ -184,7 +184,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ug/Classes/Home/Controller/UGHomeViewController.m"
-            timestampString = "590746583.007444"
+            timestampString = "590770363.163733"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "150"
@@ -200,7 +200,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ug/Classes/Home/Controller/UGHomeViewController.m"
-            timestampString = "590746583.0075001"
+            timestampString = "590770363.164234"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "144"
@@ -254,6 +254,70 @@
             startingLineNumber = "369"
             endingLineNumber = "369"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ug/Classes/Other/UGTestViewController.m"
+            timestampString = "590767136.55127"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "-viewWillAppear:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ug/Classes/Other/UGTestViewController.m"
+            timestampString = "590767136.551609"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "-ba_web_loadURLString:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ug/Classes/Other/UGTestViewController.m"
+            timestampString = "590767136.551815"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "-viewWillAppear:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ug/Classes/Other/UGTestViewController.m"
+            timestampString = "590767136.552008"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "-ba_web_loadURLString:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

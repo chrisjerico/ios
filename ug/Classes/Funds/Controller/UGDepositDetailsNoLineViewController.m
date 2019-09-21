@@ -508,6 +508,11 @@
         _selectChannelModel = channelModel;
         
         [self setUIData:_selectChannelModel];
+        
+        //清空数据
+        self.uGFundsTransfer2View.myTextField.text = @"";
+        self.uGFundsTransfer2View.my2TextField.text = @"";
+        self.uGFundsTransfer2View.my3TextField.text = @"";
     }
     
 
@@ -585,6 +590,7 @@
             
             //返回上个界面
             //发送通知到存款记录
+            [self.navigationController popViewControllerAnimated:YES]; 
             
              SANotificationEventPost(UGNotificationDepositSuccessfully, nil);
 
