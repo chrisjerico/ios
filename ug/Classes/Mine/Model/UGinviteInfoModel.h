@@ -27,10 +27,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *rid;//
 @property (nonatomic, strong) NSString *link_i;//首页推广地址
 @property (nonatomic, strong) NSString *link_r;//注册推广地址
-@property (nonatomic, strong) NSString *fandian_intro;//佣金比例
+
 @property (nonatomic, strong) NSString *month_earn;//本月推荐收益
 @property (nonatomic, strong) NSString *month_member;//本月推荐会员
 @property (nonatomic, strong) NSString *total_member;//推荐会员总计
+
+
+@property (nonatomic, strong) NSString *fandian_intro;//佣金比例
 
 @end
 

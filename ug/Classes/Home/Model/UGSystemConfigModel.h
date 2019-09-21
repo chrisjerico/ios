@@ -35,6 +35,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) BOOL checkinSwitch;//签到开关
 @property (nonatomic, assign) BOOL mkCheckinSwitch;//补签开关：
+@property (nonatomic, assign) BOOL agent_m_apply;//允许会员中心申请代理
+
+@property (nonatomic, assign) BOOL recharge;//上级充值开关
 
 + (instancetype)currentConfig;
 

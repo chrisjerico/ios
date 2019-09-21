@@ -422,7 +422,16 @@
     [CMNetwork checkinWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             
-            [SVProgressHUD showSuccessWithStatus:model.msg];
+//            [SVProgressHUD showSuccessWithStatus:model.msg];
+            
+            [LEEAlert alert].config
+            .LeeTitle(@"温馨提示")
+            .LeeContent(model.msg)
+            .LeeAction(@"确认", ^{
+                
+                // 确认点击事件Block
+            })
+            .LeeShow(); // 设置完成后 别忘记调用Show来显示
             
              [self getCheckinListData];
             
@@ -467,9 +476,9 @@
     notiveView.checkinMoney = self.checkinListModel.checkinMoney;
     notiveView.checkinTimes= [NSString stringWithFormat:@"%@",self.checkinListModel.checkinTimes];
     
-    if (![CMCommon arryIsNull:self->_historyDataArray]) {
+//    if (![CMCommon arryIsNull:self->_historyDataArray]) {
         [notiveView show];
-    }
+//    }
     
    
 }
