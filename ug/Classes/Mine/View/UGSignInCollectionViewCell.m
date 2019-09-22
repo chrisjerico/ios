@@ -85,9 +85,9 @@
     if (item.integral) {
         [self setNumber_gold_Str:[NSString stringWithFormat:@"+%@",item.integral]];
     }
-    //isCheckin：true；当天签到了  ==》是显示已签到
-    //isCheckin：false；当天没签到了 isMakeup：true：当天能补签；==》是显示补签到
-    //isCheckin：false；当天没签到了 isMakeup：false：当天不能补签；==》
+    
+    //isCheckin：false；还没有签到 isMakeup：true：已经签到
+//   isMakeup false；不可以 isMakeup：true：可以补签
     //
     //如果日期大于今天，显示签到
     //如果日期小于今天，是显示补签
@@ -106,28 +106,35 @@
         // 显示签到的蓝色按钮；可以点击签到事件 未签到bg
         self.signInButton.userInteractionEnabled=YES;//交互
         self.signInButton.alpha= 1;//透明度
-        [self setStateStr:@"补签"];
-        [self setStateImageStr:@"signIn_red"];
         [self setBgImageStr:@"nosign"];
+        
+        int a = [CMCommon compareDate:item.serverTime withDate:item.whichDay withFormat:@"yyyy-MM-dd" ];
+        if (a >= 0) {
+            [self setStateStr:@"签到"];
+            [self setStateImageStr:@"signIn_blue"];
+        } else {
+            
+            if (item.mkCheckinSwitch) {
+                [self setStateStr:@"补签"];
+                [self setStateImageStr:@"signIn_red"];
+            } else {
+                [self setStateStr:@"补签"];
+                [self setStateImageStr:@"signIn_grey"];
+            }
+            
+        }
+        
     }
     else if(item.isCheckin == false && item.isMakeup == false){
-        //按钮可点击
-        //如果日期大于今天，显示签到
-        //如果日期小于今天，是显示补签
+
         self.signInButton.userInteractionEnabled=YES;//交互
         self.signInButton.alpha= 1;//透明度
         
         [self setBgImageStr:@"nosign"];
-        
-//        int a = [CMCommon compareDate:item.serverTime withDate:item.whichDay withFormat:@"yyyy-MM-dd" ];
-        
-//        if (a >= 0) {
-            [self setStateStr:@"签到"];
-            [self setStateImageStr:@"signIn_blue"];
-//        } else {
-//            [self setStateStr:@"补签"];
-//            [self setStateImageStr:@"signIn_red"];
-//        }
+
+        [self setStateStr:@"签到"];
+        [self setStateImageStr:@"signIn_blue"];
+
     }
     
     

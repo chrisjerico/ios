@@ -48,6 +48,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *nextLevelIntLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *vipImager;
 
+@property (weak, nonatomic) IBOutlet UILabel *taskRewradTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *taskRewardTotalLabel;
+
+
 @property (weak, nonatomic) IBOutlet UIImageView *curLevelImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *nextLevelImageView;
 
@@ -593,7 +597,7 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
     } else {
         img2_1Str = @"grade_11";
     }
-    
+
     [self.nextLevelImageView setImage: [UIImage imageNamed:img2_1Str]];
     
     int int1String = [user.taskRewardTotal intValue];
@@ -602,6 +606,12 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
     NSLog(@"int2String = %d",int2String);
     self.nextLevelIntLabel.text = [NSString stringWithFormat:@"成长值（%d-%d）",int1String,int2String];
     
+    if (![CMCommon stringIsNull:user.taskRewardTitle]) {
+        self.taskRewardTitleLabel.text = user.taskRewardTitle;
+    }
+    if (![CMCommon stringIsNull:user.taskRewardTotal]) {
+        self.taskRewardTotalLabel.text = user.taskRewardTotal;
+    }
     
     double floatString = [user.balance doubleValue];
     self.balanceLabel.text =  [NSString stringWithFormat:@"￥%.2f",floatString];

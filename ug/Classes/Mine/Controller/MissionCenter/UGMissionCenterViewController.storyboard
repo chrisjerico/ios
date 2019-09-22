@@ -151,6 +151,13 @@
                                             <action selector="refreshBalance:" destination="2Vo-rA-yjY" eventType="touchUpInside" id="cbP-3e-QwT"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r6w-ad-hbX">
+                                        <rect key="frame" x="298" y="28" width="108" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="0.80392700433731079" green="0.80391180515289307" blue="0.80392211675643921" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.28788453339999998" green="0.58269137140000005" blue="0.92549556489999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
@@ -210,6 +217,7 @@
                         <outlet property="nextLevelImageView" destination="f5t-Fe-xPH" id="COt-YQ-2Je"/>
                         <outlet property="progressView" destination="nIa-rW-eli" id="zkG-IX-UuG"/>
                         <outlet property="refreshBalanceButton" destination="C1V-e8-RRS" id="UOp-cR-djT"/>
+                        <outlet property="taskRewradTitleLabel" destination="r6w-ad-hbX" id="iC0-Qo-DrY"/>
                         <outlet property="userInfoView" destination="Xx8-av-ouu" id="AZB-57-HTW"/>
                         <outlet property="userNameLabel" destination="Fgr-cv-rxZ" id="bzg-tR-Bpy"/>
                         <outlet property="vipImager" destination="gYa-0u-6vs" id="fzc-y0-v42"/>
@@ -219,7 +227,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yjT-74-ERu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4" y="167"/>
+            <point key="canvasLocation" x="2.8985507246376816" y="166.74107142857142"/>
         </scene>
     </scenes>
     <resources>

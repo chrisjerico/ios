@@ -29,6 +29,26 @@
 static NSString *integralCellid = @"UGConvertCollectionViewCell";
 @implementation UGIntegralConvertController
 
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    //TODO: 页面appear 禁用
+    [[IQKeyboardManager sharedManager] setEnable:NO];
+    
+    //TODO: 页面appear 禁用
+    [[IQKeyboardManager sharedManager] setEnableAutoToolbar:NO];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    //TODO: 页面Disappear 启用
+    [[IQKeyboardManager sharedManager] setEnable:YES];
+    
+    //TODO: 页面Disappear 启用
+    [[IQKeyboardManager sharedManager] setEnableAutoToolbar:YES];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -45,6 +65,7 @@ static NSString *integralCellid = @"UGConvertCollectionViewCell";
      UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
     NSString *str1 = [NSString stringWithFormat:@"%@%@:1元人民币",config.missionBili,config.missionName];
     self.titleLabel.text = str1;
+    self.inputTextF.placeholder = [NSString stringWithFormat:@"请输入%@",config.missionName];
     
 }
 

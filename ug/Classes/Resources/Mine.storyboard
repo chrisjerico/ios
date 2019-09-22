@@ -158,6 +158,20 @@
                                             <constraint firstAttribute="width" constant="26" id="vAz-vK-LKy"/>
                                         </constraints>
                                     </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="咔咔咔" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gBE-TP-YEn">
+                                        <rect key="frame" x="287" y="24" width="80" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" red="0.80392700433731079" green="0.80391180515289307" blue="0.80392211675643921" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="咔咔咔" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kpg-pP-fwv">
+                                        <rect key="frame" x="258" y="49" width="109" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" red="0.79990893602371216" green="0.80390965938568115" blue="0.80392217636108398" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.28788453339999998" green="0.58269137140000005" blue="0.92549556489999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
@@ -222,6 +236,8 @@
                         <outlet property="refreshButton" destination="4vW-BY-Jru" id="Hkr-ad-xKN"/>
                         <outlet property="signButton" destination="fSP-DS-itM" id="vU6-V4-yV3"/>
                         <outlet property="tableView" destination="yjU-qP-SOa" id="ycM-uH-HH1"/>
+                        <outlet property="taskRewardTotalLabel" destination="kpg-pP-fwv" id="yuh-l8-PAK"/>
+                        <outlet property="taskRewradTitleLabel" destination="gBE-TP-YEn" id="7OX-09-Xxo"/>
                         <outlet property="userInfoView" destination="sZN-HM-pyE" id="5RH-u2-b2a"/>
                         <outlet property="userNameLabel" destination="W30-eP-iKR" id="R3P-eO-eSp"/>
                         <outlet property="vipImager" destination="9Vn-w4-68W" id="Zer-Eb-CgF"/>

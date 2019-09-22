@@ -205,9 +205,8 @@
         [mUGSignInScrFootView setFiveStr:[NSString stringWithFormat:@"5天礼包(%@)",checkinBonusModel1.BonusInt]];
         [mUGSignInScrFootView setSevenStr:[NSString stringWithFormat:@"7天礼包(%@)",checkinBonusModel2.BonusInt]];
         
-        //checkinBonus 第一个是5天签到奖励，第二个是7天签到奖励，switch 奖励是否开启领奖==>控制，isComplete 是否可以领奖
-        //Switch只有0 和 1；字符串
-        //android 只有用到isComplete
+        //checkinBonus 第一个是5天签到奖励，第二个是7天签到奖励，
+        
         if (checkinBonusModel1.isComplete) {
   
             mUGSignInScrFootView.fiveButton.userInteractionEnabled =NO;//交互关闭
@@ -216,11 +215,19 @@
             [mUGSignInScrFootView.fiveButton setTitle:@"已领取" forState:UIControlStateNormal];
         } else {
          
+            if (checkinBonusModel1.isChenkin) {
+                mUGSignInScrFootView.fiveButton.userInteractionEnabled =YES;//交互
+                mUGSignInScrFootView.fiveButton.alpha= 1;//透明度
+                [mUGSignInScrFootView.fiveButton setBackgroundColor:UGRGBColor(114, 108, 227)];
+                [mUGSignInScrFootView.fiveButton setTitle:@"领取" forState:UIControlStateNormal];
+            } else {
+                mUGSignInScrFootView.fiveButton.userInteractionEnabled =NO;//交互
+                mUGSignInScrFootView.fiveButton.alpha= 1;//透明度
+                [mUGSignInScrFootView.fiveButton setBackgroundColor:UGRGBColor(244, 246, 254)];
+                [mUGSignInScrFootView.fiveButton setTitle:@"领取" forState:UIControlStateNormal];
+            }
             
-            mUGSignInScrFootView.fiveButton.userInteractionEnabled =YES;//交互
-            mUGSignInScrFootView.fiveButton.alpha= 1;//透明度
-            [mUGSignInScrFootView.fiveButton setBackgroundColor:UGRGBColor(114, 108, 227)];
-            [mUGSignInScrFootView.fiveButton setTitle:@"领取" forState:UIControlStateNormal];
+          
         }
         
         if (checkinBonusModel2.isComplete) {
@@ -231,10 +238,19 @@
             [mUGSignInScrFootView.sevenButtton setTitle:@"已领取" forState:UIControlStateNormal];
         } else {
     
-            mUGSignInScrFootView.sevenButtton.userInteractionEnabled =YES;//交互
-            mUGSignInScrFootView.sevenButtton.alpha= 1;//透明度
-            [mUGSignInScrFootView.sevenButtton setBackgroundColor:UGRGBColor(114, 108, 227)];
-            [mUGSignInScrFootView.sevenButtton setTitle:@"领取" forState:UIControlStateNormal];
+            
+            if (checkinBonusModel2.isChenkin) {
+                mUGSignInScrFootView.sevenButtton.userInteractionEnabled =YES;//交互
+                mUGSignInScrFootView.sevenButtton.alpha= 1;//透明度
+                [mUGSignInScrFootView.sevenButtton setBackgroundColor:UGRGBColor(114, 108, 227)];
+                [mUGSignInScrFootView.sevenButtton setTitle:@"领取" forState:UIControlStateNormal];
+            } else {
+                mUGSignInScrFootView.sevenButtton.userInteractionEnabled =NO;//交互
+                mUGSignInScrFootView.sevenButtton.alpha= 1;//透明度
+                [mUGSignInScrFootView.sevenButtton setBackgroundColor:UGRGBColor(244, 246, 254)];
+                [mUGSignInScrFootView.sevenButtton setTitle:@"领取" forState:UIControlStateNormal];
+            }
+           
         }
         
     }
@@ -301,6 +317,7 @@
     UGCheckinListModel *model = [self.collectionDataArray objectAtIndex:row + indexPath.row];
     NSLog(@"row = %d,model = %@",row,model);
     model.serverTime = self.checkinListModel.serverTime;
+    model.mkCheckinSwitch = self.checkinListModel.mkCheckinSwitch;
     cell.item = model;
     WeakSelf;
     cell.signInBlock = ^{
@@ -312,31 +329,33 @@
            NSLog(@"显示签到的蓝色按钮；==》可以点击签到事件");
             
               NSString *date = model.whichDay;
-//             UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
-//
-//             if (config.mkCheckinSwitch) {
-                  [weakSelf checkinDataWithType:@"1" Date:date];
-//             } else {
-//                 [self.view makeToast:@"现在不能补签"];
-//             }
+            int a = [CMCommon compareDate:model.serverTime withDate:model.whichDay withFormat:@"yyyy-MM-dd" ];
+//用户签到（签到类型：0是签到，1是补签）
+             if (a >= 0) {
+                 [weakSelf checkinDataWithType:@"0" Date:date];
+                 
+             } else {
+                 if (model.mkCheckinSwitch) {
+                       [weakSelf checkinDataWithType:@"1" Date:date];
+                 } else {
+                      [self.view makeToast:@"补签通道已关闭"];
+                 }
+               
+             }
+
            
 
         }
          else if(cell.item.isCheckin == false && cell.item.isMakeup == false){
    
-//            int a = [CMCommon compareDate:model.serverTime withDate:model.whichDay withFormat:@"yyyy-MM-dd" ];
+
              
                NSString *date = model.whichDay;
 
-                   [weakSelf checkinDataWithType:@"0" Date:date];
+                [weakSelf checkinDataWithType:@"0" Date:date];
             
              
-//             if (a >= 0) {
-             
-//             } else {
-//                [weakSelf checkinDataWithType:@"1" Date:date];
-//             }
-             
+
          }
     };
     
@@ -372,8 +391,26 @@
             weakSelf.checkinListModel = model.data;
             NSLog(@"checkinList = %@",weakSelf.checkinListModel);
             NSLog(@"serverTime = %@",weakSelf.checkinListModel.serverTime);
-             [self createUI];
-//
+            
+            if (weakSelf.checkinListModel.checkinSwitch) {
+                [self createUI];
+                //
+            } else {
+                [LEEAlert alert].config
+                .LeeTitle(@"关闭签到")
+                .LeeContent(
+                            @"已关闭签到通道")
+               
+                .LeeAction(@"确认", ^{
+                    
+                    // 确认点击事件Block
+                    [self.navigationController popViewControllerAnimated:YES];
+                    
+                })
+                .LeeShow(); // 设置完成后 别忘记调用Show来显示
+            }
+            
+            
             
         } failure:^(id msg) {
             
