@@ -39,4 +39,5 @@
 #import "IQKeyboardManager.h"
 #import "LEEAlert.h"
 #import "BAKit_WebView.h"
+#import "UGChatViewController.h"
 #endif /* UGPCH_pch */
