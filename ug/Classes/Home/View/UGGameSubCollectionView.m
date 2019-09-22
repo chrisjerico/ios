@@ -84,7 +84,6 @@
 			make.center.equalTo(imageView);
 		}];
 		
-		
 	}
 	return self;
 }

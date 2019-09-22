@@ -35,8 +35,8 @@
     //设置导航控制器颜色
     [[UINavigationBar appearance] setBackgroundImage:[self imageWithColor:UGNavColor] forBarMetrics:UIBarMetricsDefault];
     
-    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
-    statusBar.backgroundColor = UGNavColor;
+//    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+//    statusBar.backgroundColor = UGNavColor;
     
 }
 
