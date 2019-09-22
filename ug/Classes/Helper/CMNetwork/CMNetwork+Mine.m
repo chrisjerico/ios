@@ -666,7 +666,7 @@
 + (void)taskRewardWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
     CMMETHOD_BEGIN;
     
-    [self.manager requestInMainThreadWithMethod:[taskGetUrl stringToRestfulUrlWithFlag:RESTFUL]
+    [self.manager requestInMainThreadWithMethod:[taskRewardUrl stringToRestfulUrlWithFlag:RESTFUL]
                                          params:params
                                           model:nil
                                            post:YES
