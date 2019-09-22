@@ -150,17 +150,15 @@
 		[self getCheckinListData];
 	}];
 	
-	UGGameTypeCollectionView *gameView = [[UGGameTypeCollectionView alloc] initWithFrame:self.gameTypeView.bounds];
-	[self.gameTypeView addSubview:gameView];
-	self.gameTypeCollectionView = gameView;
+	[self.gameTypeView addSubview:self.gameTypeCollectionView];
 	WeakSelf
 	self.gameTypeCollectionView.platformSelectBlock = ^(NSInteger selectIndex) {
 
-		float itemH = UGScreenW / 3;
+//		float itemH = UGScreenW / 3;
 		GameCategoryModel *model = weakSelf.gameCategorys[selectIndex];
-		float collectionViewH = ((model.list.count - 1) / 3 + 1) * itemH;
+		float collectionViewH = ((model.list.count - 1) / 3 + 1) * 100;
 		weakSelf.gameTypeViewHeightConstraint.constant = collectionViewH + 80;
-		weakSelf.scrollContentHeightConstraints.constant = CGRectGetMaxY(weakSelf.rankingView.frame);
+//		weakSelf.scrollContentHeightConstraints.constant = CGRectGetMaxY(weakSelf.rankingView.frame);
 //		weakSelf.scrollView.contentSize = CGSizeMake(UGScreenW, weakSelf.scrollContentHeightConstraints.constant);
 		[weakSelf.view layoutIfNeeded];
 	};
@@ -1008,5 +1006,11 @@
 	}
 	return _gameCategorys;
 }
-
+- (UGGameTypeCollectionView *)gameTypeCollectionView {
+	
+	if(!_gameTypeCollectionView) {
+		_gameTypeCollectionView = [[UGGameTypeCollectionView alloc] initWithFrame:self.gameTypeView.bounds];
+	}
+	return  _gameTypeCollectionView;
+}
 @end

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		030BE80A23337AE3004AB19A /* GameCategoryDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 030BE80923337AE3004AB19A /* GameCategoryDataModel.m */; };
 		030BE80D233604B3004AB19A /* UGGameSubCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 030BE80C233604B3004AB19A /* UGGameSubCollectionView.m */; };
+		033177A72337382D000D7663 /* UGPlatformCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 033177A62337382D000D7663 /* UGPlatformCollectionView.m */; };
 		A0C64CB6AEB0CF1B2031BBB8 /* Pods_ug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6486EFF4C273BEA0AE8994DD /* Pods_ug.framework */; };
 		D4000C45232E4EDD000705B1 /* UGAgentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4000C43232E4EDD000705B1 /* UGAgentViewController.m */; };
 		D4000C46232E4EDD000705B1 /* UGAgentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4000C44232E4EDD000705B1 /* UGAgentViewController.xib */; };
@@ -535,6 +536,8 @@
 		030BE80923337AE3004AB19A /* GameCategoryDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameCategoryDataModel.m; sourceTree = "<group>"; };
 		030BE80B233604B3004AB19A /* UGGameSubCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGGameSubCollectionView.h; sourceTree = "<group>"; };
 		030BE80C233604B3004AB19A /* UGGameSubCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGGameSubCollectionView.m; sourceTree = "<group>"; };
+		033177A52337382D000D7663 /* UGPlatformCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGPlatformCollectionView.h; sourceTree = "<group>"; };
+		033177A62337382D000D7663 /* UGPlatformCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGPlatformCollectionView.m; sourceTree = "<group>"; };
 		443C93C1135A8C900E47477A /* Pods-ug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ug.release.xcconfig"; path = "Target Support Files/Pods-ug/Pods-ug.release.xcconfig"; sourceTree = "<group>"; };
 		6486EFF4C273BEA0AE8994DD /* Pods_ug.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ug.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4000C42232E4EDD000705B1 /* UGAgentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGAgentViewController.h; sourceTree = "<group>"; };
@@ -2533,6 +2536,8 @@
 				D405B2D2227AE38900F8C586 /* UGGameTypeCollectionView.m */,
 				D405B2D9227B122000F8C586 /* UGPlatformTitleCollectionView.h */,
 				D405B2DA227B122000F8C586 /* UGPlatformTitleCollectionView.m */,
+				033177A52337382D000D7663 /* UGPlatformCollectionView.h */,
+				033177A62337382D000D7663 /* UGPlatformCollectionView.m */,
 				D463B4DD2284488200EAC0F7 /* UGRightMenuView.h */,
 				D463B4DE2284488200EAC0F7 /* UGRightMenuView.m */,
 				D463B4E02284489100EAC0F7 /* UGRightMenuView.xib */,
@@ -3723,6 +3728,7 @@
 				D40D32C72297CEAF00B89398 /* UGMarkSixLotteryBetItem1Cell.m in Sources */,
 				D417EFDB2330D24C0024F634 /* AppDelegate+HgBugly.m in Sources */,
 				D4090F61228D3D7B00D6DA43 /* UGAvaterSelectView.m in Sources */,
+				033177A72337382D000D7663 /* UGPlatformCollectionView.m in Sources */,
 				D40E1E5622BF5409004D4664 /* UGNoticeModel.m in Sources */,
 				D405B219227972D300F8C586 /* NSObject+MJClass.m in Sources */,
 				D4DE2684229BCB960072A4A2 /* WMNavTabBar.m in Sources */,
