@@ -8,6 +8,8 @@
 
 #import "UGMosaicGoldViewController.h"
 #import "XYYSegmentControl.h"
+#import "UGActivityGoldTableViewController.h"
+#import "UGMosaicGoldController.h"
 
 @interface UGMosaicGoldViewController ()<XYYSegmentControlDelegate>
 @property (nonatomic, strong) XYYSegmentControl *slideSwitchView;
@@ -20,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.title = @"资金管理";
+    self.navigationItem.title = @"活动彩金";
     [self buildSegment];
 }
 
@@ -32,7 +34,7 @@
 #pragma mark - 配置segment
 -(void)buildSegment
 {
-    self.itemArray = @[@"申请彩金",@"取款"];
+    self.itemArray = @[@"申请彩金",@"申请反馈"];
     self.slideSwitchView = [[XYYSegmentControl alloc] initWithFrame:CGRectMake(0 , 0, self.view.width, self.view.height) channelName:self.itemArray source:self];
     [self.slideSwitchView setUserInteractionEnabled:YES];
     self.slideSwitchView.segmentControlDelegate = self;
@@ -57,23 +59,36 @@
 
 
 ///待加载的控制器
-//-(UIViewController *)slideSwitchView:(XYYSegmentControl *)view viewOfTab:(NSUInteger)number
-//{
-//    if (number == 0) {
-//       
-//    
-//    }
-//    else {
-//        
-//     
-//        
-//    }
-//    
-//}
+-(UIViewController *)slideSwitchView:(XYYSegmentControl *)view viewOfTab:(NSUInteger)number
+{
+    if (number == 0) {
+       
+        UGMosaicGoldController *vc = [[UGMosaicGoldController alloc] init];
+        return  vc;
+        
+    }
+    else {
+        
+        UGActivityGoldTableViewController *vc = [[UGActivityGoldTableViewController alloc] init];
+        return  vc;
+        
+        
+    }
+    
+}
 
 -(void)slideSwitchView:(XYYSegmentControl *)view didselectTab:(NSUInteger)number
 {
     
-    
+    if (number == 0) {
+        UGMosaicGoldController *vc  = (UGMosaicGoldController *) view.viewArray[number];
+        [vc rootLoadData];
+     
+    }
+    else {
+        UGActivityGoldTableViewController *vc  = (UGActivityGoldTableViewController *) view.viewArray[number];
+        [vc rootLoadData];
+        
+    }
 }
 @end

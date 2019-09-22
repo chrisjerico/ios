@@ -20,7 +20,7 @@
 @end
 
 @implementation UGTabbarController
-
+@synthesize qdwebVC;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -79,9 +79,23 @@
                           imageName:@"dating"
                   selectedImageName:@"datongsel"];
     
-    QDWebViewController *qdwebVC = [[QDWebViewController alloc] init];
-    qdwebVC.navigationTitle = @"聊天室";
-    qdwebVC.urlString = [NSString stringWithFormat:@"%@%@",baseServerUrl,chatRoomUrl];
+    qdwebVC = [[UGChatViewController alloc] init];
+    
+    
+
+    qdwebVC.webTitle = @"聊天室";
+   
+    
+    
+    if (![CMCommon stringIsNull:[UGUserModel currentUser].token]) {
+         qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid];
+    } else {
+         qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid];
+    }
+
+    
+    NSLog(@"qdwebVC.urlString= %@",[NSString stringWithFormat:@"%@%@%@&loginsessid=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid]);
+
     [self addOneChildViewController:[[UGNavigationController alloc]initWithRootViewController:qdwebVC]
                           WithTitle:@"聊天室"
                           imageName:@"liaotian"

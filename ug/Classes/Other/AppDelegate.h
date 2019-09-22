@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UGTabbarController.h"
+
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -14,6 +16,9 @@
 
 //允许横竖屏切换
 @property(nonatomic, assign) BOOL allowRotation;
+
+
+@property (strong, nonatomic) UGTabbarController *tabbar;
 
 @end
 

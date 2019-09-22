@@ -93,7 +93,7 @@
                                                 completionBlock:completionBlock
                                               cancelButtonTitle:cancelButtonTitle
                                               otherButtonTitles:otherButtonTitle, nil];
-    dispatch_async(dispatch_get_main_queue(), ^{
+     dispatch_async(dispatch_get_main_queue(), ^{
         [alertView show];
     });
 }
@@ -110,7 +110,7 @@
                                                 completionBlock:nil
                                               cancelButtonTitle:@"确定"
                                               otherButtonTitles:nil];
-    dispatch_async(dispatch_get_main_queue(), ^{
+     dispatch_async(dispatch_get_main_queue(), ^{
         [alertView show];
     });
 }

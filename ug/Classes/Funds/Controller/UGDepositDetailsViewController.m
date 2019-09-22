@@ -14,9 +14,11 @@
 #import "UGFundsBankView.h"
 #import "SLWebViewController.h"
 #import "TGWebViewController.h"
+#import "BAWebViewController.h"
 
 @interface UGDepositDetailsViewController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate, UICollectionViewDataSource>
 
+@property (nonatomic, strong) UIScrollView *mUIScrollView;
 
 @property (nonatomic, strong) UGchannelModel *selectChannelModel ;
 @property(nonatomic,strong)NSIndexPath *lastPath;
@@ -87,12 +89,7 @@
         
         self->_blankDataArray = bankModel.bankList ;//显示银行数据
         
-        if ([CMCommon arryIsNull:self->_blankDataArray]) {
-            [self->_blank_button setHidden:YES];
-        } else {
-            [self->_blank_button setHidden:NO];
-        }
-        
+       
         if ([CMCommon stringIsNull:bankModel.fixedAmount]) {
             
             self.amountDataArray = [[NSMutableArray alloc] initWithArray:self->_item.quickAmount];
@@ -118,7 +115,14 @@
         NSLog(@"height = %f",height);
 
         // 同步到主线程
-        dispatch_async(dispatch_get_main_queue(), ^{
+         dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if ([CMCommon arryIsNull:self->_blankDataArray]) {
+                [self->_blank_button setHidden:YES];
+            } else {
+                [self->_blank_button setHidden:NO];
+            }
+            
             [self.collectionView reloadData];
             
             [self.collectionView  mas_remakeConstraints:^(MASConstraintMaker *make)
@@ -176,7 +180,7 @@
                  make.width.mas_equalTo(UGScreenW-40);
                  
              }];
-            [self.tiplabel setText:_item.transferPrompt];
+            [self.tiplabel setText:self.item.transferPrompt];
             [self.tiplabel sizeToFit];
             NSLog(@"%@",NSStringFromCGRect(self.tiplabel.frame));
             //==============================================================
@@ -198,6 +202,19 @@
                  make.height.mas_equalTo(44);
                  
              }];
+             
+            //==================================================================
+             [self.submit_button  mas_makeConstraints:^(MASConstraintMaker *make)
+              {
+                  make.left.equalTo(self.view.mas_left).with.offset(0);
+                  make.right.equalTo(self.view.mas_right).with.offset(0);
+                  make.top.equalTo(self.blank_button.mas_bottom).offset(20);
+                  make.height.mas_equalTo(44);
+                  
+              }];
+             
+             
+              self.mUIScrollView.contentSize = CGSizeMake(UGScreenW, 50.0+height+self.bg_label.height+self.tiplabel.height+tableViewHeight+self.blank_button .height+self.submit_button.height+120);
         });
     }];
     
@@ -223,6 +240,22 @@
 #pragma mark -UI
 -(void)creatUI{
     
+    //-滚动面版======================================
+    if (_mUIScrollView == nil) {
+        UIScrollView *mUIScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, UGScreenW , UGScerrnH -IPHONE_SAFEBOTTOMAREA_HEIGHT-44)];
+        mUIScrollView.showsHorizontalScrollIndicator = NO;//不显示水平拖地的条
+        mUIScrollView.showsVerticalScrollIndicator=YES;//不显示垂直拖动的条
+        mUIScrollView.bounces = NO;//到边了就不能再拖地
+        //UIScrollView被push之后返回，会发生控件位置偏移，用下面的代码就OK
+        //        self.automaticallyAdjustsScrollViewInsets = NO;
+        //        self.edgesForExtendedLayout = UIRectEdgeNone;
+        mUIScrollView.backgroundColor = UGRGBColor(239, 239, 244);
+        
+        [self.view addSubview:mUIScrollView];
+        self.mUIScrollView = mUIScrollView;
+    }
+
+    
     if (self.textField==nil) {
         UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(20, 10, UGScreenW-40, 40)];
         textField.placeholder = @"请输入存款金额";
@@ -230,10 +263,10 @@
         textField.font = [UIFont systemFontOfSize:14];
         textField.textAlignment = NSTextAlignmentLeft;
         textField.clearButtonMode = UITextFieldViewModeUnlessEditing;
-        [self.view addSubview:textField];
         textField.keyboardType = UIKeyboardTypeDecimalPad;
         textField.borderStyle = UITextBorderStyleRoundedRect;
         self.textField = textField;
+        [self.mUIScrollView addSubview:textField];
     }
     
     
@@ -257,7 +290,7 @@
             collectionView;
             
         });
-        [self.view addSubview:collectionView ];
+        [self.mUIScrollView addSubview:collectionView ];
         self.collectionView = collectionView;
     }
     
@@ -278,7 +311,7 @@
         [label sizeToFit];
         NSLog(@"%@",NSStringFromCGRect(label.frame));
         
-        [self.view addSubview:label ];
+        [self.mUIScrollView addSubview:label ];
         self.label = label;
     }
     
@@ -295,7 +328,7 @@
         [label sizeToFit];
         NSLog(@"%@",NSStringFromCGRect(label.frame));
         
-        [self.view addSubview:label ];
+        [self.mUIScrollView addSubview:label ];
         self.tiplabel = label;
     }
     
@@ -312,7 +345,7 @@
 //        tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
         tableView.scrollEnabled = NO;
 
-        [self.view addSubview:tableView ];
+        [self.mUIScrollView addSubview:tableView ];
         self.tableView = tableView;
     }
     
@@ -349,7 +382,7 @@
         [layer setBorderColor:UGRGBColor(231, 231, 231).CGColor];
         
         
-        [self.view addSubview:button ];
+        [self.mUIScrollView addSubview:button ];
         self.blank_button = button;
         [self.blank_button setHidden:YES];
     }
@@ -387,16 +420,19 @@
         [layer setBorderColor:UGRGBColor(231, 231, 231).CGColor];
         
         
-        [self.view addSubview:button ];
+        [self.mUIScrollView addSubview:button ];
         self.submit_button = button;
-        [self.submit_button  mas_makeConstraints:^(MASConstraintMaker *make)
-         {
-             make.left.equalTo(self.view.mas_left).with.offset(0);
-             make.right.equalTo(self.view.mas_right).with.offset(0);
-             make.bottom.equalTo(self.view.mas_bottom).offset(-IPHONE_SAFEBOTTOMAREA_HEIGHT);
-             make.height.mas_equalTo(44);
-             
-         }];
+//        [self.submit_button  mas_makeConstraints:^(MASConstraintMaker *make)
+//         {
+//             make.left.equalTo(self.view.mas_left).with.offset(0);
+//             make.right.equalTo(self.view.mas_right).with.offset(0);
+//             make.bottom.equalTo(self.view.mas_bottom).offset(-IPHONE_SAFEBOTTOMAREA_HEIGHT);
+//             make.height.mas_equalTo(44);
+//
+//         }];
+        
+        //=================================================
+        _mUIScrollView.contentSize = CGSizeMake(UGScreenW, 1400);
        
     }
     
@@ -562,10 +598,18 @@
 //                    [self.navigationController pushViewController:webVC animated:YES];
 
                 
-                QDWebViewController *qdwebVC = [[QDWebViewController alloc] init];
-                qdwebVC.urlString = model.data;
-                qdwebVC.enterGame = YES;
-                [self.navigationController pushViewController:qdwebVC  animated:YES];
+//                QDWebViewController *qdwebVC = [[QDWebViewController alloc] init];
+//                qdwebVC.urlString = model.data;
+//                qdwebVC.enterGame = YES;
+//                [self.navigationController pushViewController:qdwebVC  animated:YES];
+                
+                BAWebViewController *webVC = [BAWebViewController new];
+                webVC.ba_web_progressTintColor = [UIColor cyanColor];
+                webVC.ba_web_progressTrackTintColor = [UIColor whiteColor];
+                
+                [webVC ba_web_loadURLString:model.data];
+                
+                [self.navigationController pushViewController:webVC animated:YES];
             }
             
         } failure:^(id msg) {

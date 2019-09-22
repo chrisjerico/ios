@@ -22,6 +22,8 @@
 #import "UGwithdrawListModel.h"
 #import "UGrealBetStatModel.h"
 #import "UGrealBetListModel.h"
+#import "UGPromotion6rowButtonTableViewCell.h"
+
 
 @interface UGPromotionTableController ()<YBPopupMenuDelegate,UITableViewDelegate,UITableViewDataSource>
 
@@ -55,7 +57,7 @@
 //    self.view.backgroundColor = [UIColor redColor];
     switch (self.tableType) {
         case PromotionTableTypeMember://会员管理
-            self.titleArray = @[@"分级",@"用户名",@"最近登录",@"注册时间",@"状态"];//5 == 按钮
+            self.titleArray = @[@"分级",@"用户名",@"在线状态",@"注册时间",@"操作/状态"];//5 == 按钮
             break;
         case PromotionTableTypeBettingReport://投注报表
             self.titleArray = @[@"分级",@"日期",@"投注金额",@"佣金"];//4
@@ -82,13 +84,13 @@
             self.titleArray = @[@"分级",@"日期",@"投注金额",@"会员输赢"];//4
             break;
         case PromotionTableTypeRealityRcord://真人记录
-            self.titleArray = @[@"分级",@"游戏",@"日期",@"投注金额",@"会员输赢"];//5
+            self.titleArray = @[@"分级",@"用户",@"游戏",@"日期",@"投注金额",@"会员输赢"];//5
             break;
         default:
             break;
     }
     
-    self.levelArray = @[@"1级下线",@"2级下线",@"3级下线"];
+    self.levelArray = @[@"1级下线",@"2级下线",@"3级下线",@"4级下线",@"5级下线",@"6级下线",@"7级下线",@"8级下线",@"9级下线",@"10级下线"];
     [self.view addSubview:self.titleView];
     
     if(_tableView == nil){
@@ -104,6 +106,7 @@
         [self.tableView registerNib:[UINib nibWithNibName:@"UGPromotion4rowTableViewCell" bundle:nil] forCellReuseIdentifier:@"UGPromotion4rowTableViewCell"];
         [self.tableView registerNib:[UINib nibWithNibName:@"UGPromotion5rowButtonTableViewCell" bundle:nil] forCellReuseIdentifier:@"UGPromotion5rowButtonTableViewCell"];
          [self.tableView registerNib:[UINib nibWithNibName:@"UGPromotion2rowTableViewCell" bundle:nil] forCellReuseIdentifier:@"UGPromotion2rowTableViewCell"];
+            [self.tableView registerNib:[UINib nibWithNibName:@"UGPromotion6rowButtonTableViewCell" bundle:nil] forCellReuseIdentifier:@"UGPromotion6rowButtonTableViewCell"];
         self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 150, 0);
         self.tableView.rowHeight = 44;
     }
@@ -183,7 +186,7 @@
     CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI);
     self.arrowImageView.transform = transform;
     
-    YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:self.levelArray icons:nil menuWidth:CGSizeMake(UGScreenW / self.titleArray.count + 40, 180) delegate:self];
+    YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:self.levelArray icons:nil menuWidth:CGSizeMake(UGScreenW / self.titleArray.count + 70, 180) delegate:self];
     popView.type = YBPopupMenuTypeDefault;
     popView.fontSize = 15;
     [popView showRelyOnView:self.levelButton];
@@ -326,10 +329,10 @@
             UGinviteLisModel *model = (UGinviteLisModel *)self.dataArray[indexPath.row];
             cell.firstLabel.text = [NSString stringWithFormat:@"%@级下线",model.level];
             cell.secondLabel.text = model.username;
-            if ([CMCommon stringIsNull:model.accessTime]) {
+            if ([CMCommon stringIsNull:model.enable]) {
                 cell.thirdLabel.text = @"--";
             } else {
-               cell.thirdLabel.text = model.accessTime;
+               cell.thirdLabel.text = model.enable;
             }
             if ([CMCommon stringIsNull:model.regtime]) {
                 cell.fourthLabel.text = @"--";
@@ -342,9 +345,12 @@
             
             if ([model.is_setting isEqualToString:@"1"]) {
                 //去充值
-                 [cell.fifthButton setAlpha:1.0];
+//                [cell.fifthButton setHidden:NO];
+                 [cell.fifthButton setHidden:NO];
+                [cell.pointView setHidden:NO];
             } else {
-                [cell.fifthButton setAlpha:0.8];
+                [cell.fifthButton setHidden:YES];
+                 [cell.pointView setHidden:YES];
             }
             
             
@@ -363,7 +369,7 @@
                     [self showUGPormotionUserInfoViewWithModel:model];
                     
                 } else {
-                    
+
                 }
             };
             return cell;
@@ -528,27 +534,34 @@
         case PromotionTableTypeRealityRcord://真人记录
             //5
         {
-            UGPromotion5rowButtonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UGPromotion5rowButtonTableViewCell" forIndexPath:indexPath];
-            [cell.fifthButton setHidden:YES];
+            UGPromotion6rowButtonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UGPromotion6rowButtonTableViewCell" forIndexPath:indexPath];
+           
             
             UGrealBetListModel *model = (UGrealBetListModel *)self.dataArray[indexPath.row];
             int intLevel = [model.level intValue];
             
             cell.firstLabel.text = [NSString stringWithFormat:@"%d级下线",intLevel];
            
-            if ([CMCommon stringIsNull:model.platform]) {
+            
+            if ([CMCommon stringIsNull:model.username]) {
                 cell.secondLabel.text = @"--";
             } else {
-               cell.secondLabel.text = model.platform;
+                cell.secondLabel.text = model.username;
             }
-            if ([CMCommon stringIsNull:model.date]) {
+            
+            if ([CMCommon stringIsNull:model.platform]) {
                 cell.thirdLabel.text = @"--";
             } else {
-                cell.thirdLabel.text = model.date;
+               cell.thirdLabel.text = model.platform;
             }
-            cell.fourthLabel.text = model.validBetAmount;
+            if ([CMCommon stringIsNull:model.date]) {
+                cell.fourthLabel.text = @"--";
+            } else {
+                cell.fourthLabel.text = model.date;
+            }
+            cell.fifthLabel.text = model.validBetAmount;
             
-            cell.fifthLabel.text =  model.comNetAmount;
+            cell.sixLabel.text =  model.comNetAmount;
             
             return cell;
         }
@@ -1029,7 +1042,7 @@
 #pragma mark -- 其他方法
 - (void)showUGPormotionUserInfoViewWithModel :(UGinviteLisModel *)model{
     
-    UGPormotionUserInfoView *notiveView = [[UGPormotionUserInfoView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, 430)];
+    UGPormotionUserInfoView *notiveView = [[UGPormotionUserInfoView alloc] initWithFrame:CGRectMake(20, 50, UGScreenW - 40, 430)];
     
     notiveView.item = model;
    

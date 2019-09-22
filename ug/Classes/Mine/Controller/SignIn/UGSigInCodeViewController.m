@@ -15,6 +15,7 @@
 #import "UGSignInHistoryView.h"
 
 #import "UGSignInHistoryModel.h"
+#import "UGSystemConfigModel.h"
 
 
 @interface UGSigInCodeViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>{
@@ -208,29 +209,32 @@
         //Switch只有0 和 1；字符串
         //android 只有用到isComplete
         if (checkinBonusModel1.isComplete) {
+  
+            mUGSignInScrFootView.fiveButton.userInteractionEnabled =NO;//交互关闭
+            mUGSignInScrFootView.fiveButton.alpha= 1;//透明度
+            [mUGSignInScrFootView.fiveButton setBackgroundColor:UGRGBColor(244, 246, 254)];
+            [mUGSignInScrFootView.fiveButton setTitle:@"已领取" forState:UIControlStateNormal];
+        } else {
+         
+            
             mUGSignInScrFootView.fiveButton.userInteractionEnabled =YES;//交互
             mUGSignInScrFootView.fiveButton.alpha= 1;//透明度
             [mUGSignInScrFootView.fiveButton setBackgroundColor:UGRGBColor(114, 108, 227)];
             [mUGSignInScrFootView.fiveButton setTitle:@"领取" forState:UIControlStateNormal];
-
-        } else {
-            mUGSignInScrFootView.fiveButton.userInteractionEnabled =NO;//交互关闭
-            mUGSignInScrFootView.fiveButton.alpha= 1;//透明度
-             [mUGSignInScrFootView.fiveButton setBackgroundColor:UGRGBColor(244, 246, 254)];
-            [mUGSignInScrFootView.fiveButton setTitle:@"已领取" forState:UIControlStateNormal];
         }
         
         if (checkinBonusModel2.isComplete) {
-            mUGSignInScrFootView.sevenButtton.userInteractionEnabled =YES;//交互
-            mUGSignInScrFootView.sevenButtton.alpha= 1;//透明度
-             [mUGSignInScrFootView.sevenButtton setBackgroundColor:UGRGBColor(114, 108, 227)];
-            [mUGSignInScrFootView.sevenButtton setTitle:@"领取" forState:UIControlStateNormal];
-
-        } else {
+           
             mUGSignInScrFootView.sevenButtton.userInteractionEnabled =NO;//交互关闭
             mUGSignInScrFootView.sevenButtton.alpha= 1;//透明度
             [mUGSignInScrFootView.sevenButtton setBackgroundColor:UGRGBColor(244, 246, 254)];
             [mUGSignInScrFootView.sevenButtton setTitle:@"已领取" forState:UIControlStateNormal];
+        } else {
+    
+            mUGSignInScrFootView.sevenButtton.userInteractionEnabled =YES;//交互
+            mUGSignInScrFootView.sevenButtton.alpha= 1;//透明度
+            [mUGSignInScrFootView.sevenButtton setBackgroundColor:UGRGBColor(114, 108, 227)];
+            [mUGSignInScrFootView.sevenButtton setTitle:@"领取" forState:UIControlStateNormal];
         }
         
     }
@@ -308,19 +312,27 @@
            NSLog(@"显示签到的蓝色按钮；==》可以点击签到事件");
             
               NSString *date = model.whichDay;
-            
-            [weakSelf checkinDataWithType:@"1" Date:date];
+//             UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
+//
+//             if (config.mkCheckinSwitch) {
+                  [weakSelf checkinDataWithType:@"1" Date:date];
+//             } else {
+//                 [self.view makeToast:@"现在不能补签"];
+//             }
+           
 
         }
          else if(cell.item.isCheckin == false && cell.item.isMakeup == false){
-             //如果日期大于今天，显示签到
-             //如果日期小于今天，是显示补签
-            int a = [CMCommon compareDate:model.serverTime withDate:model.whichDay withFormat:@"yyyy-MM-dd" ];
+   
+//            int a = [CMCommon compareDate:model.serverTime withDate:model.whichDay withFormat:@"yyyy-MM-dd" ];
              
                NSString *date = model.whichDay;
+
+                   [weakSelf checkinDataWithType:@"0" Date:date];
+            
              
 //             if (a >= 0) {
-                [weakSelf checkinDataWithType:@"0" Date:date];
+             
 //             } else {
 //                [weakSelf checkinDataWithType:@"1" Date:date];
 //             }
@@ -410,7 +422,16 @@
     [CMNetwork checkinWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             
-            [SVProgressHUD showSuccessWithStatus:model.msg];
+//            [SVProgressHUD showSuccessWithStatus:model.msg];
+            
+            [LEEAlert alert].config
+            .LeeTitle(@"温馨提示")
+            .LeeContent(model.msg)
+            .LeeAction(@"确认", ^{
+                
+                // 确认点击事件Block
+            })
+            .LeeShow(); // 设置完成后 别忘记调用Show来显示
             
              [self getCheckinListData];
             
@@ -455,9 +476,9 @@
     notiveView.checkinMoney = self.checkinListModel.checkinMoney;
     notiveView.checkinTimes= [NSString stringWithFormat:@"%@",self.checkinListModel.checkinTimes];
     
-    if (![CMCommon arryIsNull:self->_historyDataArray]) {
+//    if (![CMCommon arryIsNull:self->_historyDataArray]) {
         [notiveView show];
-    }
+//    }
     
    
 }

@@ -171,7 +171,7 @@
     
     [self.manager requestInMainThreadWithMethod:[activityGetRedBagUrl stringToRestfulUrlWithFlag:RESTFUL]
                                          params:params
-                                          model:CMResultClassMake(UGRedEnvelopeModel.class)
+                                          model:nil
                                            post:YES
                                      completion:completionBlock];
     

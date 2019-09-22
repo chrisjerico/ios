@@ -52,7 +52,7 @@
                             <color key="backgroundColor" red="0.89789026979999997" green="0.90878230329999998" blue="0.99215859169999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <state key="normal" title="领取">
-                                <color key="titleColor" red="0.62735849619999995" green="0.634564817" blue="0.69411891699999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <connections>
                                 <action selector="signInSevenClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="3KF-Sn-S6U"/>
@@ -97,7 +97,7 @@
                             <color key="backgroundColor" red="0.89789026979999997" green="0.90878230329999998" blue="0.99215859169999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <state key="normal" title="领取">
-                                <color key="titleColor" red="0.62735849619999995" green="0.634564817" blue="0.69411891699999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <connections>
                                 <action selector="signInFiveClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="zi9-j5-cSq"/>

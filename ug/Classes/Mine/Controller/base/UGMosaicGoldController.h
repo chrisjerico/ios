@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UGMosaicGoldController : UITableViewController
 
+-(void)rootLoadData;
+
 @end
 
 NS_ASSUME_NONNULL_END

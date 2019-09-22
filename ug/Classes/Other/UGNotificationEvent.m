@@ -23,6 +23,8 @@ NSString *UGNotificationGetYuebaoInfo = @"UGNotificationGetYuebaoInfo";
 NSString *UGNotificationFundTitlesTap = @"UGNotificationFundTitlesTap";
 NSString *UGNotificationGetChanglongBetRecrod = @"UGNotificationGetChanglongBetRecrod";
 
+NSString *UGNotificationDepositSuccessfully = @"UGNotificationDepositSuccessfully";
+
 ///
 /// 登录授权
 ///

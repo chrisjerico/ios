@@ -74,7 +74,7 @@
     
     if (isInMemoryCache) {
         // making sure we call the completion block on the main queue
-        dispatch_async(dispatch_get_main_queue(), ^{
+         dispatch_async(dispatch_get_main_queue(), ^{
             if (completionBlock) {
                 completionBlock(YES);
             }

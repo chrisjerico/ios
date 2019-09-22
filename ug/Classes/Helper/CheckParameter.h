@@ -30,7 +30,7 @@ static inline void ck_parameters(void (^handler)(void), void (^error)(id err), v
 }
 static inline void ck_parameters_display(void (^handler)(void), void (^success)(void)) {
     ck_parameters(handler, ^(id err){
-        dispatch_async(dispatch_get_main_queue(), ^{
+         dispatch_async(dispatch_get_main_queue(), ^{
             [[[UIAlertView alloc] initWithTitle:@""
                                         message:err
                                        delegate:nil
