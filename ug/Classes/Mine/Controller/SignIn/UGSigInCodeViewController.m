@@ -202,6 +202,22 @@
         UGcheckinBonusModel *checkinBonusModel1= [checkinBonusArray objectAtIndex:0];
         UGcheckinBonusModel *checkinBonusModel2= [checkinBonusArray objectAtIndex:1];
         
+        NSLog(@" checkinBonusModel1.BonusSwitch= %@", checkinBonusModel1.BonusSwitch);
+        
+        if ([checkinBonusModel1.BonusSwitch isEqualToString:@"1"]) {
+            [mUGSignInScrFootView.fiveView setHidden:NO];
+        } else {
+            [mUGSignInScrFootView.fiveView setHidden:YES];
+
+        }
+        
+        if ([checkinBonusModel2.BonusSwitch isEqualToString:@"1"]) {
+            [mUGSignInScrFootView.sevenView setHidden:NO];
+        } else {
+            [mUGSignInScrFootView.sevenView  setHidden:YES];
+            
+        }
+        
         [mUGSignInScrFootView setFiveStr:[NSString stringWithFormat:@"5天礼包(%@)",checkinBonusModel1.BonusInt]];
         [mUGSignInScrFootView setSevenStr:[NSString stringWithFormat:@"7天礼包(%@)",checkinBonusModel2.BonusInt]];
         

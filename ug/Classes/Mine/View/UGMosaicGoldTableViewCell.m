@@ -35,7 +35,7 @@
 - (void)setItem:(UGMosaicGoldModel *)item {
     _item = item;
     self.tiltleLabel.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.4];
-    [self.imgView sd_setImageWithURL:[NSURL URLWithString:item.param.win_apply_image] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    [self.imgView sd_setImageWithURL:[NSURL URLWithString:item.param.win_apply_image] placeholderImage:[UIImage imageNamed:@"winapply_default"]];
     self.tiltleLabel.text = item.name;
     
 }

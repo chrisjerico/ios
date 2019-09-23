@@ -35,15 +35,22 @@
     self.levelTitleLabel.text = item.levelTitle;
     self.integralLabel.text = item.integral;
     
+   
+    
     int levelsInt = [item.levelsId intValue];
-    NSString *imgStr = @"";
-    if (levelsInt <11) {
-      imgStr = [NSString stringWithFormat:@"vip%d",levelsInt];
-    } else {
-      imgStr = @"vip11";
-    }
-
-    [self.levelsImager setImage: [UIImage imageNamed:imgStr]];
+    
+     self.levelsSectionLabel.text = [NSString stringWithFormat:@"vip%d",levelsInt];
+    
+    [self.levelsSectionLabel setHidden:NO];
+    
+//    NSString *imgStr = @"";
+//    if (levelsInt <11) {
+//      imgStr = [NSString stringWithFormat:@"vip%d",levelsInt];
+//    } else {
+//      imgStr = @"vip11";
+//    }
+//
+//    [self.levelsImager setImage: [UIImage imageNamed:imgStr]];
     
 }
 

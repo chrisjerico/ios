@@ -23,7 +23,7 @@ FOUNDATION_EXTERN NSString *UGNotificationFundTitlesTap;
 FOUNDATION_EXTERN NSString *UGNotificationGetChanglongBetRecrod;
 
 FOUNDATION_EXTERN NSString *UGNotificationDepositSuccessfully;
-
+FOUNDATION_EXTERN NSString *UGNotificationGetRewardsSuccessfully;
 /// 登录授权
 ///
 /// 如果没有授权将跳转至登录页面, 并在登录完成后回调

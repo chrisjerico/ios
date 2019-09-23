@@ -62,11 +62,10 @@ static NSString *integralCellid = @"UGConvertCollectionViewCell";
     self.inputTextF.delegate = self;
     [self initCollectionView];
     
-     UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
-    NSString *str1 = [NSString stringWithFormat:@"%@%@:1元人民币",config.missionBili,config.missionName];
-    self.titleLabel.text = str1;
-    self.inputTextF.placeholder = [NSString stringWithFormat:@"请输入%@",config.missionName];
+//     UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
+
     
+        [self getSystemConfig];
 }
 
 - (IBAction)submitButton:(id)sender {
@@ -213,12 +212,47 @@ static NSString *integralCellid = @"UGConvertCollectionViewCell";
     [CMNetwork taskCreditsExchangeWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             
-            [SVProgressHUD showSuccessWithStatus:model.msg];
+//            [SVProgressHUD showSuccessWithStatus:model.msg];
+             [SVProgressHUD showSuccessWithStatus:@"兑换成功"];
+            self.inputTextF.text =@"";
+            self.amountLabel.text = @"";
             
             
         } failure:^(id msg) {
             
             [SVProgressHUD showErrorWithStatus:msg];
+            
+        }];
+    }];
+}
+
+- (void)getSystemConfig {
+    
+    [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+       
+        [CMResult processWithResult:model success:^{
+            
+            NSLog(@"model = %@",model);
+            
+            UGSystemConfigModel *config = model.data;
+            UGSystemConfigModel.currentConfig = config;
+            
+            
+            if ([config.isIntToMoney isEqualToString:@"0"]) {
+                [self.submitButton setEnabled:NO];
+                self.submitButton.alpha = 0.4;
+                [self.submitButton setTitle:@"暂未开启" forState:UIControlStateNormal];
+            } else {
+                [self.submitButton setEnabled:YES];
+                self.submitButton.alpha = 1;
+                [self.submitButton setTitle:@"确认兑换" forState:UIControlStateNormal];
+            }
+            
+            NSString *str1 = [NSString stringWithFormat:@"%@%@:1元人民币",config.missionBili,config.missionName];
+            self.titleLabel.text = str1;
+            self.inputTextF.placeholder = [NSString stringWithFormat:@"请输入%@",config.missionName];
+            
+        } failure:^(id msg) {
             
         }];
     }];

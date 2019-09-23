@@ -234,21 +234,46 @@
          }];
     }
   
-    if ([CMCommon stringIsNull:channelModel.qrcode]) {
-        if ([self.blank_button isHidden]) {
-           _mUIScrollView.contentSize = CGSizeMake(UGScreenW, self.tiplabel.height+self.tip2label.height+self.tableView.height+self.uGFundsTransferView.height+self.bg_label.height+self.blank_button.height+self.submit_button.height+20+self.uGFundsTransfer2View.height);
-        } else {
-            _mUIScrollView.contentSize = CGSizeMake(UGScreenW, self.tiplabel.height+self.tip2label.height+self.tableView.height+self.uGFundsTransferView.height+self.bg_label.height+self.blank_button.height+self.submit_button.height+64+self.uGFundsTransfer2View.height);
-        }
-        
+    NSLog(@"self.submit_button.y = %f",self.submit_button.y);
+   
+    
+    
+//    float height = self.tiplabel.height+self.tip2label.height+self.tableView.height+self.uGFundsTransferView.height+self.bg_label.height+self.submit_button.height+20+self.uGFundsTransfer2View.height;
+//
+    int buttonHight = 0;
+    if ([self.blank_button isHidden]) {
+
+        buttonHight = 0;
     } else {
-        if ([self.blank_button isHidden]) {
-            _mUIScrollView.contentSize = CGSizeMake(UGScreenW, self.tiplabel.height+self.tip2label.height+self.tableView.height+self.uGFundsTransferView.height+self.bg_label.height+self.blank_button.height+self.submit_button.height+20+self.uGFundsTransfer2View.height+self.uGFunds2microcodeView.height);
-        } else {
-            _mUIScrollView.contentSize = CGSizeMake(UGScreenW, self.tiplabel.height+self.tip2label.height+self.tableView.height+self.uGFundsTransferView.height+self.bg_label.height+self.blank_button.height+self.submit_button.height+64+self.uGFundsTransfer2View.height+self.uGFunds2microcodeView.height);
-        }
-        
+        buttonHight = 30;
     }
+    
+    
+    if ([CMCommon stringIsNull:channelModel.qrcode]) {
+//        [self->_uGFunds2microcodeView setHidden:YES];
+        _mUIScrollView.contentSize = CGSizeMake(UGScreenW, self.tableView.height+self.submit_button.y+self.submit_button.height+buttonHight+k_Height_NavBar+k_Height_StatusBar);
+    } else {
+        _mUIScrollView.contentSize = CGSizeMake(UGScreenW, 120+self.tableView.height+self.submit_button.y+self.submit_button.height+buttonHight+k_Height_NavBar+k_Height_StatusBar);
+    }
+
+    
+    [_mUIScrollView setBackgroundColor:[UIColor redColor]];
+    
+//    if ([CMCommon stringIsNull:channelModel.qrcode]) {
+//        if ([self.blank_button isHidden]) {
+//           _mUIScrollView.contentSize = CGSizeMake(UGScreenW, self.tiplabel.height+self.tip2label.height+self.tableView.height+self.uGFundsTransferView.height+self.bg_label.height+self.blank_button.height+self.submit_button.height+20+self.uGFundsTransfer2View.height);
+//        } else {
+//            _mUIScrollView.contentSize = CGSizeMake(UGScreenW, self.tiplabel.height+self.tip2label.height+self.tableView.height+self.uGFundsTransferView.height+self.bg_label.height+self.blank_button.height+self.submit_button.height+44+self.uGFundsTransfer2View.height);
+//        }
+//
+//    } else {
+//        if ([self.blank_button isHidden]) {
+//            _mUIScrollView.contentSize = CGSizeMake(UGScreenW, self.tiplabel.height+self.tip2label.height+self.tableView.height+self.uGFundsTransferView.height+self.bg_label.height+self.blank_button.height+self.submit_button.height+20+self.uGFundsTransfer2View.height+self.uGFunds2microcodeView.height);
+//        } else {
+//            _mUIScrollView.contentSize = CGSizeMake(UGScreenW, self.tiplabel.height+self.tip2label.height+self.tableView.height+self.uGFundsTransferView.height+self.bg_label.height+self.blank_button.height+self.submit_button.height+44+self.uGFundsTransfer2View.height+self.uGFunds2microcodeView.height);
+//        }
+//
+//    }
     
     
     
@@ -438,7 +463,7 @@
     }
     
     //=================================================
-    _mUIScrollView.contentSize = CGSizeMake(UGScreenW, 1400);
+//    _mUIScrollView.contentSize = CGSizeMake(UGScreenW, 1400);
 }
 
 #pragma mark - UITableViewDataSource

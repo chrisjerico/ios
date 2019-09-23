@@ -473,7 +473,7 @@
     UGDepositDetailsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UGDepositDetailsTableViewCell" forIndexPath:indexPath];
    UGchannelModel *channelModel = [_tableDataArray objectAtIndex:indexPath.row];
     
-    cell.nameStr = channelModel.name;
+    cell.nameStr = channelModel.payeeName;
     
     NSInteger row = [indexPath row];
     
@@ -603,13 +603,17 @@
 //                qdwebVC.enterGame = YES;
 //                [self.navigationController pushViewController:qdwebVC  animated:YES];
                 
-                BAWebViewController *webVC = [BAWebViewController new];
-                webVC.ba_web_progressTintColor = [UIColor cyanColor];
-                webVC.ba_web_progressTrackTintColor = [UIColor whiteColor];
+//                BAWebViewController *webVC = [BAWebViewController new];
+//                webVC.ba_web_progressTintColor = [UIColor cyanColor];
+//                webVC.ba_web_progressTrackTintColor = [UIColor whiteColor];
+//                
+//                [webVC ba_web_loadURLString:model.data];
+//                
+//                [self.navigationController pushViewController:webVC animated:YES];
                 
-                [webVC ba_web_loadURLString:model.data];
                 
-                [self.navigationController pushViewController:webVC animated:YES];
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:model.data]];
+
             }
             
         } failure:^(id msg) {

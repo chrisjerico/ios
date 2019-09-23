@@ -389,6 +389,9 @@
     [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
          [self.scrollView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
+            
+            NSLog(@"model = %@",model);
+            
             UGSystemConfigModel *config = model.data;
             UGSystemConfigModel.currentConfig = config;
             

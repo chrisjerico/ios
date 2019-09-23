@@ -24,6 +24,10 @@ typedef void(^SignInScrFootSevenBlock)(void);
 
 @property (weak, nonatomic) IBOutlet UIButton *sevenButtton;
 
+@property (weak, nonatomic) IBOutlet UIView *fiveView;
+
+@property (weak, nonatomic) IBOutlet UIView *sevenView;
+
 -(instancetype)initView;
 
 @property (nonatomic, copy) SignInScrFootFiveBlock signInScrFootFiveBlock;

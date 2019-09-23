@@ -31,11 +31,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *closeregreason;//关闭注册功能提示内容
 @property (nonatomic, strong) NSString *missionName;//哇咔豆
 @property (nonatomic, strong) NSString *missionBili;
-@property (nonatomic, strong) NSString *isIntToMoney;
+@property (nonatomic, assign) NSString * isIntToMoney;//积分开关0=关闭；1=开启；
+@property (nonatomic, assign) NSString * missionSwitch;//1=关闭；0=开启；
+
 
 @property (nonatomic, assign) BOOL checkinSwitch;//签到开关
 @property (nonatomic, assign) BOOL mkCheckinSwitch;//补签开关：
-@property (nonatomic, assign) BOOL agent_m_apply;//允许会员中心申请代理
+@property (nonatomic, assign) NSString * agent_m_apply;//允许会员中心申请代理
 
 @property (nonatomic, assign) BOOL recharge;//上级充值开关
 
