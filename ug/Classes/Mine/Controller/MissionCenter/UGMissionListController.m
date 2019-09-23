@@ -92,7 +92,16 @@ static NSString *missionCellid = @"UGMissionTableViewCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    UGMissionModel *model = self.dataArray[indexPath.row];
     
+    [LEEAlert alert].config
+    .LeeTitle(@"任务详情")
+    .LeeContent(model.missionDesc)
+    .LeeAction(@"确认", ^{
+        
+        // 确认点击事件Block
+    })
+    .LeeShow(); // 设置完成后 别忘记调用Show来显示
 }
 
 #pragma mark -- 网络请求
@@ -144,7 +153,7 @@ static NSString *missionCellid = @"UGMissionTableViewCell";
     [CMNetwork taskGetWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             
-            [SVProgressHUD showSuccessWithStatus:model.msg];
+             [SVProgressHUD showSuccessWithStatus:@"领取成功"];
             
             [self getCenterData];
             
@@ -169,9 +178,11 @@ static NSString *missionCellid = @"UGMissionTableViewCell";
     [CMNetwork taskRewardWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             
-            [SVProgressHUD showSuccessWithStatus:model.msg];
+            [SVProgressHUD showSuccessWithStatus:@"领取成功"];
             
             [self getCenterData];
+            
+             SANotificationEventPost(UGNotificationGetRewardsSuccessfully, nil);
             
         } failure:^(id msg) {
             

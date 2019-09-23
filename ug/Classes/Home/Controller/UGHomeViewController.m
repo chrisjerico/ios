@@ -583,17 +583,34 @@
 }
 
 - (void)getSystemConfig {
-	
-	[CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-		[self.scrollView.mj_header endRefreshing];
-		[CMResult processWithResult:model success:^{
-			UGSystemConfigModel *config = model.data;
-			UGSystemConfigModel.currentConfig = config;
-			
-		} failure:^(id msg) {
-			
-		}];
-	}];
+//<<<<<<< HEAD
+//
+//	[CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+//		[self.scrollView.mj_header endRefreshing];
+//		[CMResult processWithResult:model success:^{
+//			UGSystemConfigModel *config = model.data;
+//			UGSystemConfigModel.currentConfig = config;
+//
+//		} failure:^(id msg) {
+//
+//		}];
+//	}];
+//=======
+    
+    [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+         [self.scrollView.mj_header endRefreshing];
+        [CMResult processWithResult:model success:^{
+            
+            NSLog(@"model = %@",model);
+            
+            UGSystemConfigModel *config = model.data;
+            UGSystemConfigModel.currentConfig = config;
+            
+        } failure:^(id msg) {
+            
+        }];
+    }];
+//>>>>>>> bug
 }
 
 - (void)userLogout {

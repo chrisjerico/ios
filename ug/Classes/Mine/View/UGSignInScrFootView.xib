@@ -120,8 +120,10 @@
             <connections>
                 <outlet property="fiveButton" destination="5w4-u8-yCY" id="G4t-Oa-ViA"/>
                 <outlet property="fiveLable" destination="bLo-jp-cpD" id="CQT-EC-iIv"/>
+                <outlet property="fiveView" destination="YeA-8i-joF" id="vck-6f-gxr"/>
                 <outlet property="sevenButtton" destination="LeX-L2-Uhz" id="MS0-ac-VdR"/>
                 <outlet property="sevenLable" destination="FOe-Vw-JBo" id="Ks5-Vg-Kwp"/>
+                <outlet property="sevenView" destination="FNB-gx-8Fw" id="PNi-95-FQl"/>
             </connections>
             <point key="canvasLocation" x="324.63768115942031" y="119.53125"/>
         </view>

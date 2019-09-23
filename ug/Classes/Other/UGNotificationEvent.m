@@ -24,6 +24,7 @@ NSString *UGNotificationFundTitlesTap = @"UGNotificationFundTitlesTap";
 NSString *UGNotificationGetChanglongBetRecrod = @"UGNotificationGetChanglongBetRecrod";
 
 NSString *UGNotificationDepositSuccessfully = @"UGNotificationDepositSuccessfully";
+NSString *UGNotificationGetRewardsSuccessfully = @"UGNotificationGetRewardsSuccessfully";
 
 ///
 /// 登录授权

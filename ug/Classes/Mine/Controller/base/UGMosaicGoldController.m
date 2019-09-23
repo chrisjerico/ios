@@ -159,7 +159,7 @@
     
     UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 200, 100)];
     
-    [imgView sd_setImageWithURL:[NSURL URLWithString:model.param.win_apply_image] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    [imgView sd_setImageWithURL:[NSURL URLWithString:model.param.win_apply_image] placeholderImage:[UIImage imageNamed:@"winapply_default"]];
     
     [LEEAlert alert].config
     .LeeTitle(@"彩金活动")

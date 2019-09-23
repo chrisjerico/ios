@@ -60,6 +60,8 @@
 
 @property (strong, nonatomic) NSTimer* timer;
 @property (assign, nonatomic) NSTimeInterval vcodeRequestTime;
+@property (weak, nonatomic) IBOutlet UIImageView *pwdImgeView;
+@property (weak, nonatomic) IBOutlet UIImageView *pwd2ImageView;
 
 @end
 
@@ -83,6 +85,14 @@
     self.emailTextF.delegate = self;
     self.smsVcodeTextF.delegate = self;
     self.imgVcodeTextF.delegate = self;
+    
+    //限制弹出数字键盘
+    
+    self.inviterTextF.keyboardType = UIKeyboardTypeNumberPad;
+    
+    self.passwordTextF.clearButtonMode=UITextFieldViewModeNever;
+    
+    self.checkPasswordTextF.clearButtonMode=UITextFieldViewModeNever;
     
     [self setupSubViews];
     
@@ -172,6 +182,16 @@
     ck_parameters(^{
         if (config.hide_reco == 2) {
             ck_parameter_non_empty(self.inviterTextF.text, @"请输入推荐人ID");
+            
+            if (self.inviterTextF.text.length>10) {
+                
+                [self.view makeToast:@"长度在1到10之前"
+                                                 duration:2.0
+                                                 position:CSToastPositionCenter];
+                return ;
+            }
+            
+            
         }
         ck_parameter_non_empty(self.userNameTextF.text, @"请输入用户名");
         ck_parameter_less_length(self.passwordTextF.text, [NSString stringWithFormat:@"%ld",config.pass_length_min], self.pwdPlaceholder);
@@ -432,6 +452,8 @@
         [self.view endEditing:YES];
         return NO;
     }
+    
+    
     if (textField == self.phoneTextF ||
         textField == self.smsVcodeTextF ||
         textField == self.imgVcodeTextF) {
@@ -453,7 +475,13 @@
         if (textField.text.length + string.length - range.length > config.pass_length_max) {
             return NO;
         }
-    }else {
+    }
+    else if (textField == self.inviterTextF){
+        
+        return [self validateNumber:string];
+  
+    }
+    else {
         if (textField.text.length + string.length - range.length > 20) {
             return NO;
         }
@@ -462,6 +490,38 @@
     return YES;
 
 }
+
+- (BOOL)validateNumber:(NSString*)number {
+    
+    BOOL res = YES;
+    
+    NSCharacterSet* tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
+    
+    int i = 0;
+    
+    while (i < number.length) {
+        
+        NSString * string = [number substringWithRange:NSMakeRange(i, 1)];
+        
+        NSRange range = [string rangeOfCharacterFromSet:tmpSet];
+        
+        if (range.length == 0) {
+            
+            res = NO;
+            
+            break;
+            
+        }
+        
+        i++;
+        
+    }
+    
+    return res;
+    
+}
+
+
 
 #pragma mark - WKScriptMessageHandler
 - (void)userContentController:(WKUserContentController *)userContentController
@@ -600,6 +660,54 @@
     });
 }
 
+- (IBAction)pwdTextSwitch:(UIButton *)sender {
+    
+    // 前提:在xib中设置按钮的默认与选中状态的背景图
+    // 切换按钮的状态
+    sender.selected = !sender.selected;
+    
+    if (sender.selected) { // 按下去了就是明文
+        
+        NSString *tempPwdStr = self.passwordTextF.text;
+        self.passwordTextF.text = @""; // 这句代码可以防止切换的时候光标偏移
+        self.passwordTextF.secureTextEntry = NO;
+        self.passwordTextF.text = tempPwdStr;
+        
+        [self.pwdImgeView setImage:[UIImage imageNamed:@"yanjing"]];
+        
+    } else { // 暗文
+        
+        NSString *tempPwdStr = self.passwordTextF.text;
+        self.passwordTextF.text = @"";
+        self.passwordTextF.secureTextEntry = YES;
+        self.passwordTextF.text = tempPwdStr;
+        [self.pwdImgeView setImage:[UIImage imageNamed:@"biyan"]];
+    }
+}
 
+- (IBAction)pwd2TextSwitch:(UIButton *)sender {
+    
+    // 前提:在xib中设置按钮的默认与选中状态的背景图
+    // 切换按钮的状态
+    sender.selected = !sender.selected;
+    
+    if (sender.selected) { // 按下去了就是明文
+        
+        NSString *tempPwdStr = self.checkPasswordTextF.text;
+        self.checkPasswordTextF.text = @""; // 这句代码可以防止切换的时候光标偏移
+        self.checkPasswordTextF.secureTextEntry = NO;
+        self.checkPasswordTextF.text = tempPwdStr;
+        
+        [self.pwd2ImageView setImage:[UIImage imageNamed:@"yanjing"]];
+        
+    } else { // 暗文
+        
+        NSString *tempPwdStr = self.checkPasswordTextF.text;
+        self.checkPasswordTextF.text = @"";
+        self.checkPasswordTextF.secureTextEntry = YES;
+        self.checkPasswordTextF.text = tempPwdStr;
+        [self.pwd2ImageView setImage:[UIImage imageNamed:@"biyan"]];
+    }
+}
 
 @end

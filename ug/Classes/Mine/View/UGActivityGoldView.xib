@@ -61,7 +61,7 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="VIP3.34187a4f" translatesAutoresizingMaskIntoConstraints="NO" id="ZF4-qz-LvK">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="VerificationBG" translatesAutoresizingMaskIntoConstraints="NO" id="ZF4-qz-LvK">
                             <rect key="frame" x="183" y="404" width="89" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
@@ -169,6 +169,6 @@
         </view>
     </objects>
     <resources>
-        <image name="VIP3.34187a4f" width="150" height="50"/>
+        <image name="VerificationBG" width="94" height="32"/>
     </resources>
 </document>

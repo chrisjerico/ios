@@ -44,6 +44,7 @@
     _item = item;
     self.headerImageVeiw.hidden = YES;
     [self.titleLabel setText:item.missionName];
+
     //==============================================================
 //    [self.titleLabel  mas_remakeConstraints:^(MASConstraintMaker *make)
 //     {

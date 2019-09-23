@@ -244,7 +244,7 @@
             make.right.equalTo(self.mas_right).with.offset(-10);
             make.height.mas_equalTo(webHeight);
         }];
-           [self.my1TextField setHidden:NO];
+//            make.top.mas_equalTo(38);
         if (self.item.showWinAmount) {
             
             [self.title2Label  mas_remakeConstraints:^(MASConstraintMaker *make)
@@ -267,7 +267,7 @@
                  make.top.equalTo(self.title2Label.mas_bottom).offset(0);
                  
              }];
-            
+            [self.my1TextField setHidden:NO];
             [self.my1TextField  mas_remakeConstraints:^(MASConstraintMaker *make)
              {
                  make.left.equalTo(self.mas_left).with.offset(10);
@@ -276,31 +276,34 @@
                  make.height.mas_equalTo(30.0);
                  
              }];
+            
+            [self.myTextView setHidden:NO];
+            [self.myTextView  mas_remakeConstraints:^(MASConstraintMaker *make)
+             {
+                 make.left.equalTo(self.mas_left).with.offset(10);
+                 make.right.equalTo(self.mas_right).with.offset(-10);
+                 make.top.equalTo(self.my1TextField.mas_bottom).offset(5.0);
+                 make.height.mas_equalTo(100.0);
+                 
+             }];
         }
         else{
             
             [self.title2Label setHidden:YES];
             [self.collectionView setHidden:YES];
+            [self.my1TextField setHidden:YES];
             
-            [self.my1TextField  mas_remakeConstraints:^(MASConstraintMaker *make)
+            [self.myTextView setHidden:NO];
+            [self.myTextView  mas_remakeConstraints:^(MASConstraintMaker *make)
              {
                  make.left.equalTo(self.mas_left).with.offset(10);
                  make.right.equalTo(self.mas_right).with.offset(-10);
                  make.top.equalTo(self.contentWebView.mas_bottom).offset(5.0);
-                 make.height.mas_equalTo(30.0);
+                 make.height.mas_equalTo(100.0);
                  
              }];
-            
         }
-         [self.myTextView setHidden:NO];
-        [self.myTextView  mas_remakeConstraints:^(MASConstraintMaker *make)
-         {
-             make.left.equalTo(self.mas_left).with.offset(10);
-             make.right.equalTo(self.mas_right).with.offset(-10);
-             make.top.equalTo(self.my1TextField.mas_bottom).offset(5.0);
-             make.height.mas_equalTo(100.0);
-             
-         }];
+    
          [self.my2TextField setHidden:NO];
         [self.my2TextField  mas_remakeConstraints:^(MASConstraintMaker *make)
          {
