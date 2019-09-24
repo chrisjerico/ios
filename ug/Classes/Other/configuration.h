@@ -90,6 +90,7 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 #define changlongBetListUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=report&a=getUserRecentBet"]
 
 #define userBetUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=user&a=bet"]
+#define userinstantBetUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=user&a=instantBet"]
 
 #define guestBetUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=user&a=guestBet"]
 
@@ -100,6 +101,8 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 #define getGameDataUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=game&a=playOdds"]
 
 #define getPlatformGamesUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=game&a=homeRecommend"]
+
+#define getCustomGamesUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=game&a=customGames"]
 
 #define getGamelistUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=game&a=realGameTypes"]
 

@@ -11,7 +11,7 @@
 
 @interface UGPromoteDetailController ()
 @property (strong, nonatomic) UILabel *titleLabel;
-@property (strong, nonatomic) UITextView *contentTextView;
+@property (strong, nonatomic) UILabel *contentTextView;
 @property (nonatomic, strong) UIActivityIndicatorView *activity;
 
 @end
@@ -72,12 +72,12 @@
     return _titleLabel;
 }
 
-- (UITextView *)contentTextView
+- (UILabel *)contentTextView
 {
     if (!_contentTextView) {
-        _contentTextView = [[UITextView alloc]init];
+        _contentTextView = [[UILabel alloc]init];
         _contentTextView.font = [UIFont systemFontOfSize:17];
-        [_contentTextView setEditable:NO];
+//        [_contentTextView setEditable:NO];
     }
     return _contentTextView;
 }

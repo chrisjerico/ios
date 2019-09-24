@@ -15,6 +15,7 @@
 #import "UGSystemConfigModel.h"
 #import "UGAPPVersionModel.h"
 #import "UGRedEnvelopeModel.h"
+#import "GameCategoryDataModel.h"
 
 @implementation CMNetwork (Home)
 
@@ -46,6 +47,22 @@
     
     
     CMMETHOD_END;
+}
+
+//查询自定义游戏列表
++(void)getCustomGamesWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock {
+	
+	CMMETHOD_BEGIN;
+	
+	[self.manager requestInMainThreadWithMethod:[getCustomGamesUrl stringToRestfulUrlWithFlag:RESTFUL]
+										 params:params
+										  model:CMResultClassMake(GameCategoryDataModel.class)
+										   post:NO
+									 completion:completionBlock];
+	
+	
+	CMMETHOD_END;
+	
 }
 
 //查询各平台下级游戏列表
@@ -82,7 +99,7 @@
     
     [self.manager requestInMainThreadWithMethod:[getBannerListUrl stringToRestfulUrlWithFlag:RESTFUL]
                                          params:params
-                                          model:CMResultArrayClassMake(UGBannerModel.class)
+                                          model:CMResultClassMake(UGBannerModel.class)
                                            post:NO
                                      completion:completionBlock];
     

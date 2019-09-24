@@ -231,6 +231,7 @@
             [mUGSignInScrFootView.fiveButton setTitle:@"已领取" forState:UIControlStateNormal];
         } else {
          
+
             if (checkinBonusModel1.isChenkin) {
                 mUGSignInScrFootView.fiveButton.userInteractionEnabled =YES;//交互
                 mUGSignInScrFootView.fiveButton.alpha= 1;//透明度
@@ -254,6 +255,7 @@
             [mUGSignInScrFootView.sevenButtton setTitle:@"已领取" forState:UIControlStateNormal];
         } else {
     
+
             
             if (checkinBonusModel2.isChenkin) {
                 mUGSignInScrFootView.sevenButtton.userInteractionEnabled =YES;//交互
@@ -345,6 +347,7 @@
            NSLog(@"显示签到的蓝色按钮；==》可以点击签到事件");
             
               NSString *date = model.whichDay;
+
             int a = [CMCommon compareDate:model.serverTime withDate:model.whichDay withFormat:@"yyyy-MM-dd" ];
 //用户签到（签到类型：0是签到，1是补签）
              if (a >= 0) {

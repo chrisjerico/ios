@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *hotImageView;
+@property (nonatomic, strong)UIImageView *hasSubSign;
 
 @end
 @implementation UGGameTypeColletionViewCell
@@ -27,7 +28,12 @@
     self.layer.borderColor = UGBackgroundColor.CGColor;
     self.layer.borderWidth = 0.7;
     self.hotImageView.hidden = YES;
-    
+	[self addSubview:self.hasSubSign];
+	[self.hasSubSign mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.centerY.equalTo(self);
+		make.right.equalTo(self);
+	}];
+	
 }
 
 - (void)setTitle:(NSString *)title {
@@ -42,12 +48,19 @@
     
 }
 
-- (void)setItem:(UGPlatformGameModel *)item {
+- (void)setItem:(GameModel *)item {
     _item = item;
-    self.nameLabel.text = item.title;
-    self.hotImageView.hidden = !item.isHot;
-    [self.imgView sd_setImageWithURL:[NSURL URLWithString:item.pic] placeholderImage:[UIImage imageNamed:@"zwt"]];
-    
+	self.nameLabel.text = [item.name length] > 0 ? item.name : item.title;
+	[self.hasSubSign setHidden: (item.subType.count > 0 ? false : true)];
+    [self.imgView sd_setImageWithURL:[NSURL URLWithString:item.icon] placeholderImage:[UIImage imageNamed:@"zwt"]];
+	
+}
+-(UIImageView *)hasSubSign {
+	if (!_hasSubSign) {
+		_hasSubSign = [UIImageView new];
+		_hasSubSign.image = [UIImage imageNamed:@"game_has_sub"];
+	}
+	return _hasSubSign;
 }
 
 @end

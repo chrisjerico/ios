@@ -21,18 +21,18 @@
     // Initialization code
 }
 
-- (void)setItem:(UGPlatformModel *)item {
+- (void)setItem:(GameCategoryModel *)item {
     _item = item;
-    self.titleLabel.text = item.categoryName;
-    if ([@"lottery" isEqualToString:item.category]) {
+    self.titleLabel.text = item.title;
+    if ([@"lottery" isEqualToString:item.alias]) {
         self.imageView.image = [UIImage imageNamed:@"cp"];
-    }else if ([@"real" isEqualToString:item.category]) {
+    }else if ([@"real" isEqualToString:item.alias]) {
         self.imageView.image = [UIImage imageNamed:@"zr"];
-    }else if ([@"game" isEqualToString:item.category]) {
+    }else if ([@"game" isEqualToString:item.alias]) {
         self.imageView.image = [UIImage imageNamed:@"dz"];
-    }else if ([@"fish" isEqualToString:item.category]) {
+    }else if ([@"fish" isEqualToString:item.alias]) {
         self.imageView.image = [UIImage imageNamed:@"by"];
-    }else if ([@"card" isEqualToString:item.category]) {
+    }else if ([@"card" isEqualToString:item.alias]) {
         self.imageView.image = [UIImage imageNamed:@"qp"];
     }else {
         self.imageView.image = [UIImage imageNamed:@"ty"];

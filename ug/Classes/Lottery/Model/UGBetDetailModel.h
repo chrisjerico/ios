@@ -16,6 +16,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *odds;
 @property (nonatomic, assign) float amount;
 
+@property (nonatomic, strong) NSString *openNum;
+@property (nonatomic, strong) NSString *result;
+@property (nonatomic, strong) NSString *bonus;
+
 
 @end
 
