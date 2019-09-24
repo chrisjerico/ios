@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Rv-dl-cOG">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="800"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="654"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="net-c8-MAp">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="160"/>
@@ -29,7 +29,7 @@
                                                     <constraint firstAttribute="height" constant="160" id="bfL-zQ-uOt"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="97i-pv-RCp">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="97i-pv-RCp" userLabel="Notification View">
                                                 <rect key="frame" x="0.0" y="160" width="414" height="44"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="notice" translatesAutoresizingMaskIntoConstraints="NO" id="YII-OH-Hcz">
@@ -55,7 +55,7 @@
                                                     <constraint firstItem="YII-OH-Hcz" firstAttribute="leading" secondItem="97i-pv-RCp" secondAttribute="leading" constant="8" id="ddq-6S-GOl"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ix-we-22e">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ix-we-22e" userLabel="Game Title Label">
                                                 <rect key="frame" x="0.0" y="204" width="414" height="50"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yuandian" translatesAutoresizingMaskIntoConstraints="NO" id="6Qu-Ie-Wy3">
@@ -94,15 +94,15 @@
                                                     <constraint firstItem="6Qu-Ie-Wy3" firstAttribute="leading" secondItem="4ix-we-22e" secondAttribute="leading" constant="8" id="ygr-Vm-nol"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g3O-cs-ZTw">
-                                                <rect key="frame" x="0.0" y="254" width="414" height="400"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g3O-cs-ZTw" userLabel="Game View" customClass="UGGameTypeCollectionView">
+                                                <rect key="frame" x="0.0" y="254" width="414" height="200"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="400" id="ig1-8R-drJ"/>
+                                                    <constraint firstAttribute="height" constant="200" id="h0I-VV-udc"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="crl-J7-sLe">
-                                                <rect key="frame" x="0.0" y="654" width="414" height="200"/>
+                                                <rect key="frame" x="0.0" y="454" width="414" height="200"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="中奖排行榜" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7pj-to-Bil">
                                                         <rect key="frame" x="23" y="10.5" width="82" height="19.5"/>
@@ -203,10 +203,10 @@
                                             <constraint firstItem="97i-pv-RCp" firstAttribute="leading" secondItem="4Rv-dl-cOG" secondAttribute="leading" id="G5q-bL-9yi"/>
                                             <constraint firstAttribute="trailing" secondItem="97i-pv-RCp" secondAttribute="trailing" id="JLl-ee-0RG"/>
                                             <constraint firstItem="97i-pv-RCp" firstAttribute="top" secondItem="net-c8-MAp" secondAttribute="bottom" id="JmK-Ix-BLQ"/>
+                                            <constraint firstAttribute="bottom" secondItem="crl-J7-sLe" secondAttribute="bottom" id="NBg-t8-bEs"/>
                                             <constraint firstItem="4ix-we-22e" firstAttribute="top" secondItem="97i-pv-RCp" secondAttribute="bottom" id="ORU-gk-VK0"/>
                                             <constraint firstItem="crl-J7-sLe" firstAttribute="leading" secondItem="4Rv-dl-cOG" secondAttribute="leading" id="XpK-A5-yta"/>
                                             <constraint firstAttribute="trailing" secondItem="crl-J7-sLe" secondAttribute="trailing" id="dGP-wg-8Ni"/>
-                                            <constraint firstAttribute="height" constant="800" id="jtt-4a-NIc"/>
                                             <constraint firstItem="g3O-cs-ZTw" firstAttribute="top" secondItem="4ix-we-22e" secondAttribute="bottom" id="kuw-TU-tpj"/>
                                             <constraint firstItem="g3O-cs-ZTw" firstAttribute="leading" secondItem="4Rv-dl-cOG" secondAttribute="leading" id="nQJ-tK-cAo"/>
                                             <constraint firstItem="net-c8-MAp" firstAttribute="top" secondItem="4Rv-dl-cOG" secondAttribute="top" id="sTh-ar-3PR"/>
@@ -214,21 +214,23 @@
                                         </constraints>
                                     </view>
                                 </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="4Rv-dl-cOG" secondAttribute="trailing" id="P00-MB-WQ7"/>
                                     <constraint firstItem="4Rv-dl-cOG" firstAttribute="top" secondItem="aKo-Go-xPf" secondAttribute="top" id="WWc-Pu-MsX"/>
+                                    <constraint firstAttribute="bottom" secondItem="4Rv-dl-cOG" secondAttribute="bottom" id="cQG-DX-dbp"/>
                                     <constraint firstItem="4Rv-dl-cOG" firstAttribute="leading" secondItem="aKo-Go-xPf" secondAttribute="leading" id="dVj-b4-ASs"/>
-                                    <constraint firstItem="4Rv-dl-cOG" firstAttribute="centerX" secondItem="aKo-Go-xPf" secondAttribute="centerX" id="hty-9x-R1u"/>
-                                    <constraint firstAttribute="bottom" secondItem="4Rv-dl-cOG" secondAttribute="bottom" id="n1l-2g-gbo"/>
+                                    <constraint firstItem="4Rv-dl-cOG" firstAttribute="width" secondItem="aKo-Go-xPf" secondAttribute="width" id="k15-LZ-sgB"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Cio-2N-9zp" firstAttribute="bottom" secondItem="aKo-Go-xPf" secondAttribute="bottom" id="19g-lT-hVZ"/>
                             <constraint firstItem="Cio-2N-9zp" firstAttribute="trailing" secondItem="aKo-Go-xPf" secondAttribute="trailing" id="2j3-u7-D2d"/>
                             <constraint firstItem="aKo-Go-xPf" firstAttribute="top" secondItem="Cio-2N-9zp" secondAttribute="top" id="7EF-Sg-tyV"/>
                             <constraint firstItem="aKo-Go-xPf" firstAttribute="leading" secondItem="Cio-2N-9zp" secondAttribute="leading" id="NJt-Rb-NXO"/>
+                            <constraint firstItem="aKo-Go-xPf" firstAttribute="height" secondItem="Cio-2N-9zp" secondAttribute="height" id="lel-sx-BFv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Cio-2N-9zp"/>
                     </view>
@@ -236,11 +238,10 @@
                         <outlet property="bannerBgView" destination="net-c8-MAp" id="SVn-VV-nOV"/>
                         <outlet property="bannerBgViewHeightConstraint" destination="bfL-zQ-uOt" id="63U-JD-aFt"/>
                         <outlet property="gameTypeView" destination="g3O-cs-ZTw" id="G0J-cI-EgR"/>
-                        <outlet property="gameTypeViewHeightConstraint" destination="ig1-8R-drJ" id="4VI-fa-PeC"/>
+                        <outlet property="gameViewHeight" destination="h0I-VV-udc" id="8a4-eU-Jwg"/>
                         <outlet property="leftwardMarqueeView" destination="fSS-lB-1r2" id="u7Y-XH-UTU"/>
                         <outlet property="rankingView" destination="crl-J7-sLe" id="vLq-Kl-1QG"/>
                         <outlet property="rankingViewHeightConstraints" destination="BbV-SP-BJQ" id="gMH-ix-zeK"/>
-                        <outlet property="scrollContentHeightConstraints" destination="jtt-4a-NIc" id="p7f-yI-d4S"/>
                         <outlet property="scrollContentView" destination="4Rv-dl-cOG" id="KqS-XS-nyo"/>
                         <outlet property="scrollView" destination="aKo-Go-xPf" id="dml-YV-SGS"/>
                         <outlet property="upwardMultiMarqueeView" destination="jZU-na-iPm" id="22G-Cb-KeQ"/>

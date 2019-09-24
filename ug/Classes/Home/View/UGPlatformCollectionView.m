@@ -71,8 +71,24 @@ static NSString *const footerId = @"footerId";
 	}
 	
     [self.gameCollectionView reloadData];
+	[self postHeight];
+	
 }
-
+- (void) postHeight {
+	if (self.dataArray.count == 0) {
+		return;
+	}
+	
+	CGFloat height = 95 * self.sectionedDataArray.count;
+	if (_selectedPath) {
+		GameModel * model = self.sectionedDataArray[_selectedPath.section][_selectedPath.item];
+		if (model.subType.count > 0) {
+			height += ((model.subType.count - 1)/3 + 1) * 40;
+		}
+	}
+	
+	[[NSNotificationCenter defaultCenter] postNotification: [NSNotification notificationWithName:@"UGPlatformCollectionViewContentHeight" object:[NSNumber numberWithFloat:height]]];
+}
 
 #pragma mark - UICollectionViewDelegate
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -163,7 +179,7 @@ static NSString *const footerId = @"footerId";
 		
 		GameModel * model = self.sectionedDataArray[section][_selectedPath.item];
 		
-		return (CGSize){UGScreenW,((model.subType.count)/3 + 1) * 40};
+		return (CGSize){UGScreenW,((model.subType.count - 1)/3 + 1) * 40};
 	} else {
 		return (CGSize){UGScreenW,0};
 	}
@@ -187,6 +203,8 @@ static NSString *const footerId = @"footerId";
 		self.gameItemSelectBlock(model);
 	}
 	[collectionView reloadData];
+	[self postHeight];
+
 	
 }
 

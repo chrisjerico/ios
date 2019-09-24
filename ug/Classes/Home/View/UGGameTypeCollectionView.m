@@ -45,7 +45,30 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
     return self;
 }
 
-
+- (void)awakeFromNib {
+	[super awakeFromNib];
+	
+	[self addSubview:self.titleView];
+	[self.titleView mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.left.right.top.equalTo(self);
+		make.height.equalTo(@80);
+	}];
+	[self addSubview:self.collectionView];
+	[self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.left.right.bottom.equalTo(self);
+		make.top.equalTo(self.titleView.mas_bottom);
+	}];
+	  WeakSelf
+	  self.titleView.platformTitleSelectBlock = ^(NSInteger selectIndex) {
+		  weakSelf.selectIndex = selectIndex;
+		  if (weakSelf.platformSelectBlock) {
+			  weakSelf.platformSelectBlock(selectIndex);
+		  }
+	  };
+	  self.collectionView.gameItemSelectBlock = ^(GameModel * model) {
+		  weakSelf.gameItemSelectBlock(model);
+	  };
+}
 
 - (void)setSelectIndex:(NSInteger)selectIndex {
 	_selectIndex = selectIndex;
@@ -62,7 +85,6 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
 	self.titleView.selectIndex = 0;
 	self.selectIndex = 0;
     [self.collectionView reloadData];
-	self.collectionView.frame = CGRectMake(0, 80, UGScreenW, self.collectionView.collectionViewLayout.collectionViewContentSize.height + 80);
     
 }
 
@@ -70,7 +92,7 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
 #pragma mark - Get方法
 - (UGPlatformTitleCollectionView *)titleView {
     if (_titleView == nil) {
-        _titleView = [[UGPlatformTitleCollectionView alloc] initWithFrame:CGRectMake(0, 0,UGScreenW, 80)];
+        _titleView = [[UGPlatformTitleCollectionView alloc] initWithFrame:CGRectZero];
         
     }
     return _titleView;
@@ -78,8 +100,7 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
 
 - (UGPlatformCollectionView *)collectionView {
 	if (!_collectionView) {
-		_collectionView = [[UGPlatformCollectionView alloc] initWithFrame:CGRectMake(0, 80,UGScreenW, 200)];
-		[_collectionView setScrollEnabled:false];
+		_collectionView = [[UGPlatformCollectionView alloc] initWithFrame:CGRectZero];
 	}
 	return  _collectionView;
 }
