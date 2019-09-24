@@ -88,6 +88,7 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 #define changlongBetListUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=report&a=getUserRecentBet"]
 
 #define userBetUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=user&a=bet"]
+#define userinstantBetUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=user&a=instantBet"]
 
 #define guestBetUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=user&a=guestBet"]
 

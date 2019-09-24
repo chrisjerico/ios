@@ -10,12 +10,14 @@
 #import "GameCategoryDataModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
+typedef void(^GameItemSelectBlock)(GameModel *game);
 
 @interface UGGameSubCollectionView : UICollectionView
 
 @property(nonatomic, strong)NSArray<GameSubModel*> *sourceData;
 
 - (instancetype)initWithFrame:(CGRect)frame;
+@property (nonatomic, copy) GameItemSelectBlock gameItemSelectBlock;
 
 @end
 

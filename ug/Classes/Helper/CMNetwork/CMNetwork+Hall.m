@@ -13,6 +13,7 @@
 #import "UGLotteryHistoryModel.h"
 #import "UGChanglongaideModel.h"
 #import "UGChanglongBetRecordModel.h"
+#import "UGBetDetailModel.h"
 @implementation CMNetwork (Hall)
 
 //获取彩票大厅数据
@@ -64,12 +65,14 @@
     NSString *url = nil;
     if ([UGUserModel currentUser].isTest) {
         url = [guestBetUrl stringToRestfulUrlWithFlag:RESTFUL];
-    }else {
-        url = [userBetUrl stringToRestfulUrlWithFlag:RESTFUL];
-    }
+    }else if( [[NSString stringWithFormat:@"%@", params[@"gameId"]] isEqualToString:@"7"]){
+        url = [userinstantBetUrl stringToRestfulUrlWithFlag:RESTFUL];
+	} else {
+		url = [userBetUrl stringToRestfulUrlWithFlag:RESTFUL];
+	}
     [self.manager requestInMainThreadWithMethod:url
                                          params:params
-                                          model:CMResultClassMake(nil)
+                                          model:CMResultClassMake([UGBetDetailModel class])
                                            post:YES
                                      completion:completionBlock];
     

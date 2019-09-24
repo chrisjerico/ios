@@ -30,9 +30,6 @@ static NSString *const footerId = @"footerId";
 {
 	UICollectionViewFlowLayout *layout = ({
 		layout = [[UICollectionViewFlowLayout alloc] init];
-		layout.itemSize = CGSizeMake(UGScreenW/3 - 10 , 40);
-		layout.minimumInteritemSpacing = 0;
-		layout.minimumLineSpacing = 0;
 		layout.scrollDirection = UICollectionViewScrollDirectionVertical;
 		layout;
 	});
@@ -73,7 +70,6 @@ static NSString *const footerId = @"footerId";
 		
 	}
 	
-    [self initGameCollectionView];
     [self.gameCollectionView reloadData];
 }
 
@@ -92,6 +88,11 @@ static NSString *const footerId = @"footerId";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UGGameTypeColletionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:gameCellid forIndexPath:indexPath];
     cell.item = ((NSArray *)self.sectionedDataArray[indexPath.section])[indexPath.row];
+	if (_selectedPath == indexPath) {
+		cell.backgroundColor = UIColor.blueColor;
+	}
+	cell.backgroundColor =  _selectedPath == indexPath ? UIColor.lightGrayColor : UIColor.whiteColor;
+
     return cell;
 }
 
@@ -116,6 +117,7 @@ static NSString *const footerId = @"footerId";
 
 		footerView.sourceData = ((GameModel*)self.sectionedDataArray[_selectedPath.section][_selectedPath.row]).subType;
 
+		footerView.gameItemSelectBlock = self.gameItemSelectBlock;
 		return footerView;
 	}
 	
@@ -127,7 +129,7 @@ static NSString *const footerId = @"footerId";
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-	return (CGSize){100	,100};
+	return (CGSize){UGScreenW/3 - 10,80};
 }
 
 
@@ -151,7 +153,7 @@ static NSString *const footerId = @"footerId";
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
-	return (CGSize){UGScreenW,5};
+	return (CGSize){UGScreenW, 0};
 }
 
 
@@ -173,14 +175,19 @@ static NSString *const footerId = @"footerId";
     if (self.gameTypeSelectBlock) {
         self.gameTypeSelectBlock(indexPath.row);
     }
-	if (!_selectedPath) {
-		_selectedPath = indexPath;
-	} else if (_selectedPath == indexPath ) {
+	
+	
+	GameModel * model = self.sectionedDataArray[indexPath.section][indexPath.item];
+	
+	if (_selectedPath == indexPath ) {
 		_selectedPath = nil;
-	} else {
+	} else if (model.subType.count > 0 ) {
 		_selectedPath = indexPath;
+	} else {
+		self.gameItemSelectBlock(model);
 	}
 	[collectionView reloadData];
+	
 }
 
 
@@ -191,36 +198,7 @@ static NSString *const footerId = @"footerId";
 	}
 	return  _sectionedDataArray;
 }
-- (void)initGameCollectionView {
-    
-    float itemW = (UGScreenW - 12 * 4) / 3;
-    UICollectionViewFlowLayout *layout = ({
-        layout = [[UICollectionViewFlowLayout alloc] init];
-        layout.itemSize = CGSizeMake(itemW, itemW);
-        layout.minimumInteritemSpacing = 10;
-        layout.minimumLineSpacing = 10;
-        layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-        layout;
-    });
-	
-    UICollectionView *collectionView = ({
-        collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(10, 0, UGScreenW - 20, 1000) collectionViewLayout:layout];
-        collectionView.backgroundColor = [UIColor clearColor];
-        collectionView.dataSource = self;
-        collectionView.delegate = self;
-        [collectionView registerNib:[UINib nibWithNibName:@"UGGameTypeColletionViewCell" bundle:nil] forCellWithReuseIdentifier:gameCellid];
-		
-		[collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerId];
-		[collectionView registerClass:[CollectionFooter class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:footerId];
-		
-        [collectionView setShowsHorizontalScrollIndicator:NO];
-        collectionView;
-    });
-    
-    self.gameCollectionView = collectionView;
-    [self addSubview:collectionView];
-    
-}
+
 @end
 
 
@@ -241,6 +219,10 @@ static NSString *const footerId = @"footerId";
 	if (!_gameSubCollectionView) {
 		_gameSubCollectionView = [[UGGameSubCollectionView alloc] initWithFrame:self.bounds];
 		_gameSubCollectionView.backgroundColor = [UIColor whiteColor];
+		WeakSelf
+		_gameSubCollectionView.gameItemSelectBlock = ^(GameModel * model) {
+			weakSelf.gameItemSelectBlock(model);
+		};
 	}
 	return _gameSubCollectionView;
 }

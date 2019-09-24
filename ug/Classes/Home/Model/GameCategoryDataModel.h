@@ -35,6 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong)NSString * gameId;
 @property(nonatomic, strong)NSString * logo;
 @property(nonatomic, strong)NSString * docType;
+@property(nonatomic, strong)NSString * gameType;
 @property(nonatomic, strong)NSArray<GameSubModel> * subType;
 
 @end

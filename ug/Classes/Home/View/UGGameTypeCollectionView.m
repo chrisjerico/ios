@@ -38,6 +38,9 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
                 weakSelf.platformSelectBlock(selectIndex);
             }
         };
+		self.collectionView.gameItemSelectBlock = ^(GameModel * model) {
+			weakSelf.gameItemSelectBlock(model);
+		};
     }
     return self;
 }
@@ -59,6 +62,7 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
 	self.titleView.selectIndex = 0;
 	self.selectIndex = 0;
     [self.collectionView reloadData];
+	self.collectionView.frame = CGRectMake(0, 80, UGScreenW, self.collectionView.collectionViewLayout.collectionViewContentSize.height + 80);
     
 }
 
@@ -75,7 +79,13 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
 - (UGPlatformCollectionView *)collectionView {
 	if (!_collectionView) {
 		_collectionView = [[UGPlatformCollectionView alloc] initWithFrame:CGRectMake(0, 80,UGScreenW, 200)];
+		[_collectionView setScrollEnabled:false];
 	}
 	return  _collectionView;
+}
+
+- (CGFloat)totalHeight {
+	CGFloat height = self.collectionView.collectionViewLayout.collectionViewContentSize.height;
+	return height + 80;
 }
 @end

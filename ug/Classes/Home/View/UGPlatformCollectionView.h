@@ -11,9 +11,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 typedef void(^GameTypeSelectBlock)(NSInteger index);
+typedef void(^GameItemSelectBlock)(GameModel *game);
 
 @interface UGPlatformCollectionView : UICollectionView
 @property (nonatomic, copy) GameTypeSelectBlock gameTypeSelectBlock;
+@property (nonatomic, copy) GameItemSelectBlock gameItemSelectBlock;
 
 @property (nonatomic, strong) NSArray *dataArray;
 - (instancetype)initWithFrame:(CGRect)frame;
@@ -25,6 +27,7 @@ typedef void(^GameTypeSelectBlock)(NSInteger index);
 @property (nonatomic, strong) UGGameSubCollectionView * gameSubCollectionView;
 @property(nonatomic, strong)NSArray<GameSubModel*> *sourceData;
 
+@property (nonatomic, copy) GameItemSelectBlock gameItemSelectBlock;
 
 
 @end

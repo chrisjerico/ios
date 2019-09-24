@@ -151,6 +151,9 @@
 	}];
 	
 	[self.gameTypeView addSubview:self.gameTypeCollectionView];
+	[self.gameTypeCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.edges.equalTo(self.gameTypeView);
+	}];
 	WeakSelf
 	self.gameTypeCollectionView.platformSelectBlock = ^(NSInteger selectIndex) {
 
@@ -158,8 +161,13 @@
 		GameCategoryModel *model = weakSelf.gameCategorys[selectIndex];
 		float collectionViewH = ((model.list.count - 1) / 3 + 1) * 100;
 		weakSelf.gameTypeViewHeightConstraint.constant = collectionViewH + 80;
-//		weakSelf.scrollContentHeightConstraints.constant = CGRectGetMaxY(weakSelf.rankingView.frame);
-//		weakSelf.scrollView.contentSize = CGSizeMake(UGScreenW, weakSelf.scrollContentHeightConstraints.constant);
+		weakSelf.scrollContentHeightConstraints.constant = CGRectGetMaxY(weakSelf.rankingView.frame);
+		weakSelf.scrollView.contentSize = CGSizeMake(UGScreenW, weakSelf.scrollContentHeightConstraints.constant);
+		
+		CGRect previousRect = weakSelf.gameTypeView.frame;
+		weakSelf.gameTypeView.frame = CGRectMake(previousRect.origin.x, previousRect.origin.y, previousRect.size.width, weakSelf.gameTypeCollectionView.totalHeight);
+	
+		
 		[weakSelf.view layoutIfNeeded];
 	};
 	self.gameTypeCollectionView.gameItemSelectBlock = ^(GameModel * _Nonnull game) {
@@ -304,14 +312,13 @@
 					[self.gameCategorys addObject:customGameModel.card];
 					[self.gameCategorys addObject:customGameModel.sport];
 					
-					
 					float itemH = UGScreenW / 3;
 					NSInteger count = 0;
 					for (GameCategoryModel *gameType in self.gameCategorys) {
 						count = gameType.list.count > count ? gameType.list.count : count;
 					}
 					float collectionViewH = ((customGameModel.lottery.list.count - 1) / 3 + 1) *itemH;
-					self.gameTypeViewHeightConstraint.constant = collectionViewH + 80;
+					self.gameTypeViewHeightConstraint.constant = 10000;
 					self.scrollContentHeightConstraints.constant = CGRectGetMaxY(self.rankingView.frame);
 					self.scrollView.contentSize = CGSizeMake(UGScreenW, self.scrollContentHeightConstraints.constant + 200);
 					[self.view layoutIfNeeded];
@@ -823,7 +830,7 @@
 		SANotificationEventPost(UGNotificationShowLoginView, nil);
 		return;
 	}
-	/***
+	
 	 if ([@"cqssc" isEqualToString:model.gameType]) {
 	 UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGSSCLotteryController" bundle:nil];
 	 UGSSCLotteryController *lotteryVC = [storyboard instantiateInitialViewController];
@@ -909,7 +916,7 @@
 	 
 	 }else {
 	 //        进入第三方游戏
-	 if (model.isPopup) {
+	 if (model.subType.count > 0) {
 	 UGGameListViewController *gameListVC = [[UGGameListViewController alloc] init];
 	 gameListVC.game = model;
 	 [self.navigationController pushViewController:gameListVC animated:YES];
@@ -918,7 +925,7 @@
 	 
 	 }
 	 }
-	 ***/
+	
 	
 }
 
