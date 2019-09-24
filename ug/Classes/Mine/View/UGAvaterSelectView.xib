@@ -32,7 +32,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eai-Va-NJz">
                     <rect key="frame" x="15" y="178" width="378" height="100"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QJm-2f-sND">
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QJm-2f-sND">
                             <rect key="frame" x="0.0" y="25" width="30" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="9nO-dX-Dgf"/>
@@ -43,7 +43,7 @@
                                 <action selector="leftClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="1vK-al-UyW"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GdH-dr-Y7e">
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GdH-dr-Y7e">
                             <rect key="frame" x="348" y="25" width="30" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="30" id="Lu4-Yw-ADV"/>

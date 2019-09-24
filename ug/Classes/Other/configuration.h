@@ -217,6 +217,7 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 
 #define activityApplyWinLogDetailUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=activity&a=applyWinLogDetail"]
 
+#define teamAgentApplyInfoUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=team&a=agentApplyInfo"]
 
 #if DEBUG
 

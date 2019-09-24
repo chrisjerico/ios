@@ -226,6 +226,27 @@
                                                     <constraint firstItem="bXl-fT-5RN" firstAttribute="leading" secondItem="qGe-iv-iut" secondAttribute="leading" id="nN0-dq-DWi"/>
                                                 </constraints>
                                             </view>
+                                            <view alpha="0.40000000000000002" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bbn-KT-jMo">
+                                                <rect key="frame" x="0.0" y="207" width="414" height="83"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="正中午" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ay9-S8-Nta">
+                                                        <rect key="frame" x="8" y="19" width="398" height="29"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="下午好" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RhY-rm-d8T">
+                                                        <rect key="frame" x="8" y="54" width="398" height="21"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -286,13 +307,14 @@
                         <outlet property="moneyType" destination="Xhl-Ua-7kE" id="6Gp-Jy-46i"/>
                         <outlet property="phoneLabel" destination="WFN-Ma-st5" id="n0m-sq-qEw"/>
                         <outlet property="qqLabel" destination="wB6-gU-xP4" id="Hy0-Xj-r92"/>
-                        <outlet property="timeLabel" destination="dvO-6f-PSQ" id="rRP-fd-81M"/>
+                        <outlet property="time2Label" destination="RhY-rm-d8T" id="gj3-4G-BaA"/>
+                        <outlet property="titleLabel" destination="ay9-S8-Nta" id="Jcv-p7-cV5"/>
                         <outlet property="userNameLabel" destination="HZP-BQ-azM" id="r4F-aq-F8G"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IuL-ov-zh5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-54" y="150"/>
+            <point key="canvasLocation" x="-55.072463768115945" y="150"/>
         </scene>
     </scenes>
     <resources>

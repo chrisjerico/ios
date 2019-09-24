@@ -38,7 +38,7 @@
 @property (nonatomic, strong)UGrechargeBankModel *selectBank;
 
 @property (nonatomic, strong)UIButton *submit_button;
-
+@property (nonatomic, strong)UIView *submit_View;
 @end
 
 @implementation UGDepositDetailsViewController
@@ -97,7 +97,13 @@
         else{
             
             NSArray  *array = [bankModel.fixedAmount componentsSeparatedByString:@" "];
-            self.amountDataArray = [[NSMutableArray alloc] initWithArray:array];
+            
+            for (int i = 0; i<array.count; i++) {
+                if (![CMCommon stringIsNull:[array objectAtIndex:i]]) {
+                    [self.amountDataArray addObject:[array objectAtIndex:i]];
+                }
+            }
+        
         }
         
         
@@ -131,7 +137,7 @@
                  make.right.equalTo(self.view.mas_right).with.offset(0);
                  make.width.equalTo(self.view.mas_width);
                  make.height.mas_equalTo(height);
-                 make.top.equalTo(self.textField.mas_bottom).offset(0);
+                 make.top.equalTo(self.mUIScrollView.mas_bottom).offset(0);
                  
              }];
             self.collectionView.height = height;
@@ -204,17 +210,17 @@
              }];
              
             //==================================================================
-             [self.submit_button  mas_makeConstraints:^(MASConstraintMaker *make)
-              {
-                  make.left.equalTo(self.view.mas_left).with.offset(0);
-                  make.right.equalTo(self.view.mas_right).with.offset(0);
-                  make.top.equalTo(self.blank_button.mas_bottom).offset(20);
-                  make.height.mas_equalTo(44);
-                  
-              }];
+//             [self.submit_button  mas_makeConstraints:^(MASConstraintMaker *make)
+//              {
+//                  make.left.equalTo(self.view.mas_left).with.offset(0);
+//                  make.right.equalTo(self.view.mas_right).with.offset(0);
+//                  make.top.equalTo(self.blank_button.mas_bottom).offset(20);
+//                  make.height.mas_equalTo(44);
+//
+//              }];
              
              
-              self.mUIScrollView.contentSize = CGSizeMake(UGScreenW, 50.0+height+self.bg_label.height+self.tiplabel.height+tableViewHeight+self.blank_button .height+self.submit_button.height+120);
+              self.mUIScrollView.contentSize = CGSizeMake(UGScreenW, 50.0+height+self.bg_label.height+self.tiplabel.height+tableViewHeight+self.blank_button .height+20);
         });
     }];
     
@@ -240,22 +246,6 @@
 #pragma mark -UI
 -(void)creatUI{
     
-    //-滚动面版======================================
-    if (_mUIScrollView == nil) {
-        UIScrollView *mUIScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, UGScreenW , UGScerrnH -IPHONE_SAFEBOTTOMAREA_HEIGHT-44)];
-        mUIScrollView.showsHorizontalScrollIndicator = NO;//不显示水平拖地的条
-        mUIScrollView.showsVerticalScrollIndicator=YES;//不显示垂直拖动的条
-        mUIScrollView.bounces = NO;//到边了就不能再拖地
-        //UIScrollView被push之后返回，会发生控件位置偏移，用下面的代码就OK
-        //        self.automaticallyAdjustsScrollViewInsets = NO;
-        //        self.edgesForExtendedLayout = UIRectEdgeNone;
-        mUIScrollView.backgroundColor = UGRGBColor(239, 239, 244);
-        
-        [self.view addSubview:mUIScrollView];
-        self.mUIScrollView = mUIScrollView;
-    }
-
-    
     if (self.textField==nil) {
         UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(20, 10, UGScreenW-40, 40)];
         textField.placeholder = @"请输入存款金额";
@@ -266,8 +256,26 @@
         textField.keyboardType = UIKeyboardTypeDecimalPad;
         textField.borderStyle = UITextBorderStyleRoundedRect;
         self.textField = textField;
-        [self.mUIScrollView addSubview:textField];
+        [self.view addSubview:textField];
     }
+    
+    //-滚动面版======================================
+    if (_mUIScrollView == nil) {
+        UIScrollView *mUIScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 60, UGScreenW , UGScerrnH -IPHONE_SAFEBOTTOMAREA_HEIGHT-44-60-64)];
+        mUIScrollView.showsHorizontalScrollIndicator = NO;//不显示水平拖地的条
+        mUIScrollView.showsVerticalScrollIndicator=YES;//不显示垂直拖动的条
+        mUIScrollView.bounces = NO;//到边了就不能再拖地
+        //UIScrollView被push之后返回，会发生控件位置偏移，用下面的代码就OK
+        //        self.automaticallyAdjustsScrollViewInsets = NO;
+        //        self.edgesForExtendedLayout = UIRectEdgeNone;
+        mUIScrollView.backgroundColor = [UIColor whiteColor];
+        
+        [self.view addSubview:mUIScrollView];
+        self.mUIScrollView = mUIScrollView;
+    }
+
+    
+ 
     
     
     if (self.collectionView==nil) {
@@ -387,11 +395,29 @@
         [self.blank_button setHidden:YES];
     }
     
+    
+    if(self.submit_View== nil){
+        UIView* bg = [[UIView alloc] init];
+        bg.frame = CGRectMake(0, 500, UGScreenW, 64);
+        bg.backgroundColor = [UIColor whiteColor];
+        [self.view addSubview:bg ];
+        self.submit_View = bg;
+        
+        [self.submit_View  mas_makeConstraints:^(MASConstraintMaker *make)
+         {
+             make.left.equalTo(self.view.mas_left).with.offset(0);
+             make.right.equalTo(self.view.mas_right).with.offset(0);
+             make.bottom.equalTo(self.view.mas_bottom).offset(-IPHONE_SAFEBOTTOMAREA_HEIGHT);
+             make.height.mas_equalTo(64);
+             
+         }];
+    }
+    
     if (self.submit_button == nil) {
         UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         button.frame = CGRectMake(0, 500, UGScreenW, 44);
         // 按钮的正常状态
-        [button setTitle:@"提交" forState:UIControlStateNormal];
+        [button setTitle:@"开始充值" forState:UIControlStateNormal];
         // 设置按钮的背景色
         button.backgroundColor = UGRGBColor(76, 149, 236.0);
         
@@ -399,7 +425,7 @@
         [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         
         // 设置按下状态文字的颜色
-        [button setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
         
         // 设置按钮的风格颜色,只有titleColor没有设置的时候才有用
         [button setTintColor:[UIColor whiteColor]];
@@ -420,16 +446,16 @@
         [layer setBorderColor:UGRGBColor(231, 231, 231).CGColor];
         
         
-        [self.mUIScrollView addSubview:button ];
+        [self.submit_View addSubview:button ];
         self.submit_button = button;
-//        [self.submit_button  mas_makeConstraints:^(MASConstraintMaker *make)
-//         {
-//             make.left.equalTo(self.view.mas_left).with.offset(0);
-//             make.right.equalTo(self.view.mas_right).with.offset(0);
-//             make.bottom.equalTo(self.view.mas_bottom).offset(-IPHONE_SAFEBOTTOMAREA_HEIGHT);
-//             make.height.mas_equalTo(44);
-//
-//         }];
+        [self.submit_button  mas_makeConstraints:^(MASConstraintMaker *make)
+         {
+             make.left.equalTo(self.view.mas_left).with.offset(20);
+             make.right.equalTo(self.view.mas_right).with.offset(-20);
+             make.bottom.equalTo(self.view.mas_bottom).offset(-IPHONE_SAFEBOTTOMAREA_HEIGHT);
+             make.height.mas_equalTo(40);
+
+         }];
         
         //=================================================
         _mUIScrollView.contentSize = CGSizeMake(UGScreenW, 1400);

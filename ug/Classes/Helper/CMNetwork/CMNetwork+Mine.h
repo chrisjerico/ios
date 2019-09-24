@@ -209,6 +209,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 //获取申请活动彩金记录详情 http://test10.6yc.com/wjapp/api.php?c=activity&a=applyWinLogDetail&token=6DMCw655Dhu5mB83bVD4McbB&id=120
 + (void)activityApplyWinLogDetailWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+//代理申请信息 http://test10.6yc.com/wjapp/api.php?c=team&a=agentApplyInfo&token=yQxBi4W4B3N65Oa5z55Yy46A
++ (void)teamAgentApplyInfoWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 @end
 
 NS_ASSUME_NONNULL_END

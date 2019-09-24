@@ -374,6 +374,7 @@
                         <outlet property="registerUrlLabel" destination="3lZ-2f-H5h" id="iTA-8N-AdM"/>
                         <outlet property="sectionLabel3" destination="Dkm-gC-zrj" id="AKV-r5-ORe"/>
                         <outlet property="sectionLabel4" destination="bBS-0D-Nlx" id="hhk-X4-pM2"/>
+                        <outlet property="tableView" destination="igE-W2-VWS" id="sco-41-kzL"/>
                         <outlet property="totalMembers" destination="2dP-7y-yod" id="5dp-AK-8IM"/>
                         <outlet property="userNameLabel" destination="acf-gB-Th4" id="Ez8-xH-5er"/>
                     </connections>

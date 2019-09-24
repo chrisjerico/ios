@@ -8,8 +8,9 @@
 
 #import "UGPromotionInfoController.h"
 #import "UGinviteInfoModel.h"
-
+#import "UGSystemConfigModel.h"
 @interface UGPromotionInfoController ()
+@property (weak, nonatomic) IBOutlet UITableView *mytableView;
 @property (weak, nonatomic) IBOutlet UIImageView *headerImageView;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *promotionIdlabel;
@@ -63,7 +64,17 @@
     
     self.sectionLabel3.text = @"";
     
+   
+   
+    
     [self teamInviteInfoData];
+}
+
+
+-(void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+    
+  
 }
 - (IBAction)homeUrlCopy:(id)sender {
     
@@ -163,9 +174,21 @@
     
    self.sectionLabel3.text = self.mUGinviteInfoModel.fandian_intro;
     
-//  self.sectionLabel2;
-//    self.sectionLabel3;
-//   self.sectionLabel4;
+    UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
+    config.myreco_img = @"1";
+    if ([config.myreco_img isEqualToString:@"0"]) {
+        
+        [self.headerImageView setHidden:NO];
+    }
+    else if([config.myreco_img isEqualToString:@"1"]) {
+        
+        [self.headerImageView setHidden:YES];
+        
+//        CGRect frame = self.mytableView.frame;
+//        frame.origin.y =  frame.origin.y -256;
+//
+//        self.mytableView.frame = frame;
+    }
 
 }
 @end
