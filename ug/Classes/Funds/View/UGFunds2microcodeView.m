@@ -37,4 +37,10 @@
     
 }
 
+- (IBAction)showClick:(id)sender {
+    if (self.showBlock) {
+        self.showBlock();
+    }
+    
+}
 @end

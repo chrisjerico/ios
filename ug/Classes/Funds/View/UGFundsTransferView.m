@@ -115,10 +115,10 @@
 - (void)setItem:(UGchannelModel *)item {
     _item = item;
     
-    self.remarkLabel.text = item.payeeName;
+    self.remarkLabel.text = item.address;
     self.remark2Label.text = item.domain;
     self.remark3Label.text = item.account;
-    self.remark4Label.text = item.address;
+    self.remark4Label.text = item.branchAddress;
     
     
     NSString *paymentid = item.paymentid;

@@ -165,9 +165,10 @@ static NSString *lotterySubResultCellid = @"UGPK10SubResultCollectionViewCell";
 }
 
 - (IBAction)showChatRoom:(id)sender {
-    QDWebViewController *chatVC = [[QDWebViewController alloc] init];
-    chatVC.navigationTitle = @"聊天室";
-    chatVC.urlString = [NSString stringWithFormat:@"%@%@?id=%@",baseServerUrl,chatRoomUrl,self.gameId];
+    UGChatViewController *chatVC = [[UGChatViewController alloc] init];
+    chatVC.webTitle = @"聊天室";
+    chatVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&id=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,self.gameId];
+    //    [NSString stringWithFormat:@"%@%@?id=%@",baseServerUrl,chatRoomUrl,self.gameId];
     [self.navigationController pushViewController:chatVC animated:YES];
 }
 

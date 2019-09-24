@@ -83,6 +83,12 @@
                 UGUserModel *user = model.data;
                 UGUserModel.currentUser = user;
                 SANotificationEventPost(UGNotificationLoginComplete, nil);
+                
+                AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+                
+                appDelegate.tabbar.qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&sessiontoken=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid];
+              
+                
                 [self.navigationController popToRootViewControllerAnimated:YES];
             } failure:^(id msg) {
                 if (self.webBgView.hidden == NO) {

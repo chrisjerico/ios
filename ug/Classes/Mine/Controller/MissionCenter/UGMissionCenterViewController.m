@@ -30,6 +30,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *curLevelImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *nextLevelImageView;
 
+@property (weak, nonatomic) IBOutlet UILabel *curLevel1Label;
+@property (weak, nonatomic) IBOutlet UILabel *nextLevel2Label;
+
 
 @property (weak, nonatomic) IBOutlet UILabel *missionLevelLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nextLevelLabel;
@@ -46,7 +49,9 @@
 @property (nonatomic, strong) UGMissionTitleCollectionView *titleCollectionView;
 @property (nonatomic, strong) UGMissionCollectionView *missionCollectionView;
 @property (nonatomic, strong) WavesView *waveView;
+
 @property (weak, nonatomic) IBOutlet UILabel *integralLabel;//积分，暂时隐藏
+@property (weak, nonatomic) IBOutlet UILabel *taskRewradTitleLabel;
 
 
 @end
@@ -55,6 +60,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    SANotificationEventSubscribe(UGNotificationGetRewardsSuccessfully, self, ^(typeof (self) self, id obj) {
+        [self getUserInfo];
+        
+    });
+
     
     [self.integralLabel setHidden:YES];
     self.fd_prefersNavigationBarHidden = NO;
@@ -182,7 +193,7 @@
 #pragma mark - UIS
 - (void)setupUserInfo {
     UGUserModel *user = [UGUserModel currentUser];
-    [self.avaterImageView sd_setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:[UIImage imageNamed:@"txp"]];
+    [self.avaterImageView sd_setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
     self.userNameLabel.text = user.username;
     self.levelNameLabel.text = user.curLevelGrade;
     
@@ -209,6 +220,8 @@
     }
     
     [self.curLevelImageView setImage: [UIImage imageNamed:img2Str]];
+    self.curLevel1Label.text = [NSString stringWithFormat:@"VIP%@",subStr];
+    
     
     NSString *sub2Str = [user.nextLevelGrade substringFromIndex:3];
     
@@ -222,6 +235,7 @@
     }
     
     [self.nextLevelImageView setImage: [UIImage imageNamed:img2_1Str]];
+     self.nextLevel2Label.text = [NSString stringWithFormat:@"VIP%@",sub2Str];
     
     int int1String = [user.taskRewardTotal intValue];
     NSLog(@"int1String = %d",int1String);
@@ -229,6 +243,16 @@
     NSLog(@"int2String = %d",int2String);
     self.missionTitleLabel.text = [NSString stringWithFormat:@"成长值（%d-%d）",int1String,int2String];
     
+    
+
+    if (![CMCommon stringIsNull:user.taskRewardTitle]) {
+        self.taskRewradTitleLabel.text = user.taskRewardTitle;
+        
+    }
+    if (![CMCommon stringIsNull:user.taskRewardTotal]) {
+        self.integralLabel.text = user.taskRewardTotal;
+        [self.integralLabel setHidden:NO];
+    }
     
     double floatString = [user.balance doubleValue];
     self.balanceLabel.text =  [NSString stringWithFormat:@"￥%.2f",floatString];
@@ -267,14 +291,7 @@
     
 }
 - (IBAction)refreshBalance:(id)sender {
-    //    if (!self.refreshBalanceButton.selected) {
-    //        [self startAnimation];
-    //    }else {
-    //        [self.refreshBalanceButton.layer removeAllAnimations];
-    //    }
-    
-    
-    //    self.refreshBalanceButton.selected = !self.refreshBalanceButton.selected;
+
     
     [self getUserInfo];
 }

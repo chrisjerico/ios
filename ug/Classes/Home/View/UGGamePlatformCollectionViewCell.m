@@ -9,6 +9,7 @@
 #import "UGGamePlatformCollectionViewCell.h"
 #import "UGGameTypeColletionViewCell.h"
 #import "UGPlatformGameModel.h"
+#import "UGPlatformCollectionView.h"
 
 @interface UGGamePlatformCollectionViewCell ()<UICollectionViewDelegate,UICollectionViewDataSource>
 {
@@ -223,31 +224,31 @@ static NSString *const footerId = @"footerId";
 
 @end
 
-
-@implementation CollectionFooter
-
-- (instancetype)initWithFrame:(CGRect)frame
-{
-	self = [super initWithFrame:frame];
-	if (self) {
-		[self addSubview:self.gameSubCollectionView];
-		[self.gameSubCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.edges.equalTo(self);
-		}];
-	}
-	return self;
-}
-- (UGGameSubCollectionView *)gameSubCollectionView {
-	if (!_gameSubCollectionView) {
-		_gameSubCollectionView = [[UGGameSubCollectionView alloc] initWithFrame:self.bounds];
-		_gameSubCollectionView.backgroundColor = [UIColor whiteColor];
-	}
-	return _gameSubCollectionView;
-}
-
--(void)setSourceData:(NSArray<GameSubModel *> *)sourceData {
-	_sourceData = sourceData;
-	self.gameSubCollectionView.sourceData = sourceData;
-	[self.gameSubCollectionView reloadData];
-}
-@end
+//
+//@implementation CollectionFooter
+//
+//- (instancetype)initWithFrame:(CGRect)frame
+//{
+//	self = [super initWithFrame:frame];
+//	if (self) {
+//		[self addSubview:self.gameSubCollectionView];
+//		[self.gameSubCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+//			make.edges.equalTo(self);
+//		}];
+//	}
+//	return self;
+//}
+//- (UGGameSubCollectionView *)gameSubCollectionView {
+//	if (!_gameSubCollectionView) {
+//		_gameSubCollectionView = [[UGGameSubCollectionView alloc] initWithFrame:self.bounds];
+//		_gameSubCollectionView.backgroundColor = [UIColor whiteColor];
+//	}
+//	return _gameSubCollectionView;
+//}
+//
+//-(void)setSourceData:(NSArray<GameSubModel *> *)sourceData {
+//	_sourceData = sourceData;
+//	self.gameSubCollectionView.sourceData = sourceData;
+//	[self.gameSubCollectionView reloadData];
+//}
+//@end

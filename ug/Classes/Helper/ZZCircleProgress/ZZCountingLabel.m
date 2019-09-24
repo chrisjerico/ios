@@ -92,7 +92,7 @@
     }
     
     
-    dispatch_async(dispatch_get_main_queue(), ^{
+     dispatch_async(dispatch_get_main_queue(), ^{
         self.text = [NSString stringWithFormat:@"%.0f",60 - _increaseValue / 1.66];
     });
 }

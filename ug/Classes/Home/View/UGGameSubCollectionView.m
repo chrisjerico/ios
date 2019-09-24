@@ -47,7 +47,11 @@
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
 	return self.sourceData.count;
 }
-
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+	GameSubModel * model = self.sourceData[indexPath.item];
+	self.gameItemSelectBlock(model);
+	
+}
 -(void)setSourceData:(NSArray<GameSubModel *> *)sourceData {
 	_sourceData = sourceData;
 	[self reloadData];
@@ -83,7 +87,6 @@
 		[self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.center.equalTo(imageView);
 		}];
-		
 		
 	}
 	return self;

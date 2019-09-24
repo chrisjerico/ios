@@ -29,6 +29,8 @@
 #import "UGinviteInfoModel.h"
 
 #import "UGdepositModel.h"
+#import "UGapplyWinLogDetail.h"
+#import "UGagentApplyInfo.h"
 
 @implementation CMNetwork (Mine)
 
@@ -665,7 +667,7 @@
 + (void)taskRewardWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
     CMMETHOD_BEGIN;
     
-    [self.manager requestInMainThreadWithMethod:[taskGetUrl stringToRestfulUrlWithFlag:RESTFUL]
+    [self.manager requestInMainThreadWithMethod:[taskRewardUrl stringToRestfulUrlWithFlag:RESTFUL]
                                          params:params
                                           model:nil
                                            post:YES
@@ -948,6 +950,45 @@
     [self.manager requestInMainThreadWithMethod:[activityApplyWinLogUrl stringToRestfulUrlWithFlag:RESTFUL]
                                          params:params
                                           model:nil
+                                           post:NO
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
+
+//申请彩金 http://test10.6yc.com/wjapp/api.php?c=activity&a=applyWin
++ (void)activityApplyWinWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    [self.manager requestInMainThreadWithMethod:[activityApplyWinUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
+                                           post:YES
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
+
+//获取申请活动彩金记录详情 http://test10.6yc.com/wjapp/api.php?c=activity&a=applyWinLogDetail&token=6DMCw655Dhu5mB83bVD4McbB&id=120
++ (void)activityApplyWinLogDetailWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    [self.manager requestInMainThreadWithMethod:[activityApplyWinLogDetailUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:CMResultClassMake(UGapplyWinLogDetail.class)
+                                           post:NO
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
+
+//代理申请信息 http://test10.6yc.com/wjapp/api.php?c=team&a=agentApplyInfo&token=yQxBi4W4B3N65Oa5z55Yy46A
++ (void)teamAgentApplyInfoWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    [self.manager requestInMainThreadWithMethod:[teamAgentApplyInfoUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:CMResultClassMake(UGagentApplyInfo.class)
                                            post:NO
                                      completion:completionBlock];
     

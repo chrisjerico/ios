@@ -463,7 +463,7 @@ static NSHashTable *allAnimatedImagesWeak;
                 // The results get returned one by one as soon as they're ready (and not in batch).
                 // The benefits of having the first frames as quick as possible outweigh building up a buffer to cope with potential hiccups when the CPU suddenly gets busy.
                 if (image && weakSelf) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
+                     dispatch_async(dispatch_get_main_queue(), ^{
                         weakSelf.cachedFramesForIndexes[@(i)] = image;
                         [weakSelf.cachedFrameIndexes addIndex:i];
                         [weakSelf.requestedFrameIndexes removeIndex:i];
@@ -581,7 +581,7 @@ static NSHashTable *allAnimatedImagesWeak;
                 // Note: Don't `CGImageSourceRemoveCacheAtIndex` on the image source for frames that we don't want cached any longer to maintain O(1) time access.
 #if defined(DEBUG) && DEBUG
                 if ([self.debug_delegate respondsToSelector:@selector(debug_animatedImage:didUpdateCachedFrames:)]) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
+                     dispatch_async(dispatch_get_main_queue(), ^{
                         [self.debug_delegate debug_animatedImage:self didUpdateCachedFrames:self.cachedFrameIndexes];
                     });
                 }

@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class UGagentApplyInfo;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UGAgentViewController : UIViewController
+
+@property (nonatomic, strong) UGagentApplyInfo *item;
+
+@property (nonatomic, strong) NSString  *fromVC;
 
 @end
 

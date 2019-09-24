@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "UGChatViewController.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UGTabbarController : UITabBarController
+
+@property (strong, nonatomic) UGChatViewController *qdwebVC;
 
 @end
 

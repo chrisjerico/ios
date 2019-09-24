@@ -26,12 +26,14 @@
 static NSString *baseServerUrl = @"http://test10.6yc.com";
 //static NSString *baseServerUrl = @"http://test100f.fhptcdn.com";
 
-static NSString *swiperVerifyUrl = @"/dist/index.html#/swiperverify";
+static NSString *swiperVerifyUrl = @"/dist/index.html#/swiperverify?platform=native";
 
 static NSString *imagesServerUrl = @"https://cdn01.fsjtzs.cn//images";
 static NSString *rechargeUrl = @"/dist/index.html#/funds/deposit";
 static NSString *fundUrl = @"/dist/index.html#/funds/Withdraw";
 static NSString *chatRoomUrl = @"/dist/index.html#/chatRoomList";
+static NSString *newChatRoomUrl = @"/dist/#/home?from=app&logintoken=";
+
 static NSString *yuebaoUrl = @"/dist/index.html#/yuebao";
 static NSString *recommendUrl = @"/dist/index.html#/referrer/recommend";
 static NSString *balanceConversionUrl = @"/dist/index.html#/conversion";
@@ -88,6 +90,7 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 #define changlongBetListUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=report&a=getUserRecentBet"]
 
 #define userBetUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=user&a=bet"]
+#define userinstantBetUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=user&a=instantBet"]
 
 #define guestBetUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=user&a=guestBet"]
 
@@ -213,9 +216,18 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 
 #define activityApplyWinLogUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=activity&a=applyWinLog"]
 
-#ifndef __OPTIMIZE__
+#define activityApplyWinUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=activity&a=applyWin"]
 
-#define NSLog(...) NSLog(__VA_ARGS__)
+#define activityApplyWinLogDetailUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=activity&a=applyWinLogDetail"]
+
+#define teamAgentApplyInfoUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=team&a=agentApplyInfo"]
+
+#if DEBUG
+
+//#define NSLog(...) NSLog(__VA_ARGS__)
+
+#define NSLog(FORMAT, ...) fprintf(stderr,"[%s:%d行] %s\n",[[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
+
 
 #else
 

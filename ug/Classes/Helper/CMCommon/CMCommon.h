@@ -89,4 +89,19 @@
  返回：
  */
 +(BOOL)judgeStr:(int )number1 with:(int )number2;
+
+/*
+ 有时候需要让view显示某一侧的边框线，这时设置layer的border是达不到效果的。在网上查阅资料发现有一个投机取巧的办法，原理是给view的layer再添加一个layer，让这个layer充当边框线的角色。
+ 返回：
+ */
++ (void)setBorderWithView:(UIView *)view top:(BOOL)top left:(BOOL)left bottom:(BOOL)bottom right:(BOOL)right borderColor:(UIColor *)color borderWidth:(CGFloat)width;
+
+/**
+ *  根据内容自动算高度
+ *
+ *  @param text 内容 font height
+ *
+ *  @return 高度
+ */
++ (CGFloat)getLabelWidthWithText:(NSString *)text stringFont:(UIFont *)font allowHeight:(CGFloat)height;
 @end

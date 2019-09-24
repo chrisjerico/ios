@@ -104,6 +104,36 @@
     }
     
     
+    self.uGFunds2microcodeView .showBlock = ^{
+        
+        
+        if ([CMCommon stringIsNull:channelModel.qrcode]) {
+            return ;
+        } else {
+            
+            UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 250, 250)];
+            
+            [imgView sd_setImageWithURL:[NSURL URLWithString:channelModel.qrcode] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+            
+            [LEEAlert alert].config
+            .LeeTitle(@"二微码")
+            .LeeAddCustomView(^(LEECustomView *custom) {
+                
+                custom.view = imgView;
+                
+                custom.isAutoWidth = YES;
+                
+                //                custom.positionType = LEECustomViewPositionTypeRight;
+            })
+            .LeeCancelAction(@"关闭", nil)
+            .LeeShow();
+        }
+      
+        
+       
+        
+    };
+    
     //==============================================================
     [self.tiplabel  mas_remakeConstraints:^(MASConstraintMaker *make)
      {
@@ -226,29 +256,54 @@
     } else {
         [self.submit_button  mas_makeConstraints:^(MASConstraintMaker *make)
          {
-             make.left.equalTo(self.view.mas_left).with.offset(0);
-             make.right.equalTo(self.view.mas_right).with.offset(0);
+             make.left.equalTo(self.view.mas_left).with.offset(20);
+             make.right.equalTo(self.view.mas_right).with.offset(-20);
              make.top.equalTo(self.blank_button.mas_bottom).offset(20);
-             make.height.mas_equalTo(44);
+             make.height.mas_equalTo(40);
              
          }];
     }
   
-    if ([CMCommon stringIsNull:channelModel.qrcode]) {
-        if ([self.blank_button isHidden]) {
-           _mUIScrollView.contentSize = CGSizeMake(UGScreenW, self.tiplabel.height+self.tip2label.height+self.tableView.height+self.uGFundsTransferView.height+self.bg_label.height+self.blank_button.height+self.submit_button.height+20+self.uGFundsTransfer2View.height);
-        } else {
-            _mUIScrollView.contentSize = CGSizeMake(UGScreenW, self.tiplabel.height+self.tip2label.height+self.tableView.height+self.uGFundsTransferView.height+self.bg_label.height+self.blank_button.height+self.submit_button.height+64+self.uGFundsTransfer2View.height);
-        }
-        
+    NSLog(@"self.submit_button.y = %f",self.submit_button.y);
+   
+    
+    
+//    float height = self.tiplabel.height+self.tip2label.height+self.tableView.height+self.uGFundsTransferView.height+self.bg_label.height+self.submit_button.height+20+self.uGFundsTransfer2View.height;
+//
+    int buttonHight = 0;
+    if ([self.blank_button isHidden]) {
+
+        buttonHight = 0;
     } else {
-        if ([self.blank_button isHidden]) {
-            _mUIScrollView.contentSize = CGSizeMake(UGScreenW, self.tiplabel.height+self.tip2label.height+self.tableView.height+self.uGFundsTransferView.height+self.bg_label.height+self.blank_button.height+self.submit_button.height+20+self.uGFundsTransfer2View.height+self.uGFunds2microcodeView.height);
-        } else {
-            _mUIScrollView.contentSize = CGSizeMake(UGScreenW, self.tiplabel.height+self.tip2label.height+self.tableView.height+self.uGFundsTransferView.height+self.bg_label.height+self.blank_button.height+self.submit_button.height+64+self.uGFundsTransfer2View.height+self.uGFunds2microcodeView.height);
-        }
-        
+        buttonHight = 30;
     }
+    
+    
+    if ([CMCommon stringIsNull:channelModel.qrcode]) {
+//        [self->_uGFunds2microcodeView setHidden:YES];
+        _mUIScrollView.contentSize = CGSizeMake(UGScreenW, self.tableView.height+self.submit_button.y+self.submit_button.height+buttonHight+k_Height_NavBar+k_Height_StatusBar);
+    } else {
+        _mUIScrollView.contentSize = CGSizeMake(UGScreenW, 120+self.tableView.height+self.submit_button.y+self.submit_button.height+buttonHight+k_Height_NavBar+k_Height_StatusBar);
+    }
+
+    
+//    [_mUIScrollView setBackgroundColor:[UIColor redColor]];
+    
+//    if ([CMCommon stringIsNull:channelModel.qrcode]) {
+//        if ([self.blank_button isHidden]) {
+//           _mUIScrollView.contentSize = CGSizeMake(UGScreenW, self.tiplabel.height+self.tip2label.height+self.tableView.height+self.uGFundsTransferView.height+self.bg_label.height+self.blank_button.height+self.submit_button.height+20+self.uGFundsTransfer2View.height);
+//        } else {
+//            _mUIScrollView.contentSize = CGSizeMake(UGScreenW, self.tiplabel.height+self.tip2label.height+self.tableView.height+self.uGFundsTransferView.height+self.bg_label.height+self.blank_button.height+self.submit_button.height+44+self.uGFundsTransfer2View.height);
+//        }
+//
+//    } else {
+//        if ([self.blank_button isHidden]) {
+//            _mUIScrollView.contentSize = CGSizeMake(UGScreenW, self.tiplabel.height+self.tip2label.height+self.tableView.height+self.uGFundsTransferView.height+self.bg_label.height+self.blank_button.height+self.submit_button.height+20+self.uGFundsTransfer2View.height+self.uGFunds2microcodeView.height);
+//        } else {
+//            _mUIScrollView.contentSize = CGSizeMake(UGScreenW, self.tiplabel.height+self.tip2label.height+self.tableView.height+self.uGFundsTransferView.height+self.bg_label.height+self.blank_button.height+self.submit_button.height+44+self.uGFundsTransfer2View.height+self.uGFunds2microcodeView.height);
+//        }
+//
+//    }
     
     
     
@@ -340,6 +395,8 @@
         UGFunds2microcodeView * uGFunds2microcodeView = [[UGFunds2microcodeView alloc] initWithFrame:CGRectMake(0, 500, UGScreenW , 395) ];
         [self.mUIScrollView addSubview:uGFunds2microcodeView ];
         self.uGFunds2microcodeView = uGFunds2microcodeView;
+        
+       
     }
     if (self.label == nil) {
         self.bg_label = [UIView new];
@@ -400,14 +457,14 @@
     
     if (self.submit_button == nil) {
         UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        button.frame = CGRectMake(0, 500, UGScreenW, 44);
+        button.frame = CGRectMake(0, 500, UGScreenW, 40);
         // 按钮的正常状态
         [button setTitle:@"提交" forState:UIControlStateNormal];
         // 设置按钮的背景色
         button.backgroundColor = UGRGBColor(76, 149, 236.0);
         
         // 设置正常状态下按钮文字的颜色，如果不写其他状态，默认都是用这个文字的颜色
-        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
         // 设置按下状态文字的颜色
         [button setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
@@ -438,7 +495,7 @@
     }
     
     //=================================================
-    _mUIScrollView.contentSize = CGSizeMake(UGScreenW, 1400);
+//    _mUIScrollView.contentSize = CGSizeMake(UGScreenW, 1400);
 }
 
 #pragma mark - UITableViewDataSource
@@ -508,6 +565,11 @@
         _selectChannelModel = channelModel;
         
         [self setUIData:_selectChannelModel];
+        
+        //清空数据
+        self.uGFundsTransfer2View.myTextField.text = @"";
+        self.uGFundsTransfer2View.my2TextField.text = @"";
+        self.uGFundsTransfer2View.my3TextField.text = @"";
     }
     
 
@@ -582,6 +644,12 @@
         [CMResult processWithResult:model success:^{
             
                 [SVProgressHUD showSuccessWithStatus:model.msg];
+            
+            //返回上个界面
+            //发送通知到存款记录
+            [self.navigationController popViewControllerAnimated:YES]; 
+            
+             SANotificationEventPost(UGNotificationDepositSuccessfully, nil);
 
         } failure:^(id msg) {
             

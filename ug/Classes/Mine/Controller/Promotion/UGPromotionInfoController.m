@@ -8,8 +8,9 @@
 
 #import "UGPromotionInfoController.h"
 #import "UGinviteInfoModel.h"
-
+#import "UGSystemConfigModel.h"
 @interface UGPromotionInfoController ()
+@property (weak, nonatomic) IBOutlet UITableView *mytableView;
 @property (weak, nonatomic) IBOutlet UIImageView *headerImageView;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *promotionIdlabel;
@@ -25,6 +26,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *urlCopyButton2;
 @property (weak, nonatomic) IBOutlet UISwitch *qrcodeSwitch2;
 
+@property (weak, nonatomic) IBOutlet UILabel *sectionLabel1;
+@property (weak, nonatomic) IBOutlet UILabel *sectionLabel2;
+@property (weak, nonatomic) IBOutlet UILabel *sectionLabel3;
+@property (weak, nonatomic) IBOutlet UILabel *sectionLabel4;
 
 
 @property (nonatomic, assign) BOOL showHomeUrl;
@@ -47,7 +52,29 @@
     self.urlCopyButton2.layer.cornerRadius = 3;
     self.urlCopyButton2.layer.masksToBounds = YES;
     
+    self.userNameLabel.text = @"";
+    self.promotionIdlabel.text =@"";
+    self.promotionUrlLabel.text = @"";
+    self.registerUrlLabel.text = @"";
+    self.incomeLabel.text = @"";
+    
+    
+    self.totalMembers.text = @"";
+    self.monthMembers.text = @"";
+    
+    self.sectionLabel3.text = @"";
+    
+   
+   
+    
     [self teamInviteInfoData];
+}
+
+
+-(void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+    
+  
 }
 - (IBAction)homeUrlCopy:(id)sender {
     
@@ -56,7 +83,7 @@
     [SVProgressHUD showInfoWithStatus:@"复制成功"];
     
 }
-- (IBAction)homeSwitchClick:(id)sender {
+- (IBAction)homeSwitchClick:(id)sender {//====
     
     self.showHomeUrl = !self.showHomeUrl;
     [self.tableView reloadData];
@@ -140,8 +167,28 @@
     self.promotionUrlLabel.text = self.mUGinviteInfoModel.link_i;
     self.registerUrlLabel.text = self.mUGinviteInfoModel.link_r;
     self.incomeLabel.text = self.mUGinviteInfoModel.month_earn;
+    
+    
     self.totalMembers.text = self.mUGinviteInfoModel.total_member;
     self.monthMembers.text = self.mUGinviteInfoModel.month_member;
+    
+   self.sectionLabel3.text = self.mUGinviteInfoModel.fandian_intro;
+    
+    UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
+    config.myreco_img = @"1";
+    if ([config.myreco_img isEqualToString:@"0"]) {
+        
+        [self.headerImageView setHidden:NO];
+    }
+    else if([config.myreco_img isEqualToString:@"1"]) {
+        
+        [self.headerImageView setHidden:YES];
+        
+//        CGRect frame = self.mytableView.frame;
+//        frame.origin.y =  frame.origin.y -256;
+//
+//        self.mytableView.frame = frame;
+    }
 
 }
 @end

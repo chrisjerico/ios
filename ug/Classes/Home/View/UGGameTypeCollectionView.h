@@ -22,6 +22,8 @@ typedef void(^GameItemSelectBlock)(GameModel *game);
 @property (nonatomic, assign) NSInteger selectIndex;
 @property (nonatomic, strong) NSArray<GameCategoryModel*> *gameTypeArray;
 
+@property (nonatomic, readonly) CGFloat totalHeight;
+
 @end
 
 NS_ASSUME_NONNULL_END

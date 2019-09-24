@@ -295,7 +295,7 @@
             NSArray *indexArr = [address componentsSeparatedByString:@"-"];
             for (int i = 0; i < indexArr.count; i++) {
                 @try {
-                    dispatch_async(dispatch_get_main_queue(), ^{
+                     dispatch_async(dispatch_get_main_queue(), ^{
                         [self.addressPicker selectRow:[indexArr[i] integerValue] inComponent:i animated:NO];
                     });
                 } @catch (NSException *exception) {

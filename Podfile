@@ -15,7 +15,8 @@ pod 'LEEAlert'
 
   # 防奔溃
     pod 'AvoidCrash'
-
+#web浏览器
+pod 'BAWKWebView' 
 
 
 

@@ -7,13 +7,12 @@
 //
 
 #import "AppDelegate.h"
-#import "UGTabbarController.h"
 #import "UGNavigationController.h"
 #import "UGMineViewController.h"
 #import "UGLotteryHomeController.h"
 #import "UGChatsViewController.h"
 #import "UITabBarController+ShowViewController.h"
-#import "QDWebViewController.h"
+#import "UGChatViewController.h"
 #import "UGAppVersionManager.h"
 #ifdef DEBUG
 //#import <DoraemonKit/DoraemonManager.h>
@@ -26,11 +25,12 @@
 @end
 
 @implementation AppDelegate
+@synthesize tabbar;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    UGTabbarController *tabbar = [[UGTabbarController alloc] init];
+    tabbar = [[UGTabbarController alloc] init];
     tabbar.delegate = self;
     self.window.rootViewController = tabbar;
     [self.window makeKeyAndVisible];
@@ -149,7 +149,7 @@
         UGNavigationController *navi = (UGNavigationController *)viewController;
         if ([navi.viewControllers.firstObject isKindOfClass:[UGMineViewController class]] ||
             [navi.viewControllers.firstObject isKindOfClass:[UGLotteryHomeController class]] ||
-            [navi.viewControllers.firstObject isKindOfClass:[QDWebViewController class]]
+            [navi.viewControllers.firstObject isKindOfClass:[UGChatViewController class]]
             ) {
             [QDAlertView showWithTitle:@"温馨提示" message:@"您还未登录" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 if (buttonIndex) {

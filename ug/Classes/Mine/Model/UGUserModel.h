@@ -53,6 +53,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL testFlag;
 @property (nonatomic, assign) NSInteger type;
 @property (nonatomic, assign) NSString* usr;
+
 @property (nonatomic, assign) BOOL isAgent;//是否是代理
 @property (nonatomic, assign) BOOL checkinSwitch;//是否签到开关：
 
@@ -61,8 +62,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *nextLevelTitle;
 @property (nonatomic, strong) NSString *curLevelGrade;//"VIP1",
 @property (nonatomic, strong) NSString *nextLevelInt;
-@property (nonatomic, strong) NSString *taskRewardTitle;
-@property (nonatomic, strong) NSString *taskRewardTotal;
+@property (nonatomic, strong) NSString *taskRewardTitle;//"咔咔咔",
+@property (nonatomic, strong) NSString *taskRewardTotal;//653.0000",
 @property (nonatomic, strong) NSString *curLevelInt;
 @property (nonatomic, strong) NSString *nextLevelGrade;
 

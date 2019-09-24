@@ -218,7 +218,7 @@
 - (void)setProgress:(CGFloat)progress {
     _progress = MAX(MIN(1, progress), 0);
     
-    dispatch_async(dispatch_get_main_queue(), ^{
+     dispatch_async(dispatch_get_main_queue(), ^{
         [self startAnimation];
     });
 }

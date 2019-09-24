@@ -166,9 +166,10 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 }
 
 - (IBAction)showChatRoom:(id)sender {
-    QDWebViewController *chatVC = [[QDWebViewController alloc] init];
-    chatVC.navigationTitle = @"聊天室";
-    chatVC.urlString = [NSString stringWithFormat:@"%@%@?id=%@",baseServerUrl,chatRoomUrl,self.gameId];
+    UGChatViewController *chatVC = [[UGChatViewController alloc] init];
+    chatVC.webTitle = @"聊天室";
+    chatVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&id=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,self.gameId];
+//    [NSString stringWithFormat:@"%@%@?id=%@",baseServerUrl,chatRoomUrl,self.gameId];
     [self.navigationController pushViewController:chatVC animated:YES];
 }
 
@@ -875,31 +876,31 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 - (void)keyboardWasShown:(NSNotification*)aNotification
 {
 
-    //获得键盘的大小
-    NSDictionary* info = [aNotification userInfo];
-    CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
-    
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.25];
-    [UIView setAnimationCurve:7];
-    self.view.y -= kbSize.height;
+//    //获得键盘的大小
+//    NSDictionary* info = [aNotification userInfo];
+//    CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+//    
+//    [UIView beginAnimations:nil context:nil];
+//    [UIView setAnimationDuration:0.25];
+//    [UIView setAnimationCurve:7];
+//    self.view.y -= kbSize.height;
 //    self.bottomViewBottomConstraint.constant = kbSize.height;
-    [UIView commitAnimations];
+//    [UIView commitAnimations];
 }
 
 #pragma mark -----    键盘消失的时候的处理
 - (void)keyboardWillBeHidden:(NSNotification*)aNotification
 {
     
-    //获得键盘的大小
-    NSDictionary* info = [aNotification userInfo];
-    CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.25];
-    [UIView setAnimationCurve:7];
-    self.view.y += kbSize.height;
+//    //获得键盘的大小
+//    NSDictionary* info = [aNotification userInfo];
+//    CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+//    [UIView beginAnimations:nil context:nil];
+//    [UIView setAnimationDuration:0.25];
+//    [UIView setAnimationCurve:7];
+//    self.view.y += kbSize.height;
 //    self.bottomViewBottomConstraint.constant = 0;
-    [UIView commitAnimations];
+//    [UIView commitAnimations];
 }
 
 - (UITableView *)tableView {
