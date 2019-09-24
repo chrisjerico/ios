@@ -33,6 +33,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *curLevel1Label;
 @property (weak, nonatomic) IBOutlet UILabel *nextLevel2Label;
 
+
 @property (weak, nonatomic) IBOutlet UILabel *missionLevelLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nextLevelLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nextLevelNumLabel;
@@ -48,7 +49,9 @@
 @property (nonatomic, strong) UGMissionTitleCollectionView *titleCollectionView;
 @property (nonatomic, strong) UGMissionCollectionView *missionCollectionView;
 @property (nonatomic, strong) WavesView *waveView;
+
 @property (weak, nonatomic) IBOutlet UILabel *integralLabel;//积分，暂时隐藏
+@property (weak, nonatomic) IBOutlet UILabel *taskRewradTitleLabel;
 
 
 @end
@@ -240,6 +243,16 @@
     NSLog(@"int2String = %d",int2String);
     self.missionTitleLabel.text = [NSString stringWithFormat:@"成长值（%d-%d）",int1String,int2String];
     
+    
+
+    if (![CMCommon stringIsNull:user.taskRewardTitle]) {
+        self.taskRewradTitleLabel.text = user.taskRewardTitle;
+        
+    }
+    if (![CMCommon stringIsNull:user.taskRewardTotal]) {
+        self.integralLabel.text = user.taskRewardTotal;
+        [self.integralLabel setHidden:NO];
+    }
     
     double floatString = [user.balance doubleValue];
     self.balanceLabel.text =  [NSString stringWithFormat:@"￥%.2f",floatString];

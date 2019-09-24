@@ -77,6 +77,7 @@
     if (!_contentTextView) {
         _contentTextView = [[UILabel alloc]init];
         _contentTextView.font = [UIFont systemFontOfSize:17];
+//        [_contentTextView setEditable:NO];
     }
     return _contentTextView;
 }

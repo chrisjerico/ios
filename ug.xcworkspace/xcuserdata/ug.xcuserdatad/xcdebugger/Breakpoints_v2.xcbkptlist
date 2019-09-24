@@ -75,10 +75,14 @@
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ug/Desktop/fhcpIOSapp/ug/Classes/Mine/Controller/MissionCenter/UGIntegralConvertRecordController.m"
 <<<<<<< HEAD
+<<<<<<< HEAD
                   timestampString = "590766782.367169"
 =======
                   timestampString = "590923767.273411"
 >>>>>>> bug
+=======
+                  timestampString = "590923767.273411"
+>>>>>>> 2f08e6c91ec7a04a5b14ae5bb8c109d68f82bb53
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "114"
@@ -94,10 +98,14 @@
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ug/Desktop/fhcpIOSapp/ug/Classes/Mine/Controller/MissionCenter/UGIntegralConvertRecordController.m"
 <<<<<<< HEAD
+<<<<<<< HEAD
                   timestampString = "590766782.368458"
 =======
                   timestampString = "590923767.274618"
 >>>>>>> bug
+=======
+                  timestampString = "590923767.274618"
+>>>>>>> 2f08e6c91ec7a04a5b14ae5bb8c109d68f82bb53
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "114"
@@ -131,10 +139,14 @@
             continueAfterRunningActions = "No"
             filePath = "ug/Classes/Promote/Controller/UGPromoteDetailController.m"
 <<<<<<< HEAD
+<<<<<<< HEAD
             timestampString = "590600988.821963"
 =======
             timestampString = "590856973.357987"
 >>>>>>> bug
+=======
+            timestampString = "590856973.357987"
+>>>>>>> 2f08e6c91ec7a04a5b14ae5bb8c109d68f82bb53
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "36"
@@ -195,6 +207,7 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
+<<<<<<< HEAD
             filePath = "ug/Classes/Home/Controller/UGHomeViewController.m"
             timestampString = "590820373.013388"
             startingColumnNumber = "9223372036854775807"
@@ -202,6 +215,15 @@
             startingLineNumber = "150"
             endingLineNumber = "150"
             landmarkName = "-viewDidLoad"
+=======
+            filePath = "ug/Classes/Mine/Controller/Promotion/UGPromotionTableController.m"
+            timestampString = "590746583.0075819"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "700"
+            endingLineNumber = "700"
+            landmarkName = "-teamInviteListData:"
+>>>>>>> 2f08e6c91ec7a04a5b14ae5bb8c109d68f82bb53
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -211,6 +233,7 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
+<<<<<<< HEAD
             filePath = "ug/Classes/Home/Controller/UGHomeViewController.m"
             timestampString = "590820373.013695"
             startingColumnNumber = "9223372036854775807"
@@ -218,6 +241,108 @@
             startingLineNumber = "144"
             endingLineNumber = "144"
             landmarkName = "-viewDidLoad"
+=======
+            filePath = "ug/Classes/Mine/Controller/Promotion/UGPromotionTableController.m"
+            timestampString = "590746583.007645"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "369"
+            endingLineNumber = "369"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
+>>>>>>> 2f08e6c91ec7a04a5b14ae5bb8c109d68f82bb53
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+<<<<<<< HEAD
+            filePath = "ug/Classes/Home/View/UGredActivityView.m"
+            timestampString = "590662266.0990109"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
+            landmarkName = "-activityGetRedBag"
+=======
+            filePath = "ug/Classes/Other/UGTestViewController.m"
+            timestampString = "590767136.55127"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "-viewWillAppear:"
+>>>>>>> 2f08e6c91ec7a04a5b14ae5bb8c109d68f82bb53
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+<<<<<<< HEAD
+            filePath = "ug/Classes/Mine/Controller/Promotion/UGPromotionTableController.m"
+            timestampString = "590746583.0075819"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "700"
+            endingLineNumber = "700"
+            landmarkName = "-teamInviteListData:"
+=======
+            filePath = "ug/Classes/Other/UGTestViewController.m"
+            timestampString = "590767136.551609"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "-ba_web_loadURLString:"
+>>>>>>> 2f08e6c91ec7a04a5b14ae5bb8c109d68f82bb53
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+<<<<<<< HEAD
+            filePath = "ug/Classes/Mine/Controller/Promotion/UGPromotionTableController.m"
+            timestampString = "590746583.007645"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "369"
+            endingLineNumber = "369"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
+=======
+            filePath = "ug/Classes/Other/UGTestViewController.m"
+            timestampString = "590767136.551815"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "-viewWillAppear:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ug/Classes/Other/UGTestViewController.m"
+            timestampString = "590767136.552008"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "-ba_web_loadURLString:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -228,12 +353,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ug/Classes/Home/View/UGredActivityView.m"
-            timestampString = "590662266.0990109"
+            timestampString = "590829883.0338711"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
-            landmarkName = "-activityGetRedBag"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "-setItem:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -243,13 +368,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ug/Classes/Mine/Controller/Promotion/UGPromotionTableController.m"
-            timestampString = "590746583.0075819"
+            filePath = "ug/Classes/Home/View/UGredActivityView.m"
+            timestampString = "590829883.033942"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "700"
-            endingLineNumber = "700"
-            landmarkName = "-teamInviteListData:"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "-setItem:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -259,13 +384,46 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ug/Classes/Mine/Controller/Promotion/UGPromotionTableController.m"
-            timestampString = "590746583.007645"
+            filePath = "ug/Classes/Home/View/UGredActivityView.m"
+            timestampString = "590829883.033978"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "369"
-            endingLineNumber = "369"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "-setItem:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ug/Classes/Mine/Controller/SignIn/UGSigInCodeViewController.m"
+            timestampString = "590925433.472719"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "205"
+            endingLineNumber = "205"
+            landmarkName = "-setUIData"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ug/Classes/Mine/Controller/SignIn/UGSigInCodeViewController.m"
+            timestampString = "590925433.472762"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "195"
+            endingLineNumber = "195"
+            landmarkName = "-setUIData"
+>>>>>>> 2f08e6c91ec7a04a5b14ae5bb8c109d68f82bb53
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -448,7 +606,10 @@
             startingLineNumber = "297"
             endingLineNumber = "297"
             landmarkName = "-setUI:"
+<<<<<<< HEAD
 >>>>>>> bug
+=======
+>>>>>>> 2f08e6c91ec7a04a5b14ae5bb8c109d68f82bb53
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

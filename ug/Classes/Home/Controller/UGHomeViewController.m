@@ -318,12 +318,36 @@
             }];
         }else {
             
-            weakSelf.uGredActivityView = [[UGredActivityView alloc] initWithFrame:CGRectMake(20,100, UGScreenW-50, UGScreenW-50+150) ];
+
+            BOOL isLogin = UGLoginIsAuthorized();
             
-            weakSelf.uGredActivityView.item = weakSelf.uGredEnvelopeView.item;
-            if (weakSelf.uGredEnvelopeView.item) {
-                [weakSelf.uGredActivityView show];
+            if (isLogin) {
+                weakSelf.uGredActivityView = [[UGredActivityView alloc] initWithFrame:CGRectMake(20,100, UGScreenW-50, UGScreenW-50+150) ];
+                
+                weakSelf.uGredActivityView.item = weakSelf.uGredEnvelopeView.item;
+                if (weakSelf.uGredEnvelopeView.item) {
+                    [weakSelf.uGredActivityView show];
+                }
+            } else {
+                
+                [QDAlertView showWithTitle:@"温馨提示" message:@"您还未登录" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                    if (buttonIndex) {
+                        
+                        UGLoginAuthorize(^(BOOL isFinish) {
+                            if (!isFinish) {
+                                return ;
+                            }
+
+                            
+                        });
+                    }
+                }];
+                
+                
             }
+            
+            
+           
         }
         
         
@@ -349,12 +373,8 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-//<<<<<<< HEAD
-//	self.initSubview = YES;
-//=======
     [self.leftwardMarqueeView pause];//fixbug  发热  掉电快
     self.initSubview = YES;
-//>>>>>>> 修复bug2
 }
 
 - (void)viewWillLayoutSubviews {
@@ -707,7 +727,8 @@
     [SVProgressHUD showWithStatus:@"退出登录..."];
     [CMNetwork userLogoutWithParams:dict completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
-            [SVProgressHUD showSuccessWithStatus:model.msg];
+//            [SVProgressHUD showSuccessWithStatus:model.msg];
+            [SVProgressHUD showSuccessWithStatus:@"退出成功"];
             self.titleView.showLoginView = YES;
             UGUserModel.currentUser = nil;
              dispatch_async(dispatch_get_main_queue(), ^{
@@ -733,6 +754,7 @@
                 NSMutableArray *mutArr = [NSMutableArray array];
                 if (self.bannerArray.count) {
                     for (UGBannerCellModel *banner in self.bannerArray) {
+
                         [mutArr addObject:banner.pic];
                     }
                     self.bannerView.imageURLStringsGroup = mutArr.mutableCopy;
@@ -839,6 +861,10 @@
         
     
     
+
+        
+    
+    
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
     
     [SVProgressHUD showWithStatus:nil];
@@ -851,13 +877,13 @@
                 [SVProgressHUD dismiss];
                 
                 self.uGredEnvelopeView.item = (UGRedEnvelopeModel*)model.data;
-                
-                if ([UGUserModel currentUser].isTest) {
-                    [self.uGredEnvelopeView setHidden:YES];
-                }else {
-                    
-                    [self.uGredEnvelopeView setHidden:NO];
-                }
+
+              
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    //需要在主线程执行的代码
+                      [self.uGredEnvelopeView setHidden:NO];
+                }];
+            
             });
 
             
