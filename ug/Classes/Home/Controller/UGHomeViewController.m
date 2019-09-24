@@ -244,8 +244,8 @@
     });
     
     [self getSystemConfig];
-    [self getPlatformGamesList];
-//    [self getBannerList];
+    [self getCustomGameList];
+    [self getBannerList];
     [self getNoticeList];
     [self getRankList];
     [self getAllNextIssueData];
@@ -254,8 +254,8 @@
     
     self.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self getSystemConfig];
-        [self getPlatformGamesList];
-//        [self getBannerList];
+        [self getCustomGameList];
+        [self getBannerList];
         [self getNoticeList];
         [self getRankList];
         [self getUserInfo];
@@ -277,7 +277,7 @@
 //                weakSelf.scrollView.contentSize = CGSizeMake(UGScreenW, weakSelf.scrollContentHeightConstraints.constant);
 //        [weakSelf.view layoutIfNeeded];
 //    };
-    self.gameTypeCollectionView.gameItemSelectBlock = ^(UGPlatformGameModel * _Nonnull game) {
+    self.gameTypeCollectionView.gameItemSelectBlock = ^(GameModel * _Nonnull game) {
         [weakSelf showGameVC: game];
     };
     
@@ -729,10 +729,10 @@
             
              dispatch_async(dispatch_get_main_queue(), ^{
                 // 需要在主线程执行的代码
-                self.bannerArray = model.data;
+                self.bannerArray = ((UGBannerModel*)model.data).list;
                 NSMutableArray *mutArr = [NSMutableArray array];
                 if (self.bannerArray.count) {
-                    for (UGBannerModel *banner in self.bannerArray) {
+                    for (UGBannerCellModel *banner in self.bannerArray) {
                         [mutArr addObject:banner.pic];
                     }
                     self.bannerView.imageURLStringsGroup = mutArr.mutableCopy;
