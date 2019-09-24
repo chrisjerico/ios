@@ -41,6 +41,8 @@
 #import "UGLotteryRecordController.h"
 #import "UGAllNextIssueListModel.h"
 #import "UGChangLongController.h"
+#import "UGagentApplyInfo.h"
+#import "UGAgentRefusedViewController.h"
 
 @interface UGMineViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIView *userInfoView;
@@ -103,22 +105,16 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
     
     NSLog(@"isAgent= %d",user.isAgent);
     if (user.isAgent) {
+        
         self.menuNameArray = @[@"存款",@"取款",@"在线客服",@"银行卡管理",@"利息宝",@"额度转换",@"推荐收益",@"安全中心",@"站内信",@"彩票注单记录",@"其他注单记录",@"个人信息",@"建议反馈",@"活动彩金"];
         
          self.imageNameArray = @[@"chongzhi",@"tixian",@"zaixiankefu",@"yinhangqia",@"lixibao",@"change",@"shouyi",@"ziyuan",@"zhanneixin",@"zdgl",@"zdgl",@"huiyuanxinxi",@"jianyi",@"zdgl"];
     } else {
         
-        UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
+        self.menuNameArray = @[@"存款",@"取款",@"在线客服",@"银行卡管理",@"利息宝",@"额度转换",@"代理申请",@"安全中心",@"站内信",@"彩票注单记录",@"其他注单记录",@"个人信息",@"建议反馈",@"活动彩金"];
+        self.imageNameArray = @[@"chongzhi",@"tixian",@"zaixiankefu",@"yinhangqia",@"lixibao",@"change",@"shouyi",@"ziyuan",@"zhanneixin",@"zdgl",@"zdgl",@"huiyuanxinxi",@"jianyi",@"zdgl"];
         
-       
-        
-         if ([config.agent_m_apply isEqualToString:@"1"]) {
-                  self.menuNameArray = @[@"存款",@"取款",@"在线客服",@"银行卡管理",@"利息宝",@"额度转换",@"代理申请",@"安全中心",@"站内信",@"彩票注单记录",@"其他注单记录",@"个人信息",@"建议反馈",@"活动彩金"];
-                  self.imageNameArray = @[@"chongzhi",@"tixian",@"zaixiankefu",@"yinhangqia",@"lixibao",@"change",@"shouyi",@"ziyuan",@"zhanneixin",@"zdgl",@"zdgl",@"huiyuanxinxi",@"jianyi",@"zdgl"];
-         } else {
-                   self.menuNameArray = @[@"存款",@"取款",@"在线客服",@"银行卡管理",@"利息宝",@"额度转换",@"安全中心",@"站内信",@"彩票注单记录",@"其他注单记录",@"个人信息",@"建议反馈",@"活动彩金"];
-                  self.imageNameArray = @[@"chongzhi",@"tixian",@"zaixiankefu",@"yinhangqia",@"lixibao",@"change",@"ziyuan",@"zhanneixin",@"zdgl",@"zdgl",@"huiyuanxinxi",@"jianyi",@"zdgl"];
-         }
+
   
     }
     
@@ -400,13 +396,14 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
                 }
             }];
         }else {
-            
+
             UGPromotionIncomeController *incomeVC = [[UGPromotionIncomeController alloc] init];
             [self.navigationController pushViewController:incomeVC animated:YES];
         }
     }else if ([title isEqualToString:@"代理申请"]) {
         
         UGUserModel *user = [UGUserModel currentUser];
+        user.isTest = NO;
         if (user.isTest) {
             [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 if (buttonIndex == 1) {
@@ -415,8 +412,26 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
             }];
         }else {
             
-            UGAgentViewController *incomeVC = [[UGAgentViewController alloc] init];
-            [self.navigationController pushViewController:incomeVC animated:YES];
+                    UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
+
+                     if ([config.agent_m_apply isEqualToString:@"1"]) {
+                         //调接口
+                         [self teamAgentApplyInfoWithParams];
+                         
+                     } else {
+                         [LEEAlert alert].config
+                         .LeeTitle(@"温馨提示")
+                         .LeeContent(
+                                     @"你没有申请的权限")
+                        
+                         .LeeAction(@"确认", ^{
+                             
+                             // 确认点击事件Block
+                         })
+                         .LeeShow(); // 设置完成后 别忘记调用Show来显示
+                     }
+            
+
         }
 
     }else if ([title isEqualToString:@"安全中心"]) {
@@ -672,6 +687,67 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
 }
 
 #pragma mark -- 网络请求
+
+//用户签到（签到类型：0是签到，1是补签）
+- (void)teamAgentApplyInfoWithParams{
+    
+    //    NSString *date = @"2019-09-04";
+    
+    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid
+                             };
+    
+    [SVProgressHUD showWithStatus:nil];
+    //    WeakSelf;
+    [CMNetwork teamAgentApplyInfoWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            
+            [SVProgressHUD dismiss];
+            UGagentApplyInfo *obj  = (UGagentApplyInfo *)model.data;
+            
+            NSLog(@"%@",obj.reviewStatus);
+            
+            NSNumber *numberStatus = obj.reviewStatus;
+            int intStatus = [numberStatus intValue];
+            //0 未提交  1 待审核  2 审核通过 3 审核拒绝
+ 
+            if (intStatus == 0) {//==>
+                //提交代理==》UGAgentViewController
+                UGAgentViewController *incomeVC = [[UGAgentViewController alloc] init];
+                incomeVC.item = obj;
+                [self.navigationController pushViewController:incomeVC animated:YES];
+            }
+            else if (intStatus == 1) {
+                //待审核==》UGAgentViewController
+                UGAgentViewController *incomeVC = [[UGAgentViewController alloc] init];
+                incomeVC.item = obj;
+                [self.navigationController pushViewController:incomeVC animated:YES];
+            }
+            else if (intStatus == 2) {
+                //审核通过==> 推荐
+                UGPromotionIncomeController *incomeVC = [[UGPromotionIncomeController alloc] init];
+                [self.navigationController pushViewController:incomeVC animated:YES];
+            }
+            else if (intStatus == 3) {
+                //审核拒绝==》拒绝
+                UGAgentRefusedViewController*incomeVC = [[UGAgentRefusedViewController alloc] init];
+                incomeVC.item = obj;
+                [self.navigationController pushViewController:incomeVC animated:YES];
+            }
+//            "username": "ugtmac",
+//            "qq": "12345678",
+//            "mobile": "13707890978",
+//            "applyReason": "QWERTY",
+//            "reviewResult": "",
+//            "reviewStatus": 1
+
+            
+        } failure:^(id msg) {
+            
+            [SVProgressHUD showErrorWithStatus:msg];
+            
+        }];
+    }];
+}
 - (void)getUserInfo {
     [self startAnimation];
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};

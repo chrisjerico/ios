@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
+typedef void(^Funds2microcodelBlock)(void);
 
 @interface UGFunds2microcodeView : UIView
 @property (nonatomic, strong) NSString *headerImageStr;
+@property (nonatomic, copy) Funds2microcodelBlock showBlock;
 
 @end
 

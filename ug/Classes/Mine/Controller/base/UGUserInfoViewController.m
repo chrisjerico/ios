@@ -21,6 +21,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *emailLabel;
 @property (weak, nonatomic) IBOutlet UILabel *moneyType;
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *time2Label;
+
 @end
 
 @implementation UGUserInfoViewController
@@ -32,6 +35,42 @@
     self.navigationItem.title = @"我的资料";
     [self setupUserInfo];
     [self getUserInfo];
+    
+    
+    NSDate *now = [NSDate date];
+    NSLog(@"now date is: %@", now);
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSUInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit |                 NSSecondCalendarUnit;
+    NSDateComponents *dateComponent = [calendar components:unitFlags fromDate:now];
+    
+    int year = (int )[dateComponent year];
+    int month =(int ) [dateComponent month];
+    int day = (int )[dateComponent day];
+    int hour = (int )[dateComponent hour];
+    int minute = (int )[dateComponent minute];
+    int second = (int )[dateComponent second];
+    
+
+    NSLog(@"hour is: %d", hour);
+    
+    if (hour <=5) {
+        self.titleLabel.text = @"凌晨好，";
+         self.time2Label.text = @"凌晨，时间不早了记得休息";
+    }
+    else if (hour <=11) {
+        self.titleLabel.text = @"上午好，";
+        self.time2Label.text = @"上午，补充能量继续战斗";
+    }
+    else if (hour <=17) {
+        self.titleLabel.text = @"下午好，";
+        self.time2Label.text = @"下午，补充能量继续战斗";
+    }
+    else {
+        self.titleLabel.text = @"晚上好，";
+        self.time2Label.text = @"傍晚，安静的夜晚是不可多得的享受";
+    }
+
 
 }
 

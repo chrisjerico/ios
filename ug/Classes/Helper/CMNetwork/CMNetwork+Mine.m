@@ -30,6 +30,7 @@
 
 #import "UGdepositModel.h"
 #import "UGapplyWinLogDetail.h"
+#import "UGagentApplyInfo.h"
 
 @implementation CMNetwork (Mine)
 
@@ -975,6 +976,19 @@
     [self.manager requestInMainThreadWithMethod:[activityApplyWinLogDetailUrl stringToRestfulUrlWithFlag:RESTFUL]
                                          params:params
                                           model:CMResultClassMake(UGapplyWinLogDetail.class)
+                                           post:NO
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
+
+//代理申请信息 http://test10.6yc.com/wjapp/api.php?c=team&a=agentApplyInfo&token=yQxBi4W4B3N65Oa5z55Yy46A
++ (void)teamAgentApplyInfoWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    [self.manager requestInMainThreadWithMethod:[teamAgentApplyInfoUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:CMResultClassMake(UGagentApplyInfo.class)
                                            post:NO
                                      completion:completionBlock];
     

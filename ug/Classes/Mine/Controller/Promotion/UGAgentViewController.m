@@ -8,11 +8,14 @@
 
 #import "UGAgentViewController.h"
 #import "UITextView+Extension.h"
+#import "UGagentApplyInfo.h"
 
-@interface UGAgentViewController ()
+@interface UGAgentViewController ()<UITextFieldDelegate,UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *qqTextField;
 @property (weak, nonatomic) IBOutlet UITextField *phoneTextView;
 @property (weak, nonatomic) IBOutlet UITextView *remarkTextView;
+@property (weak, nonatomic) IBOutlet UILabel *tagLabel;
+@property (weak, nonatomic) IBOutlet UIButton *okButton;
 
 @end
 
@@ -22,13 +25,88 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title  = @"代理申请";
+
+    
+    self.extendedLayoutIncludesOpaqueBars = YES;
+    
      [_remarkTextView setPlaceholderWithText:@"申请理由(6-30个字符必填项)" Color:[UIColor grayColor]];
     _remarkTextView.layer.borderColor = [UIColor grayColor].CGColor;//边框颜色
     _remarkTextView.layer.borderWidth = 1;//边框宽度
+    _qqTextField.delegate = self;
+    _phoneTextView.delegate = self;
+    _qqTextField.delegate = self;
     
+    
+    if ([self.fromVC  isEqualToString:@"fromVC"]) {
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back_icon"] style:(UIBarButtonItemStyleDone) target:self action:@selector(back)];
+    }
+    
+    
+    if (_item) {
+        NSNumber *numberStatus = _item.reviewStatus;
+     
+        int intStatus = [numberStatus intValue];
+        if (intStatus == 1) {
+            [self.tagLabel setHidden:NO];
+            [self.remarkTextView setEditable:NO];
+            [self.tagLabel setHidden:NO];
+            self.okButton.userInteractionEnabled=NO;//交互关闭
+            self.okButton.alpha=0.4;//透明度
+
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                //需要在主线程执行的代码
+                // 需要在主线程执行的代码
+                self.qqTextField.text = self->_item.qq;
+                self.phoneTextView.text = self->_item.mobile;
+                self.remarkTextView.text = self->_item.applyReason;
+            }];
+  
+            
+            
+        }
+        else if (intStatus == 0){
+            [self.tagLabel setHidden:YES];
+            [self.remarkTextView setEditable:YES];
+            self.okButton.userInteractionEnabled=YES;//交互关闭
+            self.okButton.alpha=1.0;//透明度
+        }
+        
+    }
+    else{
+        [self.tagLabel setHidden:YES];
+        [self.remarkTextView setEditable:YES];
+        self.okButton.userInteractionEnabled=YES;//交互关闭
+        self.okButton.alpha=1.0;//透明度
+    }
 }
 
 
+
+- (void)setItem:(UGagentApplyInfo *)item {
+    _item = item;
+  
+
+}
+
+
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    
+    if (_item) {
+        NSNumber *numberStatus = self.item.reviewStatus;
+        int intStatus = [numberStatus intValue];
+        if (intStatus == 1) {
+            return NO;
+        } else {
+            return YES;
+        }
+    } else {
+        return YES;
+    }
+   
+
+    
+
+}
 - (IBAction)buttonClicked:(id)sender {
     
     NSString *qqStr = [_qqTextField.text  stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
@@ -68,7 +146,14 @@
         [CMResult processWithResult:model success:^{
             
             [SVProgressHUD showSuccessWithStatus:model.msg];
-            [self.navigationController popViewControllerAnimated:YES];
+            
+            if ([self.fromVC  isEqualToString:@"fromVC"]) {
+                [self back];
+            }
+            else{
+                 [self.navigationController popViewControllerAnimated:YES];
+            }
+           
         } failure:^(id msg) {
             
             [SVProgressHUD showErrorWithStatus:msg];
@@ -76,6 +161,11 @@
         }];
     }];
     
+}
+
+-(void)back
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 @end

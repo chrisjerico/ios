@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *missionBili;
 @property (nonatomic, assign) NSString * isIntToMoney;//积分开关0=关闭；1=开启；
 @property (nonatomic, assign) NSString * missionSwitch;//1=关闭；0=开启；
-
+@property (nonatomic, assign) NSString * myreco_img;//1=关闭；0=开启；
 
 @property (nonatomic, assign) BOOL checkinSwitch;//签到开关
 @property (nonatomic, assign) BOOL mkCheckinSwitch;//补签开关：

@@ -10,7 +10,7 @@
 #import "UGAvaterCollectionViewCell.h"
 #import "UGAvatarModel.h"
 
-@interface UGAvaterSelectView ()<UICollectionViewDelegate,UICollectionViewDataSource>
+@interface UGAvaterSelectView ()<UICollectionViewDelegate,UICollectionViewDataSource,UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *bigImgView;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
@@ -23,6 +23,8 @@
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, assign) CGRect oldFrame;
 @property (nonatomic, assign) NSInteger selIndex;
+@property (nonatomic, assign) NSInteger leftIndex;
+@property (nonatomic, assign) NSInteger reghtIndex;
 @end
 
 static NSString *avaterCellid = @"UGAvaterCollectionViewCell";
@@ -35,6 +37,8 @@ static NSString *avaterCellid = @"UGAvaterCollectionViewCell";
         self.frame = frame;
         self.oldFrame = frame;
         self.selIndex = 0;
+        self.leftIndex= 1;
+        self.reghtIndex= 4;
         self.submitButton.layer.cornerRadius = 3;
         self.submitButton.layer.masksToBounds = YES;
         self.cancelButton.layer.cornerRadius = 3;
@@ -108,10 +112,46 @@ static NSString *avaterCellid = @"UGAvaterCollectionViewCell";
 
 - (IBAction)leftClick:(id)sender {
     
-    
+   
+//    NSLog(@"self.dataArray.count = %lu",(unsigned long)self.dataArray.count);
+//    NSLog(@"self.leftIndex = %lu",(unsigned long)self.leftIndex);
+//
+//
+//    if (self.leftIndex >= self.dataArray.count-2 || self.leftIndex<1) {
+//        return;
+//    } else {
+//        NSIndexPath *scrollIndexPath = [NSIndexPath indexPathForRow: self.leftIndex inSection:0];
+////        UICollectionViewScrollPositionLeft                 = 1 << 3,
+////        UICollectionViewScrollPositionCenteredHorizontally = 1 << 4,
+////        UICollectionViewScrollPositionRight                = 1 << 5
+//
+//        [self layoutIfNeeded];
+//        [self.collectionView scrollToItemAtIndexPath:scrollIndexPath atScrollPosition:UICollectionViewScrollPositionLeft animated:YES];
+//
+//          self.leftIndex += 1;
+//    }
+//
+
 }
 
 - (IBAction)rightClick:(id)sender {
+    NSLog(@"self.dataArray.count = %lu",(unsigned long)self.dataArray.count);
+    NSLog(@"self.reghtIndex = %lu",(unsigned long)self.reghtIndex);
+    
+    
+//    if (self.reghtIndex<= 0 ||self.reghtIndex>_dataArray.count-1) {
+//        return;
+//    } else {
+//        NSIndexPath *scrollIndexPath = [NSIndexPath indexPathForRow: self.reghtIndex inSection:0];
+//        //        UICollectionViewScrollPositionLeft                 = 1 << 3,
+//        //        UICollectionViewScrollPositionCenteredHorizontally = 1 << 4,
+//        //        UICollectionViewScrollPositionRight                = 1 << 5
+//
+//        [self layoutIfNeeded];
+//        [self.collectionView scrollToItemAtIndexPath:scrollIndexPath atScrollPosition:UICollectionViewScrollPositionRight animated:YES];
+//
+//        self.reghtIndex -= 1;
+//    }
     
     
 }
@@ -133,7 +173,7 @@ static NSString *avaterCellid = @"UGAvaterCollectionViewCell";
     UICollectionView *collectionView = ({
         
         collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(35, 0, self.avatersBgView.width - 100, self.avatersBgView.height) collectionViewLayout:layout];
-        collectionView.backgroundColor = [UIColor clearColor];
+        collectionView.backgroundColor = [UIColor whiteColor];
         collectionView.dataSource = self;
         collectionView.delegate = self;
         [collectionView registerNib:[UINib nibWithNibName:@"UGAvaterCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:avaterCellid];
@@ -209,5 +249,24 @@ static NSString *avaterCellid = @"UGAvaterCollectionViewCell";
     }
     return _dataArray;
 }
+
+
+
+
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+//    CGPoint point=self.collectionView.contentOffset;
+//    NSLog(@"%f,%f",point.x,point.y);
+//
+//    float y = point.y;
+//    int  index = y/60;
+//
+//    self.leftIndex= index+1;
+//    self.reghtIndex = index+4;
+//
+//    NSLog(@"leftIndex=%d,reghtIndex=%d",index+1,index+4);
+}
+#pragma mark - scrollView 停止滚动监测
 
 @end
