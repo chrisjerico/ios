@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		030BE80A23337AE3004AB19A /* GameCategoryDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 030BE80923337AE3004AB19A /* GameCategoryDataModel.m */; };
+		030BE80D233604B3004AB19A /* UGGameSubCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 030BE80C233604B3004AB19A /* UGGameSubCollectionView.m */; };
+		033177A72337382D000D7663 /* UGPlatformCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 033177A62337382D000D7663 /* UGPlatformCollectionView.m */; };
+		033177AF2338E026000D7663 /* UGBetResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = 033177AE2338E026000D7663 /* UGBetResultView.m */; };
 		A0C64CB6AEB0CF1B2031BBB8 /* Pods_ug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6486EFF4C273BEA0AE8994DD /* Pods_ug.framework */; };
 		D4000C45232E4EDD000705B1 /* UGAgentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4000C43232E4EDD000705B1 /* UGAgentViewController.m */; };
 		D4000C46232E4EDD000705B1 /* UGAgentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4000C44232E4EDD000705B1 /* UGAgentViewController.xib */; };
@@ -546,6 +550,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		030BE80823337AE3004AB19A /* GameCategoryDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameCategoryDataModel.h; sourceTree = "<group>"; };
+		030BE80923337AE3004AB19A /* GameCategoryDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameCategoryDataModel.m; sourceTree = "<group>"; };
+		030BE80B233604B3004AB19A /* UGGameSubCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGGameSubCollectionView.h; sourceTree = "<group>"; };
+		030BE80C233604B3004AB19A /* UGGameSubCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGGameSubCollectionView.m; sourceTree = "<group>"; };
+		033177A52337382D000D7663 /* UGPlatformCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGPlatformCollectionView.h; sourceTree = "<group>"; };
+		033177A62337382D000D7663 /* UGPlatformCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGPlatformCollectionView.m; sourceTree = "<group>"; };
+		033177AD2338E026000D7663 /* UGBetResultView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGBetResultView.h; sourceTree = "<group>"; };
+		033177AE2338E026000D7663 /* UGBetResultView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGBetResultView.m; sourceTree = "<group>"; };
 		443C93C1135A8C900E47477A /* Pods-ug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ug.release.xcconfig"; path = "Target Support Files/Pods-ug/Pods-ug.release.xcconfig"; sourceTree = "<group>"; };
 		6486EFF4C273BEA0AE8994DD /* Pods_ug.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ug.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4000C42232E4EDD000705B1 /* UGAgentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGAgentViewController.h; sourceTree = "<group>"; };
@@ -2573,6 +2585,8 @@
 				D48224F922A120E500F7DE72 /* UGPlatformNoticeModel.m */,
 				D4145A7922B3C0F900D8165F /* UGPlatformGameModel.h */,
 				D4145A7A22B3C0F900D8165F /* UGPlatformGameModel.m */,
+				030BE80823337AE3004AB19A /* GameCategoryDataModel.h */,
+				030BE80923337AE3004AB19A /* GameCategoryDataModel.m */,
 				D40E1E5122BE6AB6004D4664 /* UGBannerModel.h */,
 				D40E1E5222BE6AB6004D4664 /* UGBannerModel.m */,
 				D40E1E5422BF5409004D4664 /* UGNoticeModel.h */,
@@ -2602,6 +2616,8 @@
 				D405B2CC227ADC1100F8C586 /* UGGamePlatformCollectionViewCell.h */,
 				D405B2CD227ADC1100F8C586 /* UGGamePlatformCollectionViewCell.m */,
 				D405B2CE227ADC1100F8C586 /* UGGamePlatformCollectionViewCell.xib */,
+				030BE80B233604B3004AB19A /* UGGameSubCollectionView.h */,
+				030BE80C233604B3004AB19A /* UGGameSubCollectionView.m */,
 				D405B2D4227B0FE100F8C586 /* UGPlatformTitleCollectionViewCell.h */,
 				D405B2D5227B0FE100F8C586 /* UGPlatformTitleCollectionViewCell.m */,
 				D405B2D6227B0FE100F8C586 /* UGPlatformTitleCollectionViewCell.xib */,
@@ -2612,6 +2628,8 @@
 				D405B2D2227AE38900F8C586 /* UGGameTypeCollectionView.m */,
 				D405B2D9227B122000F8C586 /* UGPlatformTitleCollectionView.h */,
 				D405B2DA227B122000F8C586 /* UGPlatformTitleCollectionView.m */,
+				033177A52337382D000D7663 /* UGPlatformCollectionView.h */,
+				033177A62337382D000D7663 /* UGPlatformCollectionView.m */,
 				D463B4DD2284488200EAC0F7 /* UGRightMenuView.h */,
 				D463B4DE2284488200EAC0F7 /* UGRightMenuView.m */,
 				D463B4E02284489100EAC0F7 /* UGRightMenuView.xib */,
@@ -3091,6 +3109,8 @@
 				D40D58BD228A8D480025963A /* UGBetDetailView.h */,
 				D40D58BE228A8D480025963A /* UGBetDetailView.m */,
 				D40D58C0228A8DE30025963A /* UGBetDetailView.xib */,
+				033177AD2338E026000D7663 /* UGBetResultView.h */,
+				033177AE2338E026000D7663 /* UGBetResultView.m */,
 				D416BB1F22CE2E6D00BA0450 /* UGSegmentView.h */,
 				D416BB2022CE2E6D00BA0450 /* UGSegmentView.m */,
 				D416BB2522CE35C100BA0450 /* UGSegmentCollectionViewCell.h */,
@@ -3529,6 +3549,7 @@
 				D422FE64232532C00063EA4E /* UGPromotion2rowTableViewCell.m in Sources */,
 				D409B1542296E0020053DA33 /* UGMarkSixLotteryBetItem0Cell.m in Sources */,
 				D405B243227973F200F8C586 /* UIColor+ST.m in Sources */,
+				030BE80D233604B3004AB19A /* UGGameSubCollectionView.m in Sources */,
 				D481EFFA2327C8DA000611ED /* UGDepositDetailsViewController.m in Sources */,
 				D405B213227972D300F8C586 /* MJPropertyType.m in Sources */,
 				D422FE5A23251E190063EA4E /* UGPromotion4rowTableViewCell.m in Sources */,
@@ -3581,6 +3602,7 @@
 				D405B24E2279740A00F8C586 /* NSArray+HYBUnicodeReadable.m in Sources */,
 				D405AFFA22783DCC00F8C586 /* MASViewAttribute.m in Sources */,
 				D405B1D6227972C100F8C586 /* AFURLSessionManager.m in Sources */,
+				030BE80A23337AE3004AB19A /* GameCategoryDataModel.m in Sources */,
 				D481AB4B2331FA5E0099685B /* UGMosaicGoldModel.m in Sources */,
 				D4AE64182295871D00DD265A /* MJRefreshNormalHeader.m in Sources */,
 				D405B31B227D727D00F8C586 /* UGRegisterViewController.m in Sources */,
@@ -3671,6 +3693,7 @@
 				D40DE96F22F3357100974BAF /* CMNetwork+Home.m in Sources */,
 				D420A781231558120089C0C5 /* UGYuebaoProfitReportModel.m in Sources */,
 				D405B33A227DAC4800F8C586 /* UGUserModel.m in Sources */,
+				033177AF2338E026000D7663 /* UGBetResultView.m in Sources */,
 				D419DF35233664E6009636F0 /* UGChatViewController.m in Sources */,
 				D4145A7B22B3C0F900D8165F /* UGPlatformGameModel.m in Sources */,
 				D405B337227DABD200F8C586 /* UGModel.m in Sources */,
@@ -3842,6 +3865,7 @@
 				D40D32C72297CEAF00B89398 /* UGMarkSixLotteryBetItem1Cell.m in Sources */,
 				D417EFDB2330D24C0024F634 /* AppDelegate+HgBugly.m in Sources */,
 				D4090F61228D3D7B00D6DA43 /* UGAvaterSelectView.m in Sources */,
+				033177A72337382D000D7663 /* UGPlatformCollectionView.m in Sources */,
 				D40E1E5622BF5409004D4664 /* UGNoticeModel.m in Sources */,
 				D405B219227972D300F8C586 /* NSObject+MJClass.m in Sources */,
 				D4DE2684229BCB960072A4A2 /* WMNavTabBar.m in Sources */,

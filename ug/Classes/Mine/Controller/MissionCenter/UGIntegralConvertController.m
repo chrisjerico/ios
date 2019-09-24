@@ -62,7 +62,6 @@ static NSString *integralCellid = @"UGConvertCollectionViewCell";
     self.inputTextF.delegate = self;
     [self initCollectionView];
     
-//     UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
 
     
         [self getSystemConfig];

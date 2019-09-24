@@ -10,13 +10,21 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol UGBannerCellModel <NSObject>
+
+@end
+
+@interface UGBannerCellModel : UGModel<UGBannerCellModel>
+@property (nonatomic, strong) NSString *pic;
+@property (nonatomic, strong) NSString *url;
+@property (nonatomic, strong) NSString *sort;
+@end
+
 @protocol UGBannerModel <NSObject>
 
 @end
 @interface UGBannerModel : UGModel<UGBannerModel>
-@property (nonatomic, strong) NSString *pic;
-@property (nonatomic, strong) NSString *url;
-@property (nonatomic, strong) NSString *sort;
+@property (nonatomic, strong) NSArray<UGBannerCellModel> * list;
 
 @end
 

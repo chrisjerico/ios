@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GameCategoryDataModel.h"
+
 @class UGPlatformModel;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UGPlatformTitleCollectionViewCell : UICollectionViewCell
 
-@property (nonatomic, strong) UGPlatformModel *item;
+@property (nonatomic, strong) GameCategoryModel *item;
 
 @end
 
