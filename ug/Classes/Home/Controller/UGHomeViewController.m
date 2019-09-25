@@ -104,6 +104,8 @@
 - (void)viewDidLoad {
 
     [super viewDidLoad];
+    
+    [self setupSubView];
 
     SANotificationEventSubscribe(UGNotificationLoginComplete, self, ^(typeof (self) self, id obj) {
         [self getUserInfo];
@@ -260,7 +262,7 @@
 	if (self.initSubview) {
 		return;
 	}
-	[self setupSubView];
+	
 	[self getBannerList];
 
 	
@@ -390,6 +392,8 @@
             
             UGSystemConfigModel *config = model.data;
             UGSystemConfigModel.currentConfig = config;
+            
+            [self.titleView setImgName:<#(NSString * _Nonnull)#>]
             
         } failure:^(id msg) {
             
