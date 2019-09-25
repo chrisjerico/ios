@@ -520,4 +520,35 @@ static NSString *uuidKey =@"uuidKey";
     width = rect.size.width;
     return width;
 }
+
+/**
+ *  UIImageView 加载含有汉字的url处理方法
+ *
+ */
++ (NSString *)imgformat:(NSString *)string{
+    NSString *url = [string stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet  URLQueryAllowedCharacterSet]];
+    return url;
+}
+/**
+ *  //压缩图片
+ *
+ */
++(UIImage*)imageWithImage:(UIImage*)image scaledToSize:(CGSize)newSize
+{
+    // Create a graphics image context
+    UIGraphicsBeginImageContext(newSize);
+    
+    // Tell the old image to draw in this new context, with the desired
+    // new size
+    [image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+    
+    // Get the new image from the context
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    // End the context
+    UIGraphicsEndImageContext();
+    
+    // Return the new image.
+    return newImage;
+}
 @end

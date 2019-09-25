@@ -67,9 +67,9 @@
 - (void)setImgName:(NSString *)imgName {
     _imgName = imgName;
     
-    [self performSelectorOnMainThread:@selector(WantToGoBackMianThread:) withObject:imgName waitUntilDone:YES];
+        NSString *url =[CMCommon imgformat:imgName];
         dispatch_async(dispatch_get_main_queue(), ^{
-           [self.imgView sd_setImageWithURL:[NSURL URLWithString:imgName] placeholderImage:[UIImage imageNamed:@"m_logo"]];//m_logo
+           [self.imgView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"m_logo"]];//m_logo
         });
     
     

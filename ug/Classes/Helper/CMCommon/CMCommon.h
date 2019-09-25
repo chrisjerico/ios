@@ -104,4 +104,16 @@
  *  @return 高度
  */
 + (CGFloat)getLabelWidthWithText:(NSString *)text stringFont:(UIFont *)font allowHeight:(CGFloat)height;
+
+/**
+ *  UIImageView 加载含有汉字的url处理方法
+ *
+ */
++ (NSString *)imgformat:(NSString *)string;
+
+/**
+ *  //压缩图片
+ *
+ */
++(UIImage*)imageWithImage:(UIImage*)image scaledToSize:(CGSize)newSize;
 @end
