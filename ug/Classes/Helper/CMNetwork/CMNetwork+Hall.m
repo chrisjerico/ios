@@ -63,7 +63,9 @@
 + (void)userBetWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock {
     CMMETHOD_BEGIN;
     NSString *url = nil;
-    if ( [[NSString stringWithFormat:@"%@", params[@"gameId"]] isEqualToString:@"7"])  {
+	NSArray * gameIdArray = @[@"9", @"7", @"11"];
+
+    if ( [gameIdArray containsObject: [NSString stringWithFormat:@"%@", params[@"gameId"]]])  {
         url = [userinstantBetUrl stringToRestfulUrlWithFlag:RESTFUL];
     }else if([UGUserModel currentUser].isTest) {
         url = [guestBetUrl stringToRestfulUrlWithFlag:RESTFUL];
