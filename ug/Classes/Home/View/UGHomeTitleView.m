@@ -63,4 +63,28 @@
     return UILayoutFittingExpandedSize;
     
 }
+
+- (void)setImgName:(NSString *)imgName {
+    _imgName = imgName;
+    
+    [self performSelectorOnMainThread:@selector(WantToGoBackMianThread:) withObject:imgName waitUntilDone:YES];
+        dispatch_async(dispatch_get_main_queue(), ^{
+           [self.imgView sd_setImageWithURL:[NSURL URLWithString:imgName] placeholderImage:[UIImage imageNamed:@"m_logo"]];//m_logo
+        });
+    
+    
+}
+
+
+//- (void)WantToGoBackMianThread:(id)object{
+//    //需要在主线程执行的代码
+//    NSLog(@"object:%@",object);
+//    NSString *imgName = (NSString *)object;
+//
+//    imgName = @"https://cdn01.xuanjun.net/upload/t010/customise/images/m_logo.jpg?v=1569338948";
+//
+//    NSString *url = [imgName stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet  URLQueryAllowedCharacterSet]];
+//    [self.imgView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"m_logo"]];//m_logo
+//}
+
 @end
