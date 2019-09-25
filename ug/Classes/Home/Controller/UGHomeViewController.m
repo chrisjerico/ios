@@ -393,7 +393,7 @@
             UGSystemConfigModel *config = model.data;
             UGSystemConfigModel.currentConfig = config;
             
-            [self.titleView setImgName:<#(NSString * _Nonnull)#>]
+           [self.titleView setImgName:config.mobile_logo];
             
         } failure:^(id msg) {
             

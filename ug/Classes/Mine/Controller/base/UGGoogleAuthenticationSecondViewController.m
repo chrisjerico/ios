@@ -8,6 +8,7 @@
 
 #import "UGGoogleAuthenticationSecondViewController.h"
 #import "UGgaCaptchaModel.h"
+#import "UGGoogleAuthenticationThirdViewController.h"
 
 @interface UGGoogleAuthenticationSecondViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *myImageView;
@@ -24,6 +25,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = @"二次验证";
+    
+    [self secureGaCaptchaWithGen];
 }
 -(void)viewDidLayoutSubviews{
     self.returnButton.layer.masksToBounds = YES;
@@ -36,10 +39,12 @@
     
 }
 #pragma mark -- 网络请求
-//得到日期列表数据
-- (void)getCheckinListData {
+//e二维码数据
+- (void)secureGaCaptchaWithGen {
     
-    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
+    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
+                             @"action":@"gen",
+                             };
     
     [SVProgressHUD showWithStatus:nil];
     WeakSelf;
@@ -47,15 +52,20 @@
         [CMResult processWithResult:model success:^{
             
             [SVProgressHUD dismiss];
+            
             weakSelf.model = model.data;
             NSLog(@"checkinList = %@",weakSelf.model);
             
+            UGgaCaptchaModel *obj = model.data;
             
-          
-            
-          
-            
-            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                NSString *url =[CMCommon imgformat:obj.qrcode];
+                [self.myImageView sd_setImageWithURL:[NSURL URLWithString: url] placeholderImage:[UIImage imageNamed:@"placeholder"]];//m_logo
+                self.numberLabel.text = obj.secret;
+                
+            });
+ 
             
         } failure:^(id msg) {
             
@@ -75,7 +85,9 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (IBAction)nextAction:(id)sender {
+    UGGoogleAuthenticationThirdViewController *vc = [[UGGoogleAuthenticationThirdViewController alloc] init];
     
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /*

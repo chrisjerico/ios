@@ -12,6 +12,7 @@
 #import "UGRegisterViewController.h"
 #import <WebKit/WebKit.h>
 #import "UGImgVcodeModel.h"
+#import "UGSecurityCenterViewController.h"
 
 @interface UGLoginViewController ()<UITextFieldDelegate,UINavigationControllerDelegate,WKScriptMessageHandler,WKNavigationDelegate,WKUIDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *userNameTextF;
@@ -85,6 +86,8 @@
             [CMResult processWithResult:model success:^{
                 
                 [SVProgressHUD showSuccessWithStatus:model.msg];
+                
+                
                 UGUserModel *user = model.data;
                 UGUserModel.currentUser = user;
                 SANotificationEventPost(UGNotificationLoginComplete, nil);
@@ -92,9 +95,31 @@
                 AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
                 
                 appDelegate.tabbar.qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&sessiontoken=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid];
-              
                 
-                [self.navigationController popToRootViewControllerAnimated:YES];
+                NSArray *simplePwds = [[NSArray alloc] initWithObjects:@"111111",@"000000",@"222222",@"333333",@"444444",@"555555",@"666666",@"777777",@"888888",@"999999",@"123456",@"654321",@"abcdef",@"aaaaaa",@"qwe123", nil];
+                
+                BOOL isGoRoot = YES;
+                
+                for (int i= 0; i<simplePwds.count; i++) {
+                    NSString *str = [simplePwds objectAtIndex:i];
+                    if ([self.passwordTextF.text isEqualToString:str]) {
+ 
+                        isGoRoot = NO;
+                        break;
+                    }
+                }
+              
+                if (isGoRoot) {
+                     [self.navigationController popToRootViewControllerAnimated:YES];
+                } else {
+                    [self.navigationController.view makeToast:@"你的密码过于简单，可能存在风险，请把密码修改成复杂密码"
+                                                     duration:3.0
+                                                     position:CSToastPositionCenter];
+                    UGSecurityCenterViewController *vc = [[UGSecurityCenterViewController alloc] init] ;
+                    vc.fromVC = @"UGLoginViewController";
+                    [self.navigationController pushViewController:vc animated:YES];
+                }
+               
             } failure:^(id msg) {
                 if (self.webBgView.hidden == NO) {
                     [self.webView reload];

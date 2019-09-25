@@ -27,8 +27,40 @@
     self.navigationItem.title = @"安全中心";
     self.view.backgroundColor = UGBackgroundColor;
     
+    
+    if ([self.fromVC  isEqualToString:@"UGLoginViewController"]) {
+
+        UIImage *sureImage = [UIImage imageNamed:@"back_icon"];
+        UIButton *sureButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        float width = 10.0;
+        if (sureImage.size.width<width) {
+            sureButton.bounds = CGRectMake(0 , 0, width, sureImage.size.height );
+            UIEdgeInsets e = UIEdgeInsetsMake(0, sureImage.size.width-width, 0, 0);// CGFloat top, left, bottom, right;
+            [sureButton setImageEdgeInsets:e];
+        }
+        else if (sureImage.size.width >30.0){
+
+            //压缩图片大小
+            sureImage = [CMCommon imageWithImage:sureImage scaledToSize:CGSizeMake(20, 20)];
+            sureButton.contentEdgeInsets =UIEdgeInsetsMake(0, -25, 0, 0);
+            [sureButton setImage:sureImage forState:UIControlStateNormal];
+            sureButton.frame = CGRectMake(0, 0, 60, 30);
+        }
+        else{
+            sureButton.bounds = CGRectMake( 0, 0, sureImage.size.width, sureImage.size.height );
+        }
+        
+        [sureButton setImage:sureImage forState:UIControlStateNormal];
+        
+        [sureButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *sureButtonItem = [[UIBarButtonItem alloc] initWithCustomView:sureButton];
+        self.navigationItem.leftBarButtonItem = sureButtonItem;
+    }
+    
     [self buildSegment];
 }
+
+
 
 #pragma mark - 配置segment
 -(void)buildSegment
@@ -96,5 +128,9 @@
     
 }
 
+-(void)back
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
 
 @end
