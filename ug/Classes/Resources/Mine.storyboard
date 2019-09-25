@@ -345,6 +345,20 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                                     </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Shn-2D-LcV">
+                                        <rect key="frame" x="292" y="9" width="61" height="45"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <action selector="pwdTextSwitch:" destination="vK4-I7-tMd" eventType="touchUpInside" id="8No-Zu-hbK"/>
+                                            <action selector="pwdTextSwitch:" destination="blf-Ei-b2L" eventType="touchUpInside" id="MqL-db-eye"/>
+                                        </connections>
+                                    </button>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="biyan" translatesAutoresizingMaskIntoConstraints="NO" id="SMf-R3-JQi">
+                                        <rect key="frame" x="312" y="23" width="20" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -413,6 +427,7 @@
                     <connections>
                         <outlet property="loginButton" destination="eUW-zx-4IJ" id="wvY-5F-OFp"/>
                         <outlet property="passwordTextF" destination="TAX-C6-wRb" id="map-Qj-3zp"/>
+                        <outlet property="pwdImgeView" destination="SMf-R3-JQi" id="H7f-50-yrK"/>
                         <outlet property="userNameTextF" destination="KMA-Al-fqg" id="Jh6-Vi-fKa"/>
                         <outlet property="webBgView" destination="hWO-Dr-42x" id="zK0-7p-mpZ"/>
                         <outlet property="webBgViewHeightConstraint" destination="2J2-ug-Gcn" id="kkB-ad-FRa"/>
