@@ -222,6 +222,8 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 
 #define teamAgentApplyInfoUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=team&a=agentApplyInfo"]
 
+#define secureGaCaptchaUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=secure&a=gaCaptcha"]
+
 #if DEBUG
 
 //#define NSLog(...) NSLog(__VA_ARGS__)

@@ -31,6 +31,8 @@
 #import "UGdepositModel.h"
 #import "UGapplyWinLogDetail.h"
 #import "UGagentApplyInfo.h"
+#import "UGgaCaptchaModel.h"
+
 
 @implementation CMNetwork (Mine)
 
@@ -989,6 +991,19 @@
     [self.manager requestInMainThreadWithMethod:[teamAgentApplyInfoUrl stringToRestfulUrlWithFlag:RESTFUL]
                                          params:params
                                           model:CMResultClassMake(UGagentApplyInfo.class)
+                                           post:NO
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
+
+//个人中心谷歌验证相关操作：(操作方法：gen:二维码生成, bind:绑定, unbind:解绑) http://test10.6yc.com/wjapp/api.php?c=secure&a=gaCaptcha&token=1p3xAJrRzQH8PMeCAo8Rze3X&action=gen
++ (void)secureGaCaptchaWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    [self.manager requestInMainThreadWithMethod:[secureGaCaptchaUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:CMResultClassMake(UGgaCaptchaModel.class)
                                            post:NO
                                      completion:completionBlock];
     

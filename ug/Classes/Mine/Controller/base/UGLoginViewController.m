@@ -24,6 +24,8 @@
 @property (nonatomic, strong) WKWebView *webView;
 @property (nonatomic, strong) UGImgVcodeModel *imgVcodeModel;
 @property (nonatomic, assign) NSInteger errorTimes;
+
+@property (weak, nonatomic) IBOutlet UIImageView *pwdImgeView;
 @end
 
 @implementation UGLoginViewController
@@ -43,6 +45,9 @@
     [self.webView loadRequest:request];
     self.webBgView.hidden = YES;
     self.webBgViewHeightConstraint.constant = 0.1;
+    
+    self.passwordTextF.clearButtonMode=UITextFieldViewModeNever;
+    
 }
 
 - (IBAction)loginClick:(id)sender {
@@ -235,4 +240,29 @@
     return _webView;
 }
 
+
+- (IBAction)pwdTextSwitch:(UIButton *)sender {
+    
+    // 前提:在xib中设置按钮的默认与选中状态的背景图
+    // 切换按钮的状态
+    sender.selected = !sender.selected;
+    
+    if (sender.selected) { // 按下去了就是明文
+        
+        NSString *tempPwdStr = self.passwordTextF.text;
+        self.passwordTextF.text = @""; // 这句代码可以防止切换的时候光标偏移
+        self.passwordTextF.secureTextEntry = NO;
+        self.passwordTextF.text = tempPwdStr;
+        
+        [self.pwdImgeView setImage:[UIImage imageNamed:@"yanjing"]];
+        
+    } else { // 暗文
+        
+        NSString *tempPwdStr = self.passwordTextF.text;
+        self.passwordTextF.text = @"";
+        self.passwordTextF.secureTextEntry = YES;
+        self.passwordTextF.text = tempPwdStr;
+        [self.pwdImgeView setImage:[UIImage imageNamed:@"biyan"]];
+    }
+}
 @end

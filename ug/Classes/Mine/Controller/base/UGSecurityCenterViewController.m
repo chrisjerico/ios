@@ -11,6 +11,8 @@
 #import "UGModifyPayPwdController.h"
 #import "UGModifyLoginPwdController.h"
 #import "UGModifyLoginPlaceController.h"
+#import "UGSystemConfigModel.h"
+#import "UGGoogleAuthenticationFirstViewController.h"
 
 @interface UGSecurityCenterViewController ()<XYYSegmentControlDelegate>
 @property (nonatomic, strong) XYYSegmentControl *slideSwitchView;
@@ -31,7 +33,15 @@
 #pragma mark - 配置segment
 -(void)buildSegment
 {
-    self.itemArray = @[@"登录密码",@"取款密码",@"常用登录地"];
+    UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
+    if (config.googleVerifier == 1) {
+        
+       self.itemArray = @[@"登录密码",@"取款密码",@"常用登录地",@"二次验证"];
+    }
+    else{
+        self.itemArray = @[@"登录密码",@"取款密码",@"常用登录地"];
+    }
+    
     self.slideSwitchView = [[XYYSegmentControl alloc] initWithFrame:CGRectMake(0 , 0, self.view.width, self.view.height) channelName:self.itemArray source:self];
     [self.slideSwitchView setUserInteractionEnabled:YES];
     self.slideSwitchView.segmentControlDelegate = self;
@@ -66,9 +76,15 @@
         
         UGModifyPayPwdController *payVC = [storyboard instantiateViewControllerWithIdentifier:@"UGModifyPayPwdController"];
         return payVC;
-    }else {
+    }
+    else if (number == 2 ){
         
         UGModifyLoginPlaceController *loginPlaceVC = [storyboard instantiateViewControllerWithIdentifier:@"UGModifyLoginPlaceController"];
+        return loginPlaceVC;
+    }
+    else  {
+        
+        UGGoogleAuthenticationFirstViewController *loginPlaceVC = [[UGGoogleAuthenticationFirstViewController alloc] init];
         return loginPlaceVC;
     }
     

@@ -212,6 +212,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 //代理申请信息 http://test10.6yc.com/wjapp/api.php?c=team&a=agentApplyInfo&token=yQxBi4W4B3N65Oa5z55Yy46A
 + (void)teamAgentApplyInfoWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+//个人中心谷歌验证相关操作：(操作方法：gen:二维码生成, bind:绑定, unbind:解绑) http://test10.6yc.com/wjapp/api.php?c=secure&a=gaCaptcha&token=1p3xAJrRzQH8PMeCAo8Rze3X&action=gen
++ (void)secureGaCaptchaWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 @end
 
 NS_ASSUME_NONNULL_END
