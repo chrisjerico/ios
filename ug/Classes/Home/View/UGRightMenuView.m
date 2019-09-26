@@ -58,6 +58,14 @@ static NSString *menuCellid = @"UGRightMenuTableViewCell";
     
 }
 
+-(void)reloadTabViewDateWithTitleArray:(NSMutableArray *)titleArray withImgArray:(NSMutableArray *)imgArray{
+    
+    self.imageNameArray = imgArray;
+    self.titleArray = titleArray;
+    
+    [self.tableView reloadData ];
+}
+
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
     UIView *view = [super hitTest:point withEvent:event];
     if (CGRectContainsPoint(self.bounds, point)) {

@@ -544,7 +544,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PzT-tK-eCK">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="94" width="414" height="768"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bzD-qo-3Cd">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="950"/>
@@ -553,7 +553,7 @@
                                                 <rect key="frame" x="20" y="10" width="374" height="50"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dal-3V-ZN2">
-                                                        <rect key="frame" x="33" y="44.333333333333329" width="341" height="0.6666666666666643"/>
+                                                        <rect key="frame" x="33" y="44.333333333333343" width="341" height="0.6666666666666643"/>
                                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="0.69999999999999996" id="O9a-xj-Ld2"/>
@@ -598,7 +598,7 @@
                                                         </constraints>
                                                     </view>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wode" translatesAutoresizingMaskIntoConstraints="NO" id="DOZ-ga-xhf">
-                                                        <rect key="frame" x="0.0" y="12.666666666666671" width="25" height="25"/>
+                                                        <rect key="frame" x="0.0" y="12.666666666666657" width="25" height="25"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="25" id="Ncn-Zt-wqg"/>
                                                             <constraint firstAttribute="width" constant="25" id="usH-T0-YWh"/>
@@ -679,14 +679,14 @@
                                                 <rect key="frame" x="20" y="160" width="374" height="50"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fgC-im-Z7q">
-                                                        <rect key="frame" x="33" y="44.333333333333343" width="341" height="0.6666666666666643"/>
+                                                        <rect key="frame" x="33" y="44.333333333333314" width="341" height="0.6666666666666643"/>
                                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="0.69999999999999996" id="Mbn-Jb-fln"/>
                                                         </constraints>
                                                     </view>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mima" translatesAutoresizingMaskIntoConstraints="NO" id="2xk-eM-hz7">
-                                                        <rect key="frame" x="0.0" y="12.666666666666657" width="25" height="25"/>
+                                                        <rect key="frame" x="0.0" y="12.666666666666686" width="25" height="25"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="25" id="REd-LL-U9e"/>
                                                             <constraint firstAttribute="width" constant="25" id="gpO-xS-3NA"/>
@@ -881,14 +881,14 @@
                                                 <rect key="frame" x="20" y="410" width="374" height="50"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XuB-f6-yUM">
-                                                        <rect key="frame" x="33" y="44.333333333333314" width="341" height="0.6666666666666643"/>
+                                                        <rect key="frame" x="33" y="44.333333333333371" width="341" height="0.6666666666666643"/>
                                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="0.69999999999999996" id="qeg-Tz-4bX"/>
                                                         </constraints>
                                                     </view>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="youxiang" translatesAutoresizingMaskIntoConstraints="NO" id="Zfh-u1-PNP">
-                                                        <rect key="frame" x="0.0" y="12.666666666666686" width="25" height="25"/>
+                                                        <rect key="frame" x="0.0" y="12.666666666666629" width="25" height="25"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="25" id="YCi-Tl-6ol"/>
                                                             <constraint firstAttribute="height" constant="25" id="s3T-mT-2l7"/>
@@ -1182,13 +1182,29 @@
                                     <constraint firstAttribute="bottom" secondItem="bzD-qo-3Cd" secondAttribute="bottom" id="uch-se-uyd"/>
                                 </constraints>
                             </scrollView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="nHt-bW-xVa">
+                                <rect key="frame" x="138.66666666666666" y="66" width="136.99999999999997" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="C7i-xf-OFG"/>
+                                    <constraint firstAttribute="width" constant="137" id="WzO-Aa-RGR"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="用户注册"/>
+                                    <segment title="代理注册"/>
+                                </segments>
+                                <connections>
+                                    <action selector="myValueChanged:" destination="blf-Ei-b2L" eventType="valueChanged" id="2Vf-OM-WH5"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="PzT-tK-eCK" firstAttribute="top" secondItem="JnB-N7-Fcp" secondAttribute="top" id="IKf-3J-32r"/>
+                            <constraint firstItem="PzT-tK-eCK" firstAttribute="top" secondItem="nHt-bW-xVa" secondAttribute="bottom" id="AZH-pJ-qAA"/>
+                            <constraint firstItem="PzT-tK-eCK" firstAttribute="top" secondItem="JnB-N7-Fcp" secondAttribute="top" constant="50" id="IKf-3J-32r"/>
                             <constraint firstItem="JnB-N7-Fcp" firstAttribute="trailing" secondItem="PzT-tK-eCK" secondAttribute="trailing" id="Jwh-74-gvC"/>
                             <constraint firstItem="PzT-tK-eCK" firstAttribute="leading" secondItem="JnB-N7-Fcp" secondAttribute="leading" id="VxR-pH-1VW"/>
                             <constraint firstItem="JnB-N7-Fcp" firstAttribute="bottom" secondItem="PzT-tK-eCK" secondAttribute="bottom" id="gJW-4B-PCe"/>
+                            <constraint firstItem="nHt-bW-xVa" firstAttribute="centerX" secondItem="PzT-tK-eCK" secondAttribute="centerX" id="qhb-sb-IZW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JnB-N7-Fcp"/>
                     </view>
@@ -1213,6 +1229,8 @@
                         <outlet property="inviterTextF" destination="IpD-Qk-J1x" id="37A-rr-6ax"/>
                         <outlet property="inviterView" destination="dm8-aM-Nvq" id="KB8-Vz-Ohc"/>
                         <outlet property="inviterViewHightConstraint" destination="sHj-aG-XkG" id="Pxi-Oi-V4w"/>
+                        <outlet property="mySegmentCV" destination="nHt-bW-xVa" id="wBn-1s-5ov"/>
+                        <outlet property="mySegmentHightConstraint" destination="C7i-xf-OFG" id="2qa-pn-R0X"/>
                         <outlet property="passwordTextF" destination="Leq-8K-tbj" id="bYI-YG-H06"/>
                         <outlet property="phoneTextF" destination="2Ox-by-Loq" id="XqU-x4-Xc6"/>
                         <outlet property="phoneVeiwHeightConstraint" destination="hrm-Ul-csO" id="iCt-KV-PsE"/>
@@ -1238,7 +1256,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sOY-05-T1z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1644" y="201.72413793103451"/>
+            <point key="canvasLocation" x="1643.4782608695652" y="201.5625"/>
         </scene>
         <!--Balance Conversion Controller-->
         <scene sceneID="jcP-X1-HqI">

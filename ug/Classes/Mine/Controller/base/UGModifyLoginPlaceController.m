@@ -43,6 +43,8 @@
 static NSString *addressCellId = @"UGAddressCollectionViewCell";
 @implementation UGModifyLoginPlaceController
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
