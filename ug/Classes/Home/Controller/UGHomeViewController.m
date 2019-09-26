@@ -849,13 +849,12 @@
 		return;
 	}
 	
-//	GameSubModel * subModel = (GameSubModel *)model;
 
-//	if ([model.docType intValue] == 1) {
-//
-//
-//		return;
-//	}
+	if ([model.docType intValue] == 1) {
+
+
+		return;
+	}
 	if (model.game_id) {
 		model.gameId = model.game_id;
 	}
