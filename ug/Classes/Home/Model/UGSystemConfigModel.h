@@ -41,6 +41,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSInteger  googleVerifier;//是否开启google 验证 1为开启
 @property (nonatomic, strong) NSString * mobile_logo;//首页navBar 图片
 
+@property (nonatomic, assign) NSString * agentRegbutton;//0=关闭；1=开启；  手机端注册页面显示“代理注册”
+
 @property (nonatomic, assign) BOOL recharge;//上级充值开关
 
 + (instancetype)currentConfig;

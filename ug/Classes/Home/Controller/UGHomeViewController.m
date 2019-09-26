@@ -107,6 +107,11 @@
     
     [self setupSubView];
 
+    SANotificationEventSubscribe(UGNotificationTryPlay, self, ^(typeof (self) self, id obj) {
+        [self tryPlayClick];
+   
+    });
+    
     SANotificationEventSubscribe(UGNotificationLoginComplete, self, ^(typeof (self) self, id obj) {
         [self getUserInfo];
         self.titleView.showLoginView = NO;

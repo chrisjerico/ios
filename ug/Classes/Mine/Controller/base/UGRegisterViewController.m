@@ -43,6 +43,8 @@
 @property (weak, nonatomic) IBOutlet UIView *imgVcodeView;
 @property (weak, nonatomic) IBOutlet UIView *webBgView;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *userHightConstraint;
+
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *inviterViewHightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *fullNameViewHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *fundPwdViewHeightConstraint;
@@ -62,6 +64,8 @@
 @property (assign, nonatomic) NSTimeInterval vcodeRequestTime;
 @property (weak, nonatomic) IBOutlet UIImageView *pwdImgeView;
 @property (weak, nonatomic) IBOutlet UIImageView *pwd2ImageView;
+@property (weak, nonatomic) IBOutlet UIButton *goHomeButton;
+@property (weak, nonatomic) IBOutlet UIButton *goLoginButton;
 
 @end
 
@@ -345,13 +349,17 @@
     }];
     
 }
+- (IBAction)goHomeAction:(id)sender {
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
 
 - (IBAction)showLogin:(id)sender {
+    
     for (UIViewController *vc in self.navigationController.childViewControllers) {
         if ([vc isKindOfClass:UGLoginViewController.class]) {
             [self.navigationController popViewControllerAnimated:YES];
             return;
-            
+
         }
     }
     UGLoginViewController *registerVC = [self.storyboard instantiateViewControllerWithIdentifier:@"UGLoginViewController"];
@@ -360,6 +368,9 @@
 }
 
 - (void)setupSubViews {
+    
+
+    
 //    0隐藏，1选填，2必填
     UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
     
@@ -444,6 +455,29 @@
     }else {
 
     }
+    
+    [self.goLoginButton setHidden:NO];
+    [self.goHomeButton setHidden:NO];
+    [self.goLoginButton  mas_remakeConstraints:^(MASConstraintMaker *make)
+     {
+         make.left.equalTo(self.registerButton.mas_left);
+         make.right.equalTo(self.registerButton.mas_right);
+         make.width.equalTo(self.registerButton.mas_width);
+         make.height.equalTo(self.registerButton.mas_height);
+         make.top.equalTo(self.registerButton.mas_bottom).offset(15);
+         
+     }];
+    
+    [self.goHomeButton  mas_remakeConstraints:^(MASConstraintMaker *make)
+     {
+         make.left.equalTo(self.registerButton.mas_left);
+         make.right.equalTo(self.registerButton.mas_right);
+         make.width.equalTo(self.registerButton.mas_width);
+         make.height.equalTo(self.registerButton.mas_height);
+         make.top.equalTo(self.goLoginButton.mas_bottom).offset(15);
+         
+     }];
+    
     
 }
 
