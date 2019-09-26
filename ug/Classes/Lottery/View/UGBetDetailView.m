@@ -157,10 +157,16 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 	[CMNetwork userBetWithParams:params completion:^(CMResult<id> *model, NSError *err) {
 		[CMResult processWithResult:model success:^{
 			[SVProgressHUD dismiss];
-			[UGBetResultView showWith:model.data timerAction:^(dispatch_source_t  _Nonnull timer) {
-				[self submitBet:params];
-
-			}];
+			
+			// 秒秒彩系列
+			if ([@[@"7", @"11", @"9"] containsObject: self.nextIssueModel.gameId]) {
+				[UGBetResultView showWith:model.data timerAction:^(dispatch_source_t  _Nonnull timer) {
+					[self submitBet:params];
+				}];
+			} else {
+				[SVProgressHUD showSuccessWithStatus:model.msg];
+			}
+			
 			SANotificationEventPost(UGNotificationGetUserInfo, nil);
 			if (self.betClickBlock) {
 				self.betClickBlock();

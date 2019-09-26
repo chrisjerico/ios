@@ -11,6 +11,7 @@
 		030BE80D233604B3004AB19A /* UGGameSubCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 030BE80C233604B3004AB19A /* UGGameSubCollectionView.m */; };
 		033177A72337382D000D7663 /* UGPlatformCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 033177A62337382D000D7663 /* UGPlatformCollectionView.m */; };
 		033177AF2338E026000D7663 /* UGBetResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = 033177AE2338E026000D7663 /* UGBetResultView.m */; };
+		0399E6FB233B9D34001E0A7F /* UGDocumentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0399E6FA233B9D34001E0A7F /* UGDocumentVC.m */; };
 		A0C64CB6AEB0CF1B2031BBB8 /* Pods_ug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6486EFF4C273BEA0AE8994DD /* Pods_ug.framework */; };
 		D4000C45232E4EDD000705B1 /* UGAgentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4000C43232E4EDD000705B1 /* UGAgentViewController.m */; };
 		D4000C46232E4EDD000705B1 /* UGAgentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4000C44232E4EDD000705B1 /* UGAgentViewController.xib */; };
@@ -561,6 +562,8 @@
 		033177A62337382D000D7663 /* UGPlatformCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGPlatformCollectionView.m; sourceTree = "<group>"; };
 		033177AD2338E026000D7663 /* UGBetResultView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGBetResultView.h; sourceTree = "<group>"; };
 		033177AE2338E026000D7663 /* UGBetResultView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGBetResultView.m; sourceTree = "<group>"; };
+		0399E6F9233B9D34001E0A7F /* UGDocumentVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGDocumentVC.h; sourceTree = "<group>"; };
+		0399E6FA233B9D34001E0A7F /* UGDocumentVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGDocumentVC.m; sourceTree = "<group>"; };
 		443C93C1135A8C900E47477A /* Pods-ug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ug.release.xcconfig"; path = "Target Support Files/Pods-ug/Pods-ug.release.xcconfig"; sourceTree = "<group>"; };
 		6486EFF4C273BEA0AE8994DD /* Pods_ug.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ug.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4000C42232E4EDD000705B1 /* UGAgentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGAgentViewController.h; sourceTree = "<group>"; };
@@ -2569,6 +2572,8 @@
 				D42A06AF22CA212E005488F8 /* UGHomeViewController.h */,
 				D42A06B022CA212E005488F8 /* UGHomeViewController.m */,
 				D42A06B222CA22D9005488F8 /* UGHomeViewController.storyboard */,
+				0399E6F9233B9D34001E0A7F /* UGDocumentVC.h */,
+				0399E6FA233B9D34001E0A7F /* UGDocumentVC.m */,
 				D4145A8A22B513CE00D8165F /* UGGameListViewController.h */,
 				D4145A8B22B513CE00D8165F /* UGGameListViewController.m */,
 				D4145A8D22B514EB00D8165F /* UGChangLongController.h */,
@@ -3621,6 +3626,7 @@
 				D481AB4B2331FA5E0099685B /* UGMosaicGoldModel.m in Sources */,
 				D4AE64182295871D00DD265A /* MJRefreshNormalHeader.m in Sources */,
 				D405B31B227D727D00F8C586 /* UGRegisterViewController.m in Sources */,
+				0399E6FB233B9D34001E0A7F /* UGDocumentVC.m in Sources */,
 				D41C3DF4228E75F100BF6436 /* CAAnimation+WAnimation.m in Sources */,
 				D40DE98722F335E300974BAF /* TAPageControl.m in Sources */,
 				D405B21A227972D300F8C586 /* NSString+MJExtension.m in Sources */,
