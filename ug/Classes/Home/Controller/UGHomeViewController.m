@@ -849,6 +849,16 @@
 		return;
 	}
 	
+
+	if ([model.docType intValue] == 1) {
+
+
+		return;
+	}
+	if (model.game_id) {
+		model.gameId = model.game_id;
+	}
+	
 	 if ([@"cqssc" isEqualToString:model.gameType]) {
 	 UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGSSCLotteryController" bundle:nil];
 	 UGSSCLotteryController *lotteryVC = [storyboard instantiateInitialViewController];

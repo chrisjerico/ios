@@ -67,7 +67,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface GameSubModel: GameModel<GameSubModel>
 @property(nonatomic, strong)NSString * parentId;
 @property(nonatomic, strong)NSString * isDelete;
-@property(nonatomic, strong)NSString * gameType;
 @property(nonatomic, strong)NSString * isInstant;
 @property(nonatomic, strong)NSString * isSeal;
 @property(nonatomic, strong)NSString * isClose;

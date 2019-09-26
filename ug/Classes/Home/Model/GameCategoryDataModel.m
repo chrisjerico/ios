@@ -12,7 +12,7 @@
 @implementation GameModel
 + (JSONKeyMapper *)keyMapper {
 	
-	return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"gameId"}];
+	return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"gameId",@"gameId":@"game_id"}];
 }
 @end
 @implementation GameCategoryModel

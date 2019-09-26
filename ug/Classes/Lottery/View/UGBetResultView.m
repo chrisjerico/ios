@@ -207,7 +207,9 @@ static UGBetResultView *_singleInstance = nil;
 - (void) closeButtonTaped: (UIButton *) sender {
 	UGBetResultView * resultView = [UGBetResultView shareInstance] ;
 	[resultView removeFromSuperview];
-	dispatch_source_cancel(resultView.timer);
+	if (resultView.timer) {
+		dispatch_source_cancel(resultView.timer);
+	}
 	[self.timerButton setSelected:false];
 	self.timerLabel.text = nil;
 
