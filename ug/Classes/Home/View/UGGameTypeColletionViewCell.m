@@ -52,7 +52,7 @@
     _item = item;
 	self.nameLabel.text = [item.name length] > 0 ? item.name : item.title;
 	[self.hasSubSign setHidden: (item.subType.count > 0 ? false : true)];
-    [self.imgView sd_setImageWithURL:[NSURL URLWithString:item.icon] placeholderImage:[UIImage imageNamed:@"zwt"]];
+    [self.imgView sd_setImageWithURL:[NSURL URLWithString:item.logo] placeholderImage:[UIImage imageNamed:@"zwt"]];
 	
 }
 -(UIImageView *)hasSubSign {
