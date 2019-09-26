@@ -26,6 +26,8 @@ NSString *UGNotificationGetChanglongBetRecrod = @"UGNotificationGetChanglongBetR
 NSString *UGNotificationDepositSuccessfully = @"UGNotificationDepositSuccessfully";
 NSString *UGNotificationGetRewardsSuccessfully = @"UGNotificationGetRewardsSuccessfully";
 
+NSString *UGNotificationTryPlay = @"UGNotificationTryPlay";
+
 ///
 /// 登录授权
 ///

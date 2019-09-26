@@ -15,12 +15,20 @@
 #import "UGSecurityCenterViewController.h"
 
 @interface UGLoginViewController ()<UITextFieldDelegate,UINavigationControllerDelegate,WKScriptMessageHandler,WKNavigationDelegate,WKUIDelegate>
+{
+  
+}
 @property (weak, nonatomic) IBOutlet UITextField *userNameTextF;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextF;
 
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
+@property (weak, nonatomic) IBOutlet UIButton *rigesterButton;
+@property (weak, nonatomic) IBOutlet UIButton *playButton;
+@property (weak, nonatomic) IBOutlet UIButton *goHomeButton;
 @property (weak, nonatomic) IBOutlet UIView *webBgView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *webBgViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet UIImageView *gouImageView;
+@property (weak, nonatomic) IBOutlet UIButton *gouButton;
 
 @property (nonatomic, strong) WKWebView *webView;
 @property (nonatomic, strong) UGImgVcodeModel *imgVcodeModel;
@@ -37,6 +45,15 @@
     self.navigationItem.title = @"登录";
     self.loginButton.layer.cornerRadius = 5;
     self.loginButton.layer.masksToBounds = YES;
+    
+    self.rigesterButton.layer.cornerRadius = 5;
+    self.rigesterButton.layer.masksToBounds = YES;
+    
+    self.playButton.layer.cornerRadius = 5;
+    self.playButton.layer.masksToBounds = YES;
+    
+    self.goHomeButton.layer.cornerRadius = 5;
+    self.goHomeButton.layer.masksToBounds = YES;
     self.userNameTextF.delegate = self;
     self.passwordTextF.delegate = self;
     self.navigationController.delegate = self;
@@ -48,6 +65,25 @@
     self.webBgViewHeightConstraint.constant = 0.1;
     
     self.passwordTextF.clearButtonMode=UITextFieldViewModeNever;
+    
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    
+    //检查记住密码标记，如果为YES，那么就读取用户名和密码并为TextField赋值
+    ///并将图标背景设置为记住状态，如果为NO，那么设置背景为未记住状态
+    if([userDefault boolForKey:@"isRememberPsd"])
+    {
+        [userDefault setBool:YES forKey:@"isRememberPsd"];
+         self.gouImageView.image = [UIImage imageNamed:@"dagou"];
+         self.userNameTextF.text = [userDefault stringForKey:@"userName" ];
+         self.passwordTextF.text = [userDefault stringForKey:@"userPsw" ];
+       
+    }
+    else if(![userDefault boolForKey:@"isRememberPsd"])
+    {
+         [userDefault setBool:NO forKey:@"isRememberPsd"];
+         self.gouImageView.image = [UIImage imageNamed:@"dagou_off"];
+    }
+    
     
 }
 
@@ -90,6 +126,14 @@
                 
                 UGUserModel *user = model.data;
                 UGUserModel.currentUser = user;
+                
+               NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+               if([userDefault boolForKey:@"isRememberPsd"])
+                {
+                    [userDefault setObject:self.userNameTextF.text forKey:@"userName"];
+                    [userDefault setObject:self.passwordTextF.text forKey:@"userPsw"];
+                }
+                
                 SANotificationEventPost(UGNotificationLoginComplete, nil);
                 
                 AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -149,6 +193,35 @@
     [self.navigationController pushViewController:registerVC animated:YES];
     
 }
+
+- (IBAction)playAction:(id)sender {
+  
+    SANotificationEventPost(UGNotificationTryPlay, nil);
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+- (IBAction)goHomeAction:(id)sender {
+    
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+- (IBAction)recoredBtnClick:(id)sender {
+    
+     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+     if([userDefault boolForKey:@"isRememberPsd"])
+    {
+        [userDefault setBool:NO forKey:@"isRememberPsd"];
+        self.gouImageView.image = [UIImage imageNamed:@"dagou_off"];
+    }
+    else
+    {
+        self.gouImageView.image = [UIImage imageNamed:@"dagou"];
+        [userDefault setBool:YES forKey:@"isRememberPsd"];
+    }
+    [userDefault synchronize];
+   
+}
+
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     if ([string isEqualToString:@"\n"]) {

@@ -19,6 +19,7 @@
 #import "UGEncryptUtil.h"
 #import "GLEncryptManager.h"
 
+
 Class CMResultClassGetResultClass(CMResultClass cls);
 Class CMResultClassGetDataClass(CMResultClass cls);
 
@@ -191,6 +192,13 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
         title = @"未知错误，稍后再试";
         msg = result->_error.localizedDescription; //@"发生未知错误, 请稍后再试或者和我们联系.";
     }
+    else if(result->_error.code == 401){
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            // UI更新代码
+          
+        }];
+    }
+    
     
     if (msg == nil) {
         if (success != nil) {
@@ -388,6 +396,11 @@ completion:(CMNetworkBlock)completion {
             SANotificationEventPost(UGNotificationloginTimeout, nil);
             return ;
         }
+        if (errResponse.statusCode == 402) {
+            [SVProgressHUD dismiss];
+            SANotificationEventPost(UGNotificationUserLogout, nil);
+            return ;
+        }
         if (errResponse.statusCode == 403) {
              NSDictionary *json = [NSJSONSerialization JSONObjectWithData:error.userInfo[@"com.alamofire.serialization.response.error.data"] options:0 error:nil];
             NSError *err;
@@ -458,6 +471,11 @@ completion:(CMNetworkBlock)completion {
         if (errResponse.statusCode == 401) {
             [SVProgressHUD dismiss];
             SANotificationEventPost(UGNotificationloginTimeout, nil);
+            return ;
+        }
+        if (errResponse.statusCode == 402) {
+            [SVProgressHUD dismiss];
+            SANotificationEventPost(UGNotificationUserLogout, nil);
             return ;
         }
         if (errResponse.statusCode == 403) {

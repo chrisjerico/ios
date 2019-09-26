@@ -8,6 +8,7 @@
 
 #import "UGFundDetailsCell.h"
 #import "UGFundLogsModel.h"
+#import "UGRechargeLogsModel.h"
 
 @interface UGFundDetailsCell()
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
@@ -36,6 +37,16 @@
         self.changeAmountLabel.textColor = [UIColor redColor];
     }
 }
+
+- (void)setRechargeitem:(UGRechargeLogsModel *)rechargeitem {
+    _rechargeitem = rechargeitem;
+    self.timeLabel.text = rechargeitem.applyTime;
+    self.changeAmountLabel.text = [NSString stringWithFormat:@"¥%@",[rechargeitem.amount removeFloatAllZero]];
+    self.changeAmountLabel.textColor = UGGreenColor;
+    self.typeLabel.text = rechargeitem.category;
+    self.balanceLabel.text = rechargeitem.status;
+}
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
