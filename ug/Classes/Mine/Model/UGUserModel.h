@@ -71,7 +71,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSString *taskReward;
 
-
+@property (nonatomic, strong) NSString *todayWinAmount;
+@property (nonatomic, strong) NSString *unsettleAmount;
 + (instancetype)currentUser;
 
 + (void)setCurrentUser:(UGUserModel *)user;

@@ -446,6 +446,9 @@
 		D4A1E90F232BC4A50045F5B4 /* NSString+XHDateFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A1E90A232BC4A50045F5B4 /* NSString+XHDateFormat.m */; };
 		D4A1E910232BC4A50045F5B4 /* NSDateComponents+XHCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A1E90C232BC4A50045F5B4 /* NSDateComponents+XHCategory.m */; };
 		D4A3662A233DDDD200F6D770 /* UGonlineCount.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A36629233DDDD200F6D770 /* UGonlineCount.m */; };
+		D4A36636233E310B00F6D770 /* UGYYRightMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A36635233E310B00F6D770 /* UGYYRightMenuView.m */; };
+		D4A36638233E311E00F6D770 /* UGYYRightMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4A36637233E311E00F6D770 /* UGYYRightMenuView.xib */; };
+		D4A3663C233E4A9E00F6D770 /* UINavigationController+UGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A3663B233E4A9E00F6D770 /* UINavigationController+UGExtension.m */; };
 		D4AE1C0A22C0FCC400C142FE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AE1C0922C0FCC300C142FE /* AppDelegate.m */; };
 		D4AE63D922956E9600DD265A /* UGMissionLevelController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AE63D822956E9600DD265A /* UGMissionLevelController.m */; };
 		D4AE63DC2295734700DD265A /* UGMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AE63DB2295734700DD265A /* UGMessageModel.m */; };
@@ -1357,6 +1360,11 @@
 		D4A1E90D232BC4A50045F5B4 /* NSString+XHDateFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+XHDateFormat.h"; sourceTree = "<group>"; };
 		D4A36628233DDDD200F6D770 /* UGonlineCount.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGonlineCount.h; sourceTree = "<group>"; };
 		D4A36629233DDDD200F6D770 /* UGonlineCount.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGonlineCount.m; sourceTree = "<group>"; };
+		D4A36634233E310B00F6D770 /* UGYYRightMenuView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGYYRightMenuView.h; sourceTree = "<group>"; };
+		D4A36635233E310B00F6D770 /* UGYYRightMenuView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGYYRightMenuView.m; sourceTree = "<group>"; };
+		D4A36637233E311E00F6D770 /* UGYYRightMenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGYYRightMenuView.xib; sourceTree = "<group>"; };
+		D4A3663A233E4A9E00F6D770 /* UINavigationController+UGExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+UGExtension.h"; sourceTree = "<group>"; };
+		D4A3663B233E4A9E00F6D770 /* UINavigationController+UGExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+UGExtension.m"; sourceTree = "<group>"; };
 		D4AE1C0922C0FCC300C142FE /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		D4AE63D822956E9600DD265A /* UGMissionLevelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGMissionLevelController.m; sourceTree = "<group>"; };
 		D4AE63DA2295734700DD265A /* UGMessageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGMessageModel.h; sourceTree = "<group>"; };
@@ -2291,6 +2299,8 @@
 				D4000C58232E51C4000705B1 /* UITextView+Extension.m */,
 				D4241C38232914FE00BF4DE1 /* UIView+Extension.h */,
 				D4241C37232914FE00BF4DE1 /* UIView+Extension.m */,
+				D4A3663A233E4A9E00F6D770 /* UINavigationController+UGExtension.h */,
+				D4A3663B233E4A9E00F6D770 /* UINavigationController+UGExtension.m */,
 			);
 			path = Extenslon;
 			sourceTree = "<group>";
@@ -2723,6 +2733,9 @@
 				D417EFD42330BD340024F634 /* UGredActivityView.h */,
 				D417EFD52330BD340024F634 /* UGredActivityView.m */,
 				D417EFD72330BEAB0024F634 /* UGredActivityView.xib */,
+				D4A36634233E310B00F6D770 /* UGYYRightMenuView.h */,
+				D4A36635233E310B00F6D770 /* UGYYRightMenuView.m */,
+				D4A36637233E311E00F6D770 /* UGYYRightMenuView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3422,6 +3435,7 @@
 				D40FA8C4229911CA003E596F /* UGYubaoViewController.storyboard in Resources */,
 				D41C3DFC228E882200BF6436 /* UGIntegralConvertRecordController.storyboard in Resources */,
 				D405B2FF227C310600F8C586 /* UGWithdrawalViewController.storyboard in Resources */,
+				D4A36638233E311E00F6D770 /* UGYYRightMenuView.xib in Resources */,
 				D422D67822D997AA008E7065 /* UGSafety.storyboard in Resources */,
 				D4145A9C22B61C6A00D8165F /* UGBJKL8LotteryController.storyboard in Resources */,
 				D49F41AD2326149B00A381AD /* UGPormotionUserInfoView.xib in Resources */,
@@ -3786,6 +3800,7 @@
 				D463B4E92284732300EAC0F7 /* UGBindCardViewController.m in Sources */,
 				D405B233227973C500F8C586 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				D405B1C3227972AD00F8C586 /* UIView+WebCacheOperation.m in Sources */,
+				D4A3663C233E4A9E00F6D770 /* UINavigationController+UGExtension.m in Sources */,
 				D40FA8D2229938FA003E596F /* ZZCountingLabel.m in Sources */,
 				D43555942334CDCE00515704 /* UIAlertController+BAKit.m in Sources */,
 				D424DDDC22E72E940009E2E6 /* UGSystemConfigModel.m in Sources */,
@@ -3836,6 +3851,7 @@
 				D41EDF832317BE06005798CC /* UGFundRecordDetailView.m in Sources */,
 				D405B373228013E600F8C586 /* SRActionSheet.m in Sources */,
 				D405B2FD227C30F700F8C586 /* UGWithdrawalViewController.m in Sources */,
+				D4A36636233E310B00F6D770 /* UGYYRightMenuView.m in Sources */,
 				D4BBFC01232A797600147C4A /* TGWebProgressLayer.m in Sources */,
 				D41246A92285525A006881E2 /* UGPromotionInfoController.m in Sources */,
 				D405B331227DA8F700F8C586 /* SAROPSession.m in Sources */,
