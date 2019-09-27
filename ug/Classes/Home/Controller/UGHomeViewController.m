@@ -58,6 +58,7 @@
 #import "UGredEnvelopeView.h"
 #import "UGredActivityView.h"
 #import "GameCategoryDataModel.h"
+#import "UGDocumentVC.h"
 
 
 @interface UGHomeViewController ()<SDCycleScrollViewDelegate,UUMarqueeViewDelegate>
@@ -861,6 +862,7 @@
 
 	if ([model.docType intValue] == 1) {
 
+		[self.navigationController pushViewController:[[UGDocumentVC alloc] initWithModel:model] animated:true];
 
 		return;
 	}

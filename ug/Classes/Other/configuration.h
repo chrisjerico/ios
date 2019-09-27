@@ -224,6 +224,12 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 
 #define secureGaCaptchaUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=secure&a=gaCaptcha"]
 
+#define getDocumentListUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=bbs&a=gameDocList"]
+
+#define getDocumentDetailUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=bbs&a=gameDocDetail"]
+
+#define getDocumentPayUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=bbs&a=gameDocPay"]
+
 #if DEBUG
 
 //#define NSLog(...) NSLog(__VA_ARGS__)
