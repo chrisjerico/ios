@@ -53,7 +53,7 @@
 	
 	[self.manager requestInMainThreadWithMethod:[getDocumentPayUrl stringToRestfulUrlWithFlag:RESTFUL]
 										 params:params
-										  model:CMResultClassMake(UGDocumentDetailData.class)
+										  model:CMResultClassMake(nil)
 										   post:YES
 									 completion:completionBlock];
 	

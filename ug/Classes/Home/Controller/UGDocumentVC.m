@@ -154,19 +154,17 @@
 				
 			} else if (!documentDetailModel.hasPay) {
 				UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"该贴需要付费阅读，打赏后查看" preferredStyle:UIAlertControllerStyleAlert];
+				[SVProgressHUD showWithStatus:nil];
 				[alert addAction:[UIAlertAction actionWithTitle:@"确认" style: UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
 					
-					[CMNetwork getDocumnetPayWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-						
+					[CMNetwork getDocumnetPayWithParams:@{@"id": document.articleID, @"token": token} completion:^(CMResult<id> *model, NSError *err) {
+						[SVProgressHUD showInfoWithStatus:model.msg];
 					}];
-					
 					
 				}]];
 				[alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
 				[self presentViewController:alert animated:true completion:nil];
 			}
-			
-			
 			
 		}];
 	}];
