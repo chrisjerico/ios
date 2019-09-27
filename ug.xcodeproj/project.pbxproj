@@ -377,6 +377,13 @@
 		D4527D1922828C27000EC1C2 /* UGPlatformBalanceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4527D1722828C27000EC1C2 /* UGPlatformBalanceTableViewCell.xib */; };
 		D4527D1C2282FBD8000EC1C2 /* UGBalanceConversionRecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4527D1B2282FBD8000EC1C2 /* UGBalanceConversionRecordController.m */; };
 		D4527D212283062D000EC1C2 /* UGPromotionIncomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4527D202283062D000EC1C2 /* UGPromotionIncomeController.m */; };
+		D45A94B4233B85540089E86C /* UGgaCaptchaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D45A94B3233B85540089E86C /* UGgaCaptchaModel.m */; };
+		D45A94B8233B879D0089E86C /* UGGoogleAuthenticationFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D45A94B6233B879D0089E86C /* UGGoogleAuthenticationFirstViewController.m */; };
+		D45A94B9233B879D0089E86C /* UGGoogleAuthenticationFirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D45A94B7233B879D0089E86C /* UGGoogleAuthenticationFirstViewController.xib */; };
+		D45A94BD233B8AF90089E86C /* UGGoogleAuthenticationSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D45A94BB233B8AF90089E86C /* UGGoogleAuthenticationSecondViewController.m */; };
+		D45A94BE233B8AF90089E86C /* UGGoogleAuthenticationSecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D45A94BC233B8AF90089E86C /* UGGoogleAuthenticationSecondViewController.xib */; };
+		D45A94C2233B9F070089E86C /* UGGoogleAuthenticationThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D45A94C0233B9F070089E86C /* UGGoogleAuthenticationThirdViewController.m */; };
+		D45A94C3233B9F070089E86C /* UGGoogleAuthenticationThirdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D45A94C1233B9F070089E86C /* UGGoogleAuthenticationThirdViewController.xib */; };
 		D45F98C622E34DAB00194139 /* UGMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D45F98C522E34DAA00194139 /* UGMineViewController.m */; };
 		D463B4DC2283ECFB00EAC0F7 /* UGPromotionTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = D463B4DB2283ECFB00EAC0F7 /* UGPromotionTableController.m */; };
 		D463B4DF2284488200EAC0F7 /* UGRightMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = D463B4DE2284488200EAC0F7 /* UGRightMenuView.m */; };
@@ -1233,6 +1240,17 @@
 		D4527D1B2282FBD8000EC1C2 /* UGBalanceConversionRecordController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGBalanceConversionRecordController.m; sourceTree = "<group>"; };
 		D4527D1F2283062D000EC1C2 /* UGPromotionIncomeController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGPromotionIncomeController.h; sourceTree = "<group>"; };
 		D4527D202283062D000EC1C2 /* UGPromotionIncomeController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGPromotionIncomeController.m; sourceTree = "<group>"; };
+		D45A94B2233B85540089E86C /* UGgaCaptchaModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGgaCaptchaModel.h; sourceTree = "<group>"; };
+		D45A94B3233B85540089E86C /* UGgaCaptchaModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGgaCaptchaModel.m; sourceTree = "<group>"; };
+		D45A94B5233B879D0089E86C /* UGGoogleAuthenticationFirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGGoogleAuthenticationFirstViewController.h; sourceTree = "<group>"; };
+		D45A94B6233B879D0089E86C /* UGGoogleAuthenticationFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGGoogleAuthenticationFirstViewController.m; sourceTree = "<group>"; };
+		D45A94B7233B879D0089E86C /* UGGoogleAuthenticationFirstViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGGoogleAuthenticationFirstViewController.xib; sourceTree = "<group>"; };
+		D45A94BA233B8AF90089E86C /* UGGoogleAuthenticationSecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGGoogleAuthenticationSecondViewController.h; sourceTree = "<group>"; };
+		D45A94BB233B8AF90089E86C /* UGGoogleAuthenticationSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGGoogleAuthenticationSecondViewController.m; sourceTree = "<group>"; };
+		D45A94BC233B8AF90089E86C /* UGGoogleAuthenticationSecondViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGGoogleAuthenticationSecondViewController.xib; sourceTree = "<group>"; };
+		D45A94BF233B9F070089E86C /* UGGoogleAuthenticationThirdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGGoogleAuthenticationThirdViewController.h; sourceTree = "<group>"; };
+		D45A94C0233B9F070089E86C /* UGGoogleAuthenticationThirdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGGoogleAuthenticationThirdViewController.m; sourceTree = "<group>"; };
+		D45A94C1233B9F070089E86C /* UGGoogleAuthenticationThirdViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGGoogleAuthenticationThirdViewController.xib; sourceTree = "<group>"; };
 		D45F98C422E34DAA00194139 /* UGMineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGMineViewController.h; sourceTree = "<group>"; };
 		D45F98C522E34DAA00194139 /* UGMineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGMineViewController.m; sourceTree = "<group>"; };
 		D463B4DA2283ECFB00EAC0F7 /* UGPromotionTableController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGPromotionTableController.h; sourceTree = "<group>"; };
@@ -1645,6 +1663,8 @@
 				D41FF93E2333A76B00FE3F70 /* UGapplyWinLogDetail.m */,
 				D42620F62339027400BC2E83 /* UGagentApplyInfo.h */,
 				D42620F72339027400BC2E83 /* UGagentApplyInfo.m */,
+				D45A94B2233B85540089E86C /* UGgaCaptchaModel.h */,
+				D45A94B3233B85540089E86C /* UGgaCaptchaModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2390,6 +2410,15 @@
 				D481AB4D233201870099685B /* UGMosaicGoldController.m */,
 				D481AB5723321F940099685B /* UGActivityGoldTableViewController.h */,
 				D481AB5823321F940099685B /* UGActivityGoldTableViewController.m */,
+				D45A94B5233B879D0089E86C /* UGGoogleAuthenticationFirstViewController.h */,
+				D45A94B6233B879D0089E86C /* UGGoogleAuthenticationFirstViewController.m */,
+				D45A94B7233B879D0089E86C /* UGGoogleAuthenticationFirstViewController.xib */,
+				D45A94BA233B8AF90089E86C /* UGGoogleAuthenticationSecondViewController.h */,
+				D45A94BB233B8AF90089E86C /* UGGoogleAuthenticationSecondViewController.m */,
+				D45A94BC233B8AF90089E86C /* UGGoogleAuthenticationSecondViewController.xib */,
+				D45A94BF233B9F070089E86C /* UGGoogleAuthenticationThirdViewController.h */,
+				D45A94C0233B9F070089E86C /* UGGoogleAuthenticationThirdViewController.m */,
+				D45A94C1233B9F070089E86C /* UGGoogleAuthenticationThirdViewController.xib */,
 			);
 			path = base;
 			sourceTree = "<group>";
@@ -3366,7 +3395,9 @@
 				D4B75E19227802600007047C /* LaunchScreen.storyboard in Resources */,
 				D41F2619231BE536004FB9C6 /* UGWithdrawRecordDetailView.xib in Resources */,
 				D405B2D8227B0FE100F8C586 /* UGPlatformTitleCollectionViewCell.xib in Resources */,
+				D45A94C3233B9F070089E86C /* UGGoogleAuthenticationThirdViewController.xib in Resources */,
 				D41FF77222E880A800FCCDD2 /* UGSSCBetItem1Cell.xib in Resources */,
+				D45A94BE233B8AF90089E86C /* UGGoogleAuthenticationSecondViewController.xib in Resources */,
 				D4AE640E2295871D00DD265A /* MJRefresh.bundle in Resources */,
 				D4DE26A0229C1CCE0072A4A2 /* UGBJPK10LotteryController.storyboard in Resources */,
 				D4D8DF772286F01100446BAF /* UGTimeLotteryLeftTitleCell.xib in Resources */,
@@ -3453,6 +3484,7 @@
 				D41246A622854626006881E2 /* UGPromotionsTableViewCell.xib in Resources */,
 				D4DFBE7222E353B1002BAFB0 /* UGMenuTableViewCell.xib in Resources */,
 				D4DE2686229BCB960072A4A2 /* Shade_right@2x.png in Resources */,
+				D45A94B9233B879D0089E86C /* UGGoogleAuthenticationFirstViewController.xib in Resources */,
 				D422FE60232522C20063EA4E /* UGPromotion5rowButtonTableViewCell.xib in Resources */,
 				D422FE65232532C00063EA4E /* UGPromotion2rowTableViewCell.xib in Resources */,
 				D49A36C122A29CCB000057D2 /* UGLotteryRulesView.xib in Resources */,
@@ -3575,6 +3607,7 @@
 				D48224F522A10B5100F7DE72 /* UGNoticeHeaderView.m in Sources */,
 				D40FA8CA22992F42003E596F /* UGYubaoConversionViewController.m in Sources */,
 				D405B218227972D300F8C586 /* NSObject+MJProperty.m in Sources */,
+				D45A94B4233B85540089E86C /* UGgaCaptchaModel.m in Sources */,
 				D4087DB222952D4A000C4CB0 /* UGMissionModel.m in Sources */,
 				D49F41B02326346D00A381AD /* UGinviteDomainModel.m in Sources */,
 				D422A58E229EBF7C0068D0AD /* WavesView.m in Sources */,
@@ -3658,6 +3691,7 @@
 				D405B1C1227972AD00F8C586 /* NSImage+WebCache.m in Sources */,
 				D425282C2321267C007DE522 /* UGSignInScrFootView.m in Sources */,
 				D40499C12335E5B30019C249 /* UGPromotion6rowButtonTableViewCell.m in Sources */,
+				D45A94B8233B879D0089E86C /* UGGoogleAuthenticationFirstViewController.m in Sources */,
 				D4239BD122CCEC9D00700D8E /* UIWebView+DKProgress.m in Sources */,
 				D405B37C22805D6900F8C586 /* UGMissionCenterViewController.m in Sources */,
 				D4D8DF682286932200446BAF /* UGLotteryAssistantController.m in Sources */,
@@ -3707,6 +3741,7 @@
 				D405B38C22816D1400F8C586 /* UGSecurityCenterViewController.m in Sources */,
 				D405B1FA227972C900F8C586 /* JSONHTTPClient.m in Sources */,
 				D40DE98C22F3372F00974BAF /* UITabBarController+ShowViewController.m in Sources */,
+				D45A94C2233B9F070089E86C /* UGGoogleAuthenticationThirdViewController.m in Sources */,
 				D4111427230A8FFE00A4EE67 /* UGAPPVersionModel.m in Sources */,
 				D41E0EE0228D88BC00D6C42A /* UGMissionLevelTableViewCell.m in Sources */,
 				D405B2EE227C166900F8C586 /* HMSegmentedControl.m in Sources */,
@@ -3899,6 +3934,7 @@
 				D405B1B2227972AD00F8C586 /* MKAnnotationView+WebCache.m in Sources */,
 				D405B1F8227972C900F8C586 /* JSONModelArray.m in Sources */,
 				D405B1FC227972C900F8C586 /* JSONModel+networking.m in Sources */,
+				D45A94BD233B8AF90089E86C /* UGGoogleAuthenticationSecondViewController.m in Sources */,
 				D40FA8D3229938FA003E596F /* ZZCircleProgress.m in Sources */,
 				D41246A522854626006881E2 /* UGPromotionsTableViewCell.m in Sources */,
 				D417712A229D6BEC00727B70 /* UGUserinfoView.m in Sources */,

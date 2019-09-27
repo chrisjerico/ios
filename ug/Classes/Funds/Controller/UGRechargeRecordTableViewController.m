@@ -8,6 +8,7 @@
 
 #import "UGRechargeRecordTableViewController.h"
 #import "UGRechargeRecordCell.h"
+#import "UGFundDetailsCell.h"
 #import "UGRechargeLogsModel.h"
 #import "UGFundRecordDetailView.h"
 #import "UGWithdrawRecordDetailView.h"
@@ -23,6 +24,7 @@
 static int page = 1;
 static int size = 20;
 
+static NSString *fundDetailsCell = @"UGFundDetailsCell";
 static NSString *rechargeRecordCellid = @"UGRechargeRecordCell";
 @implementation UGRechargeRecordTableViewController
 
@@ -35,6 +37,7 @@ static NSString *rechargeRecordCellid = @"UGRechargeRecordCell";
     self.tableView.estimatedSectionHeaderHeight = 0;
     self.tableView.estimatedSectionFooterHeight = 0;
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 120, 0);
+    [self.tableView registerNib:[UINib nibWithNibName:@"UGFundDetailsCell" bundle:nil] forCellReuseIdentifier:fundDetailsCell];
     [self.tableView registerNib:[UINib nibWithNibName:@"UGRechargeRecordCell" bundle:nil] forCellReuseIdentifier:rechargeRecordCellid];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
@@ -177,9 +180,18 @@ static NSString *rechargeRecordCellid = @"UGRechargeRecordCell";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UGRechargeRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:rechargeRecordCellid forIndexPath:indexPath];
-    cell.item = self.dataArray[indexPath.row];
-    return cell;
+    
+    if (self.recordType == RecordTypeWithdraw) {
+        //1
+        UGRechargeRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:rechargeRecordCellid forIndexPath:indexPath];
+        cell.item = self.dataArray[indexPath.row];
+        return cell;
+    }else {
+        UGFundDetailsCell *cell = [tableView dequeueReusableCellWithIdentifier:fundDetailsCell forIndexPath:indexPath];
+        cell.rechargeitem = self.dataArray[indexPath.row];
+        return cell;
+    }
+  
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -194,35 +206,77 @@ static NSString *rechargeRecordCellid = @"UGRechargeRecordCell";
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UGScreenW, 44)];
-    headerView.backgroundColor = [UIColor whiteColor];
-    UILabel *timeLable = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, UGScreenW / 3, 44)];
-    timeLable.text = @"时间";
-    timeLable.textColor = [UIColor blackColor];
-    timeLable.font = [UIFont systemFontOfSize:14 weight:UIFontWeightHeavy];
-    timeLable.textAlignment = NSTextAlignmentCenter;
-    
-    UILabel *amountLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(timeLable.frame) + 10, 0, (UGScreenW - CGRectGetMaxX(timeLable.frame) - 10) / 2, 44)];
-    amountLabel.text = @"金额";
-    amountLabel.textColor = [UIColor blackColor];
-    amountLabel.textAlignment = NSTextAlignmentCenter;
-    amountLabel.font = [UIFont systemFontOfSize:14 weight:UIFontWeightHeavy];
-    
-    UILabel *stateLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(amountLabel.frame), 0, UGScreenW - CGRectGetMaxX(amountLabel.frame), 44)];
-    stateLabel.text = @"状态";
-    stateLabel.textAlignment = NSTextAlignmentCenter;
-    stateLabel.textColor = [UIColor blackColor];
-    stateLabel.font = [UIFont systemFontOfSize:14 weight:UIFontWeightHeavy];
-    
-    UILabel *line = [[UILabel alloc] initWithFrame:CGRectMake(15, 43, UGScreenW, 0.5)];
-    line.backgroundColor = UGBackgroundColor;
-    
-    [headerView addSubview:timeLable];
-    [headerView addSubview:amountLabel];
-    [headerView addSubview:stateLabel];
-    [headerView addSubview:line];
-    
-    return headerView;
+    if (self.recordType == RecordTypeWithdraw) {
+       //1
+        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UGScreenW, 44)];
+        headerView.backgroundColor = [UIColor whiteColor];
+        UILabel *timeLable = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, UGScreenW / 3, 44)];
+        timeLable.text = @"时间";
+        timeLable.textColor = [UIColor blackColor];
+        timeLable.font = [UIFont systemFontOfSize:14 weight:UIFontWeightHeavy];
+        timeLable.textAlignment = NSTextAlignmentCenter;
+        
+        UILabel *amountLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(timeLable.frame) + 10, 0, (UGScreenW - CGRectGetMaxX(timeLable.frame) - 10) / 2, 44)];
+        amountLabel.text = @"金额";
+        amountLabel.textColor = [UIColor blackColor];
+        amountLabel.textAlignment = NSTextAlignmentCenter;
+        amountLabel.font = [UIFont systemFontOfSize:14 weight:UIFontWeightHeavy];
+        
+        UILabel *stateLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(amountLabel.frame), 0, UGScreenW - CGRectGetMaxX(amountLabel.frame), 44)];
+        stateLabel.text = @"状态";
+        stateLabel.textAlignment = NSTextAlignmentCenter;
+        stateLabel.textColor = [UIColor blackColor];
+        stateLabel.font = [UIFont systemFontOfSize:14 weight:UIFontWeightHeavy];
+        
+        UILabel *line = [[UILabel alloc] initWithFrame:CGRectMake(15, 43, UGScreenW, 0.5)];
+        line.backgroundColor = UGBackgroundColor;
+        
+        [headerView addSubview:timeLable];
+        [headerView addSubview:amountLabel];
+        [headerView addSubview:stateLabel];
+        [headerView addSubview:line];
+        
+        return headerView;
+    }else {
+        
+        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UGScreenW, 44)];
+        headerView.backgroundColor = [UIColor whiteColor];
+        UILabel *timeLable = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, UGScreenW / 4, 44)];
+        timeLable.text = @"时间";
+        timeLable.textColor = [UIColor blackColor];
+        timeLable.font = [UIFont systemFontOfSize:14 weight:UIFontWeightHeavy];
+        timeLable.textAlignment = NSTextAlignmentCenter;
+        
+        UILabel *amountLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(timeLable.frame), 0,UGScreenW / 4, 44)];
+        amountLabel.text = @"金额";
+        amountLabel.textColor = [UIColor blackColor];
+        amountLabel.textAlignment = NSTextAlignmentCenter;
+        amountLabel.font = [UIFont systemFontOfSize:14 weight:UIFontWeightHeavy];
+        
+        UILabel *stateLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(amountLabel.frame), 0, UGScreenW / 4, 44)];
+        stateLabel.text = @"存款方式";
+        stateLabel.textAlignment = NSTextAlignmentCenter;
+        stateLabel.textColor = [UIColor blackColor];
+        stateLabel.font = [UIFont systemFontOfSize:14 weight:UIFontWeightHeavy];
+        
+        UILabel *balanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(stateLabel.frame), 0, UGScreenW / 4, 44)];
+        balanceLabel.text = @"状态";
+        balanceLabel.textAlignment = NSTextAlignmentCenter;
+        balanceLabel.textColor = [UIColor blackColor];
+        balanceLabel.font = [UIFont systemFontOfSize:14 weight:UIFontWeightHeavy];
+        
+        UILabel *line = [[UILabel alloc] initWithFrame:CGRectMake(15, 43, UGScreenW, 0.5)];
+        line.backgroundColor = UGBackgroundColor;
+        
+        [headerView addSubview:timeLable];
+        [headerView addSubview:amountLabel];
+        [headerView addSubview:stateLabel];
+        [headerView addSubview:balanceLabel];
+        [headerView addSubview:line];
+        
+        return headerView;
+    }
+   
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

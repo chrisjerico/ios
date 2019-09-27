@@ -12,18 +12,29 @@
 #import "UGRegisterViewController.h"
 #import <WebKit/WebKit.h>
 #import "UGImgVcodeModel.h"
+#import "UGSecurityCenterViewController.h"
 
 @interface UGLoginViewController ()<UITextFieldDelegate,UINavigationControllerDelegate,WKScriptMessageHandler,WKNavigationDelegate,WKUIDelegate>
+{
+  
+}
 @property (weak, nonatomic) IBOutlet UITextField *userNameTextF;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextF;
 
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
+@property (weak, nonatomic) IBOutlet UIButton *rigesterButton;
+@property (weak, nonatomic) IBOutlet UIButton *playButton;
+@property (weak, nonatomic) IBOutlet UIButton *goHomeButton;
 @property (weak, nonatomic) IBOutlet UIView *webBgView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *webBgViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet UIImageView *gouImageView;
+@property (weak, nonatomic) IBOutlet UIButton *gouButton;
 
 @property (nonatomic, strong) WKWebView *webView;
 @property (nonatomic, strong) UGImgVcodeModel *imgVcodeModel;
 @property (nonatomic, assign) NSInteger errorTimes;
+
+@property (weak, nonatomic) IBOutlet UIImageView *pwdImgeView;
 @end
 
 @implementation UGLoginViewController
@@ -34,6 +45,15 @@
     self.navigationItem.title = @"登录";
     self.loginButton.layer.cornerRadius = 5;
     self.loginButton.layer.masksToBounds = YES;
+    
+    self.rigesterButton.layer.cornerRadius = 5;
+    self.rigesterButton.layer.masksToBounds = YES;
+    
+    self.playButton.layer.cornerRadius = 5;
+    self.playButton.layer.masksToBounds = YES;
+    
+    self.goHomeButton.layer.cornerRadius = 5;
+    self.goHomeButton.layer.masksToBounds = YES;
     self.userNameTextF.delegate = self;
     self.passwordTextF.delegate = self;
     self.navigationController.delegate = self;
@@ -43,6 +63,28 @@
     [self.webView loadRequest:request];
     self.webBgView.hidden = YES;
     self.webBgViewHeightConstraint.constant = 0.1;
+    
+    self.passwordTextF.clearButtonMode=UITextFieldViewModeNever;
+    
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    
+    //检查记住密码标记，如果为YES，那么就读取用户名和密码并为TextField赋值
+    ///并将图标背景设置为记住状态，如果为NO，那么设置背景为未记住状态
+    if([userDefault boolForKey:@"isRememberPsd"])
+    {
+        [userDefault setBool:YES forKey:@"isRememberPsd"];
+         self.gouImageView.image = [UIImage imageNamed:@"dagou"];
+         self.userNameTextF.text = [userDefault stringForKey:@"userName" ];
+         self.passwordTextF.text = [userDefault stringForKey:@"userPsw" ];
+       
+    }
+    else if(![userDefault boolForKey:@"isRememberPsd"])
+    {
+         [userDefault setBool:NO forKey:@"isRememberPsd"];
+         self.gouImageView.image = [UIImage imageNamed:@"dagou_off"];
+    }
+    
+    
 }
 
 - (IBAction)loginClick:(id)sender {
@@ -80,16 +122,48 @@
             [CMResult processWithResult:model success:^{
                 
                 [SVProgressHUD showSuccessWithStatus:model.msg];
+                
+                
                 UGUserModel *user = model.data;
                 UGUserModel.currentUser = user;
+                
+               NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+               if([userDefault boolForKey:@"isRememberPsd"])
+                {
+                    [userDefault setObject:self.userNameTextF.text forKey:@"userName"];
+                    [userDefault setObject:self.passwordTextF.text forKey:@"userPsw"];
+                }
+                
                 SANotificationEventPost(UGNotificationLoginComplete, nil);
                 
                 AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
                 
                 appDelegate.tabbar.qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&sessiontoken=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid];
-              
                 
-                [self.navigationController popToRootViewControllerAnimated:YES];
+                NSArray *simplePwds = [[NSArray alloc] initWithObjects:@"111111",@"000000",@"222222",@"333333",@"444444",@"555555",@"666666",@"777777",@"888888",@"999999",@"123456",@"654321",@"abcdef",@"aaaaaa",@"qwe123", nil];
+                
+                BOOL isGoRoot = YES;
+                
+                for (int i= 0; i<simplePwds.count; i++) {
+                    NSString *str = [simplePwds objectAtIndex:i];
+                    if ([self.passwordTextF.text isEqualToString:str]) {
+ 
+                        isGoRoot = NO;
+                        break;
+                    }
+                }
+              
+                if (isGoRoot) {
+                     [self.navigationController popToRootViewControllerAnimated:YES];
+                } else {
+                    [self.navigationController.view makeToast:@"你的密码过于简单，可能存在风险，请把密码修改成复杂密码"
+                                                     duration:3.0
+                                                     position:CSToastPositionCenter];
+                    UGSecurityCenterViewController *vc = [[UGSecurityCenterViewController alloc] init] ;
+                    vc.fromVC = @"UGLoginViewController";
+                    [self.navigationController pushViewController:vc animated:YES];
+                }
+               
             } failure:^(id msg) {
                 if (self.webBgView.hidden == NO) {
                     [self.webView reload];
@@ -119,6 +193,35 @@
     [self.navigationController pushViewController:registerVC animated:YES];
     
 }
+
+- (IBAction)playAction:(id)sender {
+  
+    SANotificationEventPost(UGNotificationTryPlay, nil);
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+- (IBAction)goHomeAction:(id)sender {
+    
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+- (IBAction)recoredBtnClick:(id)sender {
+    
+     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+     if([userDefault boolForKey:@"isRememberPsd"])
+    {
+        [userDefault setBool:NO forKey:@"isRememberPsd"];
+        self.gouImageView.image = [UIImage imageNamed:@"dagou_off"];
+    }
+    else
+    {
+        self.gouImageView.image = [UIImage imageNamed:@"dagou"];
+        [userDefault setBool:YES forKey:@"isRememberPsd"];
+    }
+    [userDefault synchronize];
+   
+}
+
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     if ([string isEqualToString:@"\n"]) {
@@ -235,4 +338,29 @@
     return _webView;
 }
 
+
+- (IBAction)pwdTextSwitch:(UIButton *)sender {
+    
+    // 前提:在xib中设置按钮的默认与选中状态的背景图
+    // 切换按钮的状态
+    sender.selected = !sender.selected;
+    
+    if (sender.selected) { // 按下去了就是明文
+        
+        NSString *tempPwdStr = self.passwordTextF.text;
+        self.passwordTextF.text = @""; // 这句代码可以防止切换的时候光标偏移
+        self.passwordTextF.secureTextEntry = NO;
+        self.passwordTextF.text = tempPwdStr;
+        
+        [self.pwdImgeView setImage:[UIImage imageNamed:@"yanjing"]];
+        
+    } else { // 暗文
+        
+        NSString *tempPwdStr = self.passwordTextF.text;
+        self.passwordTextF.text = @"";
+        self.passwordTextF.secureTextEntry = YES;
+        self.passwordTextF.text = tempPwdStr;
+        [self.pwdImgeView setImage:[UIImage imageNamed:@"biyan"]];
+    }
+}
 @end

@@ -107,7 +107,7 @@ static NSString *const footerId = @"footerId";
 	if (_selectedPath == indexPath) {
 		cell.backgroundColor = UIColor.blueColor;
 	}
-	cell.backgroundColor =  _selectedPath == indexPath ? UIColor.lightGrayColor : UIColor.whiteColor;
+	cell.backgroundColor =  _selectedPath == indexPath ? [UIColor colorWithWhite:0.9 alpha:1.0] : UIColor.whiteColor;
 
     return cell;
 }

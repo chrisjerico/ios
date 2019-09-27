@@ -20,6 +20,7 @@ typedef void(^HomeTitleRegisterBlock)(void);
 @property (nonatomic, copy) HomeTitleRegisterBlock registerClickBlock;
 @property (nonatomic, strong) NSString *userName;
 @property (nonatomic, assign) BOOL showLoginView;
+@property (nonatomic, strong) NSString *imgName;
 @end
 
 NS_ASSUME_NONNULL_END

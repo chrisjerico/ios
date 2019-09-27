@@ -104,7 +104,14 @@
 - (void)viewDidLoad {
 
     [super viewDidLoad];
+    
+    [self setupSubView];
 
+    SANotificationEventSubscribe(UGNotificationTryPlay, self, ^(typeof (self) self, id obj) {
+        [self tryPlayClick];
+   
+    });
+    
     SANotificationEventSubscribe(UGNotificationLoginComplete, self, ^(typeof (self) self, id obj) {
         [self getUserInfo];
         self.titleView.showLoginView = NO;
@@ -260,7 +267,7 @@
 	if (self.initSubview) {
 		return;
 	}
-	[self setupSubView];
+	
 	[self getBannerList];
 
 	
@@ -390,6 +397,8 @@
             
             UGSystemConfigModel *config = model.data;
             UGSystemConfigModel.currentConfig = config;
+            
+           [self.titleView setImgName:config.mobile_logo];
             
         } failure:^(id msg) {
             
