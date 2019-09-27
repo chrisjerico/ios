@@ -86,14 +86,14 @@ static NSString *menuCellid = @"UGRightMenuTableViewCell";
 - (IBAction)rechregeClick:(id)sender {
     [self hiddenSelf];
     if (self.menuSelectBlock) {
-        self.menuSelectBlock(7);
+        self.menuSelectBlock(100);
     }
 }
 
 - (IBAction)withdraw:(id)sender {
     [self hiddenSelf];
     if (self.menuSelectBlock) {
-        self.menuSelectBlock(8);
+        self.menuSelectBlock(101);
     }
 }
 

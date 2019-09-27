@@ -445,6 +445,7 @@
 		D4A1E90E232BC4A50045F5B4 /* NSDate+XHCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A1E908232BC4A50045F5B4 /* NSDate+XHCategory.m */; };
 		D4A1E90F232BC4A50045F5B4 /* NSString+XHDateFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A1E90A232BC4A50045F5B4 /* NSString+XHDateFormat.m */; };
 		D4A1E910232BC4A50045F5B4 /* NSDateComponents+XHCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A1E90C232BC4A50045F5B4 /* NSDateComponents+XHCategory.m */; };
+		D4A3662A233DDDD200F6D770 /* UGonlineCount.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A36629233DDDD200F6D770 /* UGonlineCount.m */; };
 		D4AE1C0A22C0FCC400C142FE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AE1C0922C0FCC300C142FE /* AppDelegate.m */; };
 		D4AE63D922956E9600DD265A /* UGMissionLevelController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AE63D822956E9600DD265A /* UGMissionLevelController.m */; };
 		D4AE63DC2295734700DD265A /* UGMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AE63DB2295734700DD265A /* UGMessageModel.m */; };
@@ -1354,6 +1355,8 @@
 		D4A1E90B232BC4A50045F5B4 /* NSDate+XHCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+XHCategory.h"; sourceTree = "<group>"; };
 		D4A1E90C232BC4A50045F5B4 /* NSDateComponents+XHCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateComponents+XHCategory.m"; sourceTree = "<group>"; };
 		D4A1E90D232BC4A50045F5B4 /* NSString+XHDateFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+XHDateFormat.h"; sourceTree = "<group>"; };
+		D4A36628233DDDD200F6D770 /* UGonlineCount.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGonlineCount.h; sourceTree = "<group>"; };
+		D4A36629233DDDD200F6D770 /* UGonlineCount.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGonlineCount.m; sourceTree = "<group>"; };
 		D4AE1C0922C0FCC300C142FE /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		D4AE63D822956E9600DD265A /* UGMissionLevelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGMissionLevelController.m; sourceTree = "<group>"; };
 		D4AE63DA2295734700DD265A /* UGMessageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGMessageModel.h; sourceTree = "<group>"; };
@@ -2650,6 +2653,8 @@
 				D41F26132319022E004FB9C6 /* UGChanglongBetRecordModel.m */,
 				D417EFD12330AC090024F634 /* UGRedEnvelopeModel.h */,
 				D417EFD22330AC090024F634 /* UGRedEnvelopeModel.m */,
+				D4A36628233DDDD200F6D770 /* UGonlineCount.h */,
+				D4A36629233DDDD200F6D770 /* UGonlineCount.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3716,6 +3721,7 @@
 				D405B39522817AB700F8C586 /* UGModifyLoginPlaceController.m in Sources */,
 				D4A1E90F232BC4A50045F5B4 /* NSString+XHDateFormat.m in Sources */,
 				D405B21B227972D300F8C586 /* MJPropertyKey.m in Sources */,
+				D4A3662A233DDDD200F6D770 /* UGonlineCount.m in Sources */,
 				D405B2DB227B122000F8C586 /* UGPlatformTitleCollectionView.m in Sources */,
 				D422D67C22D99F1E008E7065 /* UGAddressCollectionViewCell.m in Sources */,
 				D411D3992292E1AD0072603B /* UGBetItemModel.m in Sources */,

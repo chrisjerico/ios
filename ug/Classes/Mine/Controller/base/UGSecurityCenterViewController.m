@@ -16,7 +16,7 @@
 
 @interface UGSecurityCenterViewController ()<XYYSegmentControlDelegate>
 @property (nonatomic, strong) XYYSegmentControl *slideSwitchView;
-@property (nonatomic,strong)  NSArray *itemArray;
+@property (nonatomic,strong)   NSMutableArray *itemArray;
 @end
 
 @implementation UGSecurityCenterViewController
@@ -58,6 +58,8 @@
     }
     
     [self buildSegment];
+    
+    [self getSystemConfig];
 }
 
 
@@ -65,13 +67,24 @@
 #pragma mark - 配置segment
 -(void)buildSegment
 {
+    self.itemArray = [NSMutableArray new];
+    [self.itemArray addObject:@"登录密码"];
+    [self.itemArray addObject:@"取款密码"];
+    
     UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
-    if (config.googleVerifier == 1) {
+    if ([config.oftenLoginArea isEqualToString: @"0"]) {
         
-       self.itemArray = @[@"登录密码",@"取款密码",@"常用登录地",@"二次验证"];
+        [self.itemArray addObject:@"常用登录地"];
     }
     else{
-        self.itemArray = @[@"登录密码",@"取款密码",@"常用登录地"];
+        
+    }
+    if (config.googleVerifier == 1) {
+        [self.itemArray addObject:@"二次验证"];
+     
+    }
+    else{
+      
     }
     
     self.slideSwitchView = [[XYYSegmentControl alloc] initWithFrame:CGRectMake(0 , 0, self.view.width, self.view.height) channelName:self.itemArray source:self];
@@ -124,7 +137,9 @@
 
 - (void)slideSwitchView:(XYYSegmentControl *)view didselectTab:(NSUInteger)number
 {
-    if (number == 2) {
+    
+    NSString *titleStr = [self.itemArray objectAtIndex:number];
+    if ([titleStr isEqualToString:@"常用登录地" ]) {
         [LEEAlert alert].config
         .LeeAddTitle(^(UILabel *label) {
             
@@ -151,6 +166,26 @@
 -(void)back
 {
     [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+
+- (void)getSystemConfig {
+    
+    
+    [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            
+  
+            
+            UGSystemConfigModel *config = model.data;
+            UGSystemConfigModel.currentConfig = config;
+            
+           [self buildSegment];
+            
+        } failure:^(id msg) {
+            
+        }];
+    }];
 }
 
 @end

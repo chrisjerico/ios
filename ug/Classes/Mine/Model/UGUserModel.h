@@ -57,6 +57,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL isAgent;//是否是代理
 @property (nonatomic, assign) BOOL checkinSwitch;//是否签到开关：
 
+@property (nonatomic, assign) NSInteger ggCheck;//1 要google验证
+
 //积分
 @property (nonatomic, strong) NSString *curLevelTitle;
 @property (nonatomic, strong) NSString *nextLevelTitle;
