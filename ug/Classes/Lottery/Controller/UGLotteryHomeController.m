@@ -34,12 +34,15 @@
 #import "UGGDKL10LotteryController.h"
 #import "UGFC3DLotteryController.h"
 #import "UGPK10NNLotteryController.h"
+
+
 @interface UGLotteryHomeController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) CountDown *countDown;
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, strong) CountDown *loadCountdown;
+
 
 @end
 
@@ -105,71 +108,6 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
     }
 }
 
-- (void)rightBarBtnClick {
-    float y;
-    if ([CMCommon isPhoneX]) {
-        y = 44;
-    }else {
-        y = 20;
-    }
-    UGRightMenuView *menuView = [[UGRightMenuView alloc] initWithFrame:CGRectMake(UGScreenW /2 , y, UGScreenW / 2, UGScerrnH)];
-    menuView.titleArray = @[@"返回首页",@"投注记录",@"开奖记录",@"彩种规则",@"长龙助手",@"站内短信",@"退出登录"];
-    menuView.imageNameArray = @[@"shouyesel",@"zdgl",@"kaijiangjieguo",@"guize",@"changlong",@"zhanneixin",@"tuichudenglu"];
-    WeakSelf
-    menuView.menuSelectBlock = ^(NSInteger index) {
-
-        if (index == 0) {
-            
-        }else if (index == 1) {
-            if ([UGUserModel currentUser].isTest) {
-                [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                    if (buttonIndex == 1) {
-                        SANotificationEventPost(UGNotificationShowLoginView, nil);
-                    }
-                }];
-            }else {
-                
-                UGBetRecordViewController *betRecordVC = [[UGBetRecordViewController alloc] init];
-                [self.navigationController pushViewController:betRecordVC animated:YES];
-            }
-            
-        }else if (index == 2) {
-            
-            
-        }else if (index == 3) {
-            UGLotteryRulesView *rulesView = [[UGLotteryRulesView alloc] initWithFrame:CGRectMake(30, 120, UGScreenW - 60, UGScerrnH - 230)];
-            [rulesView show];
-            
-        }else if (index == 4) {
-            QDWebViewController *yuebaoVC = [[QDWebViewController alloc] init];
-            yuebaoVC.navigationTitle = @"长龙助手";
-            yuebaoVC.urlString = [NSString stringWithFormat:@"%@%@",baseServerUrl,changlongUrl];
-            [self.navigationController pushViewController:yuebaoVC  animated:YES];
-            
-        }else if (index == 5) {
-           
-            
-        }else if (index == 6) {
-            [QDAlertView showWithTitle:@"温馨提示" message:@"确定退出账号" cancelButtonTitle:@"取消" otherButtonTitle:@"确定" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-             
-            }];
-        }else if (index == 7) {
-            UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
-            [weakSelf.navigationController pushViewController:fundsVC animated:YES];
-            
-        }else if (index == 8) {
-            UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
-            fundsVC.selectIndex = 1;
-            [weakSelf.navigationController pushViewController:fundsVC animated:YES];
-            
-        }else {
-        
-           
-        }
-        
-    };
-    [menuView show];
-}
 
 #pragma mark UICollectionView datasource
 
@@ -216,6 +154,10 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
         lotteryVC.nextIssueModel = nextModel;
         lotteryVC.gameId = nextModel.gameId;
         lotteryVC.lotteryGamesArray = self.dataArray;
+        //此处为重点
+        lotteryVC.gotoTabBlock = ^{
+            self.navigationController.tabBarController.selectedIndex = 0;
+        };
         [self.navigationController pushViewController:lotteryVC animated:YES];
     }else if ([@"pk10" isEqualToString:nextModel.gameType] ||
               [@"xyft" isEqualToString:nextModel.gameType]) {
@@ -224,6 +166,10 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
         markSixVC.nextIssueModel = nextModel;
         markSixVC.gameId = nextModel.gameId;
         markSixVC.lotteryGamesArray = self.dataArray;
+        //此处为重点
+        markSixVC.gotoTabBlock = ^{
+            self.navigationController.tabBarController.selectedIndex = 0;
+        };
         [self.navigationController pushViewController:markSixVC animated:YES];
         
     }else if ([@"qxc" isEqualToString:nextModel.gameType]) {
@@ -232,6 +178,9 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
         sevenVC.nextIssueModel = nextModel;
         sevenVC.gameId = nextModel.gameId;
         sevenVC.lotteryGamesArray = self.dataArray;
+        sevenVC.gotoTabBlock = ^{
+            self.navigationController.tabBarController.selectedIndex = 0;
+        };
         [self.navigationController pushViewController:sevenVC animated:YES];
         
     }else if ([@"lhc" isEqualToString:nextModel.gameType]) {
@@ -240,6 +189,9 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
         markSixVC.nextIssueModel = nextModel;
         markSixVC.gameId = nextModel.gameId;
         markSixVC.lotteryGamesArray = self.dataArray;
+        markSixVC.gotoTabBlock = ^{
+            self.navigationController.tabBarController.selectedIndex = 0;
+        };
         [self.navigationController pushViewController:markSixVC animated:YES];
         
     }else if ([@"jsk3" isEqualToString:nextModel.gameType]) {
@@ -248,6 +200,9 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
         fastThreeVC.nextIssueModel = nextModel;
         fastThreeVC.gameId = nextModel.gameId;
         fastThreeVC.lotteryGamesArray = self.dataArray;
+        fastThreeVC.gotoTabBlock = ^{
+            self.navigationController.tabBarController.selectedIndex = 0;
+        };
         [self.navigationController pushViewController:fastThreeVC animated:YES];
     }else if ([@"pcdd" isEqualToString:nextModel.gameType]) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGPCDDLotteryController" bundle:nil];
@@ -255,6 +210,9 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
         PCVC.nextIssueModel = nextModel;
         PCVC.gameId = nextModel.gameId;
         PCVC.lotteryGamesArray = self.dataArray;
+        PCVC.gotoTabBlock = ^{
+            self.navigationController.tabBarController.selectedIndex = 0;
+        };
         [self.navigationController pushViewController:PCVC animated:YES];
         
     }else if ([@"gd11x5" isEqualToString:nextModel.gameType]) {
@@ -263,6 +221,9 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
         PCVC.nextIssueModel = nextModel;
         PCVC.gameId = nextModel.gameId;
         PCVC.lotteryGamesArray = self.dataArray;
+        PCVC.gotoTabBlock = ^{
+            self.navigationController.tabBarController.selectedIndex = 0;
+        };
         [self.navigationController pushViewController:PCVC animated:YES];
         
     }else if ([@"bjkl8" isEqualToString:nextModel.gameType]) {
@@ -271,6 +232,9 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
         PCVC.nextIssueModel = nextModel;
         PCVC.gameId = nextModel.gameId;
         PCVC.lotteryGamesArray = self.dataArray;
+        PCVC.gotoTabBlock = ^{
+            self.navigationController.tabBarController.selectedIndex = 0;
+        };
         [self.navigationController pushViewController:PCVC animated:YES];
         
     }else if ([@"gdkl10" isEqualToString:nextModel.gameType] ||
@@ -280,6 +244,9 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
         PCVC.nextIssueModel = nextModel;
         PCVC.gameId = nextModel.gameId;
         PCVC.lotteryGamesArray = self.dataArray;
+        PCVC.gotoTabBlock = ^{
+            self.navigationController.tabBarController.selectedIndex = 0;
+        };
         [self.navigationController pushViewController:PCVC animated:YES];
         
     }else if ([@"fc3d" isEqualToString:nextModel.gameType]) {
@@ -288,6 +255,9 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
         markSixVC.nextIssueModel = nextModel;
         markSixVC.gameId = nextModel.gameId;
         markSixVC.lotteryGamesArray = self.dataArray;
+        markSixVC.gotoTabBlock = ^{
+            self.navigationController.tabBarController.selectedIndex = 0;
+        };
         [self.navigationController pushViewController:markSixVC animated:YES];
         
     }else if ([@"pk10nn" isEqualToString:nextModel.gameType]) {
@@ -296,6 +266,9 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
         markSixVC.nextIssueModel = nextModel;
         markSixVC.gameId = nextModel.gameId;
         markSixVC.lotteryGamesArray = self.dataArray;
+        markSixVC.gotoTabBlock = ^{
+            self.navigationController.tabBarController.selectedIndex = 0;
+        };
         [self.navigationController pushViewController:markSixVC animated:YES];
         
     }else {

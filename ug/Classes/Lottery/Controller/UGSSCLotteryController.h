@@ -9,11 +9,13 @@
 #import <UIKit/UIKit.h>
 @class UGNextIssueModel;
 NS_ASSUME_NONNULL_BEGIN
-
+typedef void(^SSCLotteryBlock)(void);
 @interface UGSSCLotteryController : UIViewController
 @property (nonatomic, strong) NSArray *lotteryGamesArray;
 @property (nonatomic, strong) UGNextIssueModel *nextIssueModel;
 @property (nonatomic, strong) NSString *gameId;
+
+@property (nonatomic,copy)SSCLotteryBlock gotoTabBlock;
 @end
 
 NS_ASSUME_NONNULL_END

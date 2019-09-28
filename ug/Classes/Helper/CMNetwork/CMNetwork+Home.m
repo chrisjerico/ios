@@ -16,6 +16,7 @@
 #import "UGAPPVersionModel.h"
 #import "UGRedEnvelopeModel.h"
 #import "GameCategoryDataModel.h"
+#import "UGonlineCount.h"
 
 @implementation CMNetwork (Home)
 
@@ -190,6 +191,19 @@
                                          params:params
                                           model:nil
                                            post:YES
+                                     completion:completionBlock];
+    
+    CMMETHOD_END;
+}
+
+//APP在线人数 http://test10.6yc.com/wjapp/api.php?c=system&a=onlineCount
++ (void)systemOnlineCountWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    
+    [self.manager requestInMainThreadWithMethod:[systemOnlineCountUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:CMResultClassMake(UGonlineCount.class)
+                                           post:NO
                                      completion:completionBlock];
     
     CMMETHOD_END;

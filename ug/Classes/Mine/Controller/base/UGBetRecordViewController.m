@@ -8,7 +8,6 @@
 
 #import "UGBetRecordViewController.h"
 #import "UGRecordFilterCollectionViewCell.h"
-#import "XYYSegmentControl.h"
 #import "STBarButtonItem.h"
 #import "SRActionSheet.h"
 #import "UGBetRecordTableViewController.h"
@@ -22,7 +21,7 @@
 @interface UGBetRecordViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,XYYSegmentControlDelegate,YBPopupMenuDelegate>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
-@property (nonatomic, strong) XYYSegmentControl *slideSwitchView;
+
 @property (nonatomic,strong)  NSArray *filterItemArray;
 @property (nonatomic, strong) NSArray *filterTypeArray;
 @property (nonatomic, strong) UIView *bottomView;
@@ -174,8 +173,8 @@ static NSString *recordFilterCellid = @"UGRecordFilterCollectionViewCell";
 
 #pragma mark - 配置segment
 -(void)buildSegment
-{
-    self.itemArray = @[@"待开奖",@"已中奖",@"未中奖",@"已撤单"];
+{                   
+    self.itemArray = @[@"等待开奖",@"已中奖",@"未中奖",@"已撤单"];
     self.slideSwitchView = [[XYYSegmentControl alloc] initWithFrame:CGRectMake(0 , 0, self.view.width, self.view.height) channelName:self.itemArray source:self];
     [self.slideSwitchView setUserInteractionEnabled:YES];
     self.slideSwitchView.segmentControlDelegate = self;
@@ -190,6 +189,8 @@ static NSString *recordFilterCellid = @"UGRecordFilterCollectionViewCell";
     //设置tab 被选中的标识的颜色(可选)
     self.slideSwitchView.tabItemSelectionIndicatorColor = [UIColor colorWithRed:233/255.0 green:82/255.0 blue:129/255.0 alpha:1.0];
     [self.view addSubview:self.slideSwitchView];
+    
+  
 
 }
 

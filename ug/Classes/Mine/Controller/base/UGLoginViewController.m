@@ -16,7 +16,8 @@
 
 @interface UGLoginViewController ()<UITextFieldDelegate,UINavigationControllerDelegate,WKScriptMessageHandler,WKNavigationDelegate,WKUIDelegate>
 {
-  
+    NSString *ggCode;
+    NSString *gCheckUserName;
 }
 @property (weak, nonatomic) IBOutlet UITextField *userNameTextF;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextF;
@@ -102,8 +103,12 @@
             return ;
 
         }
+        
+        
+        
         NSDictionary *params = @{@"usr":self.userNameTextF.text,
                                  @"pwd":[UGEncryptUtil md5:self.passwordTextF.text],
+                                 @"ggCode":self->ggCode.length ? ggCode : @"",
                                  };
       
         NSMutableDictionary *mutDict = [[NSMutableDictionary alloc] initWithDictionary:params];
@@ -119,6 +124,8 @@
         [SVProgressHUD showWithStatus:@"正在登录..."];
     
         [CMNetwork userLoginWithParams:mutDict completion:^(CMResult<id> *model, NSError *err) {
+            
+            
             [CMResult processWithResult:model success:^{
                 
                 [SVProgressHUD showSuccessWithStatus:model.msg];
@@ -165,14 +172,34 @@
                 }
                
             } failure:^(id msg) {
-                if (self.webBgView.hidden == NO) {
-                    [self.webView reload];
-                    self.imgVcodeModel = nil;
-                }
+                
+              
+                
+            
                 self.errorTimes += 1;
                 if (self.errorTimes == 4) {
                     self.webBgView.hidden = NO;
                     self.webBgViewHeightConstraint.constant = 120;
+                }
+                
+                UGUserModel *user = (UGUserModel*) model.data;
+                
+                NSInteger intGgCheck =  user.ggCheck;
+                
+                if (intGgCheck == 1) {
+                    
+                    self->gCheckUserName = self.userNameTextF.text;
+                   [self showLeeView];
+                }
+                if ([self.userNameTextF.text isEqualToString:self->gCheckUserName]) {
+                    
+                    [self showLeeView];
+                    
+                }
+               
+                if (self.webBgView.hidden == NO) {
+                    [self.webView reload];
+                    self.imgVcodeModel = nil;
                 }
                 
                 [SVProgressHUD showErrorWithStatus:msg];
@@ -182,6 +209,42 @@
     });
 }
 
+
+-(void)showLeeView{
+    // 使用一个变量接收自定义的输入框对象 以便于在其他位置调用
+    
+    __block UITextField *tf = nil;
+    
+    [LEEAlert alert].config
+    .LeeTitle(@"请输入谷歌验证码")
+    .LeeAddTextField(^(UITextField *textField) {
+        
+        // 这里可以进行自定义的设置
+        
+        textField.placeholder = @"请输入谷歌验证码";
+        
+        textField.textColor = [UIColor darkGrayColor];
+        
+        tf = textField; //赋值
+    })
+    
+    .LeeAction(@"确定", ^{
+        NSLog(@"tf.text = %@",tf.text);
+        
+        self->ggCode = tf.text;
+        
+        [self loginClick:nil];
+    })
+    .leeShouldActionClickClose(^(NSInteger index){
+        // 是否可以关闭回调, 当即将关闭时会被调用 根据返回值决定是否执行关闭处理
+        // 这里演示了与输入框非空校验结合的例子
+        BOOL result = ![tf.text isEqualToString:@""];
+        result = index == 0 ? result : YES;
+        return result;
+    })
+    .LeeCancelAction(@"取消", nil) // 点击事件的Block如果不需要可以传nil
+    .LeeShow();
+}
 - (IBAction)showRegister:(id)sender {
     for (UIViewController *vc in self.navigationController.childViewControllers) {
         if ([vc isKindOfClass:UGRegisterViewController.class]) {
