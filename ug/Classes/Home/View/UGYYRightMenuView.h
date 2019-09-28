@@ -15,6 +15,10 @@ typedef void(^YYRightMenuBlock)();
 
 @property (nonatomic,copy)YYRightMenuBlock gotoSeeBlock;
 @property (nonatomic, strong) NSArray *lotteryGamesArray;
+@property (nonatomic, strong) NSString *gameId;
+@property (nonatomic, strong) NSString *gameName;
+@property (nonatomic, strong) NSString *titleType;//1 为首页，2 为彩种
+
 - (void)show;
 
 @end

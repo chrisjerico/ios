@@ -267,6 +267,8 @@
 		D41AEA6E22E5D44F003E28C3 /* UGLotteryHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D41AEA6D22E5D44F003E28C3 /* UGLotteryHistoryModel.m */; };
 		D41B3CF1231FE1E900716512 /* UGSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D41B3CEF231FE1E900716512 /* UGSignInViewController.m */; };
 		D41B3CF2231FE1E900716512 /* UGSignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D41B3CF0231FE1E900716512 /* UGSignInViewController.xib */; };
+		D41C300C233F220000541254 /* UGYYRightMenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D41C300A233F220000541254 /* UGYYRightMenuTableViewCell.m */; };
+		D41C300D233F220000541254 /* UGYYRightMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D41C300B233F220000541254 /* UGYYRightMenuTableViewCell.xib */; };
 		D41C3DF4228E75F100BF6436 /* CAAnimation+WAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = D41C3DE7228E75F000BF6436 /* CAAnimation+WAnimation.m */; };
 		D41C3DF5228E75F100BF6436 /* UIBarButtonItem+WZLBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = D41C3DEC228E75F000BF6436 /* UIBarButtonItem+WZLBadge.m */; };
 		D41C3DF6228E75F100BF6436 /* UITabBarItem+WZLBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = D41C3DED228E75F000BF6436 /* UITabBarItem+WZLBadge.m */; };
@@ -1055,6 +1057,9 @@
 		D41B3CEE231FE1E900716512 /* UGSignInViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGSignInViewController.h; sourceTree = "<group>"; };
 		D41B3CEF231FE1E900716512 /* UGSignInViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGSignInViewController.m; sourceTree = "<group>"; };
 		D41B3CF0231FE1E900716512 /* UGSignInViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGSignInViewController.xib; sourceTree = "<group>"; };
+		D41C3009233F220000541254 /* UGYYRightMenuTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGYYRightMenuTableViewCell.h; sourceTree = "<group>"; };
+		D41C300A233F220000541254 /* UGYYRightMenuTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGYYRightMenuTableViewCell.m; sourceTree = "<group>"; };
+		D41C300B233F220000541254 /* UGYYRightMenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGYYRightMenuTableViewCell.xib; sourceTree = "<group>"; };
 		D41C3DE7228E75F000BF6436 /* CAAnimation+WAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAAnimation+WAnimation.m"; sourceTree = "<group>"; };
 		D41C3DE8228E75F000BF6436 /* CAAnimation+WAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAAnimation+WAnimation.h"; sourceTree = "<group>"; };
 		D41C3DEA228E75F000BF6436 /* UIBarButtonItem+WZLBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+WZLBadge.h"; sourceTree = "<group>"; };
@@ -2736,6 +2741,9 @@
 				D4A36634233E310B00F6D770 /* UGYYRightMenuView.h */,
 				D4A36635233E310B00F6D770 /* UGYYRightMenuView.m */,
 				D4A36637233E311E00F6D770 /* UGYYRightMenuView.xib */,
+				D41C3009233F220000541254 /* UGYYRightMenuTableViewCell.h */,
+				D41C300A233F220000541254 /* UGYYRightMenuTableViewCell.m */,
+				D41C300B233F220000541254 /* UGYYRightMenuTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3469,6 +3477,7 @@
 				D4DE268A229BCB960072A4A2 /* icon_arrow@3x.png in Resources */,
 				D405B2E8227BFE5F00F8C586 /* UGLotteryCollectionViewCell.xib in Resources */,
 				D4241C43232A1A8200BF4DE1 /* UGFundsBankView.xib in Resources */,
+				D41C300D233F220000541254 /* UGYYRightMenuTableViewCell.xib in Resources */,
 				D41246B82285C65D006881E2 /* UGUserInfoViewController.storyboard in Resources */,
 				D409C55D22AB87480042A0DD /* UGFeedBackController.storyboard in Resources */,
 				D41C3E06228E9D8900BF6436 /* UGBetRecordTableViewCell.xib in Resources */,
@@ -3885,6 +3894,7 @@
 				D463B4DF2284488200EAC0F7 /* UGRightMenuView.m in Sources */,
 				D405B1B8227972AD00F8C586 /* SDWebImageDownloader.m in Sources */,
 				D4AE64142295871D00DD265A /* MJRefreshBackNormalFooter.m in Sources */,
+				D41C300C233F220000541254 /* UGYYRightMenuTableViewCell.m in Sources */,
 				D4000C45232E4EDD000705B1 /* UGAgentViewController.m in Sources */,
 				D405B1BD227972AD00F8C586 /* SDImageCache.m in Sources */,
 				D481AB5C233253A60099685B /* UGMosaicGoldFinishView.m in Sources */,

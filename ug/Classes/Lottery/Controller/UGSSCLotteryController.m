@@ -320,14 +320,25 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 //    [menuView show];
     
     self.yymenuView = [[UGYYRightMenuView alloc] initWithFrame:CGRectMake(UGScreenW /2 , y, UGScreenW / 2, UGScerrnH)];
-    
+    self.yymenuView.lotteryGamesArray = self.lotteryGamesArray;
+    self.yymenuView.titleType = @"2";
+    self.yymenuView.gameId = self.gameId;
+    self.yymenuView.gameName = self.nextIssueModel.title;
     //此处为重点
     WeakSelf;
     self.yymenuView .gotoSeeBlock = ^{
-        weakSelf.navigationController.tabBarController.selectedIndex = 0;
+        [weakSelf.navigationController popViewControllerAnimated:YES];
+        
+        [weakSelf performSelector:@selector(goTabbar) withObject:@"0" afterDelay:1.0];
     };
     [self.yymenuView show];
 }
+
+-(void)goTabbar{
+    self.navigationController.tabBarController.selectedIndex = 0;
+
+}
+
 
 - (void)refreshBalance {
     [self startAnimation];
