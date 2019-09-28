@@ -154,6 +154,10 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
         lotteryVC.nextIssueModel = nextModel;
         lotteryVC.gameId = nextModel.gameId;
         lotteryVC.lotteryGamesArray = self.dataArray;
+        //此处为重点
+        lotteryVC.gotoTabBlock = ^{
+            self.navigationController.tabBarController.selectedIndex = 0;
+        };
         [self.navigationController pushViewController:lotteryVC animated:YES];
     }else if ([@"pk10" isEqualToString:nextModel.gameType] ||
               [@"xyft" isEqualToString:nextModel.gameType]) {
@@ -162,6 +166,10 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
         markSixVC.nextIssueModel = nextModel;
         markSixVC.gameId = nextModel.gameId;
         markSixVC.lotteryGamesArray = self.dataArray;
+        //此处为重点
+        markSixVC.gotoTabBlock = ^{
+            self.navigationController.tabBarController.selectedIndex = 0;
+        };
         [self.navigationController pushViewController:markSixVC animated:YES];
         
     }else if ([@"qxc" isEqualToString:nextModel.gameType]) {
@@ -170,6 +178,9 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
         sevenVC.nextIssueModel = nextModel;
         sevenVC.gameId = nextModel.gameId;
         sevenVC.lotteryGamesArray = self.dataArray;
+        sevenVC.gotoTabBlock = ^{
+            self.navigationController.tabBarController.selectedIndex = 0;
+        };
         [self.navigationController pushViewController:sevenVC animated:YES];
         
     }else if ([@"lhc" isEqualToString:nextModel.gameType]) {
@@ -178,6 +189,9 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
         markSixVC.nextIssueModel = nextModel;
         markSixVC.gameId = nextModel.gameId;
         markSixVC.lotteryGamesArray = self.dataArray;
+        markSixVC.gotoTabBlock = ^{
+            self.navigationController.tabBarController.selectedIndex = 0;
+        };
         [self.navigationController pushViewController:markSixVC animated:YES];
         
     }else if ([@"jsk3" isEqualToString:nextModel.gameType]) {
@@ -186,6 +200,9 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
         fastThreeVC.nextIssueModel = nextModel;
         fastThreeVC.gameId = nextModel.gameId;
         fastThreeVC.lotteryGamesArray = self.dataArray;
+        fastThreeVC.gotoTabBlock = ^{
+            self.navigationController.tabBarController.selectedIndex = 0;
+        };
         [self.navigationController pushViewController:fastThreeVC animated:YES];
     }else if ([@"pcdd" isEqualToString:nextModel.gameType]) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGPCDDLotteryController" bundle:nil];
@@ -193,6 +210,9 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
         PCVC.nextIssueModel = nextModel;
         PCVC.gameId = nextModel.gameId;
         PCVC.lotteryGamesArray = self.dataArray;
+        PCVC.gotoTabBlock = ^{
+            self.navigationController.tabBarController.selectedIndex = 0;
+        };
         [self.navigationController pushViewController:PCVC animated:YES];
         
     }else if ([@"gd11x5" isEqualToString:nextModel.gameType]) {
@@ -201,6 +221,9 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
         PCVC.nextIssueModel = nextModel;
         PCVC.gameId = nextModel.gameId;
         PCVC.lotteryGamesArray = self.dataArray;
+        PCVC.gotoTabBlock = ^{
+            self.navigationController.tabBarController.selectedIndex = 0;
+        };
         [self.navigationController pushViewController:PCVC animated:YES];
         
     }else if ([@"bjkl8" isEqualToString:nextModel.gameType]) {
@@ -209,6 +232,9 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
         PCVC.nextIssueModel = nextModel;
         PCVC.gameId = nextModel.gameId;
         PCVC.lotteryGamesArray = self.dataArray;
+        PCVC.gotoTabBlock = ^{
+            self.navigationController.tabBarController.selectedIndex = 0;
+        };
         [self.navigationController pushViewController:PCVC animated:YES];
         
     }else if ([@"gdkl10" isEqualToString:nextModel.gameType] ||
@@ -218,6 +244,9 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
         PCVC.nextIssueModel = nextModel;
         PCVC.gameId = nextModel.gameId;
         PCVC.lotteryGamesArray = self.dataArray;
+        PCVC.gotoTabBlock = ^{
+            self.navigationController.tabBarController.selectedIndex = 0;
+        };
         [self.navigationController pushViewController:PCVC animated:YES];
         
     }else if ([@"fc3d" isEqualToString:nextModel.gameType]) {
@@ -226,6 +255,9 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
         markSixVC.nextIssueModel = nextModel;
         markSixVC.gameId = nextModel.gameId;
         markSixVC.lotteryGamesArray = self.dataArray;
+        markSixVC.gotoTabBlock = ^{
+            self.navigationController.tabBarController.selectedIndex = 0;
+        };
         [self.navigationController pushViewController:markSixVC animated:YES];
         
     }else if ([@"pk10nn" isEqualToString:nextModel.gameType]) {
@@ -234,6 +266,9 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
         markSixVC.nextIssueModel = nextModel;
         markSixVC.gameId = nextModel.gameId;
         markSixVC.lotteryGamesArray = self.dataArray;
+        markSixVC.gotoTabBlock = ^{
+            self.navigationController.tabBarController.selectedIndex = 0;
+        };
         [self.navigationController pushViewController:markSixVC animated:YES];
         
     }else {

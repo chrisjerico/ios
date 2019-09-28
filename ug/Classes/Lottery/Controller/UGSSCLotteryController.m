@@ -327,17 +327,16 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     //此处为重点
     WeakSelf;
     self.yymenuView .gotoSeeBlock = ^{
-        [weakSelf.navigationController popViewControllerAnimated:YES];
-        
-        [weakSelf performSelector:@selector(goTabbar) withObject:@"0" afterDelay:1.0];
+       
+        [weakSelf.navigationController popViewControllerAnimated:NO];
+        if (weakSelf.gotoTabBlock) {
+            weakSelf.gotoTabBlock();
+        }
     };
     [self.yymenuView show];
 }
 
--(void)goTabbar{
-    self.navigationController.tabBarController.selectedIndex = 0;
 
-}
 
 
 - (void)refreshBalance {
