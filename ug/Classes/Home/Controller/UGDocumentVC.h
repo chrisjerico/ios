@@ -18,13 +18,13 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
-@interface LHCIssueView : UIView
+@interface IssueView : UIView
 @property (nonatomic, strong) UGNextIssueModel *nextIssueModel;
+@property (nonatomic, strong) void(^searchBlock)(NSString * text);
+@property (nonatomic, strong) UITextField * searchField;
+@property (nonatomic, strong) NSString * preText;
 
-@end
 
-
-@interface CQSSCIssueView : UIView
 @end
 
 @protocol DocumentModel <NSObject>
