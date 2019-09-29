@@ -37,11 +37,18 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];
+
 }
 
 - (IBAction)submit:(id)sender {
     ck_parameters(^{
-        ck_parameter_non_empty(self.loginPwdTextF.text, @"请输入登录密码");
+        ck_parameter_non_empty(self.loginPwdTextF.text, @"请输入旧密码");
+        if (self.loginPwdTextF.text.length != 4) {
+            [self.navigationController.view makeToast:@"取款密码限制只能输入四位"
+                                             duration:1.5
+                                             position:CSToastPositionCenter];
+            return ;
+        }
         ck_parameter_non_empty(self.payPwdTextF.text, @"请输入新密码");
         ck_parameter_non_empty(self.checkPayPwdTextF.text, @"请确认新密码");
         ck_parameter_isEqual(self.payPwdTextF.text, self.checkPayPwdTextF.text, @"两次输入的新密码不一致");

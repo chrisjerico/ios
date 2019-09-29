@@ -58,6 +58,14 @@ static NSString *menuCellid = @"UGRightMenuTableViewCell";
     
 }
 
+-(void)reloadTabViewDateWithTitleArray:(NSMutableArray *)titleArray withImgArray:(NSMutableArray *)imgArray{
+    
+    self.imageNameArray = imgArray;
+    self.titleArray = titleArray;
+    
+    [self.tableView reloadData ];
+}
+
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
     UIView *view = [super hitTest:point withEvent:event];
     if (CGRectContainsPoint(self.bounds, point)) {
@@ -78,14 +86,14 @@ static NSString *menuCellid = @"UGRightMenuTableViewCell";
 - (IBAction)rechregeClick:(id)sender {
     [self hiddenSelf];
     if (self.menuSelectBlock) {
-        self.menuSelectBlock(7);
+        self.menuSelectBlock(100);
     }
 }
 
 - (IBAction)withdraw:(id)sender {
     [self hiddenSelf];
     if (self.menuSelectBlock) {
-        self.menuSelectBlock(8);
+        self.menuSelectBlock(101);
     }
 }
 

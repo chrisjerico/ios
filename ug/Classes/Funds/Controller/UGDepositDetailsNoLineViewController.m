@@ -116,7 +116,7 @@
             [imgView sd_setImageWithURL:[NSURL URLWithString:channelModel.qrcode] placeholderImage:[UIImage imageNamed:@"placeholder"]];
             
             [LEEAlert alert].config
-            .LeeTitle(@"二微码")
+            .LeeTitle(@"二维码")
             .LeeAddCustomView(^(LEECustomView *custom) {
                 
                 custom.view = imgView;

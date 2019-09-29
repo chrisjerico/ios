@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "XYYSegmentControl.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UGBetRecordViewController : UIViewController
-
+@property (nonatomic, strong) XYYSegmentControl *slideSwitchView;
 @end
 
 @interface SModel : NSObject

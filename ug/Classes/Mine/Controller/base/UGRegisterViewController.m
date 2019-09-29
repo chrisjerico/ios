@@ -66,6 +66,10 @@
 @property (weak, nonatomic) IBOutlet UIImageView *pwd2ImageView;
 @property (weak, nonatomic) IBOutlet UIButton *goHomeButton;
 @property (weak, nonatomic) IBOutlet UIButton *goLoginButton;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *mySegmentCV;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *mySegmentHightConstraint;
+
+@property (nonatomic, strong) NSString *regType;
 
 @end
 
@@ -73,6 +77,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.extendedLayoutIncludesOpaqueBars = YES; 
+    
     self.fd_interactivePopDisabled = YES;
     self.navigationItem.title = @"注册";
     self.registerButton.layer.cornerRadius = 5;
@@ -89,6 +95,7 @@
     self.emailTextF.delegate = self;
     self.smsVcodeTextF.delegate = self;
     self.imgVcodeTextF.delegate = self;
+    self.regType = @"user";
     
     //限制弹出数字键盘
     
@@ -279,7 +286,8 @@
                                  @"accessToken":[OpenUDID value],
                                  @"smsCode":self.smsVcodeTextF.text ? self.smsVcodeTextF.text : @"",
                                  @"imgCode":self.imgVcodeTextF.text ? self.imgVcodeTextF.text : @"",
-                                 @"email":self.emailTextF.text ? self.emailTextF.text : @""
+                                 @"email":self.emailTextF.text ? self.emailTextF.text : @"",
+                                 @"regType":self.regType
                                  };
         
         NSMutableDictionary *mutDict = [[NSMutableDictionary alloc] initWithDictionary:params];
@@ -353,6 +361,20 @@
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
+- (IBAction)myValueChanged:(id)sender {
+    UISegmentedControl *sc = (UISegmentedControl*)sender;
+    if (sc.selectedSegmentIndex == 0) {
+        NSLog(@"用户");
+        self.regType = @"user";
+
+    } else {
+        NSLog(@"代理");
+        self.regType = @"agent";
+
+    }
+    
+}
+
 - (IBAction)showLogin:(id)sender {
     
     for (UIViewController *vc in self.navigationController.childViewControllers) {
@@ -369,10 +391,16 @@
 
 - (void)setupSubViews {
     
-
-    
 //    0隐藏，1选填，2必填
     UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
+   
+    if ([config.agentRegbutton isEqualToString:@"1"]) {
+        self.mySegmentCV.hidden = NO;
+        self.mySegmentHightConstraint.constant = 28;
+    }else {
+        self.mySegmentCV.hidden = YES;
+        self.mySegmentHightConstraint.constant = 0.1;
+    }
     
     if (config.hide_reco) {
         if (config.hide_reco == 1) {

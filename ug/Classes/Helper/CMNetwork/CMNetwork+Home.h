@@ -47,6 +47,9 @@ NS_ASSUME_NONNULL_BEGIN
 //领红包 {{TEST_HOST}}?c=activity&a=getRedBag
 + (void)activityGetRedBagWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 
+//APP在线人数 http://test10.6yc.com/wjapp/api.php?c=system&a=onlineCount
++ (void)systemOnlineCountWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
 @end
 
 NS_ASSUME_NONNULL_END

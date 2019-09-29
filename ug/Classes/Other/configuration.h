@@ -230,6 +230,8 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 
 #define getDocumentPayUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=bbs&a=gameDocPay"]
 
+#define systemOnlineCountUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=system&a=onlineCount"]
+
 #if DEBUG
 
 //#define NSLog(...) NSLog(__VA_ARGS__)
@@ -292,6 +294,8 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 #define UGNavColor [UIColor colorWithRed:76/255.0 green:150/255.0 blue:236/255.0 alpha:1.0]
 #define UGBackgroundColor [UIColor colorWithRed:239/255.0 green:239/255.0 blue:244/255.0 alpha:1.0]
 #define UGRGBColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0] ///< 用10进制表示颜色，例如（255,255,255）黑色
+#define RGBA(_R,_G,_B,_A) \
+[UIColor colorWithRed:((_R) / 255.0) green:((_G) / 255.0) blue:((_B) / 255.0) alpha:_A]
 #define UGRandomColor UGRGBColor(arc4random_uniform(255), arc4random_uniform(255), arc4random_uniform(255))
 
 #define UGGreenColor UGRGBColor(105,172,91)
