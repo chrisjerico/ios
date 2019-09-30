@@ -66,7 +66,7 @@ static UGBetResultView *_singleInstance = nil;
 		}];
 		
 		UILabel *tempLabel;
-		for (int i = 0; i < 5 ; i ++) {
+		for (int i = 0; i < 10 ; i ++) {
 			UILabel * label = [UILabel new];
 			label.textColor = UIColor.whiteColor;
 			label.backgroundColor = [UIColor colorWithHex:0x2f9cf3];
@@ -78,7 +78,7 @@ static UGBetResultView *_singleInstance = nil;
 			[self addSubview:label];
 			[label mas_makeConstraints:^(MASConstraintMaker *make) {
 				if (tempLabel) {
-					make.left.equalTo(tempLabel.mas_right).offset(5);
+					make.left.equalTo(tempLabel.mas_right).offset(3);
 					make.centerY.equalTo(tempLabel);
 				} else {
 					make.left.equalTo(image).offset(55);
@@ -90,7 +90,7 @@ static UGBetResultView *_singleInstance = nil;
 			
 		}
 		UILabel *tempLabel2;
-		for (int i = 0; i < 9 ; i ++) {
+		for (int i = 0; i < 10 ; i ++) {
 			UILabel * label = [UILabel new];
 			label.textColor = [UIColor colorWithHex:0x2c962c];
 			label.backgroundColor = [UIColor whiteColor];
@@ -103,7 +103,7 @@ static UGBetResultView *_singleInstance = nil;
 			[self addSubview:label];
 			[label mas_makeConstraints:^(MASConstraintMaker *make) {
 				if (tempLabel2) {
-					make.left.equalTo(tempLabel2.mas_right).offset(5);
+					make.left.equalTo(tempLabel2.mas_right).offset(3);
 					make.centerY.equalTo(tempLabel2);
 				} else {
 					make.left.equalTo(image).offset(55);
@@ -150,16 +150,38 @@ static UGBetResultView *_singleInstance = nil;
 	}];
 	
 	NSArray<NSString *> * numbers = [model.openNum componentsSeparatedByString: @","];
-	for (int i = 0; i < numbers.count; i ++) {
-		if (i == resultView.numberlabels.count) { break; };
-		resultView.numberlabels[i].text = numbers[i];
+
+	for (int i = 0; i < 10; i ++) {
+		
+		if (i<numbers.count) {
+			resultView.numberlabels[i].text = numbers[i];
+
+		} else {
+			UILabel * label = resultView.numberlabels[i];
+			label.text = @"";
+			label.backgroundColor = UIColor.clearColor;
+
+		}
+		
+	}
+	NSArray<NSString *> * results = [model.result componentsSeparatedByString: @","];
+
+	for (int i = 0; i < 10; i ++) {
+		
+		if (i<results.count) {
+			resultView.resultlabels[i].text = results[i];
+
+		} else {
+			UILabel * label = resultView.resultlabels[i];
+			label.text = @"";
+			label.backgroundColor = UIColor.clearColor;
+			label.layer.borderColor = UIColor.clearColor.CGColor;
+
+		}
+		
 	}
 	
-	NSArray<NSString *> * results = [model.result componentsSeparatedByString: @","];
-	for (int i = 0; i < results.count; i ++) {
-		if (i == resultView.resultlabels.count) { break; };
-		resultView.resultlabels[i].text = results[i];
-	}
+
 	
 	if ([model.bonus floatValue] > 0) {
 		resultView.bonusLabel.text = [NSString stringWithFormat:@"+%@", model.bonus];

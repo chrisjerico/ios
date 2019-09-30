@@ -7,16 +7,548 @@
 //
 
 #import "UGDocumentVC.h"
+#import "UGAllNextIssueListModel.h"
+#import "UGLotteryResultCollectionViewCell.h"
+#import "UGLotterySubResultCollectionViewCell.h"
+#import "CMNetwork+Document.h"
+#import "UGDocumentDetailVC.h"
 
-@interface UGDocumentVC ()
 
+@interface UGDocumentVC ()<UITableViewDelegate, UITableViewDataSource>
+@property(nonatomic, strong)GameModel * model;
+
+
+@property(nonatomic, strong) UITableView * tableView;
+
+@property(nonatomic, strong) NSArray<DocumentModel*> * documentListData;
+
+@property(nonatomic, strong) UGNextIssueModel * nextIssue;
+
+@property (nonatomic, strong) dispatch_group_t completionGroup;
+
+@property (nonatomic, strong) IssueView * issueView;
 @end
 
 @implementation UGDocumentVC
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (instancetype)initWithModel: (GameModel *)model
+{
+	self = [super init];
+	if (self) {
+		self.model = model;
+	}
+	return self;
 }
 
+
+- (void)viewDidLoad {
+	[super viewDidLoad];
+	
+	[self.view addSubview:self.tableView];
+	[self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.edges.equalTo(self.view);
+	}];
+	
+	[self requestData: @""];
+	
+}
+
+- (void)requestData: (NSString *) title {
+	
+	NSMutableDictionary *params = @{@"id": self.model.type}.mutableCopy;
+	WeakSelf
+	
+	if ([title isEqualToString:@""]) {
+		dispatch_group_enter(self.completionGroup);
+
+		[CMNetwork getNextIssueWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+			[CMResult processWithResult:model success:^{
+				weakSelf.nextIssue = model.data;
+				dispatch_group_leave(weakSelf.completionGroup);
+				
+			} failure:^(id msg) {
+				dispatch_group_leave(weakSelf.completionGroup);
+				
+			}];
+		}];
+	}
+
+	dispatch_group_enter(self.completionGroup);
+	params[@"category"] = self.model.gameId;
+	params[@"title"] = title;
+	[CMNetwork getDocumnetListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+		[CMResult processWithResult:model success:^{
+			
+			DocumentListModel * data = model.data;
+			weakSelf.documentListData = data.list;
+			dispatch_group_leave(weakSelf.completionGroup);
+		} failure:^(id msg) {
+			dispatch_group_leave(weakSelf.completionGroup);
+			
+		}];
+	}];
+	
+	dispatch_group_notify(self.completionGroup, dispatch_get_main_queue(), ^{
+		[SVProgressHUD dismiss];
+		[weakSelf.tableView.mj_header endRefreshing];
+		[weakSelf.tableView reloadData];
+		weakSelf.navigationItem.title = weakSelf.nextIssue.title;
+	});
+	
+}
+
+
+
+
+
+- (UITableView *)tableView {
+	
+	if (!_tableView) {
+		
+		_tableView = [[UITableView alloc] initWithFrame:CGRectZero style: UITableViewStylePlain];
+		_tableView.delegate = self;
+		_tableView.dataSource = self;
+		_tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+			[self requestData:@""];
+		}];
+		[_tableView registerClass:[DocumentCell class] forCellReuseIdentifier:@"DocumentCell"];
+	}
+	return _tableView;
+}
+
+- (dispatch_group_t)completionGroup {
+	if (!_completionGroup) {
+		_completionGroup = dispatch_group_create();
+	}
+	return _completionGroup;
+}
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	return self.documentListData.count;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	DocumentCell * cell = [tableView dequeueReusableCellWithIdentifier:@"DocumentCell"];
+	cell.textLabel.text = self.documentListData[indexPath.row].title;
+	cell.textLabel.font = [UIFont systemFontOfSize:16];
+	cell.textLabel.textColor = [UIColor colorWithWhite:0.2 alpha:1.0];
+	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+	return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	UGUserModel * user = [UGUserModel currentUser];
+	NSString * token = user.sessid;
+	
+	[SVProgressHUD showWithStatus:nil];
+	DocumentModel * document = self.documentListData[indexPath.row];
+	[CMNetwork getDocumnetDetailWithParams:@{@"id": document.articleID, @"token": token} completion:^(CMResult<id> *model, NSError *err) {
+		[CMResult processWithResult:model success:^{
+			[SVProgressHUD dismiss];
+			UGDocumentDetailData * documentDetailModel = model.data;
+			
+			if (documentDetailModel.canRead) {
+				UGDocumentDetailVC *vc = [UGDocumentDetailVC new];
+				vc.model = documentDetailModel;
+				[self presentViewController:vc animated:true completion:nil];
+			} else if (user.isTest){
+				
+				
+				UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"该资料需要正式会员才能阅读，请登录后查看" preferredStyle:UIAlertControllerStyleAlert];
+				[alert addAction:[UIAlertAction actionWithTitle:@"确认" style: UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+					
+				}]];
+				[self presentViewController:alert animated:true completion:nil];
+				
+				
+			} else if (!documentDetailModel.hasPay) {
+				UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"该资料需要付费阅读，请打赏后查看" preferredStyle:UIAlertControllerStyleAlert];
+				[alert addAction:[UIAlertAction actionWithTitle:[NSString stringWithFormat:@"打赏%.2f元", documentDetailModel.amount] style: UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+					[SVProgressHUD showWithStatus:nil];
+					
+					[CMNetwork getDocumnetPayWithParams:@{@"id": document.articleID, @"token": token} completion:^(CMResult<id> *model, NSError *err) {
+						[SVProgressHUD showInfoWithStatus:model.msg];
+					}];
+					
+				}]];
+				[alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+				[self presentViewController:alert animated:true completion:nil];
+			}
+			
+		}];
+	}];
+	[tableView deselectRowAtIndexPath:indexPath animated:false];
+	
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+	
+	return 200;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+	WeakSelf
+	IssueView *issueView = [[IssueView alloc] init];
+	issueView.nextIssueModel = self.nextIssue;
+	issueView.searchBlock = ^(NSString * text) {
+		[SVProgressHUD showWithStatus:nil];
+		[weakSelf requestData:text];
+
+	};
+	return issueView;
+//	return self.issueView;
+	
+}
+
+- (IssueView *)issueView {
+	if (!_issueView) {
+		_issueView = [[IssueView alloc] init];
+		_issueView.nextIssueModel = self.nextIssue;
+		WeakSelf
+		_issueView.searchBlock = ^(NSString * text) {
+			[SVProgressHUD showWithStatus:nil];
+			[weakSelf requestData:text];
+			
+		};
+	}
+	return _issueView;
+}
+
+
+
+@end
+
+
+
+/// 开奖信息
+@interface IssueView ()<UICollectionViewDelegate, UICollectionViewDataSource>
+@property (nonatomic, strong) UICollectionView *collectionView;
+@property (strong, nonatomic) UILabel *currentIssueLabel;
+@property (strong, nonatomic) UILabel *nextIssueLabel;
+@property (strong, nonatomic) UILabel *closeTimeLabel;
+@property (strong, nonatomic) UILabel *openTimeLabel;
+@property (strong, nonatomic) UIView *nextIssueView;
+@property (nonatomic, strong) NSArray *preNumArray;
+@property (nonatomic, strong) NSArray *subPreNumArray;
+@property (nonatomic, strong) dispatch_source_t timer;
+
+@end
+
+@implementation IssueView
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+	self = [super initWithFrame:frame];
+	if (self) {
+		
+		
+		[self addSubview:self.currentIssueLabel];
+		[self.currentIssueLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.top.equalTo(self).offset(15);
+			make.left.equalTo(self).offset(10);
+		}];
+		
+		[self addSubview: self.collectionView];
+		[self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.left.equalTo(self.currentIssueLabel.mas_right).offset(10);
+			make.top.equalTo(self).offset(10);
+			make.right.equalTo(self);
+			make.height.equalTo(@80);
+		}];
+		
+		UIView * line = ({
+			UIView * view = [UIView new];
+			view.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1.0];
+			view;
+		});
+		[self addSubview:line];
+		[line mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.left.right.equalTo(self);
+			make.height.equalTo(@0.5);
+			make.top.equalTo(self.currentIssueLabel.mas_bottom).offset(50);
+		}];
+		
+		[self addSubview:self.nextIssueLabel];
+		[self.nextIssueLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.left.equalTo(self.currentIssueLabel);
+			make.top.equalTo(line.mas_bottom).offset(15);
+		}];
+		
+		[self addSubview:self.closeTimeLabel];
+		[self.closeTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.left.equalTo(self.collectionView);
+			make.top.equalTo(self.nextIssueLabel);
+		}];
+		[self addSubview:self.openTimeLabel];
+		[self.openTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.top.equalTo(self.nextIssueLabel);
+			make.left.equalTo(self.closeTimeLabel.mas_right).offset(10);
+		}];
+		UIButton * searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
+		[searchButton setImage:[UIImage imageNamed:@"search"] forState:UIControlStateNormal];
+		[searchButton addTarget:self action:@selector(searchButtonTaped:) forControlEvents:UIControlEventTouchUpInside];
+		[self addSubview:searchButton];
+		searchButton.backgroundColor = [UIColor colorWithWhite:0.85 alpha:1.0];
+		searchButton.contentMode = UIViewContentModeCenter;
+		[searchButton mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.left.equalTo(self).offset(20);
+			make.top.equalTo(self.nextIssueLabel.mas_bottom).offset(20);
+			make.width.equalTo(@60);
+			make.height.equalTo(@40);
+		}];
+		
+		
+		[self addSubview:self.searchField];
+		[self.searchField mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.left.equalTo(searchButton.mas_right);
+			make.right.equalTo(self).offset(-20);
+			make.height.equalTo(searchButton);
+			make.top.equalTo(searchButton);
+			
+		}];
+		
+		UIView * bottomLine = ({
+			UIView * view = [UIView new];
+			view.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1.0];
+			view;
+		});
+		[self addSubview:bottomLine];
+		[bottomLine mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.left.right.bottom.equalTo(self);
+			make.height.equalTo(@0.5);
+		}];
+		
+		
+		dispatch_source_set_timer(self.timer, DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
+		__block int i = 0;
+		WeakSelf
+		dispatch_source_set_event_handler(self.timer, ^{
+			i ++ ;
+			[weakSelf updateCloseLabelText];
+			[weakSelf updateOpenLabelText];
+			
+		});
+		dispatch_resume(self.timer);
+	}
+	return self;
+}
+
+
+- (void)dealloc
+{
+	dispatch_source_cancel(self.timer);
+}
+- (void) searchButtonTaped: (UIButton *) sender {
+	if (self.searchBlock) {
+		self.searchBlock(self.searchField.text);
+	}
+}
+- (dispatch_source_t)timer {
+	
+	if (!_timer) {
+		_timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
+	}
+	return _timer;
+}
+- (void)setNextIssueModel:(UGNextIssueModel *)nextIssueModel {
+	_nextIssueModel = nextIssueModel;
+	self.preNumArray = [nextIssueModel.preNum componentsSeparatedByString:@","];
+	if (nextIssueModel.preNumSx.length) {
+		self.subPreNumArray = [nextIssueModel.preNumSx componentsSeparatedByString:@","];
+	}
+	self.currentIssueLabel.text = [NSString stringWithFormat:@"%@期",self.nextIssueModel.preIssue];
+	self.nextIssueLabel.text = [NSString stringWithFormat:@"%@期",self.nextIssueModel.curIssue];
+	[self updateCloseLabelText];
+	[self updateOpenLabelText];
+	
+}
+
+- (UILabel*)currentIssueLabel {
+	if (!_currentIssueLabel) {
+		_currentIssueLabel = [UILabel new];
+		_currentIssueLabel.font = [UIFont systemFontOfSize:14];
+		
+	}
+	return _currentIssueLabel;
+}
+
+- (UILabel*)nextIssueLabel {
+	if (!_nextIssueLabel) {
+		_nextIssueLabel = [UILabel new];
+		_nextIssueLabel.font = [UIFont systemFontOfSize:14];
+		
+	}
+	return _nextIssueLabel;
+}
+- (UILabel*)closeTimeLabel {
+	if (!_closeTimeLabel) {
+		_closeTimeLabel = [UILabel new];
+		_closeTimeLabel.font = [UIFont systemFontOfSize:14];
+		
+	}
+	return _closeTimeLabel;
+}
+- (UILabel*)openTimeLabel {
+	if (!_openTimeLabel) {
+		_openTimeLabel = [UILabel new];
+		_openTimeLabel.font = [UIFont systemFontOfSize:14];
+		
+	}
+	return _openTimeLabel;
+}
+- (UITextField *)searchField {
+	
+	if (!_searchField) {
+		_searchField = [UITextField new];
+		_searchField.placeholder = @"请输入关键字搜索资料";
+		_searchField.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1.0];
+		
+	}
+	return _searchField;
+}
+
+- (void)updateCloseLabelText{
+	NSString *timeStr = [CMCommon getNowTimeWithEndTimeStr:self.nextIssueModel.curCloseTime currentTimeStr:self.nextIssueModel.serverTime];
+	if (timeStr == nil) {
+		timeStr = @"封盘中";
+	}
+	self.closeTimeLabel.text = [NSString stringWithFormat:@"封盘：%@",timeStr];
+	NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.closeTimeLabel.text];
+	[abStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(3, self.closeTimeLabel.text.length - 3)];
+	self.closeTimeLabel.attributedText = abStr;
+	
+}
+
+- (void)updateOpenLabelText {
+	NSString *timeStr = [CMCommon getNowTimeWithEndTimeStr:self.nextIssueModel.curOpenTime currentTimeStr:self.nextIssueModel.serverTime];
+	if (timeStr == nil) {
+		timeStr = @"获取下一期";
+		
+	}else {
+		
+	}
+	self.openTimeLabel.text = [NSString stringWithFormat:@"开奖：%@",timeStr];
+	NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.openTimeLabel.text];
+	[abStr addAttribute:NSForegroundColorAttributeName value:UGNavColor range:NSMakeRange(3, self.openTimeLabel.text.length - 3)];
+	self.openTimeLabel.attributedText = abStr;
+}
+
+- (UICollectionView *)collectionView {
+	if (!_collectionView) {
+		UICollectionViewFlowLayout *layout = ({
+			layout = [[UICollectionViewFlowLayout alloc] init];
+			layout.itemSize = CGSizeMake(24, 24);
+			layout.minimumInteritemSpacing = 1;
+			layout.minimumLineSpacing = 1;
+			layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+			layout.headerReferenceSize = CGSizeMake(300, 3);
+			layout;
+			
+		});
+		
+		_collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(120 , 5, UGScreenW - 120 , 100) collectionViewLayout:layout];
+		_collectionView.backgroundColor = [UIColor clearColor];
+		_collectionView.dataSource = self;
+		_collectionView.delegate = self;
+		[_collectionView registerNib:[UINib nibWithNibName:@"UGLotteryResultCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UGLotteryResultCollectionViewCell"];
+		[_collectionView registerNib:[UINib nibWithNibName:@"UGLotterySubResultCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UGLotterySubResultCollectionViewCell"];
+
+	}
+	return _collectionView;
+}
+
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+	return 2;
+}
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+	
+	if ([@"lhc" isEqualToString:self.nextIssueModel.gameType]) {
+		return self.preNumArray.count ? (self.preNumArray.count + 1) : 0;
+		
+	} else if (section == 0){
+		return self.preNumArray.count;
+	} else {
+		return self.subPreNumArray.count;
+	}
+	
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+	
+	UGNextIssueModel * model = self.nextIssueModel;
+	
+	if ([@"lhc" isEqualToString:model.gameType]) {
+		
+		if (indexPath.section == 0) {
+			
+			UGLotteryResultCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UGLotteryResultCollectionViewCell" forIndexPath:indexPath];
+			cell.showBorder = NO;
+			if (indexPath.row == 6) {
+				cell.showAdd = YES;
+			}else {
+				cell.showAdd = NO;
+			}
+			if (indexPath.row < 6) {
+				cell.title = self.preNumArray[indexPath.row];
+				cell.color = [CMCommon getHKLotteryNumColorString:self.preNumArray[indexPath.row]];
+			}
+			if (indexPath.row == 7) {
+				cell.title = self.preNumArray[indexPath.row - 1];
+				cell.color = [CMCommon getHKLotteryNumColorString:self.preNumArray[indexPath.row - 1]];
+			}
+			return cell;
+		}else {
+			UGLotterySubResultCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UGLotterySubResultCollectionViewCell" forIndexPath:indexPath];
+			if (indexPath.row == 6) {
+				cell.showAdd = YES;
+			}else {
+				cell.showAdd = NO;
+			}
+			if (indexPath.row < 6) {
+				cell.title = self.subPreNumArray[indexPath.row];
+			}
+			if (indexPath.row == 7) {
+				cell.title = self.subPreNumArray[indexPath.row - 1];
+			}
+			return cell;
+		}
+		
+	} else {
+		if (indexPath.section == 0) {
+			
+			UGLotteryResultCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UGLotteryResultCollectionViewCell" forIndexPath:indexPath];
+			cell.title = self.preNumArray[indexPath.row];
+			cell.showAdd = NO;
+			cell.showBorder = NO;
+			return cell;
+		}else {
+			UGLotterySubResultCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UGLotterySubResultCollectionViewCell" forIndexPath:indexPath];
+			cell.title = self.subPreNumArray[indexPath.row];
+			cell.titleColor = UGGreenColor;
+			return cell;
+		}
+		
+	}
+	
+	
+	
+}
+@end
+
+
+
+@implementation DocumentModel
++ (JSONKeyMapper *)keyMapper {
+	
+	return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"articleID"}];
+}
+
+@end
+
+@implementation DocumentListModel
+
+@end
+@implementation DocumentCell
 
 @end
