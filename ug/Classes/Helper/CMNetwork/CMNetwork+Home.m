@@ -17,6 +17,7 @@
 #import "UGRedEnvelopeModel.h"
 #import "GameCategoryDataModel.h"
 #import "UGonlineCount.h"
+#import "UGYYPlatformGames.h"
 
 @implementation CMNetwork (Home)
 
@@ -42,7 +43,7 @@
     
     [self.manager requestInMainThreadWithMethod:[getPlatformGamesUrl stringToRestfulUrlWithFlag:RESTFUL]
                                          params:params
-                                          model:CMResultArrayClassMake(UGPlatformModel.class)
+                                          model:CMResultArrayClassMake(UGYYPlatformGames.class)
                                            post:NO
                                      completion:completionBlock];
     

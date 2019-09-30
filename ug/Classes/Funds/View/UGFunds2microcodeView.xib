@@ -16,33 +16,47 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2i2-pP-yc7">
-                    <rect key="frame" x="267" y="99" width="127" height="21"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HBN-A8-TMl">
-                    <rect key="frame" x="147" y="0.0" width="120" height="120"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HBN-A8-TMl">
+                    <rect key="frame" x="127" y="0.0" width="140" height="120"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="140" id="bFU-fJ-AqN"/>
+                    </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="grg-gJ-yNg">
-                    <rect key="frame" x="20" y="98" width="131" height="21"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="二维码" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="grg-gJ-yNg">
+                    <rect key="frame" x="84" y="103" width="43" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CHc-1M-7YP">
-                    <rect key="frame" x="137" y="0.0" width="139" height="124"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CHc-1M-7YP">
+                    <rect key="frame" x="145" y="-2" width="124" height="124"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="124" id="9Qp-Uh-SQX"/>
+                        <constraint firstAttribute="width" constant="124" id="jVo-sh-cM5"/>
+                    </constraints>
                     <connections>
                         <action selector="showClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="U9b-Fu-EDD"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="截屏相册扫码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2i2-pP-yc7">
+                    <rect key="frame" x="267" y="103" width="86" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="2i2-pP-yc7" firstAttribute="leading" secondItem="HBN-A8-TMl" secondAttribute="trailing" id="4sH-nU-I8X"/>
+                <constraint firstItem="HBN-A8-TMl" firstAttribute="bottom" secondItem="grg-gJ-yNg" secondAttribute="bottom" id="P3C-VX-A1R"/>
+                <constraint firstItem="grg-gJ-yNg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="84" id="akA-0R-dz9"/>
+                <constraint firstItem="HBN-A8-TMl" firstAttribute="bottom" secondItem="2i2-pP-yc7" secondAttribute="bottom" id="bZj-07-qjr"/>
+                <constraint firstItem="CHc-1M-7YP" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="d1L-O7-MHg"/>
+                <constraint firstItem="HBN-A8-TMl" firstAttribute="leading" secondItem="grg-gJ-yNg" secondAttribute="trailing" id="gPI-ez-flk"/>
+                <constraint firstItem="HBN-A8-TMl" firstAttribute="centerY" secondItem="CHc-1M-7YP" secondAttribute="centerY" id="hUA-7X-gYt"/>
+                <constraint firstItem="HBN-A8-TMl" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="uHK-a7-3Ns"/>
+                <constraint firstItem="CHc-1M-7YP" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="v1k-ah-CUS"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>

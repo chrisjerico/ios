@@ -175,19 +175,20 @@
    self.sectionLabel3.text = self.mUGinviteInfoModel.fandian_intro;
     
     UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
-    config.myreco_img = @"1";
+
     if ([config.myreco_img isEqualToString:@"0"]) {
         
         [self.headerImageView setHidden:NO];
+        self.headerImageView.height = 256;
+           [self.tableView reloadData];
     }
     else if([config.myreco_img isEqualToString:@"1"]) {
         
         [self.headerImageView setHidden:YES];
+        self.headerImageView.height = 0.1;
         
-//        CGRect frame = self.mytableView.frame;
-//        frame.origin.y =  frame.origin.y -256;
-//
-//        self.mytableView.frame = frame;
+        [self.tableView reloadData];
+
     }
 
 }
