@@ -23,8 +23,8 @@
                             <rect key="frame" x="0.0" y="0.0" width="247" height="100"/>
                             <color key="backgroundColor" red="0.32385197281837463" green="0.68189215660095215" blue="0.97255474328994751" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="欢迎您1111" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lPf-QY-2Ir">
-                            <rect key="frame" x="82.5" y="10" width="82.5" height="20.5"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="欢迎您" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lPf-QY-2Ir">
+                            <rect key="frame" x="97.5" y="10" width="52" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="0.91758114099999999" green="0.92137300970000002" blue="0.93725579979999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <nil key="highlightedColor"/>
