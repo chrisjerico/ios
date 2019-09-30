@@ -92,32 +92,40 @@ static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
     
     UGpaymentModel *model = self.tableViewDataArray[indexPath.row];
     
-    
-    NSArray *array = [model.pid componentsSeparatedByString:@"_"];
-    
-    if (![CMCommon arryIsNull:array]) {
+    if ([model.pid isEqualToString:@"online"]) {
+        UGDepositDetailsNoLineViewController *vc = [UGDepositDetailsNoLineViewController new];
+        vc.item = model;
+        [self.navigationController pushViewController:vc animated:YES];
+    } else {
+        NSArray *array = [model.pid componentsSeparatedByString:@"_"];
         
-        if (array.count>=2) {
-            NSString *str = [array objectAtIndex:array.count-1];
-            if ([str isEqualToString:@"online"]) {
-                UGDepositDetailsViewController *vc = [UGDepositDetailsViewController new];
-                vc.item = model;
-                [self.navigationController pushViewController:vc animated:YES];
-            } else {
+        if (![CMCommon arryIsNull:array]) {
+            
+            if (array.count>=2) {
+                NSString *str = [array objectAtIndex:array.count-1];
+                if ([str isEqualToString:@"online"]) {
+                    UGDepositDetailsViewController *vc = [UGDepositDetailsViewController new];
+                    vc.item = model;
+                    [self.navigationController pushViewController:vc animated:YES];
+                } else {
+                    
+                    UGDepositDetailsNoLineViewController *vc = [UGDepositDetailsNoLineViewController new];
+                    vc.item = model;
+                    [self.navigationController pushViewController:vc animated:YES];
+                }
                 
-                UGDepositDetailsNoLineViewController *vc = [UGDepositDetailsNoLineViewController new];
-                vc.item = model;
-                [self.navigationController pushViewController:vc animated:YES];
             }
-
-        }
-        else{
+            else{
+                NSLog(@"name 数据有问题=%@",model.name);
+            }
+        }else{
             NSLog(@"name 数据有问题=%@",model.name);
         }
-       
-    }else{
-        NSLog(@"name 数据有问题=%@",model.name);
     }
+    
+   
+       
+    
   
    
    
