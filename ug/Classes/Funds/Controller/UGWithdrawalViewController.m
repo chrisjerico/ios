@@ -118,6 +118,9 @@
                 [SVProgressHUD showSuccessWithStatus:model.msg];
                 self.amountTextF.text = nil;
                 self.pwdTextF.text = nil;
+                //发送通知给取款记录
+                SANotificationEventPost(UGNotificationWithdrawalsSuccess, nil);
+                
                 if (self.withdrawSuccessBlock) {
                     self.withdrawSuccessBlock();
                 }

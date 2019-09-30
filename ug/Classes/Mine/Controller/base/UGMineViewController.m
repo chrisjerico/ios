@@ -419,16 +419,10 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
                          [self teamAgentApplyInfoWithParams];
                          
                      } else {
-                         [LEEAlert alert].config
-                         .LeeTitle(@"温馨提示")
-                         .LeeContent(
-                                     @"你没有申请的权限")
-                        
-                         .LeeAction(@"确认", ^{
-                             
-                             // 确认点击事件Block
-                         })
-                         .LeeShow(); // 设置完成后 别忘记调用Show来显示
+                         [self.navigationController.view makeToast:@"在线注册代理已经关闭"
+                                                                 duration:1.5
+                                                                 position:CSToastPositionCenter];
+                     
                      }
             
 
