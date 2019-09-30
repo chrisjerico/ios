@@ -14,6 +14,7 @@
 #import "UGNavigationController.h"
 #import "UGChatsViewController.h"
 #import "UGHomeViewController.h"
+#import "UGYYLotteryHomeViewController.h"
 
 @interface UGTabbarController ()
 
@@ -74,7 +75,7 @@
                           imageName:@"shouye"
                   selectedImageName:@"shouyesel"];
     
-    [self addOneChildViewController:[[UGNavigationController alloc]initWithRootViewController:[[UGLotteryHomeController alloc] init]]
+    [self addOneChildViewController:[[UGNavigationController alloc]initWithRootViewController:[[UGYYLotteryHomeViewController alloc] init]]
                           WithTitle:@"购彩大厅"
                           imageName:@"dating"
                   selectedImageName:@"datongsel"];

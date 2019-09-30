@@ -54,7 +54,7 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
     [super viewDidLoad];
     
     self.view.backgroundColor = UGBackgroundColor;
-    self.navigationItem.title = @"购彩大厅";
+    self.navigationItem.title = @"彩票大厅";
 //    self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithImageName:@"gengduo" target:self action:@selector(rightBarBtnClick)];
     self.countDown = [[CountDown alloc] init];
     [self initCollectionView];

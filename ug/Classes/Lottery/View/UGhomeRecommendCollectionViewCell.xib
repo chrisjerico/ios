@@ -31,7 +31,7 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="重庆时时彩" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g8i-BM-H0V">
                                 <rect key="frame" x="0.0" y="24" width="82" height="21"/>
-                                <color key="backgroundColor" red="0.88285148140000003" green="0.32290697099999999" blue="0.2548756003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="WXe-8c-Fj2"/>
                                 </constraints>
@@ -41,7 +41,7 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="立即游戏" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="901-al-qk2">
                                 <rect key="frame" x="0.0" y="65" width="49.5" height="14.5"/>
-                                <color key="backgroundColor" red="0.33389753100000003" green="0.72176641230000005" blue="0.97647649049999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="14.5" id="Rvs-kj-rff"/>
                                 </constraints>
@@ -50,7 +50,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.79990893600000001" green="0.80390965940000003" blue="0.80392217639999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="901-al-qk2" secondAttribute="bottom" constant="22.5" id="EPn-wD-Arf"/>
                             <constraint firstItem="g8i-BM-H0V" firstAttribute="leading" secondItem="Vfj-sz-bre" secondAttribute="leading" id="Hba-7R-lRh"/>
@@ -62,6 +62,7 @@
                     </view>
                 </subviews>
             </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="Vfj-sz-bre" firstAttribute="leading" secondItem="Hgl-b8-Glr" secondAttribute="trailing" constant="12" id="0CK-No-T02"/>
                 <constraint firstItem="Vfj-sz-bre" firstAttribute="leading" secondItem="Hgl-b8-Glr" secondAttribute="trailing" constant="12" id="0wg-3C-w12"/>
@@ -73,6 +74,10 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
             <size key="customSize" width="216" height="111"/>
+            <connections>
+                <outlet property="imgView" destination="Hgl-b8-Glr" id="2tH-HY-SgF"/>
+                <outlet property="nameLabel" destination="g8i-BM-H0V" id="MUm-AT-iAi"/>
+            </connections>
             <point key="canvasLocation" x="137.68115942028987" y="129.24107142857142"/>
         </collectionViewCell>
     </objects>

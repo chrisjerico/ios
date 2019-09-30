@@ -555,6 +555,8 @@
 		D4EE8F832341D66B006FA0E2 /* UGYYPlatformGames.m in Sources */ = {isa = PBXBuildFile; fileRef = D4EE8F822341D66B006FA0E2 /* UGYYPlatformGames.m */; };
 		D4EE8F872341DD4A006FA0E2 /* UGhomeRecommendCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4EE8F852341DD4A006FA0E2 /* UGhomeRecommendCollectionViewCell.m */; };
 		D4EE8F882341DD4A006FA0E2 /* UGhomeRecommendCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4EE8F862341DD4A006FA0E2 /* UGhomeRecommendCollectionViewCell.xib */; };
+		D4EE8F8B2341EB22006FA0E2 /* UGYYLotteryHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4EE8F8A2341EB22006FA0E2 /* UGYYLotteryHomeViewController.m */; };
+		D4EE8F8E2341F225006FA0E2 /* UGYYLotterySecondHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4EE8F8D2341F225006FA0E2 /* UGYYLotterySecondHomeViewController.m */; };
 		D4F0477622E9E22E008EBB56 /* UGLinkNumCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F0477422E9E22E008EBB56 /* UGLinkNumCollectionViewCell.m */; };
 		D4F0477722E9E22E008EBB56 /* UGLinkNumCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4F0477522E9E22E008EBB56 /* UGLinkNumCollectionViewCell.xib */; };
 		D4F50A512339E67600E0811D /* UGAgentRefusedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F50A4F2339E67600E0811D /* UGAgentRefusedViewController.m */; };
@@ -1552,6 +1554,10 @@
 		D4EE8F842341DD4A006FA0E2 /* UGhomeRecommendCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGhomeRecommendCollectionViewCell.h; sourceTree = "<group>"; };
 		D4EE8F852341DD4A006FA0E2 /* UGhomeRecommendCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGhomeRecommendCollectionViewCell.m; sourceTree = "<group>"; };
 		D4EE8F862341DD4A006FA0E2 /* UGhomeRecommendCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGhomeRecommendCollectionViewCell.xib; sourceTree = "<group>"; };
+		D4EE8F892341EB22006FA0E2 /* UGYYLotteryHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGYYLotteryHomeViewController.h; sourceTree = "<group>"; };
+		D4EE8F8A2341EB22006FA0E2 /* UGYYLotteryHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGYYLotteryHomeViewController.m; sourceTree = "<group>"; };
+		D4EE8F8C2341F225006FA0E2 /* UGYYLotterySecondHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGYYLotterySecondHomeViewController.h; sourceTree = "<group>"; };
+		D4EE8F8D2341F225006FA0E2 /* UGYYLotterySecondHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGYYLotterySecondHomeViewController.m; sourceTree = "<group>"; };
 		D4F0477322E9E22E008EBB56 /* UGLinkNumCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLinkNumCollectionViewCell.h; sourceTree = "<group>"; };
 		D4F0477422E9E22E008EBB56 /* UGLinkNumCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLinkNumCollectionViewCell.m; sourceTree = "<group>"; };
 		D4F0477522E9E22E008EBB56 /* UGLinkNumCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGLinkNumCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -3117,6 +3123,10 @@
 				D4704EC322B7566200528DC7 /* UGPK10NNLotteryController.h */,
 				D4704EC422B7566200528DC7 /* UGPK10NNLotteryController.m */,
 				D4704EC622B7567B00528DC7 /* UGPK10NNLotteryController.storyboard */,
+				D4EE8F892341EB22006FA0E2 /* UGYYLotteryHomeViewController.h */,
+				D4EE8F8A2341EB22006FA0E2 /* UGYYLotteryHomeViewController.m */,
+				D4EE8F8C2341F225006FA0E2 /* UGYYLotterySecondHomeViewController.h */,
+				D4EE8F8D2341F225006FA0E2 /* UGYYLotterySecondHomeViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3780,6 +3790,7 @@
 				D4AE641B2295871D00DD265A /* MJRefreshFooter.m in Sources */,
 				D4241C47232A2F0100BF4DE1 /* UGOneTitleTableViewCell.m in Sources */,
 				D4F63F8F228FD1A200EC93AA /* UGFastThreeThreeCollectionViewCell.m in Sources */,
+				D4EE8F8E2341F225006FA0E2 /* UGYYLotterySecondHomeViewController.m in Sources */,
 				D422FE6B232553790063EA4E /* UGbetStatModel.m in Sources */,
 				D405B38C22816D1400F8C586 /* UGSecurityCenterViewController.m in Sources */,
 				D405B1FA227972C900F8C586 /* JSONHTTPClient.m in Sources */,
@@ -3848,6 +3859,7 @@
 				D4177133229D79AB00727B70 /* UGMissionTitleCell.m in Sources */,
 				D40A2A8122BCFF6500DAAFC8 /* UGbankModel.m in Sources */,
 				D48224E122A0F2F200F7DE72 /* UGPlatformNoticeView.m in Sources */,
+				D4EE8F8B2341EB22006FA0E2 /* UGYYLotteryHomeViewController.m in Sources */,
 				D4FBBBE0228BD0E600153FB5 /* UGBetDetailModel.m in Sources */,
 				D405B229227972DD00F8C586 /* SVProgressAnimatedView.m in Sources */,
 				D424DDE522E753C60009E2E6 /* UGRealBetRecordCell.m in Sources */,
