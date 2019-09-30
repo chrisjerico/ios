@@ -177,7 +177,7 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
     [self getUserInfo];
     [self.tableView reloadData];
     
-    self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithImageName:@"gengduo" target:self action:@selector(rightBarBtnClick)];
+//    self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithImageName:@"gengduo" target:self action:@selector(rightBarBtnClick)];
 
 }
 

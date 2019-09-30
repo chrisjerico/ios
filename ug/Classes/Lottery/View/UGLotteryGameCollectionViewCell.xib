@@ -65,7 +65,7 @@
                 <outlet property="openCycleLabel" destination="jz8-92-enu" id="eZf-2R-7i9"/>
                 <outlet property="timeLabel" destination="PUZ-no-lGf" id="kqt-oz-yKg"/>
             </connections>
-            <point key="canvasLocation" x="257.97101449275362" y="170.08928571428569"/>
+            <point key="canvasLocation" x="-454" y="70"/>
         </collectionViewCell>
     </objects>
     <resources>

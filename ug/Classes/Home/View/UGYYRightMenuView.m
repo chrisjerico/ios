@@ -291,7 +291,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
 
         
     }
-    else if ([title isEqualToString:@"即时注单"]) {
+    else if ([title containsString:@"即时注单"]) {
         if ([UGUserModel currentUser].isTest) {
             [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 if (buttonIndex == 1) {
@@ -301,13 +301,12 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         }else {
             
             UGBetRecordViewController *betRecordVC = [[UGBetRecordViewController alloc] init];
-            [betRecordVC.slideSwitchView changeSlideAtSegmentIndex:0];
             viewController = betRecordVC;
             
         }
         
     }
-    else if ([title isEqualToString:@"今日输赢" ]) {
+    else if ([title containsString:@"今日输赢" ]) {
         if ([UGUserModel currentUser].isTest) {
             [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 if (buttonIndex == 1) {
@@ -317,7 +316,8 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         }else {
             
             UGBetRecordViewController *betRecordVC = [[UGBetRecordViewController alloc] init];
-            [betRecordVC.slideSwitchView changeSlideAtSegmentIndex:0];
+            [betRecordVC buildSegment];
+            [betRecordVC setSelectIndex:2];
              viewController = betRecordVC;
         }
         
@@ -332,7 +332,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         }else {
             
             UGBetRecordViewController *betRecordVC = [[UGBetRecordViewController alloc] init];
-            [betRecordVC.slideSwitchView changeSlideAtSegmentIndex:0];
+
             viewController = betRecordVC;
         }
         

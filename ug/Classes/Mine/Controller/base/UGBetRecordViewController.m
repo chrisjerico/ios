@@ -55,12 +55,19 @@ static NSString *recordFilterCellid = @"UGRecordFilterCollectionViewCell";
 //    [self.view addSubview:self.bottomView];
 //    [self.bottomView addSubview:self.amountLabel];
     [self setupAmountLabelTextColor];
+    
+//    [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionNone];
 
+}
+
+-(void)setSelectIndex:(int) index{
+      [self.slideSwitchView changeSlideAtSegmentIndex:2];
+//       [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionNone];
 }
 
 - (void)viewDidLayoutSubviews {
     
-    [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionNone];
+
 }
 
 - (void)titleViewClick {
