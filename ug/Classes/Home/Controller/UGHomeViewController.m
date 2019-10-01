@@ -108,6 +108,7 @@
 @property (strong, nonatomic)UILabel *nolineLabel;
 
 @property (weak, nonatomic) IBOutlet UIView *rollingView;
+@property (weak, nonatomic) IBOutlet UIView *hotGameView;
 
 @end
 
@@ -122,9 +123,13 @@
     [self.leftwardMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
     [self.gameTypeView setBackgroundColor:[UIColor clearColor]];
     [self.rankingView setBackgroundColor:[UIColor clearColor]];
+    [self.hotGameView setBackgroundColor:[UIColor clearColor]];
+
     [self getCustomGameList];
     
-    [[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:[UIColor redColor]]];
+//    [[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:[UIColor redColor]]];
+    
+    [[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:[UIColor greenColor]]];
 //    [self getNoticeList];
 //    [self getRankList];
 //    [self getAllNextIssueData];

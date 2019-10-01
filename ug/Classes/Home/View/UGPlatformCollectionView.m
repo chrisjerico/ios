@@ -104,10 +104,10 @@ static NSString *const footerId = @"footerId";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UGGameTypeColletionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:gameCellid forIndexPath:indexPath];
     cell.item = ((NSArray *)self.sectionedDataArray[indexPath.section])[indexPath.row];
-	if (_selectedPath == indexPath) {
-		cell.backgroundColor = UIColor.blueColor;
-	}
-	cell.backgroundColor =  _selectedPath == indexPath ? [UIColor colorWithWhite:0.9 alpha:1.0] : UIColor.whiteColor;
+//    if (_selectedPath == indexPath) {
+//        cell.backgroundColor = UIColor.blueColor;
+//    }
+//    cell.backgroundColor =  _selectedPath == indexPath ? [UIColor colorWithWhite:0.9 alpha:1.0] : UIColor.whiteColor;
 
     return cell;
 }

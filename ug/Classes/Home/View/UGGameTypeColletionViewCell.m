@@ -20,14 +20,14 @@
 @implementation UGGameTypeColletionViewCell
 
 -(void)skin{
-   [self setBackgroundColor:[[UGSkinManagers shareInstance] tabbarbgColor:@"1"]];
+  [self setBackgroundColor: [[UGSkinManagers shareInstance] setTabbgColor]];
     
 }
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    self.backgroundColor = [UIColor whiteColor];
+    [self setBackgroundColor: [[UGSkinManagers shareInstance] setTabbgColor]];
     self.layer.cornerRadius = 10;
     self.layer.masksToBounds = YES;
     self.layer.borderColor = UGBackgroundColor.CGColor;

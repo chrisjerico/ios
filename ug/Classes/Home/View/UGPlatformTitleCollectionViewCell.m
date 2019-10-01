@@ -19,8 +19,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-   
-    
+
     [self setBackgroundColor: [[UGSkinManagers shareInstance] setTabbgColor]];
 }
 

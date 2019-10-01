@@ -265,7 +265,7 @@
 
 -(void)resetNavbarAndTabBarBgColor:(NSString *)skitType{
     
-//    [[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:[self tabbarbgColor :skitType]]];
+    [[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:[self tabbarbgColor :skitType]]];
     
    
     

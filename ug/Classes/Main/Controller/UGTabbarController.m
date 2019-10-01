@@ -30,14 +30,18 @@
     
     // 设置子控制器
     [self setUpChildViewController];
-    [[UITabBar appearance] setBackgroundImage:[self imageWithColor:[UIColor whiteColor]]];
+    [[UITabBar appearance] setBackgroundImage:[self imageWithColor:[[UGSkinManagers shareInstance] setTabbgColor]]];
     //去除 TabBar 自带的顶部阴影
 //    [[UITabBar appearance] setShadowImage:[[UIImage alloc] init]];
     //设置导航控制器颜色
-    [[UINavigationBar appearance] setBackgroundImage:[self imageWithColor:UGNavColor] forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setBackgroundImage:[self imageWithColor:[[UGSkinManagers shareInstance] setNavbgColor]] forBarMetrics:UIBarMetricsDefault];
     
 //    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
 //    statusBar.backgroundColor = UGNavColor;
+    
+    [[UITabBar appearance] setSelectedImageTintColor:[UIColor redColor]];
+    
+    [[UITabBar appearance] setTintColor:[UIColor redColor]];
     
 }
 
@@ -62,6 +66,7 @@
     [[UITabBarItem appearance] setTitleTextAttributes:                                                         [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName, nil]forState:UIControlStateSelected];
     
 //    [[UITabBarItem appearance] setTitleTextAttributes:                                                         [NSDictionary dictionaryWithObjectsAndKeys:UGNavColor,NSForegroundColorAttributeName, nil]forState:UIControlStateSelected];
+    UITabBarItem *item = [UITabBarItem appearance];
     
 }
 
@@ -147,7 +152,7 @@
     viewController.tabBarItem.title         = title;
     viewController.tabBarItem.image         = [UIImage imageNamed:imageName];
     UIImage *image = [UIImage imageNamed:selectedImageName];
-    image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     viewController.tabBarItem.selectedImage = image;
     [self addChildViewController:viewController];
     
