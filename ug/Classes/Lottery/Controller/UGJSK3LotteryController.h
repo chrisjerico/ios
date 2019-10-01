@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UGCommonLotteryController.h"
+
 @class UGNextIssueModel;
 NS_ASSUME_NONNULL_BEGIN
 typedef void(^JSK3LotteryBlock)(void);
 
-@interface UGJSK3LotteryController : UIViewController
+@interface UGJSK3LotteryController : UGCommonLotteryController
 @property (nonatomic, strong) NSArray *lotteryGamesArray;
 @property (nonatomic, strong) UGNextIssueModel *nextIssueModel;
 @property (nonatomic, strong) NSString *gameId;

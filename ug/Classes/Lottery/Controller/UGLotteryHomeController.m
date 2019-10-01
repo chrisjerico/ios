@@ -148,6 +148,14 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
     
     UGAllNextIssueListModel *listModel = self.dataArray[indexPath.section];
     UGNextIssueModel *nextModel = listModel.list[indexPath.row];
+	void(^judeBlock)(UGCommonLotteryController * lotteryVC) = ^(UGCommonLotteryController * lotteryVC) {
+		if ([@[@"7", @"11", @"9"] containsObject: nextModel.gameId]) {
+				lotteryVC.shoulHideHeader = true;
+			}
+	};
+	
+	
+	
     if ([@"cqssc" isEqualToString:nextModel.gameType]) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGSSCLotteryController" bundle:nil];
         UGSSCLotteryController *lotteryVC = [storyboard instantiateInitialViewController];
@@ -158,6 +166,7 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
         lotteryVC.gotoTabBlock = ^{
             self.navigationController.tabBarController.selectedIndex = 0;
         };
+		judeBlock(lotteryVC);
         [self.navigationController pushViewController:lotteryVC animated:YES];
     }else if ([@"pk10" isEqualToString:nextModel.gameType] ||
               [@"xyft" isEqualToString:nextModel.gameType]) {
@@ -170,6 +179,8 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
         markSixVC.gotoTabBlock = ^{
             self.navigationController.tabBarController.selectedIndex = 0;
         };
+		judeBlock(markSixVC);
+
         [self.navigationController pushViewController:markSixVC animated:YES];
         
     }else if ([@"qxc" isEqualToString:nextModel.gameType]) {
@@ -192,6 +203,8 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
         markSixVC.gotoTabBlock = ^{
             self.navigationController.tabBarController.selectedIndex = 0;
         };
+		judeBlock(markSixVC);
+
         [self.navigationController pushViewController:markSixVC animated:YES];
         
     }else if ([@"jsk3" isEqualToString:nextModel.gameType]) {
