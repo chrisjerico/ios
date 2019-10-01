@@ -44,6 +44,7 @@
 @implementation UGDepositDetailsViewController
 @synthesize  lastPath;
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -54,6 +55,7 @@
     _blankDataArray = [NSMutableArray<UGrechargeBankModel> new];
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
+    
     
     
     if (self.item) {
