@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 typedef void(^BJKL8LotteryBlock)(void);
 
-@interface UGBJKL8LotteryController : UIViewController
+@interface UGBJKL8LotteryController :UGViewController
 @property (nonatomic, strong) NSArray *lotteryGamesArray;
 @property (nonatomic, strong) UGNextIssueModel *nextIssueModel;
 @property (nonatomic, strong) NSString *gameId;

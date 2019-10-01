@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGFundsTestViewController : UIViewController
+@interface UGFundsTestViewController :UGViewController
 
 @end
 

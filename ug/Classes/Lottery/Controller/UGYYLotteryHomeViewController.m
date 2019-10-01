@@ -18,12 +18,27 @@
 @end
 
 @implementation UGYYLotteryHomeViewController
-
+-(void)skin{
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+   
+    
+    [self getPlatformGamesWithParams];
+    
+    
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = UGBackgroundColor;
+    
+    
+   [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
      self.title = @"购彩大厅";
+    
+    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
+        
+        [self skin];
+    });
      _dataArray = [NSMutableArray array];
     [self initCollectionView];
     WeakSelf
@@ -43,7 +58,7 @@
         layout.minimumInteritemSpacing = 5;
         layout.minimumLineSpacing = 5;
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-        layout.headerReferenceSize = CGSizeMake(UGScreenW, 0);
+        layout.headerReferenceSize = CGSizeMake(UGScreenW, 10);
         layout;
         
     });
@@ -53,7 +68,7 @@
         
         collectionViewH = UGScerrnH - k_Height_NavBar -k_Height_StatusBar+20;
         
-        collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(5, 5, UGScreenW - 10, collectionViewH) collectionViewLayout:layout];
+        collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(5, 10, UGScreenW - 10, collectionViewH) collectionViewLayout:layout];
         collectionView.backgroundColor = [UIColor clearColor];
         collectionView.layer.cornerRadius = 10;
         collectionView.layer.masksToBounds = YES;

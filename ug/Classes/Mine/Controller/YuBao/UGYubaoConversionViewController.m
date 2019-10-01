@@ -43,10 +43,16 @@
 
 static NSString *convertCellid = @"UGConvertCollectionViewCell";
 @implementation UGYubaoConversionViewController
-
+-(void)skin{
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
+        
+        [self skin];
+    });
     self.fd_prefersNavigationBarHidden = YES;
     self.view.backgroundColor = UGBackgroundColor;
     self.submitButton.layer.cornerRadius = 5;

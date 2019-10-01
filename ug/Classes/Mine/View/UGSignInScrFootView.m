@@ -29,7 +29,8 @@
     
     _sevenButtton.layer.cornerRadius = 17;
     _sevenButtton.layer.masksToBounds = YES;
-    
+    [self setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+
     return self;
 }
 

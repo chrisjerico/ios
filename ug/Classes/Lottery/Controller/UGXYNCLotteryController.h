@@ -10,7 +10,7 @@
 @class UGNextIssueModel;
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGXYNCLotteryController: UIViewController
+@interface UGXYNCLotteryController:UGViewController
 @property (nonatomic, strong) NSArray *lotteryGamesArray;
 @property (nonatomic, strong) UGNextIssueModel *nextIssueModel;
 @property (nonatomic, strong) NSString *gameId;

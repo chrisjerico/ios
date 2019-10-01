@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGMosaicGoldViewController : UIViewController
+@interface UGMosaicGoldViewController :UGViewController
 
 @property (nonatomic, assign) NSInteger selectIndex;
 

@@ -31,7 +31,7 @@ static NSString *const footerId = @"footerId";
 - (void)awakeFromNib {
     [super awakeFromNib];
 
-    [self setBackgroundColor: [[UGSkinManagers shareInstance] setTabbgColor]];
+    [self setBackgroundColor: [[UGSkinManagers shareInstance] setCellbgColor]];
     
 }
 

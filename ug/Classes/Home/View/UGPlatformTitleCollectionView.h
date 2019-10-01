@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^PlatformTitleSelectBlock)(NSInteger selectIndex);
 
-@interface UGPlatformTitleCollectionView : UIView
+@interface UGPlatformTitleCollectionView : UGView
 
 @property (nonatomic, copy) PlatformTitleSelectBlock platformTitleSelectBlock;
 @property (nonatomic, assign) NSInteger selectIndex;

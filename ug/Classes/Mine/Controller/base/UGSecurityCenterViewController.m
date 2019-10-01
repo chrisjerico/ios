@@ -20,13 +20,19 @@
 @end
 
 @implementation UGSecurityCenterViewController
-
+-(void)skin{
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+   
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.navigationItem.title = @"安全中心";
-    self.view.backgroundColor = UGBackgroundColor;
-    
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
+        
+        [self skin];
+    });
     
     if ([self.fromVC  isEqualToString:@"UGLoginViewController"]) {
 

@@ -10,7 +10,7 @@
 @class UGRechargeLogsModel;
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGFundRecordDetailView : UIView
+@interface UGFundRecordDetailView : UGView
 @property (nonatomic, strong) UGRechargeLogsModel *item;
 
 - (void)show;

@@ -29,7 +29,7 @@ typedef void (^WMIconSegmentControlBlock)(NSInteger index, BOOL isRepeat);
 - (void)setWebImage:(UIImageView *)imgView imgUrl:(NSString *)imgUrl;
 @end
 
-@interface WMIconSegmentControl : UIView
+@interface WMIconSegmentControl : UGView
 
 @property (nonatomic, assign, readonly) NSInteger currentIndex;         /**< 当前选项索引 */
 @property (nonatomic, weak) id <WMIconSegmentControlDelegate> delegate; /**< 回调 */

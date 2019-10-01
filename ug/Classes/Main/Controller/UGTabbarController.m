@@ -39,9 +39,12 @@
 //    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
 //    statusBar.backgroundColor = UGNavColor;
     
-    [[UITabBar appearance] setSelectedImageTintColor:[UIColor redColor]];
+    [[UITabBar appearance] setSelectedImageTintColor: [[UGSkinManagers shareInstance] settabSelectColor]];
     
-    [[UITabBar appearance] setTintColor:[UIColor redColor]];
+    [[UITabBar appearance] setUnselectedItemTintColor: [[UGSkinManagers shareInstance] settabNOSelectColor]];
+
+    
+//    [[UITabBar appearance] setTintColor:[UIColor redColor]];
     
 }
 
@@ -61,13 +64,12 @@
  */
 - (void)setUpTabBarItemTextAttributes{
     
-    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor grayColor], NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
+    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[[UGSkinManagers shareInstance] settabNOSelectColor], NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
     
-    [[UITabBarItem appearance] setTitleTextAttributes:                                                         [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName, nil]forState:UIControlStateSelected];
+    [[UITabBarItem appearance] setTitleTextAttributes:                                                         [NSDictionary dictionaryWithObjectsAndKeys: [[UGSkinManagers shareInstance] settabSelectColor],NSForegroundColorAttributeName, nil]forState:UIControlStateSelected];
     
-//    [[UITabBarItem appearance] setTitleTextAttributes:                                                         [NSDictionary dictionaryWithObjectsAndKeys:UGNavColor,NSForegroundColorAttributeName, nil]forState:UIControlStateSelected];
-    UITabBarItem *item = [UITabBarItem appearance];
     
+
 }
 
 

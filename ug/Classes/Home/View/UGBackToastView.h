@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 typedef  void(^BackHomeSureBlock)(void);
-@interface UGBackToastView : UIView
+@interface UGBackToastView : UGView
 @property (nonatomic, copy) BackHomeSureBlock backHomeBlock;
 @end
 

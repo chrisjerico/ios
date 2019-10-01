@@ -48,7 +48,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+     [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
     _amountDataArray = [NSMutableArray new];
     _channelDataArray = [NSArray new];
     _tableDataArray = [NSMutableArray new];

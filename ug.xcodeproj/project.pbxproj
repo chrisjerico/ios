@@ -553,6 +553,12 @@
 		D4E2876F22B666FE0002B2BF /* UGFC3DLotteryController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4E2876E22B666FE0002B2BF /* UGFC3DLotteryController.storyboard */; };
 		D4E8A40F22A0323300EFE171 /* UGBetRecorddHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E8A40E22A0323300EFE171 /* UGBetRecorddHeaderView.m */; };
 		D4E8A41122A0326C00EFE171 /* UGBetRecorddHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4E8A41022A0326C00EFE171 /* UGBetRecorddHeaderView.xib */; };
+		D4EDC9302343A1A400BA4C4D /* UGView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4EDC92F2343A1A400BA4C4D /* UGView.m */; };
+		D4EDC9332343A1BF00BA4C4D /* UGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4EDC9322343A1BF00BA4C4D /* UGViewController.m */; };
+		D4EDC9362343A1D200BA4C4D /* UGCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4EDC9352343A1D200BA4C4D /* UGCollectionViewController.m */; };
+		D4EDC9392343A1E300BA4C4D /* UGTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4EDC9382343A1E300BA4C4D /* UGTableViewController.m */; };
+		D4EDC93C2343A1F600BA4C4D /* UGTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4EDC93B2343A1F600BA4C4D /* UGTableViewCell.m */; };
+		D4EDC93F2343A20800BA4C4D /* UGCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4EDC93E2343A20800BA4C4D /* UGCollectionViewCell.m */; };
 		D4EE8F832341D66B006FA0E2 /* UGYYPlatformGames.m in Sources */ = {isa = PBXBuildFile; fileRef = D4EE8F822341D66B006FA0E2 /* UGYYPlatformGames.m */; };
 		D4EE8F872341DD4A006FA0E2 /* UGhomeRecommendCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4EE8F852341DD4A006FA0E2 /* UGhomeRecommendCollectionViewCell.m */; };
 		D4EE8F882341DD4A006FA0E2 /* UGhomeRecommendCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4EE8F862341DD4A006FA0E2 /* UGhomeRecommendCollectionViewCell.xib */; };
@@ -1557,6 +1563,18 @@
 		D4E8A40D22A0323300EFE171 /* UGBetRecorddHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGBetRecorddHeaderView.h; sourceTree = "<group>"; };
 		D4E8A40E22A0323300EFE171 /* UGBetRecorddHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGBetRecorddHeaderView.m; sourceTree = "<group>"; };
 		D4E8A41022A0326C00EFE171 /* UGBetRecorddHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGBetRecorddHeaderView.xib; sourceTree = "<group>"; };
+		D4EDC92E2343A1A400BA4C4D /* UGView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGView.h; sourceTree = "<group>"; };
+		D4EDC92F2343A1A400BA4C4D /* UGView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGView.m; sourceTree = "<group>"; };
+		D4EDC9312343A1BF00BA4C4D /* UGViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGViewController.h; sourceTree = "<group>"; };
+		D4EDC9322343A1BF00BA4C4D /* UGViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGViewController.m; sourceTree = "<group>"; };
+		D4EDC9342343A1D200BA4C4D /* UGCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGCollectionViewController.h; sourceTree = "<group>"; };
+		D4EDC9352343A1D200BA4C4D /* UGCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGCollectionViewController.m; sourceTree = "<group>"; };
+		D4EDC9372343A1E300BA4C4D /* UGTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGTableViewController.h; sourceTree = "<group>"; };
+		D4EDC9382343A1E300BA4C4D /* UGTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGTableViewController.m; sourceTree = "<group>"; };
+		D4EDC93A2343A1F600BA4C4D /* UGTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGTableViewCell.h; sourceTree = "<group>"; };
+		D4EDC93B2343A1F600BA4C4D /* UGTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGTableViewCell.m; sourceTree = "<group>"; };
+		D4EDC93D2343A20800BA4C4D /* UGCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGCollectionViewCell.h; sourceTree = "<group>"; };
+		D4EDC93E2343A20800BA4C4D /* UGCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGCollectionViewCell.m; sourceTree = "<group>"; };
 		D4EE8F812341D66B006FA0E2 /* UGYYPlatformGames.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGYYPlatformGames.h; sourceTree = "<group>"; };
 		D4EE8F822341D66B006FA0E2 /* UGYYPlatformGames.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGYYPlatformGames.m; sourceTree = "<group>"; };
 		D4EE8F842341DD4A006FA0E2 /* UGhomeRecommendCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGhomeRecommendCollectionViewCell.h; sourceTree = "<group>"; };
@@ -3104,6 +3122,10 @@
 		D4B75E38227811D50007047C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D4EE8F892341EB22006FA0E2 /* UGYYLotteryHomeViewController.h */,
+				D4EE8F8A2341EB22006FA0E2 /* UGYYLotteryHomeViewController.m */,
+				D4EE8F8C2341F225006FA0E2 /* UGYYLotterySecondHomeViewController.h */,
+				D4EE8F8D2341F225006FA0E2 /* UGYYLotterySecondHomeViewController.m */,
 				D405B2DC227B3CCB00F8C586 /* UGLotteryHomeController.h */,
 				D405B2DD227B3CCB00F8C586 /* UGLotteryHomeController.m */,
 				D4D8DF6E2286B14C00446BAF /* UGSSCLotteryController.h */,
@@ -3142,10 +3164,6 @@
 				D4704EC322B7566200528DC7 /* UGPK10NNLotteryController.h */,
 				D4704EC422B7566200528DC7 /* UGPK10NNLotteryController.m */,
 				D4704EC622B7567B00528DC7 /* UGPK10NNLotteryController.storyboard */,
-				D4EE8F892341EB22006FA0E2 /* UGYYLotteryHomeViewController.h */,
-				D4EE8F8A2341EB22006FA0E2 /* UGYYLotteryHomeViewController.m */,
-				D4EE8F8C2341F225006FA0E2 /* UGYYLotterySecondHomeViewController.h */,
-				D4EE8F8D2341F225006FA0E2 /* UGYYLotterySecondHomeViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3244,6 +3262,7 @@
 		D4B75E3B2278122B0007047C /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				D4EDC92D2343A18400BA4C4D /* baseObject */,
 				D4000C0E232E2CCB000705B1 /* AppDelegate+ */,
 				D4B75E0C2278025E0007047C /* AppDelegate.h */,
 				D4AE1C0922C0FCC300C142FE /* AppDelegate.m */,
@@ -3365,6 +3384,25 @@
 				D419DF34233664E6009636F0 /* UGChatViewController.m */,
 			);
 			path = Chat;
+			sourceTree = "<group>";
+		};
+		D4EDC92D2343A18400BA4C4D /* baseObject */ = {
+			isa = PBXGroup;
+			children = (
+				D4EDC92E2343A1A400BA4C4D /* UGView.h */,
+				D4EDC92F2343A1A400BA4C4D /* UGView.m */,
+				D4EDC9312343A1BF00BA4C4D /* UGViewController.h */,
+				D4EDC9322343A1BF00BA4C4D /* UGViewController.m */,
+				D4EDC9342343A1D200BA4C4D /* UGCollectionViewController.h */,
+				D4EDC9352343A1D200BA4C4D /* UGCollectionViewController.m */,
+				D4EDC9372343A1E300BA4C4D /* UGTableViewController.h */,
+				D4EDC9382343A1E300BA4C4D /* UGTableViewController.m */,
+				D4EDC93A2343A1F600BA4C4D /* UGTableViewCell.h */,
+				D4EDC93B2343A1F600BA4C4D /* UGTableViewCell.m */,
+				D4EDC93D2343A20800BA4C4D /* UGCollectionViewCell.h */,
+				D4EDC93E2343A20800BA4C4D /* UGCollectionViewCell.m */,
+			);
+			path = baseObject;
 			sourceTree = "<group>";
 		};
 		D4EE8F9023421C1C006FA0E2 /* Skin */ = {
@@ -3668,6 +3706,7 @@
 				D463B4DC2283ECFB00EAC0F7 /* UGPromotionTableController.m in Sources */,
 				D40DE98322F335E300974BAF /* SDCycleScrollView.m in Sources */,
 				D417EFD62330BD340024F634 /* UGredActivityView.m in Sources */,
+				D4EDC9302343A1A400BA4C4D /* UGView.m in Sources */,
 				D4145A9522B6109D00D8165F /* UGXYNCLotteryController.m in Sources */,
 				D481EFFE2327CAD8000611ED /* UGDepositDetailsCollectionViewCell.m in Sources */,
 				D422A57B229E3EE80068D0AD /* UGMissionCollectionView.m in Sources */,
@@ -3685,6 +3724,7 @@
 				D40FA8C722992EA7003E596F /* UGYubaoConversionCenterController.m in Sources */,
 				D4F0477622E9E22E008EBB56 /* UGLinkNumCollectionViewCell.m in Sources */,
 				D41B3CF1231FE1E900716512 /* UGSignInViewController.m in Sources */,
+				D4EDC9392343A1E300BA4C4D /* UGTableViewController.m in Sources */,
 				D40DE98822F335E300974BAF /* TAAnimatedDotView.m in Sources */,
 				D4AE64112295871D00DD265A /* UIView+MJExtension.m in Sources */,
 				D405B2502279740A00F8C586 /* NSSet+HYBUnicodeReadable.m in Sources */,
@@ -3729,6 +3769,7 @@
 				D405B228227972DD00F8C586 /* SVRadialGradientLayer.m in Sources */,
 				D4D8DF762286F01100446BAF /* UGTimeLotteryLeftTitleCell.m in Sources */,
 				D4087DAF22951F15000C4CB0 /* CMNetwork+Mine.m in Sources */,
+				D4EDC9362343A1D200BA4C4D /* UGCollectionViewController.m in Sources */,
 				D41C3E1B228EF6C400BF6436 /* UGJSK3LotteryController.m in Sources */,
 				D405B246227973F200F8C586 /* UIView+ST.m in Sources */,
 				D405B2F6227C230400F8C586 /* UGRechargeTypeCell.m in Sources */,
@@ -3830,6 +3871,7 @@
 				D405B216227972D300F8C586 /* NSObject+MJCoding.m in Sources */,
 				D41246A122854518006881E2 /* UGPromotionsController.m in Sources */,
 				D405B1C0227972AD00F8C586 /* UIImageView+WebCache.m in Sources */,
+				D4EDC93C2343A1F600BA4C4D /* UGTableViewCell.m in Sources */,
 				D4DE269A229BDBC80072A4A2 /* SGSegmentedControl.m in Sources */,
 				D4D8DF7B2286F7F600446BAF /* UGTimeLotteryBetCollectionViewCell.m in Sources */,
 				D4AE641B2295871D00DD265A /* MJRefreshFooter.m in Sources */,
@@ -3938,6 +3980,7 @@
 				D41246A92285525A006881E2 /* UGPromotionInfoController.m in Sources */,
 				D405B331227DA8F700F8C586 /* SAROPSession.m in Sources */,
 				D4D8DF702286B14C00446BAF /* UGSSCLotteryController.m in Sources */,
+				D4EDC93F2343A20800BA4C4D /* UGCollectionViewCell.m in Sources */,
 				D40D58CA228AF7BA0025963A /* CountDown.m in Sources */,
 				D405B245227973F200F8C586 /* UIImage+ST.m in Sources */,
 				D4DFBE7322E353B1002BAFB0 /* UGMenuTableViewCell.m in Sources */,
@@ -3987,6 +4030,7 @@
 				D405AFF722783DCC00F8C586 /* View+MASAdditions.m in Sources */,
 				D4D4225523264B94006E680B /* UGwithdrawListModel.m in Sources */,
 				D417EFCE2330A43C0024F634 /* UGredEnvelopeView.m in Sources */,
+				D4EDC9332343A1BF00BA4C4D /* UGViewController.m in Sources */,
 				D4A02B5223224C32004D5894 /* UGSignInHistoryModel.m in Sources */,
 				D405B2CF227ADC1100F8C586 /* UGGamePlatformCollectionViewCell.m in Sources */,
 				D4EE8FA523424E5F006FA0E2 /* UIImage+YYgradientImage.m in Sources */,

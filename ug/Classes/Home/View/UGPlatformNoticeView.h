@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGPlatformNoticeView : UIView
+@interface UGPlatformNoticeView : UGView
 
 @property (nonatomic, strong) NSArray *dataArray;
 

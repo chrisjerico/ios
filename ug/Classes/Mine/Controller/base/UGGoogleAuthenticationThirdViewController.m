@@ -15,11 +15,18 @@
 @end
 
 @implementation UGGoogleAuthenticationThirdViewController
-
+-(void)skin{
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
      self.title = @"二次验证";
+    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
+        
+        [self skin];
+    });
 }
 
 -(void)viewDidLayoutSubviews{

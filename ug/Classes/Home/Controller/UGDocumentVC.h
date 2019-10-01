@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGDocumentVC : UIViewController
+@interface UGDocumentVC :UGViewController
 
 @end
 

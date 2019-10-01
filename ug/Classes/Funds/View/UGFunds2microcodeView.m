@@ -24,7 +24,7 @@
     if (self) {
         self = [[NSBundle mainBundle] loadNibNamed:@"UGFunds2microcodeView" owner:self options:0].firstObject;
         self.frame = frame;
-        self.backgroundColor = [UIColor whiteColor];
+        [self setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
 
     }
     return self;

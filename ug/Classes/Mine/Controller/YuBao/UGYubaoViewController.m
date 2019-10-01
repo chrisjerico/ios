@@ -40,10 +40,16 @@
 @end
 
 @implementation UGYubaoViewController
-
+-(void)skin{
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
+        
+        [self skin];
+    });
     self.fd_prefersNavigationBarHidden = YES;
     self.navigationItem.title = @"利息宝";
     self.view.backgroundColor = UGBackgroundColor;

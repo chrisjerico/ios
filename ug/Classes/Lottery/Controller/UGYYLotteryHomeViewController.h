@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGYYLotteryHomeViewController : UIViewController
+@interface UGYYLotteryHomeViewController :UGViewController
 
 @end
 

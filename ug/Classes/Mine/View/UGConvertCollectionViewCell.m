@@ -22,6 +22,7 @@
     self.layer.masksToBounds = YES;
     self.layer.borderWidth = 0.7;
     self.layer.borderColor = UGBackgroundColor.CGColor;
+    [self setBackgroundColor: [[UGSkinManagers shareInstance] setCellbgColor]];
     
 }
 

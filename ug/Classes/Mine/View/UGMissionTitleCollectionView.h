@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 typedef void(^MissionTitleSelectBlock)(NSInteger index,NSString *title);
-@interface UGMissionTitleCollectionView : UIView
+@interface UGMissionTitleCollectionView : UGView
 @property (nonatomic, copy) MissionTitleSelectBlock titleSelectBlock;
 @property (nonatomic, assign) NSInteger selectIndex;
 @end

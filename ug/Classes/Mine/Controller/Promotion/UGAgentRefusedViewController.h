@@ -10,7 +10,7 @@
 @class UGagentApplyInfo;
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGAgentRefusedViewController : UIViewController
+@interface UGAgentRefusedViewController :UGViewController
 
 @property (nonatomic, strong) UGagentApplyInfo *item;
 

@@ -41,5 +41,8 @@
 #import "BAKit_WebView.h"
 #import "UGChatViewController.h"
 #import "UGSkinManagers.h"
+#import "UGViewController.h"
+#import "UGTableViewCell.h"
+#import "UGView.h"
 
 #endif /* UGPCH_pch */

@@ -37,7 +37,7 @@ typedef NS_ENUM(NSInteger, SROtherActionItemAlignment) {
  */
 typedef void (^ActionSheetDidSelectSheetBlock)(SRActionSheet *actionSheet, NSInteger index);
 
-@interface SRActionSheet : UIView
+@interface SRActionSheet : UGView
 
 /**
  Default is SROtherActionItemAlignmentCenter when no images but when there are images default is SROtherActionItemAlignmentLeft.

@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^MenuSelectBlock)(NSInteger selectIndex);
-@interface UGMissionCollectionView : UIView
+@interface UGMissionCollectionView : UGView
 
 @property (nonatomic, copy) MenuSelectBlock selectIndexBlock;
 @property (nonatomic, assign) NSInteger selectIndex;

@@ -24,7 +24,9 @@
     self.layer.cornerRadius = 10;
     self.layer.masksToBounds = YES;
     self.timeLabel.textColor = [UIColor redColor];
-    
+    self.layer.borderWidth = 1;
+    self.layer.borderColor = [[UIColor grayColor] CGColor];
+     [self setBackgroundColor: [[UGSkinManagers shareInstance] setCellbgColor]];
 }
 
 - (void)setItem:(UGNextIssueModel *)item {
@@ -39,7 +41,7 @@
         self.timeLabel.text = @"获取下一期...";
         
     }
-    [self.imgView sd_setImageWithURL:[NSURL URLWithString:item.pic] placeholderImage:[UIImage imageNamed:@"zwt"]];
+    [self.imgView sd_setImageWithURL:[NSURL URLWithString:item.pic] placeholderImage:[UIImage imageNamed:@"loading"]];
 }
 
 - (void)setTime:(NSString *)time {

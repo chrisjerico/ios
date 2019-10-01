@@ -12,7 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 typedef void(^RedEnvelopeCancelBlock)(void);
 typedef void(^RedEnvelopeRedBlock)(void);
-@interface UGredEnvelopeView : UIView
+@interface UGredEnvelopeView : UGView
 @property (nonatomic, copy) RedEnvelopeCancelBlock cancelClickBlock;
 @property (nonatomic, copy) RedEnvelopeRedBlock redClickBlock;
 

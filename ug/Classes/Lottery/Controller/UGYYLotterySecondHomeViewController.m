@@ -13,11 +13,21 @@
 
 @end
 @implementation UGYYLotterySecondHomeViewController
+-(void)skin{
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
 
+    [self.collectionView  reloadData];
+  
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = UGBackgroundColor;
+   [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    
+    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
+        
+        [self skin];
+    });
 
     [self initCollectionView];
 }
@@ -32,7 +42,7 @@
         layout.minimumInteritemSpacing = 5;
         layout.minimumLineSpacing = 5;
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-        layout.headerReferenceSize = CGSizeMake(UGScreenW, 0);
+        layout.headerReferenceSize = CGSizeMake(UGScreenW, 10);
         layout;
         
     });
@@ -42,7 +52,7 @@
         
         collectionViewH = UGScerrnH - k_Height_NavBar -k_Height_StatusBar+20;
         
-        collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(5, 5, UGScreenW - 10, collectionViewH) collectionViewLayout:layout];
+        collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(5,10, UGScreenW - 10, collectionViewH) collectionViewLayout:layout];
         collectionView.backgroundColor = [UIColor clearColor];
         collectionView.layer.cornerRadius = 10;
         collectionView.layer.masksToBounds = YES;

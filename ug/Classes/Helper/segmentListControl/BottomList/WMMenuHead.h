@@ -8,7 +8,7 @@
 #import <UIKit/UIKit.h>
 
 @class WMPickupList;
-@interface WMMenuHead : UIView
+@interface WMMenuHead : UGView
 
 // 继承必须实现以下函数
 ///  头部高度

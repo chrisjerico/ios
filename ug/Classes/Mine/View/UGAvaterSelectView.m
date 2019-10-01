@@ -45,6 +45,8 @@ static NSString *avaterCellid = @"UGAvaterCollectionViewCell";
         self.cancelButton.layer.masksToBounds = YES;
         [self initCollectionView];
         [self getAvatarList];
+        [self setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+
     }
     return self;
 }

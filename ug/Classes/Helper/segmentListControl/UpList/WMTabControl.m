@@ -7,7 +7,7 @@
 
 #import "WMTabControl.h"
 
-@interface WMTabControlItem : UIView
+@interface WMTabControlItem : UGView
 
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIImageView *titleIconView;

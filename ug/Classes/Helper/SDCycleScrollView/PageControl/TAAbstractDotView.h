@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface TAAbstractDotView : UIView
+@interface TAAbstractDotView : UGView
 
 
 /**

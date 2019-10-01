@@ -30,7 +30,8 @@
         self.frame = frame;
         
        
-        
+        [self setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+
         [self setupUserInfo];
         
         dispatch_async(dispatch_get_main_queue(), ^{

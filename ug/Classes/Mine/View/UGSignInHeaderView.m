@@ -18,6 +18,8 @@
     if (self) {
         self = [[NSBundle mainBundle] loadNibNamed:@"UGSignInHeaderView" owner:self options:0].firstObject;
         self.frame = frame;
+        [self setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+
     }
     return self;
 }
@@ -30,6 +32,8 @@
     NSArray *objs=[bundle loadNibNamed:@"UGSignInHeaderView" owner:nil options:nil];
     return [objs lastObject];
     
+    
+    
 }
 
 -(instancetype)initView{
@@ -37,7 +41,8 @@
     if (self = [super init]) {
         self = [self UGSignInHeaderView];
     }
-    
+    [self setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+
     return self;
     
     

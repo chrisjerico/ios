@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^BetDetailViewBetBlock)(void);
 typedef void(^BetDetailViewCancelBlock)(void);
-@interface UGBetDetailView : UIView
+@interface UGBetDetailView : UGView
 
 @property (nonatomic, copy) BetDetailViewBetBlock betClickBlock;
 @property (nonatomic, copy) BetDetailViewCancelBlock cancelBlock;

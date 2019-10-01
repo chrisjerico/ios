@@ -6,7 +6,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface  SLWebViewController: UIViewController
+@interface  SLWebViewController:UGViewController
 
 @property (nonatomic, strong) NSString *urlStr;
 

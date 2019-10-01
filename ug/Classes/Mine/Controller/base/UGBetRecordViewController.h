@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGBetRecordViewController : UIViewController
+@interface UGBetRecordViewController :UGViewController
 @property (nonatomic, strong) XYYSegmentControl *slideSwitchView;
 
 -(void)buildSegment;

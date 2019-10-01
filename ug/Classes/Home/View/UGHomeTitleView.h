@@ -13,7 +13,7 @@ typedef void(^HomeTitleMoreBlock)(void);
 typedef void(^HomeTitleTryplayBlock)(void);
 typedef void(^HomeTitleLoginBlock)(void);
 typedef void(^HomeTitleRegisterBlock)(void);
-@interface UGHomeTitleView : UIView
+@interface UGHomeTitleView : UGView
 @property (nonatomic, copy) HomeTitleMoreBlock moreClickBlock;
 @property (nonatomic, copy) HomeTitleTryplayBlock tryPlayClickBlock;
 @property (nonatomic, copy) HomeTitleLoginBlock loginClickBlock;

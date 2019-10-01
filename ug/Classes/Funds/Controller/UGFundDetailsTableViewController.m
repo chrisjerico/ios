@@ -26,7 +26,7 @@ static NSString *fundDetailsCellid = @"UGFundDetailsCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+     [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
     self.pageSize = size;
     self.pageNumber = page;
     self.tableView.rowHeight = 50;

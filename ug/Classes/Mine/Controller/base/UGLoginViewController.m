@@ -39,9 +39,22 @@
 @end
 
 @implementation UGLoginViewController
-
+-(void)skin{
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    
+    
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    
+    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
+        
+        [self skin];
+    });
+    
     self.fd_interactivePopDisabled = YES;
     self.navigationItem.title = @"登录";
     self.loginButton.layer.cornerRadius = 5;

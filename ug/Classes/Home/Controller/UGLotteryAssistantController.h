@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGLotteryAssistantController : UIViewController
+@interface UGLotteryAssistantController :UGViewController
 
 @end
 

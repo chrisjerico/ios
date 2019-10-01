@@ -24,6 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"资金管理";
+     [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
     [self buildSegment];
     
 }

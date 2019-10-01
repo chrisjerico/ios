@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 typedef void(^SignInHeaderViewBlock)(void);
 
-@interface UGSignInHeaderView : UIView
+@interface UGSignInHeaderView : UGView
 
 @property (nonatomic, copy) SignInHeaderViewBlock signInHeaderViewnBlock;
 

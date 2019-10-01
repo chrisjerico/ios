@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^PlatformSelectBlock)(NSInteger selectIndex);
 typedef void(^GameItemSelectBlock)(GameModel *game);
-@interface UGGameTypeCollectionView : UIView
+@interface UGGameTypeCollectionView : UGView
 
 @property (nonatomic, copy)  PlatformSelectBlock platformSelectBlock;
 @property (nonatomic, copy) GameItemSelectBlock gameItemSelectBlock;

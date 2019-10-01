@@ -24,6 +24,7 @@
     
     self.myButton.layer.cornerRadius = 5; 
     self.myButton.layer.masksToBounds = YES;
+      [self setBackgroundColor: [[UGSkinManagers shareInstance] setCellbgColor]];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -10,7 +10,7 @@
 @class UGChanglongBetRecordModel;
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGBetRecordDetailViewController : UIViewController
+@interface UGBetRecordDetailViewController :UGViewController
 @property (nonatomic, strong) UGChanglongBetRecordModel *item;
 
 @end

@@ -36,7 +36,7 @@ static NSString *rechargeRecordCellid = @"UGRechargeRecordCell";
         [self getWithdrawData];
         
     });
-    
+     [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
     self.pageSize = size;
     self.pageNumber = page;
     self.tableView.rowHeight = 50;

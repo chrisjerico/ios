@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGSignInViewController : UIViewController
+@interface UGSignInViewController :UGViewController
 
 @end
 

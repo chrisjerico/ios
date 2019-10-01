@@ -28,7 +28,7 @@ typedef NS_ENUM(NSUInteger, UUMarqueeViewDirection) {
 @end
 
 #pragma mark - UUMarqueeView
-@interface UUMarqueeView : UIView
+@interface UUMarqueeView : UGView
 @property (nonatomic, weak) id<UUMarqueeViewDelegate> delegate;
 @property (nonatomic, assign) NSTimeInterval timeIntervalPerScroll;
 @property (nonatomic, assign) NSTimeInterval timeDurationPerScroll; // only for [UUMarqueeViewDirectionUpward] and [useDynamicHeight = NO]
@@ -54,12 +54,12 @@ typedef NS_ENUM(NSUInteger, UUMarqueeViewDirection) {
 @end
 
 #pragma mark - UUMarqueeViewTouchReceiver(Private)
-@interface UUMarqueeViewTouchReceiver : UIView
+@interface UUMarqueeViewTouchReceiver : UGView
 @property (nonatomic, weak) id<UUMarqueeViewTouchResponder> touchDelegate;
 @end
 
 #pragma mark - UUMarqueeItemView(Private)
-@interface UUMarqueeItemView : UIView   // UUMarqueeItemView's [tag] is the index of data source. if none data source then [tag] is -1
+@interface UUMarqueeItemView : UGView   // UUMarqueeItemView's [tag] is the index of data source. if none data source then [tag] is -1
 @property (nonatomic, assign) BOOL didFinishCreate;
 @property (nonatomic, assign) CGFloat width;    // cache the item width, only for [UUMarqueeViewDirectionLeftward]
 @property (nonatomic, assign) CGFloat height;   // cache the item height, only for [UUMarqueeViewDirectionUpward]

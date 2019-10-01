@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGMosaicGoldFinishView : UIView
+@interface UGMosaicGoldFinishView : UGView
 
 
 @property (nonatomic, strong) UGMosaicGoldParamModel *item;

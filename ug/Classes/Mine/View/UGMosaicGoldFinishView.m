@@ -42,7 +42,8 @@
         
         //初始化子视图
         [self initSubview];
-        
+        [self setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+
         //初始化数据
         
         [self initData];

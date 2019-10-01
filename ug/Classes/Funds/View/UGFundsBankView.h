@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^UGFundsBankViewBlock)(id model);
 
-@interface UGFundsBankView : UIView
+@interface UGFundsBankView : UGView
 
 @property (nonatomic, strong) NSArray *dataArray;
 

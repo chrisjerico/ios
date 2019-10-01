@@ -40,7 +40,7 @@ typedef void (^WMNavTabBarBlock)(NSInteger index, NSInteger isRepeat);
 - (void)showNavView:(BOOL)isShow;
 @end
 
-@interface WMNavTabBar : UIView
+@interface WMNavTabBar : UGView
 
 @property (nonatomic, weak) id <WMNavTabBarDelegate>delegate;   /**< 回调 */
 @property (nonatomic, assign) NSInteger currentItemIndex;       /**< 当前选项索引 */

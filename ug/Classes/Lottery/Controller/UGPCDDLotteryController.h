@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 typedef void(^PCDDLotteryBlock)(void);
 
-@interface UGPCDDLotteryController : UIViewController
+@interface UGPCDDLotteryController :UGViewController
 @property (nonatomic, strong) NSArray *lotteryGamesArray;
 @property (nonatomic, strong) UGNextIssueModel *nextIssueModel;
 @property (nonatomic, strong) NSString *gameId;

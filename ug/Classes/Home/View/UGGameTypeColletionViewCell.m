@@ -19,15 +19,12 @@
 @end
 @implementation UGGameTypeColletionViewCell
 
--(void)skin{
-  [self setBackgroundColor: [[UGSkinManagers shareInstance] setTabbgColor]];
-    
-}
+
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    [self setBackgroundColor: [[UGSkinManagers shareInstance] setTabbgColor]];
+    [self setBackgroundColor: [[UGSkinManagers shareInstance] setCellbgColor]];
     self.layer.cornerRadius = 10;
     self.layer.masksToBounds = YES;
     self.layer.borderColor = UGBackgroundColor.CGColor;
@@ -60,7 +57,7 @@
     _item = item;
 	self.nameLabel.text = [item.name length] > 0 ? item.name : item.title;
 	[self.hasSubSign setHidden: (item.subType.count > 0 ? false : true)];
-    [self.imgView sd_setImageWithURL:[NSURL URLWithString:item.logo] placeholderImage:[UIImage imageNamed:@"zwt"]];
+    [self.imgView sd_setImageWithURL:[NSURL URLWithString:item.logo] placeholderImage:[UIImage imageNamed:@"loading"]];
 	
 }
 -(UIImageView *)hasSubSign {

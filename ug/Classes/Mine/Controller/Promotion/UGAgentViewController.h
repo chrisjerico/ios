@@ -10,7 +10,7 @@
 @class UGagentApplyInfo;
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGAgentViewController : UIViewController
+@interface UGAgentViewController :UGViewController
 
 @property (nonatomic, strong) UGagentApplyInfo *item;
 

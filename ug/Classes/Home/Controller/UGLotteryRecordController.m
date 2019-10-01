@@ -55,7 +55,7 @@ static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
         for (UGNextIssueModel *model in listModel.list) {
             if ([model.gameId isEqualToString:self.gameId]) {
                 self.gameNameLabel.text = model.title;
-                [self.logoView sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:@"zwt"]];
+                [self.logoView sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:@"loading"]];
                 
             }
             [self.gameArray addObject:model];
@@ -154,7 +154,7 @@ static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
         if (ybPopupMenu == self.lotteryTypePopView ) {
             UGNextIssueModel *model = self.gameArray[index];
             self.gameNameLabel.text = model.title;
-            [self.logoView sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:@"zwt"]];
+            [self.logoView sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:@"loading"]];
             if (self.selGameIndex != index) {
                 self.selGameIndex = index;
                 [self getLotteryHistory];

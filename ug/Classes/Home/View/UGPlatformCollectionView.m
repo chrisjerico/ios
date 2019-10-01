@@ -236,7 +236,7 @@ static NSString *const footerId = @"footerId";
 - (UGGameSubCollectionView *)gameSubCollectionView {
 	if (!_gameSubCollectionView) {
 		_gameSubCollectionView = [[UGGameSubCollectionView alloc] initWithFrame:self.bounds];
-		_gameSubCollectionView.backgroundColor = [UIColor whiteColor];
+		_gameSubCollectionView.backgroundColor = [UIColor clearColor];
 		WeakSelf
 		_gameSubCollectionView.gameItemSelectBlock = ^(GameModel * model) {
 			weakSelf.gameItemSelectBlock(model);

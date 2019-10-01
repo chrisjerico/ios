@@ -10,7 +10,7 @@
 #import "UGYYPlatformGames.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGYYLotterySecondHomeViewController : UIViewController
+@interface UGYYLotterySecondHomeViewController :UGViewController
 @property (nonatomic, strong) NSArray<UGYYGames *>    *dataArray;
 @end
 

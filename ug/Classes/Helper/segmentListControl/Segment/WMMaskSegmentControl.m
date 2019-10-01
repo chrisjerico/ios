@@ -7,7 +7,7 @@
 
 #import "WMMaskSegmentControl.h"
 
-@interface WMMaskSegmentControlItem : UIView
+@interface WMMaskSegmentControlItem : UGView
 
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIView *lineView;

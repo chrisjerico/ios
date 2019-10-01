@@ -20,7 +20,10 @@
 @end
 
 @implementation UGFeedbackDetailController
-
+-(void)skin{
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -29,7 +32,11 @@
     self.contentTextView.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.contentTextView.layer.borderWidth = 0.8;
     self.contentTextView.delegate = self;
-    self.view.backgroundColor = UGBackgroundColor;
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
+        
+        [self skin];
+    });
     self.submitButton.layer.cornerRadius = 3;
     self.submitButton.layer.masksToBounds = YES;
     [self getFeedbackDetail];

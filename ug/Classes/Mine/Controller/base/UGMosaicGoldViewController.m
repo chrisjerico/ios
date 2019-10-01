@@ -18,11 +18,19 @@
 @end
 
 @implementation UGMosaicGoldViewController
-
+-(void)skin{
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"活动彩金";
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
+        
+        [self skin];
+    });
     [self buildSegment];
 }
 
@@ -42,7 +50,7 @@
     self.slideSwitchView.tabItemNormalColor = [UIColor grayColor];
     self.slideSwitchView.tabItemNormalFont = 13;
     //设置tab 被选中的颜色(可选)
-    self.slideSwitchView.tabItemSelectedColor = UGNavColor;
+    self.slideSwitchView.tabItemSelectedColor = [[UGSkinManagers shareInstance] setNavbgColor];
     //设置tab 背景颜色(可选)
     self.slideSwitchView.tabItemNormalBackgroundColor = [UIColor whiteColor];
     //设置tab 被选中的标识的颜色(可选)

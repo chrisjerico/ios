@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 typedef void(^LotteryAdGoBlock)(void);
-@interface UGLotteryAdPopView : UIView
+@interface UGLotteryAdPopView : UGView
 - (void)show;
 @property (nonatomic, copy) LotteryAdGoBlock adGoBlcok;
 @property (nonatomic, strong) NSString *picUrl;

@@ -14,7 +14,7 @@ typedef void(^SignInScrFootFiveBlock)(void);
 
 typedef void(^SignInScrFootSevenBlock)(void);
 
-@interface UGSignInScrFootView : UIView
+@interface UGSignInScrFootView : UGView
 
 @property (nonatomic, strong) NSString *fiveStr;
 

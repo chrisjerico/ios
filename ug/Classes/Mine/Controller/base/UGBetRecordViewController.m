@@ -37,13 +37,20 @@
 
 static NSString *recordFilterCellid = @"UGRecordFilterCollectionViewCell";
 @implementation UGBetRecordViewController
-
+-(void)skin{
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.navigationItem.title = @"彩票注单";
 //    self.navigationItem.titleView = self.titleView;
-    self.view.backgroundColor = UGBackgroundColor;
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
+        
+        [self skin];
+    });
     self.dateIndex = 0;
     self.controllerIndex = 0;
     self.filterItemArray = @[@"今日",@"最近三天",@"最近一周",@"最近一月"];

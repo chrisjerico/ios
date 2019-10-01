@@ -23,7 +23,7 @@
     self.bottomLine.hidden = YES;
     self.leftPoint.layer.cornerRadius = self.leftPoint.width / 2;
     self.leftPoint.layer.masksToBounds = YES;
-    self.bottomLine.backgroundColor = UGNavColor;
+    self.bottomLine.backgroundColor = [[UGSkinManagers shareInstance] setNavbgColor];
 }
 
 - (void)setItem:(UGGameplayModel *)item {
@@ -45,7 +45,7 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
     if (selected) {
-        self.titleLabel.textColor = UGNavColor;
+        self.titleLabel.textColor = [[UGSkinManagers shareInstance] setNavbgColor];
         self.bottomLine.hidden = NO;
 //        self.layer.borderColor = UGNavColor.CGColor;
 //        self.layer.borderWidth = 1;

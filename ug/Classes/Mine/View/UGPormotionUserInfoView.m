@@ -30,7 +30,8 @@
         self.backgroundColor = [UIColor whiteColor];
         self.layer.cornerRadius = 5;
         self.moneyTextField.keyboardType = UIKeyboardTypeDecimalPad;
-        
+        [self setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+
     }
     return self;
     

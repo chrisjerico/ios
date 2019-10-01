@@ -28,6 +28,8 @@
         self.frame = frame;
         self.layer.cornerRadius = 10;
         self.layer.masksToBounds = YES;
+        [self setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+
     }
     
     return self;

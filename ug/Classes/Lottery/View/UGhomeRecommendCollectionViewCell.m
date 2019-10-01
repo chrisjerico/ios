@@ -21,6 +21,9 @@
     // Initialization code
     self.layer.cornerRadius = 10;
     self.layer.masksToBounds = YES;
+    self.layer.borderWidth = 1;
+    self.layer.borderColor = [[UIColor grayColor] CGColor];
+    [self setBackgroundColor: [[UGSkinManagers shareInstance] setCellbgColor]];
 }
 
 - (void)setItem:(UGYYPlatformGames *)item {
@@ -57,7 +60,7 @@
     
     NSLog(@"itemGame.pic = %@",itemGame.pic);
    
-    [self.imgView sd_setImageWithURL:[NSURL URLWithString:[CMCommon imgformat:itemGame.pic]] placeholderImage:[UIImage imageNamed:@"zwt"]];
+    [self.imgView sd_setImageWithURL:[NSURL URLWithString:[CMCommon imgformat:itemGame.pic]] placeholderImage:[UIImage imageNamed:@"loading"]];
     
 }
 

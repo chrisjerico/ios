@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 typedef void(^QXCLotteryBlock)(void);
 
-@interface UGQXCLotteryController : UIViewController
+@interface UGQXCLotteryController :UGViewController
 @property (nonatomic, strong) NSArray *lotteryGamesArray;
 @property (nonatomic, strong) UGNextIssueModel *nextIssueModel;
 @property (nonatomic, strong) NSString *gameId;

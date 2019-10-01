@@ -127,13 +127,6 @@
 
     [self getCustomGameList];
     
-//    [[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:[UIColor redColor]]];
-    
-    [[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:[UIColor greenColor]]];
-//    [self getNoticeList];
-//    [self getRankList];
-//    [self getAllNextIssueData];
-//    [self getCheckinListData];
 
     
 }
@@ -141,6 +134,17 @@
 - (void)viewDidLoad {
 
     [super viewDidLoad];
+    
+    [[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:[[UGSkinManagers shareInstance] setTabbgColor]]];
+    
+    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[[UGSkinManagers shareInstance] settabNOSelectColor], NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
+    
+    [[UITabBarItem appearance] setTitleTextAttributes:                                                         [NSDictionary dictionaryWithObjectsAndKeys: [[UGSkinManagers shareInstance] settabSelectColor],NSForegroundColorAttributeName, nil]forState:UIControlStateSelected];
+    
+    [[UITabBar appearance] setSelectedImageTintColor: [[UGSkinManagers shareInstance] settabSelectColor]];
+    
+    [[UITabBar appearance] setUnselectedItemTintColor: [[UGSkinManagers shareInstance] settabNOSelectColor]];
+
     
     [self setupSubView];
 
