@@ -631,22 +631,21 @@ completionHandle: (void(^)(GameModel * model)) block
 	self = [super initWithFrame:frame];
 	if (self) {
 		
-		self.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.9];
 		UICollectionViewFlowLayout *layout = ({
 			layout = [[UICollectionViewFlowLayout alloc] init];
 			layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-//			layout.itemSize = CGSizeMake(100, 50);
+			layout.itemSize = CGSizeMake(UGScreenW /3, 50);
 
-			layout.minimumLineSpacing = 5;
-			layout.minimumInteritemSpacing = 5;
-			layout.estimatedItemSize = CGSizeMake(100, 50);
-			layout.itemSize = UICollectionViewFlowLayoutAutomaticSize;
+			layout.minimumLineSpacing = 0;
+			layout.minimumInteritemSpacing = 0;
+//			layout.estimatedItemSize = CGSizeMake(100, 50);
+//			layout.itemSize = UICollectionViewFlowLayoutAutomaticSize;
 			layout;
 		});
 		
 		UICollectionView *collectionView = ({
 			collectionView = [[UICollectionView alloc] initWithFrame: CGRectZero collectionViewLayout:layout];
-			collectionView.backgroundColor = [UIColor clearColor];
+			collectionView.backgroundColor = [UIColor whiteColor];
 			collectionView.dataSource = self;
 			collectionView.delegate = self;
 			
@@ -656,14 +655,29 @@ completionHandle: (void(^)(GameModel * model)) block
 			collectionView;
 		});
 		
+		UIView * shadowView = [UIView new];
+		shadowView.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.9];
+		[self addSubview:shadowView];
+		[shadowView mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.edges.equalTo(self);
+		}];
+		
 		[self addSubview:collectionView];
 		[collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.edges.equalTo(self).inset(20);
+			make.left.right.top.equalTo(self);
+			make.height.equalTo(@(((_allGames.count - 1)/3 + 1) * 50));
 		}];
 		
 		
+		
+		[shadowView addGestureRecognizer: [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hide)]];
+		
 	}
 	return self;
+}
+
+- (void) hide {
+	[self removeFromSuperview];
 }
 static NSArray<GameModel *> * _allGames;
 
@@ -730,15 +744,15 @@ static NSArray<GameModel *> * _allGames;
 		[self addSubview:self.titleLabel];
 		[self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
 //			make.edges.equalTo(self).inset(25);
-			make.left.right.equalTo(self).inset(15);
+			make.left.right.equalTo(self).inset(5);
 			make.top.bottom.equalTo(self).inset(5);
 		}];
-		self.layer.borderWidth = 0.5;
-		self.layer.borderColor = [UIColor colorWithWhite:0.8 alpha:1.0].CGColor;
-		self.layer.cornerRadius = 3;
-//		self.titleLabel.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1.0];
+		self.titleLabel.layer.borderWidth = 0.5;
+		self.titleLabel.layer.borderColor = [UIColor colorWithWhite:0.8 alpha:1.0].CGColor;
+		self.titleLabel.layer.cornerRadius = 3;
+		self.titleLabel.textAlignment = NSTextAlignmentCenter;
+		self.titleLabel.font = [UIFont systemFontOfSize:12];
 		self.titleLabel.textColor = [UIColor colorWithWhite:0.6 alpha:1.0];
-//		self.backgroundColor = [UIColor colorWithWhite:0.6 alpha:1.0];
 		self.backgroundColor = [UIColor whiteColor];
 	}
 	return self;
