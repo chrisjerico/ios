@@ -951,7 +951,12 @@
 
 	if ([model.docType intValue] == 1) {
 
-		[self.navigationController pushViewController:[[UGDocumentVC alloc] initWithModel:model] animated:true];
+		UGDocumentVC * vc = [[UGDocumentVC alloc] initWithModel:model];
+		
+		
+//		vc.allGames = self.
+		
+		[self.navigationController pushViewController: vc animated:true];
 
 		return;
 	}

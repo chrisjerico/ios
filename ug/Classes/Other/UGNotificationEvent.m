@@ -27,7 +27,7 @@ NSString *UGNotificationDepositSuccessfully = @"UGNotificationDepositSuccessfull
 NSString *UGNotificationGetRewardsSuccessfully = @"UGNotificationGetRewardsSuccessfully";
 
 NSString *UGNotificationTryPlay = @"UGNotificationTryPlay";
-
+NSString *UGNotificationWithdrawalsSuccess = @"UGNotificationWithdrawalsSuccess";
 ///
 /// 登录授权
 ///

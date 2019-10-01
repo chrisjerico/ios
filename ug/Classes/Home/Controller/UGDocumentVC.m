@@ -27,6 +27,8 @@
 @property (nonatomic, strong) dispatch_group_t completionGroup;
 
 @property (nonatomic, strong) IssueView * issueView;
+
+@property (nonatomic, strong) UIButton * titleButton;
 @end
 
 @implementation UGDocumentVC
@@ -35,11 +37,16 @@
 {
 	self = [super init];
 	if (self) {
-		self.model = model;
+		_model = model;
+		
 	}
 	return self;
 }
+- (void)setModel:(GameModel *)model {
+	_model = model;
+	[_titleButton setTitle:[NSString stringWithFormat:@"%@ ▼", model.name] forState:UIControlStateNormal];
 
+}
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
@@ -51,6 +58,24 @@
 	
 	[self requestData: @""];
 	
+	_titleButton = [UIButton buttonWithType:UIButtonTypeCustom];
+	_titleButton.frame = CGRectMake(0, 0, 200, 40);
+	[_titleButton setTitle:[NSString stringWithFormat:@"%@ ▼", self.model.name] forState:UIControlStateNormal];
+	[_titleButton addTarget:self action:@selector(titleButtonTaped:)];
+	
+	self.navigationItem.titleView = _titleButton;
+	
+}
+
+- (void)titleButtonTaped: (UIButton *)sender {
+	[DocumentTypeList showIn:self.view completionHandle:^(GameModel * _Nonnull model) {
+		self.model = model;
+		[SVProgressHUD showWithStatus:nil];
+//		[sender setTitle:[NSString stringWithFormat:@"%@ ▼", self.model.name] forState:UIControlStateNormal];
+
+		[self requestData:@""];
+	}];
+	
 }
 
 - (void)requestData: (NSString *) title {
@@ -60,7 +85,7 @@
 	
 	if ([title isEqualToString:@""]) {
 		dispatch_group_enter(self.completionGroup);
-
+		
 		[CMNetwork getNextIssueWithParams:params completion:^(CMResult<id> *model, NSError *err) {
 			[CMResult processWithResult:model success:^{
 				weakSelf.nextIssue = model.data;
@@ -72,7 +97,7 @@
 			}];
 		}];
 	}
-
+	
 	dispatch_group_enter(self.completionGroup);
 	params[@"category"] = self.model.gameId;
 	params[@"title"] = title;
@@ -81,6 +106,7 @@
 			
 			DocumentListModel * data = model.data;
 			weakSelf.documentListData = data.list;
+			[self.tableView.mj_footer setHidden: (data.list.count > 0 ? true : false)];
 			dispatch_group_leave(weakSelf.completionGroup);
 		} failure:^(id msg) {
 			dispatch_group_leave(weakSelf.completionGroup);
@@ -92,7 +118,7 @@
 		[SVProgressHUD dismiss];
 		[weakSelf.tableView.mj_header endRefreshing];
 		[weakSelf.tableView reloadData];
-		weakSelf.navigationItem.title = weakSelf.nextIssue.title;
+		//		weakSelf.navigationItem.title = weakSelf.nextIssue.title;
 	});
 	
 }
@@ -111,7 +137,15 @@
 		_tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
 			[self requestData:@""];
 		}];
+		_tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+			
+		}];
 		[_tableView registerClass:[DocumentCell class] forCellReuseIdentifier:@"DocumentCell"];
+		
+		_tableView.tableFooterView = [UIView new];
+		[_tableView.mj_footer setState: MJRefreshStateNoMoreData];
+		
+		
 	}
 	return _tableView;
 }
@@ -133,6 +167,11 @@
 	cell.textLabel.font = [UIFont systemFontOfSize:16];
 	cell.textLabel.textColor = [UIColor colorWithWhite:0.2 alpha:1.0];
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+	UILabel * accessLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, 20)];
+	accessLabel.text = @"详情>>";
+	accessLabel.font = [UIFont systemFontOfSize:14];
+	accessLabel.textColor = [UIColor blueColor];
+	cell.accessoryView = accessLabel;
 	return cell;
 }
 
@@ -162,13 +201,27 @@
 				
 				
 			} else if (!documentDetailModel.hasPay) {
-				UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"该资料需要付费阅读，请打赏后查看" preferredStyle:UIAlertControllerStyleAlert];
+				
+				
+				UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"注意：您没有浏览权限。\n打赏后本期无限浏览此资料。" preferredStyle:UIAlertControllerStyleAlert];
 				[alert addAction:[UIAlertAction actionWithTitle:[NSString stringWithFormat:@"打赏%.2f元", documentDetailModel.amount] style: UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-					[SVProgressHUD showWithStatus:nil];
 					
-					[CMNetwork getDocumnetPayWithParams:@{@"id": document.articleID, @"token": token} completion:^(CMResult<id> *model, NSError *err) {
-						[SVProgressHUD showInfoWithStatus:model.msg];
-					}];
+					
+					
+					UIAlertController * alert = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"确认打赏%.2f元",documentDetailModel.amount] message:nil preferredStyle:UIAlertControllerStyleAlert];
+					
+					[alert addAction: [UIAlertAction actionWithTitle:@"取消" style: UIAlertActionStyleDefault handler:nil]];
+					[alert addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+						[SVProgressHUD showWithStatus:nil];
+						
+						[CMNetwork getDocumnetPayWithParams:@{@"id": document.articleID, @"token": token} completion:^(CMResult<id> *model, NSError *err) {
+							[SVProgressHUD showInfoWithStatus:model.msg];
+						}];
+					}]];
+					
+					[self presentViewController:alert animated:true completion:nil];
+					
+					
 					
 				}]];
 				[alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
@@ -193,10 +246,10 @@
 	issueView.searchBlock = ^(NSString * text) {
 		[SVProgressHUD showWithStatus:nil];
 		[weakSelf requestData:text];
-
+		
 	};
 	return issueView;
-//	return self.issueView;
+	//	return self.issueView;
 	
 }
 
@@ -452,7 +505,7 @@
 		_collectionView.delegate = self;
 		[_collectionView registerNib:[UINib nibWithNibName:@"UGLotteryResultCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UGLotteryResultCollectionViewCell"];
 		[_collectionView registerNib:[UINib nibWithNibName:@"UGLotterySubResultCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UGLotterySubResultCollectionViewCell"];
-
+		
 	}
 	return _collectionView;
 }
@@ -550,5 +603,145 @@
 
 @end
 @implementation DocumentCell
+
+@end
+
+@interface DocumentTypeList()<UICollectionViewDelegate, UICollectionViewDataSource>
+//@property(nonatomic, strong)UICollectionView * collectionView;
+@end
+
+@implementation DocumentTypeList
+
++(void)showIn: (UIView *)supperView
+completionHandle: (void(^)(GameModel * model)) block
+
+{
+	
+	DocumentTypeList * list = [[DocumentTypeList alloc] initWithFrame:CGRectZero];
+	[supperView addSubview:list];
+	[list mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.edges.equalTo(supperView);
+	}];
+	list.completionHandle = block;
+	
+}
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+	self = [super initWithFrame:frame];
+	if (self) {
+		
+		self.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.9];
+		UICollectionViewFlowLayout *layout = ({
+			layout = [[UICollectionViewFlowLayout alloc] init];
+			layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+//			layout.itemSize = CGSizeMake(100, 50);
+
+			layout.minimumLineSpacing = 5;
+			layout.minimumInteritemSpacing = 5;
+			layout.estimatedItemSize = CGSizeMake(100, 50);
+			layout.itemSize = UICollectionViewFlowLayoutAutomaticSize;
+			layout;
+		});
+		
+		UICollectionView *collectionView = ({
+			collectionView = [[UICollectionView alloc] initWithFrame: CGRectZero collectionViewLayout:layout];
+			collectionView.backgroundColor = [UIColor clearColor];
+			collectionView.dataSource = self;
+			collectionView.delegate = self;
+			
+			[collectionView registerClass: [DocumentTypeListCell class] forCellWithReuseIdentifier:@"DocumentTypeListCell"];
+			
+			[collectionView setShowsHorizontalScrollIndicator:NO];
+			collectionView;
+		});
+		
+		[self addSubview:collectionView];
+		[collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.edges.equalTo(self).inset(20);
+		}];
+		
+		
+	}
+	return self;
+}
+static NSArray<GameModel *> * _allGames;
+
++ (void)setAllGames:(NSArray<GameModel *> *)allGames {
+	_allGames = allGames;
+}
++ (NSArray<GameModel *> *)allGames {
+	return _allGames;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+	return _allGames.count;
+}
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+	
+	DocumentTypeListCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"DocumentTypeListCell" forIndexPath:indexPath];
+	cell.titleLabel.text = _allGames[indexPath.item].name;
+	return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+	
+	if (self.completionHandle) {
+		self.completionHandle(_allGames[indexPath.item]);
+	}
+	
+	[self removeFromSuperview];
+	
+}
+//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+//{
+//	return (CGSize){UGScreenW/3 - 10,80};
+//}
+//
+//
+//- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+//{
+//	return UIEdgeInsetsMake(5, 5, 5, 5);
+//}
+//
+//
+//- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
+//{
+//	return 5.f;
+//}
+//
+//
+//- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+//{
+//	return 5.f;
+//}
+
+@end
+@interface DocumentTypeListCell()
+
+@end
+@implementation DocumentTypeListCell
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+	self = [super initWithFrame:frame];
+	if (self) {
+		self.titleLabel = [UILabel new];
+		[self addSubview:self.titleLabel];
+		[self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//			make.edges.equalTo(self).inset(25);
+			make.left.right.equalTo(self).inset(15);
+			make.top.bottom.equalTo(self).inset(5);
+		}];
+		self.layer.borderWidth = 0.5;
+		self.layer.borderColor = [UIColor colorWithWhite:0.8 alpha:1.0].CGColor;
+		self.layer.cornerRadius = 3;
+//		self.titleLabel.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1.0];
+		self.titleLabel.textColor = [UIColor colorWithWhite:0.6 alpha:1.0];
+//		self.backgroundColor = [UIColor colorWithWhite:0.6 alpha:1.0];
+		self.backgroundColor = [UIColor whiteColor];
+	}
+	return self;
+}
 
 @end

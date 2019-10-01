@@ -31,6 +31,12 @@ static NSString *rechargeRecordCellid = @"UGRechargeRecordCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+    SANotificationEventSubscribe(UGNotificationWithdrawalsSuccess, self, ^(typeof (self) self, id obj) {
+        [self getWithdrawData];
+        
+    });
+    
     self.pageSize = size;
     self.pageNumber = page;
     self.tableView.rowHeight = 50;
@@ -123,7 +129,7 @@ static NSString *rechargeRecordCellid = @"UGRechargeRecordCell";
     }];
     
 }
-
+//取款
 - (void)getWithdrawData {
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"page":@(self.pageNumber),

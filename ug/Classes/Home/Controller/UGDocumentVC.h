@@ -13,7 +13,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UGDocumentVC : UIViewController
+
 - (instancetype)initWithModel: (GameModel *)model;
+
+
 
 @end
 
@@ -55,6 +58,21 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface DocumentCell : UITableViewCell
+
+@end
+
+@interface DocumentTypeList : UIView
+@property(nonatomic, assign)int selectedIndex;
++(NSArray<GameModel *> *) allGames;
++(void)setAllGames:(NSArray<GameModel *> *) allGames;
++(void)showIn: (UIView *)supperView
+completionHandle: (void(^)(GameModel * model)) block;
+@property(nonatomic, strong) void(^completionHandle)(GameModel * selectedModel);
+
+@end
+
+@interface DocumentTypeListCell : UICollectionViewCell
+@property(nonatomic, strong)UILabel * titleLabel;
 
 @end
 NS_ASSUME_NONNULL_END
