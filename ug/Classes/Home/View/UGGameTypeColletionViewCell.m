@@ -25,8 +25,8 @@
     self.backgroundColor = [UIColor whiteColor];
     self.layer.cornerRadius = 10;
     self.layer.masksToBounds = YES;
-//    self.layer.borderColor = UGBackgroundColor.CGColor;
-//    self.layer.borderWidth = 0.7;
+    self.layer.borderColor = UGBackgroundColor.CGColor;
+    self.layer.borderWidth = 1;
     self.hotImageView.hidden = YES;
 	[self addSubview:self.hasSubSign];
 	[self.hasSubSign mas_makeConstraints:^(MASConstraintMaker *make) {

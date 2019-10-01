@@ -107,7 +107,12 @@
 			
 			DocumentListModel * data = model.data;
 			weakSelf.documentListData = data.list;
-			[self.tableView.mj_footer setHidden: (data.list.count > 0 ? true : false)];
+			
+			if (data.list.count > 0) {
+				[self.tableView.mj_footer setHidden:true];
+			} else {
+				[self.tableView.mj_footer endRefreshingWithNoMoreData];
+			}
 			dispatch_group_leave(weakSelf.completionGroup);
 		} failure:^(id msg) {
 			dispatch_group_leave(weakSelf.completionGroup);

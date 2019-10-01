@@ -49,7 +49,7 @@ static UGBetResultView *_singleInstance = nil;
 		[self addSubview:image];
 		[image mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.left.right.equalTo(self);
-			make.centerY.equalTo(self);
+			make.centerY.equalTo(self).offset(-60);
 		}];
 		
 		[self addSubview:self.resultImage];
