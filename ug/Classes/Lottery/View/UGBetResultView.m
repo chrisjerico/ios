@@ -11,6 +11,7 @@
 @interface UGBetResultView()
 @property(nonatomic, strong) NSMutableArray<UILabel *> * numberlabels;
 @property(nonatomic, strong) NSMutableArray<UILabel *> * resultlabels;
+@property(nonatomic, strong) UIImageView * resultImage;
 @property(nonatomic, strong) UILabel * bonusLabel;
 @property(nonatomic, strong) UILabel * timerLabel;
 
@@ -49,6 +50,14 @@ static UGBetResultView *_singleInstance = nil;
 		[image mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.left.right.equalTo(self);
 			make.centerY.equalTo(self);
+		}];
+		
+		[self addSubview:self.resultImage];
+		[self.resultImage mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.centerX.equalTo(image);
+			make.top.equalTo(image).offset(160);
+			make.width.equalTo(image).multipliedBy(0.4);
+			make.height.equalTo(image.mas_width).multipliedBy(0.4*23/56);
 		}];
 		
 		[self addSubview: self.timerButton];
@@ -185,8 +194,11 @@ static UGBetResultView *_singleInstance = nil;
 	
 	if ([model.bonus floatValue] > 0) {
 		resultView.bonusLabel.text = [NSString stringWithFormat:@"+%@", model.bonus];
+		resultView.resultImage.image = [UIImage imageNamed:@"mmczjl"];
 	} else {
 		resultView.bonusLabel.text = @"再接再历";
+		resultView.resultImage.image = [UIImage imageNamed:@"mmcwzj"];
+
 	}
 	
 	resultView.timerAction = timerAction;
@@ -237,7 +249,13 @@ static UGBetResultView *_singleInstance = nil;
 
 	
 }
-
+- (UIImageView *)resultImage {
+	
+	if (!_resultImage) {
+		_resultImage = [[UIImageView alloc] init];
+	}
+	return _resultImage;
+}
 - (void) timerButtonTaped: (UIButton *) sender {
 	[sender setSelected: !sender.isSelected];
 	if (sender.isSelected) {

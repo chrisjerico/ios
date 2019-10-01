@@ -85,9 +85,9 @@
 	
 	self.titleLabel.htmlString = model.title;
 
-	self.headerLabel.htmlString = model.header;
-	self.contentLabel.htmlString = model.content;
-	self.footerLabel.htmlString = model.footer;
+//	self.headerLabel.htmlString = model.header;
+	self.contentLabel.htmlString = [NSString stringWithFormat:@"%@%@%@", model.title, model.content, model.footer];
+//	self.footerLabel.htmlString = model.footer;
 	
     NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
 	[paragraphStyle setAlignment:NSTextAlignmentCenter];
