@@ -12,7 +12,8 @@
 #import "UGLotterySubResultCollectionViewCell.h"
 #import "CMNetwork+Document.h"
 #import "UGDocumentDetailVC.h"
-
+#import "UGFastThreeOneCollectionViewCell.h"
+#import "UGDocumentView.h"
 
 @interface UGDocumentVC ()<UITableViewDelegate, UITableViewDataSource>
 @property(nonatomic, strong)GameModel * model;
@@ -187,9 +188,18 @@
 			UGDocumentDetailData * documentDetailModel = model.data;
 			
 			if (documentDetailModel.canRead) {
-				UGDocumentDetailVC *vc = [UGDocumentDetailVC new];
-				vc.model = documentDetailModel;
-				[self presentViewController:vc animated:true completion:nil];
+//				UGDocumentDetailVC *vc = [UGDocumentDetailVC new];
+//				vc.model = documentDetailModel;
+//				[self presentViewController:vc animated:true completion:nil];
+				
+				UGDocumentView * view = [[UGDocumentView alloc] initWithFrame:CGRectZero];
+				
+				[self.view addSubview:view];
+				view.model = documentDetailModel;
+				[view mas_makeConstraints:^(MASConstraintMaker *make) {
+					make.edges.equalTo(self.view);
+				}];
+				
 			} else if (user.isTest){
 				
 				
@@ -288,7 +298,14 @@
 @end
 
 @implementation IssueView
-
+static NSString *leftTitleCellid = @"UGTimeLotteryLeftTitleCell";
+static NSString *lottryBetCellid = @"UGTimeLotteryBetCollectionViewCell";
+static NSString *oneimgCellid = @"UGFastThreeTwoCollectionViewCell";
+static NSString *twoImgCellid = @"UGFastThreeThreeCollectionViewCell";
+static NSString *threeImgCellid = @"UGFastThreeFourCollectionViewCell";
+static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
+static NSString *lotteryResultCellid = @"UGFastThreeOneCollectionViewCell";
+static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell";
 - (instancetype)initWithFrame:(CGRect)frame
 {
 	self = [super initWithFrame:frame];
@@ -405,10 +422,28 @@
 }
 - (void)setNextIssueModel:(UGNextIssueModel *)nextIssueModel {
 	_nextIssueModel = nextIssueModel;
+	if (nextIssueModel == nil) {
+		return;
+	}
 	self.preNumArray = [nextIssueModel.preNum componentsSeparatedByString:@","];
 	if (nextIssueModel.preNumSx.length) {
 		self.subPreNumArray = [nextIssueModel.preNumSx componentsSeparatedByString:@","];
 	}
+	
+	if ([@"pcdd" isEqualToString:nextIssueModel.gameType]) {
+		NSInteger total = 0;
+		 for (NSString *num in self.preNumArray) {
+			 total += num.integerValue;
+		 }
+		NSMutableArray * tempArray = self.preNumArray.mutableCopy;
+		 [tempArray addObject:@"="];
+		 [tempArray addObject:[NSString stringWithFormat:@"%ld",total]];
+		self.preNumArray = tempArray;
+	
+	}
+	
+
+	
 	self.currentIssueLabel.text = [NSString stringWithFormat:@"%@期",self.nextIssueModel.preIssue];
 	self.nextIssueLabel.text = [NSString stringWithFormat:@"%@期",self.nextIssueModel.curIssue];
 	[self updateCloseLabelText];
@@ -505,6 +540,8 @@
 		_collectionView.delegate = self;
 		[_collectionView registerNib:[UINib nibWithNibName:@"UGLotteryResultCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UGLotteryResultCollectionViewCell"];
 		[_collectionView registerNib:[UINib nibWithNibName:@"UGLotterySubResultCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UGLotterySubResultCollectionViewCell"];
+		[_collectionView registerNib:[UINib nibWithNibName:@"UGFastThreeOneCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:lotteryResultCellid];
+
 		
 	}
 	return _collectionView;
@@ -512,6 +549,10 @@
 
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+	
+	if ([@"bjkl8" isEqualToString:self.nextIssueModel.gameType]) {
+		return 1;
+	}
 	return 2;
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -519,7 +560,13 @@
 	if ([@"lhc" isEqualToString:self.nextIssueModel.gameType]) {
 		return self.preNumArray.count ? (self.preNumArray.count + 1) : 0;
 		
-	} else if (section == 0){
+	} else if ([@"pcdd" isEqualToString:self.nextIssueModel.gameType]) {
+		if (section == 0) {
+			   return self.preNumArray.count;
+		   }
+		   return self.subPreNumArray.count > 3 ? 3 : self.subPreNumArray.count;
+	}
+	else if (section == 0){
 		return self.preNumArray.count;
 	} else {
 		return self.subPreNumArray.count;
@@ -567,6 +614,36 @@
 			return cell;
 		}
 		
+	} else if ( [@"jsk3" isEqualToString:self.nextIssueModel.gameType]) {
+		if (indexPath.section == 0) {
+				 
+				 UGFastThreeOneCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:lotteryResultCellid forIndexPath:indexPath];
+				 cell.num = self.preNumArray[indexPath.row];
+				 return cell;
+			 }else {
+					 
+				 UGLotterySubResultCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:lotterySubResultCellid forIndexPath:indexPath];
+				 cell.title = self.subPreNumArray[indexPath.row];
+				 return cell;
+				
+			 }
+	} else if ([@"pcdd" isEqualToString:self.nextIssueModel.gameType]) {
+		if (indexPath.section == 0) {
+				  
+				  UGLotteryResultCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UGLotteryResultCollectionViewCell" forIndexPath:indexPath];
+				  cell.title = self.preNumArray[indexPath.row];
+				  cell.showAdd = NO;
+				  cell.showBorder = NO;
+				  if (indexPath.row == 3) {
+					  cell.showIsequal = YES;
+					  cell.showAdd = YES;
+				  }
+				  return cell;
+			  } else {
+				  UGLotterySubResultCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UGLotterySubResultCollectionViewCell" forIndexPath:indexPath];
+				  cell.title = self.subPreNumArray[indexPath.row];
+				  return cell;
+			  }
 	} else {
 		if (indexPath.section == 0) {
 			
@@ -612,12 +689,28 @@
 
 @implementation DocumentTypeList
 
+
+static DocumentTypeList *_singleInstance = nil;
+
++ (instancetype)shareInstance
+{
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		if (_singleInstance == nil) {
+			_singleInstance = [[self alloc] initWithFrame:CGRectZero];
+		}
+	});
+	return _singleInstance;
+}
+
+
 +(void)showIn: (UIView *)supperView
 completionHandle: (void(^)(GameModel * model)) block
 
 {
 	
-	DocumentTypeList * list = [[DocumentTypeList alloc] initWithFrame:CGRectZero];
+	DocumentTypeList * list = [DocumentTypeList shareInstance];
+	[list removeFromSuperview];
 	[supperView addSubview:list];
 	[list mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.edges.equalTo(supperView);
