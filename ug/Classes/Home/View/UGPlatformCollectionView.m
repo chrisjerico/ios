@@ -40,7 +40,7 @@ static NSString *const footerId = @"footerId";
 		[self registerClass:[CollectionFooter class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:footerId];
 		self.delegate = self;
 		self.dataSource = self;
-		self.backgroundColor = UIColor.whiteColor;
+		self.backgroundColor = UIColor.clearColor;
 	}
 	return self;
 }

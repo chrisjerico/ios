@@ -62,6 +62,8 @@
 #import "UGYubaoViewController.h"
 
 #import "UGYYRightMenuView.h"
+#import "UIImage+YYgradientImage.h"
+
 
 @interface UGHomeViewController ()<SDCycleScrollViewDelegate,UUMarqueeViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -105,6 +107,7 @@
 
 @property (strong, nonatomic)UILabel *nolineLabel;
 
+@property (weak, nonatomic) IBOutlet UIView *rollingView;
 
 @end
 
@@ -113,12 +116,34 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+-(void)skin{
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    [self.rollingView setBackgroundColor:[[UGSkinManagers shareInstance]setbgColor]];
+    [self.leftwardMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
+    [self.gameTypeView setBackgroundColor:[UIColor clearColor]];
+    [self.rankingView setBackgroundColor:[UIColor clearColor]];
+    [self getCustomGameList];
+    
+    [[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:[UIColor redColor]]];
+//    [self getNoticeList];
+//    [self getRankList];
+//    [self getAllNextIssueData];
+//    [self getCheckinListData];
+
+    
+}
+
 - (void)viewDidLoad {
 
     [super viewDidLoad];
     
     [self setupSubView];
 
+    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
+       
+        [self skin];
+    });
+    
     SANotificationEventSubscribe(UGNotificationTryPlay, self, ^(typeof (self) self, id obj) {
         [self tryPlayClick];
    
@@ -411,6 +436,9 @@
             
             UGSystemConfigModel *config = model.data;
             UGSystemConfigModel.currentConfig = config;
+            
+            
+            [[UGSkinManagers shareInstance] setSkin];
             
            [self.titleView setImgName:config.mobile_logo];
             

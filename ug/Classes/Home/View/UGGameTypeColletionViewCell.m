@@ -19,6 +19,11 @@
 @end
 @implementation UGGameTypeColletionViewCell
 
+-(void)skin{
+   [self setBackgroundColor:[[UGSkinManagers shareInstance] tabbarbgColor:@"1"]];
+    
+}
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     
@@ -34,6 +39,9 @@
 		make.right.equalTo(self);
 	}];
 	
+   
+    
+    
 }
 
 - (void)setTitle:(NSString *)title {

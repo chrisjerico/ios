@@ -179,7 +179,7 @@
             
             UGSystemConfigModel *config = model.data;
             UGSystemConfigModel.currentConfig = config;
-            
+             [[UGSkinManagers shareInstance] setSkin];
            [self buildSegment];
             
         } failure:^(id msg) {

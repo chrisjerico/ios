@@ -779,6 +779,8 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
             
               NSLog(@"签到==%d",[UGSystemConfigModel  currentConfig].checkinSwitch);
             
+             [[UGSkinManagers shareInstance] setSkin];
+            
              [self setupUserInfo:YES];
             [self menuNameArrayDate ];
             

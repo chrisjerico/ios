@@ -17,6 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIImage (YYgradientImage)
 + (UIImage*)gradientImageWithBounds:(CGRect)bounds andColors:(NSArray*)colors andGradientType:(GradientDirection)gradientType;
+
+//这个方法可以抽取到 UIImage 的分类中
++ (UIImage *)imageWithColor:(UIColor *)color;
 @end
 
 NS_ASSUME_NONNULL_END

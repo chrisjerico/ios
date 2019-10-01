@@ -236,6 +236,7 @@ static NSString *integralCellid = @"UGConvertCollectionViewCell";
             UGSystemConfigModel *config = model.data;
             UGSystemConfigModel.currentConfig = config;
             
+             [[UGSkinManagers shareInstance] setSkin];
             
             if ([config.isIntToMoney isEqualToString:@"0"]) {
                 [self.submitButton setEnabled:NO];

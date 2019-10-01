@@ -474,6 +474,7 @@
 		D4AE641D2295871D00DD265A /* MJRefreshBackFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AE64062295871D00DD265A /* MJRefreshBackFooter.m */; };
 		D4AE641E2295871D00DD265A /* MJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AE64072295871D00DD265A /* MJRefreshAutoFooter.m */; };
 		D4AE641F2295871D00DD265A /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AE64092295871D00DD265A /* MJRefreshComponent.m */; };
+		D4B1B98223431C4600651815 /* UGSkinManagers.m in Sources */ = {isa = PBXBuildFile; fileRef = D4B1B98123431C4600651815 /* UGSkinManagers.m */; };
 		D4B6E6EF22D3325A0006B03F /* UGHomeTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4B6E6EE22D3325A0006B03F /* UGHomeTitleView.m */; };
 		D4B6E6F122D332720006B03F /* UGHomeTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4B6E6F022D332720006B03F /* UGHomeTitleView.xib */; };
 		D4B75E16227802600007047C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4B75E15227802600007047C /* Assets.xcassets */; };
@@ -1424,6 +1425,8 @@
 		D4AE64092295871D00DD265A /* MJRefreshComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshComponent.m; sourceTree = "<group>"; };
 		D4AE640A2295871D00DD265A /* MJRefreshFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshFooter.h; sourceTree = "<group>"; };
 		D4AE640B2295871D00DD265A /* MJRefreshBackFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBackFooter.h; sourceTree = "<group>"; };
+		D4B1B98023431C4600651815 /* UGSkinManagers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGSkinManagers.h; sourceTree = "<group>"; };
+		D4B1B98123431C4600651815 /* UGSkinManagers.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGSkinManagers.m; sourceTree = "<group>"; };
 		D4B6E6ED22D3325A0006B03F /* UGHomeTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGHomeTitleView.h; sourceTree = "<group>"; };
 		D4B6E6EE22D3325A0006B03F /* UGHomeTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGHomeTitleView.m; sourceTree = "<group>"; };
 		D4B6E6F022D332720006B03F /* UGHomeTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGHomeTitleView.xib; sourceTree = "<group>"; };
@@ -3374,6 +3377,8 @@
 				D4EE8F96234222A8006FA0E2 /* UGSkinCollectionViewCell.xib */,
 				D4EE8FA323424E5F006FA0E2 /* UIImage+YYgradientImage.h */,
 				D4EE8FA423424E5F006FA0E2 /* UIImage+YYgradientImage.m */,
+				D4B1B98023431C4600651815 /* UGSkinManagers.h */,
+				D4B1B98123431C4600651815 /* UGSkinManagers.m */,
 			);
 			path = Skin;
 			sourceTree = "<group>";
@@ -4007,6 +4012,7 @@
 				D41AEA6B22E58D9E003E28C3 /* UGAvatarModel.m in Sources */,
 				D422A582229E7AE90068D0AD /* UGYubaoIncomeTableViewCell.m in Sources */,
 				D405AFF822783DCC00F8C586 /* MASConstraint.m in Sources */,
+				D4B1B98223431C4600651815 /* UGSkinManagers.m in Sources */,
 				D42A06B122CA212E005488F8 /* UGHomeViewController.m in Sources */,
 				D405B27E227981D400F8C586 /* UUMarqueeView.m in Sources */,
 				D405B1D7227972C100F8C586 /* AFURLRequestSerialization.m in Sources */,

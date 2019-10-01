@@ -10,6 +10,8 @@
 #import "UGSkinCollectionViewCell.h"
 #import "UINavigationBar+handle.h"
 #import "UIImage+YYgradientImage.h"
+#import "UGSkinManagers.h"
+
 
 @interface UGSkinViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -279,12 +281,14 @@
     // 设置按钮的背景色
     _seret_button.backgroundColor = selColor;
     
-  [self.navigationController.navigationBar navBarBackGroundColor:selColor image:nil isOpaque:YES];//颜色
+//  [self.navigationController.navigationBar navBarBackGroundColor:selColor image:nil isOpaque:YES];//颜色
+//    [[UITabBar appearance] setBackgroundImage:[CMCommon imageWithColor:selColor]];
     
-//    [[UITabBar appearance] setBarTintColor:selColor];
+    NSString * str = [NSString stringWithFormat:@"%ld",indexPath.row+1];
     
-    [[UITabBar appearance] setBackgroundImage:[CMCommon imageWithColor:selColor]];
-//    [UITabBar appearance].translucent = NO;
+//    [[UGSkinManagers shareInstance] resetNavbarAndTabBarBgColor:str];
+//    
+//     SANotificationEventPost(UGNotificationWithSkinSuccess, nil);
 
 }
 
