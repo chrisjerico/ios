@@ -59,6 +59,7 @@
 	[self requestData: @""];
 	
 	_titleButton = [UIButton buttonWithType:UIButtonTypeCustom];
+	_titleButton.frame = CGRectMake(0, 0, 200, 40);
 	[_titleButton setTitle:[NSString stringWithFormat:@"%@ ▼", self.model.name] forState:UIControlStateNormal];
 	[_titleButton addTarget:self action:@selector(titleButtonTaped:)];
 	
@@ -166,6 +167,11 @@
 	cell.textLabel.font = [UIFont systemFontOfSize:16];
 	cell.textLabel.textColor = [UIColor colorWithWhite:0.2 alpha:1.0];
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+	UILabel * accessLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, 20)];
+	accessLabel.text = @"详情>>";
+	accessLabel.font = [UIFont systemFontOfSize:14];
+	accessLabel.textColor = [UIColor blueColor];
+	cell.accessoryView = accessLabel;
 	return cell;
 }
 
@@ -652,7 +658,7 @@ completionHandle: (void(^)(GameModel * model)) block
 		
 		[self addSubview:collectionView];
 		[collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.edges.equalTo(self);
+			make.edges.equalTo(self).inset(20);
 		}];
 		
 		
