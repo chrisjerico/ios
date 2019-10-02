@@ -24,6 +24,7 @@
     
     self.myButton.layer.cornerRadius = 5; 
     self.myButton.layer.masksToBounds = YES;
+    [self.myButton setBackgroundColor:UGNavColor];
       [self setBackgroundColor: [[UGSkinManagers shareInstance] setCellbgColor]];
 }
 

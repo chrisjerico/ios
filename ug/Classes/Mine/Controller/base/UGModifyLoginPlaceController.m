@@ -58,6 +58,7 @@ static NSString *addressCellId = @"UGAddressCollectionViewCell";
     });
     self.submitButton.layer.cornerRadius = 3;
     self.submitButton.layer.masksToBounds = YES;
+    [self.submitButton setBackgroundColor:UGNavColor];
     self.countryArray = @[@"中国",@"国外"];
     self.countryIndex = 0;
     NSString *path = [[NSBundle mainBundle] pathForResource:@"address" ofType:@"json"];

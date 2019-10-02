@@ -103,9 +103,11 @@
     
     
     if (![CMCommon stringIsNull:[UGUserModel currentUser].token]) {
-         qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid];
+         NSString *colorStr = [[UGSkinManagers shareInstance] setNavbgStringColor];
+         qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr];
     } else {
-         qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid];
+        NSString *colorStr = [[UGSkinManagers shareInstance] setNavbgStringColor];
+        qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr];
     }
 
     

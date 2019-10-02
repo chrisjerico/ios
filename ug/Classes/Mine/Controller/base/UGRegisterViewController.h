@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGRegisterViewController :UGViewController
+@interface UGRegisterViewController :UIViewController
 
 @end
 

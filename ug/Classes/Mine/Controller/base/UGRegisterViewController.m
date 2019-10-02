@@ -75,13 +75,13 @@
 
 @implementation UGRegisterViewController
 -(void)skin{
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+   
    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+  
     
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         
@@ -94,6 +94,22 @@
     self.navigationItem.title = @"注册";
     self.registerButton.layer.cornerRadius = 5;
     self.registerButton.layer.masksToBounds = YES;
+    [self.registerButton setBackgroundColor:UGNavColor];
+    
+
+    self.goHomeButton.layer.cornerRadius = 5;
+    self.goHomeButton.layer.masksToBounds = YES;
+    [self.goHomeButton setTitleColor:UGNavColor forState:UIControlStateNormal];
+    
+    self.goLoginButton.layer.cornerRadius = 5;
+    self.goLoginButton.layer.masksToBounds = YES;
+    [self.goLoginButton setTitleColor:UGNavColor forState:UIControlStateNormal];
+    
+    
+    //    选中的颜色
+    
+//     [self.mySegmentCV setTitleTextAttributes:@{NSForegroundColorAttributeName:UGNavColor} forState:UIControlStateSelected];
+    
     self.userNameTextF.delegate = self;
     self.passwordTextF.delegate = self;
     self.checkPasswordTextF.delegate = self;

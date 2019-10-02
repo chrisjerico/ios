@@ -40,15 +40,18 @@
 
 @implementation UGLoginViewController
 -(void)skin{
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+   
     
-    
+    [self.loginButton setBackgroundColor:UGNavColor];
+    [self.rigesterButton setTitleColor:UGNavColor forState:UIControlStateNormal];
+    [self.playButton setTitleColor:UGNavColor forState:UIControlStateNormal];
+    [self.goHomeButton setTitleColor:UGNavColor forState:UIControlStateNormal];
     
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+  
     
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         
@@ -59,15 +62,20 @@
     self.navigationItem.title = @"登录";
     self.loginButton.layer.cornerRadius = 5;
     self.loginButton.layer.masksToBounds = YES;
+    [self.loginButton setBackgroundColor:UGNavColor];
     
     self.rigesterButton.layer.cornerRadius = 5;
     self.rigesterButton.layer.masksToBounds = YES;
+     [self.rigesterButton setTitleColor:UGNavColor forState:UIControlStateNormal];
     
     self.playButton.layer.cornerRadius = 5;
     self.playButton.layer.masksToBounds = YES;
+    [self.playButton setTitleColor:UGNavColor forState:UIControlStateNormal];
     
     self.goHomeButton.layer.cornerRadius = 5;
     self.goHomeButton.layer.masksToBounds = YES;
+    [self.goHomeButton setTitleColor:UGNavColor forState:UIControlStateNormal];
+    
     self.userNameTextF.delegate = self;
     self.passwordTextF.delegate = self;
     self.navigationController.delegate = self;
@@ -158,7 +166,9 @@
                 
                 AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
                 
-                appDelegate.tabbar.qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&sessiontoken=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid];
+                
+                NSString *colorStr = [[UGSkinManagers shareInstance] setNavbgStringColor];
+                appDelegate.tabbar.qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr];
                 
                 NSArray *simplePwds = [[NSArray alloc] initWithObjects:@"111111",@"000000",@"222222",@"333333",@"444444",@"555555",@"666666",@"777777",@"888888",@"999999",@"123456",@"654321",@"abcdef",@"aaaaaa",@"qwe123", nil];
                 

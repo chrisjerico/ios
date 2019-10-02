@@ -44,5 +44,6 @@
 #import "UGViewController.h"
 #import "UGTableViewCell.h"
 #import "UGView.h"
+#import "UIImage+YYgradientImage.h"
 
 #endif /* UGPCH_pch */

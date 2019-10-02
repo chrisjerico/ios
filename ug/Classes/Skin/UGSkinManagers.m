@@ -23,6 +23,78 @@
 }
 
 
+-(NSString *)navbarbgColorString:(NSString *)skitType{
+    
+    NSString *navBgColor ;
+    
+    if ([skitType isEqualToString:@"1"]) {//经典  1蓝色
+        navBgColor = @"0x609AC5";
+    }
+    else  if ([skitType isEqualToString:@"2"]) {//经典 2红色
+        navBgColor = @"0x73315C";
+    }
+    else  if ([skitType isEqualToString:@"3"]) {//经典 3褐色
+        navBgColor = @"0x7E503C";
+    }
+    else  if ([skitType isEqualToString:@"4"]) {//经典 4绿色
+        navBgColor = @"0x58BEA4";
+    }
+    else  if ([skitType isEqualToString:@"5"]) {//经典  5褐色
+        navBgColor = @"0x58BEA4";
+    }
+    else  if ([skitType isEqualToString:@"6"]) {//经典 6淡蓝色
+        navBgColor = @"0x2E647C";
+    }
+    else  if ([skitType isEqualToString:@"7"]) {//经典 7深蓝
+        navBgColor = @"0x3F5658";
+    }
+    else  if ([skitType isEqualToString:@"8"]) {//经典 8紫色
+        navBgColor = @"0x814689";
+    }
+    else  if ([skitType isEqualToString:@"9"]) {//经典 9深红
+        navBgColor = @"0x7E503C";
+    }
+    else  if ([skitType isEqualToString:@"10"]) {//经典 10淡灰
+        navBgColor = @"0xFF8705";
+    }
+    else  if ([skitType isEqualToString:@"11"]) {//经典 11橘红
+        navBgColor = @"0x8B2B2A";
+    }
+    else  if ([skitType isEqualToString:@"12"]) {//经典 12星空蓝
+        navBgColor = @"0x68A7A0";
+    }
+    else  if ([skitType isEqualToString:@"13"]) {//经典 13紫色
+        navBgColor = @"0x9533DD";
+    }
+    else  if ([skitType isEqualToString:@"14"]) {//经典 14粉红
+        navBgColor = @"0xEFCFDD";
+    }
+    else  if ([skitType isEqualToString:@"15"]) {//经典 15淡蓝
+        navBgColor = @"0x66C6EA";
+    }
+    else  if ([skitType isEqualToString:@"16"]) {//经典 16淡灰
+        navBgColor = @"0x6505E6";
+    }
+    else  if ([skitType isEqualToString:@"17"]) {//经典 17淡灰
+        navBgColor = @"0xFFAF06";
+    }
+    else  if ([skitType isEqualToString:@"18"]) {//18钻石蓝
+        navBgColor = @"0xC1C1C1";
+    }
+    else  if ([skitType isEqualToString:@"19"]) {//19经典 忧郁蓝
+        navBgColor = @"0x4CABFA";
+    }
+    else  if ([skitType isEqualToString:@"石榴红"]) {//石榴红
+        navBgColor = @"0xCC022C";
+    }
+    else  if ([skitType isEqualToString:@"新年红"]) {//新年红
+        navBgColor = @"0xDE1C27";
+    }
+    return navBgColor;
+    
+}
+
+
 -(UIColor *)navbarbgColor:(NSString *)skitType{
     
     UIColor *navBgColor ;
@@ -489,5 +561,9 @@
 
 -(UIColor *)setCellbgColor{
     return [self cellbgColor:[self conversionSkitType]];
+}
+
+-(NSString *)setNavbgStringColor{
+    return [self navbarbgColorString:[self conversionSkitType]];
 }
 @end

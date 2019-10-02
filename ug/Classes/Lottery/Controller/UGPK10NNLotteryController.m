@@ -172,7 +172,9 @@ static NSString *lotterySubResultCellid = @"UGPK10SubResultCollectionViewCell";
 - (IBAction)showChatRoom:(id)sender {
     UGChatViewController *chatVC = [[UGChatViewController alloc] init];
     chatVC.webTitle = @"聊天室";
-    chatVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&id=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,self.gameId];
+    chatVC.fromView = @"game";
+    NSString *colorStr = [[UGSkinManagers shareInstance] setNavbgStringColor];
+    chatVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&id=%@color=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,self.gameId,colorStr];
     //    [NSString stringWithFormat:@"%@%@?id=%@",baseServerUrl,chatRoomUrl,self.gameId];
     [self.navigationController pushViewController:chatVC animated:YES];
 }

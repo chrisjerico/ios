@@ -97,7 +97,7 @@
     [self.slideSwitchView setUserInteractionEnabled:YES];
     self.slideSwitchView.segmentControlDelegate = self;
     //设置tab 颜色(可选)
-    self.slideSwitchView.tabItemNormalColor = [UIColor grayColor];
+    self.slideSwitchView.tabItemNormalColor = [UIColor whiteColor];
     self.slideSwitchView.tabItemNormalFont = 13;
     //设置tab 被选中的颜色(可选)
     self.slideSwitchView.tabItemSelectedColor = UGNavColor;

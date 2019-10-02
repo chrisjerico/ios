@@ -31,9 +31,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = UGBackgroundColor;
+//    self.view.backgroundColor = UGBackgroundColor;
     self.commitButton.layer.cornerRadius = 3;
     self.commitButton.layer.masksToBounds = YES;
+    [self.commitButton setBackgroundColor:UGNavColor];
+    
     self.bandCardButton.layer.cornerRadius = 3;
     self.bandCardButton.layer.masksToBounds = YES;
     self.amountTextF.delegate = self;

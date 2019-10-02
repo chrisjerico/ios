@@ -38,11 +38,14 @@
 
 - (void)setImageName:(NSString *)imageName {
     _imageName = imageName;
-    self.imgView.image = [UIImage imageNamed:imageName];
+   
+    self.imgView.image =  [[UIImage imageNamed:imageName] imageChangeColor:UGNavColor];
 }
 
 - (void)setImageIconName:(NSString *)imageIconName {
     _imageIconName = imageIconName;
+    
+    
     self.imageIconView.image = [UIImage imageNamed:imageIconName];
 }
 

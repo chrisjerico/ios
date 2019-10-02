@@ -32,6 +32,8 @@
     self.myButton.layer.masksToBounds = YES;
     //如果想要有点弧度的不是地球那么圆的可以设置
     self.myButton.layer.cornerRadius = 3;//这个值越大弧度越大
+    
+    [self.myButton setBackgroundColor:UGNavColor];
   
 }
 - (IBAction)myButtonClicked:(id)sender {

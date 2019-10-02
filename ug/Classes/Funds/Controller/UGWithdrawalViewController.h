@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 typedef void(^WithdrawSuccessBlock)(void);
-@interface UGWithdrawalViewController :UGViewController
+@interface UGWithdrawalViewController :UIViewController
 @property (nonatomic, copy) WithdrawSuccessBlock withdrawSuccessBlock;
 @end
 
