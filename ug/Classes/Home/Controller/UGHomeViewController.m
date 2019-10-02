@@ -64,6 +64,7 @@
 
 #import "UGYYRightMenuView.h"
 #import <SafariServices/SafariServices.h>
+#import "UIImage+YYgradientImage.h"
 
 
 @interface UGHomeViewController ()<SDCycleScrollViewDelegate,UUMarqueeViewDelegate>
@@ -108,6 +109,8 @@
 
 @property (strong, nonatomic)UILabel *nolineLabel;
 
+@property (weak, nonatomic) IBOutlet UIView *rollingView;
+@property (weak, nonatomic) IBOutlet UIView *hotGameView;
 
 @end
 
@@ -116,67 +119,160 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+-(void)skin{
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    [self.rollingView setBackgroundColor:[[UGSkinManagers shareInstance]setbgColor]];
+    [self.leftwardMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
+    [self.gameTypeView setBackgroundColor:[UIColor clearColor]];
+    [self.rankingView setBackgroundColor:[UIColor clearColor]];
+    [self.hotGameView setBackgroundColor:[UIColor clearColor]];
+
+    [self getCustomGameList];
+    
+
+    
+}
+
 - (void)viewDidLoad {
-	
-	[super viewDidLoad];
-	
-	[self setupSubView];
-	
-	SANotificationEventSubscribe(UGNotificationTryPlay, self, ^(typeof (self) self, id obj) {
-		[self tryPlayClick];
-		
-	});
-	
-	SANotificationEventSubscribe(UGNotificationLoginComplete, self, ^(typeof (self) self, id obj) {
-		[self getUserInfo];
-		self.titleView.showLoginView = NO;
-		
-	});
-	SANotificationEventSubscribe(UGNotificationUserLogout, self, ^(typeof (self) self, id obj) {
-		[self userLogout];
-	});
-	SANotificationEventSubscribe(UGNotificationloginTimeout, self, ^(typeof (self) self, id obj) {
-		[QDAlertView showWithTitle:@"提示" message:@"您的账号已经登录超时，请重新登录。" cancelButtonTitle:nil otherButtonTitle:@"确定" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-			self.titleView.showLoginView = YES;
-			UGUserModel.currentUser = nil;
-			[self.tabBarController setSelectedIndex:0];
-			[self loginClick];
-			
-		}];
-	});
-	SANotificationEventSubscribe(UGNotificationShowLoginView, self, ^(typeof (self) self, id obj) {
-		[self loginClick];
-	});
-	SANotificationEventSubscribe(UGNotificationGetUserInfo, self, ^(typeof (self) self, id obj) {
-		[self getUserInfo];
-		
-	});
-	SANotificationEventSubscribe(UGNotificationAutoTransferOut, self, ^(typeof (self) self, id obj) {
-		[self autoTransferOut];
-	});
-	
-	[self getSystemConfig];
-	[self getCustomGameList];
-	[self getBannerList];
-	[self getNoticeList];
-	[self getRankList];
-	[self getAllNextIssueData];
-	[self getUserInfo];
-	[self getCheckinListData];
-	[self systemOnlineCount];
-	
-	self.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-		[self getSystemConfig];
-		[self getCustomGameList];
-		[self getBannerList];
-		[self getNoticeList];
-		[self getRankList];
-		[self getUserInfo];
-		[self getAllNextIssueData];
-		[self getCheckinListData];
-		[self systemOnlineCount];
-	}];
-	
+//<<<<<<< HEAD
+
+    [super viewDidLoad];
+    
+    [[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:[[UGSkinManagers shareInstance] setTabbgColor]]];
+    
+    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[[UGSkinManagers shareInstance] settabNOSelectColor], NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
+    
+    [[UITabBarItem appearance] setTitleTextAttributes:                                                         [NSDictionary dictionaryWithObjectsAndKeys: [[UGSkinManagers shareInstance] settabSelectColor],NSForegroundColorAttributeName, nil]forState:UIControlStateSelected];
+    
+    [[UITabBar appearance] setSelectedImageTintColor: [[UGSkinManagers shareInstance] settabSelectColor]];
+    
+    [[UITabBar appearance] setUnselectedItemTintColor: [[UGSkinManagers shareInstance] settabNOSelectColor]];
+
+    
+    [self setupSubView];
+
+    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
+       
+        [self skin];
+    });
+    
+    SANotificationEventSubscribe(UGNotificationTryPlay, self, ^(typeof (self) self, id obj) {
+        [self tryPlayClick];
+   
+    });
+    
+    SANotificationEventSubscribe(UGNotificationLoginComplete, self, ^(typeof (self) self, id obj) {
+        [self getUserInfo];
+        self.titleView.showLoginView = NO;
+      
+    });
+    SANotificationEventSubscribe(UGNotificationUserLogout, self, ^(typeof (self) self, id obj) {
+        [self userLogout];
+    });
+    SANotificationEventSubscribe(UGNotificationloginTimeout, self, ^(typeof (self) self, id obj) {
+        [QDAlertView showWithTitle:@"提示" message:@"您的账号已经登录超时，请重新登录。" cancelButtonTitle:nil otherButtonTitle:@"确定" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+            self.titleView.showLoginView = YES;
+            UGUserModel.currentUser = nil;
+            [self.tabBarController setSelectedIndex:0];
+            [self loginClick];
+            
+        }];
+    });
+    SANotificationEventSubscribe(UGNotificationShowLoginView, self, ^(typeof (self) self, id obj) {
+        [self loginClick];
+    });
+    SANotificationEventSubscribe(UGNotificationGetUserInfo, self, ^(typeof (self) self, id obj) {
+        [self getUserInfo];
+        
+    });
+    SANotificationEventSubscribe(UGNotificationAutoTransferOut, self, ^(typeof (self) self, id obj) {
+        [self autoTransferOut];
+    });
+    
+    [self getSystemConfig];
+    [self getCustomGameList];
+    [self getBannerList];
+    [self getNoticeList];
+    [self getRankList];
+    [self getAllNextIssueData];
+    [self getUserInfo];
+    [self getCheckinListData];
+    [self systemOnlineCount];
+    
+    self.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self getSystemConfig];
+        [self getCustomGameList];
+        [self getBannerList];
+        [self getNoticeList];
+        [self getRankList];
+        [self getUserInfo];
+        [self getAllNextIssueData];
+        [self getCheckinListData];
+        [self systemOnlineCount];
+    }];
+
+//=======
+//
+//	[super viewDidLoad];
+//
+//	[self setupSubView];
+//
+//	SANotificationEventSubscribe(UGNotificationTryPlay, self, ^(typeof (self) self, id obj) {
+//		[self tryPlayClick];
+//
+//	});
+//
+//	SANotificationEventSubscribe(UGNotificationLoginComplete, self, ^(typeof (self) self, id obj) {
+//		[self getUserInfo];
+//		self.titleView.showLoginView = NO;
+//
+//	});
+//	SANotificationEventSubscribe(UGNotificationUserLogout, self, ^(typeof (self) self, id obj) {
+//		[self userLogout];
+//	});
+//	SANotificationEventSubscribe(UGNotificationloginTimeout, self, ^(typeof (self) self, id obj) {
+//		[QDAlertView showWithTitle:@"提示" message:@"您的账号已经登录超时，请重新登录。" cancelButtonTitle:nil otherButtonTitle:@"确定" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+//			self.titleView.showLoginView = YES;
+//			UGUserModel.currentUser = nil;
+//			[self.tabBarController setSelectedIndex:0];
+//			[self loginClick];
+//
+//		}];
+//	});
+//	SANotificationEventSubscribe(UGNotificationShowLoginView, self, ^(typeof (self) self, id obj) {
+//		[self loginClick];
+//	});
+//	SANotificationEventSubscribe(UGNotificationGetUserInfo, self, ^(typeof (self) self, id obj) {
+//		[self getUserInfo];
+//
+//	});
+//	SANotificationEventSubscribe(UGNotificationAutoTransferOut, self, ^(typeof (self) self, id obj) {
+//		[self autoTransferOut];
+//	});
+//
+//	[self getSystemConfig];
+//	[self getCustomGameList];
+//	[self getBannerList];
+//	[self getNoticeList];
+//	[self getRankList];
+//	[self getAllNextIssueData];
+//	[self getUserInfo];
+//	[self getCheckinListData];
+//	[self systemOnlineCount];
+//
+//	self.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+//		[self getSystemConfig];
+//		[self getCustomGameList];
+//		[self getBannerList];
+//		[self getNoticeList];
+//		[self getRankList];
+//		[self getUserInfo];
+//		[self getAllNextIssueData];
+//		[self getCheckinListData];
+//		[self systemOnlineCount];
+//	}];
+//
+//>>>>>>> dev_andrew
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(collectiongViewHeightUpdated:) name:@"UGPlatformCollectionViewContentHeight" object:nil];
 	WeakSelf
 	self.gameTypeView.platformSelectBlock = ^(NSInteger selectIndex) {
@@ -404,23 +500,46 @@
 }
 
 - (void)getSystemConfig {
-	
-	
-	[CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-		[self.scrollView.mj_header endRefreshing];
-		[CMResult processWithResult:model success:^{
-			
-			NSLog(@"model = %@",model);
-			
-			UGSystemConfigModel *config = model.data;
-			UGSystemConfigModel.currentConfig = config;
-			
-			[self.titleView setImgName:config.mobile_logo];
-			
-		} failure:^(id msg) {
-			
-		}];
-	}];
+//<<<<<<< HEAD
+
+    
+    [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+         [self.scrollView.mj_header endRefreshing];
+        [CMResult processWithResult:model success:^{
+            
+            NSLog(@"model = %@",model);
+            
+            UGSystemConfigModel *config = model.data;
+            UGSystemConfigModel.currentConfig = config;
+            
+            
+            [[UGSkinManagers shareInstance] setSkin];
+            
+           [self.titleView setImgName:config.mobile_logo];
+            
+        } failure:^(id msg) {
+            
+        }];
+    }];
+//=======
+//
+//
+//	[CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+//		[self.scrollView.mj_header endRefreshing];
+//		[CMResult processWithResult:model success:^{
+//
+//			NSLog(@"model = %@",model);
+//
+//			UGSystemConfigModel *config = model.data;
+//			UGSystemConfigModel.currentConfig = config;
+//
+//			[self.titleView setImgName:config.mobile_logo];
+//
+//		} failure:^(id msg) {
+//
+//		}];
+//	}];
+//>>>>>>> dev_andrew
 }
 
 - (void)userLogout {

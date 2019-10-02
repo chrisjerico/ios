@@ -60,6 +60,7 @@
         _bgView.layer.borderColor= UGRGBColor(221, 221, 221).CGColor;
         _bgView.layer.borderWidth=1;
         
+        [self setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
 
         
         
@@ -78,7 +79,8 @@
     _bgView.layer.masksToBounds = YES;
     _bgView.layer.borderColor= UGRGBColor(221, 221, 221).CGColor;
     _bgView.layer.borderWidth=1;
-    
+    [self setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+
     
     return self;
     

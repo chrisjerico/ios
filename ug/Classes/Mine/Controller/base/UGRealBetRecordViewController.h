@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGRealBetRecordViewController : UIViewController
+@interface UGRealBetRecordViewController :UGViewController
 @property (nonatomic, strong) NSString *gameType;
 @property (nonatomic, strong) NSString *status;
 @property (nonatomic, strong) NSString *startDate;

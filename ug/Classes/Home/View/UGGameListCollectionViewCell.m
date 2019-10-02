@@ -27,7 +27,7 @@
 - (void)setItem:(UGSubGameModel *)item {
     _item = item;
     self.nameLabel.text = item.name;
-    [self.imgView sd_setImageWithURL:[NSURL URLWithString:item.pic] placeholderImage:[UIImage imageNamed:@"zwt"]];
+    [self.imgView sd_setImageWithURL:[NSURL URLWithString:item.pic] placeholderImage:[UIImage imageNamed:@"loading"]];
     
 }
 

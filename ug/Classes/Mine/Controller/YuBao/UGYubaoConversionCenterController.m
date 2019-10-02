@@ -16,10 +16,16 @@
 @end
 
 @implementation UGYubaoConversionCenterController
-
+-(void)skin{
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
+        
+        [self skin];
+    });
     self.navigationItem.title = @"转入利息宝";
     self.view.backgroundColor = UGBackgroundColor;
     [self buildSegment];

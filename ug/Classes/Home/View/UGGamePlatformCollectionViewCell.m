@@ -31,7 +31,7 @@ static NSString *const footerId = @"footerId";
 - (void)awakeFromNib {
     [super awakeFromNib];
 
-    self.backgroundColor = [UIColor whiteColor];
+    [self setBackgroundColor: [[UGSkinManagers shareInstance] setCellbgColor]];
     
 }
 

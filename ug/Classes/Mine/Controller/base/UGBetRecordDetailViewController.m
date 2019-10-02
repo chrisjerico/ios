@@ -24,11 +24,18 @@
 @end
 
 @implementation UGBetRecordDetailViewController
-
+-(void)skin{
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = UGBackgroundColor;
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
+        
+        [self skin];
+    });
     self.navigationItem.title = @"注单详情";
     self.cancelBetButton.layer.cornerRadius = 3;
     self.cancelBetButton.layer.masksToBounds = YES;
@@ -39,7 +46,7 @@
     if (self.item.status) {
         self.cancelBetButton.hidden = YES;
     }
-    [self.imgView sd_setImageWithURL:[NSURL URLWithString:self.item.pic] placeholderImage:[UIImage imageNamed:@"zwt"]];
+    [self.imgView sd_setImageWithURL:[NSURL URLWithString:self.item.pic] placeholderImage:[UIImage imageNamed:@"loading"]];
     self.titleLabel.text = self.item.title;
     self.issueLabel.text = [NSString stringWithFormat:@"第%@期",self.item.issue];
     self.betTimeLabel.text = self.item.addTime;

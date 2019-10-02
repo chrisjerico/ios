@@ -12,7 +12,11 @@
 @class UGNextIssueModel;
 NS_ASSUME_NONNULL_BEGIN
 typedef void(^BJPK10LotteryBlock)(void);
-@interface UGBJPK10LotteryController : UGCommonLotteryController
+//<<<<<<< HEAD
+@interface UGBJPK10LotteryController :UGViewController
+//=======
+//@interface UGBJPK10LotteryController : UGCommonLotteryController
+//>>>>>>> dev_andrew
 @property (nonatomic, strong) NSArray *lotteryGamesArray;
 @property (nonatomic, strong) UGNextIssueModel *nextIssueModel;
 @property (nonatomic, strong) NSString *gameId;

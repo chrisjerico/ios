@@ -26,7 +26,7 @@ static NSString *fundDetailsCellid = @"UGFundDetailsCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+     [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
     self.pageSize = size;
     self.pageNumber = page;
     self.tableView.rowHeight = 50;
@@ -133,7 +133,7 @@ static NSString *fundDetailsCellid = @"UGFundDetailsCell";
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UGScreenW, 44)];
-    headerView.backgroundColor = [UIColor whiteColor];
+    headerView.backgroundColor = [[UGSkinManagers shareInstance] setCellbgColor];
     UILabel *timeLable = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, UGScreenW / 4, 44)];
     timeLable.text = @"日期";
     timeLable.textColor = [UIColor blackColor];

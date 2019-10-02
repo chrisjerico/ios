@@ -41,10 +41,17 @@
 static int page = 1;
 static int size = 20;
 @implementation UGFeedBackRecordController
-
+-(void)skin{
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
+        
+        [self skin];
+    });
     self.navigationItem.title = @"反馈记录";
     self.pageSize = size;
     self.pageNumber = page;

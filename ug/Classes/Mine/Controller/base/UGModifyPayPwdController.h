@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGModifyPayPwdController : UIViewController
+@interface UGModifyPayPwdController :UGViewController
 
 @end
 

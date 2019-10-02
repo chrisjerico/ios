@@ -45,7 +45,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     _defaultText = @"限制输入8个字符";
-
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
     // 方式一
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidChangeAction:) name:@"UITextFieldTextDidChangeNotification" object:_myTextField];
     

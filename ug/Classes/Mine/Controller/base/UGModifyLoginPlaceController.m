@@ -43,12 +43,19 @@
 static NSString *addressCellId = @"UGAddressCollectionViewCell";
 @implementation UGModifyLoginPlaceController
 
-
+-(void)skin{
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = UGBackgroundColor;
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
+        
+        [self skin];
+    });
     self.submitButton.layer.cornerRadius = 3;
     self.submitButton.layer.masksToBounds = YES;
     self.countryArray = @[@"中国",@"国外"];

@@ -10,7 +10,7 @@
 @class UGPromoteModel;
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGPromoteDetailController : UIViewController
+@interface UGPromoteDetailController :UGViewController
 @property (nonatomic, strong) UGPromoteModel *item;
 
 @end

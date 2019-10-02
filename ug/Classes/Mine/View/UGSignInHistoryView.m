@@ -40,7 +40,8 @@
 //         [self.tableView registerNib:[UINib nibWithNibName:@"UGSingInHistoryTableViewCell" bundle:nil] forHeaderFooterViewReuseIdentifier:historyHeaderViewid];
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         self.layer.cornerRadius = 5;
-        
+        [self setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+
     }
     return self;
     

@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGWriteMessageViewController : UIViewController
+@interface UGWriteMessageViewController :UGViewController
 
 @property (nonatomic, assign) NSInteger feedType;
 @end

@@ -51,7 +51,7 @@
     _tableDataArray = [NSMutableArray new];
     _blankDataArray = [NSMutableArray<UGrechargeBankModel> new];
     
-    [self.view setBackgroundColor:UGRGBColor(239, 239, 244)];
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
     
     if (self.item) {
         _channelDataArray = item.channel;

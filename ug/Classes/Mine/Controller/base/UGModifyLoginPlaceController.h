@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGModifyLoginPlaceController : UIViewController
+@interface UGModifyLoginPlaceController :UGViewController
 
 @end
 

@@ -88,8 +88,8 @@
     self.waveView = [[WavesView alloc] initWithFrame:self.waveBgView.bounds];
     [self.waveBgView addSubview:self.waveView];
     self.waveView.backgroundColor = [UIColor clearColor];
-    self.waveBottomView.backgroundColor = UGRGBColor(84, 171, 238);
-    self.waveView.realWaveColor = UGRGBColor(84, 171, 238);
+    self.waveBottomView.backgroundColor = [[UGSkinManagers shareInstance] setTabbgColor];
+    self.waveView.realWaveColor = [[UGSkinManagers shareInstance] setTabbgColor];
     self.waveView.maskWaveColor = [UIColor clearColor];
     self.waveView.waveHeight = 10;
     [self.waveView startWaveAnimation];

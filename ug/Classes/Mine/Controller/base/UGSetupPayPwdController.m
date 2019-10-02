@@ -18,12 +18,19 @@
 @end
 
 @implementation UGSetupPayPwdController
-
+-(void)skin{
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.navigationItem.title = @"银行卡管理";
-    self.view.backgroundColor = UGBackgroundColor;
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
+        
+        [self skin];
+    });
     self.submitButton.layer.cornerRadius = 3;
     self.submitButton.layer.masksToBounds = YES;
     self.loginPwdTextF.delegate = self;

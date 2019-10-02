@@ -14,6 +14,7 @@
 #import "UGNavigationController.h"
 #import "UGChatsViewController.h"
 #import "UGHomeViewController.h"
+#import "UGYYLotteryHomeViewController.h"
 
 @interface UGTabbarController ()
 
@@ -29,14 +30,21 @@
     
     // 设置子控制器
     [self setUpChildViewController];
-    [[UITabBar appearance] setBackgroundImage:[self imageWithColor:[UIColor whiteColor]]];
+    [[UITabBar appearance] setBackgroundImage:[self imageWithColor:[[UGSkinManagers shareInstance] setTabbgColor]]];
     //去除 TabBar 自带的顶部阴影
 //    [[UITabBar appearance] setShadowImage:[[UIImage alloc] init]];
     //设置导航控制器颜色
-    [[UINavigationBar appearance] setBackgroundImage:[self imageWithColor:UGNavColor] forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setBackgroundImage:[self imageWithColor:[[UGSkinManagers shareInstance] setNavbgColor]] forBarMetrics:UIBarMetricsDefault];
     
 //    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
 //    statusBar.backgroundColor = UGNavColor;
+    
+    [[UITabBar appearance] setSelectedImageTintColor: [[UGSkinManagers shareInstance] settabSelectColor]];
+    
+    [[UITabBar appearance] setUnselectedItemTintColor: [[UGSkinManagers shareInstance] settabNOSelectColor]];
+
+    
+//    [[UITabBar appearance] setTintColor:[UIColor redColor]];
     
 }
 
@@ -56,10 +64,12 @@
  */
 - (void)setUpTabBarItemTextAttributes{
     
-    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor grayColor], NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
+    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[[UGSkinManagers shareInstance] settabNOSelectColor], NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
     
-    [[UITabBarItem appearance] setTitleTextAttributes:                                                         [NSDictionary dictionaryWithObjectsAndKeys:UGNavColor,NSForegroundColorAttributeName, nil]forState:UIControlStateSelected];
+    [[UITabBarItem appearance] setTitleTextAttributes:                                                         [NSDictionary dictionaryWithObjectsAndKeys: [[UGSkinManagers shareInstance] settabSelectColor],NSForegroundColorAttributeName, nil]forState:UIControlStateSelected];
     
+    
+
 }
 
 
@@ -69,12 +79,17 @@
 - (void)setUpChildViewController{
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"UGHomeViewController" bundle:nil];
     UGHomeViewController *mainVC = [mainStoryboard instantiateInitialViewController];
-    [self addOneChildViewController:[[UGNavigationController alloc] initWithRootViewController:mainVC]
+    
+    self.homeNavVC = [[UGNavigationController alloc] initWithRootViewController:mainVC];
+    
+    [self addOneChildViewController:self.homeNavVC
                           WithTitle:@"首页"
                           imageName:@"shouye"
                   selectedImageName:@"shouyesel"];
     
-    [self addOneChildViewController:[[UGNavigationController alloc]initWithRootViewController:[[UGLotteryHomeController alloc] init]]
+    self.LotteryNavVC = [[UGNavigationController alloc]initWithRootViewController:[[UGYYLotteryHomeViewController alloc] init]];
+    
+    [self addOneChildViewController:self.LotteryNavVC
                           WithTitle:@"购彩大厅"
                           imageName:@"dating"
                   selectedImageName:@"datongsel"];
@@ -96,19 +111,28 @@
     
     NSLog(@"qdwebVC.urlString= %@",[NSString stringWithFormat:@"%@%@%@&loginsessid=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid]);
 
-    [self addOneChildViewController:[[UGNavigationController alloc]initWithRootViewController:qdwebVC]
+    self.chatNavVC = [[UGNavigationController alloc]initWithRootViewController:qdwebVC];
+    
+    [self addOneChildViewController:self.chatNavVC
                           WithTitle:@"聊天室"
                           imageName:@"liaotian"
                   selectedImageName:@"liaotiansel"];
     
-    [self addOneChildViewController:[[UGNavigationController alloc]initWithRootViewController:[[UGPromotionsController alloc] initWithStyle:UITableViewStyleGrouped]]
+    
+    self.promotionsNavVC = [[UGNavigationController alloc]initWithRootViewController:[[UGPromotionsController alloc] init]];
+    
+    [self addOneChildViewController: self.promotionsNavVC
                           WithTitle:@"优惠活动"
                           imageName:@"youhuiquan"
                   selectedImageName:@"youhuiquansel"];
     
+                                                                                      
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Mine" bundle:nil];
     UGMineViewController *mineVC = [storyboard instantiateInitialViewController];
-    [self addOneChildViewController:[[UGNavigationController alloc]initWithRootViewController:mineVC]
+    
+    self.mineNavVC = [[UGNavigationController alloc]initWithRootViewController:mineVC];
+
+    [self addOneChildViewController:self.mineNavVC 
                           WithTitle:@"我的"
                           imageName:@"wode"
                   selectedImageName:@"wodesel"];
@@ -130,7 +154,7 @@
     viewController.tabBarItem.title         = title;
     viewController.tabBarItem.image         = [UIImage imageNamed:imageName];
     UIImage *image = [UIImage imageNamed:selectedImageName];
-    image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     viewController.tabBarItem.selectedImage = image;
     [self addChildViewController:viewController];
     

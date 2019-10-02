@@ -27,6 +27,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+      [self setBackgroundColor: [[UGSkinManagers shareInstance] setCellbgColor]];
 }
 - (IBAction)signInClick:(id)sender {
     if (self.signInBlock) {

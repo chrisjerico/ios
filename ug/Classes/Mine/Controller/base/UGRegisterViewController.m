@@ -74,9 +74,20 @@
 @end
 
 @implementation UGRegisterViewController
-
+-(void)skin{
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+   
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    
+    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
+        
+        [self skin];
+    });
+    
     self.extendedLayoutIncludesOpaqueBars = YES; 
     
     self.fd_interactivePopDisabled = YES;

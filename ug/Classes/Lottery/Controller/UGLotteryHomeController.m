@@ -50,11 +50,22 @@ static NSString *letteryTicketCellID = @"UGLotteryGameCollectionViewCell";
 static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
 @implementation UGLotteryHomeController
 
+-(void)skin{
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    [self getAllNextIssueData];
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = UGBackgroundColor;
-    self.navigationItem.title = @"购彩大厅";
+   [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    
+    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
+        
+        [self skin];
+    });
+    self.navigationItem.title = @"彩票大厅";
 //    self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithImageName:@"gengduo" target:self action:@selector(rightBarBtnClick)];
     self.countDown = [[CountDown alloc] init];
     [self initCollectionView];
@@ -307,11 +318,8 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
     
     UICollectionView *collectionView = ({
         float collectionViewH;
-        if ([CMCommon isPhoneX]) {
-            collectionViewH = UGScerrnH - 88 - 83 - 10;
-        }else {
-            collectionViewH = UGScerrnH - 64 - 49 - 10;
-        }
+            collectionViewH = UGScerrnH - k_Height_NavBar -k_Height_StatusBar- 10;
+  
         collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(5, 5, UGScreenW - 10, collectionViewH) collectionViewLayout:layout];
         collectionView.backgroundColor = [UIColor clearColor];
         collectionView.layer.cornerRadius = 10;
@@ -328,6 +336,16 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
     self.collectionView = collectionView;
     [self.view addSubview:collectionView];
     
+    
+    [self.collectionView  mas_makeConstraints:^(MASConstraintMaker *make)
+     {
+         make.top.equalTo(self.view.mas_top).with.offset(10);
+         make.left.equalTo(self.view.mas_left).with.offset(5);
+         make.right.equalTo(self.view.mas_right).with.offset(-5);
+         make.bottom.equalTo(self.view.mas_bottom).offset(-IPHONE_SAFEBOTTOMAREA_HEIGHT);
+
+         
+     }];
 }
 
 - (NSMutableArray *)dataArray {

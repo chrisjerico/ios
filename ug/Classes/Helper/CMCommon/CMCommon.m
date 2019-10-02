@@ -551,4 +551,21 @@ static NSString *uuidKey =@"uuidKey";
     // Return the new image.
     return newImage;
 }
+
+
+//这个方法可以抽取到 UIImage 的分类中
++ (UIImage *)imageWithColor:(UIColor *)color
+{
+    NSParameterAssert(color != nil);
+    
+    CGRect rect = CGRectMake(0, 0, 1, 1);
+    // Create a 1 by 1 pixel context
+    UIGraphicsBeginImageContextWithOptions(rect.size, NO, 0);
+    [color setFill];
+    UIRectFill(rect);   // Fill it with your color
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
 @end

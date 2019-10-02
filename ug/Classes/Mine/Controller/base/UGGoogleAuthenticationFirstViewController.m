@@ -15,12 +15,18 @@
 @end
 
 @implementation UGGoogleAuthenticationFirstViewController
-
+-(void)skin{
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.extendedLayoutIncludesOpaqueBars = YES;
-    
+    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
+        
+        [self skin];
+    });
 }
 -(void)viewDidLayoutSubviews{
     self.myButton.layer.masksToBounds = YES;

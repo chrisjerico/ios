@@ -45,6 +45,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) NSString * oftenLoginArea;//1=关闭；0=开启； 常用登录地
 
+@property (nonatomic, strong) NSString * mobileTemplateBackground;//配色方案
+
+@property (nonatomic, strong) NSString * mobileTemplateCategory;//模板号
 
 @property (nonatomic, assign) BOOL recharge;//上级充值开关
 

@@ -89,7 +89,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
-                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="fSL-QD-siQ" firstAttribute="leading" secondItem="ujG-h0-8te" secondAttribute="trailing" constant="25" id="6Lz-58-cDd"/>
                     <constraint firstItem="ujG-h0-8te" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ET6-cP-Cac"/>
@@ -110,6 +110,7 @@
                     <constraint firstAttribute="bottom" secondItem="78R-vh-vR2" secondAttribute="bottom" constant="5" id="seo-Cb-0Ak"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>

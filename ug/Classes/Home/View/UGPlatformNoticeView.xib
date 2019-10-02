@@ -46,7 +46,7 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" red="0.28788453339999998" green="0.58269137140000005" blue="0.92549556489999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="p6l-Lv-fER" firstAttribute="centerY" secondItem="Oqj-sj-xbR" secondAttribute="centerY" id="4Ch-Xy-9uy"/>
                         <constraint firstItem="p6l-Lv-fER" firstAttribute="centerX" secondItem="Oqj-sj-xbR" secondAttribute="centerX" id="G7u-v1-2Mr"/>
@@ -62,7 +62,7 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="dtL-fc-Lvb" secondAttribute="bottom" constant="20" id="1Je-B6-jeh"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="dtL-fc-Lvb" secondAttribute="trailing" constant="10" id="6lo-vf-wKR"/>
@@ -75,6 +75,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
+                <outlet property="bgView" destination="Oqj-sj-xbR" id="5Gp-C9-enm"/>
                 <outlet property="closeButton" destination="gP2-4n-j4Y" id="GXD-Fr-EYX"/>
                 <outlet property="tableView" destination="dtL-fc-Lvb" id="Juo-0K-bxP"/>
             </connections>

@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGMineViewController : UIViewController
+@interface UGMineViewController :UGViewController
 
 @end
 

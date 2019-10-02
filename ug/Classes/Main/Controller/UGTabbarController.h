@@ -8,11 +8,23 @@
 
 #import <UIKit/UIKit.h>
 #import "UGChatViewController.h"
+#import "UGNavigationController.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UGTabbarController : UITabBarController
 
 @property (strong, nonatomic) UGChatViewController *qdwebVC;
+
+@property (strong, nonatomic) UGNavigationController *homeNavVC;
+
+@property (strong, nonatomic) UGNavigationController *chatNavVC;
+
+@property (strong, nonatomic) UGNavigationController *LotteryNavVC;
+
+@property (strong, nonatomic) UGNavigationController *promotionsNavVC;
+
+@property (strong, nonatomic) UGNavigationController *mineNavVC ;
 
 @end
 

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Qlk-11-xZ9">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Qlk-11-xZ9">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -34,6 +36,7 @@
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="notice" translatesAutoresizingMaskIntoConstraints="NO" id="YII-OH-Hcz">
                                                         <rect key="frame" x="8" y="9.5" width="25" height="25"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="25" id="gRJ-yT-2zU"/>
                                                             <constraint firstAttribute="width" constant="25" id="n17-YK-VPb"/>
@@ -41,7 +44,7 @@
                                                     </imageView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fSS-lB-1r2" customClass="UUMarqueeView">
                                                         <rect key="frame" x="38" y="0.0" width="376" height="44"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </view>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -149,7 +152,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="40" id="177-bx-zeo"/>
                                                             <constraint firstItem="R7d-Sd-e6V" firstAttribute="leading" secondItem="Kyq-vq-QkK" secondAttribute="trailing" id="2OP-xU-qsu"/>
@@ -170,7 +173,7 @@
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jZU-na-iPm" customClass="UUMarqueeView">
                                                         <rect key="frame" x="0.0" y="83.5" width="414" height="116.5"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </view>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -224,7 +227,7 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Cio-2N-9zp" firstAttribute="bottom" secondItem="aKo-Go-xPf" secondAttribute="bottom" id="19g-lT-hVZ"/>
                             <constraint firstItem="Cio-2N-9zp" firstAttribute="trailing" secondItem="aKo-Go-xPf" secondAttribute="trailing" id="2j3-u7-D2d"/>
@@ -239,9 +242,11 @@
                         <outlet property="bannerBgViewHeightConstraint" destination="bfL-zQ-uOt" id="63U-JD-aFt"/>
                         <outlet property="gameTypeView" destination="g3O-cs-ZTw" id="G0J-cI-EgR"/>
                         <outlet property="gameViewHeight" destination="h0I-VV-udc" id="8a4-eU-Jwg"/>
+                        <outlet property="hotGameView" destination="4ix-we-22e" id="qxl-5k-SZo"/>
                         <outlet property="leftwardMarqueeView" destination="fSS-lB-1r2" id="u7Y-XH-UTU"/>
                         <outlet property="rankingView" destination="crl-J7-sLe" id="vLq-Kl-1QG"/>
                         <outlet property="rankingViewHeightConstraints" destination="BbV-SP-BJQ" id="gMH-ix-zeK"/>
+                        <outlet property="rollingView" destination="97i-pv-RCp" id="b2b-5V-MMY"/>
                         <outlet property="scrollContentView" destination="4Rv-dl-cOG" id="KqS-XS-nyo"/>
                         <outlet property="scrollView" destination="aKo-Go-xPf" id="dml-YV-SGS"/>
                         <outlet property="upwardMultiMarqueeView" destination="jZU-na-iPm" id="22G-Cb-KeQ"/>
