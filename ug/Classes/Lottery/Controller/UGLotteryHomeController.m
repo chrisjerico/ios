@@ -327,7 +327,10 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
         collectionView.dataSource = self;
         collectionView.delegate = self;
         [collectionView registerNib:[UINib nibWithNibName:@"UGLotteryGameCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:letteryTicketCellID];
+        
+        
         [collectionView registerNib:[UINib nibWithNibName:@"UGTimeLotteryBetHeaderView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerViewID];
+        
         [collectionView setShowsHorizontalScrollIndicator:NO];
         collectionView;
         

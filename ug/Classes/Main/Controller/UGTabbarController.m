@@ -15,6 +15,7 @@
 #import "UGChatsViewController.h"
 #import "UGHomeViewController.h"
 #import "UGYYLotteryHomeViewController.h"
+#import "UGMineSkinViewController.h"
 
 @interface UGTabbarController ()
 
@@ -129,8 +130,10 @@
                   selectedImageName:@"youhuiquansel"];
     
                                                                                       
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Mine" bundle:nil];
-    UGMineViewController *mineVC = [storyboard instantiateInitialViewController];
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Mine" bundle:nil];
+//    UGMineViewController *mineVC = [storyboard instantiateInitialViewController];
+    
+    UGMineSkinViewController * mineVC = [[UGMineSkinViewController alloc] init];
     
     self.mineNavVC = [[UGNavigationController alloc]initWithRootViewController:mineVC];
 

@@ -23,14 +23,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+//    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.extendedLayoutIncludesOpaqueBars = NO;
     
-    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-        
-        [self skin];
-    });
+//    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
+//        
+//        [self skin];
+//    });
 }
 
 /*

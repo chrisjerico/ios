@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="UGMineSkinCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="200" height="100"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="200" height="100"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="利息宝" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YZH-WA-kb6">
+                        <rect key="frame" x="74" y="66" width="52" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shouyi" translatesAutoresizingMaskIntoConstraints="NO" id="nib-hX-dOn">
+                        <rect key="frame" x="75" y="11" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="Acj-ji-wrU"/>
+                            <constraint firstAttribute="width" constant="50" id="yDk-Au-Q3l"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="YZH-WA-kb6" firstAttribute="top" secondItem="nib-hX-dOn" secondAttribute="bottom" constant="5" id="9Fg-3x-TG2"/>
+                <constraint firstItem="YZH-WA-kb6" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="Hvg-Av-iWn"/>
+                <constraint firstAttribute="trailing" secondItem="nib-hX-dOn" secondAttribute="trailing" constant="75" id="NPe-Hc-OwI"/>
+                <constraint firstItem="nib-hX-dOn" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="NTm-ei-RlS"/>
+                <constraint firstItem="nib-hX-dOn" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="75" id="aeI-wg-yON"/>
+                <constraint firstItem="YZH-WA-kb6" firstAttribute="top" secondItem="nib-hX-dOn" secondAttribute="bottom" constant="5" id="hj2-of-v3U"/>
+                <constraint firstItem="nib-hX-dOn" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="11" id="sg1-sj-ZfP"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
+            <connections>
+                <outlet property="imageView" destination="nib-hX-dOn" id="NZx-7u-b9M"/>
+                <outlet property="nameLabel" destination="YZH-WA-kb6" id="iFv-xN-Am9"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="150"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="shouyi" width="50" height="49"/>
+    </resources>
+</document>

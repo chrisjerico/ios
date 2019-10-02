@@ -516,9 +516,25 @@
     
      UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
     if ([config.mobileTemplateCategory isEqualToString:@"0"]) {
-        
-        
         skitType = config.mobileTemplateBackground;
+    }
+    else if([config.mobileTemplateCategory isEqualToString:@"2"]) {
+        skitType = @"新年红";
+    }
+    else if([config.mobileTemplateCategory isEqualToString:@"3"]) {
+        skitType = @"石榴红";
+    }
+    
+    return skitType;
+}
+
+-(NSString *)skitType{
+
+    NSString *skitType = @"";
+    
+    UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
+    if ([config.mobileTemplateCategory isEqualToString:@"0"]) {
+        skitType = @"经典";
     }
     else if([config.mobileTemplateCategory isEqualToString:@"2"]) {
         skitType = @"新年红";

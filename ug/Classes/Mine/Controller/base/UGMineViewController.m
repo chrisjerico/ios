@@ -44,7 +44,10 @@
 #import "UGagentApplyInfo.h"
 #import "UGAgentRefusedViewController.h"
 
-@interface UGMineViewController ()<UITableViewDelegate,UITableViewDataSource>
+
+#import "UGMineMenuCollectionViewCell.h"
+
+@interface UGMineViewController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UIView *userInfoView;
 @property (weak, nonatomic) IBOutlet UIImageView *avaterImageView;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
@@ -90,6 +93,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *signButton;
 
 @property (nonatomic, strong) NSArray *lotteryGamesArray;
+
+//====================================
+@property (nonatomic, strong) UICollectionView *mcollectionView;
 
 
 @end
@@ -199,6 +205,8 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
 //    self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithImageName:@"gengduo" target:self action:@selector(rightBarBtnClick)];
 
 }
+
+
 
 
 

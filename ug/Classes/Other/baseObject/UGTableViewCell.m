@@ -12,8 +12,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
-    [self setBackgroundColor: [[UGSkinManagers shareInstance] setCellbgColor]];
+//    // Initialization code
+//    [self setBackgroundColor: [[UGSkinManagers shareInstance] setCellbgColor]];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
