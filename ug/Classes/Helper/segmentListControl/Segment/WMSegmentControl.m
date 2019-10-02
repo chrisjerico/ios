@@ -7,7 +7,7 @@
 
 #import "WMSegmentControl.h"
 
-@interface WMSegmentControlItem : UGView
+@interface WMSegmentControlItem : UIView
 
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIView *lineView;

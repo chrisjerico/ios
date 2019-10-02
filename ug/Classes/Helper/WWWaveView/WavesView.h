@@ -10,7 +10,7 @@
 
 typedef void(^WavesBlock)(CGRect myFrame);
 
-@interface WavesView : UGView
+@interface WavesView : UIView
 
 /**
  *  浪弯曲度

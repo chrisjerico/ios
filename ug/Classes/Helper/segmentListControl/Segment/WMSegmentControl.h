@@ -43,7 +43,7 @@ typedef void (^WMSegmentControlBlock)(NSInteger index, BOOL isRepeat);
 - (void)segmentControl:(WMSegmentControl *)control selectedIndex:(NSInteger)index isRepeat:(BOOL)isRepeat;
 @end
 
-@interface WMSegmentControl : UGView
+@interface WMSegmentControl : UIView
 
 @property (nonatomic, assign, readonly) NSInteger currentIndex;     /**< 当前选项索引 */
 @property (nonatomic, weak) id <WMSegmentControlDelegate> delegate; /**< 回调 */

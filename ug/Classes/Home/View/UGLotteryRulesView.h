@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGLotteryRulesView : UGView
+@interface UGLotteryRulesView : UIView
 @property (nonatomic, strong) NSString *gameId;
 @property (nonatomic, strong) NSString *gameName;
 @property (nonatomic, strong) NSString *content;

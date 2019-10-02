@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SVProgressAnimatedView : UGView
+@interface SVProgressAnimatedView : UIView
 
 @property (nonatomic, assign) CGFloat radius;
 @property (nonatomic, assign) CGFloat strokeThickness;

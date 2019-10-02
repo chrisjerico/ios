@@ -9,7 +9,7 @@
 
 typedef void (^WMDropDown2ViewBlock)(NSInteger index, NSInteger secondIndex, NSString *title);
 
-@interface WMDropDown2View : UGView
+@interface WMDropDown2View : UIView
 
 ///  初始化
 ///  @param frame       区域

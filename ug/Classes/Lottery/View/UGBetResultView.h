@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGBetResultView : UGView
+@interface UGBetResultView : UIView
 
 + (instancetype)shareInstance;
 

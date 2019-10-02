@@ -9,7 +9,7 @@
 
 typedef void (^WMPickupListBlock)(id title, NSInteger index);
 
-@interface WMPickupList : UGView
+@interface WMPickupList : UIView
 
 // 配置cell类，基类必须是WMMenuCell
 + (void)setCellClass:(Class)cellClass;

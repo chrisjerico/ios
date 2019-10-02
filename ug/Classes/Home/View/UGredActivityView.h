@@ -12,7 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 typedef void(^RedActivityRedBlock)(void);
 
-@interface UGredActivityView : UGView
+@interface UGredActivityView : UIView
 
 @property (nonatomic, copy) RedActivityRedBlock redClickBlock;
 

@@ -25,7 +25,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^RightMenuSelectBlock)(NSInteger index);
-@interface UGRightMenuView : UGView
+@interface UGRightMenuView : UIView
 @property (nonatomic, strong) NSMutableArray *titleArray;
 @property (nonatomic, strong) NSMutableArray *imageNameArray;
 

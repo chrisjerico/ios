@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGNoticePopView : UGView
+@interface UGNoticePopView : UIView
 
 @property (nonatomic, strong) NSString *content;
 

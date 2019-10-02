@@ -1536,6 +1536,7 @@
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="游戏" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CGJ-BY-dXq">
                                                 <rect key="frame" x="54.666666666666657" y="13.666666666666664" width="29" height="17"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1551,7 +1552,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="CGJ-BY-dXq" firstAttribute="centerY" secondItem="ARz-pI-hz2" secondAttribute="centerY" id="FVT-GR-m2F"/>
                                             <constraint firstItem="CGJ-BY-dXq" firstAttribute="centerX" secondItem="ARz-pI-hz2" secondAttribute="centerX" id="MZq-ql-AiY"/>
@@ -1580,7 +1581,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="OCN-xp-tc4" firstAttribute="centerY" secondItem="mIj-s2-b8K" secondAttribute="centerY" id="F9e-6D-FU7"/>
                                             <constraint firstItem="NxG-2e-5PA" firstAttribute="top" secondItem="mIj-s2-b8K" secondAttribute="top" id="M3S-TW-6A8"/>
@@ -1599,7 +1600,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="r0n-e5-aot" firstAttribute="centerY" secondItem="zxu-XJ-ES2" secondAttribute="centerY" id="K8k-lN-Ubj"/>
                                             <constraint firstItem="r0n-e5-aot" firstAttribute="centerX" secondItem="zxu-XJ-ES2" secondAttribute="centerX" id="OgE-f3-38b"/>

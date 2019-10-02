@@ -78,7 +78,7 @@ typedef enum {
 
 @end
 
-@interface SDCycleScrollView : UGView
+@interface SDCycleScrollView : UIView
 
 
 /** 初始轮播图（推荐使用） */

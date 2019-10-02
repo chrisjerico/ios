@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGFundsTransferView : UGView
+@interface UGFundsTransferView : UIView
 
 
 @property (nonatomic, strong) UGchannelModel *item;

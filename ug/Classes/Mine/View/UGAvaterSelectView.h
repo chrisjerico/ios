@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGAvaterSelectView : UGView
+@interface UGAvaterSelectView : UIView
 
 - (void)show;
 @end

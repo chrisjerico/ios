@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MOFSToolView : UGView
+@interface MOFSToolView : UIView
 
 @property (nonatomic, strong) UILabel *cancelBar;
 @property (nonatomic, strong) UILabel *commitBar;

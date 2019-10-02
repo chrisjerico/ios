@@ -44,7 +44,7 @@ typedef void (^WMMaskSegmentControlBlock)(NSInteger index, BOOL isRepeat);
 - (void)segmentControl:(WMMaskSegmentControl *)control selectedIndex:(NSInteger)index isRepeat:(BOOL)isRepeat;
 @end
 
-@interface WMMaskSegmentControl : UGView
+@interface WMMaskSegmentControl : UIView
 
 @property (nonatomic, readonly) NSInteger currentIndex;                 /**< 当前选项索引 */
 @property (nonatomic, weak) id <WMMaskSegmentControlDelegate> delegate; /**< 回调 */

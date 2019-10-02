@@ -10,7 +10,7 @@
 #import "UGinviteLisModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGPormotionUserInfoView : UGView
+@interface UGPormotionUserInfoView : UIView
 
 @property (nonatomic, strong) UGinviteLisModel *item;
 

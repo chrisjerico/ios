@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGSignInScrHeaderView : UGView
+@interface UGSignInScrHeaderView : UIView
 
 @property (nonatomic, strong) NSString *signInNumberStr;
 

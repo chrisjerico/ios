@@ -37,6 +37,9 @@
     });
     self.infoView.layer.cornerRadius = 10;
     self.infoView.layer.masksToBounds = YES;
+    self.infoView.layer.borderWidth = 1;
+    self.infoView.layer.borderColor = [[UIColor whiteColor] CGColor];
+    [self.infoView setBackgroundColor: [[UGSkinManagers shareInstance] setCellbgColor]];
     [self getCardInfo];
 }
 

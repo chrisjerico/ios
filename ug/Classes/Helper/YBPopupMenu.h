@@ -25,7 +25,7 @@ typedef NS_ENUM(NSInteger , YBPopupMenuType) {
 @end
 
 
-@interface YBPopupMenu : UGView
+@interface YBPopupMenu : UIView
 
 /**
  圆角半径 Default is 5.0

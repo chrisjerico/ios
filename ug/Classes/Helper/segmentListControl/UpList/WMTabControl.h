@@ -46,7 +46,7 @@ typedef void (^WMTabControlBlock)(NSInteger index);
 - (void)control:(WMTabControl *)control selectedIndex:(NSInteger)index;
 @end
 
-@interface WMTabControl : UGView
+@interface WMTabControl : UIView
 
 @property (nonatomic, assign, readonly) NSInteger currentIndex;
 @property (nonatomic, copy) id<WMTabControlDelegate> delegate;

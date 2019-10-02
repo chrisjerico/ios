@@ -10,7 +10,7 @@
 @class  UGchannelModel;
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGFundsTransfer2View : UGView
+@interface UGFundsTransfer2View : UIView
 
 @property (weak, nonatomic) IBOutlet UITextField *myTextField;
 

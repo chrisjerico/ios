@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGBetRecorddHeaderView : UGView
+@interface UGBetRecorddHeaderView : UIView
 @property (nonatomic, strong) NSString *rightTitle;
 
 @end

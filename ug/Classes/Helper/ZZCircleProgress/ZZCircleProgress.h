@@ -14,7 +14,7 @@
 #define ZZCircleSelfWidth self.frame.size.width
 #define ZZCircleSelfHeight self.frame.size.height
 
-@interface ZZCircleProgress : UGView
+@interface ZZCircleProgress : UIView
 
 //图形定制
 @property (nonatomic, strong) UIColor *pathBackColor;/**<线条背景色*/

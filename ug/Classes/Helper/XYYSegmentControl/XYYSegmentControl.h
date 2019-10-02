@@ -24,7 +24,7 @@ typedef enum {
 } XYYSegmentedControlSelectionIndicatorLocation;
 
 @protocol XYYSegmentControlDelegate;
-@interface XYYSegmentControl : UGView<UIScrollViewDelegate>
+@interface XYYSegmentControl : UIView<UIScrollViewDelegate>
 {
     UIScrollView                                        *_rootScrollView;                      //主视图
     UIScrollView                                        *_topScrollView;                       //顶部页签视图

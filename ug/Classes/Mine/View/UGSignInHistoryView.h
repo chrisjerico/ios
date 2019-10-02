@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGSignInHistoryView : UGView
+@interface UGSignInHistoryView : UIView
 
 @property (nonatomic, strong) NSArray *dataArray;
 

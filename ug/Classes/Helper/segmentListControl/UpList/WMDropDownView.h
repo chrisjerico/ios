@@ -9,7 +9,7 @@
 
 typedef void (^WMDropDownViewBlock)(id title, NSInteger index);
 
-@interface WMDropDownView : UGView
+@interface WMDropDownView : UIView
 
 + (void)setCellClass:(Class)cellClass;
 

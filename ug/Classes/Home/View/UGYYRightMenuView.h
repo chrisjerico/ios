@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 typedef void(^YYRightMenuBlock)();
-@interface UGYYRightMenuView : UGView
+@interface UGYYRightMenuView : UIView
 
 
 @property (nonatomic,copy)YYRightMenuBlock gotoSeeBlock;

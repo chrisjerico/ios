@@ -10,7 +10,7 @@
 @class UGMosaicGoldParamModel;
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGActivityGoldView : UGView
+@interface UGActivityGoldView : UIView
 
 @property (nonatomic, strong) UGMosaicGoldParamModel *item;
 

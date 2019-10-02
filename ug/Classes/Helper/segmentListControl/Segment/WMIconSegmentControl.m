@@ -12,7 +12,7 @@
 #define kAnimationTime (0.3)
 #define kHorizontalLineH (1)
 
-@interface WMIconSegControlItem : UGView
+@interface WMIconSegControlItem : UIView
 
 @property (nonatomic, strong) UIImageView *iconView;
 
