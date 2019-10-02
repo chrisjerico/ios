@@ -9,6 +9,8 @@
 #import "UGPlatformCollectionView.h"
 #import "UGGameTypeColletionViewCell.h"
 #import "UGPlatformGameModel.h"
+#import "UGDocumentVC.h"
+
 @interface UGPlatformCollectionView()<UICollectionViewDelegate, UICollectionViewDataSource>
 {
 	NSIndexPath * _selectedPath;
@@ -72,6 +74,16 @@ static NSString *const footerId = @"footerId";
 	
     [self.gameCollectionView reloadData];
 	[self postHeight];
+	
+	
+	
+	NSMutableArray * documentArray = [NSMutableArray array];
+	for (GameModel * model in dataArray) {
+		if ([model.docType isEqualToString:@"1"]) {
+			[documentArray addObject:model];
+		}
+	}
+	[DocumentTypeList setAllGames: documentArray];
 	
 }
 - (void) postHeight {

@@ -28,7 +28,7 @@
     self.layer.cornerRadius = 10;
     self.layer.masksToBounds = YES;
     self.layer.borderColor = UGBackgroundColor.CGColor;
-    self.layer.borderWidth = 0.7;
+    self.layer.borderWidth = 1;
     self.hotImageView.hidden = YES;
 	[self addSubview:self.hasSubSign];
 	[self.hasSubSign mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -57,13 +57,19 @@
     _item = item;
 	self.nameLabel.text = [item.name length] > 0 ? item.name : item.title;
 	[self.hasSubSign setHidden: (item.subType.count > 0 ? false : true)];
+//<<<<<<< HEAD
     [self.imgView sd_setImageWithURL:[NSURL URLWithString:item.logo] placeholderImage:[UIImage imageNamed:@"loading"]];
 	
+//=======
+//    [self.imgView sd_setImageWithURL:[NSURL URLWithString:item.logo] placeholderImage:[UIImage imageNamed:@"zwt"]];
+//	self.hotImageView.hidden = [item.tipFlag isEqualToString:@"1"] ? false : true;
+//>>>>>>> dev_andrew
 }
 -(UIImageView *)hasSubSign {
 	if (!_hasSubSign) {
 		_hasSubSign = [UIImageView new];
 		_hasSubSign.image = [UIImage imageNamed:@"game_has_sub"];
+		_hasSubSign.backgroundColor = [UIColor clearColor];
 	}
 	return _hasSubSign;
 }

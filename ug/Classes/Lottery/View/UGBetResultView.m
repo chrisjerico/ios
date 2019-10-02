@@ -11,6 +11,7 @@
 @interface UGBetResultView()
 @property(nonatomic, strong) NSMutableArray<UILabel *> * numberlabels;
 @property(nonatomic, strong) NSMutableArray<UILabel *> * resultlabels;
+@property(nonatomic, strong) UIImageView * resultImage;
 @property(nonatomic, strong) UILabel * bonusLabel;
 @property(nonatomic, strong) UILabel * timerLabel;
 
@@ -48,7 +49,15 @@ static UGBetResultView *_singleInstance = nil;
 		[self addSubview:image];
 		[image mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.left.right.equalTo(self);
-			make.centerY.equalTo(self);
+			make.centerY.equalTo(self).offset(-60);
+		}];
+		
+		[self addSubview:self.resultImage];
+		[self.resultImage mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.centerX.equalTo(image);
+			make.top.equalTo(image).offset(160);
+			make.width.equalTo(image).multipliedBy(0.4);
+			make.height.equalTo(image.mas_width).multipliedBy(0.4*23/56);
 		}];
 		
 		[self addSubview: self.timerButton];
@@ -66,7 +75,7 @@ static UGBetResultView *_singleInstance = nil;
 		}];
 		
 		UILabel *tempLabel;
-		for (int i = 0; i < 5 ; i ++) {
+		for (int i = 0; i < 10 ; i ++) {
 			UILabel * label = [UILabel new];
 			label.textColor = UIColor.whiteColor;
 			label.backgroundColor = [UIColor colorWithHex:0x2f9cf3];
@@ -78,7 +87,7 @@ static UGBetResultView *_singleInstance = nil;
 			[self addSubview:label];
 			[label mas_makeConstraints:^(MASConstraintMaker *make) {
 				if (tempLabel) {
-					make.left.equalTo(tempLabel.mas_right).offset(5);
+					make.left.equalTo(tempLabel.mas_right).offset(3);
 					make.centerY.equalTo(tempLabel);
 				} else {
 					make.left.equalTo(image).offset(55);
@@ -90,7 +99,7 @@ static UGBetResultView *_singleInstance = nil;
 			
 		}
 		UILabel *tempLabel2;
-		for (int i = 0; i < 9 ; i ++) {
+		for (int i = 0; i < 10 ; i ++) {
 			UILabel * label = [UILabel new];
 			label.textColor = [UIColor colorWithHex:0x2c962c];
 			label.backgroundColor = [UIColor whiteColor];
@@ -103,7 +112,7 @@ static UGBetResultView *_singleInstance = nil;
 			[self addSubview:label];
 			[label mas_makeConstraints:^(MASConstraintMaker *make) {
 				if (tempLabel2) {
-					make.left.equalTo(tempLabel2.mas_right).offset(5);
+					make.left.equalTo(tempLabel2.mas_right).offset(3);
 					make.centerY.equalTo(tempLabel2);
 				} else {
 					make.left.equalTo(image).offset(55);
@@ -150,21 +159,46 @@ static UGBetResultView *_singleInstance = nil;
 	}];
 	
 	NSArray<NSString *> * numbers = [model.openNum componentsSeparatedByString: @","];
-	for (int i = 0; i < numbers.count; i ++) {
-		if (i == resultView.numberlabels.count) { break; };
-		resultView.numberlabels[i].text = numbers[i];
+
+	for (int i = 0; i < 10; i ++) {
+		
+		if (i<numbers.count) {
+			resultView.numberlabels[i].text = numbers[i];
+
+		} else {
+			UILabel * label = resultView.numberlabels[i];
+			label.text = @"";
+			label.backgroundColor = UIColor.clearColor;
+
+		}
+		
+	}
+	NSArray<NSString *> * results = [model.result componentsSeparatedByString: @","];
+
+	for (int i = 0; i < 10; i ++) {
+		
+		if (i<results.count) {
+			resultView.resultlabels[i].text = results[i];
+
+		} else {
+			UILabel * label = resultView.resultlabels[i];
+			label.text = @"";
+			label.backgroundColor = UIColor.clearColor;
+			label.layer.borderColor = UIColor.clearColor.CGColor;
+
+		}
+		
 	}
 	
-	NSArray<NSString *> * results = [model.result componentsSeparatedByString: @","];
-	for (int i = 0; i < results.count; i ++) {
-		if (i == resultView.resultlabels.count) { break; };
-		resultView.resultlabels[i].text = results[i];
-	}
+
 	
 	if ([model.bonus floatValue] > 0) {
 		resultView.bonusLabel.text = [NSString stringWithFormat:@"+%@", model.bonus];
+		resultView.resultImage.image = [UIImage imageNamed:@"mmczjl"];
 	} else {
 		resultView.bonusLabel.text = @"再接再历";
+		resultView.resultImage.image = [UIImage imageNamed:@"mmcwzj"];
+
 	}
 	
 	resultView.timerAction = timerAction;
@@ -215,7 +249,13 @@ static UGBetResultView *_singleInstance = nil;
 
 	
 }
-
+- (UIImageView *)resultImage {
+	
+	if (!_resultImage) {
+		_resultImage = [[UIImageView alloc] init];
+	}
+	return _resultImage;
+}
 - (void) timerButtonTaped: (UIButton *) sender {
 	[sender setSelected: !sender.isSelected];
 	if (sender.isSelected) {

@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		030BE80A23337AE3004AB19A /* GameCategoryDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 030BE80923337AE3004AB19A /* GameCategoryDataModel.m */; };
 		030BE80D233604B3004AB19A /* UGGameSubCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 030BE80C233604B3004AB19A /* UGGameSubCollectionView.m */; };
+		0322AD5C233DD75300E9857E /* CMNetwork+Document.m in Sources */ = {isa = PBXBuildFile; fileRef = 0322AD5B233DD75300E9857E /* CMNetwork+Document.m */; };
+		0322AD5F233DF08900E9857E /* UGDocumentDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0322AD5E233DF08900E9857E /* UGDocumentDetailVC.m */; };
+		0322AD6523432A4A00E9857E /* UGCommonLotteryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0322AD6423432A4A00E9857E /* UGCommonLotteryController.m */; };
+		0322AD68234342DB00E9857E /* UGDocumentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0322AD67234342DB00E9857E /* UGDocumentView.m */; };
 		033177A72337382D000D7663 /* UGPlatformCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 033177A62337382D000D7663 /* UGPlatformCollectionView.m */; };
 		033177AF2338E026000D7663 /* UGBetResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = 033177AE2338E026000D7663 /* UGBetResultView.m */; };
 		0399E6FB233B9D34001E0A7F /* UGDocumentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0399E6FA233B9D34001E0A7F /* UGDocumentVC.m */; };
@@ -588,6 +592,14 @@
 		030BE80923337AE3004AB19A /* GameCategoryDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameCategoryDataModel.m; sourceTree = "<group>"; };
 		030BE80B233604B3004AB19A /* UGGameSubCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGGameSubCollectionView.h; sourceTree = "<group>"; };
 		030BE80C233604B3004AB19A /* UGGameSubCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGGameSubCollectionView.m; sourceTree = "<group>"; };
+		0322AD5A233DD75300E9857E /* CMNetwork+Document.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CMNetwork+Document.h"; sourceTree = "<group>"; };
+		0322AD5B233DD75300E9857E /* CMNetwork+Document.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CMNetwork+Document.m"; sourceTree = "<group>"; };
+		0322AD5D233DF08900E9857E /* UGDocumentDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGDocumentDetailVC.h; sourceTree = "<group>"; };
+		0322AD5E233DF08900E9857E /* UGDocumentDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGDocumentDetailVC.m; sourceTree = "<group>"; };
+		0322AD6323432A4A00E9857E /* UGCommonLotteryController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGCommonLotteryController.h; sourceTree = "<group>"; };
+		0322AD6423432A4A00E9857E /* UGCommonLotteryController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGCommonLotteryController.m; sourceTree = "<group>"; };
+		0322AD66234342DB00E9857E /* UGDocumentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGDocumentView.h; sourceTree = "<group>"; };
+		0322AD67234342DB00E9857E /* UGDocumentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGDocumentView.m; sourceTree = "<group>"; };
 		033177A52337382D000D7663 /* UGPlatformCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGPlatformCollectionView.h; sourceTree = "<group>"; };
 		033177A62337382D000D7663 /* UGPlatformCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGPlatformCollectionView.m; sourceTree = "<group>"; };
 		033177AD2338E026000D7663 /* UGBetResultView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGBetResultView.h; sourceTree = "<group>"; };
@@ -2216,6 +2228,8 @@
 				D405B366227DE67600F8C586 /* CMNetwork+Hall.m */,
 				D40DE96D22F3357100974BAF /* CMNetwork+Home.h */,
 				D40DE96E22F3357100974BAF /* CMNetwork+Home.m */,
+				0322AD5A233DD75300E9857E /* CMNetwork+Document.h */,
+				0322AD5B233DD75300E9857E /* CMNetwork+Document.m */,
 			);
 			path = CMNetwork;
 			sourceTree = "<group>";
@@ -2672,6 +2686,8 @@
 				D42A06B222CA22D9005488F8 /* UGHomeViewController.storyboard */,
 				0399E6F9233B9D34001E0A7F /* UGDocumentVC.h */,
 				0399E6FA233B9D34001E0A7F /* UGDocumentVC.m */,
+				0322AD5D233DF08900E9857E /* UGDocumentDetailVC.h */,
+				0322AD5E233DF08900E9857E /* UGDocumentDetailVC.m */,
 				D4145A8A22B513CE00D8165F /* UGGameListViewController.h */,
 				D4145A8B22B513CE00D8165F /* UGGameListViewController.m */,
 				D4145A8D22B514EB00D8165F /* UGChangLongController.h */,
@@ -2761,8 +2777,8 @@
 				D41F260A2318EFE4004FB9C6 /* UGChanglongBetRecrodCell.h */,
 				D41F260B2318EFE4004FB9C6 /* UGChanglongBetRecrodCell.m */,
 				D41F260C2318EFE4004FB9C6 /* UGChanglongBetRecrodCell.xib */,
-				D48224DF22A0F2F200F7DE72 /* UGPlatformNoticeView.h */,
 				D48224E022A0F2F200F7DE72 /* UGPlatformNoticeView.m */,
+				D48224DF22A0F2F200F7DE72 /* UGPlatformNoticeView.h */,
 				D48224E222A0F3F500F7DE72 /* UGPlatformNoticeView.xib */,
 				D49D359C22C79E7900318D73 /* UGNoticePopView.h */,
 				D49D359D22C79E7900318D73 /* UGNoticePopView.m */,
@@ -2797,6 +2813,8 @@
 				D41C3009233F220000541254 /* UGYYRightMenuTableViewCell.h */,
 				D41C300A233F220000541254 /* UGYYRightMenuTableViewCell.m */,
 				D41C300B233F220000541254 /* UGYYRightMenuTableViewCell.xib */,
+				0322AD66234342DB00E9857E /* UGDocumentView.h */,
+				0322AD67234342DB00E9857E /* UGDocumentView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3128,6 +3146,8 @@
 				D4EE8F8D2341F225006FA0E2 /* UGYYLotterySecondHomeViewController.m */,
 				D405B2DC227B3CCB00F8C586 /* UGLotteryHomeController.h */,
 				D405B2DD227B3CCB00F8C586 /* UGLotteryHomeController.m */,
+				0322AD6323432A4A00E9857E /* UGCommonLotteryController.h */,
+				0322AD6423432A4A00E9857E /* UGCommonLotteryController.m */,
 				D4D8DF6E2286B14C00446BAF /* UGSSCLotteryController.h */,
 				D4D8DF6F2286B14C00446BAF /* UGSSCLotteryController.m */,
 				D4D8DF712286B23600446BAF /* UGSSCLotteryController.storyboard */,
@@ -3762,6 +3782,7 @@
 				D405B39222817A7C00F8C586 /* UGModifyPayPwdController.m in Sources */,
 				D4D8DF6D22869B2D00446BAF /* UGLotteryAssistantTableViewCell.m in Sources */,
 				D4C93B3B22D8560500608B67 /* UGFeedbackTableViewCell.m in Sources */,
+				0322AD6523432A4A00E9857E /* UGCommonLotteryController.m in Sources */,
 				D40DE99722F4866600974BAF /* UGImgVcodeModel.m in Sources */,
 				D4C46F92232B88BF0062564D /* UGFunds2microcodeView.m in Sources */,
 				D4AE640D2295871D00DD265A /* MJRefreshConst.m in Sources */,
@@ -3853,6 +3874,7 @@
 				D40DE99422F466FC00974BAF /* OpenUDID.m in Sources */,
 				D405B39522817AB700F8C586 /* UGModifyLoginPlaceController.m in Sources */,
 				D4A1E90F232BC4A50045F5B4 /* NSString+XHDateFormat.m in Sources */,
+				0322AD5F233DF08900E9857E /* UGDocumentDetailVC.m in Sources */,
 				D405B21B227972D300F8C586 /* MJPropertyKey.m in Sources */,
 				D4A3662A233DDDD200F6D770 /* UGonlineCount.m in Sources */,
 				D405B2DB227B122000F8C586 /* UGPlatformTitleCollectionView.m in Sources */,
@@ -3945,6 +3967,7 @@
 				D4AE641A2295871D00DD265A /* MJRefreshGifHeader.m in Sources */,
 				D405B1D9227972C100F8C586 /* AFSecurityPolicy.m in Sources */,
 				D4177133229D79AB00727B70 /* UGMissionTitleCell.m in Sources */,
+				0322AD5C233DD75300E9857E /* CMNetwork+Document.m in Sources */,
 				D40A2A8122BCFF6500DAAFC8 /* UGbankModel.m in Sources */,
 				D48224E122A0F2F200F7DE72 /* UGPlatformNoticeView.m in Sources */,
 				D4EE8F8B2341EB22006FA0E2 /* UGYYLotteryHomeViewController.m in Sources */,
@@ -4002,6 +4025,7 @@
 				D48224FA22A120E500F7DE72 /* UGPlatformNoticeModel.m in Sources */,
 				D4C93B3E22D8751F00608B67 /* UGFeedbackDetailController.m in Sources */,
 				D405B3812281442B00F8C586 /* SLWebViewController.m in Sources */,
+				0322AD68234342DB00E9857E /* UGDocumentView.m in Sources */,
 				D4BBFC00232A797600147C4A /* NSTimer+addition.m in Sources */,
 				D409B14E2296826D0053DA33 /* UGHKLHCLotteryController.m in Sources */,
 				D405AFF222783DCC00F8C586 /* ViewController+MASAdditions.m in Sources */,
