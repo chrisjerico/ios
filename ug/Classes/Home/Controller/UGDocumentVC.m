@@ -197,13 +197,10 @@
 //				vc.model = documentDetailModel;
 //				[self presentViewController:vc animated:true completion:nil];
 				
-				UGDocumentView * view = [[UGDocumentView alloc] initWithFrame:CGRectZero];
 				
-				[self.view addSubview:view];
-				view.model = documentDetailModel;
-				[view mas_makeConstraints:^(MASConstraintMaker *make) {
-					make.edges.equalTo(self.view);
-				}];
+				[UGDocumentView showWith:documentDetailModel];
+				
+//				
 				
 			} else if (user.isTest){
 				

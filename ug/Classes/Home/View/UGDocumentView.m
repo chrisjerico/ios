@@ -31,9 +31,17 @@ static UGDocumentView *_singleInstance = nil;
 	return _singleInstance;
 }
 
-+ (void)show {
++ (void)showWith: (UGDocumentDetailData *) model
+{
 	
+	UIWindow * window = UIApplication.sharedApplication.keyWindow;
+	UGDocumentView * documentView = [UGDocumentView shareInstance];
+	documentView.model = model;
 	
+	[window addSubview: documentView];
+	[documentView mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.edges.equalTo(window);
+	}];
 	
 }
 
@@ -54,39 +62,39 @@ static UGDocumentView *_singleInstance = nil;
 		}];
 		
 		
-		UILabel * label = [UILabel new];
-		label.text = @"温馨提示";
-		label.textAlignment = NSTextAlignmentCenter;
-		label.font = [UIFont boldSystemFontOfSize:20];
-		label.backgroundColor = UIColor.whiteColor;
-		UIView * line = [UIView new];
-		line.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1.0];
-		[contentView addSubview:label];
-		[label mas_makeConstraints:^(MASConstraintMaker *make) {
-//			make.centerX.equalTo(contentView);
-			make.top.equalTo(contentView).offset(5);
+		UILabel * titleLabel = [UILabel new];
+		titleLabel.text = @"温馨提示";
+		titleLabel.textAlignment = NSTextAlignmentCenter;
+		titleLabel.font = [UIFont boldSystemFontOfSize:20];
+		titleLabel.backgroundColor = [UIColor whiteColor];
+	
+		[contentView addSubview:titleLabel];
+		[titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.top.equalTo(contentView);
 			make.left.right.equalTo(contentView);
-			make.height.equalTo(@60);
+			make.height.equalTo(@64);
 			
 		}];
 		
+		UIView * line = [UIView new];
+		line.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1.0];
 		[contentView addSubview:line];
 		[line mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.left.right.equalTo(contentView);
-			make.top.equalTo(label.mas_bottom).offset(5);
+			make.top.equalTo(titleLabel.mas_bottom);
 			make.height.equalTo(@1);
 		}];
 		[contentView addSubview:self.contentView];
 		[self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.left.right.equalTo(contentView);
-			make.top.equalTo(line);
+			make.top.equalTo(line.mas_bottom);
 		}];
 		[contentView addSubview: self.confirmButton];
 		[self.confirmButton mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.top.equalTo(self.contentView.mas_bottom);
 			make.bottom.equalTo(contentView);
 			make.left.right.equalTo(contentView);
-			make.height.equalTo(@40);
+			make.height.equalTo(@45);
 		}];
 		
 	}
@@ -99,7 +107,7 @@ static UGDocumentView *_singleInstance = nil;
 		_confirmButton = [UIButton buttonWithType:UIButtonTypeCustom];
 		[_confirmButton setTitle:@"确定" forState:UIControlStateNormal];
 		[_confirmButton addTarget:self action:@selector(dismissSelf:) forControlEvents:UIControlEventTouchUpInside];
-		_confirmButton.backgroundColor = [UIColor lightGrayColor];
+		_confirmButton.backgroundColor = UGNavColor;
 	}
 	return _confirmButton;
 }
@@ -112,6 +120,7 @@ static UGDocumentView *_singleInstance = nil;
 	
 	if (!_contentView) {
 		_contentView = [[UITextView alloc] init];
+		_contentView.editable = false;
 	}
 	return _contentView;
 }

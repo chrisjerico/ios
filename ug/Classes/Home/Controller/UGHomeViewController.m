@@ -63,6 +63,7 @@
 #import "UGYubaoViewController.h"
 
 #import "UGYYRightMenuView.h"
+#import <SafariServices/SafariServices.h>
 #import "UIImage+YYgradientImage.h"
 
 
@@ -1181,7 +1182,20 @@
 		
 	}else {
 		//        进入第三方游戏
-		if (model.subType.count > 0) {
+		
+		if (model.url && ![model.url isEqualToString:@""]) {
+			NSURL * url = [NSURL URLWithString:model.url];
+			if (url.scheme == nil) {
+				url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@", model.url]];
+				
+			}
+			SFSafariViewController *sf = [[SFSafariViewController alloc] initWithURL:url];
+			[self presentViewController:sf animated:YES completion:nil];
+			
+			
+
+			
+		} else if (model.subType.count > 0) {
 			UGGameListViewController *gameListVC = [[UGGameListViewController alloc] init];
 			gameListVC.game = model;
 			[self.navigationController pushViewController:gameListVC animated:YES];
