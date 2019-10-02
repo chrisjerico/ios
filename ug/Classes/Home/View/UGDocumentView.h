@@ -13,7 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UGDocumentView : UIView
 @property(nonatomic, strong)UGDocumentDetailData * model;
-+(void)show;
++ (void)showWith: (UGDocumentDetailData *) model;
++ (instancetype)shareInstance;
+
 @end
 
 NS_ASSUME_NONNULL_END

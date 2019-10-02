@@ -107,7 +107,12 @@
 			
 			DocumentListModel * data = model.data;
 			weakSelf.documentListData = data.list;
-			[self.tableView.mj_footer setHidden: (data.list.count > 0 ? true : false)];
+			
+			if (data.list.count > 0) {
+				[self.tableView.mj_footer setHidden:true];
+			} else {
+				[self.tableView.mj_footer endRefreshingWithNoMoreData];
+			}
 			dispatch_group_leave(weakSelf.completionGroup);
 		} failure:^(id msg) {
 			dispatch_group_leave(weakSelf.completionGroup);
@@ -192,13 +197,10 @@
 //				vc.model = documentDetailModel;
 //				[self presentViewController:vc animated:true completion:nil];
 				
-				UGDocumentView * view = [[UGDocumentView alloc] initWithFrame:CGRectZero];
 				
-				[self.view addSubview:view];
-				view.model = documentDetailModel;
-				[view mas_makeConstraints:^(MASConstraintMaker *make) {
-					make.edges.equalTo(self.view);
-				}];
+				[UGDocumentView showWith:documentDetailModel];
+				
+//				
 				
 			} else if (user.isTest){
 				
