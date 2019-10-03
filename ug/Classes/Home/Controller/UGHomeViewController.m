@@ -67,6 +67,7 @@
 #import "UIImage+YYgradientImage.h"
 
 #import "UGGameNavigationView.h"
+#import "UGFundsViewController.h"
 
 @interface UGHomeViewController ()<SDCycleScrollViewDelegate,UUMarqueeViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -124,95 +125,97 @@
 }
 
 -(void)skin{
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
-    [self.rollingView setBackgroundColor:[[UGSkinManagers shareInstance]setbgColor]];
-    [self.leftwardMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
-    [self.gameTypeView setBackgroundColor:[UIColor clearColor]];
-    [self.rankingView setBackgroundColor:[UIColor clearColor]];
-    [self getCustomGameList];
-    
-
-    
+	[self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+	[self.rollingView setBackgroundColor:[[UGSkinManagers shareInstance]setbgColor]];
+	[self.leftwardMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
+	[self.gameTypeView setBackgroundColor:[UIColor clearColor]];
+	[self.rankingView setBackgroundColor:[UIColor clearColor]];
+	[self getCustomGameList];
+	
+	
+	
 }
 
 - (void)viewDidLoad {
-
-    [super viewDidLoad];
-    
-    [[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:[[UGSkinManagers shareInstance] setTabbgColor]]];
-    
-    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[[UGSkinManagers shareInstance] settabNOSelectColor], NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
-    
-    [[UITabBarItem appearance] setTitleTextAttributes:                                                         [NSDictionary dictionaryWithObjectsAndKeys: [[UGSkinManagers shareInstance] settabSelectColor],NSForegroundColorAttributeName, nil]forState:UIControlStateSelected];
-    
-    [[UITabBar appearance] setSelectedImageTintColor: [[UGSkinManagers shareInstance] settabSelectColor]];
-    
-    [[UITabBar appearance] setUnselectedItemTintColor: [[UGSkinManagers shareInstance] settabNOSelectColor]];
-
-    
-    [self setupSubView];
-
-    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-       
-        [self skin];
-    });
-    
-    SANotificationEventSubscribe(UGNotificationTryPlay, self, ^(typeof (self) self, id obj) {
-        [self tryPlayClick];
-   
-    });
-    
-    SANotificationEventSubscribe(UGNotificationLoginComplete, self, ^(typeof (self) self, id obj) {
-        [self getUserInfo];
-        self.titleView.showLoginView = NO;
-      
-    });
-    SANotificationEventSubscribe(UGNotificationUserLogout, self, ^(typeof (self) self, id obj) {
-        [self userLogout];
-    });
-    SANotificationEventSubscribe(UGNotificationloginTimeout, self, ^(typeof (self) self, id obj) {
-        [QDAlertView showWithTitle:@"提示" message:@"您的账号已经登录超时，请重新登录。" cancelButtonTitle:nil otherButtonTitle:@"确定" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-            self.titleView.showLoginView = YES;
-            UGUserModel.currentUser = nil;
-            [self.tabBarController setSelectedIndex:0];
-            [self loginClick];
-            
-        }];
-    });
-    SANotificationEventSubscribe(UGNotificationShowLoginView, self, ^(typeof (self) self, id obj) {
-        [self loginClick];
-    });
-    SANotificationEventSubscribe(UGNotificationGetUserInfo, self, ^(typeof (self) self, id obj) {
-        [self getUserInfo];
-        
-    });
-    SANotificationEventSubscribe(UGNotificationAutoTransferOut, self, ^(typeof (self) self, id obj) {
-        [self autoTransferOut];
-    });
-    
-    [self getSystemConfig];
-    [self getCustomGameList];
-    [self getBannerList];
-    [self getNoticeList];
-    [self getRankList];
-    [self getAllNextIssueData];
-    [self getUserInfo];
-    [self getCheckinListData];
-    [self systemOnlineCount];
-    
-    self.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [self getSystemConfig];
-        [self getCustomGameList];
-        [self getBannerList];
-        [self getNoticeList];
-        [self getRankList];
-        [self getUserInfo];
-        [self getAllNextIssueData];
-        [self getCheckinListData];
-        [self systemOnlineCount];
-    }];
-
+	
+	[super viewDidLoad];
+	
+	[[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:[[UGSkinManagers shareInstance] setTabbgColor]]];
+	
+	[[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[[UGSkinManagers shareInstance] settabNOSelectColor], NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
+	
+	[[UITabBarItem appearance] setTitleTextAttributes:                                                         [NSDictionary dictionaryWithObjectsAndKeys: [[UGSkinManagers shareInstance] settabSelectColor],NSForegroundColorAttributeName, nil]forState:UIControlStateSelected];
+	
+	[[UITabBar appearance] setSelectedImageTintColor: [[UGSkinManagers shareInstance] settabSelectColor]];
+	
+	[[UITabBar appearance] setUnselectedItemTintColor: [[UGSkinManagers shareInstance] settabNOSelectColor]];
+	
+	
+	[self setupSubView];
+	
+	SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
+		
+		[self skin];
+	});
+	
+	SANotificationEventSubscribe(UGNotificationTryPlay, self, ^(typeof (self) self, id obj) {
+		[self tryPlayClick];
+		
+	});
+	
+	SANotificationEventSubscribe(UGNotificationLoginComplete, self, ^(typeof (self) self, id obj) {
+		[self getUserInfo];
+		self.titleView.showLoginView = NO;
+		
+	});
+	SANotificationEventSubscribe(UGNotificationUserLogout, self, ^(typeof (self) self, id obj) {
+		[self userLogout];
+	});
+	SANotificationEventSubscribe(UGNotificationloginTimeout, self, ^(typeof (self) self, id obj) {
+		[QDAlertView showWithTitle:@"提示" message:@"您的账号已经登录超时，请重新登录。" cancelButtonTitle:nil otherButtonTitle:@"确定" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+			self.titleView.showLoginView = YES;
+			UGUserModel.currentUser = nil;
+			[self.tabBarController setSelectedIndex:0];
+			[self loginClick];
+			
+		}];
+	});
+	SANotificationEventSubscribe(UGNotificationShowLoginView, self, ^(typeof (self) self, id obj) {
+		[self loginClick];
+	});
+	SANotificationEventSubscribe(UGNotificationGetUserInfo, self, ^(typeof (self) self, id obj) {
+		[self getUserInfo];
+		
+	});
+	SANotificationEventSubscribe(UGNotificationAutoTransferOut, self, ^(typeof (self) self, id obj) {
+		[self autoTransferOut];
+	});
+	
+	[self getSystemConfig];
+	[self getCustomGameList];
+	[self getBannerList];
+	[self getNoticeList];
+	[self getRankList];
+	[self getAllNextIssueData];
+	[self getUserInfo];
+	[self getCheckinListData];
+	[self systemOnlineCount];
+	
+	self.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+		[self getSystemConfig];
+		[self getCustomGameList];
+		[self getBannerList];
+		[self getNoticeList];
+		[self getRankList];
+		[self getUserInfo];
+		[self getAllNextIssueData];
+		[self getCheckinListData];
+		[self systemOnlineCount];
+	}];
+	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(collectiongViewHeightUpdated:) name:@"UGPlatformCollectionViewContentHeight" object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gameNavigationItemTaped:) name:@"gameNavigationItemTaped" object:nil];
+	
 	WeakSelf
 	self.gameTypeView.platformSelectBlock = ^(NSInteger selectIndex) {
 		[self.view layoutIfNeeded];
@@ -329,6 +332,55 @@
 	self.gameViewHeight.constant = ((NSNumber *)notification.object).floatValue + 80;
 	[self.view layoutIfNeeded];
 }
+
+-(void)gameNavigationItemTaped: (NSNotification *)notification {
+	
+	GameModel * model = notification.object;
+	
+	if ([model.subId isEqualToString:@"1"]) {
+		UGFundsViewController * vc = [UGFundsViewController new];
+		[self.navigationController pushViewController:vc animated:true];
+	} else if ([model.subId isEqualToString:@"8"]) {
+		SLWebViewController *webViewVC = [[SLWebViewController alloc] init];
+		UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
+		if (config.zxkfUrl) {
+			webViewVC.urlStr = config.zxkfUrl;
+		}
+		[self.navigationController pushViewController:webViewVC animated:YES];
+	} else if ([model.subId isEqualToString:@"5"]) {
+		UGChangLongController *changlongVC = [[UGChangLongController alloc] init];
+		 changlongVC.lotteryGamesArray = self.lotteryGamesArray;
+		 [self.navigationController pushViewController:changlongVC animated:YES];
+
+	} else if ([model.subId isEqualToString:@"7"]) {
+		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://test10.6yc.com/Open_prize/index.php"]];
+	} else if ([model.subId isEqualToString:@"6"]) {
+		[SVProgressHUD showInfoWithStatus:@"推荐收益已关闭"];
+		
+	} else if ([model.subId isEqualToString:@"2"]) {
+		[SVProgressHUD showInfoWithStatus:@"下载链接未配置"];
+
+	} else if ([model.subId isEqualToString:@"3"]) {
+		// 聊天室
+		UGChatViewController * qdwebVC = [[UGChatViewController alloc] init];
+
+		 qdwebVC.webTitle = @"聊天室";
+		
+		 
+		 if (![CMCommon stringIsNull:[UGUserModel currentUser].token]) {
+			  NSString *colorStr = [[UGSkinManagers shareInstance] setNavbgStringColor];
+			  qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr];
+		 } else {
+			 NSString *colorStr = [[UGSkinManagers shareInstance] setNavbgStringColor];
+			 qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr];
+		 }
+		
+
+	} else if ([model.subId isEqualToString:@"4"]) {
+		// 在线客服
+	}
+	
+}
 - (void)getUserInfo {
 	
 	if (!UGLoginIsAuthorized()) {
@@ -441,46 +493,46 @@
 }
 
 - (void)getSystemConfig {
-//<<<<<<< HEAD
-
-    
-    [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-         [self.scrollView.mj_header endRefreshing];
-        [CMResult processWithResult:model success:^{
-            
-            NSLog(@"model = %@",model);
-            
-            UGSystemConfigModel *config = model.data;
-            UGSystemConfigModel.currentConfig = config;
-            
-            
-            [[UGSkinManagers shareInstance] setSkin];
-            
-           [self.titleView setImgName:config.mobile_logo];
-            
-        } failure:^(id msg) {
-            
-        }];
-    }];
-//=======
-//
-//
-//	[CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-//		[self.scrollView.mj_header endRefreshing];
-//		[CMResult processWithResult:model success:^{
-//
-//			NSLog(@"model = %@",model);
-//
-//			UGSystemConfigModel *config = model.data;
-//			UGSystemConfigModel.currentConfig = config;
-//
-//			[self.titleView setImgName:config.mobile_logo];
-//
-//		} failure:^(id msg) {
-//
-//		}];
-//	}];
-//>>>>>>> dev_andrew
+	//<<<<<<< HEAD
+	
+	
+	[CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+		[self.scrollView.mj_header endRefreshing];
+		[CMResult processWithResult:model success:^{
+			
+			NSLog(@"model = %@",model);
+			
+			UGSystemConfigModel *config = model.data;
+			UGSystemConfigModel.currentConfig = config;
+			
+			
+			[[UGSkinManagers shareInstance] setSkin];
+			
+			[self.titleView setImgName:config.mobile_logo];
+			
+		} failure:^(id msg) {
+			
+		}];
+	}];
+	//=======
+	//
+	//
+	//	[CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+	//		[self.scrollView.mj_header endRefreshing];
+	//		[CMResult processWithResult:model success:^{
+	//
+	//			NSLog(@"model = %@",model);
+	//
+	//			UGSystemConfigModel *config = model.data;
+	//			UGSystemConfigModel.currentConfig = config;
+	//
+	//			[self.titleView setImgName:config.mobile_logo];
+	//
+	//		} failure:^(id msg) {
+	//
+	//		}];
+	//	}];
+	//>>>>>>> dev_andrew
 }
 
 - (void)userLogout {
@@ -572,12 +624,15 @@
 				UGRankListModel *rank = model.data;
 				self.rankListModel = rank;
 				self.rankArray = rank.list.mutableCopy;
-				if (rank.show) {
-					self.rankingView.hidden = NO;
-					[self.upwardMultiMarqueeView reloadData];
-				}else {
-					self.rankingView.hidden = YES;
-				}
+				self.rankingView.hidden = NO;
+				[self.upwardMultiMarqueeView reloadData];
+				
+				//				if (rank.show) {
+				//					self.rankingView.hidden = NO;
+				//					[self.upwardMultiMarqueeView reloadData];
+				//				}else {
+				//					self.rankingView.hidden = YES;
+				//				}
 			});
 			
 		} failure:^(id msg) {
@@ -1028,8 +1083,8 @@
 	
 	void(^judeBlock)(UGCommonLotteryController * lotteryVC) = ^(UGCommonLotteryController * lotteryVC) {
 		if ([@[@"7", @"11", @"9"] containsObject: model.gameId]) {
-				lotteryVC.shoulHideHeader = true;
-			}
+			lotteryVC.shoulHideHeader = true;
+		}
 	};
 	
 	
@@ -1047,7 +1102,7 @@
 		markSixVC.gameId = model.gameId;
 		markSixVC.lotteryGamesArray = self.lotteryGamesArray;
 		judeBlock(markSixVC);
-
+		
 		[self.navigationController pushViewController:markSixVC animated:YES];
 		
 	}else if ([@"qxc" isEqualToString:model.gameType]) {
@@ -1056,7 +1111,7 @@
 		sevenVC.gameId = model.gameId;
 		sevenVC.lotteryGamesArray = self.lotteryGamesArray;
 		judeBlock(sevenVC);
-
+		
 		[self.navigationController pushViewController:sevenVC animated:YES];
 		
 	}else if ([@"lhc" isEqualToString:model.gameType]) {
@@ -1134,7 +1189,7 @@
 			[self presentViewController:sf animated:YES completion:nil];
 			
 			
-
+			
 			
 		} else if (model.subType.count > 0) {
 			UGGameListViewController *gameListVC = [[UGGameListViewController alloc] init];
