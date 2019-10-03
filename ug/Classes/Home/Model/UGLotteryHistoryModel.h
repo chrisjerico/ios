@@ -10,13 +10,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+// 彩票开奖历史
+// {{LOCAL_HOST}}?c=game&a=lotteryHistory&id=3&rows=10
 @interface UGLotteryHistoryModel : UGModel
-@property (nonatomic, strong) NSString *issue;
-@property (nonatomic, strong) NSString *openTime;
-@property (nonatomic, strong) NSString *num;
-@property (nonatomic, strong) NSString *result;
-@property (nonatomic, strong) NSString *gameType;
-@property (nonatomic, strong) NSArray *winningPlayers;
+@property (nonatomic, strong) NSString *issue;          /**<   期号 */
+@property (nonatomic, strong) NSString *openTime;       /**<   开奖时间 */
+@property (nonatomic, strong) NSString *num;            /**<   开奖号码 */
+@property (nonatomic, strong) NSString *result;         /**<   开奖结果 */
+@property (nonatomic, strong) NSString *gameType;       /**<   彩票分类 */
+@property (nonatomic, strong) NSArray *winningPlayers;  /**<   闲家赢的数组（pK10牛牛） */
 
 
 @end

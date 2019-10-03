@@ -18,9 +18,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UGrealBetListModel : UGModel
-@property (nonatomic, strong) NSNumber *level;//等级
-@property (nonatomic, strong) NSString *date;//日期
-@property (nonatomic, strong) NSString *username;//游戏
+@property (nonatomic, strong) NSNumber *level;          /**<   等级 */
+@property (nonatomic, strong) NSString *date;           /**<   日期 */
+@property (nonatomic, strong) NSString *username;       /**<   游戏 */
 @property (nonatomic, strong) NSString *validBetAmount;//
 @property (nonatomic, strong) NSString *betAmount;//
 @property (nonatomic, strong) NSString *netAmount;//

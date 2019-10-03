@@ -14,10 +14,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+// 首页轮播图
+// {{LOCAL_HOST}}?c=system&a=banners
 @interface UGBannerCellModel : UGModel<UGBannerCellModel>
-@property (nonatomic, strong) NSString *pic;
-@property (nonatomic, strong) NSString *url;
-@property (nonatomic, strong) NSString *sort;
+@property (nonatomic, strong) NSString *pic;    /**<   图片 */
+@property (nonatomic, strong) NSString *url;    /**<   链接地址 */
+@property (nonatomic, strong) NSString *sort;   /**<   排序 */
 @end
 
 @protocol UGBannerModel <NSObject>

@@ -13,17 +13,19 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol UGRankModel <NSObject>
 
 @end
+// 首页排行榜
+// {{LOCAL_HOST}}?c=system&a=rankingList
 @interface UGRankModel : UGModel<UGRankModel>
-@property (nonatomic, strong) NSString *username;
-@property (nonatomic, strong) NSString *coin;
-@property (nonatomic, strong) NSString *type;
-@property (nonatomic, strong) NSString *actionTime;
+@property (nonatomic, strong) NSString *username;   /**<   用户名 */
+@property (nonatomic, strong) NSString *coin;       /**<   中奖/投注金额 */
+@property (nonatomic, strong) NSString *type;       /**<   彩种名称 */
+@property (nonatomic, strong) NSString *actionTime; /**<   投注时间 */
 
 @end
 
 @interface UGRankListModel : UGModel
 @property (nonatomic, strong) NSArray<UGRankModel> *list;
-@property (nonatomic, assign) BOOL show;
+@property (nonatomic, assign) BOOL show;            /**<   开关：true=开启，false=关闭 */
 
 @end
 
