@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
-@interface UGCommonLotteryController : UIViewController<hiddeHeader>
+@interface UGCommonLotteryController : UGViewController<hiddeHeader>
 @property(nonatomic, assign)BOOL shoulHideHeader;
 @property(nonatomic, assign)BOOL shoulHideContent;
 

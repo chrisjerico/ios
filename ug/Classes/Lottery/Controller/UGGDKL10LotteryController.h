@@ -14,9 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 typedef void(^GDKL10LotteryBlock)(void);
 
 //<<<<<<< HEAD
-@interface UGGDKL10LotteryController :UGViewController
+//@interface UGGDKL10LotteryController :UGViewController
 //=======
-//@interface UGGDKL10LotteryController : UGCommonLotteryController
+@interface UGGDKL10LotteryController : UGCommonLotteryController
 //>>>>>>> dev_andrew
 @property (nonatomic, strong) NSArray *lotteryGamesArray;
 @property (nonatomic, strong) UGNextIssueModel *nextIssueModel;
