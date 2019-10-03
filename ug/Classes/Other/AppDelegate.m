@@ -30,7 +30,7 @@
 @synthesize tabbar;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
+    
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     tabbar = [[UGTabbarController alloc] init];
     tabbar.delegate = self;
