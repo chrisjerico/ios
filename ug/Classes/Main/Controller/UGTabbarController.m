@@ -105,10 +105,16 @@
     
     if (![CMCommon stringIsNull:[UGUserModel currentUser].token]) {
          NSString *colorStr = [[UGSkinManagers shareInstance] setNavbgStringColor];
-         qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr];
+        if ([CMCommon stringIsNull:colorStr]) {
+            colorStr = @"0x609AC5";
+        }
+         qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@&back=hide",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr];
     } else {
         NSString *colorStr = [[UGSkinManagers shareInstance] setNavbgStringColor];
-        qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr];
+        if ([CMCommon stringIsNull:colorStr]) {
+            colorStr = @"0x609AC5";
+        }
+        qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@&back=hide",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr];
     }
 
     

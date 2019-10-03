@@ -17,6 +17,9 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.layer.masksToBounds = YES;
+    self.layer.borderWidth = 1;
+    self.layer.borderColor = UGRGBColor(231, 230, 230).CGColor;
 }
 
 

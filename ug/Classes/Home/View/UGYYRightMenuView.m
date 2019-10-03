@@ -253,7 +253,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
     [self.rechargeView setBackgroundColor:UGNavColor];
     [self.withdrawlView setBackgroundColor:UGNavColor];
     
-    [self.bgView setBackgroundColor:UGBackgroundColor];
+    [self.bgView setBackgroundColor:UGNavColor];
     
     UIWindow* window = UIApplication.sharedApplication.keyWindow;
     UIView* maskView = [[UIView alloc] initWithFrame:window.bounds];

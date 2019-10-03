@@ -29,14 +29,12 @@
 
 @implementation UGBindCardViewController
 -(void)skin{
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
     
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.navigationItem.title = @"银行卡管理";
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         
         [self skin];

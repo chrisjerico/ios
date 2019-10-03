@@ -18,7 +18,6 @@
 
 @implementation UGActivityGoldTableViewController
 -(void)skin{
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
     
 }
 - (void)viewDidLoad {

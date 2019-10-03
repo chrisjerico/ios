@@ -164,7 +164,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.90598434209823608" green="0.90195208787918091" blue="0.90196138620376587" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="yC0-wx-rcd" firstAttribute="top" secondItem="JVk-5x-bc7" secondAttribute="top" id="BRb-Vk-a2t"/>
                             <constraint firstItem="JVk-5x-bc7" firstAttribute="trailing" secondItem="yC0-wx-rcd" secondAttribute="trailing" constant="5" id="KfZ-F4-HrB"/>

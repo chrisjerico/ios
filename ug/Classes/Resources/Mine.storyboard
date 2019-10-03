@@ -1482,7 +1482,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.90598434209823608" green="0.90195208787918091" blue="0.90196138620376587" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="4oh-Gd-dhy" firstAttribute="leading" secondItem="52n-0F-2q7" secondAttribute="leading" constant="10" id="1sU-cp-gFl"/>
                             <constraint firstItem="S5N-48-av4" firstAttribute="trailing" secondItem="rLG-C9-kik" secondAttribute="trailing" id="6hW-kp-jiM"/>
@@ -1644,7 +1644,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.90598434209823608" green="0.90195208787918091" blue="0.90196138620376587" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="Fav-o3-0Aj" firstAttribute="bottom" secondItem="S0k-Xy-P6N" secondAttribute="bottom" id="1EU-xb-5jU"/>
                             <constraint firstItem="S0k-Xy-P6N" firstAttribute="top" secondItem="HMI-Ol-zQu" secondAttribute="bottom" id="2ZV-Tr-5Fu"/>

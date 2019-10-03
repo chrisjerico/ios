@@ -552,6 +552,10 @@
 
 -(void)setSkin{
     [self setNavbarAndTabarSkin];
+    
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSString *colorStr = [[UGSkinManagers shareInstance] setNavbgStringColor];
+    appDelegate.tabbar.qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@&back=hide",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr];
     SANotificationEventPost(UGNotificationWithSkinSuccess, nil);
 }
 

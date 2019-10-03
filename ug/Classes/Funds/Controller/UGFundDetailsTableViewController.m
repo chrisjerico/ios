@@ -133,7 +133,7 @@ static NSString *fundDetailsCellid = @"UGFundDetailsCell";
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UGScreenW, 44)];
-    headerView.backgroundColor = [[UGSkinManagers shareInstance] setCellbgColor];
+    headerView.backgroundColor = [UIColor whiteColor];
     UILabel *timeLable = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, UGScreenW / 4, 44)];
     timeLable.text = @"日期";
     timeLable.textColor = [UIColor blackColor];

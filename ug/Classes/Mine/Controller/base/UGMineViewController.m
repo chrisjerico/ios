@@ -230,21 +230,6 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
 
 }
 
-//- (void)setUserInfoWithHeaderImg:(BOOL)flag {
-//    UGUserModel *user = [UGUserModel currentUser];
-//    if (flag) {
-//
-//        [self.avaterImageView sd_setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
-//    }
-//    self.userNameLabel.text = [NSString stringWithFormat:@"%@ %@",user.username,user.curLevelTitle];
-//    self.balanceLabel.text = [NSString stringWithFormat:@"¥%@",[user.balance removeFloatAllZero]];
-//    self.taskRewardTitleLabel.text = [NSString stringWithFormat:@"%@:\n%@",user.taskRewardTitle,user.curLevelInt];
-//    self.nextLevelIntLabel.text = [NSString stringWithFormat:@"成长值(%@ - %@)",user.curLevelInt,user.nextLevelInt];
-//    self.curLevleGradeLabel.text = user.curLevelGrade;
-//    self.nextLevelGradeLabel.text = user.nextLevelGrade;
-//    float per = user.curLevelInt.floatValue / user.nextLevelInt.floatValue;
-//    self.progressLayer.path = [self progressPathWithProgress:per].CGPath;
-//}
 
 - (void)showAvaterSelectView {
     UGAvaterSelectView *avaterView = [[UGAvaterSelectView alloc] initWithFrame:CGRectMake(0, UGScerrnH, UGScreenW, UGScreenW)];

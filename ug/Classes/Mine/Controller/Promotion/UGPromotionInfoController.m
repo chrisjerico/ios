@@ -45,7 +45,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = UGBackgroundColor;
+    self.view.backgroundColor = [UIColor whiteColor];
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 90, 0);
     self.urlCopyButton1.layer.cornerRadius = 3;
     self.urlCopyButton1.layer.masksToBounds = YES;

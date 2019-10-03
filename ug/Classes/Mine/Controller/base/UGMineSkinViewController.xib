@@ -238,7 +238,9 @@
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dKO-ch-btY">
                                             <rect key="frame" x="0.0" y="0.0" width="82" height="60"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES"/>
-                                            <state key="normal" title="Button"/>
+                                            <connections>
+                                                <action selector="depositAction:" destination="-1" eventType="touchUpInside" id="zyD-ff-Xh8"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -253,7 +255,7 @@
                                     </constraints>
                                 </view>
                             </subviews>
-                            <color key="backgroundColor" red="0.33389753100000003" green="0.72176641230000005" blue="0.97647649049999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="aEw-xW-gyE" firstAttribute="centerX" secondItem="qfS-3o-6Gl" secondAttribute="centerX" id="4Rq-Ow-Jcy"/>
                                 <constraint firstItem="aEw-xW-gyE" firstAttribute="top" secondItem="qfS-3o-6Gl" secondAttribute="top" id="IDB-Gu-zEd"/>
@@ -286,7 +288,9 @@
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gzc-ZQ-MVS">
                                             <rect key="frame" x="0.0" y="0.0" width="82" height="60"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES"/>
-                                            <state key="normal" title="Button"/>
+                                            <connections>
+                                                <action selector="withdrawalActon:" destination="-1" eventType="touchUpInside" id="NzH-k5-zho"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -300,7 +304,7 @@
                                     </constraints>
                                 </view>
                             </subviews>
-                            <color key="backgroundColor" red="0.95192974809999997" green="0.80357962849999998" blue="0.32547157999999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="YxZ-KY-ZwO" firstAttribute="centerY" secondItem="8aw-8g-P9M" secondAttribute="centerY" id="Nuc-Ya-35R"/>
                                 <constraint firstItem="YxZ-KY-ZwO" firstAttribute="leading" secondItem="8aw-8g-P9M" secondAttribute="leading" constant="28" id="WvO-b8-vV0"/>
@@ -342,10 +346,12 @@
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ER-xf-nny">
                                     <rect key="frame" x="28" y="0.0" width="82" height="60"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES"/>
-                                    <state key="normal" title="Button"/>
+                                    <connections>
+                                        <action selector="conversionAction:" destination="-1" eventType="touchUpInside" id="ouL-uO-yvJ"/>
+                                    </connections>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" red="0.88285148140000003" green="0.32290697099999999" blue="0.2548756003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="UR8-uP-sok" firstAttribute="centerX" secondItem="zud-ce-1dh" secondAttribute="centerX" id="03Y-P8-RDv"/>
                                 <constraint firstItem="UR8-uP-sok" firstAttribute="centerY" secondItem="zud-ce-1dh" secondAttribute="centerY" id="Jpy-SS-LXB"/>
@@ -354,7 +360,7 @@
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" red="0.96079081296920776" green="0.9607728123664856" blue="0.96078497171401978" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="5Hs-c4-JyG"/>
                         <constraint firstItem="qfS-3o-6Gl" firstAttribute="leading" secondItem="7v7-0G-dRt" secondAttribute="leading" id="63A-AN-yQX"/>
