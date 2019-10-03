@@ -20,13 +20,19 @@
 @end
 
 @implementation UGSecurityCenterViewController
-
+-(void)skin{
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+   
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.navigationItem.title = @"安全中心";
-    self.view.backgroundColor = UGBackgroundColor;
-    
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
+        
+        [self skin];
+    });
     
     if ([self.fromVC  isEqualToString:@"UGLoginViewController"]) {
 
@@ -91,7 +97,7 @@
     [self.slideSwitchView setUserInteractionEnabled:YES];
     self.slideSwitchView.segmentControlDelegate = self;
     //设置tab 颜色(可选)
-    self.slideSwitchView.tabItemNormalColor = [UIColor grayColor];
+    self.slideSwitchView.tabItemNormalColor = [UIColor whiteColor];
     self.slideSwitchView.tabItemNormalFont = 13;
     //设置tab 被选中的颜色(可选)
     self.slideSwitchView.tabItemSelectedColor = UGNavColor;
@@ -179,7 +185,7 @@
             
             UGSystemConfigModel *config = model.data;
             UGSystemConfigModel.currentConfig = config;
-            
+             [[UGSkinManagers shareInstance] setSkin];
            [self buildSegment];
             
         } failure:^(id msg) {

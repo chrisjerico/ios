@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BAWebViewController : UIViewController
+@interface BAWebViewController :UGViewController
 
 @property(nonatomic, strong) UIColor * _Nullable ba_web_progressTintColor;
 @property(nonatomic, strong) UIColor *ba_web_progressTrackTintColor;

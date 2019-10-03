@@ -82,6 +82,10 @@
 @property (nonatomic, assign) BOOL showAdPoppuView;
 
 
+@property (weak, nonatomic) IBOutlet UIView *middleView;
+
+
+
 @property (strong, nonatomic)UGYYRightMenuView *yymenuView;
 @end
 
@@ -145,6 +149,27 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardWillShowNotification object:nil];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
 
+//    [self.middleView  mas_remakeConstraints:^(MASConstraintMaker *make)
+//     {
+//         make.top.equalTo(self.view.mas_top).with.offset(-200);
+//         make.left.equalTo(self.view.mas_left).with.offset(0);
+//         make.right.equalTo(self.view.mas_right).with.offset(0);
+//         make.height.mas_equalTo(70.0).offset(0);
+//
+//     }];
+}
+
+-(void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+   
+//    [self.middleView  mas_remakeConstraints:^(MASConstraintMaker *make)
+//     {
+//         make.top.equalTo(self.view.mas_top).with.offset(0);
+//         make.left.equalTo(self.view.mas_left).with.offset(0);
+//         make.right.equalTo(self.view.mas_right).with.offset(0);
+//         make.height.mas_equalTo(70.0).offset(0);
+//
+//     }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -173,7 +198,9 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 - (IBAction)showChatRoom:(id)sender {
     UGChatViewController *chatVC = [[UGChatViewController alloc] init];
     chatVC.webTitle = @"聊天室";
-    chatVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&id=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,self.gameId];
+    chatVC.fromView = @"game";
+    NSString *colorStr = [[UGSkinManagers shareInstance] setNavbgStringColor];
+    chatVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&id=%@&color=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,self.gameId,colorStr];
 //    [NSString stringWithFormat:@"%@%@?id=%@",baseServerUrl,chatRoomUrl,self.gameId];
     [self.navigationController pushViewController:chatVC animated:YES];
 }

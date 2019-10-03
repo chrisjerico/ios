@@ -44,7 +44,10 @@
 #import "UGagentApplyInfo.h"
 #import "UGAgentRefusedViewController.h"
 
-@interface UGMineViewController ()<UITableViewDelegate,UITableViewDataSource>
+
+#import "UGMineMenuCollectionViewCell.h"
+
+@interface UGMineViewController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UIView *userInfoView;
 @property (weak, nonatomic) IBOutlet UIImageView *avaterImageView;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
@@ -91,6 +94,9 @@
 
 @property (nonatomic, strong) NSArray *lotteryGamesArray;
 
+//====================================
+@property (nonatomic, strong) UICollectionView *mcollectionView;
+
 
 @end
 
@@ -121,8 +127,27 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
     [self.tableView reloadData];
 }
 
+-(void)skin{
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    [self.userInfoView setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
+    
+   [self.tableView reloadData];
+    
+    
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    [self.userInfoView setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
+    
+    
+    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
+        
+        [self skin];
+    });
+    
     
     SANotificationEventSubscribe(UGNotificationUserLogout, self, ^(typeof (self) self, id obj) {
         [self getSystemConfig];
@@ -130,10 +155,10 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
     
 //    self.fd_prefersNavigationBarHidden = YES;
     self.navigationItem.title = @"我的";
-    self.userInfoView.backgroundColor = UGNavColor;
+    self.userInfoView.backgroundColor = [[UGSkinManagers shareInstance] setbgColor];
     self.avaterImageView.layer.cornerRadius = self.avaterImageView.height / 2 ;
     self.avaterImageView.layer.masksToBounds = YES;
-    self.view.backgroundColor = UGBackgroundColor;
+    self.view.backgroundColor = [[UGSkinManagers shareInstance] setbgColor];
     self.avaterImageView.userInteractionEnabled = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showAvaterSelectView)];
     [self.avaterImageView addGestureRecognizer:tap];
@@ -147,7 +172,7 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
     [self.progressView.layer addSublayer:self.progressLayer];
     self.progressView.layer.cornerRadius = self.progressView.height / 2;
     self.progressView.layer.masksToBounds = YES;
-    self.progressView.backgroundColor = UGBackgroundColor;
+    self.progressView.backgroundColor = [[UGSkinManagers shareInstance] setbgColor];
     
    
     
@@ -157,8 +182,8 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
     self.waveView = [[WavesView alloc] initWithFrame:self.waveBgView.bounds];
     [self.waveBgView addSubview:self.waveView];
     self.waveView.backgroundColor = [UIColor clearColor];
-    self.waveBottomView.backgroundColor = UGRGBColor(84, 171, 238);
-    self.waveView.realWaveColor = UGRGBColor(84, 171, 238);
+    self.waveBottomView.backgroundColor = [[UGSkinManagers shareInstance] setTabbgColor];
+    self.waveView.realWaveColor = [[UGSkinManagers shareInstance] setTabbgColor];
     self.waveView.maskWaveColor = [UIColor clearColor];
     self.waveView.waveHeight = 10;
    
@@ -180,6 +205,8 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
 //    self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithImageName:@"gengduo" target:self action:@selector(rightBarBtnClick)];
 
 }
+
+
 
 
 
@@ -778,6 +805,8 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
             
             
               NSLog(@"签到==%d",[UGSystemConfigModel  currentConfig].checkinSwitch);
+            
+             [[UGSkinManagers shareInstance] setSkin];
             
              [self setupUserInfo:YES];
             [self menuNameArrayDate ];

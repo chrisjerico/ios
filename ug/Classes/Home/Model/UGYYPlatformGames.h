@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol UGYYGames <NSObject>
 
 @end
-@interface UGYYGames :NSObject<UGYYGames>
+@interface UGYYGames :UGModel<UGYYGames>
 @property (nonatomic , copy) NSString              * isSeal;
 @property (nonatomic , copy) NSString              * isClose;
 @property (nonatomic , copy) NSString              * isInstant;

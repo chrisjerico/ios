@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGChatsViewController : UIViewController
+@interface UGChatsViewController :UGViewController
 
 @end
 

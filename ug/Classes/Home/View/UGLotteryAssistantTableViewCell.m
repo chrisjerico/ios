@@ -53,7 +53,7 @@
 - (void)setItem:(UGChanglongaideModel *)item {
     _item = item;
 
-    [self.logoView sd_setImageWithURL:[NSURL URLWithString:item.logo] placeholderImage:[UIImage imageNamed:@"zwt"]];
+    [self.logoView sd_setImageWithURL:[NSURL URLWithString:item.logo] placeholderImage:[UIImage imageNamed:@"loading"]];
     self.titleLabel.text = item.title;
     self.issueLabel.text = item.issue;
     NSString *lotteryTime = [CMCommon getNowTimeWithEndTimeStr:item.closeTime currentTimeStr:item.serverTime];
@@ -71,7 +71,7 @@
         self.playNameLabel1.text = item0.playName;
         self.oddsLabel1.text = item0.odds;
         if (item0.select) {
-            self.betView1.backgroundColor = UGNavColor;
+            self.betView1.backgroundColor = [[UGSkinManagers shareInstance] setNavbgColor];
             self.playNameLabel1.textColor = [UIColor whiteColor];
             self.oddsLabel1.textColor = [UIColor whiteColor];
         }else {
@@ -84,7 +84,7 @@
         self.playNameLabel2.text = item1.playName;
         self.oddsLabel2.text = item1.odds;
         if (item1.select) {
-            self.betView2.backgroundColor = UGNavColor;
+            self.betView2.backgroundColor = [[UGSkinManagers shareInstance] setNavbgColor];
             self.playNameLabel2.textColor = [UIColor whiteColor];
             self.oddsLabel2.textColor = [UIColor whiteColor];
         }else {

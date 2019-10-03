@@ -18,12 +18,18 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    int height = 60;
+    
+    if ([self.fromView isEqualToString:@"game"]) {
+        height = 0;
+    }
+    
     if ([self.webTitle isEqualToString:@"聊天室"]) {
         if ([CMCommon isPhoneX]) {
-            [self setWebViewFrame:CGRectMake(0, 0, UGScreenW, UGScerrnH - IPHONE_SAFEBOTTOMAREA_HEIGHT-60)];
+            [self setWebViewFrame:CGRectMake(0, 0, UGScreenW, UGScerrnH - IPHONE_SAFEBOTTOMAREA_HEIGHT-height)];
  
         }else {
-            [self setWebViewFrame:CGRectMake(0, 0, UGScreenW, UGScerrnH - 60)];
+            [self setWebViewFrame:CGRectMake(0, 0, UGScreenW, UGScerrnH - height)];
         }
         
     }

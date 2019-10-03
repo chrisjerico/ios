@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGDepositDetailsNoLineViewController : UIViewController
+@interface UGDepositDetailsNoLineViewController :UGViewController
 @property (nonatomic, strong)UGpaymentModel *item;
 @end
 

@@ -36,7 +36,7 @@ static NSString *rechargeRecordCellid = @"UGRechargeRecordCell";
         [self getWithdrawData];
         
     });
-    
+     [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
     self.pageSize = size;
     self.pageNumber = page;
     self.tableView.rowHeight = 50;
@@ -215,7 +215,7 @@ static NSString *rechargeRecordCellid = @"UGRechargeRecordCell";
     if (self.recordType == RecordTypeWithdraw) {
        //1
         UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UGScreenW, 44)];
-        headerView.backgroundColor = [UIColor whiteColor];
+        headerView.backgroundColor = [[UGSkinManagers shareInstance] setCellbgColor];
         UILabel *timeLable = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, UGScreenW / 3, 44)];
         timeLable.text = @"时间";
         timeLable.textColor = [UIColor blackColor];
@@ -246,7 +246,7 @@ static NSString *rechargeRecordCellid = @"UGRechargeRecordCell";
     }else {
         
         UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UGScreenW, 44)];
-        headerView.backgroundColor = [UIColor whiteColor];
+        headerView.backgroundColor = [[UGSkinManagers shareInstance] setCellbgColor];
         UILabel *timeLable = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, UGScreenW / 4, 44)];
         timeLable.text = @"时间";
         timeLable.textColor = [UIColor blackColor];

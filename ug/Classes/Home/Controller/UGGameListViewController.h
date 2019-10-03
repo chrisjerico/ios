@@ -10,7 +10,7 @@
 @class UGPlatformGameModel;
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGGameListViewController : UIViewController
+@interface UGGameListViewController :UGViewController
 
 @property (nonatomic, strong) UGPlatformGameModel *game;
 

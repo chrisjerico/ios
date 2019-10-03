@@ -20,12 +20,18 @@
 @end
 
 @implementation UGGoogleAuthenticationSecondViewController
-
+-(void)skin{
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = @"二次验证";
-    
+    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
+        
+        [self skin];
+    });
     [self secureGaCaptchaWithGen];
 }
 -(void)viewDidLayoutSubviews{
@@ -33,9 +39,13 @@
     //如果想要有点弧度的不是地球那么圆的可以设置
     self.returnButton.layer.cornerRadius = 3;//这个值越大弧度越大
     
+    [self.returnButton setBackgroundColor:UGNavColor];
+    
     self.nextButton.layer.masksToBounds = YES;
     //如果想要有点弧度的不是地球那么圆的可以设置
     self.nextButton.layer.cornerRadius = 3;//这个值越大弧度越大
+    
+    [self.nextButton setBackgroundColor:UGNavColor];
     
 }
 #pragma mark -- 网络请求

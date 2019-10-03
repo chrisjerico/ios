@@ -13,6 +13,7 @@
 		0322AD5F233DF08900E9857E /* UGDocumentDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0322AD5E233DF08900E9857E /* UGDocumentDetailVC.m */; };
 		0322AD6523432A4A00E9857E /* UGCommonLotteryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0322AD6423432A4A00E9857E /* UGCommonLotteryController.m */; };
 		0322AD68234342DB00E9857E /* UGDocumentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0322AD67234342DB00E9857E /* UGDocumentView.m */; };
+		0322AD6B2344E78900E9857E /* UGGameNavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0322AD6A2344E78900E9857E /* UGGameNavigationView.m */; };
 		033177A72337382D000D7663 /* UGPlatformCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 033177A62337382D000D7663 /* UGPlatformCollectionView.m */; };
 		033177AF2338E026000D7663 /* UGBetResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = 033177AE2338E026000D7663 /* UGBetResultView.m */; };
 		0399E6FB233B9D34001E0A7F /* UGDocumentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0399E6FA233B9D34001E0A7F /* UGDocumentVC.m */; };
@@ -478,6 +479,7 @@
 		D4AE641D2295871D00DD265A /* MJRefreshBackFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AE64062295871D00DD265A /* MJRefreshBackFooter.m */; };
 		D4AE641E2295871D00DD265A /* MJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AE64072295871D00DD265A /* MJRefreshAutoFooter.m */; };
 		D4AE641F2295871D00DD265A /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AE64092295871D00DD265A /* MJRefreshComponent.m */; };
+		D4B1B98223431C4600651815 /* UGSkinManagers.m in Sources */ = {isa = PBXBuildFile; fileRef = D4B1B98123431C4600651815 /* UGSkinManagers.m */; };
 		D4B6E6EF22D3325A0006B03F /* UGHomeTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4B6E6EE22D3325A0006B03F /* UGHomeTitleView.m */; };
 		D4B6E6F122D332720006B03F /* UGHomeTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4B6E6F022D332720006B03F /* UGHomeTitleView.xib */; };
 		D4B75E16227802600007047C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4B75E15227802600007047C /* Assets.xcassets */; };
@@ -491,6 +493,15 @@
 		D4BBFC06232A80A800147C4A /* UGFundsTransferView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4BBFC05232A80A800147C4A /* UGFundsTransferView.xib */; };
 		D4BBFC0A232A852200147C4A /* UGFundsTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BBFC08232A852200147C4A /* UGFundsTestViewController.m */; };
 		D4BBFC0B232A852200147C4A /* UGFundsTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4BBFC09232A852200147C4A /* UGFundsTestViewController.xib */; };
+		D4C165692344B1AB005A0F12 /* UGMineSkinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C165672344B1AB005A0F12 /* UGMineSkinViewController.m */; };
+		D4C1656A2344B1AB005A0F12 /* UGMineSkinViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4C165682344B1AB005A0F12 /* UGMineSkinViewController.xib */; };
+		D4C1656E2344C3C0005A0F12 /* UGMineSkinCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C1656C2344C3C0005A0F12 /* UGMineSkinCollectionViewCell.m */; };
+		D4C1656F2344C3C0005A0F12 /* UGMineSkinCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4C1656D2344C3C0005A0F12 /* UGMineSkinCollectionViewCell.xib */; };
+		D4C165732344C9E1005A0F12 /* UGMineSkinFirstCollectionHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C165712344C9E1005A0F12 /* UGMineSkinFirstCollectionHeadView.m */; };
+		D4C165742344C9E1005A0F12 /* UGMineSkinFirstCollectionHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4C165722344C9E1005A0F12 /* UGMineSkinFirstCollectionHeadView.xib */; };
+		D4C165782344CAB6005A0F12 /* UGSkinSeconCollectionHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C165762344CAB6005A0F12 /* UGSkinSeconCollectionHeadView.m */; };
+		D4C165792344CAB6005A0F12 /* UGSkinSeconCollectionHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4C165772344CAB6005A0F12 /* UGSkinSeconCollectionHeadView.xib */; };
+		D4C1657C2344CF1C005A0F12 /* UGMineSkinModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C1657B2344CF1C005A0F12 /* UGMineSkinModel.m */; };
 		D4C46F8F232B56CB0062564D /* UGDepositDetailsNoLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C46F8E232B56CB0062564D /* UGDepositDetailsNoLineViewController.m */; };
 		D4C46F92232B88BF0062564D /* UGFunds2microcodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C46F91232B88BF0062564D /* UGFunds2microcodeView.m */; };
 		D4C46F94232B88D80062564D /* UGFunds2microcodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4C46F93232B88D80062564D /* UGFunds2microcodeView.xib */; };
@@ -556,9 +567,22 @@
 		D4E2876F22B666FE0002B2BF /* UGFC3DLotteryController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4E2876E22B666FE0002B2BF /* UGFC3DLotteryController.storyboard */; };
 		D4E8A40F22A0323300EFE171 /* UGBetRecorddHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E8A40E22A0323300EFE171 /* UGBetRecorddHeaderView.m */; };
 		D4E8A41122A0326C00EFE171 /* UGBetRecorddHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4E8A41022A0326C00EFE171 /* UGBetRecorddHeaderView.xib */; };
+		D4EDC9302343A1A400BA4C4D /* UGView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4EDC92F2343A1A400BA4C4D /* UGView.m */; };
+		D4EDC9332343A1BF00BA4C4D /* UGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4EDC9322343A1BF00BA4C4D /* UGViewController.m */; };
+		D4EDC9362343A1D200BA4C4D /* UGCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4EDC9352343A1D200BA4C4D /* UGCollectionViewController.m */; };
+		D4EDC9392343A1E300BA4C4D /* UGTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4EDC9382343A1E300BA4C4D /* UGTableViewController.m */; };
+		D4EDC93C2343A1F600BA4C4D /* UGTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4EDC93B2343A1F600BA4C4D /* UGTableViewCell.m */; };
+		D4EDC93F2343A20800BA4C4D /* UGCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4EDC93E2343A20800BA4C4D /* UGCollectionViewCell.m */; };
 		D4EE8F832341D66B006FA0E2 /* UGYYPlatformGames.m in Sources */ = {isa = PBXBuildFile; fileRef = D4EE8F822341D66B006FA0E2 /* UGYYPlatformGames.m */; };
 		D4EE8F872341DD4A006FA0E2 /* UGhomeRecommendCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4EE8F852341DD4A006FA0E2 /* UGhomeRecommendCollectionViewCell.m */; };
 		D4EE8F882341DD4A006FA0E2 /* UGhomeRecommendCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4EE8F862341DD4A006FA0E2 /* UGhomeRecommendCollectionViewCell.xib */; };
+		D4EE8F8B2341EB22006FA0E2 /* UGYYLotteryHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4EE8F8A2341EB22006FA0E2 /* UGYYLotteryHomeViewController.m */; };
+		D4EE8F8E2341F225006FA0E2 /* UGYYLotterySecondHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4EE8F8D2341F225006FA0E2 /* UGYYLotterySecondHomeViewController.m */; };
+		D4EE8F9323421C4E006FA0E2 /* UGSkinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4EE8F9223421C4E006FA0E2 /* UGSkinViewController.m */; };
+		D4EE8F97234222A8006FA0E2 /* UGSkinCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4EE8F95234222A8006FA0E2 /* UGSkinCollectionViewCell.m */; };
+		D4EE8F98234222A8006FA0E2 /* UGSkinCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4EE8F96234222A8006FA0E2 /* UGSkinCollectionViewCell.xib */; };
+		D4EE8F9C23422CC8006FA0E2 /* UINavigationBar+handle.m in Sources */ = {isa = PBXBuildFile; fileRef = D4EE8F9B23422CC8006FA0E2 /* UINavigationBar+handle.m */; };
+		D4EE8FA523424E5F006FA0E2 /* UIImage+YYgradientImage.m in Sources */ = {isa = PBXBuildFile; fileRef = D4EE8FA423424E5F006FA0E2 /* UIImage+YYgradientImage.m */; };
 		D4F0477622E9E22E008EBB56 /* UGLinkNumCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F0477422E9E22E008EBB56 /* UGLinkNumCollectionViewCell.m */; };
 		D4F0477722E9E22E008EBB56 /* UGLinkNumCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4F0477522E9E22E008EBB56 /* UGLinkNumCollectionViewCell.xib */; };
 		D4F50A512339E67600E0811D /* UGAgentRefusedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F50A4F2339E67600E0811D /* UGAgentRefusedViewController.m */; };
@@ -586,6 +610,8 @@
 		0322AD6423432A4A00E9857E /* UGCommonLotteryController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGCommonLotteryController.m; sourceTree = "<group>"; };
 		0322AD66234342DB00E9857E /* UGDocumentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGDocumentView.h; sourceTree = "<group>"; };
 		0322AD67234342DB00E9857E /* UGDocumentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGDocumentView.m; sourceTree = "<group>"; };
+		0322AD692344E78900E9857E /* UGGameNavigationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGGameNavigationView.h; sourceTree = "<group>"; };
+		0322AD6A2344E78900E9857E /* UGGameNavigationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGGameNavigationView.m; sourceTree = "<group>"; };
 		033177A52337382D000D7663 /* UGPlatformCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGPlatformCollectionView.h; sourceTree = "<group>"; };
 		033177A62337382D000D7663 /* UGPlatformCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGPlatformCollectionView.m; sourceTree = "<group>"; };
 		033177AD2338E026000D7663 /* UGBetResultView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGBetResultView.h; sourceTree = "<group>"; };
@@ -1429,6 +1455,8 @@
 		D4AE64092295871D00DD265A /* MJRefreshComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshComponent.m; sourceTree = "<group>"; };
 		D4AE640A2295871D00DD265A /* MJRefreshFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshFooter.h; sourceTree = "<group>"; };
 		D4AE640B2295871D00DD265A /* MJRefreshBackFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBackFooter.h; sourceTree = "<group>"; };
+		D4B1B98023431C4600651815 /* UGSkinManagers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGSkinManagers.h; sourceTree = "<group>"; };
+		D4B1B98123431C4600651815 /* UGSkinManagers.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGSkinManagers.m; sourceTree = "<group>"; };
 		D4B6E6ED22D3325A0006B03F /* UGHomeTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGHomeTitleView.h; sourceTree = "<group>"; };
 		D4B6E6EE22D3325A0006B03F /* UGHomeTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGHomeTitleView.m; sourceTree = "<group>"; };
 		D4B6E6F022D332720006B03F /* UGHomeTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGHomeTitleView.xib; sourceTree = "<group>"; };
@@ -1452,6 +1480,20 @@
 		D4BBFC07232A852200147C4A /* UGFundsTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGFundsTestViewController.h; sourceTree = "<group>"; };
 		D4BBFC08232A852200147C4A /* UGFundsTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGFundsTestViewController.m; sourceTree = "<group>"; };
 		D4BBFC09232A852200147C4A /* UGFundsTestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGFundsTestViewController.xib; sourceTree = "<group>"; };
+		D4C165662344B1AB005A0F12 /* UGMineSkinViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGMineSkinViewController.h; sourceTree = "<group>"; };
+		D4C165672344B1AB005A0F12 /* UGMineSkinViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGMineSkinViewController.m; sourceTree = "<group>"; };
+		D4C165682344B1AB005A0F12 /* UGMineSkinViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGMineSkinViewController.xib; sourceTree = "<group>"; };
+		D4C1656B2344C3C0005A0F12 /* UGMineSkinCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGMineSkinCollectionViewCell.h; sourceTree = "<group>"; };
+		D4C1656C2344C3C0005A0F12 /* UGMineSkinCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGMineSkinCollectionViewCell.m; sourceTree = "<group>"; };
+		D4C1656D2344C3C0005A0F12 /* UGMineSkinCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGMineSkinCollectionViewCell.xib; sourceTree = "<group>"; };
+		D4C165702344C9E1005A0F12 /* UGMineSkinFirstCollectionHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGMineSkinFirstCollectionHeadView.h; sourceTree = "<group>"; };
+		D4C165712344C9E1005A0F12 /* UGMineSkinFirstCollectionHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGMineSkinFirstCollectionHeadView.m; sourceTree = "<group>"; };
+		D4C165722344C9E1005A0F12 /* UGMineSkinFirstCollectionHeadView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGMineSkinFirstCollectionHeadView.xib; sourceTree = "<group>"; };
+		D4C165752344CAB6005A0F12 /* UGSkinSeconCollectionHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGSkinSeconCollectionHeadView.h; sourceTree = "<group>"; };
+		D4C165762344CAB6005A0F12 /* UGSkinSeconCollectionHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGSkinSeconCollectionHeadView.m; sourceTree = "<group>"; };
+		D4C165772344CAB6005A0F12 /* UGSkinSeconCollectionHeadView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGSkinSeconCollectionHeadView.xib; sourceTree = "<group>"; };
+		D4C1657A2344CF1C005A0F12 /* UGMineSkinModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGMineSkinModel.h; sourceTree = "<group>"; };
+		D4C1657B2344CF1C005A0F12 /* UGMineSkinModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGMineSkinModel.m; sourceTree = "<group>"; };
 		D4C46F8D232B56CB0062564D /* UGDepositDetailsNoLineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGDepositDetailsNoLineViewController.h; sourceTree = "<group>"; };
 		D4C46F8E232B56CB0062564D /* UGDepositDetailsNoLineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGDepositDetailsNoLineViewController.m; sourceTree = "<group>"; };
 		D4C46F90232B88BF0062564D /* UGFunds2microcodeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGFunds2microcodeView.h; sourceTree = "<group>"; };
@@ -1559,11 +1601,36 @@
 		D4E8A40D22A0323300EFE171 /* UGBetRecorddHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGBetRecorddHeaderView.h; sourceTree = "<group>"; };
 		D4E8A40E22A0323300EFE171 /* UGBetRecorddHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGBetRecorddHeaderView.m; sourceTree = "<group>"; };
 		D4E8A41022A0326C00EFE171 /* UGBetRecorddHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGBetRecorddHeaderView.xib; sourceTree = "<group>"; };
+		D4EDC92E2343A1A400BA4C4D /* UGView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGView.h; sourceTree = "<group>"; };
+		D4EDC92F2343A1A400BA4C4D /* UGView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGView.m; sourceTree = "<group>"; };
+		D4EDC9312343A1BF00BA4C4D /* UGViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGViewController.h; sourceTree = "<group>"; };
+		D4EDC9322343A1BF00BA4C4D /* UGViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGViewController.m; sourceTree = "<group>"; };
+		D4EDC9342343A1D200BA4C4D /* UGCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGCollectionViewController.h; sourceTree = "<group>"; };
+		D4EDC9352343A1D200BA4C4D /* UGCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGCollectionViewController.m; sourceTree = "<group>"; };
+		D4EDC9372343A1E300BA4C4D /* UGTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGTableViewController.h; sourceTree = "<group>"; };
+		D4EDC9382343A1E300BA4C4D /* UGTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGTableViewController.m; sourceTree = "<group>"; };
+		D4EDC93A2343A1F600BA4C4D /* UGTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGTableViewCell.h; sourceTree = "<group>"; };
+		D4EDC93B2343A1F600BA4C4D /* UGTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGTableViewCell.m; sourceTree = "<group>"; };
+		D4EDC93D2343A20800BA4C4D /* UGCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGCollectionViewCell.h; sourceTree = "<group>"; };
+		D4EDC93E2343A20800BA4C4D /* UGCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGCollectionViewCell.m; sourceTree = "<group>"; };
 		D4EE8F812341D66B006FA0E2 /* UGYYPlatformGames.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGYYPlatformGames.h; sourceTree = "<group>"; };
 		D4EE8F822341D66B006FA0E2 /* UGYYPlatformGames.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGYYPlatformGames.m; sourceTree = "<group>"; };
 		D4EE8F842341DD4A006FA0E2 /* UGhomeRecommendCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGhomeRecommendCollectionViewCell.h; sourceTree = "<group>"; };
 		D4EE8F852341DD4A006FA0E2 /* UGhomeRecommendCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGhomeRecommendCollectionViewCell.m; sourceTree = "<group>"; };
 		D4EE8F862341DD4A006FA0E2 /* UGhomeRecommendCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGhomeRecommendCollectionViewCell.xib; sourceTree = "<group>"; };
+		D4EE8F892341EB22006FA0E2 /* UGYYLotteryHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGYYLotteryHomeViewController.h; sourceTree = "<group>"; };
+		D4EE8F8A2341EB22006FA0E2 /* UGYYLotteryHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGYYLotteryHomeViewController.m; sourceTree = "<group>"; };
+		D4EE8F8C2341F225006FA0E2 /* UGYYLotterySecondHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGYYLotterySecondHomeViewController.h; sourceTree = "<group>"; };
+		D4EE8F8D2341F225006FA0E2 /* UGYYLotterySecondHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGYYLotterySecondHomeViewController.m; sourceTree = "<group>"; };
+		D4EE8F9123421C4E006FA0E2 /* UGSkinViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGSkinViewController.h; sourceTree = "<group>"; };
+		D4EE8F9223421C4E006FA0E2 /* UGSkinViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGSkinViewController.m; sourceTree = "<group>"; };
+		D4EE8F94234222A8006FA0E2 /* UGSkinCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGSkinCollectionViewCell.h; sourceTree = "<group>"; };
+		D4EE8F95234222A8006FA0E2 /* UGSkinCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGSkinCollectionViewCell.m; sourceTree = "<group>"; };
+		D4EE8F96234222A8006FA0E2 /* UGSkinCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGSkinCollectionViewCell.xib; sourceTree = "<group>"; };
+		D4EE8F9A23422CC8006FA0E2 /* UINavigationBar+handle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+handle.h"; sourceTree = "<group>"; };
+		D4EE8F9B23422CC8006FA0E2 /* UINavigationBar+handle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+handle.m"; sourceTree = "<group>"; };
+		D4EE8FA323424E5F006FA0E2 /* UIImage+YYgradientImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+YYgradientImage.h"; sourceTree = "<group>"; };
+		D4EE8FA423424E5F006FA0E2 /* UIImage+YYgradientImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+YYgradientImage.m"; sourceTree = "<group>"; };
 		D4F0477322E9E22E008EBB56 /* UGLinkNumCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLinkNumCollectionViewCell.h; sourceTree = "<group>"; };
 		D4F0477422E9E22E008EBB56 /* UGLinkNumCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLinkNumCollectionViewCell.m; sourceTree = "<group>"; };
 		D4F0477522E9E22E008EBB56 /* UGLinkNumCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGLinkNumCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -1701,6 +1768,8 @@
 				D42620F72339027400BC2E83 /* UGagentApplyInfo.m */,
 				D45A94B2233B85540089E86C /* UGgaCaptchaModel.h */,
 				D45A94B3233B85540089E86C /* UGgaCaptchaModel.m */,
+				D4C1657A2344CF1C005A0F12 /* UGMineSkinModel.h */,
+				D4C1657B2344CF1C005A0F12 /* UGMineSkinModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1940,6 +2009,7 @@
 				D4145A7522B3BC1900D8165F /* CMNetwork */,
 				D4A1E905232BC3AC0045F5B4 /* CMCommon */,
 				D43555852334CDCE00515704 /* BAWebViewController */,
+				D4EE8F9923422CC8006FA0E2 /* NavigationBarHandle */,
 				D41FF93023332E5600FE3F70 /* NullSafe */,
 				D4241C36232914D100BF4DE1 /* Extenslon */,
 				D4185E31231D2E1A008DB5F2 /* MOFSPickerManager */,
@@ -2393,6 +2463,9 @@
 		D48224DE22A0E83C00F7DE72 /* base */ = {
 			isa = PBXGroup;
 			children = (
+				D4C165662344B1AB005A0F12 /* UGMineSkinViewController.h */,
+				D4C165672344B1AB005A0F12 /* UGMineSkinViewController.m */,
+				D4C165682344B1AB005A0F12 /* UGMineSkinViewController.xib */,
 				D45F98C422E34DAA00194139 /* UGMineViewController.h */,
 				D45F98C522E34DAA00194139 /* UGMineViewController.m */,
 				D405B316227D726000F8C586 /* UGLoginViewController.h */,
@@ -2610,6 +2683,7 @@
 		D4B75E22227811D50007047C /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				D4EE8F9023421C1C006FA0E2 /* Skin */,
 				D4E1F622233664680022A1DC /* Chat */,
 				D4B75E33227811D50007047C /* Main */,
 				D4B75E23227811D50007047C /* Home */,
@@ -2772,6 +2846,8 @@
 				D41C300B233F220000541254 /* UGYYRightMenuTableViewCell.xib */,
 				0322AD66234342DB00E9857E /* UGDocumentView.h */,
 				0322AD67234342DB00E9857E /* UGDocumentView.m */,
+				0322AD692344E78900E9857E /* UGGameNavigationView.h */,
+				0322AD6A2344E78900E9857E /* UGGameNavigationView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2842,6 +2918,15 @@
 		D4B75E2E227811D50007047C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D4C165752344CAB6005A0F12 /* UGSkinSeconCollectionHeadView.h */,
+				D4C165762344CAB6005A0F12 /* UGSkinSeconCollectionHeadView.m */,
+				D4C165772344CAB6005A0F12 /* UGSkinSeconCollectionHeadView.xib */,
+				D4C165702344C9E1005A0F12 /* UGMineSkinFirstCollectionHeadView.h */,
+				D4C165712344C9E1005A0F12 /* UGMineSkinFirstCollectionHeadView.m */,
+				D4C165722344C9E1005A0F12 /* UGMineSkinFirstCollectionHeadView.xib */,
+				D4C1656B2344C3C0005A0F12 /* UGMineSkinCollectionViewCell.h */,
+				D4C1656C2344C3C0005A0F12 /* UGMineSkinCollectionViewCell.m */,
+				D4C1656D2344C3C0005A0F12 /* UGMineSkinCollectionViewCell.xib */,
 				D405AFFC227866A300F8C586 /* UGMineMenuCollectionViewCell.h */,
 				D405AFFD227866A300F8C586 /* UGMineMenuCollectionViewCell.m */,
 				D405AFFE227866A300F8C586 /* UGMineMenuCollectionViewCell.xib */,
@@ -3097,6 +3182,10 @@
 		D4B75E38227811D50007047C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D4EE8F892341EB22006FA0E2 /* UGYYLotteryHomeViewController.h */,
+				D4EE8F8A2341EB22006FA0E2 /* UGYYLotteryHomeViewController.m */,
+				D4EE8F8C2341F225006FA0E2 /* UGYYLotterySecondHomeViewController.h */,
+				D4EE8F8D2341F225006FA0E2 /* UGYYLotterySecondHomeViewController.m */,
 				D405B2DC227B3CCB00F8C586 /* UGLotteryHomeController.h */,
 				D405B2DD227B3CCB00F8C586 /* UGLotteryHomeController.m */,
 				0322AD6323432A4A00E9857E /* UGCommonLotteryController.h */,
@@ -3235,6 +3324,7 @@
 		D4B75E3B2278122B0007047C /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				D4EDC92D2343A18400BA4C4D /* baseObject */,
 				D4000C0E232E2CCB000705B1 /* AppDelegate+ */,
 				D4B75E0C2278025E0007047C /* AppDelegate.h */,
 				D4AE1C0922C0FCC300C142FE /* AppDelegate.m */,
@@ -3358,6 +3448,50 @@
 			path = Chat;
 			sourceTree = "<group>";
 		};
+		D4EDC92D2343A18400BA4C4D /* baseObject */ = {
+			isa = PBXGroup;
+			children = (
+				D4EDC92E2343A1A400BA4C4D /* UGView.h */,
+				D4EDC92F2343A1A400BA4C4D /* UGView.m */,
+				D4EDC9312343A1BF00BA4C4D /* UGViewController.h */,
+				D4EDC9322343A1BF00BA4C4D /* UGViewController.m */,
+				D4EDC9342343A1D200BA4C4D /* UGCollectionViewController.h */,
+				D4EDC9352343A1D200BA4C4D /* UGCollectionViewController.m */,
+				D4EDC9372343A1E300BA4C4D /* UGTableViewController.h */,
+				D4EDC9382343A1E300BA4C4D /* UGTableViewController.m */,
+				D4EDC93A2343A1F600BA4C4D /* UGTableViewCell.h */,
+				D4EDC93B2343A1F600BA4C4D /* UGTableViewCell.m */,
+				D4EDC93D2343A20800BA4C4D /* UGCollectionViewCell.h */,
+				D4EDC93E2343A20800BA4C4D /* UGCollectionViewCell.m */,
+			);
+			path = baseObject;
+			sourceTree = "<group>";
+		};
+		D4EE8F9023421C1C006FA0E2 /* Skin */ = {
+			isa = PBXGroup;
+			children = (
+				D4EE8F9123421C4E006FA0E2 /* UGSkinViewController.h */,
+				D4EE8F9223421C4E006FA0E2 /* UGSkinViewController.m */,
+				D4EE8F94234222A8006FA0E2 /* UGSkinCollectionViewCell.h */,
+				D4EE8F95234222A8006FA0E2 /* UGSkinCollectionViewCell.m */,
+				D4EE8F96234222A8006FA0E2 /* UGSkinCollectionViewCell.xib */,
+				D4EE8FA323424E5F006FA0E2 /* UIImage+YYgradientImage.h */,
+				D4EE8FA423424E5F006FA0E2 /* UIImage+YYgradientImage.m */,
+				D4B1B98023431C4600651815 /* UGSkinManagers.h */,
+				D4B1B98123431C4600651815 /* UGSkinManagers.m */,
+			);
+			path = Skin;
+			sourceTree = "<group>";
+		};
+		D4EE8F9923422CC8006FA0E2 /* NavigationBarHandle */ = {
+			isa = PBXGroup;
+			children = (
+				D4EE8F9A23422CC8006FA0E2 /* UINavigationBar+handle.h */,
+				D4EE8F9B23422CC8006FA0E2 /* UINavigationBar+handle.m */,
+			);
+			path = NavigationBarHandle;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -3465,6 +3599,7 @@
 				D41E0EE1228D88BC00D6C42A /* UGMissionLevelTableViewCell.xib in Resources */,
 				D4252824232103AA007DE522 /* UGSignInHeaderView.xib in Resources */,
 				D405B30F227C614800F8C586 /* UGFundDetailsCell.xib in Resources */,
+				D4C165792344CAB6005A0F12 /* UGSkinSeconCollectionHeadView.xib in Resources */,
 				D41B3CF2231FE1E900716512 /* UGSignInViewController.xib in Resources */,
 				D4EE8F882341DD4A006FA0E2 /* UGhomeRecommendCollectionViewCell.xib in Resources */,
 				D4090F63228D3E0E00D6DA43 /* UGAvaterSelectView.xib in Resources */,
@@ -3486,6 +3621,7 @@
 				D4BBFC06232A80A800147C4A /* UGFundsTransferView.xib in Resources */,
 				D417EFD02330A4880024F634 /* UGredEnvelopeView.xib in Resources */,
 				D4B6E6F122D332720006B03F /* UGHomeTitleView.xib in Resources */,
+				D4EE8F98234222A8006FA0E2 /* UGSkinCollectionViewCell.xib in Resources */,
 				D4D8DF812287065F00446BAF /* UGTimeLotteryBetHeaderView.xib in Resources */,
 				D4DE2689229BCB960072A4A2 /* icon_arrow_up@3x.png in Resources */,
 				D4145A9722B6113500D8165F /* UGXYNCLotteryController.storyboard in Resources */,
@@ -3500,6 +3636,7 @@
 				D42528162320DDA2007DE522 /* UGSignInCollectionViewCell.xib in Resources */,
 				D417EFD82330BEAB0024F634 /* UGredActivityView.xib in Resources */,
 				D481AB482331F1300099685B /* UGMosaicGoldTableViewCell.xib in Resources */,
+				D4C165742344C9E1005A0F12 /* UGMineSkinFirstCollectionHeadView.xib in Resources */,
 				D41246AB2285537F006881E2 /* UGPromotionInfoController.storyboard in Resources */,
 				D4090F6A228D83B700D6DA43 /* UGMissionCenterViewController.storyboard in Resources */,
 				D463B4E12284489100EAC0F7 /* UGRightMenuView.xib in Resources */,
@@ -3508,6 +3645,7 @@
 				D405B2CB227ADA4E00F8C586 /* UGGameTypeColletionViewCell.xib in Resources */,
 				D4527D1922828C27000EC1C2 /* UGPlatformBalanceTableViewCell.xib in Resources */,
 				D4E8A41122A0326C00EFE171 /* UGBetRecorddHeaderView.xib in Resources */,
+				D4C1656F2344C3C0005A0F12 /* UGMineSkinCollectionViewCell.xib in Resources */,
 				D4DE268A229BCB960072A4A2 /* icon_arrow@3x.png in Resources */,
 				D405B2E8227BFE5F00F8C586 /* UGLotteryCollectionViewCell.xib in Resources */,
 				D4241C43232A1A8200BF4DE1 /* UGFundsBankView.xib in Resources */,
@@ -3549,6 +3687,7 @@
 				D45A94B9233B879D0089E86C /* UGGoogleAuthenticationFirstViewController.xib in Resources */,
 				D422FE60232522C20063EA4E /* UGPromotion5rowButtonTableViewCell.xib in Resources */,
 				D422FE65232532C00063EA4E /* UGPromotion2rowTableViewCell.xib in Resources */,
+				D4C1656A2344B1AB005A0F12 /* UGMineSkinViewController.xib in Resources */,
 				D49A36C122A29CCB000057D2 /* UGLotteryRulesView.xib in Resources */,
 				D405B2D0227ADC1100F8C586 /* UGGamePlatformCollectionViewCell.xib in Resources */,
 				D41E0EED228D991600D6C42A /* UGIntegralConvertController.storyboard in Resources */,
@@ -3630,9 +3769,11 @@
 				D405B24F2279740A00F8C586 /* NSDictionary+HYBUnicodeReadable.m in Sources */,
 				D405B1B9227972AD00F8C586 /* UIImage+GIF.m in Sources */,
 				D405B215227972D300F8C586 /* MJProperty.m in Sources */,
+				D4C1657C2344CF1C005A0F12 /* UGMineSkinModel.m in Sources */,
 				D463B4DC2283ECFB00EAC0F7 /* UGPromotionTableController.m in Sources */,
 				D40DE98322F335E300974BAF /* SDCycleScrollView.m in Sources */,
 				D417EFD62330BD340024F634 /* UGredActivityView.m in Sources */,
+				D4EDC9302343A1A400BA4C4D /* UGView.m in Sources */,
 				D4145A9522B6109D00D8165F /* UGXYNCLotteryController.m in Sources */,
 				D481EFFE2327CAD8000611ED /* UGDepositDetailsCollectionViewCell.m in Sources */,
 				D422A57B229E3EE80068D0AD /* UGMissionCollectionView.m in Sources */,
@@ -3650,8 +3791,10 @@
 				D40FA8C722992EA7003E596F /* UGYubaoConversionCenterController.m in Sources */,
 				D4F0477622E9E22E008EBB56 /* UGLinkNumCollectionViewCell.m in Sources */,
 				D41B3CF1231FE1E900716512 /* UGSignInViewController.m in Sources */,
+				D4EDC9392343A1E300BA4C4D /* UGTableViewController.m in Sources */,
 				D40DE98822F335E300974BAF /* TAAnimatedDotView.m in Sources */,
 				D4AE64112295871D00DD265A /* UIView+MJExtension.m in Sources */,
+				D4C165782344CAB6005A0F12 /* UGSkinSeconCollectionHeadView.m in Sources */,
 				D405B2502279740A00F8C586 /* NSSet+HYBUnicodeReadable.m in Sources */,
 				D405B38F22817A3F00F8C586 /* UGModifyLoginPwdController.m in Sources */,
 				D4216F5122EEB8C2000F1F66 /* UGLotterySettingModel.m in Sources */,
@@ -3666,6 +3809,7 @@
 				D481EFFA2327C8DA000611ED /* UGDepositDetailsViewController.m in Sources */,
 				D405B213227972D300F8C586 /* MJPropertyType.m in Sources */,
 				D422FE5A23251E190063EA4E /* UGPromotion4rowTableViewCell.m in Sources */,
+				D4C165732344C9E1005A0F12 /* UGMineSkinFirstCollectionHeadView.m in Sources */,
 				D48224F522A10B5100F7DE72 /* UGNoticeHeaderView.m in Sources */,
 				D40FA8CA22992F42003E596F /* UGYubaoConversionViewController.m in Sources */,
 				D405B218227972D300F8C586 /* NSObject+MJProperty.m in Sources */,
@@ -3695,6 +3839,7 @@
 				D405B228227972DD00F8C586 /* SVRadialGradientLayer.m in Sources */,
 				D4D8DF762286F01100446BAF /* UGTimeLotteryLeftTitleCell.m in Sources */,
 				D4087DAF22951F15000C4CB0 /* CMNetwork+Mine.m in Sources */,
+				D4EDC9362343A1D200BA4C4D /* UGCollectionViewController.m in Sources */,
 				D41C3E1B228EF6C400BF6436 /* UGJSK3LotteryController.m in Sources */,
 				D405B246227973F200F8C586 /* UIView+ST.m in Sources */,
 				D405B2F6227C230400F8C586 /* UGRechargeTypeCell.m in Sources */,
@@ -3710,6 +3855,7 @@
 				D405B1B6227972AD00F8C586 /* FLAnimatedImage.m in Sources */,
 				D4AE64102295871D00DD265A /* NSBundle+MJRefresh.m in Sources */,
 				D40A3C1322C63633009CEB8E /* UGLotteryGameCollectionViewCell.m in Sources */,
+				D4C1656E2344C3C0005A0F12 /* UGMineSkinCollectionViewCell.m in Sources */,
 				D4AE64192295871D00DD265A /* MJRefreshStateHeader.m in Sources */,
 				D411142A230A9C2B00A4EE67 /* UGAppVersionManager.m in Sources */,
 				D4AE63D922956E9600DD265A /* UGMissionLevelController.m in Sources */,
@@ -3797,11 +3943,13 @@
 				D405B216227972D300F8C586 /* NSObject+MJCoding.m in Sources */,
 				D41246A122854518006881E2 /* UGPromotionsController.m in Sources */,
 				D405B1C0227972AD00F8C586 /* UIImageView+WebCache.m in Sources */,
+				D4EDC93C2343A1F600BA4C4D /* UGTableViewCell.m in Sources */,
 				D4DE269A229BDBC80072A4A2 /* SGSegmentedControl.m in Sources */,
 				D4D8DF7B2286F7F600446BAF /* UGTimeLotteryBetCollectionViewCell.m in Sources */,
 				D4AE641B2295871D00DD265A /* MJRefreshFooter.m in Sources */,
 				D4241C47232A2F0100BF4DE1 /* UGOneTitleTableViewCell.m in Sources */,
 				D4F63F8F228FD1A200EC93AA /* UGFastThreeThreeCollectionViewCell.m in Sources */,
+				D4EE8F8E2341F225006FA0E2 /* UGYYLotterySecondHomeViewController.m in Sources */,
 				D422FE6B232553790063EA4E /* UGbetStatModel.m in Sources */,
 				D405B38C22816D1400F8C586 /* UGSecurityCenterViewController.m in Sources */,
 				D405B1FA227972C900F8C586 /* JSONHTTPClient.m in Sources */,
@@ -3833,6 +3981,7 @@
 				D405B214227972D300F8C586 /* NSObject+MJKeyValue.m in Sources */,
 				D420A78423156D4E0089C0C5 /* UGRechargeLogsModel.m in Sources */,
 				D405B25E227974D000F8C586 /* UIColor+CTop.m in Sources */,
+				D4EE8F97234222A8006FA0E2 /* UGSkinCollectionViewCell.m in Sources */,
 				D4EE8F872341DD4A006FA0E2 /* UGhomeRecommendCollectionViewCell.m in Sources */,
 				D43555962334CDCE00515704 /* BAWebViewController.m in Sources */,
 				D422A57F229E79780068D0AD /* UGYubaoInComeController.m in Sources */,
@@ -3871,6 +4020,7 @@
 				0322AD5C233DD75300E9857E /* CMNetwork+Document.m in Sources */,
 				D40A2A8122BCFF6500DAAFC8 /* UGbankModel.m in Sources */,
 				D48224E122A0F2F200F7DE72 /* UGPlatformNoticeView.m in Sources */,
+				D4EE8F8B2341EB22006FA0E2 /* UGYYLotteryHomeViewController.m in Sources */,
 				D4FBBBE0228BD0E600153FB5 /* UGBetDetailModel.m in Sources */,
 				D405B229227972DD00F8C586 /* SVProgressAnimatedView.m in Sources */,
 				D424DDE522E753C60009E2E6 /* UGRealBetRecordCell.m in Sources */,
@@ -3903,6 +4053,7 @@
 				D41246A92285525A006881E2 /* UGPromotionInfoController.m in Sources */,
 				D405B331227DA8F700F8C586 /* SAROPSession.m in Sources */,
 				D4D8DF702286B14C00446BAF /* UGSSCLotteryController.m in Sources */,
+				D4EDC93F2343A20800BA4C4D /* UGCollectionViewCell.m in Sources */,
 				D40D58CA228AF7BA0025963A /* CountDown.m in Sources */,
 				D405B245227973F200F8C586 /* UIImage+ST.m in Sources */,
 				D4DFBE7322E353B1002BAFB0 /* UGMenuTableViewCell.m in Sources */,
@@ -3939,6 +4090,7 @@
 				D481AB5C233253A60099685B /* UGMosaicGoldFinishView.m in Sources */,
 				D40F0D0922AE29CD0087A300 /* UGGameplayModel.m in Sources */,
 				D4145A8C22B513CE00D8165F /* UGGameListViewController.m in Sources */,
+				0322AD6B2344E78900E9857E /* UGGameNavigationView.m in Sources */,
 				D4B6E6EF22D3325A0006B03F /* UGHomeTitleView.m in Sources */,
 				D4704EDD22B7BCE900528DC7 /* GLEncryptManager.m in Sources */,
 				D4D42264232686A5006E680B /* UGPormotionView.m in Sources */,
@@ -3953,8 +4105,11 @@
 				D405AFF722783DCC00F8C586 /* View+MASAdditions.m in Sources */,
 				D4D4225523264B94006E680B /* UGwithdrawListModel.m in Sources */,
 				D417EFCE2330A43C0024F634 /* UGredEnvelopeView.m in Sources */,
+				D4EDC9332343A1BF00BA4C4D /* UGViewController.m in Sources */,
 				D4A02B5223224C32004D5894 /* UGSignInHistoryModel.m in Sources */,
 				D405B2CF227ADC1100F8C586 /* UGGamePlatformCollectionViewCell.m in Sources */,
+				D4EE8FA523424E5F006FA0E2 /* UIImage+YYgradientImage.m in Sources */,
+				D4EE8F9323421C4E006FA0E2 /* UGSkinViewController.m in Sources */,
 				D40DE98F22F4292100974BAF /* UGLotteryAdPopView.m in Sources */,
 				D41FF76C22E8141A00FCCDD2 /* UGLotteryRecordCell.m in Sources */,
 				D4225DEF22DF6338001CD7CD /* UGBetsRecordListModel.m in Sources */,
@@ -3976,6 +4131,7 @@
 				D41AEA6B22E58D9E003E28C3 /* UGAvatarModel.m in Sources */,
 				D422A582229E7AE90068D0AD /* UGYubaoIncomeTableViewCell.m in Sources */,
 				D405AFF822783DCC00F8C586 /* MASConstraint.m in Sources */,
+				D4B1B98223431C4600651815 /* UGSkinManagers.m in Sources */,
 				D42A06B122CA212E005488F8 /* UGHomeViewController.m in Sources */,
 				D405B27E227981D400F8C586 /* UUMarqueeView.m in Sources */,
 				D405B1D7227972C100F8C586 /* AFURLRequestSerialization.m in Sources */,
@@ -3991,6 +4147,7 @@
 				D4D4225E232658F9006E680B /* UGrealBetListModel.m in Sources */,
 				D405B1BF227972AD00F8C586 /* NSData+ImageContentType.m in Sources */,
 				D40D32C72297CEAF00B89398 /* UGMarkSixLotteryBetItem1Cell.m in Sources */,
+				D4C165692344B1AB005A0F12 /* UGMineSkinViewController.m in Sources */,
 				D417EFDB2330D24C0024F634 /* AppDelegate+HgBugly.m in Sources */,
 				D4090F61228D3D7B00D6DA43 /* UGAvaterSelectView.m in Sources */,
 				033177A72337382D000D7663 /* UGPlatformCollectionView.m in Sources */,
@@ -4004,6 +4161,7 @@
 				D4241C39232914FE00BF4DE1 /* UIView+Extension.m in Sources */,
 				D405B1B2227972AD00F8C586 /* MKAnnotationView+WebCache.m in Sources */,
 				D405B1F8227972C900F8C586 /* JSONModelArray.m in Sources */,
+				D4EE8F9C23422CC8006FA0E2 /* UINavigationBar+handle.m in Sources */,
 				D405B1FC227972C900F8C586 /* JSONModel+networking.m in Sources */,
 				D45A94BD233B8AF90089E86C /* UGGoogleAuthenticationSecondViewController.m in Sources */,
 				D40FA8D3229938FA003E596F /* ZZCircleProgress.m in Sources */,

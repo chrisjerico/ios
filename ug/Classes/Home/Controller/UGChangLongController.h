@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGChangLongController : UIViewController
+@interface UGChangLongController :UGViewController
 @property (nonatomic, strong) NSArray *lotteryGamesArray;
 
 @end

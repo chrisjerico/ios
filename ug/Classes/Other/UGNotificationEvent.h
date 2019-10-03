@@ -27,6 +27,8 @@ FOUNDATION_EXTERN NSString *UGNotificationGetRewardsSuccessfully;
 FOUNDATION_EXTERN NSString *UGNotificationTryPlay;
 
 FOUNDATION_EXTERN NSString *UGNotificationWithdrawalsSuccess;
+
+FOUNDATION_EXTERN NSString *UGNotificationWithSkinSuccess;
 /// 登录授权
 ///
 /// 如果没有授权将跳转至登录页面, 并在登录完成后回调

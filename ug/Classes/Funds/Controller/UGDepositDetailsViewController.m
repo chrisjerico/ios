@@ -44,16 +44,18 @@
 @implementation UGDepositDetailsViewController
 @synthesize  lastPath;
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+     [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
     _amountDataArray = [NSMutableArray new];
     _channelDataArray = [NSArray new];
     _tableDataArray = [NSMutableArray new];
     _blankDataArray = [NSMutableArray<UGrechargeBankModel> new];
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
+    
     
     
     if (self.item) {

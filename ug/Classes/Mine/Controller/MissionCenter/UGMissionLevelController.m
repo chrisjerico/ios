@@ -74,7 +74,7 @@ static NSString *levelCellid = @"UGMissionLevelTableViewCell";
 
     headerView.item = model;
     
-    [headerView setSectionBgColor:UGRGBColor(239, 239, 244) levelsSectionStr:@"等级"];
+    [headerView setSectionBgColor:[[UGSkinManagers shareInstance] setbgColor] levelsSectionStr:@"等级"];
     
     return headerView;
 }

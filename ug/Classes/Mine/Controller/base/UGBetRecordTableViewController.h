@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGBetRecordTableViewController : UIViewController
+@interface UGBetRecordTableViewController :UGViewController
 
 @property (nonatomic, assign) BOOL showFooterView;
 

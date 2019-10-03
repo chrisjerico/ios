@@ -41,12 +41,19 @@ static int page = 1;
 static int size = 20;
 static NSString *realBetRecordCellId = @"UGRealBetRecordCell";
 @implementation UGRealBetRecordViewController
-
+-(void)skin{
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = UGBackgroundColor;
     self.navigationItem.title = @"真人注单";
-    self.navigationItem.titleView = self.titleView;
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
+        
+        [self skin];
+    });
     self.pageSize = size;
     self.pageNumber = page;
     self.tableView.delegate = self;

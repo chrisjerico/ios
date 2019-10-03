@@ -10,7 +10,7 @@
 @class UGYuebaoInfoModel;
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGYubaoConversionViewController : UIViewController
+@interface UGYubaoConversionViewController :UGViewController
 @property (nonatomic, strong) UGYuebaoInfoModel *infoModel;
 
 @end

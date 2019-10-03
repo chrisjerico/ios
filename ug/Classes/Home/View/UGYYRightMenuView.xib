@@ -19,7 +19,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1gL-Jl-h4n">
                     <rect key="frame" x="0.0" y="0.0" width="247" height="100"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bluebg" translatesAutoresizingMaskIntoConstraints="NO" id="Nfw-kf-ZEo">
+                        <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bluebg" translatesAutoresizingMaskIntoConstraints="NO" id="Nfw-kf-ZEo">
                             <rect key="frame" x="0.0" y="0.0" width="247" height="100"/>
                             <color key="backgroundColor" red="0.32385197281837463" green="0.68189215660095215" blue="0.97255474328994751" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         </imageView>
@@ -186,6 +186,10 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="balanceLabel" destination="Eel-Ef-jeF" id="6Ih-u4-3Dk"/>
+                <outlet property="bgImgeView" destination="Nfw-kf-ZEo" id="zWk-p2-YgQ"/>
+                <outlet property="bgView" destination="1gL-Jl-h4n" id="lLz-rf-Djm"/>
+                <outlet property="icon1ImgeView" destination="2MS-fb-M9G" id="5Zr-Cc-DNS"/>
+                <outlet property="icon2ImageView" destination="R9r-jh-6K4" id="Yne-eB-XFq"/>
                 <outlet property="rechargeView" destination="pyg-1t-XcU" id="BT3-FK-xav"/>
                 <outlet property="refreshButton" destination="Whw-yN-B0t" id="L7p-cg-xQo"/>
                 <outlet property="tableView" destination="43P-ey-REM" id="QH6-Gl-oLP"/>

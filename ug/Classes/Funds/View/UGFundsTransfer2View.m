@@ -34,8 +34,8 @@
     if (self) {
         self = [[NSBundle mainBundle] loadNibNamed:@"UGFundsTransfer2View" owner:self options:0].firstObject;
         self.frame = frame;
-        self.backgroundColor = [UIColor whiteColor];
-        
+        [self setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+
 
         
         // 方式一

@@ -42,12 +42,13 @@
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入提现金额" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="YwZ-h5-Xt2">
                                                 <rect key="frame" x="0.0" y="39.5" width="364" height="19"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                             </textField>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="YwZ-h5-Xt2" firstAttribute="leading" secondItem="oN9-be-qaU" secondAttribute="leading" id="88M-za-Pwc"/>
                                             <constraint firstAttribute="height" constant="85" id="9Bp-3l-rde"/>
@@ -86,7 +87,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="vBk-Yr-wB3" secondAttribute="bottom" id="0OT-H7-sCl"/>
                                             <constraint firstItem="4B6-IQ-YqE" firstAttribute="leading" secondItem="HBj-8F-aRa" secondAttribute="leading" id="6hR-z1-d4Z"/>
@@ -119,7 +120,7 @@
                                                 <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                                             </textField>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="Ci1-lu-l4G" firstAttribute="top" secondItem="Brl-cT-GNM" secondAttribute="bottom" constant="5" id="Q0l-PX-kaA"/>
                                             <constraint firstAttribute="trailing" secondItem="Brl-cT-GNM" secondAttribute="trailing" id="QeX-XI-fsZ"/>
@@ -217,7 +218,7 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="B8o-Ic-euk" firstAttribute="centerX" secondItem="UmO-yd-wVv" secondAttribute="centerX" id="6me-cL-Tc8"/>
                         <constraint firstItem="TvG-Ez-SuA" firstAttribute="top" secondItem="WaG-h0-4r7" secondAttribute="bottom" constant="30" id="6si-0y-BRj"/>

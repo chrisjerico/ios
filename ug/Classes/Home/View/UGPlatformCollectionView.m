@@ -42,7 +42,7 @@ static NSString *const footerId = @"footerId";
 		[self registerClass:[CollectionFooter class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:footerId];
 		self.delegate = self;
 		self.dataSource = self;
-		self.backgroundColor = UIColor.whiteColor;
+		self.backgroundColor = UIColor.clearColor;
 	}
 	return self;
 }
@@ -116,10 +116,10 @@ static NSString *const footerId = @"footerId";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UGGameTypeColletionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:gameCellid forIndexPath:indexPath];
     cell.item = ((NSArray *)self.sectionedDataArray[indexPath.section])[indexPath.row];
-	if (_selectedPath == indexPath) {
-		cell.backgroundColor = UIColor.blueColor;
-	}
-	cell.backgroundColor =  _selectedPath == indexPath ? [UIColor colorWithWhite:0.9 alpha:1.0] : UIColor.whiteColor;
+//    if (_selectedPath == indexPath) {
+//        cell.backgroundColor = UIColor.blueColor;
+//    }
+//    cell.backgroundColor =  _selectedPath == indexPath ? [UIColor colorWithWhite:0.9 alpha:1.0] : UIColor.whiteColor;
 
     return cell;
 }
@@ -248,7 +248,7 @@ static NSString *const footerId = @"footerId";
 - (UGGameSubCollectionView *)gameSubCollectionView {
 	if (!_gameSubCollectionView) {
 		_gameSubCollectionView = [[UGGameSubCollectionView alloc] initWithFrame:self.bounds];
-		_gameSubCollectionView.backgroundColor = [UIColor whiteColor];
+		_gameSubCollectionView.backgroundColor = [UIColor clearColor];
 		WeakSelf
 		_gameSubCollectionView.gameItemSelectBlock = ^(GameModel * model) {
 			weakSelf.gameItemSelectBlock(model);

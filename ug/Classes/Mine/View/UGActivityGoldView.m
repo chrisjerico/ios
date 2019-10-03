@@ -65,8 +65,7 @@
         
         self = [[NSBundle mainBundle] loadNibNamed:@"UGActivityGoldView" owner:self options:0].firstObject;
         self.frame = frame;
-        self.backgroundColor = [UIColor whiteColor];
-        
+        [self setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
         //初始化子视图
         [self initSubview];
         

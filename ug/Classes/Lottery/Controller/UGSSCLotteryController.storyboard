@@ -241,6 +241,7 @@
                         <outlet property="chipButton" destination="iIp-Bp-Rhr" id="Lfh-Qi-4K1"/>
                         <outlet property="closeTimeLabel" destination="fKx-dY-uLN" id="hri-l6-GyW"/>
                         <outlet property="currentIssueLabel" destination="pJ6-vP-gLz" id="MHV-AR-dEu"/>
+                        <outlet property="middleView" destination="GBX-5m-TSD" id="Q53-SY-OhO"/>
                         <outlet property="nextIssueLabel" destination="laN-xJ-dIp" id="yAs-CS-EcZ"/>
                         <outlet property="nextIssueView" destination="v0n-9e-ADG" id="cXA-O1-bNp"/>
                         <outlet property="openTimeLabel" destination="RNR-JA-ZYR" id="Era-HA-QG1"/>

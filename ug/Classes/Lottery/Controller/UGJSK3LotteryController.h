@@ -13,7 +13,11 @@
 NS_ASSUME_NONNULL_BEGIN
 typedef void(^JSK3LotteryBlock)(void);
 
+//<<<<<<< HEAD
+//@interface UGJSK3LotteryController :UGViewController
+//=======
 @interface UGJSK3LotteryController : UGCommonLotteryController
+//>>>>>>> dev_andrew
 @property (nonatomic, strong) NSArray *lotteryGamesArray;
 @property (nonatomic, strong) UGNextIssueModel *nextIssueModel;
 @property (nonatomic, strong) NSString *gameId;

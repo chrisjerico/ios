@@ -14,6 +14,7 @@
 @interface UGPlatformNoticeView ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIButton *closeButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIView *bgView;
 
 @property (nonatomic, assign) NSInteger selectSection;
 
@@ -26,6 +27,8 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+        
+       
         self = [[NSBundle mainBundle] loadNibNamed:@"UGPlatformNoticeView" owner:self options:0].firstObject;
         self.frame = frame;
         self.backgroundColor = [UIColor whiteColor];
@@ -39,6 +42,8 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
         [self.tableView registerNib:[UINib nibWithNibName:@"UGNoticeHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:noticeHeaderViewid];
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         self.layer.cornerRadius = 5;
+        
+
         
     }
     return self;
@@ -148,6 +153,9 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
 }
 
 - (void)show {
+    
+    [self.bgView setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
+
     
     UIWindow* window = UIApplication.sharedApplication.keyWindow;
     UIView* maskView = [[UIView alloc] initWithFrame:window.bounds];
