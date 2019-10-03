@@ -13,6 +13,7 @@
 		0322AD5F233DF08900E9857E /* UGDocumentDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0322AD5E233DF08900E9857E /* UGDocumentDetailVC.m */; };
 		0322AD6523432A4A00E9857E /* UGCommonLotteryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0322AD6423432A4A00E9857E /* UGCommonLotteryController.m */; };
 		0322AD68234342DB00E9857E /* UGDocumentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0322AD67234342DB00E9857E /* UGDocumentView.m */; };
+		0322AD6B2344E78900E9857E /* UGGameNavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0322AD6A2344E78900E9857E /* UGGameNavigationView.m */; };
 		033177A72337382D000D7663 /* UGPlatformCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 033177A62337382D000D7663 /* UGPlatformCollectionView.m */; };
 		033177AF2338E026000D7663 /* UGBetResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = 033177AE2338E026000D7663 /* UGBetResultView.m */; };
 		0399E6FB233B9D34001E0A7F /* UGDocumentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0399E6FA233B9D34001E0A7F /* UGDocumentVC.m */; };
@@ -609,6 +610,8 @@
 		0322AD6423432A4A00E9857E /* UGCommonLotteryController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGCommonLotteryController.m; sourceTree = "<group>"; };
 		0322AD66234342DB00E9857E /* UGDocumentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGDocumentView.h; sourceTree = "<group>"; };
 		0322AD67234342DB00E9857E /* UGDocumentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGDocumentView.m; sourceTree = "<group>"; };
+		0322AD692344E78900E9857E /* UGGameNavigationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGGameNavigationView.h; sourceTree = "<group>"; };
+		0322AD6A2344E78900E9857E /* UGGameNavigationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGGameNavigationView.m; sourceTree = "<group>"; };
 		033177A52337382D000D7663 /* UGPlatformCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGPlatformCollectionView.h; sourceTree = "<group>"; };
 		033177A62337382D000D7663 /* UGPlatformCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGPlatformCollectionView.m; sourceTree = "<group>"; };
 		033177AD2338E026000D7663 /* UGBetResultView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGBetResultView.h; sourceTree = "<group>"; };
@@ -2843,6 +2846,8 @@
 				D41C300B233F220000541254 /* UGYYRightMenuTableViewCell.xib */,
 				0322AD66234342DB00E9857E /* UGDocumentView.h */,
 				0322AD67234342DB00E9857E /* UGDocumentView.m */,
+				0322AD692344E78900E9857E /* UGGameNavigationView.h */,
+				0322AD6A2344E78900E9857E /* UGGameNavigationView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4085,6 +4090,7 @@
 				D481AB5C233253A60099685B /* UGMosaicGoldFinishView.m in Sources */,
 				D40F0D0922AE29CD0087A300 /* UGGameplayModel.m in Sources */,
 				D4145A8C22B513CE00D8165F /* UGGameListViewController.m in Sources */,
+				0322AD6B2344E78900E9857E /* UGGameNavigationView.m in Sources */,
 				D4B6E6EF22D3325A0006B03F /* UGHomeTitleView.m in Sources */,
 				D4704EDD22B7BCE900528DC7 /* GLEncryptManager.m in Sources */,
 				D4D42264232686A5006E680B /* UGPormotionView.m in Sources */,

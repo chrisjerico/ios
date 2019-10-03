@@ -13,9 +13,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 //<<<<<<< HEAD
-@interface UGXYNCLotteryController:UGViewController
+//@interface UGXYNCLotteryController:UGViewController
 //=======
-//@interface UGXYNCLotteryController: UGCommonLotteryController
+@interface UGXYNCLotteryController: UGCommonLotteryController
 //>>>>>>> dev_andrew
 @property (nonatomic, strong) NSArray *lotteryGamesArray;
 @property (nonatomic, strong) UGNextIssueModel *nextIssueModel;
