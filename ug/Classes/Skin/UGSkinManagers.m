@@ -582,4 +582,20 @@
 -(NSString *)setNavbgStringColor{
     return [self navbarbgColorString:[self conversionSkitType]];
 }
+
+-(UIColor *)setMineProgressViewColor{
+    UIColor *color;
+    UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
+    if ([config.mobileTemplateCategory isEqualToString:@"0"]) {
+        color =[UIColor redColor];
+    }
+    else if([config.mobileTemplateCategory isEqualToString:@"2"]) {
+       color =[UIColor yellowColor];
+    }
+    else if([config.mobileTemplateCategory isEqualToString:@"3"]) {
+       color =[UIColor yellowColor];
+    }
+    
+    return color;
+}
 @end
