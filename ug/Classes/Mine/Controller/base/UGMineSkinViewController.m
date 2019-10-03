@@ -506,7 +506,7 @@ BOOL isOk = NO;
                   layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-     float itemW = (UGScreenW - 22.0 )/ 3.0;
+     float itemW = (UGScreenW - 24.0 )/ 3.0;
 
     if ([skitType isEqualToString:@"新年红"]) {
         
