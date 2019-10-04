@@ -28,6 +28,9 @@
     
     self.navigationItem.title = @"长龙助手";
     self.view.backgroundColor = UGBackgroundColor;
+    
+    [self getAllNextIssueData];
+    
     [self buildSegment];
     
     SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
@@ -41,6 +44,8 @@
         self.navigationItem.rightBarButtonItems = @[item1,item0];
         
     });
+    
+  
     
 }
 
@@ -119,8 +124,17 @@
     }else {
         
         UGChanglongBetRecordController *betRecordVC = [[UGChanglongBetRecordController alloc] initWithStyle:UITableViewStyleGrouped];
-        betRecordVC.lotteryGamesArray = self.lotteryGamesArray;
-        return betRecordVC;
+        if ([CMCommon arryIsNull:self.lotteryGamesArray]) {
+            
+            return betRecordVC;
+        }
+        else{
+             betRecordVC.lotteryGamesArray = self.lotteryGamesArray;
+               return betRecordVC;
+        }
+        
+       
+     
     }
     
 }
@@ -132,6 +146,24 @@
         SANotificationEventPost(UGNotificationGetChanglongBetRecrod, nil);
     }
 }
+
+
+- (void )getAllNextIssueData {
+    
+    
+    [CMNetwork getAllNextIssueWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+       
+        [CMResult processWithResult:model success:^{
+            
+            self.lotteryGamesArray = model.data;
+            
+        } failure:^(id msg) {
+            
+        }];
+    }];
+    
+}
+
 
 
 @end

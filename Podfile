@@ -12,12 +12,11 @@ pod 'Toast', '~> 4.0.0'
 pod 'IQKeyboardManager'
  # alert提示框
 pod 'LEEAlert'
-
-  # 防奔溃
-    pod 'AvoidCrash'
-#web浏览器
+ # 防奔溃
+pod 'AvoidCrash'
+ #web浏览器
 pod 'BAWKWebView' 
-
-
+ #路由器
+pod 'FFRouter'
 
 end

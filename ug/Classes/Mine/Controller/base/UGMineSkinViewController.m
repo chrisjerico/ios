@@ -83,6 +83,21 @@
     [self.userInfoView setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
     _progressLayer.strokeColor = [[UGSkinManagers shareInstance] setMineProgressViewColor].CGColor;
      [self.progressView.layer addSublayer:self.progressLayer];
+    //设置皮肤
+    [self.view setBackgroundColor:UGRGBColor(231, 230, 230)];
+    [self.userInfoView setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
+    
+    
+    skitType = [[UGSkinManagers shareInstance] skitType];
+    
+    if ([skitType isEqualToString:@"经典"]) {
+        self.topupView.hidden = YES;
+        self.topupViewNSLayoutConstraintHight.constant = 0.1;
+    }
+    else{
+        self.topupView.hidden = NO;
+        self.topupViewNSLayoutConstraintHight.constant = 60;
+    }
     [self.myCollectionView reloadData];
 
 }
@@ -222,9 +237,9 @@ BOOL isOk = NO;
         [self.menuNameArray addObject:@{@"title" : @"安全中心" , @"imgName" : @"ziyuan"}];
         [self.menuNameArray addObject:@{@"title" : @"个人信息" , @"imgName" : @"gerenzhongxinxuanzhong"}];
         
-        [self.menuNameArray addObject:@{@"title" : @"长龙助手" , @"imgName" : @"zdgl"}];
+        [self.menuNameArray addObject:@{@"title" : @"长龙助手" , @"imgName" : @"changlong"}];
         [self.menuNameArray addObject:@{@"title" : @"站内信" , @"imgName" : @"zhanneixin"}];
-        [self.menuNameArray addObject:@{@"title" : @"建议反馈" , @"imgName" : @"jianyi"}];
+        [self.menuNameArray addObject:@{@"title" : @"建议反馈" , @"imgName" : @"yijian"}];
 
        
     } else {

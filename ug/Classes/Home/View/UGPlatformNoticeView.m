@@ -14,7 +14,7 @@
 @interface UGPlatformNoticeView ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIButton *closeButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UIView *bgView;
+
 
 @property (nonatomic, assign) NSInteger selectSection;
 

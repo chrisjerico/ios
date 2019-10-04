@@ -308,6 +308,7 @@
 		D41F26142319022E004FB9C6 /* UGChanglongBetRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D41F26132319022E004FB9C6 /* UGChanglongBetRecordModel.m */; };
 		D41F2617231BE522004FB9C6 /* UGWithdrawRecordDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = D41F2616231BE521004FB9C6 /* UGWithdrawRecordDetailView.m */; };
 		D41F2619231BE536004FB9C6 /* UGWithdrawRecordDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D41F2618231BE536004FB9C6 /* UGWithdrawRecordDetailView.xib */; };
+		D41FD5F22347127200984468 /* UGGlobalModuleRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = D41FD5F12347127200984468 /* UGGlobalModuleRouter.m */; };
 		D41FF76C22E8141A00FCCDD2 /* UGLotteryRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D41FF76A22E8141A00FCCDD2 /* UGLotteryRecordCell.m */; };
 		D41FF76D22E8141A00FCCDD2 /* UGLotteryRecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D41FF76B22E8141A00FCCDD2 /* UGLotteryRecordCell.xib */; };
 		D41FF77122E880A800FCCDD2 /* UGSSCBetItem1Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = D41FF76F22E880A800FCCDD2 /* UGSSCBetItem1Cell.m */; };
@@ -1158,6 +1159,8 @@
 		D41F2615231BE521004FB9C6 /* UGWithdrawRecordDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGWithdrawRecordDetailView.h; sourceTree = "<group>"; };
 		D41F2616231BE521004FB9C6 /* UGWithdrawRecordDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGWithdrawRecordDetailView.m; sourceTree = "<group>"; };
 		D41F2618231BE536004FB9C6 /* UGWithdrawRecordDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGWithdrawRecordDetailView.xib; sourceTree = "<group>"; };
+		D41FD5F02347127200984468 /* UGGlobalModuleRouter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGGlobalModuleRouter.h; sourceTree = "<group>"; };
+		D41FD5F12347127200984468 /* UGGlobalModuleRouter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGGlobalModuleRouter.m; sourceTree = "<group>"; };
 		D41FF76922E8141A00FCCDD2 /* UGLotteryRecordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLotteryRecordCell.h; sourceTree = "<group>"; };
 		D41FF76A22E8141A00FCCDD2 /* UGLotteryRecordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLotteryRecordCell.m; sourceTree = "<group>"; };
 		D41FF76B22E8141A00FCCDD2 /* UGLotteryRecordCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGLotteryRecordCell.xib; sourceTree = "<group>"; };
@@ -2358,6 +2361,15 @@
 			path = MissionCenter;
 			sourceTree = "<group>";
 		};
+		D41FD5EF2347123B00984468 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				D41FD5F02347127200984468 /* UGGlobalModuleRouter.h */,
+				D41FD5F12347127200984468 /* UGGlobalModuleRouter.m */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
 		D41FF93023332E5600FE3F70 /* NullSafe */ = {
 			isa = PBXGroup;
 			children = (
@@ -2678,6 +2690,7 @@
 		D4B75E22227811D50007047C /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				D41FD5EF2347123B00984468 /* Router */,
 				D4EE8F9023421C1C006FA0E2 /* Skin */,
 				D4E1F622233664680022A1DC /* Chat */,
 				D4B75E33227811D50007047C /* Main */,
@@ -3729,6 +3742,7 @@
 				"${PODS_ROOT}/Target Support Files/Pods-ug/Pods-ug-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AvoidCrash/AvoidCrash.framework",
 				"${BUILT_PRODUCTS_DIR}/BAWKWebView/BAWKWebView.framework",
+				"${BUILT_PRODUCTS_DIR}/FFRouter/FFRouter.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
 				"${BUILT_PRODUCTS_DIR}/LEEAlert/LEEAlert.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
@@ -3740,6 +3754,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AvoidCrash.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BAWKWebView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FFRouter.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LEEAlert.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
@@ -4090,6 +4105,7 @@
 				D4DE2683229BCB960072A4A2 /* WMIconSegmentControl.m in Sources */,
 				D41C3DFA228E877E00BF6436 /* UGIntegralConvertRecordController.m in Sources */,
 				D405B1F6227972C900F8C586 /* JSONModel.m in Sources */,
+				D41FD5F22347127200984468 /* UGGlobalModuleRouter.m in Sources */,
 				D405AFF322783DCC00F8C586 /* MASCompositeConstraint.m in Sources */,
 				D4261EC72323D6BC006E0A5D /* UGlevelsModel.m in Sources */,
 				D4DE269B229BDBC80072A4A2 /* SGImageButton.m in Sources */,

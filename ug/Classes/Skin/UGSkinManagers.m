@@ -440,31 +440,12 @@
     }
     
     
-    UINavigationController *navHome = appDelegate.tabbar.homeNavVC;
-    
-    [navHome.navigationBar navBarBackGroundColor:[self navbarbgColor:skitType] image:nil isOpaque:YES];//颜色
-    
-    UINavigationController *navChat = appDelegate.tabbar.chatNavVC;
-    
-    [navChat.navigationBar navBarBackGroundColor:[self navbarbgColor:skitType] image:nil isOpaque:YES];//颜色
-    
-    UINavigationController *navLottery = appDelegate.tabbar.LotteryNavVC;
-    
-    [navLottery.navigationBar navBarBackGroundColor:[self navbarbgColor:skitType] image:nil isOpaque:YES];//颜色
-    
-    UINavigationController *navPromotions = appDelegate.tabbar.promotionsNavVC;
-    
-    [navPromotions.navigationBar navBarBackGroundColor:[self navbarbgColor:skitType] image:nil isOpaque:YES];//颜色
-    
-    UINavigationController *navMine = appDelegate.tabbar.mineNavVC;
-    
-    [navMine.navigationBar navBarBackGroundColor:[self navbarbgColor:skitType] image:nil isOpaque:YES];//颜色
-    
-    
-      navMine.navigationBar.translucent = YES;
-     navHome.navigationBar.translucent = YES;
-     navChat.navigationBar.translucent = YES;
-     navLottery.navigationBar.translucent = YES;
+    for (UGNavigationController *nav in appDelegate.tabbar.vcs) {
+        
+        [nav.navigationBar navBarBackGroundColor:[self navbarbgColor:skitType] image:nil isOpaque:YES];//颜色
+        nav.navigationBar.translucent = YES;
+    }
+ 
 }
 
 

@@ -508,6 +508,7 @@
 			
 			
 			[[UGSkinManagers shareInstance] setSkin];
+    
 			
 			[self.titleView setImgName:config.mobile_logo];
 			
@@ -713,6 +714,7 @@
 - (void)showPlatformNoticeView {
 	UGPlatformNoticeView *notiveView = [[UGPlatformNoticeView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - 260)];
 	notiveView.dataArray = self.popNoticeArray;
+    [notiveView.bgView setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
 	[notiveView show];
 }
 

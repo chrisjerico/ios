@@ -47,27 +47,35 @@ static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
     [self.tableView registerNib:[UINib nibWithNibName:@"UGLotteryRecordTableViewCell" bundle:nil] forCellReuseIdentifier:lotteryRecordCellid];
     self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithImageName:@"riqi" target:self action:@selector(rightBarButonItemClick)];
     self.dateLabel.text = self.dateArray.firstObject;
+    
+    if ([CMCommon arryIsNull:_lotteryGamesArray  ]) {
+        [self getAllNextIssueData];
+    }
+    else{
+        for (UGAllNextIssueListModel *listModel in self.lotteryGamesArray) {
+            for (UGNextIssueModel *model in listModel.list) {
+                if ([model.gameId isEqualToString:self.gameId]) {
+                    self.gameNameLabel.text = model.title;
+                    [self.logoView sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:@"loading"]];
+                    
+                }
+                [self.gameArray addObject:model];
+                [self.gameNameArray addObject:model.title];
+            }
+        }
+        for (UGNextIssueModel *model in self.gameArray) {
+            if ([model.gameId isEqualToString:self.gameId]) {
+                self.selGameIndex = [self.gameArray indexOfObject:model];
+            }
+        }
+        [self getLotteryHistory];
+    }
+    
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self getLotteryHistory];
     }];
     
-    for (UGAllNextIssueListModel *listModel in self.lotteryGamesArray) {
-        for (UGNextIssueModel *model in listModel.list) {
-            if ([model.gameId isEqualToString:self.gameId]) {
-                self.gameNameLabel.text = model.title;
-                [self.logoView sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:@"loading"]];
-                
-            }
-            [self.gameArray addObject:model];
-            [self.gameNameArray addObject:model.title];
-        }
-    }
-    for (UGNextIssueModel *model in self.gameArray) {
-        if ([model.gameId isEqualToString:self.gameId]) {
-            self.selGameIndex = [self.gameArray indexOfObject:model];
-        }
-    }
-    [self getLotteryHistory];
+    
  
 }
 
@@ -210,4 +218,40 @@ static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
     return _gameNameArray;
 }
 
+
+- (void)getAllNextIssueData {
+    
+    [CMNetwork getAllNextIssueWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            
+            self->_lotteryGamesArray = model.data;
+            
+             UGAllNextIssueListModel *model = self.lotteryGamesArray.firstObject;
+            UGNextIssueModel *game = model.list.firstObject;
+            self->_gameId = game.gameId;
+            
+            for (UGAllNextIssueListModel *listModel in self.lotteryGamesArray) {
+                for (UGNextIssueModel *model in listModel.list) {
+                    if ([model.gameId isEqualToString:self.gameId]) {
+                        self.gameNameLabel.text = model.title;
+                        [self.logoView sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:@"loading"]];
+                        
+                    }
+                    [self.gameArray addObject:model];
+                    [self.gameNameArray addObject:model.title];
+                }
+            }
+            for (UGNextIssueModel *model in self.gameArray) {
+                if ([model.gameId isEqualToString:self.gameId]) {
+                    self.selGameIndex = [self.gameArray indexOfObject:model];
+                }
+            }
+            [self getLotteryHistory];
+            
+        } failure:^(id msg) {
+            
+        }];
+    }];
+    
+}
 @end
