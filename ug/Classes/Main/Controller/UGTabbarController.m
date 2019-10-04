@@ -31,11 +31,11 @@
     
     // 设置子控制器
     [self setUpChildViewController];
-    [[UITabBar appearance] setBackgroundImage:[self imageWithColor:[[UGSkinManagers shareInstance] setTabbgColor]]];
+    [[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:[[UGSkinManagers shareInstance] setTabbgColor]]];
     //去除 TabBar 自带的顶部阴影
 //    [[UITabBar appearance] setShadowImage:[[UIImage alloc] init]];
     //设置导航控制器颜色
-    [[UINavigationBar appearance] setBackgroundImage:[self imageWithColor:[[UGSkinManagers shareInstance] setNavbgColor]] forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageWithColor:[[UGSkinManagers shareInstance] setNavbgColor]] forBarMetrics:UIBarMetricsDefault];
     
 //    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
 //    statusBar.backgroundColor = UGNavColor;
@@ -171,23 +171,6 @@
     
 }
 
-//这个方法可以抽取到 UIImage 的分类中
-- (UIImage *)imageWithColor:(UIColor *)color
-{
-	if (color == nil) {
-		return [UIImage new];
-	}
-    NSParameterAssert(color != nil);
-    
-    CGRect rect = CGRectMake(0, 0, 1, 1);
-    // Create a 1 by 1 pixel context
-    UIGraphicsBeginImageContextWithOptions(rect.size, NO, 0);
-    [color setFill];
-    UIRectFill(rect);   // Fill it with your color
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return image;
-}
+
 
 @end
