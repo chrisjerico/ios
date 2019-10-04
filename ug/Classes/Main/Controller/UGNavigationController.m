@@ -14,6 +14,12 @@
 
 @implementation UGNavigationController
 
+static UGNavigationController *_navController = nil;
+
++ (instancetype)shared {
+    return _navController;
+}
+
 + (void)load
 {
     NSMutableDictionary *attr = [NSMutableDictionary dictionary];
@@ -31,6 +37,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _navController = self;
     
     //去除导航栏下方的横线
     [self.navigationBar setBackgroundImage:[UIImage new]
@@ -43,6 +50,10 @@
 - (UIStatusBarStyle)preferredStatusBarStyle {
     UIViewController* topVC = self.topViewController;
     return [topVC preferredStatusBarStyle];
+}
+
+- (UIView *)topView {
+    return _navController.viewControllers.lastObject.view;
 }
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
