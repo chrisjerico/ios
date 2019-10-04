@@ -58,13 +58,15 @@
     // Network
     #import "ZJNetworkRequests1.h"
 
+    // LogVC
+    #import "LogVC.h"
+
     // Other
     #import "define_default.h"
     #import "NSNull+Safe.h"
     #import "NSDictionary+NilSafe.h"
     #import "UIView+Frame.h"
     #import "NSDate+Millisecond.h"
-
 
 
 #endif
