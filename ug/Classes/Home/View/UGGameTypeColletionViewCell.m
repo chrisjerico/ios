@@ -8,6 +8,7 @@
 
 #import "UGGameTypeColletionViewCell.h"
 #import "UGPlatformGameModel.h"
+//#import <SDWebImage/FLAnimatedImageView+WebCache.h>
 
 @interface UGGameTypeColletionViewCell ()
 

@@ -375,6 +375,7 @@
 			 qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr];
 		 }
 		
+		[self.navigationController pushViewController:qdwebVC animated:YES];
 
 	} else if ([model.subId isEqualToString:@"4"]) {
 		// 在线客服
@@ -624,15 +625,13 @@
 				UGRankListModel *rank = model.data;
 				self.rankListModel = rank;
 				self.rankArray = rank.list.mutableCopy;
-				self.rankingView.hidden = NO;
-				[self.upwardMultiMarqueeView reloadData];
 				
-				//				if (rank.show) {
-				//					self.rankingView.hidden = NO;
-				//					[self.upwardMultiMarqueeView reloadData];
-				//				}else {
-				//					self.rankingView.hidden = YES;
-				//				}
+				if (rank.show) {
+					self.rankingView.hidden = NO;
+					[self.upwardMultiMarqueeView reloadData];
+				}else {
+					self.rankingView.hidden = YES;
+				}
 			});
 			
 		} failure:^(id msg) {
@@ -1270,7 +1269,7 @@
 	
 	self.upwardMultiMarqueeView.direction = UUMarqueeViewDirectionUpward;
 	self.upwardMultiMarqueeView.timeIntervalPerScroll = 0.0f;
-	self.upwardMultiMarqueeView.scrollSpeed = 50.f;
+	self.upwardMultiMarqueeView.scrollSpeed = 10.f;
 	self.upwardMultiMarqueeView.useDynamicHeight = YES;
 	self.upwardMultiMarqueeView.touchEnabled = YES;
 	self.upwardMultiMarqueeView.delegate = self;
