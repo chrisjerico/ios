@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UGPlatformNoticeView : UIView
-
+@property (weak, nonatomic) IBOutlet UIView *bgView;
 @property (nonatomic, strong) NSArray *dataArray;
 
 - (void)show;
