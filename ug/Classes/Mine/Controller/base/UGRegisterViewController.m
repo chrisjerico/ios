@@ -232,6 +232,13 @@
             
         }
         ck_parameter_non_empty(self.userNameTextF.text, @"请输入用户名");
+        if (self.userNameTextF.text.length<6 ||
+            self.userNameTextF.text.length>15 ||
+            self.userNameTextF.text.hasASCII ||
+            self.userNameTextF.text.hasSpecialCharacter ||
+            self.userNameTextF.text.hasChinese) {
+            @throw __ck_parameter_exception(@"请输入6-15位英文或数字的组合的用户名");
+        }
         ck_parameter_less_length(self.passwordTextF.text, [NSString stringWithFormat:@"%ld",config.pass_length_min], self.pwdPlaceholder);
         
         if (config.pass_limit) {

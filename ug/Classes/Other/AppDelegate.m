@@ -49,7 +49,10 @@
 //    版本更新
 //    [[UGAppVersionManager shareInstance] updateVersionNow:YES];
     
-   
+#ifdef DEBUG
+    [LogVC enableLogVC];
+#endif
+    
     return YES;
 }
 

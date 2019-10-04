@@ -63,6 +63,11 @@
 		CFD3BF3B23471A4F00FCDA6D /* ZJNetworkRequests1.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BF2923471A4F00FCDA6D /* ZJNetworkRequests1.m */; };
 		CFD3BF3F23471A4F00FCDA6D /* ZJNetworkRequests1+HTTPS.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BF3323471A4F00FCDA6D /* ZJNetworkRequests1+HTTPS.m */; };
 		CFD3BF4023471A4F00FCDA6D /* ZJSessionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BF3423471A4F00FCDA6D /* ZJSessionModel.m */; };
+		CFD3BF432347241000FCDA6D /* Promote.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFD3BF422347241000FCDA6D /* Promote.storyboard */; };
+		CFD3BF4823473D0500FCDA6D /* Log.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFD3BF4523473D0500FCDA6D /* Log.storyboard */; };
+		CFD3BF4923473D0500FCDA6D /* LogVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BF4723473D0500FCDA6D /* LogVC.m */; };
+		CFD3BF4E23473D5900FCDA6D /* TextFieldAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFD3BF4B23473D5900FCDA6D /* TextFieldAlertView.xib */; };
+		CFD3BF4F23473D5900FCDA6D /* TextFieldAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BF4D23473D5900FCDA6D /* TextFieldAlertView.m */; };
 		D4000C45232E4EDD000705B1 /* UGAgentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4000C43232E4EDD000705B1 /* UGAgentViewController.m */; };
 		D4000C46232E4EDD000705B1 /* UGAgentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4000C44232E4EDD000705B1 /* UGAgentViewController.xib */; };
 		D4000C59232E51C4000705B1 /* UITextView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = D4000C58232E51C4000705B1 /* UITextView+Extension.m */; };
@@ -257,8 +262,6 @@
 		D411D3962292E1780072603B /* UGChanglongaideModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D411D3952292E1780072603B /* UGChanglongaideModel.m */; };
 		D411D3992292E1AD0072603B /* UGBetItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D411D3982292E1AD0072603B /* UGBetItemModel.m */; };
 		D41246A122854518006881E2 /* UGPromotionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = D41246A022854518006881E2 /* UGPromotionsController.m */; };
-		D41246A522854626006881E2 /* UGPromotionsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D41246A322854626006881E2 /* UGPromotionsTableViewCell.m */; };
-		D41246A622854626006881E2 /* UGPromotionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D41246A422854626006881E2 /* UGPromotionsTableViewCell.xib */; };
 		D41246A92285525A006881E2 /* UGPromotionInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = D41246A82285525A006881E2 /* UGPromotionInfoController.m */; };
 		D41246AB2285537F006881E2 /* UGPromotionInfoController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D41246AA2285537F006881E2 /* UGPromotionInfoController.storyboard */; settings = {ASSET_TAGS = (1, ); }; };
 		D41246AE2285B599006881E2 /* UGMissionListController.m in Sources */ = {isa = PBXBuildFile; fileRef = D41246AD2285B599006881E2 /* UGMissionListController.m */; };
@@ -747,6 +750,13 @@
 		CFD3BF3523471A4F00FCDA6D /* ZJNetworkRequests1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJNetworkRequests1.h; sourceTree = "<group>"; };
 		CFD3BF3623471A4F00FCDA6D /* ZJNetworkRequests1+HTTPS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZJNetworkRequests1+HTTPS.h"; sourceTree = "<group>"; };
 		CFD3BF3A23471A4F00FCDA6D /* ZJSessionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJSessionModel.h; sourceTree = "<group>"; };
+		CFD3BF422347241000FCDA6D /* Promote.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Promote.storyboard; sourceTree = "<group>"; };
+		CFD3BF4523473D0500FCDA6D /* Log.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Log.storyboard; sourceTree = "<group>"; };
+		CFD3BF4623473D0500FCDA6D /* LogVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogVC.h; sourceTree = "<group>"; };
+		CFD3BF4723473D0500FCDA6D /* LogVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogVC.m; sourceTree = "<group>"; };
+		CFD3BF4B23473D5900FCDA6D /* TextFieldAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextFieldAlertView.xib; sourceTree = "<group>"; };
+		CFD3BF4C23473D5900FCDA6D /* TextFieldAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldAlertView.h; sourceTree = "<group>"; };
+		CFD3BF4D23473D5900FCDA6D /* TextFieldAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldAlertView.m; sourceTree = "<group>"; };
 		D4000C42232E4EDD000705B1 /* UGAgentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGAgentViewController.h; sourceTree = "<group>"; };
 		D4000C43232E4EDD000705B1 /* UGAgentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGAgentViewController.m; sourceTree = "<group>"; };
 		D4000C44232E4EDD000705B1 /* UGAgentViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGAgentViewController.xib; sourceTree = "<group>"; };
@@ -1120,9 +1130,6 @@
 		D411D3982292E1AD0072603B /* UGBetItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGBetItemModel.m; sourceTree = "<group>"; };
 		D412469F22854518006881E2 /* UGPromotionsController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGPromotionsController.h; sourceTree = "<group>"; };
 		D41246A022854518006881E2 /* UGPromotionsController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGPromotionsController.m; sourceTree = "<group>"; };
-		D41246A222854626006881E2 /* UGPromotionsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGPromotionsTableViewCell.h; sourceTree = "<group>"; };
-		D41246A322854626006881E2 /* UGPromotionsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGPromotionsTableViewCell.m; sourceTree = "<group>"; };
-		D41246A422854626006881E2 /* UGPromotionsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGPromotionsTableViewCell.xib; sourceTree = "<group>"; };
 		D41246A72285525A006881E2 /* UGPromotionInfoController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGPromotionInfoController.h; sourceTree = "<group>"; };
 		D41246A82285525A006881E2 /* UGPromotionInfoController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGPromotionInfoController.m; sourceTree = "<group>"; };
 		D41246AA2285537F006881E2 /* UGPromotionInfoController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UGPromotionInfoController.storyboard; sourceTree = "<group>"; };
@@ -1791,6 +1798,7 @@
 		CFD3BE962347137E00FCDA6D /* FishUtility */ = {
 			isa = PBXGroup;
 			children = (
+				CFD3BF4423473D0500FCDA6D /* LogHelper */,
 				CFD3BF2823471A4F00FCDA6D /* ZJNetwork */,
 				CFD3BF172347196600FCDA6D /* HUD and Alert */,
 				CFD3BE972347137E00FCDA6D /* FishUtility.h */,
@@ -2005,6 +2013,27 @@
 				CFD3BF3423471A4F00FCDA6D /* ZJSessionModel.m */,
 			);
 			path = ZJNetwork;
+			sourceTree = "<group>";
+		};
+		CFD3BF4423473D0500FCDA6D /* LogHelper */ = {
+			isa = PBXGroup;
+			children = (
+				CFD3BF4A23473D5900FCDA6D /* TextFieldAlertView */,
+				CFD3BF4523473D0500FCDA6D /* Log.storyboard */,
+				CFD3BF4623473D0500FCDA6D /* LogVC.h */,
+				CFD3BF4723473D0500FCDA6D /* LogVC.m */,
+			);
+			path = LogHelper;
+			sourceTree = "<group>";
+		};
+		CFD3BF4A23473D5900FCDA6D /* TextFieldAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				CFD3BF4B23473D5900FCDA6D /* TextFieldAlertView.xib */,
+				CFD3BF4C23473D5900FCDA6D /* TextFieldAlertView.h */,
+				CFD3BF4D23473D5900FCDA6D /* TextFieldAlertView.m */,
+			);
+			path = TextFieldAlertView;
 			sourceTree = "<group>";
 		};
 		D4000C0E232E2CCB000705B1 /* AppDelegate+ */ = {
@@ -3154,7 +3183,7 @@
 			children = (
 				D4B75E28227811D50007047C /* Controller */,
 				D4B75E29227811D50007047C /* Model */,
-				D4B75E2A227811D50007047C /* View */,
+				CFD3BF422347241000FCDA6D /* Promote.storyboard */,
 			);
 			path = Promote;
 			sourceTree = "<group>";
@@ -3177,16 +3206,6 @@
 				D40E1E5B22BFA391004D4664 /* UGPromoteModel.m */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		D4B75E2A227811D50007047C /* View */ = {
-			isa = PBXGroup;
-			children = (
-				D41246A222854626006881E2 /* UGPromotionsTableViewCell.h */,
-				D41246A322854626006881E2 /* UGPromotionsTableViewCell.m */,
-				D41246A422854626006881E2 /* UGPromotionsTableViewCell.xib */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		D4B75E2B227811D50007047C /* Mine */ = {
@@ -3910,6 +3929,7 @@
 				CFD3BF232347196600FCDA6D /* loading.png in Resources */,
 				D40FA8C4229911CA003E596F /* UGYubaoViewController.storyboard in Resources */,
 				D41C3DFC228E882200BF6436 /* UGIntegralConvertRecordController.storyboard in Resources */,
+				CFD3BF4E23473D5900FCDA6D /* TextFieldAlertView.xib in Resources */,
 				D405B2FF227C310600F8C586 /* UGWithdrawalViewController.storyboard in Resources */,
 				D4A36638233E311E00F6D770 /* UGYYRightMenuView.xib in Resources */,
 				D422D67822D997AA008E7065 /* UGSafety.storyboard in Resources */,
@@ -3919,6 +3939,7 @@
 				D43555922334CDCE00515704 /* BAKit_WebView.bundle in Resources */,
 				D4BBFC06232A80A800147C4A /* UGFundsTransferView.xib in Resources */,
 				D417EFD02330A4880024F634 /* UGredEnvelopeView.xib in Resources */,
+				CFD3BF432347241000FCDA6D /* Promote.storyboard in Resources */,
 				D4B6E6F122D332720006B03F /* UGHomeTitleView.xib in Resources */,
 				D4EE8F98234222A8006FA0E2 /* UGSkinCollectionViewCell.xib in Resources */,
 				D4D8DF812287065F00446BAF /* UGTimeLotteryBetHeaderView.xib in Resources */,
@@ -3930,6 +3951,7 @@
 				D4A02B57232257D5004D5894 /* UGSignInHistoryView.xib in Resources */,
 				D4A02B5C23227B7D004D5894 /* UGSingInHistoryTableViewCell.xib in Resources */,
 				D4D8DF7C2286F7F600446BAF /* UGTimeLotteryBetCollectionViewCell.xib in Resources */,
+				CFD3BF4823473D0500FCDA6D /* Log.storyboard in Resources */,
 				D4C46F99232B8DCC0062564D /* UGFundsTransfer2View.xib in Resources */,
 				D40FA8D1229938FA003E596F /* ZZCircleProgress.bundle in Resources */,
 				D42528162320DDA2007DE522 /* UGSignInCollectionViewCell.xib in Resources */,
@@ -3980,7 +4002,6 @@
 				D422D67D22D99F1E008E7065 /* UGAddressCollectionViewCell.xib in Resources */,
 				D4DFBE7522E35460002BAFB0 /* Mine.storyboard in Resources */,
 				D41E0EF2228DA44500D6C42A /* UGConvertCollectionViewCell.xib in Resources */,
-				D41246A622854626006881E2 /* UGPromotionsTableViewCell.xib in Resources */,
 				D4DFBE7222E353B1002BAFB0 /* UGMenuTableViewCell.xib in Resources */,
 				D4DE2686229BCB960072A4A2 /* Shade_right@2x.png in Resources */,
 				D45A94B9233B879D0089E86C /* UGGoogleAuthenticationFirstViewController.xib in Resources */,
@@ -4435,6 +4456,7 @@
 				D40D32C32297BED600B89398 /* UGSetupPayPwdController.m in Sources */,
 				D405B2FA227C23C300F8C586 /* UGRechargeTypeTableViewController.m in Sources */,
 				D405AFF422783DCC00F8C586 /* MASConstraintMaker.m in Sources */,
+				CFD3BF4923473D0500FCDA6D /* LogVC.m in Sources */,
 				D405B346227DB22100F8C586 /* UGNotificationEvent.m in Sources */,
 				D405B367227DE67600F8C586 /* CMNetwork+Hall.m in Sources */,
 				D405B37622801F8400F8C586 /* UGWriteMessageViewController.m in Sources */,
@@ -4481,7 +4503,7 @@
 				D405B1FC227972C900F8C586 /* JSONModel+networking.m in Sources */,
 				D45A94BD233B8AF90089E86C /* UGGoogleAuthenticationSecondViewController.m in Sources */,
 				D40FA8D3229938FA003E596F /* ZZCircleProgress.m in Sources */,
-				D41246A522854626006881E2 /* UGPromotionsTableViewCell.m in Sources */,
+				CFD3BF4F23473D5900FCDA6D /* TextFieldAlertView.m in Sources */,
 				D417712A229D6BEC00727B70 /* UGUserinfoView.m in Sources */,
 				D4DE2690229BCB960072A4A2 /* WMDropDownView.m in Sources */,
 				D405B318227D726000F8C586 /* UGLoginViewController.m in Sources */,

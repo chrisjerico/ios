@@ -65,6 +65,7 @@
                 sb(@"UGBJPK10LotteryController"),
                 sb(@"Mine"),
                 sb(@"UGFC3DLotteryController"),
+                sb(@"Promote"),
                 ];
     });
     
