@@ -142,7 +142,8 @@
 	
 	self.gameNavigationView.layer.cornerRadius = 8;
 	self.gameNavigationView.layer.masksToBounds = true;
-	
+    
+    [self.gameNavigationView setBackgroundColor:[[UGSkinManagers shareInstance] setCellbgColor]];
 	[[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:[[UGSkinManagers shareInstance] setTabbgColor]]];
 	
 	[[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[[UGSkinManagers shareInstance] settabNOSelectColor], NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
