@@ -36,17 +36,14 @@
             </view>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="YZH-WA-kb6" firstAttribute="top" secondItem="nib-hX-dOn" secondAttribute="bottom" constant="5" id="9Fg-3x-TG2"/>
                 <constraint firstItem="YZH-WA-kb6" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="Hvg-Av-iWn"/>
-                <constraint firstAttribute="trailing" secondItem="nib-hX-dOn" secondAttribute="trailing" constant="75" id="NPe-Hc-OwI"/>
                 <constraint firstItem="nib-hX-dOn" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="NTm-ei-RlS"/>
-                <constraint firstItem="nib-hX-dOn" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="75" id="aeI-wg-yON"/>
                 <constraint firstItem="YZH-WA-kb6" firstAttribute="top" secondItem="nib-hX-dOn" secondAttribute="bottom" constant="5" id="hj2-of-v3U"/>
                 <constraint firstItem="nib-hX-dOn" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="11" id="sg1-sj-ZfP"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
             <connections>
-                <outlet property="imageView" destination="nib-hX-dOn" id="NZx-7u-b9M"/>
+                <outlet property="imageView" destination="nib-hX-dOn" id="3hl-pp-f0b"/>
                 <outlet property="nameLabel" destination="YZH-WA-kb6" id="iFv-xN-Am9"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="150"/>

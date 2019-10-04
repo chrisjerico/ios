@@ -552,6 +552,10 @@
 
 -(void)setSkin{
     [self setNavbarAndTabarSkin];
+    
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSString *colorStr = [[UGSkinManagers shareInstance] setNavbgStringColor];
+    appDelegate.tabbar.qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@&back=hide",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr];
     SANotificationEventPost(UGNotificationWithSkinSuccess, nil);
 }
 
@@ -581,5 +585,21 @@
 
 -(NSString *)setNavbgStringColor{
     return [self navbarbgColorString:[self conversionSkitType]];
+}
+
+-(UIColor *)setMineProgressViewColor{
+    UIColor *color;
+    UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
+    if ([config.mobileTemplateCategory isEqualToString:@"0"]) {
+        color =[UIColor redColor];
+    }
+    else if([config.mobileTemplateCategory isEqualToString:@"2"]) {
+       color =[UIColor yellowColor];
+    }
+    else if([config.mobileTemplateCategory isEqualToString:@"3"]) {
+       color =[UIColor yellowColor];
+    }
+    
+    return color;
 }
 @end

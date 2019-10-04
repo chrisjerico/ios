@@ -41,7 +41,6 @@
 
 @implementation UGYubaoViewController
 -(void)skin{
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
     
 }
 - (void)viewDidLoad {
@@ -52,7 +51,6 @@
     });
     self.fd_prefersNavigationBarHidden = YES;
     self.navigationItem.title = @"利息宝";
-    self.view.backgroundColor = UGBackgroundColor;
     self.waveView = [[WavesView alloc] initWithFrame:self.waveBgView.bounds];
     [self.waveBgView addSubview:self.waveView];
     self.waveView.backgroundColor = [UIColor clearColor];

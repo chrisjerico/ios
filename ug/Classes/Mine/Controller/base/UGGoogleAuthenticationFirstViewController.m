@@ -16,7 +16,6 @@
 
 @implementation UGGoogleAuthenticationFirstViewController
 -(void)skin{
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
     
 }
 - (void)viewDidLoad {

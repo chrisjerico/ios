@@ -138,8 +138,6 @@
 		D405B27E227981D400F8C586 /* UUMarqueeView.m in Sources */ = {isa = PBXBuildFile; fileRef = D405B27D227981D400F8C586 /* UUMarqueeView.m */; };
 		D405B2CA227ADA4E00F8C586 /* UGGameTypeColletionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D405B2C8227ADA4E00F8C586 /* UGGameTypeColletionViewCell.m */; };
 		D405B2CB227ADA4E00F8C586 /* UGGameTypeColletionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D405B2C9227ADA4E00F8C586 /* UGGameTypeColletionViewCell.xib */; };
-		D405B2CF227ADC1100F8C586 /* UGGamePlatformCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D405B2CD227ADC1100F8C586 /* UGGamePlatformCollectionViewCell.m */; };
-		D405B2D0227ADC1100F8C586 /* UGGamePlatformCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D405B2CE227ADC1100F8C586 /* UGGamePlatformCollectionViewCell.xib */; };
 		D405B2D3227AE38900F8C586 /* UGGameTypeCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D405B2D2227AE38900F8C586 /* UGGameTypeCollectionView.m */; };
 		D405B2D7227B0FE100F8C586 /* UGPlatformTitleCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D405B2D5227B0FE100F8C586 /* UGPlatformTitleCollectionViewCell.m */; };
 		D405B2D8227B0FE100F8C586 /* UGPlatformTitleCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D405B2D6227B0FE100F8C586 /* UGPlatformTitleCollectionViewCell.xib */; };
@@ -904,9 +902,6 @@
 		D405B2C7227ADA4E00F8C586 /* UGGameTypeColletionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGGameTypeColletionViewCell.h; sourceTree = "<group>"; };
 		D405B2C8227ADA4E00F8C586 /* UGGameTypeColletionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGGameTypeColletionViewCell.m; sourceTree = "<group>"; };
 		D405B2C9227ADA4E00F8C586 /* UGGameTypeColletionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGGameTypeColletionViewCell.xib; sourceTree = "<group>"; };
-		D405B2CC227ADC1100F8C586 /* UGGamePlatformCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGGamePlatformCollectionViewCell.h; sourceTree = "<group>"; };
-		D405B2CD227ADC1100F8C586 /* UGGamePlatformCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGGamePlatformCollectionViewCell.m; sourceTree = "<group>"; };
-		D405B2CE227ADC1100F8C586 /* UGGamePlatformCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGGamePlatformCollectionViewCell.xib; sourceTree = "<group>"; };
 		D405B2D1227AE38900F8C586 /* UGGameTypeCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGGameTypeCollectionView.h; sourceTree = "<group>"; };
 		D405B2D2227AE38900F8C586 /* UGGameTypeCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGGameTypeCollectionView.m; sourceTree = "<group>"; };
 		D405B2D4227B0FE100F8C586 /* UGPlatformTitleCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGPlatformTitleCollectionViewCell.h; sourceTree = "<group>"; };
@@ -3077,9 +3072,6 @@
 				D405B2C7227ADA4E00F8C586 /* UGGameTypeColletionViewCell.h */,
 				D405B2C8227ADA4E00F8C586 /* UGGameTypeColletionViewCell.m */,
 				D405B2C9227ADA4E00F8C586 /* UGGameTypeColletionViewCell.xib */,
-				D405B2CC227ADC1100F8C586 /* UGGamePlatformCollectionViewCell.h */,
-				D405B2CD227ADC1100F8C586 /* UGGamePlatformCollectionViewCell.m */,
-				D405B2CE227ADC1100F8C586 /* UGGamePlatformCollectionViewCell.xib */,
 				030BE80B233604B3004AB19A /* UGGameSubCollectionView.h */,
 				030BE80C233604B3004AB19A /* UGGameSubCollectionView.m */,
 				D405B2D4227B0FE100F8C586 /* UGPlatformTitleCollectionViewCell.h */,
@@ -3988,7 +3980,6 @@
 				D422FE65232532C00063EA4E /* UGPromotion2rowTableViewCell.xib in Resources */,
 				D4C1656A2344B1AB005A0F12 /* UGMineSkinViewController.xib in Resources */,
 				D49A36C122A29CCB000057D2 /* UGLotteryRulesView.xib in Resources */,
-				D405B2D0227ADC1100F8C586 /* UGGamePlatformCollectionViewCell.xib in Resources */,
 				D41E0EED228D991600D6C42A /* UGIntegralConvertController.storyboard in Resources */,
 				D41A57792306924D00C26023 /* UGBackToastView.xib in Resources */,
 				D463B4E622844D4A00EAC0F7 /* UGRightMenuTableViewCell.xib in Resources */,
@@ -4420,7 +4411,6 @@
 				D417EFCE2330A43C0024F634 /* UGredEnvelopeView.m in Sources */,
 				D4EDC9332343A1BF00BA4C4D /* UGViewController.m in Sources */,
 				D4A02B5223224C32004D5894 /* UGSignInHistoryModel.m in Sources */,
-				D405B2CF227ADC1100F8C586 /* UGGamePlatformCollectionViewCell.m in Sources */,
 				D4EE8FA523424E5F006FA0E2 /* UIImage+YYgradientImage.m in Sources */,
 				D4EE8F9323421C4E006FA0E2 /* UGSkinViewController.m in Sources */,
 				D40DE98F22F4292100974BAF /* UGLotteryAdPopView.m in Sources */,

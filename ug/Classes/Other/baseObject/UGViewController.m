@@ -15,7 +15,7 @@
 @implementation UGViewController
 
 -(void)skin{
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+//    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
     
     
 }

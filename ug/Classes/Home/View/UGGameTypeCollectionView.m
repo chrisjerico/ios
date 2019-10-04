@@ -7,7 +7,6 @@
 //
 
 #import "UGGameTypeCollectionView.h"
-#import "UGGamePlatformCollectionViewCell.h"
 #import "UGPlatformGameModel.h"
 #import "WSLWaterFlowLayout.h"
 #import "UGPlatformTitleCollectionView.h"
