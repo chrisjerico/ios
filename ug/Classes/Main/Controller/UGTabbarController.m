@@ -130,11 +130,7 @@
                   selectedImageName:@"liaotiansel"];
     
     
-//<<<<<<< HEAD
-    UGNavigationController *promotionsNavVC = [[UGNavigationController alloc]initWithRootViewController:[[UGPromotionsController alloc] init]];
-//=======
-//    self.promotionsNavVC = [[UGNavigationController alloc]initWithRootViewController:_LoadVC_from_storyboard_(@"UGPromotionsController")];
-//>>>>>>> dev_fish
+    UGNavigationController *promotionsNavVC = [[UGNavigationController alloc]initWithRootViewController:_LoadVC_from_storyboard_(@"UGPromotionsController")];
     
     [self addOneChildViewController: promotionsNavVC
                           WithTitle:@"优惠活动"
