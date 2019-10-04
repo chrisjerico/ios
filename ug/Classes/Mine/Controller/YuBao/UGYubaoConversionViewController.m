@@ -44,7 +44,6 @@
 static NSString *convertCellid = @"UGConvertCollectionViewCell";
 @implementation UGYubaoConversionViewController
 -(void)skin{
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
     
 }
 - (void)viewDidLoad {
@@ -54,7 +53,6 @@ static NSString *convertCellid = @"UGConvertCollectionViewCell";
         [self skin];
     });
     self.fd_prefersNavigationBarHidden = YES;
-    self.view.backgroundColor = UGBackgroundColor;
     self.submitButton.layer.cornerRadius = 5;
     self.submitButton.layer.masksToBounds = YES;
     self.turnInButton.layer.cornerRadius = 5;
@@ -248,7 +246,7 @@ static NSString *convertCellid = @"UGConvertCollectionViewCell";
         
         UICollectionView *collectionView = ({
             collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(5, 85, UGScreenW - 10, 400) collectionViewLayout:layout];
-            collectionView.backgroundColor = UGBackgroundColor;
+            collectionView.backgroundColor = [UIColor whiteColor];
             collectionView.delegate = self;
             collectionView.dataSource = self;
             [collectionView registerNib:[UINib nibWithNibName:@"UGConvertCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:convertCellid];

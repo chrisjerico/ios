@@ -27,7 +27,7 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"推荐收益";
-    self.view.backgroundColor = UGBackgroundColor;
+    self.view.backgroundColor =[UIColor whiteColor];
     
   
     
@@ -82,11 +82,11 @@
     self.slideSwitchView.tabItemNormalColor = [UIColor grayColor];
     self.slideSwitchView.tabItemNormalFont = 13;
     //设置tab 被选中的颜色(可选)
-    self.slideSwitchView.tabItemSelectedColor = [UIColor colorWithRed:233/255.0 green:82/255.0 blue:129/255.0 alpha:1.0];
+    self.slideSwitchView.tabItemSelectedColor = UGNavColor;
     //设置tab 背景颜色(可选)
-    self.slideSwitchView.tabItemNormalBackgroundColor = [UIColor colorWithRed:215/255.0 green:215/255.0 blue:215/255.0 alpha:1.0];
+    self.slideSwitchView.tabItemNormalBackgroundColor = [UIColor whiteColor];;
     //设置tab 被选中的标识的颜色(可选)
-    self.slideSwitchView.tabItemSelectionIndicatorColor = [UIColor colorWithRed:233/255.0 green:82/255.0 blue:129/255.0 alpha:1.0];
+    self.slideSwitchView.tabItemSelectionIndicatorColor = UGNavColor;
     [self.view addSubview:self.slideSwitchView];
     
 }

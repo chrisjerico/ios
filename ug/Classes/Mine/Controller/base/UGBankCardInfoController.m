@@ -23,14 +23,12 @@
 
 @implementation UGBankCardInfoController
 -(void)skin{
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
     
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.navigationItem.title = @"银行卡管理";
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         
         [self skin];
@@ -38,7 +36,7 @@
     self.infoView.layer.cornerRadius = 10;
     self.infoView.layer.masksToBounds = YES;
     self.infoView.layer.borderWidth = 1;
-    self.infoView.layer.borderColor = [[UIColor whiteColor] CGColor];
+    self.infoView.layer.borderColor = [[UIColor grayColor] CGColor];
     [self.infoView setBackgroundColor: [[UGSkinManagers shareInstance] setCellbgColor]];
     [self getCardInfo];
 }

@@ -20,7 +20,6 @@
 
 @implementation UGMosaicGoldController
 -(void)skin{
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
     
 }
 - (void)viewDidLoad {
@@ -61,7 +60,7 @@
         [self skin];
     });
     
-    self.view.backgroundColor = UGBackgroundColor;
+    self.view.backgroundColor = [UIColor whiteColor];
     self.tableView.estimatedRowHeight = 0;
     self.tableView.estimatedSectionHeaderHeight = 0;
     self.tableView.estimatedSectionFooterHeight = 0;

@@ -27,7 +27,6 @@ static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-     [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
     [self.tableView registerNib:[UINib nibWithNibName:@"UGRechargeTypeCell" bundle:nil] forCellReuseIdentifier:rechargeTypeCellid];
     self.tableView.estimatedRowHeight = 0;
     self.tableView.estimatedSectionHeaderHeight = 0;

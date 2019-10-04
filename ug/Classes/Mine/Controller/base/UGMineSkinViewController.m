@@ -37,6 +37,7 @@
 #import "UGagentApplyInfo.h"
 #import "UGAgentViewController.h"
 #import "UGAgentRefusedViewController.h"
+#import "UGChangLongController.h"
 
 
 @interface UGMineSkinViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
@@ -79,7 +80,6 @@
 
 @implementation UGMineSkinViewController
 -(void)skin{
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
     [self.userInfoView setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
     _progressLayer.strokeColor = [[UGSkinManagers shareInstance] setMineProgressViewColor].CGColor;
      [self.progressView.layer addSublayer:self.progressLayer];
@@ -145,14 +145,24 @@
     [self getDateSource];
     
     //设置皮肤
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    [self.view setBackgroundColor:UGRGBColor(231, 230, 230)];
     [self.userInfoView setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
     
   
-    //test用
-    [self addRightBtn];
+    skitType = [[UGSkinManagers shareInstance] skitType];
     
-    skitType = @"新年红";
+    if ([skitType isEqualToString:@"经典"]) {
+        self.topupView.hidden = YES;
+        self.topupViewNSLayoutConstraintHight.constant = 0.1;
+    }
+    else{
+        self.topupView.hidden = NO;
+        self.topupViewNSLayoutConstraintHight.constant = 60;
+    }
+    
+//    //test用
+//    [self addRightBtn];
+
     //初始化
      [self initCollectionView];
     
@@ -210,7 +220,7 @@ BOOL isOk = NO;
         
         [self.menuNameArray addObject:@{@"title" : @"银行卡管理" , @"imgName" : @"yinhangqia"}];
         [self.menuNameArray addObject:@{@"title" : @"安全中心" , @"imgName" : @"ziyuan"}];
-        [self.menuNameArray addObject:@{@"title" : @"个人信息" , @"imgName" : @"zdgl"}];
+        [self.menuNameArray addObject:@{@"title" : @"个人信息" , @"imgName" : @"gerenzhongxinxuanzhong"}];
         
         [self.menuNameArray addObject:@{@"title" : @"长龙助手" , @"imgName" : @"zdgl"}];
         [self.menuNameArray addObject:@{@"title" : @"站内信" , @"imgName" : @"zhanneixin"}];
@@ -232,11 +242,11 @@ BOOL isOk = NO;
         
         [self.menuNameArray addObject:@{@"title" : @"银行卡管理" , @"imgName" : @"yinhangqia"}];
         [self.menuNameArray addObject:@{@"title" : @"安全中心" , @"imgName" : @"ziyuan"}];
-        [self.menuNameArray addObject:@{@"title" : @"个人信息" , @"imgName" : @"zdgl"}];
+        [self.menuNameArray addObject:@{@"title" : @"个人信息" , @"imgName" : @"gerenzhongxinxuanzhong"}];
         
-        [self.menuNameArray addObject:@{@"title" : @"长龙助手" , @"imgName" : @"zdgl"}];
+        [self.menuNameArray addObject:@{@"title" : @"长龙助手" , @"imgName" : @"changlong"}];
         [self.menuNameArray addObject:@{@"title" : @"站内信" , @"imgName" : @"zhanneixin"}];
-        [self.menuNameArray addObject:@{@"title" : @"建议反馈" , @"imgName" : @"jianyi"}];
+        [self.menuNameArray addObject:@{@"title" : @"建议反馈" , @"imgName" : @"yijian"}];
         
     }
  
@@ -292,7 +302,7 @@ BOOL isOk = NO;
         
         [dataArrayOne addObject:@{@"title" : @"银行卡管理" , @"imgName" : @"yinhangqia"}];
         [dataArrayOne addObject:@{@"title" : @"安全中心" , @"imgName" : @"ziyuan"}];
-        [dataArrayOne addObject:@{@"title" : @"个人信息" , @"imgName" : @"ziyuan"}];
+        [dataArrayOne addObject:@{@"title" : @"个人信息" , @"imgName" : @"gerenzhongxinxuanzhong"}];
         
 
         
@@ -310,9 +320,9 @@ BOOL isOk = NO;
         NSMutableArray *dataArrayOne = [NSMutableArray array];
         
         
-        [dataArrayOne addObject:@{@"title" : @"长龙助手" , @"imgName" : @"yinhangqia"}];
-        [dataArrayOne addObject:@{@"title" : @"安全中心" , @"imgName" : @"ziyuan"}];
-        [dataArrayOne addObject:@{@"title" : @"个人信息" , @"imgName" : @"ziyuan"}];
+        [dataArrayOne addObject:@{@"title" : @"长龙助手" , @"imgName" : @"changlong"}];
+        [dataArrayOne addObject:@{@"title" : @"站内信" , @"imgName" : @"zhanneixin"}];
+        [dataArrayOne addObject:@{@"title" : @"建议反馈" , @"imgName" : @"yijian"}];
 
         UGMineSkinModel *dic1 = [UGMineSkinModel new];
         
@@ -328,7 +338,7 @@ BOOL isOk = NO;
 
 - (void)initCollectionView {
     
-
+       skitType = [[UGSkinManagers shareInstance] skitType];
     
 //    float itemW = (UGScreenW - 8) / 3;
     UICollectionViewFlowLayout *layout = ({
@@ -358,9 +368,13 @@ BOOL isOk = NO;
         self.myCollectionView.delegate = self;
         [self.myCollectionView registerNib:[UINib nibWithNibName:@"UGMineMenuCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UGMineMenuCollectionViewCell"];
         [self.myCollectionView registerNib:[UINib nibWithNibName:@"UGMineSkinCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UGMineSkinCollectionViewCell"];
+    
+    
     [self.myCollectionView registerNib:[UINib nibWithNibName:@"UGMineSkinFirstCollectionHeadView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"UGMineSkinFirstCollectionHeadView"];
     
     [self.myCollectionView registerNib:[UINib nibWithNibName:@"UGSkinSeconCollectionHeadView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"UGSkinSeconCollectionHeadView"];
+    
+    [self.myCollectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"UICollectionReusableView"];
     
         [self.myCollectionView setShowsHorizontalScrollIndicator:NO];
     
@@ -376,7 +390,7 @@ BOOL isOk = NO;
     
     
     int sections = 1;
-//    NSString *skitType = [[UGSkinManagers shareInstance] skitType];
+    skitType = [[UGSkinManagers shareInstance] skitType];
     if ([skitType isEqualToString:@"新年红"]) {
         sections = (int) self.menuSecondNameArray.count;
     }
@@ -393,7 +407,7 @@ BOOL isOk = NO;
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
     int rows = 1;
-//    NSString *skitType = [[UGSkinManagers shareInstance] skitType];
+    skitType = [[UGSkinManagers shareInstance] skitType];
     if ([skitType isEqualToString:@"新年红"]) {
        UGMineSkinModel *dic = [self.menuSecondNameArray objectAtIndex:section];
         rows = (int)  dic.dataArray.count;
@@ -465,6 +479,16 @@ BOOL isOk = NO;
             
             return headerView;
         }
+        else{
+     
+            UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"UICollectionReusableView" forIndexPath:indexPath];
+            if(headerView == nil)
+            {
+                headerView = [[UICollectionReusableView alloc] init];
+            }
+             return headerView;
+        }
+        
         
         
     }
@@ -506,7 +530,7 @@ BOOL isOk = NO;
                   layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-     float itemW = (UGScreenW - 24.0 )/ 3.0;
+     float itemW = (UGScreenW - 3.0 )/ 3.0;
 
     if ([skitType isEqualToString:@"新年红"]) {
         
@@ -522,7 +546,7 @@ BOOL isOk = NO;
     
 }
 
-//item边距
+//item偏移
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView
                        layout:(UICollectionViewLayout *)collectionViewLayout
        insetForSectionAtIndex:(NSInteger)section {
@@ -539,7 +563,10 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
         return 1.0;
   
 }
-
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 0;
+}
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
@@ -639,8 +666,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
                 }
             }];
         }else {
-            
-            UGBalanceConversionController *conversion = [self.storyboard instantiateViewControllerWithIdentifier:@"UGBalanceConversionController"];
+             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Mine" bundle:nil];
+            UGBalanceConversionController *conversion = [storyboard instantiateViewControllerWithIdentifier:@"UGBalanceConversionController"];
             [self.navigationController pushViewController:conversion  animated:YES];
         }
         
@@ -779,6 +806,23 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
             
             UGMosaicGoldViewController *vc = [[UGMosaicGoldViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
+        }
+    }
+    
+    else if ([title isEqualToString:@"长龙助手"]) {
+        
+        UGUserModel *user = [UGUserModel currentUser];
+        if (user.isTest) {
+            [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                if (buttonIndex == 1) {
+                    SANotificationEventPost(UGNotificationShowLoginView, nil);
+                }
+            }];
+        }else {
+            
+            
+            UGChangLongController *changlongVC = [[UGChangLongController alloc] init];
+            [self.navigationController pushViewController:changlongVC animated:YES];
         }
     }
     
@@ -968,6 +1012,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
         self.moenyNumberLabel.text = user.taskRewardTotal;
     }
     
+    double floatString = [user.balance doubleValue];
+    self.userMoneyLabel.text =  [NSString stringWithFormat:@"￥%.2f",floatString];
     //进度条
     float floatProgress = (float)[user.taskRewardTotal doubleValue]/[user.nextLevelInt doubleValue];
     self.progressLayer.path = [self progressPathWithProgress:floatProgress].CGPath;
@@ -1110,4 +1156,54 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     
     
 }
+
+- (IBAction)depositAction:(id)sender {
+    //存款
+    UGUserModel *user = [UGUserModel currentUser];
+    if (user.isTest) {
+        [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+            if (buttonIndex == 1) {
+                SANotificationEventPost(UGNotificationShowLoginView, nil);
+            }
+        }];
+    }else {
+        
+        UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
+        fundsVC.selectIndex = 0;
+        [self.navigationController pushViewController:fundsVC animated:YES];
+    }
+}
+- (IBAction)withdrawalActon:(id)sender {
+    //提现
+    UGUserModel *user = [UGUserModel currentUser];
+    if (user.isTest) {
+        [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+            if (buttonIndex == 1) {
+                SANotificationEventPost(UGNotificationShowLoginView, nil);
+            }
+        }];
+    }else {
+        
+        UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
+        fundsVC.selectIndex = 1;
+        [self.navigationController pushViewController:fundsVC animated:YES];
+    }
+}
+- (IBAction)conversionAction:(id)sender {
+    //转换
+    UGUserModel *user = [UGUserModel currentUser];
+    if (user.isTest) {
+        [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+            if (buttonIndex == 1) {
+                SANotificationEventPost(UGNotificationShowLoginView, nil);
+            }
+        }];
+    }else {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Mine" bundle:nil];
+        UGBalanceConversionController *conversion = [storyboard instantiateViewControllerWithIdentifier:@"UGBalanceConversionController"];
+        [self.navigationController pushViewController:conversion  animated:YES];
+    }
+    
+}
+
 @end

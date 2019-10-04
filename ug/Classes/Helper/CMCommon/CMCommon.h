@@ -118,6 +118,5 @@
 +(UIImage*)imageWithImage:(UIImage*)image scaledToSize:(CGSize)newSize;
 
 
-//这个方法可以抽取到 UIImage 的分类中
-+ (UIImage *)imageWithColor:(UIColor *)color;
+
 @end
