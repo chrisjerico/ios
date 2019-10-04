@@ -202,6 +202,7 @@
 	[self systemOnlineCount];
 	
 	self.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+         SANotificationEventPost(UGNotificationWithResetTabSuccess, nil);
 		[self getSystemConfig];
 		[self getCustomGameList];
 		[self getBannerList];

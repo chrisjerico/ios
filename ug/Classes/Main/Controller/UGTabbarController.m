@@ -30,6 +30,10 @@
     
     [self setUpChildViewController];
     [self getSystemConfig];
+    
+    SANotificationEventSubscribe(UGNotificationWithResetTabSuccess, self, ^(typeof (self) self, id obj) {
+             [self resetUpChildViewController];
+    });
 
 }
 
