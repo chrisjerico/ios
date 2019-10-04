@@ -237,9 +237,9 @@ BOOL isOk = NO;
         [self.menuNameArray addObject:@{@"title" : @"安全中心" , @"imgName" : @"ziyuan"}];
         [self.menuNameArray addObject:@{@"title" : @"个人信息" , @"imgName" : @"gerenzhongxinxuanzhong"}];
         
-        [self.menuNameArray addObject:@{@"title" : @"长龙助手" , @"imgName" : @"zdgl"}];
+        [self.menuNameArray addObject:@{@"title" : @"长龙助手" , @"imgName" : @"changlong"}];
         [self.menuNameArray addObject:@{@"title" : @"站内信" , @"imgName" : @"zhanneixin"}];
-        [self.menuNameArray addObject:@{@"title" : @"建议反馈" , @"imgName" : @"jianyi"}];
+        [self.menuNameArray addObject:@{@"title" : @"建议反馈" , @"imgName" : @"yijian"}];
 
        
     } else {

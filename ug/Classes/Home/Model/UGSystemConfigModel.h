@@ -9,8 +9,20 @@
 #import "UGModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
+@protocol UGmobileMenu <NSObject>
 
-@interface UGSystemConfigModel : UGModel
+@end
+@interface UGmobileMenu :UGModel<UGmobileMenu>
+@property (nonatomic , copy) NSString              * path;//界面
+@property (nonatomic , copy) NSString              * icon;//图标
+@property (nonatomic , copy) NSString              * name;//名字
+@property (nonatomic , assign) NSInteger               sort;//排列
+@end
+@protocol UGSystemConfigModel <NSObject>
+
+@end
+
+@interface UGSystemConfigModel : UGModel<UGSystemConfigModel>
 // 0隐藏，1选填，2必填
 @property (nonatomic, assign) NSInteger hide_reco;//代理人
 @property (nonatomic, assign) NSInteger reg_name;//真实姓名
@@ -50,6 +62,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString * mobileTemplateCategory;//模板号
 
 @property (nonatomic, assign) BOOL recharge;//上级充值开关
+
+@property (nonatomic , copy) NSArray<UGmobileMenu *>              * mobileMenu;
 
 + (instancetype)currentConfig;
 

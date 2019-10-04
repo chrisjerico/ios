@@ -16,15 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong, nonatomic) UGChatViewController *qdwebVC;
 
-@property (strong, nonatomic) UGNavigationController *homeNavVC;
+@property (strong, nonatomic) NSMutableArray *vcs;
 
-@property (strong, nonatomic) UGNavigationController *chatNavVC;
-
-@property (strong, nonatomic) UGNavigationController *LotteryNavVC;
-
-@property (strong, nonatomic) UGNavigationController *promotionsNavVC;
-
-@property (strong, nonatomic) UGNavigationController *mineNavVC ;
 
 @end
 

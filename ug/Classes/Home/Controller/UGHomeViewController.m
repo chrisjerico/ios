@@ -507,6 +507,7 @@
 			
 			
 			[[UGSkinManagers shareInstance] setSkin];
+    
 			
 			[self.titleView setImgName:config.mobile_logo];
 			

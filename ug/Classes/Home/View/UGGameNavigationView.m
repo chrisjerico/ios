@@ -45,6 +45,8 @@
 	[super awakeFromNib];
 
 	[self initWithFrame:CGRectZero];
+    
+//    [self setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
 
 }
 
@@ -112,6 +114,8 @@
 	self = [super initWithFrame:frame];
 	if (self) {
 		
+        
+        
 		_iconImage = [UIImageView new];
 		_titleLabel = [UILabel new];
 		_titleLabel.textColor = [UIColor grayColor];

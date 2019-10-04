@@ -13,6 +13,10 @@
 
 UGSystemConfigModel * currentConfig = nil;
 
+@implementation UGmobileMenu
+
+@end
+
 @implementation UGSystemConfigModel
 //添加了下面的宏定义
 MJExtensionCodingImplementation
