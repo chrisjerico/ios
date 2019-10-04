@@ -96,13 +96,8 @@
                   selectedImageName:@"datongsel"];
     
     qdwebVC = [[UGChatViewController alloc] init];
-    
-    
-
     qdwebVC.webTitle = @"聊天室";
    
-    
-    
     if (![CMCommon stringIsNull:[UGUserModel currentUser].token]) {
          NSString *colorStr = [[UGSkinManagers shareInstance] setNavbgStringColor];
         if ([CMCommon stringIsNull:colorStr]) {

@@ -1,6 +1,7 @@
 PODS:
   - AvoidCrash (2.5.2)
   - BAWKWebView (1.0.9)
+  - FFRouter (1.1.1)
   - IQKeyboardManager (6.4.0)
   - LEEAlert (1.2.6)
   - Masonry (1.1.0)
@@ -9,6 +10,7 @@ PODS:
 DEPENDENCIES:
   - AvoidCrash
   - BAWKWebView
+  - FFRouter
   - IQKeyboardManager
   - LEEAlert
   - Masonry
@@ -18,6 +20,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AvoidCrash
     - BAWKWebView
+    - FFRouter
     - IQKeyboardManager
     - LEEAlert
     - Masonry
@@ -26,11 +29,12 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   AvoidCrash: 28c6916fe19bd2b84126b8dec7cbe61c9a12741d
   BAWKWebView: a45b5c77424a015c91c6684f03392d981932f909
+  FFRouter: dfda137b8f6817ca92dc9a1151727449548abfd3
   IQKeyboardManager: fcef267266379c003181fc3592f6bdb8bf4db839
   LEEAlert: 8a612d6c50b74c84cebda2a9b16eeb18535b6782
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
 
-PODFILE CHECKSUM: b6effdddbfee41d6251bc006177a0f4bdf13d853
+PODFILE CHECKSUM: 894ab4fcda4eb0422e6a049d39f22d26cca0a83f
 
 COCOAPODS: 1.6.1
