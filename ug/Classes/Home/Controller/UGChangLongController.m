@@ -29,6 +29,7 @@
     self.navigationItem.title = @"长龙助手";
     self.view.backgroundColor = UGBackgroundColor;
     
+    [self getAllNextIssueData];
     
     [self buildSegment];
     
@@ -44,7 +45,7 @@
         
     });
     
-    [self getAllNextIssueData];
+  
     
 }
 
