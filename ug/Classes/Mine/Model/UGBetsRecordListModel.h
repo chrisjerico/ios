@@ -13,31 +13,34 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol UGBetsRecordModel <NSObject>
 
 @end
+
+// 注单列表
+// {{LOCAL_HOST}}?c=ticket&a=history&status=3&category=lottery&token=j7DdnGnH0j34C4AzIM4NA3p0&page=1&rows=15
 @interface UGBetsRecordModel : UGModel
-@property (nonatomic, strong) NSString *betId;
+@property (nonatomic, strong) NSString *betId;          /**<   注单ID */
 @property (nonatomic, assign) NSInteger gameType;
-@property (nonatomic, strong) NSString *gameName;
-@property (nonatomic, strong) NSString *playGroupName;
-@property (nonatomic, strong) NSString *playName;
+@property (nonatomic, strong) NSString *gameName;       /**<   游戏名称 */
+@property (nonatomic, strong) NSString *playGroupName;  /**<   游戏分类名称（彩票） */
+@property (nonatomic, strong) NSString *playName;       /**<   游戏玩法（彩票） */
 @property (nonatomic, strong) NSString *amount;
-@property (nonatomic, strong) NSString *betAmount;
-@property (nonatomic, strong) NSString *betTime;
-@property (nonatomic, strong) NSString *validBetAmount;
-@property (nonatomic, strong) NSString *winAmount;
-@property (nonatomic, strong) NSString *settleAmount;
-@property (nonatomic, strong) NSString *lotteryNo;
-@property (nonatomic, assign) NSInteger status;
+@property (nonatomic, strong) NSString *betAmount;      /**<   下注金额 */
+@property (nonatomic, strong) NSString *betTime;        /**<   下注时间 */
+@property (nonatomic, strong) NSString *validBetAmount; /**<   有效投注金额（真人） */
+@property (nonatomic, strong) NSString *winAmount;      /**<   输赢金额 */
+@property (nonatomic, strong) NSString *settleAmount;   /**<   结算金额 （彩票） */
+@property (nonatomic, strong) NSString *lotteryNo;      /**<   开奖号（彩票） */
+@property (nonatomic, assign) NSInteger status;         /**<   注单状态 */
 @property (nonatomic, strong) NSString *playCateId;
 @property (nonatomic, strong) NSString *statusName;
-@property (nonatomic, strong) NSString *odds;
-@property (nonatomic, strong) NSString *issue;
+@property (nonatomic, strong) NSString *odds;           /**<   赔率（彩票） */
+@property (nonatomic, strong) NSString *issue;          /**<   彩票期号（彩票） */
 
 @end
 
 @interface UGBetsRecordListModel : UGModel
-@property (nonatomic, assign) NSInteger total;
-@property (nonatomic, strong) NSString *totalBetAmount;
-@property (nonatomic, strong) NSString *totalWinAmount;
+@property (nonatomic, assign) NSInteger total;              /**<   数据总数 */
+@property (nonatomic, strong) NSString *totalBetAmount;     /**<   总下注金额 */
+@property (nonatomic, strong) NSString *totalWinAmount;     /**<   输赢总金额 */
 @property (nonatomic, strong) NSArray<UGBetsRecordModel> *list;
 
 @end

@@ -10,9 +10,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+// APP在线人数Model
+// {{LOCAL_HOST}}?c=system&a=onlineCount
 @interface UGonlineCount : UGModel
-@property (nonatomic, strong) NSNumber *onlineSwitch;
-@property (nonatomic, strong) NSNumber *onlineUserCount;
+@property (nonatomic, strong) NSNumber *onlineSwitch;       /**<      手机端在线人数显示开关。1=开启；0=关闭 */
+@property (nonatomic, strong) NSNumber *onlineUserCount;    /**<      在线人数 */
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -14,10 +14,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UGdepositListModel : UGModel
-@property (nonatomic, strong) NSNumber *level;//等级
-@property (nonatomic, strong) NSString *date;//日期
-@property (nonatomic, strong) NSString *amount;//存款金额
-@property (nonatomic, strong) NSString *username;//用户名
+@property (nonatomic, strong) NSNumber *level;      /**<   等级 */
+@property (nonatomic, strong) NSString *date;       /**<   日期 */
+@property (nonatomic, strong) NSString *amount;     /**<   存款金额 */
+@property (nonatomic, strong) NSString *username;   /**<   用户名 */
 @end
 
 NS_ASSUME_NONNULL_END

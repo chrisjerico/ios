@@ -33,18 +33,18 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *playId;
 @property (nonatomic, strong) NSString *playIds;
 @property (nonatomic, strong) NSString *betInfo;
-@property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSString *alias;
+@property (nonatomic, strong) NSString *name;           /**<   玩法名称 */
+@property (nonatomic, strong) NSString *alias;          /**<   玩法别名 */
 @property (nonatomic, strong) NSString *typeName;
-@property (nonatomic, strong) NSString *code;
-@property (nonatomic, strong) NSString *gameId;
-@property (nonatomic, strong) NSString *groupId;
-@property (nonatomic, strong) NSString *odds;
-@property (nonatomic, strong) NSString *offlineOdds;
-@property (nonatomic, strong) NSString *minMoney;
-@property (nonatomic, strong) NSString *maxMoney;
-@property (nonatomic, strong) NSString *maxTurnMoney;
-@property (nonatomic, assign) BOOL isBan;
+@property (nonatomic, strong) NSString *code;           /**<   玩法标识 */
+@property (nonatomic, strong) NSString *gameId;         /**<   玩法ID */
+@property (nonatomic, strong) NSString *groupId;        /**<   玩法分组ID */
+@property (nonatomic, strong) NSString *odds;           /**<   赔率 */
+@property (nonatomic, strong) NSString *offlineOdds;    /**<   线下赔率 */
+@property (nonatomic, strong) NSString *minMoney;       /**<   单注最低投注金额 */
+@property (nonatomic, strong) NSString *maxMoney;       /**<   单注最高投注金额 */
+@property (nonatomic, strong) NSString *maxTurnMoney;   /**<   单期最高投注金额 */
+@property (nonatomic, assign) BOOL isBan;               /**<   是否禁用：0=否，1=是 */
 
 
 @property (nonatomic, strong) NSString *rebate;

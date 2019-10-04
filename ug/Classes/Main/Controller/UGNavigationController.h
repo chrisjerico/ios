@@ -10,8 +10,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGNavigationController : UINavigationController
+#define NavController1 [UGNavigationController shared]
 
+
+@interface UGNavigationController : UINavigationController
++ (instancetype)shared;
+- (UIView *)topView;
 @end
 
 NS_ASSUME_NONNULL_END

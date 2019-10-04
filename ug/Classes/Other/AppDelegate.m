@@ -46,7 +46,7 @@
 @synthesize tabbar;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
+    
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     tabbar = [[UGTabbarController alloc] init];
     tabbar.delegate = self;
@@ -65,7 +65,10 @@
 //    版本更新
 //    [[UGAppVersionManager shareInstance] updateVersionNow:YES];
     
-   
+#ifdef DEBUG
+    [LogVC enableLogVC];
+#endif
+    
     return YES;
 }
 
