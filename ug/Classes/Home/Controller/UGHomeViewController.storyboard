@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Rv-dl-cOG">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="784"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="804"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="net-c8-MAp">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="160"/>
@@ -57,17 +57,17 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ix-we-22e" userLabel="GameNavigationView" customClass="UGGameNavigationView">
-                                                <rect key="frame" x="0.0" y="204" width="414" height="180"/>
+                                                <rect key="frame" x="10" y="214" width="394" height="180"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vio-R2-jvx">
-                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
+                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vio-R2-jvx" userLabel="topLine">
+                                                        <rect key="frame" x="0.0" y="0.0" width="394" height="1"/>
                                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="1" id="39k-dy-f46"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w27-aN-4o7">
-                                                        <rect key="frame" x="0.0" y="179" width="414" height="1"/>
+                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w27-aN-4o7" userLabel="bottomLine">
+                                                        <rect key="frame" x="0.0" y="179" width="394" height="1"/>
                                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="1" id="Wwy-tv-PZK"/>
@@ -86,14 +86,14 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g3O-cs-ZTw" userLabel="Game View" customClass="UGGameTypeCollectionView">
-                                                <rect key="frame" x="0.0" y="384" width="414" height="200"/>
+                                                <rect key="frame" x="0.0" y="404" width="414" height="200"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="200" id="h0I-VV-udc"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="crl-J7-sLe">
-                                                <rect key="frame" x="0.0" y="584" width="414" height="200"/>
+                                                <rect key="frame" x="0.0" y="604" width="414" height="200"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="中奖排行榜" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7pj-to-Bil">
                                                         <rect key="frame" x="23" y="10.5" width="82" height="19.5"/>
@@ -189,19 +189,19 @@
                                             <constraint firstItem="net-c8-MAp" firstAttribute="leading" secondItem="4Rv-dl-cOG" secondAttribute="leading" id="1eR-Im-wpu"/>
                                             <constraint firstAttribute="trailing" secondItem="net-c8-MAp" secondAttribute="trailing" id="4mJ-wK-Ag7"/>
                                             <constraint firstItem="crl-J7-sLe" firstAttribute="top" secondItem="g3O-cs-ZTw" secondAttribute="bottom" id="4nV-Sf-cpX"/>
-                                            <constraint firstAttribute="trailing" secondItem="4ix-we-22e" secondAttribute="trailing" id="4st-pF-2iZ"/>
+                                            <constraint firstAttribute="trailing" secondItem="4ix-we-22e" secondAttribute="trailing" constant="10" id="4st-pF-2iZ"/>
                                             <constraint firstAttribute="trailing" secondItem="g3O-cs-ZTw" secondAttribute="trailing" id="Auk-uq-eIq"/>
                                             <constraint firstItem="97i-pv-RCp" firstAttribute="leading" secondItem="4Rv-dl-cOG" secondAttribute="leading" id="G5q-bL-9yi"/>
                                             <constraint firstAttribute="trailing" secondItem="97i-pv-RCp" secondAttribute="trailing" id="JLl-ee-0RG"/>
                                             <constraint firstItem="97i-pv-RCp" firstAttribute="top" secondItem="net-c8-MAp" secondAttribute="bottom" id="JmK-Ix-BLQ"/>
                                             <constraint firstAttribute="bottom" secondItem="crl-J7-sLe" secondAttribute="bottom" id="NBg-t8-bEs"/>
-                                            <constraint firstItem="4ix-we-22e" firstAttribute="top" secondItem="97i-pv-RCp" secondAttribute="bottom" id="ORU-gk-VK0"/>
+                                            <constraint firstItem="4ix-we-22e" firstAttribute="top" secondItem="97i-pv-RCp" secondAttribute="bottom" constant="10" id="ORU-gk-VK0"/>
                                             <constraint firstItem="crl-J7-sLe" firstAttribute="leading" secondItem="4Rv-dl-cOG" secondAttribute="leading" id="XpK-A5-yta"/>
                                             <constraint firstAttribute="trailing" secondItem="crl-J7-sLe" secondAttribute="trailing" id="dGP-wg-8Ni"/>
-                                            <constraint firstItem="g3O-cs-ZTw" firstAttribute="top" secondItem="4ix-we-22e" secondAttribute="bottom" id="kuw-TU-tpj"/>
+                                            <constraint firstItem="g3O-cs-ZTw" firstAttribute="top" secondItem="4ix-we-22e" secondAttribute="bottom" constant="10" id="kuw-TU-tpj"/>
                                             <constraint firstItem="g3O-cs-ZTw" firstAttribute="leading" secondItem="4Rv-dl-cOG" secondAttribute="leading" id="nQJ-tK-cAo"/>
                                             <constraint firstItem="net-c8-MAp" firstAttribute="top" secondItem="4Rv-dl-cOG" secondAttribute="top" id="sTh-ar-3PR"/>
-                                            <constraint firstItem="4ix-we-22e" firstAttribute="leading" secondItem="4Rv-dl-cOG" secondAttribute="leading" id="yVx-jN-eOZ"/>
+                                            <constraint firstItem="4ix-we-22e" firstAttribute="leading" secondItem="4Rv-dl-cOG" secondAttribute="leading" constant="10" id="yVx-jN-eOZ"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -228,7 +228,7 @@
                     <connections>
                         <outlet property="bannerBgView" destination="net-c8-MAp" id="SVn-VV-nOV"/>
                         <outlet property="bannerBgViewHeightConstraint" destination="bfL-zQ-uOt" id="63U-JD-aFt"/>
-                        <outlet property="gameNavigationView" destination="4ix-we-22e" id="qxl-5k-SZo"/>
+                        <outlet property="gameNavigationView" destination="4ix-we-22e" id="CN0-S8-2nX"/>
                         <outlet property="gameNavigationViewHeight" destination="hun-5b-6Zi" id="2ny-R8-2cr"/>
                         <outlet property="gameTypeView" destination="g3O-cs-ZTw" id="G0J-cI-EgR"/>
                         <outlet property="gameViewHeight" destination="h0I-VV-udc" id="8a4-eU-Jwg"/>
