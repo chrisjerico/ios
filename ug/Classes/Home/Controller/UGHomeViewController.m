@@ -73,6 +73,7 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
 @property (weak, nonatomic) IBOutlet UIView *bannerBgView;
+@property (weak, nonatomic) IBOutlet UGGameNavigationView *gameNavigationView;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *gameNavigationViewHeight;
 
@@ -115,7 +116,6 @@
 @property (strong, nonatomic)UILabel *nolineLabel;
 
 @property (weak, nonatomic) IBOutlet UIView *rollingView;
-@property (weak, nonatomic) IBOutlet UGGameNavigationView *gameNavigationView;
 
 @end
 
@@ -139,6 +139,9 @@
 - (void)viewDidLoad {
 	
 	[super viewDidLoad];
+	
+	self.gameNavigationView.layer.cornerRadius = 8;
+	self.gameNavigationView.layer.masksToBounds = true;
 	
 	[[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:[[UGSkinManagers shareInstance] setTabbgColor]]];
 	
