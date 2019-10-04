@@ -4037,36 +4037,11 @@
 			files = (
 			);
 			inputFileListPaths = (
-<<<<<<< HEAD
 				"${PODS_ROOT}/Target Support Files/Pods-ug/Pods-ug-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ug/Pods-ug-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-=======
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ug/Pods-ug-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AvoidCrash/AvoidCrash.framework",
-				"${BUILT_PRODUCTS_DIR}/BAWKWebView/BAWKWebView.framework",
-				"${BUILT_PRODUCTS_DIR}/FFRouter/FFRouter.framework",
-				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
-				"${BUILT_PRODUCTS_DIR}/LEEAlert/LEEAlert.framework",
-				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
-				"${BUILT_PRODUCTS_DIR}/Toast/Toast.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AvoidCrash.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BAWKWebView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FFRouter.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LEEAlert.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast.framework",
->>>>>>> dev_andrew
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
