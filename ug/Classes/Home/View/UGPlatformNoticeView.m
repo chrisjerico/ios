@@ -174,8 +174,21 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 1;
+//<<<<<<< HEAD
+//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+//    return 1;
+//=======
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UGNoticeModel *model = self.dataArray[indexPath.section];
+    NSString *str = [NSString stringWithFormat:@"<head><style>img{width:%f!important;height:max-height}</style></head>%@",self.width,model.content];
+    NSAttributedString *attStr = [[NSAttributedString alloc] initWithData:[str dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+    UILabel *content = [[UILabel alloc] init];
+    content.attributedText = attStr;
+	
+	CGRect bounds = [attStr boundingRectWithSize:CGSizeMake(self.width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin context:nil];
+//    return content.intrinsicContentSize.height;
+	return bounds.size.height;
+//>>>>>>> dev_xionghx
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
