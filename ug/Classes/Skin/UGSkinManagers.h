@@ -159,6 +159,17 @@ NS_ASSUME_NONNULL_BEGIN
  备注信息 :
  ******************************************************************************/
 -(UIColor *)setMineProgressViewColor;
+
+
+/******************************************************************************
+ 函数名称 : setChatNavbgStringColor;
+ 函数描述 : 返回聊天颜色方法
+ 输入参数 : void
+ 输出参数 : void
+ 返回参数 : NSString
+ 备注信息 :
+ ******************************************************************************/
+-(NSString *)setChatNavbgStringColor;
 @end
 
 NS_ASSUME_NONNULL_END

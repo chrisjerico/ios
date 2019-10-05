@@ -226,7 +226,7 @@ BOOL isOk = NO;
         [self.menuNameArray addObject:@{@"title" : @"取款" , @"imgName" : @"tixian"}];
         [self.menuNameArray addObject:@{@"title" : @"额度转换" , @"imgName" : @"change"}];
         
-        [self.menuNameArray addObject:@{@"title" : @"推荐收益" , @"imgName" : @"shouyi"}];
+        [self.menuNameArray addObject:@{@"title" : @"推荐收益" , @"imgName" : @"shouyi1sel"}];
         [self.menuNameArray addObject:@{@"title" : @"活动彩金" , @"imgName" : @"zdgl"}];
         [self.menuNameArray addObject:@{@"title" : @"利息宝" , @"imgName" : @"lixibao"}];
         [self.menuNameArray addObject:@{@"title" : @"在线客服" , @"imgName" : @"zaixiankefu"}];
@@ -275,7 +275,7 @@ BOOL isOk = NO;
         UGUserModel *user = [UGUserModel currentUser];
         NSLog(@"isAgent= %d",user.isAgent);
         if (user.isAgent) {
-            [dataArrayOne addObject:@{@"title" : @"推荐收益" , @"imgName" : @"shouyi"}];
+            [dataArrayOne addObject:@{@"title" : @"推荐收益" , @"imgName" : @"shouyi1sel"}];
             [dataArrayOne addObject:@{@"title" : @"活动彩金" , @"imgName" : @"zdgl"}];
             [dataArrayOne addObject:@{@"title" : @"利息宝" , @"imgName" : @"lixibao"}];
             [dataArrayOne addObject:@{@"title" : @"在线客服" , @"imgName" : @"zaixiankefu"}];
@@ -978,48 +978,70 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     NSString *imagerStr = [user.curLevelGrade lowercaseString];
     NSLog(@"imagerStr = %@",imagerStr);
     
-    NSString *subStr = [user.curLevelGrade substringFromIndex:3];
     
-    int levelsInt = [subStr intValue];
-    NSString *imgStr = @"";
-    if (levelsInt <11) {
-        imgStr = [NSString stringWithFormat:@"vip%d",levelsInt];
-    } else {
-        imgStr = @"vip11";
+    if ([CMCommon stringIsNull:user.curLevelGrade]) {
+        
+    }
+    else{
+        
+        if (user.curLevelGrade.length>4) {
+            NSString *subStr = [user.curLevelGrade substringFromIndex:3];
+            
+            int levelsInt = [subStr intValue];
+            NSString *imgStr = @"";
+            if (levelsInt <11) {
+                imgStr = [NSString stringWithFormat:@"vip%d",levelsInt];
+            } else {
+                imgStr = @"vip11";
+            }
+            
+            //    [self.vipImager setImage: [UIImage imageNamed:imgStr]];
+            
+            NSString *img2Str = @"";
+            if (levelsInt <11) {
+                img2Str = [NSString stringWithFormat:@"grade_%d",levelsInt];
+            } else {
+                img2Str = @"grade_11";
+            }
+            
+            //    [self.curLevelImageView setImage: [UIImage imageNamed:img2Str]];
+            self.fristVipLabel.text = [NSString stringWithFormat:@"VIP%@",subStr];
+        }
     }
     
-//    [self.vipImager setImage: [UIImage imageNamed:imgStr]];
-    
-    NSString *img2Str = @"";
-    if (levelsInt <11) {
-        img2Str = [NSString stringWithFormat:@"grade_%d",levelsInt];
-    } else {
-        img2Str = @"grade_11";
+    if ([CMCommon stringIsNull:user.nextLevelGrade]) {
+        
+    }
+    else{
+        
+        if (user.nextLevelGrade.length>4) {
+            NSString *subStr = [user.curLevelGrade substringFromIndex:3];
+            
+            int levelsInt = [subStr intValue];
+            NSString *imgStr = @"";
+            if (levelsInt <11) {
+                imgStr = [NSString stringWithFormat:@"vip%d",levelsInt];
+            } else {
+                imgStr = @"vip11";
+            }
+            
+            //    [self.vipImager setImage: [UIImage imageNamed:imgStr]];
+            
+            NSString *img2Str = @"";
+            if (levelsInt <11) {
+                img2Str = [NSString stringWithFormat:@"grade_%d",levelsInt];
+            } else {
+                img2Str = @"grade_11";
+            }
+            
+            //    [self.curLevelImageView setImage: [UIImage imageNamed:img2Str]];
+            self.fristVipLabel.text = [NSString stringWithFormat:@"VIP%@",subStr];
+        }
     }
     
-//    [self.curLevelImageView setImage: [UIImage imageNamed:img2Str]];
-    self.fristVipLabel.text = [NSString stringWithFormat:@"VIP%@",subStr];
+   
     
-    NSString *sub2Str = [user.nextLevelGrade substringFromIndex:3];
-    
-    int levels2Int = [sub2Str intValue];
-    
-    NSString *img2_1Str = @"";
-    if (levels2Int <11) {
-        img2_1Str = [NSString stringWithFormat:@"grade_%d",levels2Int];
-    } else {
-        img2_1Str = @"grade_11";
-    }
-    
-//    [self.nextLevelImageView setImage: [UIImage imageNamed:img2_1Str]];
-    self.secondVipLabel.text = [NSString stringWithFormat:@"VIP%@",sub2Str];
-    
-    int int1String = [user.taskRewardTotal intValue];
-    NSLog(@"int1String = %d",int1String);
-    int int2String = [user.nextLevelInt intValue];
-    NSLog(@"int2String = %d",int2String);
-    self.valueLabel.text = [NSString stringWithFormat:@"成长值（%d-%d）",int1String,int2String];
-    
+   
     if (![CMCommon stringIsNull:user.taskRewardTitle]) {
         self.moneyNameLabel.text = user.taskRewardTitle;
     }

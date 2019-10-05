@@ -68,6 +68,8 @@
 
 #import "UGGameNavigationView.h"
 #import "UGFundsViewController.h"
+#import "UINavigationBar+handle.h"
+
 
 @interface UGHomeViewController ()<SDCycleScrollViewDelegate,UUMarqueeViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -131,7 +133,9 @@
 	[self.gameTypeView setBackgroundColor:[UIColor clearColor]];
 	[self.rankingView setBackgroundColor:[UIColor clearColor]];
 	[self getCustomGameList];
-	
+    
+    [self.navigationController.navigationBar navBarBackGroundColor:[[UGSkinManagers shareInstance] setNavbgColor] image:nil isOpaque:YES];//颜色
+    [self.gameNavigationView setBackgroundColor:[[UGSkinManagers shareInstance] setCellbgColor]];
 	
 	
 }
@@ -373,10 +377,10 @@
 		
 		 
 		 if (![CMCommon stringIsNull:[UGUserModel currentUser].token]) {
-			  NSString *colorStr = [[UGSkinManagers shareInstance] setNavbgStringColor];
+			  NSString *colorStr = [[UGSkinManagers shareInstance] setChatNavbgStringColor];
 			  qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr];
 		 } else {
-			 NSString *colorStr = [[UGSkinManagers shareInstance] setNavbgStringColor];
+			 NSString *colorStr = [[UGSkinManagers shareInstance] setChatNavbgStringColor];
 			 qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr];
 		 }
 		

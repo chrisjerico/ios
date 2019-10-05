@@ -440,6 +440,7 @@
     }
     
     
+    
     for (UGNavigationController *nav in appDelegate.tabbar.vcs) {
         
         [nav.navigationBar navBarBackGroundColor:[self navbarbgColor:skitType] image:nil isOpaque:YES];//颜色
@@ -535,7 +536,7 @@
     [self setNavbarAndTabarSkin];
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSString *colorStr = [[UGSkinManagers shareInstance] setNavbgStringColor];
+    NSString *colorStr = [[UGSkinManagers shareInstance] setChatNavbgStringColor];
     appDelegate.tabbar.qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@&back=hide",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr];
     SANotificationEventPost(UGNotificationWithSkinSuccess, nil);
 }
@@ -582,5 +583,16 @@
     }
     
     return color;
+}
+
+-(NSString *)setChatNavbgStringColor{
+    
+    NSString *str = [self navbarbgColorString:[self conversionSkitType]];
+    //先以16为参数告诉strtoul字符串参数表示16进制数字，然后使用0x%X转为数字类型
+    unsigned long red = strtoul([str UTF8String],0,16);
+    
+    
+    
+    return [NSString stringWithFormat:@"%lu",red];
 }
 @end

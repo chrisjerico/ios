@@ -19,8 +19,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIImage*)gradientImageWithBounds:(CGRect)bounds andColors:(NSArray*)colors andGradientType:(GradientDirection)gradientType;
 
 
-+ (UIImage *)imageWithColor:(UIColor *)color;
-
 //绘图
 -(UIImage*)imageChangeColor:(UIColor*)color;
 @end
