@@ -83,19 +83,11 @@ static NSString *betRecordCellid = @"UGLotteryRecordCell";
 - (void)viewWillAppear:(BOOL)animated {
     if ([@"2" isEqualToString:self.status] || [@"3" isEqualToString:self.status]) {
         self.winAmountLabel.hidden = NO;
-    }else {
+    } else {
         self.winAmountLabel.hidden = YES;
-        
     }
     
-    WeakSelf
-    [self.countDown countDownWithSec:10 PER_SECBlock:^{
-        if ([@"1" isEqualToString:self.status]) {
-            
-            [weakSelf getBetsList];
-        }
-    }];
-
+    [self getBetsList];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

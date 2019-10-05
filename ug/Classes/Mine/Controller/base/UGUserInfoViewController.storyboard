@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8oo-k6-48A">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8oo-k6-48A">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -308,6 +306,7 @@
                         <outlet property="phoneLabel" destination="WFN-Ma-st5" id="n0m-sq-qEw"/>
                         <outlet property="qqLabel" destination="wB6-gU-xP4" id="Hy0-Xj-r92"/>
                         <outlet property="time2Label" destination="RhY-rm-d8T" id="gj3-4G-BaA"/>
+                        <outlet property="timeLabel" destination="dvO-6f-PSQ" id="Xkj-3P-Xc4"/>
                         <outlet property="titleLabel" destination="ay9-S8-Nta" id="Jcv-p7-cV5"/>
                         <outlet property="userNameLabel" destination="HZP-BQ-azM" id="r4F-aq-F8G"/>
                     </connections>

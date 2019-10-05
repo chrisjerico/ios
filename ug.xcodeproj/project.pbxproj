@@ -1991,10 +1991,10 @@
 			isa = PBXGroup;
 			children = (
 				CFD3BF182347196600FCDA6D /* AlertHelper.h */,
-				CFD3BF1A2347196600FCDA6D /* LoadingView1.xib */,
-				CFD3BF1B2347196600FCDA6D /* HUDHelper.m */,
 				CFD3BF1C2347196600FCDA6D /* AlertHelper.m */,
+				CFD3BF1A2347196600FCDA6D /* LoadingView1.xib */,
 				CFD3BF1D2347196600FCDA6D /* HUDHelper.h */,
+				CFD3BF1B2347196600FCDA6D /* HUDHelper.m */,
 				CFD3BF1E2347196600FCDA6D /* loading.png */,
 			);
 			path = "HUD and Alert";

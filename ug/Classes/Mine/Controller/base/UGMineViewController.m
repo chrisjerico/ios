@@ -671,17 +671,13 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
     [self.nextLevelImageView setImage: [UIImage imageNamed:img2_1Str]];
     self.nextLevel2Label.text = [NSString stringWithFormat:@"VIP%@",sub2Str];
     
-    int int1String = [user.taskRewardTotal intValue];
-    NSLog(@"int1String = %d",int1String);
-    int int2String = [user.nextLevelInt intValue];
-    NSLog(@"int2String = %d",int2String);
-    self.nextLevelIntLabel.text = [NSString stringWithFormat:@"成长值（%d-%d）",int1String,int2String];
+    self.nextLevelIntLabel.text = _NSString(@"成长值（%@-%@）", _FloatString4(user.taskRewardTotal.doubleValue), _FloatString4(user.nextLevelInt.doubleValue));
     
     if (![CMCommon stringIsNull:user.taskRewardTitle]) {
         self.taskRewardTitleLabel.text = user.taskRewardTitle;
     }
     if (![CMCommon stringIsNull:user.taskRewardTotal]) {
-        self.taskRewardTotalLabel.text = user.taskRewardTotal;
+        self.taskRewardTotalLabel.text = _FloatString4(user.taskReward.doubleValue);
     }
     
     double floatString = [user.balance doubleValue];

@@ -71,13 +71,6 @@
             [SVProgressHUD dismiss];
             UGapplyWinLogDetail *model1 =model.data;
             NSLog(@"model.username = %@",model1.username);
-            
-            NSString *moperator = @"";
-            if ([CMCommon stringIsNull: model1.moperator]) {
-                moperator = @"";
-            } else {
-                moperator = model1.moperator;
-            }
 
             NSString *str = [NSString stringWithFormat:@"活动名称：%@ \n申请日期：%@ \n申请金额：%@ \n申请原因：%@ \n审核结果：%@ \n审核说明：%@ ",
                              model1.winName,
@@ -85,7 +78,7 @@
                              model1.amount,
                              model1.userComment,
                              model1.state,
-                             moperator];
+                             model1.adminComment];
             
             [LEEAlert alert].config
             .LeeAddTitle(^(UILabel *label) {
@@ -160,9 +153,9 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    
     return 44;
 }
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
     UGActivityGoldTableViewCell *headerView = (UGActivityGoldTableViewCell*)[[NSBundle mainBundle] loadNibNamed:@"UGActivityGoldTableViewCell" owner:self options:0].firstObject;
@@ -180,7 +173,6 @@
     return headerView;
 }
 
-
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     
     return 0.001f;
@@ -195,9 +187,6 @@
     //    [self.navigationController pushViewController:detailVC animated:YES];
     
     [self activityApplyWinLogDetail:model.mid];
-    
 }
-
-
 
 @end

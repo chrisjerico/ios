@@ -1014,17 +1014,13 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
 //    [self.nextLevelImageView setImage: [UIImage imageNamed:img2_1Str]];
     self.secondVipLabel.text = [NSString stringWithFormat:@"VIP%@",sub2Str];
     
-    int int1String = [user.taskRewardTotal intValue];
-    NSLog(@"int1String = %d",int1String);
-    int int2String = [user.nextLevelInt intValue];
-    NSLog(@"int2String = %d",int2String);
-    self.valueLabel.text = [NSString stringWithFormat:@"成长值（%d-%d）",int1String,int2String];
+    self.valueLabel.text = _NSString(@"成长值（%@-%@）", _FloatString4(user.taskRewardTotal.doubleValue), _FloatString4(user.nextLevelInt.doubleValue));
     
     if (![CMCommon stringIsNull:user.taskRewardTitle]) {
         self.moneyNameLabel.text = user.taskRewardTitle;
     }
     if (![CMCommon stringIsNull:user.taskRewardTotal]) {
-        self.moenyNumberLabel.text = user.taskRewardTotal;
+        self.moenyNumberLabel.text = _FloatString4(user.taskReward.doubleValue);
     }
     
     double floatString = [user.balance doubleValue];

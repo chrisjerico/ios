@@ -13,8 +13,9 @@
 #import "YBPopupMenu.h"
 #import "UGBalanceConversionRecordController.h"
 #import "UGPlatformGameModel.h"
-@interface UGBalanceConversionController ()<UITableViewDelegate,UITableViewDataSource,YBPopupMenuDelegate,UITextFieldDelegate>
 
+
+@interface UGBalanceConversionController () <UITableViewDelegate, UITableViewDataSource, YBPopupMenuDelegate, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *conversionButton;
 @property (weak, nonatomic) IBOutlet UIView *balanceView;
@@ -116,9 +117,11 @@ static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
             intModel = self.dataArray[self.inIndex - 1];
         }
         [SVProgressHUD showWithStatus:nil];
+        
+        NSString *amount = self.amountTextF.text;
         NSDictionary *params = @{@"fromId":outModel ? outModel.gameId : @"0",
                                  @"toId":intModel ? intModel.gameId : @"0",
-                                 @"money":self.amountTextF.text,
+                                 @"money":amount,
                                  @"token":[UGUserModel currentUser].sessid,
                                  };
         
@@ -127,21 +130,18 @@ static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
                 [SVProgressHUD showSuccessWithStatus:model.msg];
                 SANotificationEventPost(UGNotificationGetUserInfo, nil);
                 self.amountTextF.text = nil;
-                if (outModel) {
-                    [self checkRealBalance:outModel];
-                }
-                if (intModel) {
-                    [self checkRealBalance:intModel];
-                }
-                if (!outModel || !intModel) {
+                
+                if (!outModel || !intModel)
                     SANotificationEventPost(UGNotificationGetUserInfo, nil);
-                }
+                
+                // 刷新ui
+                intModel.balance = [AppDefine stringWithFloat:(intModel.balance.doubleValue + amount.doubleValue) decimal:4];
+                outModel.balance = [AppDefine stringWithFloat:(outModel.balance.doubleValue - amount.doubleValue) decimal:4];
+                [self.tableView reloadData];
             } failure:^(id msg) {
                 [SVProgressHUD showErrorWithStatus:msg];
-                
             }];
         }];
-        
     });
 }
 
@@ -238,13 +238,14 @@ static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
     }
 }
 
+
 #pragma mark - tableView delegate
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
     return self.dataArray.count;
 }
 
@@ -260,21 +261,17 @@ static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
         [weakSelf.tableView reloadData];
     };
     return cell;
-    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     return 50;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    
     return 0.001f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    
     return 0.001f;
 }
 
@@ -282,6 +279,7 @@ static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+#pragma mark - UITextFieldDelegate
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     if ([string isEqualToString:@"\n"]) {
@@ -293,6 +291,8 @@ static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
     }
     return YES;
 }
+
+#pragma mark - Getter
 
 - (UITableView *)tableView {
     float height;

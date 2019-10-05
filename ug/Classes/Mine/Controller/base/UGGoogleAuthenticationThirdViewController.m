@@ -22,14 +22,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-     self.title = @"二次验证";
+    self.title = @"二次验证";
+    
+    [IQKeyboardManager.sharedManager.disabledDistanceHandlingClasses addObject:[self class]];
+    
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-        
         [self skin];
     });
+    
+    [_myTextField becomeFirstResponder];
 }
 
--(void)viewDidLayoutSubviews{
+- (void)viewDidLayoutSubviews {
     self.returnButton.layer.masksToBounds = YES;
     //如果想要有点弧度的不是地球那么圆的可以设置
     self.returnButton.layer.cornerRadius = 3;//这个值越大弧度越大
@@ -37,7 +41,6 @@
     self.nextButton.layer.masksToBounds = YES;
     //如果想要有点弧度的不是地球那么圆的可以设置
     self.nextButton.layer.cornerRadius = 3;//这个值越大弧度越大
-    
 }
 
 #pragma mark -- 网络请求

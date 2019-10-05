@@ -45,12 +45,7 @@
     _collectionDataArray = [NSMutableArray new];
     _historyDataArray = [NSMutableArray new];
      [self getCheckinListData];
-    
-    
-    
-
 }
-
 
 
 #pragma mark - UIS
@@ -153,9 +148,7 @@
     }
     [mUIScrollView addSubview:mUGSignInButton];
     
-    [mUGSignInButton mas_makeConstraints:^(MASConstraintMaker *make)
-     {
-         
+    [mUGSignInButton mas_makeConstraints:^(MASConstraintMaker *make) {
          make.top.mas_equalTo(self.collectionView.mas_bottom).offset(-20.0);
          make.centerX.mas_equalTo(self.view.mas_centerX);
          make.width.equalTo(@140);
@@ -187,7 +180,6 @@
 }
 
 - (void)setUIData{
-    
     //已连续XX天签到
     //日期列表
     //连续签到
@@ -222,16 +214,12 @@
         [mUGSignInScrFootView setSevenStr:[NSString stringWithFormat:@"7天礼包(%@)",checkinBonusModel2.BonusInt]];
         
         //checkinBonus 第一个是5天签到奖励，第二个是7天签到奖励，
-        
         if (checkinBonusModel1.isComplete) {
-  
             mUGSignInScrFootView.fiveButton.userInteractionEnabled =NO;//交互关闭
             mUGSignInScrFootView.fiveButton.alpha= 1;//透明度
             [mUGSignInScrFootView.fiveButton setBackgroundColor:UGRGBColor(244, 246, 254)];
             [mUGSignInScrFootView.fiveButton setTitle:@"已领取" forState:UIControlStateNormal];
         } else {
-         
-
             if (checkinBonusModel1.isChenkin) {
                 mUGSignInScrFootView.fiveButton.userInteractionEnabled =YES;//交互
                 mUGSignInScrFootView.fiveButton.alpha= 1;//透明度
@@ -243,20 +231,14 @@
                 [mUGSignInScrFootView.fiveButton setBackgroundColor:UGRGBColor(244, 246, 254)];
                 [mUGSignInScrFootView.fiveButton setTitle:@"领取" forState:UIControlStateNormal];
             }
-            
-          
         }
         
         if (checkinBonusModel2.isComplete) {
-           
             mUGSignInScrFootView.sevenButtton.userInteractionEnabled =NO;//交互关闭
             mUGSignInScrFootView.sevenButtton.alpha= 1;//透明度
             [mUGSignInScrFootView.sevenButtton setBackgroundColor:UGRGBColor(244, 246, 254)];
             [mUGSignInScrFootView.sevenButtton setTitle:@"已领取" forState:UIControlStateNormal];
         } else {
-    
-
-            
             if (checkinBonusModel2.isChenkin) {
                 mUGSignInScrFootView.sevenButtton.userInteractionEnabled =YES;//交互
                 mUGSignInScrFootView.sevenButtton.alpha= 1;//透明度
@@ -268,25 +250,20 @@
                 [mUGSignInScrFootView.sevenButtton setBackgroundColor:UGRGBColor(244, 246, 254)];
                 [mUGSignInScrFootView.sevenButtton setTitle:@"领取" forState:UIControlStateNormal];
             }
-           
         }
-        
     }
+    
     //-今日签到======================================
 //    "serverTime": "2019-09-04",
 //    签到列表里去找今天的日期，isCheckin 就是他的状态
 //    如果是false ：马上签到==》点击签到
 //    已经签到了才只显示==》今日已签
     BOOL kisCheckIn = NO;
-    for (int i = 0; i<_collectionDataArray.count; i++) {
-        UGCheckinListModel *model = [self.collectionDataArray objectAtIndex:i];
-        if ([model.whichDay isEqualToString:self.checkinListModel.serverTime]) {
-            
-            kisCheckIn = model.isCheckin;
-            
+    for (UGCheckinListModel *clm in _collectionDataArray) {
+        if ([clm.whichDay isEqualToString:self.checkinListModel.serverTime]) {
+            kisCheckIn = clm.isCheckin;
             break;
         }
-        
     }
     
     if (kisCheckIn) {
@@ -298,42 +275,19 @@
         mUGSignInButton.userInteractionEnabled =YES;//交互
         mUGSignInButton.alpha= 1;//透明度
     }
-    
-
-    
 }
+
 
 #pragma mark UICollectionView datasource
 
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    
-    return 2;
-    
-}
-
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    
-    
-    if (section == 0) {
-        return 4;
-    }
-    else {
-        return 3;
-    }
-    
+    return 7;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UGSignInCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UGSignInCollectionViewCell" forIndexPath:indexPath];
     
-    int row = 0;
-    if (indexPath.section == 0) {
-        row = 0;
-    } else {
-        row = 4;
-    }
-    UGCheckinListModel *model = [self.collectionDataArray objectAtIndex:row + indexPath.row];
-    NSLog(@"row = %d,model = %@",row,model);
+    UGCheckinListModel *model = self.collectionDataArray[indexPath.item];
     model.serverTime = self.checkinListModel.serverTime;
     model.mkCheckinSwitch = self.checkinListModel.mkCheckinSwitch;
     cell.item = model;
@@ -342,60 +296,52 @@
         //UICollectionViewCell 点击
         NSLog(@"UICollectionViewCell 点击");
        
-         if(cell.item.isCheckin == false && cell.item.isMakeup == true){
+        if(cell.item.isCheckin == false && cell.item.isMakeup == true){
             // 显示签到的蓝色按钮；==》可以点击签到事件
-           NSLog(@"显示签到的蓝色按钮；==》可以点击签到事件");
+            NSLog(@"显示签到的蓝色按钮；==》可以点击签到事件");
             
-              NSString *date = model.whichDay;
+            NSString *date = model.whichDay;
 
             int a = [CMCommon compareDate:model.serverTime withDate:model.whichDay withFormat:@"yyyy-MM-dd" ];
-//用户签到（签到类型：0是签到，1是补签）
+             // 用户签到（签到类型：0是签到，1是补签）
              if (a >= 0) {
                  [weakSelf checkinDataWithType:@"0" Date:date];
-                 
              } else {
                  if (model.mkCheckinSwitch) {
-                       [weakSelf checkinDataWithType:@"1" Date:date];
+                     for (UGCheckinListModel *clm in weakSelf.collectionDataArray) {
+                         if (clm == model) {
+                             [weakSelf checkinDataWithType:@"1" Date:date];
+                             break;
+                         }
+                         if (!clm.isCheckin) {
+                             [HUDHelper showMsg:@"必须从前往后补签"];
+                             break;
+                         }
+                     }
                  } else {
-                      [self.view makeToast:@"补签通道已关闭"];
+                     [weakSelf.view makeToast:@"补签通道已关闭"];
                  }
-               
              }
-
-           
-
         }
-         else if(cell.item.isCheckin == false && cell.item.isMakeup == false){
-   
-
-             
-               NSString *date = model.whichDay;
-
-                [weakSelf checkinDataWithType:@"0" Date:date];
-            
-             
-
-         }
+        else if(cell.item.isCheckin == false && cell.item.isMakeup == false){
+           NSString *date = model.whichDay;
+           [weakSelf checkinDataWithType:@"0" Date:date];
+        }
     };
-    
-   
     return cell;
 }
 
-
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
-    
 }
 
 //边距设置:整体边距的优先级，始终高于内部边距的优先级
--(UIEdgeInsets)collectionView:(UICollectionView *)collectionView
-                       layout:(UICollectionViewLayout *)collectionViewLayout
-       insetForSectionAtIndex:(NSInteger)section
-{
+-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     return UIEdgeInsetsMake(5, 5, 5, 5);//分别为上、左、下、右
 }
+
 #pragma mark -- 网络请求
+
 //得到日期列表数据
 - (void)getCheckinListData {
     
@@ -524,7 +470,10 @@
         }];
     }];
 }
+
+
 #pragma mark -- 其他方法
+
 - (void)showUGSignInHistoryView {
     
     UGSignInHistoryView *notiveView = [[UGSignInHistoryView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - 260)];
@@ -535,28 +484,11 @@
 //    if (![CMCommon arryIsNull:self->_historyDataArray]) {
         [notiveView show];
 //    }
-    
-   
 }
 
 - (void)mUGSignInButtonClicked {
-    
     NSString *date = self.checkinListModel.serverTime;
-    
     [self checkinDataWithType:@"0" Date:date];
-    
-    
 }
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

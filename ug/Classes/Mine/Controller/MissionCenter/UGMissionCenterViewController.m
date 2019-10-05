@@ -109,6 +109,11 @@
     };
 
     [self getUserInfo];
+    
+    // 彩币兑换成功时，刷新余额、彩币
+    [self xw_addNotificationForName:kDidCreditsExchangeData block:^(NSNotification * _Nonnull noti) {
+        [weakSelf setupUserInfo];
+    }];
 }
 
 
@@ -237,20 +242,13 @@
     [self.nextLevelImageView setImage: [UIImage imageNamed:img2_1Str]];
      self.nextLevel2Label.text = [NSString stringWithFormat:@"VIP%@",sub2Str];
     
-    int int1String = [user.taskRewardTotal intValue];
-    NSLog(@"int1String = %d",int1String);
-    int int2String = [user.nextLevelInt intValue];
-    NSLog(@"int2String = %d",int2String);
-    self.missionTitleLabel.text = [NSString stringWithFormat:@"成长值（%d-%d）",int1String,int2String];
+    self.missionTitleLabel.text = _NSString(@"成长值（%@-%@）", _FloatString4(user.taskRewardTotal.doubleValue), _FloatString4(user.nextLevelInt.doubleValue));
     
-    
-
     if (![CMCommon stringIsNull:user.taskRewardTitle]) {
         self.taskRewradTitleLabel.text = user.taskRewardTitle;
-        
     }
     if (![CMCommon stringIsNull:user.taskRewardTotal]) {
-        self.integralLabel.text = user.taskRewardTotal;
+        self.integralLabel.text = _FloatString4(user.taskReward.doubleValue);
         [self.integralLabel setHidden:NO];
     }
     
@@ -262,7 +260,9 @@
     
 }
 
+
 #pragma mark -- 网络请求
+
 - (void)getUserInfo {
     [self startAnimation];
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
@@ -285,20 +285,22 @@
     }];
 }
 
-#pragma mark -- 其他方法
+
+#pragma mark - IBAction
+
+// 返回上一页
 - (IBAction)backCick:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
-    
 }
-- (IBAction)refreshBalance:(id)sender {
 
-    
+// 刷新余额
+- (IBAction)refreshBalance:(id)sender {
     [self getUserInfo];
 }
+
+// 每日签到
 - (IBAction)goSigInCode:(id)sender {
-    
     UGSigInCodeViewController *vc = [[UGSigInCodeViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
-
 }
 @end

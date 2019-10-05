@@ -201,7 +201,6 @@ static NSString *integralCellid = @"UGConvertCollectionViewCell";
 
 //积分兑换
 - (void)creditsExchangeData:(NSString *)money {
-    
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"money":money
                              };
@@ -210,17 +209,15 @@ static NSString *integralCellid = @"UGConvertCollectionViewCell";
     //    WeakSelf;
     [CMNetwork taskCreditsExchangeWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
-            
 //            [SVProgressHUD showSuccessWithStatus:model.msg];
-             [SVProgressHUD showSuccessWithStatus:@"兑换成功"];
-            self.inputTextF.text =@"";
+            [SVProgressHUD showSuccessWithStatus:@"兑换成功"];
+            self.inputTextF.text = @"";
             self.amountLabel.text = @"";
-            
-            
+            [UGUserModel currentUser].balance = _FloatString4([UGUserModel currentUser].balance.doubleValue + money.doubleValue);
+            [UGUserModel currentUser].taskReward = _FloatString4([UGUserModel currentUser].taskReward.doubleValue - money.doubleValue);
+            [[NSNotificationCenter defaultCenter] postNotificationName:kDidCreditsExchangeData object:nil];
         } failure:^(id msg) {
-            
             [SVProgressHUD showErrorWithStatus:msg];
-            
         }];
     }];
 }

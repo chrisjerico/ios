@@ -147,7 +147,7 @@
         [LEEAlert alert].config
         .LeeAddTitle(^(UILabel *label) {
             
-            label.text = @"⚠️为了您的账号安全，现在可以绑定常用登陆地";
+            label.text = @"⚠️为了您的账号安全，现在可以绑定常用登录地";
             
             label.textColor = [UIColor redColor];
             
@@ -155,7 +155,7 @@
         })
         .LeeAddContent(^(UILabel *label) {
             
-            label.text = @"1、绑定后，只有在常用地范围内，才能正常登陆\n2、可以绑定多个常用地\n3、绑定后，可选择默认选项（请选择国家-请选择省-请选择市）即可自行解除绑定";
+            label.text = @"1、绑定后，只有在常用地范围内，才能正常登录\n2、可以绑定多个常用地\n3、绑定后，可选择默认选项（请选择国家-请选择省-请选择市）即可自行解除绑定";
             
             label.textColor = [[UIColor blackColor] colorWithAlphaComponent:0.5f];
             

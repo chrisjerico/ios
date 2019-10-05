@@ -380,7 +380,7 @@ completion:(CMNetworkBlock)completion {
         NSDictionary* json = [NSJSONSerialization JSONObjectWithData:responseObject
                                                              options:0
                                                                error:nil];
-        NSLog(@"%@: json = %@",method,json);
+//        NSLog(@"%@: json = %@",method,json);
         NSError *error;
         CMResult* result;
         if (json) {
@@ -396,7 +396,6 @@ completion:(CMNetworkBlock)completion {
             sm.urlString = method;
             sm.params = params;
             sm.isPOST = false;
-            sm.response = task.response;
             sm.responseObject = json;
             sm.duration = [[NSDate date] timeIntervalSinceDate:startTime] * 1000;
             sm;
@@ -433,7 +432,6 @@ completion:(CMNetworkBlock)completion {
             sm.urlString = method;
             sm.params = params;
             sm.isPOST = false;
-            sm.response = task.response;
             sm.error = error;
             sm.duration = [[NSDate date] timeIntervalSinceDate:startTime] * 1000;
             sm;
@@ -478,7 +476,7 @@ completion:(CMNetworkBlock)completion {
                                                              options:0
                                                                error:nil];
         
-        NSLog(@"%@: json = %@",method,json);
+//        NSLog(@"%@: json = %@",method,json);
         NSError *error;
         CMResult* result;
         if (json) {
@@ -493,7 +491,6 @@ completion:(CMNetworkBlock)completion {
             sm.urlString = method;
             sm.params = params;
             sm.isPOST = true;
-            sm.response = task.response;
             sm.responseObject = json;
             sm.duration = [[NSDate date] timeIntervalSinceDate:startTime] * 1000;
             sm;
@@ -531,7 +528,6 @@ completion:(CMNetworkBlock)completion {
             sm.urlString = method;
             sm.params = params;
             sm.isPOST = true;
-            sm.response = task.response;
             sm.error = error;
             sm.duration = [[NSDate date] timeIntervalSinceDate:startTime] * 1000;
             sm;

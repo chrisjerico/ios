@@ -13,7 +13,7 @@ typedef void(^BalanceRefreshBlock)(void);
 @class UGPlatformGameModel;
 @interface UGPlatformBalanceTableViewCell : UITableViewCell
 @property (nonatomic, strong) UGPlatformGameModel *item;
-@property (nonatomic, copy) BalanceRefreshBlock refreshBlock;
+@property (nonatomic, copy) BalanceRefreshBlock refreshBlock;   /**<   刷新按钮被点击 */
 @end
 
 NS_ASSUME_NONNULL_END
