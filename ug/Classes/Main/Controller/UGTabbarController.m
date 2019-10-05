@@ -246,6 +246,17 @@
     for (UGmobileMenu *per in ageSortResultArray) {
         NSLog(@"per.age = %d",(int )per.sort);
     }
+    
+    if ([CMCommon arryIsNull:ageSortResultArray]) {
+        return;
+    }
+    if (ageSortResultArray.count<4) {
+        return;
+    }
+    if (ageSortResultArray.count>5) {
+        return;
+    }
+    
     vcs = [NSMutableArray new];
     for (int i = 0; i<ageSortResultArray.count; i++) {
         UGmobileMenu *menu = [ageSortResultArray objectAtIndex:i];
