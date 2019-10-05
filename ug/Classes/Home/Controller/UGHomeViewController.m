@@ -176,13 +176,15 @@
 		[self userLogout];
 	});
 	SANotificationEventSubscribe(UGNotificationloginTimeout, self, ^(typeof (self) self, id obj) {
-		[QDAlertView showWithTitle:@"提示" message:@"您的账号已经登录超时，请重新登录。" cancelButtonTitle:nil otherButtonTitle:@"确定" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-			self.titleView.showLoginView = YES;
-			UGUserModel.currentUser = nil;
-			[self.tabBarController setSelectedIndex:0];
-			[self loginClick];
-			
-		}];
+        // onceToken 函数的作用是，限制为只弹一次框，修复弹框多次的bug
+        [UGUserModel.currentUser onceToken:ZJOnceToken block:^{
+            [QDAlertView showWithTitle:@"提示" message:@"您的账号已经登录超时，请重新登录。" cancelButtonTitle:nil otherButtonTitle:@"确定" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                self.titleView.showLoginView = YES;
+                UGUserModel.currentUser = nil;
+                [self.tabBarController setSelectedIndex:0];
+                [self loginClick];
+            }];
+        }];
 	});
 	SANotificationEventSubscribe(UGNotificationShowLoginView, self, ^(typeof (self) self, id obj) {
 		[self loginClick];
@@ -997,7 +999,6 @@
 	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Mine" bundle:nil];
 	UGLoginViewController *loginVC = [storyboard instantiateViewControllerWithIdentifier:@"UGLoginViewController"];
 	[self.tabBarController showViewControllerInSelected:loginVC animated:YES];
-	
 }
 
 - (void)registerClick {

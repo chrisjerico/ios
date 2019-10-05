@@ -92,7 +92,8 @@ static NSString *realBetRecordCellId = @"UGRealBetRecordCell";
 }
 
 - (void)getBetsList {
-    //    游戏分类：lottery=彩票，real=真人，card=棋牌，game=电子游戏，sport=体育 ，注单状态：1=待开奖，2=已中奖，3=未中奖，4=已撤单
+    // 游戏分类：lottery=彩票，real=真人，card=棋牌，game=电子游戏，sport=体育 ，
+    // 注单状态：1=待开奖，2=已中奖，3=未中奖，4=已撤单
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"category":self.gameType,
 //                             @"status":self.status,
@@ -150,17 +151,14 @@ static NSString *realBetRecordCellId = @"UGRealBetRecordCell";
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
     return self.dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
     UGRealBetRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:realBetRecordCellId forIndexPath:indexPath];
     cell.item = self.dataArray[indexPath.row];
     return cell;
@@ -171,13 +169,11 @@ static NSString *realBetRecordCellId = @"UGRealBetRecordCell";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-   
     return 0.001f;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-
 }
 
 - (void)rightBarButtonItemClick {

@@ -188,7 +188,7 @@ static NSString *recordFilterCellid = @"UGRecordFilterCollectionViewCell";
 #pragma mark - 配置segment
 -(void)buildSegment
 {                   
-    self.itemArray = @[@"等待开奖",@"已中奖",@"未中奖",@"已撤单"];
+    self.itemArray = @[@"已中奖", @"未中奖", @"等待开奖", @"已撤单"];
     self.slideSwitchView = [[XYYSegmentControl alloc] initWithFrame:CGRectMake(0 , 0, self.view.width, self.view.height) channelName:self.itemArray source:self];
     [self.slideSwitchView setUserInteractionEnabled:YES];
     self.slideSwitchView.segmentControlDelegate = self;
@@ -207,18 +207,18 @@ static NSString *recordFilterCellid = @"UGRecordFilterCollectionViewCell";
 
 }
 
+
 #pragma mark - XYYSegmentControlDelegate
--(NSUInteger)numberOfTab:(XYYSegmentControl *)view
-{
+
+- (NSUInteger)numberOfTab:(XYYSegmentControl *)view {
     return [self.itemArray count];//items决定
 }
 
 ///待加载的控制器
--(UIViewController *)slideSwitchView:(XYYSegmentControl *)view viewOfTab:(NSUInteger)number
-{
+- (UIViewController *)slideSwitchView:(XYYSegmentControl *)view viewOfTab:(NSUInteger)number {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGBetRecordTableViewController" bundle:nil];
     UGBetRecordTableViewController *recordVC = [storyboard instantiateInitialViewController];
-    recordVC.status = [NSString stringWithFormat:@"%ld",number + 1];
+    recordVC.status = @[@"2", @"3", @"1", @"4"][number];
     recordVC.startDate = self.dateArray.firstObject;
     recordVC.gameType = @"lottery";
     recordVC.showFooterView = NO;
@@ -240,6 +240,8 @@ static NSString *recordFilterCellid = @"UGRecordFilterCollectionViewCell";
     self.amountLabel.attributedText = abstr;
     
 }
+
+#pragma mark - Getter
 
 - (UIView *)bottomView {
     if (_bottomView == nil) {

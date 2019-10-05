@@ -53,7 +53,7 @@
 -(void)buildSegment
 {
     UGUserModel *user = [UGUserModel currentUser];
-    self.itemArray = @[@"最新长龙",@"我的投注"];
+    self.itemArray = @[@"最新长龙", @"我的投注"];
     STBarButtonItem *item0 = [STBarButtonItem barButtonItemLeftWithImageName:@"shuaxin" title:[user.balance removeFloatAllZero] target:self action:@selector(refreshBalance)];
     self.rightItem1 = item0;
     STBarButtonItem *item1 = [STBarButtonItem barButtonItemWithImageName:@"baiguize" target:self action:@selector(showRightMenueView)];

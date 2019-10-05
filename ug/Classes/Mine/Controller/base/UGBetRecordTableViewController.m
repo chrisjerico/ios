@@ -118,7 +118,8 @@ static NSString *betRecordCellid = @"UGLotteryRecordCell";
 }
 
 - (void)getBetsList {
-//    游戏分类：lottery=彩票，real=真人，card=棋牌，game=电子游戏，sport=体育 ，注单状态：1=待开奖，2=已中奖，3=未中奖，4=已撤单
+    // 游戏分类：lottery=彩票，real=真人，card=棋牌，game=电子游戏，sport=体育 ，
+    // 注单状态：1=待开奖，2=已中奖，3=未中奖，4=已撤单
     self.tableView.mj_footer.hidden = YES;
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"category":self.gameType,
@@ -205,7 +206,6 @@ static NSString *betRecordCellid = @"UGLotteryRecordCell";
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
     return 1;
 }
 
@@ -218,12 +218,12 @@ static NSString *betRecordCellid = @"UGLotteryRecordCell";
     UGLotteryRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:betRecordCellid forIndexPath:indexPath];
     UGBetsRecordModel *model = self.dataArray[indexPath.row];
     cell.item = model;
+    cell.backgroundColor = indexPath.row%2 ? APP.WhiteColor : APP.BackgroundColor;
     WeakSelf
     cell.cancelBlock = ^{
         [QDAlertView showWithTitle:@"温馨提示" message:[NSString stringWithFormat:@"您要撤销注单号%@订单吗？",model.betId] cancelButtonTitle:@"取消" otherButtonTitle:@"确定" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
             if (buttonIndex) {
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-
                     [weakSelf cancelBetWith:model];
                 });
             }
@@ -250,19 +250,15 @@ static NSString *betRecordCellid = @"UGLotteryRecordCell";
 }
 
 - (void)setupTotalAmountLabelTextColor {
-    
     NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.totalBetAmountLabel.text];
     [abStr addAttribute:NSForegroundColorAttributeName value:UGRGBColor(240, 211, 88) range:NSMakeRange(6, self.totalBetAmountLabel.text.length - 6)];
     self.totalBetAmountLabel.attributedText = abStr;
-    
 }
 
 - (void)setupWinAmountLabelTextColor {
-    
     NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.winAmountLabel.text];
     [abStr addAttribute:NSForegroundColorAttributeName value:UGRGBColor(202, 81, 66) range:NSMakeRange(6, self.winAmountLabel.text.length - 6)];
     self.winAmountLabel.attributedText = abStr;
-    
 }
 
 - (NSMutableArray *)dataArray {

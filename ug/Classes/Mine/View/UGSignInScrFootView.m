@@ -34,18 +34,13 @@
     return self;
 }
 
-
--(instancetype) UGSignInScrFootView{
-    
-    
+- (instancetype)UGSignInScrFootView {
     NSBundle *bundle=[NSBundle mainBundle];
     NSArray *objs=[bundle loadNibNamed:@"UGSignInScrFootView" owner:nil options:nil];
     return [objs lastObject];
-    
 }
 
--(instancetype)initView{
-    
+- (instancetype)initView {
     if (self = [super init]) {
         self = [self UGSignInScrFootView];
     }
@@ -55,9 +50,7 @@
     
     _sevenButtton.layer.cornerRadius = 17;
     _sevenButtton.layer.masksToBounds = YES;
-    
     return self;
-    
 }
 
 - (IBAction)signInFiveClick:(id)sender {
@@ -83,4 +76,5 @@
     self.sevenLable.text = sevenStr;
     
 }
+
 @end

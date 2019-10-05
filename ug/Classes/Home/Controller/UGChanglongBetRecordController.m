@@ -23,9 +23,10 @@ static NSString *changlongBetRecordCellId = @"UGChanglongBetRecrodCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView.rowHeight = 93;
+    self.tableView.rowHeight = 72;
     self.tableView.estimatedSectionHeaderHeight = 0;
     self.tableView.estimatedSectionFooterHeight = 0;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 200, 0);
     [self.tableView registerNib:[UINib nibWithNibName:@"UGChanglongBetRecrodCell" bundle:nil] forCellReuseIdentifier:changlongBetRecordCellId];
     
@@ -83,15 +84,10 @@ static NSString *changlongBetRecordCellId = @"UGChanglongBetRecrodCell";
     }];
 }
 
+
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
-    return 1;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
     return self.dataArray.count;
 }
 
@@ -115,11 +111,9 @@ static NSString *changlongBetRecordCellId = @"UGChanglongBetRecrodCell";
     UGBetRecordDetailViewController *detailVC = [storyboard instantiateInitialViewController];
     UGChanglongBetRecordModel *model = self.dataArray[indexPath.row];
     for (UGAllNextIssueListModel *listGame in self.lotteryGamesArray) {
-        for (UGNextIssueModel *game in listGame.list) {
-            if ([game.gameId isEqualToString:model.gameId]) {
+        for (UGNextIssueModel *game in listGame.list)
+            if ([game.gameId isEqualToString:model.gameId])
                 model.pic = game.pic;
-            }
-        }
     }
     detailVC.item = model;
     [self.navigationController pushViewController:detailVC animated:YES];

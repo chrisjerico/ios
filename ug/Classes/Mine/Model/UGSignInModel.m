@@ -11,11 +11,11 @@
 @implementation UGcheckinBonusModel
 
 + (JSONKeyMapper *)keyMapper {
-    
     return [[JSONKeyMapper alloc] initWithDictionary:@{@"int":@"BonusInt"
                                                        ,@"switch":@"BonusSwitch"
                                                        }];
 }
+
 @end
 
 @implementation UGCheckinListModel

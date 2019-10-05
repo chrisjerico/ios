@@ -28,7 +28,6 @@
     
     self.navigationItem.title = @"安全中心";
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-        
         [self skin];
     });
     
@@ -67,28 +66,19 @@
 }
 
 
-
 #pragma mark - 配置segment
--(void)buildSegment
-{
+
+-(void)buildSegment {
     self.itemArray = [NSMutableArray new];
     [self.itemArray addObject:@"登录密码"];
     [self.itemArray addObject:@"取款密码"];
     
     UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
     if ([config.oftenLoginArea isEqualToString: @"0"]) {
-        
         [self.itemArray addObject:@"常用登录地"];
-    }
-    else{
-        
     }
     if (config.googleVerifier == 1) {
         [self.itemArray addObject:@"二次验证"];
-     
-    }
-    else{
-      
     }
     
     self.slideSwitchView = [[XYYSegmentControl alloc] initWithFrame:CGRectMake(0 , 0, self.view.width, self.view.height) channelName:self.itemArray source:self];
@@ -104,91 +94,65 @@
     //设置tab 被选中的标识的颜色(可选)
     self.slideSwitchView.tabItemSelectionIndicatorColor = UGNavColor;
     [self.view addSubview:self.slideSwitchView];
-    
 }
 
+
 #pragma mark - XYYSegmentControlDelegate
--(NSUInteger)numberOfTab:(XYYSegmentControl *)view
-{
+
+- (NSUInteger)numberOfTab:(XYYSegmentControl *)view {
     return [self.itemArray count];//items决定
 }
 
 ///待加载的控制器
--(UIViewController *)slideSwitchView:(XYYSegmentControl *)view viewOfTab:(NSUInteger)number
-{
-    
+- (UIViewController *)slideSwitchView:(XYYSegmentControl *)view viewOfTab:(NSUInteger)number {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGSafety" bundle:nil];
     if (number == 0) {
         UGModifyLoginPwdController *PwdVC = [storyboard instantiateViewControllerWithIdentifier:@"UGModifyLoginPwdController"];
         return PwdVC;
-    }else if (number == 1) {
-        
+    }
+    if (number == 1) {
         UGModifyPayPwdController *payVC = [storyboard instantiateViewControllerWithIdentifier:@"UGModifyPayPwdController"];
         return payVC;
     }
-    else if (number == 2 ){
-        
+    if (number == 2 && [[UGSystemConfigModel currentConfig].oftenLoginArea isEqualToString:@"0"]) {
         UGModifyLoginPlaceController *loginPlaceVC = [storyboard instantiateViewControllerWithIdentifier:@"UGModifyLoginPlaceController"];
         return loginPlaceVC;
     }
-    else  {
-        
-        UGGoogleAuthenticationFirstViewController *loginPlaceVC = [[UGGoogleAuthenticationFirstViewController alloc] init];
-        return loginPlaceVC;
-    }
-    
+    UGGoogleAuthenticationFirstViewController *gafVC = [[UGGoogleAuthenticationFirstViewController alloc] init];
+    return gafVC;
 }
 
-- (void)slideSwitchView:(XYYSegmentControl *)view didselectTab:(NSUInteger)number
-{
-    
+- (void)slideSwitchView:(XYYSegmentControl *)view didselectTab:(NSUInteger)number {
     NSString *titleStr = [self.itemArray objectAtIndex:number];
     if ([titleStr isEqualToString:@"常用登录地" ]) {
         [LEEAlert alert].config
         .LeeAddTitle(^(UILabel *label) {
-            
             label.text = @"⚠️为了您的账号安全，现在可以绑定常用登录地";
-            
             label.textColor = [UIColor redColor];
-            
             label.textAlignment = NSTextAlignmentCenter;
         })
         .LeeAddContent(^(UILabel *label) {
-            
             label.text = @"1、绑定后，只有在常用地范围内，才能正常登录\n2、可以绑定多个常用地\n3、绑定后，可选择默认选项（请选择国家-请选择省-请选择市）即可自行解除绑定";
-            
             label.textColor = [[UIColor blackColor] colorWithAlphaComponent:0.5f];
-            
             label.textAlignment = NSTextAlignmentLeft;
         })
         .LeeAction(@"我知道了", nil)
         .LeeShow();
     }
-    
 }
 
--(void)back
-{
+- (void)back {
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
-
 - (void)getSystemConfig {
-    
-    
     [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
-            
-  
-            
             UGSystemConfigModel *config = model.data;
             UGSystemConfigModel.currentConfig = config;
              [[UGSkinManagers shareInstance] setSkin];
            [self buildSegment];
-            
-        } failure:^(id msg) {
-            
-        }];
+        } failure:nil];
     }];
 }
 
