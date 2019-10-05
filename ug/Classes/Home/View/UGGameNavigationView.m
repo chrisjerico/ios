@@ -118,7 +118,7 @@
         
 		_iconImage = [UIImageView new];
 		_titleLabel = [UILabel new];
-		_titleLabel.textColor = [UIColor grayColor];
+		_titleLabel.textColor = [UIColor blackColor];
 		_titleLabel.font = [UIFont systemFontOfSize:14];
 		[self addSubview:_iconImage];
 		[_iconImage mas_makeConstraints:^(MASConstraintMaker *make) {

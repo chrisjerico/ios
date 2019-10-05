@@ -73,6 +73,7 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
 @property (weak, nonatomic) IBOutlet UIView *bannerBgView;
+@property (weak, nonatomic) IBOutlet UGGameNavigationView *gameNavigationView;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *gameNavigationViewHeight;
 
@@ -115,7 +116,6 @@
 @property (strong, nonatomic)UILabel *nolineLabel;
 
 @property (weak, nonatomic) IBOutlet UIView *rollingView;
-@property (weak, nonatomic) IBOutlet UGGameNavigationView *gameNavigationView;
 
 @end
 
@@ -140,6 +140,10 @@
 	
 	[super viewDidLoad];
 	
+	self.gameNavigationView.layer.cornerRadius = 8;
+	self.gameNavigationView.layer.masksToBounds = true;
+    
+    [self.gameNavigationView setBackgroundColor:[[UGSkinManagers shareInstance] setCellbgColor]];
 	[[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:[[UGSkinManagers shareInstance] setTabbgColor]]];
 	
 	[[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[[UGSkinManagers shareInstance] settabNOSelectColor], NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
@@ -202,6 +206,7 @@
 	[self systemOnlineCount];
 	
 	self.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+         SANotificationEventPost(UGNotificationWithResetTabSuccess, nil);
 		[self getSystemConfig];
 		[self getCustomGameList];
 		[self getBannerList];
