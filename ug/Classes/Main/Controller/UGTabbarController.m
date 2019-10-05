@@ -30,6 +30,10 @@
     
     [self setUpChildViewController];
     [self getSystemConfig];
+    
+    SANotificationEventSubscribe(UGNotificationWithResetTabSuccess, self, ^(typeof (self) self, id obj) {
+             [self resetUpChildViewController];
+    });
 
 }
 
@@ -130,11 +134,7 @@
                   selectedImageName:@"liaotiansel"];
     
     
-//<<<<<<< HEAD
-    UGNavigationController *promotionsNavVC = [[UGNavigationController alloc]initWithRootViewController:[[UGPromotionsController alloc] init]];
-//=======
-//    self.promotionsNavVC = [[UGNavigationController alloc]initWithRootViewController:_LoadVC_from_storyboard_(@"UGPromotionsController")];
-//>>>>>>> dev_fish
+    UGNavigationController *promotionsNavVC = [[UGNavigationController alloc]initWithRootViewController:_LoadVC_from_storyboard_(@"UGPromotionsController")];
     
     [self addOneChildViewController: promotionsNavVC
                           WithTitle:@"优惠活动"
@@ -242,6 +242,17 @@
     for (UGmobileMenu *per in ageSortResultArray) {
         NSLog(@"per.age = %d",(int )per.sort);
     }
+    
+    if ([CMCommon arryIsNull:ageSortResultArray]) {
+        return;
+    }
+    if (ageSortResultArray.count<4) {
+        return;
+    }
+    if (ageSortResultArray.count>5) {
+        return;
+    }
+    
     vcs = [NSMutableArray new];
     for (int i = 0; i<ageSortResultArray.count; i++) {
         UGmobileMenu *menu = [ageSortResultArray objectAtIndex:i];

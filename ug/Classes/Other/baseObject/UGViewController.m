@@ -14,12 +14,17 @@
 
 @implementation UGViewController
 
+
+
 -(void)skin{
 //    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
     
     
 }
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
