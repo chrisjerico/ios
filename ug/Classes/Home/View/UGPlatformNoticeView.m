@@ -101,12 +101,15 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UGNoticeModel *model = self.dataArray[indexPath.row];
-    NSString *str = [NSString stringWithFormat:@"<head><style>img{width:%f !important;height:auto}</style></head>%@",self.width,model.content];
+    UGNoticeModel *model = self.dataArray[indexPath.section];
+    NSString *str = [NSString stringWithFormat:@"<head><style>img{width:%f!important;height:max-height}</style></head>%@",self.width,model.content];
     NSAttributedString *attStr = [[NSAttributedString alloc] initWithData:[str dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
     UILabel *content = [[UILabel alloc] init];
     content.attributedText = attStr;
-    return content.intrinsicContentSize.height;
+	
+	CGRect bounds = [attStr boundingRectWithSize:CGSizeMake(self.width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin context:nil];
+//    return content.intrinsicContentSize.height;
+	return bounds.size.height;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

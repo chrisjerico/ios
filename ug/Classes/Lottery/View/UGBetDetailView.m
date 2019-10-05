@@ -364,6 +364,9 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 	}];
 	
 	[self updateTotalLabelText];
+	if ([@[@"7", @"11", @"9"] containsObject: self.nextIssueModel.gameId]) {
+			[self.closeTimeLabel setHidden:true] ;
+		}
 	
 }
 

@@ -455,7 +455,14 @@
 					[self.gameCategorys addObject:customGameModel.card];
 					[self.gameCategorys addObject:customGameModel.sport];
 					
-					self.gameNavigationView.sourceData = customGameModel.navigation.list;
+					
+					NSArray<GameModel *> * sourceData = customGameModel.navigation.list;
+					self.gameNavigationView.sourceData = sourceData;
+					if (sourceData.count > 0) {
+						self.gameNavigationViewHeight.constant = ((sourceData.count - 1)/4 + 1)*80;
+						[self.view layoutIfNeeded];
+
+					}
 					
 					self.gameTypeView.gameTypeArray = self.gameCategorys;
 				});
