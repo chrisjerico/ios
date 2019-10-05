@@ -133,8 +133,7 @@
             
             [self.collectionView reloadData];
             
-            [self.collectionView  mas_remakeConstraints:^(MASConstraintMaker *make)
-             {
+            [self.collectionView  mas_remakeConstraints:^(MASConstraintMaker *make) {
                  make.left.equalTo(self.view.mas_left).with.offset(0);
                  make.right.equalTo(self.view.mas_right).with.offset(0);
                  make.width.equalTo(self.view.mas_width);
@@ -159,8 +158,7 @@
             NSLog(@"%@",NSStringFromCGRect(self.label.frame));
             
             
-            [self.bg_label  mas_remakeConstraints:^(MASConstraintMaker *make)
-             {
+            [self.bg_label  mas_remakeConstraints:^(MASConstraintMaker *make) {
                  make.left.equalTo(self.view.mas_left).with.offset(0);
                  make.right.equalTo(self.view.mas_right).with.offset(0);
                  make.top.equalTo(self.collectionView.mas_bottom).offset(0);
@@ -180,21 +178,18 @@
             //设置边框线的颜色
             [layer setBorderColor:UGRGBColor(231, 231, 231).CGColor];
             //==============================================================
-            [self.tiplabel  mas_remakeConstraints:^(MASConstraintMaker *make)
-             {
+            [self.tiplabel  mas_remakeConstraints:^(MASConstraintMaker *make) {
                  make.left.equalTo(self.view.mas_left).with.offset(30);
                  make.right.equalTo(self.view.mas_right).with.offset(-30);
                  make.top.equalTo(self.bg_label.mas_bottom).offset(0);
                  make.width.mas_equalTo(UGScreenW-40);
-                 
              }];
             [self.tiplabel setText:self.item.transferPrompt];
             [self.tiplabel sizeToFit];
             NSLog(@"%@",NSStringFromCGRect(self.tiplabel.frame));
             //==============================================================
             float tableViewHeight = self->_tableDataArray.count *44.0;
-            [self.tableView  mas_remakeConstraints:^(MASConstraintMaker *make)
-             {
+            [self.tableView  mas_remakeConstraints:^(MASConstraintMaker *make) {
                  make.left.equalTo(self.view.mas_left).with.offset(0);
                  make.right.equalTo(self.view.mas_right).with.offset(0);
                  make.top.equalTo(self.tiplabel.mas_bottom).offset(10);
@@ -225,9 +220,8 @@
               self.mUIScrollView.contentSize = CGSizeMake(UGScreenW, 50.0+height+self.bg_label.height+self.tiplabel.height+tableViewHeight+self.blank_button .height+20);
         });
     }];
-    
-    
 }
+
 
 #pragma mark: - 判断是否能够被整除
 
@@ -245,7 +239,9 @@
    
 }
 
-#pragma mark -UI
+
+#pragma mark - UI
+
 -(void)creatUI{
     
     if (self.textField==nil) {
@@ -275,10 +271,6 @@
         [self.view addSubview:mUIScrollView];
         self.mUIScrollView = mUIScrollView;
     }
-
-    
- 
-    
     
     if (self.collectionView==nil) {
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
@@ -391,28 +383,24 @@
         //设置边框线的颜色
         [layer setBorderColor:UGRGBColor(231, 231, 231).CGColor];
         
-        
         [self.mUIScrollView addSubview:button ];
         self.blank_button = button;
         [self.blank_button setHidden:YES];
     }
     
-    
-    if(self.submit_View== nil){
+    if (self.submit_View == nil) {
         UIView* bg = [[UIView alloc] init];
         bg.frame = CGRectMake(0, 500, UGScreenW, 64);
         bg.backgroundColor = [UIColor whiteColor];
         [self.view addSubview:bg ];
         self.submit_View = bg;
         
-        [self.submit_View  mas_makeConstraints:^(MASConstraintMaker *make)
-         {
+        [self.submit_View  mas_makeConstraints:^(MASConstraintMaker *make) {
              make.left.equalTo(self.view.mas_left).with.offset(0);
              make.right.equalTo(self.view.mas_right).with.offset(0);
              make.bottom.equalTo(self.view.mas_bottom).offset(-IPHONE_SAFEBOTTOMAREA_HEIGHT);
              make.height.mas_equalTo(64);
-             
-         }];
+        }];
     }
     
     if (self.submit_button == nil) {
@@ -450,56 +438,51 @@
         
         [self.submit_View addSubview:button ];
         self.submit_button = button;
-        [self.submit_button  mas_makeConstraints:^(MASConstraintMaker *make)
-         {
+        [self.submit_button  mas_makeConstraints:^(MASConstraintMaker *make) {
              make.left.equalTo(self.view.mas_left).with.offset(20);
              make.right.equalTo(self.view.mas_right).with.offset(-20);
              make.bottom.equalTo(self.view.mas_bottom).offset(-IPHONE_SAFEBOTTOMAREA_HEIGHT);
              make.height.mas_equalTo(40);
-
-         }];
+        }];
         
         //=================================================
         _mUIScrollView.contentSize = CGSizeMake(UGScreenW, 1400);
-       
     }
-    
-   
 }
 
 
 #pragma mark - UICollectionViewDelegate, UICollectionViewDataSource
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return _amountDataArray.count;
 }
+
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-  
     UGDepositDetailsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UGDepositDetailsCollectionViewCell" forIndexPath:indexPath];
     cell.myStr = [_amountDataArray objectAtIndex:indexPath.row];
-    
     return cell;
 }
+
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"%ld分区---%ldItem", indexPath.section, indexPath.row);
     NSString *nuberStr = [_amountDataArray objectAtIndex:indexPath.row];
     self.textField.text = nuberStr;
 }
 
+
 #pragma mark - UITableViewDataSource
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
     return _tableDataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     UGDepositDetailsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UGDepositDetailsTableViewCell" forIndexPath:indexPath];
-   UGchannelModel *channelModel = [_tableDataArray objectAtIndex:indexPath.row];
+    UGchannelModel *channelModel = [_tableDataArray objectAtIndex:indexPath.row];
     
     cell.nameStr = channelModel.payeeName;
     
@@ -508,24 +491,18 @@
     NSInteger oldRow = [lastPath row];
     
     if (row == oldRow && self.lastPath!=nil) {
-        
         cell.headerImageStr = @"RadioButton-Selected";
-        
-    }else{
-       cell.headerImageStr = @"RadioButton-Unselected";
-        
+    } else {
+        cell.headerImageStr = @"RadioButton-Unselected";
     }
-    
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    
     return 0.001;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    
     return 0.001f;
 }
 
@@ -552,16 +529,12 @@
         
         [self setUIData:_selectChannelModel];
     }
-        
-       
-   
-    
 }
+
 
 #pragma mark - 其他方法
 
 -(void)showBlackList:(UIButton *)sender{
-    
     UGFundsBankView *notiveView = [[UGFundsBankView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - 260)];
     notiveView.dataArray = self->_blankDataArray ;
     notiveView.nameStr = @"请选择银行";
@@ -579,14 +552,13 @@
 }
 
 -(void)submit_buttonClicked:(UIButton *)sender{
-    
     [self rechargeOnlinePay];
-    
+
     //token money payId
 }
 
 //在线支付
-- (void)rechargeOnlinePay{
+- (void)rechargeOnlinePay {
     
     NSString *moneyStr = [self.textField.text  stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] ;
     
@@ -608,13 +580,12 @@
     //    WeakSelf;
     [CMNetwork rechargeOnlinePayWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
-            
-           
-            
             if ([CMCommon stringIsNull:model.data]) {
                  [SVProgressHUD showSuccessWithStatus:model.msg];
             } else {
-               
+                [SVProgressHUD dismiss];
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:model.data]];
+                
 //                TGWebViewController *web = [[TGWebViewController alloc] init];
 //                web.url =  model.data;
 //                web.webTitle = @"支付通道";
@@ -639,28 +610,11 @@
 //                
 //                [self.navigationController pushViewController:webVC animated:YES];
                 
-                
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:model.data]];
-
             }
-            
         } failure:^(id msg) {
-            
             [SVProgressHUD showErrorWithStatus:msg];
-            
         }];
     }];
 }
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

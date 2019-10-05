@@ -46,7 +46,6 @@ static NSString *avaterCellid = @"UGAvaterCollectionViewCell";
         [self initCollectionView];
         [self getAvatarList];
         [self setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
-
     }
     return self;
 }
@@ -55,7 +54,7 @@ static NSString *avaterCellid = @"UGAvaterCollectionViewCell";
     UIView *view = [super hitTest:point withEvent:event];
     if (CGRectContainsPoint(self.bounds, point)) {
         
-    }else {
+    } else {
         [self hiddenSelf];
     }
     return view;
@@ -82,7 +81,6 @@ static NSString *avaterCellid = @"UGAvaterCollectionViewCell";
 }
 
 - (void)changAvatar:(UGAvatarModel *)avatar {
-    
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"filename":avatar.filename
                              };
@@ -98,68 +96,38 @@ static NSString *avaterCellid = @"UGAvaterCollectionViewCell";
             [SVProgressHUD showErrorWithStatus:msg];
         }];
     }];
-    
 }
 
+
+#pragma mark - IBAction
+
 - (IBAction)submitClick:(id)sender {
-    
     [self changAvatar:self.dataArray[self.selIndex]];
-    
 }
 
 - (IBAction)cancelClick:(id)sender {
-    
     [self hiddenSelf];
 }
 
 - (IBAction)leftClick:(id)sender {
-    
-   
-//    NSLog(@"self.dataArray.count = %lu",(unsigned long)self.dataArray.count);
-//    NSLog(@"self.leftIndex = %lu",(unsigned long)self.leftIndex);
-//
-//
-//    if (self.leftIndex >= self.dataArray.count-2 || self.leftIndex<1) {
-//        return;
-//    } else {
-//        NSIndexPath *scrollIndexPath = [NSIndexPath indexPathForRow: self.leftIndex inSection:0];
-////        UICollectionViewScrollPositionLeft                 = 1 << 3,
-////        UICollectionViewScrollPositionCenteredHorizontally = 1 << 4,
-////        UICollectionViewScrollPositionRight                = 1 << 5
-//
-//        [self layoutIfNeeded];
-//        [self.collectionView scrollToItemAtIndexPath:scrollIndexPath atScrollPosition:UICollectionViewScrollPositionLeft animated:YES];
-//
-//          self.leftIndex += 1;
-//    }
-//
-
+    [_collectionView setContentOffset:({
+        CGPoint offset = self.collectionView.contentOffset;
+        offset.x -= _collectionView.width;
+        offset.x = MAX(offset.x, 0);
+        offset;
+    }) animated:true];
 }
 
 - (IBAction)rightClick:(id)sender {
-    NSLog(@"self.dataArray.count = %lu",(unsigned long)self.dataArray.count);
-    NSLog(@"self.reghtIndex = %lu",(unsigned long)self.reghtIndex);
-    
-    
-//    if (self.reghtIndex<= 0 ||self.reghtIndex>_dataArray.count-1) {
-//        return;
-//    } else {
-//        NSIndexPath *scrollIndexPath = [NSIndexPath indexPathForRow: self.reghtIndex inSection:0];
-//        //        UICollectionViewScrollPositionLeft                 = 1 << 3,
-//        //        UICollectionViewScrollPositionCenteredHorizontally = 1 << 4,
-//        //        UICollectionViewScrollPositionRight                = 1 << 5
-//
-//        [self layoutIfNeeded];
-//        [self.collectionView scrollToItemAtIndexPath:scrollIndexPath atScrollPosition:UICollectionViewScrollPositionRight animated:YES];
-//
-//        self.reghtIndex -= 1;
-//    }
-    
-    
+    [_collectionView setContentOffset:({
+        CGPoint offset = self.collectionView.contentOffset;
+        offset.x += _collectionView.width;
+        offset.x = MIN(offset.x, _collectionView.contentSize.width-_collectionView.width);
+        offset;
+    }) animated:true];
 }
 
 - (void)initCollectionView {
-    
     float itemW = self.width / 6;
     UICollectionViewFlowLayout *layout = ({
         
@@ -190,22 +158,21 @@ static NSString *avaterCellid = @"UGAvaterCollectionViewCell";
     
 }
 
+
+#pragma mark - UICollectionViewDelagate
+
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    
     return 1;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    
     return self.dataArray.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
     UGAvaterCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:avaterCellid forIndexPath:indexPath];
     cell.item = self.dataArray[indexPath.row];
     return cell;
-    
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -215,7 +182,6 @@ static NSString *avaterCellid = @"UGAvaterCollectionViewCell";
 }
 
 - (void)show {
-    
     UIWindow* window = UIApplication.sharedApplication.keyWindow;
     UIView* maskView = [[UIView alloc] initWithFrame:window.bounds];
     UIView* view = self;
@@ -232,8 +198,10 @@ static NSString *avaterCellid = @"UGAvaterCollectionViewCell";
     }];
 }
 
+
+#pragma mark -
+
 - (void)hiddenSelf {
-    
     UIView* view = self;
     self.superview.backgroundColor = [UIColor clearColor];
     [UIView animateWithDuration:0.35 animations:^{
@@ -242,7 +210,6 @@ static NSString *avaterCellid = @"UGAvaterCollectionViewCell";
         [view.superview removeFromSuperview];
         [view removeFromSuperview];
     }];
-    
 }
 
 - (NSMutableArray *)dataArray {
@@ -251,24 +218,5 @@ static NSString *avaterCellid = @"UGAvaterCollectionViewCell";
     }
     return _dataArray;
 }
-
-
-
-
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    
-//    CGPoint point=self.collectionView.contentOffset;
-//    NSLog(@"%f,%f",point.x,point.y);
-//
-//    float y = point.y;
-//    int  index = y/60;
-//
-//    self.leftIndex= index+1;
-//    self.reghtIndex = index+4;
-//
-//    NSLog(@"leftIndex=%d,reghtIndex=%d",index+1,index+4);
-}
-#pragma mark - scrollView 停止滚动监测
 
 @end

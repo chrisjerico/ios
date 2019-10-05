@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -32,22 +30,20 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eai-Va-NJz">
                     <rect key="frame" x="15" y="178" width="378" height="100"/>
                     <subviews>
-                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QJm-2f-sND">
-                            <rect key="frame" x="0.0" y="25" width="30" height="50"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QJm-2f-sND">
+                            <rect key="frame" x="0.0" y="0.0" width="35" height="100"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="50" id="9nO-dX-Dgf"/>
-                                <constraint firstAttribute="width" constant="30" id="IKs-Ye-zpo"/>
+                                <constraint firstAttribute="width" constant="35" id="IKs-Ye-zpo"/>
                             </constraints>
                             <state key="normal" image="leftarrow"/>
                             <connections>
                                 <action selector="leftClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="1vK-al-UyW"/>
                             </connections>
                         </button>
-                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GdH-dr-Y7e">
-                            <rect key="frame" x="348" y="25" width="30" height="50"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GdH-dr-Y7e">
+                            <rect key="frame" x="343" y="0.0" width="35" height="100"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="30" id="Lu4-Yw-ADV"/>
-                                <constraint firstAttribute="height" constant="50" id="dZF-J7-Oi2"/>
+                                <constraint firstAttribute="width" constant="35" id="Lu4-Yw-ADV"/>
                             </constraints>
                             <state key="normal" image="rightarrow"/>
                             <connections>
@@ -57,8 +53,10 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstItem="GdH-dr-Y7e" firstAttribute="top" secondItem="eai-Va-NJz" secondAttribute="top" id="5ev-3p-cO7"/>
                         <constraint firstItem="QJm-2f-sND" firstAttribute="leading" secondItem="eai-Va-NJz" secondAttribute="leading" id="FMu-0x-BMZ"/>
                         <constraint firstAttribute="height" constant="100" id="VIl-Zg-OUV"/>
+                        <constraint firstItem="QJm-2f-sND" firstAttribute="top" secondItem="eai-Va-NJz" secondAttribute="top" id="VOT-TF-0aa"/>
                         <constraint firstItem="QJm-2f-sND" firstAttribute="centerY" secondItem="eai-Va-NJz" secondAttribute="centerY" id="Z51-zv-sMt"/>
                         <constraint firstAttribute="trailing" secondItem="GdH-dr-Y7e" secondAttribute="trailing" id="hbk-jh-W3L"/>
                         <constraint firstItem="GdH-dr-Y7e" firstAttribute="centerY" secondItem="eai-Va-NJz" secondAttribute="centerY" id="rRX-64-1gd"/>

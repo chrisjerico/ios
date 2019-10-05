@@ -12,6 +12,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *amountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *modeLabel;
 
 @end
 @implementation UGBalanceTransferLogsCell
@@ -27,6 +28,7 @@
     self.nameLabel.text = item.gameName;
     self.amountLabel.text = item.amount;
     self.dateLabel.text = item.actionTime;
+    self.modeLabel.text = item.isAuto ? @"自动" : @"手动";
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
