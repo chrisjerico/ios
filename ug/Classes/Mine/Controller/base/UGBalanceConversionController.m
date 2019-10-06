@@ -188,7 +188,6 @@ static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Mine" bundle:nil];
     UGBalanceConversionRecordController *recordVC = [storyboard instantiateViewControllerWithIdentifier:@"UGBalanceConversionRecordController"];
     [self.navigationController pushViewController:recordVC animated:YES];
-    
 }
 
 - (IBAction)transferOutClick:(id)sender {

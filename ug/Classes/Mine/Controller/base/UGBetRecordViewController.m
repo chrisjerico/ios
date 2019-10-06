@@ -22,11 +22,9 @@
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 
-@property (nonatomic,strong)  NSArray *filterItemArray;
-@property (nonatomic, strong) NSArray *filterTypeArray;
+@property (nonatomic,strong)  NSArray *filterItemArray; /**<   筛选时间 */
 @property (nonatomic, strong) UIView *bottomView;
-@property (nonatomic, strong) UILabel *amountLabel;
-@property (nonatomic, strong) STButton *titleView;
+@property (nonatomic, strong) UILabel *amountLabel;     /**<   金额 */
 @property (nonatomic, strong) NSArray *itemArray;
 @property (nonatomic, strong) NSMutableArray *dateArray;
 @property (nonatomic, strong) NSMutableArray *controllersArray;
@@ -54,7 +52,6 @@ static NSString *recordFilterCellid = @"UGRecordFilterCollectionViewCell";
     self.dateIndex = 0;
     self.controllerIndex = 0;
     self.filterItemArray = @[@"今日",@"最近三天",@"最近一周",@"最近一月"];
-    self.filterTypeArray = @[@"未结注单",@"今日已结",@"彩票注单",@"真人注单",@"电子注单",@"棋牌注单",@"体育注单",@"UG注单"];
     self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithImageName:@"riqi" target:self action:@selector(rightBarButtonItemClick)];
     
 //    [self initCollectionView];
@@ -70,40 +67,6 @@ static NSString *recordFilterCellid = @"UGRecordFilterCollectionViewCell";
 -(void)setSelectIndex:(int) index{
       [self.slideSwitchView changeSlideAtSegmentIndex:2];
 //       [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionNone];
-}
-
-- (void)viewDidLayoutSubviews {
-    
-
-}
-
-- (void)titleViewClick {
-    
-    SModel *a = [SModel new];
-    a.age = 17;
-    a.name = @"彩票注单";
-    a.userId = 0001;
-    
-    SModel *b = [SModel new];
-    b.age = 18;
-    b.name = @"真人注单";
-    b.userId = 0002;
-    
-    SModel *c = [SModel new];
-    c.age = 22;
-    c.name = @"电子注单";
-    c.userId = 0003;
-    
-    //自行创建实例方法
-    MOFSPickerView *p = [MOFSPickerView new];
-    p.attributes = @{NSFontAttributeName : [UIFont systemFontOfSize:16], NSForegroundColorAttributeName : [UIColor blackColor]};
-    [p showMOFSPickerViewWithCustomDataArray:@[a, b, c] keyMapper:@"name" commitBlock:^(id model) {
-        SModel *item = (SModel *)model;
-        [self.titleView setTitle:item.name forState:UIControlStateNormal];
-    } cancelBlock:^{
-        
-    }];
-    
 }
 
 - (void)rightBarButtonItemClick {
@@ -259,21 +222,6 @@ static NSString *recordFilterCellid = @"UGRecordFilterCollectionViewCell";
         _amountLabel.text = @"注单金额：¥90000";
     }
     return _amountLabel;
-}
-
-- (STButton *)titleView {
-    if (_titleView == nil) {
-        
-        STButton *titleButton = [[STButton alloc] init];
-        titleButton.titleSideType = STButtonTypeTitleLeft;
-        [titleButton setTitle:@"未结注单" forState:UIControlStateNormal];
-        [titleButton setImage:[UIImage imageNamed:@"baijiantou"] forState:UIControlStateNormal];
-        [titleButton addTarget:self action:@selector(titleViewClick)];
-        
-        _titleView = titleButton;
-        
-    }
-    return _titleView;
 }
 
 - (NSMutableArray *)dateArray {

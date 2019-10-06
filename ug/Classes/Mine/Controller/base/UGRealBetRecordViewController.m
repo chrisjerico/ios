@@ -7,16 +7,23 @@
 //
 
 #import "UGRealBetRecordViewController.h"
+
+// Tool
+#import "MOFSPickerManager.h"
+
+// Model
 #import "UGBetsRecordListModel.h"
+
+// View
+#import "SRActionSheet.h"
 #import "UGRealBetRecordCell.h"
 #import "STBarButtonItem.h"
 #import "YBPopupMenu.h"
-#import "SRActionSheet.h"
 #import "STButton.h"
-#import "MOFSPickerManager.h"
-#import "UGBetsRecordListModel.h"
-@implementation Model
+#import "UGCalenderAlertView.h"  // 日历控件
 
+
+@implementation Model
 
 @end
 
@@ -26,9 +33,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *winAmountLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewHeightConstraint;
 
-@property (nonatomic,strong)  NSArray *filterItemArray;
-@property (nonatomic, strong) NSMutableArray *dateArray;
-@property (nonatomic, assign) NSInteger dateIndex;
 @property (nonatomic, strong) STButton *titleView;
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
@@ -43,17 +47,22 @@ static NSString *realBetRecordCellId = @"UGRealBetRecordCell";
 @implementation UGRealBetRecordViewController
 -(void)skin{
     [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
-    
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = UGBackgroundColor;
     self.navigationItem.title = @"真人注单";
+    self.navigationItem.titleView = self.titleView;
+    self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithImageName:@"riqi" target:self action:@selector(rightBarButtonItemClick)];
     [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-        
         [self skin];
     });
+    
+    self.startDate = [[NSDate date] stringWithFormat:@"yyyy-MM-dd"];
+    
     self.pageSize = size;
     self.pageNumber = page;
     self.tableView.delegate = self;
@@ -62,15 +71,13 @@ static NSString *realBetRecordCellId = @"UGRealBetRecordCell";
     self.tableView.estimatedSectionHeaderHeight = 0;
     self.tableView.estimatedSectionFooterHeight = 0;
     [self.tableView registerNib:[UINib nibWithNibName:@"UGRealBetRecordCell" bundle:nil] forCellReuseIdentifier:realBetRecordCellId];
+    
     if ([CMCommon isPhoneX]) {
         self.bottomViewHeightConstraint.constant = 70;
     }else {
         self.bottomViewHeightConstraint.constant = 50;
     }
-    self.dateIndex = 0;
-    self.startDate = self.dateArray.firstObject;
-    self.filterItemArray = @[@"今日",@"最近三天",@"最近一周",@"最近一月"];
-    self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithImageName:@"riqi" target:self action:@selector(rightBarButtonItemClick)];
+    
     [self setupRefreshView];
     [self getBetsList];
 }
@@ -81,7 +88,6 @@ static NSString *realBetRecordCellId = @"UGRealBetRecordCell";
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         weakSelf.pageNumber = 1;
         [weakSelf getBetsList];
-        
     }];
     
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
@@ -100,12 +106,10 @@ static NSString *realBetRecordCellId = @"UGRealBetRecordCell";
                              @"page":@(self.pageNumber),
                              @"rows":@(self.pageSize),
                              @"startDate":self.startDate,
-                             @"endDate":@""
+                             @"endDate":self.startDate,
                              };
     [CMNetwork getBetsListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
-        
         [CMResult processWithResult:model success:^{
-            
             if (!model.data) {
                 [self.dataArray removeAllObjects];
                 [self.tableView reloadData];
@@ -118,17 +122,15 @@ static NSString *realBetRecordCellId = @"UGRealBetRecordCell";
             [self setupTotalAmountLabelTextColor];
             [self setupWinAmountLabelTextColor];
             if (self.pageNumber == 1 ) {
-                
                 [self.dataArray removeAllObjects];
             }
-            
             [self.dataArray addObjectsFromArray:array];
             [self.tableView reloadData];
             
             if (array.count < self.pageSize) {
                 [self.tableView.mj_footer setState:MJRefreshStateNoMoreData];
                 [self.tableView.mj_footer setHidden:YES];
-            }else{
+            } else {
                 self.pageNumber ++;
                 [self.tableView.mj_footer setState:MJRefreshStateIdle];
                 [self.tableView.mj_footer setHidden:NO];
@@ -137,16 +139,33 @@ static NSString *realBetRecordCellId = @"UGRealBetRecordCell";
             [SVProgressHUD showErrorWithStatus:msg];
         }];
         
-        if ([self.tableView.mj_header isRefreshing]) {
+        if ([self.tableView.mj_header isRefreshing])
             [self.tableView.mj_header endRefreshing];
-        }
-        
-        if ([self.tableView.mj_footer isRefreshing]) {
+            
+        if ([self.tableView.mj_footer isRefreshing])
             [self.tableView.mj_footer endRefreshing];
-        }
     }];
     
 }
+
+- (void)rightBarButtonItemClick {
+    static NSDate *selectedDate = nil;
+    [self onceToken:ZJOnceToken block:^{
+        selectedDate = [NSDate date];
+    }];
+    
+    // 选择日期
+    __weakSelf_(__self);
+    UGCalenderAlertView *cav = _LoadView_from_nib_(@"UGCalenderAlertView");
+    cav.selectedDate = selectedDate;
+    cav.didSelectedDate = ^(NSDate *date) {
+        selectedDate = date;
+        __self.startDate = [date stringWithFormat:@"yyyy-MM-dd"];
+        [__self getBetsList];
+    };
+    [cav show];
+}
+
 
 #pragma mark - Table view data source
 
@@ -176,51 +195,22 @@ static NSString *realBetRecordCellId = @"UGRealBetRecordCell";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (void)rightBarButtonItemClick {
-    
-    YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:self.filterItemArray icons:nil menuWidth:CGSizeMake(120, 180) delegate:self];
-    popView.fontSize = 14;
-    popView.type = YBPopupMenuTypeDefault;
-    float y = 0;
-    if ([CMCommon isPhoneX]) {
-        y = 88;
-    }else {
-        y = 64;
-    }
-    [popView showAtPoint:CGPointMake(UGScreenW - 75, y + 5)];
-    
-}
 
 #pragma mark - YBPopupMenuDelegate
 
-- (void)ybPopupMenuDidSelectedAtIndex:(NSInteger)index ybPopupMenu:(YBPopupMenu *)ybPopupMenu {
-    if (index >= 0) {
-        if (index != self.dateIndex) {
-            self.dateIndex = index;
-            self.startDate = self.dateArray[index];
-            [self getBetsList];
-        }
-    }
-}
-
 - (void)setupTotalAmountLabelTextColor {
-    
     NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.betAmountLabel.text];
     [abStr addAttribute:NSForegroundColorAttributeName value:UGRGBColor(240, 211, 88) range:NSMakeRange(6, self.betAmountLabel.text.length - 6)];
     self.betAmountLabel.attributedText = abStr;
-    
 }
 
 - (void)setupWinAmountLabelTextColor {
-    
     NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.winAmountLabel.text];
     [abStr addAttribute:NSForegroundColorAttributeName value:UGRGBColor(202, 81, 66) range:NSMakeRange(6, self.winAmountLabel.text.length - 6)];
     self.winAmountLabel.attributedText = abStr;
-    
 }
 
 - (void)titleViewClick {
-    
     Model *model0 = [Model new];
     model0.gameName = @"真人注单";
     model0.gameType = @"real";
@@ -247,43 +237,26 @@ static NSString *realBetRecordCellId = @"UGRealBetRecordCell";
     [p showMOFSPickerViewWithCustomDataArray:@[model0, model1, model2, model3, model4] keyMapper:@"gameName" commitBlock:^(id model) {
         Model *item = (Model *)model;
         if (![self.gameType isEqualToString:item.gameType]) {
-            
             self.gameType = item.gameType;
             [self.titleView setTitle:item.gameName forState:UIControlStateNormal];
             [self getBetsList];
         }
-        
-    } cancelBlock:^{
-        
-    }];
-    
+    } cancelBlock:nil];
 }
+
+
+#pragma mark - Getter
 
 - (STButton *)titleView {
     if (_titleView == nil) {
-        
         STButton *titleButton = [[STButton alloc] init];
         titleButton.titleSideType = STButtonTypeTitleLeft;
         [titleButton setTitle:@"真人注单" forState:UIControlStateNormal];
         [titleButton setImage:[UIImage imageNamed:@"baijiantou"] forState:UIControlStateNormal];
         [titleButton addTarget:self action:@selector(titleViewClick)];
-        
         _titleView = titleButton;
-        
     }
     return _titleView;
-}
-
-- (NSMutableArray *)dateArray {
-    if (_dateArray == nil) {
-        _dateArray = [NSMutableArray array];
-        [_dateArray addObject:[CMCommon getDateStringWithLastDate:0]];
-        [_dateArray addObject:[CMCommon getDateStringWithLastDate:3]];
-        [_dateArray addObject:[CMCommon getDateStringWithLastDate:7]];
-        [_dateArray addObject:[CMCommon getDateStringWithLastDate:30]];
-    }
-    return _dateArray;
-    
 }
 
 - (NSMutableArray *)dataArray {

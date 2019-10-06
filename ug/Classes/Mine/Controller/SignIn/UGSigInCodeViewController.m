@@ -196,9 +196,9 @@
         
         NSLog(@" checkinBonusModel1.BonusSwitch= %@", checkinBonusModel1.BonusSwitch);
         
-        [mUGSignInScrFootView.fiveView setHidden:!checkinBonusModel1.BonusSwitch.boolValue];
-        [mUGSignInScrFootView.sevenView setHidden:!checkinBonusModel2.BonusSwitch.boolValue];
-        [mUGSignInScrFootView.sevenView.superview setHidden:!checkinBonusModel1.BonusSwitch.boolValue && !checkinBonusModel2.BonusSwitch.boolValue];
+        mUGSignInScrFootView.fiveView.hidden = !checkinBonusModel1.BonusSwitch.boolValue;
+        mUGSignInScrFootView.sevenView.hidden = !checkinBonusModel2.BonusSwitch.boolValue;
+        mUGSignInScrFootView.hidden = !checkinBonusModel1.BonusSwitch.boolValue && !checkinBonusModel2.BonusSwitch.boolValue;
         
         [mUGSignInScrFootView setFiveStr:[NSString stringWithFormat:@"5天礼包(%@)",checkinBonusModel1.BonusInt]];
         [mUGSignInScrFootView setSevenStr:[NSString stringWithFormat:@"7天礼包(%@)",checkinBonusModel2.BonusInt]];

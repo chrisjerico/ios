@@ -62,10 +62,8 @@
                 SANotificationEventPost(UGNotificationShowLoginView, nil);
             }
         }];
-    }else {
-        
+    } else {
         UGBetRecordViewController *betRecordVC = [[UGBetRecordViewController alloc] init];
-        
         [[UINavigationController currentNC] pushViewController:betRecordVC animated:YES];
     }
 }

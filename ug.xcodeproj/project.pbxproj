@@ -18,6 +18,8 @@
 		033177AF2338E026000D7663 /* UGBetResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = 033177AE2338E026000D7663 /* UGBetResultView.m */; };
 		0399E6FB233B9D34001E0A7F /* UGDocumentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0399E6FA233B9D34001E0A7F /* UGDocumentVC.m */; };
 		A0C64CB6AEB0CF1B2031BBB8 /* Pods_ug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6486EFF4C273BEA0AE8994DD /* Pods_ug.framework */; };
+		CF3B0E372349CDA50035AF50 /* UGCalenderAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3B0E362349CDA50035AF50 /* UGCalenderAlertView.m */; };
+		CF3B0E392349CDAC0035AF50 /* UGCalenderAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF3B0E382349CDAC0035AF50 /* UGCalenderAlertView.xib */; };
 		CFD3BEEF2347137F00FCDA6D /* category.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BE9A2347137E00FCDA6D /* category.m */; };
 		CFD3BEF02347137F00FCDA6D /* IBTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BE9C2347137E00FCDA6D /* IBTextField.m */; };
 		CFD3BEF12347137F00FCDA6D /* IBButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BE9D2347137E00FCDA6D /* IBButton.m */; };
@@ -657,6 +659,9 @@
 		0399E6FA233B9D34001E0A7F /* UGDocumentVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGDocumentVC.m; sourceTree = "<group>"; };
 		443C93C1135A8C900E47477A /* Pods-ug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ug.release.xcconfig"; path = "Target Support Files/Pods-ug/Pods-ug.release.xcconfig"; sourceTree = "<group>"; };
 		6486EFF4C273BEA0AE8994DD /* Pods_ug.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ug.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF3B0E352349CDA50035AF50 /* UGCalenderAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGCalenderAlertView.h; sourceTree = "<group>"; };
+		CF3B0E362349CDA50035AF50 /* UGCalenderAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGCalenderAlertView.m; sourceTree = "<group>"; };
+		CF3B0E382349CDAC0035AF50 /* UGCalenderAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGCalenderAlertView.xib; sourceTree = "<group>"; };
 		CFD3BE972347137E00FCDA6D /* FishUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishUtility.h; sourceTree = "<group>"; };
 		CFD3BE992347137E00FCDA6D /* IBView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBView.h; sourceTree = "<group>"; };
 		CFD3BE9A2347137E00FCDA6D /* category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = category.m; sourceTree = "<group>"; };
@@ -1793,6 +1798,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CF3B0E342349CD6F0035AF50 /* CalenderAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				CF3B0E352349CDA50035AF50 /* UGCalenderAlertView.h */,
+				CF3B0E362349CDA50035AF50 /* UGCalenderAlertView.m */,
+				CF3B0E382349CDAC0035AF50 /* UGCalenderAlertView.xib */,
+			);
+			path = CalenderAlertView;
+			sourceTree = "<group>";
+		};
 		CFD3BE962347137E00FCDA6D /* FishUtility */ = {
 			isa = PBXGroup;
 			children = (
@@ -2796,6 +2811,7 @@
 		D48224DE22A0E83C00F7DE72 /* base */ = {
 			isa = PBXGroup;
 			children = (
+				CF3B0E342349CD6F0035AF50 /* CalenderAlertView */,
 				D4C165662344B1AB005A0F12 /* UGMineSkinViewController.h */,
 				D4C165672344B1AB005A0F12 /* UGMineSkinViewController.m */,
 				D4C165682344B1AB005A0F12 /* UGMineSkinViewController.xib */,
@@ -3973,6 +3989,7 @@
 				D4E8A41122A0326C00EFE171 /* UGBetRecorddHeaderView.xib in Resources */,
 				D4C1656F2344C3C0005A0F12 /* UGMineSkinCollectionViewCell.xib in Resources */,
 				D4DE268A229BCB960072A4A2 /* icon_arrow@3x.png in Resources */,
+				CF3B0E392349CDAC0035AF50 /* UGCalenderAlertView.xib in Resources */,
 				D405B2E8227BFE5F00F8C586 /* UGLotteryCollectionViewCell.xib in Resources */,
 				D4241C43232A1A8200BF4DE1 /* UGFundsBankView.xib in Resources */,
 				D41C300D233F220000541254 /* UGYYRightMenuTableViewCell.xib in Resources */,
@@ -4276,6 +4293,7 @@
 				CFD3BF082347137F00FCDA6D /* NSObject+Utils.m in Sources */,
 				D405B38C22816D1400F8C586 /* UGSecurityCenterViewController.m in Sources */,
 				CFD3BEF12347137F00FCDA6D /* IBButton.m in Sources */,
+				CF3B0E372349CDA50035AF50 /* UGCalenderAlertView.m in Sources */,
 				D405B1FA227972C900F8C586 /* JSONHTTPClient.m in Sources */,
 				D40DE98C22F3372F00974BAF /* UITabBarController+ShowViewController.m in Sources */,
 				D45A94C2233B9F070089E86C /* UGGoogleAuthenticationThirdViewController.m in Sources */,

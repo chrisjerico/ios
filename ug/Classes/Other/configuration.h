@@ -23,8 +23,9 @@
 
 #define RSAPublicKey @"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDEJxz/vN7M0OokKGoikyDiWZJHC3asHzRWC58J3oI7VItExzPhGdh+mXh9Z482OGULOO5PhXUrQk1che47jc9OPazjbODo1wkIEyAIsjbCneS5cbCrRIIsWrWva2i18ze4N6b4gWabbyt9bRtQrGXNttnr2/ILeu2SkClmEKBEswIDAQAB"
 
-static NSString *baseServerUrl = @"http://test10.6yc.com";
+//static NSString *baseServerUrl = @"http://test10.6yc.com";
 //static NSString *baseServerUrl = @"http://test100f.fhptcdn.com";
+static NSString *baseServerUrl = @"http://103.9.230.243";
 
 static NSString *swiperVerifyUrl = @"/dist/index.html#/swiperverify?platform=native";
 

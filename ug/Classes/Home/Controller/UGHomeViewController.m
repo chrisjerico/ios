@@ -69,6 +69,8 @@
 #import "UGGameNavigationView.h"
 #import "UGFundsViewController.h"
 
+#import "UGRealBetRecordViewController.h"
+
 @interface UGHomeViewController ()<SDCycleScrollViewDelegate,UUMarqueeViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
@@ -914,12 +916,9 @@
 - (void)showNoticeInfo {
 	NSMutableString *str = [[NSMutableString alloc] init];
 	for (UGNoticeModel *notice in self.noticeTypeModel.scroll) {
-		
 		[str appendString:notice.content];
-		
 	}
 	if (str.length) {
-		
 		float y;
 		if ([CMCommon isPhoneX]) {
 			y = 160;
@@ -930,7 +929,6 @@
 		popView.content = str;
 		[popView show];
 	}
-	
 }
 
 - (void)showGameVC:(GameModel *)model {
@@ -938,17 +936,9 @@
 		SANotificationEventPost(UGNotificationShowLoginView, nil);
 		return;
 	}
-	
-	
 	if ([model.docType intValue] == 1) {
-		
 		UGDocumentVC * vc = [[UGDocumentVC alloc] initWithModel:model];
-		
-		
-		//		vc.allGames = self.
-		
 		[self.navigationController pushViewController: vc animated:true];
-		
 		return;
 	}
 	if (model.game_id) {
