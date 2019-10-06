@@ -11,8 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UGMineMenuCollectionViewCell : UICollectionViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
-@property (nonatomic, strong) NSString *imageName;
 @property (nonatomic, strong) NSString *menuName;
 
 @property (nonatomic, assign) NSInteger badgeNum;

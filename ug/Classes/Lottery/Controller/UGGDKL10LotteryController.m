@@ -101,7 +101,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = UGBackgroundColor;
+    self.view.backgroundColor =  [UIColor whiteColor];
     self.chipButton.layer.cornerRadius = 5;
     self.chipButton.layer.masksToBounds = YES;
     self.betButton.layer.cornerRadius = 5;

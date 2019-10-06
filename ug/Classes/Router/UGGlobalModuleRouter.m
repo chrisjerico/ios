@@ -23,7 +23,7 @@
 #import "UGYubaoViewController.h"
 #import "UGSigInCodeViewController.h"
 #import "UGPromotionIncomeController.h"
-
+#import "UGNavigationController.h"
 
 @implementation UGGlobalModuleRouter
 // 在load方法中自动注册，在主工程中不用写任何代码。
@@ -49,7 +49,8 @@
         UIImage *image = [UIImage imageNamed:@"shouyesel"];
         image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         viewController.tabBarItem.selectedImage = image;
-        return viewController;
+        UGNavigationController *nvc = [[UGNavigationController alloc]initWithRootViewController:viewController];
+        return nvc;
     }];
     
     //注册 /changLong 长龙助手
@@ -61,7 +62,8 @@
         UIImage *image = [UIImage imageNamed:@"changlong"];
         image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         viewController.tabBarItem.selectedImage = image;
-        return viewController;
+         UGNavigationController *nvc = [[UGNavigationController alloc]initWithRootViewController:viewController];
+        return nvc;
 
     }];
     
@@ -74,7 +76,8 @@
         UIImage *image = [UIImage imageNamed:@"datongsel"];
         image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         viewController.tabBarItem.selectedImage = image;
-        return viewController;
+        UGNavigationController *nvc = [[UGNavigationController alloc]initWithRootViewController:viewController];
+        return nvc;
     }];
     
     //注册 /activity 优惠活动
@@ -86,7 +89,8 @@
         UIImage *image = [UIImage imageNamed:@"youhui1sel"];
         image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         viewController.tabBarItem.selectedImage = image;
-        return viewController;
+        UGNavigationController *nvc = [[UGNavigationController alloc]initWithRootViewController:viewController];
+        return nvc;
     }];
     
     //注册 /chatRoomList 聊天室
@@ -99,6 +103,7 @@
         UIImage *image = [UIImage imageNamed:@"liaotiansel"];
         image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         viewController.tabBarItem.selectedImage = image;
+        
         return viewController;
     }];
     
@@ -112,7 +117,8 @@
         UIImage *image = [UIImage imageNamed:@"zdgl"];
         image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         viewController.tabBarItem.selectedImage = image;
-        return viewController;
+        UGNavigationController *nvc = [[UGNavigationController alloc]initWithRootViewController:viewController];
+        return nvc;
     }];
     
     //注册 /user 我的
@@ -124,7 +130,8 @@
         UIImage *image = [UIImage imageNamed:@"wodesel"];
         image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         viewController.tabBarItem.selectedImage = image;
-        return viewController;
+        UGNavigationController *nvc = [[UGNavigationController alloc]initWithRootViewController:viewController];
+        return nvc;
     }];
     
     //注册 /task 任务中心
@@ -137,7 +144,8 @@
         UIImage *image = [UIImage imageNamed:@"renwusel"];
         image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         viewController.tabBarItem.selectedImage = image;
-        return viewController;
+        UGNavigationController *nvc = [[UGNavigationController alloc]initWithRootViewController:viewController];
+        return nvc;
     }];
     
     //注册 /securityCenter 安全中心
@@ -149,7 +157,8 @@
         UIImage *image = [UIImage imageNamed:@"ziyuan"];
         image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         viewController.tabBarItem.selectedImage = image;
-        return viewController;
+        UGNavigationController *nvc = [[UGNavigationController alloc]initWithRootViewController:viewController];
+        return nvc;
     }];
     
     //注册 /funds 资金管理
@@ -161,7 +170,8 @@
         UIImage *image = [UIImage imageNamed:@"jinlingyingcaiwangtubiaosel"];
         image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         viewController.tabBarItem.selectedImage = image;
-        return viewController;
+        UGNavigationController *nvc = [[UGNavigationController alloc]initWithRootViewController:viewController];
+        return nvc;
     }];
     
     //注册 /message 站内信
@@ -173,7 +183,8 @@
         UIImage *image = [UIImage imageNamed:@"zhanneixin"];
         image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         viewController.tabBarItem.selectedImage = image;
-        return viewController;
+        UGNavigationController *nvc = [[UGNavigationController alloc]initWithRootViewController:viewController];
+        return nvc;
     }];
     
     //注册 /conversion 额度转换
@@ -186,7 +197,8 @@
         UIImage *image = [UIImage imageNamed:@"change"];
         image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         viewController.tabBarItem.selectedImage = image;
-        return viewController;
+        UGNavigationController *nvc = [[UGNavigationController alloc]initWithRootViewController:viewController];
+        return nvc;
     }];
 
     //注册 /banks 银行卡
@@ -199,7 +211,8 @@
         UIImage *image = [UIImage imageNamed:@"yinhangqia"];
         image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         viewController.tabBarItem.selectedImage = image;
-        return viewController;
+        UGNavigationController *nvc = [[UGNavigationController alloc]initWithRootViewController:viewController];
+        return nvc;
     }];
     
     //注册 /yuebao 利息宝
@@ -212,7 +225,8 @@
         UIImage *image = [UIImage imageNamed:@"lixibao"];
         image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         viewController.tabBarItem.selectedImage = image;
-        return viewController;
+        UGNavigationController *nvc = [[UGNavigationController alloc]initWithRootViewController:viewController];
+        return nvc;
     }];
     
     //注册 /Sign 签到
@@ -224,7 +238,8 @@
         UIImage *image = [UIImage imageNamed:@"qiandaosel"];
         image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         viewController.tabBarItem.selectedImage = image;
-        return viewController;
+        UGNavigationController *nvc = [[UGNavigationController alloc]initWithRootViewController:viewController];
+        return nvc;
     }];
     
     //注册 /referrer 推广收益
@@ -236,7 +251,8 @@
         UIImage *image = [UIImage imageNamed:@"shouyi1sel"];
         image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         viewController.tabBarItem.selectedImage = image;
-        return viewController;
+        UGNavigationController *nvc = [[UGNavigationController alloc]initWithRootViewController:viewController];
+        return nvc;
     }];
     
     

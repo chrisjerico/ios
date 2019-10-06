@@ -48,7 +48,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-     [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
     _amountDataArray = [NSMutableArray new];
     _channelDataArray = [NSArray new];
     _tableDataArray = [NSMutableArray new];
@@ -147,8 +146,8 @@
             //==============================================================
             [self.label  mas_remakeConstraints:^(MASConstraintMaker *make)
              {
-                 make.left.equalTo(self.view.mas_left).with.offset(10);
-                 make.right.equalTo(self.view.mas_right).with.offset(-10);
+                 make.left.equalTo(self.view.mas_left).with.offset(30);
+                 make.right.equalTo(self.view.mas_right).with.offset(-30);
                  make.top.mas_equalTo(self.collectionView.mas_bottom).offset(10);
                  make.width.mas_equalTo(UGScreenW-40);
                  
@@ -169,16 +168,16 @@
                  
              }];
             
-            // Initialization code
-            CALayer *layer= self.bg_label.layer;
-            //是否设置边框以及是否可见
-            [layer setMasksToBounds:YES];
-            //设置边框圆角的弧度
-            [layer setCornerRadius:5];
-            //设置边框线的宽
-            [layer setBorderWidth:1];
-            //设置边框线的颜色
-            [layer setBorderColor:UGRGBColor(231, 231, 231).CGColor];
+//            // Initialization code
+//            CALayer *layer= self.bg_label.layer;
+//            //是否设置边框以及是否可见
+//            [layer setMasksToBounds:YES];
+//            //设置边框圆角的弧度
+//            [layer setCornerRadius:5];
+//            //设置边框线的宽
+//            [layer setBorderWidth:1];
+//            //设置边框线的颜色
+//            [layer setBorderColor:UGRGBColor(231, 231, 231).CGColor];
             //==============================================================
             [self.tiplabel  mas_remakeConstraints:^(MASConstraintMaker *make)
              {
@@ -313,7 +312,7 @@
         label.textAlignment = NSTextAlignmentLeft;
 //        label.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
         label.font = [UIFont systemFontOfSize:14];
-        label.textColor = [UIColor redColor];
+        label.textColor = [[UGSkinManagers shareInstance] setNavbgColor];
         label.backgroundColor = [UIColor whiteColor];
         label.numberOfLines = 0;
         label.text = @"";
@@ -330,7 +329,7 @@
         label.textAlignment = NSTextAlignmentLeft;
 //        label.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
         label.font = [UIFont systemFontOfSize:14];
-        label.textColor = [UIColor blackColor];
+        label.textColor =  [[UGSkinManagers shareInstance] setNavbgColor];
         label.backgroundColor = [UIColor whiteColor];
         label.numberOfLines = 0;
         label.text = @"";
@@ -365,16 +364,14 @@
         // 按钮的正常状态
         [button setTitle:@"请选择银行" forState:UIControlStateNormal];
         // 设置按钮的背景色
-        button.backgroundColor = [UIColor whiteColor];
+        button.backgroundColor = [[UGSkinManagers shareInstance] setNavbgColor];
         
         // 设置正常状态下按钮文字的颜色，如果不写其他状态，默认都是用这个文字的颜色
-        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
         // 设置按下状态文字的颜色
-        [button setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
-        
-        // 设置按钮的风格颜色,只有titleColor没有设置的时候才有用
-        [button setTintColor:[UIColor whiteColor]];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
         
         // titleLabel：UILabel控件
         button.titleLabel.font = [UIFont systemFontOfSize:16];
@@ -389,7 +386,7 @@
         //设置边框线的宽
         [layer setBorderWidth:1];
         //设置边框线的颜色
-        [layer setBorderColor:UGRGBColor(231, 231, 231).CGColor];
+        [layer setBorderColor:[[UGSkinManagers shareInstance] setNavbgColor].CGColor];
         
         
         [self.mUIScrollView addSubview:button ];
@@ -421,16 +418,14 @@
         // 按钮的正常状态
         [button setTitle:@"开始充值" forState:UIControlStateNormal];
         // 设置按钮的背景色
-        button.backgroundColor = UGRGBColor(76, 149, 236.0);
+        button.backgroundColor = [[UGSkinManagers shareInstance] setNavbgColor];
         
         // 设置正常状态下按钮文字的颜色，如果不写其他状态，默认都是用这个文字的颜色
-        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
         // 设置按下状态文字的颜色
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
         
-        // 设置按钮的风格颜色,只有titleColor没有设置的时候才有用
-        [button setTintColor:[UIColor whiteColor]];
         
         // titleLabel：UILabel控件
         button.titleLabel.font = [UIFont systemFontOfSize:16];
@@ -445,7 +440,7 @@
         //设置边框线的宽
         [layer setBorderWidth:1];
         //设置边框线的颜色
-        [layer setBorderColor:UGRGBColor(231, 231, 231).CGColor];
+        [layer setBorderColor:[[UGSkinManagers shareInstance] setNavbgColor].CGColor];
         
         
         [self.submit_View addSubview:button ];
@@ -501,7 +496,11 @@
     UGDepositDetailsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UGDepositDetailsTableViewCell" forIndexPath:indexPath];
    UGchannelModel *channelModel = [_tableDataArray objectAtIndex:indexPath.row];
     
+   
+    
     cell.nameStr = channelModel.payeeName;
+    
+    
     
     NSInteger row = [indexPath row];
     

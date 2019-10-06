@@ -9,7 +9,7 @@
 #import "UGMineMenuCollectionViewCell.h"
 
 @interface UGMineMenuCollectionViewCell ()
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 
 @end
@@ -22,11 +22,6 @@
     
 }
 
-- (void)setImageName:(NSString *)imageName {
-    _imageName = imageName;
-    self.imageView.image = [UIImage imageNamed:imageName];
-    
-}
 
 - (void)setMenuName:(NSString *)menuName {
     _menuName = menuName;

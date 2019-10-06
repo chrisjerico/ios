@@ -618,7 +618,6 @@
 		D4EE8F9323421C4E006FA0E2 /* UGSkinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4EE8F9223421C4E006FA0E2 /* UGSkinViewController.m */; };
 		D4EE8F97234222A8006FA0E2 /* UGSkinCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4EE8F95234222A8006FA0E2 /* UGSkinCollectionViewCell.m */; };
 		D4EE8F98234222A8006FA0E2 /* UGSkinCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4EE8F96234222A8006FA0E2 /* UGSkinCollectionViewCell.xib */; };
-		D4EE8F9C23422CC8006FA0E2 /* UINavigationBar+handle.m in Sources */ = {isa = PBXBuildFile; fileRef = D4EE8F9B23422CC8006FA0E2 /* UINavigationBar+handle.m */; };
 		D4EE8FA523424E5F006FA0E2 /* UIImage+YYgradientImage.m in Sources */ = {isa = PBXBuildFile; fileRef = D4EE8FA423424E5F006FA0E2 /* UIImage+YYgradientImage.m */; };
 		D4F0477622E9E22E008EBB56 /* UGLinkNumCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F0477422E9E22E008EBB56 /* UGLinkNumCollectionViewCell.m */; };
 		D4F0477722E9E22E008EBB56 /* UGLinkNumCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4F0477522E9E22E008EBB56 /* UGLinkNumCollectionViewCell.xib */; };
@@ -1738,8 +1737,6 @@
 		D4EE8F94234222A8006FA0E2 /* UGSkinCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGSkinCollectionViewCell.h; sourceTree = "<group>"; };
 		D4EE8F95234222A8006FA0E2 /* UGSkinCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGSkinCollectionViewCell.m; sourceTree = "<group>"; };
 		D4EE8F96234222A8006FA0E2 /* UGSkinCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGSkinCollectionViewCell.xib; sourceTree = "<group>"; };
-		D4EE8F9A23422CC8006FA0E2 /* UINavigationBar+handle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+handle.h"; sourceTree = "<group>"; };
-		D4EE8F9B23422CC8006FA0E2 /* UINavigationBar+handle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+handle.m"; sourceTree = "<group>"; };
 		D4EE8FA323424E5F006FA0E2 /* UIImage+YYgradientImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+YYgradientImage.h"; sourceTree = "<group>"; };
 		D4EE8FA423424E5F006FA0E2 /* UIImage+YYgradientImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+YYgradientImage.m"; sourceTree = "<group>"; };
 		D4F0477322E9E22E008EBB56 /* UGLinkNumCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLinkNumCollectionViewCell.h; sourceTree = "<group>"; };
@@ -2333,7 +2330,6 @@
 				D4145A7522B3BC1900D8165F /* CMNetwork */,
 				D4A1E905232BC3AC0045F5B4 /* CMCommon */,
 				D43555852334CDCE00515704 /* BAWebViewController */,
-				D4EE8F9923422CC8006FA0E2 /* NavigationBarHandle */,
 				D41FF93023332E5600FE3F70 /* NullSafe */,
 				D4241C36232914D100BF4DE1 /* Extenslon */,
 				D4185E31231D2E1A008DB5F2 /* MOFSPickerManager */,
@@ -2823,7 +2819,6 @@
 				D405B38D22817A3F00F8C586 /* UGModifyLoginPwdController.h */,
 				D405B38E22817A3F00F8C586 /* UGModifyLoginPwdController.m */,
 				D405B39022817A7C00F8C586 /* UGModifyPayPwdController.h */,
-				D405B39122817A7C00F8C586 /* UGModifyPayPwdController.m */,
 				D405B39322817AB700F8C586 /* UGModifyLoginPlaceController.h */,
 				D405B39422817AB700F8C586 /* UGModifyLoginPlaceController.m */,
 				D422D67722D997AA008E7065 /* UGSafety.storyboard */,
@@ -2836,6 +2831,7 @@
 				D463B4EA2284736200EAC0F7 /* UGBindCardViewController.storyboard */,
 				D40FA8BB229904D9003E596F /* UGBankCardInfoController.h */,
 				D40FA8BC229904D9003E596F /* UGBankCardInfoController.m */,
+				D405B39122817A7C00F8C586 /* UGModifyPayPwdController.m */,
 				D40D32C12297BED600B89398 /* UGSetupPayPwdController.h */,
 				D40D32C22297BED600B89398 /* UGSetupPayPwdController.m */,
 				D41246B42285C64C006881E2 /* UGUserInfoViewController.h */,
@@ -3804,15 +3800,6 @@
 			path = Skin;
 			sourceTree = "<group>";
 		};
-		D4EE8F9923422CC8006FA0E2 /* NavigationBarHandle */ = {
-			isa = PBXGroup;
-			children = (
-				D4EE8F9A23422CC8006FA0E2 /* UINavigationBar+handle.h */,
-				D4EE8F9B23422CC8006FA0E2 /* UINavigationBar+handle.m */,
-			);
-			path = NavigationBarHandle;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -4503,7 +4490,6 @@
 				D4241C39232914FE00BF4DE1 /* UIView+Extension.m in Sources */,
 				D405B1B2227972AD00F8C586 /* MKAnnotationView+WebCache.m in Sources */,
 				D405B1F8227972C900F8C586 /* JSONModelArray.m in Sources */,
-				D4EE8F9C23422CC8006FA0E2 /* UINavigationBar+handle.m in Sources */,
 				D405B1FC227972C900F8C586 /* JSONModel+networking.m in Sources */,
 				D45A94BD233B8AF90089E86C /* UGGoogleAuthenticationSecondViewController.m in Sources */,
 				D40FA8D3229938FA003E596F /* ZZCircleProgress.m in Sources */,

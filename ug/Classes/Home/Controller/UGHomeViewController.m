@@ -68,7 +68,7 @@
 
 #import "UGGameNavigationView.h"
 #import "UGFundsViewController.h"
-#import "UINavigationBar+handle.h"
+
 
 
 @interface UGHomeViewController ()<SDCycleScrollViewDelegate,UUMarqueeViewDelegate>
@@ -127,27 +127,47 @@
 }
 
 -(void)skin{
-	[self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
-	[self.rollingView setBackgroundColor:[[UGSkinManagers shareInstance]setbgColor]];
-	[self.leftwardMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
-	[self.gameTypeView setBackgroundColor:[UIColor clearColor]];
-	[self.rankingView setBackgroundColor:[UIColor clearColor]];
-	[self getCustomGameList];
+
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+ 
+
+	[self.rankingView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
+    [self.upwardMultiMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
+    [self.rollingView setBackgroundColor:[[UGSkinManagers shareInstance]sethomeContentColor]];
+    [self.gameNavigationView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
+     [self.leftwardMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
+     [self.gameTypeView setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
+     self.gameNavigationView.layer.borderColor = [[UGSkinManagers shareInstance] sethomeContentBorderColor].CGColor;
     
-    [self.navigationController.navigationBar navBarBackGroundColor:[[UGSkinManagers shareInstance] setNavbgColor] image:nil isOpaque:YES];//颜色
-    [self.gameNavigationView setBackgroundColor:[[UGSkinManagers shareInstance] setCellbgColor]];
-	
-	
+    [self getCustomGameList];
 }
 
 - (void)viewDidLoad {
-	
+
 	[super viewDidLoad];
-	
+    
+    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
+        
+        [self skin];
+    });
+
+
+    
 	self.gameNavigationView.layer.cornerRadius = 8;
 	self.gameNavigationView.layer.masksToBounds = true;
+    self.gameNavigationView.layer.borderWidth = 1;
+    self.gameNavigationView.layer.borderColor = [[UGSkinManagers shareInstance] sethomeContentBorderColor].CGColor;
     
-    [self.gameNavigationView setBackgroundColor:[[UGSkinManagers shareInstance] setCellbgColor]];
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+ 
+   
+    [self.rankingView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
+    [self.upwardMultiMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
+    [self.rollingView setBackgroundColor:[[UGSkinManagers shareInstance]sethomeContentColor]];
+    [self.gameNavigationView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
+    [self.leftwardMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
+     [self.gameTypeView setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
+    
 	[[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:[[UGSkinManagers shareInstance] setTabbgColor]]];
 	
 	[[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[[UGSkinManagers shareInstance] settabNOSelectColor], NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
@@ -161,10 +181,7 @@
 	
 	[self setupSubView];
 	
-	SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-		
-		[self skin];
-	});
+	
 	
 	SANotificationEventSubscribe(UGNotificationTryPlay, self, ^(typeof (self) self, id obj) {
 		[self tryPlayClick];
@@ -184,7 +201,7 @@
 			self.titleView.showLoginView = YES;
 			UGUserModel.currentUser = nil;
 			[self.tabBarController setSelectedIndex:0];
-			[self loginClick];
+			
 			
 		}];
 	});
@@ -316,13 +333,14 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-	[self.leftwardMarqueeView start];
-	[self.upwardMultiMarqueeView start];
+//    [self.leftwardMarqueeView start];
+//    [self.upwardMultiMarqueeView start];
 	
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
 	[self.leftwardMarqueeView pause];//fixbug  发热  掉电快
+    [self.upwardMultiMarqueeView pause];//fixbug  发热  掉电快
 	self.initSubview = YES;
 }
 
@@ -806,12 +824,14 @@
 		UGRankModel *rank = self.rankArray[index];
 		UILabel *content = [itemView viewWithTag:1001];
 		content.text = rank.username;
+        [content setTextColor:UIColor.blackColor];
 		
 		UILabel *coin = [itemView viewWithTag:1002];
 		coin.text = [NSString stringWithFormat:@"%@元",rank.coin];
 		
 		UILabel *game = [itemView viewWithTag:1004];
 		game.text = rank.type;
+   
 		
 		UIImageView *icon = [itemView viewWithTag:1003];
 		NSString *imgName = nil;
@@ -827,6 +847,8 @@
 			icon.hidden = YES;
 		}
 		icon.image = [UIImage imageNamed:imgName];
+        
+        [itemView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
 		
 	}
 }

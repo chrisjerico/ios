@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zhudanjilu" translatesAutoresizingMaskIntoConstraints="NO" id="rv4-Tt-z3b">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rv4-Tt-z3b">
                         <rect key="frame" x="10" y="9" width="26" height="26"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="26" id="OMc-1X-Ri1"/>
@@ -33,7 +33,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jiantouyou" translatesAutoresizingMaskIntoConstraints="NO" id="ful-Ev-gmE">
-                        <rect key="frame" x="299" y="14" width="16" height="16"/>
+                        <rect key="frame" x="291" y="10" width="24" height="24"/>
                     </imageView>
                     <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hot" translatesAutoresizingMaskIntoConstraints="NO" id="V0X-UB-mPn">
                         <rect key="frame" x="276" y="0.0" width="44" height="43.5"/>
@@ -67,6 +67,5 @@
     <resources>
         <image name="hot" width="25" height="25"/>
         <image name="jiantouyou" width="24" height="24"/>
-        <image name="zhudanjilu" width="50" height="49"/>
     </resources>
 </document>

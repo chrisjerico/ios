@@ -23,7 +23,19 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-      [self setBackgroundColor: [[UGSkinManagers shareInstance] setCellbgColor]];
+      [self setBackgroundColor:[UIColor whiteColor]];
+    
+    CALayer *layer= self.layer;
+    //是否设置边框以及是否可见
+    [layer setMasksToBounds:YES];
+    //设置边框线的宽
+    [layer setBorderWidth:1];
+    //设置边框线的颜色
+    
+    [layer setBorderColor:UGRGBColor(231, 231, 231).CGColor];
+    
+
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

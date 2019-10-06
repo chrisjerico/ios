@@ -26,15 +26,10 @@
                         <constraint firstAttribute="height" constant="30" id="bRi-1R-859"/>
                         <constraint firstAttribute="width" constant="140" id="fWt-hP-8yJ"/>
                     </constraints>
-                    <state key="normal" title="Button"/>
+                    <state key="normal" title="签到记录">
+                        <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
                 </button>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="signInBtn" translatesAutoresizingMaskIntoConstraints="NO" id="cS5-Ze-pM4">
-                    <rect key="frame" x="324" y="61" width="90" height="30"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="30" id="IRY-Mz-57m"/>
-                        <constraint firstAttribute="width" constant="90" id="K5k-5f-bx1"/>
-                    </constraints>
-                </imageView>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P9E-w3-5Wf">
                     <rect key="frame" x="0.0" y="91" width="414" height="771"/>
                     <subviews>
@@ -566,13 +561,11 @@
             </subviews>
             <color key="backgroundColor" red="0.4337427020072937" green="0.52625405788421631" blue="0.93333792686462402" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
-                <constraint firstItem="cS5-Ze-pM4" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="17" id="Gea-2N-P4w"/>
                 <constraint firstItem="P9E-w3-5Wf" firstAttribute="trailing" secondItem="X9k-dU-LhR" secondAttribute="trailing" id="O34-mc-RDA"/>
                 <constraint firstItem="P9E-w3-5Wf" firstAttribute="bottom" secondItem="Q5M-cg-NOt" secondAttribute="bottom" id="b6C-Ev-iWR"/>
                 <constraint firstItem="X9k-dU-LhR" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="fEg-yF-FGJ"/>
                 <constraint firstItem="X9k-dU-LhR" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="17" id="jAy-N2-xnq"/>
                 <constraint firstItem="P9E-w3-5Wf" firstAttribute="top" secondItem="X9k-dU-LhR" secondAttribute="bottom" id="jxR-o9-6X8"/>
-                <constraint firstItem="cS5-Ze-pM4" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="oqC-j0-Kvt"/>
                 <constraint firstItem="P9E-w3-5Wf" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="xw2-GI-OtA"/>
                 <constraint firstItem="P9E-w3-5Wf" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="z56-VU-Kxt"/>
             </constraints>
@@ -583,7 +576,6 @@
     <resources>
         <image name="award5" width="34" height="34"/>
         <image name="gold" width="32.5" height="23.5"/>
-        <image name="signInBtn" width="102" height="34"/>
         <image name="signIn_bg" width="258" height="314"/>
         <image name="signIn_grey" width="47" height="16.5"/>
         <image name="sign_convert" width="138.5" height="22"/>

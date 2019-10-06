@@ -41,7 +41,7 @@
         
     }else {
         self.titleLabel.hidden = NO;
-        self.layer.borderColor = [UIColor blackColor].CGColor;
+        self.layer.borderColor =  UGRGBColor(218, 218, 218).CGColor;
     }
 }
 

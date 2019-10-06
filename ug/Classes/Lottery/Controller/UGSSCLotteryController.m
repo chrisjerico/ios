@@ -101,7 +101,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = UGBackgroundColor;
+    self.view.backgroundColor = [UIColor whiteColor];
     self.chipButton.layer.cornerRadius = 5;
     self.chipButton.layer.masksToBounds = YES;
     self.betButton.layer.cornerRadius = 5;
@@ -572,7 +572,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             cell.title = self.preNumArray[indexPath.row];
             cell.showAdd = NO;
             cell.showBorder = NO;
-            return cell;
+            return cell;  
         }else {
             UGLotterySubResultCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:lotterySubResultCellid forIndexPath:indexPath];
             cell.title = self.preNumSxArray[indexPath.row];

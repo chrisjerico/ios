@@ -41,7 +41,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"签到";
-    self.view.backgroundColor = UGRGBColor(89, 109, 191);
+//    self.view.backgroundColor = UGRGBColor(89, 109, 191);
+     self.view.backgroundColor = [[UGSkinManagers shareInstance] setbgColor];
     _collectionDataArray = [NSMutableArray new];
     _historyDataArray = [NSMutableArray new];
      [self getCheckinListData];
@@ -93,7 +94,10 @@
     if (mUGSignInScrHeaderView == nil) {
         mUGSignInScrHeaderView = [[UGSignInScrHeaderView alloc] initView];
         [mUGSignInScrHeaderView setFrame:CGRectMake(0, 0,UGScreenW, 95.0)];
+        
+        [mUGSignInScrHeaderView.titleBgView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
        
+         [mUGSignInScrHeaderView setBackgroundColor:[UIColor clearColor]];
     }
     [mUIScrollView addSubview:mUGSignInScrHeaderView];
     //-日期列表======================================
@@ -139,7 +143,7 @@
         // 按钮的正常状态
         [mUGSignInButton setTitle:@"马上签到" forState:UIControlStateNormal];
         // 设置按钮的背景色
-        mUGSignInButton.backgroundColor = UGRGBColor(111, 126, 233);
+        mUGSignInButton.backgroundColor = [[UGSkinManagers shareInstance] setNavbgColor];
         // 设置正常状态下按钮文字的颜色，如果不写其他状态，默认都是用这个文字的颜色
         [mUGSignInButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         // titleLabel：UILabel控件

@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 //绘图
 -(UIImage*)imageChangeColor:(UIColor*)color;
+
+- (UIImage *)qmui_imageWithTintColor:(UIColor *)tintColor;
 @end
 
 NS_ASSUME_NONNULL_END

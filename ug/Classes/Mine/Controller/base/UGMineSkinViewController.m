@@ -83,11 +83,8 @@
     [self.userInfoView setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
     _progressLayer.strokeColor = [[UGSkinManagers shareInstance] setMineProgressViewColor].CGColor;
      [self.progressView.layer addSublayer:self.progressLayer];
-    //设置皮肤
-    [self.view setBackgroundColor:UGRGBColor(231, 230, 230)];
-    [self.userInfoView setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
-    
-    
+     [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+
     skitType = [[UGSkinManagers shareInstance] skitType];
     
     if ([skitType isEqualToString:@"经典"]) {
@@ -160,7 +157,7 @@
     [self getDateSource];
     
     //设置皮肤
-    [self.view setBackgroundColor:UGRGBColor(231, 230, 230)];
+    [self.view setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
     [self.userInfoView setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
     
   
@@ -215,6 +212,12 @@ BOOL isOk = NO;
     [self skinFirstdataSource];
 }
 
+
+-(UIImage *)retureRandomThemeColorImage:(NSString *)imageName{
+    UIImage *image = [UIImage imageNamed:imageName];
+    UIImage *afterImage = [image qmui_imageWithTintColor:[UGSkinManagers randomThemeColor]];
+    return afterImage;
+}
 -(void)skinFirstdataSource{
     //经典+石榴红
     self.menuNameArray = [NSMutableArray array];
@@ -222,46 +225,52 @@ BOOL isOk = NO;
     NSLog(@"isAgent= %d",user.isAgent);
     if (user.isAgent) {
 
-        [self.menuNameArray addObject:@{@"title" : @"存款" , @"imgName" : @"chongzhi"}];
-        [self.menuNameArray addObject:@{@"title" : @"取款" , @"imgName" : @"tixian"}];
-        [self.menuNameArray addObject:@{@"title" : @"额度转换" , @"imgName" : @"change"}];
+       
+        [self.menuNameArray addObject:@{@"title" : @"存款" , @"imgName" : [self retureRandomThemeColorImage:@"chongzhi"] }];
+        [self.menuNameArray addObject:@{@"title" : @"取款" , @"imgName" :  [self retureRandomThemeColorImage:@"tixian"]}];
+        [self.menuNameArray addObject:@{@"title" : @"利息宝" , @"imgName" : [self retureRandomThemeColorImage:@"lixibao"]}];
         
-        [self.menuNameArray addObject:@{@"title" : @"推荐收益" , @"imgName" : @"shouyi1sel"}];
-        [self.menuNameArray addObject:@{@"title" : @"活动彩金" , @"imgName" : @"zdgl"}];
-        [self.menuNameArray addObject:@{@"title" : @"利息宝" , @"imgName" : @"lixibao"}];
-        [self.menuNameArray addObject:@{@"title" : @"在线客服" , @"imgName" : @"zaixiankefu"}];
+        [self.menuNameArray addObject:@{@"title" : @"在线客服" , @"imgName" : [self retureRandomThemeColorImage:@"zaixiankefu"]}];
+        [self.menuNameArray addObject:@{@"title" : @"银行卡管理" , @"imgName" : [self retureRandomThemeColorImage:@"yinhangqia"]}];
+        [self.menuNameArray addObject:@{@"title" : @"彩票注单记录" , @"imgName" :[self retureRandomThemeColorImage:@"zdgl"]}];
         
-        [self.menuNameArray addObject:@{@"title" : @"彩票注单记录" , @"imgName" : @"zdgl"}];
+         [self.menuNameArray addObject:@{@"title" : @"其他注单记录" , @"imgName" :[self retureRandomThemeColorImage:@"zdgl"]}];
+         [self.menuNameArray addObject:@{@"title" : @"额度转换" , @"imgName" : [self retureRandomThemeColorImage:@"change"]}];
+         [self.menuNameArray addObject:@{@"title" : @"长龙助手" , @"imgName" : [self retureRandomThemeColorImage:@"changlong"]}];
         
-        [self.menuNameArray addObject:@{@"title" : @"银行卡管理" , @"imgName" : @"yinhangqia"}];
-        [self.menuNameArray addObject:@{@"title" : @"安全中心" , @"imgName" : @"ziyuan"}];
-        [self.menuNameArray addObject:@{@"title" : @"个人信息" , @"imgName" : @"gerenzhongxinxuanzhong"}];
-        
-        [self.menuNameArray addObject:@{@"title" : @"长龙助手" , @"imgName" : @"changlong"}];
-        [self.menuNameArray addObject:@{@"title" : @"站内信" , @"imgName" : @"zhanneixin"}];
-        [self.menuNameArray addObject:@{@"title" : @"建议反馈" , @"imgName" : @"yijian"}];
+        [self.menuNameArray addObject:@{@"title" : @"推荐收益" , @"imgName" : [self retureRandomThemeColorImage:@"shouyi1sel"]}];
+        [self.menuNameArray addObject:@{@"title" : @"安全中心" , @"imgName" : [self retureRandomThemeColorImage:@"ziyuan"]}];
+        [self.menuNameArray addObject:@{@"title" : @"站内信" , @"imgName" :[self retureRandomThemeColorImage:@"zhanneixin"]}];
+     
+        [self.menuNameArray addObject:@{@"title" : @"个人信息" , @"imgName" : [self retureRandomThemeColorImage:@"gerenzhongxinxuanzhong"]}];
+        [self.menuNameArray addObject:@{@"title" : @"建议反馈" , @"imgName" :[self retureRandomThemeColorImage:@"yijian"]}];
+        [self.menuNameArray addObject:@{@"title" : @"活动彩金" , @"imgName" : [self retureRandomThemeColorImage:@"zdgl"]}];
+    
+    
+       
 
        
     } else {
         
-        [self.menuNameArray addObject:@{@"title" : @"存款" , @"imgName" : @"chongzhi"}];
-        [self.menuNameArray addObject:@{@"title" : @"取款" , @"imgName" : @"tixian"}];
-        [self.menuNameArray addObject:@{@"title" : @"额度转换" , @"imgName" : @"change"}];
+        [self.menuNameArray addObject:@{@"title" : @"存款" , @"imgName" : [self retureRandomThemeColorImage:@"chongzhi"] }];
+        [self.menuNameArray addObject:@{@"title" : @"取款" , @"imgName" :  [self retureRandomThemeColorImage:@"tixian"]}];
+        [self.menuNameArray addObject:@{@"title" : @"利息宝" , @"imgName" : [self retureRandomThemeColorImage:@"lixibao"]}];
         
-        [self.menuNameArray addObject:@{@"title" : @"申请代理" , @"imgName" : @"shouyi"}];
-        [self.menuNameArray addObject:@{@"title" : @"活动彩金" , @"imgName" : @"zdgl"}];
-        [self.menuNameArray addObject:@{@"title" : @"利息宝" , @"imgName" : @"lixibao"}];
-        [self.menuNameArray addObject:@{@"title" : @"在线客服" , @"imgName" : @"zaixiankefu"}];
+        [self.menuNameArray addObject:@{@"title" : @"在线客服" , @"imgName" : [self retureRandomThemeColorImage:@"zaixiankefu"]}];
+        [self.menuNameArray addObject:@{@"title" : @"银行卡管理" , @"imgName" : [self retureRandomThemeColorImage:@"yinhangqia"]}];
+        [self.menuNameArray addObject:@{@"title" : @"彩票注单记录" , @"imgName" :[self retureRandomThemeColorImage:@"zdgl"]}];
         
-        [self.menuNameArray addObject:@{@"title" : @"彩票注单记录" , @"imgName" : @"zdgl"}];
+        [self.menuNameArray addObject:@{@"title" : @"其他注单记录" , @"imgName" :[self retureRandomThemeColorImage:@"zdgl"]}];
+        [self.menuNameArray addObject:@{@"title" : @"额度转换" , @"imgName" : [self retureRandomThemeColorImage:@"change"]}];
+        [self.menuNameArray addObject:@{@"title" : @"长龙助手" , @"imgName" : [self retureRandomThemeColorImage:@"changlong"]}];
         
-        [self.menuNameArray addObject:@{@"title" : @"银行卡管理" , @"imgName" : @"yinhangqia"}];
-        [self.menuNameArray addObject:@{@"title" : @"安全中心" , @"imgName" : @"ziyuan"}];
-        [self.menuNameArray addObject:@{@"title" : @"个人信息" , @"imgName" : @"gerenzhongxinxuanzhong"}];
+        [self.menuNameArray addObject:@{@"title" : @"申请代理" , @"imgName" : [self retureRandomThemeColorImage:@"shouyi1sel"]}];
+        [self.menuNameArray addObject:@{@"title" : @"安全中心" , @"imgName" : [self retureRandomThemeColorImage:@"ziyuan"]}];
+        [self.menuNameArray addObject:@{@"title" : @"站内信" , @"imgName" :[self retureRandomThemeColorImage:@"zhanneixin"]}];
         
-        [self.menuNameArray addObject:@{@"title" : @"长龙助手" , @"imgName" : @"changlong"}];
-        [self.menuNameArray addObject:@{@"title" : @"站内信" , @"imgName" : @"zhanneixin"}];
-        [self.menuNameArray addObject:@{@"title" : @"建议反馈" , @"imgName" : @"yijian"}];
+        [self.menuNameArray addObject:@{@"title" : @"个人信息" , @"imgName" : [self retureRandomThemeColorImage:@"gerenzhongxinxuanzhong"]}];
+        [self.menuNameArray addObject:@{@"title" : @"建议反馈" , @"imgName" :[self retureRandomThemeColorImage:@"yijian"]}];
+        [self.menuNameArray addObject:@{@"title" : @"活动彩金" , @"imgName" : [self retureRandomThemeColorImage:@"zdgl"]}];
         
     }
  
@@ -275,16 +284,16 @@ BOOL isOk = NO;
         UGUserModel *user = [UGUserModel currentUser];
         NSLog(@"isAgent= %d",user.isAgent);
         if (user.isAgent) {
-            [dataArrayOne addObject:@{@"title" : @"推荐收益" , @"imgName" : @"shouyi1sel"}];
-            [dataArrayOne addObject:@{@"title" : @"活动彩金" , @"imgName" : @"zdgl"}];
-            [dataArrayOne addObject:@{@"title" : @"利息宝" , @"imgName" : @"lixibao"}];
-            [dataArrayOne addObject:@{@"title" : @"在线客服" , @"imgName" : @"zaixiankefu"}];
+            [dataArrayOne addObject:@{@"title" : @"推荐收益" , @"imgName" :  [self retureRandomThemeColorImage:@"shouyi1sel"]}];
+            [dataArrayOne addObject:@{@"title" : @"活动彩金" , @"imgName" : [self retureRandomThemeColorImage:@"zdgl"]}];
+            [dataArrayOne addObject:@{@"title" : @"利息宝" , @"imgName" : [self retureRandomThemeColorImage:@"lixibao"]}];
+            [dataArrayOne addObject:@{@"title" : @"在线客服" , @"imgName" : [self retureRandomThemeColorImage:@"zaixiankefu"]}];
         }
         else{
-            [dataArrayOne addObject:@{@"title" : @"申请代理" , @"imgName" : @"shouyi"}];
-            [dataArrayOne addObject:@{@"title" : @"活动彩金" , @"imgName" : @"zdgl"}];
-            [dataArrayOne addObject:@{@"title" : @"利息宝" , @"imgName" : @"lixibao"}];
-            [dataArrayOne addObject:@{@"title" : @"在线客服" , @"imgName" : @"zaixiankefu"}];
+            [dataArrayOne addObject:@{@"title" : @"申请代理" , @"imgName" :  [self retureRandomThemeColorImage:@"shouyi1sel"]}];
+            [dataArrayOne addObject:@{@"title" : @"活动彩金" , @"imgName" : [self retureRandomThemeColorImage:@"zdgl"]}];
+            [dataArrayOne addObject:@{@"title" : @"利息宝" , @"imgName" : [self retureRandomThemeColorImage:@"lixibao"]}];
+            [dataArrayOne addObject:@{@"title" : @"在线客服" , @"imgName" : [self retureRandomThemeColorImage:@"zaixiankefu"]}];
         }
         UGMineSkinModel *dic1 = [UGMineSkinModel new];
         
@@ -299,7 +308,8 @@ BOOL isOk = NO;
         NSMutableArray *dataArrayOne = [NSMutableArray array];
        
        
-            [dataArrayOne addObject:@{@"title" : @"彩票注单记录" , @"imgName" : @"shouyi"}];
+            [dataArrayOne addObject:@{@"title" : @"彩票注单记录" , @"imgName" :[self retureRandomThemeColorImage:@"zdgl"]}];
+            [dataArrayOne addObject:@{@"title" : @"其他注单记录" , @"imgName" :[self retureRandomThemeColorImage:@"zdgl"]}];
         
         UGMineSkinModel *dic1 = [UGMineSkinModel new];
         
@@ -315,9 +325,9 @@ BOOL isOk = NO;
         NSMutableArray *dataArrayOne = [NSMutableArray array];
         
         
-        [dataArrayOne addObject:@{@"title" : @"银行卡管理" , @"imgName" : @"yinhangqia"}];
-        [dataArrayOne addObject:@{@"title" : @"安全中心" , @"imgName" : @"ziyuan"}];
-        [dataArrayOne addObject:@{@"title" : @"个人信息" , @"imgName" : @"gerenzhongxinxuanzhong"}];
+        [dataArrayOne addObject:@{@"title" : @"银行卡管理" , @"imgName" :[self retureRandomThemeColorImage:@"yinhangqia"]}];
+        [dataArrayOne addObject:@{@"title" : @"安全中心" , @"imgName" : [self retureRandomThemeColorImage:@"ziyuan"]}];
+        [dataArrayOne addObject:@{@"title" : @"个人信息" , @"imgName" : [self retureRandomThemeColorImage:@"gerenzhongxinxuanzhong"]}];
         
 
         
@@ -335,9 +345,9 @@ BOOL isOk = NO;
         NSMutableArray *dataArrayOne = [NSMutableArray array];
         
         
-        [dataArrayOne addObject:@{@"title" : @"长龙助手" , @"imgName" : @"changlong"}];
-        [dataArrayOne addObject:@{@"title" : @"站内信" , @"imgName" : @"zhanneixin"}];
-        [dataArrayOne addObject:@{@"title" : @"建议反馈" , @"imgName" : @"yijian"}];
+        [dataArrayOne addObject:@{@"title" : @"长龙助手" , @"imgName" : [self retureRandomThemeColorImage:@"changlong"]}];
+        [dataArrayOne addObject:@{@"title" : @"站内信" , @"imgName" : [self retureRandomThemeColorImage:@"zhanneixin"]}];
+        [dataArrayOne addObject:@{@"title" : @"建议反馈" , @"imgName" : [self retureRandomThemeColorImage:@"yijian"]}];
 
         UGMineSkinModel *dic1 = [UGMineSkinModel new];
         
@@ -378,7 +388,7 @@ BOOL isOk = NO;
         
     });
 
-        self.myCollectionView.backgroundColor = [UIColor clearColor];
+        self.myCollectionView.backgroundColor = [[UGSkinManagers shareInstance] setbgColor];
         self.myCollectionView.dataSource = self;
         self.myCollectionView.delegate = self;
         [self.myCollectionView registerNib:[UINib nibWithNibName:@"UGMineMenuCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UGMineMenuCollectionViewCell"];
@@ -447,7 +457,13 @@ BOOL isOk = NO;
         
         [cell setMenuName: [dic objectForKey:@"title"]];
         
-        [cell setImageName: [dic objectForKey:@"imgName"]];
+        
+        cell.imageView.image = [dic objectForKey:@"imgName"];
+        
+        [cell setBackgroundColor: [UIColor clearColor]];
+        
+        cell.layer.borderWidth = 1;
+        cell.layer.borderColor = [[UIColor whiteColor] CGColor];
         return cell;
     }
     else  {
@@ -456,7 +472,11 @@ BOOL isOk = NO;
         
         [cell setMenuName: [dic objectForKey:@"title"]];
         
-        [cell setImageName: [dic objectForKey:@"imgName"]];
+        cell.imageView.image = [dic objectForKey:@"imgName"];
+        
+        [cell setBackgroundColor: [UIColor clearColor]];
+        cell.layer.borderWidth = 1;
+        cell.layer.borderColor = [[UIColor whiteColor] CGColor];
         return cell;
     }
     
@@ -478,9 +498,10 @@ BOOL isOk = NO;
             {
                 headerView = [[UGMineSkinFirstCollectionHeadView alloc] init];
             }
-//            headerView.backgroundColor = [UIColor clearColor];
+
              UGMineSkinModel *model = [self.menuSecondNameArray objectAtIndex:indexPath.section];
             [headerView setMenuName :model.name];
+            [headerView setBackgroundColor: [UIColor clearColor]];
             
             return headerView;
         }
@@ -490,7 +511,7 @@ BOOL isOk = NO;
             {
                 headerView = [[UGSkinSeconCollectionHeadView alloc] init];
             }
-//            headerView.backgroundColor = [UIColor clearColor];
+            headerView.backgroundColor = [UIColor clearColor];
             
             return headerView;
         }
@@ -501,6 +522,7 @@ BOOL isOk = NO;
             {
                 headerView = [[UICollectionReusableView alloc] init];
             }
+            headerView.backgroundColor = [UIColor clearColor];
              return headerView;
         }
         
@@ -545,7 +567,7 @@ BOOL isOk = NO;
                   layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-     float itemW = (UGScreenW - 3.0 )/ 3.0;
+     float itemW = (UGScreenW - 0.0 )/ 3.0;
 
     if ([skitType isEqualToString:@"新年红"]) {
         
@@ -566,7 +588,7 @@ BOOL isOk = NO;
                        layout:(UICollectionViewLayout *)collectionViewLayout
        insetForSectionAtIndex:(NSInteger)section {
   
-        return UIEdgeInsetsMake(1.0, 1.0, 1.0, 1.0);
+        return UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0);
 
 }
 
@@ -575,7 +597,7 @@ BOOL isOk = NO;
                    layout:(UICollectionViewLayout*)collectionViewLayout
 minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     
-        return 1.0;
+        return 0.0;
   
 }
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
@@ -1156,7 +1178,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
             
             NSLog(@"签到==%d",[UGSystemConfigModel  currentConfig].checkinSwitch);
             
-            [[UGSkinManagers shareInstance] setSkin];
+           
             
             [self setupUserInfo:YES];
             

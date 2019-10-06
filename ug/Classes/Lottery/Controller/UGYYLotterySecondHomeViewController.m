@@ -91,6 +91,8 @@
     //字典转模型
     cell.itemGame = model;
     //字典转模型
+    [cell setBackgroundColor: [[UGSkinManagers shareInstance] sethomeContentColor]];
+    cell.layer.borderColor = [[[UGSkinManagers shareInstance] sethomeContentColor] CGColor];
     
     return cell;
 }
