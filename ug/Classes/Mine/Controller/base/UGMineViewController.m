@@ -253,10 +253,7 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
                 SANotificationEventPost(UGNotificationShowLoginView, nil);
             }
         }];
-    }else {
-  
-        //
-//        UGSignInViewController *vc = [[UGSignInViewController alloc] initWithNibName:@"UGSignInViewController" bundle:nil];
+    } else {
         UGSigInCodeViewController *vc = [[UGSigInCodeViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
 
