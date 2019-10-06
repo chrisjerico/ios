@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-
+// 下注页面的基类
 @interface UGCommonLotteryController : UGViewController<hiddeHeader>
 @property(nonatomic, assign)BOOL shoulHideHeader;
 @property(nonatomic, assign)BOOL shoulHideContent;

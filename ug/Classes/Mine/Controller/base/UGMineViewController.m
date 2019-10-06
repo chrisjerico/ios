@@ -414,25 +414,16 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
                     SANotificationEventPost(UGNotificationShowLoginView, nil);
                 }
             }];
-        }else {
-            
-                    UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
-
-                     if ([config.agent_m_apply isEqualToString:@"1"]) {
-                         //调接口
-                         [self teamAgentApplyInfoWithParams];
-                         
-                     } else {
-                         [self.navigationController.view makeToast:@"在线注册代理已经关闭"
-                                                                 duration:1.5
-                                                                 position:CSToastPositionCenter];
-                     
-                     }
-            
-
+        } else {
+            UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
+            if ([config.agent_m_apply isEqualToString:@"1"]) {
+                //调接口
+                [self teamAgentApplyInfoWithParams];
+            } else {
+                [self.navigationController.view makeToast:@"在线注册代理已关闭" duration:1.5 position:CSToastPositionCenter];
+            }
         }
-
-    }else if ([title isEqualToString:@"安全中心"]) {
+    } else if ([title isEqualToString:@"安全中心"]) {
         UGUserModel *user = [UGUserModel currentUser];
         if (user.isTest) {
             [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {

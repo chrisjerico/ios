@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+// 彩票大厅
 @interface UGLotteryHomeController :UGViewController
 
 @end

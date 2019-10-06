@@ -74,7 +74,6 @@
 @property (strong, nonatomic)  CountDown *countDown;
 @property (nonatomic, strong) CountDown *nextIssueCountDown;
 @property (nonatomic, strong) STBarButtonItem *rightItem1;
-@property (nonatomic, assign) BOOL refreshingBalance;
 @property (nonatomic, assign) BOOL showAdPoppuView;
 @end
 

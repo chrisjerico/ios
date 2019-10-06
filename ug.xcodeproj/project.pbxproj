@@ -1808,6 +1808,273 @@
 			path = CalenderAlertView;
 			sourceTree = "<group>";
 		};
+		CF3B0E3A234A16DE0035AF50 /* 香港六合彩 */ = {
+			isa = PBXGroup;
+			children = (
+				D409B14C2296826D0053DA33 /* UGHKLHCLotteryController.h */,
+				D409B14D2296826D0053DA33 /* UGHKLHCLotteryController.m */,
+				D409B14F229686C00053DA33 /* UGHKLHCLotteryController.storyboard */,
+			);
+			path = "香港六合彩";
+			sourceTree = "<group>";
+		};
+		CF3B0E3B234A16F90035AF50 /* 七星彩 */ = {
+			isa = PBXGroup;
+			children = (
+				D49A36C222A2C9DA000057D2 /* UGQXCLotteryController.h */,
+				D49A36C322A2C9DA000057D2 /* UGQXCLotteryController.m */,
+				D49A36C522A2C9ED000057D2 /* UGQXCLotteryController.storyboard */,
+			);
+			path = "七星彩";
+			sourceTree = "<group>";
+		};
+		CF3B0E3C234A170E0035AF50 /* PC蛋蛋 */ = {
+			isa = PBXGroup;
+			children = (
+				D49A36C722A2CF57000057D2 /* UGPCDDLotteryController.h */,
+				D49A36C822A2CF57000057D2 /* UGPCDDLotteryController.m */,
+				D49A36CA22A2CF6A000057D2 /* UGPCDDLotteryController.storyboard */,
+			);
+			path = "PC蛋蛋";
+			sourceTree = "<group>";
+		};
+		CF3B0E3D234A17200035AF50 /* 福彩3D */ = {
+			isa = PBXGroup;
+			children = (
+				D4E2876B22B666EB0002B2BF /* UGFC3DLotteryController.h */,
+				D4E2876C22B666EB0002B2BF /* UGFC3DLotteryController.m */,
+				D4E2876E22B666FE0002B2BF /* UGFC3DLotteryController.storyboard */,
+			);
+			path = "福彩3D";
+			sourceTree = "<group>";
+		};
+		CF3B0E3E234A175D0035AF50 /* PK10牛牛 */ = {
+			isa = PBXGroup;
+			children = (
+				D4704EC322B7566200528DC7 /* UGPK10NNLotteryController.h */,
+				D4704EC422B7566200528DC7 /* UGPK10NNLotteryController.m */,
+				D4704EC622B7567B00528DC7 /* UGPK10NNLotteryController.storyboard */,
+			);
+			path = "PK10牛牛";
+			sourceTree = "<group>";
+		};
+		CF3B0E3F234A17680035AF50 /* 北京PK10 */ = {
+			isa = PBXGroup;
+			children = (
+				D4DE269C229C17580072A4A2 /* UGBJPK10LotteryController.h */,
+				D4DE269D229C17580072A4A2 /* UGBJPK10LotteryController.m */,
+				D4DE269F229C1CCE0072A4A2 /* UGBJPK10LotteryController.storyboard */,
+			);
+			path = "北京PK10";
+			sourceTree = "<group>";
+		};
+		CF3B0E40234A17710035AF50 /* 江苏快3 */ = {
+			isa = PBXGroup;
+			children = (
+				D41C3E19228EF6C400BF6436 /* UGJSK3LotteryController.h */,
+				D41C3E1A228EF6C400BF6436 /* UGJSK3LotteryController.m */,
+				D41C3E1C228EF72600BF6436 /* UGJSK3LotteryController.storyboard */,
+			);
+			path = "江苏快3";
+			sourceTree = "<group>";
+		};
+		CF3B0E41234A177F0035AF50 /* 广东快乐10 */ = {
+			isa = PBXGroup;
+			children = (
+				D4145A9D22B6348500D8165F /* UGGDKL10LotteryController.h */,
+				D4145A9E22B6348500D8165F /* UGGDKL10LotteryController.m */,
+				D4145AA022B6349700D8165F /* UGGDKL10LotteryController.storyboard */,
+			);
+			path = "广东快乐10";
+			sourceTree = "<group>";
+		};
+		CF3B0E42234A17940035AF50 /* 北京快乐8 */ = {
+			isa = PBXGroup;
+			children = (
+				D4145A9822B61AA800D8165F /* UGBJKL8LotteryController.h */,
+				D4145A9922B61AA800D8165F /* UGBJKL8LotteryController.m */,
+				D4145A9B22B61C6A00D8165F /* UGBJKL8LotteryController.storyboard */,
+			);
+			path = "北京快乐8";
+			sourceTree = "<group>";
+		};
+		CF3B0E43234A179F0035AF50 /* XYNC */ = {
+			isa = PBXGroup;
+			children = (
+				D4145A9322B6109C00D8165F /* UGXYNCLotteryController.h */,
+				D4145A9422B6109C00D8165F /* UGXYNCLotteryController.m */,
+				D4145A9622B6113500D8165F /* UGXYNCLotteryController.storyboard */,
+			);
+			path = XYNC;
+			sourceTree = "<group>";
+		};
+		CF3B0E44234A17BF0035AF50 /* 广东11选5 */ = {
+			isa = PBXGroup;
+			children = (
+				D4145A8E22B52C8000D8165F /* UGGD11X5LotteryController.h */,
+				D4145A8F22B52C8000D8165F /* UGGD11X5LotteryController.m */,
+				D4145A9122B52D0600D8165F /* UGGD11X5LotteryController.storyboard */,
+			);
+			path = "广东11选5";
+			sourceTree = "<group>";
+		};
+		CF3B0E45234A17DB0035AF50 /* 时时彩 */ = {
+			isa = PBXGroup;
+			children = (
+				D4D8DF6E2286B14C00446BAF /* UGSSCLotteryController.h */,
+				D4D8DF6F2286B14C00446BAF /* UGSSCLotteryController.m */,
+				D4D8DF712286B23600446BAF /* UGSSCLotteryController.storyboard */,
+			);
+			path = "时时彩";
+			sourceTree = "<group>";
+		};
+		CF3B0E46234A19980035AF50 /* 下注页面 */ = {
+			isa = PBXGroup;
+			children = (
+				CF3B0E45234A17DB0035AF50 /* 时时彩 */,
+				CF3B0E44234A17BF0035AF50 /* 广东11选5 */,
+				CF3B0E43234A179F0035AF50 /* XYNC */,
+				CF3B0E42234A17940035AF50 /* 北京快乐8 */,
+				CF3B0E41234A177F0035AF50 /* 广东快乐10 */,
+				CF3B0E40234A17710035AF50 /* 江苏快3 */,
+				CF3B0E3A234A16DE0035AF50 /* 香港六合彩 */,
+				CF3B0E3F234A17680035AF50 /* 北京PK10 */,
+				CF3B0E3B234A16F90035AF50 /* 七星彩 */,
+				CF3B0E3C234A170E0035AF50 /* PC蛋蛋 */,
+				CF3B0E3D234A17200035AF50 /* 福彩3D */,
+				CF3B0E3E234A175D0035AF50 /* PK10牛牛 */,
+				0322AD6323432A4A00E9857E /* UGCommonLotteryController.h */,
+				0322AD6423432A4A00E9857E /* UGCommonLotteryController.m */,
+			);
+			path = "下注页面";
+			sourceTree = "<group>";
+		};
+		CF3B0E47234A1C140035AF50 /* 广告View */ = {
+			isa = PBXGroup;
+			children = (
+				D40DE98D22F4292100974BAF /* UGLotteryAdPopView.h */,
+				D40DE98E22F4292100974BAF /* UGLotteryAdPopView.m */,
+				D40DE99022F42A3300974BAF /* UGLotteryAdPopView.xib */,
+			);
+			path = "广告View";
+			sourceTree = "<group>";
+		};
+		CF3B0E48234A1C200035AF50 /* 彩种Cell */ = {
+			isa = PBXGroup;
+			children = (
+				D40A3C1022C63633009CEB8E /* UGLotteryGameCollectionViewCell.h */,
+				D40A3C1122C63633009CEB8E /* UGLotteryGameCollectionViewCell.m */,
+				D40A3C1222C63633009CEB8E /* UGLotteryGameCollectionViewCell.xib */,
+				D405B2E4227BFE5F00F8C586 /* UGLotteryCollectionViewCell.h */,
+				D405B2E5227BFE5F00F8C586 /* UGLotteryCollectionViewCell.m */,
+				D405B2E6227BFE5F00F8C586 /* UGLotteryCollectionViewCell.xib */,
+				D4EE8F842341DD4A006FA0E2 /* UGhomeRecommendCollectionViewCell.h */,
+				D4EE8F852341DD4A006FA0E2 /* UGhomeRecommendCollectionViewCell.m */,
+				D4EE8F862341DD4A006FA0E2 /* UGhomeRecommendCollectionViewCell.xib */,
+			);
+			path = "彩种Cell";
+			sourceTree = "<group>";
+		};
+		CF3B0E49234A1C9C0035AF50 /* 号码Cell */ = {
+			isa = PBXGroup;
+			children = (
+				CF3B0E4B234A1D710035AF50 /* 快3Cell */,
+				CF3B0E4C234A1DA60035AF50 /* 六合彩Cell */,
+				CF3B0E4D234A1E240035AF50 /* PK10 */,
+				D4D8DF85228714A300446BAF /* UGLotteryResultCollectionViewCell.h */,
+				D4D8DF86228714A300446BAF /* UGLotteryResultCollectionViewCell.m */,
+				D4D8DF87228714A300446BAF /* UGLotteryResultCollectionViewCell.xib */,
+				D4D8DF8A2287155800446BAF /* UGLotterySubResultCollectionViewCell.h */,
+				D4D8DF8B2287155800446BAF /* UGLotterySubResultCollectionViewCell.m */,
+				D4D8DF8C2287155800446BAF /* UGLotterySubResultCollectionViewCell.xib */,
+				D4D8DF7D2287065F00446BAF /* UGTimeLotteryBetHeaderView.h */,
+				D4D8DF7E2287065F00446BAF /* UGTimeLotteryBetHeaderView.m */,
+				D4D8DF7F2287065F00446BAF /* UGTimeLotteryBetHeaderView.xib */,
+				D4D8DF732286F01100446BAF /* UGTimeLotteryLeftTitleCell.h */,
+				D4D8DF742286F01100446BAF /* UGTimeLotteryLeftTitleCell.m */,
+				D4D8DF752286F01100446BAF /* UGTimeLotteryLeftTitleCell.xib */,
+				D4D8DF782286F7F600446BAF /* UGTimeLotteryBetCollectionViewCell.h */,
+				D4D8DF792286F7F600446BAF /* UGTimeLotteryBetCollectionViewCell.m */,
+				D4D8DF7A2286F7F600446BAF /* UGTimeLotteryBetCollectionViewCell.xib */,
+				D41FF76E22E880A800FCCDD2 /* UGSSCBetItem1Cell.h */,
+				D41FF76F22E880A800FCCDD2 /* UGSSCBetItem1Cell.m */,
+				D41FF77022E880A800FCCDD2 /* UGSSCBetItem1Cell.xib */,
+				D4F0477322E9E22E008EBB56 /* UGLinkNumCollectionViewCell.h */,
+				D4F0477422E9E22E008EBB56 /* UGLinkNumCollectionViewCell.m */,
+				D4F0477522E9E22E008EBB56 /* UGLinkNumCollectionViewCell.xib */,
+			);
+			path = "号码Cell";
+			sourceTree = "<group>";
+		};
+		CF3B0E4A234A1D060035AF50 /* 下注明细View */ = {
+			isa = PBXGroup;
+			children = (
+				D40D58BD228A8D480025963A /* UGBetDetailView.h */,
+				D40D58BE228A8D480025963A /* UGBetDetailView.m */,
+				D40D58C0228A8DE30025963A /* UGBetDetailView.xib */,
+				D40D58C2228A9A230025963A /* UGBetDetailTableViewCell.h */,
+				D40D58C3228A9A230025963A /* UGBetDetailTableViewCell.m */,
+				D40D58C4228A9A230025963A /* UGBetDetailTableViewCell.xib */,
+				033177AD2338E026000D7663 /* UGBetResultView.h */,
+				033177AE2338E026000D7663 /* UGBetResultView.m */,
+			);
+			path = "下注明细View";
+			sourceTree = "<group>";
+		};
+		CF3B0E4B234A1D710035AF50 /* 快3Cell */ = {
+			isa = PBXGroup;
+			children = (
+				D41C3E0F228EF13D00BF6436 /* UGFastThreeOneCollectionViewCell.h */,
+				D41C3E10228EF13D00BF6436 /* UGFastThreeOneCollectionViewCell.m */,
+				D41C3E11228EF13D00BF6436 /* UGFastThreeOneCollectionViewCell.xib */,
+				D41C3E14228EF2A600BF6436 /* UGFastThreeTwoCollectionViewCell.h */,
+				D41C3E15228EF2A600BF6436 /* UGFastThreeTwoCollectionViewCell.m */,
+				D41C3E16228EF2A600BF6436 /* UGFastThreeTwoCollectionViewCell.xib */,
+				D4F63F8C228FD1A200EC93AA /* UGFastThreeThreeCollectionViewCell.h */,
+				D4F63F8D228FD1A200EC93AA /* UGFastThreeThreeCollectionViewCell.m */,
+				D4F63F8E228FD1A200EC93AA /* UGFastThreeThreeCollectionViewCell.xib */,
+				D4F63F91228FD3B000EC93AA /* UGFastThreeFourCollectionViewCell.h */,
+				D4F63F92228FD3B000EC93AA /* UGFastThreeFourCollectionViewCell.m */,
+				D4F63F93228FD3B000EC93AA /* UGFastThreeFourCollectionViewCell.xib */,
+			);
+			path = "快3Cell";
+			sourceTree = "<group>";
+		};
+		CF3B0E4C234A1DA60035AF50 /* 六合彩Cell */ = {
+			isa = PBXGroup;
+			children = (
+				D409B1512296E0020053DA33 /* UGMarkSixLotteryBetItem0Cell.h */,
+				D409B1522296E0020053DA33 /* UGMarkSixLotteryBetItem0Cell.m */,
+				D409B1532296E0020053DA33 /* UGMarkSixLotteryBetItem0Cell.xib */,
+				D40D32C42297CEAF00B89398 /* UGMarkSixLotteryBetItem1Cell.h */,
+				D40D32C52297CEAF00B89398 /* UGMarkSixLotteryBetItem1Cell.m */,
+				D40D32C62297CEAF00B89398 /* UGMarkSixLotteryBetItem1Cell.xib */,
+			);
+			path = "六合彩Cell";
+			sourceTree = "<group>";
+		};
+		CF3B0E4D234A1E240035AF50 /* PK10 */ = {
+			isa = PBXGroup;
+			children = (
+				D4704EC822B7647F00528DC7 /* UGPK10SubResultCollectionViewCell.h */,
+				D4704EC922B7647F00528DC7 /* UGPK10SubResultCollectionViewCell.m */,
+				D4704ECA22B7647F00528DC7 /* UGPK10SubResultCollectionViewCell.xib */,
+			);
+			path = PK10;
+			sourceTree = "<group>";
+		};
+		CF3B0E4E234A20840035AF50 /* 滑块View（选择子玩法） */ = {
+			isa = PBXGroup;
+			children = (
+				D416BB1F22CE2E6D00BA0450 /* UGSegmentView.h */,
+				D416BB2022CE2E6D00BA0450 /* UGSegmentView.m */,
+				D416BB2522CE35C100BA0450 /* UGSegmentCollectionViewCell.h */,
+				D416BB2622CE35C100BA0450 /* UGSegmentCollectionViewCell.m */,
+				D416BB2722CE35C100BA0450 /* UGSegmentCollectionViewCell.xib */,
+			);
+			path = "滑块View（选择子玩法）";
+			sourceTree = "<group>";
+		};
 		CFD3BE962347137E00FCDA6D /* FishUtility */ = {
 			isa = PBXGroup;
 			children = (
@@ -3519,50 +3786,13 @@
 		D4B75E38227811D50007047C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				CF3B0E46234A19980035AF50 /* 下注页面 */,
 				D4EE8F892341EB22006FA0E2 /* UGYYLotteryHomeViewController.h */,
 				D4EE8F8A2341EB22006FA0E2 /* UGYYLotteryHomeViewController.m */,
 				D4EE8F8C2341F225006FA0E2 /* UGYYLotterySecondHomeViewController.h */,
 				D4EE8F8D2341F225006FA0E2 /* UGYYLotterySecondHomeViewController.m */,
 				D405B2DC227B3CCB00F8C586 /* UGLotteryHomeController.h */,
 				D405B2DD227B3CCB00F8C586 /* UGLotteryHomeController.m */,
-				0322AD6323432A4A00E9857E /* UGCommonLotteryController.h */,
-				0322AD6423432A4A00E9857E /* UGCommonLotteryController.m */,
-				D4D8DF6E2286B14C00446BAF /* UGSSCLotteryController.h */,
-				D4D8DF6F2286B14C00446BAF /* UGSSCLotteryController.m */,
-				D4D8DF712286B23600446BAF /* UGSSCLotteryController.storyboard */,
-				D4145A8E22B52C8000D8165F /* UGGD11X5LotteryController.h */,
-				D4145A8F22B52C8000D8165F /* UGGD11X5LotteryController.m */,
-				D4145A9122B52D0600D8165F /* UGGD11X5LotteryController.storyboard */,
-				D4145A9322B6109C00D8165F /* UGXYNCLotteryController.h */,
-				D4145A9422B6109C00D8165F /* UGXYNCLotteryController.m */,
-				D4145A9622B6113500D8165F /* UGXYNCLotteryController.storyboard */,
-				D4145A9822B61AA800D8165F /* UGBJKL8LotteryController.h */,
-				D4145A9922B61AA800D8165F /* UGBJKL8LotteryController.m */,
-				D4145A9B22B61C6A00D8165F /* UGBJKL8LotteryController.storyboard */,
-				D4145A9D22B6348500D8165F /* UGGDKL10LotteryController.h */,
-				D4145A9E22B6348500D8165F /* UGGDKL10LotteryController.m */,
-				D4145AA022B6349700D8165F /* UGGDKL10LotteryController.storyboard */,
-				D41C3E19228EF6C400BF6436 /* UGJSK3LotteryController.h */,
-				D41C3E1A228EF6C400BF6436 /* UGJSK3LotteryController.m */,
-				D41C3E1C228EF72600BF6436 /* UGJSK3LotteryController.storyboard */,
-				D409B14C2296826D0053DA33 /* UGHKLHCLotteryController.h */,
-				D409B14D2296826D0053DA33 /* UGHKLHCLotteryController.m */,
-				D409B14F229686C00053DA33 /* UGHKLHCLotteryController.storyboard */,
-				D4DE269C229C17580072A4A2 /* UGBJPK10LotteryController.h */,
-				D4DE269D229C17580072A4A2 /* UGBJPK10LotteryController.m */,
-				D4DE269F229C1CCE0072A4A2 /* UGBJPK10LotteryController.storyboard */,
-				D49A36C222A2C9DA000057D2 /* UGQXCLotteryController.h */,
-				D49A36C322A2C9DA000057D2 /* UGQXCLotteryController.m */,
-				D49A36C522A2C9ED000057D2 /* UGQXCLotteryController.storyboard */,
-				D49A36C722A2CF57000057D2 /* UGPCDDLotteryController.h */,
-				D49A36C822A2CF57000057D2 /* UGPCDDLotteryController.m */,
-				D49A36CA22A2CF6A000057D2 /* UGPCDDLotteryController.storyboard */,
-				D4E2876B22B666EB0002B2BF /* UGFC3DLotteryController.h */,
-				D4E2876C22B666EB0002B2BF /* UGFC3DLotteryController.m */,
-				D4E2876E22B666FE0002B2BF /* UGFC3DLotteryController.storyboard */,
-				D4704EC322B7566200528DC7 /* UGPK10NNLotteryController.h */,
-				D4704EC422B7566200528DC7 /* UGPK10NNLotteryController.m */,
-				D4704EC622B7567B00528DC7 /* UGPK10NNLotteryController.storyboard */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3587,73 +3817,11 @@
 		D4B75E3A227811D50007047C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D405B2E4227BFE5F00F8C586 /* UGLotteryCollectionViewCell.h */,
-				D405B2E5227BFE5F00F8C586 /* UGLotteryCollectionViewCell.m */,
-				D405B2E6227BFE5F00F8C586 /* UGLotteryCollectionViewCell.xib */,
-				D40A3C1022C63633009CEB8E /* UGLotteryGameCollectionViewCell.h */,
-				D40A3C1122C63633009CEB8E /* UGLotteryGameCollectionViewCell.m */,
-				D40A3C1222C63633009CEB8E /* UGLotteryGameCollectionViewCell.xib */,
-				D4D8DF85228714A300446BAF /* UGLotteryResultCollectionViewCell.h */,
-				D4D8DF86228714A300446BAF /* UGLotteryResultCollectionViewCell.m */,
-				D4D8DF87228714A300446BAF /* UGLotteryResultCollectionViewCell.xib */,
-				D4D8DF8A2287155800446BAF /* UGLotterySubResultCollectionViewCell.h */,
-				D4D8DF8B2287155800446BAF /* UGLotterySubResultCollectionViewCell.m */,
-				D4D8DF8C2287155800446BAF /* UGLotterySubResultCollectionViewCell.xib */,
-				D4704EC822B7647F00528DC7 /* UGPK10SubResultCollectionViewCell.h */,
-				D4704EC922B7647F00528DC7 /* UGPK10SubResultCollectionViewCell.m */,
-				D4704ECA22B7647F00528DC7 /* UGPK10SubResultCollectionViewCell.xib */,
-				D4D8DF732286F01100446BAF /* UGTimeLotteryLeftTitleCell.h */,
-				D4D8DF742286F01100446BAF /* UGTimeLotteryLeftTitleCell.m */,
-				D4D8DF752286F01100446BAF /* UGTimeLotteryLeftTitleCell.xib */,
-				D4D8DF782286F7F600446BAF /* UGTimeLotteryBetCollectionViewCell.h */,
-				D4D8DF792286F7F600446BAF /* UGTimeLotteryBetCollectionViewCell.m */,
-				D4D8DF7A2286F7F600446BAF /* UGTimeLotteryBetCollectionViewCell.xib */,
-				D41FF76E22E880A800FCCDD2 /* UGSSCBetItem1Cell.h */,
-				D41FF76F22E880A800FCCDD2 /* UGSSCBetItem1Cell.m */,
-				D41FF77022E880A800FCCDD2 /* UGSSCBetItem1Cell.xib */,
-				D4F0477322E9E22E008EBB56 /* UGLinkNumCollectionViewCell.h */,
-				D4F0477422E9E22E008EBB56 /* UGLinkNumCollectionViewCell.m */,
-				D4F0477522E9E22E008EBB56 /* UGLinkNumCollectionViewCell.xib */,
-				D4D8DF7D2287065F00446BAF /* UGTimeLotteryBetHeaderView.h */,
-				D4D8DF7E2287065F00446BAF /* UGTimeLotteryBetHeaderView.m */,
-				D4D8DF7F2287065F00446BAF /* UGTimeLotteryBetHeaderView.xib */,
-				D41C3E0F228EF13D00BF6436 /* UGFastThreeOneCollectionViewCell.h */,
-				D41C3E10228EF13D00BF6436 /* UGFastThreeOneCollectionViewCell.m */,
-				D41C3E11228EF13D00BF6436 /* UGFastThreeOneCollectionViewCell.xib */,
-				D41C3E14228EF2A600BF6436 /* UGFastThreeTwoCollectionViewCell.h */,
-				D41C3E15228EF2A600BF6436 /* UGFastThreeTwoCollectionViewCell.m */,
-				D41C3E16228EF2A600BF6436 /* UGFastThreeTwoCollectionViewCell.xib */,
-				D4F63F8C228FD1A200EC93AA /* UGFastThreeThreeCollectionViewCell.h */,
-				D4F63F8D228FD1A200EC93AA /* UGFastThreeThreeCollectionViewCell.m */,
-				D4F63F8E228FD1A200EC93AA /* UGFastThreeThreeCollectionViewCell.xib */,
-				D4F63F91228FD3B000EC93AA /* UGFastThreeFourCollectionViewCell.h */,
-				D4F63F92228FD3B000EC93AA /* UGFastThreeFourCollectionViewCell.m */,
-				D4F63F93228FD3B000EC93AA /* UGFastThreeFourCollectionViewCell.xib */,
-				D409B1512296E0020053DA33 /* UGMarkSixLotteryBetItem0Cell.h */,
-				D409B1522296E0020053DA33 /* UGMarkSixLotteryBetItem0Cell.m */,
-				D409B1532296E0020053DA33 /* UGMarkSixLotteryBetItem0Cell.xib */,
-				D40D32C42297CEAF00B89398 /* UGMarkSixLotteryBetItem1Cell.h */,
-				D40D32C52297CEAF00B89398 /* UGMarkSixLotteryBetItem1Cell.m */,
-				D40D32C62297CEAF00B89398 /* UGMarkSixLotteryBetItem1Cell.xib */,
-				D40D58BD228A8D480025963A /* UGBetDetailView.h */,
-				D40D58BE228A8D480025963A /* UGBetDetailView.m */,
-				D40D58C0228A8DE30025963A /* UGBetDetailView.xib */,
-				033177AD2338E026000D7663 /* UGBetResultView.h */,
-				033177AE2338E026000D7663 /* UGBetResultView.m */,
-				D416BB1F22CE2E6D00BA0450 /* UGSegmentView.h */,
-				D416BB2022CE2E6D00BA0450 /* UGSegmentView.m */,
-				D416BB2522CE35C100BA0450 /* UGSegmentCollectionViewCell.h */,
-				D416BB2622CE35C100BA0450 /* UGSegmentCollectionViewCell.m */,
-				D416BB2722CE35C100BA0450 /* UGSegmentCollectionViewCell.xib */,
-				D40D58C2228A9A230025963A /* UGBetDetailTableViewCell.h */,
-				D40D58C3228A9A230025963A /* UGBetDetailTableViewCell.m */,
-				D40D58C4228A9A230025963A /* UGBetDetailTableViewCell.xib */,
-				D40DE98D22F4292100974BAF /* UGLotteryAdPopView.h */,
-				D40DE98E22F4292100974BAF /* UGLotteryAdPopView.m */,
-				D40DE99022F42A3300974BAF /* UGLotteryAdPopView.xib */,
-				D4EE8F842341DD4A006FA0E2 /* UGhomeRecommendCollectionViewCell.h */,
-				D4EE8F852341DD4A006FA0E2 /* UGhomeRecommendCollectionViewCell.m */,
-				D4EE8F862341DD4A006FA0E2 /* UGhomeRecommendCollectionViewCell.xib */,
+				CF3B0E48234A1C200035AF50 /* 彩种Cell */,
+				CF3B0E49234A1C9C0035AF50 /* 号码Cell */,
+				CF3B0E47234A1C140035AF50 /* 广告View */,
+				CF3B0E4A234A1D060035AF50 /* 下注明细View */,
+				CF3B0E4E234A20840035AF50 /* 滑块View（选择子玩法） */,
 			);
 			path = View;
 			sourceTree = "<group>";

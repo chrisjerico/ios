@@ -702,8 +702,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
             UGPromotionIncomeController *incomeVC = [[UGPromotionIncomeController alloc] init];
             [self.navigationController pushViewController:incomeVC animated:YES];
         }
-    }else if ([title isEqualToString:@"申请代理"]) {
-        
+    } else if ([title isEqualToString:@"申请代理"]) {
         UGUserModel *user = [UGUserModel currentUser];
         user.isTest = NO;
         if (user.isTest) {
@@ -712,24 +711,18 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
                     SANotificationEventPost(UGNotificationShowLoginView, nil);
                 }
             }];
-        }else {
-            
+        } else {
             UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
-            
             if ([config.agent_m_apply isEqualToString:@"1"]) {
                 //调接口
                 [self teamAgentApplyInfoWithParams];
                 
             } else {
-                [self.navigationController.view makeToast:@"在线注册代理已经关闭"
+                [self.navigationController.view makeToast:@"在线注册代理已关闭"
                                                  duration:1.5
                                                  position:CSToastPositionCenter];
-                
             }
-            
-            
         }
-        
     }else if ([title isEqualToString:@"安全中心"]) {
         UGUserModel *user = [UGUserModel currentUser];
         if (user.isTest) {

@@ -1,12 +1,12 @@
 //
-//  UGPCeggLotteryController.m
+//  UGBeijingRacingController.m
 //  ug
 //
-//  Created by ug on 2019/6/1.
+//  Created by ug on 2019/5/27.
 //  Copyright © 2019 ug. All rights reserved.
 //
 
-#import "UGPCDDLotteryController.h"
+#import "UGBJPK10LotteryController.h"
 #import "UGTimeLotteryLeftTitleCell.h"
 #import "UGTimeLotteryBetCollectionViewCell.h"
 #import "UGTimeLotteryBetHeaderView.h"
@@ -19,19 +19,20 @@
 #import "CountDown.h"
 #import "UGAllNextIssueListModel.h"
 #import "STBarButtonItem.h"
+#import "WSLWaterFlowLayout.h"
 #import "UGMailBoxTableViewController.h"
-#import "UGLotteryRecordController.h"
 #import "UGChangLongController.h"
 #import "UGRightMenuView.h"
 #import "UGFundsViewController.h"
 #import "UGBetRecordViewController.h"
 #import "UGLotteryRulesView.h"
+#import "UGLotteryRecordController.h"
 #import "UGSSCBetItem1Cell.h"
 
 #import "UGLotteryAdPopView.h"
+#import "UGPCDDLotteryController.h"
 #import "UGJSK3LotteryController.h"
 #import "UGHKLHCLotteryController.h"
-#import "UGBJPK10LotteryController.h"
 #import "UGQXCLotteryController.h"
 #import "UGSSCLotteryController.h"
 #import "UGGD11X5LotteryController.h"
@@ -43,7 +44,8 @@
 
 #import "UGYYRightMenuView.h"
 
-@interface UGPCDDLotteryController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,YBPopupMenuDelegate,UITextFieldDelegate,WSLWaterFlowLayoutDelegate>
+@interface UGBJPK10LotteryController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,YBPopupMenuDelegate,WSLWaterFlowLayoutDelegate,UITextFieldDelegate>
+
 @property (weak, nonatomic) IBOutlet UILabel *currentIssueLabel;
 @property (weak, nonatomic) IBOutlet UIView *currentIssueCollectionBgView;
 @property (weak, nonatomic) IBOutlet UILabel *nextIssueLabel;
@@ -64,18 +66,18 @@
 @property (nonatomic, strong) UICollectionView *headerCollectionView;
 
 @property (nonatomic, strong) UICollectionView *betCollectionView;
-
 @property (nonatomic, strong) NSArray *chipArray;
 @property (nonatomic, strong) NSMutableArray *gameDataArray;
 @property (nonatomic, strong) NSIndexPath *typeIndexPath;
 @property (nonatomic, strong) NSIndexPath *itemIndexPath;
+@property (nonatomic, strong) NSArray *preNumArray;
+@property (nonatomic, strong) NSArray *preNumSxArray;
 
 @property (strong, nonatomic)  CountDown *countDown;
 @property (nonatomic, strong) CountDown *nextIssueCountDown;
 @property (nonatomic, strong) STBarButtonItem *rightItem1;
-@property (nonatomic, assign) BOOL refreshingBalance;
-@property (nonatomic, strong) NSMutableArray *preNumArray;
-@property (nonatomic, strong) NSArray *preNumSxArray;
+@property (nonatomic, strong) WSLWaterFlowLayout *flow;
+
 @property (nonatomic, assign) BOOL showAdPoppuView;
 
 @property (strong, nonatomic)UGYYRightMenuView *yymenuView;
@@ -88,7 +90,7 @@ static NSString *sscBetItem1CellId = @"UGSSCBetItem1Cell";
 static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
 static NSString *lotteryResultCellid = @"UGLotteryResultCollectionViewCell";
 static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell";
-@implementation UGPCDDLotteryController
+@implementation UGBJPK10LotteryController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -104,7 +106,6 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     [self.view addSubview:self.tableView];
     self.bottomCloseView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     self.bottomCloseView.hidden = YES;
-    
     [self initBetCollectionView];
     [self initHeaderCollectionView];
     
@@ -142,7 +143,6 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     //添加通知，来控制键盘和输入框的位置
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardWillShowNotification object:nil];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -197,6 +197,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             
         }];
     }];
+    
 }
 
 - (void)getGameDatas {
@@ -217,18 +218,12 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 
 - (void)setNextIssueModel:(UGNextIssueModel *)nextIssueModel {
     _nextIssueModel = nextIssueModel;
-    self.preNumArray = [nextIssueModel.preNum componentsSeparatedByString:@","].mutableCopy;
-    NSInteger total = 0;
-    for (NSString *num in self.preNumArray) {
-        total += num.integerValue;
-    }
-    [self.preNumArray addObject:@"="];
-    [self.preNumArray addObject:[NSString stringWithFormat:@"%ld",total]];
-    
+    self.preNumArray = [nextIssueModel.preNum componentsSeparatedByString:@","];
     if (nextIssueModel.preNumSx.length) {
         self.preNumSxArray = [nextIssueModel.preNumSx componentsSeparatedByString:@","];
     }
     self.navigationItem.title = nextIssueModel.title;
+   
 }
 
 - (void)showRightMenueView {
@@ -250,7 +245,6 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 }
 
 - (void)refreshBalance {
-    [self startAnimation];
     SANotificationEventPost(UGNotificationGetUserInfo, nil);
     
 }
@@ -282,6 +276,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         for (UGGameplaySectionModel *type in model.list) {
             for (UGGameBetModel *game in type.list) {
                 game.select = NO;
+                
             }
         }
     }
@@ -387,26 +382,21 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             return model.list.count;
         }
         return 0;
+        
     }
     return 2;
-    
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     if (collectionView == self.betCollectionView) {
-        if (self.gameDataArray.count) {
-            
-            UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
-            UGGameplaySectionModel *type = model.list[section];
-            return type.list.count;
-        }
-        return 0;
+        UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
+        UGGameplaySectionModel *type = model.list[section];
+        return type.list.count;
     }else {
         if (section == 0) {
             return self.preNumArray.count;
         }
-        return self.preNumSxArray.count > 3 ? 3 : self.preNumSxArray.count;
-        
+        return self.preNumSxArray.count;
     }
 }
 
@@ -415,13 +405,28 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
         UGGameplaySectionModel *type = model.list[indexPath.section];
         UGGameBetModel *game = type.list[indexPath.row];
-        if ([@"特码" isEqualToString:model.name]) {
+        if ([@"冠军" isEqualToString:model.name] ||
+            [@"亚军" isEqualToString:model.name] ||
+            [@"第三名" isEqualToString:model.name] ||
+            [@"第四名" isEqualToString:model.name] ||
+            [@"第五名" isEqualToString:model.name] ||
+            [@"第六名" isEqualToString:model.name] ||
+            [@"第七名" isEqualToString:model.name] ||
+            [@"第八名" isEqualToString:model.name] ||
+            [@"第八名" isEqualToString:model.name] ||
+            [@"第九名" isEqualToString:model.name] ||
+            [@"第十名" isEqualToString:model.name] ||
+            [@"1-5名" isEqualToString:model.name] ||
+            [@"6-10名" isEqualToString:model.name]) {
             
             UGSSCBetItem1Cell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:sscBetItem1CellId forIndexPath:indexPath];
             cell.item = game;
-            cell.nameColor = [CMCommon getPcddNumColor:game.name];
-            return cell;
-            
+            if (game.name.integerValue > 0 && game.name.integerValue < 11) {
+                
+                cell.nameColor = [CMCommon getPreNumColor:game.name];
+                cell.nameCornerRadius = 5;
+                return cell;
+            }
         }
         UGTimeLotteryBetCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:lottryBetCellid forIndexPath:indexPath];
         cell.item = game;
@@ -433,10 +438,9 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             cell.title = self.preNumArray[indexPath.row];
             cell.showAdd = NO;
             cell.showBorder = NO;
-            if (indexPath.row == 3) {
-                cell.showIsequal = YES;
-                cell.showAdd = YES;
-            }
+            cell.layer.cornerRadius = 5;
+            cell.layer.masksToBounds = YES;
+            cell.backgroundColor = [CMCommon getPreNumColor:self.preNumArray[indexPath.row]];
             return cell;
         }else {
             UGLotterySubResultCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:lotterySubResultCellid forIndexPath:indexPath];
@@ -511,48 +515,49 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 //返回每个item大小
 - (CGSize)waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (self.typeIndexPath.row == 0) {
-        if (indexPath.section == 1) {
-             return CGSizeMake((UGScreenW / 4 * 3 - 4) / 3, 40);
-        }
-        if (indexPath.row < 8) {
-            return CGSizeMake((UGScreenW / 4 * 3 - 4) / 2, 40);
-        }
-        return CGSizeMake((UGScreenW / 4 * 3 - 4) / 3, 40);
-    }else {
-        if (indexPath.row < 24) {
-            return CGSizeMake((UGScreenW / 4 * 3 - 4) / 3, 40);
-        }
-        return CGSizeMake((UGScreenW / 4 * 3 - 4) / 2, 40);
-    }
-
+   
+    return CGSizeMake((UGScreenW / 4 * 3 - 4) / 2, 40);
+    
+    
 }
 
 /** 头视图Size */
 -(CGSize )waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForHeaderViewInSection:(NSInteger)section{
     return CGSizeMake(UGScreenW / 4 * 3 - 1, 35);
 }
+
 /** 列间距*/
 -(CGFloat)columnMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
-   
+    if (self.typeIndexPath.row == 17) {
+        return 10;
+    }
     return 1;
 }
 /** 行间距*/
 -(CGFloat)rowMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
-   
+    if (self.typeIndexPath.row == 17) {
+        return 10;
+    }
     return 1;
 }
 /** 边缘之间的间距*/
 -(UIEdgeInsets)edgeInsetInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
     
+//    if (self.typeIndexPath.row == 17) {
+//        self.betCollectionView.backgroundColor = [UIColor whiteColor];
+//        return UIEdgeInsetsMake(1, 10, 1, 1);
+//    }
+//    self.betCollectionView.backgroundColor = [UIColor clearColor];
     return UIEdgeInsetsMake(1, 1, 1, 1);
 }
 
+
+
 - (void)initBetCollectionView {
     
-    WSLWaterFlowLayout *flow = [[WSLWaterFlowLayout alloc] init];
-    flow.delegate = self;
-    flow.flowLayoutStyle = WSLWaterFlowVerticalEqualHeight;
+    self.flow = [[WSLWaterFlowLayout alloc] init];
+    self.flow.delegate = self;
+    self.flow.flowLayoutStyle = WSLWaterFlowVerticalEqualHeight;
     
     UICollectionView *collectionView = ({
         float height;
@@ -561,7 +566,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         }else {
             height = UGScerrnH - 64 - 49 - 114;
         }
-        collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(UGScreenW / 4 + 1 , 114, UGScreenW / 4 * 3 - 1, height) collectionViewLayout:flow];
+        collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(UGScreenW / 4 + 1 , 114, UGScreenW / 4 * 3 - 1, height) collectionViewLayout:self.flow];
         collectionView.backgroundColor = [UIColor clearColor];
         collectionView.dataSource = self;
         collectionView.delegate = self;
@@ -635,7 +640,6 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         [self resetClick:nil];
     }else {
         self.bottomCloseView.hidden = YES;
-
     }
     self.closeTimeLabel.text = [NSString stringWithFormat:@"封盘：%@",timeStr];
     [self updateCloseLabel];
@@ -665,7 +669,6 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.openTimeLabel.text];
     [abStr addAttribute:NSForegroundColorAttributeName value:UGNavColor range:NSMakeRange(3, self.openTimeLabel.text.length - 3)];
     self.openTimeLabel.attributedText = abStr;
-    
 }
 
 //刷新余额动画
@@ -803,7 +806,6 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         [self.amountTextF resignFirstResponder];
         return NO;
     }
-    
     return YES;
 }
 
@@ -866,15 +868,9 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         _gameDataArray = [NSMutableArray array];
         
     }
-   
     return _gameDataArray;
 }
 
-- (NSMutableArray *)preNumArray {
-    if (_preNumArray == nil) {
-        _preNumArray = [NSMutableArray array];
-    }
-    return _preNumArray;
-}
 
 @end
+
