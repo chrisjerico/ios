@@ -30,6 +30,7 @@
 #import "UGYubaoViewController.h"
 #import "UGSigInCodeViewController.h"
 #import "UGPromotionIncomeController.h"
+#import "UGLaunchPageVC.h"
 
 
 #ifdef DEBUG
@@ -48,9 +49,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    tabbar = [[UGTabbarController alloc] init];
-    tabbar.delegate = self;
-    self.window.rootViewController = tabbar;
+//    tabbar = [[UGTabbarController alloc] init];
+//    tabbar.delegate = self;
+    self.window.rootViewController = [UGLaunchPageVC new];
     [self.window makeKeyAndVisible];
     
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
@@ -159,7 +160,8 @@
          UGNavigationController *navi = (UGNavigationController *)viewController;
         if ([navi.viewControllers.firstObject isKindOfClass:[UGChatViewController class]]) {
             AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-            NSString *colorStr = [[UGSkinManagers shareInstance] setNavbgStringColor];
+            NSString *colorStr = [[UGSkinManagers shareInstance] setChatNavbgStringColor];
+            NSLog(@"url = %@",[NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr]);
             appDelegate.tabbar.qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr];
         }
         return YES;

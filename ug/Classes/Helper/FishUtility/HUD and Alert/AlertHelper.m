@@ -13,20 +13,8 @@
 #pragma mark - AlertView
 
 + (UIAlertController *)showAlertView: (NSString *)title msg:(NSString *)msg btnTitles:(NSArray *)btnTitles {
-    return [AlertHelper showAlertViewWithVC:nil title:title message:msg btnTitles:btnTitles];
-}
-
-+ (UIAlertController *)showAlertViewWithVC:(UIViewController *)vc
-                                     title:(NSString *)title
-                                   message:(NSString *)message
-                                 btnTitles:(NSArray *)btnTitles
-{
-    UIAlertController *ac = [UIAlertController alertWithTitle:title msg:message btnTitles:btnTitles];
-    if (vc == nil) {
-        [NavController1 presentViewController:ac animated:true completion:nil];
-    } else {
-        [vc presentViewController:ac animated:YES completion:nil];
-    }
+    UIAlertController *ac = [UIAlertController alertWithTitle:title msg:msg btnTitles:btnTitles];
+    [NavController1 presentViewController:ac animated:true completion:nil];
     return ac;
 }
 

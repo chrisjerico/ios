@@ -27,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 @interface UGBannerModel : UGModel<UGBannerModel>
 @property (nonatomic, strong) NSArray<UGBannerCellModel> * list;
+@property (nonatomic, strong) NSString * interval;
 
 @end
 

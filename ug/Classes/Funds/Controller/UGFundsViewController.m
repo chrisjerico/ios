@@ -20,12 +20,21 @@
 @end
 
 @implementation UGFundsViewController
-
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+-(void)skin{
+     [self buildSegment];
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"资金管理";
     [self buildSegment];
-    
+    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
+        
+        [self skin];
+    });
 }
 
 - (void)viewDidLayoutSubviews {
@@ -42,20 +51,23 @@
         
     });
     
-    self.itemArray = @[@"存款",@"取款",@"存款记录",@"取款记录",@"资金明细"];
-    self.slideSwitchView = [[XYYSegmentControl alloc] initWithFrame:CGRectMake(0 , 0, self.view.width, self.view.height) channelName:self.itemArray source:self];
-    [self.slideSwitchView setUserInteractionEnabled:YES];
-    self.slideSwitchView.segmentControlDelegate = self;
-    //设置tab 颜色(可选)
-    self.slideSwitchView.tabItemNormalColor = [UIColor grayColor];
-    self.slideSwitchView.tabItemNormalFont = 13;
-    //设置tab 被选中的颜色(可选)
-    self.slideSwitchView.tabItemSelectedColor = UGNavColor;
-    //设置tab 背景颜色(可选)
-    self.slideSwitchView.tabItemNormalBackgroundColor = [UIColor whiteColor];;
-    //设置tab 被选中的标识的颜色(可选)
-    self.slideSwitchView.tabItemSelectionIndicatorColor = UGNavColor;
-    [self.view addSubview:self.slideSwitchView];
+   
+        self.itemArray = @[@"存款",@"取款",@"存款记录",@"取款记录",@"资金明细"];
+        self.slideSwitchView = [[XYYSegmentControl alloc] initWithFrame:CGRectMake(0 , 0, self.view.width, self.view.height) channelName:self.itemArray source:self];
+        [self.slideSwitchView setUserInteractionEnabled:YES];
+        self.slideSwitchView.segmentControlDelegate = self;
+        //设置tab 颜色(可选)
+        self.slideSwitchView.tabItemNormalColor = [UIColor grayColor];
+        self.slideSwitchView.tabItemNormalFont = 13;
+        //设置tab 被选中的颜色(可选)
+        self.slideSwitchView.tabItemSelectedColor = UGNavColor;
+        //设置tab 背景颜色(可选)
+        self.slideSwitchView.tabItemNormalBackgroundColor = [UIColor whiteColor];;
+        //设置tab 被选中的标识的颜色(可选)
+        self.slideSwitchView.tabItemSelectionIndicatorColor = UGNavColor;
+        [self.view addSubview:self.slideSwitchView];
+
+   
     
 }
 

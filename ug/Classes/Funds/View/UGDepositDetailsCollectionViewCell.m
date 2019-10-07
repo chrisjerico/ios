@@ -26,9 +26,11 @@
     //设置边框线的宽
     [layer setBorderWidth:1];
     //设置边框线的颜色
-    [layer setBorderColor:UGRGBColor(96, 149, 229).CGColor];
+    [layer setBorderColor:[[UGSkinManagers shareInstance] setNavbgColor].CGColor];
     
-     [self setBackgroundColor: [[UGSkinManagers shareInstance] setCellbgColor]];
+     [_myLabel setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
+    
+    [self.myLabel setTextColor:[UIColor whiteColor]];
 }
 
 - (void)setMyStr:(NSString *)myStr {

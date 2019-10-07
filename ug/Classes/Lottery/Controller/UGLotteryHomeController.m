@@ -139,6 +139,9 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
     UGLotteryGameCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:letteryTicketCellID forIndexPath:indexPath];
     UGAllNextIssueListModel *model = self.dataArray[indexPath.section];
     cell.item = model.list[indexPath.row];
+    [cell setBackgroundColor: [[UGSkinManagers shareInstance] sethomeContentColor]];
+    cell.layer.borderColor = [[[UGSkinManagers shareInstance] sethomeContentColor] CGColor];
+    
     return cell;
 }
 
@@ -179,7 +182,7 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
         };
 		judeBlock(lotteryVC);
         [self.navigationController pushViewController:lotteryVC animated:YES];
-    }else if ([@"pk10" isEqualToString:nextModel.gameType] ||
+    } else if ([@"pk10" isEqualToString:nextModel.gameType] ||
               [@"xyft" isEqualToString:nextModel.gameType]) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGBJPK10LotteryController" bundle:nil];
         UGBJPK10LotteryController *markSixVC = [storyboard instantiateInitialViewController];
@@ -194,7 +197,7 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
 
         [self.navigationController pushViewController:markSixVC animated:YES];
         
-    }else if ([@"qxc" isEqualToString:nextModel.gameType]) {
+    } else if ([@"qxc" isEqualToString:nextModel.gameType]) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGQXCLotteryController" bundle:nil];
         UGQXCLotteryController *sevenVC = [storyboard instantiateInitialViewController];
         sevenVC.nextIssueModel = nextModel;
@@ -205,7 +208,7 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
         };
         [self.navigationController pushViewController:sevenVC animated:YES];
         
-    }else if ([@"lhc" isEqualToString:nextModel.gameType]) {
+    } else if ([@"lhc" isEqualToString:nextModel.gameType]) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGHKLHCLotteryController" bundle:nil];
         UGHKLHCLotteryController *markSixVC = [storyboard instantiateInitialViewController];
         markSixVC.nextIssueModel = nextModel;
@@ -218,7 +221,7 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
 
         [self.navigationController pushViewController:markSixVC animated:YES];
         
-    }else if ([@"jsk3" isEqualToString:nextModel.gameType]) {
+    } else if ([@"jsk3" isEqualToString:nextModel.gameType]) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGJSK3LotteryController" bundle:nil];
         UGJSK3LotteryController *fastThreeVC = [storyboard instantiateInitialViewController];
         fastThreeVC.nextIssueModel = nextModel;
@@ -228,7 +231,7 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
             self.navigationController.tabBarController.selectedIndex = 0;
         };
         [self.navigationController pushViewController:fastThreeVC animated:YES];
-    }else if ([@"pcdd" isEqualToString:nextModel.gameType]) {
+    } else if ([@"pcdd" isEqualToString:nextModel.gameType]) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGPCDDLotteryController" bundle:nil];
         UGPCDDLotteryController *PCVC = [storyboard instantiateInitialViewController];
         PCVC.nextIssueModel = nextModel;
@@ -239,7 +242,7 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
         };
         [self.navigationController pushViewController:PCVC animated:YES];
         
-    }else if ([@"gd11x5" isEqualToString:nextModel.gameType]) {
+    } else if ([@"gd11x5" isEqualToString:nextModel.gameType]) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGGD11X5LotteryController" bundle:nil];
         UGGD11X5LotteryController *PCVC = [storyboard instantiateInitialViewController];
         PCVC.nextIssueModel = nextModel;
@@ -250,7 +253,7 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
         };
         [self.navigationController pushViewController:PCVC animated:YES];
         
-    }else if ([@"bjkl8" isEqualToString:nextModel.gameType]) {
+    } else if ([@"bjkl8" isEqualToString:nextModel.gameType]) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGBJKL8LotteryController" bundle:nil];
         UGBJKL8LotteryController *PCVC = [storyboard instantiateInitialViewController];
         PCVC.nextIssueModel = nextModel;
@@ -261,7 +264,7 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
         };
         [self.navigationController pushViewController:PCVC animated:YES];
         
-    }else if ([@"gdkl10" isEqualToString:nextModel.gameType] ||
+    } else if ([@"gdkl10" isEqualToString:nextModel.gameType] ||
               [@"xync" isEqualToString:nextModel.gameType]) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGGDKL10LotteryController" bundle:nil];
         UGGDKL10LotteryController *PCVC = [storyboard instantiateInitialViewController];
@@ -273,7 +276,7 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
         };
         [self.navigationController pushViewController:PCVC animated:YES];
         
-    }else if ([@"fc3d" isEqualToString:nextModel.gameType]) {
+    } else if ([@"fc3d" isEqualToString:nextModel.gameType]) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGFC3DLotteryController" bundle:nil];
         UGFC3DLotteryController *markSixVC = [storyboard instantiateInitialViewController];
         markSixVC.nextIssueModel = nextModel;
@@ -284,7 +287,7 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
         };
         [self.navigationController pushViewController:markSixVC animated:YES];
         
-    }else if ([@"pk10nn" isEqualToString:nextModel.gameType]) {
+    } else if ([@"pk10nn" isEqualToString:nextModel.gameType]) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGPK10NNLotteryController" bundle:nil];
         UGPK10NNLotteryController *markSixVC = [storyboard instantiateInitialViewController];
         markSixVC.nextIssueModel = nextModel;
@@ -295,7 +298,7 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
         };
         [self.navigationController pushViewController:markSixVC animated:YES];
         
-    }else {
+    } else {
         
     }
 
@@ -340,15 +343,12 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
     [self.view addSubview:collectionView];
     
     
-    [self.collectionView  mas_makeConstraints:^(MASConstraintMaker *make)
-     {
+    [self.collectionView  mas_makeConstraints:^(MASConstraintMaker *make) {
          make.top.equalTo(self.view.mas_top).with.offset(10);
          make.left.equalTo(self.view.mas_left).with.offset(5);
          make.right.equalTo(self.view.mas_right).with.offset(-5);
          make.bottom.equalTo(self.view.mas_bottom).offset(-IPHONE_SAFEBOTTOMAREA_HEIGHT);
-
-         
-     }];
+    }];
 }
 
 - (NSMutableArray *)dataArray {

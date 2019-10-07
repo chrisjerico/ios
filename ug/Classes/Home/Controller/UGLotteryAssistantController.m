@@ -158,6 +158,12 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
         return;
     }
     
+    if ([CMCommon arryIsNull:self.dataArray]) {
+        [self.navigationController.view makeToast:@"请输入投注金额"
+                                         duration:1.5
+                                         position:CSToastPositionCenter];
+        return ;
+    }
     [self.amountLabel resignFirstResponder];
     UGChanglongaideModel *betModel;
     UGBetItemModel *betItem;

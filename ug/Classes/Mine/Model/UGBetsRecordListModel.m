@@ -12,6 +12,7 @@
 + (JSONKeyMapper *)keyMapper {
     return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"betId"}];
 }
+
 @end
 
 @implementation UGBetsRecordListModel

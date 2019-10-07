@@ -38,7 +38,7 @@ static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
     
-     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 130, 0);
+     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 180, 0);
     
     self.tableViewDataArray = [NSMutableArray new];
     

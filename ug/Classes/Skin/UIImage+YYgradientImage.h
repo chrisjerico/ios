@@ -19,10 +19,12 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIImage*)gradientImageWithBounds:(CGRect)bounds andColors:(NSArray*)colors andGradientType:(GradientDirection)gradientType;
 
 
-+ (UIImage *)imageWithColor:(UIColor *)color;
-
 //绘图
 -(UIImage*)imageChangeColor:(UIColor*)color;
+
+- (UIImage *)qmui_imageWithTintColor:(UIColor *)tintColor;
+
+- (UIImage *)qmui_imageWithBlendColor:(UIColor *)blendColor ;
 @end
 
 NS_ASSUME_NONNULL_END

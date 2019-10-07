@@ -38,8 +38,12 @@
 
 - (void)setImageName:(NSString *)imageName {
     _imageName = imageName;
-   
-    self.imgView.image =  [[UIImage imageNamed:imageName] imageChangeColor:UGNavColor];
+
+    UIImage *image = [UIImage imageNamed:imageName];
+    UIImage *afterImage = [image qmui_imageWithTintColor:UGNavColor];
+    self.imageView.image = afterImage;
+
+    
 }
 
 - (void)setImageIconName:(NSString *)imageIconName {

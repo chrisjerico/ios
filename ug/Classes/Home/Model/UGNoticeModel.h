@@ -27,6 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) BOOL hiddenBottomLine;
 
+// 自定义参数
+@property (nonatomic) NSAttributedString *attrString;
 @end
 
 

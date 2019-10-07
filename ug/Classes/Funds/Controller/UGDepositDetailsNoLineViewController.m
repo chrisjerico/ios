@@ -51,7 +51,7 @@
     _tableDataArray = [NSMutableArray new];
     _blankDataArray = [NSMutableArray<UGrechargeBankModel> new];
     
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    [self.view setBackgroundColor: [UIColor whiteColor]];
     
     if (self.item) {
         _channelDataArray = item.channel;
@@ -137,9 +137,9 @@
     //==============================================================
     [self.tiplabel  mas_remakeConstraints:^(MASConstraintMaker *make)
      {
-         make.left.equalTo(self.view.mas_left).with.offset(10);
-         make.right.equalTo(self.view.mas_right).with.offset(-10);
-         make.top.equalTo(self.mUIScrollView.mas_top).offset(0);
+         make.left.equalTo(self.view.mas_left).with.offset(20);
+         make.right.equalTo(self.view.mas_right).with.offset(-20);
+         make.top.equalTo(self.mUIScrollView.mas_top).offset(20);
          make.width.mas_equalTo(UGScreenW-20);
          
      }];
@@ -149,8 +149,8 @@
     //==============================================================
     [self.tip2label  mas_remakeConstraints:^(MASConstraintMaker *make)
      {
-         make.left.equalTo(self.view.mas_left).with.offset(10);
-         make.right.equalTo(self.view.mas_right).with.offset(-10);
+         make.left.equalTo(self.view.mas_left).with.offset(20);
+         make.right.equalTo(self.view.mas_right).with.offset(-20);
          make.top.equalTo(self.tiplabel.mas_bottom).offset(0);
          make.width.mas_equalTo(UGScreenW-20);
          make.height.mas_equalTo(34);
@@ -189,8 +189,7 @@
     NSLog(@"%@",NSStringFromCGRect(self.uGFunds2microcodeView.frame));
      //==============================================================
     if ([CMCommon stringIsNull:channelModel.qrcode]) {
-        [self.uGFundsTransfer2View  mas_remakeConstraints:^(MASConstraintMaker *make)
-         {
+        [self.uGFundsTransfer2View  mas_remakeConstraints:^(MASConstraintMaker *make) {
              make.left.equalTo(self.view.mas_left).with.offset(0);
              make.right.equalTo(self.view.mas_right).with.offset(0);
              make.top.equalTo(self.uGFundsTransferView.mas_bottom).offset(0);
@@ -198,8 +197,7 @@
              make.height.mas_equalTo(181);
          }];
     } else {
-        [self.uGFundsTransfer2View  mas_remakeConstraints:^(MASConstraintMaker *make)
-         {
+        [self.uGFundsTransfer2View  mas_remakeConstraints:^(MASConstraintMaker *make) {
              make.left.equalTo(self.view.mas_left).with.offset(0);
              make.right.equalTo(self.view.mas_right).with.offset(0);
              make.top.equalTo(self.uGFunds2microcodeView.mas_bottom).offset(0);
@@ -211,8 +209,8 @@
     //==============================================================
     [self.label  mas_remakeConstraints:^(MASConstraintMaker *make)
      {
-         make.left.equalTo(self.view.mas_left).with.offset(10);
-         make.right.equalTo(self.view.mas_right).with.offset(-10);
+         make.left.equalTo(self.view.mas_left).with.offset(40);
+         make.right.equalTo(self.view.mas_right).with.offset(-40);
          make.top.mas_equalTo(self.uGFundsTransfer2View.mas_bottom).offset(10);
          make.width.mas_equalTo(UGScreenW-40);
 
@@ -225,19 +223,22 @@
     
     [self.bg_label  mas_remakeConstraints:^(MASConstraintMaker *make)
      {
-         make.left.equalTo(self.view.mas_left).with.offset(0);
-         make.right.equalTo(self.view.mas_right).with.offset(0);
+         make.left.equalTo(self.view.mas_left).with.offset(15);
+         make.right.equalTo(self.view.mas_right).with.offset(-15);
          make.top.equalTo(self.uGFundsTransfer2View.mas_bottom).offset(0);
          make.width.mas_equalTo(UGScreenW-20);
          make.height.equalTo(self.label.mas_height).offset(20);
 
      }];
-    [self.bg_label setBackgroundColor:[UIColor redColor]];
+    
+    self.bg_label.layer.cornerRadius = 5;
+    self.bg_label.layer.masksToBounds = YES;
+    [self.bg_label setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
     //==================================================================
     [self.blank_button  mas_remakeConstraints:^(MASConstraintMaker *make)
      {
-         make.left.equalTo(self.view.mas_left).with.offset(0);
-         make.right.equalTo(self.view.mas_right).with.offset(0);
+         make.left.equalTo(self.view.mas_left).with.offset(30);
+         make.right.equalTo(self.view.mas_right).with.offset(-30);
          make.top.equalTo(self.bg_label.mas_bottom).offset(10);
          make.height.mas_equalTo(44);
          
@@ -245,25 +246,29 @@
      //==============================================================
     
     if ([self.blank_button isHidden]) {
-        [self.submit_button  mas_makeConstraints:^(MASConstraintMaker *make)
+        [self.submit_button  mas_remakeConstraints:^(MASConstraintMaker *make)
          {
-             make.left.equalTo(self.view.mas_left).with.offset(0);
-             make.right.equalTo(self.view.mas_right).with.offset(0);
+             make.left.equalTo(self.view.mas_left).with.offset(30);
+             make.right.equalTo(self.view.mas_right).with.offset(-30);
              make.top.equalTo(self.bg_label.mas_bottom).offset(20);
              make.height.mas_equalTo(44);
              
          }];
     } else {
-        [self.submit_button  mas_makeConstraints:^(MASConstraintMaker *make)
+        [self.submit_button  mas_remakeConstraints:^(MASConstraintMaker *make)
          {
-             make.left.equalTo(self.view.mas_left).with.offset(20);
-             make.right.equalTo(self.view.mas_right).with.offset(-20);
+             make.left.equalTo(self.view.mas_left).with.offset(30);
+             make.right.equalTo(self.view.mas_right).with.offset(-30);
              make.top.equalTo(self.blank_button.mas_bottom).offset(20);
              make.height.mas_equalTo(40);
              
          }];
     }
-  
+    self.blank_button.layer.cornerRadius = 5;
+    self.blank_button.layer.masksToBounds = YES;
+    
+    self.submit_button.layer.cornerRadius = 5;
+    self.submit_button.layer.masksToBounds = YES;
     NSLog(@"self.submit_button.y = %f",self.submit_button.y);
    
     
@@ -322,7 +327,7 @@
         //UIScrollView被push之后返回，会发生控件位置偏移，用下面的代码就OK
 //        self.automaticallyAdjustsScrollViewInsets = NO;
 //        self.edgesForExtendedLayout = UIRectEdgeNone;
-         mUIScrollView.backgroundColor = UGRGBColor(239, 239, 244);
+         mUIScrollView.backgroundColor = [UIColor whiteColor];
     
         [self.view addSubview:mUIScrollView];
         self.mUIScrollView = mUIScrollView;
@@ -333,9 +338,9 @@
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, UGScreenW, 40)];
         label.textAlignment = NSTextAlignmentLeft;
         //        label.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
-        label.font = [UIFont systemFontOfSize:14];
-        label.textColor = [UIColor blackColor];
-        label.backgroundColor = UGRGBColor(239, 239, 244);
+        label.font = [UIFont boldSystemFontOfSize:14];
+        label.textColor = [[UGSkinManagers shareInstance] setNavbgColor];
+        label.backgroundColor = [UIColor whiteColor];
 //        label.backgroundColor = [UIColor redColor];
         label.numberOfLines = 0;
         label.text = @"ewerqwerqwerqwerqwer";
@@ -351,8 +356,8 @@
         label.textAlignment = NSTextAlignmentLeft;
         //        label.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
         label.font = [UIFont boldSystemFontOfSize:14];
-//        label.textColor = [UIColor blackColor];
-        label.backgroundColor = UGRGBColor(239, 239, 244);
+        label.textColor = [[UGSkinManagers shareInstance] setNavbgColor];
+        label.backgroundColor = [UIColor whiteColor];
 //        label.backgroundColor = [UIColor yellowColor];
 
         label.numberOfLines = 0;
@@ -407,7 +412,7 @@
         //        label.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
         label.font = [UIFont systemFontOfSize:14];
         label.textColor = [UIColor whiteColor];
-        label.backgroundColor = [UIColor redColor];
+        label.backgroundColor = [[UGSkinManagers shareInstance] setNavbgColor];
         label.numberOfLines = 0;
         label.text = @"";
         [self.mUIScrollView addSubview:label];
@@ -423,16 +428,14 @@
         // 按钮的正常状态
         [button setTitle:@"请选择银行" forState:UIControlStateNormal];
         // 设置按钮的背景色
-        button.backgroundColor = [UIColor whiteColor];
+        button.backgroundColor = [[UGSkinManagers shareInstance] setNavbgColor];
         
         // 设置正常状态下按钮文字的颜色，如果不写其他状态，默认都是用这个文字的颜色
-        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
         // 设置按下状态文字的颜色
-        [button setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
         
-        // 设置按钮的风格颜色,只有titleColor没有设置的时候才有用
-        [button setTintColor:[UIColor whiteColor]];
         
         // titleLabel：UILabel控件
         button.titleLabel.font = [UIFont systemFontOfSize:16];
@@ -447,7 +450,7 @@
         //设置边框线的宽
         [layer setBorderWidth:1];
         //设置边框线的颜色
-        [layer setBorderColor:UGRGBColor(231, 231, 231).CGColor];
+        [layer setBorderColor:[[UGSkinManagers shareInstance] setNavbgColor].CGColor];
         
         
         [self.mUIScrollView addSubview:button ];
@@ -461,13 +464,13 @@
         // 按钮的正常状态
         [button setTitle:@"提交" forState:UIControlStateNormal];
         // 设置按钮的背景色
-        button.backgroundColor = UGRGBColor(76, 149, 236.0);
+        button.backgroundColor = [[UGSkinManagers shareInstance] setNavbgColor];
         
         // 设置正常状态下按钮文字的颜色，如果不写其他状态，默认都是用这个文字的颜色
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
         // 设置按下状态文字的颜色
-        [button setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
         
         // 设置按钮的风格颜色,只有titleColor没有设置的时候才有用
         [button setTintColor:[UIColor whiteColor]];
@@ -485,7 +488,7 @@
         //设置边框线的宽
         [layer setBorderWidth:1];
         //设置边框线的颜色
-        [layer setBorderColor:UGRGBColor(231, 231, 231).CGColor];
+        [layer setBorderColor:[[UGSkinManagers shareInstance] setNavbgColor].CGColor];
         
         
         [self.mUIScrollView addSubview:button ];

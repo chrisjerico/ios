@@ -4,6 +4,7 @@ ${BUILT_PRODUCTS_DIR}/AvoidCrash/AvoidCrash.framework
 ${BUILT_PRODUCTS_DIR}/BAWKWebView/BAWKWebView.framework
 ${BUILT_PRODUCTS_DIR}/DateTools/DateTools.framework
 ${BUILT_PRODUCTS_DIR}/FFRouter/FFRouter.framework
+${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework
 ${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework
 ${BUILT_PRODUCTS_DIR}/JRSwizzle/JRSwizzle.framework
 ${BUILT_PRODUCTS_DIR}/LEEAlert/LEEAlert.framework

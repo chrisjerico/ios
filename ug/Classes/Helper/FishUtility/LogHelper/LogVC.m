@@ -68,6 +68,9 @@ static LogVC *_logVC = nil;
 
 + (void)addRequestModel:(ZJSessionModel *)sm {
     [_logVC.allRequest insertObject:sm atIndex:0];
+    if (_logVC.view.by > 10) {
+        [_logVC.reqTableView reloadData];
+    }
 //    if (_logVC.allRequest.count > 50)
 //        [_logVC.allRequest removeLastObject];
 }
@@ -90,7 +93,7 @@ static LogVC *_logVC = nil;
         _hostSegmentedControl.selectedSegmentIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"HostIndex"];
     [self onHostSegmentedControlValueChanged:_hostSegmentedControl];
     
-    _reqTableView.rowHeight = 35;
+    _reqTableView.rowHeight = 46;
     _paramsTableView.rowHeight = 25;
     _paramsTableView.hidden = true;
 }
@@ -210,11 +213,11 @@ static LogVC *_logVC = nil;
     if (tableView == _reqTableView) {
         NSArray *array = (_collectButton.selected ? _collects : _allRequest);
         ZJSessionModel *sm = array.count > indexPath.row ? array[indexPath.row] : nil;
-        subLabel(@"StateLabel").text = !sm.response ? @"🕓" : (sm.error ? @"❌" : @"✅");
+        subLabel(@"StateLabel").text = sm.responseObject ? @"✅" : (sm.error ? @"❌" : @"🕓");
         subLabel(@"TitleLabel").text = sm.urlString;
-        subLabel(@"DetailLabel").text = [ZJNetworkRequests1 titleWithSessionModel:sm];
+        subLabel(@"DetailLabel").text = _NSString(@"%@", sm.responseObject[@"msg"]);
         subLabel(@"TimeLabel").text = sm.duration >= 1000 ? _NSString(@"%.1fs", sm.duration/1000.0) : _NSString(@"%dms", (int)sm.duration);
-        subLabel(@"TimeLabel").hidden = !sm.response;
+        subLabel(@"TimeLabel").hidden = !(sm.responseObject || sm.error);
     } else {
         subLabel(@"TitleLabel").text = _selectedModelKeys[indexPath.row];
         subLabel(@"DetailLabel").text =  [_selectedModel.params[_selectedModelKeys[indexPath.row]] description];

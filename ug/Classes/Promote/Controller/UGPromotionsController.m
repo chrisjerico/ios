@@ -16,13 +16,20 @@
 @end
 
 @implementation UGPromotionsController
+-(void)skin{
 
+    
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
+        
+        [self skin];
+    });
     self.navigationItem.title = @"优惠活动";
     self.view.backgroundColor = UGBackgroundColor;
-    
+
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self getPromoteList];
     }];

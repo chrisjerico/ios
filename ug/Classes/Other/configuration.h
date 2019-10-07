@@ -21,10 +21,11 @@
 #define IS_UPGRADE  @"IS_UPGRADE"    //是否显示升级图标
 #define APP_VERSION   [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey]
 
-#define RSAPublicKey @"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDEJxz/vN7M0OokKGoikyDiWZJHC3asHzRWC58J3oI7VItExzPhGdh+mXh9Z482OGULOO5PhXUrQk1che47jc9OPazjbODo1wkIEyAIsjbCneS5cbCrRIIsWrWva2i18ze4N6b4gWabbyt9bRtQrGXNttnr2/ILeu2SkClmEKBEswIDAQAB"
+#define RSAPublicKey @"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0CZTn+50HHM0QkziEunofDfIG77buLuRwItL8My9EYAyuLSW1qkLgqta2z2bIedx7Ro6enOZ0PZNFnqsztltGctwTwAVQDGoB+kpqUi5gs5jRTcoRkytgaLs7xZey45H0c2Hof4W+rcdHR/xc7C0hT5fBNqEDjBmGvoLlYpHag/p4m7h+JgpWHmKGWg7ijHMPWJQSFD1JPnP7upQlTJ8BKl24em6n2lSyH8qkoJKoEzUfQ7HricpF4S6MVCm36BSfkz35Oy4La7WxDrwW8KDs3ahKHM4uifgDlupZ+nV/dgzCQWDi5lNiQlvWR0xKsjwwrnXTdHPnMYDX8NdDTvTcQIDAQAB"
 
 static NSString *baseServerUrl = @"http://test10.6yc.com";
 //static NSString *baseServerUrl = @"http://test100f.fhptcdn.com";
+//static NSString *baseServerUrl = @"http://103.9.230.243";
 
 static NSString *swiperVerifyUrl = @"/dist/index.html#/swiperverify?platform=native";
 

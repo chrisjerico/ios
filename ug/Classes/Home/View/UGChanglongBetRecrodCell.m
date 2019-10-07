@@ -15,8 +15,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *winAmountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *statusWinLabel;
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
-@property (weak, nonatomic) IBOutlet UILabel *playNameLabel;
-
 @end
 @implementation UGChanglongBetRecrodCell
 
@@ -28,7 +26,6 @@
 - (void)setItem:(UGChanglongBetRecordModel *)item {
     _item = item;
     self.nameLabel.text = item.title;
-    self.playNameLabel.text = [NSString stringWithFormat:@"%@/%@",item.group_name,item.play_name];
     self.betAmountLabel.text = [NSString stringWithFormat:@"¥%@",[item.money removeFloatAllZero]];
     self.issueLabel.text = [NSString stringWithFormat:@"%@ 期",item.issue];
     if (item.isWin) {
