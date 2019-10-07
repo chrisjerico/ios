@@ -206,6 +206,12 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 		[weakSelf updateTotalLabelText];
 		
 	};
+	cell.amountEditedBlock = ^(float amount) {
+		UGBetModel * betModel =  self.betArray[indexPath.row];
+		betModel.money = [NSString stringWithFormat:@"%f", amount];
+		self.betArray[indexPath.row] = betModel;
+		[self updateTotalLabelText];
+	};
 	return cell;
 }
 
