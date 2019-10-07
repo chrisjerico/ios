@@ -8,8 +8,10 @@
 
 #import "UGGameListCollectionViewCell.h"
 #import "UGPlatformGameModel.h"
+#import "FLAnimatedImageView.h"
+
 @interface UGGameListCollectionViewCell ()
-@property (weak, nonatomic) IBOutlet UIImageView *imgView;
+@property (weak, nonatomic) IBOutlet FLAnimatedImageView *imgView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *playLabel;
 

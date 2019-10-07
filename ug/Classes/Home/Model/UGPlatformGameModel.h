@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol UGPlatformGameModel <NSObject>
 
 @end
-// 真人列表
+// 真人游戏列表
 // {{LOCAL_HOST}}?c=game&a=realGames
 @interface UGPlatformGameModel : UGModel<UGPlatformGameModel>
 @property (nonatomic, strong) NSString *gameId;         /**<   真人ID */
@@ -43,7 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *pic;            /**<   图片 */
 @property (nonatomic, strong) NSString *imgName;
 @property (nonatomic, assign) BOOL isHot;               /**<   是否热门。1=是；0=否 */
-@property (nonatomic, strong) NSString *balance;        /**<   额度转换列表 真人余额 */
+@property (nonatomic, strong) NSString *balance;        /**<   真人余额（额度转换列表） */
 @property (nonatomic, assign) BOOL refreshing;
 
 

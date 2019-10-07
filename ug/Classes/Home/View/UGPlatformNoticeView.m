@@ -33,18 +33,16 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
         self.frame = frame;
         self.backgroundColor = [UIColor whiteColor];
        
-         self.selectSection = 0;
+        self.selectSection = 0;
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
         self.tableView.estimatedSectionHeaderHeight = 0;
         self.tableView.estimatedSectionFooterHeight = 0;
-        [self.tableView registerNib:[UINib nibWithNibName:@"UGPlatformNoticeCell" bundle:nil] forCellReuseIdentifier:platformNoticeCellid];
+//        [self.tableView registerNib:[UINib nibWithNibName:@"cell" bundle:nil] forCellReuseIdentifier:platformNoticeCellid];
+        [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
         [self.tableView registerNib:[UINib nibWithNibName:@"UGNoticeHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:noticeHeaderViewid];
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         self.layer.cornerRadius = 5;
-        
-
-        
     }
     return self;
     
@@ -61,7 +59,6 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
             view = self.closeButton;
         }
     }
-    
     return view;
 } 
 
@@ -76,6 +73,30 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
     [self.tableView reloadData];
 }
 
+
+- (void)show {
+    [self.bgView setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
+    
+    UIWindow* window = UIApplication.sharedApplication.keyWindow;
+    UIView* maskView = [[UIView alloc] initWithFrame:window.bounds];
+    UIView* view = self;
+    view.hidden = NO;
+    
+    maskView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
+    maskView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
+    
+    [maskView addSubview:view];
+    [window addSubview:maskView];
+}
+
+- (void)hiddenSelf {
+    UIView *view = self;
+    self.superview.backgroundColor = [UIColor clearColor];
+    [view.superview removeFromSuperview];
+    [view removeFromSuperview];
+}
+
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -85,7 +106,7 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (self.selectSection == -1) {
         return 0;
-    }else {
+    } else {
         if (section == self.selectSection) {
             return 1;
         }
@@ -94,27 +115,66 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UGPlatformNoticeCell *cell = [tableView dequeueReusableCellWithIdentifier:platformNoticeCellid forIndexPath:indexPath];
-    cell.item = self.dataArray[indexPath.section];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    UGNoticeModel *nm = self.dataArray[indexPath.section];
     
+    // 加载html
+    UIWebView *wv = [cell viewWithTagString:@"WebView"];
+    [wv removeFromSuperview];
+    wv = [UIWebView new];
+    wv.backgroundColor = [UIColor clearColor];
+    wv.tagString = @"WebView";
+    [wv xw_addObserverBlockForKeyPath:@"scrollView.contentSize" block:^(id  _Nonnull obj, id  _Nonnull oldVal, id  _Nonnull newVal) {
+        CGFloat h = [newVal CGSizeValue].height;
+        [obj mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(h);
+        }];
+        [tableView beginUpdates];
+        [tableView endUpdates];
+    }];
+    [cell addSubview:wv];
+    
+    [wv mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(cell).offset(-2);
+        make.top.bottom.equalTo(cell).offset(2);
+        make.height.mas_equalTo(60);
+    }];
+    [wv loadHTMLString:_NSString(@"<head><style>img{width:%f !important;height:auto}</style></head>%@", cell.width-20, nm.content) baseURL:nil];
+    
+    // webview 上下各一条线
+    UIView *topLineView = [cell viewWithTagString:@"topLineView"];
+    if (!topLineView) {
+        topLineView = [UIView new];
+        topLineView.backgroundColor = [[UGSkinManagers shareInstance] setNavbgColor];
+        topLineView.tagString = @"topLineView";
+        [cell addSubview:topLineView];
+        
+        [topLineView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.top.right.equalTo(cell);
+            make.height.mas_equalTo(1);
+        }];
+    }
+    UIView *bottomLineView = [cell viewWithTagString:@"bottomLineView"];
+    if (!bottomLineView) {
+        bottomLineView = [UIView new];
+        bottomLineView.backgroundColor = [[UGSkinManagers shareInstance] setNavbgColor];
+        bottomLineView.tagString = @"topLineView";
+        [cell addSubview:bottomLineView];
+        
+        [bottomLineView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.bottom.right.equalTo(cell);
+            make.height.mas_equalTo(1);
+        }];
+    }
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UGNoticeModel *model = self.dataArray[indexPath.row];
-    NSString *str = [NSString stringWithFormat:@"<head><style>img{width:%f !important;height:auto}</style></head>%@",self.width,model.content];
-    NSAttributedString *attStr = [[NSAttributedString alloc] initWithData:[str dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
-    UILabel *content = [[UILabel alloc] init];
-    content.attributedText = attStr;
-    return content.intrinsicContentSize.height;
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 50;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 0.001f;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -132,7 +192,7 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
 
             if (section == weakSelf.selectSection) {
                 weakSelf.selectSection = -1;
-            }else {
+            } else {
                 UGNoticeModel *lastItem = weakSelf.dataArray[weakSelf.selectSection];
                 lastItem.hiddenBottomLine = NO;
                 weakSelf.selectSection = section;
@@ -146,37 +206,9 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
     return headerView;
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
-{
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
     UITableViewHeaderFooterView *headerView=(UITableViewHeaderFooterView *)view;
     [headerView.backgroundView setBackgroundColor:[UIColor whiteColor]];
-}
-
-- (void)show {
-    
-    [self.bgView setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
-
-    
-    UIWindow* window = UIApplication.sharedApplication.keyWindow;
-    UIView* maskView = [[UIView alloc] initWithFrame:window.bounds];
-    UIView* view = self;
-    view.hidden = NO;
-    
-    maskView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
-    maskView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
-    
-    [maskView addSubview:view];
-    [window addSubview:maskView];
-    
-}
-
-- (void)hiddenSelf {
-    
-    UIView* view = self;
-    self.superview.backgroundColor = [UIColor clearColor];
-    [view.superview removeFromSuperview];
-    [view removeFromSuperview];
-    
 }
 
 @end

@@ -460,10 +460,17 @@
     [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"jsToOcNoPrams"];
     [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"jsToOcWithPrams"];
     //移除观察者
-    [_webView removeObserver:self
-                  forKeyPath:NSStringFromSelector(@selector(estimatedProgress))];
-    [_webView removeObserver:self
-                  forKeyPath:NSStringFromSelector(@selector(title))];
+	
+	@try {
+		    [_webView removeObserver:self
+		                  forKeyPath:NSStringFromSelector(@selector(estimatedProgress))];
+		    [_webView removeObserver:self
+		                  forKeyPath:NSStringFromSelector(@selector(title))];
+		
+	} @catch (NSException *exception) {
+		
+	}
+
 }
     
 - (STBarButtonItem *)backBtn {

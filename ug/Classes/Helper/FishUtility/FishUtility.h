@@ -51,6 +51,7 @@
 
     // HUD
     #import "HUDHelper.h"
+    #import "AlertHelper.h"
     
     // Define
     #import "AppDefine.h"

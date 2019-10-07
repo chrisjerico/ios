@@ -70,20 +70,19 @@
 #import "UGFundsViewController.h"
 
 
-
 @interface UGHomeViewController ()<SDCycleScrollViewDelegate,UUMarqueeViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
-@property (weak, nonatomic) IBOutlet UIView *bannerBgView;
-@property (weak, nonatomic) IBOutlet UGGameNavigationView *gameNavigationView;
+@property (weak, nonatomic) IBOutlet UIView *bannerBgView;                          /**<   Banner */
+@property (weak, nonatomic) IBOutlet UGGameNavigationView *gameNavigationView;      /**<   游戏导航父视图 */
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *gameNavigationViewHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *gameNavigationViewHeight;  /**<   游戏导航 */
 
-@property (weak, nonatomic) IBOutlet UGGameTypeCollectionView *gameTypeView;
-@property (weak, nonatomic) IBOutlet UIView *rankingView;
+@property (weak, nonatomic) IBOutlet UGGameTypeCollectionView *gameTypeView;/**<   游戏列表 */
+@property (weak, nonatomic) IBOutlet UIView *rankingView;                   /**<   中奖排行榜父视图 */
 
-@property (weak, nonatomic) IBOutlet UUMarqueeView *leftwardMarqueeView;
-@property (weak, nonatomic) IBOutlet UUMarqueeView *upwardMultiMarqueeView;
+@property (weak, nonatomic) IBOutlet UUMarqueeView *leftwardMarqueeView;    /**<   滚动公告 */
+@property (weak, nonatomic) IBOutlet UUMarqueeView *upwardMultiMarqueeView; /**<   中奖排行榜 */
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *gameViewHeight;
 
@@ -91,8 +90,8 @@
 @property (nonatomic, strong) UGHomeTitleView *titleView;
 @property (nonatomic, strong) SDCycleScrollView *bannerView;
 
-@property (nonatomic, strong) NSMutableArray *leftwardMarqueeViewData;
-@property (nonatomic, strong) NSMutableArray *upwardMultiMarqueeViewData;
+@property (nonatomic, strong) NSMutableArray *leftwardMarqueeViewData;      /**<   公告数据 */
+@property (nonatomic, strong) NSMutableArray *upwardMultiMarqueeViewData;   /**<   中奖排行榜数据 */
 @property (nonatomic, strong) NSMutableArray *popNoticeArray;
 
 @property (nonatomic, strong) NSMutableArray *gameCategorys;
@@ -106,7 +105,7 @@
 @property (nonatomic, assign) BOOL initSubview;
 
 @property (strong, nonatomic)  UGredEnvelopeView *uGredEnvelopeView;
-@property (strong, nonatomic)  UGredActivityView *uGredActivityView;
+@property (strong, nonatomic)  UGredActivityView *uGredActivityView;    /**<   红包弹框 */
 
 
 @property (strong, nonatomic)UGRightMenuView *menuView;
@@ -197,13 +196,15 @@
 		[self userLogout];
 	});
 	SANotificationEventSubscribe(UGNotificationloginTimeout, self, ^(typeof (self) self, id obj) {
-		[QDAlertView showWithTitle:@"提示" message:@"您的账号已经登录超时，请重新登录。" cancelButtonTitle:nil otherButtonTitle:@"确定" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-			self.titleView.showLoginView = YES;
-			UGUserModel.currentUser = nil;
-			[self.tabBarController setSelectedIndex:0];
-			
-			
-		}];
+        // onceToken 函数的作用是，限制为只弹一次框，修复弹框多次的bug
+        [UGUserModel.currentUser onceToken:ZJOnceToken block:^{
+            [QDAlertView showWithTitle:@"提示" message:@"您的账号已经登录超时，请重新登录。" cancelButtonTitle:nil otherButtonTitle:@"确定" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                self.titleView.showLoginView = YES;
+                UGUserModel.currentUser = nil;
+                [self.tabBarController setSelectedIndex:0];
+                [self loginClick];
+            }];
+        }];
 	});
 	SANotificationEventSubscribe(UGNotificationShowLoginView, self, ^(typeof (self) self, id obj) {
 		[self loginClick];
@@ -252,77 +253,66 @@
 	
 	self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
 	
-	self.uGredEnvelopeView = [[UGredEnvelopeView alloc] initWithFrame:CGRectMake(UGScreenW-100, 150, 95, 95) ];
-	
-	[self.view addSubview:_uGredEnvelopeView];
-	
-	[self.uGredEnvelopeView setHidden:YES];
-	
-	[self.uGredEnvelopeView  mas_remakeConstraints:^(MASConstraintMaker *make)
-	 {
-		
-		make.right.equalTo(self.view.mas_right).with.offset(-10);
-		make.width.mas_equalTo(95.0);
-		make.height.mas_equalTo(95.0);
-		make.top.equalTo(self.view.mas_top).offset(150);
-		
-	}];
-	
-	self.uGredEnvelopeView.cancelClickBlock = ^(void) {
-		[weakSelf.uGredEnvelopeView setHidden:YES];
-	};
-	
-	
-	
-	
-	self.uGredEnvelopeView.redClickBlock = ^(void) {
-		//        [weakSelf.uGredEnvelopeView setHidden:YES];
-		
-		
-		if ([UGUserModel currentUser].isTest) {
-			[QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-				if (buttonIndex == 1) {
-					SANotificationEventPost(UGNotificationShowLoginView, nil);
-				}
-			}];
-		}else {
-			
-			
-			BOOL isLogin = UGLoginIsAuthorized();
-			
-			if (isLogin) {
-				weakSelf.uGredActivityView = [[UGredActivityView alloc] initWithFrame:CGRectMake(20,100, UGScreenW-50, UGScreenW-50+150) ];
-				
-				weakSelf.uGredActivityView.item = weakSelf.uGredEnvelopeView.item;
-				if (weakSelf.uGredEnvelopeView.item) {
-					[weakSelf.uGredActivityView show];
-				}
-			} else {
-				
-				[QDAlertView showWithTitle:@"温馨提示" message:@"您还未登录" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-					if (buttonIndex) {
-						
-						UGLoginAuthorize(^(BOOL isFinish) {
-							if (!isFinish) {
-								return ;
-							}
-							
-							
-						});
-					}
-				}];
-				
-				
-			}
-			
-			
-			
-		}
-		
-		
-		
-	};
-	
+    
+    
+    // 红包事件
+    {
+        self.uGredEnvelopeView = [[UGredEnvelopeView alloc] initWithFrame:CGRectMake(UGScreenW-100, 150, 95, 95) ];
+        [self.view addSubview:_uGredEnvelopeView];
+        [self.uGredEnvelopeView setHidden:YES];
+        [self.uGredEnvelopeView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(self.view.mas_right).with.offset(-10);
+            make.width.mas_equalTo(95.0);
+            make.height.mas_equalTo(95.0);
+            make.top.equalTo(self.view.mas_top).offset(150);
+        }];
+        self.uGredEnvelopeView.cancelClickBlock = ^(void) {
+            [weakSelf.uGredEnvelopeView setHidden:YES];
+        };
+        
+        // 红包弹框
+        WeakSelf;
+        self.uGredEnvelopeView.redClickBlock = ^(void) {
+            //        [weakSelf.uGredEnvelopeView setHidden:YES];
+            
+            if ([UGUserModel currentUser].isTest) {
+                UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"请先登录您的正式账号" btnTitles:@[@"取消", @"马上登录"]];
+                [ac setActionAtTitle:@"马上登录" handler:^(UIAlertAction *aa) {
+                    SANotificationEventPost(UGNotificationShowLoginView, nil);
+                }];
+                return ;
+            }
+            if (!UGLoginIsAuthorized()) {
+                UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"您还未登录" btnTitles:@[@"取消", @"马上登录"]];
+                [ac setActionAtTitle:@"马上登录" handler:^(UIAlertAction *aa) {
+                    UGLoginAuthorize(^(BOOL isFinish) {
+                        if (!isFinish)
+                            return ;
+                    });
+                }];
+                return;
+            }
+            
+            NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
+            
+            [SVProgressHUD showWithStatus:nil];
+            [CMNetwork activityRedBagDetailWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+                [CMResult processWithResult:model success:^{
+                    [SVProgressHUD dismiss];
+                    weakSelf.uGredEnvelopeView.item = (UGRedEnvelopeModel*)model.data;
+                    
+                    weakSelf.uGredActivityView = [[UGredActivityView alloc] initWithFrame:CGRectMake(20,100, UGScreenW-50, UGScreenW-50+150) ];
+                    weakSelf.uGredActivityView.item = weakSelf.uGredEnvelopeView.item;
+                    if (weakSelf.uGredEnvelopeView.item) {
+                        [weakSelf.uGredActivityView show];
+                    }
+                } failure:^(id msg) {
+                    [SVProgressHUD dismiss];
+                    [SVProgressHUD showErrorWithStatus:msg];
+                }];
+            }];
+        };
+    }
 }
 
 -(BOOL)prefersStatusBarHidden{
@@ -479,7 +469,14 @@
 					[self.gameCategorys addObject:customGameModel.card];
 					[self.gameCategorys addObject:customGameModel.sport];
 					
-					self.gameNavigationView.sourceData = customGameModel.navigation.list;
+					
+					NSArray<GameModel *> * sourceData = customGameModel.navigation.list;
+					self.gameNavigationView.sourceData = sourceData;
+					if (sourceData.count > 0) {
+						self.gameNavigationViewHeight.constant = ((sourceData.count - 1)/4 + 1)*80;
+						[self.view layoutIfNeeded];
+
+					}
 					
 					self.gameTypeView.gameTypeArray = self.gameCategorys;
 				});
@@ -521,9 +518,6 @@
 }
 
 - (void)getSystemConfig {
-	//<<<<<<< HEAD
-	
-	
 	[CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
 		[self.scrollView.mj_header endRefreshing];
 		[CMResult processWithResult:model success:^{
@@ -543,25 +537,6 @@
 			
 		}];
 	}];
-	//=======
-	//
-	//
-	//	[CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-	//		[self.scrollView.mj_header endRefreshing];
-	//		[CMResult processWithResult:model success:^{
-	//
-	//			NSLog(@"model = %@",model);
-	//
-	//			UGSystemConfigModel *config = model.data;
-	//			UGSystemConfigModel.currentConfig = config;
-	//
-	//			[self.titleView setImgName:config.mobile_logo];
-	//
-	//		} failure:^(id msg) {
-	//
-	//		}];
-	//	}];
-	//>>>>>>> dev_andrew
 }
 
 - (void)userLogout {
@@ -873,136 +848,7 @@
 }
 
 - (void)rightBarBtnClick {
-	float y;
-	if ([CMCommon isPhoneX]) {
-		y = 44;
-	}else {
-		y = 20;
-	}
-	//    self.menuView = [[UGRightMenuView alloc] initWithFrame:CGRectMake(UGScreenW /2 , y, UGScreenW / 2, UGScerrnH)];
-	//    self.menuView.titleArray = [[NSMutableArray alloc] initWithObjects:@"即时注单",@"今日输赢",@"投注记录",@"开奖记录",@"长龙助手",@"利息宝",@"站内信",@"退出登录", nil] ;
-	//    self.menuView.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"changlong",@"lixibao",@"zhanneixin",@"tuichudenglu", nil] ;
-	//    WeakSelf
-	//    self.menuView.menuSelectBlock = ^(NSInteger index) {
-	//
-	//       NSString * titleStr =  [weakSelf.menuView.titleArray objectAtIndex:index];
-	//
-	//        if ([titleStr isEqualToString:@"即时注单" ]) {
-	//            if ([UGUserModel currentUser].isTest) {
-	//                [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-	//                    if (buttonIndex == 1) {
-	//                        SANotificationEventPost(UGNotificationShowLoginView, nil);
-	//                    }
-	//                }];
-	//            }else {
-	//
-	//                UGBetRecordViewController *betRecordVC = [[UGBetRecordViewController alloc] init];
-	//                [betRecordVC.slideSwitchView changeSlideAtSegmentIndex:0];
-	//                [weakSelf.navigationController pushViewController:betRecordVC animated:YES];
-	//            }
-	//
-	//        }
-	//        else if ([titleStr isEqualToString:@"今日输赢" ]) {
-	//            if ([UGUserModel currentUser].isTest) {
-	//                [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-	//                    if (buttonIndex == 1) {
-	//                        SANotificationEventPost(UGNotificationShowLoginView, nil);
-	//                    }
-	//                }];
-	//            }else {
-	//
-	//                UGBetRecordViewController *betRecordVC = [[UGBetRecordViewController alloc] init];
-	//                [betRecordVC.slideSwitchView changeSlideAtSegmentIndex:0];
-	//                [weakSelf.navigationController pushViewController:betRecordVC animated:YES];
-	//            }
-	//
-	//        }
-	//        else if ([titleStr isEqualToString:@"投注记录" ]) {
-	//            if ([UGUserModel currentUser].isTest) {
-	//                [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-	//                    if (buttonIndex == 1) {
-	//                        SANotificationEventPost(UGNotificationShowLoginView, nil);
-	//                    }
-	//                }];
-	//            }else {
-	//
-	//                UGBetRecordViewController *betRecordVC = [[UGBetRecordViewController alloc] init];
-	//                [betRecordVC.slideSwitchView changeSlideAtSegmentIndex:0];
-	//                [weakSelf.navigationController pushViewController:betRecordVC animated:YES];
-	//            }
-	//
-	//        }else if ([titleStr isEqualToString:@"开奖记录" ]) {
-	//            UIStoryboard *storyboad = [UIStoryboard storyboardWithName:@"UGLotteryRecordController" bundle:nil];
-	//            UGLotteryRecordController *recordVC = [storyboad instantiateInitialViewController];
-	//            UGAllNextIssueListModel *model = self.lotteryGamesArray.firstObject;
-	//            UGNextIssueModel *game = model.list.firstObject;
-	//            recordVC.gameId = game.gameId;
-	//            recordVC.lotteryGamesArray = self.lotteryGamesArray;
-	//            [self.navigationController pushViewController:recordVC animated:YES];
-	//
-	//        }else if ([titleStr isEqualToString:@"长龙助手"]) {
-	//
-	//            UGChangLongController *changlongVC = [[UGChangLongController alloc] init];
-	//            changlongVC.lotteryGamesArray = self.lotteryGamesArray;
-	//            [self.navigationController pushViewController:changlongVC animated:YES];
-	//
-	//        }else if ([titleStr isEqualToString:@"站内信"]) {
-	//            UGMailBoxTableViewController *mailBoxVC = [[UGMailBoxTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
-	//            [self.navigationController pushViewController:mailBoxVC animated:YES];
-	//
-	//        }else if ([titleStr isEqualToString:@"退出登录"]) {
-	//
-	//            [QDAlertView showWithTitle:@"温馨提示" message:@"确定退出账号" cancelButtonTitle:@"取消" otherButtonTitle:@"确定" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-	//                if (buttonIndex == 1) {
-	//                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-	//
-	//                        [weakSelf userLogout];
-	//                    });
-	//                }
-	//            }];
-	//        }
-	//        else if ([titleStr isEqualToString:@"利息宝"]) {
-	//
-	//            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGYubaoViewController" bundle:nil];
-	//            UGYubaoViewController *lixibaoVC = [storyboard instantiateInitialViewController];
-	//            [self.navigationController pushViewController:lixibaoVC  animated:YES];
-	//
-	//        }
-	//        else if (index == 100) {//充值
-	//            if ([UGUserModel currentUser].isTest) {
-	//                [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-	//                    if (buttonIndex == 1) {
-	//                        SANotificationEventPost(UGNotificationShowLoginView, nil);
-	//                    }
-	//                }];
-	//            }else {
-	//
-	//                UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
-	//                fundsVC.selectIndex = 0;
-	//                [self.navigationController pushViewController:fundsVC animated:YES];
-	//            }
-	//        }
-	//        else if (index == 101) {//提现
-	//            if ([UGUserModel currentUser].isTest) {
-	//                [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-	//                    if (buttonIndex == 1) {
-	//                        SANotificationEventPost(UGNotificationShowLoginView, nil);
-	//                    }
-	//                }];
-	//            }else {
-	//
-	//                UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
-	//                fundsVC.selectIndex = 1;
-	//                [self.navigationController pushViewController:fundsVC animated:YES];
-	//            }
-	//        }else {
-	//
-	//
-	//        }
-	//    };
-	//    [self.menuView show];
-	
-	self.yymenuView = [[UGYYRightMenuView alloc] initWithFrame:CGRectMake(UGScreenW /2 , y, UGScreenW / 2, UGScerrnH)];
+	self.yymenuView = [[UGYYRightMenuView alloc] initWithFrame:CGRectMake(UGScreenW /2 , 0, UGScreenW / 2, UGScerrnH)];
 	self.yymenuView.titleType = @"1";
 	self.yymenuView.lotteryGamesArray = self.lotteryGamesArray;
 	[self.yymenuView show];
@@ -1034,7 +880,6 @@
 	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Mine" bundle:nil];
 	UGLoginViewController *loginVC = [storyboard instantiateViewControllerWithIdentifier:@"UGLoginViewController"];
 	[self.tabBarController showViewControllerInSelected:loginVC animated:YES];
-	
 }
 
 - (void)registerClick {
@@ -1072,12 +917,9 @@
 - (void)showNoticeInfo {
 	NSMutableString *str = [[NSMutableString alloc] init];
 	for (UGNoticeModel *notice in self.noticeTypeModel.scroll) {
-		
 		[str appendString:notice.content];
-		
 	}
 	if (str.length) {
-		
 		float y;
 		if ([CMCommon isPhoneX]) {
 			y = 160;
@@ -1088,7 +930,6 @@
 		popView.content = str;
 		[popView show];
 	}
-	
 }
 
 - (void)showGameVC:(GameModel *)model {
@@ -1096,17 +937,9 @@
 		SANotificationEventPost(UGNotificationShowLoginView, nil);
 		return;
 	}
-	
-	
 	if ([model.docType intValue] == 1) {
-		
 		UGDocumentVC * vc = [[UGDocumentVC alloc] initWithModel:model];
-		
-		
-		//		vc.allGames = self.
-		
 		[self.navigationController pushViewController: vc animated:true];
-		
 		return;
 	}
 	if (model.game_id) {

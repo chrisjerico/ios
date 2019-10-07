@@ -21,6 +21,7 @@
 
 #define _FloatString1(f) [AppDefine stringWithFloat:f decimal:1]
 #define _FloatString2(f) [AppDefine stringWithFloat:f decimal:2]
+#define _FloatString4(f) [AppDefine stringWithFloat:f decimal:4]
 #define _IntString(i) [AppDefine stringWithInteger:i]
 #define _FileSizeString(byte) [AppDefine stringWithFileSize:(byte)]
 

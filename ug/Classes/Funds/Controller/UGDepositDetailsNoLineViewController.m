@@ -189,8 +189,7 @@
     NSLog(@"%@",NSStringFromCGRect(self.uGFunds2microcodeView.frame));
      //==============================================================
     if ([CMCommon stringIsNull:channelModel.qrcode]) {
-        [self.uGFundsTransfer2View  mas_remakeConstraints:^(MASConstraintMaker *make)
-         {
+        [self.uGFundsTransfer2View  mas_remakeConstraints:^(MASConstraintMaker *make) {
              make.left.equalTo(self.view.mas_left).with.offset(0);
              make.right.equalTo(self.view.mas_right).with.offset(0);
              make.top.equalTo(self.uGFundsTransferView.mas_bottom).offset(0);
@@ -198,8 +197,7 @@
              make.height.mas_equalTo(181);
          }];
     } else {
-        [self.uGFundsTransfer2View  mas_remakeConstraints:^(MASConstraintMaker *make)
-         {
+        [self.uGFundsTransfer2View  mas_remakeConstraints:^(MASConstraintMaker *make) {
              make.left.equalTo(self.view.mas_left).with.offset(0);
              make.right.equalTo(self.view.mas_right).with.offset(0);
              make.top.equalTo(self.uGFunds2microcodeView.mas_bottom).offset(0);

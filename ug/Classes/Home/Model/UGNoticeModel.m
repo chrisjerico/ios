@@ -12,7 +12,6 @@
 + (JSONKeyMapper *)keyMapper {
     return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"noticeId"}];
 }
-
 @end
 
 @implementation UGNoticeTypeModel

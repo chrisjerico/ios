@@ -18,7 +18,6 @@
 @property (nonatomic,strong)  NSArray *itemArray;
 
 @property (nonatomic, strong) STBarButtonItem *rightItem1;
-@property (nonatomic, assign) BOOL refreshingBalance;
 @end
 
 @implementation UGChangLongController
@@ -58,7 +57,7 @@
 -(void)buildSegment
 {
     UGUserModel *user = [UGUserModel currentUser];
-    self.itemArray = @[@"最新长龙",@"我的投注"];
+    self.itemArray = @[@"最新长龙", @"我的投注"];
     STBarButtonItem *item0 = [STBarButtonItem barButtonItemLeftWithImageName:@"shuaxin" title:[user.balance removeFloatAllZero] target:self action:@selector(refreshBalance)];
     self.rightItem1 = item0;
     STBarButtonItem *item1 = [STBarButtonItem barButtonItemWithImageName:@"baiguize" target:self action:@selector(showRightMenueView)];
@@ -92,14 +91,6 @@
 - (void)refreshBalance {
     [self startAnimation];
     SANotificationEventPost(UGNotificationGetUserInfo, nil);
-//    self.refreshingBalance = !self.refreshingBalance;
-//    if (self.refreshingBalance) {
-//        [self startAnimation];
-//    }else {
-//        STButton *button = (STButton *)self.rightItem1.customView;
-//        [button.imageView.layer removeAllAnimations];
-//    }
-    
 }
 
 //刷新余额动画

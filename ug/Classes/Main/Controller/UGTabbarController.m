@@ -122,31 +122,14 @@
 /**
  *  添加子控制器
  */
-- (void)setUpChildViewController{
-
-        self.vcs  = [NSMutableArray new];
-        [vcs addObject: self.nvcHome];
-        [vcs addObject: self.nvcConversion];
-        [vcs addObject: self.nvcYuebao];
-        [vcs addObject: self.nvcFunds];
-        [vcs addObject: self.nvcUser];
-    
-    
-//            [vcs addObject: self.nvcHome];
-//            [vcs addObject: self.nvcSecurityCenter];
-//            [vcs addObject: self.nvcMessage];
-//            [vcs addObject: self.nvcConversion];
-//            [vcs addObject: self.nvcBanks];
-    
-//                [vcs addObject: self.nvcHome];
-//                [vcs addObject: self.nvcYuebao];
-//                [vcs addObject: self.nvcSign];
-//                [vcs addObject: self.nvcReferrer];
-
-  
-         [self setViewControllers:vcs];
- 
-   
+- (void)setUpChildViewController {
+    self.vcs  = [NSMutableArray new];
+    [vcs addObject: self.nvcHome];
+    [vcs addObject: self.nvcConversion];
+    [vcs addObject: self.nvcYuebao];
+    [vcs addObject: self.nvcFunds];
+    [vcs addObject: self.nvcUser];
+    [self setViewControllers:vcs];
 }
 
 /**

@@ -470,19 +470,11 @@
     
 }
 
-- (NSString *)removeFloatAllZero
-{
-    if ([self containsString:@"/"]) {
+- (NSString *)removeFloatAllZero {
+    if ([self containsString:@"/"])
         return self;
-    }else if ([self containsString:@"."]) {
-        NSString *temp = [NSString stringWithFormat:@"%.3f",self.floatValue];
-        NSString * outNumber = [NSString stringWithFormat:@"%@",@(temp.floatValue)];
-        return outNumber;
-    }else {
-        return self;
-        
-    }
-
+    else
+        return _FloatString4(self.doubleValue);
 }
 
 @end

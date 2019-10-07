@@ -234,8 +234,6 @@ BOOL isOk = NO;
      UGUserModel *user = [UGUserModel currentUser];
     NSLog(@"isAgent= %d",user.isAgent);
     if (user.isAgent) {
-
-       
         [self.menuNameArray addObject:@{@"title" : @"存款" , @"imgName" : [self retureRandomThemeColorImage:@"chongzhi"] }];
         [self.menuNameArray addObject:@{@"title" : @"取款" , @"imgName" :  [self retureRandomThemeColorImage:@"tixian"]}];
         [self.menuNameArray addObject:@{@"title" : @"利息宝" , @"imgName" : [self retureRandomThemeColorImage:@"lixibao"]}];
@@ -255,13 +253,7 @@ BOOL isOk = NO;
         [self.menuNameArray addObject:@{@"title" : @"个人信息" , @"imgName" : [self retureRandomThemeColorImage:@"gerenzhongxinxuanzhong"]}];
         [self.menuNameArray addObject:@{@"title" : @"建议反馈" , @"imgName" :[self retureRandomThemeColorImage:@"yijian"]}];
         [self.menuNameArray addObject:@{@"title" : @"活动彩金" , @"imgName" : [self retureRandomThemeColorImage:@"zdgl"]}];
-    
-    
-       
-
-       
     } else {
-        
         [self.menuNameArray addObject:@{@"title" : @"存款" , @"imgName" : [self retureRandomThemeColorImage:@"chongzhi"] }];
         [self.menuNameArray addObject:@{@"title" : @"取款" , @"imgName" :  [self retureRandomThemeColorImage:@"tixian"]}];
         [self.menuNameArray addObject:@{@"title" : @"利息宝" , @"imgName" : [self retureRandomThemeColorImage:@"lixibao"]}];
@@ -269,7 +261,7 @@ BOOL isOk = NO;
         [self.menuNameArray addObject:@{@"title" : @"在线客服" , @"imgName" : [self retureRandomThemeColorImage:@"zaixiankefu"]}];
         [self.menuNameArray addObject:@{@"title" : @"银行卡管理" , @"imgName" : [self retureRandomThemeColorImage:@"yinhangqia"]}];
         [self.menuNameArray addObject:@{@"title" : @"彩票注单记录" , @"imgName" :[self retureRandomThemeColorImage:@"zdgl"]}];
-        
+
         [self.menuNameArray addObject:@{@"title" : @"其他注单记录" , @"imgName" :[self retureRandomThemeColorImage:@"zdgl"]}];
         [self.menuNameArray addObject:@{@"title" : @"额度转换" , @"imgName" : [self retureRandomThemeColorImage:@"change"]}];
         [self.menuNameArray addObject:@{@"title" : @"长龙助手" , @"imgName" : [self retureRandomThemeColorImage:@"changlong"]}];
@@ -316,10 +308,8 @@ BOOL isOk = NO;
     //=======================================
     {
         NSMutableArray *dataArrayOne = [NSMutableArray array];
-       
-       
-            [dataArrayOne addObject:@{@"title" : @"彩票注单记录" , @"imgName" :[self retureRandomThemeColorImage:@"zdgl"]}];
-            [dataArrayOne addObject:@{@"title" : @"其他注单记录" , @"imgName" :[self retureRandomThemeColorImage:@"zdgl"]}];
+        [dataArrayOne addObject:@{@"title" : @"彩票注单记录" , @"imgName" :[self retureRandomThemeColorImage:@"zdgl"]}];
+        [dataArrayOne addObject:@{@"title" : @"其他注单记录" , @"imgName" :[self retureRandomThemeColorImage:@"zdgl"]}];
         
         UGMineSkinModel *dic1 = [UGMineSkinModel new];
         
@@ -741,8 +731,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
             UGPromotionIncomeController *incomeVC = [[UGPromotionIncomeController alloc] init];
             [self.navigationController pushViewController:incomeVC animated:YES];
         }
-    }else if ([title isEqualToString:@"申请代理"]) {
-        
+    } else if ([title isEqualToString:@"申请代理"]) {
         UGUserModel *user = [UGUserModel currentUser];
         user.isTest = NO;
         if (user.isTest) {
@@ -751,24 +740,18 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
                     SANotificationEventPost(UGNotificationShowLoginView, nil);
                 }
             }];
-        }else {
-            
+        } else {
             UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
-            
             if ([config.agent_m_apply isEqualToString:@"1"]) {
                 //调接口
                 [self teamAgentApplyInfoWithParams];
                 
             } else {
-                [self.navigationController.view makeToast:@"在线注册代理已经关闭"
+                [self.navigationController.view makeToast:@"在线注册代理已关闭"
                                                  duration:1.5
                                                  position:CSToastPositionCenter];
-                
             }
-            
-            
         }
-        
     }else if ([title isEqualToString:@"安全中心"]) {
         UGUserModel *user = [UGUserModel currentUser];
         if (user.isTest) {
@@ -787,7 +770,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
         UGMailBoxTableViewController *mailBoxVC = [[UGMailBoxTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
         [self.navigationController pushViewController:mailBoxVC animated:YES];
         
-    }else if([title isEqualToString:@"彩票注单记录"]) {
+    } else if([title isEqualToString:@"彩票注单记录"]) {
         UGUserModel *user = [UGUserModel currentUser];
         if (user.isTest) {
             [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
@@ -795,13 +778,11 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
                     SANotificationEventPost(UGNotificationShowLoginView, nil);
                 }
             }];
-        }else {
-            
+        } else {
             UGBetRecordViewController *betRecordVC = [[UGBetRecordViewController alloc] init];
             [self.navigationController pushViewController:betRecordVC animated:YES];
         }
-        
-    }else if ([title isEqualToString:@"其他注单记录"]) {
+    } else if ([title isEqualToString:@"其他注单记录"]) {
         UGUserModel *user = [UGUserModel currentUser];
         if (user.isTest) {
             [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
@@ -809,15 +790,13 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
                     SANotificationEventPost(UGNotificationShowLoginView, nil);
                 }
             }];
-        }else {
-            
+        } else {
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGRealBetRecordViewController" bundle:nil];
             UGRealBetRecordViewController *betRecordVC = [storyboard instantiateInitialViewController];
             betRecordVC.gameType = @"real";
             [self.navigationController pushViewController:betRecordVC animated:YES];
         }
-        
-    }else if ([title isEqualToString:@"个人信息"]) {
+    } else if ([title isEqualToString:@"个人信息"]) {
         UGUserModel *user = [UGUserModel currentUser];
         if (user.isTest) {
             [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
@@ -910,13 +889,9 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
                 SANotificationEventPost(UGNotificationShowLoginView, nil);
             }
         }];
-    }else {
-        
-        //
-        //        UGSignInViewController *vc = [[UGSignInViewController alloc] initWithNibName:@"UGSignInViewController" bundle:nil];
+    } else {
         UGSigInCodeViewController *vc = [[UGSigInCodeViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
-        
     }
 }
 
@@ -1020,74 +995,62 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     NSLog(@"imagerStr = %@",imagerStr);
     
     
-    if ([CMCommon stringIsNull:user.curLevelGrade]) {
+    if (![CMCommon stringIsNull:user.curLevelGrade] && user.curLevelGrade.length>4) {
+        NSString *subStr = [user.curLevelGrade substringFromIndex:3];
         
-    }
-    else{
-        
-        if (user.curLevelGrade.length>4) {
-            NSString *subStr = [user.curLevelGrade substringFromIndex:3];
-            
-            int levelsInt = [subStr intValue];
-            NSString *imgStr = @"";
-            if (levelsInt <11) {
-                imgStr = [NSString stringWithFormat:@"vip%d",levelsInt];
-            } else {
-                imgStr = @"vip11";
-            }
-            
-            //    [self.vipImager setImage: [UIImage imageNamed:imgStr]];
-            
-            NSString *img2Str = @"";
-            if (levelsInt <11) {
-                img2Str = [NSString stringWithFormat:@"grade_%d",levelsInt];
-            } else {
-                img2Str = @"grade_11";
-            }
-            
-            //    [self.curLevelImageView setImage: [UIImage imageNamed:img2Str]];
-            self.fristVipLabel.text = [NSString stringWithFormat:@"VIP%@",subStr];
+        int levelsInt = [subStr intValue];
+        NSString *imgStr = @"";
+        if (levelsInt <11) {
+            imgStr = [NSString stringWithFormat:@"vip%d",levelsInt];
+        } else {
+            imgStr = @"vip11";
         }
-    }
-    
-    if ([CMCommon stringIsNull:user.nextLevelGrade]) {
         
-    }
-    else{
+        //    [self.vipImager setImage: [UIImage imageNamed:imgStr]];
         
-        if (user.nextLevelGrade.length>4) {
-            NSString *subStr = [user.curLevelGrade substringFromIndex:3];
-            
-            int levelsInt = [subStr intValue];
-            NSString *imgStr = @"";
-            if (levelsInt <11) {
-                imgStr = [NSString stringWithFormat:@"vip%d",levelsInt];
-            } else {
-                imgStr = @"vip11";
-            }
-            
-            //    [self.vipImager setImage: [UIImage imageNamed:imgStr]];
-            
-            NSString *img2Str = @"";
-            if (levelsInt <11) {
-                img2Str = [NSString stringWithFormat:@"grade_%d",levelsInt];
-            } else {
-                img2Str = @"grade_11";
-            }
-            
-            //    [self.curLevelImageView setImage: [UIImage imageNamed:img2Str]];
-            self.fristVipLabel.text = [NSString stringWithFormat:@"VIP%@",subStr];
+        NSString *img2Str = @"";
+        if (levelsInt <11) {
+            img2Str = [NSString stringWithFormat:@"grade_%d",levelsInt];
+        } else {
+            img2Str = @"grade_11";
         }
+        
+        //    [self.curLevelImageView setImage: [UIImage imageNamed:img2Str]];
+        self.fristVipLabel.text = [NSString stringWithFormat:@"VIP%@",subStr];
     }
     
-   
+    if (![CMCommon stringIsNull:user.nextLevelGrade] && user.nextLevelGrade.length>4) {
+        NSString *subStr = [user.nextLevelGrade substringFromIndex:3];
+        
+        int levelsInt = [subStr intValue];
+        NSString *imgStr = @"";
+        if (levelsInt <11) {
+            imgStr = [NSString stringWithFormat:@"vip%d",levelsInt];
+        } else {
+            imgStr = @"vip11";
+        }
+        
+        //    [self.vipImager setImage: [UIImage imageNamed:imgStr]];
+        
+        NSString *img2Str = @"";
+        if (levelsInt <11) {
+            img2Str = [NSString stringWithFormat:@"grade_%d",levelsInt];
+        } else {
+            img2Str = @"grade_11";
+        }
+        
+        //    [self.curLevelImageView setImage: [UIImage imageNamed:img2Str]];
+        self.fristVipLabel.text = [NSString stringWithFormat:@"VIP%@",subStr];
+        self.secondVipLabel.text = [NSString stringWithFormat:@"VIP%@",subStr];
+    }
     
+    self.valueLabel.text = _NSString(@"成长值（%@-%@）", _FloatString4(user.taskRewardTotal.doubleValue), _FloatString4(user.nextLevelInt.doubleValue));
    
     if (![CMCommon stringIsNull:user.taskRewardTitle]) {
         self.moneyNameLabel.text = user.taskRewardTitle;
     }
     if (![CMCommon stringIsNull:user.taskRewardTotal]) {
-        self.moenyNumberLabel.text = user.taskRewardTotal;
+        self.moenyNumberLabel.text = _FloatString4(user.taskReward.doubleValue);
     }
     
     double floatString = [user.balance doubleValue];
