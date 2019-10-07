@@ -16,37 +16,42 @@
 #import "UGHomeViewController.h"
 #import "UGYYLotteryHomeViewController.h"
 #import "UGMineSkinViewController.h"
+#import "UGSystemConfigModel.h"
 
 @interface UGTabbarController ()
 
 @end
 
 @implementation UGTabbarController
-@synthesize qdwebVC;
+@synthesize qdwebVC,vcs;
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     
+    [self setUpChildViewController];
+    [self getSystemConfig];
+    
+    SANotificationEventSubscribe(UGNotificationWithResetTabSuccess, self, ^(typeof (self) self, id obj) {
+             [self resetUpChildViewController];
+    });
+
+}
+
+-(void)setTabbarStyle{
     // 设置 TabBarItemTestAttributes 的颜色。
     [self setUpTabBarItemTextAttributes];
     
-    // 设置子控制器
-    [self setUpChildViewController];
-    [[UITabBar appearance] setBackgroundImage:[self imageWithColor:[[UGSkinManagers shareInstance] setTabbgColor]]];
+  
+    [[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:[[UGSkinManagers shareInstance] setTabbgColor]]];
     //去除 TabBar 自带的顶部阴影
-//    [[UITabBar appearance] setShadowImage:[[UIImage alloc] init]];
+    //    [[UITabBar appearance] setShadowImage:[[UIImage alloc] init]];
     //设置导航控制器颜色
-    [[UINavigationBar appearance] setBackgroundImage:[self imageWithColor:[[UGSkinManagers shareInstance] setNavbgColor]] forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageWithColor:[[UGSkinManagers shareInstance] setNavbgColor]] forBarMetrics:UIBarMetricsDefault];
     
-//    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
-//    statusBar.backgroundColor = UGNavColor;
     
     [[UITabBar appearance] setSelectedImageTintColor: [[UGSkinManagers shareInstance] settabSelectColor]];
     
     [[UITabBar appearance] setUnselectedItemTintColor: [[UGSkinManagers shareInstance] settabNOSelectColor]];
-
-    
-//    [[UITabBar appearance] setTintColor:[UIColor redColor]];
-    
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
@@ -81,50 +86,57 @@
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"UGHomeViewController" bundle:nil];
     UGHomeViewController *mainVC = [mainStoryboard instantiateInitialViewController];
     
-    self.homeNavVC = [[UGNavigationController alloc] initWithRootViewController:mainVC];
+   UGNavigationController *homeNavVC = [[UGNavigationController alloc] initWithRootViewController:mainVC];
     
-    [self addOneChildViewController:self.homeNavVC
+    [vcs addObject:homeNavVC];
+    
+    [self addOneChildViewController:homeNavVC
                           WithTitle:@"首页"
                           imageName:@"shouye"
                   selectedImageName:@"shouyesel"];
     
-    self.LotteryNavVC = [[UGNavigationController alloc]initWithRootViewController:[[UGYYLotteryHomeViewController alloc] init]];
+    UGNavigationController *LotteryNavVC = [[UGNavigationController alloc]initWithRootViewController:[[UGYYLotteryHomeViewController alloc] init]];
     
-    [self addOneChildViewController:self.LotteryNavVC
+      [vcs addObject:LotteryNavVC];
+    
+    [self addOneChildViewController:LotteryNavVC
                           WithTitle:@"购彩大厅"
                           imageName:@"dating"
                   selectedImageName:@"datongsel"];
     
     qdwebVC = [[UGChatViewController alloc] init];
-    
-    
-
     qdwebVC.webTitle = @"聊天室";
    
-    
-    
     if (![CMCommon stringIsNull:[UGUserModel currentUser].token]) {
          NSString *colorStr = [[UGSkinManagers shareInstance] setNavbgStringColor];
-         qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr];
+        if ([CMCommon stringIsNull:colorStr]) {
+            colorStr = @"0x609AC5";
+        }
+         qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@&back=hide",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr];
     } else {
         NSString *colorStr = [[UGSkinManagers shareInstance] setNavbgStringColor];
-        qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr];
+        if ([CMCommon stringIsNull:colorStr]) {
+            colorStr = @"0x609AC5";
+        }
+        qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@&back=hide",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr];
     }
 
     
     NSLog(@"qdwebVC.urlString= %@",[NSString stringWithFormat:@"%@%@%@&loginsessid=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid]);
 
-    self.chatNavVC = [[UGNavigationController alloc]initWithRootViewController:qdwebVC];
+    UGNavigationController *chatNavVC = [[UGNavigationController alloc]initWithRootViewController:qdwebVC];
     
-    [self addOneChildViewController:self.chatNavVC
+    [vcs addObject:chatNavVC];
+    
+    [self addOneChildViewController:chatNavVC
                           WithTitle:@"聊天室"
                           imageName:@"liaotian"
                   selectedImageName:@"liaotiansel"];
     
     
-    self.promotionsNavVC = [[UGNavigationController alloc]initWithRootViewController:[[UGPromotionsController alloc] init]];
+    UGNavigationController *promotionsNavVC = [[UGNavigationController alloc]initWithRootViewController:_LoadVC_from_storyboard_(@"UGPromotionsController")];
     
-    [self addOneChildViewController: self.promotionsNavVC
+    [self addOneChildViewController: promotionsNavVC
                           WithTitle:@"优惠活动"
                           imageName:@"youhuiquan"
                   selectedImageName:@"youhuiquansel"];
@@ -135,13 +147,17 @@
     
     UGMineSkinViewController * mineVC = [[UGMineSkinViewController alloc] init];
     
-    self.mineNavVC = [[UGNavigationController alloc]initWithRootViewController:mineVC];
+     UGNavigationController *mineNavVC = [[UGNavigationController alloc]initWithRootViewController:mineVC];
 
-    [self addOneChildViewController:self.mineNavVC 
+      [vcs addObject:mineNavVC];
+    
+    [self addOneChildViewController:mineNavVC
                           WithTitle:@"我的"
                           imageName:@"wode"
                   selectedImageName:@"wodesel"];
     
+    
+   
 }
 
 /**
@@ -165,23 +181,93 @@
     
 }
 
-//这个方法可以抽取到 UIImage 的分类中
-- (UIImage *)imageWithColor:(UIColor *)color
-{
-	if (color == nil) {
-		return [UIImage new];
-	}
-    NSParameterAssert(color != nil);
-    
-    CGRect rect = CGRectMake(0, 0, 1, 1);
-    // Create a 1 by 1 pixel context
-    UIGraphicsBeginImageContextWithOptions(rect.size, NO, 0);
-    [color setFill];
-    UIRectFill(rect);   // Fill it with your color
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return image;
+
+#pragma mark - 获得系统设置
+- (void)getSystemConfig {
+
+    [SVProgressHUD showWithStatus: nil];
+    [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+       [SVProgressHUD dismiss];
+        [CMResult processWithResult:model success:^{
+            
+            NSLog(@"model = %@",model);
+            
+            UGSystemConfigModel *config = model.data;
+            UGSystemConfigModel.currentConfig = config;
+            
+            [self setTabbarStyle];
+            
+            [self resetUpChildViewController];
+            
+            
+        } failure:^(id msg) {
+            
+            [SVProgressHUD dismiss];
+            // 设置子控制器
+            [self setUpChildViewController];
+        }];
+    }];
 }
+
+/**
+ *  添加子控制器
+ */
+- (void)resetUpChildViewController{
+   
+   UGSystemConfigModel *config =  [UGSystemConfigModel currentConfig];
+    
+    //数组转模型数组
+    NSMutableArray *personArray  = [UGmobileMenu arrayOfModelsFromDictionaries:config.mobileMenu error:nil];
+    //model 按年龄属性 排序
+    NSArray *ageSortResultArray = [personArray sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        
+        UGmobileMenu *per1 = obj1;
+        
+        UGmobileMenu *per2 = obj2;
+        
+        if (per1.sort > per2.sort) {
+            return NSOrderedDescending;//降序
+        }
+        else if (per1.sort < per2.sort)
+        {
+            return NSOrderedAscending;//升序
+        }
+        else
+        {
+            return NSOrderedSame;//相等
+        }
+        
+    }];
+
+    for (UGmobileMenu *per in ageSortResultArray) {
+        NSLog(@"per.age = %d",(int )per.sort);
+    }
+    
+    if ([CMCommon arryIsNull:ageSortResultArray]) {
+        return;
+    }
+    if (ageSortResultArray.count<4) {
+        return;
+    }
+    if (ageSortResultArray.count>5) {
+        return;
+    }
+    
+    vcs = [NSMutableArray new];
+    for (int i = 0; i<ageSortResultArray.count; i++) {
+        UGmobileMenu *menu = [ageSortResultArray objectAtIndex:i];
+         UIViewController *ret = [FFRouter routeObjectURL:menu.path];
+        
+        if ([menu.path isEqualToString:@"/chatRoomList"]) {
+            qdwebVC = (UGChatViewController *)ret;
+        }
+        UGNavigationController *nvc = [[UGNavigationController alloc]initWithRootViewController:ret];
+        [vcs addObject:nvc];
+    }
+    
+    [self setViewControllers:vcs];
+    [self setTabbarStyle];
+}
+
 
 @end

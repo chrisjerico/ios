@@ -28,6 +28,9 @@
     
     self.navigationItem.title = @"长龙助手";
     self.view.backgroundColor = UGBackgroundColor;
+    
+    [self getAllNextIssueData];
+    
     [self buildSegment];
     
     SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
@@ -41,6 +44,8 @@
         self.navigationItem.rightBarButtonItems = @[item1,item0];
         
     });
+    
+  
     
 }
 
@@ -61,11 +66,11 @@
     self.slideSwitchView.tabItemNormalColor = [UIColor grayColor];
     self.slideSwitchView.tabItemNormalFont = 13;
     //设置tab 被选中的颜色(可选)
-    self.slideSwitchView.tabItemSelectedColor = [[UGSkinManagers shareInstance] setNavbgColor];
+    self.slideSwitchView.tabItemSelectedColor = UGNavColor;
     //设置tab 背景颜色(可选)
     self.slideSwitchView.tabItemNormalBackgroundColor = [UIColor whiteColor];
     //设置tab 被选中的标识的颜色(可选)
-    self.slideSwitchView.tabItemSelectionIndicatorColor = [[UGSkinManagers shareInstance] setNavbgColor];
+    self.slideSwitchView.tabItemSelectionIndicatorColor = UGNavColor;
     [self.view addSubview:self.slideSwitchView];
     
     
@@ -74,6 +79,7 @@
 - (void)showRightMenueView {
     
     UGLotteryRulesView *rulesView = [[UGLotteryRulesView alloc] initWithFrame:CGRectMake(30, 120, UGScreenW - 60, UGScerrnH - 230)];
+    rulesView.title = @"游戏规则";
     rulesView.content = @"   长龙助手是对快3、时时彩、PK10、六合彩、幸运飞艇、北京赛车等特定玩法的“大小单双” 开奖结果进行跟踪统计，并可进行快捷投注的助手工具；\n    每期出现大、小、单、双的概率为50%，如果连续3期及以上的开奖结果相同，称之为“长龙”，通常会采用倍投的方式进行“砍龙”或“顺龙”。\n\n  1、什么是砍龙？\n  如连续开5期“单”，可以选择“双”进行投注，这种投注方案称之为“砍龙”；\n\n  2、什么是顺龙？\n  如连续开5期“单”，继续选择“单”进行投注，这种投注方案称之为“顺龙”；\n\n  3、什么是倍投？\n  倍投是一种翻倍投注方式，是为了保障能够在“砍龙”或“顺龙”的过程中持续盈利的一种投注方式。";
     [rulesView show];
 }
@@ -119,8 +125,17 @@
     }else {
         
         UGChanglongBetRecordController *betRecordVC = [[UGChanglongBetRecordController alloc] initWithStyle:UITableViewStyleGrouped];
-        betRecordVC.lotteryGamesArray = self.lotteryGamesArray;
-        return betRecordVC;
+        if ([CMCommon arryIsNull:self.lotteryGamesArray]) {
+            
+            return betRecordVC;
+        }
+        else{
+             betRecordVC.lotteryGamesArray = self.lotteryGamesArray;
+               return betRecordVC;
+        }
+        
+       
+     
     }
     
 }
@@ -132,6 +147,24 @@
         SANotificationEventPost(UGNotificationGetChanglongBetRecrod, nil);
     }
 }
+
+
+- (void )getAllNextIssueData {
+    
+    
+    [CMNetwork getAllNextIssueWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+       
+        [CMResult processWithResult:model success:^{
+            
+            self.lotteryGamesArray = model.data;
+            
+        } failure:^(id msg) {
+            
+        }];
+    }];
+    
+}
+
 
 
 @end

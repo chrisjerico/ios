@@ -366,6 +366,8 @@ completion:(CMNetworkBlock)completion {
     manager.securityPolicy.allowInvalidCertificates = YES;
     [manager.securityPolicy setValidatesDomainName:NO];
     NSLog(@"header = %@",[manager.requestSerializer HTTPRequestHeaders]);
+    
+    NSDate *startTime = [NSDate date];
     [manager GET:method parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
 
         if ([method containsString:@"imgCaptcha"]) {
@@ -388,6 +390,17 @@ completion:(CMNetworkBlock)completion {
         if (completion != nil) {
             completion(result, error);
         }
+        
+        [LogVC addRequestModel:({
+            ZJSessionModel *sm = [ZJSessionModel new];
+            sm.urlString = method;
+            sm.params = params;
+            sm.isPOST = false;
+            sm.response = task.response;
+            sm.responseObject = json;
+            sm.duration = [[NSDate date] timeIntervalSinceDate:startTime] * 1000;
+            sm;
+        })];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
         NSHTTPURLResponse *errResponse = task.response;
@@ -413,9 +426,18 @@ completion:(CMNetworkBlock)completion {
         CMResult* result  = [resultClass resultWithJSON:nil dataClass:dataClass error:&error];
         if (completion != nil) {
             completion(result, error);
-
         }
         
+        [LogVC addRequestModel:({
+            ZJSessionModel *sm = [ZJSessionModel new];
+            sm.urlString = method;
+            sm.params = params;
+            sm.isPOST = false;
+            sm.response = task.response;
+            sm.error = error;
+            sm.duration = [[NSDate date] timeIntervalSinceDate:startTime] * 1000;
+            sm;
+        })];
     }];
     
 }
@@ -448,6 +470,7 @@ completion:(CMNetworkBlock)completion {
     [manager.securityPolicy setValidatesDomainName:NO];
     
     NSLog(@"header = %@",[manager.requestSerializer HTTPRequestHeaders]);
+    NSDate *startTime = [NSDate date];
     [manager POST:method parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         // 序列化数据
@@ -463,8 +486,18 @@ completion:(CMNetworkBlock)completion {
         }
         if (completion != nil) {
             completion(result, error);
-
         }
+        
+        [LogVC addRequestModel:({
+            ZJSessionModel *sm = [ZJSessionModel new];
+            sm.urlString = method;
+            sm.params = params;
+            sm.isPOST = true;
+            sm.response = task.response;
+            sm.responseObject = json;
+            sm.duration = [[NSDate date] timeIntervalSinceDate:startTime] * 1000;
+            sm;
+        })];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSHTTPURLResponse *errResponse = task.response;
@@ -492,6 +525,17 @@ completion:(CMNetworkBlock)completion {
         if (completion != nil) {
             completion(result, error);
         }
+        
+        [LogVC addRequestModel:({
+            ZJSessionModel *sm = [ZJSessionModel new];
+            sm.urlString = method;
+            sm.params = params;
+            sm.isPOST = true;
+            sm.response = task.response;
+            sm.error = error;
+            sm.duration = [[NSDate date] timeIntervalSinceDate:startTime] * 1000;
+            sm;
+        })];
     }];
     
    

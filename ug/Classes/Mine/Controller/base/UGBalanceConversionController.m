@@ -42,14 +42,13 @@
 static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
 @implementation UGBalanceConversionController
 -(void)skin{
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    
     
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.navigationItem.title = @"额度转换";
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         
         [self skin];

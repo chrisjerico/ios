@@ -22,18 +22,18 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UGBetListModel : UGModel
-@property (nonatomic, strong) NSNumber *level;//等级
-@property (nonatomic, strong) NSString *date;//日期
-@property (nonatomic, strong) NSString *username;//用户名
-@property (nonatomic, strong) NSString *money;//金额
+@property (nonatomic, strong) NSNumber *level;      /**<   等级 */
+@property (nonatomic, strong) NSString *date;       /**<   日期 */
+@property (nonatomic, strong) NSString *username;   /**<   用户名 */
+@property (nonatomic, strong) NSString *money;      /**<   金额 */
 
-@property (nonatomic, strong) NSString *lottery_name;//游戏名称
-@property (nonatomic, strong) NSString *actionNo;//投注期数
-@property (nonatomic, strong) NSString *actionData;//投注号码
-@property (nonatomic, strong) NSString *Groupname;//玩法
-@property (nonatomic, strong) NSString *lotteryNo;//开奖号码
-@property (nonatomic, strong) NSString *odds;//赔率
-@property (nonatomic, strong) NSString *bonus;//中奖金额
+@property (nonatomic, strong) NSString *lottery_name;   /**<   游戏名称 */
+@property (nonatomic, strong) NSString *actionNo;       /**<   投注期数 */
+@property (nonatomic, strong) NSString *actionData;     /**<   投注号码 */
+@property (nonatomic, strong) NSString *Groupname;      /**<   玩法 */
+@property (nonatomic, strong) NSString *lotteryNo;      /**<   开奖号码 */
+@property (nonatomic, strong) NSString *odds;           /**<   赔率 */
+@property (nonatomic, strong) NSString *bonus;          /**<   中奖金额 */
 
 @end
 

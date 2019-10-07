@@ -45,5 +45,11 @@
 #import "UGTableViewCell.h"
 #import "UGView.h"
 #import "UIImage+YYgradientImage.h"
+#import "FFRouter.h"
+
+// 引入Fish工具集
+#import "FishUtility.h"
+#import "UGNavigationController.h"
+
 
 #endif /* UGPCH_pch */

@@ -112,7 +112,9 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 
 #define getNoticeListUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=notice&a=latest"]
 
-#define getRankListUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=rank&a=singlePrize"]
+//#define getRankListUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=rank&a=singlePrize"]
+
+#define getRankListUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=system&a=rankingList"]
 
 #define getPromoteListUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=system&a=promotions"]
 

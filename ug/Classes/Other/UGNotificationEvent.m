@@ -29,6 +29,7 @@ NSString *UGNotificationGetRewardsSuccessfully = @"UGNotificationGetRewardsSucce
 NSString *UGNotificationTryPlay = @"UGNotificationTryPlay";
 NSString *UGNotificationWithdrawalsSuccess = @"UGNotificationWithdrawalsSuccess";
 NSString *UGNotificationWithSkinSuccess = @"UGNotificationWithSkinSuccess";//换肤
+NSString *UGNotificationWithResetTabSuccess = @"UGNotificationWithResetTabSuccess";//换tabBar
 ///
 /// 登录授权
 ///

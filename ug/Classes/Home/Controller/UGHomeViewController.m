@@ -73,6 +73,7 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
 @property (weak, nonatomic) IBOutlet UIView *bannerBgView;
+@property (weak, nonatomic) IBOutlet UGGameNavigationView *gameNavigationView;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *gameNavigationViewHeight;
 
@@ -115,7 +116,6 @@
 @property (strong, nonatomic)UILabel *nolineLabel;
 
 @property (weak, nonatomic) IBOutlet UIView *rollingView;
-@property (weak, nonatomic) IBOutlet UGGameNavigationView *gameNavigationView;
 
 @end
 
@@ -140,6 +140,10 @@
 	
 	[super viewDidLoad];
 	
+	self.gameNavigationView.layer.cornerRadius = 8;
+	self.gameNavigationView.layer.masksToBounds = true;
+    
+    [self.gameNavigationView setBackgroundColor:[[UGSkinManagers shareInstance] setCellbgColor]];
 	[[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:[[UGSkinManagers shareInstance] setTabbgColor]]];
 	
 	[[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[[UGSkinManagers shareInstance] settabNOSelectColor], NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
@@ -202,6 +206,7 @@
 	[self systemOnlineCount];
 	
 	self.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+         SANotificationEventPost(UGNotificationWithResetTabSuccess, nil);
 		[self getSystemConfig];
 		[self getCustomGameList];
 		[self getBannerList];
@@ -375,6 +380,7 @@
 			 qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr];
 		 }
 		
+		[self.navigationController pushViewController:qdwebVC animated:YES];
 
 	} else if ([model.subId isEqualToString:@"4"]) {
 		// 在线客服
@@ -451,7 +457,14 @@
 					[self.gameCategorys addObject:customGameModel.card];
 					[self.gameCategorys addObject:customGameModel.sport];
 					
-					self.gameNavigationView.sourceData = customGameModel.navigation.list;
+					
+					NSArray<GameModel *> * sourceData = customGameModel.navigation.list;
+					self.gameNavigationView.sourceData = sourceData;
+					if (sourceData.count > 0) {
+						self.gameNavigationViewHeight.constant = ((sourceData.count - 1)/4 + 1)*80;
+						[self.view layoutIfNeeded];
+
+					}
 					
 					self.gameTypeView.gameTypeArray = self.gameCategorys;
 				});
@@ -507,6 +520,7 @@
 			
 			
 			[[UGSkinManagers shareInstance] setSkin];
+    
 			
 			[self.titleView setImgName:config.mobile_logo];
 			
@@ -624,15 +638,13 @@
 				UGRankListModel *rank = model.data;
 				self.rankListModel = rank;
 				self.rankArray = rank.list.mutableCopy;
-				self.rankingView.hidden = NO;
-				[self.upwardMultiMarqueeView reloadData];
 				
-				//				if (rank.show) {
-				//					self.rankingView.hidden = NO;
-				//					[self.upwardMultiMarqueeView reloadData];
-				//				}else {
-				//					self.rankingView.hidden = YES;
-				//				}
+				if (rank.show) {
+					self.rankingView.hidden = NO;
+					[self.upwardMultiMarqueeView reloadData];
+				}else {
+					self.rankingView.hidden = YES;
+				}
 			});
 			
 		} failure:^(id msg) {
@@ -714,6 +726,7 @@
 - (void)showPlatformNoticeView {
 	UGPlatformNoticeView *notiveView = [[UGPlatformNoticeView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - 260)];
 	notiveView.dataArray = self.popNoticeArray;
+    [notiveView.bgView setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
 	[notiveView show];
 }
 
@@ -1270,7 +1283,7 @@
 	
 	self.upwardMultiMarqueeView.direction = UUMarqueeViewDirectionUpward;
 	self.upwardMultiMarqueeView.timeIntervalPerScroll = 0.0f;
-	self.upwardMultiMarqueeView.scrollSpeed = 50.f;
+	self.upwardMultiMarqueeView.scrollSpeed = 10.f;
 	self.upwardMultiMarqueeView.useDynamicHeight = YES;
 	self.upwardMultiMarqueeView.touchEnabled = YES;
 	self.upwardMultiMarqueeView.delegate = self;

@@ -30,7 +30,7 @@ static NSString *messageCellid = @"UGMessageTableViewCell";
     self.navigationItem.title = @"站内信";
     self.pageSize = size;
     self.pageNumber = page;
-    self.view.backgroundColor = UGBackgroundColor;
+    self.view.backgroundColor = [UIColor whiteColor];
     [self.tableView registerNib:[UINib nibWithNibName:@"UGMessageTableViewCell" bundle:nil] forCellReuseIdentifier:messageCellid];
     self.tableView.rowHeight = 44;
     self.tableView.estimatedSectionFooterHeight = 0;

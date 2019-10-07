@@ -24,9 +24,6 @@
 	
 	UICollectionViewFlowLayout *layout = ({
 		layout = [[UICollectionViewFlowLayout alloc] init];
-		layout.itemSize = CGSizeMake(UGScreenW/4 - 10 , 40);
-		layout.minimumInteritemSpacing = 0;
-		layout.minimumLineSpacing = 0;
 		layout.scrollDirection = UICollectionViewScrollDirectionVertical;
 		layout;
 	});
@@ -45,6 +42,8 @@
 	[super awakeFromNib];
 
 	[self initWithFrame:CGRectZero];
+    
+//    [self setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
 
 }
 
@@ -72,13 +71,13 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-	return (CGSize){UGScreenW/4 - 10,80};
+	return (CGSize){(UGScreenW - 20)/4,80};
 }
 
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-	return UIEdgeInsetsMake(5, 5, 20, 5);
+	return UIEdgeInsetsMake(0, 0, 0, 0);
 }
 
 
@@ -112,9 +111,11 @@
 	self = [super initWithFrame:frame];
 	if (self) {
 		
+        
+        
 		_iconImage = [UIImageView new];
 		_titleLabel = [UILabel new];
-		_titleLabel.textColor = [UIColor grayColor];
+		_titleLabel.textColor = [UIColor blackColor];
 		_titleLabel.font = [UIFont systemFontOfSize:14];
 		[self addSubview:_iconImage];
 		[_iconImage mas_makeConstraints:^(MASConstraintMaker *make) {

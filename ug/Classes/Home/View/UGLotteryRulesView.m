@@ -33,6 +33,11 @@
     return self;
 }
 
+- (void)setTitle:(NSString *)title {
+    _title = title;
+    self.titleLabel.text = title;
+}
+
 - (void)setContent:(NSString *)content {
     _content = content;
     self.contentTextView.text = content;
