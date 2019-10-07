@@ -17,6 +17,7 @@
 		033177A72337382D000D7663 /* UGPlatformCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 033177A62337382D000D7663 /* UGPlatformCollectionView.m */; };
 		033177AF2338E026000D7663 /* UGBetResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = 033177AE2338E026000D7663 /* UGBetResultView.m */; };
 		0399E6FB233B9D34001E0A7F /* UGDocumentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0399E6FA233B9D34001E0A7F /* UGDocumentVC.m */; };
+		03B26072234B422E00206652 /* UGLaunchPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B26071234B422E00206652 /* UGLaunchPageVC.m */; };
 		A0C64CB6AEB0CF1B2031BBB8 /* Pods_ug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6486EFF4C273BEA0AE8994DD /* Pods_ug.framework */; };
 		CF3B0E372349CDA50035AF50 /* UGCalenderAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3B0E362349CDA50035AF50 /* UGCalenderAlertView.m */; };
 		CF3B0E392349CDAC0035AF50 /* UGCalenderAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF3B0E382349CDAC0035AF50 /* UGCalenderAlertView.xib */; };
@@ -652,6 +653,8 @@
 		033177AE2338E026000D7663 /* UGBetResultView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGBetResultView.m; sourceTree = "<group>"; };
 		0399E6F9233B9D34001E0A7F /* UGDocumentVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGDocumentVC.h; sourceTree = "<group>"; };
 		0399E6FA233B9D34001E0A7F /* UGDocumentVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGDocumentVC.m; sourceTree = "<group>"; };
+		03B26070234B422E00206652 /* UGLaunchPageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLaunchPageVC.h; sourceTree = "<group>"; };
+		03B26071234B422E00206652 /* UGLaunchPageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLaunchPageVC.m; sourceTree = "<group>"; };
 		443C93C1135A8C900E47477A /* Pods-ug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ug.release.xcconfig"; path = "Target Support Files/Pods-ug/Pods-ug.release.xcconfig"; sourceTree = "<group>"; };
 		6486EFF4C273BEA0AE8994DD /* Pods_ug.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ug.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF3B0E352349CDA50035AF50 /* UGCalenderAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGCalenderAlertView.h; sourceTree = "<group>"; };
@@ -3917,6 +3920,8 @@
 				D405B313227C841A00F8C586 /* UGNavigationController.m */,
 				D4B75E3C227812A70007047C /* UGTabbarController.h */,
 				D4B75E3D227812A70007047C /* UGTabbarController.m */,
+				03B26070234B422E00206652 /* UGLaunchPageVC.h */,
+				03B26071234B422E00206652 /* UGLaunchPageVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -4703,6 +4708,7 @@
 				D4DE2691229BCB960072A4A2 /* WMTabControl.m in Sources */,
 				D41EDF832317BE06005798CC /* UGFundRecordDetailView.m in Sources */,
 				D405B373228013E600F8C586 /* SRActionSheet.m in Sources */,
+				03B26072234B422E00206652 /* UGLaunchPageVC.m in Sources */,
 				D405B2FD227C30F700F8C586 /* UGWithdrawalViewController.m in Sources */,
 				CFD3BF042347137F00FCDA6D /* UIControl+Utils.m in Sources */,
 				D4A36636233E310B00F6D770 /* UGYYRightMenuView.m in Sources */,
