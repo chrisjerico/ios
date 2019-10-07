@@ -85,10 +85,10 @@
 @property (weak, nonatomic) IBOutlet UUMarqueeView *upwardMultiMarqueeView; /**<   中奖排行榜 */
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *gameViewHeight;
+@property (nonatomic, strong)UGPlatformNoticeView *notiveView;        /**<   平台公告 */
 
-
-@property (nonatomic, strong) UGHomeTitleView *titleView;
-@property (nonatomic, strong) SDCycleScrollView *bannerView;
+@property (nonatomic, strong) UGHomeTitleView *titleView;               /**<   自定义导航条 */
+@property (nonatomic, strong) SDCycleScrollView *bannerView;            /**<   滚动广告面板 */
 
 @property (nonatomic, strong) NSMutableArray *leftwardMarqueeViewData;      /**<   公告数据 */
 @property (nonatomic, strong) NSMutableArray *upwardMultiMarqueeViewData;   /**<   中奖排行榜数据 */
@@ -107,10 +107,7 @@
 @property (strong, nonatomic)  UGredEnvelopeView *uGredEnvelopeView;
 @property (strong, nonatomic)  UGredActivityView *uGredActivityView;    /**<   红包弹框 */
 
-
-@property (strong, nonatomic)UGRightMenuView *menuView;
-
-@property (strong, nonatomic)UGYYRightMenuView *yymenuView;
+@property (strong, nonatomic)UGYYRightMenuView *yymenuView;   /**<   侧边栏 */
 
 @property (nonatomic, strong) UGonlineCount *mUGonlineCount;
 
@@ -138,7 +135,9 @@
      [self.gameTypeView setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
      self.gameNavigationView.layer.borderColor = [[UGSkinManagers shareInstance] sethomeContentBorderColor].CGColor;
     
-    [self getCustomGameList];
+    [self.gameNavigationView reloadData];
+    self.gameTypeView.gameTypeArray = self.gameCategorys;
+    
 }
 
 - (void)viewDidLoad {
@@ -217,28 +216,36 @@
 		[self autoTransferOut];
 	});
 	
-	[self getSystemConfig];
-	[self getCustomGameList];
-	[self getBannerList];
-	[self getNoticeList];
-	[self getRankList];
-	[self getAllNextIssueData];
-	[self getUserInfo];
-	[self getCheckinListData];
-	[self systemOnlineCount];
+
 	
 	self.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
          SANotificationEventPost(UGNotificationWithResetTabSuccess, nil);
 		[self getSystemConfig];
 		[self getCustomGameList];
 		[self getBannerList];
-		[self getNoticeList];
+        if (self.notiveView == nil) {
+            [self getNoticeList];
+        }
 		[self getRankList];
 		[self getUserInfo];
 		[self getAllNextIssueData];
 		[self getCheckinListData];
 		[self systemOnlineCount];
 	}];
+    
+    [self getSystemConfig];
+    [self getCustomGameList];
+    [self getBannerList];
+
+    if (self.notiveView == nil) {
+        [self getNoticeList];
+    }
+
+    [self getRankList];
+    [self getAllNextIssueData];
+    [self getUserInfo];
+    [self getCheckinListData];
+    [self systemOnlineCount];
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(collectiongViewHeightUpdated:) name:@"UGPlatformCollectionViewContentHeight" object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gameNavigationItemTaped:) name:@"gameNavigationItemTaped" object:nil];
@@ -323,8 +330,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-//    [self.leftwardMarqueeView start];
-//    [self.upwardMultiMarqueeView start];
+    [self.leftwardMarqueeView start];
+    [self.upwardMultiMarqueeView start];
 	
 }
 
@@ -340,7 +347,7 @@
 		return;
 	}
 	
-	[self getBannerList];
+//    [self getBannerList];
 	
 	
 }
@@ -606,7 +613,10 @@
 				[self.leftwardMarqueeView reloadData];
 				if (self.popNoticeArray.count) {
 					
-					[self showPlatformNoticeView];
+                    if (self.notiveView == nil) {
+                        [self showPlatformNoticeView];
+                    }
+					
 				}
 			});
 			
@@ -714,10 +724,14 @@
 	}];
 }
 - (void)showPlatformNoticeView {
-	UGPlatformNoticeView *notiveView = [[UGPlatformNoticeView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - 260)];
-	notiveView.dataArray = self.popNoticeArray;
-    [notiveView.bgView setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
-	[notiveView show];
+    
+    if (self.notiveView == nil) {
+        self.notiveView = [[UGPlatformNoticeView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - 260)];
+        self.notiveView.dataArray = self.popNoticeArray;
+        [self.notiveView.bgView setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
+        [self.notiveView show];
+    }
+	
 }
 
 #pragma mark - SDCycleScrollViewDelegate
