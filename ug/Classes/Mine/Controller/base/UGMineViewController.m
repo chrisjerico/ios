@@ -108,22 +108,14 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
 
 -(void)menuNameArrayDate{
     UGUserModel *user = [UGUserModel currentUser];
-    
     NSLog(@"isAgent= %d",user.isAgent);
     if (user.isAgent) {
-        
         self.menuNameArray = @[@"存款",@"取款",@"在线客服",@"银行卡管理",@"利息宝",@"额度转换",@"推荐收益",@"安全中心",@"站内信",@"彩票注单记录",@"其他注单记录",@"个人信息",@"建议反馈",@"活动彩金"];
-        
-         self.imageNameArray = @[@"chongzhi",@"tixian",@"zaixiankefu",@"yinhangqia",@"lixibao",@"change",@"shouyi",@"ziyuan",@"zhanneixin",@"zdgl",@"zdgl",@"huiyuanxinxi",@"jianyi",@"zdgl"];
+        self.imageNameArray = @[@"chongzhi",@"tixian",@"zaixiankefu",@"yinhangqia",@"lixibao",@"change",@"shouyi",@"ziyuan",@"zhanneixin",@"zdgl",@"zdgl",@"huiyuanxinxi",@"jianyi",@"zdgl"];
     } else {
-        
         self.menuNameArray = @[@"存款",@"取款",@"在线客服",@"银行卡管理",@"利息宝",@"额度转换",@"代理申请",@"安全中心",@"站内信",@"彩票注单记录",@"其他注单记录",@"个人信息",@"建议反馈",@"活动彩金"];
         self.imageNameArray = @[@"chongzhi",@"tixian",@"zaixiankefu",@"yinhangqia",@"lixibao",@"change",@"shouyi",@"ziyuan",@"zhanneixin",@"zdgl",@"zdgl",@"huiyuanxinxi",@"jianyi",@"zdgl"];
-        
-
-  
     }
-    
     [self.tableView reloadData];
 }
 
@@ -261,10 +253,7 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
                 SANotificationEventPost(UGNotificationShowLoginView, nil);
             }
         }];
-    }else {
-  
-        //
-//        UGSignInViewController *vc = [[UGSignInViewController alloc] initWithNibName:@"UGSignInViewController" bundle:nil];
+    } else {
         UGSigInCodeViewController *vc = [[UGSigInCodeViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
 
@@ -422,25 +411,16 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
                     SANotificationEventPost(UGNotificationShowLoginView, nil);
                 }
             }];
-        }else {
-            
-                    UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
-
-                     if ([config.agent_m_apply isEqualToString:@"1"]) {
-                         //调接口
-                         [self teamAgentApplyInfoWithParams];
-                         
-                     } else {
-                         [self.navigationController.view makeToast:@"在线注册代理已经关闭"
-                                                                 duration:1.5
-                                                                 position:CSToastPositionCenter];
-                     
-                     }
-            
-
+        } else {
+            UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
+            if ([config.agent_m_apply isEqualToString:@"1"]) {
+                //调接口
+                [self teamAgentApplyInfoWithParams];
+            } else {
+                [self.navigationController.view makeToast:@"在线注册代理已关闭" duration:1.5 position:CSToastPositionCenter];
+            }
         }
-
-    }else if ([title isEqualToString:@"安全中心"]) {
+    } else if ([title isEqualToString:@"安全中心"]) {
         UGUserModel *user = [UGUserModel currentUser];
         if (user.isTest) {
             [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
@@ -458,7 +438,7 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
         UGMailBoxTableViewController *mailBoxVC = [[UGMailBoxTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
         [self.navigationController pushViewController:mailBoxVC animated:YES];
 
-    }else if([title isEqualToString:@"彩票注单记录"]) {
+    } else if([title isEqualToString:@"彩票注单记录"]) {
         UGUserModel *user = [UGUserModel currentUser];
         if (user.isTest) {
             [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
@@ -466,13 +446,12 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
                     SANotificationEventPost(UGNotificationShowLoginView, nil);
                 }
             }];
-        }else {
-       
+        } else {
             UGBetRecordViewController *betRecordVC = [[UGBetRecordViewController alloc] init];
             [self.navigationController pushViewController:betRecordVC animated:YES];
         }
         
-    }else if ([title isEqualToString:@"其他注单记录"]) {
+    } else if ([title isEqualToString:@"其他注单记录"]) {
         UGUserModel *user = [UGUserModel currentUser];
         if (user.isTest) {
             [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
@@ -480,15 +459,13 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
                     SANotificationEventPost(UGNotificationShowLoginView, nil);
                 }
             }];
-        }else {
-            
+        } else {
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGRealBetRecordViewController" bundle:nil];
             UGRealBetRecordViewController *betRecordVC = [storyboard instantiateInitialViewController];
             betRecordVC.gameType = @"real";
             [self.navigationController pushViewController:betRecordVC animated:YES];
         }
-        
-    }else if ([title isEqualToString:@"个人信息"]) {
+    } else if ([title isEqualToString:@"个人信息"]) {
         UGUserModel *user = [UGUserModel currentUser];
         if (user.isTest) {
             [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
@@ -837,8 +814,7 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
                         SANotificationEventPost(UGNotificationShowLoginView, nil);
                     }
                 }];
-            }else {
-                
+            } else {
                 UGBetRecordViewController *betRecordVC = [[UGBetRecordViewController alloc] init];
                 [weakSelf.navigationController pushViewController:betRecordVC animated:YES];
             }

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="UGBalanceTransferLogsCell" rowHeight="67" id="INU-zb-WEO" customClass="UGBalanceTransferLogsCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="67"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="INU-zb-WEO" id="A19-HK-feC">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="67"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MBT-Vl-PCh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="67"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名称" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W3w-QX-a5T">
+                                <rect key="frame" x="0.0" y="0.0" width="94" height="67"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="金额" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aCW-X0-Jtm">
+                                <rect key="frame" x="94" y="0.0" width="93.5" height="67"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="日期" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xnj-hM-hJs">
+                                <rect key="frame" x="187.5" y="0.0" width="94" height="67"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="模式" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1tm-BU-ETH">
+                                <rect key="frame" x="281.5" y="0.0" width="93.5" height="67"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="aCW-X0-Jtm" firstAttribute="width" secondItem="W3w-QX-a5T" secondAttribute="width" id="0yO-a8-n89"/>
+                            <constraint firstItem="aCW-X0-Jtm" firstAttribute="height" secondItem="W3w-QX-a5T" secondAttribute="height" id="nup-BU-teK"/>
+                            <constraint firstItem="xnj-hM-hJs" firstAttribute="height" secondItem="W3w-QX-a5T" secondAttribute="height" id="tVw-KC-4FK"/>
+                        </constraints>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="MBT-Vl-PCh" secondAttribute="trailing" id="e3Z-wi-xeW"/>
+                    <constraint firstItem="MBT-Vl-PCh" firstAttribute="leading" secondItem="A19-HK-feC" secondAttribute="leading" id="gXT-LV-vXC"/>
+                    <constraint firstAttribute="bottom" secondItem="MBT-Vl-PCh" secondAttribute="bottom" id="gcd-B0-1O3"/>
+                    <constraint firstItem="MBT-Vl-PCh" firstAttribute="top" secondItem="A19-HK-feC" secondAttribute="top" id="sO0-zy-F0u"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="amountLabel" destination="aCW-X0-Jtm" id="e1e-yD-O0L"/>
+                <outlet property="dateLabel" destination="xnj-hM-hJs" id="FxN-9Y-zJE"/>
+                <outlet property="modeLabel" destination="1tm-BU-ETH" id="f2v-aY-cd4"/>
+                <outlet property="nameLabel" destination="W3w-QX-a5T" id="oAm-x9-KXF"/>
+            </connections>
+            <point key="canvasLocation" x="138.40579710144928" y="152.34375"/>
+        </tableViewCell>
+    </objects>
+</document>

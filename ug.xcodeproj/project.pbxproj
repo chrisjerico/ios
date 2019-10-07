@@ -18,6 +18,8 @@
 		033177AF2338E026000D7663 /* UGBetResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = 033177AE2338E026000D7663 /* UGBetResultView.m */; };
 		0399E6FB233B9D34001E0A7F /* UGDocumentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0399E6FA233B9D34001E0A7F /* UGDocumentVC.m */; };
 		A0C64CB6AEB0CF1B2031BBB8 /* Pods_ug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6486EFF4C273BEA0AE8994DD /* Pods_ug.framework */; };
+		CF3B0E372349CDA50035AF50 /* UGCalenderAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3B0E362349CDA50035AF50 /* UGCalenderAlertView.m */; };
+		CF3B0E392349CDAC0035AF50 /* UGCalenderAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF3B0E382349CDAC0035AF50 /* UGCalenderAlertView.xib */; };
 		CFD3BEEF2347137F00FCDA6D /* category.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BE9A2347137E00FCDA6D /* category.m */; };
 		CFD3BEF02347137F00FCDA6D /* IBTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BE9C2347137E00FCDA6D /* IBTextField.m */; };
 		CFD3BEF12347137F00FCDA6D /* IBButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BE9D2347137E00FCDA6D /* IBButton.m */; };
@@ -283,8 +285,6 @@
 		D416BB2122CE2E6D00BA0450 /* UGSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = D416BB2022CE2E6D00BA0450 /* UGSegmentView.m */; };
 		D416BB2822CE35C100BA0450 /* UGSegmentCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D416BB2622CE35C100BA0450 /* UGSegmentCollectionViewCell.m */; };
 		D416BB2922CE35C100BA0450 /* UGSegmentCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D416BB2722CE35C100BA0450 /* UGSegmentCollectionViewCell.xib */; };
-		D417712A229D6BEC00727B70 /* UGUserinfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4177129229D6BEC00727B70 /* UGUserinfoView.m */; };
-		D417712C229D6C1500727B70 /* UGUserinfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D417712B229D6C1500727B70 /* UGUserinfoView.xib */; };
 		D417712F229D786000727B70 /* UGMissionTitleCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D417712E229D786000727B70 /* UGMissionTitleCollectionView.m */; };
 		D4177133229D79AB00727B70 /* UGMissionTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4177131229D79AB00727B70 /* UGMissionTitleCell.m */; };
 		D4177134229D79AB00727B70 /* UGMissionTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4177132229D79AB00727B70 /* UGMissionTitleCell.xib */; };
@@ -306,8 +306,6 @@
 		D41A57792306924D00C26023 /* UGBackToastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D41A57762306924C00C26023 /* UGBackToastView.xib */; };
 		D41AEA6B22E58D9E003E28C3 /* UGAvatarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D41AEA6A22E58D9E003E28C3 /* UGAvatarModel.m */; };
 		D41AEA6E22E5D44F003E28C3 /* UGLotteryHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D41AEA6D22E5D44F003E28C3 /* UGLotteryHistoryModel.m */; };
-		D41B3CF1231FE1E900716512 /* UGSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D41B3CEF231FE1E900716512 /* UGSignInViewController.m */; };
-		D41B3CF2231FE1E900716512 /* UGSignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D41B3CF0231FE1E900716512 /* UGSignInViewController.xib */; };
 		D41C300C233F220000541254 /* UGYYRightMenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D41C300A233F220000541254 /* UGYYRightMenuTableViewCell.m */; };
 		D41C300D233F220000541254 /* UGYYRightMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D41C300B233F220000541254 /* UGYYRightMenuTableViewCell.xib */; };
 		D41C3DF4228E75F100BF6436 /* CAAnimation+WAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = D41C3DE7228E75F000BF6436 /* CAAnimation+WAnimation.m */; };
@@ -657,6 +655,9 @@
 		0399E6FA233B9D34001E0A7F /* UGDocumentVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGDocumentVC.m; sourceTree = "<group>"; };
 		443C93C1135A8C900E47477A /* Pods-ug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ug.release.xcconfig"; path = "Target Support Files/Pods-ug/Pods-ug.release.xcconfig"; sourceTree = "<group>"; };
 		6486EFF4C273BEA0AE8994DD /* Pods_ug.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ug.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF3B0E352349CDA50035AF50 /* UGCalenderAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGCalenderAlertView.h; sourceTree = "<group>"; };
+		CF3B0E362349CDA50035AF50 /* UGCalenderAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGCalenderAlertView.m; sourceTree = "<group>"; };
+		CF3B0E382349CDAC0035AF50 /* UGCalenderAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGCalenderAlertView.xib; sourceTree = "<group>"; };
 		CFD3BE972347137E00FCDA6D /* FishUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishUtility.h; sourceTree = "<group>"; };
 		CFD3BE992347137E00FCDA6D /* IBView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBView.h; sourceTree = "<group>"; };
 		CFD3BE9A2347137E00FCDA6D /* category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = category.m; sourceTree = "<group>"; };
@@ -1164,9 +1165,6 @@
 		D416BB2522CE35C100BA0450 /* UGSegmentCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGSegmentCollectionViewCell.h; sourceTree = "<group>"; };
 		D416BB2622CE35C100BA0450 /* UGSegmentCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGSegmentCollectionViewCell.m; sourceTree = "<group>"; };
 		D416BB2722CE35C100BA0450 /* UGSegmentCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGSegmentCollectionViewCell.xib; sourceTree = "<group>"; };
-		D4177128229D6BEC00727B70 /* UGUserinfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGUserinfoView.h; sourceTree = "<group>"; };
-		D4177129229D6BEC00727B70 /* UGUserinfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGUserinfoView.m; sourceTree = "<group>"; };
-		D417712B229D6C1500727B70 /* UGUserinfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGUserinfoView.xib; sourceTree = "<group>"; };
 		D417712D229D786000727B70 /* UGMissionTitleCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGMissionTitleCollectionView.h; sourceTree = "<group>"; };
 		D417712E229D786000727B70 /* UGMissionTitleCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGMissionTitleCollectionView.m; sourceTree = "<group>"; };
 		D4177130229D79AB00727B70 /* UGMissionTitleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGMissionTitleCell.h; sourceTree = "<group>"; };
@@ -1204,9 +1202,6 @@
 		D41AEA6A22E58D9E003E28C3 /* UGAvatarModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGAvatarModel.m; sourceTree = "<group>"; };
 		D41AEA6C22E5D44F003E28C3 /* UGLotteryHistoryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLotteryHistoryModel.h; sourceTree = "<group>"; };
 		D41AEA6D22E5D44F003E28C3 /* UGLotteryHistoryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLotteryHistoryModel.m; sourceTree = "<group>"; };
-		D41B3CEE231FE1E900716512 /* UGSignInViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGSignInViewController.h; sourceTree = "<group>"; };
-		D41B3CEF231FE1E900716512 /* UGSignInViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGSignInViewController.m; sourceTree = "<group>"; };
-		D41B3CF0231FE1E900716512 /* UGSignInViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGSignInViewController.xib; sourceTree = "<group>"; };
 		D41C3009233F220000541254 /* UGYYRightMenuTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGYYRightMenuTableViewCell.h; sourceTree = "<group>"; };
 		D41C300A233F220000541254 /* UGYYRightMenuTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGYYRightMenuTableViewCell.m; sourceTree = "<group>"; };
 		D41C300B233F220000541254 /* UGYYRightMenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGYYRightMenuTableViewCell.xib; sourceTree = "<group>"; };
@@ -1791,6 +1786,623 @@
 				6486EFF4C273BEA0AE8994DD /* Pods_ug.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CF3B0E342349CD6F0035AF50 /* CalenderAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				CF3B0E352349CDA50035AF50 /* UGCalenderAlertView.h */,
+				CF3B0E362349CDA50035AF50 /* UGCalenderAlertView.m */,
+				CF3B0E382349CDAC0035AF50 /* UGCalenderAlertView.xib */,
+			);
+			path = CalenderAlertView;
+			sourceTree = "<group>";
+		};
+		CF3B0E3A234A16DE0035AF50 /* 香港六合彩 */ = {
+			isa = PBXGroup;
+			children = (
+				D409B14C2296826D0053DA33 /* UGHKLHCLotteryController.h */,
+				D409B14D2296826D0053DA33 /* UGHKLHCLotteryController.m */,
+				D409B14F229686C00053DA33 /* UGHKLHCLotteryController.storyboard */,
+			);
+			path = "香港六合彩";
+			sourceTree = "<group>";
+		};
+		CF3B0E3B234A16F90035AF50 /* 七星彩 */ = {
+			isa = PBXGroup;
+			children = (
+				D49A36C222A2C9DA000057D2 /* UGQXCLotteryController.h */,
+				D49A36C322A2C9DA000057D2 /* UGQXCLotteryController.m */,
+				D49A36C522A2C9ED000057D2 /* UGQXCLotteryController.storyboard */,
+			);
+			path = "七星彩";
+			sourceTree = "<group>";
+		};
+		CF3B0E3C234A170E0035AF50 /* PC蛋蛋 */ = {
+			isa = PBXGroup;
+			children = (
+				D49A36C722A2CF57000057D2 /* UGPCDDLotteryController.h */,
+				D49A36C822A2CF57000057D2 /* UGPCDDLotteryController.m */,
+				D49A36CA22A2CF6A000057D2 /* UGPCDDLotteryController.storyboard */,
+			);
+			path = "PC蛋蛋";
+			sourceTree = "<group>";
+		};
+		CF3B0E3D234A17200035AF50 /* 福彩3D */ = {
+			isa = PBXGroup;
+			children = (
+				D4E2876B22B666EB0002B2BF /* UGFC3DLotteryController.h */,
+				D4E2876C22B666EB0002B2BF /* UGFC3DLotteryController.m */,
+				D4E2876E22B666FE0002B2BF /* UGFC3DLotteryController.storyboard */,
+			);
+			path = "福彩3D";
+			sourceTree = "<group>";
+		};
+		CF3B0E3E234A175D0035AF50 /* PK10牛牛 */ = {
+			isa = PBXGroup;
+			children = (
+				D4704EC322B7566200528DC7 /* UGPK10NNLotteryController.h */,
+				D4704EC422B7566200528DC7 /* UGPK10NNLotteryController.m */,
+				D4704EC622B7567B00528DC7 /* UGPK10NNLotteryController.storyboard */,
+			);
+			path = "PK10牛牛";
+			sourceTree = "<group>";
+		};
+		CF3B0E3F234A17680035AF50 /* 北京PK10 */ = {
+			isa = PBXGroup;
+			children = (
+				D4DE269C229C17580072A4A2 /* UGBJPK10LotteryController.h */,
+				D4DE269D229C17580072A4A2 /* UGBJPK10LotteryController.m */,
+				D4DE269F229C1CCE0072A4A2 /* UGBJPK10LotteryController.storyboard */,
+			);
+			path = "北京PK10";
+			sourceTree = "<group>";
+		};
+		CF3B0E40234A17710035AF50 /* 江苏快3 */ = {
+			isa = PBXGroup;
+			children = (
+				D41C3E19228EF6C400BF6436 /* UGJSK3LotteryController.h */,
+				D41C3E1A228EF6C400BF6436 /* UGJSK3LotteryController.m */,
+				D41C3E1C228EF72600BF6436 /* UGJSK3LotteryController.storyboard */,
+			);
+			path = "江苏快3";
+			sourceTree = "<group>";
+		};
+		CF3B0E41234A177F0035AF50 /* 广东快乐10 */ = {
+			isa = PBXGroup;
+			children = (
+				D4145A9D22B6348500D8165F /* UGGDKL10LotteryController.h */,
+				D4145A9E22B6348500D8165F /* UGGDKL10LotteryController.m */,
+				D4145AA022B6349700D8165F /* UGGDKL10LotteryController.storyboard */,
+			);
+			path = "广东快乐10";
+			sourceTree = "<group>";
+		};
+		CF3B0E42234A17940035AF50 /* 北京快乐8 */ = {
+			isa = PBXGroup;
+			children = (
+				D4145A9822B61AA800D8165F /* UGBJKL8LotteryController.h */,
+				D4145A9922B61AA800D8165F /* UGBJKL8LotteryController.m */,
+				D4145A9B22B61C6A00D8165F /* UGBJKL8LotteryController.storyboard */,
+			);
+			path = "北京快乐8";
+			sourceTree = "<group>";
+		};
+		CF3B0E43234A179F0035AF50 /* XYNC */ = {
+			isa = PBXGroup;
+			children = (
+				D4145A9322B6109C00D8165F /* UGXYNCLotteryController.h */,
+				D4145A9422B6109C00D8165F /* UGXYNCLotteryController.m */,
+				D4145A9622B6113500D8165F /* UGXYNCLotteryController.storyboard */,
+			);
+			path = XYNC;
+			sourceTree = "<group>";
+		};
+		CF3B0E44234A17BF0035AF50 /* 广东11选5 */ = {
+			isa = PBXGroup;
+			children = (
+				D4145A8E22B52C8000D8165F /* UGGD11X5LotteryController.h */,
+				D4145A8F22B52C8000D8165F /* UGGD11X5LotteryController.m */,
+				D4145A9122B52D0600D8165F /* UGGD11X5LotteryController.storyboard */,
+			);
+			path = "广东11选5";
+			sourceTree = "<group>";
+		};
+		CF3B0E45234A17DB0035AF50 /* 时时彩 */ = {
+			isa = PBXGroup;
+			children = (
+				D4D8DF6E2286B14C00446BAF /* UGSSCLotteryController.h */,
+				D4D8DF6F2286B14C00446BAF /* UGSSCLotteryController.m */,
+				D4D8DF712286B23600446BAF /* UGSSCLotteryController.storyboard */,
+			);
+			path = "时时彩";
+			sourceTree = "<group>";
+		};
+		CF3B0E46234A19980035AF50 /* 下注页面 */ = {
+			isa = PBXGroup;
+			children = (
+				CF3B0E45234A17DB0035AF50 /* 时时彩 */,
+				CF3B0E44234A17BF0035AF50 /* 广东11选5 */,
+				CF3B0E43234A179F0035AF50 /* XYNC */,
+				CF3B0E42234A17940035AF50 /* 北京快乐8 */,
+				CF3B0E41234A177F0035AF50 /* 广东快乐10 */,
+				CF3B0E40234A17710035AF50 /* 江苏快3 */,
+				CF3B0E3A234A16DE0035AF50 /* 香港六合彩 */,
+				CF3B0E3F234A17680035AF50 /* 北京PK10 */,
+				CF3B0E3B234A16F90035AF50 /* 七星彩 */,
+				CF3B0E3C234A170E0035AF50 /* PC蛋蛋 */,
+				CF3B0E3D234A17200035AF50 /* 福彩3D */,
+				CF3B0E3E234A175D0035AF50 /* PK10牛牛 */,
+				0322AD6323432A4A00E9857E /* UGCommonLotteryController.h */,
+				0322AD6423432A4A00E9857E /* UGCommonLotteryController.m */,
+			);
+			path = "下注页面";
+			sourceTree = "<group>";
+		};
+		CF3B0E47234A1C140035AF50 /* 广告View */ = {
+			isa = PBXGroup;
+			children = (
+				D40DE98D22F4292100974BAF /* UGLotteryAdPopView.h */,
+				D40DE98E22F4292100974BAF /* UGLotteryAdPopView.m */,
+				D40DE99022F42A3300974BAF /* UGLotteryAdPopView.xib */,
+			);
+			path = "广告View";
+			sourceTree = "<group>";
+		};
+		CF3B0E48234A1C200035AF50 /* 彩种Cell */ = {
+			isa = PBXGroup;
+			children = (
+				D40A3C1022C63633009CEB8E /* UGLotteryGameCollectionViewCell.h */,
+				D40A3C1122C63633009CEB8E /* UGLotteryGameCollectionViewCell.m */,
+				D40A3C1222C63633009CEB8E /* UGLotteryGameCollectionViewCell.xib */,
+				D405B2E4227BFE5F00F8C586 /* UGLotteryCollectionViewCell.h */,
+				D405B2E5227BFE5F00F8C586 /* UGLotteryCollectionViewCell.m */,
+				D405B2E6227BFE5F00F8C586 /* UGLotteryCollectionViewCell.xib */,
+				D4EE8F842341DD4A006FA0E2 /* UGhomeRecommendCollectionViewCell.h */,
+				D4EE8F852341DD4A006FA0E2 /* UGhomeRecommendCollectionViewCell.m */,
+				D4EE8F862341DD4A006FA0E2 /* UGhomeRecommendCollectionViewCell.xib */,
+			);
+			path = "彩种Cell";
+			sourceTree = "<group>";
+		};
+		CF3B0E49234A1C9C0035AF50 /* 号码Cell */ = {
+			isa = PBXGroup;
+			children = (
+				CF3B0E4B234A1D710035AF50 /* 快3Cell */,
+				CF3B0E4C234A1DA60035AF50 /* 六合彩Cell */,
+				CF3B0E4D234A1E240035AF50 /* PK10 */,
+				D4D8DF85228714A300446BAF /* UGLotteryResultCollectionViewCell.h */,
+				D4D8DF86228714A300446BAF /* UGLotteryResultCollectionViewCell.m */,
+				D4D8DF87228714A300446BAF /* UGLotteryResultCollectionViewCell.xib */,
+				D4D8DF8A2287155800446BAF /* UGLotterySubResultCollectionViewCell.h */,
+				D4D8DF8B2287155800446BAF /* UGLotterySubResultCollectionViewCell.m */,
+				D4D8DF8C2287155800446BAF /* UGLotterySubResultCollectionViewCell.xib */,
+				D4D8DF7D2287065F00446BAF /* UGTimeLotteryBetHeaderView.h */,
+				D4D8DF7E2287065F00446BAF /* UGTimeLotteryBetHeaderView.m */,
+				D4D8DF7F2287065F00446BAF /* UGTimeLotteryBetHeaderView.xib */,
+				D4D8DF732286F01100446BAF /* UGTimeLotteryLeftTitleCell.h */,
+				D4D8DF742286F01100446BAF /* UGTimeLotteryLeftTitleCell.m */,
+				D4D8DF752286F01100446BAF /* UGTimeLotteryLeftTitleCell.xib */,
+				D4D8DF782286F7F600446BAF /* UGTimeLotteryBetCollectionViewCell.h */,
+				D4D8DF792286F7F600446BAF /* UGTimeLotteryBetCollectionViewCell.m */,
+				D4D8DF7A2286F7F600446BAF /* UGTimeLotteryBetCollectionViewCell.xib */,
+				D41FF76E22E880A800FCCDD2 /* UGSSCBetItem1Cell.h */,
+				D41FF76F22E880A800FCCDD2 /* UGSSCBetItem1Cell.m */,
+				D41FF77022E880A800FCCDD2 /* UGSSCBetItem1Cell.xib */,
+				D4F0477322E9E22E008EBB56 /* UGLinkNumCollectionViewCell.h */,
+				D4F0477422E9E22E008EBB56 /* UGLinkNumCollectionViewCell.m */,
+				D4F0477522E9E22E008EBB56 /* UGLinkNumCollectionViewCell.xib */,
+			);
+			path = "号码Cell";
+			sourceTree = "<group>";
+		};
+		CF3B0E4A234A1D060035AF50 /* 下注明细View */ = {
+			isa = PBXGroup;
+			children = (
+				D40D58BD228A8D480025963A /* UGBetDetailView.h */,
+				D40D58BE228A8D480025963A /* UGBetDetailView.m */,
+				D40D58C0228A8DE30025963A /* UGBetDetailView.xib */,
+				D40D58C2228A9A230025963A /* UGBetDetailTableViewCell.h */,
+				D40D58C3228A9A230025963A /* UGBetDetailTableViewCell.m */,
+				D40D58C4228A9A230025963A /* UGBetDetailTableViewCell.xib */,
+				033177AD2338E026000D7663 /* UGBetResultView.h */,
+				033177AE2338E026000D7663 /* UGBetResultView.m */,
+			);
+			path = "下注明细View";
+			sourceTree = "<group>";
+		};
+		CF3B0E4B234A1D710035AF50 /* 快3Cell */ = {
+			isa = PBXGroup;
+			children = (
+				D41C3E0F228EF13D00BF6436 /* UGFastThreeOneCollectionViewCell.h */,
+				D41C3E10228EF13D00BF6436 /* UGFastThreeOneCollectionViewCell.m */,
+				D41C3E11228EF13D00BF6436 /* UGFastThreeOneCollectionViewCell.xib */,
+				D41C3E14228EF2A600BF6436 /* UGFastThreeTwoCollectionViewCell.h */,
+				D41C3E15228EF2A600BF6436 /* UGFastThreeTwoCollectionViewCell.m */,
+				D41C3E16228EF2A600BF6436 /* UGFastThreeTwoCollectionViewCell.xib */,
+				D4F63F8C228FD1A200EC93AA /* UGFastThreeThreeCollectionViewCell.h */,
+				D4F63F8D228FD1A200EC93AA /* UGFastThreeThreeCollectionViewCell.m */,
+				D4F63F8E228FD1A200EC93AA /* UGFastThreeThreeCollectionViewCell.xib */,
+				D4F63F91228FD3B000EC93AA /* UGFastThreeFourCollectionViewCell.h */,
+				D4F63F92228FD3B000EC93AA /* UGFastThreeFourCollectionViewCell.m */,
+				D4F63F93228FD3B000EC93AA /* UGFastThreeFourCollectionViewCell.xib */,
+			);
+			path = "快3Cell";
+			sourceTree = "<group>";
+		};
+		CF3B0E4C234A1DA60035AF50 /* 六合彩Cell */ = {
+			isa = PBXGroup;
+			children = (
+				D409B1512296E0020053DA33 /* UGMarkSixLotteryBetItem0Cell.h */,
+				D409B1522296E0020053DA33 /* UGMarkSixLotteryBetItem0Cell.m */,
+				D409B1532296E0020053DA33 /* UGMarkSixLotteryBetItem0Cell.xib */,
+				D40D32C42297CEAF00B89398 /* UGMarkSixLotteryBetItem1Cell.h */,
+				D40D32C52297CEAF00B89398 /* UGMarkSixLotteryBetItem1Cell.m */,
+				D40D32C62297CEAF00B89398 /* UGMarkSixLotteryBetItem1Cell.xib */,
+			);
+			path = "六合彩Cell";
+			sourceTree = "<group>";
+		};
+		CF3B0E4D234A1E240035AF50 /* PK10 */ = {
+			isa = PBXGroup;
+			children = (
+				D4704EC822B7647F00528DC7 /* UGPK10SubResultCollectionViewCell.h */,
+				D4704EC922B7647F00528DC7 /* UGPK10SubResultCollectionViewCell.m */,
+				D4704ECA22B7647F00528DC7 /* UGPK10SubResultCollectionViewCell.xib */,
+			);
+			path = PK10;
+			sourceTree = "<group>";
+		};
+		CF3B0E4E234A20840035AF50 /* 滑块View（选择子玩法） */ = {
+			isa = PBXGroup;
+			children = (
+				D416BB1F22CE2E6D00BA0450 /* UGSegmentView.h */,
+				D416BB2022CE2E6D00BA0450 /* UGSegmentView.m */,
+				D416BB2522CE35C100BA0450 /* UGSegmentCollectionViewCell.h */,
+				D416BB2622CE35C100BA0450 /* UGSegmentCollectionViewCell.m */,
+				D416BB2722CE35C100BA0450 /* UGSegmentCollectionViewCell.xib */,
+			);
+			path = "滑块View（选择子玩法）";
+			sourceTree = "<group>";
+		};
+		CF3B0E4F234A25FB0035AF50 /* 谷歌认证 */ = {
+			isa = PBXGroup;
+			children = (
+				D45A94B5233B879D0089E86C /* UGGoogleAuthenticationFirstViewController.h */,
+				D45A94B6233B879D0089E86C /* UGGoogleAuthenticationFirstViewController.m */,
+				D45A94B7233B879D0089E86C /* UGGoogleAuthenticationFirstViewController.xib */,
+				D45A94BA233B8AF90089E86C /* UGGoogleAuthenticationSecondViewController.h */,
+				D45A94BB233B8AF90089E86C /* UGGoogleAuthenticationSecondViewController.m */,
+				D45A94BC233B8AF90089E86C /* UGGoogleAuthenticationSecondViewController.xib */,
+				D45A94BF233B9F070089E86C /* UGGoogleAuthenticationThirdViewController.h */,
+				D45A94C0233B9F070089E86C /* UGGoogleAuthenticationThirdViewController.m */,
+				D45A94C1233B9F070089E86C /* UGGoogleAuthenticationThirdViewController.xib */,
+			);
+			path = "谷歌认证";
+			sourceTree = "<group>";
+		};
+		CF3B0E50234A26450035AF50 /* 建议反馈 */ = {
+			isa = PBXGroup;
+			children = (
+				D409C55922AB86D90042A0DD /* UGFeedBackController.h */,
+				D409C55A22AB86D90042A0DD /* UGFeedBackController.m */,
+				D405B37422801F8400F8C586 /* UGWriteMessageViewController.h */,
+				D405B37522801F8400F8C586 /* UGWriteMessageViewController.m */,
+				D409C55C22AB87480042A0DD /* UGFeedBackController.storyboard */,
+				D409C55E22ABA3B80042A0DD /* UGFeedBackRecordController.h */,
+				D409C55F22ABA3B80042A0DD /* UGFeedBackRecordController.m */,
+				D4C93B3C22D8751F00608B67 /* UGFeedbackDetailController.h */,
+				D4C93B3D22D8751F00608B67 /* UGFeedbackDetailController.m */,
+			);
+			path = "建议反馈";
+			sourceTree = "<group>";
+		};
+		CF3B0E51234A26600035AF50 /* 登录注册 */ = {
+			isa = PBXGroup;
+			children = (
+				D405B316227D726000F8C586 /* UGLoginViewController.h */,
+				D405B317227D726000F8C586 /* UGLoginViewController.m */,
+				D405B319227D727D00F8C586 /* UGRegisterViewController.h */,
+				D405B31A227D727D00F8C586 /* UGRegisterViewController.m */,
+			);
+			path = "登录注册";
+			sourceTree = "<group>";
+		};
+		CF3B0E52234A267C0035AF50 /* 活动彩金 */ = {
+			isa = PBXGroup;
+			children = (
+				D481AB412331EC340099685B /* UGMosaicGoldViewController.h */,
+				D481AB422331EC340099685B /* UGMosaicGoldViewController.m */,
+				D481AB4C233201870099685B /* UGMosaicGoldController.h */,
+				D481AB4D233201870099685B /* UGMosaicGoldController.m */,
+				D481AB5723321F940099685B /* UGActivityGoldTableViewController.h */,
+				D481AB5823321F940099685B /* UGActivityGoldTableViewController.m */,
+			);
+			path = "活动彩金";
+			sourceTree = "<group>";
+		};
+		CF3B0E53234A26A50035AF50 /* 银行卡管理 */ = {
+			isa = PBXGroup;
+			children = (
+				D463B4E72284732300EAC0F7 /* UGBindCardViewController.h */,
+				D463B4E82284732300EAC0F7 /* UGBindCardViewController.m */,
+				D463B4EA2284736200EAC0F7 /* UGBindCardViewController.storyboard */,
+				D40FA8BB229904D9003E596F /* UGBankCardInfoController.h */,
+				D40FA8BC229904D9003E596F /* UGBankCardInfoController.m */,
+				D40D32C12297BED600B89398 /* UGSetupPayPwdController.h */,
+				D40D32C22297BED600B89398 /* UGSetupPayPwdController.m */,
+			);
+			path = "银行卡管理";
+			sourceTree = "<group>";
+		};
+		CF3B0E54234A26E60035AF50 /* 安全中心 */ = {
+			isa = PBXGroup;
+			children = (
+				D405B38A22816D1300F8C586 /* UGSecurityCenterViewController.h */,
+				D405B38B22816D1400F8C586 /* UGSecurityCenterViewController.m */,
+				D405B38D22817A3F00F8C586 /* UGModifyLoginPwdController.h */,
+				D405B38E22817A3F00F8C586 /* UGModifyLoginPwdController.m */,
+				D405B39022817A7C00F8C586 /* UGModifyPayPwdController.h */,
+				D405B39122817A7C00F8C586 /* UGModifyPayPwdController.m */,
+				D405B39322817AB700F8C586 /* UGModifyLoginPlaceController.h */,
+				D405B39422817AB700F8C586 /* UGModifyLoginPlaceController.m */,
+				D422D67722D997AA008E7065 /* UGSafety.storyboard */,
+			);
+			path = "安全中心";
+			sourceTree = "<group>";
+		};
+		CF3B0E55234A26F10035AF50 /* 额度转换 */ = {
+			isa = PBXGroup;
+			children = (
+				D405B3962281B18600F8C586 /* UGBalanceConversionController.h */,
+				D405B3972281B18600F8C586 /* UGBalanceConversionController.m */,
+				D4527D1A2282FBD8000EC1C2 /* UGBalanceConversionRecordController.h */,
+				D4527D1B2282FBD8000EC1C2 /* UGBalanceConversionRecordController.m */,
+			);
+			path = "额度转换";
+			sourceTree = "<group>";
+		};
+		CF3B0E56234A27290035AF50 /* 注单列表 */ = {
+			isa = PBXGroup;
+			children = (
+				D424DDDD22E74DA40009E2E6 /* UGRealBetRecordViewController.h */,
+				D424DDDE22E74DA40009E2E6 /* UGRealBetRecordViewController.m */,
+				D424DDE022E74DE60009E2E6 /* UGRealBetRecordViewController.storyboard */,
+				D405B36D228008C900F8C586 /* UGBetRecordViewController.h */,
+				D405B36E228008C900F8C586 /* UGBetRecordViewController.m */,
+				D41C3E07228EA09000BF6436 /* UGBetRecordTableViewController.h */,
+				D41C3E08228EA09000BF6436 /* UGBetRecordTableViewController.m */,
+				D421B5E222E05C0F00BAD968 /* UGBetRecordTableViewController.storyboard */,
+				D41C3E0A228ED03900BF6436 /* UGBetRecordDetailViewController.h */,
+				D41C3E0B228ED03900BF6436 /* UGBetRecordDetailViewController.m */,
+				D41C3E0D228ED0EE00BF6436 /* UGBetRecordDetailViewController.storyboard */,
+			);
+			path = "注单列表";
+			sourceTree = "<group>";
+		};
+		CF3B0E57234A27630035AF50 /* 我的资料 */ = {
+			isa = PBXGroup;
+			children = (
+				D41246B42285C64C006881E2 /* UGUserInfoViewController.h */,
+				D41246B52285C64C006881E2 /* UGUserInfoViewController.m */,
+				D41246B72285C65D006881E2 /* UGUserInfoViewController.storyboard */,
+			);
+			path = "我的资料";
+			sourceTree = "<group>";
+		};
+		CF3B0E58234A276B0035AF50 /* 站内信 */ = {
+			isa = PBXGroup;
+			children = (
+				D405B387228162C000F8C586 /* UGMailBoxTableViewController.h */,
+				D405B388228162C000F8C586 /* UGMailBoxTableViewController.m */,
+			);
+			path = "站内信";
+			sourceTree = "<group>";
+		};
+		CF3B0E59234A29330035AF50 /* 推荐收益 */ = {
+			isa = PBXGroup;
+			children = (
+				D49F41A92326132C00A381AD /* UGPormotionUserInfoView.h */,
+				D49F41AA2326132C00A381AD /* UGPormotionUserInfoView.m */,
+				D49F41AC2326149B00A381AD /* UGPormotionUserInfoView.xib */,
+				D4D42262232686A5006E680B /* UGPormotionView.h */,
+				D4D42263232686A5006E680B /* UGPormotionView.m */,
+				D4D4226523268736006E680B /* UGPormotionView.xib */,
+				D422FE5723251E190063EA4E /* UGPromotion4rowTableViewCell.h */,
+				D422FE5823251E190063EA4E /* UGPromotion4rowTableViewCell.m */,
+				D422FE5923251E190063EA4E /* UGPromotion4rowTableViewCell.xib */,
+				D422FE5C232522C20063EA4E /* UGPromotion5rowButtonTableViewCell.h */,
+				D422FE5D232522C20063EA4E /* UGPromotion5rowButtonTableViewCell.m */,
+				D422FE5E232522C20063EA4E /* UGPromotion5rowButtonTableViewCell.xib */,
+				D422FE61232532C00063EA4E /* UGPromotion2rowTableViewCell.h */,
+				D422FE62232532C00063EA4E /* UGPromotion2rowTableViewCell.m */,
+				D422FE63232532C00063EA4E /* UGPromotion2rowTableViewCell.xib */,
+				D40499BE2335E5B30019C249 /* UGPromotion6rowButtonTableViewCell.h */,
+				D40499BF2335E5B30019C249 /* UGPromotion6rowButtonTableViewCell.m */,
+				D40499C02335E5B30019C249 /* UGPromotion6rowButtonTableViewCell.xib */,
+			);
+			path = "推荐收益";
+			sourceTree = "<group>";
+		};
+		CF3B0E5A234A29480035AF50 /* 活动彩金 */ = {
+			isa = PBXGroup;
+			children = (
+				D41FF9382333471F00FE3F70 /* UGContentMoneyCollectionViewCell.h */,
+				D41FF9392333471F00FE3F70 /* UGContentMoneyCollectionViewCell.m */,
+				D41FF93A2333471F00FE3F70 /* UGContentMoneyCollectionViewCell.xib */,
+				D481AB442331F1300099685B /* UGMosaicGoldTableViewCell.h */,
+				D481AB452331F1300099685B /* UGMosaicGoldTableViewCell.m */,
+				D481AB462331F1300099685B /* UGMosaicGoldTableViewCell.xib */,
+				D481AB5223320F0F0099685B /* UGActivityGoldTableViewCell.h */,
+				D481AB5323320F0F0099685B /* UGActivityGoldTableViewCell.m */,
+				D481AB5423320F0F0099685B /* UGActivityGoldTableViewCell.xib */,
+				D481AB5A233253A60099685B /* UGMosaicGoldFinishView.h */,
+				D481AB5B233253A60099685B /* UGMosaicGoldFinishView.m */,
+				D41FF9332333309700FE3F70 /* UGActivityGoldView.h */,
+				D41FF9342333309700FE3F70 /* UGActivityGoldView.m */,
+				D41FF936233330DB00FE3F70 /* UGActivityGoldView.xib */,
+			);
+			path = "活动彩金";
+			sourceTree = "<group>";
+		};
+		CF3B0E5B234A29640035AF50 /* 签到 */ = {
+			isa = PBXGroup;
+			children = (
+				D42528122320DDA2007DE522 /* UGSignInCollectionViewCell.h */,
+				D42528132320DDA2007DE522 /* UGSignInCollectionViewCell.m */,
+				D42528142320DDA2007DE522 /* UGSignInCollectionViewCell.xib */,
+				D4252820232102CA007DE522 /* UGSignInHeaderView.h */,
+				D4252821232102CA007DE522 /* UGSignInHeaderView.m */,
+				D4252823232103AA007DE522 /* UGSignInHeaderView.xib */,
+				D425282523210760007DE522 /* UGSignInScrHeaderView.h */,
+				D425282623210760007DE522 /* UGSignInScrHeaderView.m */,
+				D4252828232107EE007DE522 /* UGSignInScrHeaderView.xib */,
+				D425282A2321267C007DE522 /* UGSignInScrFootView.h */,
+				D425282B2321267C007DE522 /* UGSignInScrFootView.m */,
+				D425282D23212717007DE522 /* UGSignInScrFootView.xib */,
+				D4A02B5323225782004D5894 /* UGSignInHistoryView.h */,
+				D4A02B5423225782004D5894 /* UGSignInHistoryView.m */,
+				D4A02B56232257D5004D5894 /* UGSignInHistoryView.xib */,
+				D4A02B5823227B7D004D5894 /* UGSingInHistoryTableViewCell.h */,
+				D4A02B5923227B7D004D5894 /* UGSingInHistoryTableViewCell.m */,
+				D4A02B5A23227B7D004D5894 /* UGSingInHistoryTableViewCell.xib */,
+			);
+			path = "签到";
+			sourceTree = "<group>";
+		};
+		CF3B0E5C234A29D30035AF50 /* 任务大厅 */ = {
+			isa = PBXGroup;
+			children = (
+				D41246AF2285B5CB006881E2 /* UGMissionTableViewCell.h */,
+				D41246B02285B5CB006881E2 /* UGMissionTableViewCell.m */,
+				D41246B12285B5CB006881E2 /* UGMissionTableViewCell.xib */,
+				D41E0EDD228D88BC00D6C42A /* UGMissionLevelTableViewCell.h */,
+				D41E0EDE228D88BC00D6C42A /* UGMissionLevelTableViewCell.m */,
+				D41E0EDF228D88BC00D6C42A /* UGMissionLevelTableViewCell.xib */,
+				D41C3DFD228E914A00BF6436 /* UGIntegarlConvertRecordCell.h */,
+				D41C3DFE228E914A00BF6436 /* UGIntegarlConvertRecordCell.m */,
+				D417712D229D786000727B70 /* UGMissionTitleCollectionView.h */,
+				D417712E229D786000727B70 /* UGMissionTitleCollectionView.m */,
+				D4177130229D79AB00727B70 /* UGMissionTitleCell.h */,
+				D4177131229D79AB00727B70 /* UGMissionTitleCell.m */,
+				D4177132229D79AB00727B70 /* UGMissionTitleCell.xib */,
+				D422A579229E3EE80068D0AD /* UGMissionCollectionView.h */,
+				D422A57A229E3EE80068D0AD /* UGMissionCollectionView.m */,
+			);
+			path = "任务大厅";
+			sourceTree = "<group>";
+		};
+		CF3B0E5D234A29E20035AF50 /* 利息宝 */ = {
+			isa = PBXGroup;
+			children = (
+				D422A580229E7AE90068D0AD /* UGYubaoIncomeTableViewCell.h */,
+				D422A581229E7AE90068D0AD /* UGYubaoIncomeTableViewCell.m */,
+				D422A586229E813C0068D0AD /* UGYubaoConversionRecordCell.h */,
+				D422A587229E813C0068D0AD /* UGYubaoConversionRecordCell.m */,
+			);
+			path = "利息宝";
+			sourceTree = "<group>";
+		};
+		CF3B0E5E234A2A1A0035AF50 /* 注单列表 */ = {
+			isa = PBXGroup;
+			children = (
+				CF3B0E342349CD6F0035AF50 /* CalenderAlertView */,
+				D424DDE222E753C60009E2E6 /* UGRealBetRecordCell.h */,
+				D424DDE322E753C60009E2E6 /* UGRealBetRecordCell.m */,
+				D424DDE422E753C60009E2E6 /* UGRealBetRecordCell.xib */,
+				D41FF76922E8141A00FCCDD2 /* UGLotteryRecordCell.h */,
+				D41FF76A22E8141A00FCCDD2 /* UGLotteryRecordCell.m */,
+				D41FF76B22E8141A00FCCDD2 /* UGLotteryRecordCell.xib */,
+				D405B368228007D900F8C586 /* UGRecordFilterCollectionViewCell.h */,
+				D405B369228007D900F8C586 /* UGRecordFilterCollectionViewCell.m */,
+				D405B36A228007D900F8C586 /* UGRecordFilterCollectionViewCell.xib */,
+				D41C3E02228E9D8900BF6436 /* UGBetRecordTableViewCell.h */,
+				D41C3E03228E9D8900BF6436 /* UGBetRecordTableViewCell.m */,
+				D41C3E04228E9D8900BF6436 /* UGBetRecordTableViewCell.xib */,
+				D4E8A40D22A0323300EFE171 /* UGBetRecorddHeaderView.h */,
+				D4E8A40E22A0323300EFE171 /* UGBetRecorddHeaderView.m */,
+				D4E8A41022A0326C00EFE171 /* UGBetRecorddHeaderView.xib */,
+			);
+			path = "注单列表";
+			sourceTree = "<group>";
+		};
+		CF3B0E5F234A2A400035AF50 /* 修改头像 */ = {
+			isa = PBXGroup;
+			children = (
+				D4090F5F228D3D7B00D6DA43 /* UGAvaterSelectView.h */,
+				D4090F60228D3D7B00D6DA43 /* UGAvaterSelectView.m */,
+				D4090F62228D3E0E00D6DA43 /* UGAvaterSelectView.xib */,
+				D4090F64228D4F7200D6DA43 /* UGAvaterCollectionViewCell.h */,
+				D4090F65228D4F7200D6DA43 /* UGAvaterCollectionViewCell.m */,
+				D4090F66228D4F7200D6DA43 /* UGAvaterCollectionViewCell.xib */,
+			);
+			path = "修改头像";
+			sourceTree = "<group>";
+		};
+		CF3B0E60234A2A6F0035AF50 /* 建议反馈 */ = {
+			isa = PBXGroup;
+			children = (
+				D4C93B3922D8560500608B67 /* UGFeedbackTableViewCell.h */,
+				D4C93B3A22D8560500608B67 /* UGFeedbackTableViewCell.m */,
+				D4C93B3F22D8759400608B67 /* UGFeedbackDetailCell.h */,
+				D4C93B4022D8759400608B67 /* UGFeedbackDetailCell.m */,
+			);
+			path = "建议反馈";
+			sourceTree = "<group>";
+		};
+		CF3B0E61234A2AC70035AF50 /* 额度转换 */ = {
+			isa = PBXGroup;
+			children = (
+				D4527D1522828C27000EC1C2 /* UGPlatformBalanceTableViewCell.h */,
+				D4527D1622828C27000EC1C2 /* UGPlatformBalanceTableViewCell.m */,
+				D4527D1722828C27000EC1C2 /* UGPlatformBalanceTableViewCell.xib */,
+				D41EDF792317A67E005798CC /* UGBalanceTransferLogsCell.h */,
+				D41EDF7A2317A67E005798CC /* UGBalanceTransferLogsCell.m */,
+				D41EDF7B2317A67E005798CC /* UGBalanceTransferLogsCell.xib */,
+			);
+			path = "额度转换";
+			sourceTree = "<group>";
+		};
+		CF3B0E62234A2AE40035AF50 /* 站内信 */ = {
+			isa = PBXGroup;
+			children = (
+				D405B3822281620000F8C586 /* UGMessageTableViewCell.h */,
+				D405B3832281620000F8C586 /* UGMessageTableViewCell.m */,
+				D405B3842281620000F8C586 /* UGMessageTableViewCell.xib */,
+			);
+			path = "站内信";
+			sourceTree = "<group>";
+		};
+		CF3B0E63234A2BAB0035AF50 /* 安全中心 */ = {
+			isa = PBXGroup;
+			children = (
+				D422D67922D99F1E008E7065 /* UGAddressCollectionViewCell.h */,
+				D422D67A22D99F1E008E7065 /* UGAddressCollectionViewCell.m */,
+				D422D67B22D99F1E008E7065 /* UGAddressCollectionViewCell.xib */,
+			);
+			path = "安全中心";
+			sourceTree = "<group>";
+		};
+		CF3B0E64234A2C450035AF50 /* 我的页 */ = {
+			isa = PBXGroup;
+			children = (
+				D4C165752344CAB6005A0F12 /* UGSkinSeconCollectionHeadView.h */,
+				D4C165762344CAB6005A0F12 /* UGSkinSeconCollectionHeadView.m */,
+				D4C165772344CAB6005A0F12 /* UGSkinSeconCollectionHeadView.xib */,
+				D4C165702344C9E1005A0F12 /* UGMineSkinFirstCollectionHeadView.h */,
+				D4C165712344C9E1005A0F12 /* UGMineSkinFirstCollectionHeadView.m */,
+				D4C165722344C9E1005A0F12 /* UGMineSkinFirstCollectionHeadView.xib */,
+				D4C1656B2344C3C0005A0F12 /* UGMineSkinCollectionViewCell.h */,
+				D4C1656C2344C3C0005A0F12 /* UGMineSkinCollectionViewCell.m */,
+				D4C1656D2344C3C0005A0F12 /* UGMineSkinCollectionViewCell.xib */,
+				D405AFFC227866A300F8C586 /* UGMineMenuCollectionViewCell.h */,
+				D405AFFD227866A300F8C586 /* UGMineMenuCollectionViewCell.m */,
+				D405AFFE227866A300F8C586 /* UGMineMenuCollectionViewCell.xib */,
+				D4DFBE7122E353B0002BAFB0 /* UGMenuTableViewCell.h */,
+				D4DFBE7022E353B0002BAFB0 /* UGMenuTableViewCell.m */,
+				D4DFBE6F22E353AF002BAFB0 /* UGMenuTableViewCell.xib */,
+			);
+			path = "我的页";
 			sourceTree = "<group>";
 		};
 		CFD3BE962347137E00FCDA6D /* FishUtility */ = {
@@ -2606,16 +3218,13 @@
 			path = MOFSPickerManager;
 			sourceTree = "<group>";
 		};
-		D41B3CED231FE18F00716512 /* SignIn */ = {
+		D41B3CED231FE18F00716512 /* 签到 */ = {
 			isa = PBXGroup;
 			children = (
-				D41B3CEE231FE1E900716512 /* UGSignInViewController.h */,
-				D41B3CEF231FE1E900716512 /* UGSignInViewController.m */,
-				D41B3CF0231FE1E900716512 /* UGSignInViewController.xib */,
 				D42528172320EB01007DE522 /* UGSigInCodeViewController.h */,
 				D42528182320EB01007DE522 /* UGSigInCodeViewController.m */,
 			);
-			path = SignIn;
+			path = "签到";
 			sourceTree = "<group>";
 		};
 		D41C3DE5228E75F000BF6436 /* WZLBadge */ = {
@@ -2667,7 +3276,7 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		D41E0EE5228D8C4400D6C42A /* MissionCenter */ = {
+		D41E0EE5228D8C4400D6C42A /* 任务大厅 */ = {
 			isa = PBXGroup;
 			children = (
 				D405B37A22805D6900F8C586 /* UGMissionCenterViewController.h */,
@@ -2684,7 +3293,7 @@
 				D41C3DF9228E877E00BF6436 /* UGIntegralConvertRecordController.m */,
 				D41C3DFB228E882200BF6436 /* UGIntegralConvertRecordController.storyboard */,
 			);
-			path = MissionCenter;
+			path = "任务大厅";
 			sourceTree = "<group>";
 		};
 		D41FD5EF2347123B00984468 /* Router */ = {
@@ -2704,7 +3313,7 @@
 			path = NullSafe;
 			sourceTree = "<group>";
 		};
-		D422A57C229E74DE0068D0AD /* YuBao */ = {
+		D422A57C229E74DE0068D0AD /* 利息宝 */ = {
 			isa = PBXGroup;
 			children = (
 				D40FA8C022991142003E596F /* UGYubaoViewController.h */,
@@ -2719,7 +3328,7 @@
 				D422A583229E80EE0068D0AD /* UGYubaoConversionRecordController.h */,
 				D422A584229E80EE0068D0AD /* UGYubaoConversionRecordController.m */,
 			);
-			path = YuBao;
+			path = "利息宝";
 			sourceTree = "<group>";
 		};
 		D4241C36232914D100BF4DE1 /* Extenslon */ = {
@@ -2773,7 +3382,7 @@
 			path = BAAlertController;
 			sourceTree = "<group>";
 		};
-		D4527D1E22830603000EC1C2 /* Promotion */ = {
+		D4527D1E22830603000EC1C2 /* 推荐收益 */ = {
 			isa = PBXGroup;
 			children = (
 				D4527D1F2283062D000EC1C2 /* UGPromotionIncomeController.h */,
@@ -2790,81 +3399,27 @@
 				D4F50A4F2339E67600E0811D /* UGAgentRefusedViewController.m */,
 				D4F50A502339E67600E0811D /* UGAgentRefusedViewController.xib */,
 			);
-			path = Promotion;
+			path = "推荐收益";
 			sourceTree = "<group>";
 		};
 		D48224DE22A0E83C00F7DE72 /* base */ = {
 			isa = PBXGroup;
 			children = (
+				CF3B0E51234A26600035AF50 /* 登录注册 */,
+				CF3B0E58234A276B0035AF50 /* 站内信 */,
+				CF3B0E56234A27290035AF50 /* 注单列表 */,
+				CF3B0E54234A26E60035AF50 /* 安全中心 */,
+				CF3B0E55234A26F10035AF50 /* 额度转换 */,
+				CF3B0E53234A26A50035AF50 /* 银行卡管理 */,
+				CF3B0E57234A27630035AF50 /* 我的资料 */,
+				CF3B0E50234A26450035AF50 /* 建议反馈 */,
+				CF3B0E52234A267C0035AF50 /* 活动彩金 */,
+				CF3B0E4F234A25FB0035AF50 /* 谷歌认证 */,
 				D4C165662344B1AB005A0F12 /* UGMineSkinViewController.h */,
 				D4C165672344B1AB005A0F12 /* UGMineSkinViewController.m */,
 				D4C165682344B1AB005A0F12 /* UGMineSkinViewController.xib */,
 				D45F98C422E34DAA00194139 /* UGMineViewController.h */,
 				D45F98C522E34DAA00194139 /* UGMineViewController.m */,
-				D405B316227D726000F8C586 /* UGLoginViewController.h */,
-				D405B317227D726000F8C586 /* UGLoginViewController.m */,
-				D405B319227D727D00F8C586 /* UGRegisterViewController.h */,
-				D405B31A227D727D00F8C586 /* UGRegisterViewController.m */,
-				D405B387228162C000F8C586 /* UGMailBoxTableViewController.h */,
-				D405B388228162C000F8C586 /* UGMailBoxTableViewController.m */,
-				D405B38A22816D1300F8C586 /* UGSecurityCenterViewController.h */,
-				D405B38B22816D1400F8C586 /* UGSecurityCenterViewController.m */,
-				D424DDDD22E74DA40009E2E6 /* UGRealBetRecordViewController.h */,
-				D424DDDE22E74DA40009E2E6 /* UGRealBetRecordViewController.m */,
-				D424DDE022E74DE60009E2E6 /* UGRealBetRecordViewController.storyboard */,
-				D405B36D228008C900F8C586 /* UGBetRecordViewController.h */,
-				D405B36E228008C900F8C586 /* UGBetRecordViewController.m */,
-				D41C3E07228EA09000BF6436 /* UGBetRecordTableViewController.h */,
-				D41C3E08228EA09000BF6436 /* UGBetRecordTableViewController.m */,
-				D421B5E222E05C0F00BAD968 /* UGBetRecordTableViewController.storyboard */,
-				D41C3E0A228ED03900BF6436 /* UGBetRecordDetailViewController.h */,
-				D41C3E0B228ED03900BF6436 /* UGBetRecordDetailViewController.m */,
-				D41C3E0D228ED0EE00BF6436 /* UGBetRecordDetailViewController.storyboard */,
-				D405B38D22817A3F00F8C586 /* UGModifyLoginPwdController.h */,
-				D405B38E22817A3F00F8C586 /* UGModifyLoginPwdController.m */,
-				D405B39022817A7C00F8C586 /* UGModifyPayPwdController.h */,
-				D405B39122817A7C00F8C586 /* UGModifyPayPwdController.m */,
-				D405B39322817AB700F8C586 /* UGModifyLoginPlaceController.h */,
-				D405B39422817AB700F8C586 /* UGModifyLoginPlaceController.m */,
-				D422D67722D997AA008E7065 /* UGSafety.storyboard */,
-				D405B3962281B18600F8C586 /* UGBalanceConversionController.h */,
-				D405B3972281B18600F8C586 /* UGBalanceConversionController.m */,
-				D4527D1A2282FBD8000EC1C2 /* UGBalanceConversionRecordController.h */,
-				D4527D1B2282FBD8000EC1C2 /* UGBalanceConversionRecordController.m */,
-				D463B4E72284732300EAC0F7 /* UGBindCardViewController.h */,
-				D463B4E82284732300EAC0F7 /* UGBindCardViewController.m */,
-				D463B4EA2284736200EAC0F7 /* UGBindCardViewController.storyboard */,
-				D40FA8BB229904D9003E596F /* UGBankCardInfoController.h */,
-				D40FA8BC229904D9003E596F /* UGBankCardInfoController.m */,
-				D40D32C12297BED600B89398 /* UGSetupPayPwdController.h */,
-				D40D32C22297BED600B89398 /* UGSetupPayPwdController.m */,
-				D41246B42285C64C006881E2 /* UGUserInfoViewController.h */,
-				D41246B52285C64C006881E2 /* UGUserInfoViewController.m */,
-				D41246B72285C65D006881E2 /* UGUserInfoViewController.storyboard */,
-				D409C55922AB86D90042A0DD /* UGFeedBackController.h */,
-				D409C55A22AB86D90042A0DD /* UGFeedBackController.m */,
-				D405B37422801F8400F8C586 /* UGWriteMessageViewController.h */,
-				D405B37522801F8400F8C586 /* UGWriteMessageViewController.m */,
-				D409C55C22AB87480042A0DD /* UGFeedBackController.storyboard */,
-				D409C55E22ABA3B80042A0DD /* UGFeedBackRecordController.h */,
-				D409C55F22ABA3B80042A0DD /* UGFeedBackRecordController.m */,
-				D4C93B3C22D8751F00608B67 /* UGFeedbackDetailController.h */,
-				D4C93B3D22D8751F00608B67 /* UGFeedbackDetailController.m */,
-				D481AB412331EC340099685B /* UGMosaicGoldViewController.h */,
-				D481AB422331EC340099685B /* UGMosaicGoldViewController.m */,
-				D481AB4C233201870099685B /* UGMosaicGoldController.h */,
-				D481AB4D233201870099685B /* UGMosaicGoldController.m */,
-				D481AB5723321F940099685B /* UGActivityGoldTableViewController.h */,
-				D481AB5823321F940099685B /* UGActivityGoldTableViewController.m */,
-				D45A94B5233B879D0089E86C /* UGGoogleAuthenticationFirstViewController.h */,
-				D45A94B6233B879D0089E86C /* UGGoogleAuthenticationFirstViewController.m */,
-				D45A94B7233B879D0089E86C /* UGGoogleAuthenticationFirstViewController.xib */,
-				D45A94BA233B8AF90089E86C /* UGGoogleAuthenticationSecondViewController.h */,
-				D45A94BB233B8AF90089E86C /* UGGoogleAuthenticationSecondViewController.m */,
-				D45A94BC233B8AF90089E86C /* UGGoogleAuthenticationSecondViewController.xib */,
-				D45A94BF233B9F070089E86C /* UGGoogleAuthenticationThirdViewController.h */,
-				D45A94C0233B9F070089E86C /* UGGoogleAuthenticationThirdViewController.m */,
-				D45A94C1233B9F070089E86C /* UGGoogleAuthenticationThirdViewController.xib */,
 			);
 			path = base;
 			sourceTree = "<group>";
@@ -3226,12 +3781,11 @@
 		D4B75E2C227811D50007047C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				D4D4226823276BE6006E680B /* deposit */,
-				D41B3CED231FE18F00716512 /* SignIn */,
+				D41B3CED231FE18F00716512 /* 签到 */,
 				D48224DE22A0E83C00F7DE72 /* base */,
-				D422A57C229E74DE0068D0AD /* YuBao */,
-				D41E0EE5228D8C4400D6C42A /* MissionCenter */,
-				D4527D1E22830603000EC1C2 /* Promotion */,
+				D422A57C229E74DE0068D0AD /* 利息宝 */,
+				D41E0EE5228D8C4400D6C42A /* 任务大厅 */,
+				D4527D1E22830603000EC1C2 /* 推荐收益 */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3239,133 +3793,21 @@
 		D4B75E2E227811D50007047C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D4C165752344CAB6005A0F12 /* UGSkinSeconCollectionHeadView.h */,
-				D4C165762344CAB6005A0F12 /* UGSkinSeconCollectionHeadView.m */,
-				D4C165772344CAB6005A0F12 /* UGSkinSeconCollectionHeadView.xib */,
-				D4C165702344C9E1005A0F12 /* UGMineSkinFirstCollectionHeadView.h */,
-				D4C165712344C9E1005A0F12 /* UGMineSkinFirstCollectionHeadView.m */,
-				D4C165722344C9E1005A0F12 /* UGMineSkinFirstCollectionHeadView.xib */,
-				D4C1656B2344C3C0005A0F12 /* UGMineSkinCollectionViewCell.h */,
-				D4C1656C2344C3C0005A0F12 /* UGMineSkinCollectionViewCell.m */,
-				D4C1656D2344C3C0005A0F12 /* UGMineSkinCollectionViewCell.xib */,
-				D405AFFC227866A300F8C586 /* UGMineMenuCollectionViewCell.h */,
-				D405AFFD227866A300F8C586 /* UGMineMenuCollectionViewCell.m */,
-				D405AFFE227866A300F8C586 /* UGMineMenuCollectionViewCell.xib */,
-				D4177128229D6BEC00727B70 /* UGUserinfoView.h */,
-				D4177129229D6BEC00727B70 /* UGUserinfoView.m */,
-				D417712B229D6C1500727B70 /* UGUserinfoView.xib */,
-				D4DFBE7122E353B0002BAFB0 /* UGMenuTableViewCell.h */,
-				D4DFBE7022E353B0002BAFB0 /* UGMenuTableViewCell.m */,
-				D4DFBE6F22E353AF002BAFB0 /* UGMenuTableViewCell.xib */,
-				D405B368228007D900F8C586 /* UGRecordFilterCollectionViewCell.h */,
-				D405B369228007D900F8C586 /* UGRecordFilterCollectionViewCell.m */,
-				D405B36A228007D900F8C586 /* UGRecordFilterCollectionViewCell.xib */,
-				D41C3E02228E9D8900BF6436 /* UGBetRecordTableViewCell.h */,
-				D41C3E03228E9D8900BF6436 /* UGBetRecordTableViewCell.m */,
-				D41C3E04228E9D8900BF6436 /* UGBetRecordTableViewCell.xib */,
-				D41FF76922E8141A00FCCDD2 /* UGLotteryRecordCell.h */,
-				D41FF76A22E8141A00FCCDD2 /* UGLotteryRecordCell.m */,
-				D41FF76B22E8141A00FCCDD2 /* UGLotteryRecordCell.xib */,
-				D424DDE222E753C60009E2E6 /* UGRealBetRecordCell.h */,
-				D424DDE322E753C60009E2E6 /* UGRealBetRecordCell.m */,
-				D424DDE422E753C60009E2E6 /* UGRealBetRecordCell.xib */,
-				D405B3822281620000F8C586 /* UGMessageTableViewCell.h */,
-				D405B3832281620000F8C586 /* UGMessageTableViewCell.m */,
-				D405B3842281620000F8C586 /* UGMessageTableViewCell.xib */,
-				D4527D1522828C27000EC1C2 /* UGPlatformBalanceTableViewCell.h */,
-				D4527D1622828C27000EC1C2 /* UGPlatformBalanceTableViewCell.m */,
-				D4527D1722828C27000EC1C2 /* UGPlatformBalanceTableViewCell.xib */,
-				D41EDF792317A67E005798CC /* UGBalanceTransferLogsCell.h */,
-				D41EDF7A2317A67E005798CC /* UGBalanceTransferLogsCell.m */,
-				D41EDF7B2317A67E005798CC /* UGBalanceTransferLogsCell.xib */,
-				D41246AF2285B5CB006881E2 /* UGMissionTableViewCell.h */,
-				D41246B02285B5CB006881E2 /* UGMissionTableViewCell.m */,
-				D41246B12285B5CB006881E2 /* UGMissionTableViewCell.xib */,
-				D41E0EDD228D88BC00D6C42A /* UGMissionLevelTableViewCell.h */,
-				D41E0EDE228D88BC00D6C42A /* UGMissionLevelTableViewCell.m */,
-				D41E0EDF228D88BC00D6C42A /* UGMissionLevelTableViewCell.xib */,
-				D4090F5F228D3D7B00D6DA43 /* UGAvaterSelectView.h */,
-				D4090F60228D3D7B00D6DA43 /* UGAvaterSelectView.m */,
-				D4090F62228D3E0E00D6DA43 /* UGAvaterSelectView.xib */,
-				D4090F64228D4F7200D6DA43 /* UGAvaterCollectionViewCell.h */,
-				D4090F65228D4F7200D6DA43 /* UGAvaterCollectionViewCell.m */,
-				D4090F66228D4F7200D6DA43 /* UGAvaterCollectionViewCell.xib */,
+				CF3B0E64234A2C450035AF50 /* 我的页 */,
+				CF3B0E5C234A29D30035AF50 /* 任务大厅 */,
+				CF3B0E5D234A29E20035AF50 /* 利息宝 */,
+				CF3B0E60234A2A6F0035AF50 /* 建议反馈 */,
+				CF3B0E63234A2BAB0035AF50 /* 安全中心 */,
+				CF3B0E5B234A29640035AF50 /* 签到 */,
+				CF3B0E59234A29330035AF50 /* 推荐收益 */,
+				CF3B0E5A234A29480035AF50 /* 活动彩金 */,
+				CF3B0E5E234A2A1A0035AF50 /* 注单列表 */,
+				CF3B0E62234A2AE40035AF50 /* 站内信 */,
+				CF3B0E61234A2AC70035AF50 /* 额度转换 */,
+				CF3B0E5F234A2A400035AF50 /* 修改头像 */,
 				D41E0EEE228DA44500D6C42A /* UGConvertCollectionViewCell.h */,
 				D41E0EEF228DA44500D6C42A /* UGConvertCollectionViewCell.m */,
 				D41E0EF0228DA44500D6C42A /* UGConvertCollectionViewCell.xib */,
-				D41C3DFD228E914A00BF6436 /* UGIntegarlConvertRecordCell.h */,
-				D41C3DFE228E914A00BF6436 /* UGIntegarlConvertRecordCell.m */,
-				D417712D229D786000727B70 /* UGMissionTitleCollectionView.h */,
-				D417712E229D786000727B70 /* UGMissionTitleCollectionView.m */,
-				D4177130229D79AB00727B70 /* UGMissionTitleCell.h */,
-				D4177131229D79AB00727B70 /* UGMissionTitleCell.m */,
-				D4177132229D79AB00727B70 /* UGMissionTitleCell.xib */,
-				D422A579229E3EE80068D0AD /* UGMissionCollectionView.h */,
-				D422A57A229E3EE80068D0AD /* UGMissionCollectionView.m */,
-				D422A580229E7AE90068D0AD /* UGYubaoIncomeTableViewCell.h */,
-				D422A581229E7AE90068D0AD /* UGYubaoIncomeTableViewCell.m */,
-				D422A586229E813C0068D0AD /* UGYubaoConversionRecordCell.h */,
-				D422A587229E813C0068D0AD /* UGYubaoConversionRecordCell.m */,
-				D4E8A40D22A0323300EFE171 /* UGBetRecorddHeaderView.h */,
-				D4E8A40E22A0323300EFE171 /* UGBetRecorddHeaderView.m */,
-				D4E8A41022A0326C00EFE171 /* UGBetRecorddHeaderView.xib */,
-				D4C93B3922D8560500608B67 /* UGFeedbackTableViewCell.h */,
-				D4C93B3A22D8560500608B67 /* UGFeedbackTableViewCell.m */,
-				D4C93B3F22D8759400608B67 /* UGFeedbackDetailCell.h */,
-				D4C93B4022D8759400608B67 /* UGFeedbackDetailCell.m */,
-				D422D67922D99F1E008E7065 /* UGAddressCollectionViewCell.h */,
-				D422D67A22D99F1E008E7065 /* UGAddressCollectionViewCell.m */,
-				D422D67B22D99F1E008E7065 /* UGAddressCollectionViewCell.xib */,
-				D42528122320DDA2007DE522 /* UGSignInCollectionViewCell.h */,
-				D42528132320DDA2007DE522 /* UGSignInCollectionViewCell.m */,
-				D42528142320DDA2007DE522 /* UGSignInCollectionViewCell.xib */,
-				D4252820232102CA007DE522 /* UGSignInHeaderView.h */,
-				D4252821232102CA007DE522 /* UGSignInHeaderView.m */,
-				D4252823232103AA007DE522 /* UGSignInHeaderView.xib */,
-				D425282523210760007DE522 /* UGSignInScrHeaderView.h */,
-				D425282623210760007DE522 /* UGSignInScrHeaderView.m */,
-				D4252828232107EE007DE522 /* UGSignInScrHeaderView.xib */,
-				D425282A2321267C007DE522 /* UGSignInScrFootView.h */,
-				D425282B2321267C007DE522 /* UGSignInScrFootView.m */,
-				D425282D23212717007DE522 /* UGSignInScrFootView.xib */,
-				D4A02B5323225782004D5894 /* UGSignInHistoryView.h */,
-				D4A02B5423225782004D5894 /* UGSignInHistoryView.m */,
-				D4A02B56232257D5004D5894 /* UGSignInHistoryView.xib */,
-				D4A02B5823227B7D004D5894 /* UGSingInHistoryTableViewCell.h */,
-				D4A02B5923227B7D004D5894 /* UGSingInHistoryTableViewCell.m */,
-				D4A02B5A23227B7D004D5894 /* UGSingInHistoryTableViewCell.xib */,
-				D422FE5723251E190063EA4E /* UGPromotion4rowTableViewCell.h */,
-				D422FE5823251E190063EA4E /* UGPromotion4rowTableViewCell.m */,
-				D422FE5923251E190063EA4E /* UGPromotion4rowTableViewCell.xib */,
-				D422FE5C232522C20063EA4E /* UGPromotion5rowButtonTableViewCell.h */,
-				D422FE5D232522C20063EA4E /* UGPromotion5rowButtonTableViewCell.m */,
-				D422FE5E232522C20063EA4E /* UGPromotion5rowButtonTableViewCell.xib */,
-				D422FE61232532C00063EA4E /* UGPromotion2rowTableViewCell.h */,
-				D422FE62232532C00063EA4E /* UGPromotion2rowTableViewCell.m */,
-				D422FE63232532C00063EA4E /* UGPromotion2rowTableViewCell.xib */,
-				D49F41A92326132C00A381AD /* UGPormotionUserInfoView.h */,
-				D49F41AA2326132C00A381AD /* UGPormotionUserInfoView.m */,
-				D49F41AC2326149B00A381AD /* UGPormotionUserInfoView.xib */,
-				D4D42262232686A5006E680B /* UGPormotionView.h */,
-				D4D42263232686A5006E680B /* UGPormotionView.m */,
-				D4D4226523268736006E680B /* UGPormotionView.xib */,
-				D481AB442331F1300099685B /* UGMosaicGoldTableViewCell.h */,
-				D481AB452331F1300099685B /* UGMosaicGoldTableViewCell.m */,
-				D481AB462331F1300099685B /* UGMosaicGoldTableViewCell.xib */,
-				D481AB5223320F0F0099685B /* UGActivityGoldTableViewCell.h */,
-				D481AB5323320F0F0099685B /* UGActivityGoldTableViewCell.m */,
-				D481AB5423320F0F0099685B /* UGActivityGoldTableViewCell.xib */,
-				D481AB5A233253A60099685B /* UGMosaicGoldFinishView.h */,
-				D481AB5B233253A60099685B /* UGMosaicGoldFinishView.m */,
-				D41FF9332333309700FE3F70 /* UGActivityGoldView.h */,
-				D41FF9342333309700FE3F70 /* UGActivityGoldView.m */,
-				D41FF936233330DB00FE3F70 /* UGActivityGoldView.xib */,
-				D41FF9382333471F00FE3F70 /* UGContentMoneyCollectionViewCell.h */,
-				D41FF9392333471F00FE3F70 /* UGContentMoneyCollectionViewCell.m */,
-				D41FF93A2333471F00FE3F70 /* UGContentMoneyCollectionViewCell.xib */,
-				D40499BE2335E5B30019C249 /* UGPromotion6rowButtonTableViewCell.h */,
-				D40499BF2335E5B30019C249 /* UGPromotion6rowButtonTableViewCell.m */,
-				D40499C02335E5B30019C249 /* UGPromotion6rowButtonTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3503,50 +3945,13 @@
 		D4B75E38227811D50007047C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				CF3B0E46234A19980035AF50 /* 下注页面 */,
 				D4EE8F892341EB22006FA0E2 /* UGYYLotteryHomeViewController.h */,
 				D4EE8F8A2341EB22006FA0E2 /* UGYYLotteryHomeViewController.m */,
 				D4EE8F8C2341F225006FA0E2 /* UGYYLotterySecondHomeViewController.h */,
 				D4EE8F8D2341F225006FA0E2 /* UGYYLotterySecondHomeViewController.m */,
 				D405B2DC227B3CCB00F8C586 /* UGLotteryHomeController.h */,
 				D405B2DD227B3CCB00F8C586 /* UGLotteryHomeController.m */,
-				0322AD6323432A4A00E9857E /* UGCommonLotteryController.h */,
-				0322AD6423432A4A00E9857E /* UGCommonLotteryController.m */,
-				D4D8DF6E2286B14C00446BAF /* UGSSCLotteryController.h */,
-				D4D8DF6F2286B14C00446BAF /* UGSSCLotteryController.m */,
-				D4D8DF712286B23600446BAF /* UGSSCLotteryController.storyboard */,
-				D4145A8E22B52C8000D8165F /* UGGD11X5LotteryController.h */,
-				D4145A8F22B52C8000D8165F /* UGGD11X5LotteryController.m */,
-				D4145A9122B52D0600D8165F /* UGGD11X5LotteryController.storyboard */,
-				D4145A9322B6109C00D8165F /* UGXYNCLotteryController.h */,
-				D4145A9422B6109C00D8165F /* UGXYNCLotteryController.m */,
-				D4145A9622B6113500D8165F /* UGXYNCLotteryController.storyboard */,
-				D4145A9822B61AA800D8165F /* UGBJKL8LotteryController.h */,
-				D4145A9922B61AA800D8165F /* UGBJKL8LotteryController.m */,
-				D4145A9B22B61C6A00D8165F /* UGBJKL8LotteryController.storyboard */,
-				D4145A9D22B6348500D8165F /* UGGDKL10LotteryController.h */,
-				D4145A9E22B6348500D8165F /* UGGDKL10LotteryController.m */,
-				D4145AA022B6349700D8165F /* UGGDKL10LotteryController.storyboard */,
-				D41C3E19228EF6C400BF6436 /* UGJSK3LotteryController.h */,
-				D41C3E1A228EF6C400BF6436 /* UGJSK3LotteryController.m */,
-				D41C3E1C228EF72600BF6436 /* UGJSK3LotteryController.storyboard */,
-				D409B14C2296826D0053DA33 /* UGHKLHCLotteryController.h */,
-				D409B14D2296826D0053DA33 /* UGHKLHCLotteryController.m */,
-				D409B14F229686C00053DA33 /* UGHKLHCLotteryController.storyboard */,
-				D4DE269C229C17580072A4A2 /* UGBJPK10LotteryController.h */,
-				D4DE269D229C17580072A4A2 /* UGBJPK10LotteryController.m */,
-				D4DE269F229C1CCE0072A4A2 /* UGBJPK10LotteryController.storyboard */,
-				D49A36C222A2C9DA000057D2 /* UGQXCLotteryController.h */,
-				D49A36C322A2C9DA000057D2 /* UGQXCLotteryController.m */,
-				D49A36C522A2C9ED000057D2 /* UGQXCLotteryController.storyboard */,
-				D49A36C722A2CF57000057D2 /* UGPCDDLotteryController.h */,
-				D49A36C822A2CF57000057D2 /* UGPCDDLotteryController.m */,
-				D49A36CA22A2CF6A000057D2 /* UGPCDDLotteryController.storyboard */,
-				D4E2876B22B666EB0002B2BF /* UGFC3DLotteryController.h */,
-				D4E2876C22B666EB0002B2BF /* UGFC3DLotteryController.m */,
-				D4E2876E22B666FE0002B2BF /* UGFC3DLotteryController.storyboard */,
-				D4704EC322B7566200528DC7 /* UGPK10NNLotteryController.h */,
-				D4704EC422B7566200528DC7 /* UGPK10NNLotteryController.m */,
-				D4704EC622B7567B00528DC7 /* UGPK10NNLotteryController.storyboard */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3571,73 +3976,11 @@
 		D4B75E3A227811D50007047C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D405B2E4227BFE5F00F8C586 /* UGLotteryCollectionViewCell.h */,
-				D405B2E5227BFE5F00F8C586 /* UGLotteryCollectionViewCell.m */,
-				D405B2E6227BFE5F00F8C586 /* UGLotteryCollectionViewCell.xib */,
-				D40A3C1022C63633009CEB8E /* UGLotteryGameCollectionViewCell.h */,
-				D40A3C1122C63633009CEB8E /* UGLotteryGameCollectionViewCell.m */,
-				D40A3C1222C63633009CEB8E /* UGLotteryGameCollectionViewCell.xib */,
-				D4D8DF85228714A300446BAF /* UGLotteryResultCollectionViewCell.h */,
-				D4D8DF86228714A300446BAF /* UGLotteryResultCollectionViewCell.m */,
-				D4D8DF87228714A300446BAF /* UGLotteryResultCollectionViewCell.xib */,
-				D4D8DF8A2287155800446BAF /* UGLotterySubResultCollectionViewCell.h */,
-				D4D8DF8B2287155800446BAF /* UGLotterySubResultCollectionViewCell.m */,
-				D4D8DF8C2287155800446BAF /* UGLotterySubResultCollectionViewCell.xib */,
-				D4704EC822B7647F00528DC7 /* UGPK10SubResultCollectionViewCell.h */,
-				D4704EC922B7647F00528DC7 /* UGPK10SubResultCollectionViewCell.m */,
-				D4704ECA22B7647F00528DC7 /* UGPK10SubResultCollectionViewCell.xib */,
-				D4D8DF732286F01100446BAF /* UGTimeLotteryLeftTitleCell.h */,
-				D4D8DF742286F01100446BAF /* UGTimeLotteryLeftTitleCell.m */,
-				D4D8DF752286F01100446BAF /* UGTimeLotteryLeftTitleCell.xib */,
-				D4D8DF782286F7F600446BAF /* UGTimeLotteryBetCollectionViewCell.h */,
-				D4D8DF792286F7F600446BAF /* UGTimeLotteryBetCollectionViewCell.m */,
-				D4D8DF7A2286F7F600446BAF /* UGTimeLotteryBetCollectionViewCell.xib */,
-				D41FF76E22E880A800FCCDD2 /* UGSSCBetItem1Cell.h */,
-				D41FF76F22E880A800FCCDD2 /* UGSSCBetItem1Cell.m */,
-				D41FF77022E880A800FCCDD2 /* UGSSCBetItem1Cell.xib */,
-				D4F0477322E9E22E008EBB56 /* UGLinkNumCollectionViewCell.h */,
-				D4F0477422E9E22E008EBB56 /* UGLinkNumCollectionViewCell.m */,
-				D4F0477522E9E22E008EBB56 /* UGLinkNumCollectionViewCell.xib */,
-				D4D8DF7D2287065F00446BAF /* UGTimeLotteryBetHeaderView.h */,
-				D4D8DF7E2287065F00446BAF /* UGTimeLotteryBetHeaderView.m */,
-				D4D8DF7F2287065F00446BAF /* UGTimeLotteryBetHeaderView.xib */,
-				D41C3E0F228EF13D00BF6436 /* UGFastThreeOneCollectionViewCell.h */,
-				D41C3E10228EF13D00BF6436 /* UGFastThreeOneCollectionViewCell.m */,
-				D41C3E11228EF13D00BF6436 /* UGFastThreeOneCollectionViewCell.xib */,
-				D41C3E14228EF2A600BF6436 /* UGFastThreeTwoCollectionViewCell.h */,
-				D41C3E15228EF2A600BF6436 /* UGFastThreeTwoCollectionViewCell.m */,
-				D41C3E16228EF2A600BF6436 /* UGFastThreeTwoCollectionViewCell.xib */,
-				D4F63F8C228FD1A200EC93AA /* UGFastThreeThreeCollectionViewCell.h */,
-				D4F63F8D228FD1A200EC93AA /* UGFastThreeThreeCollectionViewCell.m */,
-				D4F63F8E228FD1A200EC93AA /* UGFastThreeThreeCollectionViewCell.xib */,
-				D4F63F91228FD3B000EC93AA /* UGFastThreeFourCollectionViewCell.h */,
-				D4F63F92228FD3B000EC93AA /* UGFastThreeFourCollectionViewCell.m */,
-				D4F63F93228FD3B000EC93AA /* UGFastThreeFourCollectionViewCell.xib */,
-				D409B1512296E0020053DA33 /* UGMarkSixLotteryBetItem0Cell.h */,
-				D409B1522296E0020053DA33 /* UGMarkSixLotteryBetItem0Cell.m */,
-				D409B1532296E0020053DA33 /* UGMarkSixLotteryBetItem0Cell.xib */,
-				D40D32C42297CEAF00B89398 /* UGMarkSixLotteryBetItem1Cell.h */,
-				D40D32C52297CEAF00B89398 /* UGMarkSixLotteryBetItem1Cell.m */,
-				D40D32C62297CEAF00B89398 /* UGMarkSixLotteryBetItem1Cell.xib */,
-				D40D58BD228A8D480025963A /* UGBetDetailView.h */,
-				D40D58BE228A8D480025963A /* UGBetDetailView.m */,
-				D40D58C0228A8DE30025963A /* UGBetDetailView.xib */,
-				033177AD2338E026000D7663 /* UGBetResultView.h */,
-				033177AE2338E026000D7663 /* UGBetResultView.m */,
-				D416BB1F22CE2E6D00BA0450 /* UGSegmentView.h */,
-				D416BB2022CE2E6D00BA0450 /* UGSegmentView.m */,
-				D416BB2522CE35C100BA0450 /* UGSegmentCollectionViewCell.h */,
-				D416BB2622CE35C100BA0450 /* UGSegmentCollectionViewCell.m */,
-				D416BB2722CE35C100BA0450 /* UGSegmentCollectionViewCell.xib */,
-				D40D58C2228A9A230025963A /* UGBetDetailTableViewCell.h */,
-				D40D58C3228A9A230025963A /* UGBetDetailTableViewCell.m */,
-				D40D58C4228A9A230025963A /* UGBetDetailTableViewCell.xib */,
-				D40DE98D22F4292100974BAF /* UGLotteryAdPopView.h */,
-				D40DE98E22F4292100974BAF /* UGLotteryAdPopView.m */,
-				D40DE99022F42A3300974BAF /* UGLotteryAdPopView.xib */,
-				D4EE8F842341DD4A006FA0E2 /* UGhomeRecommendCollectionViewCell.h */,
-				D4EE8F852341DD4A006FA0E2 /* UGhomeRecommendCollectionViewCell.m */,
-				D4EE8F862341DD4A006FA0E2 /* UGhomeRecommendCollectionViewCell.xib */,
+				CF3B0E48234A1C200035AF50 /* 彩种Cell */,
+				CF3B0E49234A1C9C0035AF50 /* 号码Cell */,
+				CF3B0E47234A1C140035AF50 /* 广告View */,
+				CF3B0E4A234A1D060035AF50 /* 下注明细View */,
+				CF3B0E4E234A20840035AF50 /* 滑块View（选择子玩法） */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3672,13 +4015,6 @@
 				D4BBFBFE232A797600147C4A /* TGWebProgressLayer.m */,
 			);
 			path = TGWebController;
-			sourceTree = "<group>";
-		};
-		D4D4226823276BE6006E680B /* deposit */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = deposit;
 			sourceTree = "<group>";
 		};
 		D4DE2661229BCB960072A4A2 /* segmentListControl */ = {
@@ -3889,7 +4225,6 @@
 				D4D8DF722286B23600446BAF /* UGSSCLotteryController.storyboard in Resources */,
 				D41F260E2318EFE4004FB9C6 /* UGChanglongBetRecrodCell.xib in Resources */,
 				D40DE99122F42A3300974BAF /* UGLotteryAdPopView.xib in Resources */,
-				D417712C229D6C1500727B70 /* UGUserinfoView.xib in Resources */,
 				D41FF93C2333471F00FE3F70 /* UGContentMoneyCollectionViewCell.xib in Resources */,
 				D4DE2688229BCB960072A4A2 /* tag_list_s@2x.png in Resources */,
 				D481EFFF2327CAD8000611ED /* UGDepositDetailsCollectionViewCell.xib in Resources */,
@@ -3922,7 +4257,6 @@
 				D4252824232103AA007DE522 /* UGSignInHeaderView.xib in Resources */,
 				D405B30F227C614800F8C586 /* UGFundDetailsCell.xib in Resources */,
 				D4C165792344CAB6005A0F12 /* UGSkinSeconCollectionHeadView.xib in Resources */,
-				D41B3CF2231FE1E900716512 /* UGSignInViewController.xib in Resources */,
 				D4EE8F882341DD4A006FA0E2 /* UGhomeRecommendCollectionViewCell.xib in Resources */,
 				D4090F63228D3E0E00D6DA43 /* UGAvaterSelectView.xib in Resources */,
 				D405B3862281620000F8C586 /* UGMessageTableViewCell.xib in Resources */,
@@ -3973,6 +4307,7 @@
 				D4E8A41122A0326C00EFE171 /* UGBetRecorddHeaderView.xib in Resources */,
 				D4C1656F2344C3C0005A0F12 /* UGMineSkinCollectionViewCell.xib in Resources */,
 				D4DE268A229BCB960072A4A2 /* icon_arrow@3x.png in Resources */,
+				CF3B0E392349CDAC0035AF50 /* UGCalenderAlertView.xib in Resources */,
 				D405B2E8227BFE5F00F8C586 /* UGLotteryCollectionViewCell.xib in Resources */,
 				D4241C43232A1A8200BF4DE1 /* UGFundsBankView.xib in Resources */,
 				D41C300D233F220000541254 /* UGYYRightMenuTableViewCell.xib in Resources */,
@@ -4100,7 +4435,6 @@
 				D40E1E5F22BFAEC4004D4664 /* UGPromoteDetailController.m in Sources */,
 				D40FA8C722992EA7003E596F /* UGYubaoConversionCenterController.m in Sources */,
 				D4F0477622E9E22E008EBB56 /* UGLinkNumCollectionViewCell.m in Sources */,
-				D41B3CF1231FE1E900716512 /* UGSignInViewController.m in Sources */,
 				D4EDC9392343A1E300BA4C4D /* UGTableViewController.m in Sources */,
 				D40DE98822F335E300974BAF /* TAAnimatedDotView.m in Sources */,
 				D4AE64112295871D00DD265A /* UIView+MJExtension.m in Sources */,
@@ -4276,6 +4610,7 @@
 				CFD3BF082347137F00FCDA6D /* NSObject+Utils.m in Sources */,
 				D405B38C22816D1400F8C586 /* UGSecurityCenterViewController.m in Sources */,
 				CFD3BEF12347137F00FCDA6D /* IBButton.m in Sources */,
+				CF3B0E372349CDA50035AF50 /* UGCalenderAlertView.m in Sources */,
 				D405B1FA227972C900F8C586 /* JSONHTTPClient.m in Sources */,
 				D40DE98C22F3372F00974BAF /* UITabBarController+ShowViewController.m in Sources */,
 				D45A94C2233B9F070089E86C /* UGGoogleAuthenticationThirdViewController.m in Sources */,
@@ -4508,7 +4843,6 @@
 				D45A94BD233B8AF90089E86C /* UGGoogleAuthenticationSecondViewController.m in Sources */,
 				D40FA8D3229938FA003E596F /* ZZCircleProgress.m in Sources */,
 				CFD3BF4F23473D5900FCDA6D /* TextFieldAlertView.m in Sources */,
-				D417712A229D6BEC00727B70 /* UGUserinfoView.m in Sources */,
 				D4DE2690229BCB960072A4A2 /* WMDropDownView.m in Sources */,
 				D405B318227D726000F8C586 /* UGLoginViewController.m in Sources */,
 				D41C3E05228E9D8900BF6436 /* UGBetRecordTableViewCell.m in Sources */,

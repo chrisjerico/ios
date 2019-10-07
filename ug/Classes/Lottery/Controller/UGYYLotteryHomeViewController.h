@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+// 购彩大厅
 @interface UGYYLotteryHomeViewController :UGViewController
 
 @end

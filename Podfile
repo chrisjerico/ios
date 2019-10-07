@@ -25,6 +25,7 @@ pod 'RegExCategories'   # 正则表达式库
 pod 'YYCategories'      # Category 类型工具库（YYKit 组件之一）
 pod 'DateTools'         # 日期工具
 pod 'MJExtension'       # 字典转数据模型库
+pod 'FSCalendar'        # 日历控件
  #路由器
 pod 'FFRouter'
 

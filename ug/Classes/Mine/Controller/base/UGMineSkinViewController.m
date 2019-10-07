@@ -232,6 +232,7 @@ BOOL isOk = NO;
         [self.menuNameArray addObject:@{@"title" : @"在线客服" , @"imgName" : @"zaixiankefu"}];
         
         [self.menuNameArray addObject:@{@"title" : @"彩票注单记录" , @"imgName" : @"zdgl"}];
+        [self.menuNameArray addObject:@{@"title" : @"其他注单记录" , @"imgName" : @"zdgl"}];
         
         [self.menuNameArray addObject:@{@"title" : @"银行卡管理" , @"imgName" : @"yinhangqia"}];
         [self.menuNameArray addObject:@{@"title" : @"安全中心" , @"imgName" : @"ziyuan"}];
@@ -254,6 +255,7 @@ BOOL isOk = NO;
         [self.menuNameArray addObject:@{@"title" : @"在线客服" , @"imgName" : @"zaixiankefu"}];
         
         [self.menuNameArray addObject:@{@"title" : @"彩票注单记录" , @"imgName" : @"zdgl"}];
+        [self.menuNameArray addObject:@{@"title" : @"其他注单记录" , @"imgName" : @"zdgl"}];
         
         [self.menuNameArray addObject:@{@"title" : @"银行卡管理" , @"imgName" : @"yinhangqia"}];
         [self.menuNameArray addObject:@{@"title" : @"安全中心" , @"imgName" : @"ziyuan"}];
@@ -299,8 +301,8 @@ BOOL isOk = NO;
         NSMutableArray *dataArrayOne = [NSMutableArray array];
        
        
-            [dataArrayOne addObject:@{@"title" : @"彩票注单记录" , @"imgName" : @"shouyi"}];
-        
+        [dataArrayOne addObject:@{@"title" : @"彩票注单记录" , @"imgName" : @"shouyi"}];
+        [dataArrayOne addObject:@{@"title" : @"其他注单记录" , @"imgName" : @"shouyi"}];
         UGMineSkinModel *dic1 = [UGMineSkinModel new];
         
         [dic1 setName:@"注单详情"];
@@ -700,8 +702,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
             UGPromotionIncomeController *incomeVC = [[UGPromotionIncomeController alloc] init];
             [self.navigationController pushViewController:incomeVC animated:YES];
         }
-    }else if ([title isEqualToString:@"申请代理"]) {
-        
+    } else if ([title isEqualToString:@"申请代理"]) {
         UGUserModel *user = [UGUserModel currentUser];
         user.isTest = NO;
         if (user.isTest) {
@@ -710,24 +711,18 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
                     SANotificationEventPost(UGNotificationShowLoginView, nil);
                 }
             }];
-        }else {
-            
+        } else {
             UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
-            
             if ([config.agent_m_apply isEqualToString:@"1"]) {
                 //调接口
                 [self teamAgentApplyInfoWithParams];
                 
             } else {
-                [self.navigationController.view makeToast:@"在线注册代理已经关闭"
+                [self.navigationController.view makeToast:@"在线注册代理已关闭"
                                                  duration:1.5
                                                  position:CSToastPositionCenter];
-                
             }
-            
-            
         }
-        
     }else if ([title isEqualToString:@"安全中心"]) {
         UGUserModel *user = [UGUserModel currentUser];
         if (user.isTest) {
@@ -746,7 +741,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
         UGMailBoxTableViewController *mailBoxVC = [[UGMailBoxTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
         [self.navigationController pushViewController:mailBoxVC animated:YES];
         
-    }else if([title isEqualToString:@"彩票注单记录"]) {
+    } else if([title isEqualToString:@"彩票注单记录"]) {
         UGUserModel *user = [UGUserModel currentUser];
         if (user.isTest) {
             [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
@@ -754,13 +749,11 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
                     SANotificationEventPost(UGNotificationShowLoginView, nil);
                 }
             }];
-        }else {
-            
+        } else {
             UGBetRecordViewController *betRecordVC = [[UGBetRecordViewController alloc] init];
             [self.navigationController pushViewController:betRecordVC animated:YES];
         }
-        
-    }else if ([title isEqualToString:@"其他注单记录"]) {
+    } else if ([title isEqualToString:@"其他注单记录"]) {
         UGUserModel *user = [UGUserModel currentUser];
         if (user.isTest) {
             [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
@@ -768,15 +761,13 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
                     SANotificationEventPost(UGNotificationShowLoginView, nil);
                 }
             }];
-        }else {
-            
+        } else {
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGRealBetRecordViewController" bundle:nil];
             UGRealBetRecordViewController *betRecordVC = [storyboard instantiateInitialViewController];
             betRecordVC.gameType = @"real";
             [self.navigationController pushViewController:betRecordVC animated:YES];
         }
-        
-    }else if ([title isEqualToString:@"个人信息"]) {
+    } else if ([title isEqualToString:@"个人信息"]) {
         UGUserModel *user = [UGUserModel currentUser];
         if (user.isTest) {
             [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
@@ -869,13 +860,9 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
                 SANotificationEventPost(UGNotificationShowLoginView, nil);
             }
         }];
-    }else {
-        
-        //
-        //        UGSignInViewController *vc = [[UGSignInViewController alloc] initWithNibName:@"UGSignInViewController" bundle:nil];
+    } else {
         UGSigInCodeViewController *vc = [[UGSigInCodeViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
-        
     }
 }
 

@@ -69,6 +69,8 @@
 #import "UGGameNavigationView.h"
 #import "UGFundsViewController.h"
 
+#import "UGRealBetRecordViewController.h"
+
 @interface UGHomeViewController ()<SDCycleScrollViewDelegate,UUMarqueeViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
@@ -845,136 +847,7 @@
 }
 
 - (void)rightBarBtnClick {
-	float y;
-	if ([CMCommon isPhoneX]) {
-		y = 44;
-	}else {
-		y = 20;
-	}
-	//    self.menuView = [[UGRightMenuView alloc] initWithFrame:CGRectMake(UGScreenW /2 , y, UGScreenW / 2, UGScerrnH)];
-	//    self.menuView.titleArray = [[NSMutableArray alloc] initWithObjects:@"即时注单",@"今日输赢",@"投注记录",@"开奖记录",@"长龙助手",@"利息宝",@"站内信",@"退出登录", nil] ;
-	//    self.menuView.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"changlong",@"lixibao",@"zhanneixin",@"tuichudenglu", nil] ;
-	//    WeakSelf
-	//    self.menuView.menuSelectBlock = ^(NSInteger index) {
-	//
-	//       NSString * titleStr =  [weakSelf.menuView.titleArray objectAtIndex:index];
-	//
-	//        if ([titleStr isEqualToString:@"即时注单" ]) {
-	//            if ([UGUserModel currentUser].isTest) {
-	//                [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-	//                    if (buttonIndex == 1) {
-	//                        SANotificationEventPost(UGNotificationShowLoginView, nil);
-	//                    }
-	//                }];
-	//            }else {
-	//
-	//                UGBetRecordViewController *betRecordVC = [[UGBetRecordViewController alloc] init];
-	//                [betRecordVC.slideSwitchView changeSlideAtSegmentIndex:0];
-	//                [weakSelf.navigationController pushViewController:betRecordVC animated:YES];
-	//            }
-	//
-	//        }
-	//        else if ([titleStr isEqualToString:@"今日输赢" ]) {
-	//            if ([UGUserModel currentUser].isTest) {
-	//                [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-	//                    if (buttonIndex == 1) {
-	//                        SANotificationEventPost(UGNotificationShowLoginView, nil);
-	//                    }
-	//                }];
-	//            }else {
-	//
-	//                UGBetRecordViewController *betRecordVC = [[UGBetRecordViewController alloc] init];
-	//                [betRecordVC.slideSwitchView changeSlideAtSegmentIndex:0];
-	//                [weakSelf.navigationController pushViewController:betRecordVC animated:YES];
-	//            }
-	//
-	//        }
-	//        else if ([titleStr isEqualToString:@"投注记录" ]) {
-	//            if ([UGUserModel currentUser].isTest) {
-	//                [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-	//                    if (buttonIndex == 1) {
-	//                        SANotificationEventPost(UGNotificationShowLoginView, nil);
-	//                    }
-	//                }];
-	//            }else {
-	//
-	//                UGBetRecordViewController *betRecordVC = [[UGBetRecordViewController alloc] init];
-	//                [betRecordVC.slideSwitchView changeSlideAtSegmentIndex:0];
-	//                [weakSelf.navigationController pushViewController:betRecordVC animated:YES];
-	//            }
-	//
-	//        }else if ([titleStr isEqualToString:@"开奖记录" ]) {
-	//            UIStoryboard *storyboad = [UIStoryboard storyboardWithName:@"UGLotteryRecordController" bundle:nil];
-	//            UGLotteryRecordController *recordVC = [storyboad instantiateInitialViewController];
-	//            UGAllNextIssueListModel *model = self.lotteryGamesArray.firstObject;
-	//            UGNextIssueModel *game = model.list.firstObject;
-	//            recordVC.gameId = game.gameId;
-	//            recordVC.lotteryGamesArray = self.lotteryGamesArray;
-	//            [self.navigationController pushViewController:recordVC animated:YES];
-	//
-	//        }else if ([titleStr isEqualToString:@"长龙助手"]) {
-	//
-	//            UGChangLongController *changlongVC = [[UGChangLongController alloc] init];
-	//            changlongVC.lotteryGamesArray = self.lotteryGamesArray;
-	//            [self.navigationController pushViewController:changlongVC animated:YES];
-	//
-	//        }else if ([titleStr isEqualToString:@"站内信"]) {
-	//            UGMailBoxTableViewController *mailBoxVC = [[UGMailBoxTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
-	//            [self.navigationController pushViewController:mailBoxVC animated:YES];
-	//
-	//        }else if ([titleStr isEqualToString:@"退出登录"]) {
-	//
-	//            [QDAlertView showWithTitle:@"温馨提示" message:@"确定退出账号" cancelButtonTitle:@"取消" otherButtonTitle:@"确定" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-	//                if (buttonIndex == 1) {
-	//                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-	//
-	//                        [weakSelf userLogout];
-	//                    });
-	//                }
-	//            }];
-	//        }
-	//        else if ([titleStr isEqualToString:@"利息宝"]) {
-	//
-	//            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGYubaoViewController" bundle:nil];
-	//            UGYubaoViewController *lixibaoVC = [storyboard instantiateInitialViewController];
-	//            [self.navigationController pushViewController:lixibaoVC  animated:YES];
-	//
-	//        }
-	//        else if (index == 100) {//充值
-	//            if ([UGUserModel currentUser].isTest) {
-	//                [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-	//                    if (buttonIndex == 1) {
-	//                        SANotificationEventPost(UGNotificationShowLoginView, nil);
-	//                    }
-	//                }];
-	//            }else {
-	//
-	//                UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
-	//                fundsVC.selectIndex = 0;
-	//                [self.navigationController pushViewController:fundsVC animated:YES];
-	//            }
-	//        }
-	//        else if (index == 101) {//提现
-	//            if ([UGUserModel currentUser].isTest) {
-	//                [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-	//                    if (buttonIndex == 1) {
-	//                        SANotificationEventPost(UGNotificationShowLoginView, nil);
-	//                    }
-	//                }];
-	//            }else {
-	//
-	//                UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
-	//                fundsVC.selectIndex = 1;
-	//                [self.navigationController pushViewController:fundsVC animated:YES];
-	//            }
-	//        }else {
-	//
-	//
-	//        }
-	//    };
-	//    [self.menuView show];
-	
-	self.yymenuView = [[UGYYRightMenuView alloc] initWithFrame:CGRectMake(UGScreenW /2 , y, UGScreenW / 2, UGScerrnH)];
+	self.yymenuView = [[UGYYRightMenuView alloc] initWithFrame:CGRectMake(UGScreenW /2 , 0, UGScreenW / 2, UGScerrnH)];
 	self.yymenuView.titleType = @"1";
 	self.yymenuView.lotteryGamesArray = self.lotteryGamesArray;
 	[self.yymenuView show];
@@ -1043,12 +916,9 @@
 - (void)showNoticeInfo {
 	NSMutableString *str = [[NSMutableString alloc] init];
 	for (UGNoticeModel *notice in self.noticeTypeModel.scroll) {
-		
 		[str appendString:notice.content];
-		
 	}
 	if (str.length) {
-		
 		float y;
 		if ([CMCommon isPhoneX]) {
 			y = 160;
@@ -1059,7 +929,6 @@
 		popView.content = str;
 		[popView show];
 	}
-	
 }
 
 - (void)showGameVC:(GameModel *)model {
@@ -1067,17 +936,9 @@
 		SANotificationEventPost(UGNotificationShowLoginView, nil);
 		return;
 	}
-	
-	
 	if ([model.docType intValue] == 1) {
-		
 		UGDocumentVC * vc = [[UGDocumentVC alloc] initWithModel:model];
-		
-		
-		//		vc.allGames = self.
-		
 		[self.navigationController pushViewController: vc animated:true];
-		
 		return;
 	}
 	if (model.game_id) {
