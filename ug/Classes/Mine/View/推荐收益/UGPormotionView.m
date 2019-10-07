@@ -30,7 +30,7 @@
         self.frame = frame;
         
        
-        [self setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+        [self setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
 
         [self setupUserInfo];
         
@@ -69,8 +69,8 @@
     [self.waveBgView addSubview:self.waveView];
     [self.waveBgView addSubview:self.waveView];
     self.waveView.backgroundColor = [UIColor clearColor];
-    self.waveBottomView.backgroundColor =  [[UGSkinManagers shareInstance] setTabbgColor];
-    self.waveView.realWaveColor =  [[UGSkinManagers shareInstance] setTabbgColor];
+    self.waveBottomView.backgroundColor =  [[UGSkinManagers shareInstance] setNavbgColor];
+    self.waveView.realWaveColor =  [[UGSkinManagers shareInstance] setNavbgColor];
     self.waveView.maskWaveColor = [UIColor clearColor];
     self.waveView.waveHeight = 10;
     [self.waveView startWaveAnimation];

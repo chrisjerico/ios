@@ -17,6 +17,7 @@
 
 @interface UGBalanceConversionController () <UITableViewDelegate, UITableViewDataSource, YBPopupMenuDelegate, UITextFieldDelegate>
 
+@property (weak, nonatomic) IBOutlet UIButton *conversionButton;    /**<   开始转换Button */
 @property (weak, nonatomic) IBOutlet UIView *balanceView;           /**<   余额View */
 @property (weak, nonatomic) IBOutlet UIImageView *transferOutArrow; /**<   转出箭头ImageView */
 @property (weak, nonatomic) IBOutlet UIImageView *tarnsferInArrow;  /**<   转入箭头ImageView */
@@ -41,9 +42,14 @@
 
 static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
 @implementation UGBalanceConversionController
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 -(void)skin{
     
-    
+    [self.conversionButton setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
+    [self.view setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
+    [self getRealGames];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -53,18 +59,19 @@ static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
         
         [self skin];
     });
-    
-    self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithTitle:@"转换记录" target:self action:@selector(rightBarButtonItemClick)];
-    self.amountTextF.delegate = self;
-    UGUserModel *user = [UGUserModel currentUser];
-    self.balanceLabel.text = [NSString stringWithFormat:@"¥%@",[user.balance removeFloatAllZero]];
     SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
         [self.refreshButton.layer removeAllAnimations];
         UGUserModel *model = [UGUserModel currentUser];
         self.balanceLabel.text = [NSString stringWithFormat:@"¥%@",[model.balance removeFloatAllZero]];
     });
+    self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithTitle:@"转换记录" target:self action:@selector(rightBarButtonItemClick)];
+    self.amountTextF.delegate = self;
+    UGUserModel *user = [UGUserModel currentUser];
+    self.balanceLabel.text = [NSString stringWithFormat:@"¥%@",[user.balance removeFloatAllZero]];
+  
     [self getRealGames];
 }
+
 
 - (void)viewDidLayoutSubviews {
     [self.view addSubview:self.tableView];
@@ -244,6 +251,7 @@ static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
     UGPlatformBalanceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:balanceCellid forIndexPath:indexPath];
     UGPlatformGameModel *model = self.dataArray[indexPath.row];
     cell.item = model;
+    [cell.nameLabel setTextColor:[[UGSkinManagers shareInstance] setNavbgColor]];
     WeakSelf
     cell.refreshBlock = ^{
         model.refreshing = YES;
@@ -286,10 +294,24 @@ static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
 
 - (UITableView *)tableView {
     float height;
-    if ([CMCommon isPhoneX]) {
-        height = UGScerrnH - CGRectGetMaxY(self.balanceView.frame) - 64 - 34 - 20;
-    }else {
-        height = UGScerrnH - CGRectGetMaxY(self.balanceView.frame) - 88;
+   
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    UGTabbarController *tabbar = appDelegate.tabbar;
+
+    if (self == tabbar.balanceConversionVC) {
+        if ([CMCommon isPhoneX]) {
+            height = UGScerrnH - CGRectGetMaxY(self.balanceView.frame) - k_Height_TabBar -IPHONE_SAFEBOTTOMAREA_HEIGHT-44;
+        }else {
+            height = UGScerrnH - CGRectGetMaxY(self.balanceView.frame) - k_Height_TabBar -IPHONE_SAFEBOTTOMAREA_HEIGHT-44;
+        }
+    }
+    else{
+        if ([CMCommon isPhoneX]) {
+            height = UGScerrnH - CGRectGetMaxY(self.balanceView.frame) - k_Height_TabBar -IPHONE_SAFEBOTTOMAREA_HEIGHT;
+        }else {
+            height = UGScerrnH - CGRectGetMaxY(self.balanceView.frame) - k_Height_TabBar -IPHONE_SAFEBOTTOMAREA_HEIGHT;
+        }
     }
     
     if (_tableView == nil) {
@@ -298,6 +320,7 @@ static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
         _tableView.dataSource = self;
         _tableView.layer.cornerRadius = 10;
         _tableView.layer.masksToBounds = YES;
+         _tableView.contentInset = UIEdgeInsetsMake(0, 0, 60, 0);
 
     }
     return _tableView;

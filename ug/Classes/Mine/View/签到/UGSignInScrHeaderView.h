@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UGSignInScrHeaderView : UIView
 
+@property (weak, nonatomic) IBOutlet UIView *titleBgView;
 @property (nonatomic, strong) NSString *signInNumberStr;
 
 -(instancetype)initView;

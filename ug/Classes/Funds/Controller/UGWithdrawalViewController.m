@@ -38,6 +38,7 @@
     
     self.bandCardButton.layer.cornerRadius = 3;
     self.bandCardButton.layer.masksToBounds = YES;
+    [self.bandCardButton setBackgroundColor:UGNavColor];
     self.amountTextF.delegate = self;
     self.pwdTextF.delegate = self;
 

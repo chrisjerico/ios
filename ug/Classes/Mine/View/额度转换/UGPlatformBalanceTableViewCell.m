@@ -11,7 +11,6 @@
 
 @interface UGPlatformBalanceTableViewCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *balanceLabel;
 @property (weak, nonatomic) IBOutlet UIButton *refreshButton;
 
@@ -25,7 +24,7 @@
 
 -(void)setItem:(UGPlatformGameModel *)item {
     _item = item;
-    [self.imgView sd_setImageWithURL:[NSURL URLWithString:item.pic]];
+    [self.imgView sd_setImageWithURL:[NSURL URLWithString:item.pic] placeholderImage:[UIImage imageNamed:@"loading"]];
     self.nameLabel.text = item.title;
     if (item.balance) {
         self.balanceLabel.text = [NSString stringWithFormat:@"¥%@",item.balance];

@@ -233,16 +233,18 @@ static NSString *integralCellid = @"UGConvertCollectionViewCell";
             UGSystemConfigModel *config = model.data;
             UGSystemConfigModel.currentConfig = config;
             
-             [[UGSkinManagers shareInstance] setSkin];
+           
             
             if ([config.isIntToMoney isEqualToString:@"0"]) {
                 [self.submitButton setEnabled:NO];
                 self.submitButton.alpha = 0.4;
                 [self.submitButton setTitle:@"暂未开启" forState:UIControlStateNormal];
+                [self.submitButton setBackgroundColor:UGRGBColor(210, 210, 214)];
             } else {
                 [self.submitButton setEnabled:YES];
                 self.submitButton.alpha = 1;
                 [self.submitButton setTitle:@"确认兑换" forState:UIControlStateNormal];
+                [self.submitButton setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
             }
             
             NSString *str1 = [NSString stringWithFormat:@"%@%@:1元人民币",config.missionBili,config.missionName];

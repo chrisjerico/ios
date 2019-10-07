@@ -69,7 +69,6 @@
 #import "UGGameNavigationView.h"
 #import "UGFundsViewController.h"
 
-#import "UGRealBetRecordViewController.h"
 
 @interface UGHomeViewController ()<SDCycleScrollViewDelegate,UUMarqueeViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -127,25 +126,47 @@
 }
 
 -(void)skin{
-	[self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
-	[self.rollingView setBackgroundColor:[[UGSkinManagers shareInstance]setbgColor]];
-	[self.leftwardMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
-	[self.gameTypeView setBackgroundColor:[UIColor clearColor]];
-	[self.rankingView setBackgroundColor:[UIColor clearColor]];
-	[self getCustomGameList];
-	
-	
-	
+
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+ 
+
+	[self.rankingView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
+    [self.upwardMultiMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
+    [self.rollingView setBackgroundColor:[[UGSkinManagers shareInstance]sethomeContentColor]];
+    [self.gameNavigationView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
+     [self.leftwardMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
+     [self.gameTypeView setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
+     self.gameNavigationView.layer.borderColor = [[UGSkinManagers shareInstance] sethomeContentBorderColor].CGColor;
+    
+    [self getCustomGameList];
 }
 
 - (void)viewDidLoad {
-	
+
 	[super viewDidLoad];
-	
+    
+    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
+        
+        [self skin];
+    });
+
+
+    
 	self.gameNavigationView.layer.cornerRadius = 8;
 	self.gameNavigationView.layer.masksToBounds = true;
+    self.gameNavigationView.layer.borderWidth = 1;
+    self.gameNavigationView.layer.borderColor = [[UGSkinManagers shareInstance] sethomeContentBorderColor].CGColor;
     
-    [self.gameNavigationView setBackgroundColor:[[UGSkinManagers shareInstance] setCellbgColor]];
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+ 
+   
+    [self.rankingView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
+    [self.upwardMultiMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
+    [self.rollingView setBackgroundColor:[[UGSkinManagers shareInstance]sethomeContentColor]];
+    [self.gameNavigationView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
+    [self.leftwardMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
+     [self.gameTypeView setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
+    
 	[[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:[[UGSkinManagers shareInstance] setTabbgColor]]];
 	
 	[[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[[UGSkinManagers shareInstance] settabNOSelectColor], NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
@@ -159,10 +180,7 @@
 	
 	[self setupSubView];
 	
-	SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-		
-		[self skin];
-	});
+	
 	
 	SANotificationEventSubscribe(UGNotificationTryPlay, self, ^(typeof (self) self, id obj) {
 		[self tryPlayClick];
@@ -305,13 +323,14 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-	[self.leftwardMarqueeView start];
-	[self.upwardMultiMarqueeView start];
+//    [self.leftwardMarqueeView start];
+//    [self.upwardMultiMarqueeView start];
 	
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
 	[self.leftwardMarqueeView pause];//fixbug  发热  掉电快
+    [self.upwardMultiMarqueeView pause];//fixbug  发热  掉电快
 	self.initSubview = YES;
 }
 
@@ -366,10 +385,10 @@
 		
 		 
 		 if (![CMCommon stringIsNull:[UGUserModel currentUser].token]) {
-			  NSString *colorStr = [[UGSkinManagers shareInstance] setNavbgStringColor];
+			  NSString *colorStr = [[UGSkinManagers shareInstance] setChatNavbgStringColor];
 			  qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr];
 		 } else {
-			 NSString *colorStr = [[UGSkinManagers shareInstance] setNavbgStringColor];
+			 NSString *colorStr = [[UGSkinManagers shareInstance] setChatNavbgStringColor];
 			 qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr];
 		 }
 		
@@ -499,9 +518,6 @@
 }
 
 - (void)getSystemConfig {
-	//<<<<<<< HEAD
-	
-	
 	[CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
 		[self.scrollView.mj_header endRefreshing];
 		[CMResult processWithResult:model success:^{
@@ -521,25 +537,6 @@
 			
 		}];
 	}];
-	//=======
-	//
-	//
-	//	[CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-	//		[self.scrollView.mj_header endRefreshing];
-	//		[CMResult processWithResult:model success:^{
-	//
-	//			NSLog(@"model = %@",model);
-	//
-	//			UGSystemConfigModel *config = model.data;
-	//			UGSystemConfigModel.currentConfig = config;
-	//
-	//			[self.titleView setImgName:config.mobile_logo];
-	//
-	//		} failure:^(id msg) {
-	//
-	//		}];
-	//	}];
-	//>>>>>>> dev_andrew
 }
 
 - (void)userLogout {
@@ -802,12 +799,14 @@
 		UGRankModel *rank = self.rankArray[index];
 		UILabel *content = [itemView viewWithTag:1001];
 		content.text = rank.username;
+        [content setTextColor:UIColor.blackColor];
 		
 		UILabel *coin = [itemView viewWithTag:1002];
 		coin.text = [NSString stringWithFormat:@"%@元",rank.coin];
 		
 		UILabel *game = [itemView viewWithTag:1004];
 		game.text = rank.type;
+   
 		
 		UIImageView *icon = [itemView viewWithTag:1003];
 		NSString *imgName = nil;
@@ -823,6 +822,8 @@
 			icon.hidden = YES;
 		}
 		icon.image = [UIImage imageNamed:imgName];
+        
+        [itemView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
 		
 	}
 }

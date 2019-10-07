@@ -22,6 +22,13 @@
 @end
 
 @implementation UGPromotionIncomeController
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+-(void)skin{
+   
+    [self initView];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -29,15 +36,23 @@
     self.navigationItem.title = @"推荐收益";
     self.view.backgroundColor =[UIColor whiteColor];
     
-  
+    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
+        
+        [self skin];
+    });
     
+   
+    
+}
+
+-(void)initView{
     [self buildSegment];
     [self setupRightItem];
     
     //-签到按钮======================================
     if (_uGPormotionView == nil) {
         _uGPormotionView = [[UGPormotionView alloc] initWithFrame:CGRectMake(0,0 ,UGScreenW, 128+k_Height_NavBar)];
-        
+        [_uGPormotionView setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
     }
     [self.view addSubview:_uGPormotionView];
     
@@ -49,7 +64,6 @@
          make.height.mas_equalTo(128.0);
          
      }];
-    
 }
 
 #pragma mark 设置右上角按钮

@@ -20,7 +20,7 @@
     [super awakeFromNib];
     // Initialization code
 
-    [self setBackgroundColor: [[UGSkinManagers shareInstance] setCellbgColor]];
+    [self setBackgroundColor: [[UGSkinManagers shareInstance] sethomeContentColor]];
 }
 
 - (void)setItem:(GameCategoryModel *)item {

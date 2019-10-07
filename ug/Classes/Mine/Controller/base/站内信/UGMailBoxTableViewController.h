@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGMailBoxTableViewController : UITableViewController
+@interface UGMailBoxTableViewController : UGTableViewController
 
 
 @end

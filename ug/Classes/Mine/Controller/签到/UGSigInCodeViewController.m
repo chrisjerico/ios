@@ -36,17 +36,27 @@
 @end
 
 @implementation UGSigInCodeViewController
-
+-(void)skin{
+    
+     [self initView];
+      mUGSignInButton.backgroundColor = [[UGSkinManagers shareInstance] setNavbgColor];
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"签到";
-    self.view.backgroundColor = UGRGBColor(89, 109, 191);
-    _collectionDataArray = [NSMutableArray new];
-    _historyDataArray = [NSMutableArray new];
-     [self getCheckinListData];
+    [self initView];
+
 }
 
+-(void)initView{
+    self.title = @"签到";
+    //    self.view.backgroundColor = UGRGBColor(89, 109, 191);
+    self.view.backgroundColor = [[UGSkinManagers shareInstance] setSignbgColor];
+    _collectionDataArray = [NSMutableArray new];
+    _historyDataArray = [NSMutableArray new];
+    [self getCheckinListData];
+}
 
 #pragma mark - UIS
 
@@ -69,8 +79,9 @@
             
             [weakSelf getCheckinHistoryData ];
         };
+        [self.view addSubview:mUGSignInHeaderView];
     }
-    [self.view addSubview:mUGSignInHeaderView];
+    
     //-滚动面版======================================
     if (mUIScrollView == nil) {
         mUIScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 40, UGScreenW , UGScerrnH -40.0-IPHONE_SAFEBOTTOMAREA_HEIGHT)];
@@ -80,17 +91,24 @@
         //UIScrollView被push之后返回，会发生控件位置偏移，用下面的代码就OK
         self.automaticallyAdjustsScrollViewInsets = NO;
         self.edgesForExtendedLayout = UIRectEdgeNone;
+        [self.view addSubview:mUIScrollView];
     }
-    [self.view addSubview:mUIScrollView];
+    
    
 
     //-已连续3天签到======================================
     if (mUGSignInScrHeaderView == nil) {
         mUGSignInScrHeaderView = [[UGSignInScrHeaderView alloc] initView];
         [mUGSignInScrHeaderView setFrame:CGRectMake(0, 0,UGScreenW, 95.0)];
-       
+        
+    
+        [mUIScrollView addSubview:mUGSignInScrHeaderView];
     }
-    [mUIScrollView addSubview:mUGSignInScrHeaderView];
+    
+    [mUGSignInScrHeaderView.titleBgView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
+    
+    [mUGSignInScrHeaderView setBackgroundColor:[UIColor clearColor]];
+ 
     //-日期列表======================================
     float itemW = (UGScreenW - 10 - 40)/4;
     float itemH = 185.0;
@@ -133,8 +151,7 @@
         mUGSignInButton.frame = CGRectMake(100, 100, 100, 40);
         // 按钮的正常状态
         [mUGSignInButton setTitle:@"马上签到" forState:UIControlStateNormal];
-        // 设置按钮的背景色
-        mUGSignInButton.backgroundColor = UGRGBColor(111, 126, 233);
+       
         // 设置正常状态下按钮文字的颜色，如果不写其他状态，默认都是用这个文字的颜色
         [mUGSignInButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         // titleLabel：UILabel控件
@@ -145,9 +162,12 @@
         mUGSignInButton.layer.masksToBounds = YES;
         
         [mUGSignInButton addTarget:self action:@selector(mUGSignInButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+        
+         [mUIScrollView addSubview:mUGSignInButton];
     }
-    [mUIScrollView addSubview:mUGSignInButton];
     
+    // 设置按钮的背景色
+    mUGSignInButton.backgroundColor = [[UGSkinManagers shareInstance] setNavbgColor];
     [mUGSignInButton mas_makeConstraints:^(MASConstraintMaker *make) {
          make.top.mas_equalTo(self.collectionView.mas_bottom).offset(-20.0);
          make.centerX.mas_equalTo(self.view.mas_centerX);
@@ -470,7 +490,7 @@
     notiveView.dataArray = self->_historyDataArray;
     notiveView.checkinMoney = self.checkinListModel.checkinMoney;
     notiveView.checkinTimes= [NSString stringWithFormat:@"%@",self.checkinListModel.checkinTimes];
-    
+    [notiveView.bgView setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
 //    if (![CMCommon arryIsNull:self->_historyDataArray]) {
         [notiveView show];
 //    }

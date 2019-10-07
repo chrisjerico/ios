@@ -37,7 +37,7 @@
     }else {
         self.titleLabel.textColor = [UIColor blackColor];
         self.layer.borderWidth = 0.7;
-        self.layer.borderColor = [UIColor whiteColor].CGColor;
+        self.layer.borderColor =  UGRGBColor(239, 239, 244).CGColor;
     }
 }
 

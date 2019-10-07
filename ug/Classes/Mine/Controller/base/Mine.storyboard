@@ -1501,6 +1501,7 @@
                         <outlet property="amountTextF" destination="oeY-JT-Bq2" id="2Zw-E0-BD1"/>
                         <outlet property="balanceLabel" destination="xlA-fF-4pB" id="2Zp-Bj-cPX"/>
                         <outlet property="balanceView" destination="FLn-Fz-Y2J" id="bis-sb-zch"/>
+                        <outlet property="conversionButton" destination="4oh-Gd-dhy" id="cKd-hx-NmT"/>
                         <outlet property="refreshButton" destination="EnI-1k-NuV" id="Y2v-Dv-JuM"/>
                         <outlet property="tarnsferInArrow" destination="hkY-nu-tx5" id="uLf-nO-uf7"/>
                         <outlet property="tarnsferOutButton" destination="Jm8-Vf-Qem" id="QV6-WI-tCO"/>

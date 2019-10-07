@@ -21,15 +21,18 @@
 @property (weak, nonatomic) IBOutlet UILabel *incomeLabel;//本月推荐收益
 @property (weak, nonatomic) IBOutlet UILabel *monthMembers;//本月推荐会员
 @property (weak, nonatomic) IBOutlet UILabel *totalMembers;//本月推荐总数
-@property (weak, nonatomic) IBOutlet UIButton *urlCopyButton1;
+
 @property (weak, nonatomic) IBOutlet UISwitch *qrcodeSwitch1;
-@property (weak, nonatomic) IBOutlet UIButton *urlCopyButton2;
+
 @property (weak, nonatomic) IBOutlet UISwitch *qrcodeSwitch2;
 
 @property (weak, nonatomic) IBOutlet UILabel *sectionLabel1;
 @property (weak, nonatomic) IBOutlet UILabel *sectionLabel2;
 @property (weak, nonatomic) IBOutlet UILabel *sectionLabel3;
 @property (weak, nonatomic) IBOutlet UILabel *sectionLabel4;
+
+@property (weak, nonatomic) IBOutlet UIButton *urlCopy1Button;
+@property (weak, nonatomic) IBOutlet UIButton *urlCopy2Button;
 
 
 @property (nonatomic, assign) BOOL showHomeUrl;
@@ -47,10 +50,13 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 90, 0);
-    self.urlCopyButton1.layer.cornerRadius = 3;
-    self.urlCopyButton1.layer.masksToBounds = YES;
-    self.urlCopyButton2.layer.cornerRadius = 3;
-    self.urlCopyButton2.layer.masksToBounds = YES;
+    self.urlCopy1Button.layer.cornerRadius = 3;
+    self.urlCopy1Button.layer.masksToBounds = YES;
+    [self.urlCopy1Button setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
+    
+    self.urlCopy2Button.layer.cornerRadius = 3;
+    self.urlCopy2Button.layer.masksToBounds = YES;
+     [self.urlCopy2Button setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
     
     self.userNameLabel.text = @"";
     self.promotionIdlabel.text =@"";

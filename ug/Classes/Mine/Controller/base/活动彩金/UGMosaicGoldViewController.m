@@ -19,7 +19,7 @@
 
 @implementation UGMosaicGoldViewController
 -(void)skin{
-    
+       [self buildSegment];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -30,7 +30,7 @@
         
         [self skin];
     });
-    [self buildSegment];
+  [self buildSegment];
 }
 
 - (void)viewDidLayoutSubviews {

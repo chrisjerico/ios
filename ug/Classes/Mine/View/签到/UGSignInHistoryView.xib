@@ -61,6 +61,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
+                <outlet property="bgView" destination="18h-ZT-Rwf" id="mBS-eP-zLM"/>
                 <outlet property="closeButton" destination="58k-nP-CP2" id="gsd-yb-IxO"/>
                 <outlet property="tableView" destination="dTC-bR-fAb" id="O4B-ko-dRp"/>
                 <outlet property="title1Label" destination="5TY-2u-vNS" id="hjs-GT-wf9"/>

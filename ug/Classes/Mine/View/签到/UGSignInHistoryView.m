@@ -29,8 +29,6 @@
     if (self) {
         self = [[NSBundle mainBundle] loadNibNamed:@"UGSignInHistoryView" owner:self options:0].firstObject;
         self.frame = frame;
-        self.backgroundColor = [UIColor whiteColor];
-        
         self.selectSection = 0;
         self.tableView.delegate = self;
         self.tableView.dataSource = self;

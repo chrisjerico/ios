@@ -15,7 +15,7 @@
     // Initialization code
     _pointView.layer.cornerRadius = 5;
     _pointView.layer.masksToBounds = YES;
-      [self setBackgroundColor: [[UGSkinManagers shareInstance] setCellbgColor]];
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

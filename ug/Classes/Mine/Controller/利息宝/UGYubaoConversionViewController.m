@@ -37,6 +37,7 @@
 @property (nonatomic, strong) NSMutableArray *amountArray;
 @property (nonatomic, strong) NSString *inputFundPwd;
 @property (nonatomic, strong) NSString *transferType;
+@property (weak, nonatomic) IBOutlet UIImageView *bgView;
 
 
 @end
@@ -44,7 +45,9 @@
 static NSString *convertCellid = @"UGConvertCollectionViewCell";
 @implementation UGYubaoConversionViewController
 -(void)skin{
-    
+    UIImage *image = [UIImage imageNamed:@"bgyubao1"];
+    UIImage *afterImage = [image qmui_imageWithBlendColor: [[UGSkinManagers shareInstance] setNavbgColor]];
+    self.bgView.image = afterImage;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -55,19 +58,29 @@ static NSString *convertCellid = @"UGConvertCollectionViewCell";
     self.fd_prefersNavigationBarHidden = YES;
     self.submitButton.layer.cornerRadius = 5;
     self.submitButton.layer.masksToBounds = YES;
+    [self.submitButton setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
+    
     self.turnInButton.layer.cornerRadius = 5;
     self.turnInButton.layer.masksToBounds = YES;
+    [self.turnInButton setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
+    
     self.turnOutButton.layer.cornerRadius = 5;
     self.turnOutButton.layer.masksToBounds = YES;
     
     self.waveView = [[WavesView alloc] initWithFrame:self.waveBgView.bounds];
     [self.waveBgView addSubview:self.waveView];
     self.waveView.backgroundColor = [UIColor clearColor];
-    self.waveBotomView.backgroundColor = UGRGBColor(84, 171, 238);
-    self.waveView.realWaveColor = UGRGBColor(84, 171, 238);
+//    self.waveBotomView.backgroundColor = UGRGBColor(84, 171, 238);
+//    self.waveView.realWaveColor = UGRGBColor(84, 171, 238);
+    self.waveBotomView.backgroundColor =  [[UGSkinManagers shareInstance] setNavbgColor];
+    self.waveView.realWaveColor =  [[UGSkinManagers shareInstance] setNavbgColor];
     self.waveView.maskWaveColor = [UIColor clearColor];
     self.waveView.waveHeight = 10;
     [self.waveView startWaveAnimation];
+    
+    UIImage *image = [UIImage imageNamed:@"bgyubao1"];
+    UIImage *afterImage = [image qmui_imageWithBlendColor: [[UGSkinManagers shareInstance] setNavbgColor]];
+    self.bgView.image = afterImage;
     
     self.transferType = @"in";
     self.inputTextF.delegate = self;

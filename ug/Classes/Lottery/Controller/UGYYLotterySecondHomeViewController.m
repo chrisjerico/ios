@@ -81,6 +81,8 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UGhomeRecommendCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UGhomeRecommendCollectionViewCell" forIndexPath:indexPath];
     cell.itemGame = (UGYYGames *)self.dataArray[indexPath.row];
+    [cell setBackgroundColor: [[UGSkinManagers shareInstance] sethomeContentColor]];
+    cell.layer.borderColor = [[[UGSkinManagers shareInstance] sethomeContentColor] CGColor];
     return cell;
 }
 

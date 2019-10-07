@@ -117,7 +117,7 @@ static NSString *const footerId = @"footerId";
     UGGameTypeColletionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:gameCellid forIndexPath:indexPath];
     cell.item = ((NSArray *)self.sectionedDataArray[indexPath.section])[indexPath.row];
     
-    [cell setBackgroundColor: [[UGSkinManagers shareInstance] setCellbgColor]];
+    [cell setBackgroundColor: [[UGSkinManagers shareInstance] sethomeContentColor]];
 //    if (_selectedPath == indexPath) {
 //        cell.backgroundColor = UIColor.blueColor;
 //    }
