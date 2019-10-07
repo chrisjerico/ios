@@ -12,15 +12,18 @@
 #import "UGLotteryRecordTableViewCell.h"
 #import "UGAllNextIssueListModel.h"
 #import "UGLotteryHistoryModel.h"
+
+
 @interface UGLotteryRecordController ()<YBPopupMenuDelegate,UITableViewDelegate,UITableViewDataSource>
-@property (weak, nonatomic) IBOutlet UIImageView *logoView;
-@property (weak, nonatomic) IBOutlet UILabel *gameNameLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *arrowView;
-@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
-@property (weak, nonatomic) IBOutlet UIButton *lotteryButton;
+@property (weak, nonatomic) IBOutlet UIImageView *logoView;     /**<   彩种图标ImageView */
+@property (weak, nonatomic) IBOutlet UILabel *gameNameLabel;    /**<   彩种名Label */
+@property (weak, nonatomic) IBOutlet UIImageView *arrowView;    /**<   箭头ImageView */
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;        /**<   日期Label */
+@property (weak, nonatomic) IBOutlet UIButton *lotteryButton;   /**<   选择彩种Button */
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (nonatomic, strong) YBPopupMenu *lotteryTypePopView;
+@property (nonatomic, strong) YBPopupMenu *lotteryTypePopView;  /**<   彩种选择弹框 */
 
 @property (nonatomic, strong) NSMutableArray *dateArray;
 @property (nonatomic, strong) NSMutableArray *gameArray;
@@ -57,7 +60,6 @@ static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
                 if ([model.gameId isEqualToString:self.gameId]) {
                     self.gameNameLabel.text = model.title;
                     [self.logoView sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:@"loading"]];
-                    
                 }
                 [self.gameArray addObject:model];
                 [self.gameNameArray addObject:model.title];
@@ -87,9 +89,8 @@ static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
     [CMNetwork getLotteryHistoryWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [self.tableView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
-            self.dataArray = model.data;
+            self.dataArray = [((UGLotteryHistoryListModel *)model.data).list mutableCopy];
             [self.tableView reloadData];
-            
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
         }];
@@ -114,7 +115,7 @@ static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
     float y = 0;
     if ([CMCommon isPhoneX]) {
         y = 88;
-    }else {
+    } else {
         y = 64;
     }
     [popView showAtPoint:CGPointMake(UGScreenW - 75, y + 5)];
@@ -123,7 +124,7 @@ static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
 
 #pragma mark - UITableView datasource
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
@@ -157,6 +158,7 @@ static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
 }
 
 #pragma mark - YBPopupMenuDelegate
+
 - (void)ybPopupMenuDidSelectedAtIndex:(NSInteger)index ybPopupMenu:(YBPopupMenu *)ybPopupMenu {
     if (index >= 0) {
         if (ybPopupMenu == self.lotteryTypePopView ) {
@@ -167,15 +169,13 @@ static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
                 self.selGameIndex = index;
                 [self getLotteryHistory];
             }
-        }else {
+        } else {
             self.dateLabel.text = self.dateArray[index];
             [self getLotteryHistory];
         }
     }
     if (ybPopupMenu == self.lotteryTypePopView) {
-        
-        CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI * 2);
-        self.arrowView.transform = transform;
+        self.arrowView.transform = CGAffineTransformMakeRotation(M_PI * 2);
     }
 }
 
@@ -235,7 +235,6 @@ static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
                     if ([model.gameId isEqualToString:self.gameId]) {
                         self.gameNameLabel.text = model.title;
                         [self.logoView sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:@"loading"]];
-                        
                     }
                     [self.gameArray addObject:model];
                     [self.gameNameArray addObject:model.title];

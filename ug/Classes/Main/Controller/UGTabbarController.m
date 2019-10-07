@@ -280,8 +280,8 @@
         
     }
     
-//    [self setViewControllers:vcs];
-//    [self setTabbarStyle];
+    [self setViewControllers:vcs];
+    [self setTabbarStyle];
 }
 
 

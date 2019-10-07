@@ -390,7 +390,6 @@
 		D4241C43232A1A8200BF4DE1 /* UGFundsBankView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4241C42232A1A8200BF4DE1 /* UGFundsBankView.xib */; };
 		D4241C47232A2F0100BF4DE1 /* UGOneTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4241C45232A2F0100BF4DE1 /* UGOneTitleTableViewCell.m */; };
 		D4241C48232A2F0100BF4DE1 /* UGOneTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4241C46232A2F0100BF4DE1 /* UGOneTitleTableViewCell.xib */; };
-		D424941B22C6512A0011A5F3 /* UGChatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D424941A22C6512A0011A5F3 /* UGChatsViewController.m */; };
 		D424DDDC22E72E940009E2E6 /* UGSystemConfigModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D424DDDB22E72E940009E2E6 /* UGSystemConfigModel.m */; };
 		D424DDDF22E74DA40009E2E6 /* UGRealBetRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D424DDDE22E74DA40009E2E6 /* UGRealBetRecordViewController.m */; };
 		D424DDE122E74DE60009E2E6 /* UGRealBetRecordViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D424DDE022E74DE60009E2E6 /* UGRealBetRecordViewController.storyboard */; };
@@ -526,8 +525,6 @@
 		D4BBFC01232A797600147C4A /* TGWebProgressLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BBFBFE232A797600147C4A /* TGWebProgressLayer.m */; };
 		D4BBFC04232A801700147C4A /* UGFundsTransferView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BBFC03232A801700147C4A /* UGFundsTransferView.m */; };
 		D4BBFC06232A80A800147C4A /* UGFundsTransferView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4BBFC05232A80A800147C4A /* UGFundsTransferView.xib */; };
-		D4BBFC0A232A852200147C4A /* UGFundsTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BBFC08232A852200147C4A /* UGFundsTestViewController.m */; };
-		D4BBFC0B232A852200147C4A /* UGFundsTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4BBFC09232A852200147C4A /* UGFundsTestViewController.xib */; };
 		D4C165692344B1AB005A0F12 /* UGMineSkinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C165672344B1AB005A0F12 /* UGMineSkinViewController.m */; };
 		D4C1656A2344B1AB005A0F12 /* UGMineSkinViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4C165682344B1AB005A0F12 /* UGMineSkinViewController.xib */; };
 		D4C1656E2344C3C0005A0F12 /* UGMineSkinCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C1656C2344C3C0005A0F12 /* UGMineSkinCollectionViewCell.m */; };
@@ -1344,8 +1341,6 @@
 		D4241C44232A2F0100BF4DE1 /* UGOneTitleTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGOneTitleTableViewCell.h; sourceTree = "<group>"; };
 		D4241C45232A2F0100BF4DE1 /* UGOneTitleTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGOneTitleTableViewCell.m; sourceTree = "<group>"; };
 		D4241C46232A2F0100BF4DE1 /* UGOneTitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGOneTitleTableViewCell.xib; sourceTree = "<group>"; };
-		D424941922C6512A0011A5F3 /* UGChatsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGChatsViewController.h; sourceTree = "<group>"; };
-		D424941A22C6512A0011A5F3 /* UGChatsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGChatsViewController.m; sourceTree = "<group>"; };
 		D424DDDA22E72E940009E2E6 /* UGSystemConfigModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGSystemConfigModel.h; sourceTree = "<group>"; };
 		D424DDDB22E72E940009E2E6 /* UGSystemConfigModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGSystemConfigModel.m; sourceTree = "<group>"; };
 		D424DDDD22E74DA40009E2E6 /* UGRealBetRecordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGRealBetRecordViewController.h; sourceTree = "<group>"; };
@@ -1582,9 +1577,6 @@
 		D4BBFC02232A801700147C4A /* UGFundsTransferView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGFundsTransferView.h; sourceTree = "<group>"; };
 		D4BBFC03232A801700147C4A /* UGFundsTransferView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGFundsTransferView.m; sourceTree = "<group>"; };
 		D4BBFC05232A80A800147C4A /* UGFundsTransferView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGFundsTransferView.xib; sourceTree = "<group>"; };
-		D4BBFC07232A852200147C4A /* UGFundsTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGFundsTestViewController.h; sourceTree = "<group>"; };
-		D4BBFC08232A852200147C4A /* UGFundsTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGFundsTestViewController.m; sourceTree = "<group>"; };
-		D4BBFC09232A852200147C4A /* UGFundsTestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGFundsTestViewController.xib; sourceTree = "<group>"; };
 		D4C165662344B1AB005A0F12 /* UGMineSkinViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGMineSkinViewController.h; sourceTree = "<group>"; };
 		D4C165672344B1AB005A0F12 /* UGMineSkinViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGMineSkinViewController.m; sourceTree = "<group>"; };
 		D4C165682344B1AB005A0F12 /* UGMineSkinViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGMineSkinViewController.xib; sourceTree = "<group>"; };
@@ -2400,6 +2392,118 @@
 				D4DFBE6F22E353AF002BAFB0 /* UGMenuTableViewCell.xib */,
 			);
 			path = "我的页";
+			sourceTree = "<group>";
+		};
+		CF3B0E65234B1C200035AF50 /* 存款 */ = {
+			isa = PBXGroup;
+			children = (
+				D405B2F8227C23C300F8C586 /* UGRechargeTypeTableViewController.h */,
+				D405B2F9227C23C300F8C586 /* UGRechargeTypeTableViewController.m */,
+				D481EFF82327C8DA000611ED /* UGDepositDetailsViewController.h */,
+				D481EFF92327C8DA000611ED /* UGDepositDetailsViewController.m */,
+				D4C46F8D232B56CB0062564D /* UGDepositDetailsNoLineViewController.h */,
+				D4C46F8E232B56CB0062564D /* UGDepositDetailsNoLineViewController.m */,
+			);
+			path = "存款";
+			sourceTree = "<group>";
+		};
+		CF3B0E66234B1C350035AF50 /* 取款 */ = {
+			isa = PBXGroup;
+			children = (
+				D405B2FB227C30F700F8C586 /* UGWithdrawalViewController.h */,
+				D405B2FC227C30F700F8C586 /* UGWithdrawalViewController.m */,
+				D405B2FE227C310600F8C586 /* UGWithdrawalViewController.storyboard */,
+			);
+			path = "取款";
+			sourceTree = "<group>";
+		};
+		CF3B0E67234B1C760035AF50 /* 存取款记录 */ = {
+			isa = PBXGroup;
+			children = (
+				D405B305227C3A1900F8C586 /* UGRechargeRecordTableViewController.h */,
+				D405B306227C3A1900F8C586 /* UGRechargeRecordTableViewController.m */,
+			);
+			path = "存取款记录";
+			sourceTree = "<group>";
+		};
+		CF3B0E68234B1C8A0035AF50 /* 资金明细 */ = {
+			isa = PBXGroup;
+			children = (
+				D405B308227C60A500F8C586 /* UGFundDetailsTableViewController.h */,
+				D405B309227C60A500F8C586 /* UGFundDetailsTableViewController.m */,
+			);
+			path = "资金明细";
+			sourceTree = "<group>";
+		};
+		CF3B0E69234B1D1C0035AF50 /* 存款 */ = {
+			isa = PBXGroup;
+			children = (
+				D481EFFB2327CAD8000611ED /* UGDepositDetailsCollectionViewCell.h */,
+				D481EFFC2327CAD8000611ED /* UGDepositDetailsCollectionViewCell.m */,
+				D481EFFD2327CAD8000611ED /* UGDepositDetailsCollectionViewCell.xib */,
+				D405B2F3227C230400F8C586 /* UGRechargeTypeCell.h */,
+				D405B2F4227C230400F8C586 /* UGRechargeTypeCell.m */,
+				D405B2F5227C230400F8C586 /* UGRechargeTypeCell.xib */,
+				D4DCDBD12328D1AC00CF4CEE /* UGDepositDetailsTableViewCell.h */,
+				D4DCDBD22328D1AC00CF4CEE /* UGDepositDetailsTableViewCell.m */,
+				D4DCDBD32328D1AC00CF4CEE /* UGDepositDetailsTableViewCell.xib */,
+				D4241C3F232A1A6900BF4DE1 /* UGFundsBankView.h */,
+				D4241C40232A1A6900BF4DE1 /* UGFundsBankView.m */,
+				D4241C42232A1A8200BF4DE1 /* UGFundsBankView.xib */,
+				D4241C44232A2F0100BF4DE1 /* UGOneTitleTableViewCell.h */,
+				D4241C45232A2F0100BF4DE1 /* UGOneTitleTableViewCell.m */,
+				D4241C46232A2F0100BF4DE1 /* UGOneTitleTableViewCell.xib */,
+				D4BBFC02232A801700147C4A /* UGFundsTransferView.h */,
+				D4BBFC03232A801700147C4A /* UGFundsTransferView.m */,
+				D4BBFC05232A80A800147C4A /* UGFundsTransferView.xib */,
+				D4C46F90232B88BF0062564D /* UGFunds2microcodeView.h */,
+				D4C46F91232B88BF0062564D /* UGFunds2microcodeView.m */,
+				D4C46F93232B88D80062564D /* UGFunds2microcodeView.xib */,
+				D4C46F95232B8DB30062564D /* UGFundsTransfer2View.h */,
+				D4C46F96232B8DB30062564D /* UGFundsTransfer2View.m */,
+				D4C46F98232B8DCC0062564D /* UGFundsTransfer2View.xib */,
+			);
+			path = "存款";
+			sourceTree = "<group>";
+		};
+		CF3B0E6A234B1D380035AF50 /* 存取款记录 */ = {
+			isa = PBXGroup;
+			children = (
+				D405B300227C38D200F8C586 /* UGRechargeRecordCell.h */,
+				D405B301227C38D200F8C586 /* UGRechargeRecordCell.m */,
+				D405B302227C38D200F8C586 /* UGRechargeRecordCell.xib */,
+				D41F2615231BE521004FB9C6 /* UGWithdrawRecordDetailView.h */,
+				D41F2616231BE521004FB9C6 /* UGWithdrawRecordDetailView.m */,
+				D41F2618231BE536004FB9C6 /* UGWithdrawRecordDetailView.xib */,
+				D41EDF812317BE06005798CC /* UGFundRecordDetailView.h */,
+				D41EDF822317BE06005798CC /* UGFundRecordDetailView.m */,
+				D41EDF842317BE15005798CC /* UGFundRecordDetailView.xib */,
+			);
+			path = "存取款记录";
+			sourceTree = "<group>";
+		};
+		CF3B0E6B234B2B9C0035AF50 /* 长龙助手 */ = {
+			isa = PBXGroup;
+			children = (
+				D4145A8D22B514EB00D8165F /* UGChangLongController.h */,
+				D4F63F972290403000EC93AA /* UGChangLongController.m */,
+				D4D8DF662286932200446BAF /* UGLotteryAssistantController.h */,
+				D4D8DF672286932200446BAF /* UGLotteryAssistantController.m */,
+				D4D8DF69228693ED00446BAF /* UGLotteryAssistantController.storyboard */,
+				D41F260F2318F459004FB9C6 /* UGChanglongBetRecordController.h */,
+				D41F26102318F459004FB9C6 /* UGChanglongBetRecordController.m */,
+			);
+			path = "长龙助手";
+			sourceTree = "<group>";
+		};
+		CF3B0E6C234B2BA70035AF50 /* 开奖记录 */ = {
+			isa = PBXGroup;
+			children = (
+				D49A36CC22A3BF6C000057D2 /* UGLotteryRecordController.h */,
+				D49A36CD22A3BF6C000057D2 /* UGLotteryRecordController.m */,
+				D49A36CF22A3C13B000057D2 /* UGLotteryRecordController.storyboard */,
+			);
+			path = "开奖记录";
 			sourceTree = "<group>";
 		};
 		CFD3BE962347137E00FCDA6D /* FishUtility */ = {
@@ -3597,6 +3701,8 @@
 		D4B75E24227811D50007047C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				CF3B0E6B234B2B9C0035AF50 /* 长龙助手 */,
+				CF3B0E6C234B2BA70035AF50 /* 开奖记录 */,
 				D42A06AF22CA212E005488F8 /* UGHomeViewController.h */,
 				D42A06B022CA212E005488F8 /* UGHomeViewController.m */,
 				D42A06B222CA22D9005488F8 /* UGHomeViewController.storyboard */,
@@ -3606,18 +3712,6 @@
 				0322AD5E233DF08900E9857E /* UGDocumentDetailVC.m */,
 				D4145A8A22B513CE00D8165F /* UGGameListViewController.h */,
 				D4145A8B22B513CE00D8165F /* UGGameListViewController.m */,
-				D4145A8D22B514EB00D8165F /* UGChangLongController.h */,
-				D4F63F972290403000EC93AA /* UGChangLongController.m */,
-				D4D8DF662286932200446BAF /* UGLotteryAssistantController.h */,
-				D4D8DF672286932200446BAF /* UGLotteryAssistantController.m */,
-				D4D8DF69228693ED00446BAF /* UGLotteryAssistantController.storyboard */,
-				D41F260F2318F459004FB9C6 /* UGChanglongBetRecordController.h */,
-				D41F26102318F459004FB9C6 /* UGChanglongBetRecordController.m */,
-				D49A36CC22A3BF6C000057D2 /* UGLotteryRecordController.h */,
-				D49A36CD22A3BF6C000057D2 /* UGLotteryRecordController.m */,
-				D49A36CF22A3C13B000057D2 /* UGLotteryRecordController.storyboard */,
-				D424941922C6512A0011A5F3 /* UGChatsViewController.h */,
-				D424941A22C6512A0011A5F3 /* UGChatsViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3821,24 +3915,12 @@
 		D4B75E30227811D50007047C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				CF3B0E65234B1C200035AF50 /* 存款 */,
+				CF3B0E66234B1C350035AF50 /* 取款 */,
+				CF3B0E67234B1C760035AF50 /* 存取款记录 */,
+				CF3B0E68234B1C8A0035AF50 /* 资金明细 */,
 				D405B2F0227C17CE00F8C586 /* UGFundsViewController.h */,
 				D405B2F1227C17CE00F8C586 /* UGFundsViewController.m */,
-				D405B2F8227C23C300F8C586 /* UGRechargeTypeTableViewController.h */,
-				D405B2F9227C23C300F8C586 /* UGRechargeTypeTableViewController.m */,
-				D405B2FB227C30F700F8C586 /* UGWithdrawalViewController.h */,
-				D405B2FC227C30F700F8C586 /* UGWithdrawalViewController.m */,
-				D405B2FE227C310600F8C586 /* UGWithdrawalViewController.storyboard */,
-				D405B305227C3A1900F8C586 /* UGRechargeRecordTableViewController.h */,
-				D405B306227C3A1900F8C586 /* UGRechargeRecordTableViewController.m */,
-				D405B308227C60A500F8C586 /* UGFundDetailsTableViewController.h */,
-				D405B309227C60A500F8C586 /* UGFundDetailsTableViewController.m */,
-				D481EFF82327C8DA000611ED /* UGDepositDetailsViewController.h */,
-				D481EFF92327C8DA000611ED /* UGDepositDetailsViewController.m */,
-				D4BBFC07232A852200147C4A /* UGFundsTestViewController.h */,
-				D4BBFC08232A852200147C4A /* UGFundsTestViewController.m */,
-				D4BBFC09232A852200147C4A /* UGFundsTestViewController.xib */,
-				D4C46F8D232B56CB0062564D /* UGDepositDetailsNoLineViewController.h */,
-				D4C46F8E232B56CB0062564D /* UGDepositDetailsNoLineViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3861,42 +3943,11 @@
 		D4B75E32227811D50007047C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D481EFFB2327CAD8000611ED /* UGDepositDetailsCollectionViewCell.h */,
-				D481EFFC2327CAD8000611ED /* UGDepositDetailsCollectionViewCell.m */,
-				D481EFFD2327CAD8000611ED /* UGDepositDetailsCollectionViewCell.xib */,
-				D405B2F3227C230400F8C586 /* UGRechargeTypeCell.h */,
-				D405B2F4227C230400F8C586 /* UGRechargeTypeCell.m */,
-				D405B2F5227C230400F8C586 /* UGRechargeTypeCell.xib */,
-				D405B300227C38D200F8C586 /* UGRechargeRecordCell.h */,
-				D405B301227C38D200F8C586 /* UGRechargeRecordCell.m */,
-				D405B302227C38D200F8C586 /* UGRechargeRecordCell.xib */,
+				CF3B0E69234B1D1C0035AF50 /* 存款 */,
+				CF3B0E6A234B1D380035AF50 /* 存取款记录 */,
 				D405B30B227C614800F8C586 /* UGFundDetailsCell.h */,
 				D405B30C227C614800F8C586 /* UGFundDetailsCell.m */,
 				D405B30D227C614800F8C586 /* UGFundDetailsCell.xib */,
-				D41EDF812317BE06005798CC /* UGFundRecordDetailView.h */,
-				D41EDF822317BE06005798CC /* UGFundRecordDetailView.m */,
-				D41EDF842317BE15005798CC /* UGFundRecordDetailView.xib */,
-				D41F2615231BE521004FB9C6 /* UGWithdrawRecordDetailView.h */,
-				D41F2616231BE521004FB9C6 /* UGWithdrawRecordDetailView.m */,
-				D41F2618231BE536004FB9C6 /* UGWithdrawRecordDetailView.xib */,
-				D4DCDBD12328D1AC00CF4CEE /* UGDepositDetailsTableViewCell.h */,
-				D4DCDBD22328D1AC00CF4CEE /* UGDepositDetailsTableViewCell.m */,
-				D4DCDBD32328D1AC00CF4CEE /* UGDepositDetailsTableViewCell.xib */,
-				D4241C3F232A1A6900BF4DE1 /* UGFundsBankView.h */,
-				D4241C40232A1A6900BF4DE1 /* UGFundsBankView.m */,
-				D4241C42232A1A8200BF4DE1 /* UGFundsBankView.xib */,
-				D4241C44232A2F0100BF4DE1 /* UGOneTitleTableViewCell.h */,
-				D4241C45232A2F0100BF4DE1 /* UGOneTitleTableViewCell.m */,
-				D4241C46232A2F0100BF4DE1 /* UGOneTitleTableViewCell.xib */,
-				D4BBFC02232A801700147C4A /* UGFundsTransferView.h */,
-				D4BBFC03232A801700147C4A /* UGFundsTransferView.m */,
-				D4BBFC05232A80A800147C4A /* UGFundsTransferView.xib */,
-				D4C46F90232B88BF0062564D /* UGFunds2microcodeView.h */,
-				D4C46F91232B88BF0062564D /* UGFunds2microcodeView.m */,
-				D4C46F93232B88D80062564D /* UGFunds2microcodeView.xib */,
-				D4C46F95232B8DB30062564D /* UGFundsTransfer2View.h */,
-				D4C46F96232B8DB30062564D /* UGFundsTransfer2View.m */,
-				D4C46F98232B8DCC0062564D /* UGFundsTransfer2View.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4343,7 +4394,6 @@
 				CFD3BF202347196600FCDA6D /* LoadingView1.xib in Resources */,
 				D40499C22335E5B30019C249 /* UGPromotion6rowButtonTableViewCell.xib in Resources */,
 				D40FA8BF229910EF003E596F /* yuebaoMone.gif in Resources */,
-				D4BBFC0B232A852200147C4A /* UGFundsTestViewController.xib in Resources */,
 				D422FE5B23251E190063EA4E /* UGPromotion4rowTableViewCell.xib in Resources */,
 				D40D32C82297CEAF00B89398 /* UGMarkSixLotteryBetItem1Cell.xib in Resources */,
 			);
@@ -4470,7 +4520,6 @@
 				D40DE99722F4866600974BAF /* UGImgVcodeModel.m in Sources */,
 				D4C46F92232B88BF0062564D /* UGFunds2microcodeView.m in Sources */,
 				D4AE640D2295871D00DD265A /* MJRefreshConst.m in Sources */,
-				D4BBFC0A232A852200147C4A /* UGFundsTestViewController.m in Sources */,
 				D405B228227972DD00F8C586 /* SVRadialGradientLayer.m in Sources */,
 				D4D8DF762286F01100446BAF /* UGTimeLotteryLeftTitleCell.m in Sources */,
 				D4087DAF22951F15000C4CB0 /* CMNetwork+Mine.m in Sources */,
@@ -4855,7 +4904,6 @@
 				D405B2D7227B0FE100F8C586 /* UGPlatformTitleCollectionViewCell.m in Sources */,
 				CFD3BF4023471A4F00FCDA6D /* ZJSessionModel.m in Sources */,
 				D41F2617231BE522004FB9C6 /* UGWithdrawRecordDetailView.m in Sources */,
-				D424941B22C6512A0011A5F3 /* UGChatsViewController.m in Sources */,
 				D49A36C922A2CF57000057D2 /* UGPCDDLotteryController.m in Sources */,
 				D4D4224F23264340006E680B /* UGdepositListModel.m in Sources */,
 				D405B2CA227ADA4E00F8C586 /* UGGameTypeColletionViewCell.m in Sources */,

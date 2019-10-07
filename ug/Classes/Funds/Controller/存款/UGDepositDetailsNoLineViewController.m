@@ -21,24 +21,24 @@
 @property (nonatomic, strong) UIScrollView *mUIScrollView;
 
 @property (nonatomic, strong) UGchannelModel *selectChannelModel ;
-@property(nonatomic,strong)NSIndexPath *lastPath;
+@property (nonatomic, strong) NSIndexPath *lastPath;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *tableDataArray;
 
-@property (nonatomic, strong)UIView *bg_label;
-@property (nonatomic, strong)UILabel *label;
-@property (nonatomic, strong)UILabel *tiplabel;
+@property (nonatomic, strong) UIView *bg_label;
+@property (nonatomic, strong) UILabel *label;
+@property (nonatomic, strong) UILabel *tiplabel;
 @property (nonatomic, strong) NSArray *channelDataArray;
-@property (nonatomic, strong)UILabel *tip2label;
-@property (nonatomic, strong)UGFundsTransferView *uGFundsTransferView;
-@property (nonatomic, strong)UGFundsTransfer2View *uGFundsTransfer2View;
-@property (nonatomic, strong)UGFunds2microcodeView *uGFunds2microcodeView;
+@property (nonatomic, strong) UILabel *tip2label;
+@property (nonatomic, strong) UGFundsTransferView *uGFundsTransferView;
+@property (nonatomic, strong) UGFundsTransfer2View *uGFundsTransfer2View;
+@property (nonatomic, strong) UGFunds2microcodeView *uGFunds2microcodeView;
 
-@property (nonatomic, strong)UIButton *blank_button;
+@property (nonatomic, strong) UIButton *blank_button;
 @property (nonatomic, strong) NSMutableArray<UGrechargeBankModel> *blankDataArray;
-@property (nonatomic, strong)UGrechargeBankModel *selectBank;
+@property (nonatomic, strong) UGrechargeBankModel *selectBank;
 
-@property (nonatomic, strong)UIButton *submit_button;
+@property (nonatomic, strong) UIButton *submit_button;
 @end
 
 @implementation UGDepositDetailsNoLineViewController
