@@ -72,6 +72,13 @@
     return img;
 }
 
+
++ (BOOL)inspectContextIfInvalidatedInReleaseMode:(CGContextRef)context {
+    if (context) {
+        return YES;
+    }
+    return NO;
+}
 #ifdef DEBUG
 #define CGContextInspectContext(context) [UIImage inspectContextIfInvalidatedInDebugMode:context]
 #else
