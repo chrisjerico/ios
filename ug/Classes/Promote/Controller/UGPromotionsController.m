@@ -16,15 +16,14 @@
 @end
 
 @implementation UGPromotionsController
--(void)skin{
 
-    
+- (void)skin {
     
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-        
         [self skin];
     });
     self.navigationItem.title = @"优惠活动";
@@ -46,10 +45,10 @@
             [__self.tableView reloadData];
         } failure:^(id msg) {
             
-            
         }];
     }];
 }
+
 
 #pragma mark - Table view data source
 

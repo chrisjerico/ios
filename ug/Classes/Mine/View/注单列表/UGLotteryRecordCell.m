@@ -9,6 +9,8 @@
 #import "UGLotteryRecordCell.h"
 #import "UGBetsRecordListModel.h"
 
+#import "UGSystemConfigModel.h"
+
 @interface UGLotteryRecordCell ()
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;    /**<   撤单按钮 */
 
@@ -35,10 +37,9 @@
     subLabel(@"盈亏Label2").text = _NSString(@"%@%@元", (item.settleAmount.doubleValue>0 ? @"+" : @""), item.settleAmount);
     subLabel(@"玩法Label").text = _NSString(@"%@/%@", item.playGroupName, item.playName);
     subLabel(@"开奖号码Label").text = item.lotteryNo;
-    subButton(@"撤单Button").hidden = item.status != 1; // 等待开奖时才显示
+    subButton(@"撤单Button").hidden = !(item.status==1 && [UGSystemConfigModel currentConfig].allowMemberCancelBet); // 等待开奖时才显示
     
     if (item.status == 1) {
-        self.cancelButton.hidden = NO;
         subLabel(@"开奖号码Label").text = @"等待开奖";
         double money = item.odds.floatValue * item.betAmount.floatValue;
         subLabel(@"盈亏Label1").text = @"可赢金额:";

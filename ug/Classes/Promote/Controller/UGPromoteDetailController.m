@@ -34,11 +34,12 @@
     self.titleLabel.text = self.item.title;
     [self.activity startAnimating];
     NSString *str = [NSString stringWithFormat:@"<head><style>img{width:%f !important;height:auto}</style></head>%@",UGScreenW - 10,self.item.content];
-    NSAttributedString *__block attStr = [[NSAttributedString alloc] init];
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        attStr = [[NSAttributedString alloc] initWithData:[str dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
-        
-         dispatch_async(dispatch_get_main_queue(), ^{
+        NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithData:[str dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+        NSMutableParagraphStyle *ps = [NSMutableParagraphStyle new];
+        ps.lineSpacing = 5;
+        [attStr addAttributes:@{NSParagraphStyleAttributeName:ps} range:NSMakeRange(0, attStr.length)];
+        dispatch_async(dispatch_get_main_queue(), ^{
             [self.activity stopAnimating];
             self.contentTextView.attributedText = attStr;
    

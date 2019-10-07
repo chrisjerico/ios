@@ -82,7 +82,7 @@
     
     //注册 /activity 优惠活动
     [FFRouter registerObjectRouteURL:@"/activity" handler:^id(NSDictionary *routerParameters) {
-        UGPromotionsController *viewController = [[UGPromotionsController alloc] init];
+        UGPromotionsController *viewController = _LoadVC_from_storyboard_(@"UGPromotionsController");
         viewController.view.backgroundColor     = UGBackgroundColor;
         viewController.tabBarItem.title         = @"优惠活动";
         viewController.tabBarItem.image         = [UIImage imageNamed:@"youhui1"];
