@@ -3350,7 +3350,6 @@
 				D4B75E15227802600007047C /* Assets.xcassets */,
 				D40FA8BE229910EE003E596F /* yuebaoMone.gif */,
 				D4B75E17227802600007047C /* LaunchScreen.storyboard */,
-				D4DFBE7422E3545E002BAFB0 /* Mine.storyboard */,
 				D422D67E22D9A764008E7065 /* address.json */,
 			);
 			path = Resources;
@@ -3420,6 +3419,7 @@
 				D4C165682344B1AB005A0F12 /* UGMineSkinViewController.xib */,
 				D45F98C422E34DAA00194139 /* UGMineViewController.h */,
 				D45F98C522E34DAA00194139 /* UGMineViewController.m */,
+				D4DFBE7422E3545E002BAFB0 /* Mine.storyboard */,
 			);
 			path = base;
 			sourceTree = "<group>";

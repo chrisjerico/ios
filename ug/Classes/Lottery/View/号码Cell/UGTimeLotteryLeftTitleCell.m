@@ -31,8 +31,7 @@
     self.titleLabel.text = item.name;
     if (item.select) {
         self.leftPoint.backgroundColor = UGRGBColor(237, 183, 99);
-        
-    }else {
+    } else {
         self.leftPoint.backgroundColor = UGRGBColor(195, 195, 196);
     }
 }
@@ -47,14 +46,9 @@
     if (selected) {
         self.titleLabel.textColor = [[UGSkinManagers shareInstance] setNavbgColor];
         self.bottomLine.hidden = NO;
-//        self.layer.borderColor = UGNavColor.CGColor;
-//        self.layer.borderWidth = 1;
-        
-    }else {
+    } else {
         self.titleLabel.textColor = [UIColor blackColor];
         self.bottomLine.hidden = YES;
-//        self.layer.borderWidth = 0.7;
-//        self.layer.borderColor = [UIColor whiteColor].CGColor;
     }
 }
 

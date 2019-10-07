@@ -8,32 +8,31 @@
 
 #import "UGYYLotterySecondHomeViewController.h"
 #import "UGhomeRecommendCollectionViewCell.h"
+
 @interface UGYYLotterySecondHomeViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *collectionView;
 
 @end
-@implementation UGYYLotterySecondHomeViewController
--(void)skin{
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
 
+@implementation UGYYLotterySecondHomeViewController
+
+- (void)skin {
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
     [self.collectionView  reloadData];
-  
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-   [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
     
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-        
         [self skin];
     });
-
     [self initCollectionView];
 }
 
 - (void)initCollectionView {
-    
     float itemW = (UGScreenW - 15) / 2;
     UICollectionViewFlowLayout *layout = ({
         
@@ -72,41 +71,27 @@
 #pragma mark UICollectionView datasource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    
     return 1;
-    
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    
     return self.dataArray.count;
-    
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UGhomeRecommendCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UGhomeRecommendCollectionViewCell" forIndexPath:indexPath];
-    
-    UGYYGames *model = (UGYYGames *)self.dataArray[indexPath.row];
-
-    //字典转模型
-    cell.itemGame = model;
-    //字典转模型
-    
+    cell.itemGame = (UGYYGames *)self.dataArray[indexPath.row];
     return cell;
 }
 
-
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
-    
-    UGYYGames *listModel = self.dataArray[indexPath.row];
-    
-    [self getGotoGameUrl:listModel];
-   
+    [self getGotoGameUrl:self.dataArray[indexPath.row]];
 }
 
 
 #pragma mark 网络请求
+
 - (void)getGotoGameUrl:(UGYYGames *)game {
     
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
@@ -130,5 +115,6 @@
         }];
     }];
 }
+
 @end
 
