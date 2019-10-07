@@ -10,7 +10,6 @@
 #import "UGNavigationController.h"
 #import "UGMineViewController.h"
 #import "UGLotteryHomeController.h"
-#import "UGChatsViewController.h"
 #import "UITabBarController+ShowViewController.h"
 #import "UGChatViewController.h"
 #import "UGAppVersionManager.h"
@@ -187,22 +186,11 @@
             ) {
             [QDAlertView showWithTitle:@"温馨提示" message:@"您还未登录" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 if (buttonIndex) {
-                    
                     UGLoginAuthorize(^(BOOL isFinish) {
                         if (!isFinish) {
                             return ;
                         }
-//                        if ([navi.viewControllers.firstObject isKindOfClass:[UGChatsViewController class]]) {
-//                            QDWebViewController *webVC = [[QDWebViewController alloc] init];
-//                             webVC.navigationItem.title = @"聊天室";
-//                            webVC.urlString = [NSString stringWithFormat:@"%@/dist/index.html#/chatRoomList",baseServerUrl];
-//                           [tabBarController showViewControllerInSelected:webVC animated:YES];
-//                            return;
-//                        }else {
-                        
-                            [tabBarController setSelectedViewController:viewController];
-//                        }
-                        
+                        [tabBarController setSelectedViewController:viewController];
                     });
                 }
             }];

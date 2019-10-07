@@ -42,48 +42,47 @@
     [self.slideSwitchView changeSlideAtSegmentIndex:self.selectIndex];
 }
 
+
 #pragma mark - 配置segment
--(void)buildSegment
+
+- (void)buildSegment
 {
     SANotificationEventSubscribe(UGNotificationDepositSuccessfully, self, ^(typeof (self) self, id obj) {
-       
         [self.slideSwitchView changeSlideAtSegmentIndex:2];
-        
     });
     
-   
-        self.itemArray = @[@"存款",@"取款",@"存款记录",@"取款记录",@"资金明细"];
-        self.slideSwitchView = [[XYYSegmentControl alloc] initWithFrame:CGRectMake(0 , 0, self.view.width, self.view.height) channelName:self.itemArray source:self];
-        [self.slideSwitchView setUserInteractionEnabled:YES];
-        self.slideSwitchView.segmentControlDelegate = self;
-        //设置tab 颜色(可选)
-        self.slideSwitchView.tabItemNormalColor = [UIColor grayColor];
-        self.slideSwitchView.tabItemNormalFont = 13;
-        //设置tab 被选中的颜色(可选)
-        self.slideSwitchView.tabItemSelectedColor = UGNavColor;
-        //设置tab 背景颜色(可选)
-        self.slideSwitchView.tabItemNormalBackgroundColor = [UIColor whiteColor];;
-        //设置tab 被选中的标识的颜色(可选)
-        self.slideSwitchView.tabItemSelectionIndicatorColor = UGNavColor;
-        [self.view addSubview:self.slideSwitchView];
-
-   
-    
+    self.itemArray = @[@"存款",@"取款",@"存款记录",@"取款记录",@"资金明细"];
+    self.slideSwitchView = [[XYYSegmentControl alloc] initWithFrame:CGRectMake(0 , 0, self.view.width, self.view.height) channelName:self.itemArray source:self];
+    [self.slideSwitchView setUserInteractionEnabled:YES];
+    self.slideSwitchView.segmentControlDelegate = self;
+    //设置tab 颜色(可选)
+    self.slideSwitchView.tabItemNormalColor = [UIColor grayColor];
+    self.slideSwitchView.tabItemNormalFont = 13;
+    //设置tab 被选中的颜色(可选)
+    self.slideSwitchView.tabItemSelectedColor = UGNavColor;
+    //设置tab 背景颜色(可选)
+    self.slideSwitchView.tabItemNormalBackgroundColor = [UIColor whiteColor];;
+    //设置tab 被选中的标识的颜色(可选)
+    self.slideSwitchView.tabItemSelectionIndicatorColor = UGNavColor;
+    [self.view addSubview:self.slideSwitchView];
 }
 
+
 #pragma mark - XYYSegmentControlDelegate
--(NSUInteger)numberOfTab:(XYYSegmentControl *)view
-{
+
+- (NSUInteger)numberOfTab:(XYYSegmentControl *)view {
     return [self.itemArray count];//items决定
 }
 
 ///待加载的控制器
--(UIViewController *)slideSwitchView:(XYYSegmentControl *)view viewOfTab:(NSUInteger)number
-{
+- (UIViewController *)slideSwitchView:(XYYSegmentControl *)view viewOfTab:(NSUInteger)number {
+    // 存款
     if (number == 0) {
         UGRechargeTypeTableViewController *rechargeVC = [[UGRechargeTypeTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
         return rechargeVC;
-    }else if (number == 1) {
+    }
+    // 取款
+    else if (number == 1) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGWithdrawalViewController" bundle:nil];
         UGWithdrawalViewController *withdrawalVC = [storyboard instantiateInitialViewController];
         WeakSelf
@@ -92,33 +91,29 @@
             [weakSelf.slideSwitchView changeSlideAtSegmentIndex:weakSelf.selectIndex];
         };
         return withdrawalVC;
-        
-    }else if (number == 2) {
-        
+    }
+    // 存款记录
+    else if (number == 2) {
         UGRechargeRecordTableViewController *rechargeRecordVC = [[UGRechargeRecordTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
           rechargeRecordVC.recordType = RecordTypeRecharge;
         return rechargeRecordVC;
-        
-    }else if (number == 3) {
+    }
+    // 取款记录
+    else if (number == 3) {
         UGRechargeRecordTableViewController *rechargeRecordVC = [[UGRechargeRecordTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
         rechargeRecordVC.recordType = RecordTypeWithdraw;
         return rechargeRecordVC;
-        
-    } else {
-        
+    }
+    // 资金明细
+    else {
         UGFundDetailsTableViewController *detailsVC = [[UGFundDetailsTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
         return detailsVC;
-        
     }
 }
 
-- (void)slideSwitchView:(XYYSegmentControl *)view didselectTab:(NSUInteger)number
-{
-
-    if (number != 1) {
-        
+- (void)slideSwitchView:(XYYSegmentControl *)view didselectTab:(NSUInteger)number {
+    if (number != 1)
         SANotificationEventPost(UGNotificationFundTitlesTap, nil);
-    }
 }
 
 @end

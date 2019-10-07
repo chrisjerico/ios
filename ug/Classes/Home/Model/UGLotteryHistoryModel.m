@@ -11,3 +11,8 @@
 @implementation UGLotteryHistoryModel
 
 @end
+
+
+@implementation UGLotteryHistoryListModel
+
+@end

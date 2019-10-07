@@ -12,7 +12,6 @@
 #import "UGFundsViewController.h"
 #import "UGPromotionsController.h"
 #import "UGNavigationController.h"
-#import "UGChatsViewController.h"
 #import "UGHomeViewController.h"
 #import "UGYYLotteryHomeViewController.h"
 #import "UGMineSkinViewController.h"
