@@ -26,16 +26,6 @@ NS_ASSUME_NONNULL_BEGIN
  ******************************************************************************/
 + (UIImage*)gradientImageWithBounds:(CGRect)bounds andColors:(NSArray*)colors andGradientType:(GradientDirection)gradientType;
 
-
-/******************************************************************************
- 函数名称 : imageChangeColor;
- 函数描述 : 根据颜色返回图片方法
- 输入参数 : UIColor*
- 输出参数 : UIImage
- 返回参数 : UIImage
- 备注信息 :
- ******************************************************************************/
--(UIImage*)imageChangeColor:(UIColor*)color;
 /******************************************************************************
  函数名称 : qmui_imageWithTintColor;
  函数描述 : 把图片的纹理颜色换掉方法
