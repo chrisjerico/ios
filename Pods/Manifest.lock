@@ -1,0 +1,70 @@
+PODS:
+  - Aspects (1.4.1)
+  - AvoidCrash (2.5.2)
+  - BAWKWebView (1.0.9)
+  - DateTools (2.0.0)
+  - FFRouter (1.1.1)
+  - FSCalendar (2.8.0)
+  - IQKeyboardManager (6.4.0)
+  - JRSwizzle (1.0)
+  - LEEAlert (1.2.6)
+  - Masonry (1.1.0)
+  - MJExtension (3.0.17)
+  - RegExCategories (1.0)
+  - Toast (4.0.0)
+  - YYCategories (1.0.4):
+    - YYCategories/no-arc (= 1.0.4)
+  - YYCategories/no-arc (1.0.4)
+
+DEPENDENCIES:
+  - Aspects
+  - AvoidCrash
+  - BAWKWebView
+  - DateTools
+  - FFRouter
+  - FSCalendar
+  - IQKeyboardManager
+  - JRSwizzle
+  - LEEAlert
+  - Masonry
+  - MJExtension
+  - RegExCategories
+  - Toast (~> 4.0.0)
+  - YYCategories
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Aspects
+    - AvoidCrash
+    - BAWKWebView
+    - DateTools
+    - FFRouter
+    - FSCalendar
+    - IQKeyboardManager
+    - JRSwizzle
+    - LEEAlert
+    - Masonry
+    - MJExtension
+    - RegExCategories
+    - Toast
+    - YYCategories
+
+SPEC CHECKSUMS:
+  Aspects: 7595ba96a6727a58ebcbfc954497fc5d2fdde546
+  AvoidCrash: 28c6916fe19bd2b84126b8dec7cbe61c9a12741d
+  BAWKWebView: a45b5c77424a015c91c6684f03392d981932f909
+  DateTools: 933ac9c490f21f92127cf690ccd8c397e0126caf
+  FFRouter: dfda137b8f6817ca92dc9a1151727449548abfd3
+  FSCalendar: 3a5ed3636e2ba1b83ebebfcf0c2603105a6f5efe
+  IQKeyboardManager: fcef267266379c003181fc3592f6bdb8bf4db839
+  JRSwizzle: dd5ead5d913a0f29e7f558200165849f006bb1e3
+  LEEAlert: 8a612d6c50b74c84cebda2a9b16eeb18535b6782
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MJExtension: 74ec83124a68891619fb7ba9c5c811bbf1691076
+  RegExCategories: e68befacacd5bda853c88f70ec745cb2d0cfb89c
+  Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
+  YYCategories: 6bcd4314c6661a561410dce4a793379ebd306abd
+
+PODFILE CHECKSUM: 035f6ae2b9546d42dd86c04ffecf27feaf3458b0
+
+COCOAPODS: 1.7.1
