@@ -453,7 +453,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         betDetailView.nextIssueModel = self.nextIssueModel;
         WeakSelf
         betDetailView.betClickBlock = ^{
-            [weakSelf resetClick:nil];
+//            [weakSelf resetClick:nil];
         };
         [betDetailView show];
         
