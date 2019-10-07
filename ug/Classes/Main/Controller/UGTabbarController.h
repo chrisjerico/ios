@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "UGChatViewController.h"
 #import "UGNavigationController.h"
-
+#import "UGBalanceConversionController.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UGTabbarController : UITabBarController
 
+@property (strong, nonatomic)UGBalanceConversionController *balanceConversionVC;
 @property (strong, nonatomic) UGChatViewController *qdwebVC;
 
 @property (strong, nonatomic) NSMutableArray *vcs;

@@ -376,6 +376,8 @@
                         <outlet property="sectionLabel4" destination="bBS-0D-Nlx" id="hhk-X4-pM2"/>
                         <outlet property="tableView" destination="igE-W2-VWS" id="sco-41-kzL"/>
                         <outlet property="totalMembers" destination="2dP-7y-yod" id="5dp-AK-8IM"/>
+                        <outlet property="urlCopy1Button" destination="lMI-3l-wep" id="X8i-uh-HYt"/>
+                        <outlet property="urlCopy2Button" destination="sA6-5L-mrh" id="Fhi-HH-frG"/>
                         <outlet property="userNameLabel" destination="acf-gB-Th4" id="Ez8-xH-5er"/>
                     </connections>
                 </tableViewController>

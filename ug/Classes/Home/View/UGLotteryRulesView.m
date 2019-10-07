@@ -26,6 +26,8 @@
         self.layer.masksToBounds = YES;
         self.sureButton.layer.cornerRadius = 6;
         self.sureButton.layer.masksToBounds = YES;
+        
+        [self.sureButton setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
         self.contentTextView.editable = NO;
 
     }

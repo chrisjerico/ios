@@ -22,14 +22,19 @@
 @end
 
 @implementation UGChangLongController
-
+-(void)skin{
+    
+    self.view.backgroundColor = UGBackgroundColor;
+     [self buildSegment];
+      [self getAllNextIssueData];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.navigationItem.title = @"长龙助手";
     self.view.backgroundColor = UGBackgroundColor;
     
-    [self getAllNextIssueData];
+  
     
     [self buildSegment];
     

@@ -21,7 +21,7 @@
 
 @implementation UGSecurityCenterViewController
 -(void)skin{
-   
+    [self buildSegment];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];

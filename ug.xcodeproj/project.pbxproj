@@ -306,8 +306,6 @@
 		D41A57792306924D00C26023 /* UGBackToastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D41A57762306924C00C26023 /* UGBackToastView.xib */; };
 		D41AEA6B22E58D9E003E28C3 /* UGAvatarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D41AEA6A22E58D9E003E28C3 /* UGAvatarModel.m */; };
 		D41AEA6E22E5D44F003E28C3 /* UGLotteryHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D41AEA6D22E5D44F003E28C3 /* UGLotteryHistoryModel.m */; };
-		D41B3CF1231FE1E900716512 /* UGSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D41B3CEF231FE1E900716512 /* UGSignInViewController.m */; };
-		D41B3CF2231FE1E900716512 /* UGSignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D41B3CF0231FE1E900716512 /* UGSignInViewController.xib */; };
 		D41C300C233F220000541254 /* UGYYRightMenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D41C300A233F220000541254 /* UGYYRightMenuTableViewCell.m */; };
 		D41C300D233F220000541254 /* UGYYRightMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D41C300B233F220000541254 /* UGYYRightMenuTableViewCell.xib */; };
 		D41C3DF4228E75F100BF6436 /* CAAnimation+WAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = D41C3DE7228E75F000BF6436 /* CAAnimation+WAnimation.m */; };
@@ -1203,9 +1201,6 @@
 		D41AEA6A22E58D9E003E28C3 /* UGAvatarModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGAvatarModel.m; sourceTree = "<group>"; };
 		D41AEA6C22E5D44F003E28C3 /* UGLotteryHistoryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLotteryHistoryModel.h; sourceTree = "<group>"; };
 		D41AEA6D22E5D44F003E28C3 /* UGLotteryHistoryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLotteryHistoryModel.m; sourceTree = "<group>"; };
-		D41B3CEE231FE1E900716512 /* UGSignInViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGSignInViewController.h; sourceTree = "<group>"; };
-		D41B3CEF231FE1E900716512 /* UGSignInViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGSignInViewController.m; sourceTree = "<group>"; };
-		D41B3CF0231FE1E900716512 /* UGSignInViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGSignInViewController.xib; sourceTree = "<group>"; };
 		D41C3009233F220000541254 /* UGYYRightMenuTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGYYRightMenuTableViewCell.h; sourceTree = "<group>"; };
 		D41C300A233F220000541254 /* UGYYRightMenuTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGYYRightMenuTableViewCell.m; sourceTree = "<group>"; };
 		D41C300B233F220000541254 /* UGYYRightMenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGYYRightMenuTableViewCell.xib; sourceTree = "<group>"; };
@@ -2605,9 +2600,6 @@
 		D41B3CED231FE18F00716512 /* SignIn */ = {
 			isa = PBXGroup;
 			children = (
-				D41B3CEE231FE1E900716512 /* UGSignInViewController.h */,
-				D41B3CEF231FE1E900716512 /* UGSignInViewController.m */,
-				D41B3CF0231FE1E900716512 /* UGSignInViewController.xib */,
 				D42528172320EB01007DE522 /* UGSigInCodeViewController.h */,
 				D42528182320EB01007DE522 /* UGSigInCodeViewController.m */,
 			);
@@ -3909,7 +3901,6 @@
 				D4252824232103AA007DE522 /* UGSignInHeaderView.xib in Resources */,
 				D405B30F227C614800F8C586 /* UGFundDetailsCell.xib in Resources */,
 				D4C165792344CAB6005A0F12 /* UGSkinSeconCollectionHeadView.xib in Resources */,
-				D41B3CF2231FE1E900716512 /* UGSignInViewController.xib in Resources */,
 				D4EE8F882341DD4A006FA0E2 /* UGhomeRecommendCollectionViewCell.xib in Resources */,
 				D4090F63228D3E0E00D6DA43 /* UGAvaterSelectView.xib in Resources */,
 				D405B3862281620000F8C586 /* UGMessageTableViewCell.xib in Resources */,
@@ -4087,7 +4078,6 @@
 				D40E1E5F22BFAEC4004D4664 /* UGPromoteDetailController.m in Sources */,
 				D40FA8C722992EA7003E596F /* UGYubaoConversionCenterController.m in Sources */,
 				D4F0477622E9E22E008EBB56 /* UGLinkNumCollectionViewCell.m in Sources */,
-				D41B3CF1231FE1E900716512 /* UGSignInViewController.m in Sources */,
 				D4EDC9392343A1E300BA4C4D /* UGTableViewController.m in Sources */,
 				D40DE98822F335E300974BAF /* TAAnimatedDotView.m in Sources */,
 				D4AE64112295871D00DD265A /* UIView+MJExtension.m in Sources */,

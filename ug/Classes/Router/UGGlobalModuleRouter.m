@@ -197,8 +197,7 @@
         UIImage *image = [UIImage imageNamed:@"change"];
         image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         viewController.tabBarItem.selectedImage = image;
-        UGNavigationController *nvc = [[UGNavigationController alloc]initWithRootViewController:viewController];
-        return nvc;
+        return viewController;
     }];
 
     //注册 /banks 银行卡

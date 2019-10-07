@@ -335,6 +335,102 @@
     
 }
 
+-(UIColor *)signbgColor:(NSString *)skitType{
+    
+    UIColor *bgColor ;
+    
+    if ([skitType isEqualToString:@"1"]) {//经典  1蓝色
+        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x7F9493),kUIColorFromRGB(0x5389B3)] andGradientType:GradientDirectionLeftToRight];
+        bgColor = [UIColor colorWithPatternImage:backImage];
+    }
+    else  if ([skitType isEqualToString:@"2"]) {//经典 2红色
+        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xd19885),kUIColorFromRGB(0x904a6e)] andGradientType:GradientDirectionLeftToRight];
+        bgColor = [UIColor colorWithPatternImage:backImage];
+    }
+    else  if ([skitType isEqualToString:@"3"]) {//经典 3褐色
+        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xB48A46),kUIColorFromRGB(0x8A5C3E)] andGradientType:GradientDirectionLeftToRight];
+        bgColor = [UIColor colorWithPatternImage:backImage];
+    }
+    else  if ([skitType isEqualToString:@"4"]) {//经典 4绿色
+        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x78BC67),kUIColorFromRGB(0x4DB48B)] andGradientType:GradientDirectionLeftToRight];
+        bgColor = [UIColor colorWithPatternImage:backImage];
+    }
+    else  if ([skitType isEqualToString:@"5"]) {//经典  5褐色
+        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x8A4544),kUIColorFromRGB(0x84564A)] andGradientType:GradientDirectionLeftToRight];
+        bgColor = [UIColor colorWithPatternImage:backImage];
+    }
+    else  if ([skitType isEqualToString:@"6"]) {//经典 6淡蓝色
+        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x61A8B4),kUIColorFromRGB(0xC7F3E5)] andGradientType:GradientDirectionLeftToRight];
+        bgColor = [UIColor colorWithPatternImage:backImage];
+    }
+    else  if ([skitType isEqualToString:@"7"]) {//经典 7深蓝
+        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x486869),kUIColorFromRGB(0x436363)] andGradientType:GradientDirectionLeftToRight];
+        bgColor = [UIColor colorWithPatternImage:backImage];
+        
+    }
+    else  if ([skitType isEqualToString:@"8"]) {//经典 8紫色
+        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x934FB4),kUIColorFromRGB(0x9146A0)] andGradientType:GradientDirectionLeftToRight];
+        bgColor = [UIColor colorWithPatternImage:backImage];
+    }
+    else  if ([skitType isEqualToString:@"9"]) {//经典 9深红
+        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x871113),kUIColorFromRGB(0x871B1F)] andGradientType:GradientDirectionLeftToRight];
+        bgColor = [UIColor colorWithPatternImage:backImage];
+        
+    }
+    else  if ([skitType isEqualToString:@"10"]) {//经典 10淡灰
+        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xFC7008),kUIColorFromRGB(0xFC7008)] andGradientType:GradientDirectionLeftToRight];
+        bgColor = [UIColor colorWithPatternImage:backImage];
+    }
+    else  if ([skitType isEqualToString:@"11"]) {//经典 11橘红
+        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xB52A18),kUIColorFromRGB(0x8F1115)] andGradientType:GradientDirectionLeftToRight];
+        bgColor = [UIColor colorWithPatternImage:backImage];
+    }
+    else  if ([skitType isEqualToString:@"12"]) {//经典 12星空蓝
+        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x008CAC),kUIColorFromRGB(0x00A9CA)] andGradientType:GradientDirectionLeftToRight];
+        bgColor = [UIColor colorWithPatternImage:backImage];
+        
+    }
+    else  if ([skitType isEqualToString:@"13"]) {//经典 13紫色
+        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x9800B7),kUIColorFromRGB(0x46D8D6)] andGradientType:GradientDirectionLeftToRight];
+        bgColor = [UIColor colorWithPatternImage:backImage];
+        
+    }
+    else  if ([skitType isEqualToString:@"14"]) {//经典 14粉红
+        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xFFBED4),kUIColorFromRGB(0xFEC1D5)] andGradientType:GradientDirectionLeftToRight];
+        bgColor = [UIColor colorWithPatternImage:backImage];
+    }
+    else  if ([skitType isEqualToString:@"15"]) {//经典 15淡蓝
+        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x4CAEDC),kUIColorFromRGB(0x5DC3EB)] andGradientType:GradientDirectionLeftToRight];
+        bgColor = [UIColor colorWithPatternImage:backImage];
+    }
+    else  if ([skitType isEqualToString:@"16"]) {//经典 16淡灰
+        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x4300DA),kUIColorFromRGB(0x5800EE)] andGradientType:GradientDirectionLeftToRight];
+        bgColor = [UIColor colorWithPatternImage:backImage];
+    }
+    else  if ([skitType isEqualToString:@"17"]) {//经典 17淡灰
+        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xFECC0A),kUIColorFromRGB(0xFE9C08)] andGradientType:GradientDirectionLeftToRight];
+        bgColor = [UIColor colorWithPatternImage:backImage];
+        
+    }
+    else  if ([skitType isEqualToString:@"18"]) {//18钻石蓝
+        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xB3B3B3),kUIColorFromRGB(0xB3B3B3)] andGradientType:GradientDirectionLeftToRight];
+        bgColor = [UIColor colorWithPatternImage:backImage];
+    }
+    else  if ([skitType isEqualToString:@"19"]) {//19经典 忧郁蓝
+        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x00B2FF),kUIColorFromRGB(0x005ED6)] andGradientType:GradientDirectionLeftToRight];
+        bgColor = [UIColor colorWithPatternImage:backImage];
+    }
+    else  if ([skitType isEqualToString:@"石榴红"]) {//石榴红
+        bgColor = kUIColorFromRGB(0xFFFFFF);
+    }
+    else  if ([skitType isEqualToString:@"新年红"]) {//新年红
+        bgColor = kUIColorFromRGB(0xFFFFFF);
+    }
+    return bgColor;
+    
+}
+
+
 
 
 -(UIColor *)mineProgressViewColor:(NSString *)skitType{
@@ -920,6 +1016,10 @@
 
 -(UIColor *)setbgColor{
     return [self bgColor:[self conversionSkitType]];
+}
+
+-(UIColor *)setSignbgColor{
+    return [self signbgColor:[self conversionSkitType]];
 }
 
 -(UIColor *)settabNOSelectColor{

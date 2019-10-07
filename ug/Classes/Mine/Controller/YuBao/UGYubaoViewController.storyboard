@@ -21,7 +21,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CUu-S3-CVa">
                                 <rect key="frame" x="0.0" y="44" width="414" height="230"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bgyubao.4849cc22" translatesAutoresizingMaskIntoConstraints="NO" id="red-Xe-Qmb">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bgyubao1" translatesAutoresizingMaskIntoConstraints="NO" id="red-Xe-Qmb">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="230"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="            " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a6D-8H-Pbd">
@@ -54,7 +54,6 @@
                                             <constraint firstAttribute="width" constant="35" id="5Wb-Rr-eVN"/>
                                             <constraint firstAttribute="height" constant="35" id="LwV-Cs-aWt"/>
                                         </constraints>
-                                        <state key="normal" image="yubaohome"/>
                                         <connections>
                                             <action selector="back:" destination="jz7-Dd-k0M" eventType="touchUpInside" id="wei-If-Pds"/>
                                         </connections>
@@ -99,6 +98,10 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="myHome" translatesAutoresizingMaskIntoConstraints="NO" id="rBc-yn-ViJ">
+                                        <rect key="frame" x="15" y="13" width="30" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -433,7 +436,9 @@
                         <outlet property="animatedImageView" destination="p5V-IT-BwA" id="qNa-tj-gQS"/>
                         <outlet property="annualizedRateLabel" destination="RuL-Qv-0rn" id="9kJ-ZT-p1o"/>
                         <outlet property="balanceLabel" destination="yUb-NE-NXD" id="Ql5-Gx-lku"/>
+                        <outlet property="bgView" destination="red-Xe-Qmb" id="Pq2-tV-xSM"/>
                         <outlet property="giftBalanceLabel" destination="LVP-4l-7uk" id="Hxf-Hx-Ymd"/>
+                        <outlet property="imgButton" destination="qaY-mO-peB" id="ePn-70-keN"/>
                         <outlet property="introLabel" destination="ulz-yg-jTK" id="PtN-hi-M1o"/>
                         <outlet property="monthProfitLabel" destination="aPj-Gf-jge" id="QY4-qU-WT9"/>
                         <outlet property="nameLabel" destination="s2p-hr-Jle" id="2zZ-Kc-nDB"/>
@@ -447,7 +452,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YsB-hc-iLb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="119" y="149"/>
+            <point key="canvasLocation" x="118.84057971014494" y="148.66071428571428"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="l3V-ML-opY">
@@ -1088,7 +1093,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qav-1t-hgV">
                                 <rect key="frame" x="0.0" y="44" width="414" height="230"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bgyubao.4849cc22" translatesAutoresizingMaskIntoConstraints="NO" id="fMd-0J-j9C">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bgyubao1" translatesAutoresizingMaskIntoConstraints="NO" id="fMd-0J-j9C">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="230"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="666" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3PA-eE-bd4">
@@ -1381,6 +1386,7 @@
                     </view>
                     <connections>
                         <outlet property="balanceLabel" destination="ShB-xf-C82" id="2Uf-Dx-LG1"/>
+                        <outlet property="bgView" destination="fMd-0J-j9C" id="2cH-dD-V8I"/>
                         <outlet property="dayIncomeLabel" destination="3PA-eE-bd4" id="cbG-Au-cPZ"/>
                         <outlet property="inputTextF" destination="qyE-Gu-ecz" id="jrq-LX-1zI"/>
                         <outlet property="rateLabel" destination="5g0-tB-IbS" id="Slq-Pw-BTb"/>
@@ -1402,9 +1408,9 @@
     </scenes>
     <resources>
         <image name="baibolang" width="187.5" height="24"/>
-        <image name="bgyubao.4849cc22" width="186.5" height="116"/>
+        <image name="bgyubao1" width="186.5" height="116"/>
         <image name="c_navi_back" width="30" height="30"/>
-        <image name="yubaohome" width="39" height="35"/>
+        <image name="myHome" width="64" height="64"/>
         <image name="yueshouyi" width="50" height="50"/>
         <image name="zhuanru" width="50" height="50"/>
         <image name="zhuanrujilu" width="50" height="50"/>

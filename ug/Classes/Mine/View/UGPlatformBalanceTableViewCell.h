@@ -14,6 +14,7 @@ typedef void(^BalanceRefreshBlock)(void);
 @interface UGPlatformBalanceTableViewCell : UITableViewCell
 @property (nonatomic, strong) UGPlatformGameModel *item;
 @property (nonatomic, copy) BalanceRefreshBlock refreshBlock;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @end
 
 NS_ASSUME_NONNULL_END

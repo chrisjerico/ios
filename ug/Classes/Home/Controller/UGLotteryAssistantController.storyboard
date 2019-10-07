@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="jxj-Vx-5L2">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="760"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="812"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="UGLotteryAssistantTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="UGLotteryAssistantTableViewCell" rowHeight="90" id="74t-CX-e8m" customClass="UGLotteryAssistantTableViewCell">
@@ -217,7 +217,7 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a5i-92-t8y">
-                                <rect key="frame" x="0.0" y="760" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="812" width="414" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K35-n8-sky">
                                         <rect key="frame" x="0.0" y="0.0" width="60" height="50"/>
@@ -314,10 +314,10 @@
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="cnj-5J-m3b" firstAttribute="bottom" secondItem="a5i-92-t8y" secondAttribute="bottom" id="Ncz-nc-CL0"/>
                             <constraint firstItem="a5i-92-t8y" firstAttribute="top" secondItem="jxj-Vx-5L2" secondAttribute="bottom" id="RMP-9a-saO"/>
                             <constraint firstAttribute="trailing" secondItem="jxj-Vx-5L2" secondAttribute="trailing" id="YcZ-SY-86r"/>
                             <constraint firstAttribute="trailing" secondItem="a5i-92-t8y" secondAttribute="trailing" id="ctL-II-GSY"/>
-                            <constraint firstAttribute="bottom" secondItem="a5i-92-t8y" secondAttribute="bottom" constant="86" id="fgP-zG-S2v"/>
                             <constraint firstItem="jxj-Vx-5L2" firstAttribute="top" secondItem="WkB-zH-dlm" secondAttribute="top" id="jZb-oy-i8h"/>
                             <constraint firstItem="a5i-92-t8y" firstAttribute="leading" secondItem="WkB-zH-dlm" secondAttribute="leading" id="mfY-4x-gEt"/>
                             <constraint firstItem="jxj-Vx-5L2" firstAttribute="leading" secondItem="WkB-zH-dlm" secondAttribute="leading" id="qBy-GK-DuN"/>
@@ -330,7 +330,6 @@
                         <outlet property="betDetailLabel" destination="kbI-z7-wjx" id="pqb-Ng-YMJ"/>
                         <outlet property="betDetailView" destination="k91-rC-NUa" id="zf3-5s-wP5"/>
                         <outlet property="bottomView" destination="a5i-92-t8y" id="tmf-6r-3Pi"/>
-                        <outlet property="bottomViewBottom" destination="fgP-zG-S2v" id="25i-Rq-bKa"/>
                         <outlet property="bottomViewConstraintHeight" destination="wlR-Uw-iXv" id="afz-0f-cFP"/>
                         <outlet property="countLabel" destination="whZ-ex-6al" id="rOT-Za-zlt"/>
                         <outlet property="tableView" destination="jxj-Vx-5L2" id="YkZ-hU-NTp"/>

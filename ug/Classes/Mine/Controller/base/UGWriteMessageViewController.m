@@ -21,8 +21,8 @@
 
 @implementation UGWriteMessageViewController
 -(void)skin{
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
     
+      [self.submitButton setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -30,12 +30,13 @@
     self.contentTextView.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.contentTextView.layer.borderWidth = 0.8;
     self.contentTextView.delegate = self;
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    [self.view setBackgroundColor: [UIColor whiteColor]];
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         
         [self skin];
     });    self.submitButton.layer.cornerRadius = 3;
     self.submitButton.layer.masksToBounds = YES;
+    [self.submitButton setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
     self.typeArray = @[@"反馈类型：提交建议",@"反馈类型：我要投诉"];
     self.messageTypeLabel.text = self.typeArray[self.feedType];
 }

@@ -81,9 +81,13 @@
 @implementation UGMineSkinViewController
 -(void)skin{
     [self.userInfoView setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
+    
+     [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    
+    [self.myCollectionView setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
     _progressLayer.strokeColor = [[UGSkinManagers shareInstance] setMineProgressViewColor].CGColor;
      [self.progressView.layer addSublayer:self.progressLayer];
-     [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    
 
     skitType = [[UGSkinManagers shareInstance] skitType];
     
@@ -170,6 +174,8 @@
     else{
         self.topupView.hidden = NO;
         self.topupViewNSLayoutConstraintHight.constant = 60;
+      
+        [CMCommon setBorderWithView:self.topupView top:NO left:NO bottom:YES right:NO borderColor: UGRGBColor(236, 235, 235) borderWidth:1];
     }
     
 //    //test用

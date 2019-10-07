@@ -57,7 +57,11 @@
 @end
 
 @implementation UGMissionCenterViewController
-
+-(void)skin{
+    
+    [self initView];
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -66,7 +70,11 @@
         
     });
 
-    
+    [self initView];
+
+}
+
+-(void)initView{
     [self.integralLabel setHidden:YES];
     self.fd_prefersNavigationBarHidden = NO;
     self.navigationItem.title = @"任务大厅";
@@ -107,10 +115,9 @@
         weakSelf.titleCollectionView.selectIndex = selectIndex;
         
     };
-
+    
     [self getUserInfo];
 }
-
 
 
 //刷新余额动画

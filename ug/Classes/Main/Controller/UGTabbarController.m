@@ -25,7 +25,7 @@
 @implementation UGTabbarController
 @synthesize qdwebVC,vcs,nvcHome,nvcChangLong,nvcLotteryList,nvcActivity,nvcChatRoomList,nvcLotteryRecord;
 @synthesize nvcUser,nvcTask,nvcSecurityCenter,nvcFunds,nvcMessage,nvcConversion,nvcBanks,nvcYuebao;
-@synthesize nvcSign,nvcReferrer;
+@synthesize nvcSign,nvcReferrer,balanceConversionVC;
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initAllNav];
@@ -63,7 +63,8 @@
     //====站内信
     self.nvcMessage = [FFRouter routeObjectURL:@"/message"];
     //====额度转换
-    self.nvcConversion = [FFRouter routeObjectURL:@"/conversion"];
+    balanceConversionVC =  [FFRouter routeObjectURL:@"/conversion"];
+    self.nvcConversion = [[UGNavigationController alloc]initWithRootViewController:balanceConversionVC];
     //====银行卡
     self.nvcBanks = [FFRouter routeObjectURL:@"/banks"];
     //====利息宝
@@ -124,11 +125,24 @@
 - (void)setUpChildViewController{
 
         self.vcs  = [NSMutableArray new];
-        [vcs addObject: self.nvcHome];
-        [vcs addObject: self.nvcLotteryList];
-        [vcs addObject: self.nvcChatRoomList];
-        [vcs addObject: self.nvcFunds];
-        [vcs addObject: self.nvcUser];
+//        [vcs addObject: self.nvcHome];
+//        [vcs addObject: self.nvcLotteryList];
+//        [vcs addObject: self.nvcChatRoomList];
+//        [vcs addObject: self.nvcFunds];
+//        [vcs addObject: self.nvcUser];
+    
+    
+            [vcs addObject: self.nvcHome];
+            [vcs addObject: self.nvcSecurityCenter];
+            [vcs addObject: self.nvcMessage];
+            [vcs addObject: self.nvcConversion];
+            [vcs addObject: self.nvcBanks];
+    
+//                [vcs addObject: self.nvcHome];
+//                [vcs addObject: self.nvcYuebao];
+//                [vcs addObject: self.nvcSign];
+//                [vcs addObject: self.nvcReferrer];
+
   
          [self setViewControllers:vcs];
  

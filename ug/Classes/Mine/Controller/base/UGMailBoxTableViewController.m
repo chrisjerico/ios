@@ -27,6 +27,8 @@ static NSString *messageCellid = @"UGMessageTableViewCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+    
     self.navigationItem.title = @"站内信";
     self.pageSize = size;
     self.pageNumber = page;

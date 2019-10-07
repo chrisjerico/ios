@@ -18,13 +18,13 @@
 
 @implementation UGFeedBackController
 -(void)skin{
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+   
     
 }- (void)viewDidLoad {
     [super viewDidLoad];
     
     self.navigationItem.title = @"建议反馈";
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    [self.view setBackgroundColor: [UIColor whiteColor]];
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         
         [self skin];

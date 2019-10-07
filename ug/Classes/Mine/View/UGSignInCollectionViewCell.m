@@ -61,13 +61,19 @@
 
 - (void)setStateImageStr:(NSString *)stateImageStr {
     _stateImageStr = stateImageStr;
-    self.stateImageView.image = [UIImage imageNamed:stateImageStr];
+    UIImage *image = [UIImage imageNamed:stateImageStr];
+
+    self.stateImageView.image = image;
     
 }
 
 - (void)setBgImageStr:(NSString *)bgImageStr {
     _bgImageStr = bgImageStr;
-    self.bgImageView.image = [UIImage imageNamed:bgImageStr];
+    UIImage *image = [UIImage imageNamed:bgImageStr];
+    
+    UIImage *afterImage = [image qmui_imageWithBlendColor: [[UGSkinManagers shareInstance] setNavbgColor]];
+    
+    self.bgImageView.image = afterImage;
     
 }
 

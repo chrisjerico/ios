@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(UIImage*)imageChangeColor:(UIColor*)color;
 
 - (UIImage *)qmui_imageWithTintColor:(UIColor *)tintColor;
+
+- (UIImage *)qmui_imageWithBlendColor:(UIColor *)blendColor ;
 @end
 
 NS_ASSUME_NONNULL_END
