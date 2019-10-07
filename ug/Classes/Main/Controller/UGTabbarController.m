@@ -125,7 +125,7 @@
 - (void)setUpChildViewController {
     self.vcs  = [NSMutableArray new];
     [vcs addObject: self.nvcHome];
-    [vcs addObject: self.nvcConversion];
+    [vcs addObject: self.nvcLotteryList];
     [vcs addObject: self.nvcYuebao];
     [vcs addObject: self.nvcFunds];
     [vcs addObject: self.nvcUser];

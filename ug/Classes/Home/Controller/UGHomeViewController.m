@@ -577,6 +577,7 @@
 						[mutArr addObject:banner.pic];
 					}
 					self.bannerView.imageURLStringsGroup = mutArr.mutableCopy;
+					self.bannerView.autoScrollTimeInterval = ((UGBannerModel*)model.data).interval.floatValue;
 				}
 			});
 			
@@ -1123,7 +1124,7 @@
 	self.bannerView.delegate = self;
 	[self.bannerBgView addSubview:self.bannerView];
 	
-	self.leftwardMarqueeView.direction = UUMarqueeViewDirectionUpward;
+	self.leftwardMarqueeView.direction = UUMarqueeViewDirectionLeftward;
 	self.leftwardMarqueeView.delegate = self;
 	self.leftwardMarqueeView.timeIntervalPerScroll = 0.5f;
 	self.leftwardMarqueeView.scrollSpeed = 60.0f;
