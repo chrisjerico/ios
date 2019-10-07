@@ -17,6 +17,8 @@
 //允许横竖屏切换
 @property(nonatomic, assign) BOOL allowRotation;
 
+@property(nonatomic, assign) BOOL notiveViewHasShow;
+
 
 @property (strong, nonatomic) UGTabbarController *tabbar;
 

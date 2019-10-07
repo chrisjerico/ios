@@ -24,11 +24,11 @@ static NSString *platformNoticeCellid = @"UGPlatformNoticeCell";
 static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
 @implementation UGPlatformNoticeView
 
+
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        
-       
+
         self = [[NSBundle mainBundle] loadNibNamed:@"UGPlatformNoticeView" owner:self options:0].firstObject;
         self.frame = frame;
         self.backgroundColor = [UIColor whiteColor];

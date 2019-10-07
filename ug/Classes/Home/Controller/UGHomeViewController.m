@@ -233,12 +233,13 @@
 		[self systemOnlineCount];
 	}];
     
-    [self getSystemConfig];
+    
     [self getCustomGameList];
     [self getBannerList];
 
     if (self.notiveView == nil) {
         [self getNoticeList];
+        [self getSystemConfig];
     }
 
     [self getRankList];
@@ -728,11 +729,19 @@
 }
 - (void)showPlatformNoticeView {
     
+    
+    
     if (self.notiveView == nil) {
-        self.notiveView = [[UGPlatformNoticeView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - 260)];
-        self.notiveView.dataArray = self.popNoticeArray;
-        [self.notiveView.bgView setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
-        [self.notiveView show];
+        
+         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        if (!appDelegate.notiveViewHasShow) {
+            self.notiveView = [[UGPlatformNoticeView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - 260)];
+            self.notiveView.dataArray = self.popNoticeArray;
+            [self.notiveView.bgView setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
+            [self.notiveView show];
+        }
+        appDelegate.notiveViewHasShow = YES;
+        
     }
 	
 }

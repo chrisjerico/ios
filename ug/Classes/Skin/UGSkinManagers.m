@@ -10,6 +10,7 @@
 #import "UIImage+YYgradientImage.h"
 #import "UGSystemConfigModel.h"
 
+
 @implementation UGSkinManagers
 
 +(UGSkinManagers *)shareInstance{
@@ -19,6 +20,8 @@
         instance = [[[self class] alloc] init];
     });
     return instance;
+    
+
 }
 
 
@@ -91,6 +94,9 @@
     }
     else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
         navBgColor = @"0x3D80E7";
+    }
+    else {// 默认   经典  1蓝色
+        navBgColor = @"0x609AC5";
     }
     return navBgColor;
     
@@ -167,6 +173,9 @@
     else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
         navBgColor = kUIColorFromRGB(0x3D80E7);
     }
+    else {// 默认   经典  1蓝色
+        navBgColor = kUIColorFromRGB(0x609AC5);
+    }
     return navBgColor;
     
 }
@@ -242,6 +251,9 @@
     }
     else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
         tabBgColor = kUIColorFromRGB(0xFFFFFF);
+    }
+    else {//默认 经典  1蓝色
+        tabBgColor = kUIColorFromRGB(0xC1CBC9);
     }
     return tabBgColor;
     
@@ -343,6 +355,10 @@
     else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
         bgColor = kUIColorFromRGB(0xFFFFFF);
     }
+    else  {//默认 经典  1蓝色
+        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x7F9493),kUIColorFromRGB(0x5389B3)] andGradientType:GradientDirectionLeftToRight];
+        bgColor = [UIColor colorWithPatternImage:backImage];
+    }
     return bgColor;
     
 }
@@ -440,6 +456,10 @@
     }
     else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
         bgColor = kUIColorFromRGB(0x3D80E7);
+    }
+    else {//默认 经典  1蓝色
+        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x7F9493),kUIColorFromRGB(0x5389B3)] andGradientType:GradientDirectionLeftToRight];
+        bgColor = [UIColor colorWithPatternImage:backImage];
     }
     return bgColor;
     
@@ -544,6 +564,10 @@
         UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xFEC434),kUIColorFromRGB(0xFE8A23)] andGradientType:GradientDirectionLeftToRight];
         bgColor = [UIColor colorWithPatternImage:backImage];
     }
+    else {//默认 经典  1蓝色
+        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xd80000),kUIColorFromRGB(0xfb5959)] andGradientType:GradientDirectionLeftToRight];
+        bgColor = [UIColor colorWithPatternImage:backImage];
+    }
     return bgColor;
     
 }
@@ -645,6 +669,10 @@
         UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x3D80E7),kUIColorFromRGB(0x3D80E7)] andGradientType:GradientDirectionLeftToRight];
         bgColor = [UIColor colorWithPatternImage:backImage];
     }
+    else {//默认 经典  1蓝色
+        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x5f9bc6),kUIColorFromRGB(0xfb5959)] andGradientType:GradientDirectionLeftToRight];
+        bgColor = [UIColor colorWithPatternImage:backImage];
+    }
     return bgColor;
     
 }
@@ -719,6 +747,9 @@
     }
     else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
         tabBgColor = [UIColor whiteColor];
+    }
+    else {//默认 经典  1蓝色
+        tabBgColor = kUIColorFromRGB(0xC1CBC9);
     }
     return tabBgColor;
     
@@ -795,6 +826,9 @@
     }
     else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
         contentColor = [UIColor whiteColor];
+    }
+    else {//默认 经典  1蓝色
+        contentColor = kUIColorFromRGB(0xb2cde0);
     }
     return contentColor;
     
@@ -873,6 +907,9 @@
     else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
         contentColor = kUIColorFromRGB(0x3D80E7);
     }
+    else  {//默认 经典  1蓝色
+        contentColor = kUIColorFromRGB(0xb2cde0);
+    }
     return contentColor;
     
 }
@@ -908,15 +945,31 @@
                             forState:UIControlStateSelected];
     }
     
-//   bug: iOS13 崩溃
-//    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
-//
-//    if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
-//
-//        statusBar.backgroundColor = [self navbarbgColor:skitType];
-//
-//    }
-//
+
+
+
+    if (@available(iOS 13.0, *)) {
+        //    id _statusBar = nil;
+        //    if ([statusBarManager respondsToSelector:@selector(createLocalStatusBar)]) {
+        //        UIView *_localStatusBar = [statusBarManager performSelector:@selector(createLocalStatusBar)];
+        //        if ([_localStatusBar respondsToSelector:@selector(statusBar)]) {
+        //            _statusBar = [_localStatusBar performSelector:@selector(statusBar)];
+        //        }
+        //    }
+    }
+    else{
+        //   bug: iOS13 崩溃
+            UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+        
+            if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
+        
+                statusBar.backgroundColor = [self navbarbgColor:skitType];
+        
+            }
+    }
+    
+  
+
     [self navigationBar:tabbar.nvcHome bgColor:[self navbarbgColor:skitType]];
     [self navigationBar:tabbar.nvcChangLong bgColor:[self navbarbgColor:skitType]];
     [self navigationBar:tabbar.nvcUser bgColor:[self navbarbgColor:skitType]];
@@ -1012,6 +1065,9 @@
     else if([config.mobileTemplateCategory isEqualToString:@"4"]) {
         skitType = @"六合资料";
     }
+    else{
+        skitType = @"新年红";
+    }
     return skitType;
 }
 
@@ -1031,6 +1087,9 @@
     }
     else if([config.mobileTemplateCategory isEqualToString:@"4"]) {
         skitType = @"六合资料";
+    }
+    else{
+        skitType = @"新年红";
     }
     
     return skitType;

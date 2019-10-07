@@ -33,9 +33,9 @@
     [self setUpChildViewController];
     [self getSystemConfig];
     
-    SANotificationEventSubscribe(UGNotificationWithResetTabSuccess, self, ^(typeof (self) self, id obj) {
-             [self resetUpChildViewController];
-    });
+//    SANotificationEventSubscribe(UGNotificationWithResetTabSuccess, self, ^(typeof (self) self, id obj) {
+//             [self resetUpChildViewController];
+//    });
 
 }
 -(void)initAllNav{
@@ -280,9 +280,9 @@
         }
         
     }
-    
-//    [self setViewControllers:vcs];
-//    [self setTabbarStyle];
+
+    [self setViewControllers:vcs];
+    [self setTabbarStyle];
 }
 
 
