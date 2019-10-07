@@ -89,6 +89,9 @@
     else  if ([skitType isEqualToString:@"新年红"]) {//新年红
         navBgColor = @"0xDE1C27";
     }
+    else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
+        navBgColor = @"0x3D80E7";
+    }
     return navBgColor;
     
 }
@@ -160,6 +163,9 @@
     }
     else  if ([skitType isEqualToString:@"新年红"]) {//新年红
         navBgColor = kUIColorFromRGB(0xDE1C27);
+    }
+    else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
+        navBgColor = kUIColorFromRGB(0x3D80E7);
     }
     return navBgColor;
     
@@ -233,6 +239,9 @@
     }
     else  if ([skitType isEqualToString:@"新年红"]) {//新年红
         tabBgColor = kUIColorFromRGB(0xDE1C27);
+    }
+    else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
+        tabBgColor = kUIColorFromRGB(0xFFFFFF);
     }
     return tabBgColor;
     
@@ -331,6 +340,9 @@
     else  if ([skitType isEqualToString:@"新年红"]) {//新年红
         bgColor = kUIColorFromRGB(0xFFFFFF);
     }
+    else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
+        bgColor = kUIColorFromRGB(0xFFFFFF);
+    }
     return bgColor;
     
 }
@@ -426,6 +438,9 @@
     else  if ([skitType isEqualToString:@"新年红"]) {//新年红
         bgColor = kUIColorFromRGB(0xFFFFFF);
     }
+    else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
+        bgColor = kUIColorFromRGB(0x3D80E7);
+    }
     return bgColor;
     
 }
@@ -518,11 +533,15 @@
         bgColor = [UIColor colorWithPatternImage:backImage];
     }
     else  if ([skitType isEqualToString:@"石榴红"]) {//石榴红
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xfaae00),kUIColorFromRGB(0xfaae00)] andGradientType:GradientDirectionLeftToRight];
+        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xFEC434),kUIColorFromRGB(0xFE8A23)] andGradientType:GradientDirectionLeftToRight];
         bgColor = [UIColor colorWithPatternImage:backImage];
     }
     else  if ([skitType isEqualToString:@"新年红"]) {//新年红
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xfaae00),kUIColorFromRGB(0xfaae00)] andGradientType:GradientDirectionLeftToRight];
+        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xFEC434),kUIColorFromRGB(0xFE8A23)] andGradientType:GradientDirectionLeftToRight];
+        bgColor = [UIColor colorWithPatternImage:backImage];
+    }
+    else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
+        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xFEC434),kUIColorFromRGB(0xFE8A23)] andGradientType:GradientDirectionLeftToRight];
         bgColor = [UIColor colorWithPatternImage:backImage];
     }
     return bgColor;
@@ -622,6 +641,10 @@
         UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xe63534),kUIColorFromRGB(0xf99695)] andGradientType:GradientDirectionLeftToRight];
         bgColor = [UIColor colorWithPatternImage:backImage];
     }
+    else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
+        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x3D80E7),kUIColorFromRGB(0x3D80E7)] andGradientType:GradientDirectionLeftToRight];
+        bgColor = [UIColor colorWithPatternImage:backImage];
+    }
     return bgColor;
     
 }
@@ -692,6 +715,9 @@
         tabBgColor = [UIColor whiteColor];
     }
     else  if ([skitType isEqualToString:@"新年红"]) {//新年红
+        tabBgColor = [UIColor whiteColor];
+    }
+    else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
         tabBgColor = [UIColor whiteColor];
     }
     return tabBgColor;
@@ -767,6 +793,9 @@
     else  if ([skitType isEqualToString:@"新年红"]) {//新年红
         contentColor = [UIColor whiteColor];
     }
+    else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
+        contentColor = [UIColor whiteColor];
+    }
     return contentColor;
     
 }
@@ -840,6 +869,9 @@
     }
     else  if ([skitType isEqualToString:@"新年红"]) {//新年红
         contentColor = RGBA(231, 230, 230, 1);
+    }
+    else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
+        contentColor = kUIColorFromRGB(0x3D80E7);
     }
     return contentColor;
     
@@ -926,6 +958,9 @@
     else  if ([skitType isEqualToString:@"新年红"]) {//新年红
         bgColor = [UIColor yellowColor];
     }
+    else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
+        bgColor = kUIColorFromRGB(0x3D80E7);
+    }
     else  {//
         bgColor = [UIColor whiteColor];
     }
@@ -943,6 +978,9 @@
     }
     else  if ([skitType isEqualToString:@"新年红"]) {//新年红
         bgColor = [UIColor whiteColor];
+    }
+    else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
+        bgColor = [UIColor grayColor];
     }
     else  {//
         bgColor = [UIColor grayColor];
@@ -971,7 +1009,9 @@
     else if([config.mobileTemplateCategory isEqualToString:@"3"]) {
         skitType = @"石榴红";
     }
-    
+    else if([config.mobileTemplateCategory isEqualToString:@"4"]) {
+        skitType = @"六合资料";
+    }
     return skitType;
 }
 
@@ -988,6 +1028,9 @@
     }
     else if([config.mobileTemplateCategory isEqualToString:@"3"]) {
         skitType = @"石榴红";
+    }
+    else if([config.mobileTemplateCategory isEqualToString:@"4"]) {
+        skitType = @"六合资料";
     }
     
     return skitType;

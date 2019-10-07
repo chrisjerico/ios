@@ -95,6 +95,10 @@
         self.topupView.hidden = YES;
         self.topupViewNSLayoutConstraintHight.constant = 0.1;
     }
+    else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
+        self.topupView.hidden = YES;
+        self.topupViewNSLayoutConstraintHight.constant = 0.1;
+    }
     else{
         self.topupView.hidden = NO;
         self.topupViewNSLayoutConstraintHight.constant = 60;
@@ -389,6 +393,9 @@ BOOL isOk = NO;
         else  if([skitType isEqualToString:@"经典"]){
             layout.headerReferenceSize = CGSizeMake(UGScreenW, 0.1);
         }
+        else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
+             layout.headerReferenceSize = CGSizeMake(UGScreenW, 0.1);
+        }
         
         layout;
         
@@ -431,6 +438,9 @@ BOOL isOk = NO;
     else  if([skitType isEqualToString:@"经典"]){
         sections = 1;
     }
+    else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
+        sections = 1;
+    }
     return sections;
     
 }
@@ -447,6 +457,9 @@ BOOL isOk = NO;
           rows = (int) self.menuNameArray.count;
     }
     else  if([skitType isEqualToString:@"经典"]){
+        rows = (int) self.menuNameArray.count;
+    }
+    else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
         rows = (int) self.menuNameArray.count;
     }
     return rows;
