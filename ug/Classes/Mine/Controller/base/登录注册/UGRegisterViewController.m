@@ -55,6 +55,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *smsVcodeViewHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imgVcodeViewHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *webBgViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet UILabel *userNameDisabledNotice;
 
 @property (nonatomic, strong) WKWebView *webView;
 @property (nonatomic, strong) UGImgVcodeModel *imgVcodeModel;
@@ -109,7 +110,7 @@
     //    选中的颜色
     
 //     [self.mySegmentCV setTitleTextAttributes:@{NSForegroundColorAttributeName:UGNavColor} forState:UIControlStateSelected];
-    
+	[self.userNameDisabledNotice setHidden:true];
     self.userNameTextF.delegate = self;
     self.passwordTextF.delegate = self;
     self.checkPasswordTextF.delegate = self;
@@ -584,6 +585,29 @@
     
     return YES;
 
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+	
+	if (textField != self.userNameTextF) {
+		return;
+	}
+	
+	[CMNetwork.manager requestWithMethod:[[NSString stringWithFormat:@"%@/wjapp/api.php?c=user&a=exists", baseServerUrl] stringToRestfulUrlWithFlag:RESTFUL]
+								  params:@{@"usr": textField.text}
+								   model:nil
+									post:true
+							  completion:^(CMResult<id> *model, NSError *err) {
+		
+		if (model.code == 1) {
+			[self.userNameDisabledNotice setHidden:false];
+			self.userNameDisabledNotice.text = model.msg;
+		} else {
+			[self.userNameDisabledNotice setHidden:true];
+		}
+
+		
+	}];
 }
 
 - (BOOL)validateNumber:(NSString*)number {

@@ -18,6 +18,7 @@ typedef void(^HomeTitleRegisterBlock)(void);
 @property (nonatomic, copy) HomeTitleTryplayBlock tryPlayClickBlock;
 @property (nonatomic, copy) HomeTitleLoginBlock loginClickBlock;
 @property (nonatomic, copy) HomeTitleRegisterBlock registerClickBlock;
+@property (nonatomic, copy) void (^userNameTouchedBlock)(void);
 @property (nonatomic, strong) NSString *userName;
 @property (nonatomic, assign) BOOL showLoginView;
 @property (nonatomic, strong) NSString *imgName;

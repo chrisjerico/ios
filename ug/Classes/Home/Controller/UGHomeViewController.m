@@ -398,6 +398,9 @@
 		UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
 		if (config.zxkfUrl) {
 			webViewVC.urlStr = config.zxkfUrl;
+		} else {
+			[SVProgressHUD showWithStatus:@"链接未配置"];
+			return;
 		}
 		[self.navigationController pushViewController:webViewVC animated:YES];
 	}
@@ -1091,6 +1094,10 @@
 	self.titleView.registerClickBlock = ^{
 		[weakSelf registerClick];
 	};
+	self.titleView.userNameTouchedBlock = ^{
+		[weakSelf.tabBarController setSelectedIndex:4];
+	};
+	
 	if (UGLoginIsAuthorized()) {
 		self.titleView.showLoginView = NO;
 		UGUserModel *user = [UGUserModel currentUser];
