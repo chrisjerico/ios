@@ -1412,7 +1412,7 @@
                                     <constraint firstAttribute="height" constant="40" id="fUa-0z-0cQ"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4oh-Gd-dhy">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4oh-Gd-dhy" customClass="IBButton">
                                 <rect key="frame" x="10" y="214" width="394" height="40"/>
                                 <color key="backgroundColor" red="0.2839455307" green="0.57867711779999997" blue="0.92549556489999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
@@ -1422,11 +1422,17 @@
                                 <state key="normal" title="开始转换">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="圆角偏移量">
+                                        <real key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="startTransfer:" destination="iEj-gp-K9A" eventType="touchUpInside" id="Oh6-sY-new"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FLn-Fz-Y2J">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FLn-Fz-Y2J" customClass="IBView">
                                 <rect key="frame" x="10" y="264" width="394" height="40"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="账户余额：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B4q-WT-8v4">
@@ -1463,6 +1469,12 @@
                                     <constraint firstItem="xlA-fF-4pB" firstAttribute="leading" secondItem="B4q-WT-8v4" secondAttribute="trailing" id="r8v-eG-VKm"/>
                                     <constraint firstItem="EnI-1k-NuV" firstAttribute="centerY" secondItem="FLn-Fz-Y2J" secondAttribute="centerY" id="yT9-pp-K25"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="圆角偏移量">
+                                        <real key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.90598434209823608" green="0.90195208787918091" blue="0.90196138620376587" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -1488,8 +1500,8 @@
                     <connections>
                         <outlet property="amountTextF" destination="oeY-JT-Bq2" id="2Zw-E0-BD1"/>
                         <outlet property="balanceLabel" destination="xlA-fF-4pB" id="2Zp-Bj-cPX"/>
-                        <outlet property="balanceView" destination="FLn-Fz-Y2J" id="BUb-V2-qP0"/>
-                        <outlet property="conversionButton" destination="4oh-Gd-dhy" id="zhu-gY-CKz"/>
+                        <outlet property="balanceView" destination="FLn-Fz-Y2J" id="bis-sb-zch"/>
+                        <outlet property="conversionButton" destination="4oh-Gd-dhy" id="cKd-hx-NmT"/>
                         <outlet property="refreshButton" destination="EnI-1k-NuV" id="Y2v-Dv-JuM"/>
                         <outlet property="tarnsferInArrow" destination="hkY-nu-tx5" id="uLf-nO-uf7"/>
                         <outlet property="tarnsferOutButton" destination="Jm8-Vf-Qem" id="QV6-WI-tCO"/>

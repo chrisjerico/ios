@@ -159,7 +159,8 @@
          UGNavigationController *navi = (UGNavigationController *)viewController;
         if ([navi.viewControllers.firstObject isKindOfClass:[UGChatViewController class]]) {
             AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-            NSString *colorStr = [[UGSkinManagers shareInstance] setNavbgStringColor];
+            NSString *colorStr = [[UGSkinManagers shareInstance] setChatNavbgStringColor];
+            NSLog(@"url = %@",[NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr]);
             appDelegate.tabbar.qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr];
         }
         return YES;

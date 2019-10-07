@@ -23,10 +23,12 @@
 @end
 
 @implementation UGTabbarController
-@synthesize qdwebVC,vcs;
+@synthesize qdwebVC,vcs,nvcHome,nvcChangLong,nvcLotteryList,nvcActivity,nvcChatRoomList,nvcLotteryRecord;
+@synthesize nvcUser,nvcTask,nvcSecurityCenter,nvcFunds,nvcMessage,nvcConversion,nvcBanks,nvcYuebao;
+@synthesize nvcSign,nvcReferrer,balanceConversionVC;
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    [self initAllNav];
     
     [self setUpChildViewController];
     [self getSystemConfig];
@@ -35,6 +37,44 @@
              [self resetUpChildViewController];
     });
 
+}
+-(void)initAllNav{
+    //====home
+    self.nvcHome = [FFRouter routeObjectURL:@"/home"];
+    //====长龙助手
+     self.nvcChangLong = [FFRouter routeObjectURL:@"/changLong"];
+    //====彩票大厅
+    self.nvcLotteryList = [FFRouter routeObjectURL:@"/lotteryList"];
+    //====优惠活动
+    self.nvcActivity = [FFRouter routeObjectURL:@"/activity"];
+    //====聊天室
+    qdwebVC =  [FFRouter routeObjectURL:@"/chatRoomList"];
+    self.nvcChatRoomList = [[UGNavigationController alloc]initWithRootViewController:qdwebVC];
+    //====开奖记录
+    self.nvcLotteryRecord = [FFRouter routeObjectURL:@"/lotteryRecord"];
+    //====我的
+    self.nvcUser = [FFRouter routeObjectURL:@"/user"];
+    //====任务中心
+    self.nvcTask = [FFRouter routeObjectURL:@"/task"];
+    //====安全中心
+    self.nvcSecurityCenter = [FFRouter routeObjectURL:@"/securityCenter"];
+    //====资金管理
+    self.nvcFunds = [FFRouter routeObjectURL:@"/funds"];
+    //====站内信
+    self.nvcMessage = [FFRouter routeObjectURL:@"/message"];
+    //====额度转换
+    balanceConversionVC =  [FFRouter routeObjectURL:@"/conversion"];
+    self.nvcConversion = [[UGNavigationController alloc]initWithRootViewController:balanceConversionVC];
+    //====银行卡
+    self.nvcBanks = [FFRouter routeObjectURL:@"/banks"];
+    //====利息宝
+    self.nvcYuebao = [FFRouter routeObjectURL:@"/yuebao"];
+    //====签到
+    self.nvcSign = [FFRouter routeObjectURL:@"/Sign"];
+    //====推广收益
+    self.nvcReferrer = [FFRouter routeObjectURL:@"/referrer"];
+   
+   
 }
 
 -(void)setTabbarStyle{
@@ -82,82 +122,14 @@
 /**
  *  添加子控制器
  */
-- (void)setUpChildViewController{
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"UGHomeViewController" bundle:nil];
-    UGHomeViewController *mainVC = [mainStoryboard instantiateInitialViewController];
-    
-   UGNavigationController *homeNavVC = [[UGNavigationController alloc] initWithRootViewController:mainVC];
-    
-    [vcs addObject:homeNavVC];
-    
-    [self addOneChildViewController:homeNavVC
-                          WithTitle:@"首页"
-                          imageName:@"shouye"
-                  selectedImageName:@"shouyesel"];
-    
-    UGNavigationController *LotteryNavVC = [[UGNavigationController alloc]initWithRootViewController:[[UGYYLotteryHomeViewController alloc] init]];
-    
-      [vcs addObject:LotteryNavVC];
-    
-    [self addOneChildViewController:LotteryNavVC
-                          WithTitle:@"购彩大厅"
-                          imageName:@"dating"
-                  selectedImageName:@"datongsel"];
-    
-    qdwebVC = [[UGChatViewController alloc] init];
-    qdwebVC.webTitle = @"聊天室";
-   
-    if (![CMCommon stringIsNull:[UGUserModel currentUser].token]) {
-         NSString *colorStr = [[UGSkinManagers shareInstance] setNavbgStringColor];
-        if ([CMCommon stringIsNull:colorStr]) {
-            colorStr = @"0x609AC5";
-        }
-         qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@&back=hide",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr];
-    } else {
-        NSString *colorStr = [[UGSkinManagers shareInstance] setNavbgStringColor];
-        if ([CMCommon stringIsNull:colorStr]) {
-            colorStr = @"0x609AC5";
-        }
-        qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@&back=hide",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr];
-    }
-
-    
-    NSLog(@"qdwebVC.urlString= %@",[NSString stringWithFormat:@"%@%@%@&loginsessid=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid]);
-
-    UGNavigationController *chatNavVC = [[UGNavigationController alloc]initWithRootViewController:qdwebVC];
-    
-    [vcs addObject:chatNavVC];
-    
-    [self addOneChildViewController:chatNavVC
-                          WithTitle:@"聊天室"
-                          imageName:@"liaotian"
-                  selectedImageName:@"liaotiansel"];
-    
-    
-    UGNavigationController *promotionsNavVC = [[UGNavigationController alloc]initWithRootViewController:_LoadVC_from_storyboard_(@"UGPromotionsController")];
-    
-    [self addOneChildViewController: promotionsNavVC
-                          WithTitle:@"优惠活动"
-                          imageName:@"youhuiquan"
-                  selectedImageName:@"youhuiquansel"];
-    
-                                                                                      
-//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Mine" bundle:nil];
-//    UGMineViewController *mineVC = [storyboard instantiateInitialViewController];
-    
-    UGMineSkinViewController * mineVC = [[UGMineSkinViewController alloc] init];
-    
-     UGNavigationController *mineNavVC = [[UGNavigationController alloc]initWithRootViewController:mineVC];
-
-      [vcs addObject:mineNavVC];
-    
-    [self addOneChildViewController:mineNavVC
-                          WithTitle:@"我的"
-                          imageName:@"wode"
-                  selectedImageName:@"wodesel"];
-    
-    
-   
+- (void)setUpChildViewController {
+    self.vcs  = [NSMutableArray new];
+    [vcs addObject: self.nvcHome];
+    [vcs addObject: self.nvcConversion];
+    [vcs addObject: self.nvcYuebao];
+    [vcs addObject: self.nvcFunds];
+    [vcs addObject: self.nvcUser];
+    [self setViewControllers:vcs];
 }
 
 /**
@@ -253,20 +225,64 @@
         return;
     }
     
-    vcs = [NSMutableArray new];
+    self.vcs = [NSMutableArray new];
     for (int i = 0; i<ageSortResultArray.count; i++) {
         UGmobileMenu *menu = [ageSortResultArray objectAtIndex:i];
          UIViewController *ret = [FFRouter routeObjectURL:menu.path];
         
-        if ([menu.path isEqualToString:@"/chatRoomList"]) {
-            qdwebVC = (UGChatViewController *)ret;
+        if ([menu.path isEqualToString:@"/home"]) {
+            [vcs addObject:nvcHome];
         }
-        UGNavigationController *nvc = [[UGNavigationController alloc]initWithRootViewController:ret];
-        [vcs addObject:nvc];
+        if ([menu.path isEqualToString:@"/changLong"]) {
+            [vcs addObject:nvcChangLong];
+        }
+        if ([menu.path isEqualToString:@"/lotteryList"]) {
+            [vcs addObject:nvcLotteryList];
+        }
+        if ([menu.path isEqualToString:@"/activity"]) {
+            [vcs addObject:nvcActivity];
+        }
+        if ([menu.path isEqualToString:@"/chatRoomList"]) {
+            [vcs addObject:nvcChatRoomList];
+        }
+        if ([menu.path isEqualToString:@"/lotteryRecord"]) {
+            [vcs addObject:nvcLotteryRecord];
+        }
+        if ([menu.path isEqualToString:@"/user"]) {
+            [vcs addObject:nvcUser];
+        }
+        if ([menu.path isEqualToString:@"/task"]) {
+            [vcs addObject:nvcTask];
+        }
+        if ([menu.path isEqualToString:@"/securityCenter"]) {
+            [vcs addObject:nvcSecurityCenter];
+        }
+        if ([menu.path isEqualToString:@"/funds"]) {
+            [vcs addObject:nvcFunds];
+        }
+        if ([menu.path isEqualToString:@"/message"]) {
+            [vcs addObject:nvcMessage];
+        }
+        if ([menu.path isEqualToString:@"/conversion"]) {
+            [vcs addObject:nvcConversion];
+        }
+        if ([menu.path isEqualToString:@"/banks"]) {
+            [vcs addObject:nvcConversion];
+        }
+        if ([menu.path isEqualToString:@"/yuebao"]) {
+            [vcs addObject:nvcBanks];
+        }
+        if ([menu.path isEqualToString:@"/Sign"]) {
+            [vcs addObject:nvcSign];
+        }
+        if ([menu.path isEqualToString:@"/referrer"]) {
+            [vcs addObject:nvcReferrer];
+        }
+        
     }
     
-    [self setViewControllers:vcs];
-    [self setTabbarStyle];
+//    [self setViewControllers:vcs];
+//    [self setTabbarStyle];
 }
 
 

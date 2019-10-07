@@ -25,8 +25,8 @@
     self.layer.masksToBounds = YES;
     self.timeLabel.textColor = [UIColor redColor];
     self.layer.borderWidth = 1;
-    self.layer.borderColor = [[UIColor grayColor] CGColor];
-     [self setBackgroundColor: [[UGSkinManagers shareInstance] setCellbgColor]];
+    self.layer.borderColor = [[[UGSkinManagers shareInstance] sethomeContentColor] CGColor];
+
 }
 
 - (void)setItem:(UGNextIssueModel *)item {

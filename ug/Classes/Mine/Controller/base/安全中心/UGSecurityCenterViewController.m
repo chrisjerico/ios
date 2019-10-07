@@ -21,7 +21,7 @@
 
 @implementation UGSecurityCenterViewController
 -(void)skin{
-   
+    [self buildSegment];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -150,7 +150,7 @@
         [CMResult processWithResult:model success:^{
             UGSystemConfigModel *config = model.data;
             UGSystemConfigModel.currentConfig = config;
-             [[UGSkinManagers shareInstance] setSkin];
+           
            [self buildSegment];
         } failure:nil];
     }];

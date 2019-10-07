@@ -41,7 +41,6 @@
 #import "BAKit_WebView.h"
 #import "UGChatViewController.h"
 #import "UGSkinManagers.h"
-#import "UGViewController.h"
 #import "UGTableViewCell.h"
 #import "UGView.h"
 #import "UIImage+YYgradientImage.h"
@@ -50,6 +49,9 @@
 // 引入Fish工具集
 #import "FishUtility.h"
 #import "UGNavigationController.h"
+#import "UGTableViewController.h"
+#import "UGViewController.h"
+
 
 
 #endif /* UGPCH_pch */

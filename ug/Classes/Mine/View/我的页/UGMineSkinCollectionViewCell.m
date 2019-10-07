@@ -8,7 +8,6 @@
 
 #import "UGMineSkinCollectionViewCell.h"
 @interface UGMineSkinCollectionViewCell ()
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 
 @end
@@ -18,14 +17,11 @@
     [super awakeFromNib];
     // Initialization code
 //    [self setBackgroundColor: [[UGSkinManagers shareInstance] setCellbgColor]];
-    
+
+    self.layer.borderWidth = 1;
+    self.layer.borderColor = [[UIColor whiteColor] CGColor];
 }
 
-- (void)setImageName:(NSString *)imageName {
-    _imageName = imageName;
-    self.imageView.image = [UIImage imageNamed:imageName];
-    
-}
 
 - (void)setMenuName:(NSString *)menuName {
     _menuName = menuName;

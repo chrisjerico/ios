@@ -20,18 +20,21 @@
 @implementation UGYYLotteryHomeViewController
 -(void)skin{
     [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
-   
+
     
     [self getPlatformGamesWithParams];
     
     
     
 }
+
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    
+
    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
      self.title = @"购彩大厅";
     
@@ -103,6 +106,9 @@
     UGhomeRecommendCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UGhomeRecommendCollectionViewCell" forIndexPath:indexPath];
     UGYYPlatformGames *model = self.dataArray[indexPath.row];
     cell.item = model;
+    
+    [cell setBackgroundColor: [[UGSkinManagers shareInstance] sethomeContentColor]];
+     cell.layer.borderColor = [[[UGSkinManagers shareInstance] sethomeContentColor] CGColor];
     
     return cell;
 }

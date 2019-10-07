@@ -8,7 +8,6 @@
 
 #import "UGSkinViewController.h"
 #import "UGSkinCollectionViewCell.h"
-#import "UINavigationBar+handle.h"
 #import "UIImage+YYgradientImage.h"
 #import "UGSkinManagers.h"
 

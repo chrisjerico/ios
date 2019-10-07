@@ -43,7 +43,6 @@
 
 	[self initWithFrame:CGRectZero];
     
-//    [self setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
 
 }
 

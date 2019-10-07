@@ -159,6 +159,74 @@ NS_ASSUME_NONNULL_BEGIN
  备注信息 :
  ******************************************************************************/
 -(UIColor *)setMineProgressViewColor;
+
+
+/******************************************************************************
+ 函数名称 : setChatNavbgStringColor;
+ 函数描述 : 返回聊天颜色方法
+ 输入参数 : void
+ 输出参数 : void
+ 返回参数 : NSString
+ 备注信息 :
+ ******************************************************************************/
+-(NSString *)setChatNavbgStringColor;
+
+/******************************************************************************
+ 函数名称 : sethomeContentColor;
+ 函数描述 : 返回首页的内容：cell，广告条，长龙，彩票颜色方法
+ 输入参数 : void
+ 输出参数 : void
+ 返回参数 : UIColor
+ 备注信息 :
+ ******************************************************************************/
+-(UIColor *)sethomeContentColor;
+
+
+/******************************************************************************
+ 函数名称 : sethomeContentBorderColor;
+ 函数描述 : 返回首页的内容：cell，广告条，长龙，彩票 边框颜色方法
+ 输入参数 : void
+ 输出参数 : void
+ 返回参数 : UIColor
+ 备注信息 :
+ ******************************************************************************/
+-(UIColor *)sethomeContentBorderColor;
+
+/******************************************************************************
+ 函数名称 : setMenuHeadViewColor;
+ 函数描述 : 返回menuhead颜色方法
+ 输入参数 : void
+ 输出参数 : void
+ 返回参数 : UIColor
+ 备注信息 :
+ ******************************************************************************/
+-(UIColor *)setMenuHeadViewColor;
+
+/******************************************************************************
+ 函数名称 : setSignbgColor;
+ 函数描述 : 返回签到页面bg颜色方法
+ 输入参数 : void
+ 输出参数 : void
+ 返回参数 : UIColor
+ 备注信息 :
+ ******************************************************************************/
+-(UIColor *)setSignbgColor;
+@end
+
+
+#define UIColorTheme1 UGRGBColor(239, 83, 98) // Grapefruit
+#define UIColorTheme2 UGRGBColor(254, 109, 75) // Bittersweet
+#define UIColorTheme3 UGRGBColor(255, 207, 71) // Sunflower
+#define UIColorTheme4 UGRGBColor(159, 214, 97) // Grass
+#define UIColorTheme5 UGRGBColor(63, 208, 173) // Mint
+#define UIColorTheme6 UGRGBColor(49, 189, 243) // Aqua
+#define UIColorTheme7 UGRGBColor(90, 154, 239) // Blue Jeans
+#define UIColorTheme8 UGRGBColor(172, 143, 239) // Lavender
+#define UIColorTheme9 UGRGBColor(238, 133, 193) // Pink Rose
+#define UIColorTheme10 UGRGBColor(39, 192, 243) // Dark
+@interface UGSkinManagers (ThemeColor)
+
++ (UIColor *)randomThemeColor;
 @end
 
 NS_ASSUME_NONNULL_END

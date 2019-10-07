@@ -36,7 +36,8 @@
     }else {
         self.oddsLabel.textColor = [UIColor blackColor];
         self.layer.borderWidth = 0.7;
-        self.layer.borderColor = [UIColor whiteColor].CGColor;
+        self.layer.borderColor =  UGRGBColor(218, 218, 218).CGColor;
+       
     }
 }
 

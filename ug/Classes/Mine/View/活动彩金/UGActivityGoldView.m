@@ -53,6 +53,7 @@
 {
     
     [self.contentWebView removeObserver:self forKeyPath:@"scrollView.contentSize" context:@"DJWebKitContext"];
+     [[NSNotificationCenter defaultCenter] removeObserver:self];
 
     
 }
@@ -65,7 +66,7 @@
         
         self = [[NSBundle mainBundle] loadNibNamed:@"UGActivityGoldView" owner:self options:0].firstObject;
         self.frame = frame;
-        [self setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+        [self setBackgroundColor: [UIColor whiteColor]];
         //初始化子视图
         [self initSubview];
         
@@ -126,7 +127,8 @@
 - (void)initSubview{
     self.layer.cornerRadius=5; 
     self.layer.masksToBounds = YES;
-
+   
+    [self.myTitleLabel setTextColor: [[UGSkinManagers shareInstance] setNavbgColor]];
     
     [self.myTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self);
@@ -167,6 +169,8 @@
     self.closeButton.layer.borderColor =  [UIColor blackColor].CGColor;
     self.okButton.layer.cornerRadius = 5; 
     self.okButton.layer.masksToBounds = YES;
+    
+    [self.okButton setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
     self.myScrollView.showsVerticalScrollIndicator = NO;
     self.myScrollView.contentInset = UIEdgeInsetsMake(0, 0, 100, 0);
 

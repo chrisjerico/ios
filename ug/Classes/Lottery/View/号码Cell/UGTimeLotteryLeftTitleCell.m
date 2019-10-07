@@ -23,16 +23,15 @@
     self.bottomLine.hidden = YES;
     self.leftPoint.layer.cornerRadius = self.leftPoint.width / 2;
     self.leftPoint.layer.masksToBounds = YES;
-    self.bottomLine.backgroundColor = [[UGSkinManagers shareInstance] setNavbgColor];
+    self.bottomLine.backgroundColor =  UGRGBColor(223, 222, 227);
 }
 
 - (void)setItem:(UGGameplayModel *)item {
     _item = item;
     self.titleLabel.text = item.name;
     if (item.select) {
-        self.leftPoint.backgroundColor = UGRGBColor(237, 183, 99);
-        
-    }else {
+        self.leftPoint.backgroundColor = UGNavColor;
+    } else {
         self.leftPoint.backgroundColor = UGRGBColor(195, 195, 196);
     }
 }
@@ -47,14 +46,15 @@
     if (selected) {
         self.titleLabel.textColor = [[UGSkinManagers shareInstance] setNavbgColor];
         self.bottomLine.hidden = NO;
-//        self.layer.borderColor = UGNavColor.CGColor;
-//        self.layer.borderWidth = 1;
-        
-    }else {
+        self.layer.borderColor = UGNavColor.CGColor;
+        self.layer.borderWidth = 1;
+        self.leftPoint.backgroundColor = UGNavColor;
+    } else {
         self.titleLabel.textColor = [UIColor blackColor];
         self.bottomLine.hidden = YES;
-//        self.layer.borderWidth = 0.7;
-//        self.layer.borderColor = [UIColor whiteColor].CGColor;
+        self.layer.borderWidth = 0.7;
+        self.layer.borderColor = [UIColor whiteColor].CGColor;
+        self.leftPoint.backgroundColor = UGRGBColor(195, 195, 196);
     }
 }
 

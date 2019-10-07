@@ -16,28 +16,21 @@
             <rect key="frame" x="0.0" y="0.0" width="394" height="40"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="signInBtn" translatesAutoresizingMaskIntoConstraints="NO" id="wU9-ty-xuo">
-                    <rect key="frame" x="288" y="5" width="121" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
-                </imageView>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B05-D7-vNJ">
-                    <rect key="frame" x="245" y="0.0" width="149" height="40"/>
+                    <rect key="frame" x="296" y="0.0" width="98" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
+                    <state key="normal" title="签到记录">
+                        <color key="titleColor" red="0.96079081300000002" green="0.96077281240000001" blue="0.96078497169999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </state>
                     <connections>
                         <action selector="signInClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="mEk-WC-IA0"/>
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="0.4337427020072937" green="0.52625405788421631" blue="0.93333792686462402" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <connections>
-                <outlet property="signInImageView" destination="wU9-ty-xuo" id="Ndm-hg-Uhx"/>
-            </connections>
             <point key="canvasLocation" x="8.6956521739130448" y="-255.13392857142856"/>
         </view>
     </objects>
-    <resources>
-        <image name="signInBtn" width="102" height="34"/>
-    </resources>
 </document>

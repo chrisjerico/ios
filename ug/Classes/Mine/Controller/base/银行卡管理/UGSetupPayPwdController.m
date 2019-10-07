@@ -33,6 +33,8 @@
     });
     self.submitButton.layer.cornerRadius = 3;
     self.submitButton.layer.masksToBounds = YES;
+    [self.submitButton setBackgroundColor:UGNavColor];
+
     self.loginPwdTextF.delegate = self;
     self.fundPwdTextF.delegate = self;
     self.checkPwdTextF.delegate = self;

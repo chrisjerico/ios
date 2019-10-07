@@ -28,31 +28,27 @@
     _qqTextField.delegate = self;
     _phoneTextView.delegate = self;
     _userTextField.delegate = self;
-     [self.whyTextView setEditable:NO];
-     [self.refusedTextView setEditable:NO];
+    [self.whyTextView setEditable:NO];
+    [self.refusedTextView setEditable:NO];
     
     if (_item) {
-
+        
+        
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            //需要在主线程执行的代码
+            // 需要在主线程执行的代码
+            self.qqTextField.text = self->_item.qq;
+            self.phoneTextView.text = self->_item.mobile;
+            self.userTextField.text = self->_item.username;
+            self.whyTextView.text = self->_item.applyReason;
+            self.refusedTextView.text = self->_item.reviewResult;
             
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                //需要在主线程执行的代码
-                // 需要在主线程执行的代码
-                self.qqTextField.text = self->_item.qq;
-                self.phoneTextView.text = self->_item.mobile;
-                self.userTextField.text = self->_item.username;
-                self.whyTextView.text = self->_item.applyReason;
-                self.refusedTextView.text = self->_item.reviewResult;
-                
-                self.qqTextField.text = @"111";
-                self.phoneTextView.text = @"123123";
-                self.userTextField.text = @"weqrqwer";
-                self.whyTextView.text = @"wqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwer";
-                self.refusedTextView.text = @"2222wqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwerwqwerqwerqwerqwerqwerqwerqwerqwerqwrqwerqwer";
-                
-            }];
+        
             
-            
-            
+        }];
+        
+        
+        
     }
     
 }
@@ -64,9 +60,9 @@
 }
 
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-
-        return NO;
- 
+    
+    return NO;
+    
 }
 - (IBAction)buttonClicked:(id)sender {
     

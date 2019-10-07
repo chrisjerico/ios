@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSString *checkinMoney;
 
+@property (weak, nonatomic) IBOutlet UIView *bgView;
 - (void)show;
 
 @end
