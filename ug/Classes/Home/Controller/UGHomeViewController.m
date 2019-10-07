@@ -332,7 +332,7 @@
 	[super viewWillAppear:animated];
     [self.leftwardMarqueeView start];
     [self.upwardMultiMarqueeView start];
-	
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -346,8 +346,11 @@
 	if (self.initSubview) {
 		return;
 	}
-	
-//    [self getBannerList];
+    if ([CMCommon arryIsNull: self.bannerView.imageURLStringsGroup]) {
+         [self getBannerList];
+    }
+   
+
 	
 	
 }

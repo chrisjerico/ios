@@ -33,7 +33,7 @@ DEPENDENCIES:
   - YYCategories
 
 SPEC REPOS:
-  trunk:
+  https://github.com/cocoapods/specs.git:
     - Aspects
     - AvoidCrash
     - BAWKWebView
@@ -67,4 +67,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 035f6ae2b9546d42dd86c04ffecf27feaf3458b0
 
-COCOAPODS: 1.8.1
+COCOAPODS: 1.7.1

@@ -908,15 +908,15 @@
                             forState:UIControlStateSelected];
     }
     
-    
-    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
-    
-    if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
-        
-        statusBar.backgroundColor = [self navbarbgColor:skitType];
-        
-    }
-    
+//   bug: iOS13 崩溃
+//    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+//
+//    if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
+//
+//        statusBar.backgroundColor = [self navbarbgColor:skitType];
+//
+//    }
+//
     [self navigationBar:tabbar.nvcHome bgColor:[self navbarbgColor:skitType]];
     [self navigationBar:tabbar.nvcChangLong bgColor:[self navbarbgColor:skitType]];
     [self navigationBar:tabbar.nvcUser bgColor:[self navbarbgColor:skitType]];

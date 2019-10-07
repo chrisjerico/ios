@@ -13,7 +13,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *numberLabel;
 @property (weak, nonatomic) IBOutlet UILabel *oddsLabel;
-@property (weak, nonatomic) IBOutlet UILabel *amountLabel;
+@property (weak, nonatomic) IBOutlet UITextField *amountField;
 
 @end
 @implementation UGBetDetailTableViewCell
@@ -37,7 +37,7 @@
     }else {
          self.numberLabel.text = [NSString stringWithFormat:@"%@-%@",item.title,item.name];
     }
-    self.amountLabel.text = [NSString stringWithFormat:@"%@元",item.money];
+    self.amountField.text = [NSString stringWithFormat:@"%@元",item.money];
     self.oddsLabel.text = [NSString stringWithFormat:@"%@%@",@"@",[item.odds removeFloatAllZero]];
 }
 
