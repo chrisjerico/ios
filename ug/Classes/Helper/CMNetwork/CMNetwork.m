@@ -314,24 +314,24 @@ completion:(CMNetworkBlock)completion {
             }
             if (isPost) {
                 [self postWithMethod:method params:dict  model:model retryCount:0 completion:completion];
-            }else {
+            } else {
                 [self getWithMethod:method params:dict  model:model retryCount:0 completion:completion];
                 
             }
-        }else {
+        } else {
             if (isPost) {
                 [self postWithMethod:method params:params  model:model retryCount:0 completion:completion];
-            }else {
+            } else {
                 [self getWithMethod:method params:params  model:model retryCount:0 completion:completion];
                 
             }
             
         }
         
-    }else {
+    } else {
         if (isPost) {
             [self postWithMethod:method params:params  model:model retryCount:0 completion:completion];
-        }else {
+        } else {
             [self getWithMethod:method params:params  model:model retryCount:0 completion:completion];
             
         }

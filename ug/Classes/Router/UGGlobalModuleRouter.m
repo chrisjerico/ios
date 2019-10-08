@@ -62,9 +62,8 @@
         UIImage *image = [UIImage imageNamed:@"changlong"];
         image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         viewController.tabBarItem.selectedImage = image;
-         UGNavigationController *nvc = [[UGNavigationController alloc]initWithRootViewController:viewController];
+        UGNavigationController *nvc = [[UGNavigationController alloc] initWithRootViewController:viewController];
         return nvc;
-
     }];
     
     //注册 /lotteryList 彩票大厅

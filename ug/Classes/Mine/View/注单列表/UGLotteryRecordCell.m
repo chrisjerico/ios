@@ -35,7 +35,7 @@
     subLabel(@"赔率Label").text = item.odds;
     subLabel(@"注单金额Label").text = item.betAmount;
     subLabel(@"盈亏Label2").text = _NSString(@"%@%@元", (item.settleAmount.doubleValue>0 ? @"+" : @""), item.settleAmount);
-    subLabel(@"玩法Label").text = _NSString(@"%@/%@", item.playGroupName, item.playName);
+    subLabel(@"玩法Label").text = _NSString(@"%@ %@ %@", item.playGroupName, item.playName, item.betInfo);
     subLabel(@"开奖号码Label").text = item.lotteryNo;
     subButton(@"撤单Button").hidden = !(item.status==1 && [UGSystemConfigModel currentConfig].allowMemberCancelBet); // 等待开奖时才显示
     

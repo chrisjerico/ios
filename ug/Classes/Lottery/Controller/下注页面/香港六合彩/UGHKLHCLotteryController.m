@@ -79,15 +79,15 @@
 
 @property (nonatomic, strong) NSArray *chipArray;               /**<   筹码数组 */
 @property (nonatomic, strong) UGPlayOddsModel *playOddsModel;   /**<   玩法赔率Model */
-@property (nonatomic, strong) NSMutableArray *gameDataArray;    /**<   游戏数据数组 */
+@property (nonatomic, strong) NSMutableArray <UGGameplayModel *>*gameDataArray;    /**<   玩法列表 */
 @property (nonatomic, strong) NSArray *preNumArray;
 @property (nonatomic, strong) NSArray *subPreNumArray;
 @property (nonatomic, strong) NSArray *numColorArray;
-@property (nonatomic, strong) NSMutableArray *tmTitleArray;//特码
-@property (nonatomic, strong) NSMutableArray *lmTitleArray;//连码
-@property (nonatomic, strong) NSMutableArray *ztTitleArray;//正特
-@property (nonatomic, strong) NSMutableArray *lxTitleArray;//连肖
-@property (nonatomic, strong) NSMutableArray *lwTitleArray;//连尾
+@property (nonatomic, strong) NSMutableArray *tmTitleArray;     /**<   特码 的子玩法标题Array */
+@property (nonatomic, strong) NSMutableArray *lmTitleArray;     /**<   连码 的子玩法标题Array */
+@property (nonatomic, strong) NSMutableArray *ztTitleArray;     /**<   正特 的子玩法标题Array */
+@property (nonatomic, strong) NSMutableArray *lxTitleArray;     /**<   连肖 的子玩法标题Array */
+@property (nonatomic, strong) NSMutableArray *lwTitleArray;     /**<   连尾 的子玩法标题Array */
 
 @property (nonatomic, strong) NSIndexPath *typeIndexPath;       /**<   类型下标 */
 @property (nonatomic, strong) NSIndexPath *itemIndexPath;       /**<   item下标 */
@@ -233,7 +233,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         [CMResult processWithResult:model success:^{
             UGPlayOddsModel *play = model.data;
             self.playOddsModel = play;
-            self.gameDataArray = play.playOdds.mutableCopy;
+            self.gameDataArray = [play.playOdds mutableCopy];
             [self handleData];
             
             if (self.segmentView.hidden) {
@@ -296,8 +296,9 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 }
 
 - (void)updateCloseLabelText{
+    
     NSString *timeStr = [CMCommon getNowTimeWithEndTimeStr:self.nextIssueModel.curCloseTime currentTimeStr:self.nextIssueModel.serverTime];
-    if (timeStr == nil) {
+    if (self.nextIssueModel.isSeal || timeStr == nil) {
         timeStr = @"封盘中";
         self.bottomCloseView.hidden = NO;
         [self resetClick:nil];
@@ -306,7 +307,6 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     }
     self.closeTimeLabel.text = [NSString stringWithFormat:@"封盘：%@",timeStr];
     [self updateCloseLabel];
-    
 }
 
 - (void)updateOpenLabelText {
@@ -465,7 +465,6 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
     return self.gameDataArray.count;
 }
 
@@ -1159,6 +1158,17 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         adView.picUrl = model.adPic;
         WeakSelf
         adView.adGoBlcok = ^{
+            // 去任务大厅
+            if ([model.adLink isEqualToString:@"-2"]) {
+                [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController") animated:YES];
+                return ;
+            }
+            // 去利息宝
+            if ([model.adLink isEqualToString:@"-1"]) {
+                [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGYubaoViewController")  animated:YES];
+                return ;
+            }
+            // 去彩票下注页面
             for (UGAllNextIssueListModel *listMoel in self.lotteryGamesArray) {
                 for (UGNextIssueModel *nextModel in listMoel.list) {
                     if ([nextModel.gameId isEqualToString:model.adLink]) {

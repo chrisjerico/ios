@@ -28,6 +28,8 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol UGGameBetModel <NSObject>
 
 @end
+
+// 号码Model
 @interface UGGameBetModel : UGModel<UGGameBetModel>
 
 @property (nonatomic, strong) NSString *playId;
@@ -67,10 +69,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *typeName;
 @property (nonatomic, strong) NSString *code;
 @property (nonatomic, assign) BOOL isShow;
-@property (nonatomic, assign) BOOL isBan;
-@property (nonatomic, strong) NSString *alias;
-@property (nonatomic, strong) NSArray *lhcOddsArray;//六合彩合肖玩法赔率
-@property (nonatomic, strong) NSArray<UGGameBetModel> *list;
+@property (nonatomic, assign) BOOL isBan;               /**<   是否禁用该玩法 */
+@property (nonatomic, strong) NSString *alias;          /**<   玩法名 */
+@property (nonatomic, strong) NSArray *lhcOddsArray;    /**<   六合彩合肖玩法赔率 */
+@property (nonatomic, strong) NSArray<UGGameBetModel> *list;    /**<   号码ModelList */
 
 @end
 

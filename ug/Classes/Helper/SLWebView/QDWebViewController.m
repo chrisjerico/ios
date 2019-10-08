@@ -67,7 +67,7 @@ UIActionSheetDelegate> {
         [self.backView addGestureRecognizer:pan];
         [self.backView addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
         
-    }else {
+    } else {
         
         self.navigationItem.title = self.navigationTitle;
         STBarButtonItem *item0 = [STBarButtonItem barButtonItemWithImageName:@"c_navi_back" target:self action:@selector(pageBack)];
@@ -87,13 +87,27 @@ UIActionSheetDelegate> {
         [self.navigationController.navigationBar.layer addSublayer:self.webView.dk_progressLayer];
     }
     
-
+    // 退出页面前切换回竖屏
+    [self.navigationController aspect_hookSelector:@selector(popViewControllerAnimated:) withOptions:AspectPositionBefore usingBlock:^(id <AspectInfo>ai) {
+        AppDelegate  *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        appDelegate.allowRotation = 0;
+        
+        if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
+            // 防止更改设备的横竖屏不起作用
+            SEL seletor = NSSelectorFromString(@"setOrientation:");
+            
+            NSInvocation *invocatino = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:seletor]];
+            [invocatino setSelector:seletor];
+            [invocatino setTarget:[UIDevice currentDevice]];
+            int val = UIInterfaceOrientationPortrait;
+            [invocatino setArgument:&val atIndex:2];
+            [invocatino invoke];
+        }
+    }  error:nil];
 }
 
--(BOOL)prefersStatusBarHidden{
-    
+- (BOOL)prefersStatusBarHidden {
     return YES;// 返回YES表示隐藏，返回NO表示显示
-    
 }
 
 - (void)viewWillLayoutSubviews {
@@ -101,6 +115,7 @@ UIActionSheetDelegate> {
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     for (NSHTTPCookie *cookie in [storage cookies]){
       
@@ -115,49 +130,25 @@ UIActionSheetDelegate> {
     if ([self.navigationTitle isEqualToString:@"聊天室"]) {
         self.navigationController.navigationBarHidden = YES;
     }
-    
-    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    SANotificationEventPost(UGNotificationAutoTransferOut, nil);
-    AppDelegate  *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    appDelegate.allowRotation = 0;
+    [super viewWillDisappear:animated];
     
-    if ([[UIDevice currentDevice]respondsToSelector:@selector(setOrientation:)]) {
-        [self orientationToPortrait:UIInterfaceOrientationPortrait];
-    }
+    
     
     if ([self.navigationTitle isEqualToString:@"聊天室"]) {
         self.navigationController.navigationBarHidden = NO;
     }
-        
 }
 
-- (void)backClick{
-    
+- (void)backClick {
     UGBackToastView *backView = [[UGBackToastView alloc] initWithFrame:CGRectMake((UGScreenW - 300)/2, (UGScerrnH - 200)/2, 300, 200)];
     WeakSelf
     backView.backHomeBlock = ^{
-
         [weakSelf.navigationController popViewControllerAnimated:YES];
     };
     [backView popupShow];
-    
-}
-
-// 防止更改设备的横竖屏不起作用
--(void)orientationToPortrait:(UIInterfaceOrientation)orientation{
-    
-    SEL seletor = NSSelectorFromString(@"setOrientation:");
-    
-    NSInvocation *invocatino = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:seletor]];
-    [invocatino setSelector:seletor];
-    [invocatino setTarget:[UIDevice currentDevice]];
-    int val = orientation;
-    [invocatino setArgument:&val atIndex:2];
-    [invocatino invoke];
-    
 }
 
 - (void)doClose {
@@ -177,6 +168,7 @@ UIActionSheetDelegate> {
         [self.webView goBack];
         return;
     }
+    
     
     if (self.navigationController && [[self.navigationController childViewControllers] count] > 1 ) {
         [self.navigationController popViewControllerAnimated:YES];
@@ -199,8 +191,10 @@ UIActionSheetDelegate> {
 //}
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
-    if (navigationType==UIWebViewNavigationTypeBackForward) {
-        self.webView.canGoBack?[self.webView goBack]:[self.navigationController popViewControllerAnimated:YES];
+    if (navigationType == UIWebViewNavigationTypeBackForward) {
+        SANotificationEventPost(UGNotificationAutoTransferOut, nil);
+        
+        self.webView.canGoBack ? [self.webView goBack] : [self.navigationController popViewControllerAnimated:YES];
     }
     return YES;
 }

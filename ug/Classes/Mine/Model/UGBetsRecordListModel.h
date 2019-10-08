@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *statusName;
 @property (nonatomic, strong) NSString *odds;           /**<   赔率（彩票） */
 @property (nonatomic, strong) NSString *issue;          /**<   彩票期号（彩票） */
-
+@property (nonatomic, strong) NSString *betInfo;        /**<   下注号码 */
 @end
 
 @interface UGBetsRecordListModel : UGModel

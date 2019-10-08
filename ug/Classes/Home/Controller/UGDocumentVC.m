@@ -499,7 +499,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 
 - (void)updateCloseLabelText{
 	NSString *timeStr = [CMCommon getNowTimeWithEndTimeStr:self.nextIssueModel.curCloseTime currentTimeStr:self.nextIssueModel.serverTime];
-	if (timeStr == nil) {
+	if (self.nextIssueModel.isSeal || timeStr == nil) {
 		timeStr = @"封盘中";
 	}
 	self.closeTimeLabel.text = [NSString stringWithFormat:@"封盘：%@",timeStr];

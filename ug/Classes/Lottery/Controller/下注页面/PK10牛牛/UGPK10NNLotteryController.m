@@ -604,7 +604,7 @@ static NSString *lotterySubResultCellid = @"UGPK10SubResultCollectionViewCell";
 
 - (void)updateCloseLabelText{
     NSString *timeStr = [CMCommon getNowTimeWithEndTimeStr:self.nextIssueModel.curCloseTime currentTimeStr:self.nextIssueModel.serverTime];
-    if (timeStr == nil) {
+    if (self.nextIssueModel.isSeal || timeStr == nil) {
         timeStr = @"封盘中";
         self.bottomCloseView.hidden = NO;
         [self resetClick:nil];
@@ -660,6 +660,17 @@ static NSString *lotterySubResultCellid = @"UGPK10SubResultCollectionViewCell";
         adView.picUrl = model.adPic;
         WeakSelf
         adView.adGoBlcok = ^{
+            // 去任务大厅
+            if ([model.adLink isEqualToString:@"-2"]) {
+                [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController") animated:YES];
+                return ;
+            }
+            // 去利息宝
+            if ([model.adLink isEqualToString:@"-1"]) {
+                [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGYubaoViewController")  animated:YES];
+                return ;
+            }
+            // 去彩票下注页面
             for (UGAllNextIssueListModel *listMoel in self.lotteryGamesArray) {
                 for (UGNextIssueModel *nextModel in listMoel.list) {
                     if ([nextModel.gameId isEqualToString:model.adLink]) {

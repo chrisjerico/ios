@@ -25,6 +25,7 @@
 @synthesize qdwebVC,vcs,nvcHome,nvcChangLong,nvcLotteryList,nvcActivity,nvcChatRoomList,nvcLotteryRecord;
 @synthesize nvcUser,nvcTask,nvcSecurityCenter,nvcFunds,nvcMessage,nvcConversion,nvcBanks,nvcYuebao;
 @synthesize nvcSign,nvcReferrer,balanceConversionVC;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initAllNav];
@@ -37,7 +38,13 @@
     });
 
 }
--(void)initAllNav{
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.tabBar layoutIfNeeded];
+}
+
+- (void)initAllNav{
     //====home
     self.nvcHome = [FFRouter routeObjectURL:@"/home"];
     //====长龙助手
@@ -76,7 +83,7 @@
    
 }
 
--(void)setTabbarStyle{
+- (void)setTabbarStyle {
     // 设置 TabBarItemTestAttributes 的颜色。
     [self setUpTabBarItemTextAttributes];
     
@@ -107,7 +114,7 @@
 /**
  *  tabBarItem 的选中和不选中文字属性
  */
-- (void)setUpTabBarItemTextAttributes{
+- (void)setUpTabBarItemTextAttributes {
     
     [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[[UGSkinManagers shareInstance] settabNOSelectColor], NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
     
@@ -183,7 +190,7 @@
 /**
  *  添加子控制器
  */
-- (void)resetUpChildViewController{
+- (void)resetUpChildViewController {
    
    UGSystemConfigModel *config =  [UGSystemConfigModel currentConfig];
     
