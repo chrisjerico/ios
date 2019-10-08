@@ -24,6 +24,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, assign)BOOL shoulHideContent;
 @property(nonatomic, strong)NSArray<UGAllNextIssueListModel *> * allList;
 @property(nonatomic, strong)UGNextIssueModel * model;
+//@property (nonatomic, strong) UGNextIssueModel *nextIssueModel;
+
+-(void)getGameDatas;
+-(void)getNextIssueData;
 //@property(nonatomic, copy)void (^titleViewSetupBlock)(NSArray<UGAllNextIssueListModel *> * allList, UGNextIssueModel * model);
 
 @end

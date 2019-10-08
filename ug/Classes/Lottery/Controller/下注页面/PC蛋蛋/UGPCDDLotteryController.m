@@ -88,6 +88,7 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
 static NSString *lotteryResultCellid = @"UGLotteryResultCollectionViewCell";
 static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell";
 @implementation UGPCDDLotteryController
+@synthesize nextIssueModel  = _nextIssueModel;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
