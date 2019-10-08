@@ -155,6 +155,7 @@ static NSString *missionCellid = @"UGMissionTableViewCell";
             
              [SVProgressHUD showSuccessWithStatus:@"领取成功"];
             
+             SANotificationEventPost(UGNotificationGetRewardsSuccessfully, nil);
             [self getCenterData];
             
         } failure:^(id msg) {

@@ -16,6 +16,7 @@
 #import "WKProxy.h"
 
 @interface UGRegisterViewController ()<UITextFieldDelegate,UINavigationControllerDelegate,WKScriptMessageHandler,WKNavigationDelegate,WKUIDelegate>
+@property (weak, nonatomic) IBOutlet UIScrollView *myScrollView;
 @property (weak, nonatomic) IBOutlet UITextField *inviterTextF;
 @property (weak, nonatomic) IBOutlet UITextField *userNameTextF;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextF;
@@ -106,7 +107,7 @@
     self.goLoginButton.layer.masksToBounds = YES;
     [self.goLoginButton setTitleColor:UGNavColor forState:UIControlStateNormal];
     
-    
+    [self.myScrollView setBackgroundColor:[UIColor grayColor]];
     //    选中的颜色
     
 //     [self.mySegmentCV setTitleTextAttributes:@{NSForegroundColorAttributeName:UGNavColor} forState:UIControlStateSelected];
@@ -161,6 +162,11 @@
             [self.navigationController popViewControllerAnimated:YES];
         }];
     }
+    
+//    self.myScrollView.frame = CGRectMake(0, 0, UGScreenW, UGScerrnH);
+    
+    
+   
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
@@ -540,7 +546,11 @@
          
      }];
     
+
+//    self.myScrollView.contentSize = CGSizeMake(UGScreenW, CGRectGetMaxY(self.goHomeButton.frame)+self.goHomeButton.frame.size.height +100);
     
+    
+   
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {

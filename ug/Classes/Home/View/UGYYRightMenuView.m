@@ -315,6 +315,8 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         }else {
             
             UGBetRecordViewController *betRecordVC = [[UGBetRecordViewController alloc] init];
+            [betRecordVC buildSegment];
+            [betRecordVC setSelectIndex:2];
             viewController = betRecordVC;
             
         }

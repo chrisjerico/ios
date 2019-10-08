@@ -69,13 +69,15 @@
     _item = item;
 	self.nameLabel.text = [item.name length] > 0 ? item.name : item.title;
 	[self.hasSubSign setHidden: (item.subType.count > 0 ? false : true)];
-//<<<<<<< HEAD
+
     [self.imgView sd_setImageWithURL:[NSURL URLWithString:item.logo] placeholderImage:[UIImage imageNamed:@"loading"]];
 	
-//=======
-//    [self.imgView sd_setImageWithURL:[NSURL URLWithString:item.logo] placeholderImage:[UIImage imageNamed:@"zwt"]];
-//	self.hotImageView.hidden = [item.tipFlag isEqualToString:@"1"] ? false : true;
-//>>>>>>> dev_andrew
+    if ([item.tipFlag isEqualToString:@"1"]) {
+         self.hotImageView.hidden = NO;
+    } else {
+         self.hotImageView.hidden = YES;
+    }
+    
 }
 -(UIImageView *)hasSubSign {
 	if (!_hasSubSign) {

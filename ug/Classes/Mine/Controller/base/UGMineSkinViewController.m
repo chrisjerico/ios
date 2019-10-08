@@ -43,6 +43,7 @@
 @interface UGMineSkinViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 {
     NSString *skitType;
+    NSString *unreadMsg;
 }
 @property (weak, nonatomic) IBOutlet UIView *userInfoView;
 @property (weak, nonatomic) IBOutlet UIView *topupView;
@@ -171,7 +172,7 @@
   
     skitType = [[UGSkinManagers shareInstance] skitType];
     
-    if ([skitType isEqualToString:@"经典"]) {
+    if ([skitType isEqualToString:@"经典"]||[skitType isEqualToString:@"六合资料"]) {
         self.topupView.hidden = YES;
         self.topupViewNSLayoutConstraintHight.constant = 0.1;
     }
@@ -468,7 +469,16 @@ BOOL isOk = NO;
         
         
         cell.imageView.image = [dic objectForKey:@"imgName"];
-        
+        if ([[dic objectForKey:@"title"] isEqualToString:@"站内信"]) {
+            
+            if (![CMCommon stringIsNull:unreadMsg]) {
+                [cell setBadgeNum:[unreadMsg intValue]];
+            }
+            
+        }
+        else{
+            [cell setBadgeNum:0];
+        }
         [cell setBackgroundColor: [UIColor clearColor]];
         
         cell.layer.borderWidth = 1;
@@ -482,6 +492,17 @@ BOOL isOk = NO;
         [cell setMenuName: [dic objectForKey:@"title"]];
         
         cell.imageView.image = [dic objectForKey:@"imgName"];
+        
+        if ([[dic objectForKey:@"title"] isEqualToString:@"站内信"]) {
+            
+            if (![CMCommon stringIsNull:unreadMsg]) {
+                [cell setBadgeNum:[unreadMsg intValue]];
+            }
+           
+        }
+        else{
+            [cell setBadgeNum:0];
+        }
         
         [cell setBackgroundColor: [UIColor clearColor]];
         cell.layer.borderWidth = 1;
@@ -731,8 +752,17 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
             }];
         }else {
             
-            UGPromotionIncomeController *incomeVC = [[UGPromotionIncomeController alloc] init];
-            [self.navigationController pushViewController:incomeVC animated:YES];
+            if (user.isAgent) {
+                UGPromotionIncomeController *incomeVC = [[UGPromotionIncomeController alloc] init];
+                [self.navigationController pushViewController:incomeVC animated:YES];
+            }
+            else{
+                
+                [self.navigationController.view makeToast:@"会员中心申请代理已关闭"
+                                                 duration:1.5
+                                                 position:CSToastPositionCenter];
+            }
+            
         }
     } else if ([title isEqualToString:@"申请代理"]) {
         UGUserModel *user = [UGUserModel currentUser];
@@ -993,59 +1023,13 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     
     self.userNameLabel.text = user.username;
     self.userVipLabel.text = user.curLevelGrade;
-    
+    self.fristVipLabel.text = user.curLevelGrade;
     NSString *imagerStr = [user.curLevelGrade lowercaseString];
     NSLog(@"imagerStr = %@",imagerStr);
-    
-    
-    if (![CMCommon stringIsNull:user.curLevelGrade] && user.curLevelGrade.length>4) {
-        NSString *subStr = [user.curLevelGrade substringFromIndex:3];
-        
-        int levelsInt = [subStr intValue];
-        NSString *imgStr = @"";
-        if (levelsInt <11) {
-            imgStr = [NSString stringWithFormat:@"vip%d",levelsInt];
-        } else {
-            imgStr = @"vip11";
-        }
-        
-        //    [self.vipImager setImage: [UIImage imageNamed:imgStr]];
-        
-        NSString *img2Str = @"";
-        if (levelsInt <11) {
-            img2Str = [NSString stringWithFormat:@"grade_%d",levelsInt];
-        } else {
-            img2Str = @"grade_11";
-        }
-        
-        //    [self.curLevelImageView setImage: [UIImage imageNamed:img2Str]];
-        self.fristVipLabel.text = [NSString stringWithFormat:@"VIP%@",subStr];
-    }
-    
-    if (![CMCommon stringIsNull:user.nextLevelGrade] && user.nextLevelGrade.length>4) {
-        NSString *subStr = [user.nextLevelGrade substringFromIndex:3];
-        
-        int levelsInt = [subStr intValue];
-        NSString *imgStr = @"";
-        if (levelsInt <11) {
-            imgStr = [NSString stringWithFormat:@"vip%d",levelsInt];
-        } else {
-            imgStr = @"vip11";
-        }
-        
-        //    [self.vipImager setImage: [UIImage imageNamed:imgStr]];
-        
-        NSString *img2Str = @"";
-        if (levelsInt <11) {
-            img2Str = [NSString stringWithFormat:@"grade_%d",levelsInt];
-        } else {
-            img2Str = @"grade_11";
-        }
-        
-        //    [self.curLevelImageView setImage: [UIImage imageNamed:img2Str]];
-        self.fristVipLabel.text = [NSString stringWithFormat:@"VIP%@",subStr];
-        self.secondVipLabel.text = [NSString stringWithFormat:@"VIP%@",subStr];
-    }
+           unreadMsg = user.unreadMsg;
+    NSLog(@"unreadMsg = %@",unreadMsg);
+
+      self.secondVipLabel.text = user.nextLevelGrade;
     
     self.valueLabel.text = _NSString(@"成长值（%@-%@）", _FloatString4(user.taskRewardTotal.doubleValue), _FloatString4(user.nextLevelInt.doubleValue));
    
