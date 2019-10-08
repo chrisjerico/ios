@@ -503,14 +503,11 @@
 		[CMResult processWithResult:model success:^{
 			[SVProgressHUD dismiss];
 			dispatch_async(dispatch_get_main_queue(), ^{
-				
 				QDWebViewController *qdwebVC = [[QDWebViewController alloc] init];
 				qdwebVC.urlString = model.data;
 				qdwebVC.enterGame = YES;
 				[self.navigationController pushViewController:qdwebVC  animated:YES];
 			});
-			
-			
 		} failure:^(id msg) {
 			[SVProgressHUD showErrorWithStatus:msg];
 		}];

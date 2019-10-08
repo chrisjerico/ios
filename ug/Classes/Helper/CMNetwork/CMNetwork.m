@@ -513,10 +513,10 @@ completion:(CMNetworkBlock)completion {
             SANotificationEventPost(UGNotificationUserLogout, nil);
             return ;
         }
-        if (errResponse.statusCode == 403) {
+        if (errResponse.statusCode == 403 || errResponse.statusCode == 404) {
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:error.userInfo[@"com.alamofire.serialization.response.error.data"] options:0 error:nil];
             NSError *err;
-            CMResult* result  = [resultClass resultWithJSON:json dataClass:dataClass error:&err];
+            CMResult *result  = [resultClass resultWithJSON:json dataClass:dataClass error:&err];
             if (completion != nil) {
                 completion(result, err);
                 return;

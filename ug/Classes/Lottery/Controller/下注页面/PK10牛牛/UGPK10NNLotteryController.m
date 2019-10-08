@@ -149,17 +149,27 @@ static NSString *lotterySubResultCellid = @"UGPK10SubResultCollectionViewCell";
     [super viewWillAppear:animated];
     [self.view bringSubviewToFront:self.bottomView];
     WeakSelf
-    [self.countDown countDownWithPER_SECBlock:^{
-        
-        [weakSelf updateCloseLabelText];
-        [weakSelf updateOpenLabelText];
-        
-    }];
-    
+    // 轮循刷新封盘时间、开奖时间
+    {
+        static NSTimer *timer = nil;
+        [self onceToken:ZJOnceToken block:^{
+            [timer invalidate];
+            timer = nil;
+        }];
+        timer = [NSTimer scheduledTimerWithInterval:0.2 repeats:true block:^(NSTimer *timer) {
+            [weakSelf updateCloseLabelText];
+            [weakSelf updateOpenLabelText];
+            if (!weakSelf) {
+                [timer invalidate];
+                timer = nil;
+            }
+        }];
+    }
+    // 轮循请求下期数据
     [self.nextIssueCountDown countDownWithSec:NextIssueSec PER_SECBlock:^{
-        
-        [weakSelf getNextIssueData];
-        
+        if ([[weakSelf.nextIssueModel.curOpenTime dateWithFormat:@"yyyy-MM-dd HH:mm:ss"] timeIntervalSinceDate:[NSDate date]] < 0) {
+            [weakSelf getNextIssueData];
+        }
     }];
 }
 

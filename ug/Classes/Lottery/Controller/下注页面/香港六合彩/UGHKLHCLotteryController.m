@@ -178,13 +178,27 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     [super viewWillAppear:animated];
     [self.view bringSubviewToFront:self.bottomView];
     WeakSelf
-    [self.countDown countDownWithPER_SECBlock:^{
-        [weakSelf updateCloseLabelText];
-        [weakSelf updateOpenLabelText];
-    }];
-    
+    // 轮循刷新封盘时间、开奖时间
+    {
+        static NSTimer *timer = nil;
+        [self onceToken:ZJOnceToken block:^{
+            [timer invalidate];
+            timer = nil;
+        }];
+        timer = [NSTimer scheduledTimerWithInterval:0.2 repeats:true block:^(NSTimer *timer) {
+            [weakSelf updateCloseLabelText];
+            [weakSelf updateOpenLabelText];
+            if (!weakSelf) {
+                [timer invalidate];
+                timer = nil;
+            }
+        }];
+    }
+    // 轮循请求下期数据
     [self.nextIssueCountDown countDownWithSec:NextIssueSec PER_SECBlock:^{
-        [weakSelf getNextIssueData];
+        if ([[weakSelf.nextIssueModel.curOpenTime dateWithFormat:@"yyyy-MM-dd HH:mm:ss"] timeIntervalSinceDate:[NSDate date]] < 0) {
+            [weakSelf getNextIssueData];
+        }
     }];
 }
 
@@ -233,7 +247,27 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         [CMResult processWithResult:model success:^{
             UGPlayOddsModel *play = model.data;
             self.playOddsModel = play;
-            self.gameDataArray = [play.playOdds mutableCopy];
+//            self.gameDataArray = [play.playOdds mutableCopy];
+            // 删除isShow为NO的数据（不显示出来）
+            [self.gameDataArray removeAllObjects];
+            for (UGGameplayModel *gm in play.playOdds) {
+                NSMutableArray *temp1 = [gm.list mutableCopy];
+                for (UGGameplaySectionModel *gsm in gm.list) {
+                    NSMutableArray *temp2 = [gsm.list mutableCopy];
+                    for (UGGameBetModel *gbm in gsm.list) {
+                        if (gbm.isBan)
+                            [temp2 removeObject:gbm];
+                    }
+                    gsm.list = [temp2 copy];
+                    
+                    if (!temp2.count || gsm.isBan)
+                        [temp1 removeObject:gsm];
+                }
+                if (temp1.count) {
+                    gm.list = [temp1 copy];
+                    [self.gameDataArray addObject:gm];
+                }
+            }
             [self handleData];
             
             if (self.segmentView.hidden) {

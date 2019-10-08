@@ -148,18 +148,29 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.view bringSubviewToFront:self.bottomView];
-    WeakSelf
-    [self.countDown countDownWithPER_SECBlock:^{
-        
-        [weakSelf updateCloseLabelText];
-        [weakSelf updateOpenLabelText];
-        
-    }];
     
+    WeakSelf
+    // 轮循刷新封盘时间、开奖时间
+    {
+        static NSTimer *timer = nil;
+        [self onceToken:ZJOnceToken block:^{
+            [timer invalidate];
+            timer = nil;
+        }];
+        timer = [NSTimer scheduledTimerWithInterval:0.2 repeats:true block:^(NSTimer *timer) {
+            [weakSelf updateCloseLabelText];
+            [weakSelf updateOpenLabelText];
+            if (!weakSelf) {
+                [timer invalidate];
+                timer = nil;
+            }
+        }];
+    }
+    // 轮循请求下期数据
     [self.nextIssueCountDown countDownWithSec:NextIssueSec PER_SECBlock:^{
-        
-        [weakSelf getNextIssueData];
-        
+        if ([[weakSelf.nextIssueModel.curOpenTime dateWithFormat:@"yyyy-MM-dd HH:mm:ss"] timeIntervalSinceDate:[NSDate date]] < 0) {
+            [weakSelf getNextIssueData];
+        }
     }];
 }
 
@@ -644,20 +655,17 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         timeStr = @"封盘中";
         self.bottomCloseView.hidden = NO;
         [self resetClick:nil];
-    }else {
+    } else {
         self.bottomCloseView.hidden = YES;
     }
     self.closeTimeLabel.text = [NSString stringWithFormat:@"封盘：%@",timeStr];
     [self updateCloseLabel];
-    
 }
 
 - (void)updateOpenLabelText{
     NSString *timeStr = [CMCommon getNowTimeWithEndTimeStr:self.nextIssueModel.curOpenTime currentTimeStr:self.nextIssueModel.serverTime];
     if (timeStr == nil) {
         timeStr = @"获取下一期";
-    }else {
-        
     }
     self.openTimeLabel.text = [NSString stringWithFormat:@"开奖：%@",timeStr];
     [self updateOpenLabel];

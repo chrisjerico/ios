@@ -134,12 +134,12 @@ UIActionSheetDelegate> {
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    
-    
-    
     if ([self.navigationTitle isEqualToString:@"聊天室"]) {
         self.navigationController.navigationBarHidden = NO;
     }
+    
+    // 自动游戏额度转出
+    SANotificationEventPost(UGNotificationAutoTransferOut, nil);
 }
 
 - (void)backClick {
@@ -192,8 +192,6 @@ UIActionSheetDelegate> {
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     if (navigationType == UIWebViewNavigationTypeBackForward) {
-        SANotificationEventPost(UGNotificationAutoTransferOut, nil);
-        
         self.webView.canGoBack ? [self.webView goBack] : [self.navigationController popViewControllerAnimated:YES];
     }
     return YES;
@@ -290,7 +288,7 @@ UIActionSheetDelegate> {
 
 - (void)tapRefresh {
     [self.errorView removeFromSuperview];
-    [self.webView loadRequest:[NSURLRequest requestWithURL:errorUrl]];
+//    [self.webView loadRequest:[NSURLRequest requestWithURL:errorUrl]];
 
 }
 
