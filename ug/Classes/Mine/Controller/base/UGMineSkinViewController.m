@@ -172,7 +172,7 @@
   
     skitType = [[UGSkinManagers shareInstance] skitType];
     
-    if ([skitType isEqualToString:@"经典"]) {
+    if ([skitType isEqualToString:@"经典"]||[skitType isEqualToString:@"六合资料"]) {
         self.topupView.hidden = YES;
         self.topupViewNSLayoutConstraintHight.constant = 0.1;
     }
