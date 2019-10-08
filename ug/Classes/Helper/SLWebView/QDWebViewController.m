@@ -190,19 +190,32 @@ UIActionSheetDelegate> {
 //    return YES;
 //}
 
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     if (navigationType == UIWebViewNavigationTypeBackForward) {
         self.webView.canGoBack ? [self.webView goBack] : [self.navigationController popViewControllerAnimated:YES];
+    }
+    
+    // 若跳转到 lobbyURL地址，则退出页面
+    {
+        static NSString *host = nil;
+        [self onceToken:ZJOnceToken block:^{
+            host = nil;
+        }];
+        NSString *url = request.URL.absoluteString;
+        if ([url containsString:@"lobbyURL="]) {
+            host = [[url componentsSeparatedByString:@"lobbyURL="].lastObject componentsSeparatedByString:@"&"].firstObject;
+        }
+        if (host.length && [request.URL.host isEqualToString:host.lastPathComponent]) {
+            [self.navigationController popViewControllerAnimated:true];
+        }
     }
     return YES;
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
-
     if ([self.webView.subviews containsObject:self.errorView]) {
         [self.errorView removeFromSuperview];
     }
-
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
@@ -288,8 +301,7 @@ UIActionSheetDelegate> {
 
 - (void)tapRefresh {
     [self.errorView removeFromSuperview];
-//    [self.webView loadRequest:[NSURLRequest requestWithURL:errorUrl]];
-
+    [self.webView loadRequest:[NSURLRequest requestWithURL:errorUrl]];
 }
 
 - (void) handlePan:(UIPanGestureRecognizer*) recognizer
@@ -356,4 +368,6 @@ UIActionSheetDelegate> {
     }
     return _backView;
 }
+
+
 @end

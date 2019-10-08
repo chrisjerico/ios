@@ -255,12 +255,12 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                 for (UGGameplaySectionModel *gsm in gm.list) {
                     NSMutableArray *temp2 = [gsm.list mutableCopy];
                     for (UGGameBetModel *gbm in gsm.list) {
-                        if (gbm.isBan)
+                        if (!gbm.enable)
                             [temp2 removeObject:gbm];
                     }
                     gsm.list = [temp2 copy];
                     
-                    if (!temp2.count || gsm.isBan)
+                    if (!temp2.count || !gsm.enable)
                         [temp1 removeObject:gsm];
                 }
                 if (temp1.count) {
