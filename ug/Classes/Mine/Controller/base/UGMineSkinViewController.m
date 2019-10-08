@@ -999,59 +999,60 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     
     self.userNameLabel.text = user.username;
     self.userVipLabel.text = user.curLevelGrade;
-    
+    self.fristVipLabel.text = user.curLevelGrade;
     NSString *imagerStr = [user.curLevelGrade lowercaseString];
     NSLog(@"imagerStr = %@",imagerStr);
     
     
-    if (![CMCommon stringIsNull:user.curLevelGrade] && user.curLevelGrade.length>4) {
-        NSString *subStr = [user.curLevelGrade substringFromIndex:3];
-        
-        int levelsInt = [subStr intValue];
-        NSString *imgStr = @"";
-        if (levelsInt <11) {
-            imgStr = [NSString stringWithFormat:@"vip%d",levelsInt];
-        } else {
-            imgStr = @"vip11";
-        }
-        
-        //    [self.vipImager setImage: [UIImage imageNamed:imgStr]];
-        
-        NSString *img2Str = @"";
-        if (levelsInt <11) {
-            img2Str = [NSString stringWithFormat:@"grade_%d",levelsInt];
-        } else {
-            img2Str = @"grade_11";
-        }
-        
-        //    [self.curLevelImageView setImage: [UIImage imageNamed:img2Str]];
-        self.fristVipLabel.text = [NSString stringWithFormat:@"VIP%@",subStr];
-    }
+//    if (![CMCommon stringIsNull:user.curLevelGrade] && user.curLevelGrade.length>=4) {
+//        NSString *subStr = [user.curLevelGrade substringFromIndex:3];
+//
+//        int levelsInt = [subStr intValue];
+//        NSString *imgStr = @"";
+//        if (levelsInt <11) {
+//            imgStr = [NSString stringWithFormat:@"vip%d",levelsInt];
+//        } else {
+//            imgStr = @"vip11";
+//        }
+//
+//        //    [self.vipImager setImage: [UIImage imageNamed:imgStr]];
+//
+//        NSString *img2Str = @"";
+//        if (levelsInt <11) {
+//            img2Str = [NSString stringWithFormat:@"grade_%d",levelsInt];
+//        } else {
+//            img2Str = @"grade_11";
+//        }
+//
+//        //    [self.curLevelImageView setImage: [UIImage imageNamed:img2Str]];
+//
+//    }
     
-    if (![CMCommon stringIsNull:user.nextLevelGrade] && user.nextLevelGrade.length>4) {
-        NSString *subStr = [user.nextLevelGrade substringFromIndex:3];
-        
-        int levelsInt = [subStr intValue];
-        NSString *imgStr = @"";
-        if (levelsInt <11) {
-            imgStr = [NSString stringWithFormat:@"vip%d",levelsInt];
-        } else {
-            imgStr = @"vip11";
-        }
-        
-        //    [self.vipImager setImage: [UIImage imageNamed:imgStr]];
-        
-        NSString *img2Str = @"";
-        if (levelsInt <11) {
-            img2Str = [NSString stringWithFormat:@"grade_%d",levelsInt];
-        } else {
-            img2Str = @"grade_11";
-        }
-        
-        //    [self.curLevelImageView setImage: [UIImage imageNamed:img2Str]];
-        self.fristVipLabel.text = [NSString stringWithFormat:@"VIP%@",subStr];
-        self.secondVipLabel.text = [NSString stringWithFormat:@"VIP%@",subStr];
-    }
+//    if (![CMCommon stringIsNull:user.nextLevelGrade] && user.nextLevelGrade.length>=4) {
+//        NSString *subStr = [user.nextLevelGrade substringFromIndex:3];
+//
+//        int levelsInt = [subStr intValue];
+//        NSString *imgStr = @"";
+//        if (levelsInt <11) {
+//            imgStr = [NSString stringWithFormat:@"vip%d",levelsInt];
+//        } else {
+//            imgStr = @"vip11";
+//        }
+//
+//        //    [self.vipImager setImage: [UIImage imageNamed:imgStr]];
+//
+//        NSString *img2Str = @"";
+//        if (levelsInt <11) {
+//            img2Str = [NSString stringWithFormat:@"grade_%d",levelsInt];
+//        } else {
+//            img2Str = @"grade_11";
+//        }
+//
+//        //    [self.curLevelImageView setImage: [UIImage imageNamed:img2Str]];
+//        self.secondVipLabel.text = [NSString stringWithFormat:@"VIP%@",subStr];
+//    }
+    
+      self.secondVipLabel.text = user.nextLevelGrade;
     
     self.valueLabel.text = _NSString(@"成长值（%@-%@）", _FloatString4(user.taskRewardTotal.doubleValue), _FloatString4(user.nextLevelInt.doubleValue));
    
