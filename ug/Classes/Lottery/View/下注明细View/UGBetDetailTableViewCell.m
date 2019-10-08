@@ -20,7 +20,14 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+	
+	[self.amountField addTarget:self action:@selector(amountEdited:) forControlEvents:UIControlEventAllEditingEvents];
+	
+	UILabel * label = [UILabel new];
+	label.text = @" 元 ";
+	self.amountField.rightView = label;
+	self.amountField.rightViewMode = UITextFieldViewModeAlways;
+	
 }
 - (IBAction)delectClick:(id)sender {
     if (self.delectBlock) {
@@ -31,19 +38,28 @@
 - (void)setItem:(UGBetModel *)item {
     _item = item;
     if (item.displayInfo.length) {
-         self.numberLabel.text = [NSString stringWithFormat:@"%@-%@",item.title,item.displayInfo];
+         self.numberLabel.text = [NSString stringWithFormat:@"%@-%@",item.alias,item.displayInfo];
     }else if (item.betInfo.length) {
-        self.numberLabel.text = [NSString stringWithFormat:@"%@-%@",item.title,item.betInfo];
+        self.numberLabel.text = [NSString stringWithFormat:@"%@-%@",item.alias,item.betInfo];
     }else {
-         self.numberLabel.text = [NSString stringWithFormat:@"%@-%@",item.title,item.name];
+         self.numberLabel.text = [NSString stringWithFormat:@"%@-%@",item.alias,item.name];
     }
-    self.amountField.text = [NSString stringWithFormat:@"%@元",item.money];
+    self.amountField.text = [NSString stringWithFormat:@"%@",item.money];
     self.oddsLabel.text = [NSString stringWithFormat:@"%@%@",@"@",[item.odds removeFloatAllZero]];
+
 }
 
+
+- (void)amountEdited: (UITextField *)sender {
+	if (self.amountEditedBlock) {
+		self.amountEditedBlock([sender.text floatValue]);
+	}
+	
+}
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
     // Configure the view for the selected state
 }
+
 
 @end

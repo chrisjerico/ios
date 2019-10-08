@@ -102,14 +102,15 @@ static NSString *uuidKey =@"uuidKey";
    NSDate *nowDate = [NSDate new];
     NSTimeInterval timeInterval =[expireDate timeIntervalSinceDate:nowDate];
     
-    int days = (int)(timeInterval/(3600*24));
-    int hours = (int)((timeInterval-days*24*3600)/3600);
-    int minutes = (int)(timeInterval-days*24*3600-hours*3600)/60;
-    int seconds = timeInterval-days*24*3600-hours*3600-minutes*60;
+//    int days = (int)(timeInterval/(3600*24));
+    int hours = (int)((timeInterval)/3600);
+    int minutes = (int)(timeInterval-hours*3600)/60;
+    int seconds = timeInterval-hours*3600-minutes*60;
     
-    NSString *dayStr;NSString *hoursStr;NSString *minutesStr;NSString *secondsStr;
+//    NSString *dayStr;
+	NSString *hoursStr;NSString *minutesStr; NSString *secondsStr;
     //天
-    dayStr = [NSString stringWithFormat:@"%d",days];
+//    dayStr = [NSString stringWithFormat:@"%d",days];
     //小时
     if (hours < 10) {
           hoursStr = [NSString stringWithFormat:@"0%d",hours];
@@ -131,9 +132,9 @@ static NSString *uuidKey =@"uuidKey";
         return nil;
     }
     
-    if (days) {
-        return [NSString stringWithFormat:@"%@天%@:%@:%@", dayStr,hoursStr, minutesStr,secondsStr];
-    }
+//    if (days) {
+//        return [NSString stringWithFormat:@"%@天%@:%@:%@", dayStr,hoursStr, minutesStr,secondsStr];
+//    }
     if (hours) {
         return [NSString stringWithFormat:@"%@:%@:%@",hoursStr , minutesStr,secondsStr];
     }

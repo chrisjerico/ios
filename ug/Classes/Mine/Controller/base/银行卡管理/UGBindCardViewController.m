@@ -84,7 +84,8 @@
         ck_parameter_non_empty(self.bankTypeTextF.text, @"请选择开户银行");
         ck_parameter_non_empty(self.bankAddressTextF.text, @"请输入开户行地址");
         ck_parameter_non_empty(self.cardNumberTextF.text, @"请输入银行卡号");
-        ck_parameter_less_length(self.cardNumberTextF.text, @"16", @"请输入16到19位数的银行卡号");
+        ck_parameter_more_length(self.cardNumberTextF.text, @"19", @"请输入6到19位数的银行卡号");
+        ck_parameter_less_length(self.cardNumberTextF.text, @"6", @"请输入6到19位数的银行卡号");
         ck_parameter_non_empty(self.nameTextF.text, @"请输入持卡人姓名");
     }, ^(id err) {
         [SVProgressHUD showInfoWithStatus:err];

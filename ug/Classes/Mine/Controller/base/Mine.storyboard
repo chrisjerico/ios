@@ -606,15 +606,23 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                     </textField>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*该账号已被注册，不可用" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fCQ-Db-EBi">
+                                                        <rect key="frame" x="217" y="16.666666666666657" width="152" height="15.666666666666664"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                        <color key="textColor" systemColor="systemPinkColor" red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
+                                                    <constraint firstItem="fCQ-Db-EBi" firstAttribute="centerY" secondItem="ZX9-KP-mng" secondAttribute="centerY" id="4vs-70-Z64"/>
                                                     <constraint firstAttribute="trailing" secondItem="w6u-WN-t7R" secondAttribute="trailing" id="BXh-Ai-kMt"/>
                                                     <constraint firstAttribute="trailing" secondItem="ZX9-KP-mng" secondAttribute="trailing" constant="5" id="Fpb-yw-zZJ"/>
                                                     <constraint firstItem="DOZ-ga-xhf" firstAttribute="centerY" secondItem="wtp-GR-ftU" secondAttribute="centerY" id="Shd-j4-Ylq"/>
                                                     <constraint firstItem="DOZ-ga-xhf" firstAttribute="leading" secondItem="wtp-GR-ftU" secondAttribute="leading" id="Z4q-e6-SYf"/>
                                                     <constraint firstItem="ZX9-KP-mng" firstAttribute="top" secondItem="wtp-GR-ftU" secondAttribute="top" constant="5" id="aGy-lP-2HK"/>
                                                     <constraint firstItem="w6u-WN-t7R" firstAttribute="leading" secondItem="wtp-GR-ftU" secondAttribute="leading" constant="33" id="qKj-eN-0Zm"/>
+                                                    <constraint firstItem="fCQ-Db-EBi" firstAttribute="trailing" secondItem="ZX9-KP-mng" secondAttribute="trailing" id="tB8-ku-0Yx"/>
                                                     <constraint firstItem="w6u-WN-t7R" firstAttribute="top" secondItem="ZX9-KP-mng" secondAttribute="bottom" id="tuB-ea-Yu0"/>
                                                     <constraint firstAttribute="height" constant="50" id="uXO-QK-Kza"/>
                                                     <constraint firstAttribute="bottom" secondItem="w6u-WN-t7R" secondAttribute="bottom" constant="5" id="wgl-XD-k4k"/>
@@ -1233,6 +1241,7 @@
                         <outlet property="smsVcodeView" destination="VwL-DU-luh" id="62o-UX-m6u"/>
                         <outlet property="smsVcodeViewHeightConstraint" destination="h9I-WW-Jk6" id="lGT-66-UxM"/>
                         <outlet property="userHightConstraint" destination="uXO-QK-Kza" id="M1L-o5-II3"/>
+                        <outlet property="userNameDisabledNotice" destination="fCQ-Db-EBi" id="kOh-MT-4IQ"/>
                         <outlet property="userNameTextF" destination="ZX9-KP-mng" id="onD-Bh-xXG"/>
                         <outlet property="webBgView" destination="Vqm-Fg-y5e" id="3hx-gh-tkD"/>
                         <outlet property="webBgViewHeightConstraint" destination="FJR-Fy-kmn" id="Q0h-wv-aqq"/>

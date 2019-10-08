@@ -150,7 +150,7 @@
     
     [self.manager requestInMainThreadWithMethod:[getLotteryHistoryUrl stringToRestfulUrlWithFlag:RESTFUL]
                                          params:params
-                                          model:CMResultArrayClassMake(UGLotteryHistoryModel.class)
+                                          model:CMResultClassMake(UGLotteryHistoryModelList.class)
                                            post:NO
                                      completion:completionBlock];
     

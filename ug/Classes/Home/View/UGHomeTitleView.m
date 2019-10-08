@@ -23,6 +23,12 @@
     if (self) {
         self = [[NSBundle mainBundle] loadNibNamed:@"UGHomeTitleView" owner:self options:0].firstObject;
         self.frame = frame;
+		[self.userNameLabel addGestureRecognizer:[UITapGestureRecognizer gestureRecognizer:^(__kindof UIGestureRecognizer *gr) {
+			if (self.userNameTouchedBlock) {
+				self.userNameTouchedBlock();
+			}
+		}]];
+		[self.userNameLabel setUserInteractionEnabled:true];
     }
     return self;
 }

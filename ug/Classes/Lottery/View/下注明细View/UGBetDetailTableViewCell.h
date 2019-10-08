@@ -15,6 +15,7 @@ typedef void(^BetDetailCellDelBlock)(void);
 
 @property (nonatomic, strong) UGBetModel *item;
 @property (nonatomic, copy) BetDetailCellDelBlock delectBlock;
+@property (nonatomic, copy) void (^amountEditedBlock)(float amount);
 
 @end
 

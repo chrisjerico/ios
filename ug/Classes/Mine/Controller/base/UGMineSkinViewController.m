@@ -690,7 +690,10 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
         if (config.zxkfUrl) {
             
             webViewVC.urlStr = config.zxkfUrl;
-        }
+		} else {
+			[SVProgressHUD showWithStatus:@"链接未配置"];
+				return;
+		}
         [self.navigationController pushViewController:webViewVC animated:YES];
         
     }else if ([title isEqualToString:@"银行卡管理"]) {

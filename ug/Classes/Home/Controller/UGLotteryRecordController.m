@@ -54,6 +54,12 @@ static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
     else{
         for (UGAllNextIssueListModel *listModel in self.lotteryGamesArray) {
             for (UGNextIssueModel *model in listModel.list) {
+				
+				if ([@[@"7", @"11", @"9"] containsObject: model.gameId]) {
+					
+					// bug fix: 52941 彩种：开奖记录中去掉秒秒彩类彩票。
+					continue;
+				}
                 if ([model.gameId isEqualToString:self.gameId]) {
                     self.gameNameLabel.text = model.title;
                     [self.logoView sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:@"loading"]];
@@ -87,7 +93,7 @@ static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
     [CMNetwork getLotteryHistoryWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [self.tableView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
-            self.dataArray = model.data;
+            self.dataArray = [((UGLotteryHistoryModelList *)model.data).list mutableCopy];
             [self.tableView reloadData];
             
         } failure:^(id msg) {

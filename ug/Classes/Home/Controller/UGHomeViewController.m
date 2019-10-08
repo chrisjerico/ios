@@ -125,11 +125,12 @@
 }
 
 -(void)skin{
-
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
- 
-
+	
+	[self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+	
+	
 	[self.rankingView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
+
     [self.upwardMultiMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
     [self.rollingView setBackgroundColor:[[UGSkinManagers shareInstance]sethomeContentColor]];
     [self.gameNavigationView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
@@ -139,35 +140,35 @@
     
     [self.gameNavigationView reloadData];
     self.gameTypeView.gameTypeArray = self.gameCategorys;
-    
+
 }
 
 - (void)viewDidLoad {
-
+	
 	[super viewDidLoad];
-    
-    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-        
-        [self skin];
-    });
-
-
-    
+	
+	SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
+		
+		[self skin];
+	});
+	
+	
+	
 	self.gameNavigationView.layer.cornerRadius = 8;
 	self.gameNavigationView.layer.masksToBounds = true;
-    self.gameNavigationView.layer.borderWidth = 1;
-    self.gameNavigationView.layer.borderColor = [[UGSkinManagers shareInstance] sethomeContentBorderColor].CGColor;
-    
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
- 
-   
-    [self.rankingView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
-    [self.upwardMultiMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
-    [self.rollingView setBackgroundColor:[[UGSkinManagers shareInstance]sethomeContentColor]];
-    [self.gameNavigationView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
-    [self.leftwardMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
-     [self.gameTypeView setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
-    
+	self.gameNavigationView.layer.borderWidth = 1;
+	self.gameNavigationView.layer.borderColor = [[UGSkinManagers shareInstance] sethomeContentBorderColor].CGColor;
+	
+	[self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+	
+	
+	[self.rankingView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
+	[self.upwardMultiMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
+	[self.rollingView setBackgroundColor:[[UGSkinManagers shareInstance]sethomeContentColor]];
+	[self.gameNavigationView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
+	[self.leftwardMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
+	[self.gameTypeView setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
+	
 	[[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:[[UGSkinManagers shareInstance] setTabbgColor]]];
 	
 	[[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[[UGSkinManagers shareInstance] settabNOSelectColor], NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
@@ -197,15 +198,15 @@
 		[self userLogout];
 	});
 	SANotificationEventSubscribe(UGNotificationloginTimeout, self, ^(typeof (self) self, id obj) {
-        // onceToken 函数的作用是，限制为只弹一次框，修复弹框多次的bug
-        [UGUserModel.currentUser onceToken:ZJOnceToken block:^{
-            [QDAlertView showWithTitle:@"提示" message:@"您的账号已经登录超时，请重新登录。" cancelButtonTitle:nil otherButtonTitle:@"确定" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                self.titleView.showLoginView = YES;
-                UGUserModel.currentUser = nil;
-                [self.tabBarController setSelectedIndex:0];
-                [self loginClick];
-            }];
-        }];
+		// onceToken 函数的作用是，限制为只弹一次框，修复弹框多次的bug
+		[UGUserModel.currentUser onceToken:ZJOnceToken block:^{
+			[QDAlertView showWithTitle:@"提示" message:@"您的账号已经登录超时，请重新登录。" cancelButtonTitle:nil otherButtonTitle:@"确定" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+				self.titleView.showLoginView = YES;
+				UGUserModel.currentUser = nil;
+				[self.tabBarController setSelectedIndex:0];
+				[self loginClick];
+			}];
+		}];
 	});
 	SANotificationEventSubscribe(UGNotificationShowLoginView, self, ^(typeof (self) self, id obj) {
 		[self loginClick];
@@ -221,7 +222,7 @@
 
 	
 	self.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-         SANotificationEventPost(UGNotificationWithResetTabSuccess, nil);
+		SANotificationEventPost(UGNotificationWithResetTabSuccess, nil);
 		[self getSystemConfig];
 		[self getCustomGameList];
 		[self getBannerList];
@@ -262,6 +263,7 @@
 	};
 	
 	self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+
     
     
     [self.rankingView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -341,6 +343,7 @@
             }];
         };
     }
+
 }
 
 -(BOOL)prefersStatusBarHidden{
@@ -351,6 +354,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
+
     [self.leftwardMarqueeView start];
     [self.upwardMultiMarqueeView start];
 
@@ -358,7 +362,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
 	[self.leftwardMarqueeView pause];//fixbug  发热  掉电快
-    [self.upwardMultiMarqueeView pause];//fixbug  发热  掉电快
+	[self.upwardMultiMarqueeView pause];//fixbug  发热  掉电快
 	self.initSubview = YES;
 }
 
@@ -386,17 +390,17 @@
 		UGFundsViewController * vc = [UGFundsViewController new];
 		[self.navigationController pushViewController:vc animated:true];
 	} else if ([model.subId isEqualToString:@"8"]) {
-		SLWebViewController *webViewVC = [[SLWebViewController alloc] init];
-		UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
-		if (config.zxkfUrl) {
-			webViewVC.urlStr = config.zxkfUrl;
-		}
-		[self.navigationController pushViewController:webViewVC animated:YES];
+		
+		UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGYubaoViewController" bundle:nil];
+		UGYubaoViewController *lixibaoVC = [storyboard instantiateInitialViewController];
+		[self.navigationController pushViewController:lixibaoVC  animated:YES];
+		
+		
 	} else if ([model.subId isEqualToString:@"5"]) {
 		UGChangLongController *changlongVC = [[UGChangLongController alloc] init];
-		 changlongVC.lotteryGamesArray = self.lotteryGamesArray;
-		 [self.navigationController pushViewController:changlongVC animated:YES];
-
+		changlongVC.lotteryGamesArray = self.lotteryGamesArray;
+		[self.navigationController pushViewController:changlongVC animated:YES];
+		
 	} else if ([model.subId isEqualToString:@"7"]) {
 		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://test10.6yc.com/Open_prize/index.php"]];
 	} else if ([model.subId isEqualToString:@"6"]) {
@@ -404,26 +408,33 @@
 		
 	} else if ([model.subId isEqualToString:@"2"]) {
 		[SVProgressHUD showInfoWithStatus:@"下载链接未配置"];
-
+		
 	} else if ([model.subId isEqualToString:@"3"]) {
 		// 聊天室
 		UGChatViewController * qdwebVC = [[UGChatViewController alloc] init];
-
-		 qdwebVC.webTitle = @"聊天室";
+		qdwebVC.webTitle = @"聊天室";
 		
-		 
-		 if (![CMCommon stringIsNull:[UGUserModel currentUser].token]) {
-			  NSString *colorStr = [[UGSkinManagers shareInstance] setChatNavbgStringColor];
-			  qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr];
-		 } else {
-			 NSString *colorStr = [[UGSkinManagers shareInstance] setChatNavbgStringColor];
-			 qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr];
-		 }
+		if (![CMCommon stringIsNull:[UGUserModel currentUser].token]) {
+			NSString *colorStr = [[UGSkinManagers shareInstance] setChatNavbgStringColor];
+			qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr];
+		} else {
+			NSString *colorStr = [[UGSkinManagers shareInstance] setChatNavbgStringColor];
+			qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr];
+		}
 		
 		[self.navigationController pushViewController:qdwebVC animated:YES];
-
+		
 	} else if ([model.subId isEqualToString:@"4"]) {
 		// 在线客服
+		SLWebViewController *webViewVC = [[SLWebViewController alloc] init];
+		UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
+		if (config.zxkfUrl) {
+			webViewVC.urlStr = config.zxkfUrl;
+		} else {
+			[SVProgressHUD showWithStatus:@"链接未配置"];
+			return;
+		}
+		[self.navigationController pushViewController:webViewVC animated:YES];
 	}
 	
 }
@@ -503,7 +514,7 @@
 					if (sourceData.count > 0) {
 						self.gameNavigationViewHeight.constant = ((sourceData.count - 1)/4 + 1)*80;
 						[self.view layoutIfNeeded];
-
+						
 					}
 					
 					self.gameTypeView.gameTypeArray = self.gameCategorys;
@@ -557,7 +568,7 @@
 			
 			
 			[[UGSkinManagers shareInstance] setSkin];
-    
+			
 			
 			[self.titleView setImgName:config.mobile_logo];
 			
@@ -605,6 +616,7 @@
 						[mutArr addObject:banner.pic];
 					}
 					self.bannerView.imageURLStringsGroup = mutArr.mutableCopy;
+					self.bannerView.autoScrollTimeInterval = ((UGBannerModel*)model.data).interval.floatValue;
 				}
 			});
 			
@@ -745,6 +757,7 @@
 	}];
 }
 - (void)showPlatformNoticeView {
+
     
     
     
@@ -842,14 +855,14 @@
 		UGRankModel *rank = self.rankArray[index];
 		UILabel *content = [itemView viewWithTag:1001];
 		content.text = rank.username;
-        [content setTextColor:UIColor.blackColor];
+		[content setTextColor:UIColor.blackColor];
 		
 		UILabel *coin = [itemView viewWithTag:1002];
 		coin.text = [NSString stringWithFormat:@"%@元",rank.coin];
 		
 		UILabel *game = [itemView viewWithTag:1004];
 		game.text = rank.type;
-   
+		
 		
 		UIImageView *icon = [itemView viewWithTag:1003];
 		NSString *imgName = nil;
@@ -865,8 +878,8 @@
 			icon.hidden = YES;
 		}
 		icon.image = [UIImage imageNamed:imgName];
-        
-        [itemView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
+		
+		[itemView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
 		
 	}
 }
@@ -1129,6 +1142,10 @@
 	self.titleView.registerClickBlock = ^{
 		[weakSelf registerClick];
 	};
+	self.titleView.userNameTouchedBlock = ^{
+		[weakSelf.tabBarController setSelectedIndex:4];
+	};
+	
 	if (UGLoginIsAuthorized()) {
 		self.titleView.showLoginView = NO;
 		UGUserModel *user = [UGUserModel currentUser];
@@ -1166,7 +1183,7 @@
 	self.bannerView.delegate = self;
 	[self.bannerBgView addSubview:self.bannerView];
 	
-	self.leftwardMarqueeView.direction = UUMarqueeViewDirectionUpward;
+	self.leftwardMarqueeView.direction = UUMarqueeViewDirectionLeftward;
 	self.leftwardMarqueeView.delegate = self;
 	self.leftwardMarqueeView.timeIntervalPerScroll = 0.5f;
 	self.leftwardMarqueeView.scrollSpeed = 60.0f;

@@ -126,8 +126,13 @@
     self.vcs  = [NSMutableArray new];
     [vcs addObject: self.nvcHome];
     [vcs addObject: self.nvcLotteryList];
+//<<<<<<< HEAD
+//    [vcs addObject: self.nvcYuebao];
+//    [vcs addObject: self.nvcFunds];
+//=======
     [vcs addObject: self.nvcChatRoomList];
     [vcs addObject: self.nvcTask];
+//>>>>>>> 1dfb2bdfb8e58314fb1d78ae3859371304d889cf
     [vcs addObject: self.nvcUser];
     [self setViewControllers:vcs];
 }
