@@ -49,7 +49,7 @@ static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
     
     [self.conversionButton setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
     [self.view setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
-    [self getRealGames];
+     [self.tableView reloadData];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];

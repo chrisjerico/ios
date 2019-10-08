@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="f64-1B-mMS">
-    <device id="retina6_5" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="f64-1B-mMS">
+    <device id="retina6_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -543,7 +545,7 @@
                                 <rect key="frame" x="0.0" y="94" width="414" height="768"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bzD-qo-3Cd">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="784"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dm8-aM-Nvq">
                                                 <rect key="frame" x="20" y="10" width="374" height="50"/>
@@ -1086,7 +1088,7 @@
                                                 </connections>
                                             </button>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0iL-pK-9eb">
-                                                <rect key="frame" x="30" y="306" width="354" height="44"/>
+                                                <rect key="frame" x="30" y="530" width="354" height="44"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.91758114099502563" green="0.92137300968170166" blue="0.93725579977035522" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -1094,11 +1096,11 @@
                                                     <color key="titleColor" red="0.2839455307" green="0.57867711779999997" blue="0.92549556489999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="goHomeAction:" destination="blf-Ei-b2L" eventType="touchUpInside" id="pnr-IL-O0p"/>
+                                                    <action selector="goHomeAction:" destination="blf-Ei-b2L" eventType="touchUpInside" id="mqh-4I-v2X"/>
                                                 </connections>
                                             </button>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GFK-I5-qgq">
-                                                <rect key="frame" x="30" y="299" width="354" height="44"/>
+                                                <rect key="frame" x="30" y="622" width="354" height="44"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.91758114099502563" green="0.92137300968170166" blue="0.93725579977035522" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -1135,7 +1137,6 @@
                                             <constraint firstItem="YMa-JL-elm" firstAttribute="leading" secondItem="dm8-aM-Nvq" secondAttribute="leading" id="U7M-Yr-Y2w"/>
                                             <constraint firstItem="Eti-fw-WHI" firstAttribute="top" secondItem="Vqm-Fg-y5e" secondAttribute="bottom" constant="10" id="Uhg-2t-VCl"/>
                                             <constraint firstItem="YMa-JL-elm" firstAttribute="trailing" secondItem="dm8-aM-Nvq" secondAttribute="trailing" id="VJk-pP-6vC"/>
-                                            <constraint firstAttribute="height" constant="400" id="WBV-N0-sgO"/>
                                             <constraint firstItem="wtp-GR-ftU" firstAttribute="leading" secondItem="dm8-aM-Nvq" secondAttribute="leading" id="X48-6L-EGP"/>
                                             <constraint firstItem="wtp-GR-ftU" firstAttribute="trailing" secondItem="dm8-aM-Nvq" secondAttribute="trailing" id="XeF-ek-5lF"/>
                                             <constraint firstItem="F3p-Is-Pcq" firstAttribute="leading" secondItem="dm8-aM-Nvq" secondAttribute="leading" id="ZZe-jN-GEy"/>
@@ -1145,6 +1146,7 @@
                                             <constraint firstItem="dm8-aM-Nvq" firstAttribute="top" secondItem="bzD-qo-3Cd" secondAttribute="top" constant="10" id="g6I-Sm-4Yd"/>
                                             <constraint firstItem="09s-xF-Lfa" firstAttribute="trailing" secondItem="dm8-aM-Nvq" secondAttribute="trailing" id="g6w-2r-OBm"/>
                                             <constraint firstAttribute="trailing" secondItem="Eti-fw-WHI" secondAttribute="trailing" constant="30" id="gbj-Xl-EVf"/>
+                                            <constraint firstAttribute="height" constant="784" id="gzd-9L-BZi"/>
                                             <constraint firstItem="G6e-aH-9Zt" firstAttribute="trailing" secondItem="dm8-aM-Nvq" secondAttribute="trailing" id="jhf-u1-IeM"/>
                                             <constraint firstAttribute="trailing" secondItem="dm8-aM-Nvq" secondAttribute="trailing" constant="20" id="k4W-8y-Abg"/>
                                             <constraint firstItem="dm8-aM-Nvq" firstAttribute="leading" secondItem="bzD-qo-3Cd" secondAttribute="leading" constant="20" id="kTg-i8-aVo"/>
@@ -1213,6 +1215,7 @@
                         <outlet property="inviterTextF" destination="IpD-Qk-J1x" id="37A-rr-6ax"/>
                         <outlet property="inviterView" destination="dm8-aM-Nvq" id="KB8-Vz-Ohc"/>
                         <outlet property="inviterViewHightConstraint" destination="sHj-aG-XkG" id="Pxi-Oi-V4w"/>
+                        <outlet property="myScrollView" destination="PzT-tK-eCK" id="efd-kx-4vm"/>
                         <outlet property="mySegmentCV" destination="nHt-bW-xVa" id="wBn-1s-5ov"/>
                         <outlet property="mySegmentHightConstraint" destination="C7i-xf-OFG" id="2qa-pn-R0X"/>
                         <outlet property="passwordTextF" destination="Leq-8K-tbj" id="bYI-YG-H06"/>

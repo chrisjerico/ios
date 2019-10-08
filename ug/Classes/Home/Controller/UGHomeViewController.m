@@ -347,10 +347,7 @@
 	if (self.initSubview) {
 		return;
 	}
-    if ([CMCommon arryIsNull: self.bannerView.imageURLStringsGroup]) {
-         [self getBannerList];
-    }
-   
+
 
 	
 	
