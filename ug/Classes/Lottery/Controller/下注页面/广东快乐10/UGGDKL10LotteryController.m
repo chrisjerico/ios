@@ -654,6 +654,9 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 #pragma mark - WSLWaterFlowLayoutDelegate
 //返回每个item大小
 - (CGSize)waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+	if (self.typeIndexPath.row > 4 && self.typeIndexPath.row < 9 && indexPath.row > 33) {
+		return CGSizeMake((UGScreenW / 4 * 3 - 4) / 2, 40);
+	}
     if (self.typeIndexPath.row == 1 ||
         self.typeIndexPath.row == 2 ||
         self.typeIndexPath.row == 3 ||

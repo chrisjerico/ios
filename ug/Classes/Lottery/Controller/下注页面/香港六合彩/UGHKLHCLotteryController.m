@@ -648,6 +648,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                 return cell;
             }
             UGMarkSixLotteryBetItem1Cell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:markSixBetItem1 forIndexPath:indexPath];
+			cell.playModel = self.playOddsModel;
             cell.item = game;
             return cell;
         }

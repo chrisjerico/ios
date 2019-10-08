@@ -439,6 +439,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             cell.title = self.preNumArray[indexPath.row];
             cell.showAdd = NO;
             cell.showBorder = NO;
+			cell.backgroundColor = [CMCommon getPcddNumColor:self.preNumArray[indexPath.row]];
             if (indexPath.row == 3) {
                 cell.showIsequal = YES;
                 cell.showAdd = YES;

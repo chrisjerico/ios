@@ -297,7 +297,14 @@ completion:(CMNetworkBlock)completion {
                     NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
                     obj = [numberFormatter stringFromNumber:temp];
                 }
-                NSData *encryptData = [obj dataUsingEncoding:NSUTF8StringEncoding];
+				
+				NSData * encryptData = [obj dataUsingEncoding:NSUTF8StringEncoding];
+//				if ([obj isKindOfClass: [NSString class]]) {
+//					encryptData = [obj dataUsingEncoding:NSUTF8StringEncoding];
+//				} else {
+//					encryptData = [NSJSONSerialization dataWithJSONObject:obj options:NSJSONWritingPrettyPrinted error:nil];
+//				}
+				
                 resultData = [GLEncryptManager excute3DESWithData:encryptData secureKey:[deskey dataUsingEncoding:NSUTF8StringEncoding] operation:kCCEncrypt];
                 resultString = [GLEncryptManager encodeBase64WithData:resultData];
                 [dict setValue:resultString forKey:key];

@@ -45,6 +45,8 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+	[self setupTitleView];
+
 }
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
@@ -55,7 +57,7 @@
 	if (self.shoulHideContent) {
 		[self hideContent];
 	}
-	[self setupTitleView];
+
 	
 }
 
@@ -244,6 +246,7 @@
 			NSMutableArray *viewCtrs = [NSMutableArray arrayWithArray:self.navigationController.viewControllers];
 			[viewCtrs removeLastObject];
 			[viewCtrs addObject: preparePushVC];
+			[preparePushVC setHidesBottomBarWhenPushed:true];
 			[self.navigationController setViewControllers:viewCtrs animated:YES];
 			
 			

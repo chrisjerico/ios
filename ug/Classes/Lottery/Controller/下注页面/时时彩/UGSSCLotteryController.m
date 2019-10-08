@@ -332,6 +332,9 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                 for (UGGameBetModel *game in type.list) {
                     if (game.select) {
                         game.money = self.amountTextF.text;
+						if ([game.alias isEqualToString:@""]) {
+							game.alias = type.alias;
+						}
                         [array addObject:game];
                     }
 //                    game.select = NO;
