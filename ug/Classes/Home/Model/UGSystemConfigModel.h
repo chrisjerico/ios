@@ -61,6 +61,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSString * mobileTemplateCategory;    /**<   模板号 */
 
+@property (nonatomic, strong) NSString * webName;    /**<   首页底部文字 */
+
 @property (nonatomic, assign) BOOL recharge;                        /**<   上级充值开关 */
 
 @property (nonatomic , copy) NSArray<UGmobileMenu *>              * mobileMenu;
