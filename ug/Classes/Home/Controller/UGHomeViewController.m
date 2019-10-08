@@ -104,6 +104,7 @@
 @property (nonatomic, strong) NSArray *lotteryGamesArray;
 @property (nonatomic, assign) BOOL initSubview;
 @property (weak, nonatomic) IBOutlet UILabel *bottomLabel;
+@property (weak, nonatomic) IBOutlet UIView *bottomView;
 
 @property (strong, nonatomic)  UGredEnvelopeView *uGredEnvelopeView;
 @property (strong, nonatomic)  UGredActivityView *uGredActivityView;    /**<   红包弹框 */
@@ -128,6 +129,7 @@
 	[self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
 	
 	
+    [self.bottomView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
 	[self.rankingView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
 
     [self.upwardMultiMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
@@ -167,6 +169,7 @@
 	[self.gameNavigationView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
 	[self.leftwardMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
 	[self.gameTypeView setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
+    [self.bottomView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
 	
 	[[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:[[UGSkinManagers shareInstance] setTabbgColor]]];
 	

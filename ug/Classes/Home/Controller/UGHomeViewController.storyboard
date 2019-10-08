@@ -231,7 +231,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oSF-74-EZt">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="28"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="💻电脑版 🎁优惠活动" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vq9-5e-sW1">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="💻iphone版 🎁优惠活动" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vq9-5e-sW1">
                                                                 <rect key="frame" x="0.0" y="12" width="414" height="16"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -287,6 +287,7 @@
                         <outlet property="bannerBgView" destination="net-c8-MAp" id="SVn-VV-nOV"/>
                         <outlet property="bannerBgViewHeightConstraint" destination="bfL-zQ-uOt" id="63U-JD-aFt"/>
                         <outlet property="bottomLabel" destination="bF5-Qk-pg4" id="9gR-5K-PS0"/>
+                        <outlet property="bottomView" destination="M2E-aZ-PrH" id="0uG-uN-G9G"/>
                         <outlet property="gameNavigationView" destination="4ix-we-22e" id="CN0-S8-2nX"/>
                         <outlet property="gameNavigationViewHeight" destination="hun-5b-6Zi" id="2ny-R8-2cr"/>
                         <outlet property="gameTypeView" destination="g3O-cs-ZTw" id="G0J-cI-EgR"/>
