@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UGAllNextIssueListModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,6 +22,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UGCommonLotteryController : UGViewController<hiddeHeader>
 @property(nonatomic, assign)BOOL shoulHideHeader;
 @property(nonatomic, assign)BOOL shoulHideContent;
+@property(nonatomic, strong)NSArray<UGAllNextIssueListModel *> * allList;
+@property(nonatomic, strong)UGNextIssueModel * model;
+//@property(nonatomic, copy)void (^titleViewSetupBlock)(NSArray<UGAllNextIssueListModel *> * allList, UGNextIssueModel * model);
 
 @end
 

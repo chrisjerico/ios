@@ -16,6 +16,7 @@
 		0322AD6B2344E78900E9857E /* UGGameNavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0322AD6A2344E78900E9857E /* UGGameNavigationView.m */; };
 		033177A72337382D000D7663 /* UGPlatformCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 033177A62337382D000D7663 /* UGPlatformCollectionView.m */; };
 		033177AF2338E026000D7663 /* UGBetResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = 033177AE2338E026000D7663 /* UGBetResultView.m */; };
+		0396CC8C234C585D0072BF12 /* UGLotterySelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0396CC8B234C585D0072BF12 /* UGLotterySelectController.m */; };
 		0399E6FB233B9D34001E0A7F /* UGDocumentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0399E6FA233B9D34001E0A7F /* UGDocumentVC.m */; };
 		03B26072234B422E00206652 /* UGLaunchPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B26071234B422E00206652 /* UGLaunchPageVC.m */; };
 		A0C64CB6AEB0CF1B2031BBB8 /* Pods_ug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6486EFF4C273BEA0AE8994DD /* Pods_ug.framework */; };
@@ -651,6 +652,8 @@
 		033177A62337382D000D7663 /* UGPlatformCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGPlatformCollectionView.m; sourceTree = "<group>"; };
 		033177AD2338E026000D7663 /* UGBetResultView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGBetResultView.h; sourceTree = "<group>"; };
 		033177AE2338E026000D7663 /* UGBetResultView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGBetResultView.m; sourceTree = "<group>"; };
+		0396CC8A234C585D0072BF12 /* UGLotterySelectController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLotterySelectController.h; sourceTree = "<group>"; };
+		0396CC8B234C585D0072BF12 /* UGLotterySelectController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLotterySelectController.m; sourceTree = "<group>"; };
 		0399E6F9233B9D34001E0A7F /* UGDocumentVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGDocumentVC.h; sourceTree = "<group>"; };
 		0399E6FA233B9D34001E0A7F /* UGDocumentVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGDocumentVC.m; sourceTree = "<group>"; };
 		03B26070234B422E00206652 /* UGLaunchPageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLaunchPageVC.h; sourceTree = "<group>"; };
@@ -1935,6 +1938,8 @@
 				CF3B0E3E234A175D0035AF50 /* PK10牛牛 */,
 				0322AD6323432A4A00E9857E /* UGCommonLotteryController.h */,
 				0322AD6423432A4A00E9857E /* UGCommonLotteryController.m */,
+				0396CC8A234C585D0072BF12 /* UGLotterySelectController.h */,
+				0396CC8B234C585D0072BF12 /* UGLotterySelectController.m */,
 			);
 			path = "下注页面";
 			sourceTree = "<group>";
@@ -4780,6 +4785,7 @@
 				D41FF76C22E8141A00FCCDD2 /* UGLotteryRecordCell.m in Sources */,
 				D4225DEF22DF6338001CD7CD /* UGBetsRecordListModel.m in Sources */,
 				D40D58C5228A9A230025963A /* UGBetDetailTableViewCell.m in Sources */,
+				0396CC8C234C585D0072BF12 /* UGLotterySelectController.m in Sources */,
 				D41FF9352333309700FE3F70 /* UGActivityGoldView.m in Sources */,
 				D405B3852281620000F8C586 /* UGMessageTableViewCell.m in Sources */,
 				D41E0EEB228D98C100D6C42A /* UGIntegralConvertController.m in Sources */,

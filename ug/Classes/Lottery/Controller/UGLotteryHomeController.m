@@ -166,6 +166,7 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
 		if ([@[@"7", @"11", @"9"] containsObject: nextModel.gameId]) {
 				lotteryVC.shoulHideHeader = true;
 			}
+		lotteryVC.model = nextModel;
 	};
 	
 	

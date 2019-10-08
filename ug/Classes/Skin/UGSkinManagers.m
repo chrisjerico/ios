@@ -1114,6 +1114,7 @@
 @implementation UGSkinManagers (ThemeColor)
 
 static NSArray<UIColor *> *themeColors = nil;
+
 + (UIColor *)randomThemeColor {
     if (!themeColors) {
         themeColors = @[
