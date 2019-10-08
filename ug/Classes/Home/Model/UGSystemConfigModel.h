@@ -63,7 +63,7 @@ NS_ASSUME_NONNULL_BEGIN
 //@property (nonatomic) NSString *mobileTemplateCategory;     /**<   模板号 */
 //
 //@property (nonatomic) BOOL recharge;                        /**<   上级充值开关 */
-//@property (nonatomic) BOOL allowMemberCancelBet;            /**<   是否允许会员撤单，1允许 0不允许 */
+@property (nonatomic) BOOL allowMemberCancelBet;            /**<   是否允许会员撤单，1允许 0不允许 */
 //
 //@property (nonatomic, copy) NSArray <UGmobileMenu *>*mobileMenu;
 //=======
