@@ -89,12 +89,6 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
                 self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"changlong",@"lixibao",@"zhanneixin",@"huanfu",@"tuichudenglu", nil] ;
             }
             
-            
-            
-         
-//            [self.icon1ImgeView setImage:[[UIImage imageNamed:@"qr-code"] imageChangeColor:UGNavColor];
-//              [self.icon2ImageView setImage:[image imageChangeColor:UGNavColor];
-            
             [self.tableView reloadData];
             
         });

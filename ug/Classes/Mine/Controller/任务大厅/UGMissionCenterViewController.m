@@ -69,6 +69,10 @@
         [self getUserInfo];
         
     });
+    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
+        
+        [self skin];
+    });
 
     [self initView];
 
