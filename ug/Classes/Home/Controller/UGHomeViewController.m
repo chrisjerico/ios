@@ -94,6 +94,8 @@
 @property (nonatomic, strong) NSMutableArray *upwardMultiMarqueeViewData;   /**<   中奖排行榜数据 */
 @property (nonatomic, strong) NSMutableArray *popNoticeArray;
 
+@property (strong, nonatomic)  UIView *testView;
+
 @property (nonatomic, strong) NSMutableArray *gameCategorys;
 @property (nonatomic, strong) UGNoticeTypeModel *noticeTypeModel;
 @property (nonatomic, strong) UGRankListModel *rankListModel;
@@ -260,8 +262,26 @@
 	};
 	
 	self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
-	
     
+    
+    [self.rankingView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.view.mas_right).with.offset(0);
+        make.width.mas_equalTo(UGScreenW);
+        make.height.mas_equalTo(200);
+        make.top.equalTo(self.upwardMultiMarqueeView.mas_bottom).offset(0);
+    }];
+
+    UIView *bg = [UIView new];
+    [bg setBackgroundColor:[UIColor redColor]];
+    [self.view addSubview:bg];
+    self.testView = bg;
+    
+    [self.testView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.view.mas_right).with.offset(-10);
+        make.width.mas_equalTo(95.0);
+        make.height.mas_equalTo(95.0);
+        make.top.equalTo(self.rankingView.mas_bottom).offset(0);
+    }];
     
     // 红包事件
     {
