@@ -93,7 +93,8 @@
         navBgColor = @"0xDE1C27";
     }
     else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
-        navBgColor = @"0x3D80E7";
+//        navBgColor = @"0x3D80E7";
+                navBgColor = @"0x609AC5";
     }
     else {// 默认   经典  1蓝色
         navBgColor = @"0x609AC5";
@@ -171,7 +172,8 @@
         navBgColor = kUIColorFromRGB(0xDE1C27);
     }
     else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
-        navBgColor = kUIColorFromRGB(0x3D80E7);
+//        navBgColor = kUIColorFromRGB(0x3D80E7);
+         navBgColor = kUIColorFromRGB(0x609AC5);
     }
     else {// 默认   经典  1蓝色
         navBgColor = kUIColorFromRGB(0x609AC5);
@@ -250,7 +252,8 @@
         tabBgColor = kUIColorFromRGB(0xDE1C27);
     }
     else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
-        tabBgColor = kUIColorFromRGB(0xFFFFFF);
+//        tabBgColor = kUIColorFromRGB(0xFFFFFF);
+         tabBgColor = kUIColorFromRGB(0xC1CBC9);
     }
     else {//默认 经典  1蓝色
         tabBgColor = kUIColorFromRGB(0xC1CBC9);
@@ -353,7 +356,9 @@
         bgColor = kUIColorFromRGB(0xFFFFFF);
     }
     else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
-        bgColor = kUIColorFromRGB(0xFFFFFF);
+//        bgColor = kUIColorFromRGB(0xFFFFFF);
+        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x7F9493),kUIColorFromRGB(0x5389B3)] andGradientType:GradientDirectionLeftToRight];
+        bgColor = [UIColor colorWithPatternImage:backImage];
     }
     else  {//默认 经典  1蓝色
         UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x7F9493),kUIColorFromRGB(0x5389B3)] andGradientType:GradientDirectionLeftToRight];
@@ -455,7 +460,9 @@
         bgColor = kUIColorFromRGB(0xFFFFFF);
     }
     else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
-        bgColor = kUIColorFromRGB(0x3D80E7);
+//        bgColor = kUIColorFromRGB(0x3D80E7);
+        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x7F9493),kUIColorFromRGB(0x5389B3)] andGradientType:GradientDirectionLeftToRight];
+        bgColor = [UIColor colorWithPatternImage:backImage];
     }
     else {//默认 经典  1蓝色
         UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x7F9493),kUIColorFromRGB(0x5389B3)] andGradientType:GradientDirectionLeftToRight];
@@ -561,7 +568,9 @@
         bgColor = [UIColor colorWithPatternImage:backImage];
     }
     else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xFEC434),kUIColorFromRGB(0xFE8A23)] andGradientType:GradientDirectionLeftToRight];
+//        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xFEC434),kUIColorFromRGB(0xFE8A23)] andGradientType:GradientDirectionLeftToRight];
+//        bgColor = [UIColor colorWithPatternImage:backImage];
+        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xd80000),kUIColorFromRGB(0xfb5959)] andGradientType:GradientDirectionLeftToRight];
         bgColor = [UIColor colorWithPatternImage:backImage];
     }
     else {//默认 经典  1蓝色
@@ -666,7 +675,10 @@
         bgColor = [UIColor colorWithPatternImage:backImage];
     }
     else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x3D80E7),kUIColorFromRGB(0x3D80E7)] andGradientType:GradientDirectionLeftToRight];
+//        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x3D80E7),kUIColorFromRGB(0x3D80E7)] andGradientType:GradientDirectionLeftToRight];
+//        bgColor = [UIColor colorWithPatternImage:backImage];
+        
+        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x5f9bc6),kUIColorFromRGB(0xfb5959)] andGradientType:GradientDirectionLeftToRight];
         bgColor = [UIColor colorWithPatternImage:backImage];
     }
     else {//默认 经典  1蓝色
@@ -746,7 +758,8 @@
         tabBgColor = [UIColor whiteColor];
     }
     else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
-        tabBgColor = [UIColor whiteColor];
+//        tabBgColor = [UIColor whiteColor];
+         tabBgColor = kUIColorFromRGB(0xC1CBC9);
     }
     else {//默认 经典  1蓝色
         tabBgColor = kUIColorFromRGB(0xC1CBC9);
@@ -825,7 +838,8 @@
         contentColor = [UIColor whiteColor];
     }
     else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
-        contentColor = [UIColor whiteColor];
+//        contentColor = [UIColor whiteColor];
+          contentColor = kUIColorFromRGB(0xb2cde0);
     }
     else {//默认 经典  1蓝色
         contentColor = kUIColorFromRGB(0xb2cde0);
@@ -905,7 +919,8 @@
         contentColor = RGBA(231, 230, 230, 1);
     }
     else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
-        contentColor = kUIColorFromRGB(0x3D80E7);
+//        contentColor = kUIColorFromRGB(0x3D80E7);
+        contentColor = kUIColorFromRGB(0xb2cde0);
     }
     else  {//默认 经典  1蓝色
         contentColor = kUIColorFromRGB(0xb2cde0);
