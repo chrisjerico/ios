@@ -33,9 +33,9 @@
     [self setUpChildViewController];
     [self getSystemConfig];
     
-    SANotificationEventSubscribe(UGNotificationWithResetTabSuccess, self, ^(typeof (self) self, id obj) {
-             [self resetUpChildViewController];
-    });
+//    SANotificationEventSubscribe(UGNotificationWithResetTabSuccess, self, ^(typeof (self) self, id obj) {
+//             [self resetUpChildViewController];
+//    });
 
 }
 -(void)initAllNav{
@@ -126,8 +126,13 @@
     self.vcs  = [NSMutableArray new];
     [vcs addObject: self.nvcHome];
     [vcs addObject: self.nvcLotteryList];
-    [vcs addObject: self.nvcYuebao];
-    [vcs addObject: self.nvcFunds];
+//<<<<<<< HEAD
+//    [vcs addObject: self.nvcYuebao];
+//    [vcs addObject: self.nvcFunds];
+//=======
+    [vcs addObject: self.nvcChatRoomList];
+    [vcs addObject: self.nvcTask];
+//>>>>>>> 1dfb2bdfb8e58314fb1d78ae3859371304d889cf
     [vcs addObject: self.nvcUser];
     [self setViewControllers:vcs];
 }
@@ -280,9 +285,9 @@
         }
         
     }
-    
-//    [self setViewControllers:vcs];
-//    [self setTabbarStyle];
+
+    [self setViewControllers:vcs];
+    [self setTabbarStyle];
 }
 
 

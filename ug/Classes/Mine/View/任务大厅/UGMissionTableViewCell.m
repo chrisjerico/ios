@@ -30,7 +30,7 @@
     
     self.goButton.layer.cornerRadius = 3;
     self.goButton.layer.masksToBounds = YES;
-      [self setBackgroundColor: [[UGSkinManagers shareInstance] setCellbgColor]];
+      [self setBackgroundColor: [UIColor whiteColor]];
 }
 
 
