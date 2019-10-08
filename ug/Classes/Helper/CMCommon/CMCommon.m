@@ -99,8 +99,11 @@ static NSString *uuidKey =@"uuidKey";
     // 截止时间date格式
     NSDate  *expireDate = [formater dateFromString:aTimeString];
     // 当前时间date格式
-   NSDate *nowDate = [NSDate new];
-    NSTimeInterval timeInterval =[expireDate timeIntervalSinceDate:nowDate];
+    NSDate *nowDate = [NSDate new];
+    NSTimeInterval timeInterval = [expireDate timeIntervalSinceDate:nowDate];
+    
+    // 时间不知道为什么快了一点点，这里手动加上，慢总比快好一点
+    timeInterval += 0.2;
     
 //    int days = (int)(timeInterval/(3600*24));
     int hours = (int)((timeInterval)/3600);

@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6ST-JK-ia3">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6ST-JK-ia3">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -71,7 +69,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VwT-8I-9dE">
-                                <rect key="frame" x="0.0" y="88.5" width="414" height="773.5"/>
+                                <rect key="frame" x="0.0" y="88.5" width="414" height="737.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W22-w9-Nou">
@@ -102,11 +100,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="R6t-Tn-TMv" firstAttribute="bottom" secondItem="VwT-8I-9dE" secondAttribute="bottom" id="4IZ-Ic-BfX"/>
                             <constraint firstItem="h1C-k0-bXk" firstAttribute="top" secondItem="R6t-Tn-TMv" secondAttribute="top" id="Ch2-Ve-dTd"/>
                             <constraint firstItem="VwT-8I-9dE" firstAttribute="leading" secondItem="R6t-Tn-TMv" secondAttribute="leading" id="VbC-Bj-DBr"/>
                             <constraint firstItem="W22-w9-Nou" firstAttribute="trailing" secondItem="R6t-Tn-TMv" secondAttribute="trailing" id="YbN-WD-nLa"/>
                             <constraint firstItem="W22-w9-Nou" firstAttribute="leading" secondItem="R6t-Tn-TMv" secondAttribute="leading" id="a5w-Mz-UX4"/>
+                            <constraint firstItem="W22-w9-Nou" firstAttribute="top" secondItem="VwT-8I-9dE" secondAttribute="bottom" id="fYL-BL-rg3"/>
                             <constraint firstAttribute="bottom" secondItem="W22-w9-Nou" secondAttribute="bottom" id="pMg-cZ-vp5"/>
                             <constraint firstItem="R6t-Tn-TMv" firstAttribute="trailing" secondItem="VwT-8I-9dE" secondAttribute="trailing" id="r5v-OV-5n5"/>
                             <constraint firstItem="h1C-k0-bXk" firstAttribute="leading" secondItem="R6t-Tn-TMv" secondAttribute="leading" id="tci-tR-g4X"/>

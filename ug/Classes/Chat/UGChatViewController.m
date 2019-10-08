@@ -27,31 +27,33 @@
     if ([self.webTitle isEqualToString:@"聊天室"]) {
         if ([CMCommon isPhoneX]) {
             [self setWebViewFrame:CGRectMake(0, 0, UGScreenW, UGScerrnH - IPHONE_SAFEBOTTOMAREA_HEIGHT-height)];
- 
-        }else {
+        } else {
             [self setWebViewFrame:CGRectMake(0, 0, UGScreenW, UGScerrnH - height)];
         }
-        
+    }
+    
+    
+    // 返回按钮
+    {
+        __weakSelf_(__self);
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.frame = CGRectMake(APP.Width-80, APP.StatusBarHeight, 40, 45);
+        [btn setImage:[UIImage imageNamed:@"c_login_close_fff"] forState:UIControlStateNormal];
+        [btn handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
+            [__self.navigationController popViewControllerAnimated:true];
+        }];
+        [self.view addSubview:btn];
     }
 }
 
+- (void)setUrl:(NSString *)url {
+    [super setUrl:[url stringByAppendingString:@"&back=hide"]];
+}
 
 - (void)viewWillAppear:(BOOL)animated {
-    [super  viewWillAppear:animated];
-    if ([self.webTitle isEqualToString:@"聊天室"]) {
+    [super viewWillAppear:animated];
+    if ([self.webTitle isEqualToString:@"聊天室"])
         self.navigationController.navigationBarHidden = YES;
-    }
-    
-    
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

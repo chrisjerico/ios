@@ -22,27 +22,22 @@
 @end
 
 @implementation UGPromotionIncomeController
+
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
--(void)skin{
-   
+- (void)skin {
     [self initView];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.navigationItem.title = @"推荐收益";
     self.view.backgroundColor =[UIColor whiteColor];
     
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-        
         [self skin];
     });
-    
-   
-    
 }
 
 -(void)initView{
@@ -56,17 +51,17 @@
     }
     [self.view addSubview:_uGPormotionView];
     
-    [self.uGPormotionView  mas_makeConstraints:^(MASConstraintMaker *make)
-     {
+    [self.uGPormotionView  mas_makeConstraints:^(MASConstraintMaker *make) {
          make.left.equalTo(self.view.mas_left).with.offset(0);
          make.right.equalTo(self.view.mas_right).with.offset(0);
          make.width.equalTo(self.view.mas_width);
          make.height.mas_equalTo(128.0);
-         
-     }];
+    }];
 }
 
+
 #pragma mark 设置右上角按钮
+
 - (void)setupRightItem{
     UIButton *rightButton = [[UIButton alloc] initWithFrame:CGRectMake(UGScreenW - 50,100, 50, 50)];
      UGUserModel *user = [UGUserModel currentUser];
@@ -78,15 +73,18 @@
     self.navigationItem.rightBarButtonItem = rightItem;
     
 }
+
 #pragma mark 右上角按钮的点击方法
-- (void)rightClicked{
+
+- (void)rightClicked {
 
     
 }
 
 
 #pragma mark - 配置segment
--(void)buildSegment
+
+- (void)buildSegment
 {
     self.itemArray = @[@"推荐信息",@"会员管理",@"投注报表",@"投注记录",@"域名绑定",@"存款报表",@"存款记录",@"提款报表",@"提款记录",@"真人报表",@"真人记录"];
     self.slideSwitchView = [[XYYSegmentControl alloc] initWithFrame:CGRectMake(0 , 128.0, self.view.width, self.view.height-128.0) channelName:self.itemArray source:self];
@@ -106,10 +104,9 @@
 }
 
 #pragma mark - XYYSegmentControlDelegate
--(NSUInteger)numberOfTab:(XYYSegmentControl *)view
-{
-    return [self.itemArray count];//items决定
 
+- (NSUInteger)numberOfTab:(XYYSegmentControl *)view {
+    return [self.itemArray count];//items决定
 }
 
 ///待加载的控制器
@@ -119,50 +116,32 @@
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGPromotionInfoController" bundle:nil];
         UGPromotionInfoController *infoVC = [storyboard instantiateInitialViewController];
         return infoVC;
-    }else if (number == 1) {
-        UGPromotionTableController *tableVC = [[UGPromotionTableController alloc] initWithTableType:PromotionTableTypeMember];
-        return tableVC;
-    }else if (number == 2) {
-        UGPromotionTableController *tableVC = [[UGPromotionTableController alloc] initWithTableType:PromotionTableTypeBettingReport];
-        return tableVC;
-    }else if (number == 3) {
-        UGPromotionTableController *tableVC = [[UGPromotionTableController alloc] initWithTableType:PromotionTableTypeBettingRecord];
-        return tableVC;
-    }else if (number == 4) {
-        UGPromotionTableController *tableVC = [[UGPromotionTableController alloc] initWithTableType:PromotionTableTypeDomainBinding];
-        return tableVC;
-    }else if (number == 5) {
-        UGPromotionTableController *tableVC = [[UGPromotionTableController alloc] initWithTableType:PromotionTableTypeDepositStatement];
-        return tableVC;
-    }else if (number == 6) {
-        UGPromotionTableController *tableVC = [[UGPromotionTableController alloc] initWithTableType:PromotionTableTypeDepositRecord];
-        return tableVC;
-    }else if (number == 7) {
-        UGPromotionTableController *tableVC = [[UGPromotionTableController alloc] initWithTableType:PromotionTableTypeWithdrawalReport];
-        return tableVC;
-    }else if (number == 8) {
-        UGPromotionTableController *tableVC = [[UGPromotionTableController alloc] initWithTableType:PromotionTableTypeWithdrawalRcord];
-        return tableVC;
-        
-    }else if (number == 9) {
-        UGPromotionTableController *tableVC = [[UGPromotionTableController alloc] initWithTableType:PromotionTableTypeRealityReport];
-        return tableVC;
-        
-    }else  {
-        UGPromotionTableController *tableVC = [[UGPromotionTableController alloc] initWithTableType:PromotionTableTypeRealityRcord];
-        return tableVC;
-        
+    } else if (number == 1) {
+        return [[UGPromotionTableController alloc] initWithTableType:PromotionTableTypeMember];
+    } else if (number == 2) {
+        return [[UGPromotionTableController alloc] initWithTableType:PromotionTableTypeBettingReport];
+    } else if (number == 3) {
+        return [[UGPromotionTableController alloc] initWithTableType:PromotionTableTypeBettingRecord];
+    } else if (number == 4) {
+        return [[UGPromotionTableController alloc] initWithTableType:PromotionTableTypeDomainBinding];
+    } else if (number == 5) {
+        return [[UGPromotionTableController alloc] initWithTableType:PromotionTableTypeDepositStatement];
+    } else if (number == 6) {
+        return [[UGPromotionTableController alloc] initWithTableType:PromotionTableTypeDepositRecord];
+    } else if (number == 7) {
+        return [[UGPromotionTableController alloc] initWithTableType:PromotionTableTypeWithdrawalReport];
+    } else if (number == 8) {
+        return [[UGPromotionTableController alloc] initWithTableType:PromotionTableTypeWithdrawalRcord];
+    } else if (number == 9) {
+        return [[UGPromotionTableController alloc] initWithTableType:PromotionTableTypeRealityReport];
+    } else  {
+        return [[UGPromotionTableController alloc] initWithTableType:PromotionTableTypeRealityRcord];
     }
-    
 }
 
-- (void)slideSwitchView:(XYYSegmentControl *)view didselectTab:(NSUInteger)number
-{
+- (void)slideSwitchView:(XYYSegmentControl *)view didselectTab:(NSUInteger)number {
     //    UIViewController *root = view.viewArray[number];
     //    [root rootLoadData:number];
 }
-
-
-
 
 @end

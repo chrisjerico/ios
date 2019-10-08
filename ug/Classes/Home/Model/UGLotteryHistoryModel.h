@@ -10,15 +10,23 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-// 彩票开奖历史
-// {{LOCAL_HOST}}?c=game&a=lotteryHistory&id=3&rows=10
-
 @protocol UGLotteryHistoryModel <NSObject>
 
-
-
 @end
-@interface UGLotteryHistoryModel : UGModel
+
+// 彩票开奖历史
+// {{LOCAL_HOST}}?c=game&a=lotteryHistory&id=3&rows=10
+//<<<<<<< HEAD
+//
+//@protocol UGLotteryHistoryModel <NSObject>
+//
+//
+//
+//@end
+//@interface UGLotteryHistoryModel : UGModel
+//=======
+@interface UGLotteryHistoryModel : UGModel<UGLotteryHistoryModel>
+//>>>>>>> dev_fish
 @property (nonatomic, strong) NSString *issue;          /**<   期号 */
 @property (nonatomic, strong) NSString *openTime;       /**<   开奖时间 */
 @property (nonatomic, strong) NSString *num;            /**<   开奖号码 */
@@ -26,11 +34,17 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *gameType;       /**<   彩票分类 */
 @property (nonatomic, strong) NSArray *winningPlayers;  /**<   闲家赢的数组（pK10牛牛） */
 
-
 @end
 
-@interface UGLotteryHistoryModelList : UGModel
-@property (nonatomic, strong) NSArray<UGLotteryHistoryModel> * list;
-@end
+//<<<<<<< HEAD
+//@interface UGLotteryHistoryModelList : UGModel
+//@property (nonatomic, strong) NSArray<UGLotteryHistoryModel> * list;
+//@end
+//
+//=======
 
+@interface UGLotteryHistoryListModel : UGModel
+@property (nonatomic, strong) NSArray <UGLotteryHistoryModel>*list;
+@end
+//>>>>>>> dev_fish
 NS_ASSUME_NONNULL_END

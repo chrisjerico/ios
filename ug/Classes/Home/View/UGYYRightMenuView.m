@@ -354,12 +354,9 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
     else if ([title isEqualToString:@"开奖记录" ]) {
         UIStoryboard *storyboad = [UIStoryboard storyboardWithName:@"UGLotteryRecordController" bundle:nil];
         UGLotteryRecordController *recordVC = [storyboad instantiateInitialViewController];
-        UGAllNextIssueListModel *model = self.lotteryGamesArray.firstObject;
-        UGNextIssueModel *game = model.list.firstObject;
-        recordVC.gameId = game.gameId;
+        recordVC.gameId = self.gameId;
         recordVC.lotteryGamesArray = self.lotteryGamesArray;
         viewController = recordVC;
-        
     }
     else if ([title isEqualToString:@"长龙助手"]) {
         
