@@ -12,10 +12,6 @@
 #import "UGDepositDetailsViewController.h"
 #import "UGDepositDetailsNoLineViewController.h"
 
-#import "UGFundsTestViewController.h"
-
-
-
 @interface UGRechargeTypeTableViewController ()
 @property (nonatomic, strong) UGdepositModel *mUGdepositModel;
 @property (nonatomic, strong) NSMutableArray *tableViewDataArray;
@@ -34,11 +30,11 @@ static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
     
     if (@available(iOS 11.0, *)) {
         self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-    }else {
+    } else {
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
     
-     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 180, 0);
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 180, 0);
     
     self.tableViewDataArray = [NSMutableArray new];
     
@@ -46,43 +42,33 @@ static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
 
 }
 
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
     return self.tableViewDataArray.count;
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     UGRechargeTypeCell *cell = [tableView dequeueReusableCellWithIdentifier:rechargeTypeCellid forIndexPath:indexPath];
-    
     UGpaymentModel *model = self.tableViewDataArray[indexPath.row];
     cell.item = model;
-    
-    
-
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     return 80.0f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    
     return 0.001f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    
     return 0.001f;
 }
 
@@ -90,48 +76,15 @@ static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     UGpaymentModel *model = self.tableViewDataArray[indexPath.row];
-    
-    if ([model.pid isEqualToString:@"online"]) {
-        UGDepositDetailsNoLineViewController *vc = [UGDepositDetailsNoLineViewController new];
+    if (![model.pid isEqualToString:@"alihb_online"] && [model.pid containsString:@"online"]) {
+        UGDepositDetailsViewController *vc = [UGDepositDetailsViewController new];
         vc.item = model;
         [self.navigationController pushViewController:vc animated:YES];
     } else {
-        NSArray *array = [model.pid componentsSeparatedByString:@"_"];
-        
-        if (![CMCommon arryIsNull:array]) {
-            
-            if (array.count>=2) {
-                NSString *str = [array objectAtIndex:array.count-1];
-                if ([str isEqualToString:@"online"]) {
-                    UGDepositDetailsViewController *vc = [UGDepositDetailsViewController new];
-                    vc.item = model;
-                    [self.navigationController pushViewController:vc animated:YES];
-                } else {
-                    
-                    UGDepositDetailsNoLineViewController *vc = [UGDepositDetailsNoLineViewController new];
-                    vc.item = model;
-                    [self.navigationController pushViewController:vc animated:YES];
-                }
-                
-            }
-            else{
-                NSLog(@"name 数据有问题=%@",model.name);
-            }
-        }else{
-            NSLog(@"name 数据有问题=%@",model.name);
-        }
+        UGDepositDetailsNoLineViewController *vc = [UGDepositDetailsNoLineViewController new];
+        vc.item = model;
+        [self.navigationController pushViewController:vc animated:YES];
     }
-    
-   
-       
-    
-  
-   
-   
-    
-    
-//    UGFundsTestViewController *vc = [UGFundsTestViewController new];
-//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 
@@ -168,16 +121,9 @@ static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
                  dispatch_async(dispatch_get_main_queue(), ^{
                      [self.tableView reloadData];
                 });
-             }];
-           
-            
-           
-
-            
+            }];
         } failure:^(id msg) {
-            
             [SVProgressHUD showErrorWithStatus:msg];
-            
         }];
     }];
 }

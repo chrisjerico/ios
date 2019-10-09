@@ -12,7 +12,6 @@
 #import "UGFundsViewController.h"
 #import "UGPromotionsController.h"
 #import "UGNavigationController.h"
-#import "UGChatsViewController.h"
 #import "UGHomeViewController.h"
 #import "UGYYLotteryHomeViewController.h"
 #import "UGMineSkinViewController.h"
@@ -26,6 +25,7 @@
 @synthesize qdwebVC,vcs,nvcHome,nvcChangLong,nvcLotteryList,nvcActivity,nvcChatRoomList,nvcLotteryRecord;
 @synthesize nvcUser,nvcTask,nvcSecurityCenter,nvcFunds,nvcMessage,nvcConversion,nvcBanks,nvcYuebao;
 @synthesize nvcSign,nvcReferrer,balanceConversionVC;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initAllNav];
@@ -33,12 +33,18 @@
     [self setUpChildViewController];
     [self getSystemConfig];
     
-    SANotificationEventSubscribe(UGNotificationWithResetTabSuccess, self, ^(typeof (self) self, id obj) {
-             [self resetUpChildViewController];
-    });
+//    SANotificationEventSubscribe(UGNotificationWithResetTabSuccess, self, ^(typeof (self) self, id obj) {
+//             [self resetUpChildViewController];
+//    });
 
 }
--(void)initAllNav{
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.tabBar layoutIfNeeded];
+}
+
+- (void)initAllNav{
     //====home
     self.nvcHome = [FFRouter routeObjectURL:@"/home"];
     //====长龙助手
@@ -77,7 +83,7 @@
    
 }
 
--(void)setTabbarStyle{
+- (void)setTabbarStyle {
     // 设置 TabBarItemTestAttributes 的颜色。
     [self setUpTabBarItemTextAttributes];
     
@@ -108,7 +114,7 @@
 /**
  *  tabBarItem 的选中和不选中文字属性
  */
-- (void)setUpTabBarItemTextAttributes{
+- (void)setUpTabBarItemTextAttributes {
     
     [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[[UGSkinManagers shareInstance] settabNOSelectColor], NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
     
@@ -126,8 +132,13 @@
     self.vcs  = [NSMutableArray new];
     [vcs addObject: self.nvcHome];
     [vcs addObject: self.nvcLotteryList];
-    [vcs addObject: self.nvcYuebao];
-    [vcs addObject: self.nvcFunds];
+//<<<<<<< HEAD
+//    [vcs addObject: self.nvcYuebao];
+//    [vcs addObject: self.nvcFunds];
+//=======
+    [vcs addObject: self.nvcChatRoomList];
+    [vcs addObject: self.nvcTask];
+//>>>>>>> 1dfb2bdfb8e58314fb1d78ae3859371304d889cf
     [vcs addObject: self.nvcUser];
     [self setViewControllers:vcs];
 }
@@ -184,7 +195,7 @@
 /**
  *  添加子控制器
  */
-- (void)resetUpChildViewController{
+- (void)resetUpChildViewController {
    
    UGSystemConfigModel *config =  [UGSystemConfigModel currentConfig];
     
@@ -280,9 +291,13 @@
         }
         
     }
-    
-//    [self setViewControllers:vcs];
-//    [self setTabbarStyle];
+//<<<<<<< HEAD
+//
+//=======
+//    
+//>>>>>>> dev_fish
+    [self setViewControllers:vcs];
+    [self setTabbarStyle];
 }
 
 

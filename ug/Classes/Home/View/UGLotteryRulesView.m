@@ -51,7 +51,6 @@
 }
 
 - (void)getLotteryRule {
-    
     [SVProgressHUD showWithStatus:nil];
     [CMNetwork getLotteryRuleWithParams:@{@"id":self.gameId} completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
@@ -60,15 +59,19 @@
                 NSString *str = [NSString stringWithFormat:@"<head><style>img{width:%f !important;height:auto}</style></head>%@",self.frame.size.width - 10,model.data];
                 NSAttributedString *__block attStr = [[NSAttributedString alloc] init];
                 dispatch_async(dispatch_get_global_queue(0, 0), ^{
-                    attStr = [[NSAttributedString alloc] initWithData:[str dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
-                    
-                     dispatch_async(dispatch_get_main_queue(), ^{
+                    NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithData:[str dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+                    NSMutableParagraphStyle *ps = [NSMutableParagraphStyle new];
+                    ps.lineSpacing = 5;
+                    ps.alignment = NSTextAlignmentLeft;
+                    ps.firstLineHeadIndent = 10;
+                    ps.headIndent = 10;
+                    [attStr addAttributes:@{NSParagraphStyleAttributeName:ps} range:NSMakeRange(0, attStr.length)];
+                    dispatch_async(dispatch_get_main_queue(), ^{
                         [SVProgressHUD dismiss];
                         self.contentTextView.attributedText = attStr;
-                    
                     });
                 });
-            }else {
+            } else {
                 [SVProgressHUD dismiss];
             }
         } failure:^(id msg) {
@@ -82,7 +85,6 @@
 }
 
 - (void)show {
-    
     UIWindow* window = UIApplication.sharedApplication.keyWindow;
     UIView* maskView = [[UIView alloc] initWithFrame:window.bounds];
     UIView* view = self;
@@ -93,16 +95,13 @@
     
     [maskView addSubview:view];
     [window addSubview:maskView];
-    
 }
 
 - (void)hiddenSelf {
-    
     UIView* view = self;
     self.superview.backgroundColor = [UIColor clearColor];
     [view.superview removeFromSuperview];
     [view removeFromSuperview];
-    
 }
 
 @end

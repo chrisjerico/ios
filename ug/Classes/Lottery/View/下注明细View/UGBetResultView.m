@@ -164,6 +164,14 @@ static UGBetResultView *_singleInstance = nil;
 		
 		if (i<numbers.count) {
 			resultView.numberlabels[i].text = numbers[i];
+			NSString *color = [CMCommon getHKLotteryNumColorString: numbers[i]];
+			if ([@"blue" isEqualToString:color]) {
+				 resultView.numberlabels[i].backgroundColor = UGRGBColor(86, 170, 236);
+			 }else if ([@"red" isEqualToString:color]) {
+				 resultView.numberlabels[i].backgroundColor = UGRGBColor(197, 52, 60);
+			 }else {
+				 resultView.numberlabels[i].backgroundColor = UGRGBColor(96, 174, 108);
+			 }
 
 		} else {
 			UILabel * label = resultView.numberlabels[i];

@@ -10,10 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 typedef void(^YYRightMenuBlock)();
+
 @interface UGYYRightMenuView : UIView
 
-
-@property (nonatomic,copy)YYRightMenuBlock gotoSeeBlock;
+@property (nonatomic ,copy) YYRightMenuBlock gotoSeeBlock;
 @property (nonatomic, strong) NSArray *lotteryGamesArray;
 @property (nonatomic, strong) NSString *gameId;
 @property (nonatomic, strong) NSString *gameName;

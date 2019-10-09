@@ -16,8 +16,10 @@
 #import "UGMissionCollectionView.h"
 #import "WavesView.h"
 #import "UGSigInCodeViewController.h"
+#import "UGMineSkinViewController.h"
 
 @interface UGMissionCenterViewController ()
+
 
 @property (weak, nonatomic) IBOutlet UIView *userInfoView;
 @property (weak, nonatomic) IBOutlet UIImageView *avaterImageView;
@@ -68,6 +70,10 @@
     SANotificationEventSubscribe(UGNotificationGetRewardsSuccessfully, self, ^(typeof (self) self, id obj) {
         [self getUserInfo];
         
+    });
+    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
+        
+        [self skin];
     });
 
     [self initView];
@@ -304,7 +310,18 @@
 
 // 返回上一页
 - (IBAction)backCick:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    
+    if ([self.navigationController.viewControllers.firstObject isEqual:self])
+    {
+        //去会员中心
+         UGMineSkinViewController * viewController = [[UGMineSkinViewController alloc] init];
+         [self.navigationController pushViewController:viewController animated:YES];
+    }
+    else
+    {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+
 }
 
 // 刷新余额

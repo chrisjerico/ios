@@ -89,12 +89,6 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
                 self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"changlong",@"lixibao",@"zhanneixin",@"huanfu",@"tuichudenglu", nil] ;
             }
             
-            
-            
-         
-//            [self.icon1ImgeView setImage:[[UIImage imageNamed:@"qr-code"] imageChangeColor:UGNavColor];
-//              [self.icon2ImageView setImage:[image imageChangeColor:UGNavColor];
-            
             [self.tableView reloadData];
             
         });
@@ -321,6 +315,8 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         }else {
             
             UGBetRecordViewController *betRecordVC = [[UGBetRecordViewController alloc] init];
+            [betRecordVC buildSegment];
+            [betRecordVC setSelectIndex:2];
             viewController = betRecordVC;
             
         }
@@ -360,12 +356,9 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
     else if ([title isEqualToString:@"开奖记录" ]) {
         UIStoryboard *storyboad = [UIStoryboard storyboardWithName:@"UGLotteryRecordController" bundle:nil];
         UGLotteryRecordController *recordVC = [storyboad instantiateInitialViewController];
-        UGAllNextIssueListModel *model = self.lotteryGamesArray.firstObject;
-        UGNextIssueModel *game = model.list.firstObject;
-        recordVC.gameId = game.gameId;
+        recordVC.gameId = self.gameId;
         recordVC.lotteryGamesArray = self.lotteryGamesArray;
         viewController = recordVC;
-        
     }
     else if ([title isEqualToString:@"长龙助手"]) {
         

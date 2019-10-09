@@ -19,8 +19,8 @@
 @property (nonatomic, copy) NSString *webTitle;
 
 /** 进度条颜色 */
-@property (nonatomic, assign) UIColor *progressColor;
+@property (nonatomic) UIColor *progressColor;
 
--(void)setWebViewFrame:(CGRect )frame;
+- (void)setWebViewFrame:(CGRect)frame;
 
 @end

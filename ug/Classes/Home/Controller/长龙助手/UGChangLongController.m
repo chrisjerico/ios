@@ -48,7 +48,10 @@
         self.navigationItem.rightBarButtonItems = @[item1,item0];
         
     });
-    
+    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
+        
+        [self skin];
+    });
   
     
 }

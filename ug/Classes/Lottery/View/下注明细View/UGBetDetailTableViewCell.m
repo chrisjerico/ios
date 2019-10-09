@@ -38,11 +38,11 @@
 - (void)setItem:(UGBetModel *)item {
     _item = item;
     if (item.displayInfo.length) {
-         self.numberLabel.text = [NSString stringWithFormat:@"%@-%@",item.title,item.displayInfo];
+         self.numberLabel.text = [NSString stringWithFormat:@"%@-%@",item.alias,item.displayInfo];
     }else if (item.betInfo.length) {
-        self.numberLabel.text = [NSString stringWithFormat:@"%@-%@",item.title,item.betInfo];
+        self.numberLabel.text = [NSString stringWithFormat:@"%@-%@",item.alias,item.betInfo];
     }else {
-         self.numberLabel.text = [NSString stringWithFormat:@"%@-%@",item.title,item.name];
+         self.numberLabel.text = [NSString stringWithFormat:@"%@-%@",item.alias,item.name];
     }
     self.amountField.text = [NSString stringWithFormat:@"%@",item.money];
     self.oddsLabel.text = [NSString stringWithFormat:@"%@%@",@"@",[item.odds removeFloatAllZero]];

@@ -72,7 +72,6 @@
 
 @interface UGHomeViewController ()<SDCycleScrollViewDelegate,UUMarqueeViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (weak, nonatomic) IBOutlet UIView *scrollContentView;
 @property (weak, nonatomic) IBOutlet UIView *bannerBgView;                          /**<   Banner */
 @property (weak, nonatomic) IBOutlet UGGameNavigationView *gameNavigationView;      /**<   游戏导航父视图 */
 
@@ -85,14 +84,15 @@
 @property (weak, nonatomic) IBOutlet UUMarqueeView *upwardMultiMarqueeView; /**<   中奖排行榜 */
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *gameViewHeight;
+@property (nonatomic, strong)UGPlatformNoticeView *notiveView;        /**<   平台公告 */
 
-
-@property (nonatomic, strong) UGHomeTitleView *titleView;
-@property (nonatomic, strong) SDCycleScrollView *bannerView;
+@property (nonatomic, strong) UGHomeTitleView *titleView;               /**<   自定义导航条 */
+@property (nonatomic, strong) SDCycleScrollView *bannerView;            /**<   滚动广告面板 */
 
 @property (nonatomic, strong) NSMutableArray *leftwardMarqueeViewData;      /**<   公告数据 */
 @property (nonatomic, strong) NSMutableArray *upwardMultiMarqueeViewData;   /**<   中奖排行榜数据 */
 @property (nonatomic, strong) NSMutableArray *popNoticeArray;
+
 
 @property (nonatomic, strong) NSMutableArray *gameCategorys;
 @property (nonatomic, strong) UGNoticeTypeModel *noticeTypeModel;
@@ -103,14 +103,13 @@
 @property (nonatomic, strong) NSArray *rankArray;
 @property (nonatomic, strong) NSArray *lotteryGamesArray;
 @property (nonatomic, assign) BOOL initSubview;
+@property (weak, nonatomic) IBOutlet UILabel *bottomLabel;
+@property (weak, nonatomic) IBOutlet UIView *bottomView;
 
 @property (strong, nonatomic)  UGredEnvelopeView *uGredEnvelopeView;
 @property (strong, nonatomic)  UGredActivityView *uGredActivityView;    /**<   红包弹框 */
 
-
-@property (strong, nonatomic)UGRightMenuView *menuView;
-
-@property (strong, nonatomic)UGYYRightMenuView *yymenuView;
+@property (strong, nonatomic)UGYYRightMenuView *yymenuView;   /**<   侧边栏 */
 
 @property (nonatomic, strong) UGonlineCount *mUGonlineCount;
 
@@ -126,11 +125,13 @@
 }
 
 -(void)skin{
-
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
- 
-
+	
+	[self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+	
+	
+    [self.bottomView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
 	[self.rankingView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
+
     [self.upwardMultiMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
     [self.rollingView setBackgroundColor:[[UGSkinManagers shareInstance]sethomeContentColor]];
     [self.gameNavigationView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
@@ -138,35 +139,38 @@
      [self.gameTypeView setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
      self.gameNavigationView.layer.borderColor = [[UGSkinManagers shareInstance] sethomeContentBorderColor].CGColor;
     
-    [self getCustomGameList];
+    [self.gameNavigationView reloadData];
+    self.gameTypeView.gameTypeArray = self.gameCategorys;
+
 }
 
 - (void)viewDidLoad {
-
+	
 	[super viewDidLoad];
-    
-    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-        
-        [self skin];
-    });
-
-
-    
+	
+	SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
+		
+		[self skin];
+	});
+	
+	
+	
 	self.gameNavigationView.layer.cornerRadius = 8;
 	self.gameNavigationView.layer.masksToBounds = true;
-    self.gameNavigationView.layer.borderWidth = 1;
-    self.gameNavigationView.layer.borderColor = [[UGSkinManagers shareInstance] sethomeContentBorderColor].CGColor;
-    
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
- 
-   
-    [self.rankingView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
-    [self.upwardMultiMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
-    [self.rollingView setBackgroundColor:[[UGSkinManagers shareInstance]sethomeContentColor]];
-    [self.gameNavigationView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
-    [self.leftwardMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
-     [self.gameTypeView setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
-    
+	self.gameNavigationView.layer.borderWidth = 1;
+	self.gameNavigationView.layer.borderColor = [[UGSkinManagers shareInstance] sethomeContentBorderColor].CGColor;
+	
+	[self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+	
+	
+	[self.rankingView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
+	[self.upwardMultiMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
+	[self.rollingView setBackgroundColor:[[UGSkinManagers shareInstance]sethomeContentColor]];
+	[self.gameNavigationView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
+	[self.leftwardMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
+	[self.gameTypeView setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
+    [self.bottomView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
+	
 	[[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:[[UGSkinManagers shareInstance] setTabbgColor]]];
 	
 	[[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[[UGSkinManagers shareInstance] settabNOSelectColor], NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
@@ -196,15 +200,15 @@
 		[self userLogout];
 	});
 	SANotificationEventSubscribe(UGNotificationloginTimeout, self, ^(typeof (self) self, id obj) {
-        // onceToken 函数的作用是，限制为只弹一次框，修复弹框多次的bug
-        [UGUserModel.currentUser onceToken:ZJOnceToken block:^{
-            [QDAlertView showWithTitle:@"提示" message:@"您的账号已经登录超时，请重新登录。" cancelButtonTitle:nil otherButtonTitle:@"确定" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                self.titleView.showLoginView = YES;
-                UGUserModel.currentUser = nil;
-                [self.tabBarController setSelectedIndex:0];
-                [self loginClick];
-            }];
-        }];
+		// onceToken 函数的作用是，限制为只弹一次框，修复弹框多次的bug
+		[UGUserModel.currentUser onceToken:ZJOnceToken block:^{
+			[QDAlertView showWithTitle:@"提示" message:@"您的账号已经登录超时，请重新登录。" cancelButtonTitle:nil otherButtonTitle:@"确定" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+				self.titleView.showLoginView = YES;
+				UGUserModel.currentUser = nil;
+				[self.tabBarController setSelectedIndex:0];
+				[self loginClick];
+			}];
+		}];
 	});
 	SANotificationEventSubscribe(UGNotificationShowLoginView, self, ^(typeof (self) self, id obj) {
 		[self loginClick];
@@ -217,28 +221,37 @@
 		[self autoTransferOut];
 	});
 	
-	[self getSystemConfig];
-	[self getCustomGameList];
-	[self getBannerList];
-	[self getNoticeList];
-	[self getRankList];
-	[self getAllNextIssueData];
-	[self getUserInfo];
-	[self getCheckinListData];
-	[self systemOnlineCount];
+
 	
 	self.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-         SANotificationEventPost(UGNotificationWithResetTabSuccess, nil);
+		SANotificationEventPost(UGNotificationWithResetTabSuccess, nil);
 		[self getSystemConfig];
 		[self getCustomGameList];
 		[self getBannerList];
-		[self getNoticeList];
+        if (self.notiveView == nil) {
+            [self getNoticeList];
+        }
 		[self getRankList];
 		[self getUserInfo];
 		[self getAllNextIssueData];
 		[self getCheckinListData];
 		[self systemOnlineCount];
 	}];
+    
+    
+    [self getCustomGameList];
+    [self getBannerList];
+
+    if (self.notiveView == nil) {
+        [self getNoticeList];
+        [self getSystemConfig];
+    }
+
+    [self getRankList];
+    [self getAllNextIssueData];
+    [self getUserInfo];
+    [self getCheckinListData];
+    [self systemOnlineCount];
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(collectiongViewHeightUpdated:) name:@"UGPlatformCollectionViewContentHeight" object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gameNavigationItemTaped:) name:@"gameNavigationItemTaped" object:nil];
@@ -252,8 +265,7 @@
 	};
 	
 	self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
-	
-    
+
     
     // 红包事件
     {
@@ -313,6 +325,7 @@
             }];
         };
     }
+
 }
 
 -(BOOL)prefersStatusBarHidden{
@@ -323,14 +336,15 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-//    [self.leftwardMarqueeView start];
-//    [self.upwardMultiMarqueeView start];
-	
+
+    [self.leftwardMarqueeView start];
+    [self.upwardMultiMarqueeView start];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
 	[self.leftwardMarqueeView pause];//fixbug  发热  掉电快
-    [self.upwardMultiMarqueeView pause];//fixbug  发热  掉电快
+	[self.upwardMultiMarqueeView pause];//fixbug  发热  掉电快
 	self.initSubview = YES;
 }
 
@@ -339,8 +353,8 @@
 	if (self.initSubview) {
 		return;
 	}
-	
-	[self getBannerList];
+
+
 	
 	
 }
@@ -358,17 +372,17 @@
 		UGFundsViewController * vc = [UGFundsViewController new];
 		[self.navigationController pushViewController:vc animated:true];
 	} else if ([model.subId isEqualToString:@"8"]) {
-		SLWebViewController *webViewVC = [[SLWebViewController alloc] init];
-		UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
-		if (config.zxkfUrl) {
-			webViewVC.urlStr = config.zxkfUrl;
-		}
-		[self.navigationController pushViewController:webViewVC animated:YES];
+		
+		UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGYubaoViewController" bundle:nil];
+		UGYubaoViewController *lixibaoVC = [storyboard instantiateInitialViewController];
+		[self.navigationController pushViewController:lixibaoVC  animated:YES];
+		
+		
 	} else if ([model.subId isEqualToString:@"5"]) {
 		UGChangLongController *changlongVC = [[UGChangLongController alloc] init];
-		 changlongVC.lotteryGamesArray = self.lotteryGamesArray;
-		 [self.navigationController pushViewController:changlongVC animated:YES];
-
+		changlongVC.lotteryGamesArray = self.lotteryGamesArray;
+		[self.navigationController pushViewController:changlongVC animated:YES];
+		
 	} else if ([model.subId isEqualToString:@"7"]) {
 		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://test10.6yc.com/Open_prize/index.php"]];
 	} else if ([model.subId isEqualToString:@"6"]) {
@@ -376,26 +390,33 @@
 		
 	} else if ([model.subId isEqualToString:@"2"]) {
 		[SVProgressHUD showInfoWithStatus:@"下载链接未配置"];
-
+		
 	} else if ([model.subId isEqualToString:@"3"]) {
 		// 聊天室
 		UGChatViewController * qdwebVC = [[UGChatViewController alloc] init];
-
-		 qdwebVC.webTitle = @"聊天室";
+		qdwebVC.webTitle = @"聊天室";
 		
-		 
-		 if (![CMCommon stringIsNull:[UGUserModel currentUser].token]) {
-			  NSString *colorStr = [[UGSkinManagers shareInstance] setChatNavbgStringColor];
-			  qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr];
-		 } else {
-			 NSString *colorStr = [[UGSkinManagers shareInstance] setChatNavbgStringColor];
-			 qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr];
-		 }
+		if (![CMCommon stringIsNull:[UGUserModel currentUser].token]) {
+			NSString *colorStr = [[UGSkinManagers shareInstance] setChatNavbgStringColor];
+			qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr];
+		} else {
+			NSString *colorStr = [[UGSkinManagers shareInstance] setChatNavbgStringColor];
+			qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr];
+		}
 		
 		[self.navigationController pushViewController:qdwebVC animated:YES];
-
+		
 	} else if ([model.subId isEqualToString:@"4"]) {
 		// 在线客服
+		SLWebViewController *webViewVC = [[SLWebViewController alloc] init];
+		UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
+		if (config.zxkfUrl) {
+			webViewVC.urlStr = config.zxkfUrl;
+		} else {
+			[SVProgressHUD showWithStatus:@"链接未配置"];
+			return;
+		}
+		[self.navigationController pushViewController:webViewVC animated:YES];
 	}
 	
 }
@@ -475,7 +496,7 @@
 					if (sourceData.count > 0) {
 						self.gameNavigationViewHeight.constant = ((sourceData.count - 1)/4 + 1)*80;
 						[self.view layoutIfNeeded];
-
+						
 					}
 					
 					self.gameTypeView.gameTypeArray = self.gameCategorys;
@@ -503,14 +524,11 @@
 		[CMResult processWithResult:model success:^{
 			[SVProgressHUD dismiss];
 			dispatch_async(dispatch_get_main_queue(), ^{
-				
 				QDWebViewController *qdwebVC = [[QDWebViewController alloc] init];
 				qdwebVC.urlString = model.data;
 				qdwebVC.enterGame = YES;
 				[self.navigationController pushViewController:qdwebVC  animated:YES];
 			});
-			
-			
 		} failure:^(id msg) {
 			[SVProgressHUD showErrorWithStatus:msg];
 		}];
@@ -529,8 +547,9 @@
 			
 			
 			[[UGSkinManagers shareInstance] setSkin];
-    
 			
+            NSString *title =[NSString stringWithFormat:@"COPYRIGHT © %@ RESERVED",config.webName];
+            [self.bottomLabel setText:title];
 			[self.titleView setImgName:config.mobile_logo];
 			
 		} failure:^(id msg) {
@@ -607,7 +626,10 @@
 				[self.leftwardMarqueeView reloadData];
 				if (self.popNoticeArray.count) {
 					
-					[self showPlatformNoticeView];
+                    if (self.notiveView == nil) {
+                        [self showPlatformNoticeView];
+                    }
+					
 				}
 			});
 			
@@ -715,10 +737,23 @@
 	}];
 }
 - (void)showPlatformNoticeView {
-	UGPlatformNoticeView *notiveView = [[UGPlatformNoticeView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - 260)];
-	notiveView.dataArray = self.popNoticeArray;
-    [notiveView.bgView setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
-	[notiveView show];
+
+    
+    
+    
+    if (self.notiveView == nil) {
+        
+         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        if (!appDelegate.notiveViewHasShow) {
+            self.notiveView = [[UGPlatformNoticeView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - 260)];
+            self.notiveView.dataArray = self.popNoticeArray;
+            [self.notiveView.bgView setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
+            [self.notiveView show];
+        }
+        appDelegate.notiveViewHasShow = YES;
+        
+    }
+	
 }
 
 #pragma mark - SDCycleScrollViewDelegate
@@ -800,14 +835,14 @@
 		UGRankModel *rank = self.rankArray[index];
 		UILabel *content = [itemView viewWithTag:1001];
 		content.text = rank.username;
-        [content setTextColor:UIColor.blackColor];
+		[content setTextColor:UIColor.blackColor];
 		
 		UILabel *coin = [itemView viewWithTag:1002];
 		coin.text = [NSString stringWithFormat:@"%@元",rank.coin];
 		
 		UILabel *game = [itemView viewWithTag:1004];
 		game.text = rank.type;
-   
+		
 		
 		UIImageView *icon = [itemView viewWithTag:1003];
 		NSString *imgName = nil;
@@ -823,8 +858,8 @@
 			icon.hidden = YES;
 		}
 		icon.image = [UIImage imageNamed:imgName];
-        
-        [itemView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
+		
+		[itemView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
 		
 	}
 }
@@ -951,6 +986,11 @@
 		if ([@[@"7", @"11", @"9"] containsObject: model.gameId]) {
 			lotteryVC.shoulHideHeader = true;
 		}
+		UGNextIssueModel * nextIssueModel = [UGNextIssueModel new];
+		nextIssueModel.gameId = model.gameId;
+		nextIssueModel.title = model.title;
+		lotteryVC.model = nextIssueModel;
+		lotteryVC.allList = self.lotteryGamesArray;
 	};
 	
 	
@@ -985,6 +1025,8 @@
 		UGHKLHCLotteryController *markSixVC = [storyboard instantiateInitialViewController];
 		markSixVC.gameId = model.gameId;
 		markSixVC.lotteryGamesArray = self.lotteryGamesArray;
+		judeBlock(markSixVC);
+
 		[self.navigationController pushViewController:markSixVC animated:YES];
 		
 	}else if ([@"jsk3" isEqualToString:model.gameType]) {
@@ -992,12 +1034,16 @@
 		UGJSK3LotteryController *fastThreeVC = [storyboard instantiateInitialViewController];
 		fastThreeVC.gameId = model.gameId;
 		fastThreeVC.lotteryGamesArray = self.lotteryGamesArray;
+		judeBlock(fastThreeVC);
+
 		[self.navigationController pushViewController:fastThreeVC animated:YES];
 	}else if ([@"pcdd" isEqualToString:model.gameType]) {
 		UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGPCDDLotteryController" bundle:nil];
 		UGPCDDLotteryController *PCVC = [storyboard instantiateInitialViewController];
 		PCVC.gameId = model.gameId;
 		PCVC.lotteryGamesArray = self.lotteryGamesArray;
+		judeBlock(PCVC);
+
 		[self.navigationController pushViewController:PCVC animated:YES];
 		
 	}else if ([@"gd11x5" isEqualToString:model.gameType]) {
@@ -1005,6 +1051,8 @@
 		UGGD11X5LotteryController *PCVC = [storyboard instantiateInitialViewController];
 		PCVC.gameId = model.gameId;
 		PCVC.lotteryGamesArray = self.lotteryGamesArray;
+		judeBlock(PCVC);
+
 		[self.navigationController pushViewController:PCVC animated:YES];
 		
 	}else if ([@"xync" isEqualToString:model.gameType]) {
@@ -1012,6 +1060,8 @@
 		UGXYNCLotteryController *PCVC = [storyboard instantiateInitialViewController];
 		PCVC.gameId = model.gameId;
 		PCVC.lotteryGamesArray = self.lotteryGamesArray;
+		judeBlock(PCVC);
+
 		[self.navigationController pushViewController:PCVC animated:YES];
 		
 	}else if ([@"bjkl8" isEqualToString:model.gameType]) {
@@ -1019,6 +1069,8 @@
 		UGBJKL8LotteryController *PCVC = [storyboard instantiateInitialViewController];
 		PCVC.gameId = model.gameId;
 		PCVC.lotteryGamesArray = self.lotteryGamesArray;
+		judeBlock(PCVC);
+
 		[self.navigationController pushViewController:PCVC animated:YES];
 		
 	}else if ([@"gdkl10" isEqualToString:model.gameType]) {
@@ -1026,6 +1078,8 @@
 		UGGDKL10LotteryController *PCVC = [storyboard instantiateInitialViewController];
 		PCVC.gameId = model.gameId;
 		PCVC.lotteryGamesArray = self.lotteryGamesArray;
+		judeBlock(PCVC);
+
 		[self.navigationController pushViewController:PCVC animated:YES];
 		
 	}else if ([@"fc3d" isEqualToString:model.gameType]) {
@@ -1033,6 +1087,8 @@
 		UGFC3DLotteryController *markSixVC = [storyboard instantiateInitialViewController];
 		markSixVC.gameId = model.gameId;
 		markSixVC.lotteryGamesArray = self.lotteryGamesArray;
+		judeBlock(markSixVC);
+
 		[self.navigationController pushViewController:markSixVC animated:YES];
 		
 	}else if ([@"pk10nn" isEqualToString:model.gameType]) {
@@ -1040,6 +1096,8 @@
 		UGPK10NNLotteryController *markSixVC = [storyboard instantiateInitialViewController];
 		markSixVC.gameId = model.gameId;
 		markSixVC.lotteryGamesArray = self.lotteryGamesArray;
+		judeBlock(markSixVC);
+
 		[self.navigationController pushViewController:markSixVC animated:YES];
 		
 	}else {
@@ -1087,6 +1145,10 @@
 	self.titleView.registerClickBlock = ^{
 		[weakSelf registerClick];
 	};
+	self.titleView.userNameTouchedBlock = ^{
+		[weakSelf.tabBarController setSelectedIndex:4];
+	};
+	
 	if (UGLoginIsAuthorized()) {
 		self.titleView.showLoginView = NO;
 		UGUserModel *user = [UGUserModel currentUser];

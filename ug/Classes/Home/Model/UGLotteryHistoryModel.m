@@ -11,3 +11,14 @@
 @implementation UGLotteryHistoryModel
 
 @end
+
+//<<<<<<< HEAD
+//@implementation UGLotteryHistoryModelList
+//
+//
+//=======
+
+@implementation UGLotteryHistoryListModel
+//>>>>>>> dev_fish
+
+@end

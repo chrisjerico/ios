@@ -297,7 +297,14 @@ completion:(CMNetworkBlock)completion {
                     NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
                     obj = [numberFormatter stringFromNumber:temp];
                 }
-                NSData *encryptData = [obj dataUsingEncoding:NSUTF8StringEncoding];
+				
+				NSData * encryptData = [obj dataUsingEncoding:NSUTF8StringEncoding];
+//				if ([obj isKindOfClass: [NSString class]]) {
+//					encryptData = [obj dataUsingEncoding:NSUTF8StringEncoding];
+//				} else {
+//					encryptData = [NSJSONSerialization dataWithJSONObject:obj options:NSJSONWritingPrettyPrinted error:nil];
+//				}
+				
                 resultData = [GLEncryptManager excute3DESWithData:encryptData secureKey:[deskey dataUsingEncoding:NSUTF8StringEncoding] operation:kCCEncrypt];
                 resultString = [GLEncryptManager encodeBase64WithData:resultData];
                 [dict setValue:resultString forKey:key];
@@ -314,24 +321,24 @@ completion:(CMNetworkBlock)completion {
             }
             if (isPost) {
                 [self postWithMethod:method params:dict  model:model retryCount:0 completion:completion];
-            }else {
+            } else {
                 [self getWithMethod:method params:dict  model:model retryCount:0 completion:completion];
                 
             }
-        }else {
+        } else {
             if (isPost) {
                 [self postWithMethod:method params:params  model:model retryCount:0 completion:completion];
-            }else {
+            } else {
                 [self getWithMethod:method params:params  model:model retryCount:0 completion:completion];
                 
             }
             
         }
         
-    }else {
+    } else {
         if (isPost) {
             [self postWithMethod:method params:params  model:model retryCount:0 completion:completion];
-        }else {
+        } else {
             [self getWithMethod:method params:params  model:model retryCount:0 completion:completion];
             
         }
@@ -513,10 +520,10 @@ completion:(CMNetworkBlock)completion {
             SANotificationEventPost(UGNotificationUserLogout, nil);
             return ;
         }
-        if (errResponse.statusCode == 403) {
+        if (errResponse.statusCode == 403 || errResponse.statusCode == 404) {
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:error.userInfo[@"com.alamofire.serialization.response.error.data"] options:0 error:nil];
             NSError *err;
-            CMResult* result  = [resultClass resultWithJSON:json dataClass:dataClass error:&err];
+            CMResult *result  = [resultClass resultWithJSON:json dataClass:dataClass error:&err];
             if (completion != nil) {
                 completion(result, err);
                 return;

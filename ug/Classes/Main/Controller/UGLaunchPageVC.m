@@ -9,7 +9,7 @@
 #import "UGNavigationController.h"
 #import "UGMineViewController.h"
 #import "UGLotteryHomeController.h"
-#import "UGChatsViewController.h"
+//#import "UGChatsViewController.h"
 #import "UITabBarController+ShowViewController.h"
 #import "UGChatViewController.h"
 #import "UGAppVersionManager.h"

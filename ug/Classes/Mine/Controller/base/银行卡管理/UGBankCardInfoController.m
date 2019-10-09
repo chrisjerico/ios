@@ -76,7 +76,10 @@
             if (config.zxkfUrl) {
                 
                 webViewVC.urlStr = config.zxkfUrl;
-            }
+			} else {
+				[SVProgressHUD showWithStatus:@"链接未配置"];
+					return;
+			}
             [self.navigationController pushViewController:webViewVC animated:YES];
         }
     }];

@@ -62,6 +62,9 @@
     [self setupNavigationItem];
     
     [self.view addSubview:self.webView];
+	[self.webView mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.edges.equalTo(self.view);
+	}];
     [self.view addSubview:self.progressView];
     //添加监测网页加载进度的观察者
     [self.webView addObserver:self
@@ -194,7 +197,7 @@
         WKUserScript *wkUScript = [[WKUserScript alloc] initWithSource:jSString injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
         [config.userContentController addUserScript:wkUScript];
         
-        _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) configuration:config];
+        _webView = [[WKWebView alloc] initWithFrame: CGRectZero configuration:config];
         // UI代理
         _webView.UIDelegate = self;
         // 导航代理
