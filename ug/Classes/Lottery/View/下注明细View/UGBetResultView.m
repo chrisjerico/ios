@@ -245,46 +245,12 @@ static UGBetResultView *_singleInstance = nil;
 	return _timerButton;
 }
 
-
-- (void) closeButtonTaped: (UIButton *) sender {
-	UGBetResultView * resultView = [UGBetResultView shareInstance] ;
-	[resultView removeFromSuperview];
-	if (resultView.timer) {
-		dispatch_source_cancel(resultView.timer);
-	}
-	[self.timerButton setSelected:false];
-	self.timerLabel.text = nil;
-
-	
-}
 - (UIImageView *)resultImage {
 	
 	if (!_resultImage) {
 		_resultImage = [[UIImageView alloc] init];
 	}
 	return _resultImage;
-}
-- (void) timerButtonTaped: (UIButton *) sender {
-	[sender setSelected: !sender.isSelected];
-	if (sender.isSelected) {
-		
-		__block int i = 0;
-		self.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
-		dispatch_source_set_timer(self.timer, DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
-		dispatch_source_set_event_handler(self.timer, ^{
-			i ++ ;
-			if (self.timerAction && i%4 == 0) {
-				self.timerAction(self.timer);
-				self.timerLabel.text = nil;
-			} else {
-				self.timerLabel.text = [NSString stringWithFormat:@"倒计时%i秒",(4-i%4)];
-			}
-		});
-		dispatch_resume(self.timer);
-	} else {
-		self.timerLabel.text = nil;
-		dispatch_source_cancel(self.timer);
-	}
 }
 
 - (NSMutableArray<UILabel *> *)numberlabels {
@@ -318,5 +284,65 @@ static UGBetResultView *_singleInstance = nil;
 	}
 	return _timerLabel;
 }
+
+
+
+
+static BOOL preparedToClose = false;
+static BOOL paused = true;
+
+- (void) closeButtonTaped: (UIButton *) sender {
+	if (paused) {
+		UGBetResultView * resultView = [UGBetResultView shareInstance] ;
+		[resultView removeFromSuperview];
+		if (resultView.timer) {
+			dispatch_source_cancel(resultView.timer);
+			preparedToClose = false;
+			paused = true;
+		}
+		[self.timerButton setSelected:false];
+		self.timerLabel.text = nil;
+		preparedToClose = false;
+
+	} else {
+		preparedToClose = true;
+		if (self.timerButton.isSelected) {
+			[self timerButtonTaped:self.timerButton];
+		}
+	}
+	
+}
+
+
+- (void) timerButtonTaped: (UIButton *) sender {
+	[sender setSelected: !sender.isSelected];
+	if (sender.isSelected) {
+		preparedToClose = false;
+		paused = false;
+		__block int i = 0;
+		self.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
+		dispatch_source_set_timer(self.timer, DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
+		dispatch_source_set_event_handler(self.timer, ^{
+			i ++ ;
+			if (self.timerAction && i%4 == 0) {
+				self.timerAction(self.timer);
+				self.timerLabel.text = nil;
+				if (preparedToClose) {
+					dispatch_source_cancel(self.timer);
+					paused = true;
+				}
+			} else {
+				self.timerLabel.text = [NSString stringWithFormat:@"倒计时%i秒",(4-i%4)];
+			}
+		});
+		dispatch_resume(self.timer);
+	} else {
+//		self.timerLabel.text = nil;
+//		dispatch_source_cancel(self.timer);
+//		paused = true;
+		preparedToClose = true;
+	}
+}
+
 
 @end
