@@ -7,7 +7,11 @@
 //
 
 #import "UGBetRecordDetailViewController.h"
+
 #import "UGChanglongBetRecordModel.h"
+
+#import "UGSystemConfigModel.h"
+
 @interface UGBetRecordDetailViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -45,6 +49,8 @@
 - (void)setupInfo {
     if (self.item.status) {
         self.cancelBetButton.hidden = YES;
+    } else {
+        self.cancelBetButton.hidden = ![UGSystemConfigModel currentConfig].allowMemberCancelBet;
     }
     [self.imgView sd_setImageWithURL:[NSURL URLWithString:self.item.pic] placeholderImage:[UIImage imageNamed:@"loading"]];
     self.titleLabel.text = self.item.title;
@@ -52,13 +58,13 @@
     self.betTimeLabel.text = self.item.addTime;
     self.orderNoLabel.text = self.item.orderNo;
     self.betAmontLabel.text = [NSString stringWithFormat:@"%@元",self.item.money];
-    self.winAmountLabel.text = [NSString stringWithFormat:@"%@元",self.item.resultMoney];
+    self.winAmountLabel.text = [NSString stringWithFormat:@"%@元",self.item.bonus];
     self.resultLabel.text = self.item.lotteryNo;
     self.playTitleLabel.text = [NSString stringWithFormat:@"%@-%@",self.item.group_name,self.item.play_name];
     if (self.item.status) {
         if (self.item.isWin) {
             
-            self.resultMoneyLabel.text = [NSString stringWithFormat:@"奖金：%@元",self.item.resultMoney];
+            self.resultMoneyLabel.text = [NSString stringWithFormat:@"奖金：%@元",self.item.bonus];
         }else {
             self.resultMoneyLabel.text = @"奖金：未中奖";
             self.winAmountLabel.text = @"未中奖";

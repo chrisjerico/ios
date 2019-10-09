@@ -128,7 +128,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 	NSDictionary *dict = @{
 		@"token":[UGUserModel currentUser].sessid,
 		@"gameId":self.nextIssueModel.gameId,
-		@"betIssue":self.nextIssueModel.curIssue,
+//		@"betIssue":self.nextIssueModel.curIssue,
 		@"endTime":[self.nextIssueModel.curCloseTime timeStrToTimeInterval],
 		@"totalNum":[NSString stringWithFormat:@"%ld",totalNum],
 		@"totalMoney":amount
@@ -145,9 +145,22 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 		[mutDict setValue: [NSString stringWithFormat:@"%.2f", [bet.money floatValue]]  forKey:money];
 		[mutDict setObject:bet.betInfo.length ? bet.betInfo : @"" forKey:betInfo];
 		[mutDict setObject:bet.playIds.length ? bet.playIds : @"" forKey:playIds];
-		
+
 	}
-	
+//	NSMutableArray * betBeans = [NSMutableArray array];
+//
+//	for (UGBetModel * bet in self.betArray) {
+//		NSMutableDictionary * betBean = @{@"playId": bet.playId, @"money": [NSString stringWithFormat:@"%.2f", [bet.money floatValue]]}.mutableCopy;
+//		if (bet.betInfo.length > 0) {
+//			betBean[@"betInfo"] = bet.betInfo;
+//		}
+//		if (bet.playIds.length > 0) {
+//			betBean[@"playIds"] = bet.playIds;
+//		}
+//		[betBeans addObject:betBean];
+//	}
+//
+//	mutDict[@"betInfo"] = betBeans;
 	[self submitBet:mutDict];
 	
 }

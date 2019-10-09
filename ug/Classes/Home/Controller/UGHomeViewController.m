@@ -523,7 +523,6 @@
 		[CMResult processWithResult:model success:^{
 			[SVProgressHUD dismiss];
 			dispatch_async(dispatch_get_main_queue(), ^{
-				
 				QDWebViewController *qdwebVC = [[QDWebViewController alloc] init];
                 
                 NSLog(@"网络链接：model.data = %@",model.data);
@@ -531,8 +530,6 @@
 				qdwebVC.enterGame = YES;
 				[self.navigationController pushViewController:qdwebVC  animated:YES];
 			});
-			
-			
 		} failure:^(id msg) {
 			[SVProgressHUD showErrorWithStatus:msg];
 		}];
@@ -990,6 +987,11 @@
 		if ([@[@"7", @"11", @"9"] containsObject: model.gameId]) {
 			lotteryVC.shoulHideHeader = true;
 		}
+		UGNextIssueModel * nextIssueModel = [UGNextIssueModel new];
+		nextIssueModel.gameId = model.gameId;
+		nextIssueModel.title = model.title;
+		lotteryVC.model = nextIssueModel;
+		lotteryVC.allList = self.lotteryGamesArray;
 	};
 	
 	
@@ -1024,6 +1026,8 @@
 		UGHKLHCLotteryController *markSixVC = [storyboard instantiateInitialViewController];
 		markSixVC.gameId = model.gameId;
 		markSixVC.lotteryGamesArray = self.lotteryGamesArray;
+		judeBlock(markSixVC);
+
 		[self.navigationController pushViewController:markSixVC animated:YES];
 		
 	}else if ([@"jsk3" isEqualToString:model.gameType]) {
@@ -1031,12 +1035,16 @@
 		UGJSK3LotteryController *fastThreeVC = [storyboard instantiateInitialViewController];
 		fastThreeVC.gameId = model.gameId;
 		fastThreeVC.lotteryGamesArray = self.lotteryGamesArray;
+		judeBlock(fastThreeVC);
+
 		[self.navigationController pushViewController:fastThreeVC animated:YES];
 	}else if ([@"pcdd" isEqualToString:model.gameType]) {
 		UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGPCDDLotteryController" bundle:nil];
 		UGPCDDLotteryController *PCVC = [storyboard instantiateInitialViewController];
 		PCVC.gameId = model.gameId;
 		PCVC.lotteryGamesArray = self.lotteryGamesArray;
+		judeBlock(PCVC);
+
 		[self.navigationController pushViewController:PCVC animated:YES];
 		
 	}else if ([@"gd11x5" isEqualToString:model.gameType]) {
@@ -1044,6 +1052,8 @@
 		UGGD11X5LotteryController *PCVC = [storyboard instantiateInitialViewController];
 		PCVC.gameId = model.gameId;
 		PCVC.lotteryGamesArray = self.lotteryGamesArray;
+		judeBlock(PCVC);
+
 		[self.navigationController pushViewController:PCVC animated:YES];
 		
 	}else if ([@"xync" isEqualToString:model.gameType]) {
@@ -1051,6 +1061,8 @@
 		UGXYNCLotteryController *PCVC = [storyboard instantiateInitialViewController];
 		PCVC.gameId = model.gameId;
 		PCVC.lotteryGamesArray = self.lotteryGamesArray;
+		judeBlock(PCVC);
+
 		[self.navigationController pushViewController:PCVC animated:YES];
 		
 	}else if ([@"bjkl8" isEqualToString:model.gameType]) {
@@ -1058,6 +1070,8 @@
 		UGBJKL8LotteryController *PCVC = [storyboard instantiateInitialViewController];
 		PCVC.gameId = model.gameId;
 		PCVC.lotteryGamesArray = self.lotteryGamesArray;
+		judeBlock(PCVC);
+
 		[self.navigationController pushViewController:PCVC animated:YES];
 		
 	}else if ([@"gdkl10" isEqualToString:model.gameType]) {
@@ -1065,6 +1079,8 @@
 		UGGDKL10LotteryController *PCVC = [storyboard instantiateInitialViewController];
 		PCVC.gameId = model.gameId;
 		PCVC.lotteryGamesArray = self.lotteryGamesArray;
+		judeBlock(PCVC);
+
 		[self.navigationController pushViewController:PCVC animated:YES];
 		
 	}else if ([@"fc3d" isEqualToString:model.gameType]) {
@@ -1072,6 +1088,8 @@
 		UGFC3DLotteryController *markSixVC = [storyboard instantiateInitialViewController];
 		markSixVC.gameId = model.gameId;
 		markSixVC.lotteryGamesArray = self.lotteryGamesArray;
+		judeBlock(markSixVC);
+
 		[self.navigationController pushViewController:markSixVC animated:YES];
 		
 	}else if ([@"pk10nn" isEqualToString:model.gameType]) {
@@ -1079,6 +1097,8 @@
 		UGPK10NNLotteryController *markSixVC = [storyboard instantiateInitialViewController];
 		markSixVC.gameId = model.gameId;
 		markSixVC.lotteryGamesArray = self.lotteryGamesArray;
+		judeBlock(markSixVC);
+
 		[self.navigationController pushViewController:markSixVC animated:YES];
 		
 	}else {

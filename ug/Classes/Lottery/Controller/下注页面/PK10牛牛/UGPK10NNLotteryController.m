@@ -90,6 +90,7 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
 static NSString *lotteryResultCellid = @"UGLotteryResultCollectionViewCell";
 static NSString *lotterySubResultCellid = @"UGPK10SubResultCollectionViewCell";
 @implementation UGPK10NNLotteryController
+@synthesize nextIssueModel  = _nextIssueModel;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -149,17 +150,27 @@ static NSString *lotterySubResultCellid = @"UGPK10SubResultCollectionViewCell";
     [super viewWillAppear:animated];
     [self.view bringSubviewToFront:self.bottomView];
     WeakSelf
-    [self.countDown countDownWithPER_SECBlock:^{
-        
-        [weakSelf updateCloseLabelText];
-        [weakSelf updateOpenLabelText];
-        
-    }];
-    
+    // 轮循刷新封盘时间、开奖时间
+    {
+        static NSTimer *timer = nil;
+        [self onceToken:ZJOnceToken block:^{
+            [timer invalidate];
+            timer = nil;
+        }];
+        timer = [NSTimer scheduledTimerWithInterval:0.2 repeats:true block:^(NSTimer *timer) {
+            [weakSelf updateCloseLabelText];
+            [weakSelf updateOpenLabelText];
+            if (!weakSelf) {
+                [timer invalidate];
+                timer = nil;
+            }
+        }];
+    }
+    // 轮循请求下期数据
     [self.nextIssueCountDown countDownWithSec:NextIssueSec PER_SECBlock:^{
-        
-        [weakSelf getNextIssueData];
-        
+        if ([[weakSelf.nextIssueModel.curOpenTime dateWithFormat:@"yyyy-MM-dd HH:mm:ss"] timeIntervalSinceDate:[NSDate date]] < 0) {
+            [weakSelf getNextIssueData];
+        }
     }];
 }
 
@@ -604,7 +615,7 @@ static NSString *lotterySubResultCellid = @"UGPK10SubResultCollectionViewCell";
 
 - (void)updateCloseLabelText{
     NSString *timeStr = [CMCommon getNowTimeWithEndTimeStr:self.nextIssueModel.curCloseTime currentTimeStr:self.nextIssueModel.serverTime];
-    if (timeStr == nil) {
+    if (self.nextIssueModel.isSeal || timeStr == nil) {
         timeStr = @"封盘中";
         self.bottomCloseView.hidden = NO;
         [self resetClick:nil];
@@ -660,6 +671,17 @@ static NSString *lotterySubResultCellid = @"UGPK10SubResultCollectionViewCell";
         adView.picUrl = model.adPic;
         WeakSelf
         adView.adGoBlcok = ^{
+            // 去任务大厅
+            if ([model.adLink isEqualToString:@"-2"]) {
+                [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController") animated:YES];
+                return ;
+            }
+            // 去利息宝
+            if ([model.adLink isEqualToString:@"-1"]) {
+                [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGYubaoViewController")  animated:YES];
+                return ;
+            }
+            // 去彩票下注页面
             for (UGAllNextIssueListModel *listMoel in self.lotteryGamesArray) {
                 for (UGNextIssueModel *nextModel in listMoel.list) {
                     if ([nextModel.gameId isEqualToString:model.adLink]) {

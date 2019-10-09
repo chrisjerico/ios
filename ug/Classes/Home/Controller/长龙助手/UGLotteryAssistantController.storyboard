@@ -339,6 +339,7 @@
                         <outlet property="betDetailLabel" destination="kbI-z7-wjx" id="pqb-Ng-YMJ"/>
                         <outlet property="betDetailView" destination="k91-rC-NUa" id="zf3-5s-wP5"/>
                         <outlet property="bottomView" destination="a5i-92-t8y" id="tmf-6r-3Pi"/>
+                        <outlet property="bottomViewBottom" destination="Ncz-nc-CL0" id="ow0-CV-8QZ"/>
                         <outlet property="bottomViewConstraintHeight" destination="wlR-Uw-iXv" id="afz-0f-cFP"/>
                         <outlet property="countLabel" destination="whZ-ex-6al" id="rOT-Za-zlt"/>
                         <outlet property="tableView" destination="jxj-Vx-5L2" id="YkZ-hU-NTp"/>

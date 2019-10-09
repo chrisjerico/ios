@@ -16,7 +16,7 @@
 //参数是否加密
 #define checkSign 1
 //获取开奖数据间隔
-#define NextIssueSec 10
+#define NextIssueSec 3
 
 #define IS_UPGRADE  @"IS_UPGRADE"    //是否显示升级图标
 #define APP_VERSION   [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey]

@@ -403,29 +403,28 @@ completion:(CMNetworkBlock)completion {
         method = [NSString stringWithFormat:@"%@&checkSign=1",method];
         if (params) {
             NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-            
            dict = [CMNetwork encryptionCheckSign:params];
 
             if (isPost) {
                 [self postWithMethod:method params:dict  model:model retryCount:0 completion:completion];
-            }else {
+            } else {
                 [self getWithMethod:method params:dict  model:model retryCount:0 completion:completion];
                 
             }
-        }else {
+        } else {
             if (isPost) {
                 [self postWithMethod:method params:params  model:model retryCount:0 completion:completion];
-            }else {
+            } else {
                 [self getWithMethod:method params:params  model:model retryCount:0 completion:completion];
                 
             }
             
         }
         
-    }else {
+    } else {
         if (isPost) {
             [self postWithMethod:method params:params  model:model retryCount:0 completion:completion];
-        }else {
+        } else {
             [self getWithMethod:method params:params  model:model retryCount:0 completion:completion];
             
         }
@@ -607,10 +606,10 @@ completion:(CMNetworkBlock)completion {
             SANotificationEventPost(UGNotificationUserLogout, nil);
             return ;
         }
-        if (errResponse.statusCode == 403) {
+        if (errResponse.statusCode == 403 || errResponse.statusCode == 404) {
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:error.userInfo[@"com.alamofire.serialization.response.error.data"] options:0 error:nil];
             NSError *err;
-            CMResult* result  = [resultClass resultWithJSON:json dataClass:dataClass error:&err];
+            CMResult *result  = [resultClass resultWithJSON:json dataClass:dataClass error:&err];
             if (completion != nil) {
                 completion(result, err);
                 return;

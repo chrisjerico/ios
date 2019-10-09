@@ -71,7 +71,8 @@ static NSString *changlongBetRecordCellId = @"UGChanglongBetRecrodCell";
     
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"betId":@"",
-                             @"gameId":@""
+                             @"gameId":@"",
+							 @"tag":@"1"
                              };
     [CMNetwork getChanglongBetListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [self.tableView.mj_header endRefreshing];

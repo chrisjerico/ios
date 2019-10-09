@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UGBetsRecordModel : UGModel
 @property (nonatomic, strong) NSString *betId;          /**<   注单ID */
 @property (nonatomic, assign) NSInteger gameType;
+@property (nonatomic, strong) NSString *gameTypeName;
 @property (nonatomic, strong) NSString *gameName;       /**<   游戏名称（彩种） */
 @property (nonatomic, strong) NSString *playGroupName;  /**<   游戏分类名称（彩票） */
 @property (nonatomic, strong) NSString *playName;       /**<   游戏玩法（彩票） */
@@ -34,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *statusName;
 @property (nonatomic, strong) NSString *odds;           /**<   赔率（彩票） */
 @property (nonatomic, strong) NSString *issue;          /**<   彩票期号（彩票） */
-
+@property (nonatomic, strong) NSString *betInfo;        /**<   下注号码 */
 @end
 
 @interface UGBetsRecordListModel : UGModel

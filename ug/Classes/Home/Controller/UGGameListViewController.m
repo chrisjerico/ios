@@ -19,6 +19,7 @@
 @end
 
 static NSString *gameListCellId = @"UGGameListCollectionViewCell";
+
 @implementation UGGameListViewController
 
 - (void)viewDidLoad {
@@ -61,10 +62,8 @@ static NSString *gameListCellId = @"UGGameListCollectionViewCell";
             qdwebVC.urlString = [CMNetwork encryptionCheckSignForURL:model.data];
             qdwebVC.enterGame = YES;
             [self.navigationController pushViewController:qdwebVC  animated:YES];
-            
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
-            
         }];
     }];
 }
