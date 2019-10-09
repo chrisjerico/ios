@@ -997,7 +997,6 @@
     [self navigationBar:tabbar.nvcSecurityCenter bgColor:[self navbarbgColor:skitType]];
     [self navigationBar:tabbar.nvcFunds bgColor:[self navbarbgColor:skitType]];
     [self navigationBar:tabbar.nvcMessage bgColor:[self navbarbgColor:skitType]];
-    
     [self navigationBar:tabbar.nvcConversion bgColor:[self navbarbgColor:skitType]];
     [self navigationBar:tabbar.nvcBanks bgColor:[self navbarbgColor:skitType]];
     [self navigationBar:tabbar.nvcYuebao bgColor:[self navbarbgColor:skitType]];

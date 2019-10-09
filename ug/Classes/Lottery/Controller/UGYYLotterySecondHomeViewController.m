@@ -106,7 +106,8 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 
                 QDWebViewController *qdwebVC = [[QDWebViewController alloc] init];
-                qdwebVC.urlString = model.data;
+                 NSLog(@"网络链接：model.data = %@",model.data);
+                qdwebVC.urlString = [CMNetwork encryptionCheckSignForURL:model.data];
                 qdwebVC.enterGame = YES;
                 [self.navigationController pushViewController:qdwebVC  animated:YES];
             });

@@ -117,16 +117,9 @@
                         if (!isFinish) {
                             return ;
                         }
-//                        if ([navi.viewControllers.firstObject isKindOfClass:[UGChatsViewController class]]) {
-//                            QDWebViewController *webVC = [[QDWebViewController alloc] init];
-//                             webVC.navigationItem.title = @"聊天室";
-//                            webVC.urlString = [NSString stringWithFormat:@"%@/dist/index.html#/chatRoomList",baseServerUrl];
-//                           [tabBarController showViewControllerInSelected:webVC animated:YES];
-//                            return;
-//                        }else {
+
                         
                             [tabBarController setSelectedViewController:viewController];
-//                        }
                         
                     });
                 }

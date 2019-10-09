@@ -268,6 +268,123 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
                      });
                  }];
 }
+/******************************************************************************
+ 函数名称 : encryptionCheckSignForURL;
+ 函数描述 : url参数加密
+ 输入参数 : url
+ 输出参数 : NSString 加密后url
+ 返回参数 : NSString 加密后url
+ 备注信息 :
+ ******************************************************************************/
+
++(NSString*)encryptionCheckSignForURL:(NSString*)url{
+    
+    //    参数加密
+    if (checkSign) {
+        NSMutableDictionary *tempDic = [NSMutableDictionary dictionary];
+        
+        tempDic =  [CMCommon yyUrlConversionParameter:url];
+        NSMutableDictionary *noChenkSignDic = [NSMutableDictionary dictionary];
+        NSMutableDictionary *newDic = [NSMutableDictionary dictionary];
+        // 将所有的key取出放入数组arr中
+        NSArray *arr = [tempDic allKeys];
+        // 遍历arr 取出对应的key以及key对应的value
+        for (NSInteger i = 0; i < arr.count; i++) {
+            
+            //如果是a c 不加密，其他的加密，
+            if (![arr[i] isEqualToString:@"a"]&&![arr[i] isEqualToString:@"c"]) {
+                [newDic setObject:[tempDic objectForKey:arr[i]] forKey:arr[i]];
+            }
+            else{
+                [noChenkSignDic setObject:[tempDic objectForKey:arr[i]] forKey:arr[i]];
+            }
+            
+        }
+        
+        NSMutableDictionary *parmDic = [NSMutableDictionary dictionary];
+        
+        parmDic= [CMNetwork encryptionCheckSign:newDic];
+        
+        NSArray*array = [url componentsSeparatedByString:@"?"];//从字符A中分隔成2个元素的数组
+        
+        
+        NSMutableString* methodUrl = [NSMutableString stringWithFormat:@"%@?checkSign=1",[array firstObject]];
+        
+        NSArray *noChenkSignArr = [noChenkSignDic allKeys];
+        // 遍历arr 取出对应的key以及key对应的value
+        for (NSInteger i = 0; i < noChenkSignArr.count; i++) {
+            
+            
+            [methodUrl appendString:@"&"];
+            [methodUrl appendFormat:@"%@",noChenkSignArr[i]];
+            [methodUrl appendString:@"="];
+            [methodUrl appendFormat:@"%@",[noChenkSignDic objectForKey:noChenkSignArr[i]]];
+        }
+        
+        
+        NSArray *parmDicArr = [parmDic allKeys];
+        // 遍历arr 取出对应的key以及key对应的value
+        for (NSInteger i = 0; i < parmDicArr.count; i++) {
+            
+            [methodUrl appendString:@"&"];
+            [methodUrl appendFormat:@"%@",parmDicArr[i]];
+            [methodUrl appendString:@"="];
+            [methodUrl appendFormat:@"%@",[parmDic objectForKey:parmDicArr[i]]];
+        }
+        
+        NSLog(@"methodUrl = %@",methodUrl);
+        return methodUrl;
+    }
+    else{
+        return url;
+    }
+
+  
+}
+
+/******************************************************************************
+ 函数名称 : encryptionCheckSignC;
+ 函数描述 : 网络请求的，游戏获得的url参数加密
+ 输入参数 : NSDictionary 参数
+ 输出参数 : NSMutableDictionary 加密后参数
+ 返回参数 : NSMutableDictionary 加密后参数
+ 备注信息 :
+ ******************************************************************************/
++(NSMutableDictionary*)encryptionCheckSign:(NSDictionary*)params{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    
+    NSString *deskey = [UGEncryptUtil createUuid];
+    NSLog(@"deskey = %@",deskey);
+    NSString *sign = [UGEncryptUtil encryptString:[NSString stringWithFormat:@"iOS_%@",deskey] publicKey:RSAPublicKey];
+    
+    [params enumerateKeysAndObjectsUsingBlock:^(NSString *  _Nonnull key, NSString *  _Nonnull obj, BOOL * _Nonnull stop) {
+        NSData *resultData;
+        NSString *resultString;
+        if ([obj isKindOfClass:[NSNumber class]]) {
+            NSNumber *temp = (NSNumber *)obj;
+            NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
+            obj = [numberFormatter stringFromNumber:temp];
+        }
+        NSData *encryptData = [obj dataUsingEncoding:NSUTF8StringEncoding];
+        resultData = [GLEncryptManager excute3DESWithData:encryptData secureKey:[deskey dataUsingEncoding:NSUTF8StringEncoding] operation:kCCEncrypt];
+        resultString = [GLEncryptManager encodeBase64WithData:resultData];
+        [dict setValue:resultString forKey:key];
+    }];
+    [dict setValue:sign forKey:@"sign"];
+    if (UGLoginIsAuthorized()) {
+        UGUserModel *user = [UGUserModel currentUser];
+        NSData *resultData;
+        NSString *resultString;
+        NSData *encryptData = [user.sessid dataUsingEncoding:NSUTF8StringEncoding];
+        resultData = [GLEncryptManager excute3DESWithData:encryptData secureKey:[deskey dataUsingEncoding:NSUTF8StringEncoding] operation:kCCEncrypt];
+        resultString = [GLEncryptManager encodeBase64WithData:resultData];
+        [dict setValue:resultString forKey:@"token"];
+    }
+    
+    return dict;
+}
+
+
 /// @brief 请求数据
 ///
 /// @param method       方法
@@ -285,33 +402,10 @@ completion:(CMNetworkBlock)completion {
     if (checkSign) {
         method = [NSString stringWithFormat:@"%@&checkSign=1",method];
         if (params) {
-            NSString *deskey = [UGEncryptUtil createUuid];
-            NSLog(@"deskey = %@",deskey);
-            NSString *sign = [UGEncryptUtil encryptString:[NSString stringWithFormat:@"iOS_%@",deskey] publicKey:RSAPublicKey];
             NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-            [params enumerateKeysAndObjectsUsingBlock:^(NSString *  _Nonnull key, NSString *  _Nonnull obj, BOOL * _Nonnull stop) {
-                NSData *resultData;
-                NSString *resultString;
-                if ([obj isKindOfClass:[NSNumber class]]) {
-                   NSNumber *temp = (NSNumber *)obj;
-                    NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
-                    obj = [numberFormatter stringFromNumber:temp];
-                }
-                NSData *encryptData = [obj dataUsingEncoding:NSUTF8StringEncoding];
-                resultData = [GLEncryptManager excute3DESWithData:encryptData secureKey:[deskey dataUsingEncoding:NSUTF8StringEncoding] operation:kCCEncrypt];
-                resultString = [GLEncryptManager encodeBase64WithData:resultData];
-                [dict setValue:resultString forKey:key];
-            }];
-            [dict setValue:sign forKey:@"sign"];
-            if (UGLoginIsAuthorized()) {
-                UGUserModel *user = [UGUserModel currentUser];
-                NSData *resultData;
-                NSString *resultString;
-                NSData *encryptData = [user.sessid dataUsingEncoding:NSUTF8StringEncoding];
-                resultData = [GLEncryptManager excute3DESWithData:encryptData secureKey:[deskey dataUsingEncoding:NSUTF8StringEncoding] operation:kCCEncrypt];
-                resultString = [GLEncryptManager encodeBase64WithData:resultData];
-                [dict setValue:resultString forKey:@"token"];
-            }
+            
+           dict = [CMNetwork encryptionCheckSign:params];
+
             if (isPost) {
                 [self postWithMethod:method params:dict  model:model retryCount:0 completion:completion];
             }else {
