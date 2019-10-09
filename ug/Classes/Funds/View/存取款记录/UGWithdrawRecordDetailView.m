@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *bankAccountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *remarkLabel;
 
+@property (weak, nonatomic) IBOutlet UIButton *myButton;
 
 
 @end
@@ -31,8 +32,8 @@
         self.frame = frame;
         self.layer.cornerRadius = 10;
         self.layer.masksToBounds = YES;
-        [self setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
-
+        [self setBackgroundColor: [UIColor whiteColor]];
+        [self.myButton setTitleColor:UGNavColor forState:UIControlStateNormal];
     }
     
     return self;

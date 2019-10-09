@@ -55,6 +55,7 @@ static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
     [super viewDidLoad];
     
     self.navigationItem.title = @"额度转换";
+    [self.conversionButton setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         
         [self skin];

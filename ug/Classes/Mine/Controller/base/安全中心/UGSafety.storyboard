@@ -172,7 +172,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="k1B-NZ-dYa" firstAttribute="top" secondItem="hUh-Ue-etr" secondAttribute="top" id="Dcc-48-np8"/>
                             <constraint firstItem="k1B-NZ-dYa" firstAttribute="leading" secondItem="hUh-Ue-etr" secondAttribute="leading" id="FI5-eH-J16"/>
@@ -353,7 +353,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="AXg-ML-GKa" firstAttribute="top" secondItem="TmT-M1-RyG" secondAttribute="top" id="Z6J-p0-g0K"/>
                             <constraint firstItem="AXg-ML-GKa" firstAttribute="leading" secondItem="TmT-M1-RyG" secondAttribute="leading" id="gCh-yG-DRj"/>
@@ -606,7 +606,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="5lh-sn-4qW" firstAttribute="trailing" secondItem="kYo-fs-29v" secondAttribute="trailing" id="Qd4-8Y-KDx"/>
                             <constraint firstItem="kYo-fs-29v" firstAttribute="top" secondItem="5lh-sn-4qW" secondAttribute="top" id="ZYv-XO-ZGd"/>

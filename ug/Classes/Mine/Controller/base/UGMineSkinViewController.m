@@ -757,7 +757,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
             }
             else{
                 
-                [self.navigationController.view makeToast:@"会员中心申请代理已关闭"
+                [self.navigationController.view makeToast:@"在线注册代理已关闭"
                                                  duration:1.5
                                                  position:CSToastPositionCenter];
             }

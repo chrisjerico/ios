@@ -136,6 +136,7 @@
                 <outlet property="amountLabel" destination="9WZ-6i-VAC" id="G72-O6-2we"/>
                 <outlet property="applyTimeLabel" destination="j0w-hl-xqq" id="h4C-7p-vja"/>
                 <outlet property="categoryLabel" destination="GrT-na-8Ch" id="ICZ-xR-kZR"/>
+                <outlet property="myButton" destination="RVE-zd-gCc" id="arr-yW-X8A"/>
                 <outlet property="orderNoLabel" destination="Uoj-xJ-lMi" id="fVe-4p-psX"/>
                 <outlet property="rechargeTimeLabel" destination="VW2-Iu-QP1" id="yIn-DZ-f7g"/>
                 <outlet property="rechargeUserLabel" destination="dJ9-4v-XVF" id="K1m-xn-n7C"/>
