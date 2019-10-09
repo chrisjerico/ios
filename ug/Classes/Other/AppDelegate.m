@@ -48,9 +48,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-//    tabbar = [[UGTabbarController alloc] init];
-//    tabbar.delegate = self;
-    self.window.rootViewController = [UGLaunchPageVC new];
+    tabbar = [[UGTabbarController alloc] init];
+    tabbar.delegate = self;
+    UGLaunchPageVC *vc =  [UGLaunchPageVC new];
+    vc.tabbar = self.tabbar;
+    
+    self.window.rootViewController = vc;
     [self.window makeKeyAndVisible];
     
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;

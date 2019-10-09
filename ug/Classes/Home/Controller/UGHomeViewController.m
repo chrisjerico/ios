@@ -1259,12 +1259,20 @@
 	return _gameCategorys;
 }
 - (IBAction)goPCVC:(id)sender {
+    BOOL isLogin = UGLoginIsAuthorized();
+    if (isLogin) {
+       
+        QDWebViewController *qdwebVC = [[QDWebViewController alloc] init];
+        qdwebVC.urlString = pcUrl;
+        qdwebVC.enterGame = YES;
+        [self.navigationController pushViewController:qdwebVC  animated:YES];
+    }
+    else{
+        
+         SANotificationEventPost(UGNotificationShowLoginView, nil);
+    }
     
-    QDWebViewController *qdwebVC = [[QDWebViewController alloc] init];
     
-    qdwebVC.urlString = pcUrl;
-    qdwebVC.enterGame = YES;
-    [self.navigationController pushViewController:qdwebVC  animated:YES];
 }
 
 @end

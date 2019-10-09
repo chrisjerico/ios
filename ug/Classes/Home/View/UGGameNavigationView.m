@@ -63,8 +63,16 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-	
-	[[NSNotificationCenter defaultCenter] postNotification: [NSNotification notificationWithName:@"gameNavigationItemTaped" object: self.sourceData[indexPath.item]]];
+    BOOL isLogin = UGLoginIsAuthorized();
+    if (isLogin) {
+        
+       [[NSNotificationCenter defaultCenter] postNotification: [NSNotification notificationWithName:@"gameNavigationItemTaped" object: self.sourceData[indexPath.item]]];
+    }
+    else{
+        
+        SANotificationEventPost(UGNotificationShowLoginView, nil);
+    }
+ 
 }
 #pragma mark ---- UICollectionViewDelegateFlowLayout
 
