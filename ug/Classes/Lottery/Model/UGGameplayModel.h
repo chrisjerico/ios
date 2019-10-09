@@ -56,6 +56,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *money;
 
+// 自定义参数
 @property (nonatomic, assign) BOOL select;
 
 @end

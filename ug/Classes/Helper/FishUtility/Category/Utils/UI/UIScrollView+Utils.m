@@ -20,7 +20,7 @@
 
 - (void)utils_didMoveToSuperview {
     [self utils_didMoveToSuperview];
-    zj_once_block(self, ^{
+    if (OBJOnceToken(self)) {
         // 拖拽UIScrollView时，收起键盘
         [self xw_addObserverBlockForKeyPath:@"contentOffset" block:^(UIScrollView *scrollView, id  _Nonnull oldVal, id  _Nonnull newVal) {
             if (scrollView.dragging && [scrollView existSuperview:NavController1.topView] && ![scrollView isKindOfClass:[UITextView class]])
@@ -34,7 +34,7 @@
                 self.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
             }
         }
-    });
+    }
 }
 
 - (BOOL)utils_touchesShouldBegin:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event inContentView:(UIView *)view {

@@ -157,18 +157,18 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     // 轮循刷新封盘时间、开奖时间
     {
         static NSTimer *timer = nil;
-        [self onceToken:ZJOnceToken block:^{
+        if (OBJOnceToken(self)) {
             [timer invalidate];
-            timer = nil;
-        }];
-        timer = [NSTimer scheduledTimerWithInterval:0.2 repeats:true block:^(NSTimer *timer) {
-            [weakSelf updateCloseLabelText];
-            [weakSelf updateOpenLabelText];
-            if (!weakSelf) {
-                [timer invalidate];
-                timer = nil;
-            }
-        }];
+            timer = [NSTimer scheduledTimerWithInterval:0.2 repeats:true block:^(NSTimer *timer) {
+                [weakSelf updateCloseLabelText];
+                [weakSelf updateOpenLabelText];
+                if (!weakSelf) {
+                    [timer invalidate];
+                    timer = nil;
+                }
+            }];
+        }
+        
     }
     // 轮循请求下期数据
     [self.nextIssueCountDown countDownWithSec:NextIssueSec PER_SECBlock:^{

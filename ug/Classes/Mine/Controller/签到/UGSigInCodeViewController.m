@@ -302,40 +302,30 @@
     model.mkCheckinSwitch = self.checkinListModel.mkCheckinSwitch;
     cell.item = model;
     WeakSelf;
+    // 签到
     cell.signInBlock = ^{
-        //UICollectionViewCell 点击
-        NSLog(@"UICollectionViewCell 点击");
-       
-        if(cell.item.isCheckin == false && cell.item.isMakeup == true){
-            // 显示签到的蓝色按钮；==》可以点击签到事件
-            NSLog(@"显示签到的蓝色按钮；==》可以点击签到事件");
-            
-            NSString *date = model.whichDay;
-
-            int a = [CMCommon compareDate:model.serverTime withDate:model.whichDay withFormat:@"yyyy-MM-dd" ];
-             // 用户签到（签到类型：0是签到，1是补签）
-             if (a >= 0) {
-                 [weakSelf checkinDataWithType:@"0" Date:date];
-             } else {
-                 if (model.mkCheckinSwitch) {
-                     for (UGCheckinListModel *clm in weakSelf.collectionDataArray) {
-                         if (clm == model) {
-                             [weakSelf checkinDataWithType:@"1" Date:date];
-                             break;
-                         }
-                         if (!clm.isCheckin) {
-                             [HUDHelper showMsg:@"必须从前往后补签"];
-                             break;
-                         }
-                     }
-                 } else {
-                     [weakSelf.view makeToast:@"补签通道已关闭"];
-                 }
-             }
-        }
-        else if(cell.item.isCheckin == false && cell.item.isMakeup == false){
-           NSString *date = model.whichDay;
-           [weakSelf checkinDataWithType:@"0" Date:date];
+        if (model.isCheckin)
+            return ;
+        
+        NSString *date = model.whichDay;
+        int a = [CMCommon compareDate:model.serverTime withDate:model.whichDay withFormat:@"yyyy-MM-dd" ];
+        if (a >= 0) {
+            // 用户签到（签到类型：0是签到，1是补签）
+            [weakSelf checkinDataWithType:@"0" Date:date];
+        } else if (model.mkCheckinSwitch && model.isMakeup) {
+            // 补签
+            for (UGCheckinListModel *clm in weakSelf.collectionDataArray) {
+                if (clm == model) {
+                    [weakSelf checkinDataWithType:@"1" Date:date];
+                    break;
+                }
+                if (!clm.isCheckin) {
+                    [HUDHelper showMsg:@"必须从前往后补签"];
+                    break;
+                }
+            }
+        } else {
+            [weakSelf.view makeToast:@"补签通道已关闭"];
         }
     };
     return cell;
@@ -371,26 +361,14 @@
                 [self createUI];
                 //
             } else {
-                [LEEAlert alert].config
-                .LeeTitle(@"关闭签到")
-                .LeeContent(
-                            @"已关闭签到通道")
-               
-                .LeeAction(@"确认", ^{
-                    
+                [LEEAlert alert].config.LeeTitle(@"关闭签到").LeeContent(@"已关闭签到通道").LeeAction(@"确认", ^{
                     // 确认点击事件Block
                     [self.navigationController popViewControllerAnimated:YES];
-                    
-                })
-                .LeeShow(); // 设置完成后 别忘记调用Show来显示
+                }).LeeShow(); // 设置完成后 别忘记调用Show来显示
             }
             
-            
-            
         } failure:^(id msg) {
-            
             [SVProgressHUD showErrorWithStatus:msg];
-            
         }];
     }];
 }

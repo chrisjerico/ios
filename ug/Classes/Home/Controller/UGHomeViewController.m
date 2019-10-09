@@ -8,36 +8,8 @@
 //
 
 #import "UGHomeViewController.h"
-#import "SDCycleScrollView.h"
-#import "CustomCollectionViewCell.h"
-#import "UIImageView+WebCache.h"
-#import "UUMarqueeView.h"
-#import "UGGameTypeCollectionView.h"
-#import "UGPlatformTitleCollectionView.h"
-#import "UGLoginViewController.h"
-#import "UGRegisterViewController.h"
-#import "CMCommon.h"
-#import "UGRightMenuView.h"
-#import "STButton.h"
-#import "UGPlatformNoticeView.h"
-#import "UITabBarController+ShowViewController.h"
-#import "UGSystemConfigModel.h"
-#import "UGChangLongController.h"
-#import "UGRightMenuView.h"
-#import "UGFundsViewController.h"
-#import "UGBetRecordViewController.h"
-#import "UGLotteryRulesView.h"
-#import "UGPlatformGameModel.h"
-#import "SLWebViewController.h"
-#import "QDWebViewController.h"
-#import "UGGameListViewController.h"
-#import "UGBannerModel.h"
-#import "SLWebViewController.h"
-#import "UGNoticeModel.h"
-#import "UGRankModel.h"
-#import "UGNoticePopView.h"
-#import "UGHomeTitleView.h"
 
+// ViewController
 #import "UGSSCLotteryController.h"
 #import "UGGD11X5LotteryController.h"
 #import "UGJSK3LotteryController.h"
@@ -45,7 +17,6 @@
 #import "UGBJPK10LotteryController.h"
 #import "UGQXCLotteryController.h"
 #import "UGPcddLotteryController.h"
-#import "UGTimeLotteryBetHeaderView.h"
 #import "UGXYNCLotteryController.h"
 #import "UGBJKL8LotteryController.h"
 #import "UGGDKL10LotteryController.h"
@@ -53,21 +24,57 @@
 #import "UGPK10NNLotteryController.h"
 #import "UGLotteryRecordController.h"
 #import "UGMailBoxTableViewController.h"
-#import "UGAllNextIssueListModel.h"
+#import "UGYubaoViewController.h"
+#import "UGDocumentVC.h"
+#import "UGFundsViewController.h"
+#import "SLWebViewController.h"
+#import "SLWebViewController.h"
+#import "QDWebViewController.h"
+#import "UGGameListViewController.h"
+#import "UGFundsViewController.h"
+#import "UGBetRecordViewController.h"
+#import "UGChangLongController.h"
+#import "UGPlatformTitleCollectionView.h"
+#import "UGLoginViewController.h"
+#import "UGRegisterViewController.h"
+#import "UGPromoteDetailController.h"   // 优惠活动详情
 
+// View
+#import "SDCycleScrollView.h"
+#import "CustomCollectionViewCell.h"
+#import "UUMarqueeView.h"
+#import "UGGameTypeCollectionView.h"
+#import "UGTimeLotteryBetHeaderView.h"
 #import "UGredEnvelopeView.h"
 #import "UGredActivityView.h"
 #import "GameCategoryDataModel.h"
-#import "UGDocumentVC.h"
-#import "UGonlineCount.h"
-#import "UGYubaoViewController.h"
+#import "UGNoticePopView.h"
+#import "UGHomeTitleView.h"
+#import "UGLotteryRulesView.h"
+#import "UGRightMenuView.h"
+#import "UGRightMenuView.h"
+#import "STButton.h"
+#import "UGPlatformNoticeView.h"
 
+// Model
+#import "UGBannerModel.h"
+#import "UGNoticeModel.h"
+#import "UGSystemConfigModel.h"
+#import "UGPromoteModel.h"
+#import "UGRankModel.h"
+#import "UGAllNextIssueListModel.h"
 #import "UGYYRightMenuView.h"
+#import "UGGameNavigationView.h"
+#import "UGPlatformGameModel.h"
+
+// Tools
+#import "UIImageView+WebCache.h"
+#import "CMCommon.h"
+#import "UGonlineCount.h"
 #import <SafariServices/SafariServices.h>
 #import "UIImage+YYgradientImage.h"
+#import "UITabBarController+ShowViewController.h"
 
-#import "UGGameNavigationView.h"
-#import "UGFundsViewController.h"
 
 
 @interface UGHomeViewController ()<SDCycleScrollViewDelegate,UUMarqueeViewDelegate>
@@ -82,6 +89,7 @@
 
 @property (weak, nonatomic) IBOutlet UUMarqueeView *leftwardMarqueeView;    /**<   滚动公告 */
 @property (weak, nonatomic) IBOutlet UUMarqueeView *upwardMultiMarqueeView; /**<   中奖排行榜 */
+@property (weak, nonatomic) IBOutlet UIStackView *promotionsStackView;      /**<   优惠活动 */
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *gameViewHeight;
 @property (nonatomic, strong)UGPlatformNoticeView *notiveView;        /**<   平台公告 */
@@ -201,14 +209,14 @@
 	});
 	SANotificationEventSubscribe(UGNotificationloginTimeout, self, ^(typeof (self) self, id obj) {
 		// onceToken 函数的作用是，限制为只弹一次框，修复弹框多次的bug
-		[UGUserModel.currentUser onceToken:ZJOnceToken block:^{
-			[QDAlertView showWithTitle:@"提示" message:@"您的账号已经登录超时，请重新登录。" cancelButtonTitle:nil otherButtonTitle:@"确定" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-				self.titleView.showLoginView = YES;
-				UGUserModel.currentUser = nil;
-				[self.tabBarController setSelectedIndex:0];
-				[self loginClick];
-			}];
-		}];
+        if (OBJOnceToken(UGUserModel.currentUser)) {
+            [QDAlertView showWithTitle:@"提示" message:@"您的账号已经登录超时，请重新登录。" cancelButtonTitle:nil otherButtonTitle:@"确定" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                self.titleView.showLoginView = YES;
+                UGUserModel.currentUser = nil;
+                [self.tabBarController setSelectedIndex:0];
+                [self loginClick];
+            }];
+        }
 	});
 	SANotificationEventSubscribe(UGNotificationShowLoginView, self, ^(typeof (self) self, id obj) {
 		[self loginClick];
@@ -225,33 +233,33 @@
 	
 	self.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
 		SANotificationEventPost(UGNotificationWithResetTabSuccess, nil);
-		[self getSystemConfig];
-		[self getCustomGameList];
-		[self getBannerList];
+		[self getSystemConfig];     // APP配置信息
+		[self getCustomGameList];   // 自定义游戏列表
+		[self getBannerList];       // Banner图
         if (self.notiveView == nil) {
-            [self getNoticeList];
+            [self getNoticeList];   // 公告列表
         }
-		[self getRankList];
-		[self getUserInfo];
-		[self getAllNextIssueData];
-		[self getCheckinListData];
-		[self systemOnlineCount];
+		[self getRankList];         // 中奖列表
+		[self getUserInfo];         // 用户信息
+		[self getAllNextIssueData]; // 彩票大厅数据
+		[self getCheckinListData];  // 红包数据
+		[self systemOnlineCount];   // 在线人数
+        [self getPromoteList];      // 优惠活动
 	}];
     
     
     [self getCustomGameList];
     [self getBannerList];
-
     if (self.notiveView == nil) {
         [self getNoticeList];
         [self getSystemConfig];
     }
-
     [self getRankList];
     [self getAllNextIssueData];
     [self getUserInfo];
     [self getCheckinListData];
     [self systemOnlineCount];
+    [self getPromoteList];      // 优惠活动
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(collectiongViewHeightUpdated:) name:@"UGPlatformCollectionViewContentHeight" object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gameNavigationItemTaped:) name:@"gameNavigationItemTaped" object:nil];
@@ -325,21 +333,16 @@
             }];
         };
     }
-
 }
 
--(BOOL)prefersStatusBarHidden{
-	
+- (BOOL)prefersStatusBarHidden{
 	return NO;
-	
 }
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-
     [self.leftwardMarqueeView start];
     [self.upwardMultiMarqueeView start];
-
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -348,19 +351,8 @@
 	self.initSubview = YES;
 }
 
-- (void)viewWillLayoutSubviews {
-	
-	if (self.initSubview) {
-		return;
-	}
-
-
-	
-	
-}
-
 - (void)collectiongViewHeightUpdated: (NSNotification *)notification {
-	self.gameViewHeight.constant = ((NSNumber *)notification.object).floatValue + 80;
+	self.gameViewHeight.constant = ((NSNumber *)notification.object).floatValue;
 	[self.view layoutIfNeeded];
 }
 
@@ -668,14 +660,7 @@
 
 //得到红包详情数据
 - (void)getCheckinListData {
-	
-	
 	BOOL isLogin = UGLoginIsAuthorized();
-	
-	if (!isLogin) {
-		
-	}
-	
 	NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
 	
 	[SVProgressHUD showWithStatus:nil];
@@ -736,11 +721,41 @@
 		}];
 	}];
 }
-- (void)showPlatformNoticeView {
 
-    
-    
-    
+// 优惠活动
+- (void)getPromoteList {
+    __weakSelf_(__self);
+    [CMNetwork getPromoteListWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            UGPromoteListModel *listModel = model.data;
+            int i=0;
+            for (UIView *v in __self.promotionsStackView.arrangedSubviews) {
+                UGPromoteModel *pm = listModel.list[i++];
+                FastSubViewCode(v);
+                subLabel(@"优惠活动Label").text = pm.title;
+                [subImageView(@"优惠活动ImageView") sd_setImageWithURL:[NSURL URLWithString:pm.pic] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                    if (image) {
+                        subImageView(@"优惠活动ImageView").zj_constraints.height.constant = image.height/image.width * (APP.Width - 48);
+                    }
+                }];
+                [subButton(@"优惠活动Button") removeActionBlocksForControlEvents:UIControlEventTouchUpInside];
+                [subButton(@"优惠活动Button") handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
+                    UGPromoteDetailController *detailVC = [[UGPromoteDetailController alloc] init];
+                    detailVC.item = pm;
+                    [__self.navigationController pushViewController:detailVC animated:YES];
+                }];
+            }
+        } failure:nil];
+    }];
+}
+
+// 查看更多优惠活动
+- (IBAction)onShowMorePromoteBtnClick:(UIButton *)sender {
+    [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGPromotionsController") animated:YES];
+}
+
+
+- (void)showPlatformNoticeView {
     if (self.notiveView == nil) {
         
          AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -753,7 +768,6 @@
         appDelegate.notiveViewHasShow = YES;
         
     }
-	
 }
 
 #pragma mark - SDCycleScrollViewDelegate

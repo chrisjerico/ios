@@ -32,9 +32,9 @@ _ZJRuntimeProperty_Readonly(UILabel *, noDataTipsLabel, {
 - (void)setupHeaderRefreshRequest:(ZJSessionModel *(^)(UITableView *))request completion:(NSArray *(^)(UITableView *, ZJSessionModel *))completion {
     __weakSelf_(__self);
     self.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        ZJSessionModel *sm = self.zj_userInfo[@"HeaderReuqest"] = request(__self);
+        ZJSessionModel *sm = self.cc_userInfo[@"HeaderReuqest"] = request(__self);
         sm.completionBlock = ^(ZJSessionModel *sm) {
-            if (sm != __self.zj_userInfo[@"HeaderReuqest"]) {
+            if (sm != __self.cc_userInfo[@"HeaderReuqest"]) {
                 sm.noShowErrorHUD = true;
                 return ;
             }
@@ -61,9 +61,9 @@ _ZJRuntimeProperty_Readonly(UILabel *, noDataTipsLabel, {
 - (void)setupFooterRefreshRequest:(ZJSessionModel *(^)(UITableView *))request completion:(NSArray *(^)(UITableView *, ZJSessionModel *))completion {
     __weakSelf_(__self);
     self.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        ZJSessionModel *sm = self.zj_userInfo[@"FooterReuqest"] = request(__self);
+        ZJSessionModel *sm = self.cc_userInfo[@"FooterReuqest"] = request(__self);
         sm.completionBlock = ^(ZJSessionModel *sm) {
-            if (sm != __self.zj_userInfo[@"FooterReuqest"]) {
+            if (sm != __self.cc_userInfo[@"FooterReuqest"]) {
                 sm.noShowErrorHUD = true;
                 return ;
             }

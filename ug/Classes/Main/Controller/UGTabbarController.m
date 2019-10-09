@@ -10,7 +10,6 @@
 #import "UGMineViewController.h"
 #import "UGLotteryHomeController.h"
 #import "UGFundsViewController.h"
-#import "UGPromotionsController.h"
 #import "UGNavigationController.h"
 #import "UGHomeViewController.h"
 #import "UGYYLotteryHomeViewController.h"
