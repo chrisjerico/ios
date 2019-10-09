@@ -273,10 +273,10 @@
             [vcs addObject:nvcConversion];
         }
         if ([menu.path isEqualToString:@"/banks"]) {
-            [vcs addObject:nvcConversion];
+            [vcs addObject:nvcBanks];
         }
         if ([menu.path isEqualToString:@"/yuebao"]) {
-            [vcs addObject:nvcBanks];
+            [vcs addObject:nvcYuebao];
         }
         if ([menu.path isEqualToString:@"/Sign"]) {
             [vcs addObject:nvcSign];
