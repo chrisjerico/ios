@@ -116,6 +116,8 @@
 @property (strong, nonatomic)UILabel *nolineLabel;
 
 @property (weak, nonatomic) IBOutlet UIView *rollingView;
+@property (weak, nonatomic) IBOutlet UILabel *rankLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *rankViewHeight;
 
 @end
 
@@ -414,12 +416,14 @@
 		// 在线客服
 		SLWebViewController *webViewVC = [[SLWebViewController alloc] init];
 		UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
-		if (config.zxkfUrl) {
-			webViewVC.urlStr = config.zxkfUrl;
-		} else {
-			[SVProgressHUD showWithStatus:@"链接未配置"];
-			return;
-		}
+
+		
+		if (config.zxkfUrl.length > 0) {
+				webViewVC.urlStr = config.zxkfUrl;
+			} else {
+	//			[SVProgressHUD showErrorWithStatus:@"链接未配置"];
+				return;
+			}
 		[self.navigationController pushViewController:webViewVC animated:YES];
 	}
 	
@@ -658,12 +662,28 @@
 				self.rankListModel = rank;
 				self.rankArray = rank.list.mutableCopy;
 				
-				if (rank.show) {
-					self.rankingView.hidden = NO;
-					[self.upwardMultiMarqueeView reloadData];
-				}else {
+				
+				UGSystemConfigModel * config = UGSystemConfigModel.currentConfig;
+				
+				if (config.rankingListSwitch == 0) {
 					self.rankingView.hidden = YES;
+					self.rankViewHeight.constant = 0;
+					[self.view layoutIfNeeded];
+				} else if (config.rankingListSwitch == 1) {
+					self.rankingView.hidden = false;
+					self.rankViewHeight.constant = 200;
+					[self.view layoutIfNeeded];
+					self.rankLabel.text = @"中奖排行榜";
+				} else if (config.rankingListSwitch == 2) {
+					self.rankingView.hidden = false;
+					self.rankViewHeight.constant = 200;
+					[self.view layoutIfNeeded];
+					self.rankLabel.text = @"投注排行榜";
+
 				}
+				
+				[self.upwardMultiMarqueeView reloadData];
+
 			});
 			
 		} failure:^(id msg) {

@@ -336,12 +336,12 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
     } else if ([title isEqualToString:@"在线客服"]) {
         SLWebViewController *webViewVC = [[SLWebViewController alloc] init];
         UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
-        if (config.zxkfUrl) {
-            
-            webViewVC.urlStr = config.zxkfUrl;
+      
+		if (config.zxkfUrl.length > 0) {
+			webViewVC.urlStr = config.zxkfUrl;
 		} else {
-			[SVProgressHUD showWithStatus:@"链接未配置"];
-				return;
+//			[SVProgressHUD showErrorWithStatus:@"链接未配置"];
+			return;
 		}
         [self.navigationController pushViewController:webViewVC animated:YES];
        
