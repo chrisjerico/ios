@@ -1260,7 +1260,11 @@
 }
 - (IBAction)goPCVC:(id)sender {
     
+    QDWebViewController *qdwebVC = [[QDWebViewController alloc] init];
     
+    qdwebVC.urlString = pcUrl;
+    qdwebVC.enterGame = YES;
+    [self.navigationController pushViewController:qdwebVC  animated:YES];
 }
 
 @end
