@@ -211,6 +211,16 @@ NS_ASSUME_NONNULL_BEGIN
  备注信息 :
  ******************************************************************************/
 -(UIColor *)setSignbgColor;
+
+/******************************************************************************
+ 函数名称 : navigationBar;
+ 函数描述 : 改变navbar 的颜色
+ 输入参数 : UGNavigationController，UIColor
+ 输出参数 : void
+ 返回参数 : void
+ 备注信息 :
+ ******************************************************************************/
+-(void)navigationBar:(UGNavigationController *)nav bgColor:(UIColor *)bgColor;
 @end
 
 

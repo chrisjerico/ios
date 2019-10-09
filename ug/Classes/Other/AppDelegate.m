@@ -183,7 +183,7 @@
             ||[navi.viewControllers.firstObject isKindOfClass:[UGSigInCodeViewController class]]
             ||[navi.viewControllers.firstObject isKindOfClass:[UGPromotionIncomeController class]]
       
-            
+
             ) {
             [QDAlertView showWithTitle:@"温馨提示" message:@"您还未登录" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 if (buttonIndex) {
