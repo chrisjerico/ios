@@ -23,66 +23,67 @@
 
 @implementation UGBankCardInfoController
 -(void)skin{
-    self.infoView.layer.borderColor = [[UIColor grayColor] CGColor];
-    [self.infoView setBackgroundColor: [[UGSkinManagers shareInstance] sethomeContentColor]];
-    [self.view setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
+	self.infoView.layer.borderColor = [[UIColor grayColor] CGColor];
+	[self.infoView setBackgroundColor: [[UGSkinManagers shareInstance] sethomeContentColor]];
+	[self.view setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
 }
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    self.navigationItem.title = @"银行卡管理";
-    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-        
-        [self skin];
-    });
-    self.infoView.layer.cornerRadius = 10;
-    self.infoView.layer.masksToBounds = YES;
-    self.infoView.layer.borderWidth = 1;
-    self.infoView.layer.borderColor = [[UIColor grayColor] CGColor];
-    [self.infoView setBackgroundColor: [[UGSkinManagers shareInstance] sethomeContentColor]];
-    [self.view setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
-    [self getCardInfo];
+	[super viewDidLoad];
+	
+	self.navigationItem.title = @"银行卡管理";
+	SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
+		
+		[self skin];
+	});
+	self.infoView.layer.cornerRadius = 10;
+	self.infoView.layer.masksToBounds = YES;
+	self.infoView.layer.borderWidth = 1;
+	self.infoView.layer.borderColor = [[UIColor grayColor] CGColor];
+	[self.infoView setBackgroundColor: [[UGSkinManagers shareInstance] sethomeContentColor]];
+	[self.view setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
+	[self getCardInfo];
 }
 
 - (void)getCardInfo {
-    
-    [SVProgressHUD showWithStatus:nil];
-    [CMNetwork getBankCardInfoWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:^(CMResult<id> *model, NSError *err) {
-        [CMResult processWithResult:model success:^{
-            [SVProgressHUD showSuccessWithStatus:model.msg];
-             self.cardInfoModel = model.data;
-            [UGCardInfoModel setCurrentBankCardInfo:model.data];
-            [self setCardInfo:self.cardInfoModel];
-            
-        } failure:^(id msg) {
-            [SVProgressHUD showErrorWithStatus:msg];
-        }];
-    }];
+	
+	[SVProgressHUD showWithStatus:nil];
+	[CMNetwork getBankCardInfoWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:^(CMResult<id> *model, NSError *err) {
+		[CMResult processWithResult:model success:^{
+			[SVProgressHUD showSuccessWithStatus:model.msg];
+			self.cardInfoModel = model.data;
+			[UGCardInfoModel setCurrentBankCardInfo:model.data];
+			[self setCardInfo:self.cardInfoModel];
+			
+		} failure:^(id msg) {
+			[SVProgressHUD showErrorWithStatus:msg];
+		}];
+	}];
 }
 
 - (void)setCardInfo:(UGCardInfoModel *)model {
-    self.bankNameLabel.text = model.bankName;
-    self.userNameLabel.text = [NSString stringWithFormat:@"持卡人姓名：%@",model.ownerName];
-    self.accountLabel.text = [NSString stringWithFormat:@"银行账户：%@",model.bankCard];
-    self.addressLabel.text = [NSString stringWithFormat:@"开卡地址：%@",model.bankAddr];
-    
+	self.bankNameLabel.text = model.bankName;
+	self.userNameLabel.text = [NSString stringWithFormat:@"持卡人姓名：%@",model.ownerName];
+	self.accountLabel.text = [NSString stringWithFormat:@"银行账户：%@",model.bankCard];
+	self.addressLabel.text = [NSString stringWithFormat:@"开卡地址：%@",model.bankAddr];
+	
 }
 
 - (IBAction)eidtButtonClick:(id)sender {
-    [QDAlertView showWithTitle:@"是否联系客服？" message:@"为了您的资金安全，银行卡信息一经确定，无法随意修改。请联系客服修改您的银行卡相关信息" cancelButtonTitle:@"取消" otherButtonTitle:@"确定" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-        if (buttonIndex) {
-            SLWebViewController *webViewVC = [[SLWebViewController alloc] init];
-            UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
-            if (config.zxkfUrl) {
-                
-                webViewVC.urlStr = config.zxkfUrl;
+	[QDAlertView showWithTitle:@"是否联系客服？" message:@"为了您的资金安全，银行卡信息一经确定，无法随意修改。请联系客服修改您的银行卡相关信息" cancelButtonTitle:@"取消" otherButtonTitle:@"确定" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+		if (buttonIndex) {
+			SLWebViewController *webViewVC = [[SLWebViewController alloc] init];
+			UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
+			
+			
+			if (config.zxkfUrl.length > 0) {
+				webViewVC.urlStr = config.zxkfUrl;
 			} else {
-				[SVProgressHUD showWithStatus:@"链接未配置"];
-					return;
+				//			[SVProgressHUD showErrorWithStatus:@"链接未配置"];
+				return;
 			}
-            [self.navigationController pushViewController:webViewVC animated:YES];
-        }
-    }];
+			[self.navigationController pushViewController:webViewVC animated:YES];
+		}
+	}];
 }
 
 
