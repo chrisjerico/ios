@@ -1238,5 +1238,9 @@
 	}
 	return _gameCategorys;
 }
+- (IBAction)goPCVC:(id)sender {
+    
+    
+}
 
 @end
