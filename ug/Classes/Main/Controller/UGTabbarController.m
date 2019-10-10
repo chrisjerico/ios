@@ -134,7 +134,7 @@
     [vcs addObject: self.nvcLotteryList];
     [vcs addObject: self.nvcChatRoomList];
     [vcs addObject: self.nvcTask];
-//    [vcs addObject: self.nvcUser];
+    [vcs addObject: self.nvcUser];
     [self setViewControllers:vcs];
 }
 
