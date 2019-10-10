@@ -131,9 +131,9 @@
 - (void)setUpChildViewController {
     self.vcs  = [NSMutableArray new];
     [vcs addObject: self.nvcHome];
-//    [vcs addObject: self.nvcLotteryList];
-//    [vcs addObject: self.nvcChatRoomList];
-//    [vcs addObject: self.nvcTask];
+    [vcs addObject: self.nvcLotteryList];
+    [vcs addObject: self.nvcChatRoomList];
+    [vcs addObject: self.nvcTask];
 //    [vcs addObject: self.nvcUser];
     [self setViewControllers:vcs];
 }
