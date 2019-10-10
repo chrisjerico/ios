@@ -160,58 +160,31 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-//<<<<<<< HEAD
-//	[super viewWillAppear:animated];
-//	[self.view bringSubviewToFront:self.bottomView];
-//	WeakSelf
-//	// 轮循刷新封盘时间、开奖时间
-//	{
-//		static NSTimer *timer = nil;
-//		[self onceToken:ZJOnceToken block:^{
-//			[timer invalidate];
-//			timer = nil;
-//		}];
-//		timer = [NSTimer scheduledTimerWithInterval:0.2 repeats:true block:^(NSTimer *timer) {
-//			[weakSelf updateCloseLabelText];
-//			[weakSelf updateOpenLabelText];
-//			if (!weakSelf) {
-//				[timer invalidate];
-//				timer = nil;
-//			}
-//		}];
-//	}
-//	// 轮循请求下期数据
-//	[self.nextIssueCountDown countDownWithSec:NextIssueSec PER_SECBlock:^{
-//		if ([[weakSelf.nextIssueModel.curOpenTime dateWithFormat:@"yyyy-MM-dd HH:mm:ss"] timeIntervalSinceDate:[NSDate date]] < 0) {
-//			[weakSelf getNextIssueData];
-//		}
-//	}];
-//=======
-    [super viewWillAppear:animated];
-    [self.view bringSubviewToFront:self.bottomView];
-    WeakSelf
-    // 轮循刷新封盘时间、开奖时间
-    {
-        static NSTimer *timer = nil;
-        if (OBJOnceToken(self)) {
-            [timer invalidate];
-            timer = [NSTimer scheduledTimerWithInterval:0.2 repeats:true block:^(NSTimer *timer) {
-                [weakSelf updateCloseLabelText];
-                [weakSelf updateOpenLabelText];
-                if (!weakSelf) {
-                    [timer invalidate];
-                    timer = nil;
-                }
-            }];
-        }
-    }
-    // 轮循请求下期数据
-    [self.nextIssueCountDown countDownWithSec:NextIssueSec PER_SECBlock:^{
-        if ([[weakSelf.nextIssueModel.curOpenTime dateWithFormat:@"yyyy-MM-dd HH:mm:ss"] timeIntervalSinceDate:[NSDate date]] < 0) {
-            [weakSelf getNextIssueData];
-        }
-    }];
-//>>>>>>> 028d6de7f124248928d470cee8018be59624a5d3
+	[super viewWillAppear:animated];
+	[self.view bringSubviewToFront:self.bottomView];
+	WeakSelf
+	// 轮循刷新封盘时间、开奖时间
+	{
+		static NSTimer *timer = nil;
+		if (OBJOnceToken(self)) {
+			[timer invalidate];
+			timer = [NSTimer scheduledTimerWithInterval:0.2 repeats:true block:^(NSTimer *timer) {
+				[weakSelf updateCloseLabelText];
+				[weakSelf updateOpenLabelText];
+				if (!weakSelf) {
+					[timer invalidate];
+					timer = nil;
+				}
+			}];
+		}
+	}
+	// 轮循请求下期数据
+	[self.nextIssueCountDown countDownWithSec:NextIssueSec PER_SECBlock:^{
+		if ([[weakSelf.nextIssueModel.curOpenTime dateWithFormat:@"yyyy-MM-dd HH:mm:ss"] timeIntervalSinceDate:[NSDate date]] < 0) {
+			[weakSelf getNextIssueData];
+		}
+	}];
+	//>>>>>>> 028d6de7f124248928d470cee8018be59624a5d3
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -896,6 +869,9 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 		//        计算选中的注数
 		NSInteger count = 0;
 		for (UGGameplayModel *model in self.gameDataArray) {
+			if (!model.select) {
+				continue;
+			}
 			for (UGGameplaySectionModel *type in model.list) {
 				if ([@"连码" isEqualToString:model.name]) {
 					NSInteger num = 0;
@@ -948,7 +924,6 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 					continue;
 				} else if ([@"直选" isEqualToString:model.name]) {
 					NSMutableArray *array = [NSMutableArray array];
-					
 					UGGameplayModel *play = self.gameDataArray[self.typeIndexPath.row];
 					if (play.list.count) {
 						NSMutableArray *mutArr0 = [NSMutableArray array];
