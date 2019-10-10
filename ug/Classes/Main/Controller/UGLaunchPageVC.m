@@ -31,11 +31,13 @@
 #import "UGPromotionIncomeController.h"
 #import "UGLaunchPageVC.h"
 
-@interface UGLaunchPageVC ()<UITabBarControllerDelegate>
+@interface UGLaunchPageVC ()
 
 @end
 
 @implementation UGLaunchPageVC
+
+
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
@@ -63,81 +65,73 @@
 	
 	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 		UIWindow * window = UIApplication.sharedApplication.keyWindow;
-		UGTabbarController * tabbar = [[UGTabbarController alloc] init];
-	    tabbar.delegate = self;
-		window.rootViewController = tabbar;
+		
+        window.rootViewController = _tabbar;
 
 	});
 	
 }
  
 
-#pragma mark - UITabBarControllerDelegate
-
-/// 切换
-- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
-    CMMETHOD_BEGIN_O(viewController.restorationIdentifier);
-    
-    BOOL isLogin = UGLoginIsAuthorized();
- 
-    if (isLogin) {
-         UGNavigationController *navi = (UGNavigationController *)viewController;
-        if ([navi.viewControllers.firstObject isKindOfClass:[UGChatViewController class]]) {
-            AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-            NSString *colorStr = [[UGSkinManagers shareInstance] setChatNavbgStringColor];
-            NSLog(@"url = %@",[NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr]);
-            appDelegate.tabbar.qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr];
-        }
-        return YES;
-    }else {
-        
-        UGNavigationController *navi = (UGNavigationController *)viewController;
-        if ([navi.viewControllers.firstObject isKindOfClass:[UGMineSkinViewController class]] ||
-            [navi.viewControllers.firstObject isKindOfClass:[UGLotteryHomeController class]] ||
-            [navi.viewControllers.firstObject isKindOfClass:[UGChatViewController class]]
-            ||[navi.viewControllers.firstObject isKindOfClass:[UGChangLongController class]]
-            ||[navi.viewControllers.firstObject isKindOfClass:[UGYYLotteryHomeViewController class]]
-            ||[navi.viewControllers.firstObject isKindOfClass:[UGPromotionsController class]]
-            ||[navi.viewControllers.firstObject isKindOfClass:[UGLotteryRecordController class]]
-            ||[navi.viewControllers.firstObject isKindOfClass:[UGMissionCenterViewController class]]
-            ||[navi.viewControllers.firstObject isKindOfClass:[UGSecurityCenterViewController class]]
-            ||[navi.viewControllers.firstObject isKindOfClass:[UGMailBoxTableViewController class]]
-            ||[navi.viewControllers.firstObject isKindOfClass:[UGBalanceConversionController class]]
-            ||[navi.viewControllers.firstObject isKindOfClass:[UGBankCardInfoController class]]
-            ||[navi.viewControllers.firstObject isKindOfClass:[UGYubaoViewController class]]
-            ||[navi.viewControllers.firstObject isKindOfClass:[UGSigInCodeViewController class]]
-            ||[navi.viewControllers.firstObject isKindOfClass:[UGPromotionIncomeController class]]
-      
-            
-            ) {
-            [QDAlertView showWithTitle:@"温馨提示" message:@"您还未登录" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                if (buttonIndex) {
-                    
-                    UGLoginAuthorize(^(BOOL isFinish) {
-                        if (!isFinish) {
-                            return ;
-                        }
-//                        if ([navi.viewControllers.firstObject isKindOfClass:[UGChatsViewController class]]) {
-//                            QDWebViewController *webVC = [[QDWebViewController alloc] init];
-//                             webVC.navigationItem.title = @"聊天室";
-//                            webVC.urlString = [NSString stringWithFormat:@"%@/dist/index.html#/chatRoomList",baseServerUrl];
-//                           [tabBarController showViewControllerInSelected:webVC animated:YES];
-//                            return;
-//                        }else {
-                        
-                            [tabBarController setSelectedViewController:viewController];
+//#pragma mark - UITabBarControllerDelegate
+//
+///// 切换
+//- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
+//    CMMETHOD_BEGIN_O(viewController.restorationIdentifier);
+//
+//    BOOL isLogin = UGLoginIsAuthorized();
+//
+//    if (isLogin) {
+//         UGNavigationController *navi = (UGNavigationController *)viewController;
+//        if ([navi.viewControllers.firstObject isKindOfClass:[UGChatViewController class]]) {
+//            AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+//            NSString *colorStr = [[UGSkinManagers shareInstance] setChatNavbgStringColor];
+//            NSLog(@"url = %@",[NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr]);
+//            appDelegate.tabbar.qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr];
+//        }
+//        return YES;
+//    }else {
+//
+//        UGNavigationController *navi = (UGNavigationController *)viewController;
+//        if ([navi.viewControllers.firstObject isKindOfClass:[UGMineSkinViewController class]] ||
+//            [navi.viewControllers.firstObject isKindOfClass:[UGLotteryHomeController class]] ||
+//            [navi.viewControllers.firstObject isKindOfClass:[UGChatViewController class]]
+//            ||[navi.viewControllers.firstObject isKindOfClass:[UGChangLongController class]]
+//            ||[navi.viewControllers.firstObject isKindOfClass:[UGYYLotteryHomeViewController class]]
+//            ||[navi.viewControllers.firstObject isKindOfClass:[UGPromotionsController class]]
+//            ||[navi.viewControllers.firstObject isKindOfClass:[UGLotteryRecordController class]]
+//            ||[navi.viewControllers.firstObject isKindOfClass:[UGMissionCenterViewController class]]
+//            ||[navi.viewControllers.firstObject isKindOfClass:[UGSecurityCenterViewController class]]
+//            ||[navi.viewControllers.firstObject isKindOfClass:[UGMailBoxTableViewController class]]
+//            ||[navi.viewControllers.firstObject isKindOfClass:[UGBalanceConversionController class]]
+//            ||[navi.viewControllers.firstObject isKindOfClass:[UGBankCardInfoController class]]
+//            ||[navi.viewControllers.firstObject isKindOfClass:[UGYubaoViewController class]]
+//            ||[navi.viewControllers.firstObject isKindOfClass:[UGSigInCodeViewController class]]
+//            ||[navi.viewControllers.firstObject isKindOfClass:[UGPromotionIncomeController class]]
+//
+//
+//            ) {
+//            [QDAlertView showWithTitle:@"温馨提示" message:@"您还未登录" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+//                if (buttonIndex) {
+//
+//                    UGLoginAuthorize(^(BOOL isFinish) {
+//                        if (!isFinish) {
+//                            return ;
 //                        }
-                        
-                    });
-                }
-            }];
-            
-            return NO;
-        }
-        
-    }
-    return YES;
-}
+//
+//
+//                            [tabBarController setSelectedViewController:viewController];
+//
+//                    });
+//                }
+//            }];
+//
+//            return NO;
+//        }
+//
+//    }
+//    return YES;
+//}
 
 
 @end

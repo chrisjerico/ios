@@ -71,11 +71,12 @@
     
     SLWebViewController *webViewVC = [[SLWebViewController alloc] init];
     UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
-    if (config.zxkfUrl) {
+    if (config.zxkfUrl > 0) {
         
         webViewVC.urlStr = config.zxkfUrl;
+		[[UINavigationController currentNC] pushViewController:webViewVC animated:YES];
+
     }
-    [[UINavigationController currentNC] pushViewController:webViewVC animated:YES];
 }
 
 @end

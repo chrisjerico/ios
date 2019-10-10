@@ -47,6 +47,8 @@
     WeakSelf
     self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [weakSelf getPlatformGamesWithParams];
+        
+        
     }];
     
     [self getPlatformGamesWithParams];

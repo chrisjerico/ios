@@ -557,5 +557,39 @@ static NSString *uuidKey =@"uuidKey";
 }
 
 
-
+/******************************************************************************
+ 函数名称 : yyUrlConversionParameter;
+ 函数描述 :把类似
+ http://test10.6yc.com/wjapp/api.php?c=real&a=gameUrl&id=53&game=&token=2k8cseq2TqQQ2PP2QDz428z3的URL里面的参数取出来以字典返回
+ {
+ token = "2k8cseq2TqQQ2PP2QDz428z3",
+ id = "53",
+ c = "real",
+ a = "gameUrl",
+ game = "",
+ }
+ 
+ 输入参数 : NSString
+ 输出参数 : NSMutableDictionary
+ 返回参数 : NSMutableDictionary
+ 备注信息 :
+ ******************************************************************************/
++ (NSMutableDictionary *)yyUrlConversionParameter:(NSString *)urlStr{
+    NSArray*array = [urlStr componentsSeparatedByString:@"?"];//从字符A中分隔成2个元素的数组
+    NSLog(@"lastObject ==== %@",[array lastObject]);
+    NSString * memberStr = (NSString *)[array lastObject];
+    NSArray *params =[memberStr componentsSeparatedByString:@"&"];
+    
+    NSMutableDictionary *tempDic = [NSMutableDictionary dictionary];
+    for (NSString *paramStr in params) {
+        NSArray *dicArray = [paramStr componentsSeparatedByString:@"="];
+        if (dicArray.count > 1) {
+            NSString *decodeValue = [dicArray[1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            [tempDic setObject:decodeValue forKey:dicArray[0]];
+        }
+    }
+    
+    NSLog(@"tempDic:%@",tempDic);
+    return tempDic;
+}
 @end

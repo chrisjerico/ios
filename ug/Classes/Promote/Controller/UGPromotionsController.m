@@ -18,7 +18,8 @@
 @implementation UGPromotionsController
 
 - (void)skin {
-    
+    self.view.backgroundColor = UGBackgroundColor;
+    self.tableView.backgroundColor = UGBackgroundColor;
 }
 
 - (void)viewDidLoad {
@@ -31,6 +32,9 @@
 
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self getPromoteList];
+        self.view.backgroundColor = UGBackgroundColor;
+        self.tableView.backgroundColor = UGBackgroundColor;
+        
     }];
     [self getPromoteList];
 }

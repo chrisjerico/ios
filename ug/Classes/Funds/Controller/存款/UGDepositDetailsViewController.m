@@ -585,30 +585,6 @@
                 [SVProgressHUD dismiss];
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:model.data]];
                 
-//                TGWebViewController *web = [[TGWebViewController alloc] init];
-//                web.url =  model.data;
-//                web.webTitle = @"支付通道";
-////                web.progressColor = QMUICMI.blueColor;
-//                [self.navigationController pushViewController:web animated:YES];
-                
-//                    SLWebViewController *webVC = [[SLWebViewController alloc] init];
-//                    webVC.urlStr = model.data;
-//                    [self.navigationController pushViewController:webVC animated:YES];
-
-                
-//                QDWebViewController *qdwebVC = [[QDWebViewController alloc] init];
-//                qdwebVC.urlString = model.data;
-//                qdwebVC.enterGame = YES;
-//                [self.navigationController pushViewController:qdwebVC  animated:YES];
-                
-//                BAWebViewController *webVC = [BAWebViewController new];
-//                webVC.ba_web_progressTintColor = [UIColor cyanColor];
-//                webVC.ba_web_progressTrackTintColor = [UIColor whiteColor];
-//                
-//                [webVC ba_web_loadURLString:model.data];
-//                
-//                [self.navigationController pushViewController:webVC animated:YES];
-                
             }
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];

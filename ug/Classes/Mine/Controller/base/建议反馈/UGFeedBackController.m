@@ -40,11 +40,11 @@
         
         SLWebViewController *webViewVC = [[SLWebViewController alloc] init];
         UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
-        if (config.zxkfUrl) {
-            
+        if (config.zxkfUrl.length > 0) {
             webViewVC.urlStr = config.zxkfUrl;
-        }
-        [self.navigationController pushViewController:webViewVC animated:YES];
+			[self.navigationController pushViewController:webViewVC animated:YES];
+
+		}
     
     }else if (indexPath.row == 1) {
   

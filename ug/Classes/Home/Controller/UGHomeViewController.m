@@ -124,6 +124,8 @@
 @property (strong, nonatomic)UILabel *nolineLabel;
 
 @property (weak, nonatomic) IBOutlet UIView *rollingView;
+@property (weak, nonatomic) IBOutlet UILabel *rankLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *rankViewHeight;
 
 @end
 
@@ -149,6 +151,7 @@
     
     [self.gameNavigationView reloadData];
     self.gameTypeView.gameTypeArray = self.gameCategorys;
+    [[UGSkinManagers shareInstance] navigationBar:(UGNavigationController *)self.navigationController bgColor: [[UGSkinManagers shareInstance] setNavbgColor]];
 
 }
 
@@ -170,7 +173,6 @@
 	
 	[self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
 	
-	
 	[self.rankingView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
 	[self.upwardMultiMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
 	[self.rollingView setBackgroundColor:[[UGSkinManagers shareInstance]sethomeContentColor]];
@@ -178,7 +180,8 @@
 	[self.leftwardMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
 	[self.gameTypeView setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
     [self.bottomView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
-	
+    [[UGSkinManagers shareInstance] navigationBar:(UGNavigationController *)self.navigationController bgColor: [[UGSkinManagers shareInstance] setNavbgColor]];
+    
 	[[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:[[UGSkinManagers shareInstance] setTabbgColor]]];
 	
 	[[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[[UGSkinManagers shareInstance] settabNOSelectColor], NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
@@ -245,6 +248,8 @@
 		[self getCheckinListData];  // 红包数据
 		[self systemOnlineCount];   // 在线人数
         [self getPromoteList];      // 优惠活动
+       
+        [[UGSkinManagers shareInstance] navigationBar:(UGNavigationController *)self.navigationController bgColor: [[UGSkinManagers shareInstance] setNavbgColor]];
 	}];
     
     
@@ -402,12 +407,14 @@
 		// 在线客服
 		SLWebViewController *webViewVC = [[SLWebViewController alloc] init];
 		UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
-		if (config.zxkfUrl) {
-			webViewVC.urlStr = config.zxkfUrl;
-		} else {
-			[SVProgressHUD showWithStatus:@"链接未配置"];
-			return;
-		}
+
+		
+		if (config.zxkfUrl.length > 0) {
+				webViewVC.urlStr = config.zxkfUrl;
+			} else {
+	//			[SVProgressHUD showErrorWithStatus:@"链接未配置"];
+				return;
+			}
 		[self.navigationController pushViewController:webViewVC animated:YES];
 	}
 	
@@ -517,7 +524,9 @@
 			[SVProgressHUD dismiss];
 			dispatch_async(dispatch_get_main_queue(), ^{
 				QDWebViewController *qdwebVC = [[QDWebViewController alloc] init];
-				qdwebVC.urlString = model.data;
+                
+                NSLog(@"网络链接：model.data = %@",model.data);
+                qdwebVC.urlString = [CMNetwork encryptionCheckSignForURL:model.data];
 				qdwebVC.enterGame = YES;
 				[self.navigationController pushViewController:qdwebVC  animated:YES];
 			});
@@ -644,12 +653,28 @@
 				self.rankListModel = rank;
 				self.rankArray = rank.list.mutableCopy;
 				
-				if (rank.show) {
-					self.rankingView.hidden = NO;
-					[self.upwardMultiMarqueeView reloadData];
-				}else {
+				
+				UGSystemConfigModel * config = UGSystemConfigModel.currentConfig;
+				
+				if (config.rankingListSwitch == 0) {
 					self.rankingView.hidden = YES;
+					self.rankViewHeight.constant = 0;
+					[self.view layoutIfNeeded];
+				} else if (config.rankingListSwitch == 1) {
+					self.rankingView.hidden = false;
+					self.rankViewHeight.constant = 200;
+					[self.view layoutIfNeeded];
+					self.rankLabel.text = @"中奖排行榜";
+				} else if (config.rankingListSwitch == 2) {
+					self.rankingView.hidden = false;
+					self.rankViewHeight.constant = 200;
+					[self.view layoutIfNeeded];
+					self.rankLabel.text = @"投注排行榜";
+
 				}
+				
+				[self.upwardMultiMarqueeView reloadData];
+
 			});
 			
 		} failure:^(id msg) {
@@ -1245,6 +1270,22 @@
 		_gameCategorys = [NSMutableArray array];
 	}
 	return _gameCategorys;
+}
+- (IBAction)goPCVC:(id)sender {
+    BOOL isLogin = UGLoginIsAuthorized();
+    if (isLogin) {
+       
+        QDWebViewController *qdwebVC = [[QDWebViewController alloc] init];
+        qdwebVC.urlString = pcUrl;
+        qdwebVC.enterGame = YES;
+        [self.navigationController pushViewController:qdwebVC  animated:YES];
+    }
+    else{
+        
+         SANotificationEventPost(UGNotificationShowLoginView, nil);
+    }
+    
+    
 }
 
 @end

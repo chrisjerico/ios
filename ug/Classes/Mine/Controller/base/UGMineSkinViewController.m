@@ -681,12 +681,11 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     }else if ([title isEqualToString:@"在线客服"]) {
         SLWebViewController *webViewVC = [[SLWebViewController alloc] init];
         UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
-        if (config.zxkfUrl) {
-            
+        if (config.zxkfUrl.length > 0) {
             webViewVC.urlStr = config.zxkfUrl;
 		} else {
-			[SVProgressHUD showWithStatus:@"链接未配置"];
-				return;
+//			[SVProgressHUD showErrorWithStatus:@"链接未配置"];
+			return;
 		}
         [self.navigationController pushViewController:webViewVC animated:YES];
         
@@ -746,16 +745,11 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
             }];
         }else {
             
-            if (user.isAgent) {
+
                 UGPromotionIncomeController *incomeVC = [[UGPromotionIncomeController alloc] init];
                 [self.navigationController pushViewController:incomeVC animated:YES];
-            }
-            else{
-                
-                [self.navigationController.view makeToast:@"会员中心申请代理已关闭"
-                                                 duration:1.5
-                                                 position:CSToastPositionCenter];
-            }
+
+           
             
         }
     } else if ([title isEqualToString:@"申请代理"]) {

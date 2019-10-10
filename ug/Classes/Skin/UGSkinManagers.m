@@ -964,13 +964,15 @@
 
 
     if (@available(iOS 13.0, *)) {
-        //    id _statusBar = nil;
-        //    if ([statusBarManager respondsToSelector:@selector(createLocalStatusBar)]) {
-        //        UIView *_localStatusBar = [statusBarManager performSelector:@selector(createLocalStatusBar)];
-        //        if ([_localStatusBar respondsToSelector:@selector(statusBar)]) {
-        //            _statusBar = [_localStatusBar performSelector:@selector(statusBar)];
-        //        }
-        //    }
+//            id _statusBar = nil;
+//        if ([UIStatusBarManager respondsToSelector:@selector(createLocalStatusBar)]) {
+//            UIView *statusBar = [UIStatusBarManager performSelector:@selector(createLocalStatusBar)];
+//               if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
+//
+//                              statusBar.backgroundColor = [self navbarbgColor:skitType];
+//
+//                }
+//            }
     }
     else{
         //   bug: iOS13 崩溃
@@ -997,7 +999,6 @@
     [self navigationBar:tabbar.nvcSecurityCenter bgColor:[self navbarbgColor:skitType]];
     [self navigationBar:tabbar.nvcFunds bgColor:[self navbarbgColor:skitType]];
     [self navigationBar:tabbar.nvcMessage bgColor:[self navbarbgColor:skitType]];
-    
     [self navigationBar:tabbar.nvcConversion bgColor:[self navbarbgColor:skitType]];
     [self navigationBar:tabbar.nvcBanks bgColor:[self navbarbgColor:skitType]];
     [self navigationBar:tabbar.nvcYuebao bgColor:[self navbarbgColor:skitType]];
@@ -1078,7 +1079,8 @@
         skitType = @"石榴红";
     }
     else if([config.mobileTemplateCategory isEqualToString:@"4"]) {
-        skitType = @"六合资料";
+//        skitType = @"六合资料";
+        skitType = config.mobileTemplateBackground;
     }
     else{
         skitType = @"新年红";

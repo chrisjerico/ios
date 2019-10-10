@@ -26,7 +26,7 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"银行卡管理";
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    [self.view setBackgroundColor: [UIColor whiteColor]];
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         
         [self skin];

@@ -42,6 +42,8 @@ static NSString *taskCenterUrl = @"/dist/index.html#/task/task";
 static NSString *signUrl = @"/dist/index.html#/Sign";
 static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 
+#define pcUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"index2.php"]
+
 #define systemConfigUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=system&a=config"]
 
 #define guestLoginUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=user&a=guestLogin"]

@@ -13,7 +13,9 @@
 #import "UGModifyLoginPlaceController.h"
 #import "UGSystemConfigModel.h"
 #import "UGGoogleAuthenticationFirstViewController.h"
-
+#import "UGBindCardViewController.h"
+#import "UGSetupPayPwdController.h"
+#import "UGgoBindViewController.h"
 @interface UGSecurityCenterViewController ()<XYYSegmentControlDelegate>
 @property (nonatomic, strong) XYYSegmentControl *slideSwitchView;
 @property (nonatomic,strong)   NSMutableArray *itemArray;
@@ -111,8 +113,21 @@
         return PwdVC;
     }
     if (number == 1) {
-        UGModifyPayPwdController *payVC = [storyboard instantiateViewControllerWithIdentifier:@"UGModifyPayPwdController"];
-        return payVC;
+        UGUserModel *user = [UGUserModel currentUser];
+        NSLog(@"user= %@",user);
+        if (user.hasBankCard) {
+
+            UGModifyPayPwdController *payVC = [storyboard instantiateViewControllerWithIdentifier:@"UGModifyPayPwdController"];
+            return payVC;
+        }else {
+//            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGBindCardViewController" bundle:nil];
+//
+//            UGSetupPayPwdController *fundVC = [storyboard instantiateViewControllerWithIdentifier:@"UGSetupPayPwdController"];
+//            return fundVC;
+            UGgoBindViewController *vc = [UGgoBindViewController new];
+            return vc;
+        }
+       
     }
     if (number == 2 && [[UGSystemConfigModel currentConfig].oftenLoginArea isEqualToString:@"0"]) {
         UGModifyLoginPlaceController *loginPlaceVC = [storyboard instantiateViewControllerWithIdentifier:@"UGModifyLoginPlaceController"];

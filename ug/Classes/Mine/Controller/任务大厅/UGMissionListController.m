@@ -13,6 +13,8 @@
 @interface UGMissionListController ()
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
+@property(nonatomic, assign) int pageSize;
+@property(nonatomic, assign) int pageNumber;
 
 @end
 
@@ -32,6 +34,20 @@ static NSString *missionCellid = @"UGMissionTableViewCell";
     [self.tableView registerNib:[UINib nibWithNibName:@"UGMissionTableViewCell" bundle:nil] forCellReuseIdentifier:missionCellid];
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 120, 0);
     self.tableView.rowHeight = 80;
+    _pageSize = 20;
+    _pageNumber = 1;
+    
+     WeakSelf
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        weakSelf.pageNumber = 1;
+        [weakSelf getCenterData];
+        
+    }];
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [weakSelf getCenterData];
+    }];
+    
+    self.tableView.mj_footer.hidden = YES;
 }
 
 #pragma mark - Table view data source
@@ -109,8 +125,8 @@ static NSString *missionCellid = @"UGMissionTableViewCell";
 - (void)getCenterData {
     
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
-                             @"page":@"1",
-                             @"rows":@"20",
+                             @"page":@(self.pageNumber),
+                             @"rows":@(self.pageSize),
                              
                              };
     
@@ -123,20 +139,39 @@ static NSString *missionCellid = @"UGMissionTableViewCell";
           
             NSDictionary *data =  model.data;
             NSArray *list = [data objectForKey:@"list"];
-
+            if (self.pageNumber == 1 ) {
+                
+                [self.dataArray removeAllObjects];
+            }
+            
 //            //字典转模型
 //            UserMembersShareBean *membersShare = [[UserMembersShareBean alloc]initWithDictionary:dic[kMsg]
             //数组转模型数组
-            self.dataArray = [UGMissionModel arrayOfModelsFromDictionaries:list error:nil];
-            
-            NSLog(@"self.dataArray = %@",self.dataArray);
+            NSArray *array = [UGMissionModel arrayOfModelsFromDictionaries:list error:nil];
+            [self.dataArray addObjectsFromArray:array];
             [self.tableView reloadData];
+            if (array.count < self.pageSize) {
+                [self.tableView.mj_footer setState:MJRefreshStateNoMoreData];
+                [self.tableView.mj_footer setHidden:YES];
+            }else{
+                self.pageNumber ++;
+                [self.tableView.mj_footer setState:MJRefreshStateIdle];
+                [self.tableView.mj_footer setHidden:NO];
+            }
             
         } failure:^(id msg) {
             
             [SVProgressHUD showErrorWithStatus:msg];
             
         }];
+        
+        if ([self.tableView.mj_header isRefreshing]) {
+            [self.tableView.mj_header endRefreshing];
+        }
+        
+        if ([self.tableView.mj_footer isRefreshing]) {
+            [self.tableView.mj_footer endRefreshing];
+        }
     }];
 }
 

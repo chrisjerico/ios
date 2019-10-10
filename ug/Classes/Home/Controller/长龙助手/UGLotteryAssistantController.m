@@ -101,18 +101,18 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
 
 - (void)getChanglong {
     
-//    [CMNetwork getChanglongWithParams:@{@"id":@"60"} completion:^(CMResult<id> *model, NSError *err) {
-//        [self.tableView.mj_header endRefreshing];
-//        [CMResult processWithResult:model success:^{
-//            if (model.data) {
-//                
-//                self.dataArray = model.data;
-//                [self.tableView reloadData];
-//            }
-//        } failure:^(id msg) {
-//            
-//        }];
-//    }];
+    [CMNetwork getChanglongWithParams:@{@"id":@"60"} completion:^(CMResult<id> *model, NSError *err) {
+        [self.tableView.mj_header endRefreshing];
+        [CMResult processWithResult:model success:^{
+            if (model.data) {
+                
+                self.dataArray = model.data;
+                [self.tableView reloadData];
+            }
+        } failure:^(id msg) {
+            
+        }];
+    }];
     
 }
 

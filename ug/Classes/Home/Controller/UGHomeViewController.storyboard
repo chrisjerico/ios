@@ -388,7 +388,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jZU-na-iPm" customClass="UUMarqueeView">
-                                                        <rect key="frame" x="0.0" y="83.5" width="414" height="116.5"/>
+                                                        <rect key="frame" x="0.0" y="83.5" width="414" height="216.5"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </view>
                                                 </subviews>
@@ -396,7 +396,7 @@
                                                 <constraints>
                                                     <constraint firstItem="6iq-7u-VBp" firstAttribute="leading" secondItem="crl-J7-sLe" secondAttribute="leading" id="9eJ-1I-ZnQ"/>
                                                     <constraint firstItem="egu-Ve-6r1" firstAttribute="top" secondItem="6iq-7u-VBp" secondAttribute="bottom" id="B9S-Jz-LSJ"/>
-                                                    <constraint firstAttribute="height" constant="200" id="BbV-SP-BJQ"/>
+                                                    <constraint firstAttribute="height" constant="300" id="BbV-SP-BJQ"/>
                                                     <constraint firstItem="7pj-to-Bil" firstAttribute="centerY" secondItem="Sf4-HB-y8T" secondAttribute="centerY" id="C9v-y1-eX1"/>
                                                     <constraint firstAttribute="trailing" secondItem="egu-Ve-6r1" secondAttribute="trailing" id="Mis-Lc-DBi"/>
                                                     <constraint firstAttribute="bottom" secondItem="jZU-na-iPm" secondAttribute="bottom" id="NUp-QW-usF"/>
@@ -426,19 +426,29 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oSF-74-EZt">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="28"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="💻iphone版 🎁优惠活动" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vq9-5e-sW1">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="💻电脑版 🎁优惠活动" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vq9-5e-sW1">
                                                                 <rect key="frame" x="0.0" y="12" width="414" height="16"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R7I-zH-nNS">
+                                                                <rect key="frame" x="0.0" y="0.0" width="414" height="28"/>
+                                                                <connections>
+                                                                    <action selector="goPCVC:" destination="Qlk-11-xZ9" eventType="touchUpInside" id="Hh1-5r-i9V"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="bottom" secondItem="Vq9-5e-sW1" secondAttribute="bottom" id="34N-uS-Myf"/>
+                                                            <constraint firstAttribute="trailing" secondItem="R7I-zH-nNS" secondAttribute="trailing" id="34c-kh-eLs"/>
                                                             <constraint firstItem="Vq9-5e-sW1" firstAttribute="leading" secondItem="oSF-74-EZt" secondAttribute="leading" id="5Y9-it-nkX"/>
                                                             <constraint firstAttribute="height" constant="28" id="EA9-PG-McH"/>
+                                                            <constraint firstItem="R7I-zH-nNS" firstAttribute="leading" secondItem="oSF-74-EZt" secondAttribute="leading" id="WR5-Lb-nZT"/>
+                                                            <constraint firstAttribute="bottom" secondItem="R7I-zH-nNS" secondAttribute="bottom" id="Wc9-6w-RZF"/>
                                                             <constraint firstAttribute="trailing" secondItem="Vq9-5e-sW1" secondAttribute="trailing" id="mep-Bf-a8q"/>
+                                                            <constraint firstItem="R7I-zH-nNS" firstAttribute="top" secondItem="oSF-74-EZt" secondAttribute="top" id="zKR-vn-fYq"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
@@ -489,6 +499,8 @@
                         <outlet property="gameViewHeight" destination="h0I-VV-udc" id="8a4-eU-Jwg"/>
                         <outlet property="leftwardMarqueeView" destination="fSS-lB-1r2" id="u7Y-XH-UTU"/>
                         <outlet property="promotionsStackView" destination="xgj-Ln-Ukx" id="HAh-7F-6YB"/>
+                        <outlet property="rankLabel" destination="7pj-to-Bil" id="gE2-Al-CqK"/>
+                        <outlet property="rankViewHeight" destination="BbV-SP-BJQ" id="xzk-gk-XUl"/>
                         <outlet property="rankingView" destination="crl-J7-sLe" id="vLq-Kl-1QG"/>
                         <outlet property="rankingViewHeightConstraints" destination="BbV-SP-BJQ" id="gMH-ix-zeK"/>
                         <outlet property="rollingView" destination="97i-pv-RCp" id="b2b-5V-MMY"/>
