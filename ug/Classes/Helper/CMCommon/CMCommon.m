@@ -437,7 +437,7 @@ static NSString *uuidKey =@"uuidKey";
  [self compareDate:@"2019-09-06" withDate:@"2019-09-02" withFormat:@"yyyy-MM-dd"]
  返回：//小  -1 一样  0 大   1
  */
-+(int)compareDate:(NSString*)date01 withDate:(NSString*)date02  withFormat:(NSString *)format{
++ (int)compareDate:(NSString *)date01 withDate:(NSString *)date02  withFormat:(NSString *)format{
     int ci;
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     [df setDateFormat:format];

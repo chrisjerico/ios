@@ -75,8 +75,6 @@ static NSString *const footerId = @"footerId";
     [self.gameCollectionView reloadData];
 	[self postHeight];
 	
-	
-	
 	NSMutableArray * documentArray = [NSMutableArray array];
 	for (GameModel * model in dataArray) {
 		if ([model.docType isEqualToString:@"1"]) {
@@ -86,7 +84,7 @@ static NSString *const footerId = @"footerId";
 	[DocumentTypeList setAllGames: documentArray];
 	
 }
-- (void) postHeight {
+- (void)postHeight {
 	if (self.dataArray.count == 0) {
 		return;
 	}
@@ -98,8 +96,8 @@ static NSString *const footerId = @"footerId";
 			height += ((model.subType.count - 1)/3 + 1) * 40;
 		}
 	}
-	
-	[[NSNotificationCenter defaultCenter] postNotification: [NSNotification notificationWithName:@"UGPlatformCollectionViewContentHeight" object:[NSNumber numberWithFloat:height]]];
+    height += 30 + 70 * 2.0/self.sectionedDataArray.count;
+	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"UGPlatformCollectionViewContentHeight" object:[NSNumber numberWithFloat:height]]];
 }
 
 #pragma mark - UICollectionViewDelegate
@@ -157,38 +155,27 @@ static NSString *const footerId = @"footerId";
 
 #pragma mark ---- UICollectionViewDelegateFlowLayout
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-	return (CGSize){UGScreenW/3 - 10,80};
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+	return CGSizeMake(UGScreenW/3 - 10, 80);
 }
 
-
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
-{
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
 	return UIEdgeInsetsMake(5, 5, 5, 5);
 }
 
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
-{
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
 	return 5.f;
 }
 
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
-{
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
 	return 5.f;
 }
 
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
-{
-	return (CGSize){UGScreenW, 0};
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
+	return CGSizeMake(UGScreenW, 0);
 }
 
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
-{
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
 	if (_selectedPath && _selectedPath.section == section) {
 		
 		GameModel * model = self.sectionedDataArray[section][_selectedPath.item];
@@ -200,12 +187,10 @@ static NSString *const footerId = @"footerId";
 	
 }
 
-
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (self.gameTypeSelectBlock) {
         self.gameTypeSelectBlock(indexPath.row);
     }
-	
 	
 	GameModel * model = self.sectionedDataArray[indexPath.section][indexPath.item];
 	
@@ -218,11 +203,7 @@ static NSString *const footerId = @"footerId";
 	}
 	[collectionView reloadData];
 	[self postHeight];
-
-	
 }
-
-
 
 - (NSMutableArray *)sectionedDataArray {
 	if (!_sectionedDataArray) {

@@ -27,39 +27,28 @@
 	label.text = @" 元 ";
 	self.amountField.rightView = label;
 	self.amountField.rightViewMode = UITextFieldViewModeAlways;
-	
 }
+
 - (IBAction)delectClick:(id)sender {
-    if (self.delectBlock) {
+    if (self.delectBlock)
         self.delectBlock();
-    }
 }
 
 - (void)setItem:(UGBetModel *)item {
     _item = item;
-    if (item.displayInfo.length) {
-         self.numberLabel.text = [NSString stringWithFormat:@"%@-%@",item.title,item.displayInfo];
-    }else if (item.betInfo.length) {
-        self.numberLabel.text = [NSString stringWithFormat:@"%@-%@",item.title,item.betInfo];
-    }else {
-         self.numberLabel.text = [NSString stringWithFormat:@"%@-%@",item.title,item.name];
-    }
-    self.amountField.text = [NSString stringWithFormat:@"%@",item.money];
-    self.oddsLabel.text = [NSString stringWithFormat:@"%@%@",@"@",[item.odds removeFloatAllZero]];
-
+    self.numberLabel.text = ({
+        NSString *name = item.alias.length ? item.alias : item.title;
+        NSString *num = item.displayInfo.length ? item.displayInfo : (item.betInfo.length ? item.betInfo : item.name);
+        _NSString(@"%@[%@]", name, num);
+    });
+    self.amountField.text = _NSString(@"%@", item.money);
+    self.oddsLabel.text = _NSString(@"@%@", [item.odds removeFloatAllZero]);
 }
-
 
 - (void)amountEdited: (UITextField *)sender {
 	if (self.amountEditedBlock) {
 		self.amountEditedBlock([sender.text floatValue]);
 	}
-	
 }
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-    // Configure the view for the selected state
-}
-
 
 @end

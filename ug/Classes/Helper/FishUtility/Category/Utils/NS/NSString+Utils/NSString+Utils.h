@@ -74,6 +74,7 @@
 - (NSString *)substringWithSize:(CGSize)size font:(UIFont *)font;   /**<    按照显示框大小裁剪字符串 */
 
 - (NSString *)objectAtIndexedSubscript:(NSUInteger)idx NS_AVAILABLE(10_8, 6_0);
+- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(id __unsafe_unretained _Nullable [_Nonnull])buffer count:(NSUInteger)len;
 @end
 
 

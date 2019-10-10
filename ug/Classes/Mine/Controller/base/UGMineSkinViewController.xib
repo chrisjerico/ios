@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -41,7 +37,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PIb-kh-Max">
-                    <rect key="frame" x="0.0" y="44" width="414" height="153"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="153"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="成长值(4232 - 10000)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zVS-Ap-TcP">
                             <rect key="frame" x="25" y="80" width="143" height="17"/>
@@ -74,8 +70,8 @@
                                 <action selector="refreshBalance:" destination="-1" eventType="touchUpInside" id="QbB-zY-ogW"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iosmac" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s29-0Y-PBm">
-                            <rect key="frame" x="93" y="11" width="55" height="20"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="---" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s29-0Y-PBm">
+                            <rect key="frame" x="93" y="11" width="23" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="EuS-Dk-wyc"/>
                             </constraints>
@@ -91,7 +87,7 @@
                             </constraints>
                         </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pXQ-Wi-cBx">
-                            <rect key="frame" x="153.5" y="8" width="60" height="26"/>
+                            <rect key="frame" x="121.5" y="8" width="60" height="26"/>
                             <subviews>
                                 <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vipdengji" translatesAutoresizingMaskIntoConstraints="NO" id="CnY-J2-nIj">
                                     <rect key="frame" x="0.0" y="0.0" width="60" height="26"/>
@@ -117,7 +113,7 @@
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MTa-57-yzI">
-                            <rect key="frame" x="326" y="81" width="80" height="22"/>
+                            <rect key="frame" x="326" y="64" width="80" height="39"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="80" id="Msh-Dr-pYp"/>
                             </constraints>
@@ -211,7 +207,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7v7-0G-dRt">
-                    <rect key="frame" x="0.0" y="197" width="414" height="60"/>
+                    <rect key="frame" x="0.0" y="153" width="414" height="60"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qfS-3o-6Gl">
                             <rect key="frame" x="0.0" y="0.0" width="138" height="60"/>
@@ -376,7 +372,7 @@
                     </constraints>
                 </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="fp3-uj-1mp">
-                    <rect key="frame" x="0.0" y="257" width="414" height="604"/>
+                    <rect key="frame" x="0.0" y="213" width="414" height="682"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="hmd-mK-D7K">
                         <size key="itemSize" width="50" height="50"/>

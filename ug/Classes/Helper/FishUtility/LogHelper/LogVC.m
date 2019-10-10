@@ -46,13 +46,12 @@ static LogVC *_logVC = nil;
     UIView *superview = APP.Window;
     _logVC.view.frame = superview.bounds;
     _logVC.view.by = 0;
-    [superview addSubview:_logVC.view];
     
     // 添加手势
     [superview addGestureRecognizer:({
         UISwipeGestureRecognizer *swipe = [UISwipeGestureRecognizer gestureRecognizer:^(UISwipeGestureRecognizer *sender) {
             [NavController1.topView endEditing:true];
-            [superview bringSubviewToFront:_logVC.view];
+            [superview addSubview:_logVC.view];
             
             [UIView animateWithDuration:0.25 animations:^{
                 _logVC.view.center = CGPointMake(superview.width/2, superview.height/2);

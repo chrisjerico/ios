@@ -66,8 +66,10 @@ _ZJRuntimeGetterDoubleValue(CGFloat, lineSpacing1)
 @implementation UITextField (IBInspectableUtils)
 _ZJRuntimeProperty_Assign(NSUInteger, 限制长度, set限制长度)
 _ZJRuntimeProperty_Assign(BOOL, 仅数字, set仅数字)
-_ZJRuntimeProperty_Assign(BOOL, 禁用符号, set禁用符号)
-_ZJRuntimeProperty_Assign(BOOL, 禁用特殊字符, set禁用特殊字符)
+_ZJRuntimeProperty_Assign(BOOL, 仅数字含小数, set仅数字含小数)
+_ZJRuntimeProperty_Assign(BOOL, 仅数字加字母, set仅数字加字母)
+_ZJRuntimeProperty_Assign(BOOL, 仅可见的ASCII, set仅可见的ASCII)
+_ZJRuntimeProperty_Copy(NSString *, 额外允许的字符, set额外允许的字符)
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -88,33 +90,35 @@ _ZJRuntimeProperty_Assign(BOOL, 禁用特殊字符, set禁用特殊字符)
     });
 }
 - (void)zj_layoutSubviews {
-    if (!self.delegate) {
-        zj_once_block(self, ^{
-            self.delegate = (id)self;
-        });
+    if (!self.delegate && OBJOnceToken(self)) {
+        self.delegate = (id)self;
     }
     [self zj_layoutSubviews];
 }
 - (void)zj_setDelegate:(id<UITextFieldDelegate>)delegate {
     [self zj_setDelegate:delegate];
-    if ([delegate isKindOfClass:[NSObject class]]) {
-        zj_once_block(delegate, ^{
-            [(id)delegate aspect_hookSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> aInfo) {
-                [aInfo.originalInvocation invoke];
-                // 过滤文本
-                UITextField *tf = aInfo.arguments.firstObject;
-                NSString *text = aInfo.arguments[2];
-                BOOL ret = true;
-                if (tf.仅数字)
-                    ret &= [text isMatch:RX(@"^[0-9]*$")];
-                else if (tf.禁用符号)
-                    ret &= [text isMatch:RX(@"^[0-9A-Za-z]*$")];
-                else if (tf.禁用特殊字符)
-                    ret &= [text isMatch:RX(@"^[\x20-\x7E]*$")];    // 不使用原生的正则函数是因为，原生函数会把中文标点符号误认为ASCII符号而匹配通过，比如“。”->"." 或 “，”->","
-                if (!ret)
-                    [aInfo.originalInvocation setReturnValue:&ret];
-            } error:nil];
-        });
+    if ([delegate isKindOfClass:[NSObject class]] && OBJOnceToken(delegate)) {
+        [(id)delegate aspect_hookSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> aInfo) {
+            [aInfo.originalInvocation invoke];
+            // 过滤文本
+            UITextField *tf = aInfo.arguments.firstObject;
+            NSString *text = aInfo.arguments[2];
+            
+            for (NSString *c in tf.额外允许的字符) {
+                text = [text stringByReplacingOccurrencesOfString:c withString:@""];
+            }
+            BOOL ret = true;
+            if (tf.仅数字)
+                ret &= [text isMatch:RX(@"^[0-9]*$")];
+            else if (tf.仅数字含小数)
+                ret &= [text isMatch:RX(_NSString(@"^[0-9]*%@$", [tf.text componentsSeparatedByString:@"."].count < 2 ? @"[.]?[0-9]*" : @""))];
+            else if (tf.仅数字加字母)
+                ret &= [text isMatch:RX(@"^[0-9A-Za-z]*$")];
+            else if (tf.仅可见的ASCII)
+                ret &= [text isMatch:RX(@"^[\\x20-\\x7E]*$")];    // 不使用原生的正则函数是因为，原生函数会把中文标点符号误认为ASCII符号而匹配通过，比如“。”->"." 或 “，”->","
+            if (!ret)
+                [aInfo.originalInvocation setReturnValue:&ret];
+        } error:nil];
     }
 }
 @end
@@ -125,8 +129,10 @@ _ZJRuntimeProperty_Assign(BOOL, 禁用特殊字符, set禁用特殊字符)
 @implementation UITextView (IBInspectableUtils)
 _ZJRuntimeProperty_Assign(NSUInteger, 限制长度, set限制长度)
 _ZJRuntimeProperty_Assign(BOOL, 仅数字, set仅数字)
-_ZJRuntimeProperty_Assign(BOOL, 禁用符号, set禁用符号)
-_ZJRuntimeProperty_Assign(BOOL, 禁用特殊字符, set禁用特殊字符)
+_ZJRuntimeProperty_Assign(BOOL, 仅数字含小数, set仅数字含小数)
+_ZJRuntimeProperty_Assign(BOOL, 仅数字加字母, set仅数字加字母)
+_ZJRuntimeProperty_Assign(BOOL, 仅可见的ASCII, set仅可见的ASCII)
+_ZJRuntimeProperty_Copy(NSString *, 额外允许的字符, set额外允许的字符)
 _ZJRuntimeGetterDoubleValue(BOOL, 内容紧贴边框)
 + (void)load {
     static dispatch_once_t onceToken;
@@ -148,33 +154,35 @@ _ZJRuntimeGetterDoubleValue(BOOL, 内容紧贴边框)
     });
 }
 - (void)zj_layoutSubviews {
-    if (!self.delegate) {
-        zj_once_block(self, ^{
-            self.delegate = (id)self;
-        });
+    if (!self.delegate && OBJOnceToken(self)) {
+        self.delegate = (id)self;
     }
     [self zj_layoutSubviews];
 }
 - (void)zj_setDelegate:(id<UITextViewDelegate>)delegate {
     [self zj_setDelegate:delegate];
-    if ([delegate isKindOfClass:[NSObject class]]) {
-        zj_once_block(delegate, ^{
-            [(id)delegate aspect_hookSelector:@selector(textView:shouldChangeTextInRange:replacementText:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> aInfo) {
-                [aInfo.originalInvocation invoke];
-                // 过滤文本
-                UITextView *tf = aInfo.arguments.firstObject;
-                NSString *text = aInfo.arguments[2];
-                BOOL ret = true;
-                if (tf.仅数字)
-                    ret &= [text isMatch:RX(@"^[0-9]*$")];
-                else if (tf.禁用符号)
-                    ret &= [text isMatch:RX(@"^[0-9A-Za-z]*$")];
-                else if (tf.禁用特殊字符)
-                    ret &= [text isMatch:RX(@"^[\x20-\x7E]*$")];    // 不使用原生的正则函数是因为，原生函数会把中文标点符号误认为ASCII符号而匹配通过，比如“。”->"." 或 “，”->","
-                if (!ret)
-                    [aInfo.originalInvocation setReturnValue:&ret];
-            } error:nil];
-        });
+    if ([delegate isKindOfClass:[NSObject class]] && OBJOnceToken(delegate)) {
+        [(id)delegate aspect_hookSelector:@selector(textView:shouldChangeTextInRange:replacementText:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> aInfo) {
+            [aInfo.originalInvocation invoke];
+            // 过滤文本
+            UITextView *tf = aInfo.arguments.firstObject;
+            NSString *text = aInfo.arguments[2];
+            
+            for (NSString *c in tf.额外允许的字符) {
+                text = [text stringByReplacingOccurrencesOfString:c withString:@""];
+            }
+            BOOL ret = true;
+            if (tf.仅数字)
+                ret &= [text isMatch:RX(@"^[0-9]*$")];
+            else if (tf.仅数字含小数)
+                ret &= [text isMatch:RX(_NSString(@"^[0-9]*%@$", [tf.text componentsSeparatedByString:@"."].count < 2 ? @"[.]?[0-9]*" : @""))];
+            else if (tf.仅数字加字母)
+                ret &= [text isMatch:RX(@"^[0-9A-Za-z]*$")];
+            else if (tf.仅可见的ASCII)
+                ret &= [text isMatch:RX(@"^[\\x20-\\x7E]*$")];    // 不使用原生的正则函数是因为，原生函数会把中文标点符号误认为ASCII符号而匹配通过，比如“。”->"." 或 “，”->","
+            if (!ret)
+                [aInfo.originalInvocation setReturnValue:&ret];
+        } error:nil];
     }
 }
 - (void)set内容紧贴边框:(BOOL)内容紧贴边框 {

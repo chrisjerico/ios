@@ -150,9 +150,9 @@ static NSString *realBetRecordCellId = @"UGRealBetRecordCell";
 
 - (void)rightBarButtonItemClick {
     static NSDate *selectedDate = nil;
-    [self onceToken:ZJOnceToken block:^{
+    if (OBJOnceToken(self)) {
         selectedDate = [NSDate date];
-    }];
+    }
     
     // 选择日期
     __weakSelf_(__self);

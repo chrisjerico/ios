@@ -15,11 +15,11 @@
 #import "UGBetResultView.h"
 
 @interface UGBetDetailView ()<UITableViewDelegate,UITableViewDataSource>
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *totalAmountLabel;
-@property (weak, nonatomic) IBOutlet UIButton *submitButton;
-@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
-@property (weak, nonatomic) IBOutlet UILabel *closeTimeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;       /**<   期数彩种Label */
+@property (weak, nonatomic) IBOutlet UILabel *totalAmountLabel; /**<   总金额Label */
+@property (weak, nonatomic) IBOutlet UIButton *submitButton;    /**<   确认下注Button */
+@property (weak, nonatomic) IBOutlet UIButton *cancelButton;    /**<   取消Button */
+@property (weak, nonatomic) IBOutlet UILabel *closeTimeLabel;   /**<   封盘时间Label */
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) CountDown *countDown;
@@ -128,7 +128,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 	NSDictionary *dict = @{
 		@"token":[UGUserModel currentUser].sessid,
 		@"gameId":self.nextIssueModel.gameId,
-//		@"betIssue":self.nextIssueModel.curIssue,
+		@"betIssue":self.nextIssueModel.curIssue,
 		@"endTime":[self.nextIssueModel.curCloseTime timeStrToTimeInterval],
 		@"totalNum":[NSString stringWithFormat:@"%ld",totalNum],
 		@"totalMoney":amount

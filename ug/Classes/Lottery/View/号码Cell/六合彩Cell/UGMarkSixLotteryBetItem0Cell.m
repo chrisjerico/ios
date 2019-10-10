@@ -31,11 +31,12 @@
     _item = item;
     self.leftLabel.text = item.name;
     self.rightLabel.text = [item.odds removeFloatAllZero];
-
+    self.rightLabel.hidden = [_rightLabel.text isEqualToString:@"0"];
+    
     if (item.select) {
         self.layer.borderColor = UGNavColor.CGColor;
         self.layer.borderWidth = 1;
-    }else {
+    } else {
         self.layer.borderWidth = 0.7;
         self.layer.borderColor = [UIColor whiteColor].CGColor;
     }
@@ -44,10 +45,10 @@
     if (item.odds.length) {
         if ([item.odds containsString:@"/"]) {
             self.leftLabelCenterXConstraint.constant = -25;
-        }else {
+        } else {
             self.leftLabelCenterXConstraint.constant = -15;
         }
-    }else {
+    } else {
         self.leftLabelCenterXConstraint.constant = 0;
     }
 

@@ -13,8 +13,8 @@
 @implementation NSObject (Utils)
 
 _ZJRuntimeProperty_Copy(NSString *, tagString, setTagString)
-_ZJRuntimeProperty_Readonly(NSMutableDictionary *, zj_userInfo, [@{} mutableCopy])
-_ZJRuntimeProperty_Readonly(NSMutableDictionary *, zj_onceToken, [@{} mutableCopy])
+_ZJRuntimeProperty_Readonly(NSMutableDictionary *, cc_userInfo, [@{} mutableCopy])
+_ZJRuntimeProperty_Readonly(NSMutableDictionary *, cc_onceToken, [@{} mutableCopy])
 
 + (NSArray<NSString *> *)methodList {
     NSMutableArray *list = [@[] mutableCopy];
@@ -91,17 +91,6 @@ _ZJRuntimeProperty_Readonly(NSMutableDictionary *, zj_onceToken, [@{} mutableCop
     for (NSString *key in dict.allKeys) {
         NSString *ivar = [@"_" stringByAppendingString:key];
         [self setValue:[obj valueForKey:ivar] forKey:ivar];
-    }
-}
-
-- (void)onceToken:(unsigned long *)onceToken block:(void (^)(void))block {
-    static unsigned long idx = 1;
-    if (*onceToken == 0) {
-        *onceToken = idx++;
-    }
-    if (!self.zj_onceToken[@(*onceToken)]) {
-        self.zj_onceToken[@(*onceToken)] = @true;
-        block();
     }
 }
 

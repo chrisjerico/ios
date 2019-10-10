@@ -160,31 +160,58 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-	[super viewWillAppear:animated];
-	[self.view bringSubviewToFront:self.bottomView];
-	WeakSelf
-	// 轮循刷新封盘时间、开奖时间
-	{
-		static NSTimer *timer = nil;
-		[self onceToken:ZJOnceToken block:^{
-			[timer invalidate];
-			timer = nil;
-		}];
-		timer = [NSTimer scheduledTimerWithInterval:0.2 repeats:true block:^(NSTimer *timer) {
-			[weakSelf updateCloseLabelText];
-			[weakSelf updateOpenLabelText];
-			if (!weakSelf) {
-				[timer invalidate];
-				timer = nil;
-			}
-		}];
-	}
-	// 轮循请求下期数据
-	[self.nextIssueCountDown countDownWithSec:NextIssueSec PER_SECBlock:^{
-		if ([[weakSelf.nextIssueModel.curOpenTime dateWithFormat:@"yyyy-MM-dd HH:mm:ss"] timeIntervalSinceDate:[NSDate date]] < 0) {
-			[weakSelf getNextIssueData];
-		}
-	}];
+//<<<<<<< HEAD
+//	[super viewWillAppear:animated];
+//	[self.view bringSubviewToFront:self.bottomView];
+//	WeakSelf
+//	// 轮循刷新封盘时间、开奖时间
+//	{
+//		static NSTimer *timer = nil;
+//		[self onceToken:ZJOnceToken block:^{
+//			[timer invalidate];
+//			timer = nil;
+//		}];
+//		timer = [NSTimer scheduledTimerWithInterval:0.2 repeats:true block:^(NSTimer *timer) {
+//			[weakSelf updateCloseLabelText];
+//			[weakSelf updateOpenLabelText];
+//			if (!weakSelf) {
+//				[timer invalidate];
+//				timer = nil;
+//			}
+//		}];
+//	}
+//	// 轮循请求下期数据
+//	[self.nextIssueCountDown countDownWithSec:NextIssueSec PER_SECBlock:^{
+//		if ([[weakSelf.nextIssueModel.curOpenTime dateWithFormat:@"yyyy-MM-dd HH:mm:ss"] timeIntervalSinceDate:[NSDate date]] < 0) {
+//			[weakSelf getNextIssueData];
+//		}
+//	}];
+//=======
+    [super viewWillAppear:animated];
+    [self.view bringSubviewToFront:self.bottomView];
+    WeakSelf
+    // 轮循刷新封盘时间、开奖时间
+    {
+        static NSTimer *timer = nil;
+        if (OBJOnceToken(self)) {
+            [timer invalidate];
+            timer = [NSTimer scheduledTimerWithInterval:0.2 repeats:true block:^(NSTimer *timer) {
+                [weakSelf updateCloseLabelText];
+                [weakSelf updateOpenLabelText];
+                if (!weakSelf) {
+                    [timer invalidate];
+                    timer = nil;
+                }
+            }];
+        }
+    }
+    // 轮循请求下期数据
+    [self.nextIssueCountDown countDownWithSec:NextIssueSec PER_SECBlock:^{
+        if ([[weakSelf.nextIssueModel.curOpenTime dateWithFormat:@"yyyy-MM-dd HH:mm:ss"] timeIntervalSinceDate:[NSDate date]] < 0) {
+            [weakSelf getNextIssueData];
+        }
+    }];
+//>>>>>>> 028d6de7f124248928d470cee8018be59624a5d3
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

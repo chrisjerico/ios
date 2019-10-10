@@ -198,14 +198,18 @@ UIActionSheetDelegate> {
     // 若跳转到 lobbyURL地址，则退出页面
     {
         static NSString *host = nil;
-        [self onceToken:ZJOnceToken block:^{
+        if (OBJOnceToken(self)) {
             host = nil;
-        }];
+            [self aspect_hookSelector:@selector(webViewDidFinishLoad:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo>ai) {
+                if (!host.length)
+                    host = [baseServerUrl copy];
+            } error:nil];
+        }
         NSString *url = request.URL.absoluteString;
         if ([url containsString:@"lobbyURL="]) {
             host = [[url componentsSeparatedByString:@"lobbyURL="].lastObject componentsSeparatedByString:@"&"].firstObject;
         }
-        if (host.length && [request.URL.host isEqualToString:host.lastPathComponent]) {
+        if ([request.URL.host isEqualToString:host.lastPathComponent]) {
             [self.navigationController popViewControllerAnimated:true];
         }
     }
