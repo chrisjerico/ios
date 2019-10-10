@@ -286,11 +286,7 @@
         }
         
     }
-//<<<<<<< HEAD
-//
-//=======
-//    
-//>>>>>>> dev_fish
+
     [self setViewControllers:vcs];
     [self setTabbarStyle];
 }

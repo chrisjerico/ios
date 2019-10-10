@@ -461,6 +461,8 @@
 		D48224F722A10B5F00F7DE72 /* UGNoticeHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D48224F622A10B5F00F7DE72 /* UGNoticeHeaderView.xib */; };
 		D48224FA22A120E500F7DE72 /* UGPlatformNoticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D48224F922A120E500F7DE72 /* UGPlatformNoticeModel.m */; };
 		D49649B22324E3FA00BA8872 /* UGinviteInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D49649B12324E3FA00BA8872 /* UGinviteInfoModel.m */; };
+		D4997331234F16A7000ECBA3 /* UGgoBindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D499732F234F16A7000ECBA3 /* UGgoBindViewController.m */; };
+		D4997332234F16A7000ECBA3 /* UGgoBindViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4997330234F16A7000ECBA3 /* UGgoBindViewController.xib */; };
 		D499B7A82323C67D00EF92C1 /* UGCreditsLogModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D499B7A72323C67D00EF92C1 /* UGCreditsLogModel.m */; };
 		D49A36BF22A29C7A000057D2 /* UGLotteryRulesView.m in Sources */ = {isa = PBXBuildFile; fileRef = D49A36BE22A29C7A000057D2 /* UGLotteryRulesView.m */; };
 		D49A36C122A29CCB000057D2 /* UGLotteryRulesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D49A36C022A29CCB000057D2 /* UGLotteryRulesView.xib */; };
@@ -1464,6 +1466,9 @@
 		D48224F922A120E500F7DE72 /* UGPlatformNoticeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGPlatformNoticeModel.m; sourceTree = "<group>"; };
 		D49649B02324E3FA00BA8872 /* UGinviteInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGinviteInfoModel.h; sourceTree = "<group>"; };
 		D49649B12324E3FA00BA8872 /* UGinviteInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGinviteInfoModel.m; sourceTree = "<group>"; };
+		D499732E234F16A7000ECBA3 /* UGgoBindViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGgoBindViewController.h; sourceTree = "<group>"; };
+		D499732F234F16A7000ECBA3 /* UGgoBindViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGgoBindViewController.m; sourceTree = "<group>"; };
+		D4997330234F16A7000ECBA3 /* UGgoBindViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGgoBindViewController.xib; sourceTree = "<group>"; };
 		D499B7A62323C67D00EF92C1 /* UGCreditsLogModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGCreditsLogModel.h; sourceTree = "<group>"; };
 		D499B7A72323C67D00EF92C1 /* UGCreditsLogModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGCreditsLogModel.m; sourceTree = "<group>"; };
 		D49A36BD22A29C7A000057D2 /* UGLotteryRulesView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLotteryRulesView.h; sourceTree = "<group>"; };
@@ -2128,6 +2133,9 @@
 				D40FA8BC229904D9003E596F /* UGBankCardInfoController.m */,
 				D40D32C12297BED600B89398 /* UGSetupPayPwdController.h */,
 				D40D32C22297BED600B89398 /* UGSetupPayPwdController.m */,
+				D499732E234F16A7000ECBA3 /* UGgoBindViewController.h */,
+				D499732F234F16A7000ECBA3 /* UGgoBindViewController.m */,
+				D4997330234F16A7000ECBA3 /* UGgoBindViewController.xib */,
 			);
 			path = "银行卡管理";
 			sourceTree = "<group>";
@@ -2533,13 +2541,13 @@
 			isa = PBXGroup;
 			children = (
 				CFD3BE992347137E00FCDA6D /* IBView.h */,
-				CFD3BE9A2347137E00FCDA6D /* category.m */,
-				CFD3BE9B2347137E00FCDA6D /* IBButton.h */,
-				CFD3BE9C2347137E00FCDA6D /* IBTextField.m */,
-				CFD3BE9D2347137E00FCDA6D /* IBButton.m */,
-				CFD3BE9E2347137E00FCDA6D /* category.h */,
 				CFD3BE9F2347137E00FCDA6D /* IBView.m */,
+				CFD3BE9E2347137E00FCDA6D /* category.h */,
+				CFD3BE9A2347137E00FCDA6D /* category.m */,
 				CFD3BEA02347137E00FCDA6D /* IBTextField.h */,
+				CFD3BE9C2347137E00FCDA6D /* IBTextField.m */,
+				CFD3BE9B2347137E00FCDA6D /* IBButton.h */,
+				CFD3BE9D2347137E00FCDA6D /* IBButton.m */,
 			);
 			path = "IBInspectable Views";
 			sourceTree = "<group>";
@@ -4327,6 +4335,7 @@
 				D4BBFC06232A80A800147C4A /* UGFundsTransferView.xib in Resources */,
 				D417EFD02330A4880024F634 /* UGredEnvelopeView.xib in Resources */,
 				CFD3BF432347241000FCDA6D /* Promote.storyboard in Resources */,
+				D4997332234F16A7000ECBA3 /* UGgoBindViewController.xib in Resources */,
 				D4B6E6F122D332720006B03F /* UGHomeTitleView.xib in Resources */,
 				D4EE8F98234222A8006FA0E2 /* UGSkinCollectionViewCell.xib in Resources */,
 				D4D8DF812287065F00446BAF /* UGTimeLotteryBetHeaderView.xib in Resources */,
@@ -4530,6 +4539,7 @@
 				D40DE99722F4866600974BAF /* UGImgVcodeModel.m in Sources */,
 				D4C46F92232B88BF0062564D /* UGFunds2microcodeView.m in Sources */,
 				D4AE640D2295871D00DD265A /* MJRefreshConst.m in Sources */,
+				D4997331234F16A7000ECBA3 /* UGgoBindViewController.m in Sources */,
 				D405B228227972DD00F8C586 /* SVRadialGradientLayer.m in Sources */,
 				D4D8DF762286F01100446BAF /* UGTimeLotteryLeftTitleCell.m in Sources */,
 				D4087DAF22951F15000C4CB0 /* CMNetwork+Mine.m in Sources */,

@@ -15,6 +15,7 @@
 #import "UGGoogleAuthenticationFirstViewController.h"
 #import "UGBindCardViewController.h"
 #import "UGSetupPayPwdController.h"
+#import "UGgoBindViewController.h"
 @interface UGSecurityCenterViewController ()<XYYSegmentControlDelegate>
 @property (nonatomic, strong) XYYSegmentControl *slideSwitchView;
 @property (nonatomic,strong)   NSMutableArray *itemArray;
@@ -119,12 +120,12 @@
             UGModifyPayPwdController *payVC = [storyboard instantiateViewControllerWithIdentifier:@"UGModifyPayPwdController"];
             return payVC;
         }else {
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGBindCardViewController" bundle:nil];
-//            UGBindCardViewController *bankCardVC = [storyboard instantiateViewControllerWithIdentifier:@"UGBindCardViewController"];
-//            return bankCardVC;
-            
-            UGSetupPayPwdController *fundVC = [storyboard instantiateViewControllerWithIdentifier:@"UGSetupPayPwdController"];
-            return fundVC;
+//            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGBindCardViewController" bundle:nil];
+//
+//            UGSetupPayPwdController *fundVC = [storyboard instantiateViewControllerWithIdentifier:@"UGSetupPayPwdController"];
+//            return fundVC;
+            UGgoBindViewController *vc = [UGgoBindViewController new];
+            return vc;
         }
        
     }
