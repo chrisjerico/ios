@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *typeName;
+@property (nonatomic, strong) NSString *from_id;
 
 @end
 
@@ -47,6 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *maxMoney;       /**<   单注最高投注金额 */
 @property (nonatomic, strong) NSString *maxTurnMoney;   /**<   单期最高投注金额 */
 @property (nonatomic, assign) BOOL isBan;
+@property (nonatomic, strong) NSString *from_id;
 
 
 @property (nonatomic, strong) NSString *rebate;

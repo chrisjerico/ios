@@ -29,4 +29,6 @@ pod 'FSCalendar'        # 日历控件
  #路由器
 pod 'FFRouter'
 
+pod 'JPush'
+
 end
