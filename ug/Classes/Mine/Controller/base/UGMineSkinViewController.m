@@ -109,35 +109,30 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     SANotificationEventPost(UGNotificationGetUserInfo, nil);
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     [self.refreshFirstButton.layer removeAllAnimations];
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    
-    if (self.refreshFirstButton.selected) {
+    [super viewDidAppear:animated];
+    if (self.refreshFirstButton.selected)
         [self startAnimation];
-        
-    }
-    
 }
 
 - (void)showAvaterSelectView {
     UGAvaterSelectView *avaterView = [[UGAvaterSelectView alloc] initWithFrame:CGRectMake(0, UGScerrnH, UGScreenW, UGScreenW)];
     [avaterView show];
-    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
     //注册通知
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-        
         [self skin];
     });
     SANotificationEventSubscribe(UGNotificationUserLogout, self, ^(typeof (self) self, id obj) {
@@ -169,17 +164,16 @@
     [self.view setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
     [self.userInfoView setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
     
-  
+    
     skitType = [[UGSkinManagers shareInstance] skitType];
     
-    if ([skitType isEqualToString:@"经典"]||[skitType isEqualToString:@"六合资料"]) {
+    if ([skitType isEqualToString:@"经典"] || [skitType isEqualToString:@"六合资料"]) {
         self.topupView.hidden = YES;
         self.topupViewNSLayoutConstraintHight.constant = 0.1;
     }
-    else{
+    else {
         self.topupView.hidden = NO;
         self.topupViewNSLayoutConstraintHight.constant = 60;
-      
         [CMCommon setBorderWithView:self.topupView top:NO left:NO bottom:YES right:NO borderColor: UGRGBColor(236, 235, 235) borderWidth:1];
     }
     

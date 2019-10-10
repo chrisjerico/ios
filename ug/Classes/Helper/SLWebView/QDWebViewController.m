@@ -199,7 +199,11 @@ UIActionSheetDelegate> {
     {
         static NSString *host = nil;
         if (OBJOnceToken(self)) {
-            host = [baseServerUrl copy];
+            host = nil;
+            [self aspect_hookSelector:@selector(webViewDidFinishLoad:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo>ai) {
+                if (!host.length)
+                    host = [baseServerUrl copy];
+            } error:nil];
         }
         NSString *url = request.URL.absoluteString;
         if ([url containsString:@"lobbyURL="]) {

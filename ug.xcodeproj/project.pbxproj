@@ -660,6 +660,7 @@
 		CF3B0E352349CDA50035AF50 /* UGCalenderAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGCalenderAlertView.h; sourceTree = "<group>"; };
 		CF3B0E362349CDA50035AF50 /* UGCalenderAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGCalenderAlertView.m; sourceTree = "<group>"; };
 		CF3B0E382349CDAC0035AF50 /* UGCalenderAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGCalenderAlertView.xib; sourceTree = "<group>"; };
+		CFAAE7E9234F2AC600443E1A /* ug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ug.entitlements; sourceTree = "<group>"; };
 		CFD3BE972347137E00FCDA6D /* FishUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishUtility.h; sourceTree = "<group>"; };
 		CFD3BE992347137E00FCDA6D /* IBView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBView.h; sourceTree = "<group>"; };
 		CFD3BE9A2347137E00FCDA6D /* category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = category.m; sourceTree = "<group>"; };
@@ -3671,6 +3672,7 @@
 		D4B75E0B2278025E0007047C /* ug */ = {
 			isa = PBXGroup;
 			children = (
+				CFAAE7E9234F2AC600443E1A /* ug.entitlements */,
 				D4B75E22227811D50007047C /* Classes */,
 			);
 			path = ug;
@@ -5066,6 +5068,7 @@
 			baseConfigurationReference = E98695D8DC0D2512B92A7C32 /* Pods-ug.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ug/ug.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X33J5AQVAV;
@@ -5090,6 +5093,7 @@
 			baseConfigurationReference = 443C93C1135A8C900E47477A /* Pods-ug.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ug/ug.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X33J5AQVAV;
