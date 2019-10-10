@@ -964,15 +964,10 @@
 
 
     if (@available(iOS 13.0, *)) {
-//            id _statusBar = nil;
-//        if ([UIStatusBarManager respondsToSelector:@selector(createLocalStatusBar)]) {
-//            UIView *statusBar = [UIStatusBarManager performSelector:@selector(createLocalStatusBar)];
-//               if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
-//
-//                              statusBar.backgroundColor = [self navbarbgColor:skitType];
-//
-//                }
-//            }
+
+        UIView *stateView = [[UIView alloc] initWithFrame:CGRectMake(0, -k_Height_StatusBar, UGScreenW, k_Height_StatusBar)];
+        [tabbar.nvcHome.navigationBar addSubview:stateView];
+        stateView.backgroundColor = [self navbarbgColor:skitType];
     }
     else{
         //   bug: iOS13 崩溃
