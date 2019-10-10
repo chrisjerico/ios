@@ -412,14 +412,22 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                 if ([@"自选不中" isEqualToString:type.name]) {
                     NSMutableString *str = [[NSMutableString alloc] init];
                     NSInteger count = 0;
+					UGGameBetModel *betModel;
+
                     for (UGGameBetModel *bet in type.list) {
                         if (bet.select) {
                             count += 1;
                             [str appendString:[NSString stringWithFormat:@",%@",bet.name]];
                         }
                     }
+					
+					for (UGGameBetModel * model in type.lhcOddsArray) {
+						
+						if (model.name.intValue == count) {
+							betModel = model;
+						}
+					}
                     
-                    UGGameBetModel *betModel = type.lhcOddsArray[count - 5];
                     betModel.select = 1;
                     betModel.name = [str substringFromIndex:1];
                     NSArray *array = [NSArray arrayWithObject:betModel];
