@@ -234,7 +234,7 @@
     self.vcs = [NSMutableArray new];
     for (int i = 0; i<ageSortResultArray.count; i++) {
         UGmobileMenu *menu = [ageSortResultArray objectAtIndex:i];
-         UIViewController *ret = [FFRouter routeObjectURL:menu.path];
+//         UIViewController *ret = [FFRouter routeObjectURL:menu.path];
         
         if ([menu.path isEqualToString:@"/home"]) {
             [vcs addObject:nvcHome];
