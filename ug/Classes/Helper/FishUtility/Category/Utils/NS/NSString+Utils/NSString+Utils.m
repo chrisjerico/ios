@@ -338,6 +338,30 @@
     return nil;
 }
 
+- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(__unsafe_unretained id  _Nullable [])buffer count:(NSUInteger)len {
+    NSUInteger count = 0;
+    
+    unsigned long countOfItemsAlreadyEnumerated = state->state;
+    
+    if (countOfItemsAlreadyEnumerated == 0) {
+        state->mutationsPtr = &state->extra[0];
+    }
+    
+    if (countOfItemsAlreadyEnumerated < [self length]) {
+        state->itemsPtr = buffer;
+        while ((countOfItemsAlreadyEnumerated < [self length]) && (count < len)) {
+            buffer[count] = [self objectAtIndexedSubscript:countOfItemsAlreadyEnumerated];
+            countOfItemsAlreadyEnumerated++;
+            count++;
+        }
+    } else {
+        count = 0;
+    }
+    
+    state->state = countOfItemsAlreadyEnumerated;
+    return count;
+}
+
 @end
 
 

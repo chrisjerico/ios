@@ -128,7 +128,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 	NSDictionary *dict = @{
 		@"token":[UGUserModel currentUser].sessid,
 		@"gameId":self.nextIssueModel.gameId,
-//		@"betIssue":self.nextIssueModel.curIssue,
+		@"betIssue":self.nextIssueModel.curIssue,
 		@"endTime":[self.nextIssueModel.curCloseTime timeStrToTimeInterval],
 		@"totalNum":[NSString stringWithFormat:@"%ld",totalNum],
 		@"totalMoney":amount
