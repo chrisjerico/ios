@@ -29,6 +29,7 @@ pod 'FSCalendar'        # 日历控件
  #路由器
 pod 'FFRouter'
 
-pod 'JPush'
+pod 'JPush', '3.2.2-noidfa'
+
 
 end
