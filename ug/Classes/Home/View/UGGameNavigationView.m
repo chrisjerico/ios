@@ -63,8 +63,16 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-	
-	[[NSNotificationCenter defaultCenter] postNotification: [NSNotification notificationWithName:@"gameNavigationItemTaped" object: self.sourceData[indexPath.item]]];
+    BOOL isLogin = UGLoginIsAuthorized();
+    if (isLogin) {
+        
+       [[NSNotificationCenter defaultCenter] postNotification: [NSNotification notificationWithName:@"gameNavigationItemTaped" object: self.sourceData[indexPath.item]]];
+    }
+    else{
+        
+        SANotificationEventPost(UGNotificationShowLoginView, nil);
+    }
+ 
 }
 #pragma mark ---- UICollectionViewDelegateFlowLayout
 
@@ -99,6 +107,7 @@
 {
 	UIImageView * _iconImage;
 	UILabel * _titleLabel;
+     UIImageView * _hotImage;
 }
 
 @end
@@ -111,7 +120,7 @@
 	if (self) {
 		
         
-        
+        _hotImage = [UIImageView new];
 		_iconImage = [UIImageView new];
 		_titleLabel = [UILabel new];
 		_titleLabel.textColor = [UIColor blackColor];
@@ -122,11 +131,20 @@
 			make.centerX.equalTo(self);
 			make.width.height.equalTo(@40);
 		}];
+        [self addSubview:_hotImage];
+        [_hotImage mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self);
+            make.left.equalTo(self->_iconImage.mas_left).offset(20);
+            make.right.equalTo(self->_iconImage.mas_right);
+            make.width.equalTo(@24);
+            make.height.equalTo(@12);
+        }];
 		[self addSubview:_titleLabel];
 		[_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.centerX.equalTo(self);
 			make.bottom.equalTo(self).offset(-10);
 		}];
+
 		
 	}
 	return self;
@@ -136,6 +154,12 @@
 	_model = model;
 	[_iconImage sd_setImageWithURL:[NSURL URLWithString:model.icon]];
 	_titleLabel.text = model.name;
+    if ([model.tipFlag isEqualToString:@"1"]) {
+        [_hotImage setHidden:NO];
+    } else {
+          [_hotImage setHidden:YES];
+    }
+    [_hotImage setImage:[UIImage imageNamed:@"icon_remen"]];
 }
 
 @end

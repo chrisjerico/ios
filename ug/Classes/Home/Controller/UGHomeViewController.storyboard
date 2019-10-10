@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Qlk-11-xZ9">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Qlk-11-xZ9">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -229,19 +231,29 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oSF-74-EZt">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="28"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="💻iphone版 🎁优惠活动" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vq9-5e-sW1">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="💻电脑版 🎁优惠活动" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vq9-5e-sW1">
                                                                 <rect key="frame" x="0.0" y="12" width="414" height="16"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R7I-zH-nNS">
+                                                                <rect key="frame" x="0.0" y="0.0" width="414" height="28"/>
+                                                                <connections>
+                                                                    <action selector="goPCVC:" destination="Qlk-11-xZ9" eventType="touchUpInside" id="Hh1-5r-i9V"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="bottom" secondItem="Vq9-5e-sW1" secondAttribute="bottom" id="34N-uS-Myf"/>
+                                                            <constraint firstAttribute="trailing" secondItem="R7I-zH-nNS" secondAttribute="trailing" id="34c-kh-eLs"/>
                                                             <constraint firstItem="Vq9-5e-sW1" firstAttribute="leading" secondItem="oSF-74-EZt" secondAttribute="leading" id="5Y9-it-nkX"/>
                                                             <constraint firstAttribute="height" constant="28" id="EA9-PG-McH"/>
+                                                            <constraint firstItem="R7I-zH-nNS" firstAttribute="leading" secondItem="oSF-74-EZt" secondAttribute="leading" id="WR5-Lb-nZT"/>
+                                                            <constraint firstAttribute="bottom" secondItem="R7I-zH-nNS" secondAttribute="bottom" id="Wc9-6w-RZF"/>
                                                             <constraint firstAttribute="trailing" secondItem="Vq9-5e-sW1" secondAttribute="trailing" id="mep-Bf-a8q"/>
+                                                            <constraint firstItem="R7I-zH-nNS" firstAttribute="top" secondItem="oSF-74-EZt" secondAttribute="top" id="zKR-vn-fYq"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>

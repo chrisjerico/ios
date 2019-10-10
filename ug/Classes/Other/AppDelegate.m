@@ -52,30 +52,35 @@
 @synthesize tabbar;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
+    
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    tabbar = [[UGTabbarController alloc] init];
+    tabbar.delegate = self;
+    UGLaunchPageVC *vc =  [UGLaunchPageVC new];
+    vc.tabbar = self.tabbar;
+    
+    self.window.rootViewController = vc;
+    [self.window makeKeyAndVisible];
+    
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    [SVProgressHUD setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.7]];
+    [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
+    
+    [IQKeyboardManager sharedManager].enable = YES;
+    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
+    
+     [self ug_setupAppDelegate];
 	
-	self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-	//    tabbar = [[UGTabbarController alloc] init];
-	//    tabbar.delegate = self;
-	self.window.rootViewController = [UGLaunchPageVC new];
-	[self.window makeKeyAndVisible];
-	
-	[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-	[SVProgressHUD setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.7]];
-	[SVProgressHUD setForegroundColor:[UIColor whiteColor]];
-	[SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
-	
-	[IQKeyboardManager sharedManager].enable = YES;
-	[IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
-	
-	[self ug_setupAppDelegate];
 	
 	[JPUSHService setupWithOption:launchOptions appKey:@"21d1b87f65b557d2946af463"
 						  channel:@"develop"
 				 apsForProduction:false
 			advertisingIdentifier:nil];
-	//    版本更新
-	//    [[UGAppVersionManager shareInstance] updateVersionNow:YES];
-	
+//    版本更新
+//    [[UGAppVersionManager shareInstance] updateVersionNow:YES];
+    
 #ifdef DEBUG
 	[LogVC enableLogVC];
 #endif

@@ -119,27 +119,30 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
     UGNoticeModel *nm = self.dataArray[indexPath.section];
     
     // 加载html
-    UIWebView *wv = [cell viewWithTagString:@"WebView"];
-    [wv removeFromSuperview];
-    wv = [UIWebView new];
-    wv.backgroundColor = [UIColor clearColor];
-    wv.tagString = @"WebView";
-    [wv xw_addObserverBlockForKeyPath:@"scrollView.contentSize" block:^(id  _Nonnull obj, id  _Nonnull oldVal, id  _Nonnull newVal) {
-        CGFloat h = [newVal CGSizeValue].height;
-        [obj mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(h);
+    {
+        UIWebView *wv = [cell viewWithTagString:@"WebView"];
+        [wv removeFromSuperview];
+        wv = [UIWebView new];
+        wv.backgroundColor = [UIColor clearColor];
+        wv.tagString = @"WebView";
+        [wv xw_addObserverBlockForKeyPath:@"scrollView.contentSize" block:^(id  _Nonnull obj, id  _Nonnull oldVal, id  _Nonnull newVal) {
+            CGFloat h = [newVal CGSizeValue].height;
+            [obj mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.height.mas_equalTo(h);
+            }];
+            [tableView beginUpdates];
+            [tableView endUpdates];
         }];
-        [tableView beginUpdates];
-        [tableView endUpdates];
-    }];
-    [cell addSubview:wv];
+        [cell addSubview:wv];
+        
+        [wv mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.equalTo(cell).offset(-2);
+            make.top.bottom.equalTo(cell).offset(2);
+            make.height.mas_equalTo(60);
+        }];
+        [wv loadHTMLString:_NSString(@"<head><style>img{width:%f !important;height:auto}</style></head>%@", cell.width-20, nm.content) baseURL:nil];
+    }
     
-    [wv mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(cell).offset(-2);
-        make.top.bottom.equalTo(cell).offset(2);
-        make.height.mas_equalTo(60);
-    }];
-    [wv loadHTMLString:_NSString(@"<head><style>img{width:%f !important;height:auto}</style></head>%@", cell.width-20, nm.content) baseURL:nil];
     
     // webview 上下各一条线
     UIView *topLineView = [cell viewWithTagString:@"topLineView"];

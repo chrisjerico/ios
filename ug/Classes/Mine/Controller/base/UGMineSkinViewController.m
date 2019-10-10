@@ -751,16 +751,11 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
             }];
         }else {
             
-            if (user.isAgent) {
+
                 UGPromotionIncomeController *incomeVC = [[UGPromotionIncomeController alloc] init];
                 [self.navigationController pushViewController:incomeVC animated:YES];
-            }
-            else{
-                
-                [self.navigationController.view makeToast:@"会员中心申请代理已关闭"
-                                                 duration:1.5
-                                                 position:CSToastPositionCenter];
-            }
+
+           
             
         }
     } else if ([title isEqualToString:@"申请代理"]) {

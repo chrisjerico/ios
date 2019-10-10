@@ -103,6 +103,9 @@ static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
             self.mUGdepositModel = model.data;
             NSLog(@"odel.data = %@",model.data);
             
+            NSLog(@"转账提示 = %@",self.mUGdepositModel.depositPrompt);
+            
+            
 //            self.tableViewDataArray = self.mUGdepositModel.payment;
             NSOperationQueue *waitQueue = [[NSOperationQueue alloc] init];
             [waitQueue addOperationWithBlock:^{

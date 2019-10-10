@@ -86,7 +86,9 @@
     
      channelModel.paymentid = self.item.pid;
      [self.uGFundsTransferView setItem:channelModel];
-     self.tiplabel .text = self.item.depositPrompt;
+    self.tip2label.text = self.item.depositPrompt;
+    
+
     self.label.text = self.item.prompt;
     
     if ([CMCommon arryIsNull:self->_blankDataArray]) {

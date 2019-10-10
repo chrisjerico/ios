@@ -219,7 +219,7 @@
     NSLog(@"imagerStr = %@",imagerStr);
     
     if (![CMCommon stringIsNull:user.curLevelGrade]) {
-        if (user.curLevelGrade.length>4) {
+        if (user.curLevelGrade.length>=4) {
             NSString *subStr = [user.curLevelGrade substringFromIndex:3];
             
             int levelsInt = [subStr intValue];
@@ -245,7 +245,7 @@
     }
     
     if (![CMCommon stringIsNull:user.nextLevelGrade]) {
-        if (user.nextLevelGrade.length>4) {
+        if (user.nextLevelGrade.length>=4) {
             NSString *sub2Str = [user.nextLevelGrade substringFromIndex:3];
             
             int levels2Int = [sub2Str intValue];
