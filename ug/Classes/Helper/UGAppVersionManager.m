@@ -62,12 +62,19 @@
     
     if (![self.versionModle.versionName isEqualToString:versionCode]) {
         
-        if (self.versionModle.switchUpdate) {
+        if (self.versionModle.isIncUpdate) {
             isForce = YES;
         }
+		
+		NSString * updateContent;
+		if (self.versionModle.updateContent.length > 0) {
+			updateContent = self.versionModle.updateContent;
+		} else {
+			updateContent = @"检测到新版本，更新体验全新活动！";
+		}
         if (isForce) {//强制升级
-            [QDAlertView showWithTitle:@"升级提示"
-                               message:self.versionModle.updateContent
+            [QDAlertView showWithTitle:@"新版本上线"
+                               message:updateContent
                      cancelButtonTitle:nil
                       otherButtonTitle:@"去升级"
                        completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
@@ -77,8 +84,8 @@
 
         }else{
             
-        [QDAlertView showWithTitle:@"升级提示"
-                           message:self.versionModle.updateContent
+        [QDAlertView showWithTitle:@"新版本上线"
+                           message:updateContent
                  cancelButtonTitle:@"取消"
                   otherButtonTitle:@"去升级"
                    completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
@@ -91,7 +98,7 @@
         
         }
     }else if(flag){
-        [QDAlertView showWithTitle:@"升级提示"
+        [QDAlertView showWithTitle:@"新版本上线"
                            message:@"您已经是最新版本！"
                  cancelButtonTitle:nil
                   otherButtonTitle:@"确定"

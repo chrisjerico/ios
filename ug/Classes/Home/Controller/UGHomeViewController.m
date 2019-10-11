@@ -770,7 +770,7 @@
                 subLabel(@"优惠活动Label").text = pm.title;
                 [subImageView(@"优惠活动ImageView") sd_setImageWithURL:[NSURL URLWithString:pm.pic] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
                     if (image) {
-                        subImageView(@"优惠活动ImageView").zj_constraints.height.constant = image.height/image.width * (APP.Width - 48);
+                        subImageView(@"优惠活动ImageView").cc_constraints.height.constant = image.height/image.width * (APP.Width - 48);
                     }
                 }];
                 [subButton(@"优惠活动Button") removeActionBlocksForControlEvents:UIControlEventTouchUpInside];

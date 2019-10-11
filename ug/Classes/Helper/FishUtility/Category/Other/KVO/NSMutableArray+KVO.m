@@ -69,30 +69,30 @@ NSString *const kNSMutableArrayKindDidExchangeObject   = @"kNSMutableArrayKindDi
     dispatch_once(&onceToken, ^{
 
         // 增删改
-        [objc_getClass("__NSArrayM") jr_swizzleMethod:@selector(zj_insertObject:atIndex:) withMethod:@selector(insertObject:atIndex:) error:nil];           // 只要是添加都会调这一函数
+        [objc_getClass("__NSArrayM") jr_swizzleMethod:@selector(cc_insertObject:atIndex:) withMethod:@selector(insertObject:atIndex:) error:nil];           // 只要是添加都会调这一函数
 
-        [objc_getClass("__NSArrayM") jr_swizzleMethod:@selector(zj_removeObjectAtIndex:) withMethod:@selector(removeObjectAtIndex:) error:nil];             // 除removeAllObjects外，只要是移除都会调用此函数
-        [objc_getClass("__NSArrayM") jr_swizzleMethod:@selector(zj_removeAllObjects) withMethod:@selector(removeAllObjects) error:nil];
+        [objc_getClass("__NSArrayM") jr_swizzleMethod:@selector(cc_removeObjectAtIndex:) withMethod:@selector(removeObjectAtIndex:) error:nil];             // 除removeAllObjects外，只要是移除都会调用此函数
+        [objc_getClass("__NSArrayM") jr_swizzleMethod:@selector(cc_removeAllObjects) withMethod:@selector(removeAllObjects) error:nil];
 
-        [objc_getClass("__NSArrayM") jr_swizzleMethod:@selector(zj_replaceObjectAtIndex:withObject:) withMethod:@selector(replaceObjectAtIndex:withObject:) error:nil]; // 除setObject:atIndex:外，只要是替换都回调此函数
-        [objc_getClass("__NSArrayM") jr_swizzleMethod:@selector(zj_setObject:atIndex:) withMethod:@selector(setObject:atIndex:) error:nil];
+        [objc_getClass("__NSArrayM") jr_swizzleMethod:@selector(cc_replaceObjectAtIndex:withObject:) withMethod:@selector(replaceObjectAtIndex:withObject:) error:nil]; // 除setObject:atIndex:外，只要是替换都回调此函数
+        [objc_getClass("__NSArrayM") jr_swizzleMethod:@selector(cc_setObject:atIndex:) withMethod:@selector(setObject:atIndex:) error:nil];
 
 
         // 排序
-        [objc_getClass("__NSArrayM") jr_swizzleMethod:@selector(zj_exchangeObjectAtIndex:withObjectAtIndex:) withMethod:@selector(exchangeObjectAtIndex:withObjectAtIndex:) error:nil];
-        [objc_getClass("__NSArrayM") jr_swizzleMethod:@selector(zj_sortUsingComparator:) withMethod:@selector(sortUsingComparator:) error:nil];
-        [objc_getClass("__NSArrayM") jr_swizzleMethod:@selector(zj_sortWithOptions:usingComparator:) withMethod:@selector(sortWithOptions:usingComparator:) error:nil];
+        [objc_getClass("__NSArrayM") jr_swizzleMethod:@selector(cc_exchangeObjectAtIndex:withObjectAtIndex:) withMethod:@selector(exchangeObjectAtIndex:withObjectAtIndex:) error:nil];
+        [objc_getClass("__NSArrayM") jr_swizzleMethod:@selector(cc_sortUsingComparator:) withMethod:@selector(sortUsingComparator:) error:nil];
+        [objc_getClass("__NSArrayM") jr_swizzleMethod:@selector(cc_sortWithOptions:usingComparator:) withMethod:@selector(sortWithOptions:usingComparator:) error:nil];
     });
 }
 
 
 #pragma mark 增删改
 
-- (void)zj_insertObject:(id)anObject atIndex:(NSUInteger)index {
+- (void)cc_insertObject:(id)anObject atIndex:(NSUInteger)index {
     if (index > self.count || !anObject)
         return;
 
-    [self zj_insertObject:anObject atIndex:index];
+    [self cc_insertObject:anObject atIndex:index];
 
     for (NSObject *observer in self.observers) {
         if ([observer respondsToSelector:@selector(array:didInsertObject:index:)])
@@ -103,12 +103,12 @@ NSString *const kNSMutableArrayKindDidExchangeObject   = @"kNSMutableArrayKindDi
     }
 }
 
-- (void)zj_removeObjectAtIndex:(NSUInteger)index {
+- (void)cc_removeObjectAtIndex:(NSUInteger)index {
     if (index >= self.count)
         return;
 
     id anObject = self[index];
-    [self zj_removeObjectAtIndex:index];
+    [self cc_removeObjectAtIndex:index];
 
     for (NSObject *observer in self.observers) {
         if ([observer respondsToSelector:@selector(array:didRemoveObject:index:)])
@@ -119,14 +119,14 @@ NSString *const kNSMutableArrayKindDidExchangeObject   = @"kNSMutableArrayKindDi
     }
 }
 
-- (void)zj_removeAllObjects {
+- (void)cc_removeAllObjects {
     for (NSObject *observer in self.observers) {
         if ([observer respondsToSelector:@selector(arrayWillRemoveAllObjects:)])
             [observer arrayWillRemoveAllObjects:self];
     }
 
     NSArray *oldArray = [self copy];
-    [self zj_removeAllObjects];
+    [self cc_removeAllObjects];
 
     for (NSObject *observer in self.observers) {
         if ([observer respondsToSelector:@selector(array:didChange:)])
@@ -134,12 +134,12 @@ NSString *const kNSMutableArrayKindDidExchangeObject   = @"kNSMutableArrayKindDi
     }
 }
 
-- (void)zj_replaceObjectAtIndex:(NSUInteger)index withObject:(id)anObject {
+- (void)cc_replaceObjectAtIndex:(NSUInteger)index withObject:(id)anObject {
     if (index >= self.count || !anObject)
         return;
 
     id oldObject = self[index];
-    [self zj_replaceObjectAtIndex:index withObject:anObject];
+    [self cc_replaceObjectAtIndex:index withObject:anObject];
 
     for (NSObject *observer in self.observers) {
         if ([observer respondsToSelector:@selector(array:didReplaceObject:index:newObject:)])
@@ -150,7 +150,7 @@ NSString *const kNSMutableArrayKindDidExchangeObject   = @"kNSMutableArrayKindDi
     }
 }
 
-- (void)zj_setObject:(id)anObject atIndex:(NSUInteger)idx {
+- (void)cc_setObject:(id)anObject atIndex:(NSUInteger)idx {
     if (idx > self.count || !anObject)
         return;
 
@@ -160,7 +160,7 @@ NSString *const kNSMutableArrayKindDidExchangeObject   = @"kNSMutableArrayKindDi
     }
 
     id oldObject = self[idx];
-    [self zj_setObject:anObject atIndex:idx];
+    [self cc_setObject:anObject atIndex:idx];
 
     for (NSObject *observer in self.observers) {
         if ([observer respondsToSelector:@selector(array:didReplaceObject:index:newObject:)])
@@ -174,11 +174,11 @@ NSString *const kNSMutableArrayKindDidExchangeObject   = @"kNSMutableArrayKindDi
 
 #pragma mark 排序
 
-- (void)zj_exchangeObjectAtIndex:(NSUInteger)idx1 withObjectAtIndex:(NSUInteger)idx2 {
+- (void)cc_exchangeObjectAtIndex:(NSUInteger)idx1 withObjectAtIndex:(NSUInteger)idx2 {
     if (idx1 >= self.count || idx2 >= self.count)
         return;
 
-    [self zj_exchangeObjectAtIndex:idx1 withObjectAtIndex:idx2];
+    [self cc_exchangeObjectAtIndex:idx1 withObjectAtIndex:idx2];
 
     for (NSObject *observer in self.observers) {
         if ([observer respondsToSelector:@selector(array:didExchangeObjectAtIndex:withObjectAtIndex:)])
@@ -189,9 +189,9 @@ NSString *const kNSMutableArrayKindDidExchangeObject   = @"kNSMutableArrayKindDi
     }
 }
 
-- (void)zj_sortUsingComparator:(NSComparator)cmptr {
+- (void)cc_sortUsingComparator:(NSComparator)cmptr {
     NSArray *oldArray = [self copy];
-    [self zj_sortUsingComparator:cmptr];
+    [self cc_sortUsingComparator:cmptr];
 
     for (NSObject *observer in self.observers) {
         if ([observer respondsToSelector:@selector(array:didSortWithOldArray:)])
@@ -199,9 +199,9 @@ NSString *const kNSMutableArrayKindDidExchangeObject   = @"kNSMutableArrayKindDi
     }
 }
 
-- (void)zj_sortWithOptions:(NSSortOptions)opts usingComparator:(NSComparator)cmptr {
+- (void)cc_sortWithOptions:(NSSortOptions)opts usingComparator:(NSComparator)cmptr {
     NSArray *oldArray = [self copy];
-    [self zj_sortWithOptions:opts usingComparator:cmptr];
+    [self cc_sortWithOptions:opts usingComparator:cmptr];
 
     for (NSObject *observer in self.observers) {
         if ([observer respondsToSelector:@selector(array:didSortWithOldArray:)])

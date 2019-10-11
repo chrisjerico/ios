@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@class ZJSessionModel;
+@class CCSessionModel;
 
 @interface UITableView (RefreshRequest)
 
@@ -17,7 +17,7 @@
 @property (nonatomic) NSInteger willClearDataArray;         /**<    下次mj_footer刷新时会先清空旧的dataArray数据 */
 @property (nonatomic) UIView *footerView;                   /**<    使用setup函数后设置tableFooterView将无效，如需设置请使用此参数 */
 
-- (void)setupHeaderRefreshRequest:(ZJSessionModel *(^)(UITableView *tv))request completion:(NSArray *(^)(UITableView *tv, ZJSessionModel *sm))completion;
-- (void)setupFooterRefreshRequest:(ZJSessionModel *(^)(UITableView *tv))request completion:(NSArray *(^)(UITableView *tv, ZJSessionModel *sm))completion;
+- (void)setupHeaderRefreshRequest:(CCSessionModel *(^)(UITableView *tv))request completion:(NSArray *(^)(UITableView *tv, CCSessionModel *sm))completion;
+- (void)setupFooterRefreshRequest:(CCSessionModel *(^)(UITableView *tv))request completion:(NSArray *(^)(UITableView *tv, CCSessionModel *sm))completion;
 
 @end

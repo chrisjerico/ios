@@ -1,16 +1,16 @@
 //
-//  ZJNetworkRequests1+HTTPS.m
+//  CCNetworkRequests1+HTTPS.m
 //  C
 //
 //  Created by fish on 2018/5/11.
 //  Copyright © 2018年 fish. All rights reserved.
 //
 
-#import "ZJNetworkRequests1+HTTPS.h"
+#import "CCNetworkRequests1+HTTPS.h"
 #import "AFSecurityPolicy.h"
 #import "AFHTTPSessionManager.h"
 
-@implementation ZJNetworkRequests1 (HTTPS)
+@implementation CCNetworkRequests1 (HTTPS)
 
 + (AFHTTPSessionManager *)authSessionManager:(NSString *)urlString {
     NSString *cerName = @"pkserver";
@@ -88,7 +88,7 @@
             SecIdentityRef identity = NULL;
             SecTrustRef trust = NULL;
             NSData *PKCS12Data = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:p12Name ofType:@"p12"]];
-            if ([ZJNetworkRequests1 extractIdentity:&identity andTrust:&trust fromPKCS12Data:PKCS12Data pwd:p12Pwd]) {
+            if ([CCNetworkRequests1 extractIdentity:&identity andTrust:&trust fromPKCS12Data:PKCS12Data pwd:p12Pwd]) {
                 SecCertificateRef certificate = NULL;
                 SecIdentityCopyCertificate(identity, &certificate);
                 const void *certs[] = {certificate};
@@ -126,7 +126,7 @@
     return false;
 }
 
-+ (NSString *)titleWithSessionModel:(ZJSessionModel *)sm {
++ (NSString *)titleWithSessionModel:(CCSessionModel *)sm {
     return nil;
 }
 

@@ -486,7 +486,7 @@ completion:(CMNetworkBlock)completion {
         
 #if defined(DEBUG) || defined(APP_TEST)
         [LogVC addRequestModel:({
-            ZJSessionModel *sm = [ZJSessionModel new];
+            CCSessionModel *sm = [CCSessionModel new];
             sm.urlString = method;
             sm.params = params;
             sm.isPOST = false;
@@ -524,7 +524,7 @@ completion:(CMNetworkBlock)completion {
         
 #if defined(DEBUG) || defined(APP_TEST)
         [LogVC addRequestModel:({
-            ZJSessionModel *sm = [ZJSessionModel new];
+            CCSessionModel *sm = [CCSessionModel new];
             sm.urlString = method;
             sm.params = params;
             sm.isPOST = false;
@@ -585,7 +585,7 @@ completion:(CMNetworkBlock)completion {
         
 #if defined(DEBUG) || defined(APP_TEST)
         [LogVC addRequestModel:({
-            ZJSessionModel *sm = [ZJSessionModel new];
+            CCSessionModel *sm = [CCSessionModel new];
             sm.urlString = method;
             sm.params = params;
             sm.isPOST = true;
@@ -623,7 +623,7 @@ completion:(CMNetworkBlock)completion {
         
 #if defined(DEBUG) || defined(APP_TEST)
         [LogVC addRequestModel:({
-            ZJSessionModel *sm = [ZJSessionModel new];
+            CCSessionModel *sm = [CCSessionModel new];
             sm.urlString = method;
             sm.params = params;
             sm.isPOST = true;

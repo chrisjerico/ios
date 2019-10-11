@@ -8,7 +8,7 @@
 
 #import "IBButton.h"
 #import "IBView.h"
-#import "zj_runtime_property.h"
+#import "cc_runtime_property.h"
 
 @implementation IBButton
 
@@ -67,7 +67,7 @@
 
 @implementation UIButton (IBInspectableUtils)
 
-_ZJRuntimeGetterDoubleValue(BOOL, imgFitOrFill)
+_CCRuntimeGetterDoubleValue(BOOL, imgFitOrFill)
 
 - (void)setImgFitOrFill:(BOOL)imgFitOrFill {
     objc_setAssociatedObject(self, @selector(imgFitOrFill), @(imgFitOrFill), OBJC_ASSOCIATION_RETAIN_NONATOMIC);

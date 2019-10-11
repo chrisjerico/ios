@@ -7,14 +7,13 @@
 //
 
 #import "NSObject+Utils.h"
-#import "zj_objc_msgSend.h"
-#import "zj_runtime_property.h"
+#import "cc_objc_msgSend.h"
+#import "cc_runtime_property.h"
 
 @implementation NSObject (Utils)
 
-_ZJRuntimeProperty_Copy(NSString *, tagString, setTagString)
-_ZJRuntimeProperty_Readonly(NSMutableDictionary *, cc_userInfo, [@{} mutableCopy])
-_ZJRuntimeProperty_Readonly(NSMutableDictionary *, cc_onceToken, [@{} mutableCopy])
+_CCRuntimeProperty_Copy(NSString *, tagString, setTagString)
+_CCRuntimeProperty_Readonly(NSMutableDictionary *, cc_userInfo, [@{} mutableCopy])
 
 + (NSArray<NSString *> *)methodList {
     NSMutableArray *list = [@[] mutableCopy];
@@ -58,19 +57,19 @@ _ZJRuntimeProperty_Readonly(NSMutableDictionary *, cc_onceToken, [@{} mutableCop
 }
 
 - (void *)performSelector:(SEL)aSelector arguments:(va_list)argList {
-    return zj_objc_msgSendv(self, NSStringFromSelector(aSelector).UTF8String, argList);
+    return cc_objc_msgSendv(self, NSStringFromSelector(aSelector).UTF8String, argList);
 }
 
 - (void *)performSelector:(const char *)methodName, ... {
     va_list list;
     va_start(list, methodName);
-    return zj_objc_msgSendv(self, methodName, list);
+    return cc_objc_msgSendv(self, methodName, list);
 }
 
 + (void *)performSelector:(const char *)methodName, ... {
     va_list list;
     va_start(list, methodName);
-    return zj_objc_msgSendv(self, methodName, list);
+    return cc_objc_msgSendv(self, methodName, list);
 }
 
 - (void)setValuesWithObject:(NSObject *)obj {

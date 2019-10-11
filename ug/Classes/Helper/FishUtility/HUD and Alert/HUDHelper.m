@@ -267,7 +267,7 @@
 
 - (void)setIconWidth:(CGFloat)iconWidth {
     _iconWidth = iconWidth;
-    [self viewWithTagString:@"ImageBgView"].zj_constraints.width.constant = iconWidth;
+    [self viewWithTagString:@"ImageBgView"].cc_constraints.width.constant = iconWidth;
 }
 
 - (void)setIcon:(UIImage *)icon {
@@ -278,8 +278,8 @@
 - (void)setIconOffset:(CGPoint)iconOffset {
     _iconOffset = iconOffset;
     UIImageView *imgView = [self viewWithTagString:@"ImageBgView"];
-    imgView.zj_constraints.centerX.constant = iconOffset.x;
-    imgView.zj_constraints.centerY.constant = iconOffset.y;
+    imgView.cc_constraints.centerX.constant = iconOffset.x;
+    imgView.cc_constraints.centerY.constant = iconOffset.y;
 }
 
 - (void)setDuration:(NSTimeInterval)duration {
@@ -304,7 +304,7 @@
 
 - (void)moveBelowToNavigationBar {
     self.y += 64;
-    self.zj_constraints.top.constant = 64;
+    self.cc_constraints.top.constant = 64;
     self.iconOffset = CGPointMake(0, -32);
 }
 

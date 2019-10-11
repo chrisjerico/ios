@@ -16,24 +16,24 @@
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [UIViewController jr_swizzleMethod:@selector(zj_dealloc) withMethod:NSSelectorFromString(@"dealloc") error:nil];
-        [UIViewController jr_swizzleMethod:@selector(zj_becomeFirstResponder) withMethod:@selector(becomeFirstResponder) error:nil];
-        [UIViewController jr_swizzleMethod:@selector(zj_awakeFromNib) withMethod:@selector(awakeFromNib) error:nil];
+        [UIViewController jr_swizzleMethod:@selector(cc_dealloc) withMethod:NSSelectorFromString(@"dealloc") error:nil];
+        [UIViewController jr_swizzleMethod:@selector(cc_becomeFirstResponder) withMethod:@selector(becomeFirstResponder) error:nil];
+        [UIViewController jr_swizzleMethod:@selector(cc_awakeFromNib) withMethod:@selector(awakeFromNib) error:nil];
     });
 }
 
-- (void)zj_dealloc {
+- (void)cc_dealloc {
     NSLog(@"—————————————— %@   被释放", [self class]);
-    [self zj_dealloc];
+    [self cc_dealloc];
 }
 
-- (BOOL)zj_becomeFirstResponder {
+- (BOOL)cc_becomeFirstResponder {
     NSLog(@"%@ 变成第一响应者", [self class]);
-    return [self zj_becomeFirstResponder];
+    return [self cc_becomeFirstResponder];
 }
 
-- (void)zj_awakeFromNib {
-    [self zj_becomeFirstResponder];
+- (void)cc_awakeFromNib {
+    [self cc_becomeFirstResponder];
     //    NSLog(@"%@ 从图形界面中加载成功！", [self class]);
 }
 
