@@ -25,7 +25,7 @@ static NSString *missionCellid = @"UGMissionTableViewCell";
     [super viewDidLoad];
     
     self.dataArray = [NSMutableArray new];
-    
+    self.pageNumber = 1;
     [self getCenterData];
     
     self.tableView.estimatedRowHeight = 0;
@@ -44,10 +44,11 @@ static NSString *missionCellid = @"UGMissionTableViewCell";
         
     }];
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        weakSelf.pageNumber =weakSelf.pageNumber+1;
         [weakSelf getCenterData];
     }];
     
-    self.tableView.mj_footer.hidden = YES;
+  
 }
 
 #pragma mark - Table view data source
@@ -150,14 +151,7 @@ static NSString *missionCellid = @"UGMissionTableViewCell";
             NSArray *array = [UGMissionModel arrayOfModelsFromDictionaries:list error:nil];
             [self.dataArray addObjectsFromArray:array];
             [self.tableView reloadData];
-            if (array.count < self.pageSize) {
-                [self.tableView.mj_footer setState:MJRefreshStateNoMoreData];
-                [self.tableView.mj_footer setHidden:YES];
-            }else{
-                self.pageNumber ++;
-                [self.tableView.mj_footer setState:MJRefreshStateIdle];
-                [self.tableView.mj_footer setHidden:NO];
-            }
+
             
         } failure:^(id msg) {
             

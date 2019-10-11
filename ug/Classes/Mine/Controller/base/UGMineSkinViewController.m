@@ -370,7 +370,7 @@ BOOL isOk = NO;
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
         
         if ([skitType isEqualToString:@"新年红"]) {
-            layout.headerReferenceSize = CGSizeMake(UGScreenW, 50);
+            layout.headerReferenceSize = CGSizeMake(UGScreenW, 35);
         }
         else  if([skitType isEqualToString:@"石榴红"]){
              layout.headerReferenceSize = CGSizeMake(UGScreenW, 80);
@@ -476,7 +476,7 @@ BOOL isOk = NO;
         [cell setBackgroundColor: [UIColor clearColor]];
         
         cell.layer.borderWidth = 1;
-        cell.layer.borderColor = [[UIColor whiteColor] CGColor];
+        cell.layer.borderColor = UGRGBColor(231, 230, 230).CGColor;
         return cell;
     }
     else  {
@@ -565,7 +565,7 @@ BOOL isOk = NO;
     
     if ([skitType isEqualToString:@"新年红"]) {
 
-        CGSize size = {UGScreenW, 50};
+        CGSize size = {UGScreenW, 35};
         return size;
     }
     else  if([skitType isEqualToString:@"石榴红"]){
@@ -744,13 +744,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
                 }
             }];
         }else {
-            
-
                 UGPromotionIncomeController *incomeVC = [[UGPromotionIncomeController alloc] init];
                 [self.navigationController pushViewController:incomeVC animated:YES];
-
-           
-            
         }
     } else if ([title isEqualToString:@"申请代理"]) {
         UGUserModel *user = [UGUserModel currentUser];

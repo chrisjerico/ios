@@ -360,12 +360,7 @@
             if (weakSelf.checkinListModel.checkinSwitch) {
                 [self createUI];
                 //
-            } else {
-                [LEEAlert alert].config.LeeTitle(@"关闭签到").LeeContent(@"已关闭签到通道").LeeAction(@"确认", ^{
-                    // 确认点击事件Block
-                    [self.navigationController popViewControllerAnimated:YES];
-                }).LeeShow(); // 设置完成后 别忘记调用Show来显示
-            }
+            } 
             
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
