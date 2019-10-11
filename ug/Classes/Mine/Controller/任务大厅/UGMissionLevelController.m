@@ -31,7 +31,7 @@ static NSString *levelCellid = @"UGMissionLevelTableViewCell";
     self.tableView.estimatedSectionHeaderHeight = 0;
     self.tableView.estimatedSectionFooterHeight = 0;
     [self.tableView registerNib:[UINib nibWithNibName:@"UGMissionLevelTableViewCell" bundle:nil] forCellReuseIdentifier:levelCellid];
-    
+    self.tableView.contentInset = UIEdgeInsetsMake(5, 0, 120, 0);
 }
 
 #pragma mark - Table view data source
@@ -74,7 +74,7 @@ static NSString *levelCellid = @"UGMissionLevelTableViewCell";
 
     headerView.item = model;
     
-    [headerView setSectionBgColor:[[UGSkinManagers shareInstance] setbgColor] levelsSectionStr:@"等级"];
+    [headerView setSectionBgColor:[UIColor whiteColor] levelsSectionStr:@"等级"];
     
     return headerView;
 }
