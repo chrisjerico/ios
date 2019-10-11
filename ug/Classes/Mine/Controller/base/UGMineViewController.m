@@ -590,11 +590,12 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
     
     
     UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
-    if (config.checkinSwitch) {
-        [self.signButton setHidden:NO];
-    } else {
+    if ([config.checkinSwitch isEqualToString:@"0"]) {
         [self.signButton setHidden:YES];
+    } else {
+        [self.signButton setHidden:NO];
     }
+    
     
 
     if ([config.missionSwitch isEqualToString:@"0"]) {

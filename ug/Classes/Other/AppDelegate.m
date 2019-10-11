@@ -30,7 +30,7 @@
 #import "UGSigInCodeViewController.h"
 #import "UGPromotionIncomeController.h"
 #import "UGLaunchPageVC.h"
-
+#import "UGSystemConfigModel.h"
 
 #ifdef DEBUG
 //#import <DoraemonKit/DoraemonManager.h>
@@ -220,19 +220,73 @@
 
 /// 切换
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
-	CMMETHOD_BEGIN_O(viewController.restorationIdentifier);
-	
+    CMMETHOD_BEGIN_O(viewController.restorationIdentifier);
+    
+    UGUserModel *user = [UGUserModel currentUser];
+    UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
+   
+    
 	BOOL isLogin = UGLoginIsAuthorized();
 	
 	if (isLogin) {
 		UGNavigationController *navi = (UGNavigationController *)viewController;
-		if ([navi.viewControllers.firstObject isKindOfClass:[UGChatViewController class]]) {
-			AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-			NSString *colorStr = [[UGSkinManagers shareInstance] setChatNavbgStringColor];
-			NSLog(@"url = %@",[NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr]);
-			appDelegate.tabbar.qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr];
+		if ([navi.viewControllers.firstObject isKindOfClass:[UGChatViewController class]])//聊天室
+        {
+            //        @property (nonatomic, assign) BOOL chatRoomSwitch;/**<   是否是开启聊天室 */
+            
+            NSLog(@"user.chatRoomSwitch = %d",user.chatRoomSwitch);
+            if (!user.chatRoomSwitch) {//关
+                 [QDAlertView showWithTitle:@"温馨提示" message:@"利息宝已关闭" cancelButtonTitle:@"确定" otherButtonTitle:nil completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                 }];
+                 return NO;
+             } else {
+                AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+                NSString *colorStr = [[UGSkinManagers shareInstance] setChatNavbgStringColor];
+                NSLog(@"url = %@",[NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr]);
+                appDelegate.tabbar.qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr];
+                return YES;
+             }
+			
 		}
-		return YES;
+        else if([navi.viewControllers.firstObject isKindOfClass:[UGMissionCenterViewController class]] )//任务中心
+        {
+            
+            NSLog(@"config.missionSwitch = %@",config.missionSwitch);
+            if ([config.missionSwitch isEqualToString:@"1"]) {//关
+                [QDAlertView showWithTitle:@"温馨提示" message:@"任务中心已关闭" cancelButtonTitle:@"确定" otherButtonTitle:nil completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                }];
+                return NO;
+            } else {
+               return YES;
+            }
+        }
+        
+//        @property (nonatomic, assign) BOOL yuebaoSwitch;/**<   是否是开启利息宝 */
+
+        else if([navi.viewControllers.firstObject isKindOfClass:[UGYubaoViewController class]] )//利息宝
+        {
+             NSLog(@"user.yuebaoSwitch = %d",user.yuebaoSwitch);
+           if (!user.yuebaoSwitch) {//关
+                  [QDAlertView showWithTitle:@"温馨提示" message:@"利息宝已关闭" cancelButtonTitle:@"确定" otherButtonTitle:nil completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                  }];
+                  return NO;
+              } else {
+                 return YES;
+              }
+        }
+        else if([navi.viewControllers.firstObject isKindOfClass:[UGSigInCodeViewController class]] )//签到
+        {
+          if ([config.checkinSwitch isEqualToString:@"0"]) {//关
+              [QDAlertView showWithTitle:@"温馨提示" message:@"任务中心已关闭" cancelButtonTitle:@"确定" otherButtonTitle:nil completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+              }];
+              return NO;
+          } else {
+             return YES;
+          }
+        }
+		
+        
+        
 	}else {
 		
 		UGNavigationController *navi = (UGNavigationController *)viewController;

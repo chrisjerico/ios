@@ -135,6 +135,15 @@
     [vcs addObject: self.nvcTask];
     [vcs addObject: self.nvcUser];
     [self setViewControllers:vcs];
+    
+    
+    
+//        [vcs addObject: self.nvcHome];
+//        [vcs addObject: self.nvcYuebao];
+//        [vcs addObject: self.nvcChatRoomList];
+//        [vcs addObject: self.nvcTask];
+//        [vcs addObject: self.nvcSign];
+//        [self setViewControllers:vcs];
 }
 
 /**

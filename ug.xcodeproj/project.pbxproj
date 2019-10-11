@@ -3239,6 +3239,16 @@
 			path = "侧边栏";
 			sourceTree = "<group>";
 		};
+		D40C6E4123505D9700651983 /* 定制导航栏 */ = {
+			isa = PBXGroup;
+			children = (
+				D4B6E6ED22D3325A0006B03F /* UGHomeTitleView.h */,
+				D4B6E6EE22D3325A0006B03F /* UGHomeTitleView.m */,
+				D4B6E6F022D332720006B03F /* UGHomeTitleView.xib */,
+			);
+			path = "定制导航栏";
+			sourceTree = "<group>";
+		};
 		D40D32C92297DD1C00B89398 /* WSLWaterFlowLayout */ = {
 			isa = PBXGroup;
 			children = (
@@ -3787,6 +3797,7 @@
 		D4B75E26227811D50007047C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D40C6E4123505D9700651983 /* 定制导航栏 */,
 				D40C6E4023504F5600651983 /* 侧边栏 */,
 				D405B2C7227ADA4E00F8C586 /* UGGameTypeColletionViewCell.h */,
 				D405B2C8227ADA4E00F8C586 /* UGGameTypeColletionViewCell.m */,
@@ -3834,9 +3845,6 @@
 				D49A36D122A40212000057D2 /* UGLotteryRecordTableViewCell.h */,
 				D49A36D222A40212000057D2 /* UGLotteryRecordTableViewCell.m */,
 				D49A36D322A40212000057D2 /* UGLotteryRecordTableViewCell.xib */,
-				D4B6E6ED22D3325A0006B03F /* UGHomeTitleView.h */,
-				D4B6E6EE22D3325A0006B03F /* UGHomeTitleView.m */,
-				D4B6E6F022D332720006B03F /* UGHomeTitleView.xib */,
 				D41A57772306924C00C26023 /* UGBackToastView.h */,
 				D41A57752306924B00C26023 /* UGBackToastView.m */,
 				D41A57762306924C00C26023 /* UGBackToastView.xib */,
