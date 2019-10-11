@@ -41,7 +41,7 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = UGBackgroundColor;
+    self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.title = @"长龙助手";
     
     self.betDetailView.layer.cornerRadius = 5;

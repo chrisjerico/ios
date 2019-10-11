@@ -54,7 +54,7 @@
         navBgColor = @"0x814689";
     }
     else  if ([skitType isEqualToString:@"9"]) {//经典 9深红
-        navBgColor = @"0x7E503C";
+        navBgColor = @"0x880506";
     }
     else  if ([skitType isEqualToString:@"10"]) {//经典 10淡灰
         navBgColor = @"0xFF8705";
@@ -133,7 +133,7 @@
         navBgColor = kUIColorFromRGB(0x814689);
     }
     else  if ([skitType isEqualToString:@"9"]) {//经典 9深红
-        navBgColor = kUIColorFromRGB(0x7E503C);
+        navBgColor = kUIColorFromRGB(0x880506);
     }
     else  if ([skitType isEqualToString:@"10"]) {//经典 10淡灰
         navBgColor = kUIColorFromRGB(0xFF8705);
@@ -212,7 +212,7 @@
         tabBgColor = kUIColorFromRGB(0xD1A4D7);
     }
     else  if ([skitType isEqualToString:@"9"]) {//经典 9深红
-        tabBgColor = kUIColorFromRGB(0xD1A4D7);
+        tabBgColor = kUIColorFromRGB(0xDE9595);
     }
     else  if ([skitType isEqualToString:@"10"]) {//经典 10淡灰
         tabBgColor = kUIColorFromRGB(0xFFB666);
