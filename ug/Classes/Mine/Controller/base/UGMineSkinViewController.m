@@ -744,13 +744,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
                 }
             }];
         }else {
-            
-
                 UGPromotionIncomeController *incomeVC = [[UGPromotionIncomeController alloc] init];
                 [self.navigationController pushViewController:incomeVC animated:YES];
-
-           
-            
         }
     } else if ([title isEqualToString:@"申请代理"]) {
         UGUserModel *user = [UGUserModel currentUser];
