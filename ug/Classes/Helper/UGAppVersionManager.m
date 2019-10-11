@@ -62,7 +62,7 @@
     
     if (![self.versionModle.versionName isEqualToString:versionCode]) {
         
-        if (self.versionModle.isIncUpdate) {
+        if (self.versionModle.switchUpdate) {
             isForce = YES;
         }
 		
