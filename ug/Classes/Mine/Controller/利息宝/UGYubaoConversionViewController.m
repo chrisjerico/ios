@@ -38,16 +38,17 @@
 @property (nonatomic, strong) NSString *inputFundPwd;
 @property (nonatomic, strong) NSString *transferType;
 @property (weak, nonatomic) IBOutlet UIImageView *bgView;
-
+@property (weak, nonatomic) IBOutlet UIView *yyBgView;
 
 @end
 
 static NSString *convertCellid = @"UGConvertCollectionViewCell";
 @implementation UGYubaoConversionViewController
 -(void)skin{
-    UIImage *image = [UIImage imageNamed:@"bgyubao1"];
-    UIImage *afterImage = [image qmui_imageWithBlendColor: [[UGSkinManagers shareInstance] setNavbgColor]];
-    self.bgView.image = afterImage;
+//    UIImage *image = [UIImage imageNamed:@"bgyubao1"];
+//    UIImage *afterImage = [image qmui_imageWithBlendColor: [[UGSkinManagers shareInstance] setNavbgColor]];
+//    self.bgView.image = afterImage;
+        [_yyBgView setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -55,7 +56,8 @@ static NSString *convertCellid = @"UGConvertCollectionViewCell";
         
         [self skin];
     });
-    self.fd_prefersNavigationBarHidden = YES;
+    self.title = @"利息宝";
+//    self.fd_prefersNavigationBarHidden = YES;
     self.submitButton.layer.cornerRadius = 5;
     self.submitButton.layer.masksToBounds = YES;
     [self.submitButton setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
@@ -72,15 +74,16 @@ static NSString *convertCellid = @"UGConvertCollectionViewCell";
     self.waveView.backgroundColor = [UIColor clearColor];
 //    self.waveBotomView.backgroundColor = UGRGBColor(84, 171, 238);
 //    self.waveView.realWaveColor = UGRGBColor(84, 171, 238);
-    self.waveBotomView.backgroundColor =  [[UGSkinManagers shareInstance] setNavbgColor];
-    self.waveView.realWaveColor =  [[UGSkinManagers shareInstance] setNavbgColor];
+    self.waveBotomView.backgroundColor =  [[UGSkinManagers shareInstance] setbgColor];
+    self.waveView.realWaveColor =  [[UGSkinManagers shareInstance] setbgColor];
     self.waveView.maskWaveColor = [UIColor clearColor];
     self.waveView.waveHeight = 10;
     [self.waveView startWaveAnimation];
     
-    UIImage *image = [UIImage imageNamed:@"bgyubao1"];
-    UIImage *afterImage = [image qmui_imageWithBlendColor: [[UGSkinManagers shareInstance] setNavbgColor]];
-    self.bgView.image = afterImage;
+//    UIImage *image = [UIImage imageNamed:@"bgyubao1"];
+//    UIImage *afterImage = [image qmui_imageWithBlendColor: [[UGSkinManagers shareInstance] setNavbgColor]];
+//    self.bgView.image = afterImage;
+        [_yyBgView setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
     
     self.transferType = @"in";
     self.inputTextF.delegate = self;
