@@ -84,7 +84,7 @@
     [self.integralLabel setHidden:YES];
     self.fd_prefersNavigationBarHidden = NO;
     self.navigationItem.title = @"任务大厅";
-    self.view.backgroundColor = UGBackgroundColor;
+    self.view.backgroundColor = [UIColor whiteColor];
     self.userInfoView.backgroundColor = UGNavColor;
     self.avaterImageView.layer.cornerRadius = self.avaterImageView.height / 2 ;
     self.avaterImageView.layer.masksToBounds = YES;
@@ -92,7 +92,6 @@
     self.levelNameLabel.layer.masksToBounds = YES;
     self.nextLevelLabel.layer.cornerRadius = self.nextLevelLabel.height / 2;
     self.nextLevelLabel.layer.masksToBounds = YES;
-    self.view.backgroundColor = UGBackgroundColor;
     [self.progressView.layer addSublayer:self.progressLayer];
     self.progressLayer.path = [self progressPathWithProgress:0.3].CGPath;
     self.progressView.layer.cornerRadius = self.progressView.height / 2;
