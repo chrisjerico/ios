@@ -19,7 +19,8 @@
 //    [self setBackgroundColor: [[UGSkinManagers shareInstance] setCellbgColor]];
 
     self.layer.borderWidth = 1;
-    self.layer.borderColor = [[UIColor whiteColor] CGColor];
+    
+//    self.layer.borderColor = [UGRGBColor(203, 202, 202) CGColor];
 }
 
 
