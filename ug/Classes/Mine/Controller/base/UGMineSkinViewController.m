@@ -111,6 +111,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     SANotificationEventPost(UGNotificationGetUserInfo, nil);
+    [self getUserInfo];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -157,8 +158,7 @@
     self.progressView.layer.cornerRadius = self.progressView.height / 2;
     self.progressView.layer.masksToBounds = YES;
     self.progressView.backgroundColor = UGRGBColor(213, 224, 237);
-    //初始化数据
-    [self getDateSource];
+  
     
     //设置皮肤
     [self.view setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
@@ -185,6 +185,7 @@
     
     [self getAllNextIssueData];
     [self getUserInfo];
+
 }
 
 - (void)addRightBtn {
@@ -215,6 +216,8 @@ BOOL isOk = NO;
 -(void)getDateSource{
     [self skinSeconddataSource];
     [self skinFirstdataSource];
+    
+    [self.myCollectionView reloadData];
 }
 
 
@@ -758,7 +761,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
             }];
         } else {
             UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
-            if ([config.agent_m_apply isEqualToString:@"1"]) {
+            NSLog(@"config.agent_m_apply = %@",config.agent_m_apply);
+            if ([config.agent_m_apply isEqualToString:@"1"]) {/**<   允许会员中心申请代理 */
                 //调接口
                 [self teamAgentApplyInfoWithParams];
                 
@@ -1108,7 +1112,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
             
             [self getSystemConfig];
             
-            
+            //初始化数据
+            [self getDateSource];
             
             
             

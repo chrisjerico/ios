@@ -1043,7 +1043,7 @@
 - (void)showUGPormotionUserInfoViewWithModel :(UGinviteLisModel *)model{
     
     UGPormotionUserInfoView *notiveView = [[UGPormotionUserInfoView alloc] initWithFrame:CGRectMake(20, 50, UGScreenW - 40, 430)];
-    
+    [notiveView setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
     notiveView.item = model;
    
     [notiveView show];
