@@ -18,10 +18,19 @@
 
 static NSString *titleCellid = @"UGMissionTitleCell";
 @implementation UGMissionTitleCollectionView
-
+-(void)skin{
+    
+    [self.collectionView reloadData];
+    
+}
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+        
+        SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
+            
+            [self skin];
+        });
         
         UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
         NSString *str1 = [NSString stringWithFormat:@"%@兑换",config.missionName];
@@ -87,6 +96,7 @@ static NSString *titleCellid = @"UGMissionTitleCell";
     UGMissionTitleCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:titleCellid forIndexPath:indexPath];
     cell.title = self.titleArray[indexPath.row];
     cell.imgName = self.imageArray[indexPath.row];
+   
     return cell;
 }
 
