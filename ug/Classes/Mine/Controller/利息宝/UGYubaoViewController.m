@@ -38,14 +38,18 @@
 @property (nonatomic, strong) WavesView *waveView;
 @property (nonatomic, strong) CountDown *countDown;
 @property (nonatomic, strong) UGYuebaoInfoModel *infoModel;
+@property (weak, nonatomic) IBOutlet UIView *yyBgView;
 
 @end
 
 @implementation UGYubaoViewController
 -(void)skin{
-    UIImage *image = [UIImage imageNamed:@"bgyubao1"];
-    UIImage *afterImage = [image qmui_imageWithBlendColor: [[UGSkinManagers shareInstance] setNavbgColor]];
-    self.bgView.image = afterImage;
+//    UIImage *image = [UIImage imageNamed:@"yybgyubao1"];
+//    UIImage *afterImage = [image qmui_imageWithBlendColor: [[UGSkinManagers shareInstance] setNavbgColor]];
+//    self.bgView.image = afterImage;
+    
+    [_yyBgView setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
+    
     self.waveBotomView.backgroundColor =  [[UGSkinManagers shareInstance] setNavbgColor];
     self.waveView.realWaveColor =  [[UGSkinManagers shareInstance] setNavbgColor];
     [self.view setBackgroundColor: [UIColor whiteColor]];
@@ -57,15 +61,15 @@
         [self skin];
     });
     [self.view setBackgroundColor: [UIColor whiteColor]];
-    self.fd_prefersNavigationBarHidden = YES;
+//    self.fd_prefersNavigationBarHidden = YES;// 让导航条隐藏
     self.navigationItem.title = @"利息宝";
     self.waveView = [[WavesView alloc] initWithFrame:self.waveBgView.bounds];
     [self.waveBgView addSubview:self.waveView];
     self.waveView.backgroundColor = [UIColor clearColor];
 //    self.waveBotomView.backgroundColor = UGRGBColor(84, 171, 238);
 //    self.waveView.realWaveColor = UGRGBColor(84, 171, 238);
-    self.waveBotomView.backgroundColor =  [[UGSkinManagers shareInstance] setNavbgColor];
-    self.waveView.realWaveColor =  [[UGSkinManagers shareInstance] setNavbgColor];
+    self.waveBotomView.backgroundColor =  [[UGSkinManagers shareInstance] setbgColor];
+    self.waveView.realWaveColor =  [[UGSkinManagers shareInstance] setbgColor];
     self.waveView.maskWaveColor = [UIColor clearColor];
     self.waveView.waveHeight = 10;
     [self.waveView startWaveAnimation];
@@ -75,11 +79,11 @@
     self.animatedImageView.animatedImage = bgAnimateImage;
     self.animatedImageView.hidden = YES;
     
-    
-    UIImage *image = [UIImage imageNamed:@"bgyubao1"];
-    UIImage *afterImage = [image qmui_imageWithBlendColor: [[UGSkinManagers shareInstance] setNavbgColor]];
-    self.bgView.image = afterImage;
-    
+    [_yyBgView setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
+      
+//     UIImage *image = [UIImage imageNamed:@"yybgyubao1"];
+//      UIImage *afterImage = [image qmui_imageWithBlendColor: [[UGSkinManagers shareInstance] setNavbgColor]];
+//      self.bgView.image = afterImage;
 
     self.progressView.startAngle = 0;
     self.progressView.strokeWidth = 3;

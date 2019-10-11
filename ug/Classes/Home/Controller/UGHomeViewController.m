@@ -672,12 +672,12 @@
 					[self.view layoutIfNeeded];
 				} else if (config.rankingListSwitch == 1) {
 					self.rankingView.hidden = false;
-					self.rankViewHeight.constant = 200;
+					self.rankViewHeight.constant = 250;
 					[self.view layoutIfNeeded];
 					self.rankLabel.text = @"中奖排行榜";
 				} else if (config.rankingListSwitch == 2) {
 					self.rankingView.hidden = false;
-					self.rankViewHeight.constant = 200;
+					self.rankViewHeight.constant = 250;
 					[self.view layoutIfNeeded];
 					self.rankLabel.text = @"投注排行榜";
 
