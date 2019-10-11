@@ -43,7 +43,7 @@ static NSString *missionCellid = @"missionCellid";
         
         self.viewConterllers = @[missionListVC,convertVC,recordVC,levelVC];
         [self initCollectionView];
-        [self setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+        [self setBackgroundColor: [UIColor whiteColor]];
 
         
     }
