@@ -143,8 +143,9 @@
     });
      if (self.collectionView == nil) {
          self.collectionView = collectionView;
+        [mUIScrollView addSubview:collectionView];
      }
-    [mUIScrollView addSubview:collectionView];
+ 
     //-今日签到======================================
     if (mUGSignInButton == nil) {
         mUGSignInButton  = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -191,8 +192,9 @@
             NSLog(@"7天领取");
             [weakSelf checkinBonusData:@"7"];
         };
+         [mUIScrollView addSubview:mUGSignInScrFootView];
     }
-    [mUIScrollView addSubview:mUGSignInScrFootView];
+   
     //=================================================
      mUIScrollView.contentSize = CGSizeMake(UGScreenW, 800);
     

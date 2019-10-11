@@ -30,6 +30,9 @@
         self.frame = frame;
         
        
+        self.avaterImageView.layer.cornerRadius = self.avaterImageView.height / 2 ;
+        self.avaterImageView.layer.masksToBounds = YES;
+        self.avaterImageView.userInteractionEnabled = YES;
         [self setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
 
         [self setupUserInfo];
