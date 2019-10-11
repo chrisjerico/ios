@@ -8,9 +8,22 @@
 
 #import <Foundation/Foundation.h>
 
-
-static unsigned long OBJTokenIndex = 0;
-#define OBJOnceToken(obj) ({BOOL ok = false; static unsigned long onceToken = 0; if (onceToken == 0) {onceToken = ++OBJTokenIndex;} if (obj && ![(id)obj cc_onceToken][@(onceToken)]) {[(id)obj cc_onceToken][@(onceToken)] = @true; ok = true;} ok;})// 返回bool值，每个对象，在一个地方，只会为true一次
+// 返回bool值，每个对象，在一个地方，只会为true一次
+#define OBJOnceToken(obj) ({\
+    BOOL ok = false;\
+    if (obj) {\
+        static uint32_t onceToken = 0;\
+        if (onceToken == 0) {\
+            onceToken = arc4random();\
+        }\
+        NSString *key = _NSString(@"ot_%d", onceToken);\
+        if (![(id)obj cc_userInfo][key]) {\
+            [(id)obj cc_userInfo][key] = @(444);\
+            ok = true;\
+        }\
+    }\
+    ok;\
+})
 
 
 @interface NSObject (Utils)
@@ -31,5 +44,4 @@ static unsigned long OBJTokenIndex = 0;
 
 @property (nonatomic, copy) NSString *tagString;
 @property (nonatomic, readonly) NSMutableDictionary *cc_userInfo;
-@property (nonatomic, readonly) NSMutableDictionary *cc_onceToken;
 @end

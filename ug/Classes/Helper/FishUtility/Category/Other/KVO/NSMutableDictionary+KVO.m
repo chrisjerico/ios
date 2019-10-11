@@ -60,19 +60,19 @@ NSString *const kNSMutableDictionaryKindDidRemoveAllObjects = @"kNSMutableDictio
     dispatch_once(&onceToken, ^{
         
         // 增删改
-        [objc_getClass("__NSDictionaryM") jr_swizzleMethod:@selector(zj_removeObjectForKey:) withMethod:@selector(removeObjectForKey:) error:nil];
-        [objc_getClass("__NSDictionaryM") jr_swizzleMethod:@selector(zj_setObject:forKey:) withMethod:@selector(setObject:forKey:) error:nil];
-        [objc_getClass("__NSDictionaryM") jr_swizzleMethod:@selector(zj_setObject:forKeyedSubscript:) withMethod:@selector(setObject:forKeyedSubscript:) error:nil];
-        [objc_getClass("__NSDictionaryM") jr_swizzleMethod:@selector(zj_removeAllObjects) withMethod:@selector(removeAllObjects) error:nil];
+        [objc_getClass("__NSDictionaryM") jr_swizzleMethod:@selector(cc_removeObjectForKey:) withMethod:@selector(removeObjectForKey:) error:nil];
+        [objc_getClass("__NSDictionaryM") jr_swizzleMethod:@selector(cc_setObject:forKey:) withMethod:@selector(setObject:forKey:) error:nil];
+        [objc_getClass("__NSDictionaryM") jr_swizzleMethod:@selector(cc_setObject:forKeyedSubscript:) withMethod:@selector(setObject:forKeyedSubscript:) error:nil];
+        [objc_getClass("__NSDictionaryM") jr_swizzleMethod:@selector(cc_removeAllObjects) withMethod:@selector(removeAllObjects) error:nil];
     });
 }
 
-- (void)zj_removeObjectForKey:(id)aKey {
+- (void)cc_removeObjectForKey:(id)aKey {
     if (!aKey)
         return;
     
     id obj = self[aKey];
-    [self zj_removeObjectForKey:aKey];
+    [self cc_removeObjectForKey:aKey];
     
     if (obj) {
         for (NSObject *observer in self.observers) {
@@ -85,12 +85,12 @@ NSString *const kNSMutableDictionaryKindDidRemoveAllObjects = @"kNSMutableDictio
     }
 }
 //
-- (void)zj_setObject:(id)anObject forKey:(id<NSCopying>)aKey {
+- (void)cc_setObject:(id)anObject forKey:(id<NSCopying>)aKey {
     if (!anObject || !aKey)
         return;
     
     id oldObj = self[aKey];
-    [self zj_setObject:anObject forKey:aKey];
+    [self cc_setObject:anObject forKey:aKey];
     
     for (NSObject *observer in self.observers) {
         if ([observer respondsToSelector:@selector(dictionary:didSetObject:key:)])
@@ -106,12 +106,12 @@ NSString *const kNSMutableDictionaryKindDidRemoveAllObjects = @"kNSMutableDictio
     }
 }
 
-- (void)zj_setObject:(id)anObject forKeyedSubscript:(id<NSCopying>)aKey {
+- (void)cc_setObject:(id)anObject forKeyedSubscript:(id<NSCopying>)aKey {
     if (!anObject || !aKey)
         return;
     
     id oldObj = self[aKey];
-    [self zj_setObject:anObject forKeyedSubscript:aKey];
+    [self cc_setObject:anObject forKeyedSubscript:aKey];
     
     for (NSObject *observer in self.observers) {
         if ([observer respondsToSelector:@selector(dictionary:didSetObject:key:)])
@@ -127,14 +127,14 @@ NSString *const kNSMutableDictionaryKindDidRemoveAllObjects = @"kNSMutableDictio
     }
 }
 
-- (void)zj_removeAllObjects {
+- (void)cc_removeAllObjects {
     for (NSObject *observer in self.observers) {
         if ([observer respondsToSelector:@selector(dictionaryWillRemoveAllObjects:)])
             [observer dictionaryWillRemoveAllObjects:self];
     }
     
     NSDictionary *dict = [self copy];
-    [self zj_removeAllObjects];
+    [self cc_removeAllObjects];
     
     for (NSObject *observer in self.observers) {
         if ([observer respondsToSelector:@selector(dictionary:didChange:)])

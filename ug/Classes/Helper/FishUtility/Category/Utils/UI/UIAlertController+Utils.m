@@ -7,11 +7,11 @@
 //
 
 #import "UIAlertController+Utils.h"
-#import "zj_runtime_property.h"
+#import "cc_runtime_property.h"
 
 @implementation UIAlertAction (Utils)
 
-_ZJRuntimeProperty_Copy(void (^)(UIAlertAction *aa), block, setBlock);
+_CCRuntimeProperty_Copy(void (^)(UIAlertAction *aa), block, setBlock);
 
 @end
 

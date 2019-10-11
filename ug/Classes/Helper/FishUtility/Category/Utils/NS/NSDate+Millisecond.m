@@ -13,7 +13,7 @@
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [NSDate jr_swizzleMethod:@selector(timeAgoSinceNow) withMethod:@selector(zj_timeAgoSinceNow) error:nil];
+        [NSDate jr_swizzleMethod:@selector(timeAgoSinceNow) withMethod:@selector(cc_timeAgoSinceNow) error:nil];
     });
 }
 
@@ -25,7 +25,7 @@
     return [NSDate dateWithTimeIntervalSince1970:secs / 1000.0];
 }
 
-- (NSString *)zj_timeAgoSinceNow {
+- (NSString *)cc_timeAgoSinceNow {
     return [self timeAgoSinceDate:[NSDate date] numericDates:true];
 }
 

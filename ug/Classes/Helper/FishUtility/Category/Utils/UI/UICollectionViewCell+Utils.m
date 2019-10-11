@@ -7,11 +7,11 @@
 //
 
 #import "UICollectionViewCell+Utils.h"
-#import "zj_runtime_property.h"
+#import "cc_runtime_property.h"
 
 @implementation UICollectionViewCell (Utils)
 
-_ZJRuntimeProperty_Copy(void (^)(__kindof UICollectionViewCell *, BOOL), didSelectedChange, setDidSelectedChange)
+_CCRuntimeProperty_Copy(void (^)(__kindof UICollectionViewCell *, BOOL), didSelectedChange, setDidSelectedChange)
 
 
 + (void)load {

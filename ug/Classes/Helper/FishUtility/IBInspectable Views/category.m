@@ -8,7 +8,7 @@
 
 #import "category.h"
 #import "NSMutableAttributedString+Utils.h"
-#import "zj_runtime_property.h"
+#import "cc_runtime_property.h"
 #import "JRSwizzle.h"
 #import "RegExCategories.h"
 
@@ -16,20 +16,20 @@
 // ——————————————————————————————————————————————————
 
 @implementation UILabel (IBInspectableUtils)
-_ZJRuntimeGetterDoubleValue(CGFloat, lineSpacing1)
+_CCRuntimeGetterDoubleValue(CGFloat, lineSpacing1)
 
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [UILabel jr_swizzleMethod:@selector(textRectForBounds:limitedToNumberOfLines:) withMethod:@selector(zj_textRectForBounds:limitedToNumberOfLines:) error:nil];
-        [UILabel jr_swizzleMethod:@selector(drawTextInRect:) withMethod:@selector(zj_drawTextInRect:) error:nil];
+        [UILabel jr_swizzleMethod:@selector(textRectForBounds:limitedToNumberOfLines:) withMethod:@selector(cc_textRectForBounds:limitedToNumberOfLines:) error:nil];
+        [UILabel jr_swizzleMethod:@selector(drawTextInRect:) withMethod:@selector(cc_drawTextInRect:) error:nil];
     });
 }
 
-- (CGRect)zj_textRectForBounds:(CGRect)bounds limitedToNumberOfLines:(NSInteger)numberOfLines {
+- (CGRect)cc_textRectForBounds:(CGRect)bounds limitedToNumberOfLines:(NSInteger)numberOfLines {
     CGPoint padding = self.内边距;
     UIEdgeInsets insets = UIEdgeInsetsMake(padding.y, padding.x, padding.y, padding.x);
-    CGRect rect = [self zj_textRectForBounds:UIEdgeInsetsInsetRect(bounds, insets) limitedToNumberOfLines:numberOfLines];
+    CGRect rect = [self cc_textRectForBounds:UIEdgeInsetsInsetRect(bounds, insets) limitedToNumberOfLines:numberOfLines];
     
     rect.origin.x    -= insets.left;
     rect.origin.y    -= insets.top;
@@ -38,9 +38,9 @@ _ZJRuntimeGetterDoubleValue(CGFloat, lineSpacing1)
     return rect;
 }
 
-- (void)zj_drawTextInRect:(CGRect)rect {
+- (void)cc_drawTextInRect:(CGRect)rect {
     CGPoint padding = self.内边距;
-    [self zj_drawTextInRect:UIEdgeInsetsInsetRect(rect, UIEdgeInsetsMake(padding.y, padding.x, padding.y, padding.x))];
+    [self cc_drawTextInRect:UIEdgeInsetsInsetRect(rect, UIEdgeInsetsMake(padding.y, padding.x, padding.y, padding.x))];
 }
 
 - (CGPoint)内边距 {
@@ -64,18 +64,18 @@ _ZJRuntimeGetterDoubleValue(CGFloat, lineSpacing1)
 
 
 @implementation UITextField (IBInspectableUtils)
-_ZJRuntimeProperty_Assign(NSUInteger, 限制长度, set限制长度)
-_ZJRuntimeProperty_Assign(BOOL, 仅数字, set仅数字)
-_ZJRuntimeProperty_Assign(BOOL, 仅数字含小数, set仅数字含小数)
-_ZJRuntimeProperty_Assign(BOOL, 仅数字加字母, set仅数字加字母)
-_ZJRuntimeProperty_Assign(BOOL, 仅可见的ASCII, set仅可见的ASCII)
-_ZJRuntimeProperty_Copy(NSString *, 额外允许的字符, set额外允许的字符)
+_CCRuntimeProperty_Assign(NSUInteger, 限制长度, set限制长度)
+_CCRuntimeProperty_Assign(BOOL, 仅数字, set仅数字)
+_CCRuntimeProperty_Assign(BOOL, 仅数字含小数, set仅数字含小数)
+_CCRuntimeProperty_Assign(BOOL, 仅数字加字母, set仅数字加字母)
+_CCRuntimeProperty_Assign(BOOL, 仅可见的ASCII, set仅可见的ASCII)
+_CCRuntimeProperty_Copy(NSString *, 额外允许的字符, set额外允许的字符)
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         // 交换setDelegate:方法
-        [UITextField jr_swizzleMethod:@selector(layoutSubviews) withMethod:@selector(zj_layoutSubviews) error:nil];
-        [UITextField jr_swizzleMethod:@selector(setDelegate:) withMethod:@selector(zj_setDelegate:) error:nil];
+        [UITextField jr_swizzleMethod:@selector(layoutSubviews) withMethod:@selector(cc_layoutSubviews) error:nil];
+        [UITextField jr_swizzleMethod:@selector(setDelegate:) withMethod:@selector(cc_setDelegate:) error:nil];
         // 监听文本长度
         [[NSNotificationCenter defaultCenter] addObserverForName:UITextFieldTextDidChangeNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
             UITextField *tf = note.object;
@@ -89,14 +89,14 @@ _ZJRuntimeProperty_Copy(NSString *, 额外允许的字符, set额外允许的字
         }];
     });
 }
-- (void)zj_layoutSubviews {
+- (void)cc_layoutSubviews {
     if (!self.delegate && OBJOnceToken(self)) {
         self.delegate = (id)self;
     }
-    [self zj_layoutSubviews];
+    [self cc_layoutSubviews];
 }
-- (void)zj_setDelegate:(id<UITextFieldDelegate>)delegate {
-    [self zj_setDelegate:delegate];
+- (void)cc_setDelegate:(id<UITextFieldDelegate>)delegate {
+    [self cc_setDelegate:delegate];
     if ([delegate isKindOfClass:[NSObject class]] && OBJOnceToken(delegate)) {
         [(id)delegate aspect_hookSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> aInfo) {
             [aInfo.originalInvocation invoke];
@@ -127,19 +127,19 @@ _ZJRuntimeProperty_Copy(NSString *, 额外允许的字符, set额外允许的字
 
 
 @implementation UITextView (IBInspectableUtils)
-_ZJRuntimeProperty_Assign(NSUInteger, 限制长度, set限制长度)
-_ZJRuntimeProperty_Assign(BOOL, 仅数字, set仅数字)
-_ZJRuntimeProperty_Assign(BOOL, 仅数字含小数, set仅数字含小数)
-_ZJRuntimeProperty_Assign(BOOL, 仅数字加字母, set仅数字加字母)
-_ZJRuntimeProperty_Assign(BOOL, 仅可见的ASCII, set仅可见的ASCII)
-_ZJRuntimeProperty_Copy(NSString *, 额外允许的字符, set额外允许的字符)
-_ZJRuntimeGetterDoubleValue(BOOL, 内容紧贴边框)
+_CCRuntimeProperty_Assign(NSUInteger, 限制长度, set限制长度)
+_CCRuntimeProperty_Assign(BOOL, 仅数字, set仅数字)
+_CCRuntimeProperty_Assign(BOOL, 仅数字含小数, set仅数字含小数)
+_CCRuntimeProperty_Assign(BOOL, 仅数字加字母, set仅数字加字母)
+_CCRuntimeProperty_Assign(BOOL, 仅可见的ASCII, set仅可见的ASCII)
+_CCRuntimeProperty_Copy(NSString *, 额外允许的字符, set额外允许的字符)
+_CCRuntimeGetterDoubleValue(BOOL, 内容紧贴边框)
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         // 交换setDelegate:方法
-        [UITextView jr_swizzleMethod:@selector(layoutSubviews) withMethod:@selector(zj_layoutSubviews) error:nil];
-        [UITextView jr_swizzleMethod:@selector(setDelegate:) withMethod:@selector(zj_setDelegate:) error:nil];
+        [UITextView jr_swizzleMethod:@selector(layoutSubviews) withMethod:@selector(cc_layoutSubviews) error:nil];
+        [UITextView jr_swizzleMethod:@selector(setDelegate:) withMethod:@selector(cc_setDelegate:) error:nil];
         // 监听文本长度
         [[NSNotificationCenter defaultCenter] addObserverForName:UITextViewTextDidChangeNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
             UITextView *tf = note.object;
@@ -153,14 +153,14 @@ _ZJRuntimeGetterDoubleValue(BOOL, 内容紧贴边框)
         }];
     });
 }
-- (void)zj_layoutSubviews {
+- (void)cc_layoutSubviews {
     if (!self.delegate && OBJOnceToken(self)) {
         self.delegate = (id)self;
     }
-    [self zj_layoutSubviews];
+    [self cc_layoutSubviews];
 }
-- (void)zj_setDelegate:(id<UITextViewDelegate>)delegate {
-    [self zj_setDelegate:delegate];
+- (void)cc_setDelegate:(id<UITextViewDelegate>)delegate {
+    [self cc_setDelegate:delegate];
     if ([delegate isKindOfClass:[NSObject class]] && OBJOnceToken(delegate)) {
         [(id)delegate aspect_hookSelector:@selector(textView:shouldChangeTextInRange:replacementText:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> aInfo) {
             [aInfo.originalInvocation invoke];
@@ -209,16 +209,16 @@ _ZJRuntimeGetterDoubleValue(BOOL, 内容紧贴边框)
 
 
 @implementation UISearchBar (IBInspectableUtils)
-_ZJRuntimeProperty_Retain(UIColor *, textColor, setTextColor)
-_ZJRuntimeProperty_Assign(CGFloat, fontSize, setFontSize)
+_CCRuntimeProperty_Retain(UIColor *, textColor, setTextColor)
+_CCRuntimeProperty_Assign(CGFloat, fontSize, setFontSize)
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [UISearchBar jr_swizzleMethod:@selector(layoutSubviews) withMethod:@selector(zjIBView_layoutSubviews) error:nil];
+        [UISearchBar jr_swizzleMethod:@selector(layoutSubviews) withMethod:@selector(ccIBView_layoutSubviews) error:nil];
     });
 }
-- (void)zjIBView_layoutSubviews {
-    [self zjIBView_layoutSubviews];
+- (void)ccIBView_layoutSubviews {
+    [self ccIBView_layoutSubviews];
     self.textField.font = [UIFont systemFontOfSize:self.fontSize];
     self.textField.textColor = self.textColor;
 }

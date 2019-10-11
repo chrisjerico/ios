@@ -7,7 +7,7 @@
 //
 
 #import "NSMutableAttributedString+Utils.h"
-#import "zj_runtime_property.h"
+#import "cc_runtime_property.h"
 #import "JRSwizzle.h"
 
 @implementation NSAttributedString (Utils)
@@ -46,11 +46,11 @@
 
 @implementation NSMutableAttributedString (Utils)
 
-_ZJRuntimeGetter(UIFont *, font)
-_ZJRuntimeGetter(UIColor *, color)
-_ZJRuntimeGetterDoubleValue(CGFloat, kern)
-_ZJRuntimeGetterDoubleValue(CGFloat, lineSpacing)
-_ZJRuntimeGetterDoubleValue(NSLineBreakMode, lineBreakMode)
+_CCRuntimeGetter(UIFont *, font)
+_CCRuntimeGetter(UIColor *, color)
+_CCRuntimeGetterDoubleValue(CGFloat, kern)
+_CCRuntimeGetterDoubleValue(CGFloat, lineSpacing)
+_CCRuntimeGetterDoubleValue(NSLineBreakMode, lineBreakMode)
 
 - (void)setFont:(UIFont *)font {
     objc_setAssociatedObject(self, @selector(font), font, OBJC_ASSOCIATION_RETAIN_NONATOMIC);

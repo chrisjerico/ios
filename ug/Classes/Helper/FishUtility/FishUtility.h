@@ -57,7 +57,7 @@
     #import "AppDefine.h"
 
     // Network
-    #import "ZJNetworkRequests1.h"
+    #import "CCNetworkRequests1.h"
 
     // LogVC
     #import "LogVC.h"
