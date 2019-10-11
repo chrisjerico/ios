@@ -7,11 +7,11 @@
 //
 
 #import "UIResponder+InterfaceOrientation.h"
-#import "zj_runtime_property.h"
+#import "cc_runtime_property.h"
 
 @implementation UIResponder (InterfaceOrientation)
 
-_ZJRuntimeProperty_Assign(UIInterfaceOrientation, io, setIo);
+_CCRuntimeProperty_Assign(UIInterfaceOrientation, io, setIo);
 
 + (void)setWindowInterfaceOrientation:(UIInterfaceOrientation)io {
     NSDictionary *dict = @{@(UIInterfaceOrientationPortrait):@true,

@@ -1,44 +1,44 @@
 //
-//  zj_runtime_property.h
+//  cc_runtime_property.h
 //  AAA
 //
 //  Created by fish on 16/6/23.
 //  Copyright © 2016年 fish. All rights reserved.
 //
 
-#ifndef zj_runtime_property_h
-#define zj_runtime_property_h
+#ifndef cc_runtime_property_h
+#define cc_runtime_property_h
 
 #import <objc/runtime.h>
 
 
 // Getter方法
-#define _ZJRuntimeGetter(class, getterName)   \
+#define _CCRuntimeGetter(class, getterName)   \
 - (class)getterName {                                         \
 return objc_getAssociatedObject(self, @selector(getterName)); \
 }
 
 // Getter方法
-#define _ZJRuntimeGetterDoubleValue(class, getterName)   \
+#define _CCRuntimeGetterDoubleValue(class, getterName)   \
 - (class)getterName {                                         \
     class i = [objc_getAssociatedObject(self, @selector(getterName)) doubleValue]; \
     return i;\
 } \
 
 // Setter方法
-#define _ZJRuntimeSetter(class, getterName, setterName) \
+#define _CCRuntimeSetter(class, getterName, setterName) \
 - (void)setterName:(class)getterName                                    {\
 objc_setAssociatedObject(self, @selector(getterName), getterName, OBJC_ASSOCIATION_RETAIN_NONATOMIC);\
 }
 
 // CopySetter方法
-#define _ZJRuntimeCopySetter(class, getterName, setterName) \
+#define _CCRuntimeCopySetter(class, getterName, setterName) \
 - (void)setterName:(class)getterName                                        {\
 objc_setAssociatedObject(self, @selector(getterName), getterName, OBJC_ASSOCIATION_COPY_NONATOMIC);\
 }
 
 // Property_Assign
-#define _ZJRuntimeProperty_Assign(class, getterName, setterName) \
+#define _CCRuntimeProperty_Assign(class, getterName, setterName) \
 - (class)getterName {                                         \
 class i = [objc_getAssociatedObject(self, @selector(getterName)) doubleValue]; \
 return i;\
@@ -48,17 +48,17 @@ objc_setAssociatedObject(self, @selector(getterName), @(getterName), OBJC_ASSOCI
 }
 
 // Property_Retain
-#define _ZJRuntimeProperty_Retain(class, getterName, setterName) \
-_ZJRuntimeGetter(class, getterName)\
-_ZJRuntimeSetter(class, getterName, setterName)
+#define _CCRuntimeProperty_Retain(class, getterName, setterName) \
+_CCRuntimeGetter(class, getterName)\
+_CCRuntimeSetter(class, getterName, setterName)
 
 // Property_Copy
-#define _ZJRuntimeProperty_Copy(class, getterName, setterName) \
-_ZJRuntimeGetter(class, getterName)\
-_ZJRuntimeCopySetter(class, getterName, setterName)
+#define _CCRuntimeProperty_Copy(class, getterName, setterName) \
+_CCRuntimeGetter(class, getterName)\
+_CCRuntimeCopySetter(class, getterName, setterName)
 
 // Property_Readonly
-#define _ZJRuntimeProperty_Readonly(class, getterName, defaultValue)    \
+#define _CCRuntimeProperty_Readonly(class, getterName, defaultValue)    \
 - (class)getterName {   \
     id obj = objc_getAssociatedObject(self, @selector(getterName));   \
     if (!obj) { \
@@ -69,4 +69,4 @@ _ZJRuntimeCopySetter(class, getterName, setterName)
 }
 
 
-#endif /* zj_runtime_property.h */
+#endif /* cc_runtime_property.h */

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "UIGestureRecognizer+Utils.h"
 
-@interface ZJGetConstraint : NSObject
+@interface CCGetConstraint : NSObject
 
 @property (nonatomic, assign) id owner;
 @property (nonatomic) NSArray<__kindof NSLayoutConstraint *>*constraints;
@@ -38,8 +38,8 @@
 
 @interface UIView (Utils)
 
-@property (readonly) ZJGetConstraint *zj_constraints;               /**<   获取约束 */
-- (void)zj_updateConstraints:(void (^)(ZJGetConstraint *gc))block;  /**<    更新约束 */
+@property (readonly) CCGetConstraint *cc_constraints;               /**<   获取约束 */
+- (void)cc_updateConstraints:(void (^)(CCGetConstraint *gc))block;  /**<    更新约束 */
 
 - (BOOL)existSubview:(UIView *)view;    /**<    是否存在子视图 */
 - (BOOL)existSuperview:(UIView *)view;  /**<    是否存在父视图 */
