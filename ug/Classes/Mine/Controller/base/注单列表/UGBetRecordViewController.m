@@ -41,9 +41,8 @@ static NSString *recordFilterCellid = @"UGRecordFilterCollectionViewCell";
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.navigationItem.title = @"彩票注单";
-//    self.navigationItem.titleView = self.titleView;
+     self.title = @"彩票注单记录";
+
     [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         
@@ -54,19 +53,17 @@ static NSString *recordFilterCellid = @"UGRecordFilterCollectionViewCell";
     self.filterItemArray = @[@"今日",@"最近三天",@"最近一周",@"最近一月"];
     self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithImageName:@"riqi" target:self action:@selector(rightBarButtonItemClick)];
     
-//    [self initCollectionView];
+
     [self buildSegment];
-//    [self.view addSubview:self.bottomView];
-//    [self.bottomView addSubview:self.amountLabel];
+
     [self setupAmountLabelTextColor];
-    
-//    [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionNone];
+
 
 }
 
 -(void)setSelectIndex:(int) index{
       [self.slideSwitchView changeSlideAtSegmentIndex:2];
-//       [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionNone];
+
 }
 
 - (void)rightBarButtonItemClick {
@@ -166,6 +163,8 @@ static NSString *recordFilterCellid = @"UGRecordFilterCollectionViewCell";
     //设置tab 被选中的标识的颜色(可选)
     self.slideSwitchView.tabItemSelectionIndicatorColor = UGNavColor;
     [self.view addSubview:self.slideSwitchView];
+    
+    self.title = @"彩票记录";
   
 
 }

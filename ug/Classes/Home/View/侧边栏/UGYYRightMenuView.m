@@ -330,7 +330,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
                 }
             }];
         }else {
-            
+             title = @"彩票注单记录";
             UGBetRecordViewController *betRecordVC = [[UGBetRecordViewController alloc] init];
             [betRecordVC buildSegment];
             [betRecordVC setSelectIndex:2];
@@ -348,6 +348,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
             }];
         }else {
             
+            title = @"彩票注单记录";
             UGBetRecordViewController *betRecordVC = [[UGBetRecordViewController alloc] init];
             [betRecordVC buildSegment];
             [betRecordVC setSelectIndex:2];
@@ -363,7 +364,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
                 }
             }];
         }else {
-            
+            title = @"彩票注单记录";
             UGBetRecordViewController *betRecordVC = [[UGBetRecordViewController alloc] init];
 
             viewController = betRecordVC;
@@ -450,6 +451,8 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
        }
    }
   
+    
+    
     
     
     viewController.title = title;

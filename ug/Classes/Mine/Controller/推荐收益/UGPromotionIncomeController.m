@@ -35,6 +35,7 @@
     self.navigationItem.title = @"推荐收益";
     self.view.backgroundColor =[UIColor whiteColor];
     
+    [self initView];
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         [self skin];
     });

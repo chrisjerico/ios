@@ -663,7 +663,6 @@
 		CF3B0E352349CDA50035AF50 /* UGCalenderAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGCalenderAlertView.h; sourceTree = "<group>"; };
 		CF3B0E362349CDA50035AF50 /* UGCalenderAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGCalenderAlertView.m; sourceTree = "<group>"; };
 		CF3B0E382349CDAC0035AF50 /* UGCalenderAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGCalenderAlertView.xib; sourceTree = "<group>"; };
-		CFAAE7E9234F2AC600443E1A /* ug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ug.entitlements; sourceTree = "<group>"; };
 		CFD3BE972347137E00FCDA6D /* FishUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishUtility.h; sourceTree = "<group>"; };
 		CFD3BE992347137E00FCDA6D /* IBView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBView.h; sourceTree = "<group>"; };
 		CFD3BE9A2347137E00FCDA6D /* category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = category.m; sourceTree = "<group>"; };
@@ -3227,6 +3226,19 @@
 			path = SLWebView;
 			sourceTree = "<group>";
 		};
+		D40C6E4023504F5600651983 /* 侧边栏 */ = {
+			isa = PBXGroup;
+			children = (
+				D41C3009233F220000541254 /* UGYYRightMenuTableViewCell.h */,
+				D41C300A233F220000541254 /* UGYYRightMenuTableViewCell.m */,
+				D41C300B233F220000541254 /* UGYYRightMenuTableViewCell.xib */,
+				D4A36634233E310B00F6D770 /* UGYYRightMenuView.h */,
+				D4A36635233E310B00F6D770 /* UGYYRightMenuView.m */,
+				D4A36637233E311E00F6D770 /* UGYYRightMenuView.xib */,
+			);
+			path = "侧边栏";
+			sourceTree = "<group>";
+		};
 		D40D32C92297DD1C00B89398 /* WSLWaterFlowLayout */ = {
 			isa = PBXGroup;
 			children = (
@@ -3775,6 +3787,7 @@
 		D4B75E26227811D50007047C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D40C6E4023504F5600651983 /* 侧边栏 */,
 				D405B2C7227ADA4E00F8C586 /* UGGameTypeColletionViewCell.h */,
 				D405B2C8227ADA4E00F8C586 /* UGGameTypeColletionViewCell.m */,
 				D405B2C9227ADA4E00F8C586 /* UGGameTypeColletionViewCell.xib */,
@@ -3833,12 +3846,6 @@
 				D417EFD42330BD340024F634 /* UGredActivityView.h */,
 				D417EFD52330BD340024F634 /* UGredActivityView.m */,
 				D417EFD72330BEAB0024F634 /* UGredActivityView.xib */,
-				D4A36634233E310B00F6D770 /* UGYYRightMenuView.h */,
-				D4A36635233E310B00F6D770 /* UGYYRightMenuView.m */,
-				D4A36637233E311E00F6D770 /* UGYYRightMenuView.xib */,
-				D41C3009233F220000541254 /* UGYYRightMenuTableViewCell.h */,
-				D41C300A233F220000541254 /* UGYYRightMenuTableViewCell.m */,
-				D41C300B233F220000541254 /* UGYYRightMenuTableViewCell.xib */,
 				0322AD66234342DB00E9857E /* UGDocumentView.h */,
 				0322AD67234342DB00E9857E /* UGDocumentView.m */,
 				0322AD692344E78900E9857E /* UGGameNavigationView.h */,

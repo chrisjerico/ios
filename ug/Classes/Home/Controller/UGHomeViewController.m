@@ -75,7 +75,7 @@
 #import "UIImage+YYgradientImage.h"
 #import "UITabBarController+ShowViewController.h"
 
-
+#import "UGPromotionIncomeController.h"
 
 @interface UGHomeViewController ()<SDCycleScrollViewDelegate,UUMarqueeViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -383,7 +383,17 @@
 	} else if ([model.subId isEqualToString:@"7"]) {
 		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://test10.6yc.com/Open_prize/index.php"]];
 	} else if ([model.subId isEqualToString:@"6"]) {
-		[SVProgressHUD showInfoWithStatus:@"推荐收益已关闭"];
+            UGUserModel *user = [UGUserModel currentUser];
+               if (user.isTest) {
+                   [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                       if (buttonIndex == 1) {
+                           SANotificationEventPost(UGNotificationShowLoginView, nil);
+                       }
+                   }];
+               }else {
+                       UGPromotionIncomeController *incomeVC = [[UGPromotionIncomeController alloc] init];
+                       [self.navigationController pushViewController:incomeVC animated:YES];
+               }
 		
 	} else if ([model.subId isEqualToString:@"2"]) {
 		[SVProgressHUD showInfoWithStatus:@"下载链接未配置"];
