@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *updateContent;  /**<   更新日志 */
 @property (nonatomic, strong) NSString *file;           /**<   APP文件 */
 
+@property (nonatomic, assign) BOOL isIncUpdate;        /**<   是否强制更新：1=是；0=否 */
+
 @end
 
 NS_ASSUME_NONNULL_END
