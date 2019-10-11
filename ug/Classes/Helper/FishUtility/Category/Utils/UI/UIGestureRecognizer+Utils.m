@@ -7,15 +7,15 @@
 //
 
 #import "UIGestureRecognizer+Utils.h"
-#import "zj_runtime_property.h"
+#import "cc_runtime_property.h"
 
 /*
  * UIGestureRecognizer+Block
  */
 @implementation UIGestureRecognizer (Utils)
 
-_ZJRuntimeProperty_Readonly(NSMutableArray *, actionBlocks, [@[] mutableCopy])
-_ZJRuntimeProperty_Copy(NSString *, tagString, setTagString)
+_CCRuntimeProperty_Readonly(NSMutableArray *, actionBlocks, [@[] mutableCopy])
+_CCRuntimeProperty_Copy(NSString *, tagString, setTagString)
 
 + (instancetype)gestureRecognizer:(void (^)(__kindof UIGestureRecognizer *))actionBlock {
     UIGestureRecognizer *gr  = [[self class] new];

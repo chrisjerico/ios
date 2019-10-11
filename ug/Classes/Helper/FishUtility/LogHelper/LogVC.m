@@ -12,7 +12,7 @@
 
 #import "TextFieldAlertView.h"
 
-#import "ZJNetworkRequests1+HTTPS.h"
+#import "CCNetworkRequests1+HTTPS.h"
 #import "AFHTTPSessionManager.h"
 #import "NSMutableArray+KVO.h"
 
@@ -25,10 +25,10 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *hostSegmentedControl;  /**<    主机地址 SegmentedControl */
 @property (weak, nonatomic) IBOutlet UISegmentedControl *toolSegmentedControl;
 
-@property (nonatomic) NSMutableArray <ZJSessionModel *>*allRequest; /**<    请求列表 */
-@property (nonatomic) NSMutableArray <ZJSessionModel *>*collects;   /**<    收藏列表 */
+@property (nonatomic) NSMutableArray <CCSessionModel *>*allRequest; /**<    请求列表 */
+@property (nonatomic) NSMutableArray <CCSessionModel *>*collects;   /**<    收藏列表 */
 
-@property (nonatomic) ZJSessionModel *selectedModel;                /**<    选中的请求 */
+@property (nonatomic) CCSessionModel *selectedModel;                /**<    选中的请求 */
 @property (nonatomic) NSArray <NSString *>*selectedModelKeys;       /**<    选中请求的参数名 */
 
 @property (nonatomic) NSMutableString *log;                         /**<    日志 */
@@ -65,7 +65,7 @@ static LogVC *_logVC = nil;
     })];
 }
 
-+ (void)addRequestModel:(ZJSessionModel *)sm {
++ (void)addRequestModel:(CCSessionModel *)sm {
     [_logVC.allRequest insertObject:sm atIndex:0];
     if (_logVC.view.by > 10) {
         [_logVC.reqTableView reloadData];
@@ -115,20 +115,20 @@ static LogVC *_logVC = nil;
 
 - (IBAction)onRepeatBtnClick:(UIButton *)sender {
     NSInteger idx = [_reqTableView indexPathForSelectedRow].row;
-    NSMutableArray <ZJSessionModel *>*requests = (_collectButton.selected ? _collects : _allRequest);
+    NSMutableArray <CCSessionModel *>*requests = (_collectButton.selected ? _collects : _allRequest);
     if (requests.count > idx) {
-        ZJSessionModel *sm = requests[idx];
-        ZJSessionModel *sObj = [ZJSessionModel new];
+        CCSessionModel *sm = requests[idx];
+        CCSessionModel *sObj = [CCSessionModel new];
         sObj.urlString = sm.urlString;
         sObj.params = sm.params;
         sObj.isPOST = sm.isPOST;
         sObj.delegate = NetworkManager1;
         
-        AFHTTPSessionManager *m = [ZJNetworkRequests1 authSessionManager:sm.urlString];
+        AFHTTPSessionManager *m = [CCNetworkRequests1 authSessionManager:sm.urlString];
         NSMutableURLRequest *req = [m.requestSerializer requestWithMethod:sm.isPOST ? @"POST":@"GET" URLString:sm.urlString parameters:sm.params error:nil];
         [[sObj dataTask:m request:req] resume];
         
-        sObj.completionBlock = ^(ZJSessionModel *sObj) {
+        sObj.completionBlock = ^(CCSessionModel *sObj) {
             [_reqTableView reloadData];
         };
         
@@ -211,7 +211,7 @@ static LogVC *_logVC = nil;
     FastSubViewCode(cell);
     if (tableView == _reqTableView) {
         NSArray *array = (_collectButton.selected ? _collects : _allRequest);
-        ZJSessionModel *sm = array.count > indexPath.row ? array[indexPath.row] : nil;
+        CCSessionModel *sm = array.count > indexPath.row ? array[indexPath.row] : nil;
         subLabel(@"StateLabel").text = sm.responseObject ? @"✅" : (sm.error ? @"❌" : @"🕓");
         subLabel(@"TitleLabel").text = sm.urlString;
         subLabel(@"DetailLabel").text = _NSString(@"%@", sm.responseObject[@"msg"]);

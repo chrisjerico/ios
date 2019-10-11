@@ -1,15 +1,15 @@
 //
-//  ZJSessionModel.m
+//  CCSessionModel.m
 //  Consult
 //
 //  Created by fish on 2017/10/26.
 //  Copyright © 2017年 fish. All rights reserved.
 //
 
-#import "ZJSessionModel.h"
+#import "CCSessionModel.h"
 #import "AFNetworking.h"
 
-@implementation ZJSessionModel
+@implementation CCSessionModel
 
 MJCodingImplementation
 
@@ -121,7 +121,7 @@ MJCodingImplementation
     return (id)_task;
 }
 
-- (NSURLSessionUploadTask *)uploadTask:(AFHTTPSessionManager *)m request:(NSURLRequest *)req files:(NSArray<ZJUploadFileModel *> *)files {
+- (NSURLSessionUploadTask *)uploadTask:(AFHTTPSessionManager *)m request:(NSURLRequest *)req files:(NSArray<CCUploadFileModel *> *)files {
     _files = files;
     
     __blockSelf_(__self);
@@ -188,7 +188,7 @@ MJCodingImplementation
 
 
 
-@implementation ZJUploadFileModel
+@implementation CCUploadFileModel
 MJCodingImplementation
 @end
 

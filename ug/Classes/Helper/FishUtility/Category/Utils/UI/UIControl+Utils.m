@@ -7,9 +7,9 @@
 //
 
 #import "UIControl+Utils.h"
-#import "zj_runtime_property.h"
+#import "cc_runtime_property.h"
 
-@interface ZJControlModel : NSObject
+@interface CCControlModel : NSObject
 
 @property (copy, nonatomic) void (^block)(id arg);  /**<   Action Block */
 @property (strong, nonatomic) id userInfo;
@@ -17,7 +17,7 @@
 - (void)invokeBlock:(id)arg;
 @end
 
-@implementation ZJControlModel
+@implementation CCControlModel
 
 - (void)invokeBlock:(id)arg {
     if (self.block)
@@ -30,25 +30,25 @@
 
 
 @interface UIControl ()
-@property (nonatomic, readonly) NSMutableArray <ZJControlModel *>*actions;
+@property (nonatomic, readonly) NSMutableArray <CCControlModel *>*actions;
 @end
 
 @implementation UIControl (Utils)
 
 
-_ZJRuntimeProperty_Copy(void (^)(__kindof UIControl *, BOOL), didSelectedChange, setDidSelectedChange)
+_CCRuntimeProperty_Copy(void (^)(__kindof UIControl *, BOOL), didSelectedChange, setDidSelectedChange)
 
 + (void)load {
     [super load];
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [UIControl jr_swizzleMethod:@selector(setSelected:) withMethod:@selector(zj_setSelected:) error:nil];
+        [UIControl jr_swizzleMethod:@selector(setSelected:) withMethod:@selector(cc_setSelected:) error:nil];
     });
 }
 
-- (void)zj_setSelected:(BOOL)selected {
-    [self zj_setSelected:selected];
+- (void)cc_setSelected:(BOOL)selected {
+    [self cc_setSelected:selected];
     if (self.didSelectedChange)
         self.didSelectedChange(self, selected);
 }
@@ -65,7 +65,7 @@ _ZJRuntimeProperty_Copy(void (^)(__kindof UIControl *, BOOL), didSelectedChange,
 }
 
 - (void)handleControlEvents:(UIControlEvents)controlEvents actionBlock:(void (^)(__kindof UIControl *))actionBlock {
-    ZJControlModel *b = [ZJControlModel new];
+    CCControlModel *b = [CCControlModel new];
     b.block = actionBlock;
     b.userInfo = @(controlEvents);
     [self.actions addObject:b];
@@ -78,7 +78,7 @@ _ZJRuntimeProperty_Copy(void (^)(__kindof UIControl *, BOOL), didSelectedChange,
     NSMutableArray *tmpArr = [NSMutableArray array];
     
     [self.actions enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        ZJControlModel *b = obj;
+        CCControlModel *b = obj;
         if ([b.userInfo integerValue] == controlEvents) {
             [tmpArr addObject:b];
             [self removeTarget:b action:@selector(invokeBlock:) forControlEvents:controlEvents];

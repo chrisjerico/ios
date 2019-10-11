@@ -7,11 +7,11 @@
 //
 
 #import "UIView+TagString.h"
-#import "zj_runtime_property.h"
+#import "cc_runtime_property.h"
 
 @implementation UIView (TagString)
 
-_ZJRuntimeProperty_Copy(NSString *, tagString, setTagString)
+_CCRuntimeProperty_Copy(NSString *, tagString, setTagString)
 
 
 - (nullable __kindof UIView *)viewWithTagString:(NSString *)tagString {
@@ -48,7 +48,7 @@ _ZJRuntimeProperty_Copy(NSString *, tagString, setTagString)
 }
 
 - (NSLayoutConstraint *)constraintWithIdentifier:(NSString *)identifier {
-    for (NSLayoutConstraint *lc in self.zj_constraints.constraints) {
+    for (NSLayoutConstraint *lc in self.cc_constraints.constraints) {
         if ([lc isKindOfClass:[NSLayoutConstraint class]] && [lc.identifier isEqualToString:identifier])
             return lc;
     }

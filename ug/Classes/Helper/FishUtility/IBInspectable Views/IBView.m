@@ -8,7 +8,7 @@
 
 #import "IBView.h"
 #import "NSMutableAttributedString+Utils.h"
-#import "zj_runtime_property.h"
+#import "cc_runtime_property.h"
 
 @implementation IBView
 - (void)layoutSubviews {
