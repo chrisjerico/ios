@@ -7,7 +7,7 @@
 //
 
 #import "UIResponder+EventRouter.h"
-#import "zj_runtime_property.h"
+#import "cc_runtime_property.h"
 
 
 @interface EventRouteModel ()
@@ -35,8 +35,8 @@
 
 @implementation UIResponder (EventRouter)
 
-_ZJRuntimeProperty_Readonly(NSMutableArray <NSString *>*, eventNames,  [NSMutableArray new])
-_ZJRuntimeProperty_Readonly(NSMutableArray <void (^)(EventRouteModel *)>*, eventRouteBlocks,  [NSMutableArray new])
+_CCRuntimeProperty_Readonly(NSMutableArray <NSString *>*, eventNames,  [NSMutableArray new])
+_CCRuntimeProperty_Readonly(NSMutableArray <void (^)(EventRouteModel *)>*, eventRouteBlocks,  [NSMutableArray new])
 
 - (void)eventRouteWithName:(NSString *)eventName erm:(EventRouteModel *)erm {
     [erm.responderPointers addPointer:(__bridge void * _Nullable)(self)];

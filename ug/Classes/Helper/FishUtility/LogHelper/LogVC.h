@@ -16,7 +16,7 @@
 
 + (void)enableLogVC;
 
-+ (void)addRequestModel:(ZJSessionModel *)sm;
++ (void)addRequestModel:(CCSessionModel *)sm;
 + (void)addLog:(NSString *)log;
 @end
 

@@ -22,10 +22,10 @@
     [self xw_addNotificationForName:UIKeyboardWillShowNotification block:^(NSNotification * _Nonnull noti) {
         CGRect rect = [[[noti userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
         CGFloat offsetY = __self.alertView.height/2 + rect.size.height - APP.Height/2 + 30;
-        __self.alertView.zj_constraints.centerY.constant = MIN(-offsetY, 0);
+        __self.alertView.cc_constraints.centerY.constant = MIN(-offsetY, 0);
     }];
     [self xw_addNotificationForName:UIKeyboardWillHideNotification block:^(NSNotification * _Nonnull noti) {
-        __self.alertView.zj_constraints.centerY.constant = 0;
+        __self.alertView.cc_constraints.centerY.constant = 0;
     }];
 }
 

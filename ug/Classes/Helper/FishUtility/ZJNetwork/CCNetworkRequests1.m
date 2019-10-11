@@ -1,20 +1,20 @@
 //
-//  ZJNetworkRequests1.m
+//  CCNetworkRequests1.m
 //  Consult
 //
 //  Created by fish on 2017/10/26.
 //  Copyright © 2017年 fish. All rights reserved.
 //
 
-#import "ZJNetworkRequests1.h"
+#import "CCNetworkRequests1.h"
 #import "AFNetworking.h"
-#import "ZJNetworkRequests1+HTTPS.h"
+#import "CCNetworkRequests1+HTTPS.h"
 
-@interface ZJNetworkRequests1 ()<ZJRequestDelegate>
+@interface CCNetworkRequests1 ()<CCRequestDelegate>
 @property (readonly) NSDictionary *publicParams;            /**<    公共参数 */
 @end
 
-@implementation ZJNetworkRequests1
+@implementation CCNetworkRequests1
 
 + (instancetype)sharedManager {
     static id obj = nil;
@@ -27,9 +27,9 @@
 }
 
 
-#pragma mark - ZJRequestDelegate
+#pragma mark - CCRequestDelegate
 
-- (void)requestCompletionAndWillCallBlock:(ZJSessionModel *)sm {
+- (void)requestCompletionAndWillCallBlock:(CCSessionModel *)sm {
     // 执行 请求完成后的通用操作
     // ...
     //    NSLog(@"url = %@", sObj.urlString);
@@ -47,7 +47,7 @@
 }
 #pragma mark 生成错误信息
 // 把 “HTTP请求成功，但服务器返回操作失败” 的情况生成错误信息NSError
-- (NSError *)validationError:(ZJSessionModel *)sObj {
+- (NSError *)validationError:(CCSessionModel *)sObj {
     // 请求失败
     if (sObj.error) {
         NSLog(@"❌ 请求 URLString：%@ 失败！发送参数：%@\n 参数的 JSON 字符串为：%@\n ERROR 的系统信息为：\n%@\n", sObj.urlString, sObj.params, sObj.params.mj_JSONString, sObj.error);
@@ -103,14 +103,14 @@
 #pragma mark - —— 发送请求
 
 // 简写接口
-- (ZJSessionModel *)req:(NSString *)pathComponent :(NSDictionary *)params :(BOOL)isPOST {
+- (CCSessionModel *)req:(NSString *)pathComponent :(NSDictionary *)params :(BOOL)isPOST {
     NSString *host = APP.HOST;
     NSString *string = _NSString(@"%@%@", host, pathComponent);
     return [self sendRequest:string params:params isPOST:isPOST];
 }
 
 // 发起请求
-- (ZJSessionModel *)sendRequest:(NSString *)urlString params:(NSDictionary *)_params isPOST:(BOOL)isPOST {
+- (CCSessionModel *)sendRequest:(NSString *)urlString params:(NSDictionary *)_params isPOST:(BOOL)isPOST {
     NSMutableDictionary *params = ({
         NSMutableDictionary *temp = [NSMutableDictionary dictionary];
         [temp addEntriesFromDictionary:_params];
@@ -124,7 +124,7 @@
         temp;
     });
     
-    ZJSessionModel *sm = [ZJSessionModel new];
+    CCSessionModel *sm = [CCSessionModel new];
     sm.urlString = urlString;
     sm.params = params;
     sm.isPOST = isPOST;
@@ -143,7 +143,7 @@
     
     // 发起请求
     {
-        AFHTTPSessionManager *m = [ZJNetworkRequests1 authSessionManager:urlString];
+        AFHTTPSessionManager *m = [CCNetworkRequests1 authSessionManager:urlString];
         NSMutableURLRequest *req = [m.requestSerializer requestWithMethod:isPOST ? @"POST":@"GET" URLString:urlString parameters:params error:nil];
 //        [req addValue:UserI.token forHTTPHeaderField:@"ACCESS_TOKEN"];
         [[sm dataTask:m request:req] resume];

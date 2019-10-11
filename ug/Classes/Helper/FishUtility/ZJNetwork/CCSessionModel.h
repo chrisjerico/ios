@@ -1,5 +1,5 @@
 //
-//  ZJSessionModel.h
+//  CCSessionModel.h
 //  Consult
 //
 //  Created by fish on 2017/10/26.
@@ -9,20 +9,20 @@
 #import <Foundation/Foundation.h>
 
 @class AFHTTPSessionManager;
-@class ZJUploadFileModel;
-@class ZJSessionModel;
+@class CCUploadFileModel;
+@class CCSessionModel;
 
-@protocol ZJRequestDelegate
-- (NSError *)validationError:(ZJSessionModel *)sm;
-- (void)requestCompletionAndWillCallBlock:(ZJSessionModel *)sm;
+@protocol CCRequestDelegate
+- (NSError *)validationError:(CCSessionModel *)sm;
+- (void)requestCompletionAndWillCallBlock:(CCSessionModel *)sm;
 @end
 
 
 /*
- * ZJ网络会话的数据模型
+ * CC网络会话的数据模型
  * 功能：设置回调 和 获取请求/响应的信息
  */
-@interface ZJSessionModel : NSObject
+@interface CCSessionModel : NSObject
 
 // 以下为初始化时赋值字段
 @property (nonatomic, copy) NSString *urlString;              /**<    URL */
@@ -33,7 +33,7 @@
 // 以下为不可修改字段
 @property (nonatomic, weak) NSURLSessionTask *task;           /**<    请求任务 */
 @property (nonatomic, weak) AFHTTPSessionManager *afsm;       /**<    会话管理器 */
-@property (nonatomic, weak) id <ZJRequestDelegate> delegate;  /**<    Delegate */
+@property (nonatomic, weak) id <CCRequestDelegate> delegate;  /**<    Delegate */
 
 @property (nonatomic) NSError *error;                         /**<    错误信息 */
 @property (nonatomic) id responseObject;                      /**<    返回的数据 */
@@ -49,25 +49,25 @@
 
 
 // ———— 上传和下载接口
-@interface ZJSessionModel ()
+@interface CCSessionModel ()
 
 @property (nonatomic) NSString *filePath;                     /**<    下载文件的存储地址 */
-@property (nonatomic) NSArray <ZJUploadFileModel *>*files;    /**<    上传的文件列表 */
+@property (nonatomic) NSArray <CCUploadFileModel *>*files;    /**<    上传的文件列表 */
 
 - (NSURLSessionDownloadTask *)downloadTask:(AFHTTPSessionManager *)m request:(NSURLRequest *)req;
 - (NSURLSessionDownloadTask *)downloadTask:(AFHTTPSessionManager *)m resumeData:(NSData *)rd;
-- (NSURLSessionUploadTask *)uploadTask:(AFHTTPSessionManager *)m request:(NSURLRequest *)req files:(NSArray <ZJUploadFileModel *>*)files;
+- (NSURLSessionUploadTask *)uploadTask:(AFHTTPSessionManager *)m request:(NSURLRequest *)req files:(NSArray <CCUploadFileModel *>*)files;
 @end
 
 
 // ———— TaskBlock 回调
-@interface ZJSessionModel ()
+@interface CCSessionModel ()
 
 @property (nonatomic) BOOL noShowErrorHUD;    /**<    取消请求失败时显示的错误信息HUD */
 
 @property (nonatomic) void (^successBlock)(id responseObject);                                /**<    请求成功 */
 @property (nonatomic) void (^failureBlock)(NSError *error);                                   /**<    请求失败 */
-@property (nonatomic) void (^completionBlock)(ZJSessionModel *sm);                          /**<    请求完成 */
+@property (nonatomic) void (^completionBlock)(CCSessionModel *sm);                          /**<    请求完成 */
 
 @property (nonatomic) NSURL *(^filePathBlock)(NSURL *targetPath, NSURLResponse *response);    /**<    设置下载文件的保存路径 */
 @property (nonatomic) void (^progressBlock)(NSProgress *progress);                            /**<    上传/下载 进度回调 */
@@ -80,7 +80,7 @@
 /*
  * 描述一个要上传的文件
  */
-@interface ZJUploadFileModel : NSObject
+@interface CCUploadFileModel : NSObject
 
 @property (nonatomic, copy) NSString *filePath;                /**<    文件本地路径 */
 @property (nonatomic, copy) NSString *name;                    /**<    key */
