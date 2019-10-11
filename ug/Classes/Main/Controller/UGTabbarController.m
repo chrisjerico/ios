@@ -15,6 +15,7 @@
 #import "UGYYLotteryHomeViewController.h"
 #import "UGMineSkinViewController.h"
 #import "UGSystemConfigModel.h"
+#import "UGAppVersionManager.h"
 
 @interface UGTabbarController ()
 
@@ -41,6 +42,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.tabBar layoutIfNeeded];
+	//    版本更新
+    [[UGAppVersionManager shareInstance] updateVersionNow:YES];
 }
 
 - (void)initAllNav{
