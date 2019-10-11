@@ -40,6 +40,8 @@ static NSString *betRecordCellid = @"UGLotteryRecordCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = @"彩票注单记录";
+    self.navigationItem.title = @"彩票注单";
     self.pageSize = size;
     self.pageNumber = page;
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
