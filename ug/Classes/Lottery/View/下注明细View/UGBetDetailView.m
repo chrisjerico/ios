@@ -38,9 +38,9 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 		float h = 0;
 		if (self.dataArray.count < 3) {
 			h = 400;
-		}else if (self.dataArray.count > 7) {
+		} else if (self.dataArray.count > 7) {
 			h = 550;
-		}else {
+		} else {
 			h = 230 + 44 * self.dataArray.count;
 		}
 		self.size = CGSizeMake(UGScreenW - 50, h);
@@ -59,10 +59,8 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 		SANotificationEventSubscribe(UGNotificationloginTimeout, self, ^(typeof (self) self, id obj) {
 			[self hiddenSelf];
 		});
-		
 	}
 	return self;
-	
 }
 
 - (IBAction)cancelClick:(id)sender {
@@ -70,7 +68,6 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 		self.cancelBlock();
 	}
 	[self hiddenSelf];
-	
 }
 
 - (IBAction)submitClick:(id)sender {
@@ -86,40 +83,40 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 				
 				totalNum = [CMCommon pickNum:3 totalNum:self.dataArray.count];
 				
-			}else if ([@"二全中" isEqualToString:model.title] ||
+			} else if ([@"二全中" isEqualToString:model.title] ||
 					  [@"二中特" isEqualToString:model.title] ||
 					  [@"特串" isEqualToString:model.title]) {
 				
 				totalNum = [CMCommon pickNum:2 totalNum:self.dataArray.count];
 				
-			}else if ([@"四全中" isEqualToString:model.title]) {
+			} else if ([@"四全中" isEqualToString:model.title]) {
 				
 				totalNum = [CMCommon pickNum:4 totalNum:self.dataArray.count];
 				
-			}else if ([@"前二组选" isEqualToString:model.title]) {
+			} else if ([@"前二组选" isEqualToString:model.title]) {
 				
 				totalNum = [CMCommon pickNum:2 totalNum:self.dataArray.count];
-			}else if ([@"前三组选" isEqualToString:model.title]) {
+			} else if ([@"前三组选" isEqualToString:model.title]) {
 				
 				totalNum = [CMCommon pickNum:3 totalNum:self.dataArray.count];
-			}else if ([@"任选二" isEqualToString:model.title] ||
+			} else if ([@"任选二" isEqualToString:model.title] ||
 					  [@"选二连组" isEqualToString:model.title]) {
 				
 				totalNum = [CMCommon pickNum:2 totalNum:self.dataArray.count];
-			}else if ([@"任选三" isEqualToString:model.title] ||
+			} else if ([@"任选三" isEqualToString:model.title] ||
 					  [@"选三前组" isEqualToString:model.title]) {
 				
 				totalNum = [CMCommon pickNum:3 totalNum:self.dataArray.count];
-			}else if ([@"任选四" isEqualToString:model.title]) {
+			} else if ([@"任选四" isEqualToString:model.title]) {
 				totalNum = [CMCommon pickNum:4 totalNum:self.dataArray.count];
-			}else if ([@"任选五" isEqualToString:model.title]) {
+			} else if ([@"任选五" isEqualToString:model.title]) {
 				totalNum = [CMCommon pickNum:5 totalNum:self.dataArray.count];
-			}else {
+			} else {
 				//                11选5 连码非组选等玩法
 				totalNum = 1;
 			}
 			totalAmount = model.money.floatValue * totalNum;
-		}else {
+		} else {
 			totalNum = self.betArray.count;
 			totalAmount += model.money.floatValue;
 		}
@@ -199,7 +196,9 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 	}];
 }
 
+
 #pragma mark - UITableViewDataSource
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	return 1;
 }
@@ -264,17 +263,17 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 			[@"二连肖" isEqualToString:bet.title]) {
 			
 			pickArrs = [CMCommon pickPermutation:2 totalNum:array.count];
-		}else if ([@"三连尾" isEqualToString:bet.title] ||
+		} else if ([@"三连尾" isEqualToString:bet.title] ||
 				  [@"三连肖" isEqualToString:bet.title]){
 			
 			pickArrs = [CMCommon pickPermutation:3 totalNum:array.count];
 			
-		}else if ([@"四连尾" isEqualToString:bet.title] ||
+		} else if ([@"四连尾" isEqualToString:bet.title] ||
 				  [@"四连肖" isEqualToString:bet.title]){
 			
 			pickArrs = [CMCommon pickPermutation:4 totalNum:array.count];
 			
-		}else {
+		} else {
 			
 			pickArrs = [CMCommon pickPermutation:5 totalNum:array.count];
 			
@@ -331,37 +330,37 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 					
 					count = [CMCommon pickNum:3 totalNum:self.dataArray.count];
 					
-				}else if ([@"二全中" isEqualToString:temp.title] ||
+				} else if ([@"二全中" isEqualToString:temp.title] ||
 						  [@"二中特" isEqualToString:temp.title] ||
 						  [@"特串" isEqualToString:temp.title]) {
 					
 					count = [CMCommon pickNum:2 totalNum:self.dataArray.count];
 					
-				}else if ([@"四全中" isEqualToString:temp.title]) {
+				} else if ([@"四全中" isEqualToString:temp.title]) {
 					
 					count = [CMCommon pickNum:4 totalNum:self.dataArray.count];
 					
-				}else if ([@"前二组选" isEqualToString:temp.title]) {
+				} else if ([@"前二组选" isEqualToString:temp.title]) {
 					
 					count = [CMCommon pickNum:2 totalNum:self.dataArray.count];
 					
-				}else if ([@"前三组选" isEqualToString:temp.title]) {
+				} else if ([@"前三组选" isEqualToString:temp.title]) {
 					
 					count = [CMCommon pickNum:3 totalNum:self.dataArray.count];
 					
-				}else if ([@"任选二" isEqualToString:temp.title] ||
+				} else if ([@"任选二" isEqualToString:temp.title] ||
 						  [@"选二连组" isEqualToString:temp.title]) {
 					
 					count = [CMCommon pickNum:2 totalNum:self.dataArray.count];
-				}else if ([@"任选三" isEqualToString:temp.title] ||
+				} else if ([@"任选三" isEqualToString:temp.title] ||
 						  [@"选三前组" isEqualToString:temp.title]) {
 					
 					count = [CMCommon pickNum:3 totalNum:self.dataArray.count];
-				}else if ([@"任选四" isEqualToString:temp.title]) {
+				} else if ([@"任选四" isEqualToString:temp.title]) {
 					count = [CMCommon pickNum:4 totalNum:self.dataArray.count];
-				}else if ([@"任选五" isEqualToString:temp.title]) {
+				} else if ([@"任选五" isEqualToString:temp.title]) {
 					count = [CMCommon pickNum:5 totalNum:self.dataArray.count];
-				}else {
+				} else {
 					//                11选5 连码非组选等玩法
 					count = 1;
 				}
@@ -379,7 +378,6 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 	WeakSelf
 	[self.countDown countDownWithPER_SECBlock:^{
 		[weakSelf updateCloseLabelText];
-		
 	}];
 	
 	[self updateTotalLabelText];
@@ -388,9 +386,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 		self.titleLabel.text = [NSString stringWithFormat:@"%@ 下注明细", nextIssueModel.title];
 	} else {
 		self.titleLabel.text = [NSString stringWithFormat:@"第%@期 %@ 下注明细",nextIssueModel.curIssue,nextIssueModel.title];
-
 	}
-	
 }
 
 - (void)updateCloseLabelText{
@@ -404,11 +400,9 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 //			[self hiddenSelf];
 //		}
 		[self hiddenSelf];
-
 	}
 	self.closeTimeLabel.text = [NSString stringWithFormat:@"封盘时间：%@",timeStr];
 	[self updateCloseLabel];
-	
 }
 
 - (void)updateCloseLabel {
@@ -428,35 +422,35 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 				
 				num = [CMCommon pickNum:3 totalNum:self.dataArray.count];
 				
-			}else if ([@"二全中" isEqualToString:model.title] ||
+			} else if ([@"二全中" isEqualToString:model.title] ||
 					  [@"二中特" isEqualToString:model.title] ||
 					  [@"特串" isEqualToString:model.title]) {
 				
 				num = [CMCommon pickNum:2 totalNum:self.dataArray.count];
 				
-			}else if ([@"四全中" isEqualToString:model.title]) {
+			} else if ([@"四全中" isEqualToString:model.title]) {
 				
 				num = [CMCommon pickNum:4 totalNum:self.dataArray.count];
 				
-			}else if ([@"前二组选" isEqualToString:model.title]) {
+			} else if ([@"前二组选" isEqualToString:model.title]) {
 				num = [CMCommon pickNum:2 totalNum:self.dataArray.count];
-			}else if ([@"前三组选" isEqualToString:model.title]) {
+			} else if ([@"前三组选" isEqualToString:model.title]) {
 				num = [CMCommon pickNum:3 totalNum:self.dataArray.count];
-			}else if ([@"任选二" isEqualToString:model.title] ||
+			} else if ([@"任选二" isEqualToString:model.title] ||
 					  [@"选二连组" isEqualToString:model.title]) {
 				
 				num = [CMCommon pickNum:2 totalNum:self.dataArray.count];
-			}else if ([@"任选三" isEqualToString:model.title] ||
+			} else if ([@"任选三" isEqualToString:model.title] ||
 					  [@"选三前组" isEqualToString:model.title]) {
 				
 				num = [CMCommon pickNum:3 totalNum:self.dataArray.count];
-			}else if ([@"任选四" isEqualToString:model.title]) {
+			} else if ([@"任选四" isEqualToString:model.title]) {
 				
 				num = [CMCommon pickNum:4 totalNum:self.dataArray.count];
-			}else if ([@"任选五" isEqualToString:model.title]) {
+			} else if ([@"任选五" isEqualToString:model.title]) {
 				
 				num = [CMCommon pickNum:5 totalNum:self.dataArray.count];
-			}else {
+			} else {
 				//                11选5 连码非组选等玩法
 				num = 1;
 				
@@ -472,7 +466,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 	NSInteger count = 0;
 	if (num) {
 		count = num;
-	}else {
+	} else {
 		count = self.betArray.count;
 	}
 	NSString *amount = [NSString stringWithFormat:@"%.2lf",totalAmount];

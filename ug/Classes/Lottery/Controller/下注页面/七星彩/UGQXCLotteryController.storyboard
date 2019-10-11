@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="64G-sL-8uZ">
-                                <rect key="frame" x="0.0" y="806" width="414" height="90"/>
+                                <rect key="frame" x="0.0" y="797" width="414" height="99"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9p8-fd-7Qy">
                                         <rect key="frame" x="344" y="12" width="60" height="36"/>
@@ -80,10 +80,10 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ms7-JD-X14">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="99"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="封盘中" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nWY-E9-cME">
-                                                <rect key="frame" x="182.5" y="35.5" width="49" height="19.5"/>
+                                                <rect key="frame" x="182.5" y="40" width="49" height="19.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -109,11 +109,12 @@
                                     <constraint firstItem="9p8-fd-7Qy" firstAttribute="top" secondItem="1yg-Y6-WZ1" secondAttribute="top" id="klI-zL-VbD"/>
                                     <constraint firstItem="iOE-64-Sag" firstAttribute="leading" secondItem="64G-sL-8uZ" secondAttribute="leading" constant="10" id="lKG-kQ-rJO"/>
                                     <constraint firstAttribute="trailing" secondItem="ms7-JD-X14" secondAttribute="trailing" id="lrw-xK-ZPm"/>
+                                    <constraint firstItem="gg1-Ee-ZK9" firstAttribute="bottom" secondItem="iOE-64-Sag" secondAttribute="bottom" constant="10" id="mK4-wy-48V"/>
                                     <constraint firstItem="gos-ud-dDl" firstAttribute="leading" secondItem="64G-sL-8uZ" secondAttribute="leading" constant="10" id="omj-um-En8"/>
                                     <constraint firstItem="gos-ud-dDl" firstAttribute="top" secondItem="64G-sL-8uZ" secondAttribute="top" constant="3" id="p9C-lu-Hxb"/>
                                     <constraint firstItem="ms7-JD-X14" firstAttribute="top" secondItem="64G-sL-8uZ" secondAttribute="top" id="rnK-jn-hWX"/>
-                                    <constraint firstAttribute="height" constant="90" id="uSc-yH-VxW"/>
                                 </constraints>
+                                <viewLayoutGuide key="safeArea" id="gg1-Ee-ZK9"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="shl-z0-UUW">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
@@ -232,7 +233,6 @@
                         <outlet property="betButton" destination="Ocz-Ca-Xfd" id="M77-nG-jYA"/>
                         <outlet property="bottomCloseView" destination="ms7-JD-X14" id="St0-Aj-p1w"/>
                         <outlet property="bottomView" destination="64G-sL-8uZ" id="eID-ov-7rK"/>
-                        <outlet property="bottomViewHeidhtConstraint" destination="uSc-yH-VxW" id="ooo-aM-Qd7"/>
                         <outlet property="chipButton" destination="1yg-Y6-WZ1" id="swC-yU-hNh"/>
                         <outlet property="closeTimeLabel" destination="h6P-X1-SrD" id="s3R-p8-YzS"/>
                         <outlet property="currentIssueCollectionBgView" destination="1pH-L1-Sti" id="Ujg-Yd-dCS"/>

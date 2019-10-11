@@ -72,13 +72,10 @@
 
 - (void)setImgName:(NSString *)imgName {
     _imgName = imgName;
-    
-        NSString *url =[CMCommon imgformat:imgName];
-        dispatch_async(dispatch_get_main_queue(), ^{
-           [self.imgView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"m_logo"]];//m_logo
-        });
-    
-    
+    NSString *url = [CMCommon imgformat:imgName];
+    dispatch_async(dispatch_get_main_queue(), ^{
+       [self.imgView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:nil];//m_logo
+    });
 }
 
 

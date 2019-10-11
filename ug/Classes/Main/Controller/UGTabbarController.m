@@ -36,7 +36,6 @@
 //    SANotificationEventSubscribe(UGNotificationWithResetTabSuccess, self, ^(typeof (self) self, id obj) {
 //             [self resetUpChildViewController];
 //    });
-
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -81,8 +80,6 @@
     self.nvcSign = [FFRouter routeObjectURL:@"/Sign"];
     //====推广收益
     self.nvcReferrer = [FFRouter routeObjectURL:@"/referrer"];
-   
-   
 }
 
 - (void)setTabbarStyle {
@@ -102,9 +99,7 @@
     [[UITabBar appearance] setUnselectedItemTintColor: [[UGSkinManagers shareInstance] settabNOSelectColor]];
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle
-
-{
+- (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleDefault;
     //UIStatusBarStyleDefault = 0 黑色文字，浅色背景时使用
 //   return UIStatusBarStyleLightContent = 1 //白色文字，深色背景时使用
@@ -138,9 +133,7 @@
     [vcs addObject: self.nvcTask];
     [vcs addObject: self.nvcUser];
     [self setViewControllers:vcs];
-    
-    
-    
+
 //        [vcs addObject: self.nvcHome];
 //        [vcs addObject: self.nvcYuebao];
 //        [vcs addObject: self.nvcChatRoomList];
@@ -167,11 +160,11 @@
     image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     viewController.tabBarItem.selectedImage = image;
     [self addChildViewController:viewController];
-    
 }
 
 
 #pragma mark - 获得系统设置
+
 - (void)getSystemConfig {
 
     [SVProgressHUD showWithStatus: nil];

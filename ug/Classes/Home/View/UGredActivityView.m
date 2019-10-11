@@ -62,14 +62,28 @@
     self.usernameLabel.text = item.username;
     self.leftCountLabel.text = item.leftCount;
     self.leftAmountLabel.text = item.leftAmount;
-    self.introTextView.text = item.intro;
+    
+    __weakSelf_(__self);
+    NSString *str = [NSString stringWithFormat:@"<head><style>img{width:%f !important;height:auto}</style></head>%@", _introTextView.width - 10, item.intro];
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithData:[str dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+        NSMutableParagraphStyle *ps = [NSMutableParagraphStyle new];
+        ps.lineSpacing = 5;
+        ps.alignment = NSTextAlignmentLeft;
+        ps.firstLineHeadIndent = 10;
+        ps.headIndent = 10;
+        [attStr addAttributes:@{NSParagraphStyleAttributeName:ps} range:NSMakeRange(0, attStr.length)];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [SVProgressHUD dismiss];
+            __self.introTextView.attributedText = attStr;
+        });
+    });
     
     if (item.canGet) {
         [self.redButton setTitle:@"立即开抢" forState:UIControlStateNormal];
     } else {
          [self.redButton setTitle:@"已参与活动" forState:UIControlStateNormal];
     }
-    
 }
 
 
