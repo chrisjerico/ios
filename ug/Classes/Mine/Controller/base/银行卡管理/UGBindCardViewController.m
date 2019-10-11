@@ -80,6 +80,7 @@
 }
 
 - (IBAction)submit:(id)sender {
+    NSLog(@"go");
     ck_parameters(^{
         ck_parameter_non_empty(self.bankTypeTextF.text, @"请选择开户银行");
         ck_parameter_non_empty(self.bankAddressTextF.text, @"请输入开户行地址");
