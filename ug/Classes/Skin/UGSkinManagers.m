@@ -967,6 +967,25 @@
 
         UIView *stateView = [[UIView alloc] initWithFrame:CGRectMake(0, -k_Height_StatusBar, UGScreenW, k_Height_StatusBar)];
         [tabbar.nvcHome.navigationBar addSubview:stateView];
+//        [tabbar.nvcChangLong.navigationBar addSubview:stateView];
+//        [tabbar.nvcUser.navigationBar addSubview:stateView];
+//        [tabbar.nvcLotteryList.navigationBar addSubview:stateView];
+//        [tabbar.nvcActivity.navigationBar addSubview:stateView];
+//        [tabbar.nvcChangLong.navigationBar addSubview:stateView];
+//        [tabbar.nvcChatRoomList.navigationBar addSubview:stateView];
+//        [tabbar.nvcLotteryRecord.navigationBar addSubview:stateView];
+//
+//        [tabbar.nvcTask.navigationBar addSubview:stateView];
+//        [tabbar.nvcSecurityCenter.navigationBar addSubview:stateView];
+//        [tabbar.nvcFunds.navigationBar addSubview:stateView];
+//        [tabbar.nvcHome.navigationBar addSubview:stateView];
+//        [tabbar.nvcMessage.navigationBar addSubview:stateView];
+//        [tabbar.nvcConversion.navigationBar addSubview:stateView];
+//        [tabbar.nvcBanks.navigationBar addSubview:stateView];
+//
+//          [tabbar.nvcYuebao.navigationBar addSubview:stateView];
+//        [tabbar.nvcSign.navigationBar addSubview:stateView];
+//        [tabbar.nvcReferrer.navigationBar addSubview:stateView];
         stateView.backgroundColor = [self navbarbgColor:skitType];
     }
     else{
