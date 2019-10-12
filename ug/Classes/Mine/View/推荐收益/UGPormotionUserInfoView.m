@@ -98,7 +98,9 @@
     //    NSString *date = @"2019-09-04";
     //将昵称输入框两边空格去掉
     NSString *str = [self.moneyTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"coin":str,
                              @"uid":_item.uid

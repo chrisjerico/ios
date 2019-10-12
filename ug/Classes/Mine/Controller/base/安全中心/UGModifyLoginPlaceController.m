@@ -146,6 +146,9 @@ static NSString *addressCellId = @"UGAddressCollectionViewCell";
 }
 
 - (void)delAddress:(UGLoginAddressModel *)item {
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"id":item.addressId
                              };

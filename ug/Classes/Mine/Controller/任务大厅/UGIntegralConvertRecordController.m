@@ -102,7 +102,9 @@ static NSString *convertRecordCellid = @"UGIntegarlConvertRecordCell";
 - (void)checkinDataWithType:(NSString *)time{
     
     NSLog(@"time = %@",time);
-    
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"page":@"1",
                              @"rows":@"20",

@@ -124,7 +124,9 @@ static NSString *missionCellid = @"UGMissionTableViewCell";
 #pragma mark -- 网络请求
 //得到日期列表数据
 - (void)getCenterData {
-    
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"page":@(self.pageNumber),
                              @"rows":@(self.pageSize),
@@ -171,7 +173,9 @@ static NSString *missionCellid = @"UGMissionTableViewCell";
 
 //领取任务
 - (void)taskGetDataWithType:(NSString *)mid {
-    
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"mid":mid
 
@@ -197,7 +201,9 @@ static NSString *missionCellid = @"UGMissionTableViewCell";
 
 //领取奖励
 - (void)taskRewardDataWithType:(NSString *)mid {
-    
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"mid":mid
                              

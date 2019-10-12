@@ -570,6 +570,9 @@
     if ([CMCommon stringIsNull:payId]) {
         return;
     }
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"payId":payId,
                              @"money":moneyStr

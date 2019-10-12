@@ -633,7 +633,9 @@
     NSDateFormatter*dateformatter=[[NSDateFormatter alloc] init];
     [dateformatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
      NSString * locationString=[dateformatter stringFromDate:timeDate];
-    
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"amount":amount,
                              @"channel":_selectChannelModel.pid,

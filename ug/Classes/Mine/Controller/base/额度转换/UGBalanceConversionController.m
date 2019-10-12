@@ -121,6 +121,9 @@ static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
         [SVProgressHUD showWithStatus:nil];
         
         NSString *amount = self.amountTextF.text;
+        if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+            return;
+        }
         NSDictionary *params = @{@"fromId":outModel ? outModel.gameId : @"0",
                                  @"toId":intModel ? intModel.gameId : @"0",
                                  @"money":amount,

@@ -100,6 +100,9 @@ static NSString *realBetRecordCellId = @"UGRealBetRecordCell";
 - (void)getBetsList {
     // 游戏分类：lottery=彩票，real=真人，card=棋牌，game=电子游戏，sport=体育 ，
     // 注单状态：1=待开奖，2=已中奖，3=未中奖，4=已撤单
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"category":self.gameType,
 //                             @"status":self.status,
@@ -137,6 +140,7 @@ static NSString *realBetRecordCellId = @"UGRealBetRecordCell";
             }
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
+            NSLog(@"错误信息：%@",msg);
         }];
         
         if ([self.tableView.mj_header isRefreshing])

@@ -526,7 +526,9 @@
 }
 
 - (void)getGotoGameUrl:(UGPlatformGameModel *)game {
-	
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
 	NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
 							 @"id":game.gameId
 	};
@@ -559,7 +561,7 @@
 			UGSystemConfigModel.currentConfig = config;
 			
 			
-//			[[UGSkinManagers shareInstance] setSkin];
+			[[UGSkinManagers shareInstance] setSkin];
 			
             NSString *title =[NSString stringWithFormat:@"COPYRIGHT © %@ RESERVED",config.webName];
             [self.bottomLabel setText:title];

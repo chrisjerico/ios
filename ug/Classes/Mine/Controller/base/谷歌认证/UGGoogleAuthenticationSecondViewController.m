@@ -51,7 +51,9 @@
 #pragma mark -- 网络请求
 //e二维码数据
 - (void)secureGaCaptchaWithGen {
-    
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"action":@"gen",
                              };

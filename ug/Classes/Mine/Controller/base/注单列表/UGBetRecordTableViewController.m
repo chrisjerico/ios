@@ -123,6 +123,9 @@ static NSString *betRecordCellid = @"UGLotteryRecordCell";
     // 游戏分类：lottery=彩票，real=真人，card=棋牌，game=电子游戏，sport=体育 ，
     // 注单状态：1=待开奖，2=已中奖，3=未中奖，4=已撤单
     self.tableView.mj_footer.hidden = YES;
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"category":self.gameType,
                              @"status":self.status,
@@ -178,7 +181,9 @@ static NSString *betRecordCellid = @"UGLotteryRecordCell";
 }
 
 - (void)cancelBetWith:(UGBetsRecordModel *)model {
-    
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"orderId":model.betId
                              };

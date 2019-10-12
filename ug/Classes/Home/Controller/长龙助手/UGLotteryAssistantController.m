@@ -193,6 +193,10 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
             }
         }
     }
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
+    
     NSDictionary *dict = @{
                            @"token":[UGUserModel currentUser].sessid,
                            @"gameId":betModel.gameId,

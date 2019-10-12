@@ -123,7 +123,9 @@ static int size = 20;
 }
 
 - (void)getFeedbackListData {
-    
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"page":@(self.pageNumber),
                              @"rows":@(self.pageSize),
                              @"token":[UGUserModel currentUser].sessid,

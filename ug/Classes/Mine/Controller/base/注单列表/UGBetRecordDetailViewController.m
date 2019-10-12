@@ -92,7 +92,9 @@
 }
 
 - (void)cancelBetWith {
-    
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"orderId":self.item.orderNo
                              };

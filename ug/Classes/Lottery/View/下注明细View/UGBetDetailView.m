@@ -122,6 +122,9 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 		}
 	}
 	NSString *amount = [NSString stringWithFormat:@"%.2lf",totalAmount];
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
 	NSDictionary *dict = @{
 		@"token":[UGUserModel currentUser].sessid,
 		@"gameId":self.nextIssueModel.gameId,

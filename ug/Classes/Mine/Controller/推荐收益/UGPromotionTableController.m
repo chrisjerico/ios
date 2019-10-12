@@ -683,7 +683,9 @@
 #pragma mark -- 网络请求
 //得到下线信息列表数据
 - (void)teamInviteListData:(NSInteger)level {
-    
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"level":[NSString stringWithFormat:@"%ld",(long)level],
                              @"page":@"1",
@@ -719,7 +721,9 @@
 
 //得到投注报表列表数据
 - (void)teamBetStatData :(NSInteger)level {
-    
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"level":[NSString stringWithFormat:@"%ld",(long)level],
                              @"page":@"1",
@@ -755,7 +759,9 @@
 
 //得到投注记录列表数据
 - (void)teamBetListData:(NSInteger)level {
-    
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"level":[NSString stringWithFormat:@"%ld",(long)level],
                              @"page":@"1",
@@ -791,7 +797,9 @@
 
 //得到代理域名信息列表数据
 - (void)teamInviteDomainData{
-    
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"page":@"1",
                              @"rows":@"20"
@@ -825,7 +833,9 @@
 
 //得到存款报表列表数据
 - (void)teamDepositStatData:(NSInteger)level {
-    
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"level":[NSString stringWithFormat:@"%ld",(long)level],
                              @"page":@"1",
@@ -861,7 +871,9 @@
 
 //得到存款记录列表数据
 - (void)teamDepositListData:(NSInteger)level {
-    
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"level":[NSString stringWithFormat:@"%ld",(long)level],
                              @"page":@"1",
@@ -896,7 +908,9 @@
 
 //得到提款报表列表数据
 - (void)teamWithdrawStatData:(NSInteger)level {
-    
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"level":[NSString stringWithFormat:@"%ld",(long)level],
                              @"page":@"1",
@@ -932,7 +946,9 @@
 
 //得到提款记录列表数据
 - (void)teamWithdrawListData :(NSInteger)level {
-    
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"level":[NSString stringWithFormat:@"%ld",(long)level],
                              @"page":@"1",
@@ -968,7 +984,9 @@
 
 //得到真人报表列表数据
 - (void)teamRealBetStatData :(NSInteger)level {
-    
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"level":[NSString stringWithFormat:@"%ld",(long)level],
                              @"page":@"1",
@@ -1005,6 +1023,10 @@
 //得到真人记录列表数据
 - (void)teamRealBetListData :(NSInteger)level {
     
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
+
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"level":[NSString stringWithFormat:@"%ld",(long)level],
                              @"page":@"1",

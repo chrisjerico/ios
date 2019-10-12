@@ -90,7 +90,9 @@
 //领红包
 - (void)activityGetRedBag{
     
-    //    NSString *date = @"2019-09-04";
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"id":self.item.rid

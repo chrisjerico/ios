@@ -69,7 +69,9 @@ static NSString *changlongBetRecordCellId = @"UGChanglongBetRecrodCell";
 }
 
 - (void)getChanglongBetRecord {
-    
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"betId":@"",
                              @"gameId":@"",

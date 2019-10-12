@@ -47,7 +47,9 @@ static NSString *gameListCellId = @"UGGameListCollectionViewCell";
 }
 
 - (void)getGotoGameUrl:(UGSubGameModel *)game {
-    
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"id":self.game.gameId,
                              @"game":game.code

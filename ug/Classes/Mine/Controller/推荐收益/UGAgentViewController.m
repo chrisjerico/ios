@@ -132,7 +132,9 @@
         [self.view makeToast:@"申请理由大于6 小于30"];
         return;
     }
-    
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"action":@"apply",
                              @"qq":qqStr,

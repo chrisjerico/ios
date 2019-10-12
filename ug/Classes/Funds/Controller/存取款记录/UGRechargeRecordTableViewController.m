@@ -96,7 +96,9 @@ static NSString *rechargeRecordCellid = @"UGRechargeRecordCell";
 }
 
 - (void)getRechargeData {
-    
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"page":@(self.pageNumber),
                              @"rows":@(self.pageSize),
@@ -139,6 +141,9 @@ static NSString *rechargeRecordCellid = @"UGRechargeRecordCell";
 }
 //取款
 - (void)getWithdrawData {
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"page":@(self.pageNumber),
                              @"rows":@(self.pageSize),

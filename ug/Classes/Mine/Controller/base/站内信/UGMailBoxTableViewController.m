@@ -58,7 +58,9 @@ static NSString *messageCellid = @"UGMessageTableViewCell";
 }
 
 - (void)loadMessageList {
-
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"page":@(self.pageNumber),
                              @"rows":@(self.pageSize),
                              @"token":[UGUserModel currentUser].sessid,
@@ -101,6 +103,9 @@ static NSString *messageCellid = @"UGMessageTableViewCell";
 }
 
 - (void)modifyMessageState:(UGMessageModel *)item {
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"id":item.messageId,
                              @"token":[UGUserModel currentUser].sessid,
                              };
