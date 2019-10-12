@@ -139,7 +139,7 @@
 	[self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
 	
 	
-    [self.bottomView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
+//    [self.bottomView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
 //	[self.rankingView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
 
     [self.upwardMultiMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
@@ -179,7 +179,7 @@
 	[self.gameNavigationView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
 	[self.leftwardMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
 	[self.gameTypeView setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
-    [self.bottomView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
+//    [self.bottomView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
     [[UGSkinManagers shareInstance] navigationBar:(UGNavigationController *)self.navigationController bgColor: [[UGSkinManagers shareInstance] setNavbgColor]];
     
 	[[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:[[UGSkinManagers shareInstance] setTabbgColor]]];
