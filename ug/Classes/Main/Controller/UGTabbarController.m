@@ -55,7 +55,23 @@
     //====优惠活动
     self.nvcActivity = [FFRouter routeObjectURL:@"/activity"];
     //====聊天室
-    qdwebVC =  [FFRouter routeObjectURL:@"/chatRoomList"];
+//    self.qdwebVC =  [FFRouter routeObjectURL:@"/chatRoomList"];
+    self.qdwebVC = [[UGChatViewController alloc] init];
+     self.qdwebVC .webTitle = @"聊天室";
+    
+       if ([UGUserModel currentUser].token) {
+           NSString *colorStr = [[UGSkinManagers shareInstance] setChatNavbgStringColor];
+            self.qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr];
+       } else {
+            self.qdwebVC.url = @"http://test10.6yc.com/dist/#/home?from=app&logintoken=aefb101a60e08cfda990bf014f3e1ef4&loginsessid=scHmSG8g54gbFHf8bs9g59ST&color=6331077";
+       }
+     self.qdwebVC .view.backgroundColor     = UGBackgroundColor;
+     self.qdwebVC .tabBarItem.title         = @"聊天室";
+     self.qdwebVC .tabBarItem.image         = [UIImage imageNamed:@"liaotian"];
+    UIImage *image = [UIImage imageNamed:@"liaotiansel"];
+    image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+     self.qdwebVC .tabBarItem.selectedImage = image;
+    
     self.nvcChatRoomList = [[UGNavigationController alloc]initWithRootViewController:qdwebVC];
     //====开奖记录
     self.nvcLotteryRecord = [FFRouter routeObjectURL:@"/lotteryRecord"];
@@ -291,8 +307,8 @@
         
     }
 
-//    [self setViewControllers:vcs];
-//    [self setTabbarStyle];
+    [self setViewControllers:vcs];
+    [self setTabbarStyle];
 }
 
 

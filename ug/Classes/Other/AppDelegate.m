@@ -233,13 +233,15 @@
         {
             //        @property (nonatomic, assign) BOOL chatRoomSwitch;/**<   是否是开启聊天室 */
             
-            NSLog(@"user.chatRoomSwitch = %d",user.chatRoomSwitch);
-            if (!user.chatRoomSwitch) {//关
-                 [QDAlertView showWithTitle:@"温馨提示" message:@"利息宝已关闭" cancelButtonTitle:@"确定" otherButtonTitle:nil completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+            NSLog(@"config.chatRoomSwitch = %d",config.chatRoomSwitch);
+            if (!config.chatRoomSwitch) {//关
+                 [QDAlertView showWithTitle:@"温馨提示" message:@"聊天室已关闭" cancelButtonTitle:@"确定" otherButtonTitle:nil completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                  }];
                  return NO;
              } else {
-                AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+                 AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+                 appDelegate.tabbar.qdwebVC =  (UGChatViewController *)navi.viewControllers.firstObject;
+               
                 NSString *colorStr = [[UGSkinManagers shareInstance] setChatNavbgStringColor];
                 NSLog(@"url = %@",[NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr]);
                 appDelegate.tabbar.qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr];

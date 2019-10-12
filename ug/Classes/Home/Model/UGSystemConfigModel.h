@@ -69,6 +69,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) BOOL recharge;                        /**<   上级充值开关 */
 
+@property (nonatomic, assign) BOOL chatRoomSwitch;          /**<   聊天室 */
+
 @property (nonatomic , copy) NSArray<UGmobileMenu *>              * mobileMenu;
 
 @property (nonatomic, assign) int rankingListSwitch;
