@@ -1275,10 +1275,12 @@
     BOOL isLogin = UGLoginIsAuthorized();
     if (isLogin) {
        
-        QDWebViewController *qdwebVC = [[QDWebViewController alloc] init];
-        qdwebVC.urlString = pcUrl;
-        qdwebVC.enterGame = YES;
+        TGWebViewController *qdwebVC = [[TGWebViewController alloc] init];
+        qdwebVC.url = pcUrl;
+        qdwebVC.webTitle = @"电脑版";
         [self.navigationController pushViewController:qdwebVC  animated:YES];
+        
+        NSLog(@"pcUrl = %@",pcUrl);
     }
     else{
         
