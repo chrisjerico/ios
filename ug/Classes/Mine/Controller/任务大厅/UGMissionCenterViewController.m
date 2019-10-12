@@ -83,7 +83,7 @@
 -(void)initView{
     [self.integralLabel setHidden:YES];
     self.fd_prefersNavigationBarHidden = NO;
-    self.navigationItem.title = @"任务大厅";
+    self.navigationItem.title = @"任务中心";
     self.view.backgroundColor = [UIColor whiteColor];
     self.userInfoView.backgroundColor = UGNavColor;
     self.avaterImageView.layer.cornerRadius = self.avaterImageView.height / 2 ;
@@ -113,7 +113,7 @@
     WeakSelf
     self.titleCollectionView.titleSelectBlock = ^(NSInteger index,NSString *title) {
         weakSelf.missionCollectionView.selectIndex = index;
-        weakSelf.title = title;
+//        weakSelf.title = title;
     };
     
     self.missionCollectionView.selectIndexBlock = ^(NSInteger selectIndex) {
