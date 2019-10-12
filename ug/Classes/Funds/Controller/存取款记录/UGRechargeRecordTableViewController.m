@@ -144,6 +144,9 @@ static NSString *rechargeRecordCellid = @"UGRechargeRecordCell";
     if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
         return;
     }
+    if ([UGUserModel currentUser].isTest) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"page":@(self.pageNumber),
                              @"rows":@(self.pageSize),

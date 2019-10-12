@@ -686,6 +686,9 @@
     if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
         return;
     }
+    if ([UGUserModel currentUser].isTest) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"level":[NSString stringWithFormat:@"%ld",(long)level],
                              @"page":@"1",
@@ -722,6 +725,9 @@
 //得到投注报表列表数据
 - (void)teamBetStatData :(NSInteger)level {
     if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
+    if ([UGUserModel currentUser].isTest) {
         return;
     }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
@@ -762,6 +768,9 @@
     if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
         return;
     }
+    if ([UGUserModel currentUser].isTest) {
+         return;
+     }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"level":[NSString stringWithFormat:@"%ld",(long)level],
                              @"page":@"1",
@@ -800,6 +809,9 @@
     if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
         return;
     }
+    if ([UGUserModel currentUser].isTest) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"page":@"1",
                              @"rows":@"20"
@@ -834,6 +846,9 @@
 //得到存款报表列表数据
 - (void)teamDepositStatData:(NSInteger)level {
     if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
+    if ([UGUserModel currentUser].isTest) {
         return;
     }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
@@ -911,6 +926,9 @@
     if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
         return;
     }
+    if ([UGUserModel currentUser].isTest) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"level":[NSString stringWithFormat:@"%ld",(long)level],
                              @"page":@"1",
@@ -949,6 +967,9 @@
     if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
         return;
     }
+    if ([UGUserModel currentUser].isTest) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"level":[NSString stringWithFormat:@"%ld",(long)level],
                              @"page":@"1",
@@ -985,6 +1006,9 @@
 //得到真人报表列表数据
 - (void)teamRealBetStatData :(NSInteger)level {
     if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
+    if ([UGUserModel currentUser].isTest) {
         return;
     }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
@@ -1026,7 +1050,9 @@
     if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
         return;
     }
-
+    if ([UGUserModel currentUser].isTest) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"level":[NSString stringWithFormat:@"%ld",(long)level],
                              @"page":@"1",

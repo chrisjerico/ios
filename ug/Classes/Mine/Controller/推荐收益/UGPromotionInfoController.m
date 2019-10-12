@@ -145,7 +145,9 @@
 #pragma mark -- 网络请求
 //得到推荐信息数据
 - (void)teamInviteInfoData {
-    
+    if ([UGUserModel currentUser].isTest) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
     
     [SVProgressHUD showWithStatus:nil];

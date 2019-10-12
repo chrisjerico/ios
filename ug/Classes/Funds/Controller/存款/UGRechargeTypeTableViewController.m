@@ -92,6 +92,10 @@ static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
 //得到支付列表数据
 - (void)rechargeCashierData {
     
+    if ([UGUserModel currentUser].isTest) {
+        return;
+    }
+    
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
     
     [SVProgressHUD showWithStatus:nil];
