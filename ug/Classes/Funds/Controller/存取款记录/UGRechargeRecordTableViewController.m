@@ -167,7 +167,7 @@ static NSString *rechargeRecordCellid = @"UGRechargeRecordCell";
                 [self.tableView.mj_footer setHidden:NO];
             }
         } failure:^(id msg) {
-            [SVProgressHUD showErrorWithStatus:msg];
+//            [SVProgressHUD showErrorWithStatus:msg];
         }];
         
         if ([self.tableView.mj_header isRefreshing]) {

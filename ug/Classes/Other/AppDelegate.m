@@ -278,14 +278,52 @@
         }
         else if([navi.viewControllers.firstObject isKindOfClass:[UGSigInCodeViewController class]] )//签到
         {
-          if ([config.checkinSwitch isEqualToString:@"0"]) {//关
-              [QDAlertView showWithTitle:@"温馨提示" message:@"每日签到已关闭" cancelButtonTitle:@"确定" otherButtonTitle:nil completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-              }];
-              return NO;
-          } else {
-             return YES;
-          }
+            
+            if ([UGUserModel currentUser].isTest) {
+                      [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                          if (buttonIndex == 1) {
+                              SANotificationEventPost(UGNotificationUserLogout, nil);
+                              SANotificationEventPost(UGNotificationShowLoginView, nil);
+                          }
+                      }];
+                return NO;
+              }else {
+                  
+                 if ([config.checkinSwitch isEqualToString:@"0"]) {//关
+                            [QDAlertView showWithTitle:@"温馨提示" message:@"每日签到已关闭" cancelButtonTitle:@"确定" otherButtonTitle:nil completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                            }];
+                            return NO;
+                } else {
+                    
+                    UGSigInCodeViewController *VC = (UGSigInCodeViewController *)navi.viewControllers.firstObject;
+                    [VC getCheckinListData ];
+                   return YES;
+                }
+              }
+        
+       
         }
+        
+        else if([navi.viewControllers.firstObject isKindOfClass:[UGMineSkinViewController class]] )//我的
+               {
+                   
+                   if ([UGUserModel currentUser].isTest) {
+                             [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                                 if (buttonIndex == 1) {
+                                     SANotificationEventPost(UGNotificationUserLogout, nil);
+                                     SANotificationEventPost(UGNotificationShowLoginView, nil);
+                                 }
+                             }];
+                       return NO;
+                     }else {
+                         UGMineSkinViewController *VC = (UGMineSkinViewController *)navi.viewControllers.firstObject;
+                         [VC getUserInfo];
+                         return YES;
+                       
+                     }
+               
+              
+               }
 		
         
         

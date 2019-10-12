@@ -108,10 +108,12 @@
 
 }
 
+
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    SANotificationEventPost(UGNotificationGetUserInfo, nil);
-    [self getUserInfo];
+//    SANotificationEventPost(UGNotificationGetUserInfo, nil);
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -656,6 +658,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
         if (user.isTest) {
             [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 if (buttonIndex == 1) {
+                          SANotificationEventPost(UGNotificationUserLogout, nil);
                     SANotificationEventPost(UGNotificationShowLoginView, nil);
                 }
             }];
@@ -671,6 +674,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
         if (user.isTest) {
             [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 if (buttonIndex == 1) {
+                          SANotificationEventPost(UGNotificationUserLogout, nil);
                     SANotificationEventPost(UGNotificationShowLoginView, nil);
                 }
             }];
@@ -697,6 +701,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
         if (user.isTest) {
             [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 if (buttonIndex == 1) {
+                          SANotificationEventPost(UGNotificationUserLogout, nil);
                     SANotificationEventPost(UGNotificationShowLoginView, nil);
                 }
             }];
@@ -728,6 +733,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
         if (user.isTest) {
             [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 if (buttonIndex == 1) {
+                          SANotificationEventPost(UGNotificationUserLogout, nil);
                     SANotificationEventPost(UGNotificationShowLoginView, nil);
                 }
             }];
@@ -743,6 +749,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
         if (user.isTest) {
             [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 if (buttonIndex == 1) {
+                          SANotificationEventPost(UGNotificationUserLogout, nil);
                     SANotificationEventPost(UGNotificationShowLoginView, nil);
                 }
             }];
@@ -756,6 +763,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
         if (user.isTest) {
             [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 if (buttonIndex == 1) {
+                          SANotificationEventPost(UGNotificationUserLogout, nil);
                     SANotificationEventPost(UGNotificationShowLoginView, nil);
                 }
             }];
@@ -777,6 +785,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
         if (user.isTest) {
             [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 if (buttonIndex == 1) {
+                          SANotificationEventPost(UGNotificationUserLogout, nil);
                     SANotificationEventPost(UGNotificationShowLoginView, nil);
                 }
             }];
@@ -795,6 +804,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
         if (user.isTest) {
             [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 if (buttonIndex == 1) {
+                          SANotificationEventPost(UGNotificationUserLogout, nil);
                     SANotificationEventPost(UGNotificationShowLoginView, nil);
                 }
             }];
@@ -807,6 +817,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
         if (user.isTest) {
             [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 if (buttonIndex == 1) {
+                          SANotificationEventPost(UGNotificationUserLogout, nil);
                     SANotificationEventPost(UGNotificationShowLoginView, nil);
                 }
             }];
@@ -821,6 +832,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
         if (user.isTest) {
             [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 if (buttonIndex == 1) {
+                          SANotificationEventPost(UGNotificationUserLogout, nil);
                     SANotificationEventPost(UGNotificationShowLoginView, nil);
                 }
             }];
@@ -836,6 +848,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
         if (user.isTest) {
             [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 if (buttonIndex == 1) {
+                          SANotificationEventPost(UGNotificationUserLogout, nil);
                     SANotificationEventPost(UGNotificationShowLoginView, nil);
                 }
             }];
@@ -853,6 +866,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
         if (user.isTest) {
             [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 if (buttonIndex == 1) {
+                          SANotificationEventPost(UGNotificationUserLogout, nil);
                     SANotificationEventPost(UGNotificationShowLoginView, nil);
                 }
             }];
@@ -870,6 +884,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
         if (user.isTest) {
             [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 if (buttonIndex == 1) {
+                          SANotificationEventPost(UGNotificationUserLogout, nil);
                     SANotificationEventPost(UGNotificationShowLoginView, nil);
                 }
             }];
@@ -890,6 +905,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     if (user.isTest) {
         [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
             if (buttonIndex == 1) {
+                      SANotificationEventPost(UGNotificationUserLogout, nil);
                 SANotificationEventPost(UGNotificationShowLoginView, nil);
             }
         }];
@@ -906,6 +922,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     if (user.isTest) {
         [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
             if (buttonIndex == 1) {
+                SANotificationEventPost(UGNotificationUserLogout, nil);
                 SANotificationEventPost(UGNotificationShowLoginView, nil);
             }
         }];
@@ -1179,6 +1196,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     if (user.isTest) {
         [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
             if (buttonIndex == 1) {
+                      SANotificationEventPost(UGNotificationUserLogout, nil);
                 SANotificationEventPost(UGNotificationShowLoginView, nil);
             }
         }];
@@ -1195,6 +1213,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     if (user.isTest) {
         [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
             if (buttonIndex == 1) {
+                      SANotificationEventPost(UGNotificationUserLogout, nil);
                 SANotificationEventPost(UGNotificationShowLoginView, nil);
             }
         }];
@@ -1211,6 +1230,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     if (user.isTest) {
         [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
             if (buttonIndex == 1) {
+                      SANotificationEventPost(UGNotificationUserLogout, nil);
                 SANotificationEventPost(UGNotificationShowLoginView, nil);
             }
         }];

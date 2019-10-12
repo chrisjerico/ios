@@ -711,7 +711,7 @@
             
         } failure:^(id msg) {
             
-            [SVProgressHUD showErrorWithStatus:msg];
+ 
             
         }];
     }];
@@ -783,7 +783,7 @@
             
         } failure:^(id msg) {
             
-            [SVProgressHUD showErrorWithStatus:msg];
+     
             
         }];
     }];
@@ -817,8 +817,7 @@
             [self.tableView reloadData];
             
         } failure:^(id msg) {
-            
-            [SVProgressHUD showErrorWithStatus:msg];
+
             
         }];
     }];
@@ -854,7 +853,7 @@
             
         } failure:^(id msg) {
             
-            [SVProgressHUD showErrorWithStatus:msg];
+    
             
         }];
     }];
@@ -889,8 +888,7 @@
             [self.tableView reloadData];
             
         } failure:^(id msg) {
-            
-            [SVProgressHUD showErrorWithStatus:msg];
+
             
         }];
     }];
@@ -926,7 +924,7 @@
             
         } failure:^(id msg) {
             
-            [SVProgressHUD showErrorWithStatus:msg];
+   
             
         }];
     }];
@@ -962,7 +960,7 @@
             
         } failure:^(id msg) {
             
-            [SVProgressHUD showErrorWithStatus:msg];
+     
             
         }];
     }];
@@ -998,7 +996,7 @@
             
         } failure:^(id msg) {
             
-            [SVProgressHUD showErrorWithStatus:msg];
+       
             
         }];
     }];
@@ -1034,7 +1032,7 @@
             
         } failure:^(id msg) {
             
-            [SVProgressHUD showErrorWithStatus:msg];
+
             
         }];
     }];

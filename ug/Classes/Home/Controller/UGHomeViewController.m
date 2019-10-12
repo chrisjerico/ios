@@ -235,7 +235,7 @@
 
 	
 	self.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-		SANotificationEventPost(UGNotificationWithResetTabSuccess, nil);
+
 		[self getSystemConfig];     // APP配置信息
 		[self getCustomGameList];   // 自定义游戏列表
 		[self getBannerList];       // Banner图
@@ -303,6 +303,7 @@
             if ([UGUserModel currentUser].isTest) {
                 UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"请先登录您的正式账号" btnTitles:@[@"取消", @"马上登录"]];
                 [ac setActionAtTitle:@"马上登录" handler:^(UIAlertAction *aa) {
+                          SANotificationEventPost(UGNotificationUserLogout, nil);
                     SANotificationEventPost(UGNotificationShowLoginView, nil);
                 }];
                 return ;
@@ -387,6 +388,7 @@
                if (user.isTest) {
                    [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                        if (buttonIndex == 1) {
+                                 SANotificationEventPost(UGNotificationUserLogout, nil);
                            SANotificationEventPost(UGNotificationShowLoginView, nil);
                        }
                    }];
@@ -557,7 +559,7 @@
 			UGSystemConfigModel.currentConfig = config;
 			
 			
-			[[UGSkinManagers shareInstance] setSkin];
+//			[[UGSkinManagers shareInstance] setSkin];
 			
             NSString *title =[NSString stringWithFormat:@"COPYRIGHT © %@ RESERVED",config.webName];
             [self.bottomLabel setText:title];

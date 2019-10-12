@@ -162,7 +162,7 @@
             
         } failure:^(id msg) {
             
-            [SVProgressHUD showErrorWithStatus:msg];
+        
             
         }];
     }];

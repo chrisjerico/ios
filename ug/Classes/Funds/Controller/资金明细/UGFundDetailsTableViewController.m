@@ -88,7 +88,7 @@ static NSString *fundDetailsCellid = @"UGFundDetailsCell";
                 [self.tableView.mj_footer setHidden:NO];
             }
         } failure:^(id msg) {
-            [SVProgressHUD showErrorWithStatus:msg];
+
         }];
         
         if ([self.tableView.mj_header isRefreshing]) {
