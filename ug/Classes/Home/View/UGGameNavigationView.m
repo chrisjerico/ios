@@ -7,7 +7,7 @@
 //
 
 #import "UGGameNavigationView.h"
-
+#import "YYWebImage.h"
 @interface UGGameNavigationView()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @end
@@ -105,7 +105,7 @@
 
 @interface UGGameNavigationViewCell()
 {
-	UIImageView * _iconImage;
+	YYAnimatedImageView * _iconImage;
 	UILabel * _titleLabel;
      UIImageView * _hotImage;
 }
@@ -121,7 +121,7 @@
 		
         
         _hotImage = [UIImageView new];
-		_iconImage = [UIImageView new];
+		_iconImage = [YYAnimatedImageView new];
 		_titleLabel = [UILabel new];
 		_titleLabel.textColor = [UIColor blackColor];
 		_titleLabel.font = [UIFont systemFontOfSize:14];
@@ -152,7 +152,10 @@
 
 -(void)setModel:(GameModel *)model {
 	_model = model;
-	[_iconImage sd_setImageWithURL:[NSURL URLWithString:model.icon]];
+    _iconImage.yy_imageURL = [NSURL URLWithString:model.icon];
+//	[_iconImage sd_setImageWithURL:[NSURL URLWithString:model.icon]];
+    NSLog(@"model.icon = %@",model.icon);
+//    [_iconImage startAnimating];
 	_titleLabel.text = model.name;
     if ([model.tipFlag isEqualToString:@"1"]) {
         [_hotImage setHidden:NO];
@@ -161,5 +164,8 @@
     }
     [_hotImage setImage:[UIImage imageNamed:@"icon_remen"]];
 }
+
+
+
 
 @end

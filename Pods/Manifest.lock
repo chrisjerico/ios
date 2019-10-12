@@ -16,9 +16,16 @@ PODS:
   - RegExCategories (1.0)
   - SGQRCode (3.0.1)
   - Toast (4.0.0)
+  - YYCache (1.0.4)
   - YYCategories (1.0.4):
     - YYCategories/no-arc (= 1.0.4)
   - YYCategories/no-arc (1.0.4)
+  - YYImage (1.0.4):
+    - YYImage/Core (= 1.0.4)
+  - YYImage/Core (1.0.4)
+  - YYWebImage (1.0.5):
+    - YYCache
+    - YYImage
 
 DEPENDENCIES:
   - Aspects
@@ -37,6 +44,7 @@ DEPENDENCIES:
   - SGQRCode (~> 3.0.1)
   - Toast (~> 4.0.0)
   - YYCategories
+  - YYWebImage
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -56,7 +64,10 @@ SPEC REPOS:
     - RegExCategories
     - SGQRCode
     - Toast
+    - YYCache
     - YYCategories
+    - YYImage
+    - YYWebImage
 
 SPEC CHECKSUMS:
   Aspects: 7595ba96a6727a58ebcbfc954497fc5d2fdde546
@@ -75,8 +86,11 @@ SPEC CHECKSUMS:
   RegExCategories: e68befacacd5bda853c88f70ec745cb2d0cfb89c
   SGQRCode: bf02d60e18d6660a9d75ff1c8b9b467f064f054e
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
+  YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   YYCategories: 6bcd4314c6661a561410dce4a793379ebd306abd
+  YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
+  YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
 
-PODFILE CHECKSUM: 3c3cf7e26140d1444c19a68c1fd2e63f66ec1a52
+PODFILE CHECKSUM: 6d524da7b89037d84fab36c66d3efc5c39f5b7fe
 
 COCOAPODS: 1.6.1
