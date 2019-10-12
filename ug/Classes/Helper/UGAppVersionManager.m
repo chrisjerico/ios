@@ -14,7 +14,7 @@
 
 @implementation UGAppVersionManager
 
-+(UGAppVersionManager *)shareInstance
++ (UGAppVersionManager *)shareInstance
 {
     
     static UGAppVersionManager *shareInstance = nil;
@@ -27,10 +27,10 @@
     return shareInstance;
 }
 
--(void)updateVersionNow:(BOOL)isNow{
+- (void)updateVersionNow:(BOOL)isNow {
     if (isNow) {
         [self updateVersionApi:NO];
-    }else{
+    } else {
         //超过24小时再提示升级
         if ([[NSUserDefaults standardUserDefaults] boolForKey:IS_UPGRADE]) {
             if ([self isVersionUptateTimeMore24h]) {
@@ -41,8 +41,7 @@
 }
 
 //请求版本信息
--(void)updateVersionApi:(BOOL)flag{
-    
+- (void)updateVersionApi:(BOOL)flag {
     [CMNetwork checkVersionWithParams:@{@"device":@"ios"} completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             self.versionModle = model.data;
@@ -52,19 +51,16 @@
             
         }];
     }];
-    
 }
 
 //处理升级
--(void)upgradeHandel:(BOOL)flag{
+- (void)upgradeHandel:(BOOL)flag {
     BOOL isForce = NO;
     NSString *versionCode = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
     
     if (![self.versionModle.versionName isEqualToString:versionCode]) {
-        
-        if (self.versionModle.switchUpdate) {
+        if (self.versionModle.switchUpdate)
             isForce = YES;
-        }
 		
 		NSString * updateContent;
 		if (self.versionModle.updateContent.length > 0) {
@@ -72,46 +68,21 @@
 		} else {
 			updateContent = @"检测到新版本，更新体验全新活动！";
 		}
-        if (isForce) {//强制升级
-            [QDAlertView showWithTitle:@"新版本上线"
-                               message:updateContent
-                     cancelButtonTitle:nil
-                      otherButtonTitle:@"去升级"
-                       completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                           [self updateFromAppStore];
-
-                       }];
-
-        }else{
-            
-        [QDAlertView showWithTitle:@"新版本上线"
-                           message:updateContent
-                 cancelButtonTitle:@"取消"
-                  otherButtonTitle:@"去升级"
-                   completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                       if (buttonIndex != alertView.cancelButtonIndex) {
-                           [self updateFromAppStore];
-                       }
-                   }];
         
+        if (!isForce)
         [self rememberVersionNowTime];
         
-        }
-    }else if(flag){
-        [QDAlertView showWithTitle:@"新版本上线"
-                           message:@"您已经是最新版本！"
-                 cancelButtonTitle:nil
-                  otherButtonTitle:@"确定"
-                   completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                       //                       [self updateFromAppStore];
-                   }];
-        
+        UIAlertController *ac = [AlertHelper showAlertView:@"新版本上线" msg:updateContent btnTitles:isForce ? @[@"去升级"] : @[@"取消", @"去升级"]];
+        [ac setActionAtTitle:@"去升级" handler:^(UIAlertAction *aa) {
+            [self updateFromAppStore];
+        }];
+    } else if (flag) {
+        [AlertHelper showAlertView:@"新版本上线" msg:@"您已经是最新版本！" btnTitles:@[@"确定"]];
     }
-    
 }
 
 //判断是否需要升级
--(BOOL)isUpgrade:(NSString *)versionCode{
+- (BOOL)isUpgrade:(NSString *)versionCode{
     
     if([versionCode isBlank])
         return NO;
@@ -130,26 +101,26 @@
     
     if ([[serverCodeArr objectAtIndex:0] intValue] > [[localCodeArr objectAtIndex:0] intValue]) {
         return YES;
-    }else if([[serverCodeArr objectAtIndex:0] intValue] < [[localCodeArr objectAtIndex:0] intValue]){
+    } else if([[serverCodeArr objectAtIndex:0] intValue] < [[localCodeArr objectAtIndex:0] intValue]){
         return NO;
     }
     
     
     if ([[serverCodeArr objectAtIndex:1] intValue] > [[localCodeArr objectAtIndex:1] intValue]) {
         return YES;
-    }else if ([[serverCodeArr objectAtIndex:1] intValue] < [[localCodeArr objectAtIndex:1] intValue]) {
+    } else if ([[serverCodeArr objectAtIndex:1] intValue] < [[localCodeArr objectAtIndex:1] intValue]) {
         return NO;
     }
     
     if ([[serverCodeArr objectAtIndex:2] intValue] > [[localCodeArr objectAtIndex:2] intValue]) {
         return YES;
-    }else if ([[serverCodeArr objectAtIndex:2] intValue] < [[localCodeArr objectAtIndex:2] intValue]) {
+    } else if ([[serverCodeArr objectAtIndex:2] intValue] < [[localCodeArr objectAtIndex:2] intValue]) {
         return NO;
     }
     
     if ([[serverCodeArr objectAtIndex:3] intValue] > [[localCodeArr objectAtIndex:3] intValue]) {
         return YES;
-    }else if ([[serverCodeArr objectAtIndex:3] intValue] < [[localCodeArr objectAtIndex:3] intValue]) {
+    } else if ([[serverCodeArr objectAtIndex:3] intValue] < [[localCodeArr objectAtIndex:3] intValue]) {
         return NO;
     }
     
@@ -157,11 +128,11 @@
 }
 
 //根据网络环境判断升级提示
--(void)updateFromAppStore{
+-(void)updateFromAppStore {
     [self  goToAppStore];
     //    if ([[self getNetWorkStates] isEqualToString:@"WIFI"]) {
     //        [self  goToAppStore];
-    //    }else{
+    //    } else {
     //        [QDAlertView showWithTitle:@"提示"
     //                           message:@"当前网络为非WIFI，是否继续下载？"
     //                 cancelButtonTitle:@"取消"
@@ -175,7 +146,7 @@
     
 }
 
--(void)goToAppStore{
+-(void)goToAppStore {
 
     NSString *urlStr = self.versionModle.file;
     

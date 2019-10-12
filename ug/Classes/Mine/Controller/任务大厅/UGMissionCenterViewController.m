@@ -35,10 +35,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *curLevel1Label;
 @property (weak, nonatomic) IBOutlet UILabel *nextLevel2Label;
 
-
-@property (weak, nonatomic) IBOutlet UILabel *missionLevelLabel;
-@property (weak, nonatomic) IBOutlet UILabel *nextLevelLabel;
-@property (weak, nonatomic) IBOutlet UILabel *nextLevelNumLabel;
 @property (weak, nonatomic) IBOutlet UIView *progressView;
 @property (weak, nonatomic) IBOutlet UIButton *refreshBalanceButton;
 
@@ -90,8 +86,6 @@
     self.avaterImageView.layer.masksToBounds = YES;
     self.levelNameLabel.layer.cornerRadius = self.levelNameLabel.height / 2;
     self.levelNameLabel.layer.masksToBounds = YES;
-    self.nextLevelLabel.layer.cornerRadius = self.nextLevelLabel.height / 2;
-    self.nextLevelLabel.layer.masksToBounds = YES;
     [self.progressView.layer addSublayer:self.progressLayer];
     self.progressLayer.path = [self progressPathWithProgress:0.3].CGPath;
     self.progressView.layer.cornerRadius = self.progressView.height / 2;

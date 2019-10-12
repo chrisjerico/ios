@@ -145,7 +145,6 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
         [self getSystemConfig];
     });
     
-//    self.fd_prefersNavigationBarHidden = YES;
     self.navigationItem.title = @"我的";
     self.userInfoView.backgroundColor = [[UGSkinManagers shareInstance] setbgColor];
     self.avaterImageView.layer.cornerRadius = self.avaterImageView.height / 2 ;
@@ -203,30 +202,29 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
 
 
 - (void)viewWillAppear:(BOOL)animated {
-     [self.waveView startWaveAnimation];
+    [super viewWillAppear:animated];
+    [self.waveView startWaveAnimation];
     SANotificationEventPost(UGNotificationGetUserInfo, nil);
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
      [self.waveView stopWaveAnimation];
     [self.refreshButton.layer removeAllAnimations];
     
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-   
+    [super viewDidAppear:animated];
     if (self.refreshButton.selected) {
         [self startAnimation];
         
     }
-
 }
-
 
 - (void)showAvaterSelectView {
     UGAvaterSelectView *avaterView = [[UGAvaterSelectView alloc] initWithFrame:CGRectMake(0, UGScerrnH, UGScreenW, UGScreenW)];
     [avaterView show];
-    
 }
 
 - (IBAction)showMissionVC:(id)sender {

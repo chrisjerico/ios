@@ -13,12 +13,10 @@
 
 + (void)load {
     [super load];
-    
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         [UIViewController jr_swizzleMethod:@selector(cc_dealloc) withMethod:NSSelectorFromString(@"dealloc") error:nil];
-        [UIViewController jr_swizzleMethod:@selector(cc_becomeFirstResponder) withMethod:@selector(becomeFirstResponder) error:nil];
-        [UIViewController jr_swizzleMethod:@selector(cc_awakeFromNib) withMethod:@selector(awakeFromNib) error:nil];
+        [UIViewController jr_swizzleMethod:@selector(cc_viewWillAppear:) withMethod:@selector(viewWillAppear:) error:nil];
     });
 }
 
@@ -27,14 +25,9 @@
     [self cc_dealloc];
 }
 
-- (BOOL)cc_becomeFirstResponder {
-    NSLog(@"%@ 变成第一响应者", [self class]);
-    return [self cc_becomeFirstResponder];
-}
-
-- (void)cc_awakeFromNib {
-    [self cc_becomeFirstResponder];
-    //    NSLog(@"%@ 从图形界面中加载成功！", [self class]);
+- (void)cc_viewWillAppear:(BOOL)animated {
+    NSLog(@"—————————————— %@   将出现", [self class]);
+    [self cc_viewWillAppear:animated];
 }
 
 @end

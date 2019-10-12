@@ -159,6 +159,7 @@ static NSString *lotterySubResultCellid = @"UGPK10SubResultCollectionViewCell";
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     [self.countDown destoryTimer];
     [self.nextIssueCountDown destoryTimer];
 }
