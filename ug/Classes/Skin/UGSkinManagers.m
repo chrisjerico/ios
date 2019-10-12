@@ -1195,12 +1195,12 @@
 -(NSString *)setChatNavbgStringColor{
     
     NSString *str = [self navbarbgColorString:[self conversionSkitType]];
-    //先以16为参数告诉strtoul字符串参数表示16进制数字，然后使用0x%X转为数字类型
-    unsigned long red = strtoul([str UTF8String],0,16);
+    //先以16为参数告诉strtoul字符串参数表示16进制数字，然后使用0x%X转为数字类型 16进制转10进制
+//    unsigned long red = strtoul([str UTF8String],0,16);
     
-    
-    
-    return [NSString stringWithFormat:@"%lu",red];
+    NSString * subString2 = [str substringFromIndex:2];
+    NSLog(@"%@", subString2);
+    return subString2;
 }
 @end
 
