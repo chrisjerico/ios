@@ -19,8 +19,6 @@ pod 'AvoidCrash'
 pod 'BAWKWebView' 
  #二维码生成与扫描
 pod 'SGQRCode', '~> 3.0.1'
- #路由器
-pod 'FFRouter'
  #网络图
 pod 'YYWebImage'
 

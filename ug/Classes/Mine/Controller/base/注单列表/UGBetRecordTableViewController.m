@@ -83,6 +83,7 @@ static NSString *betRecordCellid = @"UGLotteryRecordCell";
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     if ([@"2" isEqualToString:self.status] || [@"3" isEqualToString:self.status]) {
         self.winAmountLabel.hidden = NO;
     } else {
@@ -93,6 +94,7 @@ static NSString *betRecordCellid = @"UGLotteryRecordCell";
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     [self.countDown destoryTimer];
 }
 

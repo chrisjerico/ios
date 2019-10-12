@@ -250,12 +250,19 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 
 #endif
 
-#define CMMETHOD_BEGIN          (NSLog(@"%s.begin", __func__))
-#define CMMETHOD_BEGIN_C(v)     (NSLog(@"%s.begin, param: %ld", __func__, (long)v))
-#define CMMETHOD_BEGIN_O(v)     (NSLog(@"%s.begin, param: %@", __func__, v))
-#define CMMETHOD_END            (NSLog(@"%s.end", __func__))
-#define CMMETHOD_END_C(v)       (NSLog(@"%s.end, result: %ld", __func__, (long)v), v)
-#define CMMETHOD_END_O(v)       (NSLog(@"%s.end, result: %@", __func__, v), v)
+#define CMMETHOD_BEGIN
+#define CMMETHOD_BEGIN_C(v)
+#define CMMETHOD_BEGIN_O(v)
+#define CMMETHOD_END
+#define CMMETHOD_END_C(v)
+#define CMMETHOD_END_O(v)
+
+//#define CMMETHOD_BEGIN          (NSLog(@"%s.begin", __func__))
+//#define CMMETHOD_BEGIN_C(v)     (NSLog(@"%s.begin, param: %ld", __func__, (long)v))
+//#define CMMETHOD_BEGIN_O(v)     (NSLog(@"%s.begin, param: %@", __func__, v))
+//#define CMMETHOD_END            (NSLog(@"%s.end", __func__))
+//#define CMMETHOD_END_C(v)       (NSLog(@"%s.end, result: %ld", __func__, (long)v), v)
+//#define CMMETHOD_END_O(v)       (NSLog(@"%s.end, result: %@", __func__, v), v)
 
 #define WeakSelf __weak typeof(self) weakSelf = self;
 #define StrongSelf __strong typeof(weakSelf) strongSelf = weakSelf;

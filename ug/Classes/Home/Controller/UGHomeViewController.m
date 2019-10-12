@@ -73,7 +73,6 @@
 #import "UGonlineCount.h"
 #import <SafariServices/SafariServices.h>
 #import "UIImage+YYgradientImage.h"
-#import "UITabBarController+ShowViewController.h"
 
 #import "UGPromotionIncomeController.h"
 
@@ -217,12 +216,12 @@
                 self.titleView.showLoginView = YES;
                 UGUserModel.currentUser = nil;
                 [self.tabBarController setSelectedIndex:0];
-                [self loginClick];
+                [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLoginViewController") animated:true];
             }];
         }
 	});
 	SANotificationEventSubscribe(UGNotificationShowLoginView, self, ^(typeof (self) self, id obj) {
-		[self loginClick];
+		[NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLoginViewController") animated:true];
 	});
 	SANotificationEventSubscribe(UGNotificationGetUserInfo, self, ^(typeof (self) self, id obj) {
 		[self getUserInfo];
@@ -352,6 +351,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
 	[self.leftwardMarqueeView pause];//fixbug  发热  掉电快
 	[self.upwardMultiMarqueeView pause];//fixbug  发热  掉电快
 	self.initSubview = YES;
@@ -805,7 +805,6 @@
             [self.notiveView show];
         }
         appDelegate.notiveViewHasShow = YES;
-        
     }
 }
 
@@ -941,7 +940,6 @@
 	self.yymenuView.titleType = @"1";
 	self.yymenuView.lotteryGamesArray = self.lotteryGamesArray;
 	[self.yymenuView show];
-	
 }
 
 - (void)tryPlayClick {
@@ -963,19 +961,6 @@
 		}];
 		
 	}];
-}
-
-- (void)loginClick {
-	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Mine" bundle:nil];
-	UGLoginViewController *loginVC = [storyboard instantiateViewControllerWithIdentifier:@"UGLoginViewController"];
-	[self.tabBarController showViewControllerInSelected:loginVC animated:YES];
-}
-
-- (void)registerClick {
-	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Mine" bundle:nil];
-	UGRegisterViewController *loginVC = [storyboard instantiateViewControllerWithIdentifier:@"UGRegisterViewController"];
-	[self.navigationController pushViewController:loginVC animated:YES];
-	
 }
 
 - (void)showBalanceTrans {
@@ -1183,10 +1168,10 @@
 		[weakSelf tryPlayClick];
 	};
 	self.titleView.loginClickBlock = ^{
-		[weakSelf loginClick];
+        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLoginViewController") animated:true];
 	};
 	self.titleView.registerClickBlock = ^{
-		[weakSelf registerClick];
+		[NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGRegisterViewController") animated:YES];
 	};
 	self.titleView.userNameTouchedBlock = ^{
 		[weakSelf.tabBarController setSelectedIndex:4];
@@ -1203,7 +1188,7 @@
 	//	self.scrollView.contentSize = CGSizeMake(UGScreenW, self.scrollContentHeightConstraints.constant);
 	
 	if (self.nolineLabel == nil) {
-		UILabel *text =[ [UILabel alloc]initWithFrame:CGRectMake(UGScreenW-140,5,140,30 )];
+		UILabel *text = [[UILabel alloc]initWithFrame:CGRectMake(UGScreenW-140, 5, 140, 30)];
 		text.backgroundColor = RGBA(27, 38, 116,0.5);
 		text.textColor = [UIColor whiteColor];
 		text.font = [UIFont systemFontOfSize:12];

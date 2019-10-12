@@ -445,8 +445,8 @@ completion:(CMNetworkBlock)completion {
     id resultClass = CMResultClassGetResultClass(model);
     id dataClass = CMResultClassGetDataClass(model);
     
-    NSLog(@"url = %@",method);
-    NSLog(@"params = %@",params);
+//    NSLog(@"url = %@",method);
+//    NSLog(@"params = %@",params);
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer.timeoutInterval = 30;
@@ -458,7 +458,7 @@ completion:(CMNetworkBlock)completion {
     manager.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
     manager.securityPolicy.allowInvalidCertificates = YES;
     [manager.securityPolicy setValidatesDomainName:NO];
-    NSLog(@"header = %@",[manager.requestSerializer HTTPRequestHeaders]);
+//    NSLog(@"header = %@",[manager.requestSerializer HTTPRequestHeaders]);
     
     NSDate *startTime = [NSDate date];
     [manager GET:method parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -547,8 +547,8 @@ completion:(CMNetworkBlock)completion {
     id resultClass = CMResultClassGetResultClass(model);
     id dataClass = CMResultClassGetDataClass(model);
     
-    NSLog(@"url = %@",method);
-    NSLog(@"params = %@",params);
+//    NSLog(@"url = %@",method);
+//    NSLog(@"params = %@",params);
 
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
@@ -564,7 +564,7 @@ completion:(CMNetworkBlock)completion {
     manager.securityPolicy.allowInvalidCertificates = YES;
     [manager.securityPolicy setValidatesDomainName:NO];
     
-    NSLog(@"header = %@",[manager.requestSerializer HTTPRequestHeaders]);
+//    NSLog(@"header = %@",[manager.requestSerializer HTTPRequestHeaders]);
     NSDate *startTime = [NSDate date];
     [manager POST:method parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         

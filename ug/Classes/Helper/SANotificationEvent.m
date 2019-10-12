@@ -120,6 +120,5 @@ void SANotificationEventUnsubscribe(id name, id self) {
 
 /// 触发通知
 void SANotificationEventPost(id name, id obj) {
-    [NSNotificationCenter.defaultCenter postNotificationName:name
-                                                      object:obj];
+    [NSNotificationCenter.defaultCenter postNotificationName:name object:obj];
 }

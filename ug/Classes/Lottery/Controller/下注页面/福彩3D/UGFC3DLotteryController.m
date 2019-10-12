@@ -156,6 +156,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     [self.countDown destoryTimer];
     [self.nextIssueCountDown destoryTimer];
 }

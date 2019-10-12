@@ -20,19 +20,13 @@ static UGNavigationController *_navController = nil;
     return _navController;
 }
 
-+ (void)load
-{
-    NSMutableDictionary *attr = [NSMutableDictionary dictionary];
-//    attr[NSFontAttributeName] = [UIFont boldSystemFontOfSize:20];
-    attr[NSForegroundColorAttributeName] =  [UIColor whiteColor];
-    
++ (void)load {
     // 获取哪个类下的导航条,管理自己下导航条
     UINavigationBar *bar = [UINavigationBar appearanceWhenContainedIn:self, nil];
     // 设置背景图片
 //    [bar setBackgroundImage:[UIImage imageNamed:@"Rectangle"] forBarMetrics:UIBarMetricsDefault];
     
-    [bar setTitleTextAttributes:attr];
-    
+    [bar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
 }
 
 - (void)viewDidLoad {
@@ -44,20 +38,22 @@ static UGNavigationController *_navController = nil;
                             forBarPosition:UIBarPositionAny
                                 barMetrics:UIBarMetricsDefault];
     [self.navigationBar setShadowImage:[UIImage new]];
-
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
-    UIViewController* topVC = self.topViewController;
-    return [topVC preferredStatusBarStyle];
+    return [self.topViewController preferredStatusBarStyle];
 }
 
 - (UIView *)topView {
     return _navController.viewControllers.lastObject.view;
 }
 
-- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
-{
+- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    if ([self.viewControllers.lastObject isKindOfClass:viewController.class]) {
+        NSLog(@"push 错误❌，push了一个重复的控制器：%@", viewController);
+        return;
+    }
+    
     // 判断下是否是非根控制器
     if (self.childViewControllers.count) { // 不是根控制器
         // 设置非根控制器的返回按钮
@@ -68,9 +64,9 @@ static UGNavigationController *_navController = nil;
         [backButton setImage:[UIImage imageNamed:@"c_navi_back"] forState:UIControlStateNormal];
         [backButton setImage:[UIImage imageNamed:@"c_navi_back"] forState:UIControlStateHighlighted];
         [backButton sizeToFit];
-        // 设置内容内边距,修改按钮位置
-        //        backButton.contentEdgeInsets = UIEdgeInsetsMake(0, -30, 0, 0);
-        [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+        [backButton handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
+            [NavController1 popViewControllerAnimated:true];
+        }];
         UIView *containView = [[UIView alloc] initWithFrame:backButton.bounds];
         [containView addSubview:backButton];
         UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:containView];
@@ -78,20 +74,10 @@ static UGNavigationController *_navController = nil;
         viewController.navigationItem.leftBarButtonItem = item;
         // 隐藏底部条
         viewController.hidesBottomBarWhenPushed = YES;
-        
     }
     
     // 真正在执行跳转
     [super pushViewController:viewController animated:animated];
 }
-
-- (void)back
-{
-    
-    [self popViewControllerAnimated:YES];
-    
-}
-
-
 
 @end

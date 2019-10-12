@@ -80,6 +80,7 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     WeakSelf
     [self.loadCountdown countDownWithSec:30 PER_SECBlock:^{
         [weakSelf getAllNextIssueData];
@@ -91,6 +92,7 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     [self.loadCountdown destoryTimer];
     [self.countDown destoryTimer];
 }

@@ -18,46 +18,35 @@
 @end
 
 @implementation UGYYLotteryHomeViewController
--(void)skin{
+
+- (void)skin {
     [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
-
-    
     [self getPlatformGamesWithParams];
-    
-    
-    
 }
-
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
-
-   [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
-     self.title = @"购彩大厅";
+    _dataArray = [NSMutableArray array];
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    self.title = @"购彩大厅";
     
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-        
         [self skin];
     });
-     _dataArray = [NSMutableArray array];
+    
     [self initCollectionView];
+    
     WeakSelf
     self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [weakSelf getPlatformGamesWithParams];
-        
-        
     }];
-    
     [self getPlatformGamesWithParams];
 }
+
 - (void)initCollectionView {
     
     float itemW = (UGScreenW - 15) / 2;
     UICollectionViewFlowLayout *layout = ({
-        
         layout = [[UICollectionViewFlowLayout alloc] init];
         layout.itemSize = CGSizeMake(itemW, itemW / 2);
         layout.minimumInteritemSpacing = 5;
@@ -65,15 +54,12 @@
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
         layout.headerReferenceSize = CGSizeMake(UGScreenW, 10);
         layout;
-        
     });
     
     UICollectionView *collectionView = ({
         float collectionViewH;
-        
         collectionViewH = UGScerrnH - k_Height_NavBar -k_Height_StatusBar+20;
-        
-        collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(5, 10, UGScreenW - 10, collectionViewH) collectionViewLayout:layout];
+        collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(5, 5, UGScreenW - 10, collectionViewH) collectionViewLayout:layout];
         collectionView.backgroundColor = [UIColor clearColor];
         collectionView.layer.cornerRadius = 10;
         collectionView.layer.masksToBounds = YES;
@@ -82,7 +68,6 @@
         [collectionView registerNib:[UINib nibWithNibName:@"UGhomeRecommendCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UGhomeRecommendCollectionViewCell"];
         [collectionView setShowsHorizontalScrollIndicator:NO];
         collectionView;
-        
     });
     
     self.collectionView = collectionView;
@@ -93,28 +78,21 @@
 #pragma mark UICollectionView datasource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    
     return 1;
-    
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    
     return self.dataArray.count;
-    
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UGhomeRecommendCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UGhomeRecommendCollectionViewCell" forIndexPath:indexPath];
     UGYYPlatformGames *model = self.dataArray[indexPath.row];
     cell.item = model;
-    
     [cell setBackgroundColor: [[UGSkinManagers shareInstance] sethomeContentColor]];
      cell.layer.borderColor = [[[UGSkinManagers shareInstance] sethomeContentColor] CGColor];
-    
     return cell;
 }
-
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
@@ -164,19 +142,16 @@
 
 
 #pragma mark 网络请求
+
 - (void)getPlatformGamesWithParams {
-    
     [CMNetwork getPlatformGamesWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [self.collectionView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
-            
             self.dataArray = model.data;
             [self.collectionView reloadData];
-            
         } failure:^(id msg) {
-            
         }];
     }];
-    
 }
+
 @end

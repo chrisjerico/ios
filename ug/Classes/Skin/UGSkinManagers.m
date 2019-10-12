@@ -941,10 +941,8 @@
     [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[[UGSkinManagers shareInstance] settabNOSelectColor], NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
     
     [[UITabBarItem appearance] setTitleTextAttributes:                                                         [NSDictionary dictionaryWithObjectsAndKeys: [[UGSkinManagers shareInstance] settabSelectColor],NSForegroundColorAttributeName, nil]forState:UIControlStateSelected];
-
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    UGTabbarController *tabbar = appDelegate.tabbar;
+    UGTabbarController *tabbar = TabBarController1;
     [tabbar.tabBar setBackgroundImage:[UIImage imageWithColor:[self tabbarbgColor :skitType]]];
      
      [tabbar.tabBar setSelectedImageTintColor: [[UGSkinManagers shareInstance] settabSelectColor]];
@@ -964,65 +962,24 @@
 
 
     if (@available(iOS 13.0, *)) {
-
-        [self navigationBarBgColor:tabbar.nvcHome BgColor:skitType];
-        [self navigationBarBgColor:tabbar.nvcChangLong BgColor:skitType];
-         [self navigationBarBgColor:tabbar.nvcUser BgColor:skitType];
-         [self navigationBarBgColor:tabbar.nvcLotteryList BgColor:skitType];
-         [self navigationBarBgColor:tabbar.nvcActivity BgColor:skitType];
-         [self navigationBarBgColor:tabbar.nvcChatRoomList BgColor:skitType];
-         [self navigationBarBgColor:tabbar.nvcLotteryRecord BgColor:skitType];
-         [self navigationBarBgColor:tabbar.nvcTask BgColor:skitType];
-         [self navigationBarBgColor:tabbar.nvcSecurityCenter BgColor:skitType];
-         [self navigationBarBgColor:tabbar.nvcFunds BgColor:skitType];
-         [self navigationBarBgColor:tabbar.nvcMessage BgColor:skitType];
-         [self navigationBarBgColor:tabbar.nvcConversion BgColor:skitType];
-         [self navigationBarBgColor:tabbar.nvcChangLong BgColor:skitType];
-         [self navigationBarBgColor:tabbar.nvcBanks BgColor:skitType];
-         [self navigationBarBgColor:tabbar.nvcYuebao BgColor:skitType];
-         [self navigationBarBgColor:tabbar.nvcSign BgColor:skitType];
-         [self navigationBarBgColor:tabbar.nvcReferrer BgColor:skitType];
-      
+        UIView *stateView = [NavController1.navigationBar viewWithTagString:@"状态栏背景"];
+        if (!stateView) {
+            stateView = [[UIView alloc] initWithFrame:CGRectMake(0, -k_Height_StatusBar, UGScreenW, k_Height_StatusBar)];
+            [NavController1.navigationBar addSubview:stateView];
+        }
+        stateView.backgroundColor = [self navbarbgColor:skitType];
     }
-    else{
+    else {
         //   bug: iOS13 崩溃
-            UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
-        
-            if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
-        
-                statusBar.backgroundColor = [self navbarbgColor:skitType];
-        
-            }
+        UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+        if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
+            statusBar.backgroundColor = [self navbarbgColor:skitType];
+        }
     }
-    
-  
-
-    [self navigationBar:tabbar.nvcHome bgColor:[self navbarbgColor:skitType]];
-    [self navigationBar:tabbar.nvcChangLong bgColor:[self navbarbgColor:skitType]];
-    [self navigationBar:tabbar.nvcUser bgColor:[self navbarbgColor:skitType]];
-    [self navigationBar:tabbar.nvcLotteryList bgColor:[self navbarbgColor:skitType]];
-    [self navigationBar:tabbar.nvcActivity bgColor:[self navbarbgColor:skitType]];
-    [self navigationBar:tabbar.nvcChangLong bgColor:[self navbarbgColor:skitType]];
-    [self navigationBar:tabbar.nvcChatRoomList bgColor:[self navbarbgColor:skitType]];
-    [self navigationBar:tabbar.nvcLotteryRecord bgColor:[self navbarbgColor:skitType]];
-    [self navigationBar:tabbar.nvcTask bgColor:[self navbarbgColor:skitType]];
-    [self navigationBar:tabbar.nvcSecurityCenter bgColor:[self navbarbgColor:skitType]];
-    [self navigationBar:tabbar.nvcFunds bgColor:[self navbarbgColor:skitType]];
-    [self navigationBar:tabbar.nvcMessage bgColor:[self navbarbgColor:skitType]];
-    [self navigationBar:tabbar.nvcConversion bgColor:[self navbarbgColor:skitType]];
-    [self navigationBar:tabbar.nvcBanks bgColor:[self navbarbgColor:skitType]];
-    [self navigationBar:tabbar.nvcYuebao bgColor:[self navbarbgColor:skitType]];
-    [self navigationBar:tabbar.nvcSign bgColor:[self navbarbgColor:skitType]];
-    [self navigationBar:tabbar.nvcReferrer bgColor:[self navbarbgColor:skitType]];
-
-
- 
 }
 
 -(void)navigationBarBgColor:(UGNavigationController *)nav  BgColor:(NSString *)skitType{
-    UIView *stateView = [[UIView alloc] initWithFrame:CGRectMake(0, -k_Height_StatusBar, UGScreenW, k_Height_StatusBar)];
-    [nav.navigationBar addSubview:stateView];
-    stateView.backgroundColor = [self navbarbgColor:skitType];
+    
 }
 
 
@@ -1133,12 +1090,8 @@
      [self resetNavbarAndTabBarBgColor:[self conversionSkitType]];
 }
 
--(void)setSkin{
+-(void)setSkin {
     [self setNavbarAndTabarSkin];
-    
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSString *colorStr = [[UGSkinManagers shareInstance] setChatNavbgStringColor];
-    appDelegate.tabbar.qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@&back=hide",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr];
     SANotificationEventPost(UGNotificationWithSkinSuccess, nil);
 }
 
