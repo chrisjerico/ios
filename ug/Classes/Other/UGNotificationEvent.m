@@ -23,13 +23,15 @@ NSString *UGNotificationGetYuebaoInfo = @"UGNotificationGetYuebaoInfo";
 NSString *UGNotificationFundTitlesTap = @"UGNotificationFundTitlesTap";
 NSString *UGNotificationGetChanglongBetRecrod = @"UGNotificationGetChanglongBetRecrod";
 
-NSString *UGNotificationDepositSuccessfully = @"UGNotificationDepositSuccessfully";
+NSString *UGNotificationDepositSuccessfully = @"UGNotificationDepositSuccessfully";//跳到存款记录
 NSString *UGNotificationGetRewardsSuccessfully = @"UGNotificationGetRewardsSuccessfully";
 
 NSString *UGNotificationTryPlay = @"UGNotificationTryPlay";
 NSString *UGNotificationWithdrawalsSuccess = @"UGNotificationWithdrawalsSuccess";
 NSString *UGNotificationWithSkinSuccess = @"UGNotificationWithSkinSuccess";//换肤
 NSString *UGNotificationWithResetTabSuccess = @"UGNotificationWithResetTabSuccess";//换tabBar
+
+NSString *UGNotificationWithRecordOfDeposit = @"UGNotificationWithRecordOfDeposit";//存款记录刷新
 ///
 /// 登录授权
 ///

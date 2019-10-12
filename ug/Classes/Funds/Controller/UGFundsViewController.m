@@ -14,7 +14,9 @@
 #import "UGFundDetailsTableViewController.h"
 
 @interface UGFundsViewController ()<XYYSegmentControlDelegate>
-@property (nonatomic, strong) XYYSegmentControl *slideSwitchView;
+
+@property (nonatomic, strong)UGRechargeRecordTableViewController *rechargeRecordVC;
+@property (nonatomic, strong)XYYSegmentControl *slideSwitchView;
 @property (nonatomic,strong)  NSArray *itemArray;
 
 @end
@@ -40,6 +42,7 @@
 - (void)viewDidLayoutSubviews {
     
     [self.slideSwitchView changeSlideAtSegmentIndex:self.selectIndex];
+   
 }
 
 
@@ -49,6 +52,7 @@
 {
     SANotificationEventSubscribe(UGNotificationDepositSuccessfully, self, ^(typeof (self) self, id obj) {
         [self.slideSwitchView changeSlideAtSegmentIndex:2];
+         
     });
     
     self.itemArray = @[@"存款",@"取款",@"存款记录",@"取款记录",@"资金明细"];
@@ -94,9 +98,11 @@
     }
     // 存款记录
     else if (number == 2) {
-        UGRechargeRecordTableViewController *rechargeRecordVC = [[UGRechargeRecordTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
-          rechargeRecordVC.recordType = RecordTypeRecharge;
-        return rechargeRecordVC;
+        if (! self.rechargeRecordVC) {
+            self.rechargeRecordVC = [[UGRechargeRecordTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            self.rechargeRecordVC.recordType = RecordTypeRecharge;
+        }
+        return self.rechargeRecordVC;
     }
     // 取款记录
     else if (number == 3) {
@@ -114,6 +120,11 @@
 - (void)slideSwitchView:(XYYSegmentControl *)view didselectTab:(NSUInteger)number {
     if (number != 1)
         SANotificationEventPost(UGNotificationFundTitlesTap, nil);
+    
+    if (number == 2) {
+         SANotificationEventPost(UGNotificationWithRecordOfDeposit, nil);
+    }
+    
 }
 
 @end

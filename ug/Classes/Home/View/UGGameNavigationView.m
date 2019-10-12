@@ -66,9 +66,34 @@
     BOOL isLogin = UGLoginIsAuthorized();
     if (isLogin) {
         
-       [[NSNotificationCenter defaultCenter] postNotification: [NSNotification notificationWithName:@"gameNavigationItemTaped" object: self.sourceData[indexPath.item]]];
+        if ([UGUserModel currentUser].isTest) {
+                   [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                       if (buttonIndex == 1) {
+                           
+                           NSDictionary *dict = @{@"token":[UGUserModel currentUser].sessid};
+                           [CMNetwork userLogoutWithParams:dict completion:^(CMResult<id> *model, NSError *err) {
+                               [CMResult processWithResult:model success:^{
+                                   UGUserModel.currentUser = nil;
+                                   dispatch_async(dispatch_get_main_queue(), ^{
+                                       
+                                       SANotificationEventPost(UGNotificationShowLoginView, nil);
+                                   });
+                               } failure:^(id msg) {
+                                   [SVProgressHUD showErrorWithStatus:msg];
+                               }];
+                           }];
+                           
+                          
+                       }
+                   }];
+               }else {
+                   
+                         [[NSNotificationCenter defaultCenter] postNotification: [NSNotification notificationWithName:@"gameNavigationItemTaped" object: self.sourceData[indexPath.item]]];
+            }
+
     }
     else{
+        
         
         SANotificationEventPost(UGNotificationShowLoginView, nil);
     }
