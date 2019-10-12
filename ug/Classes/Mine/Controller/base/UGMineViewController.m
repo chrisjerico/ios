@@ -187,7 +187,7 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
         [self.tableView reloadData];
     });
     SANotificationEventSubscribe(UGNotificationUserAvatarChanged, self, ^(typeof (self) self, id obj) {
-        [self.avaterImageView sd_setImageWithURL:[NSURL URLWithString:[UGUserModel currentUser].avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
+        [self.avaterImageView sd_setImageWithURL:[NSURL URLWithString:[UGUserModel currentUser].avatar] placeholderImage:[UIImage imageNamed:@"txp"]];
     });
 //    [self setUserInfoWithHeaderImg:YES];
     [self getAllNextIssueData];
@@ -607,7 +607,7 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
     
     if (flag) {
         
-                [self.avaterImageView sd_setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
+                [self.avaterImageView sd_setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:[UIImage imageNamed:@"txp"]];
             }
    
     self.userNameLabel.text = user.username;
