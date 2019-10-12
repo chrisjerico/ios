@@ -21,7 +21,8 @@ pod 'BAWKWebView'
 pod 'SGQRCode', '~> 3.0.1'
  #路由器
 pod 'FFRouter'
-
+ #网络图
+pod 'YYWebImage'
 
 # fish新增
 pod 'JRSwizzle'         # 方法交换库

@@ -655,6 +655,8 @@
             [self.navigationController popViewControllerAnimated:YES]; 
             
              SANotificationEventPost(UGNotificationDepositSuccessfully, nil);
+            
+             SANotificationEventPost(UGNotificationWithRecordOfDeposit, nil);
 
         } failure:^(id msg) {
             

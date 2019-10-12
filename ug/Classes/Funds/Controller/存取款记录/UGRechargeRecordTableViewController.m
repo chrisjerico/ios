@@ -28,6 +28,8 @@ static NSString *fundDetailsCell = @"UGFundDetailsCell";
 static NSString *rechargeRecordCellid = @"UGRechargeRecordCell";
 @implementation UGRechargeRecordTableViewController
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -36,6 +38,12 @@ static NSString *rechargeRecordCellid = @"UGRechargeRecordCell";
         [self getWithdrawData];
         
     });
+    
+    SANotificationEventSubscribe(UGNotificationWithRecordOfDeposit, self, ^(typeof (self) self, id obj) {
+          
+         // 马上进入刷新状态
+          [self.tableView.mj_header beginRefreshing];
+      });
      [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
     self.pageSize = size;
     self.pageNumber = page;

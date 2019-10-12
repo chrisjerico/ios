@@ -583,8 +583,10 @@
                  [SVProgressHUD showSuccessWithStatus:model.msg];
             } else {
                 [SVProgressHUD dismiss];
+                //通知==》存款记录刷新
+                SANotificationEventPost(UGNotificationWithRecordOfDeposit, nil);
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:model.data]];
-                
+   
             }
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
