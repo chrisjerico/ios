@@ -14,6 +14,8 @@
 #import <WebKit/WebKit.h>
 #import "UGImgVcodeModel.h"
 #import "WKProxy.h"
+#import "RegExCategories.h"
+
 
 @interface UGRegisterViewController ()<UITextFieldDelegate,UINavigationControllerDelegate,WKScriptMessageHandler,WKNavigationDelegate,WKUIDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *myScrollView;
@@ -60,7 +62,6 @@
 
 @property (nonatomic, strong) WKWebView *webView;
 @property (nonatomic, strong) UGImgVcodeModel *imgVcodeModel;
-@property (nonatomic, strong) NSString *pwdPlaceholder;
 
 @property (strong, nonatomic) NSTimer* timer;
 @property (assign, nonatomic) NSTimeInterval vcodeRequestTime;
@@ -143,16 +144,18 @@
     }
     [self.webBgView addSubview:self.webView];
     
-    if (config.pass_limit == 0) {
-        
-        self.pwdPlaceholder = [NSString stringWithFormat:@"请输入%ld到%ld位长度的密码",config.pass_length_min,config.pass_length_max];
-    }else if(config.pass_limit == 1) {
-        self.pwdPlaceholder = [NSString stringWithFormat:@"请输入%ld到%ld位数字字母组成的密码",config.pass_length_min,config.pass_length_max];
-        
-    }else {
-        self.pwdPlaceholder = [NSString stringWithFormat:@"请输入%ld到%ld位数字字母符号组成的密码",config.pass_length_min,config.pass_length_max];
-    }
-    self.passwordTextF.placeholder = self.pwdPlaceholder;
+    
+    self.passwordTextF.placeholder = ({
+        NSString *placeholder = nil;
+        if (config.pass_limit == 0) {
+            placeholder = [NSString stringWithFormat:@"请输入%ld到%ld位长度的密码", config.pass_length_min, config.pass_length_max];
+        } else if(config.pass_limit == 1) {
+            placeholder = [NSString stringWithFormat:@"请输入%ld到%ld位数字字母组成的密码", config.pass_length_min, config.pass_length_max];
+        } else {
+            placeholder = [NSString stringWithFormat:@"请输入%ld到%ld位数字字母符号组成的密码", config.pass_length_min, config.pass_length_max];
+        }
+        placeholder;
+    });
     NSString *url = [NSString stringWithFormat:@"%@%@",baseServerUrl,swiperVerifyUrl];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
     [self.webView loadRequest:request];
@@ -214,16 +217,6 @@
 
 - (IBAction)registerClick:(id)sender {
     UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
-
-    NSInteger result = 0;
-    if (self.passwordTextF.text.length) {
-        result = [CMCommon judgePasswordStrength:self.passwordTextF.text];
-        if (config.pass_limit == 1) {
-            if (result) {
-                result = 1;
-            }
-        }
-    }
     ck_parameters(^{
         if (config.hide_reco == 2) {
             ck_parameter_non_empty(self.inviterTextF.text, @"请输入推荐人ID");
@@ -245,11 +238,17 @@
             self.userNameTextF.text.hasChinese) {
             @throw __ck_parameter_exception(@"请输入6-15位英文或数字的组合的用户名");
         }
-        ck_parameter_less_length(self.passwordTextF.text, [NSString stringWithFormat:@"%ld",config.pass_length_min], self.pwdPlaceholder);
         
-        if (config.pass_limit) {
+        // 校验密码格式
+        {
+            UITextField *tf = self.passwordTextF;
+            ck_parameter_less_length(tf.text, _NSString(@"%ld", config.pass_length_min), tf.placeholder);
             
-            ck_parameter_isEqual([NSString stringWithFormat:@"%ld",config.pass_limit], [NSString stringWithFormat:@"%ld",result], self.pwdPlaceholder);
+            if (config.pass_limit == 1) {
+                ck_parameter_non_zero(_NSString(@"%d", [tf.text isMatch:RX(@"^[0-9A-Za-z]*$")]), tf.placeholder);
+            } else if (config.pass_limit == 1) {
+                ck_parameter_non_zero(_NSString(@"%d", [tf.text isMatch:RX(@"^[\\x20-\\x7E]*$")]), tf.placeholder);
+            }
         }
         
         ck_parameter_non_empty(self.checkPasswordTextF.text, @"请确认密码");

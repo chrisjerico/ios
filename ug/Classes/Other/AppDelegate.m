@@ -232,9 +232,10 @@
 		if ([navi.viewControllers.firstObject isKindOfClass:[UGChatViewController class]])//聊天室
         {
             //        @property (nonatomic, assign) BOOL chatRoomSwitch;/**<   是否是开启聊天室 */
-            
+
             NSLog(@"config.chatRoomSwitch = %d",config.chatRoomSwitch);
             if (!config.chatRoomSwitch) {//关
+
                  [QDAlertView showWithTitle:@"温馨提示" message:@"聊天室已关闭" cancelButtonTitle:@"确定" otherButtonTitle:nil completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                  }];
                  return NO;
@@ -278,7 +279,7 @@
         else if([navi.viewControllers.firstObject isKindOfClass:[UGSigInCodeViewController class]] )//签到
         {
           if ([config.checkinSwitch isEqualToString:@"0"]) {//关
-              [QDAlertView showWithTitle:@"温馨提示" message:@"任务中心已关闭" cancelButtonTitle:@"确定" otherButtonTitle:nil completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+              [QDAlertView showWithTitle:@"温馨提示" message:@"每日签到已关闭" cancelButtonTitle:@"确定" otherButtonTitle:nil completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
               }];
               return NO;
           } else {
