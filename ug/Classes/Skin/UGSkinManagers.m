@@ -962,12 +962,19 @@
 
 
     if (@available(iOS 13.0, *)) {
-        UIView *stateView = [NavController1.navigationBar viewWithTagString:@"状态栏背景"];
-        if (!stateView) {
-            stateView = [[UIView alloc] initWithFrame:CGRectMake(0, -k_Height_StatusBar, UGScreenW, k_Height_StatusBar)];
-            [NavController1.navigationBar addSubview:stateView];
+        for (UGNavigationController *nav in TabBarController1.viewControllers) {
+            
+            [self navigationBar:nav bgColor:[self navbarbgColor:skitType]];
+            
+            
+            UIView *stateView = [nav.navigationBar viewWithTagString:@"状态栏背景View"];
+            if (!stateView) {
+                stateView = [[UIView alloc] initWithFrame:CGRectMake(0, -k_Height_StatusBar, UGScreenW, k_Height_StatusBar)];
+                stateView.tagString = @"状态栏背景View";
+                [nav.navigationBar addSubview:stateView];
+            }
+            stateView.backgroundColor = [self navbarbgColor:skitType];
         }
-        stateView.backgroundColor = [self navbarbgColor:skitType];
     }
     else {
         //   bug: iOS13 崩溃
