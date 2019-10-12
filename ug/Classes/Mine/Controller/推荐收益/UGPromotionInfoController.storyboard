@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0rr-Jr-DpN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0rr-Jr-DpN">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -129,7 +129,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="erweima" translatesAutoresizingMaskIntoConstraints="NO" id="P56-fu-vzD">
-                                                    <rect key="frame" x="127" y="114" width="160" height="160"/>
+                                                    <rect key="frame" x="126.99999999999999" y="113.99999999999999" width="160.00000000000003" height="160.00000000000003"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="160" id="85f-cR-moJ"/>
                                                         <constraint firstAttribute="height" constant="160" id="Q6d-Pb-2nk"/>
@@ -204,7 +204,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="erweima" translatesAutoresizingMaskIntoConstraints="NO" id="5nO-7N-HNL">
-                                                    <rect key="frame" x="127" y="114" width="160" height="160"/>
+                                                    <rect key="frame" x="126.99999999999999" y="113.99999999999999" width="160.00000000000003" height="160.00000000000003"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="160" id="02d-mg-5Gy"/>
                                                         <constraint firstAttribute="width" constant="160" id="cVH-rC-jha"/>
@@ -367,6 +367,8 @@
                         <outlet property="headerImageView" destination="XhW-bo-bWz" id="U4z-T9-1c5"/>
                         <outlet property="incomeLabel" destination="VUO-HK-SKv" id="tlM-J1-K5A"/>
                         <outlet property="monthMembers" destination="B6p-7j-9R6" id="AZn-8F-Wi3"/>
+                        <outlet property="myQrcode1ImageView" destination="P56-fu-vzD" id="Mia-o1-XSa"/>
+                        <outlet property="myQrcode2ImageView" destination="5nO-7N-HNL" id="snW-t1-TRq"/>
                         <outlet property="promotionIdlabel" destination="Vt3-uR-eWE" id="3rc-vi-C4a"/>
                         <outlet property="promotionUrlLabel" destination="moF-1T-Fkh" id="jFM-tx-K1B"/>
                         <outlet property="registerUrlLabel" destination="3lZ-2f-H5h" id="iTA-8N-AdM"/>

@@ -45,6 +45,7 @@
 #import "UGView.h"
 #import "UIImage+YYgradientImage.h"
 #import "FFRouter.h"
+#import "SGQRCode.h"
 
 // 引入Fish工具集
 #import "FishUtility.h"

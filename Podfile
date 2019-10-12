@@ -4,6 +4,7 @@ target "ug" do
     #消除第三方库警告
 inhibit_all_warnings!
 
+# Andrew新增
  # 布局自动适应库
 pod 'Masonry'
  # 类似Android提示库
@@ -16,6 +17,10 @@ pod 'LEEAlert'
 pod 'AvoidCrash'
  #web浏览器
 pod 'BAWKWebView' 
+ #二维码生成与扫描
+pod 'SGQRCode', '~> 3.0.1'
+ #路由器
+pod 'FFRouter'
 
 
 # fish新增
@@ -26,8 +31,8 @@ pod 'YYCategories'      # Category 类型工具库（YYKit 组件之一）
 pod 'DateTools'         # 日期工具
 pod 'MJExtension'       # 字典转数据模型库
 pod 'FSCalendar'        # 日历控件
- #路由器
-pod 'FFRouter'
+
+
 
 pod 'JPush', '3.2.2-noidfa'
 

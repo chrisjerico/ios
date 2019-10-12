@@ -140,7 +140,7 @@
 	
 	
     [self.bottomView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
-	[self.rankingView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
+//	[self.rankingView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
 
     [self.upwardMultiMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
     [self.rollingView setBackgroundColor:[[UGSkinManagers shareInstance]sethomeContentColor]];
@@ -173,7 +173,7 @@
 	
 	[self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
 	
-	[self.rankingView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
+//	[self.rankingView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
 	[self.upwardMultiMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
 	[self.rollingView setBackgroundColor:[[UGSkinManagers shareInstance]sethomeContentColor]];
 	[self.gameNavigationView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
