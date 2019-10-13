@@ -13,7 +13,7 @@
 @end
 
 @implementation UGAppVersionManager
-
+static NSInteger versionNumber = 102;
 +(UGAppVersionManager *)shareInstance
 {
     
@@ -60,8 +60,20 @@
     BOOL isForce = NO;
     NSString *versionCode = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
     
-    if (![self.versionModle.versionName isEqualToString:versionCode]) {
-        
+	NSMutableString * covertedVersionName = @"".mutableCopy;
+	for (NSString * c in [self.versionModle.versionName componentsSeparatedByString:@"."]) {
+		[covertedVersionName appendString:c];
+	}
+	int convertedVersion = covertedVersionName.intValue;
+	
+	if (convertedVersion == 0) {
+		[SVProgressHUD showErrorWithStatus:@"版本号识别错误"];
+	}
+	
+	
+	
+//    if (![self.versionModle.versionName isEqualToString:versionCode]) {
+	if (convertedVersion > versionNumber){
         if (self.versionModle.switchUpdate) {
             isForce = YES;
         }
