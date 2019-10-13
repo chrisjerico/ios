@@ -5,7 +5,7 @@
 [![](http://img.shields.io/cocoapods/v/LEEAlert.svg?style=flat)](http://cocoapods.org/?q=LEEAlert)&nbsp;
 [![](http://img.shields.io/cocoapods/p/LEEAlert.svg?style=flat)](http://cocoapods.org/?q=LEEAlert)&nbsp;
 [![](https://img.shields.io/badge/support-iOS8%2B-blue.svg?style=flat)](https://www.apple.com/nl/ios/)&nbsp;
-[![](https://img.shields.io/badge/Xcode-10.0-blue.svg)](https://developer.apple.com/xcode/)&nbsp;
+[![](https://img.shields.io/badge/Xcode-11.0-blue.svg)](https://developer.apple.com/xcode/)&nbsp;
 [![](https://img.shields.io/badge/language-Objective--C-f48041.svg?style=flat)](https://www.apple.com/)&nbsp;
 ![Build Status](https://travis-ci.org/lixiang1994/LEEAlert.svg?branch=master)&nbsp;
 ![](https://img.shields.io/cocoapods/dt/LEEAlert.svg)
@@ -34,6 +34,7 @@
  - 支持两种背景样式 1.半透明 (支持自定义透明度比例和颜色) 2.毛玻璃 (支持效果类型)
  - 支持自定义UIView动画方法
  - 支持自定义打开关闭动画样式(动画方向 渐变过渡 缩放过渡等)
+ - 支持iOS13 Dark样式
  - 更多特性未来版本中将不断更新.
 
 
@@ -322,7 +323,7 @@ Action一般分为3种类型 1. 默认类型 2. 销毁类型(Destructive) 3.取�
 
 系统要求
 ==============
-该库最低支持 `iOS 8.0` 和 `Xcode 9.0`。
+该库最低支持 `iOS 8.0` 和 `Xcode 11.0`。
 
 
 版本更新

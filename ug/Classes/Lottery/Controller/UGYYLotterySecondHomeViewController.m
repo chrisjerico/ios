@@ -95,7 +95,9 @@
 #pragma mark 网络请求
 
 - (void)getGotoGameUrl:(UGYYGames *)game {
-    
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"id":game.gameId
                              };

@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nBV-Lg-CKy">
-                                <rect key="frame" x="0.0" y="806" width="414" height="90"/>
+                                <rect key="frame" x="0.0" y="797" width="414" height="99"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KQh-Is-ghm">
                                         <rect key="frame" x="344" y="12" width="60" height="36"/>
@@ -80,10 +80,10 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oKP-uQ-UpD">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="99"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="封盘中" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wzu-cg-mGP">
-                                                <rect key="frame" x="182.5" y="35.5" width="49" height="19.5"/>
+                                                <rect key="frame" x="182.5" y="40" width="49" height="19.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -100,10 +100,10 @@
                                 <constraints>
                                     <constraint firstItem="pjl-0Z-vPu" firstAttribute="leading" secondItem="nBV-Lg-CKy" secondAttribute="leading" constant="10" id="8YJ-Dt-5b1"/>
                                     <constraint firstItem="Pr7-yP-n7H" firstAttribute="top" secondItem="nBV-Lg-CKy" secondAttribute="top" constant="3" id="8oD-iT-8cr"/>
+                                    <constraint firstItem="Lnz-or-q8e" firstAttribute="bottom" secondItem="pjl-0Z-vPu" secondAttribute="bottom" constant="10" id="BRR-ic-lDq"/>
                                     <constraint firstAttribute="bottom" secondItem="oKP-uQ-UpD" secondAttribute="bottom" id="CZS-bg-dcd"/>
                                     <constraint firstItem="oKP-uQ-UpD" firstAttribute="leading" secondItem="nBV-Lg-CKy" secondAttribute="leading" id="DSC-I3-oW1"/>
                                     <constraint firstItem="KQh-Is-ghm" firstAttribute="leading" secondItem="cIO-sN-KmF" secondAttribute="trailing" constant="10" id="Mga-zi-kdG"/>
-                                    <constraint firstAttribute="height" constant="90" id="W9P-CZ-yE5"/>
                                     <constraint firstAttribute="trailing" secondItem="KQh-Is-ghm" secondAttribute="trailing" constant="10" id="a6E-br-hZF"/>
                                     <constraint firstAttribute="trailing" secondItem="oKP-uQ-UpD" secondAttribute="trailing" id="d40-a9-9Zw"/>
                                     <constraint firstItem="oKP-uQ-UpD" firstAttribute="top" secondItem="nBV-Lg-CKy" secondAttribute="top" id="hmO-SH-1HV"/>
@@ -114,6 +114,7 @@
                                     <constraint firstItem="KQh-Is-ghm" firstAttribute="top" secondItem="nBV-Lg-CKy" secondAttribute="top" constant="12" id="ttv-zk-PUO"/>
                                     <constraint firstItem="cIO-sN-KmF" firstAttribute="leading" secondItem="bOa-Di-cXd" secondAttribute="trailing" constant="10" id="yqC-xG-fla"/>
                                 </constraints>
+                                <viewLayoutGuide key="safeArea" id="Lnz-or-q8e"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o3I-f8-kAo">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
@@ -232,7 +233,6 @@
                         <outlet property="betButton" destination="cIO-sN-KmF" id="6Wj-bA-pYf"/>
                         <outlet property="bottomCloseView" destination="oKP-uQ-UpD" id="iTk-N2-wV8"/>
                         <outlet property="bottomView" destination="nBV-Lg-CKy" id="trf-IP-zQx"/>
-                        <outlet property="bottomViewHeidhtConstraint" destination="W9P-CZ-yE5" id="Li1-xc-Ld0"/>
                         <outlet property="chipButton" destination="bOa-Di-cXd" id="M6l-S3-4gY"/>
                         <outlet property="closeTimeLabel" destination="0kt-do-Ka6" id="k2i-uU-iwW"/>
                         <outlet property="currentIssueCollectionBgView" destination="tDX-6R-vTv" id="46W-zs-Ogx"/>

@@ -132,7 +132,12 @@ static NSString *addressCellId = @"UGAddressCollectionViewCell";
     [CMNetwork modifyLoginAddressWithParams:mutDict completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             [SVProgressHUD showSuccessWithStatus:model.msg];
-            [self getAddressList];
+            
+            if (![UGUserModel currentUser].isTest) {
+               [self getAddressList];
+            }
+            
+            
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
         }];
@@ -141,6 +146,9 @@ static NSString *addressCellId = @"UGAddressCollectionViewCell";
 }
 
 - (void)delAddress:(UGLoginAddressModel *)item {
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"id":item.addressId
                              };

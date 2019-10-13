@@ -277,7 +277,7 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
  备注信息 :
  ******************************************************************************/
 
-+(NSString*)encryptionCheckSignForURL:(NSString*)url{
++ (NSString *)encryptionCheckSignForURL:(NSString*)url {
     
     //    参数加密
     if (checkSign) {
@@ -303,7 +303,7 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
         
         NSMutableDictionary *parmDic = [NSMutableDictionary dictionary];
         
-        parmDic= [CMNetwork encryptionCheckSign:newDic];
+        parmDic = [CMNetwork encryptionCheckSign:newDic];
         
         NSArray*array = [url componentsSeparatedByString:@"?"];//从字符A中分隔成2个元素的数组
         
@@ -350,7 +350,7 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
  返回参数 : NSMutableDictionary 加密后参数
  备注信息 :
  ******************************************************************************/
-+(NSMutableDictionary*)encryptionCheckSign:(NSDictionary*)params{
++ (NSMutableDictionary *)encryptionCheckSign:(NSDictionary*)params {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     
     NSString *deskey = [UGEncryptUtil createUuid];
@@ -403,7 +403,7 @@ completion:(CMNetworkBlock)completion {
         method = [NSString stringWithFormat:@"%@&checkSign=1",method];
         if (params) {
             NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-           dict = [CMNetwork encryptionCheckSign:params];
+            dict = [CMNetwork encryptionCheckSign:params];
 
             if (isPost) {
                 [self postWithMethod:method params:dict  model:model retryCount:0 completion:completion];
@@ -445,8 +445,8 @@ completion:(CMNetworkBlock)completion {
     id resultClass = CMResultClassGetResultClass(model);
     id dataClass = CMResultClassGetDataClass(model);
     
-    NSLog(@"url = %@",method);
-    NSLog(@"params = %@",params);
+//    NSLog(@"url = %@",method);
+//    NSLog(@"params = %@",params);
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer.timeoutInterval = 30;
@@ -458,7 +458,7 @@ completion:(CMNetworkBlock)completion {
     manager.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
     manager.securityPolicy.allowInvalidCertificates = YES;
     [manager.securityPolicy setValidatesDomainName:NO];
-    NSLog(@"header = %@",[manager.requestSerializer HTTPRequestHeaders]);
+//    NSLog(@"header = %@",[manager.requestSerializer HTTPRequestHeaders]);
     
     NSDate *startTime = [NSDate date];
     [manager GET:method parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -547,8 +547,8 @@ completion:(CMNetworkBlock)completion {
     id resultClass = CMResultClassGetResultClass(model);
     id dataClass = CMResultClassGetDataClass(model);
     
-    NSLog(@"url = %@",method);
-    NSLog(@"params = %@",params);
+//    NSLog(@"url = %@",method);
+//    NSLog(@"params = %@",params);
 
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
@@ -564,7 +564,7 @@ completion:(CMNetworkBlock)completion {
     manager.securityPolicy.allowInvalidCertificates = YES;
     [manager.securityPolicy setValidatesDomainName:NO];
     
-    NSLog(@"header = %@",[manager.requestSerializer HTTPRequestHeaders]);
+//    NSLog(@"header = %@",[manager.requestSerializer HTTPRequestHeaders]);
     NSDate *startTime = [NSDate date];
     [manager POST:method parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         

@@ -145,7 +145,6 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
         [self getSystemConfig];
     });
     
-//    self.fd_prefersNavigationBarHidden = YES;
     self.navigationItem.title = @"我的";
     self.userInfoView.backgroundColor = [[UGSkinManagers shareInstance] setbgColor];
     self.avaterImageView.layer.cornerRadius = self.avaterImageView.height / 2 ;
@@ -187,7 +186,7 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
         [self.tableView reloadData];
     });
     SANotificationEventSubscribe(UGNotificationUserAvatarChanged, self, ^(typeof (self) self, id obj) {
-        [self.avaterImageView sd_setImageWithURL:[NSURL URLWithString:[UGUserModel currentUser].avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
+        [self.avaterImageView sd_setImageWithURL:[NSURL URLWithString:[UGUserModel currentUser].avatar] placeholderImage:[UIImage imageNamed:@"txp"]];
     });
 //    [self setUserInfoWithHeaderImg:YES];
     [self getAllNextIssueData];
@@ -203,30 +202,29 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
 
 
 - (void)viewWillAppear:(BOOL)animated {
-     [self.waveView startWaveAnimation];
+    [super viewWillAppear:animated];
+    [self.waveView startWaveAnimation];
     SANotificationEventPost(UGNotificationGetUserInfo, nil);
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
      [self.waveView stopWaveAnimation];
     [self.refreshButton.layer removeAllAnimations];
     
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-   
+    [super viewDidAppear:animated];
     if (self.refreshButton.selected) {
         [self startAnimation];
         
     }
-
 }
-
 
 - (void)showAvaterSelectView {
     UGAvaterSelectView *avaterView = [[UGAvaterSelectView alloc] initWithFrame:CGRectMake(0, UGScerrnH, UGScreenW, UGScreenW)];
     [avaterView show];
-    
 }
 
 - (IBAction)showMissionVC:(id)sender {
@@ -234,6 +232,7 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
     if (user.isTest) {
         [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
             if (buttonIndex == 1) {
+                  SANotificationEventPost(UGNotificationUserLogout, nil);
                 SANotificationEventPost(UGNotificationShowLoginView, nil);
             }
         }];
@@ -250,6 +249,7 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
     if (user.isTest) {
         [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
             if (buttonIndex == 1) {
+                      SANotificationEventPost(UGNotificationUserLogout, nil);
                 SANotificationEventPost(UGNotificationShowLoginView, nil);
             }
         }];
@@ -308,6 +308,7 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
         if (user.isTest) {
             [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 if (buttonIndex == 1) {
+                          SANotificationEventPost(UGNotificationUserLogout, nil);
                     SANotificationEventPost(UGNotificationShowLoginView, nil);
                 }
             }];
@@ -323,6 +324,7 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
         if (user.isTest) {
             [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 if (buttonIndex == 1) {
+                          SANotificationEventPost(UGNotificationUserLogout, nil);
                     SANotificationEventPost(UGNotificationShowLoginView, nil);
                 }
             }];
@@ -350,6 +352,7 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
         if (user.isTest) {
             [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 if (buttonIndex == 1) {
+                          SANotificationEventPost(UGNotificationUserLogout, nil);
                     SANotificationEventPost(UGNotificationShowLoginView, nil);
                 }
             }];
@@ -381,6 +384,7 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
         if (user.isTest) {
             [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 if (buttonIndex == 1) {
+                          SANotificationEventPost(UGNotificationUserLogout, nil);
                     SANotificationEventPost(UGNotificationShowLoginView, nil);
                 }
             }];
@@ -396,6 +400,7 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
         if (user.isTest) {
             [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 if (buttonIndex == 1) {
+                          SANotificationEventPost(UGNotificationUserLogout, nil);
                     SANotificationEventPost(UGNotificationShowLoginView, nil);
                 }
             }];
@@ -411,6 +416,7 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
         if (user.isTest) {
             [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 if (buttonIndex == 1) {
+                          SANotificationEventPost(UGNotificationUserLogout, nil);
                     SANotificationEventPost(UGNotificationShowLoginView, nil);
                 }
             }];
@@ -428,6 +434,7 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
         if (user.isTest) {
             [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 if (buttonIndex == 1) {
+                          SANotificationEventPost(UGNotificationUserLogout, nil);
                     SANotificationEventPost(UGNotificationShowLoginView, nil);
                 }
             }];
@@ -446,6 +453,7 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
         if (user.isTest) {
             [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 if (buttonIndex == 1) {
+                          SANotificationEventPost(UGNotificationUserLogout, nil);
                     SANotificationEventPost(UGNotificationShowLoginView, nil);
                 }
             }];
@@ -459,6 +467,7 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
         if (user.isTest) {
             [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 if (buttonIndex == 1) {
+                          SANotificationEventPost(UGNotificationUserLogout, nil);
                     SANotificationEventPost(UGNotificationShowLoginView, nil);
                 }
             }];
@@ -473,6 +482,7 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
         if (user.isTest) {
             [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 if (buttonIndex == 1) {
+                          SANotificationEventPost(UGNotificationUserLogout, nil);
                     SANotificationEventPost(UGNotificationShowLoginView, nil);
                 }
             }];
@@ -488,6 +498,7 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
         if (user.isTest) {
             [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 if (buttonIndex == 1) {
+                          SANotificationEventPost(UGNotificationUserLogout, nil);
                     SANotificationEventPost(UGNotificationShowLoginView, nil);
                 }
             }];
@@ -505,6 +516,7 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
         if (user.isTest) {
             [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 if (buttonIndex == 1) {
+                          SANotificationEventPost(UGNotificationUserLogout, nil);
                     SANotificationEventPost(UGNotificationShowLoginView, nil);
                 }
             }];
@@ -607,7 +619,7 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
     
     if (flag) {
         
-                [self.avaterImageView sd_setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
+                [self.avaterImageView sd_setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:[UIImage imageNamed:@"txp"]];
             }
    
     self.userNameLabel.text = user.username;
@@ -825,6 +837,7 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
             if ([UGUserModel currentUser].isTest) {
                 [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                     if (buttonIndex == 1) {
+                              SANotificationEventPost(UGNotificationUserLogout, nil);
                         SANotificationEventPost(UGNotificationShowLoginView, nil);
                     }
                 }];
@@ -866,6 +879,7 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
             if ([UGUserModel currentUser].isTest) {
                 [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                     if (buttonIndex == 1) {
+                              SANotificationEventPost(UGNotificationUserLogout, nil);
                         SANotificationEventPost(UGNotificationShowLoginView, nil);
                     }
                 }];
@@ -879,6 +893,7 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
             if ([UGUserModel currentUser].isTest) {
                 [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                     if (buttonIndex == 1) {
+                              SANotificationEventPost(UGNotificationUserLogout, nil);
                         SANotificationEventPost(UGNotificationShowLoginView, nil);
                     }
                 }];

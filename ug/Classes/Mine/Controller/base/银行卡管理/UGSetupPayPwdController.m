@@ -50,7 +50,9 @@
     }, ^(id err) {
         [SVProgressHUD showInfoWithStatus:err];
     }, ^{
-
+        if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+            return;
+        }
         NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                                  @"login_pwd":[UGEncryptUtil md5:self.loginPwdTextF.text],
                                  @"fund_pwd":[UGEncryptUtil md5:self.fundPwdTextF.text],

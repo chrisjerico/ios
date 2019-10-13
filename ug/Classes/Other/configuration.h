@@ -23,9 +23,9 @@
 
 #define RSAPublicKey @"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0CZTn+50HHM0QkziEunofDfIG77buLuRwItL8My9EYAyuLSW1qkLgqta2z2bIedx7Ro6enOZ0PZNFnqsztltGctwTwAVQDGoB+kpqUi5gs5jRTcoRkytgaLs7xZey45H0c2Hof4W+rcdHR/xc7C0hT5fBNqEDjBmGvoLlYpHag/p4m7h+JgpWHmKGWg7ijHMPWJQSFD1JPnP7upQlTJ8BKl24em6n2lSyH8qkoJKoEzUfQ7HricpF4S6MVCm36BSfkz35Oy4La7WxDrwW8KDs3ahKHM4uifgDlupZ+nV/dgzCQWDi5lNiQlvWR0xKsjwwrnXTdHPnMYDX8NdDTvTcQIDAQAB"
 
-static NSString *baseServerUrl = @"http://test10.6yc.com";
+//static NSString *baseServerUrl = @"http://test10.6yc.com";
 //static NSString *baseServerUrl = @"http://test100f.fhptcdn.com";
-//static NSString *baseServerUrl = @"http://103.9.230.243";
+static NSString *baseServerUrl = @"http://103.9.230.243";
 
 static NSString *swiperVerifyUrl = @"/dist/index.html#/swiperverify?platform=native";
 
@@ -250,12 +250,19 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 
 #endif
 
-#define CMMETHOD_BEGIN          (NSLog(@"%s.begin", __func__))
-#define CMMETHOD_BEGIN_C(v)     (NSLog(@"%s.begin, param: %ld", __func__, (long)v))
-#define CMMETHOD_BEGIN_O(v)     (NSLog(@"%s.begin, param: %@", __func__, v))
-#define CMMETHOD_END            (NSLog(@"%s.end", __func__))
-#define CMMETHOD_END_C(v)       (NSLog(@"%s.end, result: %ld", __func__, (long)v), v)
-#define CMMETHOD_END_O(v)       (NSLog(@"%s.end, result: %@", __func__, v), v)
+#define CMMETHOD_BEGIN
+#define CMMETHOD_BEGIN_C(v)
+#define CMMETHOD_BEGIN_O(v)
+#define CMMETHOD_END
+#define CMMETHOD_END_C(v)
+#define CMMETHOD_END_O(v)
+
+//#define CMMETHOD_BEGIN          (NSLog(@"%s.begin", __func__))
+//#define CMMETHOD_BEGIN_C(v)     (NSLog(@"%s.begin, param: %ld", __func__, (long)v))
+//#define CMMETHOD_BEGIN_O(v)     (NSLog(@"%s.begin, param: %@", __func__, v))
+//#define CMMETHOD_END            (NSLog(@"%s.end", __func__))
+//#define CMMETHOD_END_C(v)       (NSLog(@"%s.end, result: %ld", __func__, (long)v), v)
+//#define CMMETHOD_END_O(v)       (NSLog(@"%s.end, result: %@", __func__, v), v)
 
 #define WeakSelf __weak typeof(self) weakSelf = self;
 #define StrongSelf __strong typeof(weakSelf) strongSelf = weakSelf;

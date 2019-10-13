@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="95b-2L-sLd">
-                                <rect key="frame" x="0.0" y="806" width="414" height="90"/>
+                                <rect key="frame" x="0.0" y="797" width="414" height="99"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已选中 0 注" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mbl-5c-yON">
                                         <rect key="frame" x="10" y="3" width="73.5" height="17"/>
@@ -98,10 +98,10 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f9i-92-8rB">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="99"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="封盘中" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j7S-li-2cF">
-                                                <rect key="frame" x="182.5" y="35.5" width="49" height="19.5"/>
+                                                <rect key="frame" x="182.5" y="40" width="49" height="19.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -118,13 +118,13 @@
                                 <constraints>
                                     <constraint firstItem="f9i-92-8rB" firstAttribute="leading" secondItem="95b-2L-sLd" secondAttribute="leading" id="0VZ-Kn-y38"/>
                                     <constraint firstItem="3i9-UW-fqp" firstAttribute="leading" secondItem="fYm-Zb-Va5" secondAttribute="trailing" constant="10" id="5wV-hR-yXk"/>
+                                    <constraint firstItem="2QR-m8-GwC" firstAttribute="bottom" secondItem="a7d-N8-JkA" secondAttribute="bottom" constant="10" id="8QC-3B-YxG"/>
                                     <constraint firstAttribute="bottom" secondItem="f9i-92-8rB" secondAttribute="bottom" id="8jR-XS-h8f"/>
                                     <constraint firstAttribute="trailing" secondItem="3i9-UW-fqp" secondAttribute="trailing" constant="10" id="BLl-XI-g33"/>
                                     <constraint firstItem="fYm-Zb-Va5" firstAttribute="top" secondItem="ail-Tf-OIg" secondAttribute="top" id="QGg-qK-kB7"/>
                                     <constraint firstItem="a7d-N8-JkA" firstAttribute="leading" secondItem="95b-2L-sLd" secondAttribute="leading" constant="10" id="T7s-Hj-qUY"/>
                                     <constraint firstItem="a7d-N8-JkA" firstAttribute="top" secondItem="mbl-5c-yON" secondAttribute="bottom" constant="3" id="TPc-uD-q1V"/>
                                     <constraint firstItem="fYm-Zb-Va5" firstAttribute="leading" secondItem="ail-Tf-OIg" secondAttribute="trailing" constant="10" id="Vcw-5j-Y2q"/>
-                                    <constraint firstAttribute="height" constant="90" id="VtD-qH-8gK"/>
                                     <constraint firstItem="3i9-UW-fqp" firstAttribute="top" secondItem="ail-Tf-OIg" secondAttribute="top" id="aSi-bv-rsD"/>
                                     <constraint firstItem="f9i-92-8rB" firstAttribute="top" secondItem="95b-2L-sLd" secondAttribute="top" id="bjz-u9-hcG"/>
                                     <constraint firstItem="mbl-5c-yON" firstAttribute="top" secondItem="95b-2L-sLd" secondAttribute="top" constant="3" id="evD-ZA-nkH"/>
@@ -132,6 +132,7 @@
                                     <constraint firstItem="mbl-5c-yON" firstAttribute="leading" secondItem="95b-2L-sLd" secondAttribute="leading" constant="10" id="r1d-6i-qpQ"/>
                                     <constraint firstAttribute="trailing" secondItem="f9i-92-8rB" secondAttribute="trailing" id="wcK-Xb-zyK"/>
                                 </constraints>
+                                <viewLayoutGuide key="safeArea" id="2QR-m8-GwC"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pVi-LO-8KO">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
@@ -249,7 +250,6 @@
                         <outlet property="amountTextF" destination="a7d-N8-JkA" id="aAY-Eu-TJr"/>
                         <outlet property="bottomCloseView" destination="f9i-92-8rB" id="RI0-yf-Rrr"/>
                         <outlet property="bottomView" destination="95b-2L-sLd" id="umP-Hz-0BR"/>
-                        <outlet property="bottomViewHeidhtConstraint" destination="VtD-qH-8gK" id="x2y-jp-U9l"/>
                         <outlet property="chipButton" destination="ail-Tf-OIg" id="sED-O2-fo6"/>
                         <outlet property="closeTimeLabel" destination="eWc-fX-NZa" id="TMC-Rr-Q6y"/>
                         <outlet property="currentIssueCollectionBgView" destination="7H2-If-A21" id="Lti-TV-CU5"/>

@@ -30,6 +30,9 @@
         self.frame = frame;
         
        
+        self.avaterImageView.layer.cornerRadius = self.avaterImageView.height / 2 ;
+        self.avaterImageView.layer.masksToBounds = YES;
+        self.avaterImageView.userInteractionEnabled = YES;
         [self setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
 
         [self setupUserInfo];
@@ -99,8 +102,7 @@
 #pragma mark - UIS
 - (void)setupUserInfo {
     UGUserModel *user = [UGUserModel currentUser];
-//    [self.avaterImageView sd_setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:[UIImage imageNamed:@"txp"]];
-    [self.avaterImageView sd_setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:nil];
+    [self.avaterImageView sd_setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:[UIImage imageNamed:@"txp"]];
 
     self.userNameLabel.text = user.username;
     

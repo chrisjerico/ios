@@ -236,7 +236,6 @@
 		D40DE98722F335E300974BAF /* TAPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = D40DE97B22F335E300974BAF /* TAPageControl.m */; };
 		D40DE98822F335E300974BAF /* TAAnimatedDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = D40DE97C22F335E300974BAF /* TAAnimatedDotView.m */; };
 		D40DE98922F335E300974BAF /* TAAbstractDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = D40DE97D22F335E300974BAF /* TAAbstractDotView.m */; };
-		D40DE98C22F3372F00974BAF /* UITabBarController+ShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D40DE98B22F3372E00974BAF /* UITabBarController+ShowViewController.m */; };
 		D40DE98F22F4292100974BAF /* UGLotteryAdPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = D40DE98E22F4292100974BAF /* UGLotteryAdPopView.m */; };
 		D40DE99122F42A3300974BAF /* UGLotteryAdPopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D40DE99022F42A3300974BAF /* UGLotteryAdPopView.xib */; };
 		D40DE99422F466FC00974BAF /* OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = D40DE99322F466FC00974BAF /* OpenUDID.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -344,7 +343,6 @@
 		D41F26142319022E004FB9C6 /* UGChanglongBetRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D41F26132319022E004FB9C6 /* UGChanglongBetRecordModel.m */; };
 		D41F2617231BE522004FB9C6 /* UGWithdrawRecordDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = D41F2616231BE521004FB9C6 /* UGWithdrawRecordDetailView.m */; };
 		D41F2619231BE536004FB9C6 /* UGWithdrawRecordDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D41F2618231BE536004FB9C6 /* UGWithdrawRecordDetailView.xib */; };
-		D41FD5F22347127200984468 /* UGGlobalModuleRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = D41FD5F12347127200984468 /* UGGlobalModuleRouter.m */; };
 		D41FF76C22E8141A00FCCDD2 /* UGLotteryRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D41FF76A22E8141A00FCCDD2 /* UGLotteryRecordCell.m */; };
 		D41FF76D22E8141A00FCCDD2 /* UGLotteryRecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D41FF76B22E8141A00FCCDD2 /* UGLotteryRecordCell.xib */; };
 		D41FF77122E880A800FCCDD2 /* UGSSCBetItem1Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = D41FF76F22E880A800FCCDD2 /* UGSSCBetItem1Cell.m */; };
@@ -1078,8 +1076,6 @@
 		D40DE97F22F335E300974BAF /* TAAnimatedDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAnimatedDotView.h; sourceTree = "<group>"; };
 		D40DE98022F335E300974BAF /* TAPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAPageControl.h; sourceTree = "<group>"; };
 		D40DE98122F335E300974BAF /* CustomCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCollectionViewCell.h; sourceTree = "<group>"; };
-		D40DE98A22F3372E00974BAF /* UITabBarController+ShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBarController+ShowViewController.h"; sourceTree = "<group>"; };
-		D40DE98B22F3372E00974BAF /* UITabBarController+ShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBarController+ShowViewController.m"; sourceTree = "<group>"; };
 		D40DE98D22F4292100974BAF /* UGLotteryAdPopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLotteryAdPopView.h; sourceTree = "<group>"; };
 		D40DE98E22F4292100974BAF /* UGLotteryAdPopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLotteryAdPopView.m; sourceTree = "<group>"; };
 		D40DE99022F42A3300974BAF /* UGLotteryAdPopView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGLotteryAdPopView.xib; sourceTree = "<group>"; };
@@ -1266,8 +1262,6 @@
 		D41F2615231BE521004FB9C6 /* UGWithdrawRecordDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGWithdrawRecordDetailView.h; sourceTree = "<group>"; };
 		D41F2616231BE521004FB9C6 /* UGWithdrawRecordDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGWithdrawRecordDetailView.m; sourceTree = "<group>"; };
 		D41F2618231BE536004FB9C6 /* UGWithdrawRecordDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGWithdrawRecordDetailView.xib; sourceTree = "<group>"; };
-		D41FD5F02347127200984468 /* UGGlobalModuleRouter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGGlobalModuleRouter.h; sourceTree = "<group>"; };
-		D41FD5F12347127200984468 /* UGGlobalModuleRouter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGGlobalModuleRouter.m; sourceTree = "<group>"; };
 		D41FF76922E8141A00FCCDD2 /* UGLotteryRecordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLotteryRecordCell.h; sourceTree = "<group>"; };
 		D41FF76A22E8141A00FCCDD2 /* UGLotteryRecordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLotteryRecordCell.m; sourceTree = "<group>"; };
 		D41FF76B22E8141A00FCCDD2 /* UGLotteryRecordCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGLotteryRecordCell.xib; sourceTree = "<group>"; };
@@ -3150,8 +3144,6 @@
 				D405B25B227974D000F8C586 /* NSArray+Log.m */,
 				D405B259227974D000F8C586 /* UIView+CTop.h */,
 				D405B254227974D000F8C586 /* UIView+CTop.m */,
-				D40DE98A22F3372E00974BAF /* UITabBarController+ShowViewController.h */,
-				D40DE98B22F3372E00974BAF /* UITabBarController+ShowViewController.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -3426,15 +3418,6 @@
 			path = "任务大厅";
 			sourceTree = "<group>";
 		};
-		D41FD5EF2347123B00984468 /* Router */ = {
-			isa = PBXGroup;
-			children = (
-				D41FD5F02347127200984468 /* UGGlobalModuleRouter.h */,
-				D41FD5F12347127200984468 /* UGGlobalModuleRouter.m */,
-			);
-			path = Router;
-			sourceTree = "<group>";
-		};
 		D41FF93023332E5600FE3F70 /* NullSafe */ = {
 			isa = PBXGroup;
 			children = (
@@ -3702,7 +3685,6 @@
 		D4B75E22227811D50007047C /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				D41FD5EF2347123B00984468 /* Router */,
 				D4EE8F9023421C1C006FA0E2 /* Skin */,
 				D4E1F622233664680022A1DC /* Chat */,
 				D4B75E33227811D50007047C /* Main */,
@@ -4676,7 +4658,6 @@
 				CFD3BEF12347137F00FCDA6D /* IBButton.m in Sources */,
 				CF3B0E372349CDA50035AF50 /* UGCalenderAlertView.m in Sources */,
 				D405B1FA227972C900F8C586 /* JSONHTTPClient.m in Sources */,
-				D40DE98C22F3372F00974BAF /* UITabBarController+ShowViewController.m in Sources */,
 				D45A94C2233B9F070089E86C /* UGGoogleAuthenticationThirdViewController.m in Sources */,
 				D4111427230A8FFE00A4EE67 /* UGAPPVersionModel.m in Sources */,
 				D41E0EE0228D88BC00D6C42A /* UGMissionLevelTableViewCell.m in Sources */,
@@ -4835,7 +4816,6 @@
 				D4DE2683229BCB960072A4A2 /* WMIconSegmentControl.m in Sources */,
 				D41C3DFA228E877E00BF6436 /* UGIntegralConvertRecordController.m in Sources */,
 				D405B1F6227972C900F8C586 /* JSONModel.m in Sources */,
-				D41FD5F22347127200984468 /* UGGlobalModuleRouter.m in Sources */,
 				D405AFF322783DCC00F8C586 /* MASCompositeConstraint.m in Sources */,
 				D4261EC72323D6BC006E0A5D /* UGlevelsModel.m in Sources */,
 				D4DE269B229BDBC80072A4A2 /* SGImageButton.m in Sources */,

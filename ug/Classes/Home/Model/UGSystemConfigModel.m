@@ -11,33 +11,33 @@
 
 #define filePath  [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]stringByAppendingPathComponent:@"UGSystemConfigModel"]
 
-UGSystemConfigModel * currentConfig = nil;
+UGSystemConfigModel *currentConfig = nil;
 
 @implementation UGmobileMenu
-
++ (instancetype)menu:(NSString *)path :(NSString *)name :(NSString *)icon :(NSString *)selectedIcon :(Class)cls {
+    UGmobileMenu *gm = [UGmobileMenu new];
+    gm.path = path;
+    gm.name = name;
+    gm.icon = icon;
+    gm.selectedIcon = selectedIcon;
+    gm.cls = cls;
+    return gm;
+}
 @end
 
 @implementation UGSystemConfigModel
-//添加了下面的宏定义
+
 MJExtensionCodingImplementation
 
 + (instancetype)currentConfig {
-    
-    if (currentConfig == nil) {
-        //解档
-        UGSystemConfigModel *decodedUser = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
-        
-        currentConfig = decodedUser;
-    }
-    
+    if (!currentConfig)
+        currentConfig = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
     return currentConfig;
 }
 
 + (void)setCurrentConfig:(UGSystemConfigModel *)user {
     currentConfig = user;
-    //归档
     [NSKeyedArchiver archiveRootObject:user toFile:filePath];
-    
 }
 
 @end

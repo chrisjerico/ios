@@ -83,6 +83,9 @@ static NSString *avaterCellid = @"UGAvaterCollectionViewCell";
 }
 
 - (void)changAvatar:(UGAvatarModel *)avatar {
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"filename":avatar.filename
                              };

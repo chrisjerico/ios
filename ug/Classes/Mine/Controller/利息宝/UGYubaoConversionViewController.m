@@ -57,7 +57,6 @@ static NSString *convertCellid = @"UGConvertCollectionViewCell";
         [self skin];
     });
     self.title = @"利息宝";
-//    self.fd_prefersNavigationBarHidden = YES;
     self.submitButton.layer.cornerRadius = 5;
     self.submitButton.layer.masksToBounds = YES;
     [self.submitButton setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];

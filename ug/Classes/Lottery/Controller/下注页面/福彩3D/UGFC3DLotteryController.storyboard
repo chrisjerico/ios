@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6F9-Ka-pjK">
-                                <rect key="frame" x="0.0" y="806" width="414" height="90"/>
+                                <rect key="frame" x="0.0" y="797" width="414" height="99"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LPm-LU-ieM">
                                         <rect key="frame" x="344" y="12" width="60" height="36"/>
@@ -80,10 +80,10 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qex-cB-bif">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="99"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="封盘中" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sG2-dX-buv">
-                                                <rect key="frame" x="182.5" y="35.5" width="49" height="19.5"/>
+                                                <rect key="frame" x="182.5" y="40" width="49" height="19.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -104,8 +104,8 @@
                                     <constraint firstItem="qXk-7r-uQw" firstAttribute="leading" secondItem="6F9-Ka-pjK" secondAttribute="leading" constant="10" id="BDg-82-XOa"/>
                                     <constraint firstItem="IK3-8P-InL" firstAttribute="leading" secondItem="6F9-Ka-pjK" secondAttribute="leading" constant="10" id="BwO-y1-qFU"/>
                                     <constraint firstItem="qex-cB-bif" firstAttribute="top" secondItem="6F9-Ka-pjK" secondAttribute="top" id="HkE-X5-VSd"/>
+                                    <constraint firstItem="red-l6-zHq" firstAttribute="bottom" secondItem="qXk-7r-uQw" secondAttribute="bottom" constant="10" id="R3M-Ji-l2Y"/>
                                     <constraint firstItem="qex-cB-bif" firstAttribute="leading" secondItem="6F9-Ka-pjK" secondAttribute="leading" id="Rs2-7B-QUc"/>
-                                    <constraint firstAttribute="height" constant="90" id="Toa-Ma-2PY"/>
                                     <constraint firstAttribute="trailing" secondItem="LPm-LU-ieM" secondAttribute="trailing" constant="10" id="U8v-Sn-jGb"/>
                                     <constraint firstItem="qXk-7r-uQw" firstAttribute="top" secondItem="IK3-8P-InL" secondAttribute="bottom" constant="3" id="aIB-BZ-ckC"/>
                                     <constraint firstAttribute="trailing" secondItem="qex-cB-bif" secondAttribute="trailing" id="eQH-GA-vRh"/>
@@ -114,6 +114,7 @@
                                     <constraint firstItem="Mvj-Gg-GXu" firstAttribute="top" secondItem="Clp-l0-XLe" secondAttribute="top" id="mM4-OE-ctT"/>
                                     <constraint firstItem="LPm-LU-ieM" firstAttribute="leading" secondItem="Mvj-Gg-GXu" secondAttribute="trailing" constant="10" id="ocs-SL-emf"/>
                                 </constraints>
+                                <viewLayoutGuide key="safeArea" id="red-l6-zHq"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ahD-ZG-2AM">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
@@ -232,7 +233,6 @@
                         <outlet property="betButton" destination="Mvj-Gg-GXu" id="CVj-nz-cFS"/>
                         <outlet property="bottomCloseView" destination="qex-cB-bif" id="AVh-7S-wME"/>
                         <outlet property="bottomView" destination="6F9-Ka-pjK" id="z9E-R1-cvb"/>
-                        <outlet property="bottomViewHeidhtConstraint" destination="Toa-Ma-2PY" id="6ci-ai-y39"/>
                         <outlet property="chipButton" destination="Clp-l0-XLe" id="Nc3-Cv-J5W"/>
                         <outlet property="closeTimeLabel" destination="uWd-ds-khI" id="ay7-Bg-sCJ"/>
                         <outlet property="currentIssueCollectionBgView" destination="5Ks-Xf-5gf" id="Hbg-ZG-WTb"/>

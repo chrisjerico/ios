@@ -28,6 +28,8 @@ static NSString *fundDetailsCell = @"UGFundDetailsCell";
 static NSString *rechargeRecordCellid = @"UGRechargeRecordCell";
 @implementation UGRechargeRecordTableViewController
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -36,6 +38,12 @@ static NSString *rechargeRecordCellid = @"UGRechargeRecordCell";
         [self getWithdrawData];
         
     });
+    
+    SANotificationEventSubscribe(UGNotificationWithRecordOfDeposit, self, ^(typeof (self) self, id obj) {
+          
+         // 马上进入刷新状态
+          [self.tableView.mj_header beginRefreshing];
+      });
      [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
     self.pageSize = size;
     self.pageNumber = page;
@@ -88,7 +96,9 @@ static NSString *rechargeRecordCellid = @"UGRechargeRecordCell";
 }
 
 - (void)getRechargeData {
-    
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"page":@(self.pageNumber),
                              @"rows":@(self.pageSize),
@@ -131,6 +141,12 @@ static NSString *rechargeRecordCellid = @"UGRechargeRecordCell";
 }
 //取款
 - (void)getWithdrawData {
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
+    if ([UGUserModel currentUser].isTest) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"page":@(self.pageNumber),
                              @"rows":@(self.pageSize),
@@ -159,7 +175,7 @@ static NSString *rechargeRecordCellid = @"UGRechargeRecordCell";
                 [self.tableView.mj_footer setHidden:NO];
             }
         } failure:^(id msg) {
-            [SVProgressHUD showErrorWithStatus:msg];
+//            [SVProgressHUD showErrorWithStatus:msg];
         }];
         
         if ([self.tableView.mj_header isRefreshing]) {

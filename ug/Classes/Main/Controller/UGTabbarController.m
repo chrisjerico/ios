@@ -7,82 +7,76 @@
 //
 
 #import "UGTabbarController.h"
-#import "UGMineViewController.h"
-#import "UGLotteryHomeController.h"
-#import "UGFundsViewController.h"
-#import "UGNavigationController.h"
-#import "UGHomeViewController.h"
-#import "UGYYLotteryHomeViewController.h"
-#import "UGMineSkinViewController.h"
+#import "UGLotteryHomeController.h"         // 彩票大厅
+#import "UGFundsViewController.h"           // 资金管理
+#import "UGHomeViewController.h"            // 首页
+#import "UGYYLotteryHomeViewController.h"   // 彩票大厅
+#import "UGMineSkinViewController.h"        // 我的
+#import "UGPromotionsController.h"          // 优惠活动
+#import "UGChangLongController.h"           // 长龙助手
+#import "UGLotteryRecordController.h"       // 开奖记录
+#import "UGMissionCenterViewController.h"   // 任务中心
+#import "UGSecurityCenterViewController.h"  // 安全中心
+#import "UGMailBoxTableViewController.h"    // 站内信
+#import "UGBankCardInfoController.h"        // 银行卡
+#import "UGBindCardViewController.h"        // 银行卡
+#import "UGYubaoViewController.h"           // 利息宝
+#import "UGSigInCodeViewController.h"       // 每日签到
+#import "UGPromotionIncomeController.h"     // 推广收益
+#import "UGBalanceConversionController.h"   // 额度转换
+
 #import "UGSystemConfigModel.h"
 #import "UGAppVersionManager.h"
 
-@interface UGTabbarController ()
+@interface UGTabbarController ()<UITabBarControllerDelegate>
 
+@property (nonatomic, copy) NSArray<UGmobileMenu *> *gms;
 @end
 
 @implementation UGTabbarController
-@synthesize qdwebVC,vcs,nvcHome,nvcChangLong,nvcLotteryList,nvcActivity,nvcChatRoomList,nvcLotteryRecord;
-@synthesize nvcUser,nvcTask,nvcSecurityCenter,nvcFunds,nvcMessage,nvcConversion,nvcBanks,nvcYuebao;
-@synthesize nvcSign,nvcReferrer,balanceConversionVC;
+
+static UGTabbarController *_tabBarVC = nil;
+
++ (instancetype)shared {
+    return _tabBarVC;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initAllNav];
+    _tabBarVC = self;
+    _gms = @[
+        [UGmobileMenu menu:@"/home"            :@"首页" :@"shouye" :@"shouyesel"         :[UGHomeViewController class]],
+        [UGmobileMenu menu:@"/changLong"       :@"长龙助手" :@"changlong" :@"changlong"    :[UGChangLongController class]],
+        [UGmobileMenu menu:@"/lotteryList"     :@"彩票大厅" :@"dating" :@"datongsel"       :[UGYYLotteryHomeViewController class]],
+        [UGmobileMenu menu:@"/activity"        :@"优惠活动" :@"youhui1" :@"youhui1sel"     :[UGPromotionsController class]],
+        [UGmobileMenu menu:@"/chatRoomList"    :@"聊天室" :@"liaotian" :@"liaotiansel"    :[UGChatViewController class]],
+        [UGmobileMenu menu:@"/lotteryRecord"   :@"开奖记录" :@"zdgl" :@"zdgl"              :[UGLotteryRecordController class]],
+        [UGmobileMenu menu:@"/user"            :@"我的" :@"wode" :@"wodesel"             :[UGMineSkinViewController class]],
+        [UGmobileMenu menu:@"/task"            :@"任务中心" :@"renwu" :@"renwusel"         :[UGMissionCenterViewController class]],
+        [UGmobileMenu menu:@"/securityCenter"  :@"安全中心" :@"ziyuan" :@"ziyuan"          :[UGSecurityCenterViewController class]],
+        [UGmobileMenu menu:@"/funds"           :@"资金管理" :@"jinlingyingcaiwangtubiao" :@"jinlingyingcaiwangtubiaosel" :[UGFundsViewController class]],
+        [UGmobileMenu menu:@"/message"         :@"站内信" :@"zhanneixin" :@"zhanneixin"   :[UGMailBoxTableViewController class]],
+        [UGmobileMenu menu:@"/conversion"      :@"额度转换" :@"change" :@"change"          :[UGBalanceConversionController class]],
+        [UGmobileMenu menu:@"/banks"           :@"银行卡" :@"yinhangqia" :@"yinhangqia"   :[UGBindCardViewController class]],
+        [UGmobileMenu menu:@"/yuebao"          :@"利息宝" :@"lixibao" :@"lixibao"         :[UGYubaoViewController class]],
+        [UGmobileMenu menu:@"/Sign"            :@"签到" :@"qiandao" :@"qiandaosel"       :[UGSigInCodeViewController class]],
+        [UGmobileMenu menu:@"/referrer"        :@"推广收益" :@"shouyi1" :@"shouyi1sel"     :[UGPromotionIncomeController class]],
+    ];
     
-    [self setUpChildViewController];
+    self.delegate = self;
+    
+    // 设置初始控制器
+    [self resetUpChildViewController:@[@"/home", @"/lotteryList", @"/chatRoomList", @"/task", @"/user", ]];
+    
+    // 更新为后台配置的控制器
     [self getSystemConfig];
     
 //    SANotificationEventSubscribe(UGNotificationWithResetTabSuccess, self, ^(typeof (self) self, id obj) {
-//             [self resetUpChildViewController];
+//         [self resetUpChildViewController];
 //    });
-
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self.tabBar layoutIfNeeded];
-	//    版本更新
+    
+    //    版本更新
     [[UGAppVersionManager shareInstance] updateVersionNow:YES];
-}
-
-- (void)initAllNav{
-    //====home
-    self.nvcHome = [FFRouter routeObjectURL:@"/home"];
-    //====长龙助手
-     self.nvcChangLong = [FFRouter routeObjectURL:@"/changLong"];
-    //====彩票大厅
-    self.nvcLotteryList = [FFRouter routeObjectURL:@"/lotteryList"];
-    //====优惠活动
-    self.nvcActivity = [FFRouter routeObjectURL:@"/activity"];
-    //====聊天室
-    qdwebVC =  [FFRouter routeObjectURL:@"/chatRoomList"];
-    self.nvcChatRoomList = [[UGNavigationController alloc]initWithRootViewController:qdwebVC];
-    //====开奖记录
-    self.nvcLotteryRecord = [FFRouter routeObjectURL:@"/lotteryRecord"];
-    //====我的
-    self.nvcUser = [FFRouter routeObjectURL:@"/user"];
-    //====任务中心
-    self.nvcTask = [FFRouter routeObjectURL:@"/task"];
-    //====安全中心
-    self.nvcSecurityCenter = [FFRouter routeObjectURL:@"/securityCenter"];
-    //====资金管理
-    self.nvcFunds = [FFRouter routeObjectURL:@"/funds"];
-    //====站内信
-    self.nvcMessage = [FFRouter routeObjectURL:@"/message"];
-    //====额度转换
-    balanceConversionVC =  [FFRouter routeObjectURL:@"/conversion"];
-    self.nvcConversion = [[UGNavigationController alloc]initWithRootViewController:balanceConversionVC];
-    //====银行卡
-    self.nvcBanks = [FFRouter routeObjectURL:@"/banks"];
-    //====利息宝
-    self.nvcYuebao = [FFRouter routeObjectURL:@"/yuebao"];
-    //====签到
-    self.nvcSign = [FFRouter routeObjectURL:@"/Sign"];
-    //====推广收益
-    self.nvcReferrer = [FFRouter routeObjectURL:@"/referrer"];
-   
-   
 }
 
 - (void)setTabbarStyle {
@@ -102,9 +96,7 @@
     [[UITabBar appearance] setUnselectedItemTintColor: [[UGSkinManagers shareInstance] settabNOSelectColor]];
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle
-
-{
+- (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleDefault;
     //UIStatusBarStyleDefault = 0 黑色文字，浅色背景时使用
 //   return UIStatusBarStyleLightContent = 1 //白色文字，深色背景时使用
@@ -117,36 +109,8 @@
  *  tabBarItem 的选中和不选中文字属性
  */
 - (void)setUpTabBarItemTextAttributes {
-    
-    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[[UGSkinManagers shareInstance] settabNOSelectColor], NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
-    
-    [[UITabBarItem appearance] setTitleTextAttributes:                                                         [NSDictionary dictionaryWithObjectsAndKeys: [[UGSkinManagers shareInstance] settabSelectColor],NSForegroundColorAttributeName, nil]forState:UIControlStateSelected];
-    
-    
-
-}
-
-
-/**
- *  添加子控制器
- */
-- (void)setUpChildViewController {
-    self.vcs  = [NSMutableArray new];
-    [vcs addObject: self.nvcHome];
-    [vcs addObject: self.nvcLotteryList];
-    [vcs addObject: self.nvcChatRoomList];
-    [vcs addObject: self.nvcTask];
-    [vcs addObject: self.nvcUser];
-    [self setViewControllers:vcs];
-    
-    
-    
-//        [vcs addObject: self.nvcHome];
-//        [vcs addObject: self.nvcYuebao];
-//        [vcs addObject: self.nvcChatRoomList];
-//        [vcs addObject: self.nvcTask];
-//        [vcs addObject: self.nvcSign];
-//        [self setViewControllers:vcs];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[[UGSkinManagers shareInstance] settabNOSelectColor]} forState:UIControlStateNormal];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[[UGSkinManagers shareInstance] settabSelectColor]} forState:UIControlStateSelected];
 }
 
 /**
@@ -167,11 +131,11 @@
     image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     viewController.tabBarItem.selectedImage = image;
     [self addChildViewController:viewController];
-    
 }
 
 
 #pragma mark - 获得系统设置
+
 - (void)getSystemConfig {
 
     [SVProgressHUD showWithStatus: nil];
@@ -186,14 +150,12 @@
             
             [self setTabbarStyle];
             
-            [self resetUpChildViewController];
-            
-            
+            NSArray<UGmobileMenu *> *menus = [[UGmobileMenu arrayOfModelsFromDictionaries:SysConf.mobileMenu error:nil] sortedArrayUsingComparator:^NSComparisonResult(UGmobileMenu *obj1, UGmobileMenu *obj2) {
+                return obj1.sort > obj2.sort;
+            }];
+            [self resetUpChildViewController:[menus valuesWithKeyPath:@"path"]];
         } failure:^(id msg) {
-            
             [SVProgressHUD dismiss];
-            // 设置子控制器
-            [self setUpChildViewController];
         }];
     }];
 }
@@ -201,106 +163,111 @@
 /**
  *  添加子控制器
  */
-- (void)resetUpChildViewController {
-   
-   UGSystemConfigModel *config =  [UGSystemConfigModel currentConfig];
-    
-    //数组转模型数组
-    NSMutableArray *personArray  = [UGmobileMenu arrayOfModelsFromDictionaries:config.mobileMenu error:nil];
-    //model 按年龄属性 排序
-    NSArray *ageSortResultArray = [personArray sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+- (void)resetUpChildViewController:(NSArray<NSString *> *)paths {
+    self.viewControllers = ({
         
-        UGmobileMenu *per1 = obj1;
-        
-        UGmobileMenu *per2 = obj2;
-        
-        if (per1.sort > per2.sort) {
-            return NSOrderedDescending;//降序
+        NSMutableArray *vcs = [NSMutableArray new];
+        for (NSString *path in paths) {
+            UGmobileMenu *gm = [_gms objectWithValue:path keyPath:@"path"];
+            
+            BOOL existed = false;
+            for (UIViewController *vc in self.viewControllers) {
+                if ([vc isKindOfClass:gm.cls]) {
+                    [vcs addObject:vc];
+                    existed = true;
+                    break;
+                }
+            }
+            if (existed)
+                continue;
+            
+            UIViewController *vc = _LoadVC_from_storyboard_(NSStringFromClass(gm.cls));
+            if (!vc)
+                vc = [gm.cls new];
+            vc.tabBarItem.title = gm.name;
+            vc.tabBarItem.image = [UIImage imageNamed:gm.icon];
+            vc.tabBarItem.selectedImage = [[UIImage imageNamed:gm.selectedIcon] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            [vc aspect_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
+                ((UIViewController *)ai.instance).view.backgroundColor = UGBackgroundColor;
+            } error:nil];
+            UGNavigationController *nav = [[UGNavigationController alloc] initWithRootViewController:vc];
+            [vcs addObject:nav];
         }
-        else if (per1.sort < per2.sort)
-        {
-            return NSOrderedAscending;//升序
-        }
-        else
-        {
-            return NSOrderedSame;//相等
-        }
-        
-    }];
-
-    for (UGmobileMenu *per in ageSortResultArray) {
-        NSLog(@"per.age = %d",(int )per.sort);
-    }
-    
-    if ([CMCommon arryIsNull:ageSortResultArray]) {
-        return;
-    }
-    if (ageSortResultArray.count<4) {
-        return;
-    }
-    if (ageSortResultArray.count>5) {
-        return;
-    }
-    
-    self.vcs = [NSMutableArray new];
-    for (int i = 0; i<ageSortResultArray.count; i++) {
-        UGmobileMenu *menu = [ageSortResultArray objectAtIndex:i];
-//         UIViewController *ret = [FFRouter routeObjectURL:menu.path];
-        
-        if ([menu.path isEqualToString:@"/home"]) {
-            [vcs addObject:nvcHome];
-        }
-        if ([menu.path isEqualToString:@"/changLong"]) {
-            [vcs addObject:nvcChangLong];
-        }
-        if ([menu.path isEqualToString:@"/lotteryList"]) {
-            [vcs addObject:nvcLotteryList];
-        }
-        if ([menu.path isEqualToString:@"/activity"]) {
-            [vcs addObject:nvcActivity];
-        }
-        if ([menu.path isEqualToString:@"/chatRoomList"]) {
-            [vcs addObject:nvcChatRoomList];
-        }
-        if ([menu.path isEqualToString:@"/lotteryRecord"]) {
-            [vcs addObject:nvcLotteryRecord];
-        }
-        if ([menu.path isEqualToString:@"/user"]) {
-            [vcs addObject:nvcUser];
-        }
-        if ([menu.path isEqualToString:@"/task"]) {
-            [vcs addObject:nvcTask];
-        }
-        if ([menu.path isEqualToString:@"/securityCenter"]) {
-            [vcs addObject:nvcSecurityCenter];
-        }
-        if ([menu.path isEqualToString:@"/funds"]) {
-            [vcs addObject:nvcFunds];
-        }
-        if ([menu.path isEqualToString:@"/message"]) {
-            [vcs addObject:nvcMessage];
-        }
-        if ([menu.path isEqualToString:@"/conversion"]) {
-            [vcs addObject:nvcConversion];
-        }
-        if ([menu.path isEqualToString:@"/banks"]) {
-            [vcs addObject:nvcBanks];
-        }
-        if ([menu.path isEqualToString:@"/yuebao"]) {
-            [vcs addObject:nvcYuebao];
-        }
-        if ([menu.path isEqualToString:@"/Sign"]) {
-            [vcs addObject:nvcSign];
-        }
-        if ([menu.path isEqualToString:@"/referrer"]) {
-            [vcs addObject:nvcReferrer];
-        }
-        
-    }
-
-//    [self setViewControllers:vcs];
-//    [self setTabbarStyle];
+        vcs;
+    });
 }
 
+
+#pragma mark - UITabBarControllerDelegate
+
+/// 切换
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
+    CMMETHOD_BEGIN_O(viewController.restorationIdentifier);
+    
+    UIViewController *vc = ((UINavigationController *)viewController).viewControllers.firstObject;
+    UGUserModel *user = [UGUserModel currentUser];
+    UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
+   
+    
+    BOOL isLogin = UGLoginIsAuthorized();
+    
+    if (isLogin) {
+        if ([vc isKindOfClass:[UGChatViewController class]]) {
+            // 聊天室
+            if (!user.chatRoomSwitch) {//关
+                [QDAlertView showWithTitle:@"温馨提示" message:@"聊天室已关闭" cancelButtonTitle:@"确定" otherButtonTitle:nil completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                }];
+                return NO;
+            } else {
+                ((UGChatViewController *)vc).url = _NSString(@"%@%@%@&loginsessid=%@&color=%@&back=hide", baseServerUrl, newChatRoomUrl, [UGUserModel currentUser].token, [UGUserModel currentUser].sessid, [[UGSkinManagers shareInstance] setChatNavbgStringColor]);
+                return YES;
+            }
+        }
+        else if([vc isKindOfClass:NSClassFromString(@"UGMissionCenterViewController")] ) {
+            // 任务中心
+            if ([config.missionSwitch isEqualToString:@"1"]) {//关
+                [QDAlertView showWithTitle:@"温馨提示" message:@"任务中心已关闭" cancelButtonTitle:@"确定" otherButtonTitle:nil completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                }];
+                return NO;
+            } else {
+                return YES;
+            }
+        }
+        else if([vc isKindOfClass:NSClassFromString(@"UGYubaoViewController")]) {
+            // 利息宝
+            NSLog(@"user.yuebaoSwitch = %d",user.yuebaoSwitch);
+            if (!user.yuebaoSwitch) {//关
+                [QDAlertView showWithTitle:@"温馨提示" message:@"利息宝已关闭" cancelButtonTitle:@"确定" otherButtonTitle:nil completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                }];
+                return NO;
+            } else {
+                return YES;
+            }
+        }
+        else if([vc isKindOfClass:NSClassFromString(@"UGSigInCodeViewController")]) {
+            // 每日签到
+            if ([config.checkinSwitch isEqualToString:@"0"]) {//关
+                [QDAlertView showWithTitle:@"温馨提示" message:@"每日签到已关闭" cancelButtonTitle:@"确定" otherButtonTitle:nil completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                }];
+                return false;
+            } else {
+                return true;
+            }
+        }
+    } else {
+        if (![vc isKindOfClass:[UGHomeViewController class]]) {
+            UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"您还未登录" btnTitles:@[@"取消", @"马上登录"]];
+            [ac setActionAtTitle:@"马上登录" handler:^(UIAlertAction *aa) {
+                UGLoginAuthorize(^(BOOL isFinish) {
+                    if (!isFinish)
+                        return ;
+                    [tabBarController setSelectedViewController:viewController];
+                });
+            }];
+            return false;
+        }
+    }
+    return true;
+}
 
 @end

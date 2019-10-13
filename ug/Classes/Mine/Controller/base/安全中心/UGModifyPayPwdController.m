@@ -35,10 +35,6 @@
     self.loginPwdTextF.delegate = self;
     self.payPwdTextF.delegate = self;
     self.checkPayPwdTextF.delegate = self;
-    
-    //添加通知，来控制键盘和输入框的位置
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardWillShowNotification object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
@@ -109,39 +105,5 @@
     [UIView commitAnimations];
     
 }
-
-#pragma mark ----- 键盘显示的时候的处理
-- (void)keyboardWasShown:(NSNotification*)aNotification
-{
-//    //获得键盘的大小
-//    NSDictionary* info = [aNotification userInfo];
-//    CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
-//
-//    [UIView beginAnimations:nil context:nil];
-//    [UIView setAnimationDuration:0.25];
-//    [UIView setAnimationCurve:7];
-//    if (self.checkPayPwdTextF.isFirstResponder) {
-//
-//        self.view.y = -100;
-//    }else {
-//        self.view.y = 0;
-//    }
-//    [UIView commitAnimations];
-}
-
-#pragma mark -----    键盘消失的时候的处理
-- (void)keyboardWillBeHidden:(NSNotification*)aNotification
-{
-//    [UIView beginAnimations:nil context:nil];
-//    [UIView setAnimationDuration:0.25];
-//    [UIView setAnimationCurve:7];
-//    if (self.checkPayPwdTextF.isFirstResponder) {
-//        
-//        self.view.y = 0;
-//    }
-//    [UIView commitAnimations];
-}
-
-
 
 @end

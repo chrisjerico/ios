@@ -23,7 +23,7 @@
 
 - (void)setItem:(UGYuebaoProfitReportModel *)item {
     _item = item;
-    self.timeLabel.text = item.settleTime;
+    self.timeLabel.text = [item.settleTime stringByReplacingOccurrencesOfString:@" " withString:@"\n"];
     self.incomeLabel.text = item.profitAmount;
     self.balanceLabel.text = item.settleBalance;
 }

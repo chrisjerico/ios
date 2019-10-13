@@ -57,7 +57,9 @@
 #pragma mark -- 网络请求
 //得到日期列表数据
 - (void)activityApplyWinLogDetail:(NSString *)mid {
-    
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"id":mid
                              

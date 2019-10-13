@@ -447,6 +447,9 @@
 }
 #pragma mark - 网络请求
 - (void)getImgVcode{
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"accessToken":[OpenUDID value]
                              };
@@ -492,7 +495,9 @@
      NSString *amount = [_my1TextField.text  stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
      NSString *userComment = [_myTextView.text  stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
      NSString *imgCode = [_my2TextField.text  stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"id":pid,
                               @"amount":amount,

@@ -61,7 +61,6 @@
         [self skin];
     });
     [self.view setBackgroundColor: [UIColor whiteColor]];
-//    self.fd_prefersNavigationBarHidden = YES;// 让导航条隐藏
     self.navigationItem.title = @"利息宝";
     self.waveView = [[WavesView alloc] initWithFrame:self.waveBgView.bounds];
     [self.waveBgView addSubview:self.waveView];
@@ -105,6 +104,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
      [self.waveView startWaveAnimation];
     WeakSelf
     __block float progress = 0;
@@ -128,6 +128,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     [self.countDown destoryTimer];
      [self.waveView stopWaveAnimation];
 }
@@ -153,6 +154,7 @@
     if ([UGUserModel currentUser].isTest) {
         [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
             if (buttonIndex == 1) {
+                      SANotificationEventPost(UGNotificationUserLogout, nil);
                 SANotificationEventPost(UGNotificationShowLoginView, nil);
             }
         }];

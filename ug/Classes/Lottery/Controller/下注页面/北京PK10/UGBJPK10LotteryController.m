@@ -54,7 +54,6 @@
 @property (weak, nonatomic) IBOutlet UIView *nextIssueView;
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 @property (weak, nonatomic) IBOutlet UIView *bottomCloseView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewHeidhtConstraint;
 
 @property (weak, nonatomic) IBOutlet UITextField *amountTextF;
 @property (weak, nonatomic) IBOutlet UILabel *selectLabel;
@@ -131,18 +130,8 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     [self updateHeaderViewData];
     [self updateCloseLabel];
     [self updateOpenLabel];
-    if ([CMCommon isPhoneX]) {
-        self.bottomViewHeidhtConstraint.constant = 90;
-        
-    }else {
-        self.bottomViewHeidhtConstraint.constant = 60;
-        
-    }
     [self getGameDatas];
     [self getNextIssueData];
-    //添加通知，来控制键盘和输入框的位置
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardWillShowNotification object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -170,6 +159,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     [self.countDown destoryTimer];
     [self.nextIssueCountDown destoryTimer];
 }
@@ -827,37 +817,6 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         return NO;
     }
     return YES;
-}
-
-#pragma mark ----- 键盘显示的时候的处理
-- (void)keyboardWasShown:(NSNotification*)aNotification
-{
-    
-//    //获得键盘的大小
-//    NSDictionary* info = [aNotification userInfo];
-//    CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
-//
-//    [UIView beginAnimations:nil context:nil];
-//    [UIView setAnimationDuration:0.25];
-//    [UIView setAnimationCurve:7];
-//    self.view.y -= kbSize.height;
-//    //    self.bottomViewBottomConstraint.constant = kbSize.height;
-//    [UIView commitAnimations];
-}
-
-#pragma mark -----    键盘消失的时候的处理
-- (void)keyboardWillBeHidden:(NSNotification*)aNotification
-{
-    
-//    //获得键盘的大小
-//    NSDictionary* info = [aNotification userInfo];
-//    CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
-//    [UIView beginAnimations:nil context:nil];
-//    [UIView setAnimationDuration:0.25];
-//    [UIView setAnimationCurve:7];
-//    self.view.y += kbSize.height;
-//    //    self.bottomViewBottomConstraint.constant = 0;
-//    [UIView commitAnimations];
 }
 
 - (UITableView *)tableView {

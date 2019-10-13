@@ -201,6 +201,9 @@ static NSString *integralCellid = @"UGConvertCollectionViewCell";
 
 //积分兑换
 - (void)creditsExchangeData:(NSString *)money {
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"money":money
                              };

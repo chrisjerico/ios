@@ -42,7 +42,7 @@
         navBgColor = @"0x58BEA4";
     }
     else  if ([skitType isEqualToString:@"5"]) {//经典  5褐色
-        navBgColor = @"0x58BEA4";
+        navBgColor = @"0x662E3E";
     }
     else  if ([skitType isEqualToString:@"6"]) {//经典 6淡蓝色
         navBgColor = @"0x2E647C";
@@ -54,7 +54,7 @@
         navBgColor = @"0x814689";
     }
     else  if ([skitType isEqualToString:@"9"]) {//经典 9深红
-        navBgColor = @"0x7E503C";
+        navBgColor = @"0x880506";
     }
     else  if ([skitType isEqualToString:@"10"]) {//经典 10淡灰
         navBgColor = @"0xFF8705";
@@ -121,7 +121,7 @@
         navBgColor = kUIColorFromRGB(0x58BEA4);
     }
     else  if ([skitType isEqualToString:@"5"]) {//经典  5褐色
-        navBgColor = kUIColorFromRGB(0x58BEA4);
+        navBgColor = kUIColorFromRGB(0x662E3E);
     }
     else  if ([skitType isEqualToString:@"6"]) {//经典 6淡蓝色
         navBgColor = kUIColorFromRGB(0x2E647C);
@@ -133,7 +133,7 @@
         navBgColor = kUIColorFromRGB(0x814689);
     }
     else  if ([skitType isEqualToString:@"9"]) {//经典 9深红
-        navBgColor = kUIColorFromRGB(0x7E503C);
+        navBgColor = kUIColorFromRGB(0x880506);
     }
     else  if ([skitType isEqualToString:@"10"]) {//经典 10淡灰
         navBgColor = kUIColorFromRGB(0xFF8705);
@@ -200,7 +200,7 @@
         tabBgColor = kUIColorFromRGB(0xB6DDB6);
     }
     else  if ([skitType isEqualToString:@"5"]) {//经典  5褐色
-        tabBgColor = kUIColorFromRGB(0xF7E2C0);
+        tabBgColor = kUIColorFromRGB(0xFBE0B8);
     }
     else  if ([skitType isEqualToString:@"6"]) {//经典 6淡蓝色
         tabBgColor = kUIColorFromRGB(0xC5EAE7);
@@ -212,7 +212,7 @@
         tabBgColor = kUIColorFromRGB(0xD1A4D7);
     }
     else  if ([skitType isEqualToString:@"9"]) {//经典 9深红
-        tabBgColor = kUIColorFromRGB(0xD1A4D7);
+        tabBgColor = kUIColorFromRGB(0xDE9595);
     }
     else  if ([skitType isEqualToString:@"10"]) {//经典 10淡灰
         tabBgColor = kUIColorFromRGB(0xFFB666);
@@ -285,7 +285,7 @@
         bgColor = [UIColor colorWithPatternImage:backImage];
     }
     else  if ([skitType isEqualToString:@"5"]) {//经典  5褐色
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x8A4544),kUIColorFromRGB(0x84564A)] andGradientType:GradientDirectionLeftToRight];
+        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x913D3E),kUIColorFromRGB(0xEAAD72)] andGradientType:GradientDirectionLeftToRight];
         bgColor = [UIColor colorWithPatternImage:backImage];
     }
     else  if ([skitType isEqualToString:@"6"]) {//经典 6淡蓝色
@@ -389,7 +389,7 @@
         bgColor = [UIColor colorWithPatternImage:backImage];
     }
     else  if ([skitType isEqualToString:@"5"]) {//经典  5褐色
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x8A4544),kUIColorFromRGB(0x84564A)] andGradientType:GradientDirectionLeftToRight];
+        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x913D3E),kUIColorFromRGB(0xEAAD72)] andGradientType:GradientDirectionLeftToRight];
         bgColor = [UIColor colorWithPatternImage:backImage];
     }
     else  if ([skitType isEqualToString:@"6"]) {//经典 6淡蓝色
@@ -941,10 +941,8 @@
     [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[[UGSkinManagers shareInstance] settabNOSelectColor], NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
     
     [[UITabBarItem appearance] setTitleTextAttributes:                                                         [NSDictionary dictionaryWithObjectsAndKeys: [[UGSkinManagers shareInstance] settabSelectColor],NSForegroundColorAttributeName, nil]forState:UIControlStateSelected];
-
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    UGTabbarController *tabbar = appDelegate.tabbar;
+    UGTabbarController *tabbar = TabBarController1;
     [tabbar.tabBar setBackgroundImage:[UIImage imageWithColor:[self tabbarbgColor :skitType]]];
      
      [tabbar.tabBar setSelectedImageTintColor: [[UGSkinManagers shareInstance] settabSelectColor]];
@@ -964,64 +962,33 @@
 
 
     if (@available(iOS 13.0, *)) {
-
-        UIView *stateView = [[UIView alloc] initWithFrame:CGRectMake(0, -k_Height_StatusBar, UGScreenW, k_Height_StatusBar)];
-        [tabbar.nvcHome.navigationBar addSubview:stateView];
-//        [tabbar.nvcChangLong.navigationBar addSubview:stateView];
-//        [tabbar.nvcUser.navigationBar addSubview:stateView];
-//        [tabbar.nvcLotteryList.navigationBar addSubview:stateView];
-//        [tabbar.nvcActivity.navigationBar addSubview:stateView];
-//        [tabbar.nvcChangLong.navigationBar addSubview:stateView];
-//        [tabbar.nvcChatRoomList.navigationBar addSubview:stateView];
-//        [tabbar.nvcLotteryRecord.navigationBar addSubview:stateView];
-//
-//        [tabbar.nvcTask.navigationBar addSubview:stateView];
-//        [tabbar.nvcSecurityCenter.navigationBar addSubview:stateView];
-//        [tabbar.nvcFunds.navigationBar addSubview:stateView];
-//        [tabbar.nvcHome.navigationBar addSubview:stateView];
-//        [tabbar.nvcMessage.navigationBar addSubview:stateView];
-//        [tabbar.nvcConversion.navigationBar addSubview:stateView];
-//        [tabbar.nvcBanks.navigationBar addSubview:stateView];
-//
-//          [tabbar.nvcYuebao.navigationBar addSubview:stateView];
-//        [tabbar.nvcSign.navigationBar addSubview:stateView];
-//        [tabbar.nvcReferrer.navigationBar addSubview:stateView];
-        stateView.backgroundColor = [self navbarbgColor:skitType];
-    }
-    else{
-        //   bug: iOS13 崩溃
-            UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
-        
-            if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
-        
-                statusBar.backgroundColor = [self navbarbgColor:skitType];
-        
+        for (UGNavigationController *nav in TabBarController1.viewControllers) {
+            
+            [self navigationBar:nav bgColor:[self navbarbgColor:skitType]];
+            
+            
+            UIView *stateView = [nav.navigationBar viewWithTagString:@"状态栏背景View"];
+            if (!stateView) {
+                stateView = [[UIView alloc] initWithFrame:CGRectMake(0, -k_Height_StatusBar, UGScreenW, k_Height_StatusBar)];
+                stateView.tagString = @"状态栏背景View";
+                [nav.navigationBar addSubview:stateView];
             }
+            stateView.backgroundColor = [self navbarbgColor:skitType];
+        }
     }
-    
-  
-
-    [self navigationBar:tabbar.nvcHome bgColor:[self navbarbgColor:skitType]];
-    [self navigationBar:tabbar.nvcChangLong bgColor:[self navbarbgColor:skitType]];
-    [self navigationBar:tabbar.nvcUser bgColor:[self navbarbgColor:skitType]];
-    [self navigationBar:tabbar.nvcLotteryList bgColor:[self navbarbgColor:skitType]];
-    [self navigationBar:tabbar.nvcActivity bgColor:[self navbarbgColor:skitType]];
-    [self navigationBar:tabbar.nvcChangLong bgColor:[self navbarbgColor:skitType]];
-    [self navigationBar:tabbar.nvcChatRoomList bgColor:[self navbarbgColor:skitType]];
-    [self navigationBar:tabbar.nvcLotteryRecord bgColor:[self navbarbgColor:skitType]];
-    [self navigationBar:tabbar.nvcTask bgColor:[self navbarbgColor:skitType]];
-    [self navigationBar:tabbar.nvcSecurityCenter bgColor:[self navbarbgColor:skitType]];
-    [self navigationBar:tabbar.nvcFunds bgColor:[self navbarbgColor:skitType]];
-    [self navigationBar:tabbar.nvcMessage bgColor:[self navbarbgColor:skitType]];
-    [self navigationBar:tabbar.nvcConversion bgColor:[self navbarbgColor:skitType]];
-    [self navigationBar:tabbar.nvcBanks bgColor:[self navbarbgColor:skitType]];
-    [self navigationBar:tabbar.nvcYuebao bgColor:[self navbarbgColor:skitType]];
-    [self navigationBar:tabbar.nvcSign bgColor:[self navbarbgColor:skitType]];
-    [self navigationBar:tabbar.nvcReferrer bgColor:[self navbarbgColor:skitType]];
-
-
- 
+    else {
+        //   bug: iOS13 崩溃
+        UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+        if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
+            statusBar.backgroundColor = [self navbarbgColor:skitType];
+        }
+    }
 }
+
+-(void)navigationBarBgColor:(UGNavigationController *)nav  BgColor:(NSString *)skitType{
+    
+}
+
 
 -(void)navigationBar:(UGNavigationController *)nav bgColor:(UIColor *)bgColor{
     nav.navigationBar.backgroundColor = bgColor;
@@ -1130,12 +1097,8 @@
      [self resetNavbarAndTabBarBgColor:[self conversionSkitType]];
 }
 
--(void)setSkin{
+-(void)setSkin {
     [self setNavbarAndTabarSkin];
-    
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSString *colorStr = [[UGSkinManagers shareInstance] setChatNavbgStringColor];
-    appDelegate.tabbar.qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@&back=hide",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr];
     SANotificationEventPost(UGNotificationWithSkinSuccess, nil);
 }
 
@@ -1192,12 +1155,12 @@
 -(NSString *)setChatNavbgStringColor{
     
     NSString *str = [self navbarbgColorString:[self conversionSkitType]];
-    //先以16为参数告诉strtoul字符串参数表示16进制数字，然后使用0x%X转为数字类型
-    unsigned long red = strtoul([str UTF8String],0,16);
+    //先以16为参数告诉strtoul字符串参数表示16进制数字，然后使用0x%X转为数字类型 16进制转10进制
+//    unsigned long red = strtoul([str UTF8String],0,16);
     
-    
-    
-    return [NSString stringWithFormat:@"%lu",red];
+    NSString * subString2 = [str substringFromIndex:2];
+    NSLog(@"%@", subString2);
+    return subString2;
 }
 @end
 

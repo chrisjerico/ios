@@ -7,7 +7,7 @@
 //
 
 #import "UGGameNavigationView.h"
-
+#import "YYWebImage.h"
 @interface UGGameNavigationView()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @end
@@ -66,9 +66,34 @@
     BOOL isLogin = UGLoginIsAuthorized();
     if (isLogin) {
         
-       [[NSNotificationCenter defaultCenter] postNotification: [NSNotification notificationWithName:@"gameNavigationItemTaped" object: self.sourceData[indexPath.item]]];
+        if ([UGUserModel currentUser].isTest) {
+                   [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                       if (buttonIndex == 1) {
+                           
+                           NSDictionary *dict = @{@"token":[UGUserModel currentUser].sessid};
+                           [CMNetwork userLogoutWithParams:dict completion:^(CMResult<id> *model, NSError *err) {
+                               [CMResult processWithResult:model success:^{
+                                   UGUserModel.currentUser = nil;
+                                   dispatch_async(dispatch_get_main_queue(), ^{
+                                       
+                                       SANotificationEventPost(UGNotificationShowLoginView, nil);
+                                   });
+                               } failure:^(id msg) {
+                                   [SVProgressHUD showErrorWithStatus:msg];
+                               }];
+                           }];
+                           
+                          
+                       }
+                   }];
+               }else {
+                   
+                         [[NSNotificationCenter defaultCenter] postNotification: [NSNotification notificationWithName:@"gameNavigationItemTaped" object: self.sourceData[indexPath.item]]];
+            }
+
     }
     else{
+        
         
         SANotificationEventPost(UGNotificationShowLoginView, nil);
     }
@@ -105,7 +130,7 @@
 
 @interface UGGameNavigationViewCell()
 {
-	UIImageView * _iconImage;
+	YYAnimatedImageView * _iconImage;
 	UILabel * _titleLabel;
      UIImageView * _hotImage;
 }
@@ -121,7 +146,7 @@
 		
         
         _hotImage = [UIImageView new];
-		_iconImage = [UIImageView new];
+		_iconImage = [YYAnimatedImageView new];
 		_titleLabel = [UILabel new];
 		_titleLabel.textColor = [UIColor blackColor];
 		_titleLabel.font = [UIFont systemFontOfSize:14];
@@ -152,7 +177,10 @@
 
 -(void)setModel:(GameModel *)model {
 	_model = model;
-	[_iconImage sd_setImageWithURL:[NSURL URLWithString:model.icon]];
+    _iconImage.yy_imageURL = [NSURL URLWithString:model.icon];
+//	[_iconImage sd_setImageWithURL:[NSURL URLWithString:model.icon]];
+    NSLog(@"model.icon = %@",model.icon);
+//    [_iconImage startAnimating];
 	_titleLabel.text = model.name;
     if ([model.tipFlag isEqualToString:@"1"]) {
         [_hotImage setHidden:NO];
@@ -161,5 +189,8 @@
     }
     [_hotImage setImage:[UIImage imageNamed:@"icon_remen"]];
 }
+
+
+
 
 @end

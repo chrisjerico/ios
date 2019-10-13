@@ -73,7 +73,6 @@
 #import "UGonlineCount.h"
 #import <SafariServices/SafariServices.h>
 #import "UIImage+YYgradientImage.h"
-#import "UITabBarController+ShowViewController.h"
 
 #import "UGPromotionIncomeController.h"
 
@@ -139,8 +138,8 @@
 	[self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
 	
 	
-    [self.bottomView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
-	[self.rankingView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
+//    [self.bottomView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
+//	[self.rankingView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
 
     [self.upwardMultiMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
     [self.rollingView setBackgroundColor:[[UGSkinManagers shareInstance]sethomeContentColor]];
@@ -173,13 +172,13 @@
 	
 	[self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
 	
-	[self.rankingView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
+//	[self.rankingView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
 	[self.upwardMultiMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
 	[self.rollingView setBackgroundColor:[[UGSkinManagers shareInstance]sethomeContentColor]];
 	[self.gameNavigationView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
 	[self.leftwardMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
 	[self.gameTypeView setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
-    [self.bottomView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
+//    [self.bottomView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
     [[UGSkinManagers shareInstance] navigationBar:(UGNavigationController *)self.navigationController bgColor: [[UGSkinManagers shareInstance] setNavbgColor]];
     
 	[[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:[[UGSkinManagers shareInstance] setTabbgColor]]];
@@ -217,12 +216,12 @@
                 self.titleView.showLoginView = YES;
                 UGUserModel.currentUser = nil;
                 [self.tabBarController setSelectedIndex:0];
-                [self loginClick];
+                [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLoginViewController") animated:true];
             }];
         }
 	});
 	SANotificationEventSubscribe(UGNotificationShowLoginView, self, ^(typeof (self) self, id obj) {
-		[self loginClick];
+		[NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLoginViewController") animated:true];
 	});
 	SANotificationEventSubscribe(UGNotificationGetUserInfo, self, ^(typeof (self) self, id obj) {
 		[self getUserInfo];
@@ -235,7 +234,7 @@
 
 	
 	self.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-		SANotificationEventPost(UGNotificationWithResetTabSuccess, nil);
+
 		[self getSystemConfig];     // APP配置信息
 		[self getCustomGameList];   // 自定义游戏列表
 		[self getBannerList];       // Banner图
@@ -303,6 +302,7 @@
             if ([UGUserModel currentUser].isTest) {
                 UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"请先登录您的正式账号" btnTitles:@[@"取消", @"马上登录"]];
                 [ac setActionAtTitle:@"马上登录" handler:^(UIAlertAction *aa) {
+                          SANotificationEventPost(UGNotificationUserLogout, nil);
                     SANotificationEventPost(UGNotificationShowLoginView, nil);
                 }];
                 return ;
@@ -351,6 +351,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
 	[self.leftwardMarqueeView pause];//fixbug  发热  掉电快
 	[self.upwardMultiMarqueeView pause];//fixbug  发热  掉电快
 	self.initSubview = YES;
@@ -387,10 +388,11 @@
                if (user.isTest) {
                    [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                        if (buttonIndex == 1) {
+                                 SANotificationEventPost(UGNotificationUserLogout, nil);
                            SANotificationEventPost(UGNotificationShowLoginView, nil);
                        }
                    }];
-               }else {
+               } else {
                        UGPromotionIncomeController *incomeVC = [[UGPromotionIncomeController alloc] init];
                        [self.navigationController pushViewController:incomeVC animated:YES];
                }
@@ -524,7 +526,9 @@
 }
 
 - (void)getGotoGameUrl:(UGPlatformGameModel *)game {
-	
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
 	NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
 							 @"id":game.gameId
 	};
@@ -801,7 +805,6 @@
             [self.notiveView show];
         }
         appDelegate.notiveViewHasShow = YES;
-        
     }
 }
 
@@ -847,7 +850,7 @@
 		content.font = [UIFont systemFontOfSize:14.0f];
 		content.tag = 1001;
 		[itemView addSubview:content];
-	}else {
+	} else {
 		
 		itemView.backgroundColor = [UIColor whiteColor];
 		UIImageView *icon = [[UIImageView alloc] initWithFrame:CGRectMake(20.0f, (CGRectGetHeight(itemView.bounds) - 16.0f) / 2.0f, 16.0f, 16.0f)];
@@ -880,7 +883,7 @@
 	if (marqueeView == self.leftwardMarqueeView) {
 		UILabel *content = [itemView viewWithTag:1001];
 		content.text = self.leftwardMarqueeViewData[index];
-	}else {
+	} else {
 		UGRankModel *rank = self.rankArray[index];
 		UILabel *content = [itemView viewWithTag:1001];
 		content.text = rank.username;
@@ -898,11 +901,11 @@
 		icon.hidden = NO;
 		if (index == 0) {
 			imgName = @"diyiming";
-		}else if (index == 1) {
+		} else if (index == 1) {
 			imgName = @"dierming";
-		}else if (index == 2) {
+		} else if (index == 2) {
 			imgName = @"disanming";
-		}else {
+		} else {
 			imgName = @"yuandian";
 			icon.hidden = YES;
 		}
@@ -937,7 +940,6 @@
 	self.yymenuView.titleType = @"1";
 	self.yymenuView.lotteryGamesArray = self.lotteryGamesArray;
 	[self.yymenuView show];
-	
 }
 
 - (void)tryPlayClick {
@@ -959,19 +961,6 @@
 		}];
 		
 	}];
-}
-
-- (void)loginClick {
-	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Mine" bundle:nil];
-	UGLoginViewController *loginVC = [storyboard instantiateViewControllerWithIdentifier:@"UGLoginViewController"];
-	[self.tabBarController showViewControllerInSelected:loginVC animated:YES];
-}
-
-- (void)registerClick {
-	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Mine" bundle:nil];
-	UGRegisterViewController *loginVC = [storyboard instantiateViewControllerWithIdentifier:@"UGRegisterViewController"];
-	[self.navigationController pushViewController:loginVC animated:YES];
-	
 }
 
 - (void)showBalanceTrans {
@@ -1008,7 +997,7 @@
 		float y;
 		if ([CMCommon isPhoneX]) {
 			y = 160;
-		}else {
+		} else {
 			y = 100;
 		}
 		UGNoticePopView *popView = [[UGNoticePopView alloc] initWithFrame:CGRectMake(40, y, UGScreenW - 80, UGScerrnH - y * 2)];
@@ -1050,7 +1039,7 @@
 		lotteryVC.lotteryGamesArray = self.lotteryGamesArray;
 		judeBlock(lotteryVC);
 		[self.navigationController pushViewController:lotteryVC animated:YES];
-	}else if ([@"pk10" isEqualToString:model.gameType] ||
+	} else if ([@"pk10" isEqualToString:model.gameType] ||
 			  [@"xyft" isEqualToString:model.gameType]) {
 		UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGBJPK10LotteryController" bundle:nil];
 		UGBJPK10LotteryController *markSixVC = [storyboard instantiateInitialViewController];
@@ -1060,7 +1049,7 @@
 		
 		[self.navigationController pushViewController:markSixVC animated:YES];
 		
-	}else if ([@"qxc" isEqualToString:model.gameType]) {
+	} else if ([@"qxc" isEqualToString:model.gameType]) {
 		UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGQXCLotteryController" bundle:nil];
 		UGQXCLotteryController *sevenVC = [storyboard instantiateInitialViewController];
 		sevenVC.gameId = model.gameId;
@@ -1069,7 +1058,7 @@
 		
 		[self.navigationController pushViewController:sevenVC animated:YES];
 		
-	}else if ([@"lhc" isEqualToString:model.gameType]) {
+	} else if ([@"lhc" isEqualToString:model.gameType]) {
 		UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGHKLHCLotteryController" bundle:nil];
 		UGHKLHCLotteryController *markSixVC = [storyboard instantiateInitialViewController];
 		markSixVC.gameId = model.gameId;
@@ -1078,7 +1067,7 @@
 
 		[self.navigationController pushViewController:markSixVC animated:YES];
 		
-	}else if ([@"jsk3" isEqualToString:model.gameType]) {
+	} else if ([@"jsk3" isEqualToString:model.gameType]) {
 		UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGJSK3LotteryController" bundle:nil];
 		UGJSK3LotteryController *fastThreeVC = [storyboard instantiateInitialViewController];
 		fastThreeVC.gameId = model.gameId;
@@ -1086,7 +1075,7 @@
 		judeBlock(fastThreeVC);
 
 		[self.navigationController pushViewController:fastThreeVC animated:YES];
-	}else if ([@"pcdd" isEqualToString:model.gameType]) {
+	} else if ([@"pcdd" isEqualToString:model.gameType]) {
 		UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGPCDDLotteryController" bundle:nil];
 		UGPCDDLotteryController *PCVC = [storyboard instantiateInitialViewController];
 		PCVC.gameId = model.gameId;
@@ -1095,7 +1084,7 @@
 
 		[self.navigationController pushViewController:PCVC animated:YES];
 		
-	}else if ([@"gd11x5" isEqualToString:model.gameType]) {
+	} else if ([@"gd11x5" isEqualToString:model.gameType]) {
 		UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGGD11X5LotteryController" bundle:nil];
 		UGGD11X5LotteryController *PCVC = [storyboard instantiateInitialViewController];
 		PCVC.gameId = model.gameId;
@@ -1104,7 +1093,7 @@
 
 		[self.navigationController pushViewController:PCVC animated:YES];
 		
-	}else if ([@"xync" isEqualToString:model.gameType]) {
+	} else if ([@"xync" isEqualToString:model.gameType]) {
 		UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGXYNCLotteryController" bundle:nil];
 		UGXYNCLotteryController *PCVC = [storyboard instantiateInitialViewController];
 		PCVC.gameId = model.gameId;
@@ -1113,7 +1102,7 @@
 
 		[self.navigationController pushViewController:PCVC animated:YES];
 		
-	}else if ([@"bjkl8" isEqualToString:model.gameType]) {
+	} else if ([@"bjkl8" isEqualToString:model.gameType]) {
 		UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGBJKL8LotteryController" bundle:nil];
 		UGBJKL8LotteryController *PCVC = [storyboard instantiateInitialViewController];
 		PCVC.gameId = model.gameId;
@@ -1122,7 +1111,7 @@
 
 		[self.navigationController pushViewController:PCVC animated:YES];
 		
-	}else if ([@"gdkl10" isEqualToString:model.gameType]) {
+	} else if ([@"gdkl10" isEqualToString:model.gameType]) {
 		UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGGDKL10LotteryController" bundle:nil];
 		UGGDKL10LotteryController *PCVC = [storyboard instantiateInitialViewController];
 		PCVC.gameId = model.gameId;
@@ -1131,7 +1120,7 @@
 
 		[self.navigationController pushViewController:PCVC animated:YES];
 		
-	}else if ([@"fc3d" isEqualToString:model.gameType]) {
+	} else if ([@"fc3d" isEqualToString:model.gameType]) {
 		UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGFC3DLotteryController" bundle:nil];
 		UGFC3DLotteryController *markSixVC = [storyboard instantiateInitialViewController];
 		markSixVC.gameId = model.gameId;
@@ -1140,7 +1129,7 @@
 
 		[self.navigationController pushViewController:markSixVC animated:YES];
 		
-	}else if ([@"pk10nn" isEqualToString:model.gameType]) {
+	} else if ([@"pk10nn" isEqualToString:model.gameType]) {
 		UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGPK10NNLotteryController" bundle:nil];
 		UGPK10NNLotteryController *markSixVC = [storyboard instantiateInitialViewController];
 		markSixVC.gameId = model.gameId;
@@ -1148,33 +1137,23 @@
 		judeBlock(markSixVC);
 
 		[self.navigationController pushViewController:markSixVC animated:YES];
-		
-	}else {
-		//        进入第三方游戏
-		
+	} else {
+		// 进入第三方游戏
 		if (model.url && ![model.url isEqualToString:@""]) {
 			NSURL * url = [NSURL URLWithString:model.url];
 			if (url.scheme == nil) {
 				url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@", model.url]];
-				
 			}
 			SFSafariViewController *sf = [[SFSafariViewController alloc] initWithURL:url];
 			[self presentViewController:sf animated:YES completion:nil];
-			
-			
-			
-			
 		} else if (model.subType.count > 0) {
 			UGGameListViewController *gameListVC = [[UGGameListViewController alloc] init];
 			gameListVC.game = model;
 			[self.navigationController pushViewController:gameListVC animated:YES];
-		}else {
+		} else {
 			[self getGotoGameUrl:model];
-			
 		}
 	}
-	
-	
 }
 
 - (void)setupSubView {
@@ -1189,10 +1168,10 @@
 		[weakSelf tryPlayClick];
 	};
 	self.titleView.loginClickBlock = ^{
-		[weakSelf loginClick];
+        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLoginViewController") animated:true];
 	};
 	self.titleView.registerClickBlock = ^{
-		[weakSelf registerClick];
+		[NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGRegisterViewController") animated:YES];
 	};
 	self.titleView.userNameTouchedBlock = ^{
 		[weakSelf.tabBarController setSelectedIndex:4];
@@ -1209,7 +1188,7 @@
 	//	self.scrollView.contentSize = CGSizeMake(UGScreenW, self.scrollContentHeightConstraints.constant);
 	
 	if (self.nolineLabel == nil) {
-		UILabel *text =[ [UILabel alloc]initWithFrame:CGRectMake(UGScreenW-140,5,140,30 )];
+		UILabel *text = [[UILabel alloc]initWithFrame:CGRectMake(UGScreenW-140, 5, 140, 30)];
 		text.backgroundColor = RGBA(27, 38, 116,0.5);
 		text.textColor = [UIColor whiteColor];
 		text.font = [UIFont systemFontOfSize:12];
@@ -1285,10 +1264,12 @@
     BOOL isLogin = UGLoginIsAuthorized();
     if (isLogin) {
        
-        QDWebViewController *qdwebVC = [[QDWebViewController alloc] init];
-        qdwebVC.urlString = pcUrl;
-        qdwebVC.enterGame = YES;
+        TGWebViewController *qdwebVC = [[TGWebViewController alloc] init];
+        qdwebVC.url = pcUrl;
+        qdwebVC.webTitle = @"电脑版";
         [self.navigationController pushViewController:qdwebVC  animated:YES];
+        
+        NSLog(@"pcUrl = %@",pcUrl);
     }
     else{
         

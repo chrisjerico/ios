@@ -30,7 +30,7 @@ static NSString *convertRecordCellid = @"UGIntegarlConvertRecordCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = UGBackgroundColor;
+    self.view.backgroundColor = [UIColor whiteColor];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.rowHeight = 44;
@@ -102,7 +102,9 @@ static NSString *convertRecordCellid = @"UGIntegarlConvertRecordCell";
 - (void)checkinDataWithType:(NSString *)time{
     
     NSLog(@"time = %@",time);
-    
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"page":@"1",
                              @"rows":@"20",

@@ -9,6 +9,7 @@
 #import "UGPromotionInfoController.h"
 #import "UGinviteInfoModel.h"
 #import "UGSystemConfigModel.h"
+
 @interface UGPromotionInfoController ()
 @property (weak, nonatomic) IBOutlet UITableView *mytableView;
 @property (weak, nonatomic) IBOutlet UIImageView *headerImageView;
@@ -40,6 +41,8 @@
 
 @property (strong, nonatomic)  UGinviteInfoModel *mUGinviteInfoModel;
 
+@property (weak, nonatomic) IBOutlet UIImageView *myQrcode1ImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *myQrcode2ImageView;
 
 @end
 
@@ -70,8 +73,7 @@
     
     self.sectionLabel3.text = @"";
     
-   
-   
+    
     
     [self teamInviteInfoData];
 }
@@ -143,7 +145,9 @@
 #pragma mark -- 网络请求
 //得到推荐信息数据
 - (void)teamInviteInfoData {
-    
+    if ([UGUserModel currentUser].isTest) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
     
     [SVProgressHUD showWithStatus:nil];
@@ -160,7 +164,7 @@
             
         } failure:^(id msg) {
             
-            [SVProgressHUD showErrorWithStatus:msg];
+        
             
         }];
     }];
@@ -173,6 +177,10 @@
     self.promotionUrlLabel.text = self.mUGinviteInfoModel.link_i;
     self.registerUrlLabel.text = self.mUGinviteInfoModel.link_r;
     self.incomeLabel.text = self.mUGinviteInfoModel.month_earn;
+
+   [self.myQrcode1ImageView setImage:[SGQRCodeObtain generateQRCodeWithData:self.mUGinviteInfoModel.link_i size:160.0]];
+    
+    [self.myQrcode2ImageView setImage:[SGQRCodeObtain generateQRCodeWithData:self.mUGinviteInfoModel.link_r size:160.0]];
     
     
     self.totalMembers.text = self.mUGinviteInfoModel.total_member;

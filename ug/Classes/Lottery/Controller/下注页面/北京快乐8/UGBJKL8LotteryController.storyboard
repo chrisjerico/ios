@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o8l-LL-Zwg">
-                                <rect key="frame" x="0.0" y="806" width="414" height="90"/>
+                                <rect key="frame" x="0.0" y="797" width="414" height="99"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TMG-2n-Z6R">
                                         <rect key="frame" x="344" y="12" width="60" height="36"/>
@@ -80,10 +80,10 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yti-Sw-0wS">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="99"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="封盘中" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cL1-wI-ZxL">
-                                                <rect key="frame" x="182.5" y="35.5" width="49" height="19.5"/>
+                                                <rect key="frame" x="182.5" y="40" width="49" height="19.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -110,10 +110,11 @@
                                     <constraint firstItem="TMG-2n-Z6R" firstAttribute="top" secondItem="OIS-Fw-4M9" secondAttribute="top" id="NQo-fC-p5M"/>
                                     <constraint firstAttribute="bottom" secondItem="yti-Sw-0wS" secondAttribute="bottom" id="VkL-dE-h5Q"/>
                                     <constraint firstItem="TMG-2n-Z6R" firstAttribute="leading" secondItem="r1q-pK-N7w" secondAttribute="trailing" constant="10" id="eJ1-iB-wuQ"/>
-                                    <constraint firstAttribute="height" constant="90" id="fC1-lR-YUl"/>
                                     <constraint firstItem="AAK-Dx-TLV" firstAttribute="top" secondItem="o8l-LL-Zwg" secondAttribute="top" constant="3" id="mUi-K7-CYm"/>
                                     <constraint firstItem="TMG-2n-Z6R" firstAttribute="top" secondItem="o8l-LL-Zwg" secondAttribute="top" constant="12" id="yIC-F9-ibr"/>
+                                    <constraint firstItem="U09-Ak-PQw" firstAttribute="bottom" secondItem="KIE-LK-Vuw" secondAttribute="bottom" constant="10" id="z5c-SH-Mgd"/>
                                 </constraints>
+                                <viewLayoutGuide key="safeArea" id="U09-Ak-PQw"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Utd-Cw-Uhb">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
@@ -232,7 +233,6 @@
                         <outlet property="betButton" destination="r1q-pK-N7w" id="Qev-MW-yLB"/>
                         <outlet property="bottomCloseView" destination="yti-Sw-0wS" id="xdO-kZ-Obd"/>
                         <outlet property="bottomView" destination="o8l-LL-Zwg" id="HYL-Da-TmE"/>
-                        <outlet property="bottomViewHeidhtConstraint" destination="fC1-lR-YUl" id="1fe-ZA-a5f"/>
                         <outlet property="chipButton" destination="OIS-Fw-4M9" id="3Nc-1o-KH3"/>
                         <outlet property="closeTimeLabel" destination="oKT-Q1-5Ge" id="Bte-k0-muE"/>
                         <outlet property="currentIssueCollectionBgView" destination="xbv-Fg-zDh" id="StT-te-3Bj"/>

@@ -43,6 +43,9 @@
 }
 
 - (void)getFeedbackDetail {
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *dict = @{@"token":[UGUserModel currentUser].sessid,
                            @"pid":self.item.messageId
                            };
@@ -68,6 +71,9 @@
     }, ^(id err) {
         [SVProgressHUD showInfoWithStatus:err];
     }, ^{
+        if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+            return;
+        }
         NSDictionary *params = @{@"pid":self.item.messageId,
                                  @"token":[UGUserModel currentUser].sessid,
                                  @"type":@(self.item.type),

@@ -13,7 +13,7 @@
  *
  *  @author LEE
  *  @copyright    Copyright © 2016 - 2019年 lee. All rights reserved.
- *  @version    V1.2.6
+ *  @version    V1.3.1
  */
 
 #import <Foundation/Foundation.h>
@@ -65,7 +65,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (nonnull LEEAlertConfig *)alert;
 
-+ (nonnull LEEAlertConfig *)actionsheet;
++ (nonnull LEEActionSheetConfig *)actionsheet;
 
 /** 获取Alert窗口 */
 + (nonnull LEEAlertWindow *)getAlertWindow;
@@ -78,6 +78,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 清空队列 */
 + (void)clearQueue;
+
+/// 查询队列中是否包含某一标识
+/// @param identifier 标识
++ (BOOL)containsQueueWithIdentifier:(NSString *)identifier;
 
 /**
  关闭指定标识 
@@ -105,7 +109,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface LEEAlertConfigModel : NSObject
+@interface LEEBaseConfigModel : NSObject
 
 /** ✨通用设置 */
 
@@ -163,6 +167,9 @@ NS_ASSUME_NONNULL_BEGIN
 /** 设置 圆角半径 -> 格式: .LeeCornerRadius(13.0f) */
 @property (nonatomic , copy , readonly ) LEEConfigToFloat LeeCornerRadius;
 
+/** 设置 圆角半径 -> 格式: .LeeCornerRadii(CornerRadiiMake(13.0f, 13.0f, 13.0f, 13.0f))  注意: 该方法优先级高于LeeCornerRadius  */
+@property (nonatomic , copy , readonly ) LEEConfigToCornerRadii LeeCornerRadii;
+
 /** 设置 开启动画时长 -> 格式: .LeeOpenAnimationDuration(0.3f) */
 @property (nonatomic , copy , readonly ) LEEConfigToFloat LeeOpenAnimationDuration;
 
@@ -186,6 +193,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 设置 点击背景关闭 -> 格式: .LeeClickBackgroundClose(YES) */
 @property (nonatomic , copy , readonly ) LEEConfigToBool LeeClickBackgroundClose;
+
+/** 设置 是否可滑动 -> 格式: .LeeIsScrollEnabled(YES) */
+@property (nonatomic , copy , readonly ) LEEConfigToBool LeeIsScrollEnabled;
 
 /** 设置 阴影偏移 -> 格式: .LeeShadowOffset(CGSizeMake(0.0f, 2.0f)) */
 @property (nonatomic , copy , readonly ) LEEConfigToSize LeeShadowOffset;
@@ -235,22 +245,44 @@ NS_ASSUME_NONNULL_BEGIN
 /** 设置 状态栏样式 -> 格式: .LeeStatusBarStyle(UIStatusBarStyleDefault) */
 @property (nonatomic , copy , readonly ) LEEConfigToStatusBarStyle LeeStatusBarStyle;
 
+/** 设置 系统界面样式 -> 格式: .LeeUserInterfaceStyle(UIUserInterfaceStyleUnspecified) */
+@property (nonatomic , copy , readonly ) LEEConfigToUserInterfaceStyle LeeUserInterfaceStyle API_AVAILABLE(ios(13.0), tvos(13.0));
+
 
 /** 显示  -> 格式: .LeeShow() */
 @property (nonatomic , copy , readonly ) LEEConfig LeeShow;
 
-/** ✨alert 专用设置 */
+/** 设置 是否可以关闭 -> 格式: .leeShouldClose(^{ return YES; }) */
+@property (nonatomic, copy, readonly ) LEEConfigToBlockReturnBool leeShouldClose;
+
+/** 设置 是否可以关闭(Action 点击) -> 格式: .leeShouldActionClickClose(^(NSInteger index){ return YES; }) */
+@property (nonatomic, copy, readonly ) LEEConfigToBlockIntegerReturnBool leeShouldActionClickClose;
+
+/** 设置 当前关闭回调 -> 格式: .LeeCloseComplete(^{ //code.. }) */
+@property (nonatomic , copy , readonly ) LEEConfigToBlock LeeCloseComplete;
+
+@end
+
+@interface LEEBaseConfigModel(Alert)
 
 /** 设置 添加输入框 -> 格式: .LeeAddTextField(^(UITextField *){ //code.. }) */
 @property (nonatomic , copy , readonly ) LEEConfigToConfigTextField LeeAddTextField;
 
 /** 设置 中心点偏移 -> 格式: .LeeCenterOffset(CGPointMake(0, 0)) */
 @property (nonatomic , copy , readonly ) LEEConfigToPoint LeeAlertCenterOffset;
-    
+
 /** 设置 是否闪避键盘 -> 格式: .LeeAvoidKeyboard(YES) */
 @property (nonatomic , copy , readonly ) LEEConfigToBool LeeAvoidKeyboard;
 
-/** ✨actionSheet 专用设置 */
+@end
+
+@interface LEEBaseConfigModel(ActionSheet)
+
+/** 设置 ActionSheet头部的圆角半径 -> 格式: .LeeActionSheetHeaderCornerRadii(CornerRadiiMake(13.0f, 13.0f, 13.0f, 13.0f)) */
+@property (nonatomic , copy , readonly ) LEEConfigToCornerRadii LeeActionSheetHeaderCornerRadii;
+
+/** 设置 ActionSheet取消按钮的圆角半径 -> 格式: .LeeActionSheetCancelActionCornerRadii(CornerRadiiMake(13.0f, 13.0f, 13.0f, 13.0f))  */
+@property (nonatomic , copy , readonly ) LEEConfigToCornerRadii LeeActionSheetCancelActionCornerRadii;
 
 /** 设置 ActionSheet的背景视图颜色 -> 格式: .LeeActionSheetBackgroundColor(UIColor) */
 @property (nonatomic , copy , readonly ) LEEConfigToColor LeeActionSheetBackgroundColor;
@@ -263,15 +295,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 设置 ActionSheet距离屏幕底部的间距 -> 格式: .LeeActionSheetBottomMargin(10.0f) */
 @property (nonatomic , copy , readonly ) LEEConfigToFloat LeeActionSheetBottomMargin;
-
-/** 设置 是否可以关闭 -> 格式: .leeShouldClose(^{ return YES; }) */
-@property (nonatomic, copy, readonly ) LEEConfigToBlockReturnBool leeShouldClose;
-
-/** 设置 是否可以关闭(Action 点击) -> 格式: .leeShouldActionClickClose(^(NSInteger index){ return YES; }) */
-@property (nonatomic, copy, readonly ) LEEConfigToBlockIntegerReturnBool leeShouldActionClickClose;
-
-/** 设置 当前关闭回调 -> 格式: .LeeCloseComplete(^{ //code.. }) */
-@property (nonatomic , copy , readonly ) LEEConfigToBlock LeeCloseComplete;
 
 @end
 
@@ -382,14 +405,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface LEEAlertConfig : NSObject
+@interface LEEBaseConfig : NSObject
 
-@property (nonatomic , strong, nonnull ) LEEAlertConfigModel *config;
-
-@property (nonatomic , assign ) LEEAlertType type;
+@property (nonatomic , strong, nonnull ) LEEBaseConfigModel *config;
 
 @end
 
+@interface LEEAlertConfig : LEEBaseConfig
+
+@end
+
+@interface LEEActionSheetConfig : LEEBaseConfig
+
+@end
 
 @interface LEEAlertWindow : UIWindow @end
 
@@ -398,5 +426,16 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LEEAlertViewController : LEEBaseViewController @end
 
 @interface LEEActionSheetViewController : LEEBaseViewController @end
+
+
+@interface UIView (CornerRadii)
+
+CornerRadii CornerRadiiMake(CGFloat topLeft, CGFloat topRight, CGFloat bottomLeft, CGFloat bottomRight);
+
+CornerRadii CornerRadiiZero(void);
+
+CornerRadii CornerRadiiNull(void);
+
+@end
 
 NS_ASSUME_NONNULL_END

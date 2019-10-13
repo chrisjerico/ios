@@ -98,7 +98,7 @@
 
 - (void)setupUserInfo {
     UGUserModel *user = [UGUserModel currentUser];
-    [self.avaterImageView sd_setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
+    [self.avaterImageView sd_setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:[UIImage imageNamed:@"txp"]];
     self.userNameLabel.text = user.username;
     self.accountLabel.text = [NSString stringWithFormat:@"账号：%@",user.username];
     self.fullNameLabel.text = [NSString stringWithFormat:@"真实姓名：%@",user.fullName];

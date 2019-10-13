@@ -143,8 +143,9 @@
     });
      if (self.collectionView == nil) {
          self.collectionView = collectionView;
+        [mUIScrollView addSubview:collectionView];
      }
-    [mUIScrollView addSubview:collectionView];
+ 
     //-今日签到======================================
     if (mUGSignInButton == nil) {
         mUGSignInButton  = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -191,8 +192,9 @@
             NSLog(@"7天领取");
             [weakSelf checkinBonusData:@"7"];
         };
+         [mUIScrollView addSubview:mUGSignInScrFootView];
     }
-    [mUIScrollView addSubview:mUGSignInScrFootView];
+   
     //=================================================
      mUIScrollView.contentSize = CGSizeMake(UGScreenW, 800);
     
@@ -370,7 +372,9 @@
 
 //得到领取连续签到奖励数据
 - (void)checkinBonusData:(NSString *)type {
-    
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"type":type
                              };
@@ -396,7 +400,9 @@
 - (void)checkinDataWithType:(NSString *)type Date:(NSString *)date{
     
 //    NSString *date = @"2019-09-04";
-    
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"type":type,
                              @"date":date

@@ -473,8 +473,7 @@
 - (NSString *)removeFloatAllZero {
     if ([self containsString:@"/"])
         return self;
-    else
-        return _FloatString4(self.doubleValue);
+    return _FloatString4(self.doubleValue);
 }
 
 @end

@@ -61,6 +61,12 @@ static NSString *fundDetailsCellid = @"UGFundDetailsCell";
 }
 
 - (void)getFundLogs {
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
+    if ([UGUserModel currentUser].isTest) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"page":@(self.pageNumber),
                              @"rows":@(self.pageSize),
@@ -88,7 +94,7 @@ static NSString *fundDetailsCellid = @"UGFundDetailsCell";
                 [self.tableView.mj_footer setHidden:NO];
             }
         } failure:^(id msg) {
-            [SVProgressHUD showErrorWithStatus:msg];
+
         }];
         
         if ([self.tableView.mj_header isRefreshing]) {

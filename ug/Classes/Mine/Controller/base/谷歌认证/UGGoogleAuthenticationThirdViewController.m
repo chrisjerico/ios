@@ -54,7 +54,9 @@
         [self.view makeToast:@"请填写验证码"];
         return;
     }
-    
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"action":@"bind",
                              @"code":code,

@@ -35,10 +35,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *curLevel1Label;
 @property (weak, nonatomic) IBOutlet UILabel *nextLevel2Label;
 
-
-@property (weak, nonatomic) IBOutlet UILabel *missionLevelLabel;
-@property (weak, nonatomic) IBOutlet UILabel *nextLevelLabel;
-@property (weak, nonatomic) IBOutlet UILabel *nextLevelNumLabel;
 @property (weak, nonatomic) IBOutlet UIView *progressView;
 @property (weak, nonatomic) IBOutlet UIButton *refreshBalanceButton;
 
@@ -83,16 +79,13 @@
 -(void)initView{
     [self.integralLabel setHidden:YES];
     self.fd_prefersNavigationBarHidden = NO;
-    self.navigationItem.title = @"任务大厅";
-    self.view.backgroundColor = UGBackgroundColor;
+    self.navigationItem.title = @"任务中心";
+    self.view.backgroundColor = [UIColor whiteColor];
     self.userInfoView.backgroundColor = UGNavColor;
     self.avaterImageView.layer.cornerRadius = self.avaterImageView.height / 2 ;
     self.avaterImageView.layer.masksToBounds = YES;
     self.levelNameLabel.layer.cornerRadius = self.levelNameLabel.height / 2;
     self.levelNameLabel.layer.masksToBounds = YES;
-    self.nextLevelLabel.layer.cornerRadius = self.nextLevelLabel.height / 2;
-    self.nextLevelLabel.layer.masksToBounds = YES;
-    self.view.backgroundColor = UGBackgroundColor;
     [self.progressView.layer addSublayer:self.progressLayer];
     self.progressLayer.path = [self progressPathWithProgress:0.3].CGPath;
     self.progressView.layer.cornerRadius = self.progressView.height / 2;
@@ -114,7 +107,7 @@
     WeakSelf
     self.titleCollectionView.titleSelectBlock = ^(NSInteger index,NSString *title) {
         weakSelf.missionCollectionView.selectIndex = index;
-        weakSelf.title = title;
+//        weakSelf.title = title;
     };
     
     self.missionCollectionView.selectIndexBlock = ^(NSInteger selectIndex) {
@@ -211,7 +204,7 @@
 #pragma mark - UIS
 - (void)setupUserInfo {
     UGUserModel *user = [UGUserModel currentUser];
-    [self.avaterImageView sd_setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
+    [self.avaterImageView sd_setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:[UIImage imageNamed:@"txp"]];
     self.userNameLabel.text = user.username;
     self.levelNameLabel.text = user.curLevelGrade;
     

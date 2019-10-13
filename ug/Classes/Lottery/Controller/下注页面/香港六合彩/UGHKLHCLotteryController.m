@@ -57,7 +57,6 @@
 @property (weak, nonatomic) IBOutlet UIView *nextIssueView;                 /**<   下期信息父View */
 @property (weak, nonatomic) IBOutlet UIView *bottomView;                    /**<   底部信息父View */
 @property (weak, nonatomic) IBOutlet UIView *bottomCloseView;               /**<   底部封盘View */
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewHeidhtConstraint;    /**<   底部信息父View.heightConstraint */
 
 @property (weak, nonatomic) IBOutlet UITextField *amountTextF;  /**<   下注金额TextField */
 @property (weak, nonatomic) IBOutlet UILabel *selectLabel;      /**<   注数Label */
@@ -166,20 +165,9 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     [self updateHeaderViewData];
     [self updateCloseLabel];
     [self updateOpenLabel];
-    if ([CMCommon isPhoneX]) {
-        self.bottomViewHeidhtConstraint.constant = 90;
-        
-    } else {
-        self.bottomViewHeidhtConstraint.constant = 60;
-        
-    }
     
     [self getGameDatas];
     [self getNextIssueData];
-    //添加通知，来控制键盘和输入框的位置
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardWillShowNotification object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
-
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -206,6 +194,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     [self.countDown destoryTimer];
     [self.nextIssueCountDown destoryTimer];
 }
@@ -399,11 +388,17 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     [self.betCollectionView reloadData];
     [self.tableView reloadData];
     [self.tableView selectRowAtIndexPath:self.typeIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+    
+    // 取消生肖按钮的选中状态
+    for (UIButton *btn in _zodiacScrollView.subviews) {
+        if ([btn isKindOfClass:[UIButton class]])
+            btn.selected = false;
+    }
 }
 
 // 下注
 - (IBAction)betClick:(id)sender {
-     [self.amountTextF resignFirstResponder];
+    [self.amountTextF resignFirstResponder];
     ck_parameters(^{
         ck_parameter_non_equal(self.selectLabel.text, @"已选中 0 注", @"请选择玩法");
         ck_parameter_non_empty(self.amountTextF.text, @"请输入投注金额");
@@ -468,14 +463,11 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                         game.title = type.name;
                         [array addObject:game];
                     }
-                    
                 }
             }
         }
         if ([CMCommon arryIsNull:array]) {
-            [self.navigationController.view makeToast:@"请输入投注金额"
-                                             duration:1.5
-                                             position:CSToastPositionCenter];
+            [self.navigationController.view makeToast:@"请输入投注金额" duration:1.5 position:CSToastPositionCenter];
             return ;
         }
         UGBetDetailView *betDetailView = [[UGBetDetailView alloc] init];
@@ -491,7 +483,6 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             [weakSelf resetClick:nil];
         };
         [betDetailView show];
-        
     });
 }
 
@@ -1492,13 +1483,19 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             // 点击生肖时，选中/取消选中对应号码
             [btn handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
                 BOOL selected = sender.selected = !sender.selected;
-                for (UGGameplaySectionModel *gsm in [self.gameDataArray objectWithValue:@"特码" keyPath:@"name"].list) {
-                    for (UGGameBetModel *gbm in gsm.list) {
-                        if ([gbm.name isInteger] && (gbm.name.intValue-1)%12 == 12-1-i)
-                            gbm.select = selected;
-                    }
+                NSInteger cnt = 0;
+                
+                UGGameplayModel *gm = __self.gameDataArray[__self.typeIndexPath.row];
+                UGGameplaySectionModel *gsm = [gm.list objectWithValue:__self.segmentIndex ? @"特码B" : @"特码A" keyPath:@"name"];
+                for (UGGameBetModel *gbm in gsm.list) {
+                    if ([gbm.name isInteger] && (gbm.name.intValue-1)%12 == 12-1-i)
+                        gbm.select = selected;
+                    if (gbm.select)
+                        cnt++;
                 }
+                gm.select = cnt;
                 [__self.betCollectionView reloadData];
+                [__self updateSelectLabelWithCount:cnt];
             }];
             [btns addObject:btn];
             [sv addSubview:btn];

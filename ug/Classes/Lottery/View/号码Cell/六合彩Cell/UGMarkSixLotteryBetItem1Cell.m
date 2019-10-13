@@ -55,7 +55,8 @@
 
 - (void)setItem:(UGGameBetModel *)item {
     _item = item;
-    self.leftTitleLabel.text = [NSString stringWithFormat:@"%@ %@",item.name,[item.odds removeFloatAllZero]];
+    NSString *odds = [item.odds removeFloatAllZero];
+    self.leftTitleLabel.text = [NSString stringWithFormat:@"%@ %@", item.name, [odds isEqualToString:@"0"] ? @"" : odds];
     [self setupNums:item];
     
     if (item.select) {

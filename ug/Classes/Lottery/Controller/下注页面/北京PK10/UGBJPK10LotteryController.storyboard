@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KXO-Bf-al8">
-                                <rect key="frame" x="0.0" y="806" width="414" height="90"/>
+                                <rect key="frame" x="0.0" y="797" width="414" height="99"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iEC-El-uzh">
                                         <rect key="frame" x="344" y="12" width="60" height="36"/>
@@ -80,10 +80,10 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="056-R7-xhs">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="99"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="封盘中" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uWk-Nq-XMk">
-                                                <rect key="frame" x="182.5" y="35.5" width="49" height="19.5"/>
+                                                <rect key="frame" x="182.5" y="40" width="49" height="19.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -104,6 +104,7 @@
                                     <constraint firstItem="VsX-Xq-V6b" firstAttribute="leading" secondItem="KXO-Bf-al8" secondAttribute="leading" constant="10" id="MJQ-rl-soS"/>
                                     <constraint firstItem="056-R7-xhs" firstAttribute="top" secondItem="KXO-Bf-al8" secondAttribute="top" id="SFY-Z8-awb"/>
                                     <constraint firstItem="DBK-6I-N3c" firstAttribute="leading" secondItem="KXO-Bf-al8" secondAttribute="leading" constant="10" id="SPP-Pb-vmd"/>
+                                    <constraint firstItem="Yq4-jW-Wnr" firstAttribute="bottom" secondItem="DBK-6I-N3c" secondAttribute="bottom" constant="10" id="TWD-oo-XRg"/>
                                     <constraint firstItem="iEC-El-uzh" firstAttribute="top" secondItem="KXO-Bf-al8" secondAttribute="top" constant="12" id="XVA-Hg-5eN"/>
                                     <constraint firstAttribute="bottom" secondItem="056-R7-xhs" secondAttribute="bottom" id="drK-ay-ahA"/>
                                     <constraint firstItem="iEC-El-uzh" firstAttribute="leading" secondItem="qr6-2R-F0f" secondAttribute="trailing" constant="10" id="j5d-T7-p8F"/>
@@ -112,8 +113,8 @@
                                     <constraint firstItem="056-R7-xhs" firstAttribute="leading" secondItem="KXO-Bf-al8" secondAttribute="leading" id="kzt-OZ-2Zp"/>
                                     <constraint firstItem="qr6-2R-F0f" firstAttribute="leading" secondItem="NN5-cX-gKa" secondAttribute="trailing" constant="10" id="lK7-XW-aAm"/>
                                     <constraint firstItem="qr6-2R-F0f" firstAttribute="top" secondItem="NN5-cX-gKa" secondAttribute="top" id="onK-CW-XbN"/>
-                                    <constraint firstAttribute="height" constant="90" id="rSS-a4-ixn"/>
                                 </constraints>
+                                <viewLayoutGuide key="safeArea" id="Yq4-jW-Wnr"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OHO-OK-3VA">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
@@ -232,7 +233,6 @@
                         <outlet property="betButton" destination="qr6-2R-F0f" id="s87-cB-79Q"/>
                         <outlet property="bottomCloseView" destination="056-R7-xhs" id="Amv-B2-oZ9"/>
                         <outlet property="bottomView" destination="KXO-Bf-al8" id="JVe-qU-tcV"/>
-                        <outlet property="bottomViewHeidhtConstraint" destination="rSS-a4-ixn" id="evV-nv-k5u"/>
                         <outlet property="chipButton" destination="NN5-cX-gKa" id="ScE-IA-Wz1"/>
                         <outlet property="closeTimeLabel" destination="JFX-dp-6pp" id="RVq-xF-oJY"/>
                         <outlet property="currentIssueCollectionBgView" destination="JEr-gI-w8w" id="xy2-3d-i6M"/>

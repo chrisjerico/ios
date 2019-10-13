@@ -43,6 +43,14 @@
     });
     self.amountField.text = _NSString(@"%@", item.money);
     self.oddsLabel.text = _NSString(@"@%@", [item.odds removeFloatAllZero]);
+    
+    // 以下玩法不允许求改金额
+    NSArray *titles = @[@"连码", @"连肖", @"合肖", @"连尾", @"自选不中", ];
+    self.amountField.userInteractionEnabled = true;
+    for (NSString *title in titles) {
+        if ([item.title containsString:title] || [item.typeName containsString:title])
+            self.amountField.userInteractionEnabled = false;
+    }
 }
 
 - (void)amountEdited: (UITextField *)sender {

@@ -75,6 +75,9 @@ static NSString *transferLogsCellId = @"UGBalanceTransferLogsCell";
 }
 
 - (void)getTransferLogs {
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"page":@(self.pageNumber),
                              @"rows":@(self.pageSize),

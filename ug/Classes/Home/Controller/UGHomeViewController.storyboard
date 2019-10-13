@@ -13,11 +13,11 @@
             <objects>
                 <viewController storyboardIdentifier="UGHomeViewController" id="Qlk-11-xZ9" customClass="UGHomeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gRF-Ef-tWq">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1500"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="1600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aKo-Go-xPf">
-                                <rect key="frame" x="0.0" y="44" width="414" height="1422"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="1522"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="rQY-Xe-Kcn">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1453"/>
@@ -501,7 +501,7 @@
                         <viewLayoutGuide key="safeArea" id="Cio-2N-9zp"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="414" height="1500"/>
+                    <size key="freeformSize" width="414" height="1600"/>
                     <connections>
                         <outlet property="bannerBgView" destination="net-c8-MAp" id="SVn-VV-nOV"/>
                         <outlet property="bannerBgViewHeightConstraint" destination="bfL-zQ-uOt" id="63U-JD-aFt"/>
@@ -528,7 +528,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="notice" width="29" height="26"/>
+        <image name="notice" width="24" height="24"/>
         <image name="yuandian" width="24" height="24"/>
         <image name="礼品-(1)" width="24" height="24"/>
     </resources>
