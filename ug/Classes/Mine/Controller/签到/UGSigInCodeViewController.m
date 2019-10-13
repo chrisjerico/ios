@@ -196,7 +196,7 @@
     }
    
     //=================================================
-     mUIScrollView.contentSize = CGSizeMake(UGScreenW, 800);
+     mUIScrollView.contentSize = CGSizeMake(UGScreenW, 950);
     
     [self setUIData];
 }
