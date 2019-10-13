@@ -10,11 +10,11 @@
 @class UGMissionModel;
 
 NS_ASSUME_NONNULL_BEGIN
-typedef void(^ReceiveMissionBlock)(void);
+typedef void(^ReceiveMissionBlock)(id );
 @interface UGMissionTableViewCell : UITableViewCell
 
 
-
+@property (weak, nonatomic) IBOutlet UIButton *goButton;
 @property (nonatomic, strong) UGMissionModel *item;
 @property (nonatomic, copy) ReceiveMissionBlock receiveMissionBlock;
 @end

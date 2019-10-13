@@ -147,7 +147,7 @@
         [self.myCollectionView reloadData];
     });
     SANotificationEventSubscribe(UGNotificationUserAvatarChanged, self, ^(typeof (self) self, id obj) {
-        [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[UGUserModel currentUser].avatar] placeholderImage:[UIImage imageNamed:@"txp"]];
+        [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[UGUserModel currentUser].avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
     });
     self.navigationItem.title = @"我的";
     self.headImageView.layer.cornerRadius = self.headImageView.height / 2 ;
@@ -1021,7 +1021,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     
     if (flag) {
         
-        [self.headImageView sd_setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:[UIImage imageNamed:@"txp"]];
+        [self.headImageView sd_setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
     }
     
     self.userNameLabel.text = user.username;

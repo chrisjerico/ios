@@ -69,7 +69,7 @@ static UGTabbarController *_tabBarVC = nil;
     [self resetUpChildViewController:@[@"/home", @"/lotteryList", @"/chatRoomList", @"/task", @"/user", ]];
     
     // 更新为后台配置的控制器
-    [self getSystemConfig];
+//    [self getSystemConfig];
     
 //    SANotificationEventSubscribe(UGNotificationWithResetTabSuccess, self, ^(typeof (self) self, id obj) {
 //         [self resetUpChildViewController];
@@ -150,6 +150,8 @@ static UGTabbarController *_tabBarVC = nil;
             
             [self setTabbarStyle];
             
+            [[UGSkinManagers shareInstance] setSkin];
+            
             NSArray<UGmobileMenu *> *menus = [[UGmobileMenu arrayOfModelsFromDictionaries:SysConf.mobileMenu error:nil] sortedArrayUsingComparator:^NSComparisonResult(UGmobileMenu *obj1, UGmobileMenu *obj2) {
                 return obj1.sort > obj2.sort;
             }];
@@ -187,9 +189,9 @@ static UGTabbarController *_tabBarVC = nil;
             vc.tabBarItem.title = gm.name;
             vc.tabBarItem.image = [UIImage imageNamed:gm.icon];
             vc.tabBarItem.selectedImage = [[UIImage imageNamed:gm.selectedIcon] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-            [vc aspect_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
-                ((UIViewController *)ai.instance).view.backgroundColor = UGBackgroundColor;
-            } error:nil];
+//            [vc aspect_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
+//                ((UIViewController *)ai.instance).view.backgroundColor = UGBackgroundColor;
+//            } error:nil];
             UGNavigationController *nav = [[UGNavigationController alloc] initWithRootViewController:vc];
             [vcs addObject:nav];
         }

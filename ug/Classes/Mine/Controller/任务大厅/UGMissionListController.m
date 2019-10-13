@@ -16,6 +16,8 @@
 @property(nonatomic, assign) int pageSize;
 @property(nonatomic, assign) int pageNumber;
 
+@property (nonatomic, strong)UGMissionTableViewCell *selcell;
+
 @end
 
 static NSString *missionCellid = @"UGMissionTableViewCell";
@@ -69,8 +71,9 @@ static NSString *missionCellid = @"UGMissionTableViewCell";
     UGMissionModel *model = self.dataArray[indexPath.row];
     cell.item = model;
     WeakSelf
-    cell.receiveMissionBlock = ^{
+    cell.receiveMissionBlock = ^(UGMissionTableViewCell *sender){
         
+
         if ([model.status isEqualToString:@"3"]) {
             //领奖励
             [self taskRewardDataWithType:model.missionId];
@@ -81,7 +84,7 @@ static NSString *missionCellid = @"UGMissionTableViewCell";
             
         }else if ([model.status isEqualToString:@"0"]) {
             //领任务
-            [self taskGetDataWithType:model.missionId];
+            [self taskGetDataWithType:model.missionId cell:sender];
             
         }else if ([model.status isEqualToString:@"2"]) {
             
@@ -172,7 +175,7 @@ static NSString *missionCellid = @"UGMissionTableViewCell";
 }
 
 //领取任务
-- (void)taskGetDataWithType:(NSString *)mid {
+- (void)taskGetDataWithType:(NSString *)mid  cell:(UGMissionTableViewCell *)sender{
     if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
         return;
     }
@@ -189,7 +192,15 @@ static NSString *missionCellid = @"UGMissionTableViewCell";
              [SVProgressHUD showSuccessWithStatus:@"领取成功"];
             
              SANotificationEventPost(UGNotificationGetRewardsSuccessfully, nil);
-            [self getCenterData];
+
+            
+            
+            [sender.goButton setTitle:@"去完成" forState:UIControlStateNormal];
+             sender.goButton.backgroundColor = UGRGBColor(103, 168, 248);
+             sender.item.status = @"1";
+            
+             UGMissionModel *item = [self.dataArray objectWithValue:sender.item.missionId keyPath:@"missionId"];
+             item.status = @"1";
             
         } failure:^(id msg) {
             

@@ -977,6 +977,10 @@
         }
     }
     else {
+        
+        for (UGNavigationController *nav in TabBarController1.viewControllers) {
+            [self navigationBar:nav bgColor:[self navbarbgColor:skitType]];
+        }
         //   bug: iOS13 崩溃
         UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
         if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
