@@ -58,7 +58,7 @@
         [self skin];
     });
     
-    self.fd_interactivePopDisabled = YES;
+//    self.fd_interactivePopDisabled = YES;
     self.navigationItem.title = @"登录";
     self.loginButton.layer.cornerRadius = 5;
     self.loginButton.layer.masksToBounds = YES;

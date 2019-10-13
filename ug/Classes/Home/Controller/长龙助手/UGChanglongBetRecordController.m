@@ -83,7 +83,7 @@ static NSString *changlongBetRecordCellId = @"UGChanglongBetRecrodCell";
             self.dataArray = model.data;
             [self.tableView reloadData];
         } failure:^(id msg) {
-            
+            [SVProgressHUD dismiss];
         }];
     }];
 }

@@ -13,8 +13,8 @@
 @interface UGMissionListController ()
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
-@property(nonatomic, assign) int pageSize;
-@property(nonatomic, assign) int pageNumber;
+//@property(nonatomic, assign) int pageSize;
+//@property(nonatomic, assign) int pageNumber;
 
 @property (nonatomic, strong)UGMissionTableViewCell *selcell;
 
@@ -27,7 +27,7 @@ static NSString *missionCellid = @"UGMissionTableViewCell";
     [super viewDidLoad];
     
     self.dataArray = [NSMutableArray new];
-    self.pageNumber = 1;
+//    self.pageNumber = 1;
     [self getCenterData];
     
     self.tableView.estimatedRowHeight = 0;
@@ -36,19 +36,19 @@ static NSString *missionCellid = @"UGMissionTableViewCell";
     [self.tableView registerNib:[UINib nibWithNibName:@"UGMissionTableViewCell" bundle:nil] forCellReuseIdentifier:missionCellid];
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 120, 0);
     self.tableView.rowHeight = 80;
-    _pageSize = 20;
-    _pageNumber = 1;
+//    _pageSize = 20;
+//    _pageNumber = 1;
     
-     WeakSelf
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        weakSelf.pageNumber = 1;
-        [weakSelf getCenterData];
-        
-    }];
-    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        weakSelf.pageNumber =weakSelf.pageNumber+1;
-        [weakSelf getCenterData];
-    }];
+//     WeakSelf
+//    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+//        weakSelf.pageNumber = 1;
+//        [weakSelf getCenterData];
+//        
+//    }];
+//    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+//        weakSelf.pageNumber =weakSelf.pageNumber+1;
+//        [weakSelf getCenterData];
+//    }];
     
   
 }
@@ -131,8 +131,8 @@ static NSString *missionCellid = @"UGMissionTableViewCell";
         return;
     }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
-                             @"page":@(self.pageNumber),
-                             @"rows":@(self.pageSize),
+                             @"page":@"1",
+                             @"rows":@"1000",
                              
                              };
     
@@ -145,16 +145,17 @@ static NSString *missionCellid = @"UGMissionTableViewCell";
           
             NSDictionary *data =  model.data;
             NSArray *list = [data objectForKey:@"list"];
-            if (self.pageNumber == 1 ) {
-                
-                [self.dataArray removeAllObjects];
-            }
+//            if (self.pageNumber == 1 ) {
+//
+//                [self.dataArray removeAllObjects];
+//            }
             
 //            //字典转模型
 //            UserMembersShareBean *membersShare = [[UserMembersShareBean alloc]initWithDictionary:dic[kMsg]
             //数组转模型数组
-            NSArray *array = [UGMissionModel arrayOfModelsFromDictionaries:list error:nil];
-            [self.dataArray addObjectsFromArray:array];
+//            NSArray *array = [UGMissionModel arrayOfModelsFromDictionaries:list error:nil];
+//            [self.dataArray addObjectsFromArray:array];
+             self.dataArray = [UGMissionModel arrayOfModelsFromDictionaries:list error:nil];
             [self.tableView reloadData];
 
             
@@ -164,13 +165,13 @@ static NSString *missionCellid = @"UGMissionTableViewCell";
             
         }];
         
-        if ([self.tableView.mj_header isRefreshing]) {
-            [self.tableView.mj_header endRefreshing];
-        }
-        
-        if ([self.tableView.mj_footer isRefreshing]) {
-            [self.tableView.mj_footer endRefreshing];
-        }
+//        if ([self.tableView.mj_header isRefreshing]) {
+//            [self.tableView.mj_header endRefreshing];
+//        }
+//
+//        if ([self.tableView.mj_footer isRefreshing]) {
+//            [self.tableView.mj_footer endRefreshing];
+//        }
     }];
 }
 
@@ -193,14 +194,14 @@ static NSString *missionCellid = @"UGMissionTableViewCell";
             
              SANotificationEventPost(UGNotificationGetRewardsSuccessfully, nil);
 
+            [self getCenterData];
             
-            
-            [sender.goButton setTitle:@"去完成" forState:UIControlStateNormal];
-             sender.goButton.backgroundColor = UGRGBColor(103, 168, 248);
-             sender.item.status = @"1";
-            
-             UGMissionModel *item = [self.dataArray objectWithValue:sender.item.missionId keyPath:@"missionId"];
-             item.status = @"1";
+//            [sender.goButton setTitle:@"去完成" forState:UIControlStateNormal];
+//             sender.goButton.backgroundColor = UGRGBColor(103, 168, 248);
+//             sender.item.status = @"1";
+//
+//             UGMissionModel *item = [self.dataArray objectWithValue:sender.item.missionId keyPath:@"missionId"];
+//             item.status = @"1";
             
         } failure:^(id msg) {
             

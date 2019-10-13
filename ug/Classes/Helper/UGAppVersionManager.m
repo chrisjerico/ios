@@ -49,7 +49,7 @@ static NSInteger versionNumber = 102;
             [self upgradeHandel:flag];
             
         } failure:^(id msg) {
-            
+            [SVProgressHUD dismiss];
         }];
     }];
     

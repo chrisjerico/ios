@@ -255,7 +255,7 @@ static NSString *integralCellid = @"UGConvertCollectionViewCell";
             self.inputTextF.placeholder = [NSString stringWithFormat:@"请输入%@",config.missionName];
             
         } failure:^(id msg) {
-            
+            [SVProgressHUD dismiss];
         }];
     }];
 }

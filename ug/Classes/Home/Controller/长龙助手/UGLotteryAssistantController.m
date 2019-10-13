@@ -105,7 +105,7 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
                 [self.tableView reloadData];
             }
         } failure:^(id msg) {
-            
+            [SVProgressHUD dismiss];
         }];
     }];
 }

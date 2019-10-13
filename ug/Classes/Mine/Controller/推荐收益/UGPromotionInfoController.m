@@ -164,7 +164,7 @@
             
         } failure:^(id msg) {
             
-        
+            [SVProgressHUD dismiss];
             
         }];
     }];

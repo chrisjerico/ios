@@ -89,7 +89,7 @@ static NSString *addressCellId = @"UGAddressCollectionViewCell";
             [self.collectionView reloadData];
             
         } failure:^(id msg) {
-            
+            [SVProgressHUD dismiss];
         }];
     }];
     

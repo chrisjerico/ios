@@ -503,7 +503,7 @@ BOOL isOk = NO;
         }
         
         [cell setBackgroundColor: [UIColor clearColor]];
-        cell.layer.borderWidth = 1;
+        cell.layer.borderWidth = 0.5;
         cell.layer.borderColor = [[UIColor whiteColor] CGColor];
         return cell;
     }
@@ -744,18 +744,10 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
         
     }else if ([title isEqualToString:@"推荐收益"]) {
         
-        UGUserModel *user = [UGUserModel currentUser];
-        if (user.isTest) {
-            [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                if (buttonIndex == 1) {
-                          SANotificationEventPost(UGNotificationUserLogout, nil);
-                    SANotificationEventPost(UGNotificationShowLoginView, nil);
-                }
-            }];
-        }else {
+
                 UGPromotionIncomeController *incomeVC = [[UGPromotionIncomeController alloc] init];
                 [self.navigationController pushViewController:incomeVC animated:YES];
-        }
+    
     } else if ([title isEqualToString:@"申请代理"]) {
         UGUserModel *user = [UGUserModel currentUser];
         user.isTest = NO;
@@ -1159,7 +1151,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
             [self stopAnimation];
             
         } failure:^(id msg) {
-            
+            [SVProgressHUD dismiss];
         }];
     }];
 }
@@ -1173,7 +1165,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
             self.lotteryGamesArray = model.data;
             
         } failure:^(id msg) {
-            
+            [SVProgressHUD dismiss];
         }];
     }];
     

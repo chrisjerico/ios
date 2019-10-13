@@ -38,6 +38,7 @@
 #import "UGLoginViewController.h"
 #import "UGRegisterViewController.h"
 #import "UGPromoteDetailController.h"   // 优惠活动详情
+#import "UGPromotionsController.h"
 
 // View
 #import "SDCycleScrollView.h"
@@ -1277,6 +1278,19 @@
     }
     
     
+}
+- (IBAction)goYOUHUIVC:(id)sender {
+    BOOL isLogin = UGLoginIsAuthorized();
+    if (isLogin) {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Promote" bundle:nil];
+        UGPromotionsController *qdwebVC = [storyboard instantiateViewControllerWithIdentifier:@"UGPromotionsController"];
+        [self.navigationController pushViewController:qdwebVC  animated:YES];
+    }
+    else{
+        
+         SANotificationEventPost(UGNotificationShowLoginView, nil);
+    }
+   
 }
 
 @end

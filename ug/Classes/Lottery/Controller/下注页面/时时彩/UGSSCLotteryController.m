@@ -226,7 +226,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             [self.betCollectionView reloadData];
             [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
         } failure:^(id msg) {
-            
+            [SVProgressHUD dismiss];
         }];
     }];
 }

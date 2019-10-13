@@ -158,7 +158,7 @@
             self.lotteryGamesArray = model.data;
             
         } failure:^(id msg) {
-            
+            [SVProgressHUD dismiss];
         }];
     }];
     

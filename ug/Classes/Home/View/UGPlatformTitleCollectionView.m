@@ -68,6 +68,7 @@ static NSString *platformTitleCellid = @"UGPlatformTitleCollectionViewCell";
         
         collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.width, itemW) collectionViewLayout:layout];
         collectionView.backgroundColor = [UIColor clearColor];
+        
         collectionView.dataSource = self;
         collectionView.delegate = self;
         [collectionView registerNib:[UINib nibWithNibName:@"UGPlatformTitleCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:platformTitleCellid];
@@ -96,6 +97,8 @@ static NSString *platformTitleCellid = @"UGPlatformTitleCollectionViewCell";
     
     UGPlatformTitleCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:platformTitleCellid forIndexPath:indexPath];
     cell.item = self.gameTypeArray[indexPath.row];
+    
+    [cell setBackgroundColor: [[UGSkinManagers shareInstance] sethomeContentColor]];
     return cell;
 }
 
@@ -106,6 +109,10 @@ static NSString *platformTitleCellid = @"UGPlatformTitleCollectionViewCell";
     }
 }
 
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 0;
+}
 
 
 @end

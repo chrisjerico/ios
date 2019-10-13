@@ -258,7 +258,7 @@ static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
             [self getLotteryHistory];
             
         } failure:^(id msg) {
-            
+            [SVProgressHUD dismiss];
         }];
     }];
     

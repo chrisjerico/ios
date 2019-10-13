@@ -16,8 +16,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="1600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aKo-Go-xPf">
-                                <rect key="frame" x="0.0" y="44" width="414" height="1522"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aKo-Go-xPf">
+                                <rect key="frame" x="0.0" y="33" width="414" height="1522"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="rQY-Xe-Kcn">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1453"/>
@@ -434,7 +434,7 @@
                                                             <constraint firstAttribute="height" constant="40" id="Lsb-5g-iVl"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oSF-74-EZt">
@@ -443,26 +443,37 @@
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="💻电脑版 🎁优惠活动" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vq9-5e-sW1">
                                                                 <rect key="frame" x="0.0" y="12" width="414" height="16"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R7I-zH-nNS">
+                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="tHk-5R-sxp">
                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="28"/>
-                                                                <connections>
-                                                                    <action selector="goPCVC:" destination="Qlk-11-xZ9" eventType="touchUpInside" id="Hh1-5r-i9V"/>
-                                                                </connections>
-                                                            </button>
+                                                                <subviews>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E04-5F-kHD">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="207" height="28"/>
+                                                                        <connections>
+                                                                            <action selector="goPCVC:" destination="Qlk-11-xZ9" eventType="touchUpInside" id="Tyg-hV-50k"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xda-dM-ANV">
+                                                                        <rect key="frame" x="207" y="0.0" width="207" height="28"/>
+                                                                        <connections>
+                                                                            <action selector="goYOUHUIVC:" destination="Qlk-11-xZ9" eventType="touchUpInside" id="u2F-AL-CS0"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                </subviews>
+                                                            </stackView>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="bottom" secondItem="Vq9-5e-sW1" secondAttribute="bottom" id="34N-uS-Myf"/>
-                                                            <constraint firstAttribute="trailing" secondItem="R7I-zH-nNS" secondAttribute="trailing" id="34c-kh-eLs"/>
                                                             <constraint firstItem="Vq9-5e-sW1" firstAttribute="leading" secondItem="oSF-74-EZt" secondAttribute="leading" id="5Y9-it-nkX"/>
+                                                            <constraint firstItem="tHk-5R-sxp" firstAttribute="top" secondItem="oSF-74-EZt" secondAttribute="top" id="7bA-Ie-uMr"/>
+                                                            <constraint firstItem="tHk-5R-sxp" firstAttribute="leading" secondItem="oSF-74-EZt" secondAttribute="leading" id="E3H-F3-7bD"/>
                                                             <constraint firstAttribute="height" constant="28" id="EA9-PG-McH"/>
-                                                            <constraint firstItem="R7I-zH-nNS" firstAttribute="leading" secondItem="oSF-74-EZt" secondAttribute="leading" id="WR5-Lb-nZT"/>
-                                                            <constraint firstAttribute="bottom" secondItem="R7I-zH-nNS" secondAttribute="bottom" id="Wc9-6w-RZF"/>
+                                                            <constraint firstAttribute="bottom" secondItem="tHk-5R-sxp" secondAttribute="bottom" id="I2f-oY-ckk"/>
                                                             <constraint firstAttribute="trailing" secondItem="Vq9-5e-sW1" secondAttribute="trailing" id="mep-Bf-a8q"/>
-                                                            <constraint firstItem="R7I-zH-nNS" firstAttribute="top" secondItem="oSF-74-EZt" secondAttribute="top" id="zKR-vn-fYq"/>
+                                                            <constraint firstAttribute="trailing" secondItem="tHk-5R-sxp" secondAttribute="trailing" id="sXX-yX-xtv"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>

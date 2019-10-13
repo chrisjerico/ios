@@ -182,7 +182,7 @@ static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
             game.balance = dict[@"balance"];
           
         } failure:^(id msg) {
-            
+            [SVProgressHUD dismiss];
         }];
         game.refreshing = NO;
         [self.tableView reloadData];

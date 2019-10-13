@@ -95,7 +95,7 @@
     
     self.extendedLayoutIncludesOpaqueBars = YES; 
     
-    self.fd_interactivePopDisabled = YES;
+//    self.fd_interactivePopDisabled = YES;
     self.navigationItem.title = @"注册";
     self.registerButton.layer.cornerRadius = 5;
     self.registerButton.layer.masksToBounds = YES;

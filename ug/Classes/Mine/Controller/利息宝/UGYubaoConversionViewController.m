@@ -71,18 +71,24 @@ static NSString *convertCellid = @"UGConvertCollectionViewCell";
     self.waveView = [[WavesView alloc] initWithFrame:self.waveBgView.bounds];
     [self.waveBgView addSubview:self.waveView];
     self.waveView.backgroundColor = [UIColor clearColor];
-//    self.waveBotomView.backgroundColor = UGRGBColor(84, 171, 238);
-//    self.waveView.realWaveColor = UGRGBColor(84, 171, 238);
-    self.waveBotomView.backgroundColor =  [[UGSkinManagers shareInstance] setbgColor];
-    self.waveView.realWaveColor =  [[UGSkinManagers shareInstance] setbgColor];
+
     self.waveView.maskWaveColor = [UIColor clearColor];
     self.waveView.waveHeight = 10;
     [self.waveView startWaveAnimation];
     
-//    UIImage *image = [UIImage imageNamed:@"bgyubao1"];
-//    UIImage *afterImage = [image qmui_imageWithBlendColor: [[UGSkinManagers shareInstance] setNavbgColor]];
-//    self.bgView.image = afterImage;
-        [_yyBgView setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
+    
+    NSString *skitType = [[UGSkinManagers shareInstance] skitType];
+    if ([skitType isEqualToString:@"新年红"]||[skitType isEqualToString:@"石榴红"]) {
+        [_yyBgView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
+        self.waveBotomView.backgroundColor =  [[UGSkinManagers shareInstance] setNavbgColor];
+        self.waveView.realWaveColor =  [[UGSkinManagers shareInstance] setNavbgColor];
+    }
+    else  {
+         [_yyBgView setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
+        self.waveBotomView.backgroundColor =  [[UGSkinManagers shareInstance] setbgColor];
+        self.waveView.realWaveColor =  [[UGSkinManagers shareInstance] setbgColor];
+    }
+
     
     self.transferType = @"in";
     self.inputTextF.delegate = self;
@@ -108,7 +114,7 @@ static NSString *convertCellid = @"UGConvertCollectionViewCell";
             self.infoModel = model.data;
             [self setupInfo];
         } failure:^(id msg) {
-            
+            [SVProgressHUD dismiss];
         }];
     }];
 }

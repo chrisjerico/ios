@@ -227,7 +227,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             [self showAdPoppuView:model.data];
             [self updateHeaderViewData];
         } failure:^(id msg) {
-            
+            [SVProgressHUD dismiss];
         }];
     }];
 }

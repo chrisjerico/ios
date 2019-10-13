@@ -115,7 +115,7 @@ static NSString *messageCellid = @"UGMessageTableViewCell";
             [self.tableView reloadData];
             SANotificationEventPost(UGNotificationGetUserInfo, nil);
         } failure:^(id msg) {
-            
+            [SVProgressHUD dismiss];
         }];
     }];
 }

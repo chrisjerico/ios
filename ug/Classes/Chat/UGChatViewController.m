@@ -18,6 +18,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    
+    if ([self.webTitle isEqualToString:@"聊天室"]){
+         self.fd_prefersNavigationBarHidden = YES;
+    }
     int height = 60;
     
     if ([self.fromView isEqualToString:@"game"]) {
@@ -52,8 +56,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    if ([self.webTitle isEqualToString:@"聊天室"])
-        self.navigationController.navigationBarHidden = YES;
+
+      
 }
 
 @end

@@ -66,7 +66,7 @@ static UGTabbarController *_tabBarVC = nil;
     self.delegate = self;
     
     // 设置初始控制器
-    [self resetUpChildViewController:@[@"/home", @"/lotteryList", @"/chatRoomList", @"/task", @"/user", ]];
+    [self resetUpChildViewController:@[@"/home", @"/lotteryList", @"/chatRoomList", @"/referrer", @"/user", ]];
     
     // 更新为后台配置的控制器
 //    [self getSystemConfig];
@@ -186,6 +186,10 @@ static UGTabbarController *_tabBarVC = nil;
             UIViewController *vc = _LoadVC_from_storyboard_(NSStringFromClass(gm.cls));
             if (!vc)
                 vc = [gm.cls new];
+            if ([NSStringFromClass(gm.cls) isEqualToString:@"UGChatViewController"]) {
+                UGChatViewController *chatVC = (UGChatViewController *)vc;
+                chatVC.webTitle = @"聊天室";
+            }
             vc.tabBarItem.title = gm.name;
             vc.tabBarItem.image = [UIImage imageNamed:gm.icon];
             vc.tabBarItem.selectedImage = [[UIImage imageNamed:gm.selectedIcon] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];

@@ -48,7 +48,7 @@
             [__self.tableView.dataArray setArray:listModel.list];
             [__self.tableView reloadData];
         } failure:^(id msg) {
-            
+            [SVProgressHUD dismiss];
         }];
     }];
 }

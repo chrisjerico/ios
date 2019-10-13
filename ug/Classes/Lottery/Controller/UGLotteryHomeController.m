@@ -107,7 +107,7 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
             [self.collectionView reloadData];
             
         } failure:^(id msg) {
-            
+            [SVProgressHUD dismiss];
         }];
     }];
 

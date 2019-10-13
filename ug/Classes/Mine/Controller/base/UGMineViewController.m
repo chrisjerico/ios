@@ -799,7 +799,7 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
              [self stopAnimation];
             
         } failure:^(id msg) {
-            
+            [SVProgressHUD dismiss];
         }];
     }];
 }
@@ -814,7 +814,7 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
             self.lotteryGamesArray = model.data;
             
         } failure:^(id msg) {
-            
+            [SVProgressHUD dismiss];
         }];
     }];
     

@@ -43,10 +43,8 @@
 @end
 
 @implementation UGYubaoViewController
+
 -(void)skin{
-//    UIImage *image = [UIImage imageNamed:@"yybgyubao1"];
-//    UIImage *afterImage = [image qmui_imageWithBlendColor: [[UGSkinManagers shareInstance] setNavbgColor]];
-//    self.bgView.image = afterImage;
     
     [_yyBgView setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
     
@@ -56,6 +54,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    self.fd_prefersNavigationBarHidden = YES;
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         
         [self skin];
@@ -65,8 +64,7 @@
     self.waveView = [[WavesView alloc] initWithFrame:self.waveBgView.bounds];
     [self.waveBgView addSubview:self.waveView];
     self.waveView.backgroundColor = [UIColor clearColor];
-//    self.waveBotomView.backgroundColor = UGRGBColor(84, 171, 238);
-//    self.waveView.realWaveColor = UGRGBColor(84, 171, 238);
+
     self.waveBotomView.backgroundColor =  [[UGSkinManagers shareInstance] setbgColor];
     self.waveView.realWaveColor =  [[UGSkinManagers shareInstance] setbgColor];
     self.waveView.maskWaveColor = [UIColor clearColor];
@@ -78,11 +76,21 @@
     self.animatedImageView.animatedImage = bgAnimateImage;
     self.animatedImageView.hidden = YES;
     
-    [_yyBgView setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
-      
-//     UIImage *image = [UIImage imageNamed:@"yybgyubao1"];
-//      UIImage *afterImage = [image qmui_imageWithBlendColor: [[UGSkinManagers shareInstance] setNavbgColor]];
-//      self.bgView.image = afterImage;
+    NSString *skitType = [[UGSkinManagers shareInstance] skitType];
+    if ([skitType isEqualToString:@"新年红"]||[skitType isEqualToString:@"石榴红"]) {
+        [_yyBgView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
+        self.waveBotomView.backgroundColor =  [[UGSkinManagers shareInstance] setNavbgColor];
+        self.waveView.realWaveColor =  [[UGSkinManagers shareInstance] setNavbgColor];
+    }
+    else  {
+         [_yyBgView setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
+        self.waveBotomView.backgroundColor =  [[UGSkinManagers shareInstance] setbgColor];
+        self.waveView.realWaveColor =  [[UGSkinManagers shareInstance] setbgColor];
+    }
+   
+    
+   
+
 
     self.progressView.startAngle = 0;
     self.progressView.strokeWidth = 3;
@@ -93,15 +101,45 @@
     self.progressView.pathFillColor = UGRGBColor(255, 255, 255);
     self.progressView.progress = 1;
     self.progressView.progressLabel.text = @"60";
-    self.progressView.progressLabel.textColor = [UIColor whiteColor];
+    self.progressView.progressLabel.textColor = [UIColor blackColor];
     self.progressView.duration = 0;
     self.progressView.increaseFromLast = YES;
     
+ 
+
     self.countDown = [[CountDown alloc] init];
     
+ 
+//    if (@available(iOS 13.0, *)) {
+//
+//
+//            UIView *stateView = [self.navigationController.navigationBar viewWithTagString:@"状态栏背景View"];
+//            if (!stateView) {
+//                stateView = [[UIView alloc] initWithFrame:CGRectMake(0, -k_Height_StatusBar, UGScreenW, k_Height_StatusBar)];
+//                stateView.tagString = @"状态栏背景View";
+//                [self.navigationController.navigationBar addSubview:stateView];
+//            }
+//            stateView.backgroundColor = UGNavColor;
+//
+//    }
+//    else {
+//
+//        //   bug: iOS13 崩溃
+//        UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+//        if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
+//            statusBar.backgroundColor = UGNavColor;
+//        }
+//    }
     
     
+//   self.navigationController.navigationBar.barTintColor = UGNavColor;
+    
+//    UIView *stateView = [[UIView alloc] initWithFrame:CGRectMake(0, -(k_Height_StatusBar+IPHONE_SAFEBOTTOMAREA_HEIGHT), UGScreenW, k_Height_StatusBar+IPHONE_SAFEBOTTOMAREA_HEIGHT)];
+//    [self.navigationController.navigationBar addSubview:stateView];
+//    stateView.backgroundColor = [UIColor blackColor];
+
 }
+
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -140,7 +178,7 @@
             self.infoModel = model.data;
             [self setupInfo];
         } failure:^(id msg) {
-            
+            [SVProgressHUD dismiss];
         }];
     }];
 }

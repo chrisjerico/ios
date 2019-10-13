@@ -190,7 +190,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             [self showAdPoppuView:model.data];
             [self updateHeaderViewData];
         } failure:^(id msg) {
-            
+            [SVProgressHUD dismiss];
         }];
     }];
     
@@ -207,7 +207,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
             
         } failure:^(id msg) {
-            
+            [SVProgressHUD dismiss];
         }];
     }];
 }
