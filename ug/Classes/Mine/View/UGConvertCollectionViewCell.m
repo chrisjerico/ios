@@ -21,7 +21,7 @@
     self.layer.cornerRadius = 3;
     self.layer.masksToBounds = YES;
     self.layer.borderWidth = 0.7;
-    self.layer.borderColor = UGBackgroundColor.CGColor;
+    self.layer.borderColor = UGRGBColor(177, 188, 189).CGColor;
     
 }
 
@@ -40,7 +40,8 @@
         self.layer.borderColor = UGNavColor.CGColor;
         self.layer.borderWidth = 1;
     }else {
-        self.layer.borderColor = [UIColor whiteColor].CGColor;
+        
+        self.layer.borderColor = UGRGBColor(177, 188, 189).CGColor;
         self.layer.borderWidth = 1;
     }
 }

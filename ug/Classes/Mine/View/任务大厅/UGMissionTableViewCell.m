@@ -10,7 +10,7 @@
 #import "UGMissionModel.h"
 
 @interface UGMissionTableViewCell ()
-@property (weak, nonatomic) IBOutlet UIButton *goButton;
+
 @property (weak, nonatomic) IBOutlet UIImageView *headerImageVeiw;
 @property (weak, nonatomic) IBOutlet UIImageView *leftImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *rightImageView;

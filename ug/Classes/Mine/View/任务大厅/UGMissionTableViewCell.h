@@ -14,7 +14,7 @@ typedef void(^ReceiveMissionBlock)(void);
 @interface UGMissionTableViewCell : UITableViewCell
 
 
-
+@property (weak, nonatomic) IBOutlet UIButton *goButton;
 @property (nonatomic, strong) UGMissionModel *item;
 @property (nonatomic, copy) ReceiveMissionBlock receiveMissionBlock;
 @end

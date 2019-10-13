@@ -78,7 +78,9 @@
 
 @implementation UGRegisterViewController
 -(void)skin{
-   
+       [self.registerButton setBackgroundColor:UGNavColor];
+       [self.goHomeButton setTitleColor:UGNavColor forState:UIControlStateNormal];
+        [self.goLoginButton setTitleColor:UGNavColor forState:UIControlStateNormal];
    
 }
 - (void)viewDidLoad {

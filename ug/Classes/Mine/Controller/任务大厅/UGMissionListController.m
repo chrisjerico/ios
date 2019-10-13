@@ -16,6 +16,8 @@
 @property(nonatomic, assign) int pageSize;
 @property(nonatomic, assign) int pageNumber;
 
+//@property (nonatomic, strong)UGMissionTableViewCell *cell;
+
 @end
 
 static NSString *missionCellid = @"UGMissionTableViewCell";
