@@ -124,17 +124,17 @@
     
     
     NSString *paymentid = item.paymentid;
-    if ([paymentid isEqualToString:@"bank_transfer"]) {
-        self.nameLabel.text = @"银行名称：";
-        self.name2Label.text = @"收款姓名：";
-        self.name3Label.text = @"银行账户：";
-        self.name4Label.text = @"开户地址：";
-    }
-    else if([paymentid isEqualToString:@"alipay_transfer"]||[paymentid isEqualToString:@"tenpay_transfer"]||[paymentid isEqualToString:@"wechat_transfer"]||[paymentid isEqualToString:@"yunshanfu_transfer"]||[paymentid isEqualToString:@"qqpay_transfer"]||[paymentid isEqualToString:@"wechat_alipay_transfer"]||[paymentid isEqualToString:@"jdzz_transfer"]||[paymentid isEqualToString:@"ddhb_transfer"]||[paymentid isEqualToString:@"wxsm_transfer"]||[paymentid isEqualToString:@"dshb_transfer"]||[paymentid isEqualToString:@"xlsm_transfer"]||[paymentid isEqualToString:@"zhifubao_transfer"]) {
+     if([paymentid isEqualToString:@"alipay_transfer"]||[paymentid isEqualToString:@"tenpay_transfer"]||[paymentid isEqualToString:@"qqpay_transfer"]||[paymentid isEqualToString:@"wechat_alipay_transfer"]||[paymentid isEqualToString:@"jdzz_transfer"]||[paymentid isEqualToString:@"ddhb_transfer"]||[paymentid isEqualToString:@"wxsm_transfer"]||[paymentid isEqualToString:@"dshb_transfer"]||[paymentid isEqualToString:@"xlsm_transfer"]||[paymentid isEqualToString:@"zhifubao_transfer"]) {
         self.nameLabel.text = @"收款姓名：";
         self.name2Label.text = @"收款账号：";
         self.name3Label.text = @"银行名称：";
         self.name4Label.text = @"支行名称：";
+    }
+    else{
+        self.nameLabel.text = @"银行名称：";
+              self.name2Label.text = @"收款姓名：";
+              self.name3Label.text = @"银行账户：";
+              self.name4Label.text = @"开户地址：";
     }
  
     
