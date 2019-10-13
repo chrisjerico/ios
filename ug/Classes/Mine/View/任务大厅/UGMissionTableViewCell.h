@@ -10,7 +10,7 @@
 @class UGMissionModel;
 
 NS_ASSUME_NONNULL_BEGIN
-typedef void(^ReceiveMissionBlock)(void);
+typedef void(^ReceiveMissionBlock)(id );
 @interface UGMissionTableViewCell : UITableViewCell
 
 

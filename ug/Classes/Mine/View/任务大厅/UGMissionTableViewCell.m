@@ -11,6 +11,7 @@
 
 @interface UGMissionTableViewCell ()
 
+
 @property (weak, nonatomic) IBOutlet UIImageView *headerImageVeiw;
 @property (weak, nonatomic) IBOutlet UIImageView *leftImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *rightImageView;
@@ -34,9 +35,9 @@
 }
 
 
-- (IBAction)goButtonClick:(id)sender {
+- (IBAction)goButtonClick:(id )sender {
     if (self.receiveMissionBlock) {
-        self.receiveMissionBlock();
+        self.receiveMissionBlock(self);
     }
     
 }

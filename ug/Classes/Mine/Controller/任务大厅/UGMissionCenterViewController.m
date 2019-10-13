@@ -204,7 +204,7 @@
 #pragma mark - UIS
 - (void)setupUserInfo {
     UGUserModel *user = [UGUserModel currentUser];
-    [self.avaterImageView sd_setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:[UIImage imageNamed:@"txp"]];
+    [self.avaterImageView sd_setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
     self.userNameLabel.text = user.username;
     self.levelNameLabel.text = user.curLevelGrade;
     
