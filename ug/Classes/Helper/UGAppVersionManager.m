@@ -13,8 +13,9 @@
 @end
 
 @implementation UGAppVersionManager
+static NSInteger versionNumber = 102;
++(UGAppVersionManager *)shareInstance
 
-+ (UGAppVersionManager *)shareInstance
 {
     
     static UGAppVersionManager *shareInstance = nil;
@@ -58,8 +59,26 @@
     BOOL isForce = NO;
     NSString *versionCode = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
     
-    if (![self.versionModle.versionName isEqualToString:versionCode]) {
-        if (self.versionModle.switchUpdate)
+//<<<<<<< HEAD
+	NSMutableString * covertedVersionName = @"".mutableCopy;
+	for (NSString * c in [self.versionModle.versionName componentsSeparatedByString:@"."]) {
+		[covertedVersionName appendString:c];
+	}
+	int convertedVersion = covertedVersionName.intValue;
+	
+	if (convertedVersion == 0) {
+		[SVProgressHUD showErrorWithStatus:@"版本号识别错误"];
+	}
+	
+	
+	
+//    if (![self.versionModle.versionName isEqualToString:versionCode]) {
+	if (convertedVersion > versionNumber){
+        if (self.versionModle.switchUpdate) {
+//=======
+//    if (![self.versionModle.versionName isEqualToString:versionCode]) {
+//        if (self.versionModle.switchUpdate)
+//>>>>>>> 370d1b8d14750190569a78f3323a9250fd5a2a84
             isForce = YES;
 		
 		NSString * updateContent;
@@ -79,6 +98,7 @@
     } else if (flag) {
         [AlertHelper showAlertView:@"新版本上线" msg:@"您已经是最新版本！" btnTitles:@[@"确定"]];
     }
+}
 }
 
 //判断是否需要升级
