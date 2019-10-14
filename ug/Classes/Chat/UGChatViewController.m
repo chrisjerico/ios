@@ -16,24 +16,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
-    
-    if ([self.webTitle isEqualToString:@"聊天室"]){
-         self.fd_prefersNavigationBarHidden = YES;
-    }
+    self.fd_prefersNavigationBarHidden = YES;
     int height = 60;
     
     if ([self.fromView isEqualToString:@"game"]) {
         height = 0;
     }
-    
-    if ([self.webTitle isEqualToString:@"聊天室"]) {
-        if ([CMCommon isPhoneX]) {
-            [self setWebViewFrame:CGRectMake(0, 0, UGScreenW, UGScerrnH - IPHONE_SAFEBOTTOMAREA_HEIGHT-height)];
-        } else {
-            [self setWebViewFrame:CGRectMake(0, 0, UGScreenW, UGScerrnH - height)];
-        }
+    if ([CMCommon isPhoneX]) {
+        [self setWebViewFrame:CGRectMake(0, 0, UGScreenW, UGScerrnH - IPHONE_SAFEBOTTOMAREA_HEIGHT-height)];
+    } else {
+        [self setWebViewFrame:CGRectMake(0, 0, UGScreenW, UGScerrnH - height)];
     }
     
     
