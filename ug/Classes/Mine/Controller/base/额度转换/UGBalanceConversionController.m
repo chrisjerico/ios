@@ -45,11 +45,15 @@ static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
--(void)skin{
-    
+
+- (BOOL)游客禁止访问 {
+    return true;
+}
+
+- (void)skin {
     [self.conversionButton setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
     [self.view setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
-     [self.tableView reloadData];
+    [self.tableView reloadData];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];

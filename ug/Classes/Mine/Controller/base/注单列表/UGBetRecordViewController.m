@@ -35,10 +35,14 @@
 
 static NSString *recordFilterCellid = @"UGRecordFilterCollectionViewCell";
 @implementation UGBetRecordViewController
--(void)skin{
+- (void)skin {
     [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
-    
 }
+
+- (BOOL)游客禁止访问 {
+    return true;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
      self.title = @"彩票注单记录";
@@ -145,9 +149,10 @@ static NSString *recordFilterCellid = @"UGRecordFilterCollectionViewCell";
     }
 }
 
+
 #pragma mark - 配置segment
--(void)buildSegment
-{                   
+
+-(void)buildSegment {
     self.itemArray = @[@"已中奖", @"未中奖", @"等待开奖", @"已撤单"];
     self.slideSwitchView = [[XYYSegmentControl alloc] initWithFrame:CGRectMake(0 , 0, self.view.width, self.view.height) channelName:self.itemArray source:self];
     [self.slideSwitchView setUserInteractionEnabled:YES];
@@ -165,8 +170,6 @@ static NSString *recordFilterCellid = @"UGRecordFilterCollectionViewCell";
     [self.view addSubview:self.slideSwitchView];
     
     self.title = @"彩票记录";
-  
-
 }
 
 

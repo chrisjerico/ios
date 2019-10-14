@@ -42,7 +42,10 @@ MJExtensionCodingImplementation
     g_currentUser = user;
     //归档
     [NSKeyedArchiver archiveRootObject:user toFile:filePath];
-    
+}
+
+- (BOOL)isAgent {
+    return _isTest ? true : _isAgent;
 }
 
 @end

@@ -16,14 +16,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 @interface UGmobileMenu :UGModel<UGmobileMenu>
-@property (nonatomic) NSString *path;   /**<   界面 */
-@property (nonatomic) NSString *icon;   /**<   图标 */
-@property (nonatomic) NSString *name;   /**<   标题 */
-@property (nonatomic) NSInteger sort;   /**<   排序 */
+@property (nonatomic, copy) NSString *path; /**<   界面 */
+@property (nonatomic, copy) NSString *icon; /**<   图标 */
+@property (nonatomic, copy) NSString *name; /**<   标题 */
+@property (nonatomic) NSInteger sort;       /**<   排序 */
 
 // 自定义参数
 @property (nonatomic) Class cls;
-@property (nonatomic) NSString *selectedIcon;
+@property (nonatomic, copy) NSString *selectedIcon;
 + (instancetype)menu:(NSString *)path :(NSString *)name :(NSString *)icon :(NSString *)selectedIcon :(Class)cls;
 @end
 @protocol UGSystemConfigModel <NSObject>
@@ -34,26 +34,26 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UGSystemConfigModel : UGModel<UGSystemConfigModel>
 
-@property (nonatomic) NSString *zxkfUrl;                    /**<   在线客服 */
-@property (nonatomic) NSString *minWithdrawMoney;           /**<   最低提款金额 */
-@property (nonatomic) NSString *maxWithdrawMoney;           /**<   最高提款金额 */
-@property (nonatomic) NSString *closeregreason;             /**<   关闭注册功能提示内容 */
-@property (nonatomic) NSString *missionName;                /**<   哇咔豆 */
-@property (nonatomic) NSString *missionBili;
-@property (nonatomic) NSString *isIntToMoney;               /**<   积分开关0=关闭；1=开启； */
-@property (nonatomic) NSString *missionSwitch;              /**<   1=关闭；0=开启；任务中心 */
-@property (nonatomic) NSString *myreco_img;                 /**<   1=关闭；0=开启； */
-@property (nonatomic) NSString *checkinSwitch;              /**<   0=关闭；1=开启签到开关 */
-@property (nonatomic) NSString *mkCheckinSwitch;            /**< 0=开启；1=关闭 补签开关： */
-@property (nonatomic) NSString *agent_m_apply;              /**<   允许会员中心申请代理 */
-@property (nonatomic) NSString *mobile_logo;                /**<   首页navBar 图片 */
-@property (nonatomic) NSString *agentRegbutton;             /**<   0=关闭；1=开启；  手机端注册页面显示“代理注册” */
-@property (nonatomic) NSString *oftenLoginArea;             /**<   1=关闭；0=开启； 常用登录地 */
-@property (nonatomic) NSString *mobileTemplateBackground;   /**<   配色方案 */
-@property (nonatomic) NSString *mobileTemplateCategory;     /**<   模板号 */
-@property (nonatomic) NSString *webName;                    /**<   首页底部文字 */
+@property (nonatomic, copy) NSString *zxkfUrl;                    /**<   在线客服 */
+@property (nonatomic, copy) NSString *minWithdrawMoney;           /**<   最低提款金额 */
+@property (nonatomic, copy) NSString *maxWithdrawMoney;           /**<   最高提款金额 */
+@property (nonatomic, copy) NSString *closeregreason;             /**<   关闭注册功能提示内容 */
+@property (nonatomic, copy) NSString *missionName;                /**<   哇咔豆 */
+@property (nonatomic, copy) NSString *missionBili;
+@property (nonatomic, copy) NSString *isIntToMoney;               /**<   积分开关0=关闭；1=开启； */
+@property (nonatomic, copy) NSString *missionSwitch;              /**<   1=关闭；0=开启；任务中心 */
+@property (nonatomic, copy) NSString *myreco_img;                 /**<   1=关闭；0=开启； */
+@property (nonatomic, copy) NSString *checkinSwitch;              /**<   0=关闭；1=开启签到开关 */
+@property (nonatomic, copy) NSString *mkCheckinSwitch;            /**< 0=开启；1=关闭 补签开关： */
+@property (nonatomic, copy) NSString *agent_m_apply;              /**<   允许会员中心申请代理 */
+@property (nonatomic, copy) NSString *mobile_logo;                /**<   首页navBar 图片 */
+@property (nonatomic, copy) NSString *agentRegbutton;             /**<   0=关闭；1=开启；  手机端注册页面显示“代理注册” */
+@property (nonatomic, copy) NSString *oftenLoginArea;             /**<   1=关闭；0=开启； 常用登录地 */
+@property (nonatomic, copy) NSString *mobileTemplateBackground;   /**<   配色方案 */
+@property (nonatomic, copy) NSString *mobileTemplateCategory;     /**<   模板号 */
+@property (nonatomic, copy) NSString *webName;                    /**<   首页底部文字 */
 
-@property (nonatomic) NSArray<UGmobileMenu *> *mobileMenu;
+@property (nonatomic, copy) NSArray<UGmobileMenu *> *mobileMenu;
 
 @property (nonatomic) NSInteger hide_reco;          /**<   代理人 */
 @property (nonatomic) NSInteger reg_name;           /**<   真实姓名 */
@@ -72,6 +72,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) BOOL smsVerify;               /**<   手机短信验证 */
 @property (nonatomic) BOOL allowreg;                /**<   是否开启注册功能。 */
 @property (nonatomic) BOOL allowMemberCancelBet;    /**<   是否允许会员撤单，1允许 0不允许 */
+@property (nonatomic) BOOL m_promote_pos;           /**<   优惠活动显示在首页还是内页，1首页，0内页 */
 
 + (instancetype)currentConfig;
 

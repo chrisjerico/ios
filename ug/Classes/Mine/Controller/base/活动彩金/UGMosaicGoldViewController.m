@@ -18,9 +18,14 @@
 @end
 
 @implementation UGMosaicGoldViewController
--(void)skin{
-       [self buildSegment];
+- (void)skin {
+    [self buildSegment];
 }
+
+- (BOOL)游客禁止访问 {
+    return true;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.

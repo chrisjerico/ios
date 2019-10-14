@@ -39,7 +39,6 @@ static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
     self.tableViewDataArray = [NSMutableArray new];
     
     [self rechargeCashierData];
-
 }
 
 
@@ -91,7 +90,6 @@ static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
 #pragma mark -- 网络请求
 //得到支付列表数据
 - (void)rechargeCashierData {
-    
     if ([UGUserModel currentUser].isTest) {
         return;
     }
@@ -102,14 +100,11 @@ static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
     WeakSelf;
     [CMNetwork rechargeCashierWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
-            
             [SVProgressHUD dismiss];
             self.mUGdepositModel = model.data;
-            NSLog(@"odel.data = %@",model.data);
+//            NSLog(@"odel.data = %@",model.data);
             
             NSLog(@"转账提示 = %@",self.mUGdepositModel.depositPrompt);
-            
-            
 //            self.tableViewDataArray = self.mUGdepositModel.payment;
             NSOperationQueue *waitQueue = [[NSOperationQueue alloc] init];
             [waitQueue addOperationWithBlock:^{
@@ -122,7 +117,6 @@ static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
                         uGpaymentModel.transferPrompt = self.mUGdepositModel.transferPrompt;
                         uGpaymentModel.depositPrompt = self.mUGdepositModel.depositPrompt;
                     }
-                    
                 }
                 // 同步到主线程
                  dispatch_async(dispatch_get_main_queue(), ^{

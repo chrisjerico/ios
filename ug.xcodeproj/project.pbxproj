@@ -594,7 +594,6 @@
 		D4DFBE7222E353B1002BAFB0 /* UGMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4DFBE6F22E353AF002BAFB0 /* UGMenuTableViewCell.xib */; };
 		D4DFBE7322E353B1002BAFB0 /* UGMenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4DFBE7022E353B0002BAFB0 /* UGMenuTableViewCell.m */; };
 		D4DFBE7522E35460002BAFB0 /* Mine.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4DFBE7422E3545E002BAFB0 /* Mine.storyboard */; };
-		D4E1F6212336538D0022A1DC /* UGTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E1F6202336538D0022A1DC /* UGTestViewController.m */; };
 		D4E2876D22B666EB0002B2BF /* UGFC3DLotteryController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E2876C22B666EB0002B2BF /* UGFC3DLotteryController.m */; };
 		D4E2876F22B666FE0002B2BF /* UGFC3DLotteryController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4E2876E22B666FE0002B2BF /* UGFC3DLotteryController.storyboard */; };
 		D4E8A40F22A0323300EFE171 /* UGBetRecorddHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E8A40E22A0323300EFE171 /* UGBetRecorddHeaderView.m */; };
@@ -1692,8 +1691,6 @@
 		D4DFBE7022E353B0002BAFB0 /* UGMenuTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGMenuTableViewCell.m; sourceTree = "<group>"; };
 		D4DFBE7122E353B0002BAFB0 /* UGMenuTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGMenuTableViewCell.h; sourceTree = "<group>"; };
 		D4DFBE7422E3545E002BAFB0 /* Mine.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Mine.storyboard; sourceTree = "<group>"; };
-		D4E1F61F2336538D0022A1DC /* UGTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGTestViewController.h; sourceTree = "<group>"; };
-		D4E1F6202336538D0022A1DC /* UGTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGTestViewController.m; sourceTree = "<group>"; };
 		D4E2876B22B666EB0002B2BF /* UGFC3DLotteryController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGFC3DLotteryController.h; sourceTree = "<group>"; };
 		D4E2876C22B666EB0002B2BF /* UGFC3DLotteryController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGFC3DLotteryController.m; sourceTree = "<group>"; };
 		D4E2876E22B666FE0002B2BF /* UGFC3DLotteryController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UGFC3DLotteryController.storyboard; sourceTree = "<group>"; };
@@ -2468,8 +2465,8 @@
 				D4241C46232A2F0100BF4DE1 /* UGOneTitleTableViewCell.xib */,
 				D4BBFC02232A801700147C4A /* UGFundsTransferView.h */,
 				D4BBFC03232A801700147C4A /* UGFundsTransferView.m */,
-				D4BBFC05232A80A800147C4A /* UGFundsTransferView.xib */,
 				D4C46F90232B88BF0062564D /* UGFunds2microcodeView.h */,
+				D4BBFC05232A80A800147C4A /* UGFundsTransferView.xib */,
 				D4C46F91232B88BF0062564D /* UGFunds2microcodeView.m */,
 				D4C46F93232B88D80062564D /* UGFunds2microcodeView.xib */,
 				D4C46F95232B8DB30062564D /* UGFundsTransfer2View.h */,
@@ -4061,8 +4058,6 @@
 				D405AFCE2278240A00F8C586 /* UGPCH.pch */,
 				D405B344227DB22100F8C586 /* UGNotificationEvent.h */,
 				D405B345227DB22100F8C586 /* UGNotificationEvent.m */,
-				D4E1F61F2336538D0022A1DC /* UGTestViewController.h */,
-				D4E1F6202336538D0022A1DC /* UGTestViewController.m */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -4594,7 +4589,6 @@
 				D4D8DF802287065F00446BAF /* UGTimeLotteryBetHeaderView.m in Sources */,
 				D41EDF7C2317A67E005798CC /* UGBalanceTransferLogsCell.m in Sources */,
 				CFD3BEF82347137F00FCDA6D /* NSMutableDictionary+KVO.m in Sources */,
-				D4E1F6212336538D0022A1DC /* UGTestViewController.m in Sources */,
 				D416BB2122CE2E6D00BA0450 /* UGSegmentView.m in Sources */,
 				D4C46F8F232B56CB0062564D /* UGDepositDetailsNoLineViewController.m in Sources */,
 				CFD3BF032347137F00FCDA6D /* UIColor+Utils.m in Sources */,

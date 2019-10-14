@@ -10,46 +10,31 @@
 #import "UGdepositModel.h"
 
 @interface UGRechargeTypeCell ()
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;//名字
-@property (weak, nonatomic) IBOutlet UILabel *tipLabel;//提示
-@property (weak, nonatomic) IBOutlet UIImageView *headerImageView;//已签到（灰）补签（红）签到（蓝）
-
-
-
-
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;            /**<   标题Label */
+@property (weak, nonatomic) IBOutlet UILabel *tipLabel;             /**<   备注Label */
+@property (weak, nonatomic) IBOutlet UIImageView *headerImageView;  /**<   已签到（灰）补签（红）签到（蓝） */
 @end
+
 
 @implementation UGRechargeTypeCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
-     
 }
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
 
 - (void)setNameStr:(NSString *)nameStr {
     _nameStr = nameStr;
     self.nameLabel.text = nameStr;
-    
 }
 
 - (void)setTipStr:(NSString *)tipStr {
     _tipStr = tipStr;
-    self.tipLabel.text = tipStr;
-    
+    self.tipLabel.attributedText = [[NSAttributedString alloc] initWithData:[tipStr dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];;
 }
 
 - (void)setHeaderImageStr:(NSString *)headerImageStr {
     _headerImageStr= headerImageStr;
     self.headerImageView.image = [UIImage imageNamed:headerImageStr];
-    
 }
 
 - (void)setItem:(UGpaymentModel *)item {

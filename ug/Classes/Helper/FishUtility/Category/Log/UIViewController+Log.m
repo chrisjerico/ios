@@ -21,12 +21,12 @@
 }
 
 - (void)cc_dealloc {
-    NSLog(@"—————————————— %@   被释放", [self class]);
+    NSLog(@"——————————————控制器释放： %@，title=%@", [self class], self.title);
     [self cc_dealloc];
 }
 
 - (void)cc_viewWillAppear:(BOOL)animated {
-    NSLog(@"—————————————— %@   将出现", [self class]);
+    NSLog(@"——————————————控制器出现： %@，title=%@", [self class], self.title);
     [self cc_viewWillAppear:animated];
 }
 

@@ -11,8 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UGChatViewController : TGWebViewController
-@property (nonatomic, strong) NSString * fromView;
-
+@property (nonatomic, copy) NSString *gameId;   /**<   从下注页面进入传入的彩种ID */
 @end
 
 NS_ASSUME_NONNULL_END

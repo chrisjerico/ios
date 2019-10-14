@@ -17,6 +17,10 @@
 
 @implementation UGPromotionsController
 
+- (BOOL)未登录禁止访问 {
+    return true;
+}
+
 - (void)skin {
     self.view.backgroundColor = UGBackgroundColor;
     self.tableView.backgroundColor = UGBackgroundColor;

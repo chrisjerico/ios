@@ -332,11 +332,10 @@
 //        self.automaticallyAdjustsScrollViewInsets = NO;
 //        self.edgesForExtendedLayout = UIRectEdgeNone;
          mUIScrollView.backgroundColor = [UIColor whiteColor];
-    
+        
         [self.view addSubview:mUIScrollView];
         self.mUIScrollView = mUIScrollView;
     }
-
     
     if (self.tiplabel == nil) {
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, UGScreenW, 40)];

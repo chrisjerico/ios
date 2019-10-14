@@ -113,6 +113,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="R6t-Tn-TMv"/>
                     </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="游客禁止访问" value="YES"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="未登录禁止访问" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="betAmountLabel" destination="mfn-dn-4EA" id="mRc-Qq-171"/>
                         <outlet property="bottomViewHeightConstraint" destination="kK4-au-gey" id="og2-vc-Kp4"/>

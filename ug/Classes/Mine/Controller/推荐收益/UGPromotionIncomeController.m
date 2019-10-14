@@ -26,8 +26,13 @@
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
 - (void)skin {
     [self initView];
+}
+
+- (BOOL)未登录禁止访问 {
+    return true;
 }
 
 - (void)viewDidLoad {
@@ -63,16 +68,15 @@
 
 #pragma mark 设置右上角按钮
 
-- (void)setupRightItem{
+- (void)setupRightItem {
     UIButton *rightButton = [[UIButton alloc] initWithFrame:CGRectMake(UGScreenW - 50,100, 50, 50)];
-     UGUserModel *user = [UGUserModel currentUser];
+    UGUserModel *user = [UGUserModel currentUser];
     [rightButton setTitle:user.fullName forState:UIControlStateNormal];
     [rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     rightButton.titleLabel.font = [UIFont systemFontOfSize:14];
     [rightButton addTarget:self action:@selector(rightClicked) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem* rightItem = [[UIBarButtonItem alloc]initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = rightItem;
-    
 }
 
 #pragma mark 右上角按钮的点击方法
@@ -111,8 +115,7 @@
 }
 
 ///待加载的控制器
--(UIViewController *)slideSwitchView:(XYYSegmentControl *)view viewOfTab:(NSUInteger)number
-{
+- (UIViewController *)slideSwitchView:(XYYSegmentControl *)view viewOfTab:(NSUInteger)number {
     if (number == 0) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGPromotionInfoController" bundle:nil];
         UGPromotionInfoController *infoVC = [storyboard instantiateInitialViewController];

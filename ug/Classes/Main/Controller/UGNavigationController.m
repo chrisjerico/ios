@@ -54,6 +54,10 @@ static UGNavigationController *_navController = nil;
         return;
     }
     
+    // push权限判断
+    if (self.viewControllers.count && ![UGTabbarController canPushToViewController:viewController])
+        return;
+    
     // 判断下是否是非根控制器
     if (self.childViewControllers.count) { // 不是根控制器
         // 设置非根控制器的返回按钮

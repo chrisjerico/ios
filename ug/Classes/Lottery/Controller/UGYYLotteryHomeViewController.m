@@ -19,6 +19,10 @@
 
 @implementation UGYYLotteryHomeViewController
 
+- (BOOL)未登录禁止访问 {
+    return true;
+}
+
 - (void)skin {
     [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
     [self getPlatformGamesWithParams];

@@ -15,19 +15,23 @@
 @implementation UGChatViewController
 
 - (void)viewDidLoad {
+    self.url = ({
+        NSString *url = _NSString(@"%@%@%@&loginsessid=%@&color=%@&back=hide", baseServerUrl, newChatRoomUrl, [UGUserModel currentUser].token, [UGUserModel currentUser].sessid, [[UGSkinManagers shareInstance] setChatNavbgStringColor]);
+        if (_gameId.length)
+            url = [url stringByAppendingFormat:@"&id=%@", self.gameId];
+        url;
+    });
     [super viewDidLoad];
-    self.fd_prefersNavigationBarHidden = YES;
-    int height = 60;
+    self.title = @"聊天室";
     
-    if ([self.fromView isEqualToString:@"game"]) {
-        height = 0;
-    }
+    self.fd_prefersNavigationBarHidden = YES;
+    
+    int height = self.gameId.length ? 0 : 60;
     if ([CMCommon isPhoneX]) {
-        [self setWebViewFrame:CGRectMake(0, 0, UGScreenW, UGScerrnH - IPHONE_SAFEBOTTOMAREA_HEIGHT-height)];
+        [self setWebViewFrame:CGRectMake(0, 0, UGScreenW, UGScerrnH - IPHONE_SAFEBOTTOMAREA_HEIGHT - height)];
     } else {
         [self setWebViewFrame:CGRectMake(0, 0, UGScreenW, UGScerrnH - height)];
     }
-    
     
     // 返回按钮
     {
@@ -48,8 +52,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
-      
 }
 
 @end

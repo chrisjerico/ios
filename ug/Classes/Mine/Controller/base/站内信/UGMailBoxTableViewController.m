@@ -24,6 +24,10 @@ static int size = 20;
 static NSString *messageCellid = @"UGMessageTableViewCell";
 @implementation UGMailBoxTableViewController
 
+- (BOOL)未登录禁止访问 {
+    return true;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     

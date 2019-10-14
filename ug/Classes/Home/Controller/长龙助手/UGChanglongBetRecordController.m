@@ -60,12 +60,10 @@ static NSString *changlongBetRecordCellId = @"UGChanglongBetRecrodCell";
                 SANotificationEventPost(UGNotificationShowLoginView, nil);
             }
         }];
-    }else {
-        
+    } else {
         UGBetRecordViewController *betRecordVC = [[UGBetRecordViewController alloc] init];
         [self.navigationController pushViewController:betRecordVC animated:YES];
     }
-   
 }
 
 - (void)getChanglongBetRecord {
