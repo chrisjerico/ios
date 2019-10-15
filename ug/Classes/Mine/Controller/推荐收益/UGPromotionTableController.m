@@ -289,10 +289,12 @@
             UGinviteLisModel *model = (UGinviteLisModel *)self.dataArray[indexPath.row];
             cell.firstLabel.text = [NSString stringWithFormat:@"%@级下线",model.level];
             cell.secondLabel.text = model.username;
-            if ([CMCommon stringIsNull:model.enable]) {
-                cell.thirdLabel.text = @"--";
+            
+        
+            if (model.is_online == 1) {
+                cell.thirdLabel.text = @"在线";
             } else {
-               cell.thirdLabel.text = model.enable;
+               cell.thirdLabel.text = @"离线";
             }
             if ([CMCommon stringIsNull:model.regtime]) {
                 cell.fourthLabel.text = @"--";

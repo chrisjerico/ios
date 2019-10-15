@@ -30,6 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *regtime;//
 @property (nonatomic, strong) NSString *sunyi;//
 @property (nonatomic, strong) NSString *is_setting;//技术-后端-parker:1是开启0是关闭充值功能
+
+@property (nonatomic, assign) int is_online;// 在线 1 离线 0
 @end
 
 NS_ASSUME_NONNULL_END
