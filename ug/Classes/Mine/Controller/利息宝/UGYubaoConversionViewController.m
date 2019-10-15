@@ -12,7 +12,11 @@
 #import "UGMissionLevelModel.h"
 #import "UGYuebaoInfoModel.h"
 #import "UGEncryptUtil.h"
+#import "UGYUbaoTitleView.h"
 @interface UGYubaoConversionViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UITextFieldDelegate>
+
+@property (nonatomic, strong) UGYUbaoTitleView *titleView;               /**<   自定义导航条 */
+
 @property (weak, nonatomic) IBOutlet UILabel *balanceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dayIncomeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *rateLabel;
@@ -100,6 +104,8 @@ static NSString *convertCellid = @"UGConvertCollectionViewCell";
         [self setupInfo];
     });
     [self setupInfo];
+    
+
     
 }
 - (IBAction)backClick:(id)sender {
