@@ -30,7 +30,6 @@
 @property (nonatomic, strong) NSMutableArray *controllersArray;
 @property (nonatomic, assign) NSInteger dateIndex;
 @property (nonatomic, assign) NSInteger controllerIndex;
-
 @end
 
 static NSString *recordFilterCellid = @"UGRecordFilterCollectionViewCell";
@@ -39,21 +38,23 @@ static NSString *recordFilterCellid = @"UGRecordFilterCollectionViewCell";
     [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
 }
 
+
+
 - (BOOL)游客禁止访问 {
     return true;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-     self.title = @"彩票注单记录";
 
+    self.title = @"投注记录";
     [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         
         [self skin];
     });
     self.dateIndex = 0;
-    self.controllerIndex = 0;
+    _controllerIndex = 0;
     self.filterItemArray = @[@"今日",@"最近三天",@"最近一周",@"最近一月"];
     self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithImageName:@"riqi" target:self action:@selector(rightBarButtonItemClick)];
     
@@ -65,10 +66,7 @@ static NSString *recordFilterCellid = @"UGRecordFilterCollectionViewCell";
 
 }
 
--(void)setSelectIndex:(int) index{
-      [self.slideSwitchView changeSlideAtSegmentIndex:2];
 
-}
 
 - (void)rightBarButtonItemClick {
     
@@ -153,23 +151,27 @@ static NSString *recordFilterCellid = @"UGRecordFilterCollectionViewCell";
 #pragma mark - 配置segment
 
 -(void)buildSegment {
-    self.itemArray = @[@"已中奖", @"未中奖", @"等待开奖", @"已撤单"];
-    self.slideSwitchView = [[XYYSegmentControl alloc] initWithFrame:CGRectMake(0 , 0, self.view.width, self.view.height) channelName:self.itemArray source:self];
-    [self.slideSwitchView setUserInteractionEnabled:YES];
-    self.slideSwitchView.segmentControlDelegate = self;
+  
     
-    //设置tab 颜色(可选)
-    self.slideSwitchView.tabItemNormalColor = [UIColor grayColor];
-    self.slideSwitchView.tabItemNormalFont = 13;
-    //设置tab 被选中的颜色(可选)
-    self.slideSwitchView.tabItemSelectedColor = UGNavColor;
-    //设置tab 背景颜色(可选)
-    self.slideSwitchView.tabItemNormalBackgroundColor = [UIColor whiteColor];;
-    //设置tab 被选中的标识的颜色(可选)
-    self.slideSwitchView.tabItemSelectionIndicatorColor = UGNavColor;
-    [self.view addSubview:self.slideSwitchView];
+    if (!self.slideSwitchView) {
+        self.itemArray = @[@"已中奖", @"未中奖", @"等待开奖", @"已撤单"];
+        self.slideSwitchView = [[XYYSegmentControl alloc] initWithFrame:CGRectMake(0 , 0, self.view.width, self.view.height) channelName:self.itemArray source:self];
+        [self.slideSwitchView setUserInteractionEnabled:YES];
+        self.slideSwitchView.segmentControlDelegate = self;
+        
+        //设置tab 颜色(可选)
+        self.slideSwitchView.tabItemNormalColor = [UIColor grayColor];
+        self.slideSwitchView.tabItemNormalFont = 13;
+        //设置tab 被选中的颜色(可选)
+        self.slideSwitchView.tabItemSelectedColor = UGNavColor;
+        //设置tab 背景颜色(可选)
+        self.slideSwitchView.tabItemNormalBackgroundColor = [UIColor whiteColor];;
+        //设置tab 被选中的标识的颜色(可选)
+        self.slideSwitchView.tabItemSelectionIndicatorColor = UGNavColor;
+        [self.view addSubview:self.slideSwitchView];
+    }
     
-    self.title = @"彩票记录";
+
 }
 
 
@@ -196,6 +198,15 @@ static NSString *recordFilterCellid = @"UGRecordFilterCollectionViewCell";
 {
     self.controllerIndex = number;
     UGBetRecordTableViewController *recordVC = self.controllersArray[number];
+  
+    recordVC.loadData = YES;
+}
+
+-(void)setSelectIndex:(int)selectIndex{
+    _selectIndex = selectIndex;
+    self.controllerIndex = _selectIndex;
+    UGBetRecordTableViewController *recordVC = self.controllersArray[_selectIndex];
+     
     recordVC.loadData = YES;
 }
 

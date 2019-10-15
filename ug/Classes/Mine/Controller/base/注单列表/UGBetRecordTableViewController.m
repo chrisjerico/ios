@@ -37,11 +37,13 @@ static NSString *betRecordCellid = @"UGLotteryRecordCell";
 -(void)skin{
     
 }
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.title = @"彩票注单记录";
-    self.navigationItem.title = @"彩票注单";
+
     self.pageSize = size;
     self.pageNumber = page;
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
@@ -90,7 +92,7 @@ static NSString *betRecordCellid = @"UGLotteryRecordCell";
         self.winAmountLabel.hidden = YES;
     }
     
-    [self getBetsList];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -111,13 +113,21 @@ static NSString *betRecordCellid = @"UGLotteryRecordCell";
         [weakSelf getBetsList];
     }];
     self.tableView.mj_footer.hidden = YES;
+    
+    // 马上进入刷新状态
+    [self.tableView.mj_header beginRefreshing];
 
 }
 
 - (void)setLoadData:(BOOL)loadData {
     _loadData = loadData;
     if (loadData && self.status && self.startDate && self.gameType) {
-        [self getBetsList];
+         // 马上进入刷新状态
+        dispatch_async(dispatch_get_main_queue(), ^{
+           // UI更新代码
+           [self.tableView.mj_header beginRefreshing];
+        });
+        
     }
 }
 

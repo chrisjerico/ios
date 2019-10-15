@@ -308,14 +308,12 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
     }
     else if ([title containsString:@"即时注单"]) {
         UGBetRecordViewController *betRecordVC = [[UGBetRecordViewController alloc] init];
-        [betRecordVC buildSegment];
-        [betRecordVC setSelectIndex:2];
+        betRecordVC.selectIndex = 2;
         [NavController1 pushViewController:betRecordVC animated:true];
     }
     else if ([title containsString:@"今日输赢" ]) {
         UGBetRecordViewController *betRecordVC = [[UGBetRecordViewController alloc] init];
-        [betRecordVC buildSegment];
-        [betRecordVC setSelectIndex:2];
+        betRecordVC.selectIndex = 2;
         [NavController1 pushViewController:betRecordVC animated:true];
     }
     else if ([title isEqualToString:@"投注记录" ]) {
