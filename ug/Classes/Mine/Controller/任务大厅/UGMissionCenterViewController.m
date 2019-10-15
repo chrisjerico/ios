@@ -55,11 +55,10 @@
 @end
 
 @implementation UGMissionCenterViewController
--(void)skin{
-    
+- (void)skin {
     [self initView];
-    
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -76,7 +75,7 @@
 
 }
 
--(void)initView{
+- (void)initView {
     [self.integralLabel setHidden:YES];
     self.fd_prefersNavigationBarHidden = NO;
     self.navigationItem.title = @"任务中心";

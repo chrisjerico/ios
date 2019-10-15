@@ -21,12 +21,17 @@
 @end
 
 @implementation UGChangLongController
--(void)skin{
-    
+
+- (void)skin {
     self.view.backgroundColor = UGBackgroundColor;
-     [self buildSegment];
-      [self getAllNextIssueData];
+    [self buildSegment];
+    [self getAllNextIssueData];
 }
+
+- (BOOL)未登录禁止访问 {
+    return true;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     

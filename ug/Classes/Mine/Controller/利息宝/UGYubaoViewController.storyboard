@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jz7-Dd-k0M">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jz7-Dd-k0M">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -430,6 +430,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3fI-vB-cYE"/>
                     </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="游客禁止访问" value="YES"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="未登录禁止访问" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="animatedImageView" destination="p5V-IT-BwA" id="qNa-tj-gQS"/>
                         <outlet property="annualizedRateLabel" destination="RuL-Qv-0rn" id="9kJ-ZT-p1o"/>
@@ -623,6 +627,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="SLl-Yw-6mx"/>
                     </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="游客禁止访问" value="YES"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="未登录禁止访问" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="amountTextF" destination="o8L-hO-QP7" id="lhA-BV-DXb"/>
                         <outlet property="balanceLabel" destination="hhl-0V-mlM" id="Dbz-hc-OMY"/>
@@ -1386,6 +1394,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="UUZ-B7-04w"/>
                     </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="游客禁止访问" value="YES"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="未登录禁止访问" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="balanceLabel" destination="ShB-xf-C82" id="2Uf-Dx-LG1"/>
                         <outlet property="bgView" destination="fMd-0J-j9C" id="2cH-dD-V8I"/>

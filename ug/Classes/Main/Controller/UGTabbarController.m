@@ -18,15 +18,30 @@
 #import "UGMissionCenterViewController.h"   // 任务中心
 #import "UGSecurityCenterViewController.h"  // 安全中心
 #import "UGMailBoxTableViewController.h"    // 站内信
-#import "UGBankCardInfoController.h"        // 银行卡
-#import "UGBindCardViewController.h"        // 银行卡
+#import "UGBankCardInfoController.h"        // 我的银行卡
+#import "UGBindCardViewController.h"        // 银行卡管理
 #import "UGYubaoViewController.h"           // 利息宝
 #import "UGSigInCodeViewController.h"       // 每日签到
 #import "UGPromotionIncomeController.h"     // 推广收益
 #import "UGBalanceConversionController.h"   // 额度转换
 
+
+
 #import "UGSystemConfigModel.h"
 #import "UGAppVersionManager.h"
+
+#import "cc_runtime_property.h"
+
+
+@implementation UIViewController (CanPush)
+
+_CCRuntimeProperty_Assign(BOOL, 未登录禁止访问, set未登录禁止访问)
+_CCRuntimeProperty_Assign(BOOL, 游客禁止访问, set游客禁止访问)
+@end
+
+
+
+
 
 @interface UGTabbarController ()<UITabBarControllerDelegate>
 
@@ -39,6 +54,51 @@ static UGTabbarController *_tabBarVC = nil;
 
 + (instancetype)shared {
     return _tabBarVC;
+}
+
++ (BOOL)canPushToViewController:(UIViewController *)vc {
+    UGUserModel *user = [UGUserModel currentUser];
+    BOOL isLogin = UGLoginIsAuthorized();
+    
+    // 未登录禁止访问
+    if (!isLogin && (vc.未登录禁止访问 || vc.游客禁止访问)) {
+        NSLog(@"未登录禁止访问：%@", vc);
+        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLoginViewController") animated:true];
+        return false;
+    }
+    
+    // 游客禁止访问
+    if (user.isTest && vc.游客禁止访问) {
+        NSLog(@"游客禁止访问：%@", vc);
+        UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"请先登录您的正式账号" btnTitles:@[@"取消", @"马上登录"]];
+        [ac setActionAtTitle:@"马上登录" handler:^(UIAlertAction *aa) {
+            SANotificationEventPost(UGNotificationUserLogout, nil);
+            SANotificationEventPost(UGNotificationShowLoginView, nil);
+        }];
+        return false;
+    }
+    
+    // 聊天室
+    if ([vc isKindOfClass:[UGChatViewController class]] && !user.chatRoomSwitch) {
+        [AlertHelper showAlertView:@"温馨提示" msg:@"聊天室已关闭" btnTitles:@[@"确定"]];
+        return false;
+    }
+    // 任务中心
+    else if([vc isKindOfClass:[UGMissionCenterViewController class]] && [SysConf.missionSwitch isEqualToString:@"1"]) {
+        [AlertHelper showAlertView:@"温馨提示" msg:@"任务中心已关闭" btnTitles:@[@"确定"]];
+        return false;
+    }
+    // 利息宝
+    else if([vc isKindOfClass:[UGYubaoViewController class]] && !user.yuebaoSwitch) {
+        [AlertHelper showAlertView:@"温馨提示" msg:@"利息宝已关闭" btnTitles:@[@"确定"]];
+        return false;
+    }
+    // 每日签到
+    else if([vc isKindOfClass:[UGSigInCodeViewController class]] && [SysConf.checkinSwitch isEqualToString:@"0"]) {
+        [AlertHelper showAlertView:@"温馨提示" msg:@"每日签到已关闭" btnTitles:@[@"确定"]];
+        return false;
+    }
+    return true;
 }
 
 - (void)viewDidLoad {
@@ -69,7 +129,7 @@ static UGTabbarController *_tabBarVC = nil;
     [self resetUpChildViewController:@[@"/home", @"/lotteryList", @"/chatRoomList", @"/referrer", @"/user", ]];
     
     // 更新为后台配置的控制器
-//    [self getSystemConfig];
+    [self getSystemConfig];
     
 //    SANotificationEventSubscribe(UGNotificationWithResetTabSuccess, self, ^(typeof (self) self, id obj) {
 //         [self resetUpChildViewController];
@@ -206,74 +266,9 @@ static UGTabbarController *_tabBarVC = nil;
 
 #pragma mark - UITabBarControllerDelegate
 
-/// 切换
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
-    CMMETHOD_BEGIN_O(viewController.restorationIdentifier);
-    
-    UIViewController *vc = ((UINavigationController *)viewController).viewControllers.firstObject;
-    UGUserModel *user = [UGUserModel currentUser];
-    UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
-   
-    
-    BOOL isLogin = UGLoginIsAuthorized();
-    
-    if (isLogin) {
-        if ([vc isKindOfClass:[UGChatViewController class]]) {
-            // 聊天室
-            if (!user.chatRoomSwitch) {//关
-                [QDAlertView showWithTitle:@"温馨提示" message:@"聊天室已关闭" cancelButtonTitle:@"确定" otherButtonTitle:nil completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                }];
-                return NO;
-            } else {
-                ((UGChatViewController *)vc).url = _NSString(@"%@%@%@&loginsessid=%@&color=%@&back=hide", baseServerUrl, newChatRoomUrl, [UGUserModel currentUser].token, [UGUserModel currentUser].sessid, [[UGSkinManagers shareInstance] setChatNavbgStringColor]);
-                return YES;
-            }
-        }
-        else if([vc isKindOfClass:NSClassFromString(@"UGMissionCenterViewController")] ) {
-            // 任务中心
-            if ([config.missionSwitch isEqualToString:@"1"]) {//关
-                [QDAlertView showWithTitle:@"温馨提示" message:@"任务中心已关闭" cancelButtonTitle:@"确定" otherButtonTitle:nil completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                }];
-                return NO;
-            } else {
-                return YES;
-            }
-        }
-        else if([vc isKindOfClass:NSClassFromString(@"UGYubaoViewController")]) {
-            // 利息宝
-            NSLog(@"user.yuebaoSwitch = %d",user.yuebaoSwitch);
-            if (!user.yuebaoSwitch) {//关
-                [QDAlertView showWithTitle:@"温馨提示" message:@"利息宝已关闭" cancelButtonTitle:@"确定" otherButtonTitle:nil completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                }];
-                return NO;
-            } else {
-                return YES;
-            }
-        }
-        else if([vc isKindOfClass:NSClassFromString(@"UGSigInCodeViewController")]) {
-            // 每日签到
-            if ([config.checkinSwitch isEqualToString:@"0"]) {//关
-                [QDAlertView showWithTitle:@"温馨提示" message:@"每日签到已关闭" cancelButtonTitle:@"确定" otherButtonTitle:nil completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                }];
-                return false;
-            } else {
-                return true;
-            }
-        }
-    } else {
-        if (![vc isKindOfClass:[UGHomeViewController class]]) {
-            UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"您还未登录" btnTitles:@[@"取消", @"马上登录"]];
-            [ac setActionAtTitle:@"马上登录" handler:^(UIAlertAction *aa) {
-                UGLoginAuthorize(^(BOOL isFinish) {
-                    if (!isFinish)
-                        return ;
-                    [tabBarController setSelectedViewController:viewController];
-                });
-            }];
-            return false;
-        }
-    }
-    return true;
+    // push权限判断
+    return [UGTabbarController canPushToViewController:((UINavigationController *)viewController).viewControllers.firstObject];
 }
 
 @end

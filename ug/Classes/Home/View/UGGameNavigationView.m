@@ -65,65 +65,30 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     BOOL isLogin = UGLoginIsAuthorized();
     if (isLogin) {
-        
-        if ([UGUserModel currentUser].isTest) {
-                   [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                       if (buttonIndex == 1) {
-                           
-                           NSDictionary *dict = @{@"token":[UGUserModel currentUser].sessid};
-                           [CMNetwork userLogoutWithParams:dict completion:^(CMResult<id> *model, NSError *err) {
-                               [CMResult processWithResult:model success:^{
-                                   UGUserModel.currentUser = nil;
-                                   dispatch_async(dispatch_get_main_queue(), ^{
-                                       
-                                       SANotificationEventPost(UGNotificationShowLoginView, nil);
-                                   });
-                               } failure:^(id msg) {
-                                   [SVProgressHUD showErrorWithStatus:msg];
-                               }];
-                           }];
-                           
-                          
-                       }
-                   }];
-               }else {
-                   
-                         [[NSNotificationCenter defaultCenter] postNotification: [NSNotification notificationWithName:@"gameNavigationItemTaped" object: self.sourceData[indexPath.item]]];
-            }
-
-    }
-    else{
-        
-        
+        [[NSNotificationCenter defaultCenter] postNotification: [NSNotification notificationWithName:@"gameNavigationItemTaped" object: self.sourceData[indexPath.item]]];
+    } else {
         SANotificationEventPost(UGNotificationShowLoginView, nil);
     }
- 
 }
+
+
 #pragma mark ---- UICollectionViewDelegateFlowLayout
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
 	return (CGSize){(UGScreenW - 20)/4,80};
 }
 
-
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
-{
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
 	return UIEdgeInsetsMake(0, 0, 0, 0);
 }
 
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
-{
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
 	return 0;
 }
 
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
-{
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
 	return 0;
 }
-
 
 @end
 

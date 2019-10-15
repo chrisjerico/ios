@@ -9,6 +9,8 @@
 #import "UGFundDetailsTableViewController.h"
 #import "UGFundDetailsCell.h"
 #import "UGFundLogsModel.h"
+
+
 @interface UGFundDetailsTableViewController ()
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
@@ -17,11 +19,14 @@
 @property(nonatomic, assign) int pageSize;
 @property(nonatomic, assign) int pageNumber;
 @end
+
+
 //分页初始值
 static int page = 1;
 static int size = 20;
-
 static NSString *fundDetailsCellid = @"UGFundDetailsCell";
+
+
 @implementation UGFundDetailsTableViewController
 
 - (void)viewDidLoad {
@@ -111,12 +116,10 @@ static NSString *fundDetailsCellid = @"UGFundDetailsCell";
 #pragma mark tableview delegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
     return self.dataArray.count;
 }
 
@@ -127,12 +130,10 @@ static NSString *fundDetailsCellid = @"UGFundDetailsCell";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    
     return 44;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    
     return 0.001f;
 }
 

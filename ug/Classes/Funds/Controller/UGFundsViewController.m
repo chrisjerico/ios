@@ -25,10 +25,14 @@
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
--(void)skin{
+- (void)skin {
      [self buildSegment];
-    
 }
+
+- (BOOL)游客禁止访问 {
+    return true;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"资金管理";

@@ -363,77 +363,41 @@
 	[self.view layoutIfNeeded];
 }
 
--(void)gameNavigationItemTaped: (NSNotification *)notification {
-	
-	GameModel * model = notification.object;
+- (void)gameNavigationItemTaped: (NSNotification *)notification {
+	GameModel *model = notification.object;
 	
 	if ([model.subId isEqualToString:@"1"]) {
-		UGFundsViewController * vc = [UGFundsViewController new];
-		[self.navigationController pushViewController:vc animated:true];
+        // 资金管理
+		[self.navigationController pushViewController:[UGFundsViewController new] animated:true];
 	} else if ([model.subId isEqualToString:@"8"]) {
-		
-		UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGYubaoViewController" bundle:nil];
-		UGYubaoViewController *lixibaoVC = [storyboard instantiateInitialViewController];
-		[self.navigationController pushViewController:lixibaoVC  animated:YES];
-		
-		
+        // 利息宝
+		[self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGYubaoViewController")  animated:YES];
 	} else if ([model.subId isEqualToString:@"5"]) {
+        // 长龙助手
 		UGChangLongController *changlongVC = [[UGChangLongController alloc] init];
 		changlongVC.lotteryGamesArray = self.lotteryGamesArray;
 		[self.navigationController pushViewController:changlongVC animated:YES];
-		
 	} else if ([model.subId isEqualToString:@"7"]) {
+        //
 		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://test10.6yc.com/Open_prize/index.php"]];
 	} else if ([model.subId isEqualToString:@"6"]) {
-            UGUserModel *user = [UGUserModel currentUser];
-               if (user.isTest) {
-                   [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                       if (buttonIndex == 1) {
-                                 SANotificationEventPost(UGNotificationUserLogout, nil);
-                           SANotificationEventPost(UGNotificationShowLoginView, nil);
-                       }
-                   }];
-               } else {
-                       UGPromotionIncomeController *incomeVC = [[UGPromotionIncomeController alloc] init];
-                       [self.navigationController pushViewController:incomeVC animated:YES];
-               }
-		
+        // 推广收益
+        [self.navigationController pushViewController:[UGPromotionIncomeController new] animated:YES];
 	} else if ([model.subId isEqualToString:@"2"]) {
+        // APP下载
 		[SVProgressHUD showInfoWithStatus:@"下载链接未配置"];
-		
 	} else if ([model.subId isEqualToString:@"3"]) {
 		// 聊天室
-		UGChatViewController * qdwebVC = [[UGChatViewController alloc] init];
-		qdwebVC.webTitle = @"聊天室";
-		
-		if (![CMCommon stringIsNull:[UGUserModel currentUser].token]) {
-			NSString *colorStr = [[UGSkinManagers shareInstance] setChatNavbgStringColor];
-			qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr];
-		} else {
-			NSString *colorStr = [[UGSkinManagers shareInstance] setChatNavbgStringColor];
-			qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr];
-		}
-		
-		[self.navigationController pushViewController:qdwebVC animated:YES];
-		
+		[self.navigationController pushViewController:[UGChatViewController new] animated:YES];
 	} else if ([model.subId isEqualToString:@"4"]) {
 		// 在线客服
 		SLWebViewController *webViewVC = [[SLWebViewController alloc] init];
-		UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
-
-		
-		if (config.zxkfUrl.length > 0) {
-				webViewVC.urlStr = config.zxkfUrl;
-			} else {
-	//			[SVProgressHUD showErrorWithStatus:@"链接未配置"];
-				return;
-			}
+        webViewVC.urlStr = SysConf.zxkfUrl;
 		[self.navigationController pushViewController:webViewVC animated:YES];
 	}
-	
 }
+
 - (void)getUserInfo {
-	
 	if (!UGLoginIsAuthorized()) {
 		return;
 	}
@@ -810,17 +774,13 @@
 }
 
 #pragma mark - SDCycleScrollViewDelegate
-- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
-{
-	
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
 	UGBannerCellModel *banner = self.bannerArray[index];
 	if (banner.url.length) {
 		SLWebViewController *webVC = [[SLWebViewController alloc] init];
 		webVC.urlStr = banner.url;
 		[self.navigationController pushViewController:webVC animated:YES];
-		
 	}
-	
 }
 
 #pragma mark - UUMarqueeViewDelegate
