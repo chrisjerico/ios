@@ -63,7 +63,22 @@
         self.lotteryTimeLabel.text = @"已封盘";
     }
     self.playCateNameLabel.text = item.playCateName;
+
     self.playNameLabel.text = item.playName;
+    if ([item.playName isEqualToString:@"小"]) {
+        [self.playNameLabel setBackgroundColor:UGRGBColor(92, 183, 109) ];
+    }
+    else if ([item.playName isEqualToString:@"大"]){
+        [self.playNameLabel setBackgroundColor:UGRGBColor(225, 81, 66) ];
+    }
+    else if ([item.playName isEqualToString:@"单"]){
+        [self.playNameLabel setBackgroundColor:UGRGBColor(225, 238, 66) ];
+    }
+    else if ([item.playName isEqualToString:@"双"]){
+        [self.playNameLabel setBackgroundColor:UGRGBColor(76, 150, 237) ];
+    }
+    
+    
     self.countLabel.text = item.count;
     if (item.betList.count) {
         
