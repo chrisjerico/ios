@@ -19,6 +19,11 @@
                             <rect key="frame" x="0.0" y="0.0" width="414" height="256"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="ebK-lA-jpc">
+                            <rect key="frame" x="0.0" y="1207" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        </view>
                         <sections>
                             <tableViewSection id="lrJ-Hv-Jg3">
                                 <cells>

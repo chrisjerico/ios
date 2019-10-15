@@ -146,7 +146,13 @@
 //	[_iconImage sd_setImageWithURL:[NSURL URLWithString:model.icon]];
     NSLog(@"model.icon = %@",model.icon);
 //    [_iconImage startAnimating];
-	_titleLabel.text = model.name;
+    if ([CMCommon stringIsNull:model.name]) {
+        _titleLabel.text = model.title;
+    }
+    else{
+        _titleLabel.text = model.name;
+    }
+	
     if ([model.tipFlag isEqualToString:@"1"]) {
         [_hotImage setHidden:NO];
     } else {

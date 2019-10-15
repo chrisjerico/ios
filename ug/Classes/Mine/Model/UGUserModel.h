@@ -40,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *email;
 @property (nonatomic, assign) BOOL enable;
 @property (nonatomic, strong) NSString *fullName;
-@property (nonatomic, assign) BOOL hasFundPwd;
+@property (nonatomic, assign) BOOL hasFundPwd;/**<   是否置取款密码的账号 */
 @property (nonatomic, assign) BOOL hasBankCard;
 @property (nonatomic, assign) NSInteger unreadFaq;
 @property (nonatomic, strong) NSString *unreadMsg;

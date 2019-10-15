@@ -120,15 +120,12 @@
     if (number == 1) {
         UGUserModel *user = [UGUserModel currentUser];
         NSLog(@"user= %@",user);
-        if (user.hasBankCard) {
+        if (user.hasFundPwd) {
 
             UGModifyPayPwdController *payVC = [storyboard instantiateViewControllerWithIdentifier:@"UGModifyPayPwdController"];
             return payVC;
         }else {
-//            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGBindCardViewController" bundle:nil];
-//
-//            UGSetupPayPwdController *fundVC = [storyboard instantiateViewControllerWithIdentifier:@"UGSetupPayPwdController"];
-//            return fundVC;
+
             UGgoBindViewController *vc = [UGgoBindViewController new];
             return vc;
         }
