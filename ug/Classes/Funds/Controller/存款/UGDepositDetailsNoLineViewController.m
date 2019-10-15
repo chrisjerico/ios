@@ -184,8 +184,9 @@
          make.right.equalTo(self.view.mas_right).with.offset(-20);
          make.top.equalTo(self.tiplabel.mas_bottom).offset(0);
          make.width.mas_equalTo(UGScreenW-20);
-         make.height.mas_equalTo(34);
      }];
+    [self.tip2label setText:item.depositPrompt];
+      [self.tip2label sizeToFit];
     NSLog(@"%@",NSStringFromCGRect(self.tip2label.frame));
     //==============================================================
     float tableViewHeight = self->_tableDataArray.count *44.0;
