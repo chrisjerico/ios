@@ -84,7 +84,8 @@
         || [paymentid isEqualToString:@"wxsm_transfer"]
         || [paymentid isEqualToString:@"dshb_transfer"]
         || [paymentid isEqualToString:@"xlsm_transfer"]
-        || [paymentid isEqualToString:@"zhifubao_transfer"]) {
+        || [paymentid isEqualToString:@"zhifubao_transfer"]
+        || [paymentid isEqualToString:@"wechat_transfer"]) {
          self.name1Label.text = @"收款姓名：";
          self.name2Label.text = @"收款账号：";
          self.name3Label.text = @"银行名称：";

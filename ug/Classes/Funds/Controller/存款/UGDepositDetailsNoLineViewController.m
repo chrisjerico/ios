@@ -86,6 +86,18 @@
     
      channelModel.paymentid = self.item.pid;
      [self.uGFundsTransferView setItem:channelModel];
+    
+
+    CGSize basetipSize = CGSizeMake(UGScreenW -40, CGFLOAT_MAX);
+      CGSize tipsize  = [self.item.transferPrompt
+      boundingRectWithSize:basetipSize
+      options:NSStringDrawingUsesLineFragmentOrigin
+      attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:14.0]}
+      context:nil].size;
+      
+      int tipHeigth = tipsize.height +20;
+    
+    
     self.tip2label.text = self.item.depositPrompt;
     
     CGSize baseSize = CGSizeMake(UGScreenW -40, CGFLOAT_MAX);
@@ -302,20 +314,15 @@
     } else {
         buttonHight = 30;
     }
-    
-    
-    if ([CMCommon stringIsNull:channelModel.qrcode]) {
-//        [self->_uGFunds2microcodeView setHidden:YES];
-        _mUIScrollView.contentSize = CGSizeMake(UGScreenW, labelHeigth+tip2Heigth+tableViewHeight+self.submit_button.y+self.submit_button.height+buttonHight+50);
-    } else {
-        _mUIScrollView.contentSize = CGSizeMake(UGScreenW, labelHeigth+tip2Heigth+tableViewHeight+self.submit_button.y+self.submit_button.height+buttonHight+50);
+//    996.333
+    NSLog(@"self.submit_button.y= %f",self.submit_button.y);
+    int codeHeight = 20;
+    if (![CMCommon stringIsNull:channelModel.qrcode]) {
+        codeHeight = 140;
+        
     }
+    _mUIScrollView.contentSize = CGSizeMake(UGScreenW, labelHeigth+tip2Heigth+tableViewHeight+181.0+191.0+self.submit_button.height+buttonHight+90 +tipHeigth+codeHeight);
 
-    
-
-    
-    
-    
     
 }
 
