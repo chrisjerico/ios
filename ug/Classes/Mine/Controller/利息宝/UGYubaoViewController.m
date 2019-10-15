@@ -16,10 +16,7 @@
 #import "UGYubaoInComeController.h"
 #import "UGYubaoConversionRecordController.h"
 #import "UGYuebaoInfoModel.h"
-#import "UGYUbaoTitleView.h"
 @interface UGYubaoViewController ()
-@property (nonatomic, strong) UGYUbaoTitleView *titleView;               /**<   自定义导航条 */
-
 @property (weak, nonatomic) IBOutlet FLAnimatedImageView *animatedImageView;
 @property (weak, nonatomic) IBOutlet ZZCircleProgress *progressView;
 @property (weak, nonatomic) IBOutlet UIImageView *bgView;
@@ -92,24 +89,58 @@
     }
    
     
-    UGYUbaoTitleView *titleView = [[UGYUbaoTitleView alloc] initWithFrame:CGRectMake(0, 0, UGScreenW, 50)];
-    self.navigationItem.titleView = titleView;
-    [titleView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(APP.Width);
-    }];
+   
 
-    self.titleView = titleView;
+
+    self.progressView.startAngle = 0;
+    self.progressView.strokeWidth = 3;
+    self.progressView.showPoint = NO;
+    self.progressView.showProgressText = YES;
+    self.progressView.progressLabel.font = [UIFont systemFontOfSize:14];
+    self.progressView.pathBackColor = UGRGBColor(85, 117, 245);
+    self.progressView.pathFillColor = UGRGBColor(255, 255, 255);
+    self.progressView.progress = 1;
+    self.progressView.progressLabel.text = @"60";
+    self.progressView.progressLabel.textColor = [UIColor blackColor];
+    self.progressView.duration = 0;
+    self.progressView.increaseFromLast = YES;
     
-    [self.titleView.returnButton addTarget:self action:@selector(returnButtonAction) forControlEvents:UIControlEventTouchUpInside];
+ 
 
     self.countDown = [[CountDown alloc] init];
     
+ 
+//    if (@available(iOS 13.0, *)) {
+//
+//
+//            UIView *stateView = [self.navigationController.navigationBar viewWithTagString:@"状态栏背景View"];
+//            if (!stateView) {
+//                stateView = [[UIView alloc] initWithFrame:CGRectMake(0, -k_Height_StatusBar, UGScreenW, k_Height_StatusBar)];
+//                stateView.tagString = @"状态栏背景View";
+//                [self.navigationController.navigationBar addSubview:stateView];
+//            }
+//            stateView.backgroundColor = UGNavColor;
+//
+//    }
+//    else {
+//
+//        //   bug: iOS13 崩溃
+//        UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+//        if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
+//            statusBar.backgroundColor = UGNavColor;
+//        }
+//    }
+    
+    
+//   self.navigationController.navigationBar.barTintColor = UGNavColor;
+    
+//    UIView *stateView = [[UIView alloc] initWithFrame:CGRectMake(0, -(k_Height_StatusBar+IPHONE_SAFEBOTTOMAREA_HEIGHT), UGScreenW, k_Height_StatusBar+IPHONE_SAFEBOTTOMAREA_HEIGHT)];
+//    [self.navigationController.navigationBar addSubview:stateView];
+//    stateView.backgroundColor = [UIColor blackColor];
+
 }
 
-- (void)returnButtonAction{
-    [self.navigationController popViewControllerAnimated:YES];
-    
-}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
      [self.waveView startWaveAnimation];
@@ -127,7 +158,7 @@
         }else {
             weakSelf.animatedImageView.hidden = YES;
         }
-        weakSelf.titleView.progressView.progress = progress;
+        weakSelf.progressView.progress = progress;
         
     }];
     

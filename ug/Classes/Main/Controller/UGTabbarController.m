@@ -173,9 +173,9 @@ static UGTabbarController *_tabBarVC = nil;
             UGmobileMenu *gm = [_gms objectWithValue:path keyPath:@"path"];
             
             BOOL existed = false;
-            for (UGNavigationController *nav in self.viewControllers) {
-                if ([nav.viewControllers.firstObject isKindOfClass:gm.cls]) {
-                    [vcs addObject:nav];
+            for (UIViewController *vc in self.viewControllers) {
+                if ([vc isKindOfClass:gm.cls]) {
+                    [vcs addObject:vc];
                     existed = true;
                     break;
                 }
@@ -186,9 +186,16 @@ static UGTabbarController *_tabBarVC = nil;
             UIViewController *vc = _LoadVC_from_storyboard_(NSStringFromClass(gm.cls));
             if (!vc)
                 vc = [gm.cls new];
+            if ([NSStringFromClass(gm.cls) isEqualToString:@"UGChatViewController"]) {
+                UGChatViewController *chatVC = (UGChatViewController *)vc;
+                chatVC.webTitle = @"聊天室";
+            }
             vc.tabBarItem.title = gm.name;
             vc.tabBarItem.image = [UIImage imageNamed:gm.icon];
             vc.tabBarItem.selectedImage = [[UIImage imageNamed:gm.selectedIcon] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+//            [vc aspect_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
+//                ((UIViewController *)ai.instance).view.backgroundColor = UGBackgroundColor;
+//            } error:nil];
             UGNavigationController *nav = [[UGNavigationController alloc] initWithRootViewController:vc];
             [vcs addObject:nav];
         }

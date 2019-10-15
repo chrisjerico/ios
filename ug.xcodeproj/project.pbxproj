@@ -616,8 +616,6 @@
 		D4EE8FA523424E5F006FA0E2 /* UIImage+YYgradientImage.m in Sources */ = {isa = PBXBuildFile; fileRef = D4EE8FA423424E5F006FA0E2 /* UIImage+YYgradientImage.m */; };
 		D4F0477622E9E22E008EBB56 /* UGLinkNumCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F0477422E9E22E008EBB56 /* UGLinkNumCollectionViewCell.m */; };
 		D4F0477722E9E22E008EBB56 /* UGLinkNumCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4F0477522E9E22E008EBB56 /* UGLinkNumCollectionViewCell.xib */; };
-		D4F0A2B423536F1B00851C1E /* UGYUbaoTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F0A2B323536F1B00851C1E /* UGYUbaoTitleView.m */; };
-		D4F0A2B623536F3300851C1E /* UGYUbaoTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4F0A2B523536F3300851C1E /* UGYUbaoTitleView.xib */; };
 		D4F50A512339E67600E0811D /* UGAgentRefusedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F50A4F2339E67600E0811D /* UGAgentRefusedViewController.m */; };
 		D4F50A522339E67600E0811D /* UGAgentRefusedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4F50A502339E67600E0811D /* UGAgentRefusedViewController.xib */; };
 		D4F63F8F228FD1A200EC93AA /* UGFastThreeThreeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F63F8D228FD1A200EC93AA /* UGFastThreeThreeCollectionViewCell.m */; };
@@ -1731,9 +1729,6 @@
 		D4F0477322E9E22E008EBB56 /* UGLinkNumCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLinkNumCollectionViewCell.h; sourceTree = "<group>"; };
 		D4F0477422E9E22E008EBB56 /* UGLinkNumCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLinkNumCollectionViewCell.m; sourceTree = "<group>"; };
 		D4F0477522E9E22E008EBB56 /* UGLinkNumCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGLinkNumCollectionViewCell.xib; sourceTree = "<group>"; };
-		D4F0A2B223536F1B00851C1E /* UGYUbaoTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGYUbaoTitleView.h; sourceTree = "<group>"; };
-		D4F0A2B323536F1B00851C1E /* UGYUbaoTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGYUbaoTitleView.m; sourceTree = "<group>"; };
-		D4F0A2B523536F3300851C1E /* UGYUbaoTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGYUbaoTitleView.xib; sourceTree = "<group>"; };
 		D4F50A4E2339E67600E0811D /* UGAgentRefusedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGAgentRefusedViewController.h; sourceTree = "<group>"; };
 		D4F50A4F2339E67600E0811D /* UGAgentRefusedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGAgentRefusedViewController.m; sourceTree = "<group>"; };
 		D4F50A502339E67600E0811D /* UGAgentRefusedViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGAgentRefusedViewController.xib; sourceTree = "<group>"; };
@@ -2298,9 +2293,6 @@
 				D422A581229E7AE90068D0AD /* UGYubaoIncomeTableViewCell.m */,
 				D422A586229E813C0068D0AD /* UGYubaoConversionRecordCell.h */,
 				D422A587229E813C0068D0AD /* UGYubaoConversionRecordCell.m */,
-				D4F0A2B223536F1B00851C1E /* UGYUbaoTitleView.h */,
-				D4F0A2B323536F1B00851C1E /* UGYUbaoTitleView.m */,
-				D4F0A2B523536F3300851C1E /* UGYUbaoTitleView.xib */,
 			);
 			path = "利息宝";
 			sourceTree = "<group>";
@@ -4292,7 +4284,6 @@
 				D40D58C6228A9A230025963A /* UGBetDetailTableViewCell.xib in Resources */,
 				D41246B32285B5CB006881E2 /* UGMissionTableViewCell.xib in Resources */,
 				D48224EB22A0FDD000F7DE72 /* UGPlatformNoticeCell.xib in Resources */,
-				D4F0A2B623536F3300851C1E /* UGYUbaoTitleView.xib in Resources */,
 				D49A36C622A2C9ED000057D2 /* UGQXCLotteryController.storyboard in Resources */,
 				D463B4EB2284736200EAC0F7 /* UGBindCardViewController.storyboard in Resources */,
 				D41FF76D22E8141A00FCCDD2 /* UGLotteryRecordCell.xib in Resources */,
@@ -4584,7 +4575,6 @@
 				D4239BD022CCEC9D00700D8E /* DKProgressLayer.m in Sources */,
 				D40DE98522F335E300974BAF /* SDCollectionViewCell.m in Sources */,
 				D41A57782306924D00C26023 /* UGBackToastView.m in Sources */,
-				D4F0A2B423536F1B00851C1E /* UGYUbaoTitleView.m in Sources */,
 				D405B1BB227972AD00F8C586 /* SDWebImageCompat.m in Sources */,
 				D405B1D5227972C100F8C586 /* AFHTTPSessionManager.m in Sources */,
 				D45F98C622E34DAB00194139 /* UGMineViewController.m in Sources */,
