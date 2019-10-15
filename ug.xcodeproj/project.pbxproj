@@ -625,6 +625,8 @@
 		D4F63F94228FD3B000EC93AA /* UGFastThreeFourCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F63F92228FD3B000EC93AA /* UGFastThreeFourCollectionViewCell.m */; };
 		D4F63F95228FD3B000EC93AA /* UGFastThreeFourCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4F63F93228FD3B000EC93AA /* UGFastThreeFourCollectionViewCell.xib */; };
 		D4F63F982290403000EC93AA /* UGChangLongController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F63F972290403000EC93AA /* UGChangLongController.m */; };
+		D4FB62E52355FF7F008EACB2 /* UGYUbaoTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FB62E32355FF7E008EACB2 /* UGYUbaoTitleView.m */; };
+		D4FB62E62355FF7F008EACB2 /* UGYUbaoTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4FB62E42355FF7F008EACB2 /* UGYUbaoTitleView.xib */; };
 		D4FBBBE0228BD0E600153FB5 /* UGBetDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FBBBDF228BD0E600153FB5 /* UGBetDetailModel.m */; };
 		D4FBBBE3228C034100153FB5 /* UGHallLotteryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FBBBE2228C034100153FB5 /* UGHallLotteryModel.m */; };
 		D4FBBBE6228C5D5200153FB5 /* UGAllNextIssueListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FBBBE5228C5D5200153FB5 /* UGAllNextIssueListModel.m */; };
@@ -1744,6 +1746,9 @@
 		D4F63F92228FD3B000EC93AA /* UGFastThreeFourCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGFastThreeFourCollectionViewCell.m; sourceTree = "<group>"; };
 		D4F63F93228FD3B000EC93AA /* UGFastThreeFourCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGFastThreeFourCollectionViewCell.xib; sourceTree = "<group>"; };
 		D4F63F972290403000EC93AA /* UGChangLongController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGChangLongController.m; sourceTree = "<group>"; };
+		D4FB62E22355FF7E008EACB2 /* UGYUbaoTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGYUbaoTitleView.h; sourceTree = "<group>"; };
+		D4FB62E32355FF7E008EACB2 /* UGYUbaoTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGYUbaoTitleView.m; sourceTree = "<group>"; };
+		D4FB62E42355FF7F008EACB2 /* UGYUbaoTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UGYUbaoTitleView.xib; sourceTree = "<group>"; };
 		D4FBBBDE228BD0E600153FB5 /* UGBetDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGBetDetailModel.h; sourceTree = "<group>"; };
 		D4FBBBDF228BD0E600153FB5 /* UGBetDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGBetDetailModel.m; sourceTree = "<group>"; };
 		D4FBBBE1228C034100153FB5 /* UGHallLotteryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGHallLotteryModel.h; sourceTree = "<group>"; };
@@ -2294,6 +2299,9 @@
 		CF3B0E5D234A29E20035AF50 /* 利息宝 */ = {
 			isa = PBXGroup;
 			children = (
+				D4FB62E22355FF7E008EACB2 /* UGYUbaoTitleView.h */,
+				D4FB62E32355FF7E008EACB2 /* UGYUbaoTitleView.m */,
+				D4FB62E42355FF7F008EACB2 /* UGYUbaoTitleView.xib */,
 				D422A580229E7AE90068D0AD /* UGYubaoIncomeTableViewCell.h */,
 				D422A581229E7AE90068D0AD /* UGYubaoIncomeTableViewCell.m */,
 				D422A586229E813C0068D0AD /* UGYubaoConversionRecordCell.h */,
@@ -4339,6 +4347,7 @@
 				D4185E3F231D2E1B008DB5F2 /* province_data.xml in Resources */,
 				D43555922334CDCE00515704 /* BAKit_WebView.bundle in Resources */,
 				D4BBFC06232A80A800147C4A /* UGFundsTransferView.xib in Resources */,
+				D4FB62E62355FF7F008EACB2 /* UGYUbaoTitleView.xib in Resources */,
 				D417EFD02330A4880024F634 /* UGredEnvelopeView.xib in Resources */,
 				CFD3BF432347241000FCDA6D /* Promote.storyboard in Resources */,
 				D4997332234F16A7000ECBA3 /* UGgoBindViewController.xib in Resources */,
@@ -4801,6 +4810,7 @@
 				D4E2876D22B666EB0002B2BF /* UGFC3DLotteryController.m in Sources */,
 				D4D8DF8D2287155800446BAF /* UGLotterySubResultCollectionViewCell.m in Sources */,
 				D41246AE2285B599006881E2 /* UGMissionListController.m in Sources */,
+				D4FB62E52355FF7F008EACB2 /* UGYUbaoTitleView.m in Sources */,
 				CFD3BEF92347137F00FCDA6D /* NSMutableArray+KVO.m in Sources */,
 				D4C93B4422D8C02000608B67 /* UGLoginAddressModel.m in Sources */,
 				D4527D1822828C27000EC1C2 /* UGPlatformBalanceTableViewCell.m in Sources */,
