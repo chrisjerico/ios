@@ -379,8 +379,8 @@
         {
             UGPromotion2rowTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UGPromotion2rowTableViewCell" forIndexPath:indexPath];
             UGinviteDomainModel *model = (UGinviteDomainModel *)self.dataArray[indexPath.row];
-            cell.firstLabel.text = model.domain;
-            cell.secondLabel.text = model.domain;
+            cell.firstLabel.text = [NSString stringWithFormat:@"http://%@",model.domain];
+            cell.secondLabel.text = [NSString stringWithFormat:@"http://%@",model.domain];
             return cell;
         }
             break;
