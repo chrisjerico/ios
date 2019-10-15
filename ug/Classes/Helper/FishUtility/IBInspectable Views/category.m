@@ -83,7 +83,7 @@ _CCRuntimeProperty_Copy(NSString *, 额外允许的字符, set额外允许的字
                 UITextPosition *position = [tf positionFromPosition:[tf markedTextRange].start offset:0];
                 if (!position && tf.text.length > tf.限制长度) {
                     tf.text = [tf.text substringToIndex:tf.限制长度];
-                    [HUDHelper showMsg:_NSString(@"不得超过%d字符", (int)tf.限制长度)];
+                    [HUDHelper showMsg:_NSString(@"不得超过%d个字符", (int)tf.限制长度)];
                 }
             }
         }];
@@ -147,7 +147,7 @@ _CCRuntimeGetterDoubleValue(BOOL, 内容紧贴边框)
                 UITextPosition *position = [tf positionFromPosition:[tf markedTextRange].start offset:0];
                 if (!position && tf.text.length > tf.限制长度) {
                     tf.text = [tf.text substringToIndex:tf.限制长度];
-                    [HUDHelper showMsg:_NSString(@"不得超过%d字符", (int)tf.限制长度)];
+                    [HUDHelper showMsg:_NSString(@"不得超过%d个字符", (int)tf.限制长度)];
                 }
             }
         }];

@@ -199,6 +199,13 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         [CMResult processWithResult:model success:^{
             UGPlayOddsModel *play = model.data;
             self.gameDataArray = play.playOdds.mutableCopy;
+            // 删除enable为NO的数据（不显示出来）
+            for (UGGameplayModel *gm in play.playOdds) {
+                for (UGGameplaySectionModel *gsm in gm.list) {
+                    if (!gsm.enable)
+                        [self.gameDataArray removeObject:gm];
+                }
+            }
             [self.tableView reloadData];
             [self.betCollectionView reloadData];
             [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
@@ -401,54 +408,46 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
         UGGameplaySectionModel *type = model.list[indexPath.section];
         UGGameBetModel *game = type.list[indexPath.row];
-        if (self.typeIndexPath.row == 0) {
+        if ([@"三军" isEqualToString:model.name]) {
             if (indexPath.section == 0) {
-                
                 UGFastThreeTwoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:oneimgCellid forIndexPath:indexPath];
                 cell.item = game;
                 return cell;
-            }else {
+            } else {
                 UGTimeLotteryBetCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:lottryBetCellid forIndexPath:indexPath];
                 cell.item = game;
                 return cell;
             }
-        }else if (self.typeIndexPath.row == 1) {
+        } else if ([@"围骰" isEqualToString:model.name]) {
             if (indexPath.section == 0) {
-                
                 UGFastThreeFourCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:threeImgCellid forIndexPath:indexPath];
                 cell.item = game;
                 return cell;
-            }else {
+            } else {
                 UGTimeLotteryBetCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:lottryBetCellid forIndexPath:indexPath];
                 cell.item = game;
                 return cell;
             }
-        }else if (self.typeIndexPath.row == 2) {
+        } else if ([@"点数" isEqualToString:model.name]) {
             UGTimeLotteryBetCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:lottryBetCellid forIndexPath:indexPath];
             cell.item = game;
             return cell;
-            
-        }else {
+        } else {
             UGFastThreeThreeCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:twoImgCellid forIndexPath:indexPath];
             cell.item = game;
             return cell;
-            
         }
-    }else {
+    } else {
         if (indexPath.section == 0) {
-            
             UGFastThreeOneCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:lotteryResultCellid forIndexPath:indexPath];
             cell.num = self.preNumArray[indexPath.row];
             return cell;
-        }else {
-                
+        } else {
             UGLotterySubResultCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:lotterySubResultCellid forIndexPath:indexPath];
             cell.title = self.preNumSxArray[indexPath.row];
             return cell;
-           
         }
     }
-    
 }
 
 -(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
@@ -514,7 +513,8 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 #pragma mark - WSLWaterFlowLayoutDelegate
 //返回每个item大小
 - (CGSize)waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    if (self.typeIndexPath.row == 1 && indexPath.section == 1) {
+    UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
+    if ([@"围骰" isEqualToString:model.name] && indexPath.section == 1) {
         return CGSizeMake((UGScreenW / 4 * 3 - 4), 40);
     }
     return CGSizeMake((UGScreenW / 4 * 3 - 4) / 2, 40);

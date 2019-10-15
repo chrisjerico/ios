@@ -14,8 +14,6 @@
 @interface UGLotteryAssistantController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewConstraintHeight;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewBottom;
 @property (weak, nonatomic) IBOutlet UILabel *countLabel;
 @property (weak, nonatomic) IBOutlet UITextField *amountLabel;
 @property (weak, nonatomic) IBOutlet UIButton *betButton;
@@ -55,23 +53,13 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 60, 0);
-    if ([CMCommon isPhoneX]) {
-        self.bottomViewConstraintHeight.constant = 80;
-        self.bottomViewBottom.constant = 86;
-    }else {
-        self.bottomViewConstraintHeight.constant = 50;
-        self.bottomViewBottom.constant = 64;
-    
-    }
     [self updateSelectLabelWithCount:0];
     self.countDown = [[CountDown alloc] init];
     self.dataCountDown = [[CountDown alloc] init];
     WeakSelf
     [self.countDown countDownWithPER_SECBlock:^{
         [weakSelf updateTimeInVisibleCells];
-
     }];
-    
     
     
     [self getChanglong];

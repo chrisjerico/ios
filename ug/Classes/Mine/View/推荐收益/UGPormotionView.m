@@ -38,7 +38,6 @@
         [self setupUserInfo];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            
             // 通知主线程刷新 神马的
             [self waveAnimation];
         });
@@ -47,15 +46,13 @@
     return self;
 }
 
--(void)waveAnimation{
-    [self.waveBottomView  mas_makeConstraints:^(MASConstraintMaker *make)
-     {
+- (void)waveAnimation {
+    [self.waveBottomView  mas_makeConstraints:^(MASConstraintMaker *make) {
          make.left.equalTo(self.mas_left).with.offset(0);
          make.right.equalTo(self.mas_right).with.offset(0);
          make.width.equalTo(self.mas_width);
          make.height.mas_equalTo(20.0);
          make.bottom.equalTo(self.mas_bottom);
-         
      }];
     
     [self.waveBgView  mas_makeConstraints:^(MASConstraintMaker *make)
@@ -80,9 +77,7 @@
 }
 
 //刷新余额动画
--(void)startAnimation
-{
-    
+- (void)startAnimation {
     CABasicAnimation *ReFreshAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
     ReFreshAnimation.toValue = [NSNumber numberWithFloat:M_PI*2.0];
     ReFreshAnimation.duration = 1;
@@ -92,14 +87,13 @@
 }
 
 //刷新余额动画
--(void)stopAnimation
-{
-    
+- (void)stopAnimation {
     [self.refreshBalanceButton.layer removeAllAnimations];
-    
 }
 
+
 #pragma mark - UIS
+
 - (void)setupUserInfo {
     UGUserModel *user = [UGUserModel currentUser];
     [self.avaterImageView sd_setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
@@ -111,7 +105,9 @@
   
 }
 
+
 #pragma mark -- 网络请求
+
 - (void)getUserInfo {
     [self startAnimation];
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
@@ -137,9 +133,10 @@
     }];
 }
 
-#pragma mark -- 其他方法
-- (IBAction)refreshBalance:(id)sender {
 
+#pragma mark -- 其他方法
+
+- (IBAction)refreshBalance:(id)sender {
     [self getUserInfo];
 }
 

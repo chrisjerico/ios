@@ -30,7 +30,6 @@
 @property (nonatomic, strong) NSMutableArray *gameNameArray;
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, assign) NSInteger selGameIndex;
-
 @end
 
 static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
@@ -38,6 +37,23 @@ static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // 初始化数据
+    {
+        _gameArray = [NSMutableArray array];
+        _dataArray = [NSMutableArray array];
+        _gameNameArray = [NSMutableArray array];
+        _dateArray = [NSMutableArray array];
+        
+        for (int i = 0; i < 7; i++) {
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateFormat:@"yyyy-MM-dd"];
+            NSDate *currentDate = [NSDate date];
+            NSTimeInterval oneDay = 24 * 60 * 60;
+            NSDate *startDay = [currentDate initWithTimeIntervalSinceNow:-(oneDay * i)];
+            NSString *startDateStr = [formatter stringFromDate:startDay];
+            [_dateArray addObject:startDateStr];
+        }
+    }
     
     self.navigationItem.title = @"开奖记录";
     self.view.backgroundColor = UGBackgroundColor;
@@ -51,7 +67,7 @@ static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
     self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithImageName:@"riqi" target:self action:@selector(rightBarButonItemClick)];
     self.dateLabel.text = self.dateArray.firstObject;
     
-    if ([CMCommon arryIsNull:_lotteryGamesArray  ]) {
+    if ([CMCommon arryIsNull:_lotteryGamesArray]) {
         [self getAllNextIssueData];
     }
     else{
@@ -82,24 +98,22 @@ static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self getLotteryHistory];
     }];
-    
-    
- 
 }
 
 - (void)getLotteryHistory {
     UGNextIssueModel *model = self.gameArray[self.selGameIndex];
+    BOOL lessDataType = [model.title isEqualToString:@"七星彩"] || [model.title isEqualToString:@"香港六合彩"];
+    self.navigationItem.rightBarButtonItem = lessDataType ? nil : [STBarButtonItem barButtonItemWithImageName:@"riqi" target:self action:@selector(rightBarButonItemClick)];
+    _dateLabel.hidden = lessDataType;
+    
+    
     NSDictionary *params = @{@"id":model.gameId,
-                             @"date":self.dateLabel.text
+                             @"date":lessDataType ? nil : self.dateLabel.text,
                              };
     [CMNetwork getLotteryHistoryWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [self.tableView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
-//<<<<<<< HEAD:ug/Classes/Home/Controller/UGLotteryRecordController.m
-//            self.dataArray = [((UGLotteryHistoryModelList *)model.data).list mutableCopy];
-//=======
             self.dataArray = [((UGLotteryHistoryListModel *)model.data).list mutableCopy];
-//>>>>>>> dev_fish:ug/Classes/Home/Controller/开奖记录/UGLotteryRecordController.m
             [self.tableView reloadData];
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
@@ -129,7 +143,6 @@ static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
         y = 64;
     }
     [popView showAtPoint:CGPointMake(UGScreenW - 75, y + 5)];
-    
 }
 
 #pragma mark - UITableView datasource
@@ -189,48 +202,7 @@ static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
     }
 }
 
-- (NSMutableArray *)dateArray {
-    if (_dateArray == nil) {
-        _dateArray = [NSMutableArray array];
-        for (int i = 0; i < 7; i++) {
-            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-            [formatter setDateFormat:@"yyyy-MM-dd"];
-            NSDate *currentDate = [NSDate date];
-            NSTimeInterval oneDay = 24 * 60 * 60;
-            NSDate *startDay = [currentDate initWithTimeIntervalSinceNow:-(oneDay * i)];
-            NSString *startDateStr = [formatter stringFromDate:startDay];
-            [_dateArray addObject:startDateStr];
-        }
-    
-    }
-    return _dateArray;
-
-}
-
-- (NSMutableArray *)gameArray {
-    if (_gameArray == nil) {
-        _gameArray = [NSMutableArray array];
-    }
-    return _gameArray;
-}
-
-- (NSMutableArray *)dataArray {
-    if (_dataArray == nil) {
-        _dataArray = [NSMutableArray array];
-    }
-    return _dataArray;
-}
-
-- (NSMutableArray *)gameNameArray {
-    if (_gameNameArray == nil) {
-        _gameNameArray = [NSMutableArray array];
-    }
-    return _gameNameArray;
-}
-
-
 - (void)getAllNextIssueData {
-    
     [CMNetwork getAllNextIssueWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             
@@ -261,6 +233,6 @@ static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
             [SVProgressHUD dismiss];
         }];
     }];
-    
 }
+
 @end

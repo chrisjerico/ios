@@ -227,7 +227,7 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a5i-92-t8y">
-                                <rect key="frame" x="0.0" y="812" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="812" width="414" height="84"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K35-n8-sky">
                                         <rect key="frame" x="0.0" y="0.0" width="60" height="50"/>
@@ -316,19 +316,20 @@
                                     <constraint firstItem="K35-n8-sky" firstAttribute="leading" secondItem="a5i-92-t8y" secondAttribute="leading" id="egZ-7V-qeI"/>
                                     <constraint firstItem="whZ-ex-6al" firstAttribute="top" secondItem="a5i-92-t8y" secondAttribute="top" constant="15" id="f4O-Ic-hm3"/>
                                     <constraint firstItem="ru5-dv-OHe" firstAttribute="leading" secondItem="6Y0-sI-jMK" secondAttribute="trailing" constant="10" id="mJg-OF-a7l"/>
+                                    <constraint firstItem="bm1-pO-ggB" firstAttribute="bottom" secondItem="K35-n8-sky" secondAttribute="bottom" id="pFC-F0-5a2"/>
                                     <constraint firstAttribute="trailing" secondItem="k91-rC-NUa" secondAttribute="trailing" constant="90" id="rai-qs-5tC"/>
-                                    <constraint firstAttribute="height" constant="50" id="wlR-Uw-iXv"/>
                                     <constraint firstItem="whZ-ex-6al" firstAttribute="leading" secondItem="AQq-gw-pRm" secondAttribute="trailing" constant="8" id="xCK-Rd-xto"/>
                                     <constraint firstItem="AQq-gw-pRm" firstAttribute="leading" secondItem="K35-n8-sky" secondAttribute="trailing" id="xCc-Ta-xKI"/>
                                     <constraint firstItem="k91-rC-NUa" firstAttribute="top" secondItem="a5i-92-t8y" secondAttribute="top" constant="-38" id="xwb-Zv-mlV"/>
                                 </constraints>
+                                <viewLayoutGuide key="safeArea" id="bm1-pO-ggB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="cnj-5J-m3b" firstAttribute="bottom" secondItem="a5i-92-t8y" secondAttribute="bottom" id="Ncz-nc-CL0"/>
                             <constraint firstItem="a5i-92-t8y" firstAttribute="top" secondItem="jxj-Vx-5L2" secondAttribute="bottom" id="RMP-9a-saO"/>
                             <constraint firstAttribute="trailing" secondItem="jxj-Vx-5L2" secondAttribute="trailing" id="YcZ-SY-86r"/>
+                            <constraint firstAttribute="bottom" secondItem="a5i-92-t8y" secondAttribute="bottom" id="Yzf-nC-j2D"/>
                             <constraint firstAttribute="trailing" secondItem="a5i-92-t8y" secondAttribute="trailing" id="ctL-II-GSY"/>
                             <constraint firstItem="jxj-Vx-5L2" firstAttribute="top" secondItem="WkB-zH-dlm" secondAttribute="top" id="jZb-oy-i8h"/>
                             <constraint firstItem="a5i-92-t8y" firstAttribute="leading" secondItem="WkB-zH-dlm" secondAttribute="leading" id="mfY-4x-gEt"/>
@@ -342,8 +343,6 @@
                         <outlet property="betDetailLabel" destination="kbI-z7-wjx" id="pqb-Ng-YMJ"/>
                         <outlet property="betDetailView" destination="k91-rC-NUa" id="zf3-5s-wP5"/>
                         <outlet property="bottomView" destination="a5i-92-t8y" id="tmf-6r-3Pi"/>
-                        <outlet property="bottomViewBottom" destination="Ncz-nc-CL0" id="ow0-CV-8QZ"/>
-                        <outlet property="bottomViewConstraintHeight" destination="wlR-Uw-iXv" id="afz-0f-cFP"/>
                         <outlet property="countLabel" destination="whZ-ex-6al" id="rOT-Za-zlt"/>
                         <outlet property="tableView" destination="jxj-Vx-5L2" id="YkZ-hU-NTp"/>
                     </connections>

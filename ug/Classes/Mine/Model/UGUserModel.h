@@ -10,6 +10,10 @@
 #import "MJExtension.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+#define UserI [UGUserModel currentUser]
+
+
 //data =     {
 //
 //    curLevelTitle = "新手",
@@ -21,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 //    curLevelInt = "0",
 //    nextLevelGrade = "无",
 //},
+
 @interface UGUserModel : UGModel
 //guest
 @property (nonatomic, strong) NSString *userId;

@@ -957,44 +957,35 @@
     [SVProgressHUD showWithStatus:nil];
 //    WeakSelf;
     [CMNetwork teamDepositListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        [SVProgressHUD dismiss];
         [CMResult processWithResult:model success:^{
-            
-            [SVProgressHUD dismiss];
-            
             NSDictionary *data =  model.data;
             NSArray *list = [data objectForKey:@"list"];
             if (self.pageNumber == 1 ) {
-                           
-               [self.dataArray removeAllObjects];
-           }
-                       
+                [self.dataArray removeAllObjects];
+            }
+                             
             //            //字典转模型
             //            UserMembersShareBean *membersShare = [[UserMembersShareBean alloc]initWithDictionary:dic[kMsg]
-            
+
             //数组转模型数组
             NSArray *array = [UGdepositListModel arrayOfModelsFromDictionaries:list error:nil];
             [self.dataArray addObjectsFromArray:array];
             [self.tableView reloadData];
             if (array.count < self.pageSize) {
-                        [self.tableView.mj_footer setState:MJRefreshStateNoMoreData];
-                        [self.tableView.mj_footer setHidden:YES];
-            }else{
-               
-                [self.tableView.mj_footer setState:MJRefreshStateIdle];
-                [self.tableView.mj_footer setHidden:NO];
+              [self.tableView.mj_footer setState:MJRefreshStateNoMoreData];
+              [self.tableView.mj_footer setHidden:YES];
+            } else {
+              [self.tableView.mj_footer setState:MJRefreshStateIdle];
+              [self.tableView.mj_footer setHidden:NO];
             }
-            
-        } failure:^(id msg) {
-
-            
-        }];
-        if ([self.tableView.mj_header isRefreshing]) {
-           [self.tableView.mj_header endRefreshing];
-       }
-       
-       if ([self.tableView.mj_footer isRefreshing]) {
-           [self.tableView.mj_footer endRefreshing];
-       }
+                 
+        } failure:nil];
+        
+        if ([self.tableView.mj_header isRefreshing])
+            [self.tableView.mj_header endRefreshing];
+        if ([self.tableView.mj_footer isRefreshing])
+            [self.tableView.mj_footer endRefreshing];
     }];
 }
 

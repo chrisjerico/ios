@@ -27,7 +27,6 @@
     [super viewDidLoad];
     
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-        
         [self skin];
     });
     self.submitButton.layer.cornerRadius = 3;
@@ -114,20 +113,6 @@
         return NO;
     }
     return YES;
-}
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.25];
-    [UIView setAnimationCurve:7];
-    if (self.checkLoginPwdTextF.isFirstResponder) {
-        
-        self.view.y = -100;
-    }else {
-        self.view.y = 0;
-    }
-    [UIView commitAnimations];
-    
 }
 
 @end
