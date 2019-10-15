@@ -121,7 +121,7 @@
     
     _pageSize = 20;
     _pageNumber = 1;
-    _levelindex = 1;
+    _levelindex = 0;
     
      WeakSelf
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
