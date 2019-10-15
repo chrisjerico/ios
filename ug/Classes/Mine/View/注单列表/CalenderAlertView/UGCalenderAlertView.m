@@ -28,7 +28,7 @@
         _calendar.delegate = self;
         _calendar.allowsMultipleSelection = false;
         _calendar.scrollEnabled = true;
-        _calendar.appearance.headerDateFormat = @"M月";
+        _calendar.appearance.headerDateFormat = @"yyyy年M月";
         _calendar.appearance.selectionColor = [[UGSkinManagers shareInstance] setNavbgColor];
         _calendar.appearance.headerTitleColor = [UIColor blackColor];
         _calendar.appearance.headerMinimumDissolvedAlpha = 0;
