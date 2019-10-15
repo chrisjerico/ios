@@ -204,7 +204,12 @@
 - (void)rightBarBtnClick {
     self.yymenuView = [[UGYYRightMenuView alloc] initWithFrame:CGRectMake(UGScreenW /2 , 0, UGScreenW / 2, UGScerrnH)];
     self.yymenuView.titleType = @"1";
-//    self.yymenuView.lotteryGamesArray = self.lotteryGamesArray;
+    //此处为重点
+    WeakSelf;
+    self.yymenuView .gotoSeeBlock = ^{
+       
+        weakSelf.navigationController.tabBarController.selectedIndex = 0;
+    };
     [self.yymenuView show];
 
     
