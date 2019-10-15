@@ -51,7 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *oftenLoginArea;             /**<   1=关闭；0=开启； 常用登录地 */
 @property (nonatomic, copy) NSString *mobileTemplateBackground;   /**<   配色方案 */
 @property (nonatomic, copy) NSString *mobileTemplateCategory;     /**<   模板号 */
-@property (nonatomic, copy) NSString *webName;                    /**<   首页底部文字 */
+@property (nonatomic, copy) NSString *webName;                    /**<   首页底部文字   网址名称*/
 
 @property (nonatomic, copy) NSArray<UGmobileMenu *> *mobileMenu;
 

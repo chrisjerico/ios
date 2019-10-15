@@ -1227,7 +1227,7 @@
        
         TGWebViewController *qdwebVC = [[TGWebViewController alloc] init];
         qdwebVC.url = pcUrl;
-        qdwebVC.webTitle = @"电脑版";
+        qdwebVC.webTitle = UGSystemConfigModel.currentConfig.webName;
         [self.navigationController pushViewController:qdwebVC  animated:YES];
         
         NSLog(@"pcUrl = %@",pcUrl);
