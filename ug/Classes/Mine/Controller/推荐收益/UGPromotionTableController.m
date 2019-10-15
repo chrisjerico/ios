@@ -94,7 +94,7 @@
             break;
     }
     
-    self.levelArray = @[@"1级下线",@"2级下线",@"3级下线",@"4级下线",@"5级下线",@"6级下线",@"7级下线",@"8级下线",@"9级下线",@"10级下线"];
+    self.levelArray = @[@"全部下线",@"1级下线",@"2级下线",@"3级下线",@"4级下线",@"5级下线",@"6级下线",@"7级下线",@"8级下线",@"9级下线",@"10级下线"];
     [self.view addSubview:self.titleView];
     
     if(_tableView == nil){
@@ -219,7 +219,7 @@
 
 - (void)ybPopupMenuDidSelectedAtIndex:(NSInteger)index ybPopupMenu:(YBPopupMenu *)ybPopupMenu {
     if (index >= 0) {
-        _levelindex = index +1;
+        _levelindex = index;
        [self swithAction];
         
     }
@@ -342,7 +342,13 @@
             UGbetStatModel *model = (UGbetStatModel *)self.dataArray[indexPath.row];
             int intLevel = [model.level intValue];
             
-            cell.firstLabel.text = [NSString stringWithFormat:@"%d级下线",intLevel];
+            if (intLevel == 0) {
+                 cell.firstLabel.text = @"全部下线";
+            }
+            else{
+                 cell.firstLabel.text = [NSString stringWithFormat:@"%d级下线",intLevel];
+            }
+           
             if ([CMCommon stringIsNull:model.date]) {
                 cell.secondLabel.text = @"--";
             } else {
@@ -390,8 +396,12 @@
             UGPromotion4rowTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UGPromotion4rowTableViewCell" forIndexPath:indexPath];
             UGdepositStatModel *model = (UGdepositStatModel *)self.dataArray[indexPath.row];
             int intLevel = [model.level intValue];
-            
-            cell.firstLabel.text = [NSString stringWithFormat:@"%d级下线",intLevel];
+             if (intLevel == 0) {
+                      cell.firstLabel.text = @"全部下线";
+             }
+             else{
+                  cell.firstLabel.text = [NSString stringWithFormat:@"%d级下线",intLevel];
+             }
             if ([CMCommon stringIsNull:model.date]) {
                 cell.secondLabel.text = @"--";
             } else {
@@ -433,9 +443,14 @@
         {
             UGPromotion4rowTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UGPromotion4rowTableViewCell" forIndexPath:indexPath];
             UGwithdrawStatModel *model = (UGwithdrawStatModel *)self.dataArray[indexPath.row];
-            int intLevel = [model.level intValue];
-            
-            cell.firstLabel.text = [NSString stringWithFormat:@"%d级下线",intLevel];
+             int intLevel = [model.level intValue];
+            if (intLevel == 0) {
+                     cell.firstLabel.text = @"全部下线";
+            }
+            else{
+                 cell.firstLabel.text = [NSString stringWithFormat:@"%d级下线",intLevel];
+            }
+        
             if ([CMCommon stringIsNull:model.date]) {
                 cell.secondLabel.text = @"--";
             } else {
@@ -476,9 +491,13 @@
         {
             UGPromotion4rowTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UGPromotion4rowTableViewCell" forIndexPath:indexPath];
             UGrealBetStatModel *model = (UGrealBetStatModel *)self.dataArray[indexPath.row];
-            int intLevel = [model.level intValue];
-            
-            cell.firstLabel.text = [NSString stringWithFormat:@"%d级下线",intLevel];
+             int intLevel = [model.level intValue];
+              if (intLevel == 0) {
+                       cell.firstLabel.text = @"全部下线";
+              }
+              else{
+                   cell.firstLabel.text = [NSString stringWithFormat:@"%d级下线",intLevel];
+              }
             if ([CMCommon stringIsNull:model.date]) {
                 cell.secondLabel.text = @"--";
             } else {

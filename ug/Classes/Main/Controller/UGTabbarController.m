@@ -120,7 +120,7 @@ static UGTabbarController *_tabBarVC = nil;
         [UGmobileMenu menu:@"/banks"           :@"银行卡" :@"yinhangqia" :@"yinhangqia"   :[UGBindCardViewController class]],
         [UGmobileMenu menu:@"/yuebao"          :@"利息宝" :@"lixibao" :@"lixibao"         :[UGYubaoViewController class]],
         [UGmobileMenu menu:@"/Sign"            :@"签到" :@"qiandao" :@"qiandaosel"       :[UGSigInCodeViewController class]],
-        [UGmobileMenu menu:@"/referrer"        :@"推广收益" :@"shouyi1" :@"shouyi1sel"     :[UGPromotionIncomeController class]],
+        [UGmobileMenu menu:@"/referrer"        :@"推荐收益" :@"shouyi1" :@"shouyi1sel"     :[UGPromotionIncomeController class]],
     ];
     
     self.delegate = self;
