@@ -334,7 +334,7 @@
                     }
                 } failure:^(id msg) {
                     [SVProgressHUD dismiss];
-                    [SVProgressHUD showErrorWithStatus:msg];
+//                    [SVProgressHUD showErrorWithStatus:msg];
                 }];
             }];
         };
@@ -691,7 +691,7 @@
 			
 			[self.uGredEnvelopeView setHidden:YES];
 			
-			[SVProgressHUD showErrorWithStatus:msg];
+//			[SVProgressHUD showErrorWithStatus:msg];
 			
 		}];
 	}];
