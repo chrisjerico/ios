@@ -65,19 +65,16 @@
     self.playCateNameLabel.text = item.playCateName;
 
     self.playNameLabel.text = item.playName;
-    if ([item.playName isEqualToString:@"小"]) {
-        [self.playNameLabel setBackgroundColor:UGRGBColor(92, 183, 109) ];
+    if ([item.playName isEqualToString:@"小"]||[item.playName isEqualToString:@"大"]) {
+        [self.playNameLabel setBackgroundColor:UGRGBColor(118, 180, 115) ];
     }
-    else if ([item.playName isEqualToString:@"大"]){
-        [self.playNameLabel setBackgroundColor:UGRGBColor(225, 81, 66) ];
+    else if ([item.playName isEqualToString:@"单"]||[item.playName isEqualToString:@"双"]){
+        [self.playNameLabel setBackgroundColor:[UIColor purpleColor]];
     }
-    else if ([item.playName isEqualToString:@"单"]){
-        [self.playNameLabel setBackgroundColor:UGRGBColor(225, 238, 66) ];
+    else if ([item.playName isEqualToString:@"龙"]||[item.playName isEqualToString:@"虎"]){
+        [self.playNameLabel setBackgroundColor:[UIColor redColor] ];
     }
-    else if ([item.playName isEqualToString:@"双"]){
-        [self.playNameLabel setBackgroundColor:UGRGBColor(76, 150, 237) ];
-    }
-    
+   
     
     self.countLabel.text = item.count;
     if (item.betList.count) {
