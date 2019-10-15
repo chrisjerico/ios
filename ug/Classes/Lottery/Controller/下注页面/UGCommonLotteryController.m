@@ -84,9 +84,7 @@
 	[titleLabel addGestureRecognizer: [UITapGestureRecognizer gestureRecognizer:^(__kindof UIGestureRecognizer *gr) {
 		UGLotterySelectController * vc = [UGLotterySelectController new];
 		vc.dataArray = [self.allList mutableCopy];
-		vc.didSelectedItemBlock = ^(UGNextIssueModel *nextModel){
-			
-			
+		vc.didSelectedItemBlock = ^(UGNextIssueModel *nextModel) {
 			void(^judeBlock)(UGCommonLotteryController * lotteryVC) = ^(UGCommonLotteryController * lotteryVC) {
 				if ([@[@"7", @"11", @"9"] containsObject: nextModel.gameId]) {
 					lotteryVC.shoulHideHeader = true;
@@ -243,17 +241,34 @@
 				
 			}
 			
+            // 设置导航条返回按钮
+            {
+                UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+                [backButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                [backButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
+                [backButton setImage:[UIImage imageNamed:@"c_navi_back"] forState:UIControlStateNormal];
+                [backButton setImage:[UIImage imageNamed:@"c_navi_back"] forState:UIControlStateHighlighted];
+                [backButton sizeToFit];
+                [backButton handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
+                    [NavController1 popViewControllerAnimated:true];
+                }];
+                UIView *containView = [[UIView alloc] initWithFrame:backButton.bounds];
+                [containView addSubview:backButton];
+                UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:containView];
+                // 设置返回按钮
+                preparePushVC.navigationItem.leftBarButtonItem = item;
+                // 隐藏底部条
+                preparePushVC.hidesBottomBarWhenPushed = YES;
+            }
+            
 			NSMutableArray *viewCtrs = [NSMutableArray arrayWithArray:self.navigationController.viewControllers];
 			[viewCtrs removeLastObject];
 			[viewCtrs addObject: preparePushVC];
 			[preparePushVC setHidesBottomBarWhenPushed:true];
 			[self.navigationController setViewControllers:viewCtrs animated:YES];
-			
-			
 		};
 		UGNavigationController * nav = [[UGNavigationController alloc] initWithRootViewController:vc];
 		[self presentViewController:nav animated:true completion:nil];
-		
 	}]];
 	
 }

@@ -525,7 +525,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     
     {
         CGFloat y = _segmentView.y;
-        CGFloat h = APP.Height - ([CMCommon isPhoneX] ? 88 : 64) - 114 - APP.StatusBarHeight;
+        CGFloat h = APP.Height - ([CMCommon isPhoneX] ? 88 : 64) - 154 - APP.StatusBarHeight;
         if (!_segmentView.hidden) {
             y += _segmentView.height;
             h -= _segmentView.height;
@@ -798,6 +798,17 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                 }
                 if (count == 12 && !game.select) {
                     [SVProgressHUD showInfoWithStatus:@"不允许超过12个选项"];
+                } else {
+                    game.select = !game.select;
+                }
+            } else if ([@"合肖" isEqualToString:type.name]) {
+                NSInteger count = 0;
+                for (UGGameBetModel *bet in type.list) {
+                    if (bet.select)
+                        count ++;
+                }
+                if (count == 11 && !game.select) {
+                    [SVProgressHUD showInfoWithStatus:@"不允许超过11个选项"];
                 } else {
                     game.select = !game.select;
                 }

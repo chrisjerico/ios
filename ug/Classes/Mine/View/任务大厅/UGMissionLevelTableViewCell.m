@@ -23,45 +23,20 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
       [self setBackgroundColor: [UIColor whiteColor]];
 }
-
-
-
 
 - (void)setItem:(UGlevelsModel *)item {
     _item = item;
     self.levelsLabel.text = item.levelName;
     self.levelTitleLabel.text = item.levelTitle;
     self.integralLabel.text = item.integral;
-    
-   
-    
     int levelsInt = [item.levelsId intValue];
-    
-     self.levelsSectionLabel.text = [NSString stringWithFormat:@"vip%d",levelsInt];
-    
+    self.levelsSectionLabel.text = [NSString stringWithFormat:@"vip%d",levelsInt];
     [self.levelsSectionLabel setHidden:NO];
-    
-//    NSString *imgStr = @"";
-//    if (levelsInt <11) {
-//      imgStr = [NSString stringWithFormat:@"vip%d",levelsInt];
-//    } else {
-//      imgStr = @"vip11";
-//    }
-//
-//    [self.levelsImager setImage: [UIImage imageNamed:imgStr]];
-    
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
--(void)setSectionBgColor:(UIColor *)bgColor levelsSectionStr:(NSString *)levelsSectionStr{
+- (void)setSectionBgColor:(UIColor *)bgColor levelsSectionStr:(NSString *)levelsSectionStr{
     [self setBackgroundColor:bgColor];
     [self.levelTitleLabel setBackgroundColor:bgColor];
     [self.integralLabel setBackgroundColor:bgColor];

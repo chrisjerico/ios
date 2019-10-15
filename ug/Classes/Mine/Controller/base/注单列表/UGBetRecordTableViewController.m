@@ -53,7 +53,6 @@ static NSString *betRecordCellid = @"UGLotteryRecordCell";
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.rowHeight = 125;
     self.tableView.estimatedSectionHeaderHeight = 0;
     self.tableView.estimatedSectionFooterHeight = 44;
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 220, 0);
@@ -229,7 +228,6 @@ static NSString *betRecordCellid = @"UGLotteryRecordCell";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
     return self.dataArray.count;
 }
 
