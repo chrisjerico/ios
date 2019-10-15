@@ -38,8 +38,8 @@
 #import "UGAgentViewController.h"
 #import "UGAgentRefusedViewController.h"
 #import "UGChangLongController.h"
-
-
+#import "STBarButtonItem.h"
+#import "UGYYRightMenuView.h"
 @interface UGMineSkinViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 {
     NSString *skitType;
@@ -70,6 +70,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *topupButton;
 @property (weak, nonatomic) IBOutlet UIButton *withdrawalsButton;
 @property (weak, nonatomic) IBOutlet UIButton *conversionButton;
+
+@property (strong, nonatomic)UGYYRightMenuView *yymenuView;   /**<   侧边栏 */
 
 //===================================================
 @property (nonatomic, strong) NSMutableArray *menuNameArray;
@@ -181,6 +183,8 @@
         [CMCommon setBorderWithView:self.topupView top:NO left:NO bottom:YES right:NO borderColor: UGRGBColor(236, 235, 235) borderWidth:1];
     }
     
+    self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithImageName:@"gengduo" target:self action:@selector(rightBarBtnClick)];
+    
 //    //test用
 //    [self addRightBtn];
 
@@ -194,6 +198,16 @@
 - (void)addRightBtn {
     UIBarButtonItem *rightBarItem = [[UIBarButtonItem alloc] initWithTitle:@"确认" style:UIBarButtonItemStylePlain target:self action:@selector(onClickedOKbtn)];
     self.navigationItem.rightBarButtonItem = rightBarItem;
+}
+
+#pragma mark --其他方法
+- (void)rightBarBtnClick {
+    self.yymenuView = [[UGYYRightMenuView alloc] initWithFrame:CGRectMake(UGScreenW /2 , 0, UGScreenW / 2, UGScerrnH)];
+    self.yymenuView.titleType = @"1";
+//    self.yymenuView.lotteryGamesArray = self.lotteryGamesArray;
+    [self.yymenuView show];
+
+    
 }
 
 
