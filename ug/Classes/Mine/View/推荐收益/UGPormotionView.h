@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UGPormotionView : UIView
 
-
+- (IBAction)refreshBalance:(id)sender;  /**<   刷新 */
 
 @end
 

@@ -38,7 +38,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"推荐收益";
-    self.view.backgroundColor =[UIColor whiteColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     
     [self initView];
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
@@ -46,23 +46,48 @@
     });
 }
 
--(void)initView{
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self initView];
+    [_uGPormotionView refreshBalance:nil];
+}
+
+- (void)initView {
+    //-签到按钮======================================
+    {
+        if (_uGPormotionView == nil) {
+            _uGPormotionView = [[UGPormotionView alloc] initWithFrame:CGRectMake(0,0 ,UGScreenW, 128+k_Height_NavBar)];
+            [_uGPormotionView setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
+        }
+        [self.view addSubview:_uGPormotionView];
+        
+        [self.uGPormotionView  mas_makeConstraints:^(MASConstraintMaker *make) {
+             make.left.equalTo(self.view.mas_left).with.offset(0);
+             make.right.equalTo(self.view.mas_right).with.offset(0);
+             make.width.equalTo(self.view.mas_width);
+             make.height.mas_equalTo(128.0);
+        }];
+    }
+    
+    // 若是游客则只显示占位图
+    static UIImageView *placeholder = nil;  // 占位图
+    if (UserI.isTest) {
+        [self.view addSubview:({
+            if (!placeholder) {
+                placeholder = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"promotioninfo"]];
+                placeholder.frame = CGRectMake(0, 130, APP.Width, APP.Width * (740/994.0));
+            }
+            placeholder;
+        })];
+        placeholder.hidden = false;
+        self.slideSwitchView.hidden = true;
+        return;
+    }
+    
+    // 加载推荐收益信息
+    placeholder.hidden = true;
     [self buildSegment];
     [self setupRightItem];
-    
-    //-签到按钮======================================
-    if (_uGPormotionView == nil) {
-        _uGPormotionView = [[UGPormotionView alloc] initWithFrame:CGRectMake(0,0 ,UGScreenW, 128+k_Height_NavBar)];
-        [_uGPormotionView setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
-    }
-    [self.view addSubview:_uGPormotionView];
-    
-    [self.uGPormotionView  mas_makeConstraints:^(MASConstraintMaker *make) {
-         make.left.equalTo(self.view.mas_left).with.offset(0);
-         make.right.equalTo(self.view.mas_right).with.offset(0);
-         make.width.equalTo(self.view.mas_width);
-         make.height.mas_equalTo(128.0);
-    }];
 }
 
 
@@ -75,9 +100,10 @@
     [rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     rightButton.titleLabel.font = [UIFont systemFontOfSize:14];
     [rightButton addTarget:self action:@selector(rightClicked) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem* rightItem = [[UIBarButtonItem alloc]initWithCustomView:rightButton];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = rightItem;
 }
+
 
 #pragma mark 右上角按钮的点击方法
 
@@ -89,9 +115,9 @@
 
 #pragma mark - 配置segment
 
-- (void)buildSegment
-{
-    self.itemArray = @[@"推荐信息",@"会员管理",@"投注报表",@"投注记录",@"域名绑定",@"存款报表",@"存款记录",@"提款报表",@"提款记录",@"真人报表",@"真人记录"];
+- (void)buildSegment {
+    self.itemArray = @[@"推荐信息", @"会员管理", @"投注报表", @"投注记录", @"域名绑定", @"存款报表", @"存款记录", @"提款报表", @"提款记录", @"真人报表", @"真人记录"];
+    [self.slideSwitchView removeFromSuperview];
     self.slideSwitchView = [[XYYSegmentControl alloc] initWithFrame:CGRectMake(0 , 128.0, self.view.width, self.view.height-128.0) channelName:self.itemArray source:self];
     [self.slideSwitchView setUserInteractionEnabled:YES];
     self.slideSwitchView.segmentControlDelegate = self;
@@ -105,8 +131,8 @@
     //设置tab 被选中的标识的颜色(可选)
     self.slideSwitchView.tabItemSelectionIndicatorColor = UGNavColor;
     [self.view addSubview:self.slideSwitchView];
-    
 }
+
 
 #pragma mark - XYYSegmentControlDelegate
 

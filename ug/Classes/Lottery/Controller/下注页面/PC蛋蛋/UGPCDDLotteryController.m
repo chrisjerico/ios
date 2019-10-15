@@ -195,6 +195,13 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         [CMResult processWithResult:model success:^{
             UGPlayOddsModel *play = model.data;
             self.gameDataArray = play.playOdds.mutableCopy;
+            // 删除enable为NO的数据（不显示出来）
+            for (UGGameplayModel *gm in play.playOdds) {
+                for (UGGameplaySectionModel *gsm in gm.list) {
+                    if (!gsm.enable)
+                        [self.gameDataArray removeObject:gm];
+                }
+            }
             [self.tableView reloadData];
             [self.betCollectionView reloadData];
             [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
@@ -507,8 +514,8 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 #pragma mark - WSLWaterFlowLayoutDelegate
 //返回每个item大小
 - (CGSize)waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-    if (self.typeIndexPath.row == 0) {
+    UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
+    if ([@"混合" isEqualToString:model.name]) {
         if (indexPath.section == 1) {
              return CGSizeMake((UGScreenW / 4 * 3 - 4) / 3, 40);
         }
@@ -516,7 +523,8 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             return CGSizeMake((UGScreenW / 4 * 3 - 4) / 2, 40);
         }
         return CGSizeMake((UGScreenW / 4 * 3 - 4) / 3, 40);
-    }else {
+    } else {
+        // 特码
         if (indexPath.row < 24) {
             return CGSizeMake((UGScreenW / 4 * 3 - 4) / 3, 40);
         }

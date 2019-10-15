@@ -208,12 +208,18 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 			self.gameDataArray = play.playOdds.mutableCopy;
 			for (UGGameplayModel *model in self.gameDataArray) {
 				if ([@"连码" isEqualToString:model.name]) {
-					
 					for (UGGameplaySectionModel *type in model.list) {
 						[self.lmgmentTitleArray addObject:type.alias];
 					}
 				}
 			}
+            // 删除enable为NO的数据（不显示出来）
+            for (UGGameplayModel *gm in play.playOdds) {
+                for (UGGameplaySectionModel *gsm in gm.list) {
+                    if (!gsm.enable)
+                        [self.gameDataArray removeObject:gm];
+                }
+            }
 			[self handleData];
 			self.segmentView.dataArray = self.lmgmentTitleArray;
 			[self.tableView reloadData];
@@ -1023,13 +1029,12 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 - (CGSize)waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
 	
 	UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
-	if (self.typeIndexPath.row == 1 ||
-		self.typeIndexPath.row == 2 ||
-		self.typeIndexPath.row == 3 ||
-		self.typeIndexPath.row == 4 ||
-		self.typeIndexPath.row == 5) {
+	if ([@"第一球" isEqualToString:model.name] ||
+        [@"第二球" isEqualToString:model.name] ||
+        [@"第三球" isEqualToString:model.name] ||
+        [@"第四球" isEqualToString:model.name] ||
+        [@"第五球" isEqualToString:model.name]) {
 		if (indexPath.row < 9) {
-			
 			return CGSizeMake((UGScreenW / 4 * 3 - 4) / 3, 40);
 		}
 	}

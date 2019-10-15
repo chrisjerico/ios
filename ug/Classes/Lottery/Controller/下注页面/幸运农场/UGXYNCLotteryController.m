@@ -185,6 +185,13 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         [CMResult processWithResult:model success:^{
             UGPlayOddsModel *play = model.data;
             self.gameDataArray = play.playOdds.mutableCopy;
+            // 删除enable为NO的数据（不显示出来）
+            for (UGGameplayModel *gm in play.playOdds) {
+                for (UGGameplaySectionModel *gsm in gm.list) {
+                    if (!gsm.enable)
+                        [self.gameDataArray removeObject:gm];
+                }
+            }
             [self.tableView reloadData];
             [self.betCollectionView reloadData];
             [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
@@ -471,7 +478,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
         UGGameplaySectionModel *type = model.list[indexPath.section];
         UGGameBetModel *game = type.list[indexPath.row];
-        if (self.typeIndexPath.row == 9) {
+        if ([@"正码" isEqualToString:model.name]) {
             game.name = [NSString stringWithFormat:@"%ld",indexPath.row + 1];
         }
         cell.item = game;
@@ -557,27 +564,27 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 #pragma mark - WSLWaterFlowLayoutDelegate
 //返回每个item大小
 - (CGSize)waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    if (self.typeIndexPath.row == 1 ||
-        self.typeIndexPath.row == 2 ||
-        self.typeIndexPath.row == 3 ||
-        self.typeIndexPath.row == 4 ) {
+    UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
+    if ([@"第一球" isEqualToString:model.name] ||
+        [@"第二球" isEqualToString:model.name] ||
+        [@"第三球" isEqualToString:model.name] ||
+        [@"第四球" isEqualToString:model.name] ) {
         if (indexPath.row < 18 || indexPath.row > 33) {
-            
             return CGSizeMake((UGScreenW / 4 * 3 - 4) / 3, 40);
         }
     }
-    if ( self.typeIndexPath.row == 5 ||
-        self.typeIndexPath.row == 6 ||
-        self.typeIndexPath.row == 7 ||
-        self.typeIndexPath.row == 8 ) {
+    if ([@"第五球" isEqualToString:model.name] ||
+        [@"第六球" isEqualToString:model.name] ||
+        [@"第七球" isEqualToString:model.name] ||
+        [@"第八球" isEqualToString:model.name]) {
         if (indexPath.row < 18 || indexPath.row > 31) {
-            
             return CGSizeMake((UGScreenW / 4 * 3 - 4) / 3, 40);
         }
     }
-    if (self.typeIndexPath.row == 9) {
+    if ([@"正码" isEqualToString:model.name]) {
          return CGSizeMake((UGScreenW / 4 * 3 - 4) / 3, 40);
     }
+    // 两面、连码
     return CGSizeMake((UGScreenW / 4 * 3 - 4) / 2, 40);
 }
 /** 头视图Size */

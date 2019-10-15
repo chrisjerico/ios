@@ -84,26 +84,10 @@
         [self.checkPayPwdTextF resignFirstResponder];
         return NO;
     }
-    
     if ([textField.text stringByReplacingCharactersInRange:range withString:string].length > 30) {
         return NO;
     }
-    
     return YES;
-}
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.25];
-    [UIView setAnimationCurve:7];
-    if (self.checkPayPwdTextF.isFirstResponder) {
-        
-        self.view.y = -100;
-    }else {
-        self.view.y = 0;
-    }
-    [UIView commitAnimations];
-    
 }
 
 @end
