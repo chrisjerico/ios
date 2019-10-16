@@ -23,6 +23,10 @@
 @property (nonatomic, strong) NSArray *dateArray;
 @property (nonatomic, strong) NSMutableArray *tableDataArray;
 
+@property(nonatomic, assign) int pageSize;
+@property(nonatomic, assign) int pageNumber;
+@property(nonatomic, strong) NSString * timeStr;
+
 @end
 
 static NSString *convertRecordCellid = @"UGIntegarlConvertRecordCell";
@@ -48,7 +52,22 @@ static NSString *convertRecordCellid = @"UGIntegarlConvertRecordCell";
     self.numberLabel.text = str1;
     self.balanceLabel.text = str2;
     
-     [self checkinDataWithType:@"0"];
+    _pageSize = 20;
+    _pageNumber = 1;
+    _timeStr =@"0";
+    
+    WeakSelf
+   self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+       weakSelf.pageNumber = 1;
+       [weakSelf checkinDataWithType];
+       
+   }];
+   self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+       weakSelf.pageNumber =weakSelf.pageNumber+1;
+        [weakSelf checkinDataWithType];
+   }];
+   // 马上进入刷新状态
+     [self.tableView.mj_header beginRefreshing];
 }
 
 - (IBAction)datePicker:(id)sender {
@@ -64,7 +83,9 @@ static NSString *convertRecordCellid = @"UGIntegarlConvertRecordCell";
     NSLog(@"index = %ld",(long)index);
     if (index >= 0) {
  
-                [self checkinDataWithType:[NSString stringWithFormat:@"%ld",(long)index]];
+               _timeStr =[NSString stringWithFormat:@"%ld",(long)index];
+        
+        [self checkinDataWithType];
          
     }
     CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI * 2);
@@ -99,16 +120,16 @@ static NSString *convertRecordCellid = @"UGIntegarlConvertRecordCell";
 #pragma mark -- 网络请求
 
 //积分账变列表（time类型：其他的是全部，1是最近一天 2:最近七天  3:最近一个月）
-- (void)checkinDataWithType:(NSString *)time{
+- (void)checkinDataWithType{
     
-    NSLog(@"time = %@",time);
+    NSLog(@"time = %@",_timeStr);
     if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
         return;
     }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
-                             @"page":@"1",
-                             @"rows":@"20",
-                             @"time":time
+                             @"page":@(self.pageNumber),
+                             @"rows":@(self.pageSize),
+                             @"time":_timeStr
                              };
     
     [SVProgressHUD showWithStatus:nil];
@@ -121,19 +142,42 @@ static NSString *convertRecordCellid = @"UGIntegarlConvertRecordCell";
             NSDictionary *data =  model.data;
             NSArray *list = [data objectForKey:@"list"];
             
+            if (self.pageNumber == 1 ) {
+                             
+                 [self.tableDataArray removeAllObjects];
+             }
+            
             //            //字典转模型
             //            UserMembersShareBean *membersShare = [[UserMembersShareBean alloc]initWithDictionary:dic[kMsg]
             //数组转模型数组
-            self.tableDataArray = [UGCreditsLogModel arrayOfModelsFromDictionaries:list error:nil];
+             NSArray *array = [UGCreditsLogModel arrayOfModelsFromDictionaries:list error:nil];
+             [self.tableDataArray addObjectsFromArray:array];
+
             
             NSLog(@"tableDataArray = %@",self.tableDataArray);
             [self.tableView reloadData];
+            if (array.count < self.pageSize) {
+                        [self.tableView.mj_footer setState:MJRefreshStateNoMoreData];
+                        [self.tableView.mj_footer setHidden:YES];
+            }else{
+               
+                [self.tableView.mj_footer setState:MJRefreshStateIdle];
+                [self.tableView.mj_footer setHidden:NO];
+            }
             
         } failure:^(id msg) {
             
             [SVProgressHUD showErrorWithStatus:msg];
             
         }];
+        
+        if ([self.tableView.mj_header isRefreshing]) {
+             [self.tableView.mj_header endRefreshing];
+         }
+         
+         if ([self.tableView.mj_footer isRefreshing]) {
+             [self.tableView.mj_footer endRefreshing];
+         }
     }];
 }
 @end
