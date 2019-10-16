@@ -93,6 +93,8 @@
 @property (nonatomic, strong) NSIndexPath *itemIndexPath;       /**<   item下标 */
 @property (nonatomic, assign) BOOL showAdPoppuView;             /**<   显示广告 */
 
+@property (nonatomic, strong) NSString *headerViewTitle ; /**<section 头 自选不中*/
+
 @end
 
 static NSString *leftTitleCellid = @"UGTimeLotteryLeftTitleCell";
@@ -117,6 +119,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         _lxTitleArray = [NSMutableArray array];
         _ztTitleArray = [NSMutableArray array];
         _lmTitleArray = [NSMutableArray array];
+        _headerViewTitle = @"自选不中";
     }
 
     self.view.backgroundColor =  [UIColor whiteColor];
@@ -735,7 +738,9 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 -(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     
     if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
-        UGTimeLotteryBetHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerViewID forIndexPath:indexPath];
+  
+         UGTimeLotteryBetHeaderView*  headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerViewID forIndexPath:indexPath];
+    
         if (collectionView == self.betCollectionView) {
             UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
             UGGameplaySectionModel *type = nil;
@@ -755,6 +760,10 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                 type = model.list[indexPath.section];
             }
             headerView.title = type.alias;
+            
+            if ([@"自选不中" isEqualToString:type.alias]) {
+                 headerView.title = _headerViewTitle;
+            }
         } else {
             headerView.title = @"";
         }
@@ -790,12 +799,26 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         // 修改game.select
         {
             UGGameBetModel *game = type.list[indexPath.row];
+            
+         
+            
+            
             if ([@"自选不中" isEqualToString:type.name]) {
                 NSInteger count = 0;
+                
+               
                 for (UGGameBetModel *bet in type.list) {
                     if (bet.select)
                         count ++;
                 }
+              
+              
+                
+                
+                
+               
+                
+                
                 if (count == 12 && !game.select) {
                     [SVProgressHUD showInfoWithStatus:@"不允许超过12个选项"];
                 } else {
@@ -878,6 +901,8 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                     if (num >= 5) {
                         count ++;
                     }
+                    
+                   
                     continue;
                 }
 //                最少选择2个玩法
@@ -960,6 +985,22 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                 }
             }
         }
+        //自选不中，5--12 时，要显示赔率：
+        if ([@"自选不中" isEqualToString:type.name]) {
+              NSInteger num = 0;
+              for (UGGameBetModel *bet in type.list) {
+                  if (bet.select){
+                       num ++;
+                  }    
+              }
+               if (num >= 5  && num <= 12) {
+                    UGGameBetModel *model = type.lhcOddsArray[num-5];
+                    self.headerViewTitle = [NSString stringWithFormat:@"赔率：%@",model.odds];
+               }
+               else{
+                   self.headerViewTitle = @"自选不中";
+               }
+          }
         [self updateSelectLabelWithCount:count];
     }
 }

@@ -75,7 +75,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL isBan;               
 @property (nonatomic, assign) BOOL enable;                      /**<   是否启用，0否，1是 */
 @property (nonatomic, strong) NSString *alias;                  /**<   玩法名 */
-@property (nonatomic, strong) NSArray *lhcOddsArray;            /**<   六合彩合肖玩法赔率 */
+@property (nonatomic, strong) NSArray<UGGameBetModel> *lhcOddsArray;            /**<   六合彩合肖玩法赔率 */
 @property (nonatomic, strong) NSArray<UGGameBetModel> *list;    /**<   号码ModelList */
 
 @end
