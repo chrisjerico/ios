@@ -136,7 +136,7 @@ static UGTabbarController *_tabBarVC = nil;
 //    });
     
     //    版本更新
-    [[UGAppVersionManager shareInstance] updateVersionNow:YES];
+    [[UGAppVersionManager shareInstance] updateVersionApi:false];
 }
 
 - (void)setTabbarStyle {
@@ -246,16 +246,9 @@ static UGTabbarController *_tabBarVC = nil;
             UIViewController *vc = _LoadVC_from_storyboard_(NSStringFromClass(gm.cls));
             if (!vc)
                 vc = [gm.cls new];
-            if ([NSStringFromClass(gm.cls) isEqualToString:@"UGChatViewController"]) {
-                UGChatViewController *chatVC = (UGChatViewController *)vc;
-                chatVC.webTitle = @"聊天室";
-            }
             vc.tabBarItem.title = gm.name;
             vc.tabBarItem.image = [UIImage imageNamed:gm.icon];
             vc.tabBarItem.selectedImage = [[UIImage imageNamed:gm.selectedIcon] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-//            [vc aspect_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
-//                ((UIViewController *)ai.instance).view.backgroundColor = UGBackgroundColor;
-//            } error:nil];
             UGNavigationController *nav = [[UGNavigationController alloc] initWithRootViewController:vc];
             [vcs addObject:nav];
         }

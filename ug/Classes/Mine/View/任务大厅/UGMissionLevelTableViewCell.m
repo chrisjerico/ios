@@ -31,8 +31,7 @@
     self.levelsLabel.text = item.levelName;
     self.levelTitleLabel.text = item.levelTitle;
     self.integralLabel.text = item.integral;
-    int levelsInt = [item.levelsId intValue];
-    self.levelsSectionLabel.text = [NSString stringWithFormat:@"vip%d",levelsInt];
+    self.levelsSectionLabel.text = item.levelName;
     [self.levelsSectionLabel setHidden:NO];
 }
 
@@ -45,4 +44,5 @@
     self.levelsSectionLabel.text = levelsSectionStr;
     [self.levelsView setHidden:YES];
 }
+
 @end

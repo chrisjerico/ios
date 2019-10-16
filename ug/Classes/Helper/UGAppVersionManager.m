@@ -27,22 +27,8 @@ static NSInteger versionNumber = 102;
     return shareInstance;
 }
 
--(void)updateVersionNow:(BOOL)isNow{
-    if (isNow) {
-        [self updateVersionApi:NO];
-    }else{
-        //超过24小时再提示升级
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:IS_UPGRADE]) {
-            if ([self isVersionUptateTimeMore24h]) {
-                [self updateVersionApi:NO];
-            }
-        }
-    }
-}
-
 //请求版本信息
--(void)updateVersionApi:(BOOL)flag{
-    
+- (void)updateVersionApi:(BOOL)flag {
     [CMNetwork checkVersionWithParams:@{@"device":@"ios"} completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             self.versionModle = model.data;
@@ -52,74 +38,44 @@ static NSInteger versionNumber = 102;
             [SVProgressHUD dismiss];
         }];
     }];
-    
 }
 
 //处理升级
--(void)upgradeHandel:(BOOL)flag{
-    BOOL isForce = NO;
-    NSString *versionCode = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+- (void)upgradeHandel:(BOOL)flag {
+    BOOL isForce = false;      // 是否强制升级
+    BOOL hasUpdate = false; // 是否存在新版本
     
-	NSMutableString * covertedVersionName = @"".mutableCopy;
-	for (NSString * c in [self.versionModle.versionName componentsSeparatedByString:@"."]) {
-		[covertedVersionName appendString:c];
-	}
-	int convertedVersion = covertedVersionName.intValue;
+    NSArray *currentV = [APP.Version componentsSeparatedByString:@"."];
+    NSArray *newestV = [self.versionModle.versionName componentsSeparatedByString:@"."];
+    for (int i=0; i<4; i++) {
+        NSString *v1 = currentV.count > i ? currentV[i] : nil;
+        NSString *v2 = newestV.count > i ? newestV[i] : nil;
+        if (v2.intValue > v1.intValue)
+            hasUpdate = true;
+        if (v2.intValue != v1.intValue)
+            break;
+    }
 	
-	if (convertedVersion == 0) {
-		[SVProgressHUD showErrorWithStatus:@"版本号识别错误"];
-	}
-	
-	
-	
-//    if (![self.versionModle.versionName isEqualToString:versionCode]) {
-	if (convertedVersion > versionNumber){
+	if (hasUpdate){
         if (self.versionModle.switchUpdate) {
             isForce = YES;
         }
-		
-		NSString * updateContent;
-		if (self.versionModle.updateContent.length > 0) {
-			updateContent = self.versionModle.updateContent;
-		} else {
-			updateContent = @"检测到新版本，更新体验全新活动！";
-		}
-        if (isForce) {//强制升级
-            [QDAlertView showWithTitle:@"新版本上线"
-                               message:updateContent
-                     cancelButtonTitle:nil
-                      otherButtonTitle:@"去升级"
-                       completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                           [self updateFromAppStore];
-
-                       }];
-
-        }else{
-            
-        [QDAlertView showWithTitle:@"新版本上线"
-                           message:updateContent
-                 cancelButtonTitle:@"取消"
-                  otherButtonTitle:@"去升级"
-                   completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                       if (buttonIndex != alertView.cancelButtonIndex) {
-                           [self updateFromAppStore];
-                       }
-                   }];
         
-        [self rememberVersionNowTime];
+        NSString *updateContent = _versionModle.updateContent.length ? _versionModle.updateContent : @"检测到新版本，更新体验全新活动！";
+        NSArray *btnTitles = isForce ? @[@"去升级"] : @[@"取消", @"去升级"];
         
+        __weakSelf_(__self);
+        UIAlertController *ac = [AlertHelper showAlertView:@"新版本上线" msg:updateContent btnTitles:btnTitles];
+        [ac setActionAtTitle:@"去升级" handler:^(UIAlertAction *aa) {
+            [__self updateFromAppStore];
+        }];
+        
+        if (!isForce) {
+            [self rememberVersionNowTime];
         }
-    }else if(flag){
-        [QDAlertView showWithTitle:@"新版本上线"
-                           message:@"您已经是最新版本！"
-                 cancelButtonTitle:nil
-                  otherButtonTitle:@"确定"
-                   completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                       //                       [self updateFromAppStore];
-                   }];
-        
+    } else if (flag) {
+        [AlertHelper showAlertView:@"新版本上线" msg:@"您已经是最新版本！" btnTitles:@[@"确定"]];
     }
-    
 }
 
 //判断是否需要升级
@@ -240,7 +196,7 @@ static NSInteger versionNumber = 102;
 
 static NSString *kNowTimeKey = @"kNowTimeKey";
 //保存最后一次提醒普通升级当前时间戳
--(void)rememberVersionNowTime{
+- (void)rememberVersionNowTime {
     
     NSDate *nowDate = [NSDate date];
     
@@ -251,7 +207,7 @@ static NSString *kNowTimeKey = @"kNowTimeKey";
     //NSLog(@"now Time == %@",date2);
 }
 //判断是否超过24小时
--(BOOL)isVersionUptateTimeMore24h{
+- (BOOL)isVersionUptateTimeMore24h{
     NSDate  *lastDate = [[NSUserDefaults standardUserDefaults] objectForKey:kNowTimeKey];
     if (lastDate == nil) {
         return NO;

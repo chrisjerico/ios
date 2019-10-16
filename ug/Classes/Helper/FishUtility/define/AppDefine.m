@@ -209,6 +209,12 @@
     
     _StatusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
     _BottomSafeHeight = _Window.height - [UITabBarController new].tabBar.by;
+    
+    [UIViewController aspect_hookSelector:@selector(viewDidLayoutSubviews) withOptions:AspectOptionAutomaticRemoval usingBlock:^(id<AspectInfo> ai) {
+        if (@available(iOS 11.0, *)) {
+            APP.BottomSafeHeight = ((UIViewController *)ai.instance).view.safeAreaInsets.bottom;
+        }
+    } error:nil];
 }
 
 

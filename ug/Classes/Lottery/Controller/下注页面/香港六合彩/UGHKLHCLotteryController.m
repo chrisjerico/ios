@@ -187,7 +187,9 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     }];
     // 轮循请求下期数据
     [self.nextIssueCountDown countDownWithSec:NextIssueSec PER_SECBlock:^{
-        if ([[weakSelf.nextIssueModel.curOpenTime dateWithFormat:@"yyyy-MM-dd HH:mm:ss"] timeIntervalSinceDate:[NSDate date]] < 0) {
+        UGNextIssueModel *nim = weakSelf.nextIssueModel;
+        if ([[nim.curOpenTime dateWithFormat:@"yyyy-MM-dd HH:mm:ss"] timeIntervalSinceDate:[NSDate date]] < 0
+            || nim.curIssue.intValue != nim.preIssue.intValue+1) {
             [weakSelf getNextIssueData];
         }
     }];
@@ -236,13 +238,13 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             UGPlayOddsModel *play = model.data;
             self.playOddsModel = play;
             self.gameDataArray = [play.playOdds mutableCopy];
-            // 删除enable为NO的数据（不显示出来）
-            for (UGGameplayModel *gm in play.playOdds) {
-                for (UGGameplaySectionModel *gsm in gm.list) {
-                    if (!gsm.enable)
-                        [self.gameDataArray removeObject:gm];
-                }
-            }
+//            // 删除enable为NO的数据（不显示出来）
+//            for (UGGameplayModel *gm in play.playOdds) {
+//                for (UGGameplaySectionModel *gsm in gm.list) {
+//                    if (!gsm.enable)
+//                        [self.gameDataArray removeObject:gm];
+//                }
+//            }
             [self handleData];
             
             if ([self.gameDataArray.firstObject.name isEqualToString:@"特码"]) {
@@ -299,8 +301,10 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 }
 
 - (void)updateHeaderViewData {
-    self.currentIssueLabel.text = [NSString stringWithFormat:@"%@期",self.nextIssueModel.preIssue];
-    self.nextIssueLabel.text = [NSString stringWithFormat:@"%@期",self.nextIssueModel.curIssue];
+    self.currentIssueLabel.text = _NSString(@"%@期", self.nextIssueModel.preIssue);
+    self.nextIssueLabel.text = _NSString(@"%@期", self.nextIssueModel.curIssue);
+    _currentIssueLabel.hidden = !_nextIssueModel.preIssue.length;
+    _nextIssueLabel.hidden = !_nextIssueModel.curIssue.length;
     [self updateCloseLabelText];
     [self updateOpenLabelText];
     CGSize size = [self.nextIssueModel.preIssue sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(MAXFLOAT, 30)];

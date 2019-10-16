@@ -202,7 +202,7 @@
     [self setUIData];
 }
 
-- (void)setUIData{
+- (void)setUIData {
     //已连续XX天签到
     //日期列表
     //连续签到
@@ -212,10 +212,12 @@
     _collectionDataArray = [NSMutableArray arrayWithArray: self.checkinListModel.checkinList];
     [self.collectionView reloadData];
     //-连续签到======================================
-   NSMutableArray  *checkinBonusArray = [NSMutableArray arrayWithArray: self.checkinListModel.checkinBonus];
-    if (![CMCommon arryIsNull:checkinBonusArray] && checkinBonusArray.count>=2) {
-        UGcheckinBonusModel *checkinBonusModel1= [checkinBonusArray objectAtIndex:0];
-        UGcheckinBonusModel *checkinBonusModel2= [checkinBonusArray objectAtIndex:1];
+    NSMutableArray *checkinBonusArray = [NSMutableArray arrayWithArray: self.checkinListModel.checkinBonus];
+    if (checkinBonusArray.count >= 2) {
+        
+        //checkinBonus 第一个是5天签到奖励，第二个是7天签到奖励，
+        UGcheckinBonusModel *checkinBonusModel1 = [checkinBonusArray objectAtIndex:0];
+        UGcheckinBonusModel *checkinBonusModel2 = [checkinBonusArray objectAtIndex:1];
         
         NSLog(@" checkinBonusModel1.BonusSwitch= %@", checkinBonusModel1.BonusSwitch);
         
@@ -226,44 +228,13 @@
         [mUGSignInScrFootView setFiveStr:[NSString stringWithFormat:@"5天礼包(%@)",checkinBonusModel1.BonusInt]];
         [mUGSignInScrFootView setSevenStr:[NSString stringWithFormat:@"7天礼包(%@)",checkinBonusModel2.BonusInt]];
         
-        //checkinBonus 第一个是5天签到奖励，第二个是7天签到奖励，
-        if (checkinBonusModel1.isComplete) {
-            mUGSignInScrFootView.fiveButton.userInteractionEnabled =NO;//交互关闭
-            mUGSignInScrFootView.fiveButton.alpha= 1;//透明度
-            [mUGSignInScrFootView.fiveButton setBackgroundColor:UGRGBColor(244, 246, 254)];
-            [mUGSignInScrFootView.fiveButton setTitle:@"已领取" forState:UIControlStateNormal];
-        } else {
-            if (checkinBonusModel1.isChenkin) {
-                mUGSignInScrFootView.fiveButton.userInteractionEnabled =YES;//交互
-                mUGSignInScrFootView.fiveButton.alpha= 1;//透明度
-                [mUGSignInScrFootView.fiveButton setBackgroundColor:UGRGBColor(114, 108, 227)];
-                [mUGSignInScrFootView.fiveButton setTitle:@"领取" forState:UIControlStateNormal];
-            } else {
-                mUGSignInScrFootView.fiveButton.userInteractionEnabled =NO;//交互
-                mUGSignInScrFootView.fiveButton.alpha= 1;//透明度
-                [mUGSignInScrFootView.fiveButton setBackgroundColor:UGRGBColor(244, 246, 254)];
-                [mUGSignInScrFootView.fiveButton setTitle:@"领取" forState:UIControlStateNormal];
-            }
-        }
-        
-        if (checkinBonusModel2.isComplete) {
-            mUGSignInScrFootView.sevenButtton.userInteractionEnabled =NO;//交互关闭
-            mUGSignInScrFootView.sevenButtton.alpha= 1;//透明度
-            [mUGSignInScrFootView.sevenButtton setBackgroundColor:UGRGBColor(244, 246, 254)];
-            [mUGSignInScrFootView.sevenButtton setTitle:@"已领取" forState:UIControlStateNormal];
-        } else {
-            if (checkinBonusModel2.isChenkin) {
-                mUGSignInScrFootView.sevenButtton.userInteractionEnabled =YES;//交互
-                mUGSignInScrFootView.sevenButtton.alpha= 1;//透明度
-                [mUGSignInScrFootView.sevenButtton setBackgroundColor:UGRGBColor(114, 108, 227)];
-                [mUGSignInScrFootView.sevenButtton setTitle:@"领取" forState:UIControlStateNormal];
-            } else {
-                mUGSignInScrFootView.sevenButtton.userInteractionEnabled =NO;//交互
-                mUGSignInScrFootView.sevenButtton.alpha= 1;//透明度
-                [mUGSignInScrFootView.sevenButtton setBackgroundColor:UGRGBColor(244, 246, 254)];
-                [mUGSignInScrFootView.sevenButtton setTitle:@"领取" forState:UIControlStateNormal];
-            }
-        }
+        void (^setupButton)(UIButton *, UGcheckinBonusModel *) = ^(UIButton *btn, UGcheckinBonusModel *cbm) {
+            btn.userInteractionEnabled = !cbm.isComplete && cbm.isChenkin;
+            btn.backgroundColor = !cbm.isComplete && cbm.isChenkin ? UGRGBColor(114, 108, 227) : UGRGBColor(244, 246, 254);
+            [btn setTitle:cbm.isComplete ? @"已领取" : @"领取" forState:UIControlStateNormal];
+        };
+        setupButton(mUGSignInScrFootView.fiveButton, checkinBonusModel1);
+        setupButton(mUGSignInScrFootView.sevenButtton, checkinBonusModel2);
     }
     
     //-今日签到======================================
@@ -339,7 +310,7 @@
 }
 
 //边距设置:整体边距的优先级，始终高于内部边距的优先级
--(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     return UIEdgeInsetsMake(5, 5, 5, 5);//分别为上、左、下、右
 }
 
@@ -357,8 +328,8 @@
             
             [SVProgressHUD dismiss];
             weakSelf.checkinListModel = model.data;
-            NSLog(@"checkinList = %@",weakSelf.checkinListModel);
-            NSLog(@"serverTime = %@",weakSelf.checkinListModel.serverTime);
+//            NSLog(@"checkinList = %@",weakSelf.checkinListModel);
+//            NSLog(@"serverTime = %@",weakSelf.checkinListModel.serverTime);
             
             if (weakSelf.checkinListModel.checkinSwitch) {
                 [self createUI];
@@ -384,15 +355,10 @@
 //    WeakSelf;
     [CMNetwork checkinBonusWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
-            
             [SVProgressHUD showSuccessWithStatus:model.msg];
-            
-             [self getCheckinListData];
-            
+            [self getCheckinListData];
         } failure:^(id msg) {
-            
             [SVProgressHUD showErrorWithStatus:msg];
-            
         }];
     }];
 }

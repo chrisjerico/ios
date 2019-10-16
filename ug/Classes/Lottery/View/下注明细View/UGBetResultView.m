@@ -27,8 +27,7 @@
 
 static UGBetResultView *_singleInstance = nil;
 
-+ (instancetype)shareInstance
-{
++ (instancetype)shareInstance {
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
 		if (_singleInstance == nil) {
@@ -74,55 +73,77 @@ static UGBetResultView *_singleInstance = nil;
 			make.width.height.equalTo(@80);
 		}];
 		
-		UILabel *tempLabel;
-		for (int i = 0; i < 10 ; i ++) {
-			UILabel * label = [UILabel new];
-			label.textColor = UIColor.whiteColor;
-			label.backgroundColor = [UIColor colorWithHex:0x2f9cf3];
-			label.font = [UIFont systemFontOfSize: 12];
-			label.layer.cornerRadius = 2;
-			label.layer.masksToBounds = true;
-			label.textAlignment = NSTextAlignmentCenter;
-			[self.numberlabels addObject:label];
-			[self addSubview:label];
-			[label mas_makeConstraints:^(MASConstraintMaker *make) {
-				if (tempLabel) {
-					make.left.equalTo(tempLabel.mas_right).offset(3);
-					make.centerY.equalTo(tempLabel);
-				} else {
-					make.left.equalTo(image).offset(55);
-					make.centerY.equalTo(image).offset(55);
-				}
-				make.width.height.equalTo(@25);
-			}];
-			tempLabel = label;
-			
-		}
-		UILabel *tempLabel2;
-		for (int i = 0; i < 10 ; i ++) {
-			UILabel * label = [UILabel new];
-			label.textColor = [UIColor colorWithHex:0x2c962c];
-			label.backgroundColor = [UIColor whiteColor];
-			label.font = [UIFont systemFontOfSize: 10];
-			label.layer.borderWidth = 0.5;
-			label.layer.cornerRadius = 2;
-			label.layer.borderColor = UIColor.grayColor.CGColor;
-			label.textAlignment = NSTextAlignmentCenter;
-			[self.resultlabels addObject:label];
-			[self addSubview:label];
-			[label mas_makeConstraints:^(MASConstraintMaker *make) {
-				if (tempLabel2) {
-					make.left.equalTo(tempLabel2.mas_right).offset(3);
-					make.centerY.equalTo(tempLabel2);
-				} else {
-					make.left.equalTo(image).offset(55);
-					make.centerY.equalTo(image).offset(85);
-				}
-				make.width.height.equalTo(@25);
-			}];
-			tempLabel2 = label;
-			
-		}
+        
+        {
+            UIStackView *stackView = [[UIStackView alloc] initWithArrangedSubviews:@[({
+                // 号码
+                UIView *v = [UIView new];
+                v.backgroundColor = [UIColor clearColor];
+                UIStackView *sv = [UIStackView new];
+                [v addSubview:({
+                    sv.spacing = 3;
+                    sv.axis = UILayoutConstraintAxisHorizontal;
+                    for (int i = 0; i < 10 ; i ++) {
+                        UILabel * label = [UILabel new];
+                        label.textColor = UIColor.whiteColor;
+                        label.backgroundColor = [UIColor colorWithHex:0x2f9cf3];
+                        label.font = [UIFont systemFontOfSize: 12];
+                        label.layer.cornerRadius = 2;
+                        label.layer.masksToBounds = true;
+                        label.textAlignment = NSTextAlignmentCenter;
+                        [self.numberlabels addObject:label];
+                        [sv addArrangedSubview:label];
+                        [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                            make.width.height.equalTo(@25);
+                        }];
+                    }
+                    sv;
+                })];
+                [sv mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.top.bottom.centerX.equalTo(v);
+                    make.left.greaterThanOrEqualTo(v);
+                }];
+                v;
+            }), ({
+                // 结果
+                UIView *v = [UIView new];
+                v.tagString = @"第二行结果View";
+                v.backgroundColor = [UIColor clearColor];
+                UIStackView *sv = [UIStackView new];
+                [v addSubview:({
+                    sv.spacing = 3;
+                    sv.axis = UILayoutConstraintAxisHorizontal;
+                    for (int i = 0; i < 10 ; i ++) {
+                        UILabel * label = [UILabel new];
+                        label.textColor = [UIColor colorWithHex:0x2c962c];
+                        label.backgroundColor = [UIColor whiteColor];
+                        label.font = [UIFont systemFontOfSize: 10];
+                        label.layer.borderWidth = 0.5;
+                        label.layer.cornerRadius = 2;
+                        label.layer.borderColor = UIColor.grayColor.CGColor;
+                        label.textAlignment = NSTextAlignmentCenter;
+                        [self.resultlabels addObject:label];
+                        [sv addArrangedSubview:label];
+                        [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                            make.width.height.equalTo(@25);
+                        }];
+                    }
+                    sv;
+                })];
+                [sv mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.top.bottom.centerX.equalTo(v);
+                    make.left.greaterThanOrEqualTo(v);
+                }];
+                v;
+            })]];
+            stackView.spacing = 3;
+            stackView.axis = UILayoutConstraintAxisVertical;
+            [self addSubview:stackView];
+            [stackView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerX.equalTo(image).offset(4);
+                make.centerY.equalTo(image).offset(71);
+            }];
+        }
 		
 		[self addSubview: self.bonusLabel];
 		[self.bonusLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -141,10 +162,7 @@ static UGBetResultView *_singleInstance = nil;
 }
 
 
-+ (void)showWith: (UGBetDetailModel*)model
-	 timerAction: (void(^)(dispatch_source_t timer)) timerAction
-{
-	
++ (void)showWith:(UGBetDetailModel *)model showSecondLine:(BOOL)showSecondLine timerAction:(void(^)(dispatch_source_t timer))timerAction {
 	UGBetResultView * resultView = [UGBetResultView shareInstance] ;
 
 	[resultView removeFromSuperview];
@@ -161,45 +179,35 @@ static UGBetResultView *_singleInstance = nil;
 	NSArray<NSString *> * numbers = [model.openNum componentsSeparatedByString: @","];
 
 	for (int i = 0; i < 10; i ++) {
-		
-		if (i<numbers.count) {
-			resultView.numberlabels[i].text = numbers[i];
-			NSString *color = [CMCommon getHKLotteryNumColorString: numbers[i]];
-			if ([@"blue" isEqualToString:color]) {
-				 resultView.numberlabels[i].backgroundColor = UGRGBColor(86, 170, 236);
-			 }else if ([@"red" isEqualToString:color]) {
-				 resultView.numberlabels[i].backgroundColor = UGRGBColor(197, 52, 60);
-			 }else {
-				 resultView.numberlabels[i].backgroundColor = UGRGBColor(96, 174, 108);
-			 }
-
-		} else {
-			UILabel * label = resultView.numberlabels[i];
-			label.text = @"";
-			label.backgroundColor = UIColor.clearColor;
-
-		}
-		
+        UILabel * label = resultView.numberlabels[i];
+        if (i < numbers.count) {
+            label.hidden = false;
+            label.text = numbers[i];
+            NSString *color = [CMCommon getHKLotteryNumColorString:numbers[i]];
+            if ([@"blue" isEqualToString:color]) {
+                 label.backgroundColor = UGRGBColor(86, 170, 236);
+            } else if ([@"red" isEqualToString:color]) {
+                 label.backgroundColor = UGRGBColor(197, 52, 60);
+            } else {
+                 label.backgroundColor = UGRGBColor(96, 174, 108);
+            }
+        } else {
+            label.hidden = true;
+        }
 	}
+    
 	NSArray<NSString *> * results = [model.result componentsSeparatedByString: @","];
-
 	for (int i = 0; i < 10; i ++) {
-		
-		if (i<results.count) {
-			resultView.resultlabels[i].text = results[i];
-
+		UILabel *label = resultView.resultlabels[i];
+		if (i < results.count) {
+            label.hidden = false;
+			label.text = results[i];
 		} else {
-			UILabel * label = resultView.resultlabels[i];
-			label.text = @"";
-			label.backgroundColor = UIColor.clearColor;
-			label.layer.borderColor = UIColor.clearColor.CGColor;
-
+            label.hidden = true;
 		}
-		
 	}
-	
-
-	
+	[resultView viewWithTagString:@"第二行结果View"].hidden = !showSecondLine;
+    
 	if ([model.bonus floatValue] > 0) {
 		resultView.bonusLabel.text = [NSString stringWithFormat:@"+%@", model.bonus];
 		resultView.resultImage.image = [UIImage imageNamed:@"mmczjl"];
@@ -209,22 +217,16 @@ static UGBetResultView *_singleInstance = nil;
 
 	}
 	
-	resultView.timerAction = timerAction;
-
-	
+    resultView.timerAction = timerAction;
 }
 
 - (UIButton *)closeButton {
-	
 	if (!_closeButton) {
-		
 		_closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
 		[_closeButton setImage:[UIImage imageNamed:@"guanbi"] forState: UIControlStateNormal];
 		[_closeButton addTarget:self action:@selector(closeButtonTaped:) forControlEvents: UIControlEventTouchUpInside];
 		_closeButton.contentMode = UIViewContentModeCenter;
-		
 	}
-	
 	return _closeButton;
 }
 
@@ -239,9 +241,7 @@ static UGBetResultView *_singleInstance = nil;
 		
 		[_timerButton addTarget:self action:@selector(timerButtonTaped:) forControlEvents: UIControlEventTouchUpInside];
 		_timerButton.imageView.contentMode = UIViewContentModeScaleToFill;
-		
 	}
-	
 	return _timerButton;
 }
 
@@ -276,7 +276,6 @@ static UGBetResultView *_singleInstance = nil;
 }
 
 - (UILabel *)timerLabel {
-	
 	if (!_timerLabel) {
 		_timerLabel = [UILabel new];
 		_timerLabel.textColor = UIColor.whiteColor;
@@ -291,7 +290,7 @@ static UGBetResultView *_singleInstance = nil;
 static BOOL preparedToClose = false;
 static BOOL paused = true;
 
-- (void) closeButtonTaped: (UIButton *) sender {
+- (void)closeButtonTaped: (UIButton *) sender {
 	if (paused) {
 		UGBetResultView * resultView = [UGBetResultView shareInstance] ;
 		[resultView removeFromSuperview];
@@ -313,8 +312,7 @@ static BOOL paused = true;
 	
 }
 
-
-- (void) timerButtonTaped: (UIButton *) sender {
+- (void)timerButtonTaped: (UIButton *) sender {
 	[sender setSelected: !sender.isSelected];
 	if (sender.isSelected) {
 		preparedToClose = false;
