@@ -253,7 +253,7 @@ static NSString *integralCellid = @"UGConvertCollectionViewCell";
             NSString *str1 = [NSString stringWithFormat:@"%@%@:1元人民币",config.missionBili,config.missionName];
             self.titleLabel.text = str1;
             self.inputTextF.placeholder = [NSString stringWithFormat:@"请输入%@",config.missionName];
-            
+            SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
         } failure:^(id msg) {
             [SVProgressHUD dismiss];
         }];

@@ -169,6 +169,7 @@
             UGSystemConfigModel.currentConfig = config;
            
            [self buildSegment];
+            SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
         } failure:nil];
     }];
 }

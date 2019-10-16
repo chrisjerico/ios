@@ -230,8 +230,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     self.yymenuView.gameName = self.nextIssueModel.title;
     //此处为重点
     WeakSelf;
-    self.yymenuView .gotoSeeBlock = ^{
-        
+    self.yymenuView.backToHomeBlock = ^{
         [weakSelf.navigationController popViewControllerAnimated:NO];
         if (weakSelf.gotoTabBlock) {
             weakSelf.gotoTabBlock();

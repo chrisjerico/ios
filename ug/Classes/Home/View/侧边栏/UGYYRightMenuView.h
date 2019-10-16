@@ -13,7 +13,7 @@ typedef void(^YYRightMenuBlock)();
 
 @interface UGYYRightMenuView : UIView
 
-@property (nonatomic ,copy) YYRightMenuBlock gotoSeeBlock;
+@property (nonatomic, copy) YYRightMenuBlock backToHomeBlock;
 @property (nonatomic, strong) NSArray *lotteryGamesArray;
 @property (nonatomic, strong) NSString *gameId;
 @property (nonatomic, strong) NSString *gameName;

@@ -200,7 +200,7 @@ static UGTabbarController *_tabBarVC = nil;
 
     [SVProgressHUD showWithStatus: nil];
     [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-       [SVProgressHUD dismiss];
+        [SVProgressHUD dismiss];
         [CMResult processWithResult:model success:^{
             
             NSLog(@"model = %@",model);
@@ -216,6 +216,7 @@ static UGTabbarController *_tabBarVC = nil;
                 return obj1.sort > obj2.sort;
             }];
             [self resetUpChildViewController:[menus valuesWithKeyPath:@"path"]];
+            SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
         } failure:^(id msg) {
             [SVProgressHUD dismiss];
         }];
@@ -232,6 +233,11 @@ static UGTabbarController *_tabBarVC = nil;
         for (NSString *path in paths) {
             UGmobileMenu *gm = [_gms objectWithValue:path keyPath:@"path"];
             
+            // 优惠活动展示在首页
+            if (gm.cls == [UGPromotionsController class] && SysConf.m_promote_pos)
+                continue;
+            
+            // 已存在的控制器不需要重新初始化
             BOOL existed = false;
             for (UIViewController *vc in self.viewControllers) {
                 if ([vc isKindOfClass:gm.cls]) {
@@ -243,6 +249,7 @@ static UGTabbarController *_tabBarVC = nil;
             if (existed)
                 continue;
             
+            // 初始化新的控制器
             UIViewController *vc = _LoadVC_from_storyboard_(NSStringFromClass(gm.cls));
             if (!vc)
                 vc = [gm.cls new];

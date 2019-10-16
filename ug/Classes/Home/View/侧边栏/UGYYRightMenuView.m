@@ -48,7 +48,9 @@
 @end
 
 static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
+
 @implementation UGYYRightMenuView
+
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
@@ -78,9 +80,6 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
             NSLog(@"todayWinAmount = %@",[UGUserModel currentUser].todayWinAmount);
             NSLog(@"unsettleAmount = %@",[UGUserModel currentUser].unsettleAmount);
 			
-		
-
-
             NSString *str1 = [NSString stringWithFormat:@"即时注单(%@)",[UGUserModel currentUser].unsettleAmount];
             NSString *str2 = [NSString stringWithFormat:@"今日输赢(%@)",[UGUserModel currentUser].todayWinAmount];
             
@@ -98,7 +97,6 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
             }
             
             [self.tableView reloadData];
-            
         });
         
         
@@ -126,7 +124,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
     
 }
 
--(void)setTitleType:(NSString *)titleType{
+- (void)setTitleType:(NSString *)titleType {
     _titleType = titleType;
 	NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
 
@@ -148,25 +146,20 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"changlong",@"lixibao",@"zhanneixin",@"tuichudenglu",@"appVicon", nil] ;
     }
     
-    
-    
     [self.tableView reloadData];
 }
-
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
     UIView *view = [super hitTest:point withEvent:event];
     if (CGRectContainsPoint(self.bounds, point)) {
         
-    }else {
+    } else {
         [self hiddenSelf];
     }
-    
     return view;
 }
 
 - (IBAction)refreshBalance:(id)sender {
-    
     [self startAnimation];
     SANotificationEventPost(UGNotificationGetUserInfo, nil);
 }
@@ -185,29 +178,23 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
 //        self.menuSelectBlock(101);
 //    }
     [self didSelectCellWithTitle:@"提现"];
-
-    
 }
 
 
 //刷新余额动画
--(void)startAnimation
-{
+- (void)startAnimation {
     CABasicAnimation *ReFreshAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
     ReFreshAnimation.toValue = [NSNumber numberWithFloat:M_PI*2.0];
     ReFreshAnimation.duration = 1;
     ReFreshAnimation.repeatCount = HUGE_VALF;
     [self.refreshButton.layer addAnimation:ReFreshAnimation forKey:@"rotationAnimation"];
-    
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
     return self.titleArray.count;
 }
 
@@ -217,16 +204,15 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
     cell.imageName = self.imageNameArray[indexPath.row];
     
     NSString *title = [self.titleArray objectAtIndex:indexPath.row];
-     if ([title isEqualToString:@"长龙助手"]) {
-         [cell letArrowHidden];
-     }
-     else if([title isEqualToString:@"利息宝"]) {
-         [cell letArrowHidden];
-     }
-     else{
-         [cell letIconHidden];
-     }
-    
+    if ([title isEqualToString:@"长龙助手"]) {
+     [cell letArrowHidden];
+    }
+    else if([title isEqualToString:@"利息宝"]) {
+     [cell letArrowHidden];
+    }
+    else{
+     [cell letIconHidden];
+    }
     return cell;
 }
 
@@ -236,24 +222,18 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 0.001f;
-    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-
 //    if (self.menuSelectBlock) {
 //        self.menuSelectBlock(indexPath.row);
-//
 //    }
-    
     [self hiddenSelf];
     [self didSelectCellWithTitle:[self.titleArray objectAtIndex:indexPath.row]];
-    
-   
 }
+
 - (void)show {
-    
     [self.rechargeView setBackgroundColor:UGNavColor];
     [self.withdrawlView setBackgroundColor:UGNavColor];
     
@@ -270,15 +250,18 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
     view.x = UGScreenW;
     [maskView addSubview:view];
     [window addSubview:maskView];
+    
     [UIView animateWithDuration:0.35 animations:^{
         view.x = self.oldFrame.origin.x;
     } completion:^(BOOL finished) {
         
     }];
+    
+    // 刷新余额、即时注单、今日输赢等信息
+    [self refreshBalance:nil];
 }
 
 - (void)hiddenSelf {
-    
     UIView* view = self;
     self.superview.backgroundColor = [UIColor clearColor];
     [UIView animateWithDuration:0.35 animations:^{
@@ -288,14 +271,12 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         [view.superview removeFromSuperview];
         [view removeFromSuperview];
     }];
-    
 }
-
 
 - (void)didSelectCellWithTitle:(NSString *)title {
     if ([title isEqualToString:@"返回首页"]) {
-        if (self.gotoSeeBlock)
-            self.gotoSeeBlock();
+        if (self.backToHomeBlock)
+            self.backToHomeBlock();
 	}
     else if ([title isEqualToString:_NSString(@"当前版本号(%@)", [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"])]) {
 		[[UGAppVersionManager shareInstance] updateVersionApi:true];
@@ -313,7 +294,6 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
     }
     else if ([title containsString:@"今日输赢" ]) {
         UGBetRecordViewController *betRecordVC = [[UGBetRecordViewController alloc] init];
-        betRecordVC.selectIndex = 2;
         [NavController1 pushViewController:betRecordVC animated:true];
     }
     else if ([title isEqualToString:@"投注记录" ]) {
@@ -359,8 +339,6 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
        [NavController1 pushViewController:[UGSkinViewController new] animated:true];
    }
 }
-
-
 
 @end
 
