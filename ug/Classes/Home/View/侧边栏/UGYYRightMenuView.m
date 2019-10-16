@@ -298,7 +298,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
             self.gotoSeeBlock();
 	}
     else if ([title isEqualToString:_NSString(@"当前版本号(%@)", [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"])]) {
-		[[UGAppVersionManager shareInstance] updateVersionNow:YES];
+		[[UGAppVersionManager shareInstance] updateVersionApi:true];
 	}
     else if ([title isEqualToString:@"彩种规则"]) {
         UGLotteryRulesView *rulesView = [[UGLotteryRulesView alloc] initWithFrame:CGRectMake(30, 120, UGScreenW - 60, UGScerrnH - 230)];

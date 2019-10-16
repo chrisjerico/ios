@@ -171,9 +171,10 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 		[CMResult processWithResult:model success:^{
 			[SVProgressHUD dismiss];
 			
-			// 秒秒彩系列
-			if ([@[@"7", @"11", @"9"] containsObject: self.nextIssueModel.gameId]) {
-				[UGBetResultView showWith:model.data timerAction:^(dispatch_source_t  _Nonnull timer) {
+			// 秒秒彩系列（即时开奖无需等待）
+			if ([@[@"7", @"11", @"9"] containsObject:self.nextIssueModel.gameId]) {
+                BOOL showSecondLine = [@[@"11"] containsObject:self.nextIssueModel.gameId]; // 六合秒秒彩
+				[UGBetResultView showWith:model.data showSecondLine:showSecondLine timerAction:^(dispatch_source_t  _Nonnull timer) {
 					[self submitBet:params];
 				}];
 			} else {
@@ -372,7 +373,6 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 			temp.betInfo = [NSString stringWithFormat:@"%@%@",temp.name,str];
 		}
 	}
-	
 }
 
 - (void)setNextIssueModel:(UGNextIssueModel *)nextIssueModel {
@@ -483,7 +483,6 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 }
 
 - (void)show {
-	
 	UIWindow* window = UIApplication.sharedApplication.keyWindow;
 	UIView* maskView = [[UIView alloc] initWithFrame:window.bounds];
 	UIView* view = self;
@@ -494,7 +493,6 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 	
 	[maskView addSubview:view];
 	[window addSubview:maskView];
-	
 }
 
 - (void)hiddenSelf {

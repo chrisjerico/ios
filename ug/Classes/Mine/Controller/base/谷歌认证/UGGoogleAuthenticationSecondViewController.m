@@ -66,7 +66,7 @@
             [SVProgressHUD dismiss];
             
             weakSelf.model = model.data;
-            NSLog(@"checkinList = %@",weakSelf.model);
+//            NSLog(@"checkinList = %@",weakSelf.model);
             
             UGgaCaptchaModel *obj = model.data;
             

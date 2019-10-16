@@ -539,25 +539,14 @@
 }
 
 - (void)userLogout {
-	
-	
 	NSDictionary *dict = @{@"token":[UGUserModel currentUser].sessid};
-	[SVProgressHUD showWithStatus:@"退出登录..."];
-	[CMNetwork userLogoutWithParams:dict completion:^(CMResult<id> *model, NSError *err) {
-		[CMResult processWithResult:model success:^{
-			//            [SVProgressHUD showSuccessWithStatus:model.msg];
-			[SVProgressHUD showSuccessWithStatus:@"退出成功"];
-			self.titleView.showLoginView = YES;
-			UGUserModel.currentUser = nil;
-			dispatch_async(dispatch_get_main_queue(), ^{
-				
-				[self.tabBarController setSelectedIndex:0];
-			});
-		} failure:^(id msg) {
-			[SVProgressHUD showErrorWithStatus:msg];
-		}];
-	}];
-	
+    [SVProgressHUD showSuccessWithStatus:@"退出成功"];
+    self.titleView.showLoginView = YES;
+    UGUserModel.currentUser = nil;
+    [NavController1 popToRootViewControllerAnimated:true];
+    [TabBarController1 setSelectedIndex:0];
+    
+	[CMNetwork userLogoutWithParams:dict completion:nil];
 }
 
 - (void)getBannerList {

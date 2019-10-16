@@ -7,8 +7,12 @@
 //
 
 #import "UGLotteryAssistantController.h"
+#import "UGChangLongController.h"
+
 #import "UGLotteryAssistantTableViewCell.h"
+
 #import "UGChanglongaideModel.h"
+
 #import "CountDown.h"
 
 @interface UGLotteryAssistantController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
@@ -17,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *countLabel;
 @property (weak, nonatomic) IBOutlet UITextField *amountLabel;
 @property (weak, nonatomic) IBOutlet UIButton *betButton;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *betButtonBottomConstraint;
 @property (weak, nonatomic) IBOutlet UIView *betDetailView;
 @property (weak, nonatomic) IBOutlet UILabel *betDetailLabel;
 
@@ -70,6 +75,31 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
     SANotificationEventSubscribe(UGNotificationGetChanglongBetRecrod, self, ^(typeof (self) self, id obj) {
         [self.amountLabel resignFirstResponder];
     });
+    
+    
+    
+    __weakSelf_(__self);
+    // 键盘弹起隐藏事件
+    {
+        [IQKeyboardManager.sharedManager.disabledDistanceHandlingClasses addObject:[self class]];
+        [self xw_addNotificationForName:UIKeyboardWillShowNotification block:^(NSNotification * _Nonnull noti) {
+            CGFloat h = [noti.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
+            if ([NavController1.viewControllers.firstObject isKindOfClass:[UGChangLongController class]]) {
+                h -= APP.Height - TabBarController1.tabBar.y;
+            }
+            __self.bottomView.cc_constraints.bottom.constant = h;
+            __self.betButtonBottomConstraint.constant = 0;
+            [__self.view layoutIfNeeded];
+        }];
+
+        [self xw_addNotificationForName:UIKeyboardWillHideNotification block:^(NSNotification * _Nonnull noti) {
+            __self.bottomView.cc_constraints.bottom.constant = 0;
+            __self.betButtonBottomConstraint.constant = [NavController1.viewControllers.firstObject isKindOfClass:[UGChangLongController class]] ? 0 : APP.BottomSafeHeight;
+        }];
+    }
+    
+    // 适配iPhoneX
+    _betButtonBottomConstraint.constant = [NavController1.viewControllers.firstObject isKindOfClass:[UGChangLongController class]] ? 0 : APP.BottomSafeHeight;
 }
 
 - (void)viewWillAppear:(BOOL)animated {

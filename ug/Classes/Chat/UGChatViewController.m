@@ -15,30 +15,27 @@
 @implementation UGChatViewController
 
 - (void)viewDidLoad {
+    // 在 [super viewDidLoad] 前面配置url
     self.url = ({
         NSString *url = _NSString(@"%@%@%@&loginsessid=%@&color=%@&back=hide", baseServerUrl, newChatRoomUrl, [UGUserModel currentUser].token, [UGUserModel currentUser].sessid, [[UGSkinManagers shareInstance] setChatNavbgStringColor]);
         if (_gameId.length)
             url = [url stringByAppendingFormat:@"&id=%@", self.gameId];
         url;
     });
+    
     [super viewDidLoad];
-
-    // Do any additional setup after loading the view.
-    
-    
 
 
     self.title = @"聊天室";
     
     self.fd_prefersNavigationBarHidden = YES;
     
-    int height = self.gameId.length ? 0 : 60;
-    if ([CMCommon isPhoneX]) {
-        [self setWebViewFrame:CGRectMake(0, 0, UGScreenW, UGScerrnH - IPHONE_SAFEBOTTOMAREA_HEIGHT - height)];
-    } else {
-        [self setWebViewFrame:CGRectMake(0, 0, UGScreenW, UGScerrnH - height)];
-
-    }
+    [self setWebViewFrame:CGRectMake(0, 0, UGScreenW, ({
+        CGFloat h = APP.Height;
+        if ([NavController1.viewControllers.firstObject isKindOfClass:[UGChatViewController class]])
+            h -= APP.Height - TabBarController1.tabBar.y;
+        h;
+    }))];
     
     // 返回按钮
     {
@@ -51,14 +48,6 @@
         }];
         [self.view addSubview:btn];
     }
-}
-
-- (void)setUrl:(NSString *)url {
-    [super setUrl:[url stringByAppendingString:@"&back=hide"]];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
 }
 
 @end
