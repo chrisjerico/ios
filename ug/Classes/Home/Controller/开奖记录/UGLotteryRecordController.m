@@ -67,7 +67,7 @@ static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
     self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithImageName:@"riqi" target:self action:@selector(rightBarButonItemClick)];
     self.dateLabel.text = self.dateArray.firstObject;
     
-    if ([CMCommon arryIsNull:_lotteryGamesArray]) {
+    if ([CMCommon arryIsNull:_lotteryGamesArray]||[CMCommon stringIsNull:_gameId]) {
         [self getAllNextIssueData];
     }
     else{
