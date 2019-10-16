@@ -46,7 +46,9 @@
         [btn handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
             [__self.navigationController popViewControllerAnimated:true];
         }];
-        [self.view addSubview:btn];
+        
+        if (_gameId.length)
+          [self.view addSubview:btn];
     }
 }
 
