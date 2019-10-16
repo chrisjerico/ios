@@ -36,11 +36,20 @@
 
 - (void)setItem:(UGBetModel *)item {
     _item = item;
-    self.numberLabel.text = ({
-        NSString *name = item.alias.length ? item.alias : item.title;
-        NSString *num = item.displayInfo.length ? item.displayInfo : (item.betInfo.length ? item.betInfo : item.name);
-        _NSString(@"%@[%@]", name, num);
-    });
+    
+    if ([item.typeName isEqualToString:@"连肖"]||[item.typeName isEqualToString:@"连尾"]) {
+        self.numberLabel.text =  item.title;
+    }
+    else {
+        self.numberLabel.text = ({
+
+                    NSString *name = item.alias.length ? item.alias : item.title;
+                   NSString *num = item.displayInfo.length ? item.displayInfo : (item.betInfo.length ? item.betInfo : item.name);
+                   _NSString(@"%@[%@]", name, num);
+
+           });
+    }
+    
     self.amountField.text = _NSString(@"%@", item.money);
     self.oddsLabel.text = _NSString(@"@%@", [item.odds removeFloatAllZero]);
     
