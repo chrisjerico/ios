@@ -350,7 +350,10 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
  返回参数 : NSMutableDictionary 加密后参数
  备注信息 :
  ******************************************************************************/
-+ (NSMutableDictionary *)encryptionCheckSign:(NSDictionary*)params {
++ (NSMutableDictionary *)encryptionCheckSign:(NSDictionary *)params {
+    if (!params.count) {
+        return nil;
+    }
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     
     NSString *deskey = [UGEncryptUtil createUuid];
@@ -392,47 +395,23 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
 /// @param model       响应结果类型
 /// @param completion   结果回调
 ///
-- (void)requestWithMethod:(NSString*)method
-params:(NSDictionary*)params
-model:(CMResultClass)model
-post:(BOOL)isPost
-completion:(CMNetworkBlock)completion {
-
-//    参数加密
+- (void)requestWithMethod:(NSString*)method params:(NSDictionary*)params model:(CMResultClass)model post:(BOOL)isPost completion:(CMNetworkBlock)completion {
     if (checkSign) {
+        // 参数加密
         method = [NSString stringWithFormat:@"%@&checkSign=1",method];
-        if (params) {
-            NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-            dict = [CMNetwork encryptionCheckSign:params];
-
-            if (isPost) {
-                [self postWithMethod:method params:dict  model:model retryCount:0 completion:completion];
-            } else {
-                [self getWithMethod:method params:dict  model:model retryCount:0 completion:completion];
-                
-            }
-        } else {
-            if (isPost) {
-                [self postWithMethod:method params:params  model:model retryCount:0 completion:completion];
-            } else {
-                [self getWithMethod:method params:params  model:model retryCount:0 completion:completion];
-                
-            }
-            
-        }
-        
-    } else {
-        if (isPost) {
-            [self postWithMethod:method params:params  model:model retryCount:0 completion:completion];
-        } else {
-            [self getWithMethod:method params:params  model:model retryCount:0 completion:completion];
-            
-        }
-        
+        params = [CMNetwork encryptionCheckSign:params];
     }
-
-   
     
+    // 登录请求去掉token
+    if ([method containsString:@"a=login"]) {
+        [params setValue:nil forKey:@"token"];
+    }
+    
+    if (isPost) {
+        [self postWithMethod:method params:params  model:model retryCount:0 completion:completion];
+    } else {
+        [self getWithMethod:method params:params  model:model retryCount:0 completion:completion];
+    }
 }
 
 - (void)getWithMethod:(NSString*)method

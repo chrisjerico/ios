@@ -72,7 +72,6 @@ static UGTabbarController *_tabBarVC = nil;
         NSLog(@"游客禁止访问：%@", vc);
         UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"请先登录您的正式账号" btnTitles:@[@"取消", @"马上登录"]];
         [ac setActionAtTitle:@"马上登录" handler:^(UIAlertAction *aa) {
-            SANotificationEventPost(UGNotificationUserLogout, nil);
             SANotificationEventPost(UGNotificationShowLoginView, nil);
         }];
         return false;
