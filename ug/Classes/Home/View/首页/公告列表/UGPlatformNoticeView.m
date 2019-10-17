@@ -140,7 +140,7 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
             make.top.bottom.equalTo(cell).offset(2);
             make.height.mas_equalTo(60);
         }];
-        [wv loadHTMLString:_NSString(@"<head><style>img{width:%f !important;height:auto}</style></head>%@", cell.width-20, nm.content) baseURL:nil];
+        [wv loadHTMLString:_NSString(@"<head><style>img{width:auto !important;height:auto}</style></head>%@", nm.content) baseURL:nil];
     }
     
     

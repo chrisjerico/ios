@@ -36,6 +36,7 @@
             h -= APP.Height - TabBarController1.tabBar.y;
         h;
     }))];
+    
     // 返回按钮
     {
         __weakSelf_(__self);
@@ -46,7 +47,7 @@
             [__self.navigationController popViewControllerAnimated:true];
         }];
         
-        if (_gameId.length)
+        if (self.navigationController.viewControllers.firstObject != self)
           [self.view addSubview:btn];
     }
 }
