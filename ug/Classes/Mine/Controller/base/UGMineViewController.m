@@ -313,7 +313,6 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
         if (user.isTest) {
             [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 if (buttonIndex == 1) {
-                    SANotificationEventPost(UGNotificationUserLogout, nil);
                     SANotificationEventPost(UGNotificationShowLoginView, nil);
                 }
             }];
