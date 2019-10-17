@@ -43,10 +43,10 @@
         subLabel(@"开奖号码Label").text = @"等待开奖";
         double money = item.odds.floatValue * item.betAmount.floatValue;
         subLabel(@"盈亏Label1").text = @"可赢金额:";
-        subLabel(@"盈亏Label2").text = _NSString(@"%@%@元", (money>0 ? @"+" : @""), _FloatString4(money));
+       
     } else if (item.status == 4) {
         subLabel(@"开奖号码Label").text = @"已撤单";
-        subLabel(@"盈亏Label2").text = @"--";
+       
     }
 }
 

@@ -38,7 +38,13 @@
     _item = item;
     
     if ([item.typeName isEqualToString:@"连肖"]||[item.typeName isEqualToString:@"连尾"]) {
-        self.numberLabel.text =  item.title;
+        self.numberLabel.text = ({
+
+                           NSString *name = item.title;
+                          NSString *num = item.displayInfo.length ? item.displayInfo : (item.betInfo.length ? item.betInfo : item.name);
+                          _NSString(@"%@_[%@]", name, num);
+
+        });
     }
     else {
         self.numberLabel.text = ({
