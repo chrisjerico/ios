@@ -8,13 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-FOUNDATION_EXTERN NSString *UGNotificationLoginComplete;
+FOUNDATION_EXTERN NSString *UGNotificationLoginComplete;            // 登录成功
 FOUNDATION_EXTERN NSString *UGNotificationloginCancel;
-FOUNDATION_EXTERN NSString *UGNotificationShowLoginView;
+FOUNDATION_EXTERN NSString *UGNotificationShowLoginView;            // 显示登录弹框
 FOUNDATION_EXTERN NSString *UGNotificationUserLogout;
 FOUNDATION_EXTERN NSString *UGNotificationloginTimeout;
-FOUNDATION_EXTERN NSString *UGNotificationGetUserInfo;
-FOUNDATION_EXTERN NSString *UGNotificationGetUserInfoComplete;
+FOUNDATION_EXTERN NSString *UGNotificationGetUserInfo;              // 获取我的信息
+FOUNDATION_EXTERN NSString *UGNotificationGetUserInfoComplete;      // 获取我的信息完成
+FOUNDATION_EXTERN NSString *UGNotificationGetSystemConfigComplete;  // 获取配置信息完成
 FOUNDATION_EXTERN NSString *UGNotificationUserAvatarChanged;
 FOUNDATION_EXTERN NSString *UGNotificationAutoTransferOut;
 FOUNDATION_EXTERN NSString *UGNotificationYuebaoInfoChanged;

@@ -12,8 +12,8 @@
 #import <Foundation/Foundation.h>
 
 
-#define FishTest 0     // Fish调试用的标识
-#define AndrewTest 1    // Andrew调试用的标识
+#define FishTest 1     // Fish调试用的标识
+#define AndrewTest 0    // Andrew调试用的标识
 
 //路径转换为restful开关
 #define RESTFUL NO

@@ -199,7 +199,6 @@
 	
 	SANotificationEventSubscribe(UGNotificationTryPlay, self, ^(typeof (self) self, id obj) {
 		[self tryPlayClick];
-		
 	});
 	
 	SANotificationEventSubscribe(UGNotificationLoginComplete, self, ^(typeof (self) self, id obj) {
@@ -231,8 +230,10 @@
 	SANotificationEventSubscribe(UGNotificationAutoTransferOut, self, ^(typeof (self) self, id obj) {
 		[self autoTransferOut];
 	});
-	
-
+    SANotificationEventSubscribe(UGNotificationGetSystemConfigComplete, self, ^(typeof (self) self, id obj) {
+        [self.promotionsStackView superviewWithTagString:@"优惠活动ContentView"].hidden = !SysConf.m_promote_pos;
+    });
+    
 	
 	self.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
 
@@ -531,7 +532,7 @@
             NSString *title =[NSString stringWithFormat:@"COPYRIGHT © %@ RESERVED",config.webName];
             [self.bottomLabel setText:title];
 			[self.titleView setImgName:config.mobile_logo];
-			
+			SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
 		} failure:^(id msg) {
 			
 		}];
@@ -686,7 +687,6 @@
 	}];
 }
 
-
 - (void)systemOnlineCount {
 	
 	[CMNetwork systemOnlineCountWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
@@ -826,7 +826,6 @@
 		amountLable.tag = 1002;
 		[itemView addSubview:amountLable];
 	}
-	
 }
 
 - (void)updateItemView:(UIView *)itemView atIndex:(NSUInteger)index forMarqueeView:(UUMarqueeView *)marqueeView {
@@ -909,7 +908,6 @@
 		} failure:^(id msg) {
 			[SVProgressHUD showErrorWithStatus:msg];
 		}];
-		
 	}];
 }
 

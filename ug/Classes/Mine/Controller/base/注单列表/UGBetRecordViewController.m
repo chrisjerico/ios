@@ -34,11 +34,10 @@
 
 static NSString *recordFilterCellid = @"UGRecordFilterCollectionViewCell";
 @implementation UGBetRecordViewController
+
 - (void)skin {
     [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
 }
-
-
 
 - (BOOL)游客禁止访问 {
     return true;
@@ -54,7 +53,6 @@ static NSString *recordFilterCellid = @"UGRecordFilterCollectionViewCell";
         [self skin];
     });
     self.dateIndex = 0;
-    _controllerIndex = 0;
     self.filterItemArray = @[@"今日",@"最近三天",@"最近一周",@"最近一月"];
     self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithImageName:@"riqi" target:self action:@selector(rightBarButtonItemClick)];
     
@@ -62,11 +60,12 @@ static NSString *recordFilterCellid = @"UGRecordFilterCollectionViewCell";
     [self buildSegment];
 
     [self setupAmountLabelTextColor];
-
-
 }
 
-
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.slideSwitchView changeSlideAtSegmentIndex:_selectIndex];
+}
 
 - (void)rightBarButtonItemClick {
     
@@ -150,9 +149,7 @@ static NSString *recordFilterCellid = @"UGRecordFilterCollectionViewCell";
 
 #pragma mark - 配置segment
 
--(void)buildSegment {
-  
-    
+- (void)buildSegment {
     if (!self.slideSwitchView) {
         self.itemArray = @[@"已中奖", @"未中奖", @"等待开奖", @"已撤单"];
         self.slideSwitchView = [[XYYSegmentControl alloc] initWithFrame:CGRectMake(0 , 0, self.view.width, self.view.height) channelName:self.itemArray source:self];
@@ -170,8 +167,6 @@ static NSString *recordFilterCellid = @"UGRecordFilterCollectionViewCell";
         self.slideSwitchView.tabItemSelectionIndicatorColor = UGNavColor;
         [self.view addSubview:self.slideSwitchView];
     }
-    
-
 }
 
 
@@ -194,11 +189,9 @@ static NSString *recordFilterCellid = @"UGRecordFilterCollectionViewCell";
     
 }
 
-- (void)slideSwitchView:(XYYSegmentControl *)view didselectTab:(NSUInteger)number
-{
+- (void)slideSwitchView:(XYYSegmentControl *)view didselectTab:(NSUInteger)number {
     self.controllerIndex = number;
     UGBetRecordTableViewController *recordVC = self.controllersArray[number];
-  
     recordVC.loadData = YES;
 }
 
@@ -206,7 +199,6 @@ static NSString *recordFilterCellid = @"UGRecordFilterCollectionViewCell";
     _selectIndex = selectIndex;
     self.controllerIndex = _selectIndex;
     UGBetRecordTableViewController *recordVC = self.controllersArray[_selectIndex];
-     
     recordVC.loadData = YES;
 }
 
@@ -214,7 +206,6 @@ static NSString *recordFilterCellid = @"UGRecordFilterCollectionViewCell";
     NSMutableAttributedString *abstr = [[NSMutableAttributedString alloc] initWithString:self.amountLabel.text];
     [abstr addAttribute:NSForegroundColorAttributeName value:UGRGBColor(244, 215, 87) range:NSMakeRange(5, self.amountLabel.text.length - 5)];
     self.amountLabel.attributedText = abstr;
-    
 }
 
 #pragma mark - Getter

@@ -784,18 +784,11 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
         [CMResult processWithResult:model success:^{
             UGSystemConfigModel *config = model.data;
             UGSystemConfigModel.currentConfig = config;
-            
-            
-              NSLog(@"签到==%d",[UGSystemConfigModel  currentConfig].checkinSwitch);
-            
-           
-            
-             [self setupUserInfo:YES];
+            NSLog(@"签到==%d",[UGSystemConfigModel  currentConfig].checkinSwitch);
+            [self setupUserInfo:YES];
             [self menuNameArrayDate ];
-            
-            
-             [self stopAnimation];
-            
+            [self stopAnimation];
+            SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
         } failure:^(id msg) {
             [SVProgressHUD dismiss];
         }];

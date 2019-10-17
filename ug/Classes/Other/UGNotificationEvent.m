@@ -16,6 +16,7 @@ NSString *UGNotificationUserLogout = @"UGNotificationUserLogout";
 NSString *UGNotificationShowLoginView = @"UGNotificationShowLoginView";
 NSString *UGNotificationGetUserInfo = @"UGNotificationGetUserInfo";
 NSString *UGNotificationGetUserInfoComplete = @"UGNotificationGetUserInfoComplete";
+NSString *UGNotificationGetSystemConfigComplete = @"UGNotificationGetSystemConfigComplete";
 NSString *UGNotificationUserAvatarChanged = @"UGNotificationUserAvatarChanged";
 NSString *UGNotificationAutoTransferOut = @"UGNotificationAutoTransferOut";
 NSString *UGNotificationYuebaoInfoChanged = @"UGNotificationYuebaoInfoChanged";
