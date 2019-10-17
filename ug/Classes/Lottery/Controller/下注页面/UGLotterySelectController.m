@@ -10,21 +10,44 @@
 #import "UGLotteryGameCollectionViewCell.h"
 #import "UGAllNextIssueListModel.h"
 #import "UGTimeLotteryBetHeaderView.h"
-
+#import "CountDown.h"
 
 
 
 @interface UGLotterySelectController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic, strong) CountDown *countDown;
 @end
 static NSString *letteryTicketCellID = @"UGLotteryGameCollectionViewCell";
 static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
 @implementation UGLotterySelectController
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    WeakSelf
+    
+    [self.countDown countDownWithPER_SECBlock:^{
+        [weakSelf updateTimeInVisibleCells];
+    }];
+    
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.countDown destoryTimer];
+}
+
+- (void)updateTimeInVisibleCells {
+    NSArray  *cells = self.collectionView.visibleCells; //取出屏幕可见ceLl
+    for (UGLotteryGameCollectionViewCell *cell in cells) {
+        cell.item = cell.item;
+        
+    }
+}
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.view.backgroundColor = UIColor.whiteColor;
-	
+    self.countDown = [[CountDown alloc] init];
 	self.navigationItem.title = @"点击图标切换彩票";
 	UIButton * rightItem = [UIButton buttonWithType:UIButtonTypeSystem];
 	[rightItem setTitle:@"取消" forState:UIControlStateNormal];
