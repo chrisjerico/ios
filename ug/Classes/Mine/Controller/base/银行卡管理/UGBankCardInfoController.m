@@ -71,12 +71,16 @@
 - (IBAction)eidtButtonClick:(id)sender {
 	[QDAlertView showWithTitle:@"是否联系客服？" message:@"为了您的资金安全，银行卡信息一经确定，无法随意修改。请联系客服修改您的银行卡相关信息" cancelButtonTitle:@"取消" otherButtonTitle:@"确定" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
 		if (buttonIndex) {
-			SLWebViewController *webViewVC = [[SLWebViewController alloc] init];
+			
 			UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
 			
-			
+            TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
+                 
+                  
+                  
 			if (config.zxkfUrl.length > 0) {
-				webViewVC.urlStr = config.zxkfUrl;
+				 webViewVC.url = SysConf.zxkfUrl;
+                webViewVC.webTitle = @"在线客服";
 			} else {
 				//			[SVProgressHUD showErrorWithStatus:@"链接未配置"];
 				return;
