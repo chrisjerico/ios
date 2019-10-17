@@ -60,7 +60,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *valueLabel;
 @property (weak, nonatomic) IBOutlet UILabel *fristVipLabel;
 @property (weak, nonatomic) IBOutlet UILabel *secondVipLabel;
-@property (weak, nonatomic) IBOutlet UIView *progressView;
+@property (weak, nonatomic) IBOutlet UIView *progressView;  /**<   进度条 */
 @property (weak, nonatomic) IBOutlet UIButton *taskButton;
 @property (weak, nonatomic) IBOutlet UIButton *signButton;
 @property (nonatomic, strong) CAShapeLayer *progressLayer;
@@ -807,6 +807,13 @@ BOOL isOk = NO;
 
 - (UIBezierPath *)progressPathWithProgress:(CGFloat)progress
 {
+
+    if (progress) {
+         _progressLayer.strokeColor = [[UGSkinManagers shareInstance] setMineProgressViewColor].CGColor;
+    } else {
+        _progressLayer.strokeColor = [UIColor clearColor].CGColor;
+    }
+    progress = 0;
     UIBezierPath *path = [UIBezierPath bezierPath];
     CGPoint startPoint = (CGPoint){0,CGRectGetHeight(self.progressView.frame)/2};
     CGPoint endPoint = (CGPoint){CGRectGetWidth(self.progressView.frame)*progress,startPoint.y};
