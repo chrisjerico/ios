@@ -399,6 +399,12 @@
         webViewVC.webTitle = @"在线客服";
         [self.navigationController pushViewController:webViewVC animated:YES];
 	}
+    else{
+       TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
+       webViewVC.url = model.url;
+       webViewVC.webTitle = model.title;
+       [self.navigationController pushViewController:webViewVC animated:YES];
+    }
 }
 
 - (void)getUserInfo {
