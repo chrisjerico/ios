@@ -121,6 +121,9 @@
 			make.centerX.equalTo(self);
 			make.width.height.equalTo(@40);
 		}];
+        
+        _iconImage.layer.cornerRadius = 20;
+        _iconImage.layer. masksToBounds = YES;
         [self addSubview:_hotImage];
         [_hotImage mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self);
