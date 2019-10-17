@@ -18,8 +18,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-      [self setBackgroundColor: [[UGSkinManagers shareInstance] setCellbgColor]];
-    
+    [self setBackgroundColor:[[UGSkinManagers shareInstance] setCellbgColor]];
 }
 
 
@@ -33,7 +32,7 @@
     if (badgeNum) {
         [self showBadgeWithStyle:WBadgeStyleNumber value:badgeNum animationType:WBadgeAnimTypeNone];
         self.badgeCenterOffset = CGPointMake(-40, 30);
-    }else {
+    } else {
         [self clearBadge];
     }
 }

@@ -8,27 +8,12 @@
 
 #import "UGPlatformNoticeCell.h"
 #import "UGNoticeModel.h"
+
 @interface UGPlatformNoticeCell ()
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
-
 @end
+
+
 @implementation UGPlatformNoticeCell
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-
-}
-
-- (void)setItem:(UGNoticeModel *)item {
-    _item = item;
-    
-    
-    
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-    
-}
 
 @end

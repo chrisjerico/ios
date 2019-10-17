@@ -11,7 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UGMineSkinViewController : UIViewController
-- (void)getUserInfo ;
+
+- (void)getUserInfo;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -194,4 +194,13 @@
     
 }
 
+// 增检查真人游戏是否存在余额未转出
++ (void)needToTransferOutWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock {
+    [self.manager requestInMainThreadWithMethod:[needToTransferOutUrl stringToRestfulUrlWithFlag:RESTFUL]
+        params:params
+         model:nil
+          post:false
+    completion:completionBlock];
+}
+
 @end

@@ -428,10 +428,6 @@
 		D45A94C3233B9F070089E86C /* UGGoogleAuthenticationThirdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D45A94C1233B9F070089E86C /* UGGoogleAuthenticationThirdViewController.xib */; };
 		D45F98C622E34DAB00194139 /* UGMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D45F98C522E34DAA00194139 /* UGMineViewController.m */; };
 		D463B4DC2283ECFB00EAC0F7 /* UGPromotionTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = D463B4DB2283ECFB00EAC0F7 /* UGPromotionTableController.m */; };
-		D463B4DF2284488200EAC0F7 /* UGRightMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = D463B4DE2284488200EAC0F7 /* UGRightMenuView.m */; };
-		D463B4E12284489100EAC0F7 /* UGRightMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D463B4E02284489100EAC0F7 /* UGRightMenuView.xib */; };
-		D463B4E522844D4A00EAC0F7 /* UGRightMenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D463B4E322844D4A00EAC0F7 /* UGRightMenuTableViewCell.m */; };
-		D463B4E622844D4A00EAC0F7 /* UGRightMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D463B4E422844D4A00EAC0F7 /* UGRightMenuTableViewCell.xib */; };
 		D463B4E92284732300EAC0F7 /* UGBindCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D463B4E82284732300EAC0F7 /* UGBindCardViewController.m */; };
 		D463B4EB2284736200EAC0F7 /* UGBindCardViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D463B4EA2284736200EAC0F7 /* UGBindCardViewController.storyboard */; };
 		D4704EC522B7566200528DC7 /* UGPK10NNLotteryController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4704EC422B7566200528DC7 /* UGPK10NNLotteryController.m */; };
@@ -1411,12 +1407,6 @@
 		D45F98C522E34DAA00194139 /* UGMineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGMineViewController.m; sourceTree = "<group>"; };
 		D463B4DA2283ECFB00EAC0F7 /* UGPromotionTableController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGPromotionTableController.h; sourceTree = "<group>"; };
 		D463B4DB2283ECFB00EAC0F7 /* UGPromotionTableController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGPromotionTableController.m; sourceTree = "<group>"; };
-		D463B4DD2284488200EAC0F7 /* UGRightMenuView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGRightMenuView.h; sourceTree = "<group>"; };
-		D463B4DE2284488200EAC0F7 /* UGRightMenuView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGRightMenuView.m; sourceTree = "<group>"; };
-		D463B4E02284489100EAC0F7 /* UGRightMenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGRightMenuView.xib; sourceTree = "<group>"; };
-		D463B4E222844D4A00EAC0F7 /* UGRightMenuTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGRightMenuTableViewCell.h; sourceTree = "<group>"; };
-		D463B4E322844D4A00EAC0F7 /* UGRightMenuTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGRightMenuTableViewCell.m; sourceTree = "<group>"; };
-		D463B4E422844D4A00EAC0F7 /* UGRightMenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGRightMenuTableViewCell.xib; sourceTree = "<group>"; };
 		D463B4E72284732300EAC0F7 /* UGBindCardViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGBindCardViewController.h; sourceTree = "<group>"; };
 		D463B4E82284732300EAC0F7 /* UGBindCardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGBindCardViewController.m; sourceTree = "<group>"; };
 		D463B4EA2284736200EAC0F7 /* UGBindCardViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UGBindCardViewController.storyboard; sourceTree = "<group>"; };
@@ -1785,6 +1775,121 @@
 				6486EFF4C273BEA0AE8994DD /* Pods_ug.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CF0279CC2358447200C3D923 /* 彩种规则 */ = {
+			isa = PBXGroup;
+			children = (
+				D49A36BD22A29C7A000057D2 /* UGLotteryRulesView.h */,
+				D49A36BE22A29C7A000057D2 /* UGLotteryRulesView.m */,
+				D49A36C022A29CCB000057D2 /* UGLotteryRulesView.xib */,
+			);
+			path = "彩种规则";
+			sourceTree = "<group>";
+		};
+		CF0279CD2358448800C3D923 /* H5的返回弹框 */ = {
+			isa = PBXGroup;
+			children = (
+				D41A57772306924C00C26023 /* UGBackToastView.h */,
+				D41A57752306924B00C26023 /* UGBackToastView.m */,
+				D41A57762306924C00C26023 /* UGBackToastView.xib */,
+			);
+			path = "H5的返回弹框";
+			sourceTree = "<group>";
+		};
+		CF0279CE2358449C00C3D923 /* 红包弹框 */ = {
+			isa = PBXGroup;
+			children = (
+				D417EFCC2330A43C0024F634 /* UGredEnvelopeView.h */,
+				D417EFCD2330A43C0024F634 /* UGredEnvelopeView.m */,
+				D417EFCF2330A4880024F634 /* UGredEnvelopeView.xib */,
+				D417EFD42330BD340024F634 /* UGredActivityView.h */,
+				D417EFD52330BD340024F634 /* UGredActivityView.m */,
+				D417EFD72330BEAB0024F634 /* UGredActivityView.xib */,
+			);
+			path = "红包弹框";
+			sourceTree = "<group>";
+		};
+		CF0279CF235844B500C3D923 /* 跑马灯公告 */ = {
+			isa = PBXGroup;
+			children = (
+				D49D359C22C79E7900318D73 /* UGNoticePopView.h */,
+				D49D359D22C79E7900318D73 /* UGNoticePopView.m */,
+				D49D359F22C7A11100318D73 /* UGNoticePopView.xib */,
+				D48224F322A10B5100F7DE72 /* UGNoticeHeaderView.h */,
+				D48224F422A10B5100F7DE72 /* UGNoticeHeaderView.m */,
+				D48224F622A10B5F00F7DE72 /* UGNoticeHeaderView.xib */,
+			);
+			path = "跑马灯公告";
+			sourceTree = "<group>";
+		};
+		CF0279D02358450300C3D923 /* 公告列表 */ = {
+			isa = PBXGroup;
+			children = (
+				D48224DF22A0F2F200F7DE72 /* UGPlatformNoticeView.h */,
+				D48224E022A0F2F200F7DE72 /* UGPlatformNoticeView.m */,
+				D48224E222A0F3F500F7DE72 /* UGPlatformNoticeView.xib */,
+				D48224E722A0FDD000F7DE72 /* UGPlatformNoticeCell.h */,
+				D48224E822A0FDD000F7DE72 /* UGPlatformNoticeCell.m */,
+				D48224E922A0FDD000F7DE72 /* UGPlatformNoticeCell.xib */,
+			);
+			path = "公告列表";
+			sourceTree = "<group>";
+		};
+		CF0279D12358454900C3D923 /* 长龙助手 */ = {
+			isa = PBXGroup;
+			children = (
+				D4D8DF6B22869B2D00446BAF /* UGLotteryAssistantTableViewCell.h */,
+				D4D8DF6C22869B2D00446BAF /* UGLotteryAssistantTableViewCell.m */,
+				D41F260A2318EFE4004FB9C6 /* UGChanglongBetRecrodCell.h */,
+				D41F260B2318EFE4004FB9C6 /* UGChanglongBetRecrodCell.m */,
+				D41F260C2318EFE4004FB9C6 /* UGChanglongBetRecrodCell.xib */,
+			);
+			path = "长龙助手";
+			sourceTree = "<group>";
+		};
+		CF0279D22358487C00C3D923 /* 游戏列表 */ = {
+			isa = PBXGroup;
+			children = (
+				D405B2C7227ADA4E00F8C586 /* UGGameTypeColletionViewCell.h */,
+				D405B2C8227ADA4E00F8C586 /* UGGameTypeColletionViewCell.m */,
+				D405B2C9227ADA4E00F8C586 /* UGGameTypeColletionViewCell.xib */,
+				030BE80B233604B3004AB19A /* UGGameSubCollectionView.h */,
+				030BE80C233604B3004AB19A /* UGGameSubCollectionView.m */,
+				D405B2D4227B0FE100F8C586 /* UGPlatformTitleCollectionViewCell.h */,
+				D405B2D5227B0FE100F8C586 /* UGPlatformTitleCollectionViewCell.m */,
+				D405B2D6227B0FE100F8C586 /* UGPlatformTitleCollectionViewCell.xib */,
+				D405B2D1227AE38900F8C586 /* UGGameTypeCollectionView.h */,
+				D405B2D2227AE38900F8C586 /* UGGameTypeCollectionView.m */,
+				D405B2D9227B122000F8C586 /* UGPlatformTitleCollectionView.h */,
+				D405B2DA227B122000F8C586 /* UGPlatformTitleCollectionView.m */,
+				033177A52337382D000D7663 /* UGPlatformCollectionView.h */,
+				033177A62337382D000D7663 /* UGPlatformCollectionView.m */,
+			);
+			path = "游戏列表";
+			sourceTree = "<group>";
+		};
+		CF0279D32358494000C3D923 /* 导航View */ = {
+			isa = PBXGroup;
+			children = (
+				0322AD692344E78900E9857E /* UGGameNavigationView.h */,
+				0322AD6A2344E78900E9857E /* UGGameNavigationView.m */,
+			);
+			path = "导航View";
+			sourceTree = "<group>";
+		};
+		CF0279D4235849DB00C3D923 /* 首页 */ = {
+			isa = PBXGroup;
+			children = (
+				D40C6E4123505D9700651983 /* 定制导航栏 */,
+				CF0279D22358487C00C3D923 /* 游戏列表 */,
+				CF0279D02358450300C3D923 /* 公告列表 */,
+				CF0279CF235844B500C3D923 /* 跑马灯公告 */,
+				CF0279CD2358448800C3D923 /* H5的返回弹框 */,
+				CF0279CE2358449C00C3D923 /* 红包弹框 */,
+				CF0279D32358494000C3D923 /* 导航View */,
+			);
+			path = "首页";
 			sourceTree = "<group>";
 		};
 		CF3B0E342349CD6F0035AF50 /* CalenderAlertView */ = {
@@ -3795,67 +3900,18 @@
 		D4B75E26227811D50007047C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D40C6E4123505D9700651983 /* 定制导航栏 */,
+				CF0279D4235849DB00C3D923 /* 首页 */,
 				D40C6E4023504F5600651983 /* 侧边栏 */,
-				D405B2C7227ADA4E00F8C586 /* UGGameTypeColletionViewCell.h */,
-				D405B2C8227ADA4E00F8C586 /* UGGameTypeColletionViewCell.m */,
-				D405B2C9227ADA4E00F8C586 /* UGGameTypeColletionViewCell.xib */,
-				030BE80B233604B3004AB19A /* UGGameSubCollectionView.h */,
-				030BE80C233604B3004AB19A /* UGGameSubCollectionView.m */,
-				D405B2D5227B0FE100F8C586 /* UGPlatformTitleCollectionViewCell.m */,
-				D405B2D6227B0FE100F8C586 /* UGPlatformTitleCollectionViewCell.xib */,
-				D405B2D4227B0FE100F8C586 /* UGPlatformTitleCollectionViewCell.h */,
+				CF0279D12358454900C3D923 /* 长龙助手 */,
+				CF0279CC2358447200C3D923 /* 彩种规则 */,
 				D4145A7F22B50AC700D8165F /* UGGameListCollectionViewCell.h */,
 				D4145A8022B50AC700D8165F /* UGGameListCollectionViewCell.m */,
 				D4145A8122B50AC700D8165F /* UGGameListCollectionViewCell.xib */,
-				D405B2D1227AE38900F8C586 /* UGGameTypeCollectionView.h */,
-				D405B2D2227AE38900F8C586 /* UGGameTypeCollectionView.m */,
-				D405B2D9227B122000F8C586 /* UGPlatformTitleCollectionView.h */,
-				D405B2DA227B122000F8C586 /* UGPlatformTitleCollectionView.m */,
-				033177A52337382D000D7663 /* UGPlatformCollectionView.h */,
-				033177A62337382D000D7663 /* UGPlatformCollectionView.m */,
-				D463B4DD2284488200EAC0F7 /* UGRightMenuView.h */,
-				D463B4DE2284488200EAC0F7 /* UGRightMenuView.m */,
-				D463B4E02284489100EAC0F7 /* UGRightMenuView.xib */,
-				D463B4E222844D4A00EAC0F7 /* UGRightMenuTableViewCell.h */,
-				D463B4E322844D4A00EAC0F7 /* UGRightMenuTableViewCell.m */,
-				D463B4E422844D4A00EAC0F7 /* UGRightMenuTableViewCell.xib */,
-				D4D8DF6B22869B2D00446BAF /* UGLotteryAssistantTableViewCell.h */,
-				D4D8DF6C22869B2D00446BAF /* UGLotteryAssistantTableViewCell.m */,
-				D41F260A2318EFE4004FB9C6 /* UGChanglongBetRecrodCell.h */,
-				D41F260B2318EFE4004FB9C6 /* UGChanglongBetRecrodCell.m */,
-				D41F260C2318EFE4004FB9C6 /* UGChanglongBetRecrodCell.xib */,
-				D48224DF22A0F2F200F7DE72 /* UGPlatformNoticeView.h */,
-				D48224E022A0F2F200F7DE72 /* UGPlatformNoticeView.m */,
-				D48224E222A0F3F500F7DE72 /* UGPlatformNoticeView.xib */,
-				D49D359C22C79E7900318D73 /* UGNoticePopView.h */,
-				D49D359D22C79E7900318D73 /* UGNoticePopView.m */,
-				D49D359F22C7A11100318D73 /* UGNoticePopView.xib */,
-				D48224E722A0FDD000F7DE72 /* UGPlatformNoticeCell.h */,
-				D48224E822A0FDD000F7DE72 /* UGPlatformNoticeCell.m */,
-				D48224E922A0FDD000F7DE72 /* UGPlatformNoticeCell.xib */,
-				D48224F322A10B5100F7DE72 /* UGNoticeHeaderView.h */,
-				D48224F422A10B5100F7DE72 /* UGNoticeHeaderView.m */,
-				D48224F622A10B5F00F7DE72 /* UGNoticeHeaderView.xib */,
-				D49A36BD22A29C7A000057D2 /* UGLotteryRulesView.h */,
-				D49A36BE22A29C7A000057D2 /* UGLotteryRulesView.m */,
-				D49A36C022A29CCB000057D2 /* UGLotteryRulesView.xib */,
 				D49A36D122A40212000057D2 /* UGLotteryRecordTableViewCell.h */,
 				D49A36D222A40212000057D2 /* UGLotteryRecordTableViewCell.m */,
 				D49A36D322A40212000057D2 /* UGLotteryRecordTableViewCell.xib */,
-				D41A57772306924C00C26023 /* UGBackToastView.h */,
-				D41A57752306924B00C26023 /* UGBackToastView.m */,
-				D41A57762306924C00C26023 /* UGBackToastView.xib */,
-				D417EFCC2330A43C0024F634 /* UGredEnvelopeView.h */,
-				D417EFCD2330A43C0024F634 /* UGredEnvelopeView.m */,
-				D417EFCF2330A4880024F634 /* UGredEnvelopeView.xib */,
-				D417EFD42330BD340024F634 /* UGredActivityView.h */,
-				D417EFD52330BD340024F634 /* UGredActivityView.m */,
-				D417EFD72330BEAB0024F634 /* UGredActivityView.xib */,
 				0322AD66234342DB00E9857E /* UGDocumentView.h */,
 				0322AD67234342DB00E9857E /* UGDocumentView.m */,
-				0322AD692344E78900E9857E /* UGGameNavigationView.h */,
-				0322AD6A2344E78900E9857E /* UGGameNavigationView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4372,7 +4428,6 @@
 				D4C165742344C9E1005A0F12 /* UGMineSkinFirstCollectionHeadView.xib in Resources */,
 				D41246AB2285537F006881E2 /* UGPromotionInfoController.storyboard in Resources */,
 				D4090F6A228D83B700D6DA43 /* UGMissionCenterViewController.storyboard in Resources */,
-				D463B4E12284489100EAC0F7 /* UGRightMenuView.xib in Resources */,
 				D41C3E0E228ED0EE00BF6436 /* UGBetRecordDetailViewController.storyboard in Resources */,
 				D4241C48232A2F0100BF4DE1 /* UGOneTitleTableViewCell.xib in Resources */,
 				D405B2CB227ADA4E00F8C586 /* UGGameTypeColletionViewCell.xib in Resources */,
@@ -4424,7 +4479,6 @@
 				D49A36C122A29CCB000057D2 /* UGLotteryRulesView.xib in Resources */,
 				D41E0EED228D991600D6C42A /* UGIntegralConvertController.storyboard in Resources */,
 				D41A57792306924D00C26023 /* UGBackToastView.xib in Resources */,
-				D463B4E622844D4A00EAC0F7 /* UGRightMenuTableViewCell.xib in Resources */,
 				D41C3E13228EF13D00BF6436 /* UGFastThreeOneCollectionViewCell.xib in Resources */,
 				CFD3BF202347196600FCDA6D /* LoadingView1.xib in Resources */,
 				D40499C22335E5B30019C249 /* UGPromotion6rowButtonTableViewCell.xib in Resources */,
@@ -4768,7 +4822,6 @@
 				D481AB432331EC340099685B /* UGMosaicGoldViewController.m in Sources */,
 				D41C3DF6228E75F100BF6436 /* UITabBarItem+WZLBadge.m in Sources */,
 				D4252822232102CA007DE522 /* UGSignInHeaderView.m in Sources */,
-				D463B4E522844D4A00EAC0F7 /* UGRightMenuTableViewCell.m in Sources */,
 				D4145A9022B52C8000D8165F /* UGGD11X5LotteryController.m in Sources */,
 				CFD3BF212347196600FCDA6D /* HUDHelper.m in Sources */,
 				D405B1F9227972C900F8C586 /* JSONModelClassProperty.m in Sources */,
@@ -4824,7 +4877,6 @@
 				D405AFF222783DCC00F8C586 /* ViewController+MASAdditions.m in Sources */,
 				D409C56022ABA3B80042A0DD /* UGFeedBackRecordController.m in Sources */,
 				D49A36D422A40212000057D2 /* UGLotteryRecordTableViewCell.m in Sources */,
-				D463B4DF2284488200EAC0F7 /* UGRightMenuView.m in Sources */,
 				D405B1B8227972AD00F8C586 /* SDWebImageDownloader.m in Sources */,
 				D4AE64142295871D00DD265A /* MJRefreshBackNormalFooter.m in Sources */,
 				D41C300C233F220000541254 /* UGYYRightMenuTableViewCell.m in Sources */,

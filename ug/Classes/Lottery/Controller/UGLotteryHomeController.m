@@ -10,7 +10,6 @@
 #import "STBarButtonItem.h"
 #import "UGLotteryCollectionViewCell.h"
 #import "CMCommon.h"
-#import "UGRightMenuView.h"
 #import "UGLotteryAssistantController.h"
 #import "CountDown.h"
 #import "UGHallLotteryModel.h"

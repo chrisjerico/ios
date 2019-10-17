@@ -77,8 +77,6 @@
 @property (nonatomic, strong) NSMutableArray *menuNameArray;
 @property (nonatomic, strong) NSMutableArray *menuSecondNameArray;
 
-@property (nonatomic, strong) NSArray *lotteryGamesArray;
-
 @end
 
 @implementation UGMineSkinViewController
@@ -117,6 +115,9 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    if (!self.menuSecondNameArray.count || !self.menuNameArray.count) {
+        [self refreshBalance:nil];
+    }
 //    SANotificationEventPost(UGNotificationGetUserInfo, nil);
 }
 
@@ -190,9 +191,6 @@
 
     //初始化
     [self initCollectionView];
-    
-    // 拉取数据
-    [self refreshBalance:nil];
 }
 
 - (void)addRightBtn {
@@ -200,7 +198,9 @@
     self.navigationItem.rightBarButtonItem = rightBarItem;
 }
 
+
 #pragma mark --其他方法
+
 - (void)rightBarBtnClick {
     self.yymenuView = [[UGYYRightMenuView alloc] initWithFrame:CGRectMake(UGScreenW /2 , 0, UGScreenW / 2, UGScerrnH)];
     self.yymenuView.titleType = @"1";
@@ -210,8 +210,6 @@
         weakSelf.navigationController.tabBarController.selectedIndex = 0;
     };
     [self.yymenuView show];
-
-    
 }
 
 
@@ -445,8 +443,6 @@ BOOL isOk = NO;
 #pragma mark UICollectionView datasource
 //collectionView有几个section
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    
-    
     int sections = 1;
     skitType = [[UGSkinManagers shareInstance] skitType];
     if ([skitType isEqualToString:@"新年红"]) {
@@ -462,7 +458,6 @@ BOOL isOk = NO;
         sections = 1;
     }
     return sections;
-    
 }
 //每个section有几个item
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -489,7 +484,7 @@ BOOL isOk = NO;
     
 //    NSString *skitType = [[UGSkinManagers shareInstance] skitType];
     if ([skitType isEqualToString:@"新年红"]) {
-          UGMineSkinCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UGMineSkinCollectionViewCell" forIndexPath:indexPath];
+        UGMineSkinCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UGMineSkinCollectionViewCell" forIndexPath:indexPath];
         
         UGMineSkinModel *model = [self.menuSecondNameArray objectAtIndex:indexPath.section];
         NSDictionary *dic = [model.dataArray objectAtIndex:indexPath.row];
@@ -499,23 +494,20 @@ BOOL isOk = NO;
         
         cell.imageView.image = [dic objectForKey:@"imgName"];
         if ([[dic objectForKey:@"title"] isEqualToString:@"站内信"]) {
-            
             if (![CMCommon stringIsNull:unreadMsg]) {
                 [cell setBadgeNum:[unreadMsg intValue]];
             }
-            
         }
         else{
             [cell setBadgeNum:0];
         }
         [cell setBackgroundColor: [UIColor clearColor]];
-        
-        cell.layer.borderWidth = 1;
+        cell.layer.borderWidth = 0.5;
         cell.layer.borderColor = UGRGBColor(231, 230, 230).CGColor;
         return cell;
     }
     else  {
-         UGMineMenuCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UGMineMenuCollectionViewCell" forIndexPath:indexPath];
+        UGMineMenuCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UGMineMenuCollectionViewCell" forIndexPath:indexPath];
         NSDictionary *dic = [self.menuNameArray objectAtIndex:indexPath.row];
         
         [cell setMenuName: [dic objectForKey:@"title"]];
@@ -523,11 +515,8 @@ BOOL isOk = NO;
         cell.imageView.image = [dic objectForKey:@"imgName"];
         
         if ([[dic objectForKey:@"title"] isEqualToString:@"站内信"]) {
-            
-            if (![CMCommon stringIsNull:unreadMsg]) {
+            if (![CMCommon stringIsNull:unreadMsg])
                 [cell setBadgeNum:[unreadMsg intValue]];
-            }
-           
         }
         else{
             [cell setBadgeNum:0];
@@ -535,12 +524,10 @@ BOOL isOk = NO;
         
         [cell setBackgroundColor: [UIColor clearColor]];
         cell.layer.borderWidth = 0.5;
-        cell.layer.borderColor = [[UIColor whiteColor] CGColor];
+        cell.layer.borderColor = [[[UIColor whiteColor] colorWithAlphaComponent:0.9] CGColor];
         return cell;
     }
-    
     return nil;
-
 }
 
 //头尾视图
@@ -593,18 +580,16 @@ BOOL isOk = NO;
 
     return nil;
 }
+
+
 #pragma mark - UICollectionViewDelegate
 //头视图尺寸
--(CGSize)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
-{
-    
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
     if ([skitType isEqualToString:@"新年红"]) {
-
         CGSize size = {UGScreenW, 35};
         return size;
     }
     else  if([skitType isEqualToString:@"石榴红"]){
-      
         CGSize size = {UGScreenW, 80};
         return size;
     }
@@ -616,51 +601,31 @@ BOOL isOk = NO;
         CGSize size = {UGScreenW, 0.1};
         return size;
     }
-    
-    
 }
 
-
 //cell size
-- (CGSize)collectionView:(UICollectionView *)collectionView
-                  layout:(UICollectionViewLayout *)collectionViewLayout
-  sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-     float itemW = (UGScreenW - 0.0 )/ 3.0;
-
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    float itemW = (UGScreenW - 0.0 )/ 3.0;
     if ([skitType isEqualToString:@"新年红"]) {
-        
         CGSize size = {itemW, 100};
         return size;
     }
     else {
-        
         CGSize size = {itemW, itemW};
         return size;
     }
-   
-    
 }
 
 //item偏移
--(UIEdgeInsets)collectionView:(UICollectionView *)collectionView
-                       layout:(UICollectionViewLayout *)collectionViewLayout
-       insetForSectionAtIndex:(NSInteger)section {
-  
-        return UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0);
-
+-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    return UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0);
 }
 
 //行间距
-- (CGFloat)collectionView:(UICollectionView *)collectionView
-                   layout:(UICollectionViewLayout*)collectionViewLayout
-minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    
-        return 0.0;
-  
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    return 0.0;
 }
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
-{
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
     return 0;
 }
 
@@ -796,27 +761,38 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
 
 - (IBAction)refreshBalance:(id)sender {
     [self getUserInfo];
-    [self getAllNextIssueData];
+    
+    if (sender) {
+        __weakSelf_(__self);
+        [CMNetwork needToTransferOutWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+            BOOL needToTransferOut = [model.data[@"needToTransferOut"] boolValue];
+            if (needToTransferOut) {
+                UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"真人游戏正在进行或有余额未成功转出，请确认是否需要转出游戏余额" btnTitles:@[@"取消", @"确认"]];
+                [ac setActionAtTitle:@"确认" handler:^(UIAlertAction *aa) {
+                    [CMNetwork autoTransferOutWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:^(CMResult<id> *model, NSError *err) {
+                        if (!err) {
+                            [SVProgressHUD showSuccessWithStatus:@"转出成功"];
+                            [__self getUserInfo];
+                        }
+                    }];
+                }];
+            }
+        }];
+    }
 }
 
 //刷新余额动画
--(void)startAnimation
-{
-    
+-(void)startAnimation {
     CABasicAnimation *ReFreshAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
     ReFreshAnimation.toValue = [NSNumber numberWithFloat:M_PI*2.0];
     ReFreshAnimation.duration = 1;
     ReFreshAnimation.repeatCount = HUGE_VALF;
     [self.refreshFirstButton.layer addAnimation:ReFreshAnimation forKey:@"rotationAnimation"];
-    
 }
 
 //刷新余额动画
--(void)stopAnimation
-{
-    
+-(void)stopAnimation {
     [self.refreshFirstButton.layer removeAllAnimations];
-    
 }
 
 - (CAShapeLayer *)containerLayer
@@ -994,16 +970,10 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
             NSLog(@"签到==%d",[UGUserModel currentUser].checkinSwitch);
             
             [self getSystemConfig];
-            
             //初始化数据
             [self getDateSource];
-            
-            
-            
         } failure:^(id msg) {
-            
             [self stopAnimation];
-            
         }];
     }];
 }
@@ -1024,29 +994,9 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     }];
 }
 
-- (void)getAllNextIssueData {
-    [SVProgressHUD showWithStatus: nil];
-    [CMNetwork getAllNextIssueWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-        [SVProgressHUD dismiss];
-        [CMResult processWithResult:model success:^{
-            
-            self.lotteryGamesArray = model.data;
-            
-        } failure:^(id msg) {
-            [SVProgressHUD dismiss];
-        }];
-    }];
-    
-}
-
 - (void)userLogout {
-    
-    
     [self.tabBarController setSelectedIndex:0];
-    
     SANotificationEventPost(UGNotificationUserLogout, nil);
-    
-    
 }
 
 - (IBAction)depositAction:(id)sender {

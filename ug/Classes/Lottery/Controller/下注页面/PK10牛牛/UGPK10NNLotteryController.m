@@ -21,7 +21,6 @@
 #import "STBarButtonItem.h"
 #import "UGMailBoxTableViewController.h"
 #import "UGChangLongController.h"
-#import "UGRightMenuView.h"
 #import "UGFundsViewController.h"
 #import "UGBetRecordViewController.h"
 #import "UGLotteryRulesView.h"
