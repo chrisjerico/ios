@@ -94,6 +94,7 @@
 @property (nonatomic, assign) BOOL showAdPoppuView;             /**<   显示广告 */
 
 @property (nonatomic, strong) NSString *headerViewTitle ; /**<section 头 自选不中*/
+@property (nonatomic, strong) NSString *hxheaderViewTitle ; /**<section 头 合肖*/
 
 @end
 
@@ -120,6 +121,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         _ztTitleArray = [NSMutableArray array];
         _lmTitleArray = [NSMutableArray array];
         _headerViewTitle = @"自选不中";
+        _hxheaderViewTitle = @"合肖";
     }
 
     self.view.backgroundColor =  [UIColor whiteColor];
@@ -768,6 +770,9 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             if ([@"自选不中" isEqualToString:type.alias]) {
                  headerView.title = _headerViewTitle;
             }
+            if ([@"合肖" isEqualToString:type.alias]) {
+                       headerView.title = _hxheaderViewTitle;
+            }
         } else {
             headerView.title = @"";
         }
@@ -893,7 +898,13 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 //        计算选中多少注
         NSInteger count = 0;
         for (UGGameplayModel *model in self.gameDataArray) {
+
+            
             for (UGGameplaySectionModel *type in model.list) {
+              
+                
+                
+                
 //                最少选择5个
                 if ([@"自选不中" isEqualToString:type.name]) {
                     NSInteger num = 0;
@@ -1004,7 +1015,25 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                else{
                    self.headerViewTitle = @"自选不中";
                }
-          }
+        }
+        
+         //合肖，2--11 时，要显示赔率：
+        if ([@"合肖" isEqualToString:type.name]) {
+             NSInteger num = 0;
+            for (UGGameBetModel *bet in type.list) {
+                if (bet.select){
+                     num ++;
+                }
+            }
+             if (num >= 2  && num <= 11) {
+                  UGGameBetModel *model = type.lhcOddsArray[num-2];
+                  self.hxheaderViewTitle = [NSString stringWithFormat:@"赔率：%@",model.odds];
+             }
+             else{
+                 self.hxheaderViewTitle = @"合肖";
+             }
+            
+        }
         [self updateSelectLabelWithCount:count];
     }
 }
