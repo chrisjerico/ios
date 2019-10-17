@@ -12,11 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UGActivityGoldView : UIView
 
-@property (nonatomic, strong) UGMosaicGoldParamModel *item;
+@property (nonatomic) UGMosaicGoldParamModel *item;
 
 - (void)show;
-
--(void)setDateUI;
 
 @end
 

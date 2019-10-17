@@ -22,7 +22,6 @@
 #import "UGMailBoxTableViewController.h"
 #import "UGLotteryRecordController.h"
 #import "UGChangLongController.h"
-#import "UGRightMenuView.h"
 #import "UGFundsViewController.h"
 #import "UGBetRecordViewController.h"
 #import "UGLotteryRulesView.h"

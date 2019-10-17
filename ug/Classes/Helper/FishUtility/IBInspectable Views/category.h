@@ -35,6 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) IBInspectable BOOL 仅可见的ASCII;
 @property (nonatomic) IBInspectable NSString *额外允许的字符;
 @property (nonatomic) IBInspectable BOOL 内容紧贴边框;        /**<    边缘 */
+@property (nonatomic) IBInspectable NSString *placeholder;
 @end
 
 

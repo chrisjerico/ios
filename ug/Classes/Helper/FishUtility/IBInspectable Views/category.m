@@ -164,6 +164,7 @@ _CCRuntimeGetterDoubleValue(BOOL, 内容紧贴边框)
     if ([delegate isKindOfClass:[NSObject class]] && OBJOnceToken(delegate)) {
         [(id)delegate aspect_hookSelector:@selector(textView:shouldChangeTextInRange:replacementText:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> aInfo) {
             [aInfo.originalInvocation invoke];
+            
             // 过滤文本
             UITextView *tf = aInfo.arguments.firstObject;
             NSString *text = aInfo.arguments[2];

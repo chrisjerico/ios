@@ -22,7 +22,6 @@
 #import "UGMailBoxTableViewController.h"
 
 #import "UGChangLongController.h"
-#import "UGRightMenuView.h"
 #import "UGFundsViewController.h"
 #import "UGBetRecordViewController.h"
 #import "UGLotteryRulesView.h"
@@ -449,7 +448,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 		betDetailView.nextIssueModel = self.nextIssueModel;
 		WeakSelf
 		betDetailView.betClickBlock = ^{
-			//            [weakSelf resetClick:nil];
+            [weakSelf resetClick:nil];
 		};
 		[betDetailView show];
 		

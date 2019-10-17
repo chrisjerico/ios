@@ -8,7 +8,6 @@
 
 
 #import "UGYYRightMenuView.h"
-#import "UGRightMenuTableViewCell.h"
 #import "UGBetRecordViewController.h"
 #import "UGLotteryRecordController.h"
 #import "UGAllNextIssueListModel.h"

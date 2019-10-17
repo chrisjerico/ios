@@ -45,6 +45,9 @@ NS_ASSUME_NONNULL_BEGIN
 //游戏中的余额自动转出
 + (void)autoTransferOutWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 
+// 增检查真人游戏是否存在余额未转出
++ (void)needToTransferOutWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
 @end
 
 NS_ASSUME_NONNULL_END

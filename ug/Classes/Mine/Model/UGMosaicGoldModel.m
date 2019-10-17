@@ -13,10 +13,8 @@
 @end
 
 @implementation UGMosaicGoldModel
+
 + (JSONKeyMapper *)keyMapper {
-    
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"mid"
-                                                      
-                                                       }];
+    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"mid"}];
 }
 @end

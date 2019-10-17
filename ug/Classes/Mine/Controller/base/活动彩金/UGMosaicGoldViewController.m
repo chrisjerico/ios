@@ -64,43 +64,23 @@
 }
 
 #pragma mark - XYYSegmentControlDelegate
--(NSUInteger)numberOfTab:(XYYSegmentControl *)view
-{
+- (NSUInteger)numberOfTab:(XYYSegmentControl *)view {
     return [self.itemArray count];//items决定
 }
 
-
 ///待加载的控制器
--(UIViewController *)slideSwitchView:(XYYSegmentControl *)view viewOfTab:(NSUInteger)number
-{
-    if (number == 0) {
-       
-        UGMosaicGoldController *vc = [[UGMosaicGoldController alloc] init];
-        return  vc;
-        
-    }
-    else {
-        
-        UGActivityGoldTableViewController *vc = [[UGActivityGoldTableViewController alloc] init];
-        return  vc;
-        
-        
-    }
-    
+- (UIViewController *)slideSwitchView:(XYYSegmentControl *)view viewOfTab:(NSUInteger)number {
+    return number ? [UGActivityGoldTableViewController new] : [UGMosaicGoldController new];
 }
 
--(void)slideSwitchView:(XYYSegmentControl *)view didselectTab:(NSUInteger)number
-{
-    
+- (void)slideSwitchView:(XYYSegmentControl *)view didselectTab:(NSUInteger)number {
     if (number == 0) {
         UGMosaicGoldController *vc  = (UGMosaicGoldController *) view.viewArray[number];
         [vc rootLoadData];
-     
     }
     else {
         UGActivityGoldTableViewController *vc  = (UGActivityGoldTableViewController *) view.viewArray[number];
         [vc rootLoadData];
-        
     }
 }
 @end

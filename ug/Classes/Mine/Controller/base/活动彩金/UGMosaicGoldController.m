@@ -19,9 +19,11 @@
 @end
 
 @implementation UGMosaicGoldController
--(void)skin{
+
+- (void)skin {
     
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    UGMosaicGoldModel *model = [UGMosaicGoldModel new];
@@ -73,15 +75,13 @@
     [self activityWinApplyList];
 }
 
-
--(void)rootLoadData{
+- (void)rootLoadData {
      [self activityWinApplyList];
 }
 
 - (void)activityWinApplyList {
     
-    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid
-                             };
+    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
     
     [CMNetwork activityWinApplyListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [self.tableView.mj_header endRefreshing];
@@ -108,6 +108,8 @@
         
     }];
 }
+
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -140,16 +142,21 @@
 //        model.param.win_apply_content= @"<p><img src=\"https://cdn01.heziweb.net/upload/a002/customise/ueditor/php/upload/20190909/15680447042539.png\" style=\"white-space: normal;\"/></p>";
       
         
-        [self showUGActivityGoldView:model];
+        UGActivityGoldView *notiveView = _LoadView_from_nib_(@"UGActivityGoldView");
+        notiveView.frame = CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - 260);
+        notiveView.item = ({
+            model.param.mid = model.mid;
+            model.param;
+        });
+        [notiveView show];
     };
-    
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     return 210.0;
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 0.001f;
 }
@@ -180,25 +187,6 @@
     .LeeAction(@"确认", nil)
     .LeeCancelAction(@"关闭", nil)
     .LeeShow();
-    
-    
-    
-}
-
-#pragma mark -- 其他方法
-- (void)showUGActivityGoldView:(UGMosaicGoldModel *)model{
-    
-    UGActivityGoldView *notiveView = [[UGActivityGoldView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - 260)];
-    [model.param setMid: model.mid ];
-   
-    notiveView.item = model.param;
-    
-    [notiveView setDateUI];
-    
-    [notiveView show];
-
-    
-    
 }
 
 @end

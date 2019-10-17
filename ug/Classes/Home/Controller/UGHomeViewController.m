@@ -52,8 +52,6 @@
 #import "UGNoticePopView.h"
 #import "UGHomeTitleView.h"
 #import "UGLotteryRulesView.h"
-#import "UGRightMenuView.h"
-#import "UGRightMenuView.h"
 #import "STButton.h"
 #import "UGPlatformNoticeView.h"
 
@@ -114,7 +112,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *bottomLabel;
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 
-@property (strong, nonatomic)  UGredEnvelopeView *uGredEnvelopeView;
+@property (strong, nonatomic)  UGredEnvelopeView *uGredEnvelopeView;    /**<   红包浮动按钮 */
 @property (strong, nonatomic)  UGredActivityView *uGredActivityView;    /**<   红包弹框 */
 
 @property (strong, nonatomic)UGYYRightMenuView *yymenuView;   /**<   侧边栏 */
@@ -779,12 +777,10 @@
 		return 1;
 	}
 	return 6;
-	
 }
 
 - (NSUInteger)numberOfDataForMarqueeView:(UUMarqueeView *)marqueeView {
 	if (marqueeView == self.leftwardMarqueeView) {
-		
 		return self.leftwardMarqueeViewData ? self.leftwardMarqueeViewData.count : 0;
 	}
 	return self.rankArray ? self.rankArray.count : 0;
@@ -867,9 +863,7 @@
 
 - (CGFloat)itemViewHeightAtIndex:(NSUInteger)index forMarqueeView:(UUMarqueeView*)marqueeView {
 	// for upwardMultiMarqueeView
-	
 	return self.upwardMultiMarqueeView.height / 6;
-	
 }
 
 - (CGFloat)itemViewWidthAtIndex:(NSUInteger)index forMarqueeView:(UUMarqueeView*)marqueeView {

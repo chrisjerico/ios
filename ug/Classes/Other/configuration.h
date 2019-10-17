@@ -90,6 +90,8 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 
 #define autoTransferOutUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=real&a=autoTransferOut"]
 
+#define needToTransferOutUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=real&a=checkTransferStatus"]
+
 #define getNextIssueUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=game&a=nextIssue"]
 
 #define changlongUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=game&a=changlong"]
