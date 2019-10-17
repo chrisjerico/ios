@@ -55,7 +55,19 @@
 @end
 
 @implementation SLWebViewController
-    
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
+    //TODO: 页面appear 禁用
+   [[IQKeyboardManager sharedManager] setEnable:NO];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+
+    //TODO: 页面Disappear 启用
+   [[IQKeyboardManager sharedManager] setEnable:YES];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     

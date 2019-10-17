@@ -390,9 +390,14 @@
 		[self.navigationController pushViewController:[UGChatViewController new] animated:YES];
 	} else if ([model.subId isEqualToString:@"4"]) {
 		// 在线客服
-		SLWebViewController *webViewVC = [[SLWebViewController alloc] init];
-        webViewVC.urlStr = SysConf.zxkfUrl;
-		[self.navigationController pushViewController:webViewVC animated:YES];
+//		SLWebViewController *webViewVC = [[SLWebViewController alloc] init];
+//        webViewVC.urlStr = SysConf.zxkfUrl;
+//		[self.navigationController pushViewController:webViewVC animated:YES];
+
+        TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
+        webViewVC.url = SysConf.zxkfUrl;
+        webViewVC.webTitle = @"在线客服";
+        [self.navigationController pushViewController:webViewVC animated:YES];
 	}
 }
 
