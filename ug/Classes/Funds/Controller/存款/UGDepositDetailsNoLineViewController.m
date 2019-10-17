@@ -529,7 +529,7 @@
     
     UGchannelModel *channelModel = [_tableDataArray objectAtIndex:indexPath.row];
     
-    cell.nameStr = [NSString stringWithFormat:@"银行名称：%@",channelModel.payeeName];
+    cell.nameStr = [NSString stringWithFormat:@"%@",channelModel.payeeName];
     
     NSInteger row = [indexPath row];
     

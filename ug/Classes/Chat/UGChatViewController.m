@@ -36,7 +36,6 @@
             h -= APP.Height - TabBarController1.tabBar.y;
         h;
     }))];
-    
     // 返回按钮
     {
         __weakSelf_(__self);
