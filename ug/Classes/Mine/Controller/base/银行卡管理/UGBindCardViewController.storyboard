@@ -368,6 +368,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="NRi-2q-Ski"/>
                     </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="游客禁止访问" value="YES"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="未登录禁止访问" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zXO-1v-MNc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

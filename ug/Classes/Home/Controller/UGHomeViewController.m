@@ -298,15 +298,6 @@
         WeakSelf;
         self.uGredEnvelopeView.redClickBlock = ^(void) {
             //        [weakSelf.uGredEnvelopeView setHidden:YES];
-            
-            if ([UGUserModel currentUser].isTest) {
-                UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"请先登录您的正式账号" btnTitles:@[@"取消", @"马上登录"]];
-                [ac setActionAtTitle:@"马上登录" handler:^(UIAlertAction *aa) {
-                          SANotificationEventPost(UGNotificationUserLogout, nil);
-                    SANotificationEventPost(UGNotificationShowLoginView, nil);
-                }];
-                return ;
-            }
             if (!UGLoginIsAuthorized()) {
                 UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"您还未登录" btnTitles:@[@"取消", @"马上登录"]];
                 [ac setActionAtTitle:@"马上登录" handler:^(UIAlertAction *aa) {
@@ -316,6 +307,14 @@
                     });
                 }];
                 return;
+            }
+            if ([UGUserModel currentUser].isTest) {
+                UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"请先登录您的正式账号" btnTitles:@[@"取消", @"马上登录"]];
+                [ac setActionAtTitle:@"马上登录" handler:^(UIAlertAction *aa) {
+                    SANotificationEventPost(UGNotificationUserLogout, nil);
+                    SANotificationEventPost(UGNotificationShowLoginView, nil);
+                }];
+                return ;
             }
             
             NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
@@ -1132,8 +1131,7 @@
 	
 	if (UGLoginIsAuthorized()) {
 		self.titleView.showLoginView = NO;
-		UGUserModel *user = [UGUserModel currentUser];
-		self.titleView.userName = user.username;
+		self.titleView.userName = UserI.username;
 	}
 	//    self.bannerBgViewHeightConstraint.constant = UGScreenW * 0.5;
 	//	self.rankingViewHeightConstraints.constant = UGScreenW;
@@ -1224,12 +1222,9 @@
         
         NSLog(@"pcUrl = %@",pcUrl);
     }
-    else{
-        
+    else {
          SANotificationEventPost(UGNotificationShowLoginView, nil);
     }
-    
-    
 }
 - (IBAction)goYOUHUIVC:(id)sender {
     BOOL isLogin = UGLoginIsAuthorized();
@@ -1238,8 +1233,7 @@
         UGPromotionsController *qdwebVC = [storyboard instantiateViewControllerWithIdentifier:@"UGPromotionsController"];
         [self.navigationController pushViewController:qdwebVC  animated:YES];
     }
-    else{
-        
+    else {
          SANotificationEventPost(UGNotificationShowLoginView, nil);
     }
    

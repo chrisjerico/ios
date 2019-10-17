@@ -42,7 +42,7 @@
 #import "UGAllNextIssueListModel.h"
 #import "UGChangLongController.h"
 #import "UGagentApplyInfo.h"
-#import "UGAgentRefusedViewController.h"
+#import "UGAgentViewController.h"
 
 
 #import "UGMineMenuCollectionViewCell.h"
@@ -228,47 +228,16 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
 }
 
 - (IBAction)showMissionVC:(id)sender {
-    UGUserModel *user = [UGUserModel currentUser];
-    if (user.isTest) {
-        [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-            if (buttonIndex == 1) {
-                  SANotificationEventPost(UGNotificationUserLogout, nil);
-                SANotificationEventPost(UGNotificationShowLoginView, nil);
-            }
-        }];
-    } else {
-        
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGMissionCenterViewController" bundle:nil];
-        UGMissionCenterViewController *missionVC = [storyboard instantiateInitialViewController];
-        [self.navigationController pushViewController:missionVC animated:YES];
-    }
-    
+    [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController") animated:YES];
 }
 - (IBAction)showSign:(id)sender {
-    UGUserModel *user = [UGUserModel currentUser];
-    if (user.isTest) {
-        [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-            if (buttonIndex == 1) {
-                      SANotificationEventPost(UGNotificationUserLogout, nil);
-                SANotificationEventPost(UGNotificationShowLoginView, nil);
-            }
-        }];
-    } else {
-        UGSigInCodeViewController *vc = [[UGSigInCodeViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
-
-    }
+    [self.navigationController pushViewController:[UGSigInCodeViewController new] animated:YES];
 }
 
 - (IBAction)refreshBalance:(id)sender {
-
 //    SANotificationEventPost(UGNotificationGetUserInfo, nil);
-    
     [self getUserInfo];
     [self getAllNextIssueData];
-    
-    
-
 }
 
 #pragma mark tableview datasource
@@ -304,37 +273,13 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
     NSString *title = self.menuNameArray[indexPath.row];
     
     if ([title isEqualToString:@"存款"]) {
-        UGUserModel *user = [UGUserModel currentUser];
-        if (user.isTest) {
-            [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                if (buttonIndex == 1) {
-                          SANotificationEventPost(UGNotificationUserLogout, nil);
-                    SANotificationEventPost(UGNotificationShowLoginView, nil);
-                }
-            }];
-        } else {
-  
-            UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
-            fundsVC.selectIndex = 0;
-            [self.navigationController pushViewController:fundsVC animated:YES];
-        }
-        
+        UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
+        fundsVC.selectIndex = 0;
+        [self.navigationController pushViewController:fundsVC animated:YES];
     } else if ([title isEqualToString:@"取款"]) {
-        UGUserModel *user = [UGUserModel currentUser];
-        if (user.isTest) {
-            [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                if (buttonIndex == 1) {
-                          SANotificationEventPost(UGNotificationUserLogout, nil);
-                    SANotificationEventPost(UGNotificationShowLoginView, nil);
-                }
-            }];
-        } else {
-            
-            UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
-            fundsVC.selectIndex = 1;
-            [self.navigationController pushViewController:fundsVC animated:YES];
-        }
-       
+        UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
+        fundsVC.selectIndex = 1;
+        [self.navigationController pushViewController:fundsVC animated:YES];
     } else if ([title isEqualToString:@"在线客服"]) {
         SLWebViewController *webViewVC = [[SLWebViewController alloc] init];
         UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
@@ -348,73 +293,27 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
         [self.navigationController pushViewController:webViewVC animated:YES];
        
     } else if ([title isEqualToString:@"银行卡管理"]) {
-        UGUserModel *user = [UGUserModel currentUser];
-        if (user.isTest) {
-            [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                if (buttonIndex == 1) {
-                          SANotificationEventPost(UGNotificationUserLogout, nil);
-                    SANotificationEventPost(UGNotificationShowLoginView, nil);
-                }
-            }];
+        if (UserI.hasBankCard) {
+            [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGBankCardInfoController") animated:YES];
         } else {
-            
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGBindCardViewController" bundle:nil];
-            if (user.hasBankCard) {
-                UGBankCardInfoController *binkVC = [storyboard instantiateViewControllerWithIdentifier:@"UGBankCardInfoController"];
-                [self.navigationController pushViewController:binkVC animated:YES];
+            if (UserI.hasFundPwd) {
+                [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGBindCardViewController") animated:YES];
             } else {
-                if (user.hasFundPwd) {
-                    
-                    UGBindCardViewController *bankCardVC = [storyboard instantiateViewControllerWithIdentifier:@"UGBindCardViewController"];
-                    [self.navigationController pushViewController:bankCardVC animated:YES];
-                } else {
-                    UGSetupPayPwdController *fundVC = [storyboard instantiateViewControllerWithIdentifier:@"UGSetupPayPwdController"];
-                    [self.navigationController pushViewController:fundVC animated:YES];
-                }
+                [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGSetupPayPwdController") animated:YES];
             }
         }
-
     } else if ([title isEqualToString:@"利息宝"]){
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGYubaoViewController" bundle:nil];
-        UGYubaoViewController *lixibaoVC = [storyboard instantiateInitialViewController];
-        [self.navigationController pushViewController:lixibaoVC  animated:YES];
-        
+        [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGYubaoViewController")  animated:YES];
     } else if ([title isEqualToString:@"额度转换"]){
-        UGUserModel *user = [UGUserModel currentUser];
-        if (user.isTest) {
-            [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                if (buttonIndex == 1) {
-                          SANotificationEventPost(UGNotificationUserLogout, nil);
-                    SANotificationEventPost(UGNotificationShowLoginView, nil);
-                }
-            }];
-        } else {
-     
-            UGBalanceConversionController *conversion = [self.storyboard instantiateViewControllerWithIdentifier:@"UGBalanceConversionController"];
-            [self.navigationController pushViewController:conversion  animated:YES];
-        }
-        
+        [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGBalanceConversionController")  animated:YES];
     } else if ([title isEqualToString:@"推荐收益"]) {
-        
-        UGUserModel *user = [UGUserModel currentUser];
-        if (user.isTest) {
-            [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                if (buttonIndex == 1) {
-                          SANotificationEventPost(UGNotificationUserLogout, nil);
-                    SANotificationEventPost(UGNotificationShowLoginView, nil);
-                }
-            }];
-        } else {
-
-            UGPromotionIncomeController *incomeVC = [[UGPromotionIncomeController alloc] init];
-            [self.navigationController pushViewController:incomeVC animated:YES];
-        }
+        [self.navigationController pushViewController:[UGPromotionIncomeController new] animated:YES];
     } else if ([title isEqualToString:@"代理申请"]) {
         UGUserModel *user = [UGUserModel currentUser];
         if (user.isTest) {
             [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 if (buttonIndex == 1) {
-                          SANotificationEventPost(UGNotificationUserLogout, nil);
+                    SANotificationEventPost(UGNotificationUserLogout, nil);
                     SANotificationEventPost(UGNotificationShowLoginView, nil);
                 }
             }];
@@ -428,102 +327,23 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
             }
         }
     } else if ([title isEqualToString:@"安全中心"]) {
-        UGUserModel *user = [UGUserModel currentUser];
-        if (user.isTest) {
-            [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                if (buttonIndex == 1) {
-                          SANotificationEventPost(UGNotificationUserLogout, nil);
-                    SANotificationEventPost(UGNotificationShowLoginView, nil);
-                }
-            }];
-        } else {
- 
-            UGSecurityCenterViewController *securityCenterVC = [[UGSecurityCenterViewController alloc] init];
-            [self.navigationController pushViewController:securityCenterVC animated:YES];
-        }
-        
+        [self.navigationController pushViewController:[UGSecurityCenterViewController new] animated:YES];
     } else if ([title isEqualToString:@"站内信"]) {
-        UGMailBoxTableViewController *mailBoxVC = [[UGMailBoxTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        [self.navigationController pushViewController:mailBoxVC animated:YES];
-
+        [self.navigationController pushViewController:[UGMailBoxTableViewController new] animated:YES];
     } else if([title isEqualToString:@"彩票注单记录"]) {
-        UGUserModel *user = [UGUserModel currentUser];
-        if (user.isTest) {
-            [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                if (buttonIndex == 1) {
-                          SANotificationEventPost(UGNotificationUserLogout, nil);
-                    SANotificationEventPost(UGNotificationShowLoginView, nil);
-                }
-            }];
-        } else {
-            UGBetRecordViewController *betRecordVC = [[UGBetRecordViewController alloc] init];
-            [self.navigationController pushViewController:betRecordVC animated:YES];
-        }
-        
+        [self.navigationController pushViewController:[UGBetRecordViewController new] animated:YES];
     } else if ([title isEqualToString:@"其他注单记录"]) {
-        UGUserModel *user = [UGUserModel currentUser];
-        if (user.isTest) {
-            [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                if (buttonIndex == 1) {
-                          SANotificationEventPost(UGNotificationUserLogout, nil);
-                    SANotificationEventPost(UGNotificationShowLoginView, nil);
-                }
-            }];
-        } else {
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGRealBetRecordViewController" bundle:nil];
-            UGRealBetRecordViewController *betRecordVC = [storyboard instantiateInitialViewController];
-            betRecordVC.gameType = @"real";
-            [self.navigationController pushViewController:betRecordVC animated:YES];
-        }
+        UGRealBetRecordViewController *betRecordVC = _LoadVC_from_storyboard_(@"UGRealBetRecordViewController");
+        betRecordVC.gameType = @"real";
+        [self.navigationController pushViewController:betRecordVC animated:YES];
     } else if ([title isEqualToString:@"个人信息"]) {
-        UGUserModel *user = [UGUserModel currentUser];
-        if (user.isTest) {
-            [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                if (buttonIndex == 1) {
-                          SANotificationEventPost(UGNotificationUserLogout, nil);
-                    SANotificationEventPost(UGNotificationShowLoginView, nil);
-                }
-            }];
-        } else {
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGUserInfoViewController" bundle:nil];
-            UGUserInfoViewController *userInfoVC = [storyboard instantiateInitialViewController];
-            [self.navigationController pushViewController:userInfoVC animated:YES];
-        }
-        
+        [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGUserInfoViewController") animated:YES];
     }
     else if ([title isEqualToString:@"建议反馈"]) {
-        UGUserModel *user = [UGUserModel currentUser];
-        if (user.isTest) {
-            [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                if (buttonIndex == 1) {
-                          SANotificationEventPost(UGNotificationUserLogout, nil);
-                    SANotificationEventPost(UGNotificationShowLoginView, nil);
-                }
-            }];
-        } else {
-            
-            
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGFeedBackController" bundle:nil];
-            UGFeedBackController *feedbackVC = [storyboard instantiateInitialViewController];
-            [self.navigationController pushViewController:feedbackVC animated:YES];
-        }
+        [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGFeedBackController") animated:YES];
     }
     else if ([title isEqualToString:@"活动彩金"]) {
-
-        UGUserModel *user = [UGUserModel currentUser];
-        if (user.isTest) {
-            [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                if (buttonIndex == 1) {
-                          SANotificationEventPost(UGNotificationUserLogout, nil);
-                    SANotificationEventPost(UGNotificationShowLoginView, nil);
-                }
-            }];
-        } else {
-            
-    
-            UGMosaicGoldViewController *vc = [[UGMosaicGoldViewController alloc] init];
-            [self.navigationController pushViewController:vc animated:YES];
-        }
+        [self.navigationController pushViewController:[UGMosaicGoldViewController new] animated:YES];
     }
 }
 
@@ -709,45 +529,19 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
             
             NSLog(@"%@",obj.reviewStatus);
             
-            NSNumber *numberStatus = obj.reviewStatus;
-            int intStatus = [numberStatus intValue];
+            int intStatus = obj.reviewStatus.intValue;
+            
             //0 未提交  1 待审核  2 审核通过 3 审核拒绝
- 
-            if (intStatus == 0) {//==>
-                //提交代理==》UGAgentViewController
-                UGAgentViewController *incomeVC = [[UGAgentViewController alloc] init];
-                incomeVC.item = obj;
-                [self.navigationController pushViewController:incomeVC animated:YES];
+            if (intStatus == 2) {
+                [NavController1 pushViewController:[UGPromotionIncomeController new] animated:YES];
             }
-            else if (intStatus == 1) {
-                //待审核==》UGAgentViewController
-                UGAgentViewController *incomeVC = [[UGAgentViewController alloc] init];
-                incomeVC.item = obj;
-                [self.navigationController pushViewController:incomeVC animated:YES];
+            else {
+                UGAgentViewController *vc = [[UGAgentViewController alloc] init];
+                vc.item = obj;
+                [NavController1 pushViewController:vc animated:YES];
             }
-            else if (intStatus == 2) {
-                //审核通过==> 推荐
-                UGPromotionIncomeController *incomeVC = [[UGPromotionIncomeController alloc] init];
-                [self.navigationController pushViewController:incomeVC animated:YES];
-            }
-            else if (intStatus == 3) {
-                //审核拒绝==》拒绝
-                UGAgentRefusedViewController*incomeVC = [[UGAgentRefusedViewController alloc] init];
-                incomeVC.item = obj;
-                [self.navigationController pushViewController:incomeVC animated:YES];
-            }
-//            "username": "ugtmac",
-//            "qq": "12345678",
-//            "mobile": "13707890978",
-//            "applyReason": "QWERTY",
-//            "reviewResult": "",
-//            "reviewStatus": 1
-
-            
         } failure:^(id msg) {
-            
             [SVProgressHUD showErrorWithStatus:msg];
-            
         }];
     }];
 }
@@ -764,11 +558,6 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
             NSLog(@"签到==%d",[UGUserModel currentUser].checkinSwitch);
             
             [self getSystemConfig];
-            
-           
-            
-            
-            
         } failure:^(id msg) {
             
             [self stopAnimation];
@@ -822,13 +611,4 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
     [yymenuView show];
 }
 
-- (void)userLogout {
-    
-
-                [self.tabBarController setSelectedIndex:0];
-
-                SANotificationEventPost(UGNotificationUserLogout, nil);
-
-    
-}
 @end

@@ -54,6 +54,8 @@ static NSString *convertCellid = @"UGConvertCollectionViewCell";
 //    self.bgView.image = afterImage;
         [_yyBgView setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
 }
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {

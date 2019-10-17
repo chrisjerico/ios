@@ -151,12 +151,15 @@
                 
                 [SVProgressHUD showSuccessWithStatus:model.msg];
                 
+                // 退出登录上一个账号
+                if (UGUserModel.currentUser) 
+                    [CMNetwork userLogoutWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:nil];
                 
                 UGUserModel *user = model.data;
                 UGUserModel.currentUser = user;
                 
-               NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-               if([userDefault boolForKey:@"isRememberPsd"])
+                NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+                if([userDefault boolForKey:@"isRememberPsd"])
                 {
                     [userDefault setObject:self.userNameTextF.text forKey:@"userName"];
                     [userDefault setObject:self.passwordTextF.text forKey:@"userPsw"];
@@ -178,11 +181,9 @@
                 }
               
                 if (isGoRoot) {
-                     [self.navigationController popToRootViewControllerAnimated:YES];
+                    [self.navigationController popToRootViewControllerAnimated:YES];
                 } else {
-                    [self.navigationController.view makeToast:@"你的密码过于简单，可能存在风险，请把密码修改成复杂密码"
-                                                     duration:3.0
-                                                     position:CSToastPositionCenter];
+                    [self.navigationController.view makeToast:@"你的密码过于简单，可能存在风险，请把密码修改成复杂密码" duration:3.0 position:CSToastPositionCenter];
                     UGSecurityCenterViewController *vc = [[UGSecurityCenterViewController alloc] init] ;
                     vc.fromVC = @"UGLoginViewController";
                     [self.navigationController pushViewController:vc animated:YES];
