@@ -1159,14 +1159,16 @@
 	self.scrollView.scrollEnabled = YES;
 	self.scrollView.bounces = YES;
 	//	self.scrollView.backgroundColor = UGBackgroundColor;
-	self.bannerView =  [SDCycleScrollView cycleScrollViewWithFrame:self.bannerBgView.bounds delegate:self placeholderImage:[UIImage imageNamed:@"placeholder"]];
+//	self.bannerView =  [SDCycleScrollView cycleScrollViewWithFrame:self.bannerBgView.bounds delegate:self placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    self.bannerView =  [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, UGScreenW, 280/640.0 * APP.Width) delegate:self placeholderImage:[UIImage imageNamed:@"placeholder"]];
 	self.bannerView.backgroundColor = [UIColor whiteColor];
 	self.bannerView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
 	self.bannerView.scrollDirection = UICollectionViewScrollDirectionHorizontal;
 	self.bannerView.autoScrollTimeInterval = 2.0;
 	self.bannerView.delegate = self;
 	[self.bannerBgView addSubview:self.bannerView];
-	
+    
+    
 	self.leftwardMarqueeView.direction = UUMarqueeViewDirectionLeftward;
 	self.leftwardMarqueeView.delegate = self;
 	self.leftwardMarqueeView.timeIntervalPerScroll = 0.5f;
