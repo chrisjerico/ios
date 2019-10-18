@@ -1846,20 +1846,20 @@
 		CF0279D22358487C00C3D923 /* 游戏列表 */ = {
 			isa = PBXGroup;
 			children = (
-				D405B2C7227ADA4E00F8C586 /* UGGameTypeColletionViewCell.h */,
-				D405B2C8227ADA4E00F8C586 /* UGGameTypeColletionViewCell.m */,
-				D405B2C9227ADA4E00F8C586 /* UGGameTypeColletionViewCell.xib */,
-				030BE80B233604B3004AB19A /* UGGameSubCollectionView.h */,
-				030BE80C233604B3004AB19A /* UGGameSubCollectionView.m */,
-				D405B2D4227B0FE100F8C586 /* UGPlatformTitleCollectionViewCell.h */,
-				D405B2D5227B0FE100F8C586 /* UGPlatformTitleCollectionViewCell.m */,
-				D405B2D6227B0FE100F8C586 /* UGPlatformTitleCollectionViewCell.xib */,
 				D405B2D1227AE38900F8C586 /* UGGameTypeCollectionView.h */,
 				D405B2D2227AE38900F8C586 /* UGGameTypeCollectionView.m */,
 				D405B2D9227B122000F8C586 /* UGPlatformTitleCollectionView.h */,
 				D405B2DA227B122000F8C586 /* UGPlatformTitleCollectionView.m */,
+				D405B2D4227B0FE100F8C586 /* UGPlatformTitleCollectionViewCell.h */,
+				D405B2D5227B0FE100F8C586 /* UGPlatformTitleCollectionViewCell.m */,
+				D405B2D6227B0FE100F8C586 /* UGPlatformTitleCollectionViewCell.xib */,
 				033177A52337382D000D7663 /* UGPlatformCollectionView.h */,
 				033177A62337382D000D7663 /* UGPlatformCollectionView.m */,
+				030BE80B233604B3004AB19A /* UGGameSubCollectionView.h */,
+				030BE80C233604B3004AB19A /* UGGameSubCollectionView.m */,
+				D405B2C7227ADA4E00F8C586 /* UGGameTypeColletionViewCell.h */,
+				D405B2C8227ADA4E00F8C586 /* UGGameTypeColletionViewCell.m */,
+				D405B2C9227ADA4E00F8C586 /* UGGameTypeColletionViewCell.xib */,
 			);
 			path = "游戏列表";
 			sourceTree = "<group>";

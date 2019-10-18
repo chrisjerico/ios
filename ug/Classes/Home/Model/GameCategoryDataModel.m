@@ -7,16 +7,23 @@
 //
 
 #import "GameCategoryDataModel.h"
+
 @implementation GameSubModel
 @end
+
+
 @implementation GameModel
 + (JSONKeyMapper *)keyMapper {
 	
 	return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"gameId",@"gameId":@"game_id"}];
 }
 @end
+
+
 @implementation GameCategoryModel
 @end
+
+
 @implementation GameCategoryDataModel
 
 @end

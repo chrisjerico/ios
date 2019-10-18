@@ -9,20 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "GameCategoryDataModel.h"
 
-@class UGPlatformModel;
-@class UGPlatformGameModel;
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void(^PlatformSelectBlock)(NSInteger selectIndex);
-typedef void(^GameItemSelectBlock)(GameModel *game);
 @interface UGGameTypeCollectionView : UIView
 
-@property (nonatomic, copy)  PlatformSelectBlock platformSelectBlock;
-@property (nonatomic, copy) GameItemSelectBlock gameItemSelectBlock;
-@property (nonatomic, assign) NSInteger selectIndex;
-@property (nonatomic, strong) NSArray<GameCategoryModel*> *gameTypeArray;
+@property (nonatomic) void(^gameItemSelectBlock)(GameModel *game);
 
-@property (nonatomic, readonly) CGFloat totalHeight;
+@property (nonatomic) NSArray<GameCategoryModel*> *gameTypeArray;
 
 @end
 

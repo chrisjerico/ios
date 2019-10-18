@@ -229,8 +229,8 @@
         [mUGSignInScrFootView setSevenStr:[NSString stringWithFormat:@"7天礼包(%@)",checkinBonusModel2.BonusInt]];
         
         void (^setupButton)(UIButton *, UGcheckinBonusModel *) = ^(UIButton *btn, UGcheckinBonusModel *cbm) {
-            btn.userInteractionEnabled = !cbm.isComplete && cbm.isChenkin;
-            btn.backgroundColor = !cbm.isComplete && cbm.isChenkin ? UGRGBColor(114, 108, 227) : UGRGBColor(244, 246, 254);
+            btn.userInteractionEnabled = !cbm.isComplete && cbm.isCheckin;
+            btn.backgroundColor = !cbm.isComplete && cbm.isCheckin ? UGRGBColor(114, 108, 227) : UGRGBColor(244, 246, 254);
             [btn setTitle:cbm.isComplete ? @"已领取" : @"领取" forState:UIControlStateNormal];
         };
         setupButton(mUGSignInScrFootView.fiveButton, checkinBonusModel1);
@@ -334,8 +334,7 @@
             if (weakSelf.checkinListModel.checkinSwitch) {
                 [self createUI];
                 //
-            } 
-            
+            }
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
         }];
@@ -355,7 +354,8 @@
 //    WeakSelf;
     [CMNetwork checkinBonusWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
-            [SVProgressHUD showSuccessWithStatus:model.msg];
+            [SVProgressHUD dismiss];
+            [AlertHelper showAlertView:@"温馨提示" msg:model.msg btnTitles:@[@"确认"]];
             [self getCheckinListData];
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
@@ -379,19 +379,9 @@
     //    WeakSelf;
     [CMNetwork checkinWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
-            
-//            [SVProgressHUD showSuccessWithStatus:model.msg];
-            
-            [LEEAlert alert].config
-            .LeeTitle(@"温馨提示")
-            .LeeContent(model.msg)
-            .LeeAction(@"确认", ^{
-                
-                // 确认点击事件Block
-            })
-            .LeeShow(); // 设置完成后 别忘记调用Show来显示
-            
-             [self getCheckinListData];
+            [SVProgressHUD dismiss];
+            [AlertHelper showAlertView:@"温馨提示" msg:model.msg btnTitles:@[@"确认"]];
+            [self getCheckinListData];
             
         } failure:^(id msg) {
             

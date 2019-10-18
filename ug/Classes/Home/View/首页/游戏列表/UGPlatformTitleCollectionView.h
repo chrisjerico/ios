@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GameCategoryDataModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,9 +15,9 @@ typedef void(^PlatformTitleSelectBlock)(NSInteger selectIndex);
 
 @interface UGPlatformTitleCollectionView : UIView
 
-@property (nonatomic, copy) PlatformTitleSelectBlock platformTitleSelectBlock;
-@property (nonatomic, assign) NSInteger selectIndex;
-@property (nonatomic, strong) NSArray *gameTypeArray;
+@property (nonatomic) PlatformTitleSelectBlock platformTitleSelectBlock;
+@property (nonatomic) NSInteger selectIndex;
+@property (nonatomic) NSArray<GameCategoryModel *> *gameTypeArray;
 
 @end
 

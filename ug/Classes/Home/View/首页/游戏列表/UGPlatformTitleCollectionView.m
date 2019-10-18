@@ -22,23 +22,21 @@ static NSString *platformTitleCellid = @"UGPlatformTitleCollectionViewCell";
     self = [super initWithFrame:frame];
     if (self) {
         [self initGameCollectionView];
-        
     }
     return self;
 }
 
 - (void)layoutSubviews {
-
+    [super layoutSubviews];
     [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:self.selectIndex inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
-
 }
 
 - (void)setSelectIndex:(NSInteger)selectIndex {
-     [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:selectIndex inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
-    
+    _selectIndex = selectIndex;
+    [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:selectIndex inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
 }
 
-- (void)setGameTypeArray:(NSArray *)gameTypeArray {
+- (void)setGameTypeArray:(NSArray<GameCategoryModel *> *)gameTypeArray {
     _gameTypeArray = gameTypeArray;
     if (self.collectionView) {
         [self.collectionView removeFromSuperview];
@@ -84,33 +82,26 @@ static NSString *platformTitleCellid = @"UGPlatformTitleCollectionViewCell";
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    
     return 1;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    
     return self.gameTypeArray.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
     UGPlatformTitleCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:platformTitleCellid forIndexPath:indexPath];
     cell.item = self.gameTypeArray[indexPath.row];
-    
     [cell setBackgroundColor: [[UGSkinManagers shareInstance] sethomeContentColor]];
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (self.platformTitleSelectBlock) {
-        self.platformTitleSelectBlock(indexPath.row);
-    }
+    if (self.platformTitleSelectBlock)
+        self.platformTitleSelectBlock(_selectIndex = indexPath.row);
 }
 
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
-{
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
     return 0;
 }
 

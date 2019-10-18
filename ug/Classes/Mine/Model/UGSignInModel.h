@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *BonusInt;       /**<   20趣味豆 */
 @property (nonatomic, strong) NSString *BonusSwitch;    /**<   签到开关，1显示0隐藏 */
 @property (nonatomic, assign) BOOL isComplete;          /**<   是否已经领取  true   是，   false  否 */
-@property (nonatomic, assign) BOOL isChenkin;           /**<   是否可以领取  true   是，   false  否 */
+@property (nonatomic, assign) BOOL isCheckin;           /**<   是否可以领取  true   是，   false  否 */
 
 
 @end
