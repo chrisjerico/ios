@@ -653,8 +653,10 @@ BOOL isOk = NO;
         [self.navigationController pushViewController:fundsVC animated:YES];
     }
     else if ([title isEqualToString:@"在线客服"]) {
-        SLWebViewController *webViewVC = [[SLWebViewController alloc] init];
-        webViewVC.urlStr = SysConf.zxkfUrl;
+        TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
+
+        webViewVC.url = SysConf.zxkfUrl;
+        webViewVC.webTitle = @"在线客服";
         [self.navigationController pushViewController:webViewVC animated:YES];
     }
     else if ([title isEqualToString:@"银行卡管理"]) {

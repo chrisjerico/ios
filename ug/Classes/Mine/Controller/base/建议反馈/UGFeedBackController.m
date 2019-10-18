@@ -38,11 +38,13 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row == 0) {
         
-        SLWebViewController *webViewVC = [[SLWebViewController alloc] init];
+        TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
+       
         UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
         if (config.zxkfUrl.length > 0) {
-            webViewVC.urlStr = config.zxkfUrl;
-			[self.navigationController pushViewController:webViewVC animated:YES];
+            webViewVC.url = SysConf.zxkfUrl;
+            webViewVC.webTitle = @"在线客服";
+            [self.navigationController pushViewController:webViewVC animated:YES];
 
 		}
     
