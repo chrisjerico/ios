@@ -10,25 +10,21 @@
 #import "UGGameSubCollectionView.h"
 
 NS_ASSUME_NONNULL_BEGIN
-typedef void(^GameTypeSelectBlock)(NSInteger index);
-typedef void(^GameItemSelectBlock)(GameModel *game);
 
 @interface UGPlatformCollectionView : UICollectionView
-@property (nonatomic, copy) GameTypeSelectBlock gameTypeSelectBlock;
-@property (nonatomic, copy) GameItemSelectBlock gameItemSelectBlock;
+@property (nonatomic, copy) void(^gameTypeSelectBlock)(NSInteger index);
+@property (nonatomic, copy) void(^gameItemSelectBlock)(GameModel *game);
 
 @property (nonatomic, strong) NSArray *dataArray;
-- (instancetype)initWithFrame:(CGRect)frame;
 
+- (instancetype)initWithFrame:(CGRect)frame;
 @end
 
 @interface CollectionFooter : UICollectionReusableView
 
-@property (nonatomic, strong) UGGameSubCollectionView * gameSubCollectionView;
-@property(nonatomic, strong)NSArray<GameSubModel*> *sourceData;
+@property (nonatomic) UGGameSubCollectionView *gameSubCollectionView;
+@property (nonatomic) NSArray<GameSubModel*> *sourceData;
 
-@property (nonatomic, copy) GameItemSelectBlock gameItemSelectBlock;
-
-
+@property (nonatomic) void(^gameItemSelectBlock)(GameModel *game);
 @end
 NS_ASSUME_NONNULL_END

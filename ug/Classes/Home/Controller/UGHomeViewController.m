@@ -34,7 +34,6 @@
 #import "UGFundsViewController.h"
 #import "UGBetRecordViewController.h"
 #import "UGChangLongController.h"
-#import "UGPlatformTitleCollectionView.h"
 #import "UGLoginViewController.h"
 #import "UGRegisterViewController.h"
 #import "UGPromoteDetailController.h"   // 优惠活动详情
@@ -264,15 +263,11 @@
     [self systemOnlineCount];
     [self getPromoteList];      // 优惠活动
 	
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(collectiongViewHeightUpdated:) name:@"UGPlatformCollectionViewContentHeight" object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gameNavigationItemTaped:) name:@"gameNavigationItemTaped" object:nil];
 	
 	WeakSelf
-	self.gameTypeView.platformSelectBlock = ^(NSInteger selectIndex) {
-		[self.view layoutIfNeeded];
-	};
 	self.gameTypeView.gameItemSelectBlock = ^(GameModel * _Nonnull game) {
-		[weakSelf showGameVC: game];
+		[weakSelf showGameVC:game];
 	};
 	
 	self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
@@ -352,11 +347,6 @@
 	[self.leftwardMarqueeView pause];//fixbug  发热  掉电快
 	[self.upwardMultiMarqueeView pause];//fixbug  发热  掉电快
 	self.initSubview = YES;
-}
-
-- (void)collectiongViewHeightUpdated: (NSNotification *)notification {
-	self.gameViewHeight.constant = ((NSNumber *)notification.object).floatValue;
-	[self.view layoutIfNeeded];
 }
 
 - (void)gameNavigationItemTaped: (NSNotification *)notification {
@@ -687,7 +677,7 @@
 			
 			[self.uGredEnvelopeView setHidden:YES];
 			
-//			[SVProgressHUD showErrorWithStatus:msg];
+			[SVProgressHUD showErrorWithStatus:msg];
 			
 		}];
 	}];

@@ -61,19 +61,15 @@ static NSString *const footerId = @"footerId";
 	[self.sectionedDataArray removeAllObjects];
 	
 	NSMutableArray * tempArray = [NSMutableArray array];
-	for (int i = 0; i < dataArray.count; i ++) {
-		
+	for (int i=0; i<dataArray.count; i++) {
 		[tempArray addObject:dataArray[i]];
-
 		if (((i + 1) % 3 == 0) || (i == dataArray.count - 1)) {
 			[self.sectionedDataArray addObject: [tempArray mutableCopy]];
 			[tempArray removeAllObjects];
 		}
-		
 	}
 	
     [self.gameCollectionView reloadData];
-	[self postHeight];
 	
 	NSMutableArray * documentArray = [NSMutableArray array];
 	for (GameModel * model in dataArray) {
@@ -82,45 +78,23 @@ static NSString *const footerId = @"footerId";
 		}
 	}
 	[DocumentTypeList setAllGames: documentArray];
-	
-}
-- (void)postHeight {
-	if (self.dataArray.count == 0) {
-		return;
-	}
-	
-	CGFloat height = 95 * self.sectionedDataArray.count;
-	if (_selectedPath) {
-		GameModel * model = self.sectionedDataArray[_selectedPath.section][_selectedPath.item];
-		if (model.subType.count > 0) {
-			height += ((model.subType.count - 1)/3 + 1) * 40;
-		}
-	}
-    height += 30 + 70 * 2.0/self.sectionedDataArray.count;
-	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"UGPlatformCollectionViewContentHeight" object:[NSNumber numberWithFloat:height]]];
 }
 
+
 #pragma mark - UICollectionViewDelegate
+
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    
     return self.sectionedDataArray.count;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    
     return ((NSArray *)self.sectionedDataArray[section]).count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UGGameTypeColletionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:gameCellid forIndexPath:indexPath];
     cell.item = ((NSArray *)self.sectionedDataArray[indexPath.section])[indexPath.row];
-    
     [cell setBackgroundColor: [[UGSkinManagers shareInstance] sethomeContentColor]];
-//    if (_selectedPath == indexPath) {
-//        cell.backgroundColor = UIColor.blueColor;
-//    }
-//    cell.backgroundColor =  _selectedPath == indexPath ? [UIColor colorWithWhite:0.9 alpha:1.0] : UIColor.whiteColor;
-
     return cell;
 }
 
@@ -177,20 +151,16 @@ static NSString *const footerId = @"footerId";
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
 	if (_selectedPath && _selectedPath.section == section) {
-		
 		GameModel * model = self.sectionedDataArray[section][_selectedPath.item];
-		
 		return (CGSize){UGScreenW,((model.subType.count - 1)/3 + 1) * 40};
 	} else {
 		return (CGSize){UGScreenW,0};
 	}
-	
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.gameTypeSelectBlock) {
+    if (self.gameTypeSelectBlock)
         self.gameTypeSelectBlock(indexPath.row);
-    }
 	
 	GameModel * model = self.sectionedDataArray[indexPath.section][indexPath.item];
 	
@@ -202,7 +172,6 @@ static NSString *const footerId = @"footerId";
 		self.gameItemSelectBlock(model);
 	}
 	[collectionView reloadData];
-	[self postHeight];
 }
 
 - (NSMutableArray *)sectionedDataArray {

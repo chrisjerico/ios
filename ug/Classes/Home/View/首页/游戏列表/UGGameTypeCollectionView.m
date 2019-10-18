@@ -7,105 +7,111 @@
 //
 
 #import "UGGameTypeCollectionView.h"
-#import "UGPlatformGameModel.h"
-#import "WSLWaterFlowLayout.h"
 #import "UGPlatformTitleCollectionView.h"
-#import "GameCategoryDataModel.h"
 #import "UGPlatformCollectionView.h"
 
 
-@interface UGGameTypeCollectionView ()
+@interface UGGameTypeCollectionView ()<UIScrollViewDelegate>
 
-@property (nonatomic, strong) UGPlatformTitleCollectionView *titleView;
-@property (nonatomic, strong) UGPlatformCollectionView * collectionView;
+@property (nonatomic) UGPlatformTitleCollectionView *titleView;
+@property (nonatomic) UIScrollView *contentScrollView;
+@property (nonatomic) UIStackView *contentStackView;
 @end
 
 static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
+
+
 @implementation UGGameTypeCollectionView
-
-- (instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
-        
-        [self addSubview:self.titleView];
-		[self addSubview:self.collectionView];
-
-        WeakSelf
-        self.titleView.platformTitleSelectBlock = ^(NSInteger selectIndex) {
-			weakSelf.selectIndex = selectIndex;
-            if (weakSelf.platformSelectBlock) {
-                weakSelf.platformSelectBlock(selectIndex);
-            }
-        };
-		self.collectionView.gameItemSelectBlock = ^(GameModel * model) {
-			weakSelf.gameItemSelectBlock(model);
-		};
-    }
-    return self;
-}
 
 - (void)awakeFromNib {
 	[super awakeFromNib];
-	
-	[self addSubview:self.titleView];
-	[self.titleView mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.left.right.top.equalTo(self);
-		make.height.equalTo(@80);
-	}];
-	[self addSubview:self.collectionView];
-	[self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.left.right.bottom.equalTo(self);
-		make.top.equalTo(self.titleView.mas_bottom);
-	}];
-	  WeakSelf
-	  self.titleView.platformTitleSelectBlock = ^(NSInteger selectIndex) {
-		  weakSelf.selectIndex = selectIndex;
-		  if (weakSelf.platformSelectBlock) {
-			  weakSelf.platformSelectBlock(selectIndex);
-		  }
-	  };
-	  self.collectionView.gameItemSelectBlock = ^(GameModel * model) {
-		  weakSelf.gameItemSelectBlock(model);
-	  };
 }
 
-- (void)setSelectIndex:(NSInteger)selectIndex {
-	_selectIndex = selectIndex;
-	
-	self.collectionView.dataArray =  self.gameTypeArray[selectIndex].list;
-    [self.collectionView reloadData];
-	
-
-}
-
-- (void)setGameTypeArray:(NSArray *)gameTypeArray {
+- (void)setGameTypeArray:(NSArray<GameCategoryModel *> *)gameTypeArray {
     _gameTypeArray = gameTypeArray;
-    self.titleView.gameTypeArray = gameTypeArray;
-	self.titleView.selectIndex = 0;
-	self.selectIndex = 0;
-    [self.collectionView reloadData];
     
-}
-
-
-#pragma mark - Get方法
-- (UGPlatformTitleCollectionView *)titleView {
-    if (_titleView == nil) {
-        _titleView = [[UGPlatformTitleCollectionView alloc] initWithFrame:CGRectZero];
+    // 初始化
+    __weakSelf_(__self);
+    if (OBJOnceToken(self)) {
+        // _titleView
+        {
+            _titleView = [[UGPlatformTitleCollectionView alloc] initWithFrame:CGRectZero];
+            _titleView.platformTitleSelectBlock = ^(NSInteger selectIndex) {
+                __self.contentScrollView.contentOffset = CGPointMake(__self.width * selectIndex, 0);
+                [__self refreshHeight];
+            };
+            [self addSubview:_titleView];
+            [_titleView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.right.top.equalTo(self);
+                make.height.equalTo(@80);
+            }];
+        }
         
+        // _contentStackView
+        {
+            _contentScrollView = [UIScrollView new];
+            _contentScrollView.delegate = self;
+            _contentScrollView.pagingEnabled = true;
+            _contentScrollView.showsVerticalScrollIndicator = false;
+            _contentScrollView.showsHorizontalScrollIndicator = false;
+            [self addSubview:_contentScrollView];
+            [_contentScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.right.bottom.equalTo(self);
+                make.top.equalTo(_titleView.mas_bottom);
+            }];
+            
+            _contentStackView = [UIStackView new];
+            [_contentScrollView addSubview:_contentStackView];
+            [_contentStackView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.right.top.bottom.equalTo(_contentScrollView);
+                make.centerY.equalTo(_contentScrollView);
+            }];
+        }
     }
-    return _titleView;
+    
+    // TitleView
+    _titleView.gameTypeArray = gameTypeArray;
+    _titleView.selectIndex = 0;
+    
+    // 清空_collectionViews
+    for (UGPlatformCollectionView *pcv in _contentStackView.arrangedSubviews)
+        [pcv removeFromSuperview];
+    
+    // 添加 UGPlatformCollectionView到数组
+    for (GameCategoryModel *gcm in gameTypeArray) {
+        UGPlatformCollectionView *pcv = [[UGPlatformCollectionView alloc] initWithFrame:CGRectZero];
+        pcv.dataArray = gcm.list;
+        [pcv xw_addObserverBlockForKeyPath:@"contentSize" block:^(id  _Nonnull obj, id  _Nonnull oldVal, id  _Nonnull newVal) {
+            [__self refreshHeight];
+        }];
+        pcv.gameItemSelectBlock = ^(GameModel * _Nonnull game) {
+            if (__self.gameItemSelectBlock)
+                __self.gameItemSelectBlock(game);
+        };
+        [_contentStackView addArrangedSubview:pcv];
+        [pcv mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.equalTo(self);
+        }];
+    }
 }
 
-- (UGPlatformCollectionView *)collectionView {
-	if (!_collectionView) {
-		_collectionView = [[UGPlatformCollectionView alloc] initWithFrame:CGRectZero];
-	}
-	return  _collectionView;
+- (void)refreshHeight {
+    NSInteger idx = _titleView.selectIndex;
+    UGPlatformCollectionView *pcv = _contentStackView.arrangedSubviews[idx];
+    CGFloat h = pcv.contentSize.height + _titleView.height + 20;
+    self.cc_constraints.height.constant = h;
 }
 
-- (CGFloat)totalHeight {
-	CGFloat height = self.collectionView.collectionViewLayout.collectionViewContentSize.height;
-	return height + 80;
+
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
+    if (scrollView == _contentScrollView) {
+        NSUInteger idx = targetContentOffset->x/self.width;
+        _titleView.selectIndex = idx;
+        [self refreshHeight];
+    }
 }
+
 @end
