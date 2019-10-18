@@ -10,7 +10,7 @@
 
 @interface TGWebViewController :  UIViewController
 
-
+@property (nonatomic) WKWebView *tgWebView;
 
 /** 相关链接*/
 @property (nonatomic, copy) NSString *url;
@@ -24,3 +24,4 @@
 - (void)setWebViewFrame:(CGRect)frame;
 
 @end
+

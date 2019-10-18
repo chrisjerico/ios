@@ -12,7 +12,7 @@
 
 @interface TGWebViewController ()<WKNavigationDelegate>
 
-@property (nonatomic) WKWebView *tgWebView;
+//@property (nonatomic) WKWebView *tgWebView;
 
 @property (nonatomic) TGWebProgressLayer *webProgressLayer;
 
