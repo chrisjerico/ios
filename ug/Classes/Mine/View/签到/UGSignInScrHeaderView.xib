@@ -48,7 +48,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" red="0.3948854208" green="0.46212381120000001" blue="0.74510151150000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -58,6 +58,8 @@
                 <outlet property="signIn1ImageView" destination="11t-jJ-8nk" id="8zQ-U1-s4C"/>
                 <outlet property="signIn2ImageView" destination="baW-jz-Wwn" id="NUg-Vi-wja"/>
                 <outlet property="signInNumberLable" destination="Myd-2O-HZS" id="3O9-vg-R8i"/>
+                <outlet property="title1Label" destination="pth-ak-O5B" id="hdd-Uk-Wt1"/>
+                <outlet property="title2Label" destination="bBh-x4-sNy" id="tZC-pt-C8d"/>
                 <outlet property="titleBgView" destination="DwR-kS-YUw" id="jup-83-L8R"/>
             </connections>
             <point key="canvasLocation" x="419.56521739130437" y="11.71875"/>

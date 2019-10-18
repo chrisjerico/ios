@@ -106,7 +106,7 @@
         [mUIScrollView addSubview:mUGSignInScrHeaderView];
     }
     
-    [mUGSignInScrHeaderView.titleBgView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
+
     
     [mUGSignInScrHeaderView setBackgroundColor:[UIColor clearColor]];
  

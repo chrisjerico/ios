@@ -14,12 +14,23 @@
             <rect key="frame" x="0.0" y="0.0" width="394" height="40"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B05-D7-vNJ">
-                    <rect key="frame" x="296" y="0.0" width="98" height="40"/>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B05-D7-vNJ" customClass="IBButton">
+                    <rect key="frame" x="316" y="5" width="69" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <state key="normal" title="签到记录">
                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
+                        <userDefinedRuntimeAttribute type="point" keyPath="圆角倍数">
+                            <point key="value" x="0.0" y="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="圆角偏移量">
+                            <real key="value" value="15"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="signInClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="mEk-WC-IA0"/>
                     </connections>
