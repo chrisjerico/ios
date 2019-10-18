@@ -316,12 +316,18 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     }, ^(id err) {
         [SVProgressHUD showInfoWithStatus:err];
     }, ^{
+        
+        NSString *selCode = @"";
         NSMutableArray *array = [NSMutableArray array];
         for (UGGameplayModel *model in self.gameDataArray) {
 //            model.select = NO;
+          
             if (!model.select) {
                 continue;
             }
+            
+              NSLog(@"model.code ======================== %@",model.code);
+            selCode = model.code;
             for (UGGameplaySectionModel *type in model.list) {
                 for (UGGameBetModel *game in type.list) {
                     if (game.select) {
@@ -343,9 +349,14 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                                              position:CSToastPositionCenter];
             return ;
         }
+        
+        
         UGBetDetailView *betDetailView = [[UGBetDetailView alloc] init];
         betDetailView.dataArray = array;
+        NSLog(@"array = %@",array);
         betDetailView.nextIssueModel = self.nextIssueModel;
+        betDetailView.code = selCode;
+         NSLog(@"self.nextIssueModel = %@",self.nextIssueModel);
         WeakSelf
         betDetailView.betClickBlock = ^{
             [weakSelf resetClick:nil];

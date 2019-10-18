@@ -444,6 +444,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 			return ;
 		}
 		UGBetDetailView *betDetailView = [[UGBetDetailView alloc] init];
+        NSLog(@"array = %@",array);
 		betDetailView.dataArray = array;
 		betDetailView.nextIssueModel = self.nextIssueModel;
 		WeakSelf

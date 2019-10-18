@@ -36,7 +36,7 @@ static NSString *swiperVerifyUrl = @"/dist/index.html#/swiperverify?platform=nat
 static NSString *imagesServerUrl = @"https://cdn01.fsjtzs.cn//images";
 static NSString *rechargeUrl = @"/dist/index.html#/funds/deposit";
 static NSString *fundUrl = @"/dist/index.html#/funds/Withdraw";
-static NSString *chatRoomUrl = @"/dist/index.html#/chatRoomList";
+static NSString *chatRoomUrl = @"/dist/index.html#/chatRoom?roomId=0&roomName=";
 static NSString *newChatRoomUrl = @"/dist/#/home?from=app&logintoken=";
 
 static NSString *yuebaoUrl = @"/dist/index.html#/yuebao";

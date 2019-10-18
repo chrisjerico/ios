@@ -54,7 +54,7 @@
     
 //    _webViewBridge = [WKWebViewJavascriptBridge bridgeForWebView:self.tgWebView];
 //       [_webViewBridge setWebViewDelegate:self];
-    self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithImageName:@"gengduo" target:self action:@selector(rightBarBtnClick)];
+//    self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithImageName:@"gengduo" target:self action:@selector(rightBarBtnClick)];
 }
 
 #pragma mark --其他方法
@@ -107,16 +107,15 @@
         NSData *jsonData = [NSJSONSerialization dataWithJSONObject:params options:NSJSONWritingPrettyPrinted error:&parseError];
         paramsjsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     }
-    
-    
 
    
    NSString *jsonStr = [NSString stringWithFormat:@"shareBet(%@, %@)",listjsonString,paramsjsonString];
     // 在需要调用JS的地方执行如下代码
     // 有参数
-    [self.tgWebView evaluateJavaScript:jsonStr completionHandler:^(id _Nullable obj, NSError * _Nullable error) {
-        NSLog(@"error = %@", error);
-    }];
+    
+    [self.tgWebView evaluateJavaScript:jsonStr completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+         NSLog(@"%@----%@",result, error);
+     }];
     
 }
 
@@ -129,4 +128,16 @@
     [super viewWillAppear:animated];
 }
 
+#pragma mark - UIWebViewDelegate
+
+
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+//    [super webView :webView  didFinishNavigation:navigation];
+    if (self.jsonStr) {
+        [self.tgWebView evaluateJavaScript:self.jsonStr completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+                   NSLog(@"%@----%@",result, error);
+               }];
+    }
+   
+}
 @end

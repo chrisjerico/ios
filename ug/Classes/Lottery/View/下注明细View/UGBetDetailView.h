@@ -18,7 +18,7 @@ typedef void(^BetDetailViewCancelBlock)(void);
 @property (nonatomic, copy) BetDetailViewCancelBlock cancelBlock;
 @property (nonatomic, copy) NSArray *dataArray;
 @property (nonatomic, strong) UGNextIssueModel *nextIssueModel;
-
+@property (nonatomic, copy) NSString *code;
 - (void)show;
 @end
 
