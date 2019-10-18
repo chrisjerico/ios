@@ -250,13 +250,12 @@ static NSString *rechargeRecordCellid = @"UGRechargeRecordCell";
         stateLabel.textColor = [UIColor blackColor];
         stateLabel.font = [UIFont systemFontOfSize:14 weight:UIFontWeightHeavy];
         
-        UILabel *line = [[UILabel alloc] initWithFrame:CGRectMake(15, 43, UGScreenW, 0.5)];
-        line.backgroundColor = UGBackgroundColor;
+
         
         [headerView addSubview:timeLable];
         [headerView addSubview:amountLabel];
         [headerView addSubview:stateLabel];
-        [headerView addSubview:line];
+
         
         return headerView;
     }else {
@@ -287,14 +286,12 @@ static NSString *rechargeRecordCellid = @"UGRechargeRecordCell";
         balanceLabel.textColor = [UIColor blackColor];
         balanceLabel.font = [UIFont systemFontOfSize:14 weight:UIFontWeightHeavy];
         
-        UILabel *line = [[UILabel alloc] initWithFrame:CGRectMake(15, 43, UGScreenW, 0.5)];
-        line.backgroundColor = UGBackgroundColor;
+ 
         
         [headerView addSubview:timeLable];
         [headerView addSubview:amountLabel];
         [headerView addSubview:stateLabel];
         [headerView addSubview:balanceLabel];
-        [headerView addSubview:line];
         
         return headerView;
     }
