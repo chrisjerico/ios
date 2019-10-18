@@ -30,10 +30,8 @@
     
     
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-        
         [self skin];
     });
-
     
     [self setBackgroundColor: [[UGSkinManagers shareInstance] setCellbgColor]];
     self.layer.cornerRadius = 10;
@@ -46,23 +44,16 @@
 		make.centerY.equalTo(self);
 		make.right.equalTo(self);
 	}];
-	
-
-   
-    
-    
 }
 
 - (void)setTitle:(NSString *)title {
     _title = title;
     self.nameLabel.text = title;
-    
 }
 
 - (void)setImgName:(NSString *)imgName {
     _imgName = imgName;
     self.imgView.image = [UIImage imageNamed:imgName];
-    
 }
 
 - (void)setItem:(GameModel *)item {
@@ -77,9 +68,8 @@
     } else {
          self.hotImageView.hidden = YES;
     }
-    
 }
--(UIImageView *)hasSubSign {
+- (UIImageView *)hasSubSign {
 	if (!_hasSubSign) {
 		_hasSubSign = [UIImageView new];
 		_hasSubSign.image = [UIImage imageNamed:@"game_has_sub"];

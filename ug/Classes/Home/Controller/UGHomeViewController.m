@@ -455,34 +455,24 @@
 			if (model.data) {
 				dispatch_async(dispatch_get_main_queue(), ^{
 					GameCategoryDataModel * customGameModel = (GameCategoryDataModel*)model.data;
-					[self.gameCategorys removeAllObjects];
-					[self.gameCategorys addObject:customGameModel.lottery];
-					[self.gameCategorys addObject:customGameModel.real];
-					[self.gameCategorys addObject:customGameModel.fish];
-					[self.gameCategorys addObject:customGameModel.game];
-					[self.gameCategorys addObject:customGameModel.card];
-					[self.gameCategorys addObject:customGameModel.sport];
+                    self.gameCategorys = customGameModel.icons.mutableCopy;
 					
-					
-					NSArray<GameModel *> * sourceData = customGameModel.navigation.list;
+					NSArray<GameModel *> * sourceData = customGameModel.navs;
 					self.gameNavigationView.sourceData = sourceData;
 					if (sourceData.count > 0) {
 						self.gameNavigationViewHeight.constant = ((sourceData.count - 1)/4 + 1)*80;
 						[self.view layoutIfNeeded];
-						
 					}
 					
 					self.gameTypeView.gameTypeArray = self.gameCategorys;
 				});
-				
 			}
-			
 		} failure:^(id msg) {
 			[SVProgressHUD showErrorWithStatus:msg];
 		}];
-		
 	}];
 }
+
 - (void)getPlatformGamesList {
 	
 }

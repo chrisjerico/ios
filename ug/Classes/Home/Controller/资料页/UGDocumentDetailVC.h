@@ -12,17 +12,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UGDocumentDetailData : UGModel
 
-@property(nonatomic, strong)NSString * title;
-@property(nonatomic, strong)NSString * header;
-@property(nonatomic, strong)NSString * content;
-@property(nonatomic, strong)NSString * footer;
-@property(nonatomic, strong)NSString * hasPayTip;
-@property(nonatomic, strong)NSString * notPayTip;
-@property(nonatomic, assign)BOOL  hasPay;
-@property(nonatomic, assign)BOOL  canRead;
-@property(nonatomic, strong)NSString * reason;
-@property(nonatomic, assign)CGFloat  amount;
-@property(nonatomic, assign)int code;
+@property(nonatomic) NSString *title;       /**<   标题 */
+@property(nonatomic) NSString *header;
+@property(nonatomic) NSString *content;     
+@property(nonatomic) NSString *footer;
+@property(nonatomic) NSString *hasPayTip;
+@property(nonatomic) NSString *notPayTip;
+@property(nonatomic) BOOL hasPay;
+@property(nonatomic) BOOL canRead;
+@property(nonatomic) NSString *reason;
+@property(nonatomic) CGFloat amount;
+@property(nonatomic) int code;
 
 
 @end

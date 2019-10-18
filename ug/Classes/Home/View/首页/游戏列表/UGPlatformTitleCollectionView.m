@@ -33,7 +33,11 @@ static NSString *platformTitleCellid = @"UGPlatformTitleCollectionViewCell";
 
 - (void)setSelectIndex:(NSInteger)selectIndex {
     _selectIndex = selectIndex;
-    [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:selectIndex inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
+    NSIndexPath *ip = [NSIndexPath indexPathForRow:selectIndex inSection:0];
+    [self.collectionView scrollToItemAtIndexPath:ip atScrollPosition:UICollectionViewScrollPositionNone animated:true];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.collectionView selectItemAtIndexPath:ip animated:true scrollPosition:UICollectionViewScrollPositionNone];
+    });
 }
 
 - (void)setGameTypeArray:(NSArray<GameCategoryModel *> *)gameTypeArray {
@@ -50,30 +54,24 @@ static NSString *platformTitleCellid = @"UGPlatformTitleCollectionViewCell";
     if (!self.gameTypeArray.count) {
         return;
     }
-    float itemW = self.width / self.gameTypeArray.count;
+    float itemW = 80;
     UICollectionViewFlowLayout *layout = ({
-        
         layout = [[UICollectionViewFlowLayout alloc] init];
         layout.itemSize = CGSizeMake(itemW, itemW);
         layout.minimumInteritemSpacing = 0;
         layout.minimumLineSpacing = 0;
-        layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+        layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         layout;
-        
     });
     
     UICollectionView *collectionView = ({
-        
         collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.width, itemW) collectionViewLayout:layout];
         collectionView.backgroundColor = [UIColor clearColor];
-        
         collectionView.dataSource = self;
         collectionView.delegate = self;
         [collectionView registerNib:[UINib nibWithNibName:@"UGPlatformTitleCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:platformTitleCellid];
-        
         [collectionView setShowsHorizontalScrollIndicator:NO];
         collectionView;
-        
     });
     
     self.collectionView = collectionView;

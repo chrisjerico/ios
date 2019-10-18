@@ -111,7 +111,7 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 
 #define getPlatformGamesUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=game&a=homeRecommend"]
 
-#define getCustomGamesUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=game&a=customGames"]
+#define getCustomGamesUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=game&a=homeGames"]
 
 #define getGamelistUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=game&a=realGameTypes"]
 

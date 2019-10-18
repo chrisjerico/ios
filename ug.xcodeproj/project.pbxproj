@@ -1876,6 +1876,7 @@
 		CF0279D4235849DB00C3D923 /* 首页 */ = {
 			isa = PBXGroup;
 			children = (
+				CF07900F2359F711007C09D8 /* 资料弹框 */,
 				D40C6E4123505D9700651983 /* 定制导航栏 */,
 				CF0279D22358487C00C3D923 /* 游戏列表 */,
 				CF0279D02358450300C3D923 /* 公告列表 */,
@@ -1885,6 +1886,26 @@
 				CF0279D32358494000C3D923 /* 导航View */,
 			);
 			path = "首页";
+			sourceTree = "<group>";
+		};
+		CF07900E2359F4ED007C09D8 /* 资料页 */ = {
+			isa = PBXGroup;
+			children = (
+				0399E6F9233B9D34001E0A7F /* UGDocumentVC.h */,
+				0399E6FA233B9D34001E0A7F /* UGDocumentVC.m */,
+				0322AD5D233DF08900E9857E /* UGDocumentDetailVC.h */,
+				0322AD5E233DF08900E9857E /* UGDocumentDetailVC.m */,
+			);
+			path = "资料页";
+			sourceTree = "<group>";
+		};
+		CF07900F2359F711007C09D8 /* 资料弹框 */ = {
+			isa = PBXGroup;
+			children = (
+				0322AD66234342DB00E9857E /* UGDocumentView.h */,
+				0322AD67234342DB00E9857E /* UGDocumentView.m */,
+			);
+			path = "资料弹框";
 			sourceTree = "<group>";
 		};
 		CF3B0E342349CD6F0035AF50 /* CalenderAlertView */ = {
@@ -3839,13 +3860,10 @@
 			children = (
 				CF3B0E6B234B2B9C0035AF50 /* 长龙助手 */,
 				CF3B0E6C234B2BA70035AF50 /* 开奖记录 */,
+				CF07900E2359F4ED007C09D8 /* 资料页 */,
 				D42A06AF22CA212E005488F8 /* UGHomeViewController.h */,
 				D42A06B022CA212E005488F8 /* UGHomeViewController.m */,
 				D42A06B222CA22D9005488F8 /* UGHomeViewController.storyboard */,
-				0399E6F9233B9D34001E0A7F /* UGDocumentVC.h */,
-				0399E6FA233B9D34001E0A7F /* UGDocumentVC.m */,
-				0322AD5D233DF08900E9857E /* UGDocumentDetailVC.h */,
-				0322AD5E233DF08900E9857E /* UGDocumentDetailVC.m */,
 				D4145A8A22B513CE00D8165F /* UGGameListViewController.h */,
 				D4145A8B22B513CE00D8165F /* UGGameListViewController.m */,
 			);
@@ -3902,8 +3920,6 @@
 				D49A36D122A40212000057D2 /* UGLotteryRecordTableViewCell.h */,
 				D49A36D222A40212000057D2 /* UGLotteryRecordTableViewCell.m */,
 				D49A36D322A40212000057D2 /* UGLotteryRecordTableViewCell.xib */,
-				0322AD66234342DB00E9857E /* UGDocumentView.h */,
-				0322AD67234342DB00E9857E /* UGDocumentView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";

@@ -19,11 +19,11 @@
 @property(nonatomic, strong)GameModel * model;
 
 
-@property(nonatomic, strong) UITableView * tableView;
+@property (nonatomic, strong) UITableView * tableView;
 
-@property(nonatomic, strong) NSArray<DocumentModel*> * documentListData;
+@property (nonatomic, strong) NSArray<DocumentModel*> * documentListData;
 
-@property(nonatomic, strong) UGNextIssueModel * nextIssue;
+@property (nonatomic, strong) UGNextIssueModel * nextIssue;
 
 @property (nonatomic, strong) dispatch_group_t completionGroup;
 
@@ -34,19 +34,17 @@
 
 @implementation UGDocumentVC
 
-- (instancetype)initWithModel: (GameModel *)model
-{
+- (instancetype)initWithModel: (GameModel *)model {
 	self = [super init];
 	if (self) {
 		_model = model;
-		
 	}
 	return self;
 }
+
 - (void)setModel:(GameModel *)model {
 	_model = model;
 	[_titleButton setTitle:[NSString stringWithFormat:@"%@ ▼", model.name] forState:UIControlStateNormal];
-
 }
 
 - (void)viewDidLoad {
@@ -65,7 +63,6 @@
 	[_titleButton addTarget:self action:@selector(titleButtonTaped:)];
 	
 	self.navigationItem.titleView = _titleButton;
-	
 }
 
 - (void)titleButtonTaped: (UIButton *)sender {
@@ -73,10 +70,8 @@
 		self.model = model;
 		[SVProgressHUD showWithStatus:nil];
 //		[sender setTitle:[NSString stringWithFormat:@"%@ ▼", self.model.name] forState:UIControlStateNormal];
-
 		[self requestData:@""];
 	}];
-	
 }
 
 - (void)requestData: (NSString *) title {
@@ -129,10 +124,6 @@
 	
 }
 
-
-
-
-
 - (UITableView *)tableView {
 	
 	if (!_tableView) {
@@ -164,9 +155,12 @@
 }
 
 
+#pragma mark - UITableViewDelegate
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	return self.documentListData.count;
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	DocumentCell * cell = [tableView dequeueReusableCellWithIdentifier:@"DocumentCell"];
 	cell.textLabel.text = self.documentListData[indexPath.row].title;
@@ -278,8 +272,6 @@
 	}
 	return _issueView;
 }
-
-
 
 @end
 
@@ -831,8 +823,7 @@ static NSArray<GameModel *> * _allGames;
 @end
 @implementation DocumentTypeListCell
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame {
 	self = [super initWithFrame:frame];
 	if (self) {
 		self.titleLabel = [UILabel new];

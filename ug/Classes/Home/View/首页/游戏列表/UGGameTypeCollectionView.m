@@ -72,6 +72,7 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
     // TitleView
     _titleView.gameTypeArray = gameTypeArray;
     _titleView.selectIndex = 0;
+    _contentScrollView.contentOffset = CGPointZero;
     
     // 清空_collectionViews
     for (UGPlatformCollectionView *pcv in _contentStackView.arrangedSubviews)
@@ -98,10 +99,9 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
 - (void)refreshHeight {
     NSInteger idx = _titleView.selectIndex;
     UGPlatformCollectionView *pcv = _contentStackView.arrangedSubviews[idx];
-    CGFloat h = pcv.contentSize.height + _titleView.height + 20;
+    CGFloat h = pcv.contentSize.height + _titleView.height + 5;
     self.cc_constraints.height.constant = h;
 }
-
 
 
 #pragma mark - UIScrollViewDelegate

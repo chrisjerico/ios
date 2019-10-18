@@ -14,13 +14,15 @@
 
 @implementation GameModel
 + (JSONKeyMapper *)keyMapper {
-	
 	return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"gameId",@"gameId":@"game_id"}];
 }
 @end
 
 
 @implementation GameCategoryModel
++ (JSONKeyMapper *)keyMapper {
+    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"iid"}];
+}
 @end
 
 
