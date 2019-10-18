@@ -43,13 +43,11 @@
 }
 
 - (IBAction)kehuaAction:(id)sender {
-    TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
-        
+    SLWebViewController *webViewVC = [[SLWebViewController alloc] init];
     UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
     if (config.zxkfUrl > 0) {
-         webViewVC.url = SysConf.zxkfUrl;
-         webViewVC.webTitle = @"在线客服";
-         [NavController1 pushViewController:webViewVC animated:YES];
+        webViewVC.urlStr = config.zxkfUrl;
+		[NavController1 pushViewController:webViewVC animated:YES];
     }
 }
 
