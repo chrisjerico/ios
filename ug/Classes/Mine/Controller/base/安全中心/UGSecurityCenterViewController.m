@@ -84,7 +84,7 @@
     if ([config.oftenLoginArea isEqualToString: @"0"]) {
         [self.itemArray addObject:@"常用登录地"];
     }
-    config.googleVerifier  = 1;
+
     if (config.googleVerifier == 1) {
         [self.itemArray addObject:@"二次验证"];
     }
