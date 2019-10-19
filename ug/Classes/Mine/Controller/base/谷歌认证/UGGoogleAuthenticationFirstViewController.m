@@ -60,8 +60,8 @@
   
 }
 - (IBAction)myButtonClicked:(id)sender {
-    
-    if (UGSystemConfigModel.currentConfig.googleVerifier) {
+    UGUserModel *user = [UGUserModel currentUser];
+     if (user.isBindGoogleVerifier) {
         //已经绑定了
         [self secureGaCaptchaWithUnbind];
     } else {
@@ -77,33 +77,72 @@
 
 //e二维码解绑
 - (void)secureGaCaptchaWithUnbind {
-    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
-        return;
-    }
-    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
-                             @"action":@"unbind",
-                             };
     
-    [SVProgressHUD showWithStatus:nil];
-    WeakSelf;
-    [CMNetwork secureGaCaptchaWithParams:params completion:^(CMResult<id> *model, NSError *err) {
-        [CMResult processWithResult:model success:^{
-            
-            
-           
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                
-             [SVProgressHUD showSuccessWithStatus:model.msg];
-                
-            });
- 
-            
-        } failure:^(id msg) {
-            
-            [SVProgressHUD showErrorWithStatus:msg];
-            
-        }];
-    }];
+     // 使用一个变量接收自定义的输入框对象 以便于在其他位置调用
+               __block NSString *code = @"";
+              __block UITextField *tf = nil;
+              
+              [LEEAlert alert].config
+              .LeeTitle(@"请输入6位验证码")
+              .LeeContent(@"")
+              .LeeAddTextField(^(UITextField *textField) {
+                  
+                  // 这里可以进行自定义的设置
+                  
+                  textField.placeholder = @"输入框";
+                  
+                  textField.textColor = [UIColor darkGrayColor];
+                  
+                  tf = textField; //赋值
+              })
+              .LeeAction(@"确定", ^{
+                  NSLog(@"tf.text = %@",tf.text);
+                  
+                  code = tf.text;
+                  
+                  if ([CMCommon stringIsNull:code]) {
+                         [self.view makeToast:@"请填写验证码"];
+                         return;
+                }
+                 if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+                     return;
+                 }
+                 NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
+                                          @"action":@"unbind",
+                                          @"code":code,
+                                          };
+                 
+                 [SVProgressHUD showWithStatus:nil];
+                 
+                 [CMNetwork secureGaCaptchaWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+                     [CMResult processWithResult:model success:^{
+
+                         dispatch_async(dispatch_get_main_queue(), ^{
+                             
+                          [SVProgressHUD showSuccessWithStatus:model.msg];
+                             
+                         });
+              
+                         
+                     } failure:^(id msg) {
+                         
+                         [SVProgressHUD showErrorWithStatus:msg];
+                         
+                     }];
+                 }];
+                  
+                  
+              })
+              .leeShouldActionClickClose(^(NSInteger index){
+                  // 是否可以关闭回调, 当即将关闭时会被调用 根据返回值决定是否执行关闭处理
+                  // 这里演示了与输入框非空校验结合的例子
+                  BOOL result = ![tf.text isEqualToString:@""];
+                  result = index == 0 ? result : YES;
+                  return result;
+              })
+              .LeeCancelAction(@"取消", nil) // 点击事件的Block如果不需要可以传nil
+              .LeeShow();
+    
+   
 }
 @end

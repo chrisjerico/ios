@@ -48,6 +48,7 @@
 - (void)secureGaCaptchaWithBind {
     
     
+    
     NSString *code = [self.myTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     
     if ([CMCommon stringIsNull:code]) {
@@ -63,7 +64,7 @@
                              };
     
     [SVProgressHUD showWithStatus:nil];
-    WeakSelf;
+
     [CMNetwork secureGaCaptchaWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             

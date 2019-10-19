@@ -84,6 +84,7 @@
     if ([config.oftenLoginArea isEqualToString: @"0"]) {
         [self.itemArray addObject:@"常用登录地"];
     }
+    config.googleVerifier  = 1;
     if (config.googleVerifier == 1) {
         [self.itemArray addObject:@"二次验证"];
     }
@@ -97,7 +98,7 @@
     //设置tab 被选中的颜色(可选)
     self.slideSwitchView.tabItemSelectedColor = UGNavColor;
     //设置tab 背景颜色(可选)
-    self.slideSwitchView.tabItemNormalBackgroundColor = [UIColor whiteColor];;
+    self.slideSwitchView.tabItemNormalBackgroundColor = [UIColor whiteColor];
     //设置tab 被选中的标识的颜色(可选)
     self.slideSwitchView.tabItemSelectionIndicatorColor = UGNavColor;
     [self.view addSubview:self.slideSwitchView];
