@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.title = self.webTitle;
+    
     [self setUpUI];
 }
 
@@ -37,6 +37,11 @@
 
 }
 
+-(void)setWebTitle:(NSString *)webTitle{
+    _webTitle = webTitle;
+    self.title = self.webTitle;
+}
+
 -(void)setUrl:(NSString *)url{
     
     if (!self.tgWebView) {
@@ -44,7 +49,12 @@
         self.tgWebView.navigationDelegate = self;
         [self.view addSubview:self.tgWebView];
     }
-
+    if ( ![url hasPrefix:@"http"] ) {
+                 [self.navigationController.view makeToast:@"该url不包含http"
+                 duration:1.5
+                 position:CSToastPositionCenter];
+       return;
+    }
     _url = url;
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
      NSLog(@"self.url = %@",url);

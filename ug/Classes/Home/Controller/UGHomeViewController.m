@@ -387,10 +387,14 @@
         [self.navigationController pushViewController:webViewVC animated:YES];
 	}
     else{
-       TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
-       webViewVC.url = model.url;
-       webViewVC.webTitle = model.title;
-       [self.navigationController pushViewController:webViewVC animated:YES];
+//       TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
+//       webViewVC.url = model.url;
+//       webViewVC.webTitle = model.title;
+//       [self.navigationController pushViewController:webViewVC animated:YES];
+        
+        SLWebViewController *webViewVC = [[SLWebViewController alloc] init];
+        webViewVC.urlStr = model.url;
+        [self.navigationController pushViewController:webViewVC animated:YES];
     }
 }
 
