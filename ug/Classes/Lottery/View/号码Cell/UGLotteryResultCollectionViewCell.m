@@ -24,16 +24,23 @@
 - (void)setTitle:(NSString *)title {
     _title = title;
     self.titleLabel.text = title;
-    
+}
+
+- (CALayer *)layer {
+    return _titleLabel.layer;
+}
+
+- (void)setBackgroundColor:(UIColor *)backgroundColor {
+    _titleLabel.backgroundColor = backgroundColor;
 }
 
 - (void)setColor:(NSString *)color {
     _color = color;
     if ([@"blue" isEqualToString:color]) {
         self.backgroundColor = UGRGBColor(86, 170, 236);
-    }else if ([@"red" isEqualToString:color]) {
+    } else if ([@"red" isEqualToString:color]) {
         self.backgroundColor = UGRGBColor(197, 52, 60);
-    }else {
+    } else {
         self.backgroundColor = UGRGBColor(96, 174, 108);
     }
 }
@@ -45,7 +52,7 @@
         self.layer.borderWidth = 1;
         self.backgroundColor = [UIColor clearColor];
         self.titleLabel.textColor = [UIColor blackColor];
-    }else {
+    } else {
         self.layer.borderColor = [UIColor clearColor].CGColor;
         self.backgroundColor = [[UGSkinManagers shareInstance] setNavbgColor];
         self.titleLabel.textColor = [UIColor whiteColor];

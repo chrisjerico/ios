@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,6 +17,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="61" height="54"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pwm-BD-jvJ">
+                        <rect key="frame" x="0.0" y="0.0" width="61" height="54"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    </view>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" ambiguous="YES" image="nn" translatesAutoresizingMaskIntoConstraints="NO" id="CHw-YN-I1V">
                         <rect key="frame" x="0.0" y="20.5" width="61" height="36.5"/>
                     </imageView>
@@ -28,18 +32,23 @@
                     </label>
                 </subviews>
             </view>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="CHw-YN-I1V" secondAttribute="bottom" constant="-3" id="C8E-fe-BS5"/>
                 <constraint firstItem="CHw-YN-I1V" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="DeK-qs-mOT"/>
+                <constraint firstAttribute="trailing" secondItem="pwm-BD-jvJ" secondAttribute="trailing" id="FxM-tj-Tsd"/>
                 <constraint firstItem="GGH-ML-vAJ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="3" id="dWZ-c0-ivE"/>
                 <constraint firstAttribute="trailing" secondItem="CHw-YN-I1V" secondAttribute="trailing" id="f1Q-T8-JoD"/>
                 <constraint firstItem="CHw-YN-I1V" firstAttribute="top" secondItem="GGH-ML-vAJ" secondAttribute="bottom" constant="3" id="gfD-N7-KUh"/>
+                <constraint firstAttribute="bottom" secondItem="pwm-BD-jvJ" secondAttribute="bottom" id="kl5-qT-YxK"/>
+                <constraint firstItem="pwm-BD-jvJ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="mav-hU-U2v"/>
                 <constraint firstItem="GGH-ML-vAJ" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="n3o-Bq-GwI"/>
+                <constraint firstItem="pwm-BD-jvJ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="y1L-xI-ahf"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
             <size key="customSize" width="61" height="54"/>
             <connections>
+                <outlet property="bgView" destination="pwm-BD-jvJ" id="rqB-pd-kbH"/>
                 <outlet property="imgView" destination="CHw-YN-I1V" id="nu8-7L-lyq"/>
                 <outlet property="titleLabel" destination="GGH-ML-vAJ" id="DuF-9D-bHu"/>
             </connections>

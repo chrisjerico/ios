@@ -8,6 +8,7 @@
 
 #import "UGPK10SubResultCollectionViewCell.h"
 @interface UGPK10SubResultCollectionViewCell()
+@property (weak, nonatomic) IBOutlet UIView *bgView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
 
@@ -29,12 +30,19 @@
     self.resultArray = @[@"没牛",@"牛1",@"牛2",@"牛3",@"牛4",@"牛5",@"牛6",@"牛7",@"牛8",@"牛9",@"牛牛"];
 }
 
+- (CALayer *)layer {
+    return _bgView.layer;
+}
+
+- (void)setBackgroundColor:(UIColor *)backgroundColor {
+    _bgView.backgroundColor = backgroundColor;
+}
+
 - (void)setResult:(NSString *)result {
     _result = result;
     self.titleLabel.text = self.titleArray[self.tag];
     NSInteger index = [self.resultArray indexOfObject:result];
     self.imgView.image = [UIImage imageNamed:self.imgArray[index]];
-    
 }
 
 - (void)setWin:(BOOL)win {

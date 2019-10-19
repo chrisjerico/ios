@@ -11,14 +11,10 @@
 
 @interface UGFastThreeOneCollectionViewCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
-
 @end
-@implementation UGFastThreeOneCollectionViewCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-}
+
+@implementation UGFastThreeOneCollectionViewCell
 
 - (void)setNum:(NSString *)num {
     _num = num;

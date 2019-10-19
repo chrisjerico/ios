@@ -415,7 +415,6 @@
 				[SVProgressHUD showErrorWithStatus:model.msg];
 				return ;
 			}
-			
 			[SVProgressHUD showErrorWithStatus:msg];
 		}];
 	}];

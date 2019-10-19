@@ -32,13 +32,13 @@ static NSString *lotteryResultCellid = @"UGLotteryResultCollectionViewCell";
 static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell";
 static NSString *lotteryPK10ResultCellId = @"UGPK10SubResultCollectionViewCell";
 static NSString *lotteryOneCellId = @"UGFastThreeOneCollectionViewCell";
+
+
 @implementation UGLotteryRecordTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-
     [self initcollectionView];
-    
 }
 
 - (void)setItem:(UGLotteryHistoryModel *)item {
@@ -50,11 +50,6 @@ static NSString *lotteryOneCellId = @"UGFastThreeOneCollectionViewCell";
     [self.collectionView reloadData];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-
-    [super setSelected:selected animated:animated];
-    
-}
 
 #pragma mark UICollectionViewDataSource
 
@@ -68,7 +63,7 @@ static NSString *lotteryOneCellId = @"UGFastThreeOneCollectionViewCell";
             return self.numArray.count + 1;
         }
         return self.numArray.count;
-    }else {
+    } else {
         if ([@"lhc" isEqualToString:self.item.gameType]) {
             return self.resultArray.count + 1;
         }
@@ -77,21 +72,22 @@ static NSString *lotteryOneCellId = @"UGFastThreeOneCollectionViewCell";
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
     if (indexPath.section == 0) {
+        if ([@"jsk3" isEqualToString:self.item.gameType]){
+            UGFastThreeOneCollectionViewCell *oneCell = [collectionView dequeueReusableCellWithReuseIdentifier:lotteryOneCellId forIndexPath:indexPath];
+            oneCell.num = self.numArray[indexPath.row];
+            return oneCell;
+        }
         
         UGLotteryResultCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:lotteryResultCellid forIndexPath:indexPath];
         cell.showAdd = NO;
         cell.showBorder = NO;
-        cell.layer.cornerRadius = itemW / 2;
-        cell.layer.masksToBounds = YES;
         
         if ([@"lhc" isEqualToString:self.item.gameType]) {
-    
             cell.showBorder = NO;
             if (indexPath.row == 6) {
                 cell.showAdd = YES;
-            }else {
+            } else {
                 cell.showAdd = NO;
             }
             if (indexPath.row < 6) {
@@ -102,29 +98,32 @@ static NSString *lotteryOneCellId = @"UGFastThreeOneCollectionViewCell";
                 cell.title = self.numArray[indexPath.row - 1];
                 cell.color = [CMCommon getHKLotteryNumColorString:self.numArray[indexPath.row - 1]];
             }
-            return cell;
-            
-        }else if ([@"pk10" isEqualToString:self.item.gameType] ||
-                  [@"pk10nn" isEqualToString:self.item.gameType]) {
+        } else if ([@"pk10" isEqualToString:self.item.gameType] || [@"pk10nn" isEqualToString:self.item.gameType]) {
             cell.backgroundColor = [CMCommon getPreNumColor:self.numArray[indexPath.row]];
-            
-        }else if ([@"jsk3" isEqualToString:self.item.gameType]){
-            UGFastThreeOneCollectionViewCell *oneCell = [collectionView dequeueReusableCellWithReuseIdentifier:lotteryOneCellId forIndexPath:indexPath];
-            oneCell.num = self.numArray[indexPath.row];
-            return oneCell;
-            
-        }else {
+            cell.title = self.numArray[indexPath.row];
+        } else {
             cell.backgroundColor = [[UGSkinManagers shareInstance] setNavbgColor];
+            cell.title = self.numArray[indexPath.row];
         }
-        cell.title = self.numArray[indexPath.row];
         return cell;
-    }else {
+    } else {
+        if ([@"pk10nn" isEqualToString:self.item.gameType]){
+            UGPK10SubResultCollectionViewCell *pk10cell = [collectionView dequeueReusableCellWithReuseIdentifier:lotteryPK10ResultCellId forIndexPath:indexPath];
+            pk10cell.tag = indexPath.row;
+            pk10cell.result = self.resultArray[indexPath.row];
+            pk10cell.win = [self.item.winningPlayers containsObject:@(indexPath.row)];
+            if (indexPath.row == 0) {
+                pk10cell.win = !self.item.winningPlayers.count;
+            }
+            return pk10cell;
+        }
+        
         UGLotterySubResultCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:lotterySubResultCellid forIndexPath:indexPath];
         cell.showAdd = NO;
         if ([@"lhc" isEqualToString:self.item.gameType]) {
             if (indexPath.row == 6) {
                 cell.showAdd = YES;
-            }else {
+            } else {
                 cell.showAdd = NO;
             }
             if (indexPath.row < 6) {
@@ -134,91 +133,69 @@ static NSString *lotteryOneCellId = @"UGFastThreeOneCollectionViewCell";
                 cell.title = self.resultArray[indexPath.row - 1];
             }
             return cell;
-        }else if ([@"pk10nn" isEqualToString:self.item.gameType]){
-            UGPK10SubResultCollectionViewCell *pk10cell = [collectionView dequeueReusableCellWithReuseIdentifier:lotteryPK10ResultCellId forIndexPath:indexPath];
-            pk10cell.tag = indexPath.row;
-            pk10cell.result = self.resultArray[indexPath.row];
-            pk10cell.win = [self.item.winningPlayers containsObject:@(indexPath.row)];
-            if (indexPath.row == 0) {
-                pk10cell.win = !self.item.winningPlayers.count;
-            }
-            return pk10cell;
-            
-        }else {
-            
+        } else {
             cell.title = self.resultArray[indexPath.row];
         }
         return cell;
     }
-
 }
 
--(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-    
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
         UGTimeLotteryBetHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerViewID forIndexPath:indexPath];
-    
         headerView.title = @"";
         return headerView;
     }
     return nil;
-    
 }
 
+
 #pragma mark - WSLWaterFlowLayoutDelegate
+
 - (CGSize)waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     if ([@"pk10nn" isEqualToString:self.item.gameType] && indexPath.section == 1) {
         return CGSizeMake(((UGScreenW - 130 - 10) / 6), ((UGScreenW - 130 - 10) / 6));
-        
-    }else if ([@"cqssc" isEqualToString:self.item.gameType] && indexPath.section == 1){
+    } else if ([@"cqssc" isEqualToString:self.item.gameType] && indexPath.section == 1){
         return CGSizeMake(((UGScreenW - 130 - 5) / 9), ((UGScreenW - 130 - 5) / 9));
-    }else if ([@"bjkl8" isEqualToString:self.item.gameType] && indexPath.section == 1) {
+    } else if ([@"bjkl8" isEqualToString:self.item.gameType] && indexPath.section == 1) {
          return CGSizeMake(((UGScreenW - 130 - 2) / 6), ((UGScreenW - 130 - 5) / 9));
-        
-    }else if ([@"jsk3" isEqualToString:self.item.gameType]) {
+    } else if ([@"jsk3" isEqualToString:self.item.gameType]) {
         if (indexPath.section == 0) {
             return CGSizeMake(((UGScreenW - 130 - 2) / 6), ((UGScreenW - 130 - 5) / 6));
-        }else {
+        } else {
             return CGSizeMake(((UGScreenW - 130 - 2) / 7), ((UGScreenW - 130 - 5) / 7));
         }
     } else {
         return CGSizeMake(itemW, itemW);
-        
     }
-    
 }
 
 /** 头视图Size */
--(CGSize )waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForHeaderViewInSection:(NSInteger)section {
+- (CGSize)waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForHeaderViewInSection:(NSInteger)section {
     return CGSizeMake(300, 3);
 }
 
 /** 列间距*/
--(CGFloat)columnMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
-   
+- (CGFloat)columnMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
     return 1;
 }
 
 /** 行间距*/
--(CGFloat)rowMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
-   
+- (CGFloat)rowMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
     return 1;
 }
 
 /** 边缘之间的间距*/
--(UIEdgeInsets)edgeInsetInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
-    
+- (UIEdgeInsets)edgeInsetInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
     return UIEdgeInsetsMake(3, 1, 1, 1);
 }
 
 - (void)initcollectionView {
-    
     WSLWaterFlowLayout *flow = [[WSLWaterFlowLayout alloc] init];
     flow.delegate = self;
     flow.flowLayoutStyle = WSLWaterFlowVerticalEqualHeight;
     
     UICollectionView *collectionView = ({
-        
         collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(115, 5, UGScreenW - 115, self.height) collectionViewLayout:flow];
         collectionView.backgroundColor = [UIColor clearColor];
         collectionView.dataSource = self;
@@ -229,7 +206,6 @@ static NSString *lotteryOneCellId = @"UGFastThreeOneCollectionViewCell";
         [collectionView registerNib:[UINib nibWithNibName:@"UGPK10SubResultCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:lotteryPK10ResultCellId];
         [collectionView registerNib:[UINib nibWithNibName:@"UGFastThreeOneCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:lotteryOneCellId];
         collectionView;
-        
     });
     
     self.collectionView = collectionView;

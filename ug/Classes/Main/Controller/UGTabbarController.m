@@ -226,40 +226,38 @@ static UGTabbarController *_tabBarVC = nil;
  *  添加子控制器
  */
 - (void)resetUpChildViewController:(NSArray<NSString *> *)paths {
-    self.viewControllers = ({
+    NSMutableArray *vcs = [NSMutableArray new];
+    for (NSString *path in paths) {
+        UGmobileMenu *gm = [_gms objectWithValue:path keyPath:@"path"];
         
-        NSMutableArray *vcs = [NSMutableArray new];
-        for (NSString *path in paths) {
-            UGmobileMenu *gm = [_gms objectWithValue:path keyPath:@"path"];
-            
-            // 优惠活动展示在首页
-            if (gm.cls == [UGPromotionsController class] && SysConf.m_promote_pos)
-                continue;
-            
-            // 已存在的控制器不需要重新初始化
-            BOOL existed = false;
-            for (UIViewController *vc in self.viewControllers) {
-                if ([vc isKindOfClass:gm.cls]) {
-                    [vcs addObject:vc];
-                    existed = true;
-                    break;
-                }
+        // 优惠活动展示在首页
+        if (gm.cls == [UGPromotionsController class] && SysConf.m_promote_pos)
+            continue;
+        
+        // 已存在的控制器不需要重新初始化
+        BOOL existed = false;
+        for (UIViewController *vc in self.viewControllers) {
+            if ([vc isKindOfClass:gm.cls]) {
+                [vcs addObject:vc];
+                existed = true;
+                break;
             }
-            if (existed)
-                continue;
-            
-            // 初始化新的控制器
-            UIViewController *vc = _LoadVC_from_storyboard_(NSStringFromClass(gm.cls));
-            if (!vc)
-                vc = [gm.cls new];
-            vc.tabBarItem.title = gm.name;
-            vc.tabBarItem.image = [UIImage imageNamed:gm.icon];
-            vc.tabBarItem.selectedImage = [[UIImage imageNamed:gm.selectedIcon] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-            UGNavigationController *nav = [[UGNavigationController alloc] initWithRootViewController:vc];
-            [vcs addObject:nav];
         }
-        vcs;
-    });
+        if (existed)
+            continue;
+        
+        // 初始化新的控制器
+        UIViewController *vc = _LoadVC_from_storyboard_(NSStringFromClass(gm.cls));
+        if (!vc)
+            vc = [gm.cls new];
+        vc.tabBarItem.title = gm.name;
+        vc.tabBarItem.image = [UIImage imageNamed:gm.icon];
+        vc.tabBarItem.selectedImage = [[UIImage imageNamed:gm.selectedIcon] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        UGNavigationController *nav = [[UGNavigationController alloc] initWithRootViewController:vc];
+        [vcs addObject:nav];
+    }
+    if (vcs.count > 2) 
+        self.viewControllers = vcs;
 }
 
 
