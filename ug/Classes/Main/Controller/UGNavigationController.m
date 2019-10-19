@@ -49,11 +49,6 @@ static UGNavigationController *_navController = nil;
 }
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
-    if ([self.viewControllers.lastObject isKindOfClass:viewController.class]) {
-        NSLog(@"push 错误❌，push了一个重复的控制器：%@", viewController);
-        return;
-    }
-    
     // push权限判断
     if (self.viewControllers.count && ![UGTabbarController canPushToViewController:viewController])
         return;

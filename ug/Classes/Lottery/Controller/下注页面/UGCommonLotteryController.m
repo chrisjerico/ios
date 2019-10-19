@@ -73,12 +73,10 @@
 }
 
 - (void)setupTitleView {
-	
-	UILabel * titleLabel = [UILabel new];
+	UILabel *titleLabel = [UILabel new];
 	[titleLabel setUserInteractionEnabled:true];
-	
-	self.navigationItem.titleView = titleLabel;
-	titleLabel.text = [NSString stringWithFormat:@"%@ ▼", self.model.title];
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.text = [NSString stringWithFormat:@"%@ ▼", self.model.title ? : @""];
 	titleLabel.textColor = UIColor.whiteColor;
 	[titleLabel addGestureRecognizer: [UITapGestureRecognizer gestureRecognizer:^(__kindof UIGestureRecognizer *gr) {
 		UGLotterySelectController * vc = [UGLotterySelectController new];
@@ -269,6 +267,24 @@
 		UGNavigationController * nav = [[UGNavigationController alloc] initWithRootViewController:vc];
 		[self presentViewController:nav animated:true completion:nil];
 	}]];
-	
+    if (OBJOnceToken(self)) {
+        [self.navigationItem aspect_hookSelector:@selector(setTitle:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
+            NSString *title = ai.arguments.lastObject;
+            titleLabel.text = [NSString stringWithFormat:@"%@ ▼", title];
+        } error:nil];
+    }
+    UIView *v = [UIView new];
+    v.backgroundColor = [UIColor clearColor];
+    v.userInteractionEnabled = true;
+    v.clipsToBounds = false;
+    [v addSubview:titleLabel];
+    [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(v);
+    }];
+    self.navigationItem.titleView = v;
+    [v mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(100);
+        make.height.mas_equalTo(44);
+    }];
 }
 @end

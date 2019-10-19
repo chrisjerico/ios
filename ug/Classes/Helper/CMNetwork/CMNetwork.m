@@ -357,7 +357,7 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     
     NSString *deskey = [UGEncryptUtil createUuid];
-    NSLog(@"deskey = %@",deskey);
+    NSLog(@"deskey = %@", deskey);
     NSString *sign = [UGEncryptUtil encryptString:[NSString stringWithFormat:@"iOS_%@",deskey] publicKey:RSAPublicKey];
     
     [params enumerateKeysAndObjectsUsingBlock:^(NSString *  _Nonnull key, NSString *  _Nonnull obj, BOOL * _Nonnull stop) {
