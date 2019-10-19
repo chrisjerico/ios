@@ -289,6 +289,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     }, ^(id err) {
         [SVProgressHUD showInfoWithStatus:err];
     }, ^{
+        NSString *selCode = @"";
         NSMutableArray *array = [NSMutableArray array];
         for (UGGameplayModel *model in self.gameDataArray) {
             if (!model.select) {
@@ -314,6 +315,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         UGBetDetailView *betDetailView = [[UGBetDetailView alloc] init];
         betDetailView.dataArray = array;
         betDetailView.nextIssueModel = self.nextIssueModel;
+        betDetailView.code = selCode;
         WeakSelf
         betDetailView.betClickBlock = ^{
             [weakSelf resetClick:nil];

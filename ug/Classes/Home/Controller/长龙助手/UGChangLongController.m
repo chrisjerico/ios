@@ -58,7 +58,7 @@
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     if (OBJOnceToken(self))
-    [self buildSegment];
+        [self buildSegment];
 }
 
 

@@ -7,14 +7,13 @@
 //
 
 #import "TGWebViewController.h"
-#import "TGWebProgressLayer.h"
+
 #import <WebKit/WebKit.h>
 
 @interface TGWebViewController ()<WKNavigationDelegate>
 
-@property (nonatomic) WKWebView *tgWebView;
+//@property (nonatomic) WKWebView *tgWebView;
 
-@property (nonatomic) TGWebProgressLayer *webProgressLayer;
 
 @end
 

@@ -488,6 +488,8 @@
 		D4A36638233E311E00F6D770 /* UGYYRightMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4A36637233E311E00F6D770 /* UGYYRightMenuView.xib */; };
 		D4A3663C233E4A9E00F6D770 /* UINavigationController+UGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A3663B233E4A9E00F6D770 /* UINavigationController+UGExtension.m */; };
 		D4AE1C0A22C0FCC400C142FE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AE1C0922C0FCC300C142FE /* AppDelegate.m */; };
+		D4AE42F92359E5ED00EC7E8E /* UGbetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AE42F82359E5ED00EC7E8E /* UGbetModel.m */; };
+		D4AE42FC2359FB5C00EC7E8E /* CMTimeCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AE42FB2359FB5C00EC7E8E /* CMTimeCommon.m */; };
 		D4AE63D922956E9600DD265A /* UGMissionLevelController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AE63D822956E9600DD265A /* UGMissionLevelController.m */; };
 		D4AE63DC2295734700DD265A /* UGMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AE63DB2295734700DD265A /* UGMessageModel.m */; };
 		D4AE640C2295871D00DD265A /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AE63DE2295871D00DD265A /* UIScrollView+MJRefresh.m */; };
@@ -1506,6 +1508,10 @@
 		D4A3663A233E4A9E00F6D770 /* UINavigationController+UGExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+UGExtension.h"; sourceTree = "<group>"; };
 		D4A3663B233E4A9E00F6D770 /* UINavigationController+UGExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+UGExtension.m"; sourceTree = "<group>"; };
 		D4AE1C0922C0FCC300C142FE /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		D4AE42F72359E5ED00EC7E8E /* UGbetModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGbetModel.h; sourceTree = "<group>"; };
+		D4AE42F82359E5ED00EC7E8E /* UGbetModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGbetModel.m; sourceTree = "<group>"; };
+		D4AE42FA2359FB5C00EC7E8E /* CMTimeCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMTimeCommon.h; sourceTree = "<group>"; };
+		D4AE42FB2359FB5C00EC7E8E /* CMTimeCommon.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CMTimeCommon.m; sourceTree = "<group>"; };
 		D4AE63D822956E9600DD265A /* UGMissionLevelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGMissionLevelController.m; sourceTree = "<group>"; };
 		D4AE63DA2295734700DD265A /* UGMessageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGMessageModel.h; sourceTree = "<group>"; };
 		D4AE63DB2295734700DD265A /* UGMessageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGMessageModel.m; sourceTree = "<group>"; };
@@ -3686,6 +3692,8 @@
 			children = (
 				D405B322227D839A00F8C586 /* CMCommon.h */,
 				D405B323227D839A00F8C586 /* CMCommon.m */,
+				D4AE42FA2359FB5C00EC7E8E /* CMTimeCommon.h */,
+				D4AE42FB2359FB5C00EC7E8E /* CMTimeCommon.m */,
 			);
 			path = CMCommon;
 			sourceTree = "<group>";
@@ -4114,6 +4122,8 @@
 				D4FBBBDF228BD0E600153FB5 /* UGBetDetailModel.m */,
 				D4FBBBE1228C034100153FB5 /* UGHallLotteryModel.h */,
 				D4FBBBE2228C034100153FB5 /* UGHallLotteryModel.m */,
+				D4AE42F72359E5ED00EC7E8E /* UGbetModel.h */,
+				D4AE42F82359E5ED00EC7E8E /* UGbetModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4550,6 +4560,7 @@
 				D4C1657C2344CF1C005A0F12 /* UGMineSkinModel.m in Sources */,
 				D463B4DC2283ECFB00EAC0F7 /* UGPromotionTableController.m in Sources */,
 				D40DE98322F335E300974BAF /* SDCycleScrollView.m in Sources */,
+				D4AE42F92359E5ED00EC7E8E /* UGbetModel.m in Sources */,
 				D417EFD62330BD340024F634 /* UGredActivityView.m in Sources */,
 				D4EDC9302343A1A400BA4C4D /* UGView.m in Sources */,
 				D4145A9522B6109D00D8165F /* UGXYNCLotteryController.m in Sources */,
@@ -4864,6 +4875,7 @@
 				D405AFF622783DCC00F8C586 /* NSArray+MASAdditions.m in Sources */,
 				D481AB5923321F940099685B /* UGActivityGoldTableViewController.m in Sources */,
 				D41C3E12228EF13D00BF6436 /* UGFastThreeOneCollectionViewCell.m in Sources */,
+				D4AE42FC2359FB5C00EC7E8E /* CMTimeCommon.m in Sources */,
 				D4C93B4122D8759400608B67 /* UGFeedbackDetailCell.m in Sources */,
 				D41FF93223332E5600FE3F70 /* NullSafe.m in Sources */,
 				D4145A8222B50AC700D8165F /* UGGameListCollectionViewCell.m in Sources */,
