@@ -15,21 +15,22 @@
 #import "UGFastThreeOneCollectionViewCell.h"
 #import "UGDocumentView.h"
 
+
 @interface UGDocumentVC ()<UITableViewDelegate, UITableViewDataSource>
-@property(nonatomic, strong)GameModel * model;
 
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) IssueView *issueView;
+@property (nonatomic, strong) UIButton *titleButton;
 
-@property (nonatomic, strong) UITableView * tableView;
+@property (nonatomic, strong) GameModel *model;
 
-@property (nonatomic, strong) NSArray<DocumentModel*> * documentListData;
+@property (nonatomic, strong) NSArray<DocumentModel*> *documentListData;
 
-@property (nonatomic, strong) UGNextIssueModel * nextIssue;
+@property (nonatomic, strong) UGNextIssueModel *nextIssue;
 
 @property (nonatomic, strong) dispatch_group_t completionGroup;
 
-@property (nonatomic, strong) IssueView * issueView;
 
-@property (nonatomic, strong) UIButton * titleButton;
 @end
 
 @implementation UGDocumentVC
@@ -127,7 +128,6 @@
 - (UITableView *)tableView {
 	
 	if (!_tableView) {
-		
 		_tableView = [[UITableView alloc] initWithFrame:CGRectZero style: UITableViewStylePlain];
 		_tableView.delegate = self;
 		_tableView.dataSource = self;
@@ -141,8 +141,6 @@
 		
 		_tableView.tableFooterView = [UIView new];
 		[_tableView.mj_footer setState: MJRefreshStateNoMoreData];
-		
-		
 	}
 	return _tableView;
 }
@@ -164,11 +162,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	DocumentCell * cell = [tableView dequeueReusableCellWithIdentifier:@"DocumentCell"];
 	cell.textLabel.text = self.documentListData[indexPath.row].title;
-	cell.textLabel.font = [UIFont systemFontOfSize:16];
+	cell.textLabel.font = [UIFont systemFontOfSize:15];
 	cell.textLabel.textColor = [UIColor colorWithWhite:0.2 alpha:1.0];
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	UILabel * accessLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, 20)];
-	accessLabel.text = @"详情>>";
+	UILabel *accessLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 22, 20)];
+	accessLabel.text = @">>";
 	accessLabel.font = [UIFont systemFontOfSize:14];
 	accessLabel.textColor = [UIColor blueColor];
 	cell.accessoryView = accessLabel;
@@ -241,7 +239,6 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-	
 	return 200;
 }
 
@@ -252,11 +249,9 @@
 	issueView.searchBlock = ^(NSString * text) {
 		[SVProgressHUD showWithStatus:nil];
 		[weakSelf requestData:text];
-		
 	};
 	return issueView;
 	//	return self.issueView;
-	
 }
 
 - (IssueView *)issueView {
@@ -267,7 +262,6 @@
 		_issueView.searchBlock = ^(NSString * text) {
 			[SVProgressHUD showWithStatus:nil];
 			[weakSelf requestData:text];
-			
 		};
 	}
 	return _issueView;
@@ -305,6 +299,13 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 	self = [super initWithFrame:frame];
 	if (self) {
 		
+        UIView *bgView = [UIView new];
+        bgView.backgroundColor = [UIColor whiteColor];
+        [self addSubview:bgView];
+        [bgView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.left.right.equalTo(self);
+            make.height.mas_equalTo(200);
+        }];
 		
 		[self addSubview:self.currentIssueLabel];
 		[self.currentIssueLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -506,7 +507,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 	if (timeStr == nil) {
 		timeStr = @"获取下一期";
 		
-	}else {
+	} else {
 		
 	}
 	self.openTimeLabel.text = [NSString stringWithFormat:@"开奖：%@",timeStr];
@@ -580,7 +581,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 			cell.showBorder = NO;
 			if (indexPath.row == 6) {
 				cell.showAdd = YES;
-			}else {
+			} else {
 				cell.showAdd = NO;
 			}
 			if (indexPath.row < 6) {
@@ -592,11 +593,11 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 				cell.color = [CMCommon getHKLotteryNumColorString:self.preNumArray[indexPath.row - 1]];
 			}
 			return cell;
-		}else {
+		} else {
 			UGLotterySubResultCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UGLotterySubResultCollectionViewCell" forIndexPath:indexPath];
 			if (indexPath.row == 6) {
 				cell.showAdd = YES;
-			}else {
+			} else {
 				cell.showAdd = NO;
 			}
 			if (indexPath.row < 6) {
@@ -614,7 +615,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 				 UGFastThreeOneCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:lotteryResultCellid forIndexPath:indexPath];
 				 cell.num = self.preNumArray[indexPath.row];
 				 return cell;
-			 }else {
+			 } else {
 					 
 				 UGLotterySubResultCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:lotterySubResultCellid forIndexPath:indexPath];
 				 cell.title = self.subPreNumArray[indexPath.row];
@@ -646,25 +647,21 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 			cell.showAdd = NO;
 			cell.showBorder = NO;
 			return cell;
-		}else {
+		} else {
 			UGLotterySubResultCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UGLotterySubResultCollectionViewCell" forIndexPath:indexPath];
 			cell.title = self.subPreNumArray[indexPath.row];
 			cell.titleColor = UGGreenColor;
 			return cell;
 		}
-		
 	}
-	
-	
-	
 }
 @end
 
 
 
 @implementation DocumentModel
+
 + (JSONKeyMapper *)keyMapper {
-	
 	return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"articleID"}];
 }
 
@@ -713,8 +710,7 @@ completionHandle: (void(^)(GameModel * model)) block
 	
 }
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame {
 	self = [super initWithFrame:frame];
 	if (self) {
 		

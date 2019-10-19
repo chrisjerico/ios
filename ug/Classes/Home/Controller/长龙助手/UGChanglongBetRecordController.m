@@ -80,7 +80,7 @@ static NSString *changlongBetRecordCellId = @"UGChanglongBetRecrodCell";
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.dataArray.count;
+    return UserI.isTest ? 0 : self.dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

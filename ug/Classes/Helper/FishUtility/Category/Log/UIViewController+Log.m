@@ -20,7 +20,7 @@
         
         [UIView aspect_hookSelector:@selector(addSubview:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
             UIView *v = ai.arguments.lastObject;
-            if (v.classIsCustom) {
+            if (v.classIsCustom && ![NSStringFromClass(v.class) hasPrefix:@"IB"]) {
                 NSLog(@"——————————————添加自定义View： %@", v.class);
             }
         } error:nil];

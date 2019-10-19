@@ -15,6 +15,10 @@
 
 @implementation UGChatViewController
 
+- (BOOL)未登录禁止访问 {
+    return true;
+}
+
 - (void)viewDidLoad {
     // 在 [super viewDidLoad] 前面配置url
     if (!self.url.length) {

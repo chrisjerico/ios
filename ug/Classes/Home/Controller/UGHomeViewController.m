@@ -430,6 +430,7 @@
 	}];
 }
 
+// 彩票大厅数据
 - (void)getAllNextIssueData {
 	[SVProgressHUD showWithStatus: nil];
 	[CMNetwork getAllNextIssueWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
@@ -444,8 +445,9 @@
 	}];
 	
 }
+
+// 自定义游戏列表
 - (void)getCustomGameList {
-	
 	[SVProgressHUD showWithStatus: nil];
 	[CMNetwork getCustomGamesWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
 		[self.scrollView.mj_header endRefreshing];
@@ -456,13 +458,13 @@
 					GameCategoryDataModel * customGameModel = (GameCategoryDataModel*)model.data;
                     self.gameCategorys = customGameModel.icons.mutableCopy;
 					
-					NSArray<GameModel *> * sourceData = customGameModel.navs;
+					NSArray<GameModel *> *sourceData = customGameModel.navs;
+                    self.gameNavigationView.superview.hidden = !sourceData.count;
 					self.gameNavigationView.sourceData = sourceData;
 					if (sourceData.count > 0) {
 						self.gameNavigationViewHeight.constant = ((sourceData.count - 1)/4 + 1)*80;
 						[self.view layoutIfNeeded];
 					}
-					
 					self.gameTypeView.gameTypeArray = self.gameCategorys;
 				});
 			}
@@ -472,10 +474,7 @@
 	}];
 }
 
-- (void)getPlatformGamesList {
-	
-}
-
+// 获取三方游戏路径
 - (void)getGotoGameUrl:(UGPlatformGameModel *)game {
     if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
         return;
@@ -501,6 +500,7 @@
 	}];
 }
 
+// 获取系统配置
 - (void)getSystemConfig {
 	[CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
 		[self.scrollView.mj_header endRefreshing];
@@ -535,8 +535,8 @@
 	[CMNetwork userLogoutWithParams:dict completion:nil];
 }
 
+// 横幅广告
 - (void)getBannerList {
-	
 	[CMNetwork getBannerListWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
 		[self.scrollView.mj_header endRefreshing];
 		[CMResult processWithResult:model success:^{
@@ -559,17 +559,13 @@
 			
 		}];
 	}];
-	
 }
 
+// 公告列表
 - (void)getNoticeList {
-	
 	[CMNetwork getNoticeListWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
 		[self.scrollView.mj_header endRefreshing];
 		[CMResult processWithResult:model success:^{
-			
-			
-			
 			dispatch_async(dispatch_get_main_queue(), ^{
 				UGNoticeTypeModel *type = model.data;
 				self.noticeTypeModel = model.data;
@@ -587,16 +583,12 @@
 					
 				}
 			});
-			
-			
-		} failure:^(id msg) {
-			
-		}];
+		} failure:nil];
 	}];
 }
 
+// 中奖排行榜、投注排行榜
 - (void)getRankList {
-	
 	[CMNetwork getRankListWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
 		[self.scrollView.mj_header endRefreshing];
 		[CMResult processWithResult:model success:^{
@@ -663,17 +655,14 @@
 			
 			
 		} failure:^(id msg) {
-			
 			[self.uGredEnvelopeView setHidden:YES];
-			
-			[SVProgressHUD showErrorWithStatus:msg];
-			
+			[SVProgressHUD dismiss];
 		}];
 	}];
 }
 
+// APP在线人数
 - (void)systemOnlineCount {
-	
 	[CMNetwork systemOnlineCountWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
 		[self.scrollView.mj_header endRefreshing];
 		[CMResult processWithResult:model success:^{
