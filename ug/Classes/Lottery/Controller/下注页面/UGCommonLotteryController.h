@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UGCommonLotteryController : UGViewController<hiddeHeader>
 @property(nonatomic, assign)BOOL shoulHideHeader;
 @property(nonatomic, assign)BOOL shoulHideContent;
-@property(nonatomic, strong)NSArray<UGAllNextIssueListModel *> * allList;
+@property(nonatomic, strong)NSArray<UGAllNextIssueListModel *> *allList;
 @property(nonatomic, strong)UGNextIssueModel * model;
 //@property (nonatomic, strong) UGNextIssueModel *nextIssueModel;
 

@@ -12,16 +12,40 @@
 
 @interface UGPlatformTitleCollectionView ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *collectionView;
-
 @end
 
+
 static NSString *platformTitleCellid = @"UGPlatformTitleCollectionViewCell";
+
+
 @implementation UGPlatformTitleCollectionView
 
-- (instancetype)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame
+{
     self = [super initWithFrame:frame];
     if (self) {
-        [self initGameCollectionView];
+        float itemW = 80;
+        UICollectionViewFlowLayout *layout = ({
+            layout = [[UICollectionViewFlowLayout alloc] init];
+            layout.itemSize = CGSizeMake(itemW, itemW);
+            layout.minimumInteritemSpacing = 0;
+            layout.minimumLineSpacing = 0;
+            layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+            layout;
+        });
+        
+        UICollectionView *collectionView = ({
+            collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, APP.Width, itemW) collectionViewLayout:layout];
+            collectionView.backgroundColor = [[UGSkinManagers shareInstance] sethomeContentColor];
+            collectionView.dataSource = self;
+            collectionView.delegate = self;
+            [collectionView registerNib:[UINib nibWithNibName:@"UGPlatformTitleCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:platformTitleCellid];
+            [collectionView setShowsHorizontalScrollIndicator:NO];
+            collectionView;
+        });
+        
+        self.collectionView = collectionView;
+        [self addSubview:collectionView];
     }
     return self;
 }
@@ -42,47 +66,11 @@ static NSString *platformTitleCellid = @"UGPlatformTitleCollectionViewCell";
 
 - (void)setGameTypeArray:(NSArray<GameCategoryModel *> *)gameTypeArray {
     _gameTypeArray = gameTypeArray;
-    if (self.collectionView) {
-        [self.collectionView removeFromSuperview];
-        self.collectionView = nil;
-    }
-    [self initGameCollectionView];
     [self.collectionView reloadData];
 }
 
-- (void)initGameCollectionView {
-    if (!self.gameTypeArray.count) {
-        return;
-    }
-    float itemW = 80;
-    UICollectionViewFlowLayout *layout = ({
-        layout = [[UICollectionViewFlowLayout alloc] init];
-        layout.itemSize = CGSizeMake(itemW, itemW);
-        layout.minimumInteritemSpacing = 0;
-        layout.minimumLineSpacing = 0;
-        layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        layout;
-    });
-    
-    UICollectionView *collectionView = ({
-        collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.width, itemW) collectionViewLayout:layout];
-        collectionView.backgroundColor = [UIColor clearColor];
-        collectionView.backgroundColor = [[UGSkinManagers shareInstance] sethomeContentColor];
-        collectionView.dataSource = self;
-        collectionView.delegate = self;
-        [collectionView registerNib:[UINib nibWithNibName:@"UGPlatformTitleCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:platformTitleCellid];
-        [collectionView setShowsHorizontalScrollIndicator:NO];
-        collectionView;
-    });
-    
-    self.collectionView = collectionView;
-    [self addSubview:collectionView];
-    
-}
 
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 1;
-}
+#pragma mark - UICollectionViewDelegate
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.gameTypeArray.count;
@@ -103,6 +91,5 @@ static NSString *platformTitleCellid = @"UGPlatformTitleCollectionViewCell";
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
     return 0;
 }
-
 
 @end
