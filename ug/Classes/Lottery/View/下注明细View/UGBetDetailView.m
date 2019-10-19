@@ -12,7 +12,7 @@
 #import "CountDown.h"
 #import "UGAllNextIssueListModel.h"
 #import "UGGameplayModel.h"
-#import "UGBetResultView.h"
+#import "UGBetResultView.h" /**<   金杯的视图 */
 #import "UGbetModel.h"
 #import "CMTimeCommon.h"
 
@@ -62,6 +62,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 		[self addSubview:self.tableView];
 		
 		self.countDown = [[CountDown alloc] init];
+
 		SANotificationEventSubscribe(UGNotificationloginTimeout, self, ^(typeof (self) self, id obj) {
 			[self hiddenSelf];
 		});
@@ -195,7 +196,29 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 					[self submitBet:params];
 				}];
 			} else {
-				[SVProgressHUD showSuccessWithStatus:model.msg];
+//				[SVProgressHUD showSuccessWithStatus:model.msg];
+                
+                [self hiddenSelf];
+                //==>弹出分享框
+                           [LEEAlert alert].config
+                               .LeeTitle(@"分享注单")
+                               .LeeContent(@"是否分享到聊天室")
+                               .LeeAction(@"取消", nil)
+                               .LeeAction(@"分享", ^{
+
+//                                   [[UGBetResultView shareInstance] closeButtonTaped];
+                                   // 确认点击事件Block
+                                   //跳到聊天界面，把分享数据传过去
+                                   
+                                   NSString *jsonStr = [self shareBettingData];
+                                   NSString *url = _NSString(@"%@%@%@", baseServerUrl, chatRoomUrl,SysConf.chatRoomName);
+                                   NSLog(@"url = %@",url);
+                                   UGChatViewController *chatVC = [[UGChatViewController alloc] init];
+                                   [chatVC setUrl:url];
+                                   chatVC.jsonStr = jsonStr;
+                                   [NavController1 pushViewController:chatVC animated:YES];
+                               })
+                               .LeeShow();
 			}
 			
 			SANotificationEventPost(UGNotificationGetUserInfo, nil);
@@ -205,26 +228,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 			}
 			[self hiddenSelf];
             
-            
-            //==>弹出分享框
-            [LEEAlert alert].config
-                .LeeTitle(@"分享注单")
-                .LeeContent(@"是否分享到聊天室")
-                .LeeAction(@"取消", nil)
-                .LeeAction(@"分享", ^{
-
-                    // 确认点击事件Block
-                    //跳到聊天界面，把分享数据传过去
-                    
-                    NSString *jsonStr = [self shareBettingData];
-                    NSString *url = _NSString(@"%@%@%@", baseServerUrl, newChatRoomUrl,SysConf.chatRoomName);
-                    NSLog(@"url = %@",url);
-                    UGChatViewController *chatVC = [[UGChatViewController alloc] init];
-                    [chatVC setUrl:url];
-                    chatVC.jsonStr = jsonStr;
-                    [NavController1 pushViewController:chatVC animated:YES];
-                })
-                .LeeShow();
+           
 		} failure:^(id msg) {
 			[SVProgressHUD showErrorWithStatus:msg];
 			NSString *msgStr = (NSString *)msg;
@@ -246,7 +250,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
        NSMutableArray<UGplayNameModel> *playNameArray = [NSMutableArray<UGplayNameModel> new];
        for (int i = 0; i< self.dataArray.count; i++)  {
            UGGameBetModel *model = [self.betArray objectAtIndex:i];
-           NSLog(@"model=%@",model);
+//           NSLog(@"model=%@",model);
            {// 组装list
                UGbetListModel *betList = [UGbetListModel new];
                [betList setBetMoney:model.money];
@@ -287,7 +291,13 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
                   NSLog(@"time = %ld",(long)timeInt);
                   betModel.ftime = [NSString stringWithFormat:@"%ld",(long)timeInt];
                   betModel.code = self.code;
-                  betModel.specialPlay = YES;
+            
+            if ([self.code isEqualToString:@"LMA"] ||[self.code isEqualToString:@"ZX"] ||[self.code isEqualToString:@"HX"] ||[self.code isEqualToString:@"LX"] ||[self.code isEqualToString:@"LW"] ||[self.code isEqualToString:@"ZXBZ"] ) {
+                 betModel.specialPlay = YES;
+            } else {
+                 betModel.specialPlay = NO;
+            }
+                 
         }
     
    //以字符串形式导出

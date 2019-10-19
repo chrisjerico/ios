@@ -224,7 +224,7 @@ static UGBetResultView *_singleInstance = nil;
 	if (!_closeButton) {
 		_closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
 		[_closeButton setImage:[UIImage imageNamed:@"guanbi"] forState: UIControlStateNormal];
-		[_closeButton addTarget:self action:@selector(closeButtonTaped:) forControlEvents: UIControlEventTouchUpInside];
+		[_closeButton addTarget:self action:@selector(closeButtonTaped) forControlEvents: UIControlEventTouchUpInside];
 		_closeButton.contentMode = UIViewContentModeCenter;
 	}
 	return _closeButton;
@@ -290,7 +290,8 @@ static UGBetResultView *_singleInstance = nil;
 static BOOL preparedToClose = false;
 static BOOL paused = true;
 
-- (void)closeButtonTaped: (UIButton *) sender {
+
+- (void)closeButtonTaped {
 	if (paused) {
 		UGBetResultView * resultView = [UGBetResultView shareInstance] ;
 		[resultView removeFromSuperview];

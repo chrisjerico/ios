@@ -142,9 +142,10 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 //     }];
 }
 
--(void)viewDidLayoutSubviews{
+-(void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-   
+    
+    
 //    [self.middleView  mas_remakeConstraints:^(MASConstraintMaker *make)
 //     {
 //         make.top.equalTo(self.view.mas_top).with.offset(0);
@@ -316,7 +317,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     }, ^(id err) {
         [SVProgressHUD showInfoWithStatus:err];
     }, ^{
-        
+        NSString *selName = @"";
         NSString *selCode = @"";
         NSMutableArray *array = [NSMutableArray array];
         for (UGGameplayModel *model in self.gameDataArray) {
@@ -328,6 +329,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             
               NSLog(@"model.code ======================== %@",model.code);
             selCode = model.code;
+            selName = model.name;
             for (UGGameplaySectionModel *type in model.list) {
                 for (UGGameBetModel *game in type.list) {
                     if (game.select) {

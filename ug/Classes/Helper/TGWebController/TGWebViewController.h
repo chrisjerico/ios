@@ -7,10 +7,12 @@
 // https://github.com/zhaoquntao/TGWebViewController
 
 #import <UIKit/UIKit.h>
-
+#import "TGWebProgressLayer.h"
 @interface TGWebViewController :  UIViewController
 
 @property (nonatomic) WKWebView *tgWebView;
+
+@property (nonatomic) TGWebProgressLayer *webProgressLayer;
 
 /** 相关链接*/
 @property (nonatomic, copy) NSString *url;
