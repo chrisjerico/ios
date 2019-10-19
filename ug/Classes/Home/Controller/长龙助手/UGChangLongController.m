@@ -123,7 +123,6 @@
         UGLotteryAssistantController *assistantView = [storyboard instantiateViewControllerWithIdentifier:@"UGLotteryAssistantController"];
         return assistantView;
     } else {
-        
         UGChanglongBetRecordController *betRecordVC = [[UGChanglongBetRecordController alloc] initWithStyle:UITableViewStyleGrouped];
         if ([CMCommon arryIsNull:self.lotteryGamesArray]) {
             return betRecordVC;

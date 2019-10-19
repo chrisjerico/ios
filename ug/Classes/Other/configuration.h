@@ -30,8 +30,12 @@
 static NSString *baseServerUrl = @"http://test10.6yc.com";
 //static NSString *baseServerUrl = @"http://test100f.fhptcdn.com";
 //static NSString *baseServerUrl = @"http://103.9.230.243";
-//static NSString *baseServerUrl = @"http://oxhzpa002znukb.techlotgame.com";
+
 //static NSString *baseServerUrl = @"http://etgnfb001kwa.phlotplay.com";//b001
+//static NSString *baseServerUrl = @"http://oxhzpa002znukb.techlotgame.com";    // a002
+//static NSString *baseServerUrl = @"http://gruhhgcc013kvfh.playhappy123.com";  // c013
+//static NSString *baseServerUrl = @"http://feqmoligc022kqmvqegv.playzone88.com"; // c022
+
 
 static NSString *swiperVerifyUrl = @"/dist/index.html#/swiperverify?platform=native";
 

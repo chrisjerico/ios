@@ -73,23 +73,22 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *mySegmentHightConstraint;
 
 @property (nonatomic, strong) NSString *regType;
-
 @end
 
+
 @implementation UGRegisterViewController
--(void)skin{
-       [self.registerButton setBackgroundColor:UGNavColor];
-       [self.goHomeButton setTitleColor:UGNavColor forState:UIControlStateNormal];
-        [self.goLoginButton setTitleColor:UGNavColor forState:UIControlStateNormal];
-   
+
+- (void)skin {
+    [self.registerButton setBackgroundColor:UGNavColor];
+    [self.goHomeButton setTitleColor:UGNavColor forState:UIControlStateNormal];
+    [self.goLoginButton setTitleColor:UGNavColor forState:UIControlStateNormal];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-  
+    // 禁用侧滑返回
+    self.fd_interactivePopDisabled = true;
     
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-        
         [self skin];
     });
     
@@ -169,9 +168,6 @@
     }
     
 //    self.myScrollView.frame = CGRectMake(0, 0, UGScreenW, UGScerrnH);
-    
-    
-   
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
@@ -201,7 +197,6 @@
 }
 
 - (IBAction)getImgVcode:(id)sender {
-    
     [CMNetwork getImgVcodeWithParams:@{@"accessToken":[OpenUDID value]} completion:^(CMResult<id> *model, NSError *err) {
         if (!err) {
             NSData *data = (NSData *)model;
@@ -210,10 +205,9 @@
             NSData *decodedImageData = [[NSData alloc] initWithBase64EncodedString:imageStr options:NSDataBase64DecodingIgnoreUnknownCharacters];
             UIImage *decodedImage = [UIImage imageWithData:decodedImageData];
             self.imgVcodeImageView.image = decodedImage;
-        }else {
+        } else {
             
         }
-     
     }];
 }
 
@@ -278,14 +272,14 @@
         if (config.reg_vcode == 0) {
             
     
-        }else if (config.reg_vcode == 1 ||
+        } else if (config.reg_vcode == 1 ||
                   config.reg_vcode == 3) {
             
             ck_parameter_non_empty(self.imgVcodeTextF.text, @"请输入验证");
         
-        }else if (config.reg_vcode == 2) {
+        } else if (config.reg_vcode == 2) {
             
-        }else {
+        } else {
            
             
         }
@@ -350,7 +344,7 @@
                 if (user.autoLogin) {
                     
                     [self login];
-                }else {
+                } else {
                     self.inviterTextF.text = nil;
                     self.userNameTextF.text = nil;
                     self.passwordTextF.text = nil;
@@ -371,9 +365,7 @@
                 [SVProgressHUD showErrorWithStatus:msg];
             }];
         }];
-        
     });
-    
 }
 
 - (void)login {
@@ -438,7 +430,7 @@
     if ([config.agentRegbutton isEqualToString:@"1"]) {
         self.mySegmentCV.hidden = NO;
         self.mySegmentHightConstraint.constant = 28;
-    }else {
+    } else {
         self.mySegmentCV.hidden = YES;
         self.mySegmentHightConstraint.constant = 0.1;
     }
@@ -447,7 +439,7 @@
         if (config.hide_reco == 1) {
             self.inviterTextF.placeholder = @"请输入推荐人ID(选填)";
         }
-    }else {
+    } else {
         self.inviterView.hidden = YES;
         self.inviterViewHightConstraint.constant = 0.1;
     }
@@ -455,7 +447,7 @@
         if (config.reg_name == 1) {
             self.realNameTextF.placeholder = @"请输入真实姓名(选填)";
         }
-    }else {
+    } else {
         self.fullNameView.hidden = YES;
         self.fullNameViewHeightConstraint.constant = 0.1;
     }
@@ -463,7 +455,7 @@
         if (config.reg_fundpwd == 1) {
             self.fundPwdTextF.placeholder = @"请输入4位数字的取款密码(选填)";
         }
-    }else {
+    } else {
         self.fundPwdView.hidden = YES;
         self.fundPwdViewHeightConstraint.constant = 0.1;
     }
@@ -471,7 +463,7 @@
         if (config.reg_qq == 1) {
             self.QQTextF.placeholder = @"请输入QQ号码(选填)";
         }
-    }else {
+    } else {
         self.qqView.hidden = YES;
         self.qqViewHeightConstraint.constant = 0.1;
     }
@@ -479,7 +471,7 @@
         if (config.reg_wx == 1) {
             self.wechatTextF.placeholder = @"请输入微信号(选填)";
         }
-    }else {
+    } else {
         self.wechatView.hidden = YES;
         self.wechatViewHeightConstraint.constant = 0.1;
     }
@@ -487,7 +479,7 @@
         if (config.reg_phone == 1 && !config.smsVerify) {
             self.phoneTextF.placeholder = @"请输入11位手机号码(选填)";
         }
-    }else {
+    } else {
         self.phoneView.hidden = YES;
         self.phoneVeiwHeightConstraint.constant = 0.1;
     }
@@ -495,7 +487,7 @@
         if (config.reg_email == 1) {
             self.emailTextF.placeholder = @"请输入邮箱(选填)";
         }
-    }else {
+    } else {
         self.emailView.hidden = YES;
         self.emailViewHeightConstraint.constant = 0.1;
     }
@@ -511,17 +503,17 @@
         self.webBgView.hidden = YES;
         self.imgVcodeViewHeightConstraint.constant = 0.1;
         self.webBgViewHeightConstraint.constant = 0.1;
-    }else if (config.reg_vcode == 2) {
+    } else if (config.reg_vcode == 2) {
 
         self.imgVcodeView.hidden = YES;
         self.imgVcodeViewHeightConstraint.constant = 0.1;
-    }else if (config.reg_vcode == 1 ||
+    } else if (config.reg_vcode == 1 ||
               config.reg_vcode == 3) {
         
         self.webBgView.hidden = YES;
         self.webBgViewHeightConstraint.constant = 0.1;
       
-    }else {
+    } else {
 
     }
     
@@ -567,26 +559,23 @@
         if (textField.text.length + string.length - range.length > 11) {
             return NO;
         }
-    }else if (textField == self.emailTextF){
+    } else if (textField == self.emailTextF){
         if (textField.text.length + string.length - range.length > 40) {
             return NO;
         }
         
-    }else if(textField == self.fundPwdTextF) {
+    } else if(textField == self.fundPwdTextF) {
         if (textField.text.length + string.length - range.length > 4) {
             return NO;
         }
-    }else if(textField == self.passwordTextF ||
-             textField == self.checkPasswordTextF) {
+    } else if(textField == self.passwordTextF || textField == self.checkPasswordTextF) {
         UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
         if (textField.text.length + string.length - range.length > config.pass_length_max) {
             return NO;
         }
     }
-    else if (textField == self.inviterTextF){
-        
+    else if (textField == self.inviterTextF) {
         return [self validateNumber:string];
-  
     }
     else {
         if (textField.text.length + string.length - range.length > 20) {
@@ -599,11 +588,9 @@
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-	
 	if (textField != self.userNameTextF) {
 		return;
 	}
-	
 	[CMNetwork.manager requestWithMethod:[[NSString stringWithFormat:@"%@/wjapp/api.php?c=user&a=exists", baseServerUrl] stringToRestfulUrlWithFlag:RESTFUL]
 								  params:@{@"usr": textField.text}
 								   model:nil
@@ -616,44 +603,28 @@
 		} else {
 			[self.userNameDisabledNotice setHidden:true];
 		}
-
-		
 	}];
 }
 
 - (BOOL)validateNumber:(NSString*)number {
-    
     BOOL res = YES;
-    
     NSCharacterSet* tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
-    
     int i = 0;
-    
     while (i < number.length) {
-        
         NSString * string = [number substringWithRange:NSMakeRange(i, 1)];
-        
         NSRange range = [string rangeOfCharacterFromSet:tmpSet];
-        
         if (range.length == 0) {
-            
             res = NO;
-            
             break;
-            
         }
-        
         i++;
-        
     }
-    
     return res;
-    
 }
 
 
-
 #pragma mark - WKScriptMessageHandler
+
 - (void)userContentController:(WKUserContentController *)userContentController
       didReceiveScriptMessage:(WKScriptMessage *)message {
     if ([message.name isEqualToString:@"postSwiperData"]) {
@@ -666,54 +637,21 @@
     
 }
 
+
 #pragma mark - WKNavigationDelegate
+
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
-    
     decisionHandler(WKNavigationActionPolicyAllow);
-    
 }
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler {
     decisionHandler(WKNavigationResponsePolicyAllow);
-    
-}
-
-- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(null_unspecified WKNavigation *)navigation {
-    
-}
-
-- (void)webView:(WKWebView *)webView didReceiveServerRedirectForProvisionalNavigation:(null_unspecified WKNavigation *)navigation {
-    
-}
-
-- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error {
-    
-}
-
-- (void)webView:(WKWebView *)webView didCommitNavigation:(null_unspecified WKNavigation *)navigation {
-    
-    
-}
-
-- (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation {
-    
-    
-}
-
-- (void)webView:(WKWebView *)webView didFailNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error {
-    
 }
 
 - (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential *__nullable credential))completionHandler {
     
     completionHandler(NSURLSessionAuthChallengePerformDefaultHandling, nil);
 }
-
-- (void)webViewWebContentProcessDidTerminate:(WKWebView *)webView {
-    
-    
-}
-
 
 - (WKWebView *)webView {
     if (_webView == nil) {
@@ -740,10 +678,10 @@
     return _webView;
 }
 
+
 #pragma mark timer
 
 - (void)_timeClean {
-    
     [self.timer invalidate];
     [self setTimer:nil];
     self.smsVcodeButton.enabled = YES;

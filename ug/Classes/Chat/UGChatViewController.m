@@ -18,6 +18,7 @@
 
 @implementation UGChatViewController
 
+
 -(void)skin{
      
         
@@ -43,6 +44,12 @@
        
 
 }
+
+- (BOOL)未登录禁止访问 {
+    return true;
+}
+
+
 - (void)viewDidLoad {
    
       [super viewDidLoad];

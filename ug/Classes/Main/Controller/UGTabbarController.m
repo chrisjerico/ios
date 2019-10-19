@@ -126,7 +126,7 @@ static UGTabbarController *_tabBarVC = nil;
     self.delegate = self;
     
     // 设置初始控制器
-    [self resetUpChildViewController:@[@"/home", @"/lotteryList", @"/chatRoomList", @"/referrer", @"/user", ]];
+    [self resetUpChildViewController:@[@"/home", @"/lotteryList", @"/chatRoomList", @"/activity", @"/user", ]];
     
     if (AndrewTest) {
         // 更新为后台配置的控制器
@@ -260,7 +260,7 @@ static UGTabbarController *_tabBarVC = nil;
         UGNavigationController *nav = [[UGNavigationController alloc] initWithRootViewController:vc];
         [vcs addObject:nav];
     }
-    if (vcs.count > 2) 
+    if (vcs.count > 2)
         self.viewControllers = vcs;
 }
 

@@ -27,8 +27,6 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
-    
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         [self skin];
     });
@@ -61,7 +59,7 @@
 	self.nameLabel.text = [item.name length] > 0 ? item.name : item.title;
 	[self.hasSubSign setHidden: (item.subType.count > 0 ? false : true)];
 
-    [self.imgView sd_setImageWithURL:[NSURL URLWithString:item.logo] placeholderImage:[UIImage imageNamed:@"loading"]];
+    [self.imgView sd_setImageWithURL:[NSURL URLWithString:item.icon] placeholderImage:[UIImage imageNamed:@"loading"]];
 	
     if ([item.tipFlag isEqualToString:@"1"]) {
          self.hotImageView.hidden = NO;
