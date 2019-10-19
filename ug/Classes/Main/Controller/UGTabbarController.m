@@ -82,6 +82,7 @@ static UGTabbarController *_tabBarVC = nil;
         [AlertHelper showAlertView:@"温馨提示" msg:@"聊天室已关闭" btnTitles:@[@"确定"]];
         return false;
     }
+    
     // 任务中心
     else if([vc isKindOfClass:[UGMissionCenterViewController class]] && [SysConf.missionSwitch isEqualToString:@"1"]) {
         [AlertHelper showAlertView:@"温馨提示" msg:@"任务中心已关闭" btnTitles:@[@"确定"]];
@@ -127,8 +128,11 @@ static UGTabbarController *_tabBarVC = nil;
     // 设置初始控制器
     [self resetUpChildViewController:@[@"/home", @"/lotteryList", @"/chatRoomList", @"/referrer", @"/user", ]];
     
-    // 更新为后台配置的控制器
-    [self getSystemConfig];
+    if (AndrewTest) {
+        // 更新为后台配置的控制器
+//        [self getSystemConfig];
+    }
+
     
 //    SANotificationEventSubscribe(UGNotificationWithResetTabSuccess, self, ^(typeof (self) self, id obj) {
 //         [self resetUpChildViewController];

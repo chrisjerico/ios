@@ -27,17 +27,28 @@
 }
 
 - (void)setUpUI {
-    self.tgWebView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
-    self.tgWebView.navigationDelegate = self;
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.url]];
-    [self.tgWebView loadRequest:request];
-    [self.view addSubview:self.tgWebView];
+   
     
     
     self.webProgressLayer = [[TGWebProgressLayer alloc] init];
     self.webProgressLayer.frame = CGRectMake(0, self.navigationController.navigationBar.height-2, WIDTH, 2);
     self.webProgressLayer.strokeColor = self.progressColor.CGColor;
     [self.navigationController.navigationBar.layer addSublayer:self.webProgressLayer];
+
+}
+
+-(void)setUrl:(NSString *)url{
+    
+    if (!self.tgWebView) {
+        self.tgWebView  = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+        self.tgWebView.navigationDelegate = self;
+        [self.view addSubview:self.tgWebView];
+    }
+
+    _url = url;
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+     NSLog(@"self.url = %@",url);
+    [self.tgWebView loadRequest:request];
 }
 
 - (void)setWebViewFrame:(CGRect)frame{

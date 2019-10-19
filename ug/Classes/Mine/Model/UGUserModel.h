@@ -67,6 +67,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) NSInteger ggCheck;    /**<   1 要google验证 */
 
+@property (nonatomic, assign) BOOL isBindGoogleVerifier;   /**<   判断会员是否绑定谷歌验证码： */
+
 //积分
 @property (nonatomic, strong) NSString *curLevelTitle;
 @property (nonatomic, strong) NSString *nextLevelTitle;

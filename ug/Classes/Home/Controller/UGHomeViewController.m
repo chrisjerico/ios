@@ -795,14 +795,14 @@
 		userName.tag = 1001;
 		[itemView addSubview:userName];
 		
-		UILabel *gameLabel = [[UILabel alloc] initWithFrame:CGRectMake(UGScreenW / 3, 0, UGScreenW / 3, itemView.height)];
+		UILabel *gameLabel = [[UILabel alloc] initWithFrame:CGRectMake((UGScreenW / 3), 0, (UGScreenW / 3), itemView.height)];
 		gameLabel.textColor = [UIColor blackColor];
 		gameLabel.textAlignment = NSTextAlignmentCenter;
 		gameLabel.font = [UIFont systemFontOfSize:14];
 		gameLabel.tag = 1004;
 		[itemView addSubview:gameLabel];
 		
-		UILabel *amountLable = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(gameLabel.frame), 0, UGScreenW / 3, itemView.height)];
+		UILabel *amountLable = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(gameLabel.frame), 0, (UGScreenW / 3)-20, itemView.height)];
 		amountLable.textColor = [UIColor redColor];
 		amountLable.font = [UIFont systemFontOfSize:14];
 		amountLable.textAlignment = NSTextAlignmentCenter;

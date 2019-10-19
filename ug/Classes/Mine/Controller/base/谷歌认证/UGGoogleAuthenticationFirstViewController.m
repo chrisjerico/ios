@@ -35,7 +35,9 @@
 }
 
 -(void)initView{
-    if (UGSystemConfigModel.currentConfig.googleVerifier) {
+     UGUserModel *user = [UGUserModel currentUser];
+    
+    if (user.isBindGoogleVerifier) {
            //已经绑定了
            _myTitle.text = @"(已启用)您已经成功启用二次验证，登录时请输入您手机上的谷歌验证器显示的6位数字，进行登录二次验证。如果您删除了谷歌验证器，或遗失手机，请联系客服。";
            [_appleButton setHidden:YES];

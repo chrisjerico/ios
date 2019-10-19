@@ -12,8 +12,8 @@
 #import <Foundation/Foundation.h>
 
 
-#define FishTest 1     // Fish调试用的标识
-#define AndrewTest 0    // Andrew调试用的标识
+#define FishTest 0     // Fish调试用的标识
+#define AndrewTest 1    // Andrew调试用的标识
 
 //路径转换为restful开关
 #define RESTFUL NO
@@ -27,10 +27,11 @@
 
 #define RSAPublicKey @"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0CZTn+50HHM0QkziEunofDfIG77buLuRwItL8My9EYAyuLSW1qkLgqta2z2bIedx7Ro6enOZ0PZNFnqsztltGctwTwAVQDGoB+kpqUi5gs5jRTcoRkytgaLs7xZey45H0c2Hof4W+rcdHR/xc7C0hT5fBNqEDjBmGvoLlYpHag/p4m7h+JgpWHmKGWg7ijHMPWJQSFD1JPnP7upQlTJ8BKl24em6n2lSyH8qkoJKoEzUfQ7HricpF4S6MVCm36BSfkz35Oy4La7WxDrwW8KDs3ahKHM4uifgDlupZ+nV/dgzCQWDi5lNiQlvWR0xKsjwwrnXTdHPnMYDX8NdDTvTcQIDAQAB"
 
-//static NSString *baseServerUrl = @"http://test10.6yc.com";
+static NSString *baseServerUrl = @"http://test10.6yc.com";
 //static NSString *baseServerUrl = @"http://test100f.fhptcdn.com";
-static NSString *baseServerUrl = @"http://103.9.230.243";
+//static NSString *baseServerUrl = @"http://103.9.230.243";
 //static NSString *baseServerUrl = @"http://oxhzpa002znukb.techlotgame.com";
+//static NSString *baseServerUrl = @"http://etgnfb001kwa.phlotplay.com";//b001
 
 static NSString *swiperVerifyUrl = @"/dist/index.html#/swiperverify?platform=native";
 

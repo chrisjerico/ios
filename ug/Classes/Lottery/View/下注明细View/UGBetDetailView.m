@@ -211,7 +211,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
                                    //跳到聊天界面，把分享数据传过去
                                    
                                    NSString *jsonStr = [self shareBettingData];
-                                   NSString *url = _NSString(@"%@%@%@", baseServerUrl, chatRoomUrl,SysConf.chatRoomName);
+                                   NSString *url = _NSString(@"%@%@%@&color=%@&back=hide", baseServerUrl, chatRoomUrl,SysConf.chatRoomName,[[UGSkinManagers shareInstance] setChatNavbgStringColor]);
                                    NSLog(@"url = %@",url);
                                    UGChatViewController *chatVC = [[UGChatViewController alloc] init];
                                    [chatVC setUrl:url];
@@ -227,7 +227,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 				[self hiddenSelf];
 			}
 			[self hiddenSelf];
-            
+
            
 		} failure:^(id msg) {
 			[SVProgressHUD showErrorWithStatus:msg];
