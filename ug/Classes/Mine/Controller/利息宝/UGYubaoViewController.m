@@ -48,6 +48,10 @@
 
 @implementation UGYubaoViewController
 
+- (BOOL)游客禁止访问 {
+    return true;
+}
+
 -(void)skin{
     
     [_yyBgView setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];

@@ -115,6 +115,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self.view layoutSubviews];
     if (!self.menuSecondNameArray.count || !self.menuNameArray.count) {
         [self refreshBalance:nil];
     }
@@ -133,6 +134,9 @@
 }
 
 - (void)showAvaterSelectView {
+    if (UserI.isTest) {
+        return;
+    }
     UGAvaterSelectView *avaterView = [[UGAvaterSelectView alloc] initWithFrame:CGRectMake(0, UGScerrnH, UGScreenW, UGScreenW)];
     [avaterView show];
 }
@@ -605,7 +609,7 @@ BOOL isOk = NO;
 
 //cell size
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    float itemW = (UGScreenW - 0.0 )/ 3.0;
+    float itemW = (APP.Width - 0.0 )/ 3.0;
     if ([skitType isEqualToString:@"新年红"]) {
         CGSize size = {itemW, 100};
         return size;

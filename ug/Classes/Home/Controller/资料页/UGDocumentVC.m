@@ -188,32 +188,18 @@
 //				UGDocumentDetailVC *vc = [UGDocumentDetailVC new];
 //				vc.model = documentDetailModel;
 //				[self presentViewController:vc animated:true completion:nil];
-				
-				
 				[UGDocumentView showWith:documentDetailModel];
-				
-//				
-				
 			} else if (user.isTest){
-				
-				
 				UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"该资料需要正式会员才能阅读，请登录后查看" preferredStyle:UIAlertControllerStyleAlert];
 				[alert addAction:[UIAlertAction actionWithTitle:@"确认" style: UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
 					
 				}]];
 				[self presentViewController:alert animated:true completion:nil];
 				
-				
 			} else if (!documentDetailModel.hasPay) {
-				
-				
 				UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"注意：您没有浏览权限。\n打赏后本期无限浏览此资料。" preferredStyle:UIAlertControllerStyleAlert];
 				[alert addAction:[UIAlertAction actionWithTitle:[NSString stringWithFormat:@"打赏%.2f元", documentDetailModel.amount] style: UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-					
-					
-					
 					UIAlertController * alert = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"确认打赏%.2f元",documentDetailModel.amount] message:nil preferredStyle:UIAlertControllerStyleAlert];
-					
 					[alert addAction: [UIAlertAction actionWithTitle:@"取消" style: UIAlertActionStyleDefault handler:nil]];
 					[alert addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
 						[SVProgressHUD showWithStatus:nil];
@@ -222,16 +208,11 @@
 							[SVProgressHUD showInfoWithStatus:model.msg];
 						}];
 					}]];
-					
 					[self presentViewController:alert animated:true completion:nil];
-					
-					
-					
 				}]];
 				[alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
 				[self presentViewController:alert animated:true completion:nil];
 			}
-			
 		}];
 	}];
 	[tableView deselectRowAtIndexPath:indexPath animated:false];
@@ -391,7 +372,6 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 			i ++ ;
 			[weakSelf updateCloseLabelText];
 			[weakSelf updateOpenLabelText];
-			
 		});
 		dispatch_resume(self.timer);
 	}
