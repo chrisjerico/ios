@@ -48,15 +48,21 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self initView];
     [_uGPormotionView refreshBalance:nil];
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    if (OBJOnceToken(self)) {
+        [self initView];
+    }
 }
 
 - (void)initView {
     //-签到按钮======================================
     {
         if (_uGPormotionView == nil) {
-            _uGPormotionView = [[UGPormotionView alloc] initWithFrame:CGRectMake(0,0 ,UGScreenW, 128+k_Height_NavBar)];
+            _uGPormotionView = [[UGPormotionView alloc] initWithFrame:CGRectMake(0,0 , APP.Width, 128+k_Height_NavBar)];
             [_uGPormotionView setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
         }
         [self.view addSubview:_uGPormotionView];

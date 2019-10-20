@@ -28,9 +28,11 @@
 @end
 
 @implementation UGBindCardViewController
--(void)skin{
+
+-(void)skin {
     [self.submitButton setBackgroundColor:UGNavColor];
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -48,7 +50,6 @@
     self.nameTextF.delegate = self;
     
     [self getBankList];
-    
 }
 
 - (void)getBankList {

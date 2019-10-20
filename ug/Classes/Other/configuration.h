@@ -29,14 +29,14 @@
 
 //static NSString *baseServerUrl = @"http://test10.6yc.com";                // test10
 //static NSString *baseServerUrl = @"http://test100f.fhptcdn.com";
-//static NSString *baseServerUrl = @"http://103.9.230.243";                   // c083
+static NSString *baseServerUrl = @"http://103.9.230.243";                   // c083
 //static NSString *baseServerUrl = @"http://oxhzpa002znukb.techlotgame.com";    // a002
 //static NSString *baseServerUrl = @"http://gruhhgcc013kvfh.playhappy123.com";  // c013
 //static NSString *baseServerUrl = @"http://feqmoligc022kqmvqegv.playzone88.com"; // c022
 //static NSString *baseServerUrl = @"http://fyfigznlxtc018vpyk.gamezone168.com";  // c018
 //static NSString *baseServerUrl = @"http://dzkeumc035sfsboioz.phlotplay.com";    // c035
 //static NSString *baseServerUrl = @"http://etgnfb001kwa.phlotplay.com";//b001
-static NSString *baseServerUrl = @"http://jbchpwpc163ybwnmsxc.phlotbet.com";//c163
+//static NSString *baseServerUrl = @"http://jbchpwpc163ybwnmsxc.phlotbet.com";//c163
 
 
 static NSString *swiperVerifyUrl = @"/dist/index.html#/swiperverify?platform=native";

@@ -23,7 +23,7 @@ typedef NS_OPTIONS(NSInteger, PromotionTableType) {
     PromotionTableTypeRealityRcord //真人记录 10
     
 };
-@interface UGPromotionTableController :UGViewController
+@interface UGPromotionTableController : UGViewController
 
 - (instancetype)initWithTableType:(PromotionTableType )tableType;
 @end

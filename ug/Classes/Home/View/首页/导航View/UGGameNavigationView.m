@@ -51,7 +51,6 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-	
 	UGGameNavigationViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UGGameNavigationViewCell" forIndexPath:indexPath];
 	cell.model = self.sourceData[indexPath.item];
 	return cell;
@@ -59,7 +58,6 @@
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
 	return self.sourceData.count;
-
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -108,10 +106,9 @@
 {
 	self = [super initWithFrame:frame];
 	if (self) {
-		
-        
         _hotImage = [UIImageView new];
 		_iconImage = [YYAnimatedImageView new];
+        _iconImage.contentMode = UIViewContentModeScaleAspectFill;
 		_titleLabel = [UILabel new];
 		_titleLabel.textColor = [UIColor blackColor];
 		_titleLabel.font = [UIFont systemFontOfSize:14];
@@ -123,7 +120,7 @@
 		}];
         
         _iconImage.layer.cornerRadius = 20;
-        _iconImage.layer. masksToBounds = YES;
+        _iconImage.layer.masksToBounds = YES;
         [self addSubview:_hotImage];
         [_hotImage mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self);
@@ -137,18 +134,15 @@
 			make.centerX.equalTo(self);
 			make.bottom.equalTo(self).offset(-10);
 		}];
-
-		
 	}
 	return self;
 }
 
 -(void)setModel:(GameModel *)model {
 	_model = model;
-    _iconImage.yy_imageURL = [NSURL URLWithString:model.icon];
-//	[_iconImage sd_setImageWithURL:[NSURL URLWithString:model.icon]];
-    NSLog(@"model.icon = %@",model.icon);
-//    [_iconImage startAnimating];
+    [_iconImage yy_setImageWithURL:[NSURL URLWithString:model.icon] placeholder:[UIImage imageNamed:@"zwt"]];
+    NSLog(@"model.icon = %@", model.icon);
+    [_iconImage startAnimating];
     if ([CMCommon stringIsNull:model.name]) {
         _titleLabel.text = model.title;
     }

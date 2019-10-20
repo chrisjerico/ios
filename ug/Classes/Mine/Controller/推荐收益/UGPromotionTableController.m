@@ -138,7 +138,14 @@
     
 }
 
--(void)swithAction{
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    if (OBJOnceToken(self)) {
+        _tableView.height = self.view.height;
+    }
+}
+
+- (void)swithAction {
     switch (self.tableType) {
         case PromotionTableTypeMember://会员管理
             //5 == 按钮
@@ -200,7 +207,6 @@
             [self teamRealBetListData];
         }
             break;
-            
     }
 }
 
@@ -212,8 +218,8 @@
     popView.type = YBPopupMenuTypeDefault;
     popView.fontSize = 15;
     [popView showRelyOnView:self.levelButton];
-
 }
+
 
 #pragma mark YBPopupMenuDelegate
 
@@ -221,12 +227,10 @@
     if (index >= 0) {
         _levelindex = index;
        [self swithAction];
-        
     }
     
     CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI * 2);
     self.arrowImageView.transform = transform;
-    
 }
 
 - (UIView *)titleView {
