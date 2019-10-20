@@ -155,9 +155,11 @@
 
 - (UIBezierPath *)progressPathWithProgress:(CGFloat)progress
 {
+    if (progress < 0.0001) 
+        return nil;
     UIBezierPath *path = [UIBezierPath bezierPath];
-    CGPoint startPoint = (CGPoint){0,CGRectGetHeight(self.progressView.frame)/2};
-    CGPoint endPoint = (CGPoint){CGRectGetWidth(self.progressView.frame)*progress,startPoint.y};
+    CGPoint startPoint = (CGPoint){0, CGRectGetHeight(self.progressView.frame)/2};
+    CGPoint endPoint = (CGPoint){CGRectGetWidth(self.progressView.frame)*progress, startPoint.y};
     [path moveToPoint:startPoint];
     [path addLineToPoint:endPoint];
     [path closePath];
@@ -269,7 +271,6 @@
     //进度条
     float floatProgress = (float)[user.taskRewardTotal doubleValue]/[user.nextLevelInt doubleValue];
     self.progressLayer.path = [self progressPathWithProgress:floatProgress].CGPath;
-    
 }
 
 

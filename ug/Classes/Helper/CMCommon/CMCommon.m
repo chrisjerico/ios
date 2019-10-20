@@ -93,11 +93,9 @@ static NSString *uuidKey =@"uuidKey";
     
 }
 
-+ (NSString *)getNowTimeWithEndTimeStr:(NSString *)aTimeString currentTimeStr:(NSString *)currentTime{
-    NSDateFormatter* formater = [[NSDateFormatter alloc] init];
-    [formater setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
++ (NSString *)getNowTimeWithEndTimeStr:(NSString *)aTimeString currentTimeStr:(NSString *)currentTime {
     // 截止时间date格式
-    NSDate  *expireDate = [formater dateFromString:aTimeString];
+    NSDate  *expireDate = [aTimeString dateWithFormat:@"yyyy-MM-dd HH:mm:ss"];
     // 当前时间date格式
     NSDate *nowDate = [NSDate new];
     NSTimeInterval timeInterval = [expireDate timeIntervalSinceDate:nowDate];

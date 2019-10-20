@@ -233,7 +233,7 @@ BOOL isOk = NO;
     isOk = !isOk;
 }
 
--(void)getDateSource{
+- (void)getDateSource{
     [self skinSeconddataSource];
     [self skinFirstdataSource];
     
@@ -301,7 +301,7 @@ BOOL isOk = NO;
     }
 }
 
--(void)skinSeconddataSource{
+- (void)skinSeconddataSource{
     //新年红
     self.menuSecondNameArray = [NSMutableArray array];
     {
@@ -619,7 +619,7 @@ BOOL isOk = NO;
 }
 
 //item偏移
--(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     return UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0);
 }
 
@@ -762,7 +762,7 @@ BOOL isOk = NO;
 }
 
 //刷新余额动画
--(void)startAnimation {
+- (void)startAnimation {
     CABasicAnimation *ReFreshAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
     ReFreshAnimation.toValue = [NSNumber numberWithFloat:M_PI*2.0];
     ReFreshAnimation.duration = 1;
@@ -771,40 +771,37 @@ BOOL isOk = NO;
 }
 
 //刷新余额动画
--(void)stopAnimation {
+- (void)stopAnimation {
     [self.refreshFirstButton.layer removeAllAnimations];
 }
 
-- (CAShapeLayer *)containerLayer
-{
+- (CAShapeLayer *)containerLayer {
     if (!_containerLayer) {
         _containerLayer = [self defaultLayer];
-        CGRect rect = (CGRect){(self.progressView.bounds.size.width-self.progressView.bounds.size.height)/2,0,self.progressView.bounds.size.height,self.progressView.bounds.size.height};
+        CGRect rect = (CGRect){(self.progressView.bounds.size.width-self.progressView.bounds.size.height)/2, 0, self.progressView.bounds.size.height, self.progressView.bounds.size.height};
         _containerLayer.path = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:5].CGPath;
     }
     return _containerLayer;
 }
 
-- (UIBezierPath *)progressPathWithProgress:(CGFloat)progress
-{
-
+- (UIBezierPath *)progressPathWithProgress:(CGFloat)progress {
+    if (progress < 0.0001) return nil;
+    
     if (progress) {
-         _progressLayer.strokeColor = [[UGSkinManagers shareInstance] setMineProgressViewColor].CGColor;
+        _progressLayer.strokeColor = [[UGSkinManagers shareInstance] setMineProgressViewColor].CGColor;
     } else {
         _progressLayer.strokeColor = [UIColor clearColor].CGColor;
     }
-    progress = 0;
     UIBezierPath *path = [UIBezierPath bezierPath];
-    CGPoint startPoint = (CGPoint){0,CGRectGetHeight(self.progressView.frame)/2};
-    CGPoint endPoint = (CGPoint){CGRectGetWidth(self.progressView.frame)*progress,startPoint.y};
+    CGPoint startPoint = (CGPoint){-5, CGRectGetHeight(self.progressView.frame)/2};
+    CGPoint endPoint = (CGPoint){CGRectGetWidth(self.progressView.frame)*progress, startPoint.y};
     [path moveToPoint:startPoint];
     [path addLineToPoint:endPoint];
     [path closePath];
     return path;
-    
 }
-- (CAShapeLayer *)defaultLayer
-{
+
+- (CAShapeLayer *)defaultLayer {
     CAShapeLayer *layer = [CAShapeLayer layer];
     layer.fillColor = [UIColor grayColor].CGColor;
     layer.strokeColor = [UIColor grayColor].CGColor;
@@ -813,8 +810,8 @@ BOOL isOk = NO;
     layer.frame = self.progressView.bounds;
     return layer;
 }
-- (CAShapeLayer *)progressLayer
-{
+
+- (CAShapeLayer *)progressLayer {
     if (!_progressLayer) {
         _progressLayer = [self defaultLayer];
         _progressLayer.lineWidth = self.progressView.height;
@@ -826,31 +823,21 @@ BOOL isOk = NO;
 #pragma mark - UIS
 - (void)setupUserInfo:(BOOL)flag  {
     UGUserModel *user = [UGUserModel currentUser];
-    
-    
     UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
     
     if ([config.missionSwitch isEqualToString:@"0"]) {
         [self.taskButton setHidden:NO];
         if ([config.checkinSwitch isEqualToString:@"0"]) {
-               [self.signButton setHidden:YES];
-              
-       } else {
-           [self.signButton setHidden:NO];
-   
-       }
-     } else {
-         [self.taskButton setHidden:YES];
-         [self.signButton setHidden:YES];
-     }
-    
-   
-    
-    
-   
+            [self.signButton setHidden:YES];
+        } else {
+            [self.signButton setHidden:NO];
+        }
+    } else {
+        [self.taskButton setHidden:YES];
+        [self.signButton setHidden:YES];
+    }
     
     if (flag) {
-        
         [self.headImageView sd_setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
     }
     
@@ -876,9 +863,8 @@ BOOL isOk = NO;
     double floatString = [user.balance doubleValue];
     self.userMoneyLabel.text =  [NSString stringWithFormat:@"￥%.2f",floatString];
     //进度条
-    float floatProgress = (float)[user.taskRewardTotal doubleValue]/[user.nextLevelInt doubleValue];
+    double floatProgress = [user.taskRewardTotal doubleValue]/[user.nextLevelInt doubleValue];
     self.progressLayer.path = [self progressPathWithProgress:floatProgress].CGPath;
-    
 }
 
 #pragma mark -- 网络请求
