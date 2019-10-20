@@ -19,6 +19,8 @@
 
 @implementation TGWebViewController
 
+- (BOOL)允许游客访问 { return true; }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -27,22 +29,18 @@
 }
 
 - (void)setUpUI {
-   
-    
-    
     self.webProgressLayer = [[TGWebProgressLayer alloc] init];
     self.webProgressLayer.frame = CGRectMake(0, self.navigationController.navigationBar.height-2, WIDTH, 2);
     self.webProgressLayer.strokeColor = self.progressColor.CGColor;
     [self.navigationController.navigationBar.layer addSublayer:self.webProgressLayer];
-
 }
 
--(void)setWebTitle:(NSString *)webTitle{
+- (void)setWebTitle:(NSString *)webTitle{
     _webTitle = webTitle;
     self.title = self.webTitle;
 }
 
--(void)setUrl:(NSString *)url{
+- (void)setUrl:(NSString *)url{
     
     if (!self.tgWebView) {
         self.tgWebView  = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];

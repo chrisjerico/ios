@@ -22,15 +22,13 @@
 @end
 
 @implementation UGFundsViewController
+
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
 - (void)skin {
      [self buildSegment];
-}
-
-- (BOOL)游客禁止访问 {
-    return true;
 }
 
 - (void)viewDidLoad {

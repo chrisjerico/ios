@@ -17,6 +17,8 @@
 
 @implementation UGYYLotterySecondHomeViewController
 
+- (BOOL)允许游客访问 { return true; }
+
 - (void)skin {
     [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
     [self.collectionView  reloadData];

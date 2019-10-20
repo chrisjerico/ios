@@ -340,10 +340,6 @@
                             <outlet property="delegate" destination="zU4-q4-qgI" id="2f5-7d-ekR"/>
                         </connections>
                     </tableView>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="游客禁止访问" value="YES"/>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="未登录禁止访问" value="YES"/>
-                    </userDefinedRuntimeAttributes>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Umc-FM-hyU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

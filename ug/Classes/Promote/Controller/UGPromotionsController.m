@@ -17,9 +17,7 @@
 
 @implementation UGPromotionsController
 
-- (BOOL)未登录禁止访问 {
-    return true;
-}
+- (BOOL)允许游客访问 { return true; }
 
 - (void)skin {
     self.view.backgroundColor = UGBackgroundColor;

@@ -36,12 +36,10 @@
 @end
 
 @implementation UGSigInCodeViewController
+
 - (void)skin {
     [self initView];
     mUGSignInButton.backgroundColor = [[UGSkinManagers shareInstance] setNavbgColor];
-}
-- (BOOL)游客禁止访问 {
-    return true;
 }
 
 - (void)viewDidLoad {

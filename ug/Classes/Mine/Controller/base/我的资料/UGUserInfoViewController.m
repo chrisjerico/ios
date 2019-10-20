@@ -27,10 +27,12 @@
 @end
 
 @implementation UGUserInfoViewController
--(void)skin{
-  
-    
+
+- (void)skin {
 }
+
+- (BOOL)允许游客访问 { return true; }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     

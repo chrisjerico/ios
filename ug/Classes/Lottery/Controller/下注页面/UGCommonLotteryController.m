@@ -40,13 +40,16 @@
 
 @end
 
+
 @implementation UGCommonLotteryController
+
+- (BOOL)允许游客访问 { return true; }
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	[self setupTitleView];
-
 }
+
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	
@@ -66,6 +69,7 @@
 		make.height.equalTo(@114);
 	}];
 }
+
 - (void)hideContent {
 	
 }

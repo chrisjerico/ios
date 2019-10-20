@@ -368,10 +368,6 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="NRi-2q-Ski"/>
                     </view>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="游客禁止访问" value="YES"/>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="未登录禁止访问" value="YES"/>
-                    </userDefinedRuntimeAttributes>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zXO-1v-MNc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -635,10 +631,6 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="A8x-4g-X46"/>
                     </view>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="游客禁止访问" value="YES"/>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="未登录禁止访问" value="YES"/>
-                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="bankAddressTextF" destination="Arn-DP-kcS" id="qZO-d9-0nP"/>
                         <outlet property="bankTypeArrow" destination="Ila-rE-1LX" id="vcr-ff-CSi"/>
@@ -851,10 +843,6 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hlb-fC-6z7"/>
                     </view>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="游客禁止访问" value="YES"/>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="未登录禁止访问" value="YES"/>
-                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="checkPwdTextF" destination="k25-f0-C3Z" id="DRo-vl-v48"/>
                         <outlet property="fundPwdTextF" destination="3uu-8N-NvO" id="GRr-Lf-Ryk"/>
@@ -964,10 +952,6 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jhm-5O-ldR"/>
                     </view>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="游客禁止访问" value="YES"/>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="未登录禁止访问" value="YES"/>
-                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="accountLabel" destination="FhX-rW-Iau" id="tVB-Z6-ger"/>
                         <outlet property="addressLabel" destination="72j-eh-Awu" id="Oct-6C-iNu"/>

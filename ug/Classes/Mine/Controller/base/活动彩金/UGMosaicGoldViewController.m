@@ -22,10 +22,6 @@
     [self buildSegment];
 }
 
-- (BOOL)游客禁止访问 {
-    return true;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.

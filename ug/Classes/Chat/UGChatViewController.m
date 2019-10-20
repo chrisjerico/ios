@@ -12,56 +12,37 @@
 @interface UGChatViewController (){
     UIButton *closeBtn;
 }
+@property (nonatomic) UIView *statusBarBgView;
 
 @end
 
 
 @implementation UGChatViewController
 
-
--(void)skin{
-     
-        
-        if([self.url containsString:@"logintoken"]) {
-
-            self.url = ({
-                NSString *url = _NSString(@"%@%@%@&loginsessid=%@&color=%@&back=hide", baseServerUrl, newChatRoomUrl, [UGUserModel currentUser].token, [UGUserModel currentUser].sessid, [[UGSkinManagers shareInstance] setChatNavbgStringColor]);
-                if (_gameId.length)
-                    url = [url stringByAppendingFormat:@"&id=%@", self.gameId];
-                url;
-            });
-           
-
-        } else {
-
-           self.url = ({
-                   NSString *url = _NSString(@"%@%@%@&color=%@&back=hide", baseServerUrl, chatRoomUrl,SysConf.chatRoomName,[[UGSkinManagers shareInstance] setChatNavbgStringColor]);
-
-                  url;
-            });
-
-        }
-       
-
+- (void)skin {
+     if([self.url containsString:@"logintoken"]) {
+         self.url = ({
+             NSString *url = _NSString(@"%@%@%@&loginsessid=%@&color=%@&back=hide", baseServerUrl, newChatRoomUrl, [UGUserModel currentUser].token, [UGUserModel currentUser].sessid, [[UGSkinManagers shareInstance] setChatNavbgStringColor]);
+             if (_gameId.length)
+                 url = [url stringByAppendingFormat:@"&id=%@", self.gameId];
+             url;
+         });
+     } else {
+        self.url = _NSString(@"%@%@%@&color=%@&back=hide", baseServerUrl, chatRoomUrl,SysConf.chatRoomName,[[UGSkinManagers shareInstance] setChatNavbgStringColor]);
+     }
 }
 
-- (BOOL)未登录禁止访问 {
-    return true;
-}
-
+- (BOOL)允许游客访问 { return true; }
 
 - (void)viewDidLoad {
-   
-      [super viewDidLoad];
+    [super viewDidLoad];
     
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-        
         [self skin];
     });
     
     
     if ([CMCommon stringIsNull:self.url]) {
-        
         NSLog(@"url = %@",self.url);
         self.url = ({
                NSString *url = _NSString(@"%@%@%@&loginsessid=%@&color=%@&back=hide", baseServerUrl, newChatRoomUrl, [UGUserModel currentUser].token, [UGUserModel currentUser].sessid, [[UGSkinManagers shareInstance] setChatNavbgStringColor]);
@@ -99,13 +80,20 @@
         if (self.navigationController.viewControllers.firstObject != self){
              [self.view addSubview:closeBtn];
         }
-
     }
-    
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if (OBJOnceToken(self)) {
+        _statusBarBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APP.Width, APP.StatusBarHeight)];
+    }
+    _statusBarBgView.backgroundColor = [UGSkinManagers.shareInstance setNavbgColor];
+    [self.view addSubview:_statusBarBgView];
 }
 
 
--(void)setJsonStr:(NSString *)jsonStr{
+- (void)setJsonStr:(NSString *)jsonStr {
     _jsonStr = jsonStr;
         NSLog(@"_jsonStr = %@",_jsonStr);
     if (![CMCommon stringIsNull:_jsonStr]){
@@ -113,12 +101,6 @@
     }
 }
 
-
-#pragma mark --其他方法
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-}
 
 #pragma mark - UIWebViewDelegate
 

@@ -47,6 +47,8 @@
 	[_titleButton setTitle:[NSString stringWithFormat:@"%@ ▼", model.name] forState:UIControlStateNormal];
 }
 
+- (BOOL)允许游客访问 { return true; }
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
     _documentListData = @[].mutableCopy;

@@ -48,9 +48,9 @@
 
 @implementation UGYubaoViewController
 
-- (BOOL)游客禁止访问 {
-    return true;
-}
+- (BOOL)允许未登录访问 { return SysConf.yuebaoSwitch; }
+- (BOOL)允许游客访问 { return UserI.yuebaoSwitch; }
+
 
 -(void)skin{
     

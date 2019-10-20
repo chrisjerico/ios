@@ -131,7 +131,7 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)skin{
+- (void)skin {
 	[self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
 	
 	
@@ -150,6 +150,8 @@
     [[UGSkinManagers shareInstance] navigationBar:(UGNavigationController *)self.navigationController bgColor: [[UGSkinManagers shareInstance] setNavbgColor]];
 
 }
+
+- (BOOL)允许游客访问 { return true; }
 
 - (void)viewDidLoad {
 	
@@ -216,12 +218,14 @@
             }];
         }
 	});
-	SANotificationEventSubscribe(UGNotificationShowLoginView, self, ^(typeof (self) self, id obj) {
-		[NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLoginViewController") animated:true];
-	});
+    
+    [self xw_addNotificationForName:UGNotificationShowLoginView block:^(NSNotification * _Nonnull noti) {
+        if (OBJOnceToken(noti)) {
+            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLoginViewController") animated:true];
+        }
+    }];
 	SANotificationEventSubscribe(UGNotificationGetUserInfo, self, ^(typeof (self) self, id obj) {
 		[self getUserInfo];
-		
 	});
 	SANotificationEventSubscribe(UGNotificationAutoTransferOut, self, ^(typeof (self) self, id obj) {
 		[self autoTransferOut];

@@ -227,9 +227,6 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nwD-kZ-0pf"/>
                     </view>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="游客禁止访问" value="YES"/>
-                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="avaterImageView" destination="3en-hR-RLA" id="XP1-kt-9eL"/>
                         <outlet property="balanceLabel" destination="dLF-Nu-icO" id="Sqs-RM-aqh"/>
