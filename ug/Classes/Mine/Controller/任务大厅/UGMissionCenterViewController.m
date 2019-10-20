@@ -302,18 +302,12 @@
 
 // 返回上一页
 - (IBAction)backCick:(id)sender {
-    
-    if ([self.navigationController.viewControllers.firstObject isEqual:self])
-    {
+    if ([self.navigationController.viewControllers.firstObject isEqual:self]) {
         //去会员中心
-         UGMineSkinViewController * viewController = [[UGMineSkinViewController alloc] init];
-         [self.navigationController pushViewController:viewController animated:YES];
-    }
-    else
-    {
+        [self.navigationController pushViewController:[UGMineSkinViewController new] animated:YES];
+    } else {
         [self.navigationController popViewControllerAnimated:YES];
     }
-
 }
 
 // 刷新余额

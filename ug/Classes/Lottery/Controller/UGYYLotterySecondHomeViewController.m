@@ -14,6 +14,7 @@
 
 @end
 
+
 @implementation UGYYLotterySecondHomeViewController
 
 - (void)skin {
@@ -23,7 +24,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
     
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {

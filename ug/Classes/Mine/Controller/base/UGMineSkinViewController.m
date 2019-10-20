@@ -593,11 +593,11 @@ BOOL isOk = NO;
         CGSize size = {UGScreenW, 35};
         return size;
     }
-    else  if([skitType isEqualToString:@"石榴红"]){
+    else  if([skitType isEqualToString:@"石榴红"]) {
         CGSize size = {UGScreenW, 80};
         return size;
     }
-    else  if([skitType isEqualToString:@"经典"]){
+    else  if([skitType isEqualToString:@"经典"]) {
         CGSize size = {UGScreenW, 0.1};
         return size;
     }
@@ -730,13 +730,17 @@ BOOL isOk = NO;
 
 #pragma mark - 其他方法
 
+// 任务中心
 - (IBAction)showMissionVC:(id)sender {
     [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController") animated:YES];
 }
+
+// 每日签到
 - (IBAction)showSign:(id)sender {
     [self.navigationController pushViewController:[UGSigInCodeViewController new] animated:YES];
 }
 
+// 刷新余额
 - (IBAction)refreshBalance:(id)sender {
     [self getUserInfo];
     
