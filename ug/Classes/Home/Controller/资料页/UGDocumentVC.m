@@ -24,12 +24,11 @@
 
 @property (nonatomic, strong) GameModel *model;
 
-@property (nonatomic, strong) NSArray<DocumentModel*> *documentListData;
+@property (nonatomic, strong) NSMutableArray<DocumentModel*> *documentListData;
 
 @property (nonatomic, strong) UGNextIssueModel *nextIssue;
 
 @property (nonatomic, strong) dispatch_group_t completionGroup;
-
 
 @end
 
@@ -50,13 +49,16 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	
+    _documentListData = @[].mutableCopy;
+    self.view.backgroundColor = [UIColor whiteColor];
+    
 	[self.view addSubview:self.tableView];
 	[self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.edges.equalTo(self.view);
+		make.top.left.right.equalTo(self.view);
+        make.bottom.equalTo(self.view).offset(-APP.BottomSafeHeight);
 	}];
 	
-	[self requestData: @""];
+	[self requestData:@"" page:1];
 	
 	_titleButton = [UIButton buttonWithType:UIButtonTypeCustom];
 	_titleButton.frame = CGRectMake(0, 0, 200, 40);
@@ -71,18 +73,17 @@
 		self.model = model;
 		[SVProgressHUD showWithStatus:nil];
 //		[sender setTitle:[NSString stringWithFormat:@"%@ ▼", self.model.name] forState:UIControlStateNormal];
-		[self requestData:@""];
+		[self requestData:@"" page:1];
 	}];
 }
 
-- (void)requestData: (NSString *) title {
+- (void)requestData:(NSString *)title page:(NSInteger)page {
 	
 	NSMutableDictionary *params = @{@"id": self.model.type}.mutableCopy;
 	WeakSelf
 	
 	if ([title isEqualToString:@""]) {
 		dispatch_group_enter(self.completionGroup);
-		
 		[CMNetwork getNextIssueWithParams:params completion:^(CMResult<id> *model, NSError *err) {
 			[CMResult processWithResult:model success:^{
 				weakSelf.nextIssue = model.data;
@@ -90,7 +91,6 @@
 				
 			} failure:^(id msg) {
 				dispatch_group_leave(weakSelf.completionGroup);
-				
 			}];
 		}];
 	}
@@ -98,21 +98,26 @@
 	dispatch_group_enter(self.completionGroup);
 	params[@"category"] = self.model.gameId;
 	params[@"title"] = title;
+    params[@"rows"] = _NSString(@"%ld", APP.PageCount);
+    params[@"page"] = _NSString(@"%ld", page);
 	[CMNetwork getDocumnetListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
 		[CMResult processWithResult:model success:^{
 			
-			DocumentListModel * data = model.data;
-			weakSelf.documentListData = data.list;
+			DocumentListModel *data = model.data;
+            if (page == 1) {
+                [weakSelf.documentListData removeAllObjects];
+            }
+			[weakSelf.documentListData addObjectsFromArray:data.list];
 			
-			if (data.list.count > 0) {
-				[self.tableView.mj_footer setHidden:true];
+			if (data.list.count < 20) {
+                [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
 			} else {
-				[self.tableView.mj_footer endRefreshingWithNoMoreData];
+				weakSelf.tableView.mj_footer.state = MJRefreshStateIdle;
 			}
+            [weakSelf.tableView reloadData];
 			dispatch_group_leave(weakSelf.completionGroup);
 		} failure:^(id msg) {
 			dispatch_group_leave(weakSelf.completionGroup);
-			
 		}];
 	}];
 	
@@ -131,16 +136,16 @@
 		_tableView = [[UITableView alloc] initWithFrame:CGRectZero style: UITableViewStylePlain];
 		_tableView.delegate = self;
 		_tableView.dataSource = self;
+        __weakSelf_(__self);
 		_tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-			[self requestData:@""];
+			[__self requestData:@"" page:1];
 		}];
 		_tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-			
+			[__self requestData:@"" page:__self.documentListData.count/20 + 1];
 		}];
 		[_tableView registerClass:[DocumentCell class] forCellReuseIdentifier:@"DocumentCell"];
-		
-		_tableView.tableFooterView = [UIView new];
-		[_tableView.mj_footer setState: MJRefreshStateNoMoreData];
+        _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APP.Width, 10)];
+		[_tableView.mj_footer setState:MJRefreshStateNoMoreData];
 	}
 	return _tableView;
 }
@@ -227,9 +232,9 @@
 	WeakSelf
 	IssueView *issueView = [[IssueView alloc] init];
 	issueView.nextIssueModel = self.nextIssue;
-	issueView.searchBlock = ^(NSString * text) {
+	issueView.searchBlock = ^(NSString *text) {
 		[SVProgressHUD showWithStatus:nil];
-		[weakSelf requestData:text];
+		[weakSelf requestData:text page:1];
 	};
 	return issueView;
 	//	return self.issueView;
@@ -242,7 +247,7 @@
 		WeakSelf
 		_issueView.searchBlock = ^(NSString * text) {
 			[SVProgressHUD showWithStatus:nil];
-			[weakSelf requestData:text];
+			[weakSelf requestData:text page:1];
 		};
 	}
 	return _issueView;

@@ -12,11 +12,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGDocumentVC :UGViewController
+@interface UGDocumentVC : UGViewController
 
 - (instancetype)initWithModel: (GameModel *)model;
-
-
 
 @end
 
