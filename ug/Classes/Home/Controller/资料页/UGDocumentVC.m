@@ -516,8 +516,6 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 		[_collectionView registerNib:[UINib nibWithNibName:@"UGLotteryResultCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UGLotteryResultCollectionViewCell"];
 		[_collectionView registerNib:[UINib nibWithNibName:@"UGLotterySubResultCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UGLotterySubResultCollectionViewCell"];
 		[_collectionView registerNib:[UINib nibWithNibName:@"UGFastThreeOneCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:lotteryResultCellid];
-
-		
 	}
 	return _collectionView;
 }
@@ -675,19 +673,14 @@ static DocumentTypeList *_singleInstance = nil;
 }
 
 
-+(void)showIn: (UIView *)supperView
-completionHandle: (void(^)(GameModel * model)) block
-
-{
-	
-	DocumentTypeList * list = [DocumentTypeList shareInstance];
++ (void)showIn:(UIView *)supperView completionHandle:(void(^)(GameModel * model))block {
+	DocumentTypeList *list = [DocumentTypeList shareInstance];
 	[list removeFromSuperview];
 	[supperView addSubview:list];
 	[list mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.edges.equalTo(supperView);
 	}];
 	list.completionHandle = block;
-	
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -742,10 +735,17 @@ completionHandle: (void(^)(GameModel * model)) block
 - (void) hide {
 	[self removeFromSuperview];
 }
-static NSArray<GameModel *> * _allGames;
+static NSMutableArray<GameModel *> *_allGames;
 
 + (void)setAllGames:(NSArray<GameModel *> *)allGames {
-	_allGames = allGames;
+    if (!_allGames) {
+        _allGames = @[].mutableCopy;
+    }
+    // 去除重复
+    for (GameModel *gm in allGames) {
+        if (![_allGames containsValue:gm.name keyPath:@"name"])
+            [_allGames addObject:gm];
+    }
 }
 + (NSArray<GameModel *> *)allGames {
 	return _allGames;
@@ -755,20 +755,16 @@ static NSArray<GameModel *> * _allGames;
 	return _allGames.count;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-	
 	DocumentTypeListCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"DocumentTypeListCell" forIndexPath:indexPath];
 	cell.titleLabel.text = _allGames[indexPath.item].name;
 	return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-	
 	if (self.completionHandle) {
 		self.completionHandle(_allGames[indexPath.item]);
 	}
-	
 	[self removeFromSuperview];
-	
 }
 //- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 //{

@@ -9,7 +9,10 @@
 #import "UGFeedbackDetailController.h"
 #import "UGFeedbackDetailCell.h"
 #import "UGMessageModel.h"
+
+
 @interface UGFeedbackDetailController ()<UITextViewDelegate>
+
 @property (weak, nonatomic) IBOutlet UITextView *contentTextView;
 @property (weak, nonatomic) IBOutlet UILabel *numberLabel;
 @property (weak, nonatomic) IBOutlet UILabel *placeholderLabel;
@@ -20,26 +23,19 @@
 @end
 
 @implementation UGFeedbackDetailController
--(void)skin{
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
-    
-}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.navigationItem.title = @"反馈记录详情";
     self.tableView.rowHeight = 100;
     self.contentTextView.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.contentTextView.layer.borderWidth = 0.8;
     self.contentTextView.delegate = self;
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
-    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-        
-        [self skin];
-    });
     self.submitButton.layer.cornerRadius = 3;
     self.submitButton.layer.masksToBounds = YES;
     [self getFeedbackDetail];
+    
+    self.tableView.tableHeaderView.height = NavController1.navigationBar.by + 10;
 }
 
 - (void)getFeedbackDetail {
@@ -65,7 +61,6 @@
 }
 
 - (IBAction)submitClick:(id)sender {
-    
     ck_parameters(^{
         ck_parameter_non_empty(self.contentTextView.text, @"请输入内容");
     }, ^(id err) {
@@ -91,18 +86,16 @@
             }];
         }];
     });
-    
 }
+
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
     return self.dataArray.count;
 }
 
@@ -110,7 +103,6 @@
     UGFeedbackDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UGFeedbackDetailCell" forIndexPath:indexPath];
     cell.tag = indexPath.row;
     cell.item = self.dataArray[indexPath.row];
-    
     return cell;
 }
 
@@ -118,9 +110,10 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+
 #pragma mark - text view delegate
-- (void)textViewDidChange:(UITextView *)textView
-{
+
+- (void)textViewDidChange:(UITextView *)textView {
     self.placeholderLabel.hidden = self.contentTextView.text.length;
     if ([textView.text length] > 200) {
         textView.text = [textView.text substringWithRange:NSMakeRange(0, 200)];
@@ -131,8 +124,7 @@
     self.numberLabel.text = [NSString stringWithFormat:@"%ld/200",(long)wordCount];
 }
 
--(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
-{
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
     if ([text isEqualToString:@"\n"]) {
         [textView resignFirstResponder];
         return NO;

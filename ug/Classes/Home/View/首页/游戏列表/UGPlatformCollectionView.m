@@ -77,7 +77,7 @@ static NSString *const footerId = @"footerId";
 			[documentArray addObject:model];
 		}
 	}
-	[DocumentTypeList setAllGames: documentArray];
+	[DocumentTypeList setAllGames:documentArray];
 }
 
 

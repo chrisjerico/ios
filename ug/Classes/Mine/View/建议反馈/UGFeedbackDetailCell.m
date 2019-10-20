@@ -8,18 +8,16 @@
 
 #import "UGFeedbackDetailCell.h"
 #import "UGMessageModel.h"
+
 @interface UGFeedbackDetailCell ()
 @property (weak, nonatomic) IBOutlet UILabel *typeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 
 @end
-@implementation UGFeedbackDetailCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-}
+
+@implementation UGFeedbackDetailCell
 
 - (void)setItem:(UGMessageModel *)item {
     _item = item;
@@ -31,18 +29,11 @@
             self.typeLabel.text = @"类型：建议反馈";
         }
         self.timeLabel.text = [item.createTime stringToFormatSecondDateString];
-    }else {
+    } else {
         self.typeLabel.hidden = YES;
         self.timeLabel.text = [NSString stringWithFormat:@"提交时间:%@",[item.createTime stringToFormatSecondDateString]];
     }
     self.contentLabel.text = item.content;
-    
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end
