@@ -54,6 +54,7 @@
         [_textView setPlaceholderWithText:@"申请说明" Color:UGRGBColor(205, 205, 209)];
         
         _webView.scrollView.bounces = false;
+        _webView.delegate = self;
         _webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         [_webView xw_addObserverBlockForKeyPath:@"scrollView.contentSize" block:^(id  _Nonnull obj, id  _Nonnull oldVal, id  _Nonnull newVal) {
             CGFloat h = [newVal CGSizeValue].height;
@@ -256,6 +257,33 @@
                                            context:nil].size;
     /// 左右各16
     return (realSize.width + 2 * (SCHorizontalMargin + 1.f));
+}
+
+
+#pragma mark -- 拦截webview用户触击了一个链接
+ 
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    //判断是否是单击
+    if (navigationType == UIWebViewNavigationTypeLinkClicked)
+    {
+        NSString *url = [request.URL absoluteString];
+
+        //拦截链接跳转到货源圈的动态详情
+        if ([url rangeOfString:@"http"].location != NSNotFound)
+        {
+            //跳转到你想跳转的页面
+
+                TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
+                  webViewVC.url = url;
+                [NavController1 pushViewController:webViewVC animated:YES];
+            
+            [self close:nil];
+
+            return NO; //返回NO，此页面的链接点击不会继续执行，只会执行跳转到你想跳转的页面
+        }
+    }
+    return YES;
 }
 
 @end

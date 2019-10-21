@@ -24,7 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    
+    [self.tgWebView addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:NULL];
     [self setUpUI];
 }
 
@@ -77,6 +77,21 @@
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error {
     [self.webProgressLayer tg_finishedLoadWithError:error];
 }
+
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
+{
+     if ([keyPath isEqualToString:@"title"]){
+        if (object == self.tgWebView) {
+            if ([CMCommon stringIsNull:_webTitle]) {
+                 self.title = self.tgWebView.title;
+            }
+           
+        }else{
+            [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+        }
+    }
+}
+
 
 - (void)dealloc {
     [self.webProgressLayer tg_closeTimer];

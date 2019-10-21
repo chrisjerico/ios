@@ -146,7 +146,10 @@
      self.gameNavigationView.layer.borderColor = [[UGSkinManagers shareInstance] sethomeContentBorderColor].CGColor;
     
     [self.gameNavigationView reloadData];
-    self.gameTypeView.gameTypeArray = self.gameCategorys;
+    
+//    if (![CMCommon arryIsNull:self.gameCategorys]) {
+//        self.gameTypeView.gameTypeArray = self.gameCategorys;
+//    }
     [[UGSkinManagers shareInstance] navigationBar:(UGNavigationController *)self.navigationController bgColor: [[UGSkinManagers shareInstance] setNavbgColor]];
 
 }
@@ -381,24 +384,42 @@
 		[self.navigationController pushViewController:[UGChatViewController new] animated:YES];
 	} else if ([model.subId isEqualToString:@"4"]) {
 		// 在线客服
-//		SLWebViewController *webViewVC = [[SLWebViewController alloc] init];
-//        webViewVC.urlStr = SysConf.zxkfUrl;
-//		[self.navigationController pushViewController:webViewVC animated:YES];
-
         TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
         webViewVC.url = SysConf.zxkfUrl;
         webViewVC.webTitle = @"在线客服";
         [self.navigationController pushViewController:webViewVC animated:YES];
 	}
+    else if ([model.subId isEqualToString:@"9"]) {
+        // 优惠活动
+       [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGPromotionsController") animated:YES];
+      
+    }
+    else if ([model.subId isEqualToString:@"10"]) {
+        // 游戏记录
+       UGBetRecordViewController *vc = [[UGBetRecordViewController alloc] init];
+      [self.navigationController pushViewController:vc animated:true];
+    }
+    else if ([model.subId isEqualToString:@"11"]) {
+        // QQ客服
+        NSString *qqstr;
+        if ([CMCommon stringIsNull:SysConf.serviceQQ1]) {
+            qqstr = SysConf.serviceQQ2;
+        } else {
+            qqstr = SysConf.serviceQQ1;
+        }
+      NSString *qq=[NSString stringWithFormat:@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web",qqstr];
+      NSURL *url = [NSURL URLWithString:qq];
+      [[UIApplication sharedApplication] openURL:url];
+
+      
+    }
     else{
-//       TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
-//       webViewVC.url = model.url;
-//       webViewVC.webTitle = model.title;
-//       [self.navigationController pushViewController:webViewVC animated:YES];
+       TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
+       webViewVC.url = model.url;
+       webViewVC.webTitle = model.title;
+       [self.navigationController pushViewController:webViewVC animated:YES];
         
-        SLWebViewController *webViewVC = [[SLWebViewController alloc] init];
-        webViewVC.urlStr = model.url;
-        [self.navigationController pushViewController:webViewVC animated:YES];
+
     }
 }
 
