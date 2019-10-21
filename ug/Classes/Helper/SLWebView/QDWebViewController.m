@@ -41,6 +41,8 @@ UIActionSheetDelegate> {
 
 @implementation QDWebViewController
 
+- (BOOL)允许游客访问 { return true; }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -223,7 +225,6 @@ UIActionSheetDelegate> {
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-    
     // 自动设置页面title
     NSString *webTitle = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
     if (webTitle.length) {

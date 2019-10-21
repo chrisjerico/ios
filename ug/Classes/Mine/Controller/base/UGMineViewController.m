@@ -223,6 +223,9 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
 }
 
 - (void)showAvaterSelectView {
+    if (UserI.isTest) {
+        return;
+    }
     UGAvaterSelectView *avaterView = [[UGAvaterSelectView alloc] initWithFrame:CGRectMake(0, UGScerrnH, UGScreenW, UGScreenW)];
     [avaterView show];
 }

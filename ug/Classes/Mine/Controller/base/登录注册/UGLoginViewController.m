@@ -39,20 +39,19 @@
 @end
 
 @implementation UGLoginViewController
--(void)skin{
-   
-    
+
+- (void)skin {
     [self.loginButton setBackgroundColor:UGNavColor];
     [self.rigesterButton setTitleColor:UGNavColor forState:UIControlStateNormal];
     [self.playButton setTitleColor:UGNavColor forState:UIControlStateNormal];
     [self.goHomeButton setTitleColor:UGNavColor forState:UIControlStateNormal];
-    
 }
+
+- (BOOL)允许未登录访问 { return true; }
+- (BOOL)允许游客访问 { return true; }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-  
-    
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         
         [self skin];

@@ -14,7 +14,10 @@
 
 @end
 
+
 @implementation UGYYLotterySecondHomeViewController
+
+- (BOOL)允许游客访问 { return true; }
 
 - (void)skin {
     [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
@@ -23,7 +26,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
     
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {

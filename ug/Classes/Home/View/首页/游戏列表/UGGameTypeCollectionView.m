@@ -78,7 +78,7 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
     for (UGPlatformCollectionView *pcv in _contentStackView.arrangedSubviews)
         [pcv removeFromSuperview];
     
-    // 添加 UGPlatformCollectionView到数组
+    // 添加 UGPlatformCollectionView到_contentStackView
     for (GameCategoryModel *gcm in gameTypeArray) {
         UGPlatformCollectionView *pcv = [[UGPlatformCollectionView alloc] initWithFrame:CGRectZero];
         pcv.dataArray = gcm.list;

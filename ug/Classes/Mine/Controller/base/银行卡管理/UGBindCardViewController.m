@@ -28,15 +28,16 @@
 @end
 
 @implementation UGBindCardViewController
--(void)skin{
+
+- (void)skin {
     [self.submitButton setBackgroundColor:UGNavColor];
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.navigationItem.title = @"银行卡管理";
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-        
         [self skin];
     });
     self.submitButton.layer.cornerRadius = 3;
@@ -47,8 +48,13 @@
     self.cardNumberTextF.delegate = self;
     self.nameTextF.delegate = self;
     
-    [self getBankList];
+    {
+        // 若注册时填了真实姓名，则自动填充且不允许用户自己输入姓名
+        _nameTextF.text = UserI.fullName;
+        _nameTextF.userInteractionEnabled = ![UserI.fullName stringByReplacingOccurrencesOfString:@" " withString:@""].length;
+    }
     
+    [self getBankList];
 }
 
 - (void)getBankList {

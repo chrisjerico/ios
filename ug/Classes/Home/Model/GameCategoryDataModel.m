@@ -16,6 +16,13 @@
 + (JSONKeyMapper *)keyMapper {
 	return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"gameId",@"gameId":@"game_id"}];
 }
+
+- (NSString *)logo {
+    return _logo.length ? _logo : _icon;
+}
+- (NSString *)icon {
+    return _logo.length ? _logo : _icon;
+}
 @end
 
 

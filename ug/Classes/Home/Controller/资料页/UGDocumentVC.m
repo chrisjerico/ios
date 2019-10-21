@@ -24,12 +24,11 @@
 
 @property (nonatomic, strong) GameModel *model;
 
-@property (nonatomic, strong) NSArray<DocumentModel*> *documentListData;
+@property (nonatomic, strong) NSMutableArray<DocumentModel*> *documentListData;
 
 @property (nonatomic, strong) UGNextIssueModel *nextIssue;
 
 @property (nonatomic, strong) dispatch_group_t completionGroup;
-
 
 @end
 
@@ -48,15 +47,20 @@
 	[_titleButton setTitle:[NSString stringWithFormat:@"%@ ▼", model.name] forState:UIControlStateNormal];
 }
 
+- (BOOL)允许游客访问 { return true; }
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	
+    _documentListData = @[].mutableCopy;
+    self.view.backgroundColor = [UIColor whiteColor];
+    
 	[self.view addSubview:self.tableView];
 	[self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.edges.equalTo(self.view);
+		make.top.left.right.equalTo(self.view);
+        make.bottom.equalTo(self.view).offset(-APP.BottomSafeHeight);
 	}];
 	
-	[self requestData: @""];
+	[self requestData:@"" page:1];
 	
 	_titleButton = [UIButton buttonWithType:UIButtonTypeCustom];
 	_titleButton.frame = CGRectMake(0, 0, 200, 40);
@@ -71,18 +75,17 @@
 		self.model = model;
 		[SVProgressHUD showWithStatus:nil];
 //		[sender setTitle:[NSString stringWithFormat:@"%@ ▼", self.model.name] forState:UIControlStateNormal];
-		[self requestData:@""];
+		[self requestData:@"" page:1];
 	}];
 }
 
-- (void)requestData: (NSString *) title {
+- (void)requestData:(NSString *)title page:(NSInteger)page {
 	
 	NSMutableDictionary *params = @{@"id": self.model.type}.mutableCopy;
 	WeakSelf
 	
 	if ([title isEqualToString:@""]) {
 		dispatch_group_enter(self.completionGroup);
-		
 		[CMNetwork getNextIssueWithParams:params completion:^(CMResult<id> *model, NSError *err) {
 			[CMResult processWithResult:model success:^{
 				weakSelf.nextIssue = model.data;
@@ -90,7 +93,6 @@
 				
 			} failure:^(id msg) {
 				dispatch_group_leave(weakSelf.completionGroup);
-				
 			}];
 		}];
 	}
@@ -98,21 +100,26 @@
 	dispatch_group_enter(self.completionGroup);
 	params[@"category"] = self.model.gameId;
 	params[@"title"] = title;
+    params[@"rows"] = _NSString(@"%ld", APP.PageCount);
+    params[@"page"] = _NSString(@"%ld", page);
 	[CMNetwork getDocumnetListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
 		[CMResult processWithResult:model success:^{
 			
-			DocumentListModel * data = model.data;
-			weakSelf.documentListData = data.list;
+			DocumentListModel *data = model.data;
+            if (page == 1) {
+                [weakSelf.documentListData removeAllObjects];
+            }
+			[weakSelf.documentListData addObjectsFromArray:data.list];
 			
-			if (data.list.count > 0) {
-				[self.tableView.mj_footer setHidden:true];
+			if (data.list.count < 20) {
+                [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
 			} else {
-				[self.tableView.mj_footer endRefreshingWithNoMoreData];
+				weakSelf.tableView.mj_footer.state = MJRefreshStateIdle;
 			}
+            [weakSelf.tableView reloadData];
 			dispatch_group_leave(weakSelf.completionGroup);
 		} failure:^(id msg) {
 			dispatch_group_leave(weakSelf.completionGroup);
-			
 		}];
 	}];
 	
@@ -131,16 +138,16 @@
 		_tableView = [[UITableView alloc] initWithFrame:CGRectZero style: UITableViewStylePlain];
 		_tableView.delegate = self;
 		_tableView.dataSource = self;
+        __weakSelf_(__self);
 		_tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-			[self requestData:@""];
+			[__self requestData:@"" page:1];
 		}];
 		_tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-			
+			[__self requestData:@"" page:__self.documentListData.count/20 + 1];
 		}];
 		[_tableView registerClass:[DocumentCell class] forCellReuseIdentifier:@"DocumentCell"];
-		
-		_tableView.tableFooterView = [UIView new];
-		[_tableView.mj_footer setState: MJRefreshStateNoMoreData];
+        _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APP.Width, 10)];
+		[_tableView.mj_footer setState:MJRefreshStateNoMoreData];
 	}
 	return _tableView;
 }
@@ -188,32 +195,18 @@
 //				UGDocumentDetailVC *vc = [UGDocumentDetailVC new];
 //				vc.model = documentDetailModel;
 //				[self presentViewController:vc animated:true completion:nil];
-				
-				
 				[UGDocumentView showWith:documentDetailModel];
-				
-//				
-				
 			} else if (user.isTest){
-				
-				
 				UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"该资料需要正式会员才能阅读，请登录后查看" preferredStyle:UIAlertControllerStyleAlert];
 				[alert addAction:[UIAlertAction actionWithTitle:@"确认" style: UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
 					
 				}]];
 				[self presentViewController:alert animated:true completion:nil];
 				
-				
 			} else if (!documentDetailModel.hasPay) {
-				
-				
 				UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"注意：您没有浏览权限。\n打赏后本期无限浏览此资料。" preferredStyle:UIAlertControllerStyleAlert];
 				[alert addAction:[UIAlertAction actionWithTitle:[NSString stringWithFormat:@"打赏%.2f元", documentDetailModel.amount] style: UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-					
-					
-					
 					UIAlertController * alert = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"确认打赏%.2f元",documentDetailModel.amount] message:nil preferredStyle:UIAlertControllerStyleAlert];
-					
 					[alert addAction: [UIAlertAction actionWithTitle:@"取消" style: UIAlertActionStyleDefault handler:nil]];
 					[alert addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
 						[SVProgressHUD showWithStatus:nil];
@@ -222,16 +215,11 @@
 							[SVProgressHUD showInfoWithStatus:model.msg];
 						}];
 					}]];
-					
 					[self presentViewController:alert animated:true completion:nil];
-					
-					
-					
 				}]];
 				[alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
 				[self presentViewController:alert animated:true completion:nil];
 			}
-			
 		}];
 	}];
 	[tableView deselectRowAtIndexPath:indexPath animated:false];
@@ -246,9 +234,9 @@
 	WeakSelf
 	IssueView *issueView = [[IssueView alloc] init];
 	issueView.nextIssueModel = self.nextIssue;
-	issueView.searchBlock = ^(NSString * text) {
+	issueView.searchBlock = ^(NSString *text) {
 		[SVProgressHUD showWithStatus:nil];
-		[weakSelf requestData:text];
+		[weakSelf requestData:text page:1];
 	};
 	return issueView;
 	//	return self.issueView;
@@ -261,7 +249,7 @@
 		WeakSelf
 		_issueView.searchBlock = ^(NSString * text) {
 			[SVProgressHUD showWithStatus:nil];
-			[weakSelf requestData:text];
+			[weakSelf requestData:text page:1];
 		};
 	}
 	return _issueView;
@@ -391,7 +379,6 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 			i ++ ;
 			[weakSelf updateCloseLabelText];
 			[weakSelf updateOpenLabelText];
-			
 		});
 		dispatch_resume(self.timer);
 	}
@@ -536,8 +523,6 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 		[_collectionView registerNib:[UINib nibWithNibName:@"UGLotteryResultCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UGLotteryResultCollectionViewCell"];
 		[_collectionView registerNib:[UINib nibWithNibName:@"UGLotterySubResultCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UGLotterySubResultCollectionViewCell"];
 		[_collectionView registerNib:[UINib nibWithNibName:@"UGFastThreeOneCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:lotteryResultCellid];
-
-		
 	}
 	return _collectionView;
 }
@@ -695,19 +680,14 @@ static DocumentTypeList *_singleInstance = nil;
 }
 
 
-+(void)showIn: (UIView *)supperView
-completionHandle: (void(^)(GameModel * model)) block
-
-{
-	
-	DocumentTypeList * list = [DocumentTypeList shareInstance];
++ (void)showIn:(UIView *)supperView completionHandle:(void(^)(GameModel * model))block {
+	DocumentTypeList *list = [DocumentTypeList shareInstance];
 	[list removeFromSuperview];
 	[supperView addSubview:list];
 	[list mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.edges.equalTo(supperView);
 	}];
 	list.completionHandle = block;
-	
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -762,10 +742,17 @@ completionHandle: (void(^)(GameModel * model)) block
 - (void) hide {
 	[self removeFromSuperview];
 }
-static NSArray<GameModel *> * _allGames;
+static NSMutableArray<GameModel *> *_allGames;
 
 + (void)setAllGames:(NSArray<GameModel *> *)allGames {
-	_allGames = allGames;
+    if (!_allGames) {
+        _allGames = @[].mutableCopy;
+    }
+    // 去除重复
+    for (GameModel *gm in allGames) {
+        if (![_allGames containsValue:gm.name keyPath:@"name"])
+            [_allGames addObject:gm];
+    }
 }
 + (NSArray<GameModel *> *)allGames {
 	return _allGames;
@@ -775,20 +762,16 @@ static NSArray<GameModel *> * _allGames;
 	return _allGames.count;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-	
 	DocumentTypeListCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"DocumentTypeListCell" forIndexPath:indexPath];
 	cell.titleLabel.text = _allGames[indexPath.item].name;
 	return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-	
 	if (self.completionHandle) {
 		self.completionHandle(_allGames[indexPath.item]);
 	}
-	
 	[self removeFromSuperview];
-	
 }
 //- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 //{

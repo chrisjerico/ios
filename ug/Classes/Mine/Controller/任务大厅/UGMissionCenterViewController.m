@@ -155,9 +155,11 @@
 
 - (UIBezierPath *)progressPathWithProgress:(CGFloat)progress
 {
+    if (progress < 0.0001) 
+        return nil;
     UIBezierPath *path = [UIBezierPath bezierPath];
-    CGPoint startPoint = (CGPoint){0,CGRectGetHeight(self.progressView.frame)/2};
-    CGPoint endPoint = (CGPoint){CGRectGetWidth(self.progressView.frame)*progress,startPoint.y};
+    CGPoint startPoint = (CGPoint){0, CGRectGetHeight(self.progressView.frame)/2};
+    CGPoint endPoint = (CGPoint){CGRectGetWidth(self.progressView.frame)*progress, startPoint.y};
     [path moveToPoint:startPoint];
     [path addLineToPoint:endPoint];
     [path closePath];
@@ -269,7 +271,6 @@
     //进度条
     float floatProgress = (float)[user.taskRewardTotal doubleValue]/[user.nextLevelInt doubleValue];
     self.progressLayer.path = [self progressPathWithProgress:floatProgress].CGPath;
-    
 }
 
 
@@ -302,18 +303,12 @@
 
 // 返回上一页
 - (IBAction)backCick:(id)sender {
-    
-    if ([self.navigationController.viewControllers.firstObject isEqual:self])
-    {
+    if ([self.navigationController.viewControllers.firstObject isEqual:self]) {
         //去会员中心
-         UGMineSkinViewController * viewController = [[UGMineSkinViewController alloc] init];
-         [self.navigationController pushViewController:viewController animated:YES];
-    }
-    else
-    {
+        [self.navigationController pushViewController:[UGMineSkinViewController new] animated:YES];
+    } else {
         [self.navigationController popViewControllerAnimated:YES];
     }
-
 }
 
 // 刷新余额

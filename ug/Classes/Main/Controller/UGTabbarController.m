@@ -35,8 +35,8 @@
 
 @implementation UIViewController (CanPush)
 
-_CCRuntimeProperty_Assign(BOOL, 未登录禁止访问, set未登录禁止访问)
-_CCRuntimeProperty_Assign(BOOL, 游客禁止访问, set游客禁止访问)
+_CCRuntimeProperty_Assign(BOOL, 允许未登录访问, set允许未登录访问)
+_CCRuntimeProperty_Assign(BOOL, 允许游客访问, set允许游客访问)
 @end
 
 
@@ -61,14 +61,14 @@ static UGTabbarController *_tabBarVC = nil;
     BOOL isLogin = UGLoginIsAuthorized();
     
     // 未登录禁止访问
-    if (!isLogin && (vc.未登录禁止访问 || vc.游客禁止访问)) {
+    if (!isLogin && !vc.允许未登录访问) {
         NSLog(@"未登录禁止访问：%@", vc);
         [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLoginViewController") animated:true];
         return false;
     }
     
     // 游客禁止访问
-    if (user.isTest && vc.游客禁止访问) {
+    if (user.isTest && !vc.允许游客访问) {
         NSLog(@"游客禁止访问：%@", vc);
         UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"请先登录您的正式账号" btnTitles:@[@"取消", @"马上登录"]];
         [ac setActionAtTitle:@"马上登录" handler:^(UIAlertAction *aa) {
@@ -77,27 +77,30 @@ static UGTabbarController *_tabBarVC = nil;
         return false;
     }
     
-    // 聊天室
-    if ([vc isKindOfClass:[UGChatViewController class]] && !user.chatRoomSwitch) {
-        [AlertHelper showAlertView:@"温馨提示" msg:@"聊天室已关闭" btnTitles:@[@"确定"]];
-        return false;
+    if (user) {
+        // 聊天室
+        if ([vc isKindOfClass:[UGChatViewController class]] && !user.chatRoomSwitch) {
+            [AlertHelper showAlertView:@"温馨提示" msg:@"聊天室已关闭" btnTitles:@[@"确定"]];
+            return false;
+        }
+        
+        // 任务中心
+        else if ([vc isKindOfClass:[UGMissionCenterViewController class]] && [SysConf.missionSwitch isEqualToString:@"1"]) {
+            [AlertHelper showAlertView:@"温馨提示" msg:@"任务中心已关闭" btnTitles:@[@"确定"]];
+            return false;
+        }
+        // 利息宝
+        else if ([vc isKindOfClass:[UGYubaoViewController class]] && !user.yuebaoSwitch) {
+            [AlertHelper showAlertView:@"温馨提示" msg:@"利息宝已关闭" btnTitles:@[@"确定"]];
+            return false;
+        }
+        // 每日签到
+        else if ([vc isKindOfClass:[UGSigInCodeViewController class]] && [SysConf.checkinSwitch isEqualToString:@"0"]) {
+            [AlertHelper showAlertView:@"温馨提示" msg:@"每日签到已关闭" btnTitles:@[@"确定"]];
+            return false;
+        }
     }
     
-    // 任务中心
-    else if([vc isKindOfClass:[UGMissionCenterViewController class]] && [SysConf.missionSwitch isEqualToString:@"1"]) {
-        [AlertHelper showAlertView:@"温馨提示" msg:@"任务中心已关闭" btnTitles:@[@"确定"]];
-        return false;
-    }
-    // 利息宝
-    else if([vc isKindOfClass:[UGYubaoViewController class]] && !user.yuebaoSwitch) {
-        [AlertHelper showAlertView:@"温馨提示" msg:@"利息宝已关闭" btnTitles:@[@"确定"]];
-        return false;
-    }
-    // 每日签到
-    else if([vc isKindOfClass:[UGSigInCodeViewController class]] && [SysConf.checkinSwitch isEqualToString:@"0"]) {
-        [AlertHelper showAlertView:@"温馨提示" msg:@"每日签到已关闭" btnTitles:@[@"确定"]];
-        return false;
-    }
     return true;
 }
 
@@ -128,9 +131,9 @@ static UGTabbarController *_tabBarVC = nil;
     // 设置初始控制器
     [self resetUpChildViewController:@[@"/home", @"/lotteryList", @"/chatRoomList", @"/activity", @"/user", ]];
     
-    if (AndrewTest) {
+    if (!AndrewTest) {
         // 更新为后台配置的控制器
-//        [self getSystemConfig];
+        [self getSystemConfig];
     }
 
     

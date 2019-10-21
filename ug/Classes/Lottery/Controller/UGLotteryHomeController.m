@@ -49,11 +49,12 @@ static NSString *letteryTicketCellID = @"UGLotteryGameCollectionViewCell";
 static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
 @implementation UGLotteryHomeController
 
--(void)skin{
+- (BOOL)允许游客访问 { return true; }
+
+- (void)skin{
     [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
     [self getAllNextIssueData];
 }
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];

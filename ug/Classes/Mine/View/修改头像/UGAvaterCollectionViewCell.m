@@ -8,17 +8,13 @@
 
 #import "UGAvaterCollectionViewCell.h"
 #import "UGAvatarModel.h"
+
 @interface UGAvaterCollectionViewCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
-
 @end
-@implementation UGAvaterCollectionViewCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-     
-}
+
+@implementation UGAvaterCollectionViewCell
 
 - (void)setItem:(UGAvatarModel *)item {
     _item = item;

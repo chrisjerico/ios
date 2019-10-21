@@ -131,7 +131,7 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)skin{
+- (void)skin {
 	[self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
 	
 	
@@ -150,6 +150,8 @@
     [[UGSkinManagers shareInstance] navigationBar:(UGNavigationController *)self.navigationController bgColor: [[UGSkinManagers shareInstance] setNavbgColor]];
 
 }
+
+- (BOOL)允许游客访问 { return true; }
 
 - (void)viewDidLoad {
 	
@@ -216,12 +218,14 @@
             }];
         }
 	});
-	SANotificationEventSubscribe(UGNotificationShowLoginView, self, ^(typeof (self) self, id obj) {
-		[NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLoginViewController") animated:true];
-	});
+    
+    [self xw_addNotificationForName:UGNotificationShowLoginView block:^(NSNotification * _Nonnull noti) {
+        if (OBJOnceToken(noti)) {
+            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLoginViewController") animated:true];
+        }
+    }];
 	SANotificationEventSubscribe(UGNotificationGetUserInfo, self, ^(typeof (self) self, id obj) {
 		[self getUserInfo];
-		
 	});
 	SANotificationEventSubscribe(UGNotificationAutoTransferOut, self, ^(typeof (self) self, id obj) {
 		[self autoTransferOut];
@@ -646,18 +650,12 @@
 				// 需要在主线程执行的代码
 				// 需要在主线程执行的代码
 				[SVProgressHUD dismiss];
-				
 				self.uGredEnvelopeView.item = (UGRedEnvelopeModel*)model.data;
-				
-				
 				[[NSOperationQueue mainQueue] addOperationWithBlock:^{
 					//需要在主线程执行的代码
 					[self.uGredEnvelopeView setHidden:NO];
 				}];
-				
 			});
-			
-			
 		} failure:^(id msg) {
 			[self.uGredEnvelopeView setHidden:YES];
 			[SVProgressHUD dismiss];
@@ -743,7 +741,7 @@
 #pragma mark - SDCycleScrollViewDelegate
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
 	UGBannerCellModel *banner = self.bannerArray[index];
-	if (banner.url.length) {
+	if ([banner.url stringByReplacingOccurrencesOfString:@" " withString:@""].length) {
 		SLWebViewController *webVC = [[SLWebViewController alloc] init];
 		webVC.urlStr = banner.url;
 		[self.navigationController pushViewController:webVC animated:YES];
@@ -1129,7 +1127,7 @@
 	//	self.scrollView.backgroundColor = UGBackgroundColor;
 //	self.bannerView =  [SDCycleScrollView cycleScrollViewWithFrame:self.bannerBgView.bounds delegate:self placeholderImage:[UIImage imageNamed:@"placeholder"]];
     self.bannerView =  [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, UGScreenW, 280/640.0 * APP.Width) delegate:self placeholderImage:[UIImage imageNamed:@"placeholder"]];
-	self.bannerView.backgroundColor = [UIColor whiteColor];
+	self.bannerView.backgroundColor = [UIColor clearColor];
 	self.bannerView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
 	self.bannerView.scrollDirection = UICollectionViewScrollDirectionHorizontal;
 	self.bannerView.autoScrollTimeInterval = 2.0;

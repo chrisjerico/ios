@@ -164,16 +164,17 @@ NSString * const ID = @"SDCycleScrollViewCell";
     }
 }
 
-- (void)setPlaceholderImage:(UIImage *)placeholderImage
-{
+- (void)setPlaceholderImage:(UIImage *)placeholderImage {
     _placeholderImage = placeholderImage;
     
     if (!self.backgroundImageView) {
         UIImageView *bgImageView = [UIImageView new];
         bgImageView.contentMode = UIViewContentModeScaleAspectFill;
 //         bgImageView.contentMode = UIViewContentModeScaleToFill;
+        bgImageView.clipsToBounds = true;
         [self insertSubview:bgImageView belowSubview:self.mainView];
         self.backgroundImageView = bgImageView;
+        self.backgroundImageView.backgroundColor = [UIColor clearColor];
     }
     
     self.backgroundImageView.image = placeholderImage;
@@ -529,10 +530,7 @@ NSString * const ID = @"SDCycleScrollViewCell";
     self.pageControl.frame = pageControlFrame;
     self.pageControl.hidden = !_showPageControl;
     
-    if (self.backgroundImageView) {
-        self.backgroundImageView.frame = self.bounds;
-    }
-    
+    self.backgroundImageView.frame = self.bounds;
 }
 
 //解决当父View释放时，当前视图因为被Timer强引用而不能释放的问题

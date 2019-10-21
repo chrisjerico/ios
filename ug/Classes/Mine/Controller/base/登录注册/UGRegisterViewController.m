@@ -83,6 +83,10 @@
     [self.goHomeButton setTitleColor:UGNavColor forState:UIControlStateNormal];
     [self.goLoginButton setTitleColor:UGNavColor forState:UIControlStateNormal];
 }
+
+- (BOOL)允许未登录访问 { return true; }
+- (BOOL)允许游客访问 { return true; }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // 禁用侧滑返回

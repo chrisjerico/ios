@@ -12,8 +12,8 @@
 #import <Foundation/Foundation.h>
 
 
-#define FishTest 0     // Fish调试用的标识
-#define AndrewTest 1    // Andrew调试用的标识
+#define FishTest 1     // Fish调试用的标识
+#define AndrewTest 0    // Andrew调试用的标识
 
 //路径转换为restful开关
 #define RESTFUL NO
@@ -36,6 +36,7 @@ static NSString *baseServerUrl = @"http://test10.6yc.com";                // tes
 //static NSString *baseServerUrl = @"http://fyfigznlxtc018vpyk.gamezone168.com";  // c018
 //static NSString *baseServerUrl = @"http://dzkeumc035sfsboioz.phlotplay.com";    // c035
 //static NSString *baseServerUrl = @"http://etgnfb001kwa.phlotplay.com";//b001
+//static NSString *baseServerUrl = @"http://jbchpwpc163ybwnmsxc.phlotbet.com";//c163
 
 
 static NSString *swiperVerifyUrl = @"/dist/index.html#/swiperverify?platform=native";

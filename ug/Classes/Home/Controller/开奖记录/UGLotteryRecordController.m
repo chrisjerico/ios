@@ -35,6 +35,8 @@
 static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
 @implementation UGLotteryRecordController
 
+- (BOOL)允许游客访问 { return true; }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // 初始化数据

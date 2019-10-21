@@ -39,10 +39,6 @@ static NSString *recordFilterCellid = @"UGRecordFilterCollectionViewCell";
     [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
 }
 
-- (BOOL)游客禁止访问 {
-    return true;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
 

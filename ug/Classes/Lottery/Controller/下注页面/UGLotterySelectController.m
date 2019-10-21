@@ -29,7 +29,6 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
     [self.countDown countDownWithPER_SECBlock:^{
         [weakSelf updateTimeInVisibleCells];
     }];
-    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -47,6 +46,7 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.view.backgroundColor = UIColor.whiteColor;
+    self.navigationController.navigationBar.backgroundColor = [[UGSkinManagers shareInstance] setNavbgColor];
     self.countDown = [[CountDown alloc] init];
 	self.navigationItem.title = @"点击图标切换彩票";
 	UIButton * rightItem = [UIButton buttonWithType:UIButtonTypeSystem];
@@ -58,7 +58,6 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
 	[self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.edges.equalTo(self.view);
 	}];
-	// Do any additional setup after loading the view.
 }
 -(void)cancel{
 	[self.navigationController dismissViewControllerAnimated:true completion:nil];
@@ -66,21 +65,19 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
 
 - (UICollectionView *)collectionView {
 	if (!_collectionView) {
-		float itemW = (UGScreenW - 15) / 2;
+		float itemW = (UGScreenW - 20) / 2;
 		UICollectionViewFlowLayout *layout = ({
-			
 			layout = [[UICollectionViewFlowLayout alloc] init];
 			layout.itemSize = CGSizeMake(itemW, itemW / 2);
 			layout.minimumInteritemSpacing = 5;
 			layout.minimumLineSpacing = 5;
 			layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+            layout.sectionInset = UIEdgeInsetsMake(0, 5, 0, 5);
 			layout.headerReferenceSize = CGSizeMake(UGScreenW, 50);
 			layout;
-			
 		});
 		
 		UICollectionView *collectionView = ({
-			
 			collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
 			collectionView.backgroundColor = [UIColor clearColor];
 			collectionView.layer.cornerRadius = 10;
@@ -98,18 +95,13 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
 	return _collectionView;
 }
 
-
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-	
 	return self.dataArray.count;
-	
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-	
 	UGAllNextIssueListModel *model = self.dataArray[section];
 	return model.list.count;
-	
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
