@@ -146,10 +146,7 @@
      self.gameNavigationView.layer.borderColor = [[UGSkinManagers shareInstance] sethomeContentBorderColor].CGColor;
     
     [self.gameNavigationView reloadData];
-    
-//    if (![CMCommon arryIsNull:self.gameCategorys]) {
-//        self.gameTypeView.gameTypeArray = self.gameCategorys;
-//    }
+
     [[UGSkinManagers shareInstance] navigationBar:(UGNavigationController *)self.navigationController bgColor: [[UGSkinManagers shareInstance] setNavbgColor]];
 
 }
@@ -358,37 +355,45 @@
 
 - (void)gameNavigationItemTaped: (NSNotification *)notification {
 	GameModel *model = notification.object;
-	
-	if ([model.subId isEqualToString:@"1"]) {
+
+         [self gameNavigationAction:model];
+
+    
+}
+
+
+-(void)gameNavigationAction: (GameModel *)model{
+    
+    if ([model.subId isEqualToString:@"1"]) {
         // 资金管理
-		[self.navigationController pushViewController:[UGFundsViewController new] animated:true];
-	} else if ([model.subId isEqualToString:@"8"]) {
+        [self.navigationController pushViewController:[UGFundsViewController new] animated:true];
+    } else if ([model.subId isEqualToString:@"8"]) {
         // 利息宝
-		[self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGYubaoViewController")  animated:YES];
-	} else if ([model.subId isEqualToString:@"5"]) {
+        [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGYubaoViewController")  animated:YES];
+    } else if ([model.subId isEqualToString:@"5"]) {
         // 长龙助手
-		UGChangLongController *changlongVC = [[UGChangLongController alloc] init];
-		changlongVC.lotteryGamesArray = self.lotteryGamesArray;
-		[self.navigationController pushViewController:changlongVC animated:YES];
-	} else if ([model.subId isEqualToString:@"7"]) {
+        UGChangLongController *changlongVC = [[UGChangLongController alloc] init];
+        changlongVC.lotteryGamesArray = self.lotteryGamesArray;
+        [self.navigationController pushViewController:changlongVC animated:YES];
+    } else if ([model.subId isEqualToString:@"7"]) {
         //
-		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://test10.6yc.com/Open_prize/index.php"]];
-	} else if ([model.subId isEqualToString:@"6"]) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://test10.6yc.com/Open_prize/index.php"]];
+    } else if ([model.subId isEqualToString:@"6"]) {
         // 推广收益
         [self.navigationController pushViewController:[UGPromotionIncomeController new] animated:YES];
-	} else if ([model.subId isEqualToString:@"2"]) {
+    } else if ([model.subId isEqualToString:@"2"]) {
         // APP下载
-		[SVProgressHUD showInfoWithStatus:@"下载链接未配置"];
-	} else if ([model.subId isEqualToString:@"3"]) {
-		// 聊天室
-		[self.navigationController pushViewController:[UGChatViewController new] animated:YES];
-	} else if ([model.subId isEqualToString:@"4"]) {
-		// 在线客服
+        [SVProgressHUD showInfoWithStatus:@"下载链接未配置"];
+    } else if ([model.subId isEqualToString:@"3"]) {
+        // 聊天室
+        [self.navigationController pushViewController:[UGChatViewController new] animated:YES];
+    } else if ([model.subId isEqualToString:@"4"]) {
+        // 在线客服
         TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
         webViewVC.url = SysConf.zxkfUrl;
         webViewVC.webTitle = @"在线客服";
         [self.navigationController pushViewController:webViewVC animated:YES];
-	}
+    }
     else if ([model.subId isEqualToString:@"9"]) {
         // 优惠活动
        [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGPromotionsController") animated:YES];
@@ -409,9 +414,8 @@
         }
       NSString *qq=[NSString stringWithFormat:@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web",qqstr];
       NSURL *url = [NSURL URLWithString:qq];
-      [[UIApplication sharedApplication] openURL:url];
+        [[UIApplication sharedApplication] openURL:url];
 
-      
     }
     else{
        TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
@@ -422,7 +426,6 @@
 
     }
 }
-
 - (void)getUserInfo {
 	if (!UGLoginIsAuthorized()) {
 		return;

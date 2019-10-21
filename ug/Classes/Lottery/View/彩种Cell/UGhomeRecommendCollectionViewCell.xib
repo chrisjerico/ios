@@ -35,10 +35,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="立即游戏" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="901-al-qk2">
-                                <rect key="frame" x="0.0" y="65" width="49.5" height="14.5"/>
+                                <rect key="frame" x="0.0" y="65" width="49.5" height="16"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="14.5" id="Rvs-kj-rff"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="16" id="0wh-0w-cX1"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.88285148140000003" green="0.32290697099999999" blue="0.2548756003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -47,7 +47,6 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="901-al-qk2" secondAttribute="bottom" constant="22.5" id="EPn-wD-Arf"/>
                             <constraint firstItem="g8i-BM-H0V" firstAttribute="leading" secondItem="Vfj-sz-bre" secondAttribute="leading" id="Hba-7R-lRh"/>
                             <constraint firstAttribute="trailing" secondItem="g8i-BM-H0V" secondAttribute="trailing" constant="5" id="IP4-eY-4VO"/>
                             <constraint firstItem="g8i-BM-H0V" firstAttribute="top" secondItem="Vfj-sz-bre" secondAttribute="top" constant="20" id="MBT-gT-AZv"/>
