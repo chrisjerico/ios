@@ -11,7 +11,7 @@
 #import "UGGoogleAuthenticationThirdViewController.h"
 
 @interface UGGoogleAuthenticationSecondViewController ()
-@property (weak, nonatomic) IBOutlet UIImageView *myImageView;
+@property (weak, nonatomic) IBOutlet UIWebView *myWebView;
 @property (weak, nonatomic) IBOutlet UILabel *numberLabel;
 @property (weak, nonatomic) IBOutlet UIButton *mcopyButton;
 @property (weak, nonatomic) IBOutlet UIButton *returnButton;
@@ -66,14 +66,20 @@
             [SVProgressHUD dismiss];
             
             weakSelf.model = model.data;
-//            NSLog(@"checkinList = %@",weakSelf.model);
             
             UGgaCaptchaModel *obj = model.data;
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 
-                NSString *url =[CMCommon imgformat:obj.qrcode];
-                [self.myImageView sd_setImageWithURL:[NSURL URLWithString: url] placeholderImage:[UIImage imageNamed:@"placeholder"]];//m_logo
+                // 2.1 创建一个远程URL
+
+                NSURL *remoteURL = [NSURL URLWithString: obj.qrcode] ;
+                
+                // 3.创建Request
+                NSURLRequest *request =[NSURLRequest requestWithURL:remoteURL];
+                   // 4.加载网页
+                [self->_myWebView loadRequest:request];
+
                 self.numberLabel.text = obj.secret;
                 
             });

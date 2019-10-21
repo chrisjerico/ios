@@ -53,6 +53,7 @@
 - (void)setItem:(UGChanglongaideModel *)item {
     _item = item;
 
+    NSLog(@"v");
     [self.logoView sd_setImageWithURL:[NSURL URLWithString:item.logo] placeholderImage:[UIImage imageNamed:@"loading"]];
     self.titleLabel.text = item.title;
     self.issueLabel.text = item.issue;
