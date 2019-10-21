@@ -22,13 +22,13 @@
 - (void)skin {
      if([self.url containsString:@"logintoken"]) {
          self.url = ({
-             NSString *url = _NSString(@"%@%@%@&loginsessid=%@&color=%@&back=hide", baseServerUrl, newChatRoomUrl, [UGUserModel currentUser].token, [UGUserModel currentUser].sessid, [[UGSkinManagers shareInstance] setChatNavbgStringColor]);
+             NSString *url = _NSString(@"%@%@%@&loginsessid=%@&color=%@&back=hide&from=app", baseServerUrl, newChatRoomUrl, [UGUserModel currentUser].token, [UGUserModel currentUser].sessid, [[UGSkinManagers shareInstance] setChatNavbgStringColor]);
              if (_gameId.length)
                  url = [url stringByAppendingFormat:@"&id=%@", self.gameId];
              url;
          });
      } else {
-        self.url = _NSString(@"%@%@%@&color=%@&back=hide", baseServerUrl, chatRoomUrl,SysConf.chatRoomName,[[UGSkinManagers shareInstance] setChatNavbgStringColor]);
+        self.url = _NSString(@"%@%@%@&color=%@&back=hide&from=app", baseServerUrl, chatRoomUrl,SysConf.chatRoomName,[[UGSkinManagers shareInstance] setChatNavbgStringColor]);
      }
 }
 
@@ -45,7 +45,7 @@
     if ([CMCommon stringIsNull:self.url]) {
         NSLog(@"url = %@",self.url);
         self.url = ({
-               NSString *url = _NSString(@"%@%@%@&loginsessid=%@&color=%@&back=hide", baseServerUrl, newChatRoomUrl, [UGUserModel currentUser].token, [UGUserModel currentUser].sessid, [[UGSkinManagers shareInstance] setChatNavbgStringColor]);
+               NSString *url = _NSString(@"%@%@%@&loginsessid=%@&color=%@&back=hide&from=app", baseServerUrl, newChatRoomUrl, [UGUserModel currentUser].token, [UGUserModel currentUser].sessid, [[UGSkinManagers shareInstance] setChatNavbgStringColor]);
                if (_gameId.length)
                    url = [url stringByAppendingFormat:@"&id=%@", self.gameId];
             
