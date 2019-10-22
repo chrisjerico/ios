@@ -62,13 +62,31 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 		[self addSubview:self.tableView];
 		
 		self.countDown = [[CountDown alloc] init];
-
+        [self getSystemConfig];
 		SANotificationEventSubscribe(UGNotificationloginTimeout, self, ^(typeof (self) self, id obj) {
 			[self hiddenSelf];
 		});
 	}
 	return self;
 }
+
+
+#pragma mark - 获得系统设置
+
+- (void)getSystemConfig {
+
+    [SVProgressHUD showWithStatus: nil];
+    [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+        [SVProgressHUD dismiss];
+        [CMResult processWithResult:model success:^{
+            UGSystemConfigModel *config = model.data;
+            UGSystemConfigModel.currentConfig = config;
+        } failure:^(id msg) {
+            [SVProgressHUD dismiss];
+        }];
+    }];
+}
+
 
 - (IBAction)cancelClick:(id)sender {
 	if (self.cancelBlock) {
@@ -154,29 +172,6 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 		[mutDict setObject:bet.playIds.length ? bet.playIds : @"" forKey:playIds];
 
 	}
-    
-    
-    
-//	NSMutableArray * betBeans = [NSMutableArray array];
-//
-//	for (UGBetModel * bet in self.betArray) {
-//		NSMutableDictionary * betBean = @{@"playId": bet.playId, @"money": [NSString stringWithFormat:@"%.2f", [bet.money floatValue]]}.mutableCopy;
-//		if (bet.betInfo.length > 0) {
-//			betBean[@"betInfo"] = bet.betInfo;
-//		}
-//		if (bet.playIds.length > 0) {
-//			betBean[@"playIds"] = bet.playIds;
-//		}
-//		[betBeans addObject:betBean];
-//	}
-//
-//	mutDict[@"betInfo"] = betBeans;
-    
-    [self shareBettingData];
-    
-    
-    
-    NSLog(@"mutDict = %@",mutDict);
 
 	[self submitBet:mutDict];
 	
@@ -196,32 +191,40 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 					[self submitBet:params];
 				}];
 			} else {
-//				[SVProgressHUD showSuccessWithStatus:model.msg];
-                
+  
                 [self hiddenSelf];
-                //==>弹出分享框
-                           [LEEAlert alert].config
-                               .LeeTitle(@"分享注单")
-                               .LeeContent(@"是否分享到聊天室")
-                               .LeeAction(@"取消", nil)
-                               .LeeAction(@"分享", ^{
+                
+                float amountfloat = [self->amount floatValue];
+                float webAmountfloat = [SysConf.chatMinFollowAmount floatValue];
 
-//                                   [[UGBetResultView shareInstance] closeButtonTaped];
-                                   // 确认点击事件Block
-                                   //跳到聊天界面，把分享数据传过去
-                                   
-                                   NSString *jsonStr = [self shareBettingData];
-                                   NSString *url = _NSString(@"%@%@%@&color=%@&back=hide&from=app", baseServerUrl, chatRoomUrl,SysConf.chatRoomName,[[UGSkinManagers shareInstance] setChatNavbgStringColor]);
-                                   NSLog(@"url = %@",url);
-                                   UGChatViewController *chatVC = [[UGChatViewController alloc] init];
-                                   [chatVC setUrl:url];
-                                   chatVC.jsonStr = jsonStr;
-                                   [NavController1 pushViewController:chatVC animated:YES];
-                                   
-                                 
-                                   
-                                })
-                               .LeeShow();
+                if (SysConf.chatFollowSwitch && (amountfloat >= webAmountfloat)) {
+                    //==>弹出分享框
+                   [LEEAlert alert].config
+                       .LeeTitle(@"分享注单")
+                       .LeeContent(@"是否分享到聊天室")
+                       .LeeAction(@"取消", nil)
+                       .LeeAction(@"分享", ^{
+
+    //                                   [[UGBetResultView shareInstance] closeButtonTaped];
+                           // 确认点击事件Block
+                           //跳到聊天界面，把分享数据传过去
+                           
+                           NSString *jsonStr = [self shareBettingData];
+                           NSString *url = _NSString(@"%@%@%@&color=%@&back=hide&from=app", baseServerUrl, chatRoomUrl,SysConf.chatRoomName,[[UGSkinManagers shareInstance] setChatNavbgStringColor]);
+                           NSLog(@"url = %@",url);
+                           UGChatViewController *chatVC = [[UGChatViewController alloc] init];
+                           [chatVC setUrl:url];
+                           chatVC.jsonStr = jsonStr;
+                           [NavController1 pushViewController:chatVC animated:YES];
+                           
+                         
+                           
+                        })
+                       .LeeShow();
+                } else {
+                    [SVProgressHUD showSuccessWithStatus:model.msg];
+                }
+
 			}
 			
 			SANotificationEventPost(UGNotificationGetUserInfo, nil);
@@ -276,7 +279,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
            
            {// 组装playNameArray
                      UGplayNameModel *betList = [UGplayNameModel new];
-                     [betList setPlayName1:[NSString stringWithFormat:@"%@-%@",model.alias,model.name]];
+                     [betList setPlayName1:[NSString stringWithFormat:@"%@-%@",model.title,model.name]];
                      [betList setPlayName2:model.name];
                      [playNameArray addObject:betList];
                [betModel setPlayNameArray:playNameArray];
@@ -320,7 +323,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
     
      NSString *jsonStr = [NSString stringWithFormat:@"shareBet(%@, %@)",listjsonString,paramsjsonString];
     
-     NSLog(@"jsonStr = %@",jsonStr);
+//     NSLog(@"jsonStr = %@",jsonStr);
     
     return jsonStr;
     

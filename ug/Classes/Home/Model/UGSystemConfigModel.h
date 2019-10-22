@@ -76,7 +76,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) BOOL allowMemberCancelBet;    /**<   是否允许会员撤单，1允许 0不允许 */
 @property (nonatomic) BOOL m_promote_pos;           /**<   优惠活动显示在首页还是内页，1首页，0内页 */
 @property (nonatomic) BOOL yuebaoSwitch;            /**<   未登录时是否允许访问利息宝 */
-@property (nonatomic, copy) NSString *chatRoomName;                    /**<   聊天室名称*/ //http://103.9.230.243/dist/index.html#/chatRoom?roomId=0&roomName=聊天室噢
+@property (nonatomic, copy) NSString *chatRoomName;           /**<   聊天室名称*/
+@property (nonatomic) BOOL chatFollowSwitch;                  /**<   是否允许聊天室跟注 */
+@property (nonatomic, copy) NSString *chatMinFollowAmount;    /**<   聊天室跟注最小金额*/
 
 
 + (instancetype)currentConfig;
