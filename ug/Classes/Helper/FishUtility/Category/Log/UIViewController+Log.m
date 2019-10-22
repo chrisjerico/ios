@@ -18,7 +18,7 @@
         [UIViewController jr_swizzleMethod:@selector(cc_dealloc) withMethod:NSSelectorFromString(@"dealloc") error:nil];
         [UIViewController jr_swizzleMethod:@selector(cc_viewWillAppear:) withMethod:@selector(viewWillAppear:) error:nil];
         
-        [UIView aspect_hookSelector:@selector(addSubview:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
+        [UIView aspect_hookSelector:@selector(didAddSubview:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
             UIView *v = ai.arguments.lastObject;
             if (v.classIsCustom && ![NSStringFromClass(v.class) hasPrefix:@"IB"]) {
                 NSLog(@"——————————————添加自定义View： %@", v.class);
