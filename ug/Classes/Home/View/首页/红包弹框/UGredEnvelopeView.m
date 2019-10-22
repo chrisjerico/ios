@@ -13,6 +13,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
 
 @end
+
+
 @implementation UGredEnvelopeView
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -25,28 +27,19 @@
     return self;
 }
 
-
 - (IBAction)cancelButtonClick:(id)sender {
-    if (self.cancelClickBlock) {
+    if (self.cancelClickBlock)
         self.cancelClickBlock();
-    }
 }
+
 - (IBAction)redButtonClick:(id)sender {
-    if (self.redClickBlock) {
+    if (self.redClickBlock)
         self.redClickBlock();
-    }
-    
-    
-    
 }
-
-
-
 
 - (void)setItem:(UGRedEnvelopeModel *)item {
     _item = item;
-    [self.imgView sd_setImageWithURL:[NSURL URLWithString:item.redBagLogo] placeholderImage:[UIImage imageNamed:@""]];
-    
+    [self.imgView sd_setImageWithURL:[NSURL URLWithString:item.redBagLogo]];
 }
 
 @end
