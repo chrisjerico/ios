@@ -69,6 +69,8 @@
         [CMResult processWithResult:model success:^{
             
           [SVProgressHUD showSuccessWithStatus:model.msg];
+            
+           [self.navigationController popToRootViewControllerAnimated:YES];
   
         } failure:^(id msg) {
             

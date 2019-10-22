@@ -120,7 +120,7 @@
                          dispatch_async(dispatch_get_main_queue(), ^{
                              
                           [SVProgressHUD showSuccessWithStatus:model.msg];
-                             
+                          [self.navigationController popToRootViewControllerAnimated:YES];
                          });
               
                          
