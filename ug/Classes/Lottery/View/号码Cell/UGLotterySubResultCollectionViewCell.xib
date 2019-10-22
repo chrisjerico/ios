@@ -17,8 +17,11 @@
                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="单" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="py4-UL-eaI">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.14999999999999999" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qb" translatesAutoresizingMaskIntoConstraints="NO" id="2cC-yU-0zP">
                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="单" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="py4-UL-eaI">
+                        <rect key="frame" x="0.5" y="0.5" width="49" height="49"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <nil key="textColor"/>
@@ -28,16 +31,24 @@
             </view>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="py4-UL-eaI" secondAttribute="bottom" id="KYL-IK-lyf"/>
-                <constraint firstItem="py4-UL-eaI" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="PFO-Oe-HSC"/>
-                <constraint firstAttribute="trailing" secondItem="py4-UL-eaI" secondAttribute="trailing" id="Xv0-Fi-05g"/>
-                <constraint firstItem="py4-UL-eaI" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="nOJ-p3-GKS"/>
+                <constraint firstItem="py4-UL-eaI" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="0.69999999999999996" id="FKo-PH-qcf"/>
+                <constraint firstItem="2cC-yU-0zP" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="N4T-T9-pLM"/>
+                <constraint firstItem="2cC-yU-0zP" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Sys-Pt-cBI"/>
+                <constraint firstItem="2cC-yU-0zP" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="cDJ-DL-okA"/>
+                <constraint firstItem="py4-UL-eaI" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="dza-O2-Rcq"/>
+                <constraint firstItem="py4-UL-eaI" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="0.69999999999999996" id="jZD-wa-KB1"/>
+                <constraint firstItem="2cC-yU-0zP" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="lg8-oT-5uK"/>
+                <constraint firstItem="py4-UL-eaI" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="qsX-M2-DBy"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
             <connections>
+                <outlet property="bgImageView" destination="2cC-yU-0zP" id="iI1-Ba-Wd5"/>
                 <outlet property="titleLabel" destination="py4-UL-eaI" id="YPd-wf-oV1"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="152.67857142857142"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="qb" width="20" height="20"/>
+    </resources>
 </document>

@@ -26,7 +26,6 @@
 
 @end
 
-#define itemW ((UGScreenW - 130) / 10)
 static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
 static NSString *lotteryResultCellid = @"UGLotteryResultCollectionViewCell";
 static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell";
@@ -153,20 +152,22 @@ static NSString *lotteryOneCellId = @"UGFastThreeOneCollectionViewCell";
 #pragma mark - WSLWaterFlowLayoutDelegate
 
 - (CGSize)waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    CGFloat AvailableWidth = APP.Width - 140;
     if ([@"pk10nn" isEqualToString:self.item.gameType] && indexPath.section == 1) {
-        return CGSizeMake(((UGScreenW - 130 - 10) / 6), ((UGScreenW - 130 - 10) / 6));
+        return CGSizeMake(((AvailableWidth - 10) / 6), ((AvailableWidth - 10) / 6));
     } else if ([@"cqssc" isEqualToString:self.item.gameType] && indexPath.section == 1){
-        return CGSizeMake(((UGScreenW - 130 - 5) / 9), ((UGScreenW - 130 - 5) / 9));
+        return CGSizeMake(((AvailableWidth - 5) / 9), ((AvailableWidth - 5) / 9));
     } else if ([@"bjkl8" isEqualToString:self.item.gameType] && indexPath.section == 1) {
-         return CGSizeMake(((UGScreenW - 130 - 2) / 6), ((UGScreenW - 130 - 5) / 9));
+         return CGSizeMake(((AvailableWidth - 2) / 6), ((AvailableWidth - 5) / 10));
     } else if ([@"jsk3" isEqualToString:self.item.gameType]) {
         if (indexPath.section == 0) {
-            return CGSizeMake(((UGScreenW - 130 - 2) / 6), ((UGScreenW - 130 - 5) / 6));
+            return CGSizeMake(((AvailableWidth - 2) / 6), ((AvailableWidth - 5) / 6));
         } else {
-            return CGSizeMake(((UGScreenW - 130 - 2) / 7), ((UGScreenW - 130 - 5) / 7));
+            return CGSizeMake(((AvailableWidth - 2) / 7), ((AvailableWidth - 5) / 7));
         }
     } else {
-        return CGSizeMake(itemW, itemW);
+        CGFloat w = AvailableWidth / 10;
+        return CGSizeMake(w, w);
     }
 }
 

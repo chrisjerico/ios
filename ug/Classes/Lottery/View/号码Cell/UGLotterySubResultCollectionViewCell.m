@@ -9,6 +9,7 @@
 #import "UGLotterySubResultCollectionViewCell.h"
 
 @interface UGLotterySubResultCollectionViewCell ()
+@property (weak, nonatomic) IBOutlet UIImageView *bgImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end
@@ -16,16 +17,14 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
-    self.layer.cornerRadius = 3;
-    self.layer.masksToBounds = YES;
-    self.layer.borderColor = [UIColor blackColor].CGColor;
-    self.layer.borderWidth = 0.7;
+    _bgImageView.image = [[UIImage imageNamed:@"qb"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+    _titleLabel.layer.cornerRadius = 3;
+    _titleLabel.layer.masksToBounds = true;
 }
 
 - (void)setTitle:(NSString *)title {
     _title = title;
-    self.titleLabel.text = title;
+    _titleLabel.text = title;
 }
 
 - (void)setTitleColor:(UIColor *)titleColor {
@@ -35,23 +34,13 @@
 
 - (void)setShowAdd:(BOOL)showAdd {
     _showAdd = showAdd;
-    if (showAdd) {
-        self.titleLabel.hidden = YES;
-        self.layer.borderColor = [UIColor clearColor].CGColor;
-        
-    }else {
-        self.titleLabel.hidden = NO;
-        self.layer.borderColor =  UGRGBColor(218, 218, 218).CGColor;
-    }
+    _titleLabel.hidden = showAdd;
+    _bgImageView.hidden = showAdd;
 }
 
 - (void)setWin:(BOOL)win {
     _win = win;
-    if (win) {
-        self.backgroundColor = [UIColor yellowColor];
-    }else {
-        self.backgroundColor = [UIColor whiteColor];
-    }
+    _titleLabel.backgroundColor = win ? [UIColor yellowColor] : [UIColor whiteColor];
 }
 
 @end
