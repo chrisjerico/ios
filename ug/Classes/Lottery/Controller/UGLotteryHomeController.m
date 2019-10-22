@@ -39,9 +39,7 @@
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) CountDown *countDown;
-@property (nonatomic, strong) NSMutableArray *dataArray;
-@property (nonatomic, strong) CountDown *loadCountdown;
-
+@property (nonatomic, strong) NSMutableArray<UGAllNextIssueListModel *> *dataArray;
 
 @end
 
@@ -74,50 +72,56 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
     self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [weakSelf getAllNextIssueData];
     }];
-    self.loadCountdown = [[CountDown alloc] init];
     [self getAllNextIssueData];
     
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    WeakSelf
-    [self.loadCountdown countDownWithSec:30 PER_SECBlock:^{
-        [weakSelf getAllNextIssueData];
-    }];
-    [self.countDown countDownWithPER_SECBlock:^{
-        [weakSelf updateTimeInVisibleCells];
-    }];
     
+    WeakSelf
+    __block NSDate *__lastRefresh = [NSDate date];
+    [self.countDown countDownWithPER_SECBlock:^{
+        // 每秒刷新倒计时Label
+        [weakSelf updateTimeInVisibleCells];
+        
+        // 间隔超过5秒，且存在过期数据时才刷新数据
+        if ([__lastRefresh timeIntervalSinceDate:[NSDate date]] < -5) {
+            for (UGAllNextIssueListModel *anilm in weakSelf.dataArray) {
+                for (UGNextIssueModel *nim in anilm.list) {
+                    // 判断是否存在过期数据（预留3秒等待下一期开盘）
+                    if ([[nim.curOpenTime dateWithFormat:@"yyyy-MM-dd HH:mm:ss"] timeIntervalSinceDate:[NSDate date]] < -3) {
+                        [weakSelf getAllNextIssueData];
+                        __lastRefresh = [NSDate date];
+                        return ;
+                    }
+                }
+            }
+        }
+    }];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [self.loadCountdown destoryTimer];
     [self.countDown destoryTimer];
 }
 
 - (void)getAllNextIssueData {
-    
     [CMNetwork getAllNextIssueWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [self.collectionView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
-            
             self.dataArray = model.data;
             [self.collectionView reloadData];
-            
         } failure:^(id msg) {
             [SVProgressHUD dismiss];
         }];
     }];
-
 }
 
 - (void)updateTimeInVisibleCells {
     NSArray  *cells = self.collectionView.visibleCells; //取出屏幕可见ceLl
     for (UGLotteryCollectionViewCell *cell in cells) {
         cell.item = cell.item;
-        
     }
 }
 
