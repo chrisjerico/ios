@@ -217,7 +217,10 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
                                    [chatVC setUrl:url];
                                    chatVC.jsonStr = jsonStr;
                                    [NavController1 pushViewController:chatVC animated:YES];
-                               })
+                                   
+                                 
+                                   
+                                })
                                .LeeShow();
 			}
 			

@@ -32,6 +32,7 @@ FOUNDATION_EXTERN NSString *UGNotificationWithdrawalsSuccess;
 FOUNDATION_EXTERN NSString *UGNotificationWithSkinSuccess;
 FOUNDATION_EXTERN NSString *UGNotificationWithResetTabSuccess;
 FOUNDATION_EXTERN NSString *UGNotificationWithRecordOfDeposit;
+
 /// 登录授权
 ///
 /// 如果没有授权将跳转至登录页面, 并在登录完成后回调

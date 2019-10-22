@@ -41,7 +41,6 @@
         [self skin];
     });
     
-    
     if ([CMCommon stringIsNull:self.url]) {
         NSLog(@"url = %@",self.url);
         self.url = ({
@@ -107,12 +106,17 @@
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     [self.webProgressLayer tg_finishedLoadWithError:nil];
-    if (self.jsonStr.length) {
-        [self.tgWebView evaluateJavaScript:self.jsonStr completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-                   NSLog(@"%@----%@",result, error);
-               }];
-    }
-   
+    
+   if (self.jsonStr.length) {
+       
+       dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC));
+       dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+             [self.tgWebView evaluateJavaScript:self.jsonStr completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+                               NSLog(@"%@----%@",result, error);
+                           }];
+       });
+        
+     }
 }
 
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error {
