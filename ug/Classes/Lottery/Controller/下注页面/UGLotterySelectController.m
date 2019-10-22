@@ -18,16 +18,36 @@
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) CountDown *countDown;
 @end
+
+
 static NSString *letteryTicketCellID = @"UGLotteryGameCollectionViewCell";
 static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
+
+
 @implementation UGLotterySelectController
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    WeakSelf
     
+    WeakSelf
+    __block NSDate *__lastRefresh = [NSDate date];
     [self.countDown countDownWithPER_SECBlock:^{
+        // 每秒刷新倒计时Label
         [weakSelf updateTimeInVisibleCells];
+        
+        // 间隔超过5秒，且存在过期数据时才刷新数据
+        if ([__lastRefresh timeIntervalSinceDate:[NSDate date]] < -5) {
+            for (UGAllNextIssueListModel *anilm in weakSelf.dataArray) {
+                for (UGNextIssueModel *nim in anilm.list) {
+                    // 判断是否存在过期数据（预留3秒等待下一期开盘）
+                    if ([[nim.curOpenTime dateWithFormat:@"yyyy-MM-dd HH:mm:ss"] timeIntervalSinceDate:[NSDate date]] < -3) {
+                        [weakSelf getAllNextIssueData];
+                        __lastRefresh = [NSDate date];
+                        return ;
+                    }
+                }
+            }
+        }
     }];
 }
 
@@ -36,13 +56,25 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
     [self.countDown destoryTimer];
 }
 
+- (void)getAllNextIssueData {
+    [CMNetwork getAllNextIssueWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+        [self.collectionView.mj_header endRefreshing];
+        [CMResult processWithResult:model success:^{
+            self.dataArray = model.data;
+            [self.collectionView reloadData];
+        } failure:^(id msg) {
+            [SVProgressHUD dismiss];
+        }];
+    }];
+}
+
 - (void)updateTimeInVisibleCells {
     NSArray  *cells = self.collectionView.visibleCells; //取出屏幕可见ceLl
     for (UGLotteryGameCollectionViewCell *cell in cells) {
         cell.item = cell.item;
-        
     }
 }
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.view.backgroundColor = UIColor.whiteColor;
@@ -58,8 +90,11 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
 	[self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.edges.equalTo(self.view);
 	}];
+    
+    [self getAllNextIssueData];
 }
--(void)cancel{
+
+- (void)cancel {
 	[self.navigationController dismissViewControllerAnimated:true completion:nil];
 }
 
