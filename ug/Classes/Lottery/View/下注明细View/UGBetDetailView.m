@@ -77,8 +77,9 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 
     [SVProgressHUD showWithStatus: nil];
     [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-        [SVProgressHUD dismiss];
+      
         [CMResult processWithResult:model success:^{
+            [SVProgressHUD dismiss];
             UGSystemConfigModel *config = model.data;
             UGSystemConfigModel.currentConfig = config;
         } failure:^(id msg) {
@@ -203,12 +204,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
                        .LeeTitle(@"分享注单")
                        .LeeContent(@"是否分享到聊天室")
                        .LeeAction(@"取消", nil)
-                       .LeeAction(@"分享", ^{
-
-    //                                   [[UGBetResultView shareInstance] closeButtonTaped];
-                           // 确认点击事件Block
-                           //跳到聊天界面，把分享数据传过去
-                           
+                       .LeeAction(@"分享", ^{//跳到聊天界面，把分享数据传过去
                            NSString *jsonStr = [self shareBettingData];
                            NSString *url = _NSString(@"%@%@%@&color=%@&back=hide&from=app", baseServerUrl, chatRoomUrl,SysConf.chatRoomName,[[UGSkinManagers shareInstance] setChatNavbgStringColor]);
                            NSLog(@"url = %@",url);
@@ -216,15 +212,11 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
                            [chatVC setUrl:url];
                            chatVC.jsonStr = jsonStr;
                            [NavController1 pushViewController:chatVC animated:YES];
-                           
-                         
-                           
                         })
                        .LeeShow();
                 } else {
                     [SVProgressHUD showSuccessWithStatus:model.msg];
                 }
-
 			}
 			
 			SANotificationEventPost(UGNotificationGetUserInfo, nil);
@@ -255,7 +247,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
        NSMutableArray<UGbetParamModel> *betParams = [NSMutableArray<UGbetParamModel> new];
        NSMutableArray<UGplayNameModel> *playNameArray = [NSMutableArray<UGplayNameModel> new];
        for (int i = 0; i< self.dataArray.count; i++)  {
-           UGGameBetModel *model = [self.betArray objectAtIndex:i];
+           UGGameBetModel *model = [self.dataArray objectAtIndex:i];
 //           NSLog(@"model=%@",model);
            {// 组装list
                UGbetListModel *betList = [UGbetListModel new];
@@ -268,12 +260,14 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
            }
            
            {// 组装betParams
+             
                   UGbetParamModel *betList = [UGbetParamModel new];
                   [betList setMoney:model.money];
                   [betList setName:model.name];
                   [betList setOdds:model.odds];
                   [betList setPlayId:model.playId];
                   [betParams addObject:betList];
+                 NSLog(@"model.name = %@,model.money = %@",model.name,model.money);
                [betModel setBetParams:betParams];
            }
            
