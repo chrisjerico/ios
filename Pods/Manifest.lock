@@ -3,6 +3,7 @@ PODS:
   - AvoidCrash (2.5.2)
   - BAWKWebView (1.0.9)
   - DateTools (2.0.0)
+  - FLAnimatedImage (1.0.12)
   - FSCalendar (2.8.0)
   - IQKeyboardManager (6.5.0)
   - JCore (2.1.2)
@@ -13,6 +14,12 @@ PODS:
   - Masonry (1.1.0)
   - MJExtension (3.2.1)
   - RegExCategories (1.0)
+  - SDWebImage (4.4.7):
+    - SDWebImage/Core (= 4.4.7)
+  - SDWebImage/Core (4.4.7)
+  - SDWebImage/GIF (4.4.7):
+    - FLAnimatedImage (~> 1.0)
+    - SDWebImage/Core
   - SGQRCode (3.0.1)
   - Toast (4.0.0)
   - YYCache (1.0.4)
@@ -39,6 +46,8 @@ DEPENDENCIES:
   - Masonry
   - MJExtension
   - RegExCategories
+  - SDWebImage
+  - SDWebImage/GIF
   - SGQRCode (~> 3.0.1)
   - Toast (~> 4.0.0)
   - YYCategories
@@ -50,6 +59,7 @@ SPEC REPOS:
     - AvoidCrash
     - BAWKWebView
     - DateTools
+    - FLAnimatedImage
     - FSCalendar
     - IQKeyboardManager
     - JCore
@@ -59,6 +69,7 @@ SPEC REPOS:
     - Masonry
     - MJExtension
     - RegExCategories
+    - SDWebImage
     - SGQRCode
     - Toast
     - YYCache
@@ -71,6 +82,7 @@ SPEC CHECKSUMS:
   AvoidCrash: 28c6916fe19bd2b84126b8dec7cbe61c9a12741d
   BAWKWebView: a45b5c77424a015c91c6684f03392d981932f909
   DateTools: 933ac9c490f21f92127cf690ccd8c397e0126caf
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   FSCalendar: 3a5ed3636e2ba1b83ebebfcf0c2603105a6f5efe
   IQKeyboardManager: 700e5155d6a292383b54e8678aec769e14fc78fc
   JCore: 1a426120b510cdebfd67b82bfb9483238ee09413
@@ -80,6 +92,7 @@ SPEC CHECKSUMS:
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJExtension: 635f2c663dcb1bf76fa4b715b2570a5710aec545
   RegExCategories: e68befacacd5bda853c88f70ec745cb2d0cfb89c
+  SDWebImage: c10d14a8883ebd89664f02a422006f66a85c0c5d
   SGQRCode: bf02d60e18d6660a9d75ff1c8b9b467f064f054e
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
@@ -87,6 +100,6 @@ SPEC CHECKSUMS:
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
 
-PODFILE CHECKSUM: c43c7b717f65e06fab9e24297489840ff0779643
+PODFILE CHECKSUM: 2f43d98435f16fc2832e316be3d54b23ef5077ae
 
-COCOAPODS: 1.8.1
+COCOAPODS: 1.8.4
