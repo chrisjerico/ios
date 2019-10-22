@@ -131,6 +131,11 @@
         [self startAnimation];
 }
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    [self setupUserInfo:true];
+}
+
 - (void)showAvaterSelectView {
     if (UserI.isTest) {
         return;
@@ -167,7 +172,7 @@
     self.progressView.layer.cornerRadius = self.progressView.height / 2;
     self.progressView.layer.masksToBounds = YES;
     self.progressView.backgroundColor = UGRGBColor(213, 224, 237);
-  
+    
     
     //设置皮肤
     [self.view setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
@@ -434,9 +439,7 @@ BOOL isOk = NO;
     
     [self.myCollectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"UICollectionReusableView"];
     
-        [self.myCollectionView setShowsHorizontalScrollIndicator:NO];
-    
- 
+    [self.myCollectionView setShowsHorizontalScrollIndicator:NO];
 }
 
 
@@ -785,13 +788,8 @@ BOOL isOk = NO;
 }
 
 - (UIBezierPath *)progressPathWithProgress:(CGFloat)progress {
-    if (progress < 0.0001) return nil;
+    if (progress < 0.0001) { return nil; }
     
-    if (progress) {
-        _progressLayer.strokeColor = [[UGSkinManagers shareInstance] setMineProgressViewColor].CGColor;
-    } else {
-        _progressLayer.strokeColor = [UIColor clearColor].CGColor;
-    }
     UIBezierPath *path = [UIBezierPath bezierPath];
     CGPoint startPoint = (CGPoint){-5, CGRectGetHeight(self.progressView.frame)/2};
     CGPoint endPoint = (CGPoint){CGRectGetWidth(self.progressView.frame)*progress, startPoint.y};
@@ -863,8 +861,8 @@ BOOL isOk = NO;
     double floatString = [user.balance doubleValue];
     self.userMoneyLabel.text =  [NSString stringWithFormat:@"￥%.2f",floatString];
     //进度条
-    double floatProgress = [user.taskRewardTotal doubleValue]/[user.nextLevelInt doubleValue];
-    self.progressLayer.path = [self progressPathWithProgress:floatProgress].CGPath;
+    double progress = (user.taskRewardTotal.doubleValue - user.curLevelInt.doubleValue)/(user.nextLevelInt.doubleValue - user.curLevelInt.doubleValue);
+    self.progressLayer.path = [self progressPathWithProgress:progress].CGPath;
 }
 
 #pragma mark -- 网络请求

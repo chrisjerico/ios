@@ -75,6 +75,11 @@
 
 }
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    [self setupUserInfo];
+}
+
 - (void)initView {
     [self.integralLabel setHidden:YES];
     self.fd_prefersNavigationBarHidden = NO;
@@ -269,8 +274,8 @@
     double floatString = [user.balance doubleValue];
     self.balanceLabel.text =  [NSString stringWithFormat:@"￥%.2f",floatString];
     //进度条
-    float floatProgress = (float)[user.taskRewardTotal doubleValue]/[user.nextLevelInt doubleValue];
-    self.progressLayer.path = [self progressPathWithProgress:floatProgress].CGPath;
+    double progress = (user.taskRewardTotal.doubleValue - user.curLevelInt.doubleValue)/(user.nextLevelInt.doubleValue - user.curLevelInt.doubleValue);
+    self.progressLayer.path = [self progressPathWithProgress:progress].CGPath;
 }
 
 
