@@ -70,10 +70,10 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
     [self getChanglong];
    
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [self getChanglong];
+        [weakSelf getChanglong];
     }];
     SANotificationEventSubscribe(UGNotificationGetChanglongBetRecrod, self, ^(typeof (self) self, id obj) {
-        [self.amountLabel resignFirstResponder];
+        [weakSelf.amountLabel resignFirstResponder];
     });
     
     
@@ -114,13 +114,13 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
 }
 
 - (void)getChanglong {
+    __weakSelf_(__self);
     [CMNetwork getChanglongWithParams:@{@"id":@"60"} completion:^(CMResult<id> *model, NSError *err) {
         [self.tableView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
             if (model.data) {
-                
-                self.dataArray = model.data;
-                [self.tableView reloadData];
+                __self.dataArray = model.data;
+                [__self.tableView reloadData];
             }
         } failure:^(id msg) {
             [SVProgressHUD dismiss];
@@ -236,31 +236,31 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
     [mutDict setObject:@"" forKey:odds];
     [mutDict setObject:@"" forKey:rebate];
     
+    __weakSelf_(__self);
     [SVProgressHUD showWithStatus:nil];
     [CMNetwork userBetWithParams:mutDict completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             [SVProgressHUD showSuccessWithStatus:model.msg];
             SANotificationEventPost(UGNotificationGetUserInfo, nil);
             betItem.select = NO;
-            self.selBetItem = nil;
-            [self.tableView reloadData];
-            [self clearClick:nil];
+            __self.selBetItem = nil;
+            [__self.tableView reloadData];
+            [__self clearClick:nil];
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
-            
         }];
     }];
    
 }
 
+
 #pragma mark - UITableViewDataSource
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
     return self.dataArray.count;
 }
 
@@ -310,18 +310,14 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    
     return 0.001f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    
     return 0.001f;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    
 }
 
 - (void)updateSelectLabelWithCount:(NSInteger )count {

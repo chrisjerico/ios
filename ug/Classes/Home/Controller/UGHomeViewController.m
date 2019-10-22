@@ -53,6 +53,7 @@
 #import "UGLotteryRulesView.h"
 #import "STButton.h"
 #import "UGPlatformNoticeView.h"
+#import "UGAppVersionManager.h"
 
 // Model
 #import "UGBannerModel.h"
@@ -148,7 +149,6 @@
     [self.gameNavigationView reloadData];
 
     [[UGSkinManagers shareInstance] navigationBar:(UGNavigationController *)self.navigationController bgColor: [[UGSkinManagers shareInstance] setNavbgColor]];
-
 }
 
 - (BOOL)允许游客访问 { return true; }
@@ -383,7 +383,7 @@
         [self.navigationController pushViewController:[UGPromotionIncomeController new] animated:YES];
     } else if ([model.subId isEqualToString:@"2"]) {
         // APP下载
-        [SVProgressHUD showInfoWithStatus:@"下载链接未配置"];
+        [[UGAppVersionManager shareInstance] updateVersionApi:true];
     } else if ([model.subId isEqualToString:@"3"]) {
         // 聊天室
         [self.navigationController pushViewController:[UGChatViewController new] animated:YES];

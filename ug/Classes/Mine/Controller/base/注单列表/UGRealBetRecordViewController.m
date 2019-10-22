@@ -245,7 +245,7 @@ static NSString *realBetRecordCellId = @"UGRealBetRecordCell";
             [self.titleView setTitle:item.gameName forState:UIControlStateNormal];
             [self getBetsList];
         }
-    } cancelBlock:nil];
+    } cancelBlock:^{}];
 }
 
 

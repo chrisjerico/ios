@@ -52,8 +52,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [IQKeyboardManager.sharedManager.disabledDistanceHandlingClasses addObject:[self class]];
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-        
         [self skin];
     });
     

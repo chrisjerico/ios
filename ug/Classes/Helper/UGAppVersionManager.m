@@ -29,13 +29,14 @@ static NSInteger versionNumber = 102;
 
 //请求版本信息
 - (void)updateVersionApi:(BOOL)flag {
+    [SVProgressHUD show];
     [CMNetwork checkVersionWithParams:@{@"device":@"ios"} completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
+            [SVProgressHUD dismiss];
             self.versionModle = model.data;
             [self upgradeHandel:flag];
-            
         } failure:^(id msg) {
-            [SVProgressHUD dismiss];
+            [SVProgressHUD showErrorWithStatus:msg];
         }];
     }];
 }
