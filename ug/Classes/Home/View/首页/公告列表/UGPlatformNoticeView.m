@@ -121,25 +121,27 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
     // 加载html
     {
         UIWebView *wv = [cell viewWithTagString:@"WebView"];
-        [wv removeFromSuperview];
-        wv = [UIWebView new];
-        wv.backgroundColor = [UIColor clearColor];
-        wv.tagString = @"WebView";
-        [wv xw_addObserverBlockForKeyPath:@"scrollView.contentSize" block:^(id  _Nonnull obj, id  _Nonnull oldVal, id  _Nonnull newVal) {
-            CGFloat h = [newVal CGSizeValue].height;
-            [obj mas_updateConstraints:^(MASConstraintMaker *make) {
-                make.height.mas_equalTo(h);
+        if (!wv) {
+            wv = [UIWebView new];
+            wv.backgroundColor = [UIColor clearColor];
+            wv.tagString = @"WebView";
+            [wv xw_addObserverBlockForKeyPath:@"scrollView.contentSize" block:^(id  _Nonnull obj, id  _Nonnull oldVal, id  _Nonnull newVal) {
+                CGFloat h = [newVal CGSizeValue].height + 5;
+                [obj mas_updateConstraints:^(MASConstraintMaker *make) {
+                    make.height.mas_equalTo(h);
+                }];
+                [tableView beginUpdates];
+                [tableView endUpdates];
             }];
-            [tableView beginUpdates];
-            [tableView endUpdates];
-        }];
-        [cell addSubview:wv];
-        
-        [wv mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.equalTo(cell).offset(-2);
-            make.top.bottom.equalTo(cell).offset(2);
-            make.height.mas_equalTo(60);
-        }];
+            [cell addSubview:wv];
+            
+            [wv mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.right.equalTo(cell).offset(-2);
+                make.top.bottom.equalTo(cell).offset(2);
+                make.height.mas_equalTo(60);
+            }];
+        }
+        wv.scrollView.contentSize = CGSizeMake(100, 100);
         [wv loadHTMLString:_NSString(@"<head><style>img{width:auto !important;height:auto}</style></head>%@", nm.content) baseURL:nil];
     }
     
@@ -161,7 +163,7 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
     if (!bottomLineView) {
         bottomLineView = [UIView new];
         bottomLineView.backgroundColor = [[UGSkinManagers shareInstance] setNavbgColor];
-        bottomLineView.tagString = @"topLineView";
+        bottomLineView.tagString = @"bottomLineView";
         [cell addSubview:bottomLineView];
         
         [bottomLineView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -187,12 +189,9 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
     WeakSelf
     headerView.clickBllock = ^{
         if (weakSelf.selectSection == -1) {
-
             item.hiddenBottomLine = !item.hiddenBottomLine;
             weakSelf.selectSection = section;
-
-        }else {
-
+        } else {
             if (section == weakSelf.selectSection) {
                 weakSelf.selectSection = -1;
             } else {
@@ -200,10 +199,8 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
                 lastItem.hiddenBottomLine = NO;
                 weakSelf.selectSection = section;
             }
-
             item.hiddenBottomLine = !item.hiddenBottomLine;
         }
-
         [weakSelf.tableView reloadData];
     };
     return headerView;
