@@ -30,8 +30,25 @@
     });
     
     
-    [self initView];
+    [self getUserInfo];
    
+}
+- (void)getUserInfo {
+
+    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
+    [CMNetwork getUserInfoWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        
+        [CMResult processWithResult:model success:^{
+            UGUserModel *user = model.data;
+            UGUserModel *oldUser = [UGUserModel currentUser];
+            user.sessid = oldUser.sessid;
+            user.token = oldUser.token;
+            UGUserModel.currentUser = user;
+           [self initView];
+        } failure:^(id msg) {
+        
+        }];
+    }];
 }
 
 -(void)initView{
