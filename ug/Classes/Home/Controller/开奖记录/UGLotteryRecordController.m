@@ -69,37 +69,56 @@ static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
     self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithImageName:@"riqi" target:self action:@selector(rightBarButonItemClick)];
     self.dateLabel.text = self.dateArray.firstObject;
     
-    if ([CMCommon arryIsNull:_lotteryGamesArray]||[CMCommon stringIsNull:_gameId]) {
-        [self getAllNextIssueData];
-    }
-    else{
-        for (UGAllNextIssueListModel *listModel in self.lotteryGamesArray) {
-            for (UGNextIssueModel *model in listModel.list) {
-				
-				if ([@[@"7", @"11", @"9"] containsObject: model.gameId]) {
-					
-					// bug fix: 52941 彩种：开奖记录中去掉秒秒彩类彩票。
-					continue;
-				}
-                if ([model.gameId isEqualToString:self.gameId]) {
-                    self.gameNameLabel.text = model.title;
-                    [self.logoView sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:@"loading"]];
-                }
-                [self.gameArray addObject:model];
-                [self.gameNameArray addObject:model.title];
-            }
-        }
-        for (UGNextIssueModel *model in self.gameArray) {
-            if ([model.gameId isEqualToString:self.gameId]) {
-                self.selGameIndex = [self.gameArray indexOfObject:model];
-            }
-        }
-        [self getLotteryHistory];
-    }
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self getLotteryHistory];
     }];
+    
+    // 初始化彩种列表数据
+    {
+        __weakSelf_(__self);
+        void (^setupData)(void) = ^{
+            for (UGAllNextIssueListModel *listModel in __self.lotteryGamesArray) {
+                for (UGNextIssueModel *model in listModel.list) {
+                    if ([@[@"7", @"11", @"9"] containsObject: model.gameId]) {
+                        // bug fix: 52941 彩种：开奖记录中去掉秒秒彩类彩票。
+                        continue;
+                    }
+                    if ([model.gameId isEqualToString:__self.gameId]) {
+                        __self.gameNameLabel.text = model.title;
+                        [__self.logoView sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:@"loading"]];
+                    }
+                    [__self.gameArray addObject:model];
+                    [__self.gameNameArray addObject:model.title];
+                }
+            }
+            for (UGNextIssueModel *model in __self.gameArray) {
+                if ([model.gameId isEqualToString:__self.gameId]) {
+                    __self.selGameIndex = [__self.gameArray indexOfObject:model];
+                }
+            }
+            [self getLotteryHistory];
+        };
+        if ([CMCommon arryIsNull:_lotteryGamesArray] || [CMCommon stringIsNull:_gameId]) {
+            // 获取彩票大厅数据
+            [CMNetwork getAllNextIssueWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+                [CMResult processWithResult:model success:^{
+                    
+                    __self.lotteryGamesArray = model.data;
+                    
+                    UGAllNextIssueListModel *model = self.lotteryGamesArray.firstObject;
+                    UGNextIssueModel *game = model.list.firstObject;
+                    __self.gameId = game.gameId;
+                    setupData();
+                    
+                } failure:^(id msg) {
+                    [SVProgressHUD dismiss];
+                }];
+            }];
+        } else {
+            setupData();
+        }
+    }
 }
 
 - (void)getLotteryHistory {
@@ -202,39 +221,6 @@ static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
     if (ybPopupMenu == self.lotteryTypePopView) {
         self.arrowView.transform = CGAffineTransformMakeRotation(M_PI * 2);
     }
-}
-
-- (void)getAllNextIssueData {
-    [CMNetwork getAllNextIssueWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-        [CMResult processWithResult:model success:^{
-            
-            self->_lotteryGamesArray = model.data;
-            
-             UGAllNextIssueListModel *model = self.lotteryGamesArray.firstObject;
-            UGNextIssueModel *game = model.list.firstObject;
-            self->_gameId = game.gameId;
-            
-            for (UGAllNextIssueListModel *listModel in self.lotteryGamesArray) {
-                for (UGNextIssueModel *model in listModel.list) {
-                    if ([model.gameId isEqualToString:self.gameId]) {
-                        self.gameNameLabel.text = model.title;
-                        [self.logoView sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:@"loading"]];
-                    }
-                    [self.gameArray addObject:model];
-                    [self.gameNameArray addObject:model.title];
-                }
-            }
-            for (UGNextIssueModel *model in self.gameArray) {
-                if ([model.gameId isEqualToString:self.gameId]) {
-                    self.selGameIndex = [self.gameArray indexOfObject:model];
-                }
-            }
-            [self getLotteryHistory];
-            
-        } failure:^(id msg) {
-            [SVProgressHUD dismiss];
-        }];
-    }];
 }
 
 @end

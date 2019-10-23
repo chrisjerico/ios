@@ -336,7 +336,7 @@
     }
 }
 
-- (BOOL)prefersStatusBarHidden{
+- (BOOL)prefersStatusBarHidden {
 	return NO;
 }
 
@@ -353,16 +353,12 @@
 	self.initSubview = YES;
 }
 
-- (void)gameNavigationItemTaped: (NSNotification *)notification {
+- (void)gameNavigationItemTaped:(NSNotification *)notification {
 	GameModel *model = notification.object;
-
-         [self gameNavigationAction:model];
-
-    
+    [self gameNavigationAction:model];
 }
 
-
--(void)gameNavigationAction: (GameModel *)model{
+- (void)gameNavigationAction: (GameModel *)model{
     
     if ([model.subId isEqualToString:@"1"]) {
         // 资金管理
@@ -376,8 +372,8 @@
         changlongVC.lotteryGamesArray = self.lotteryGamesArray;
         [self.navigationController pushViewController:changlongVC animated:YES];
     } else if ([model.subId isEqualToString:@"7"]) {
-        //
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://test10.6yc.com/Open_prize/index.php"]];
+        // 开奖网
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_NSString(@"%@/Open_prize/index.php", baseServerUrl)]];
     } else if ([model.subId isEqualToString:@"6"]) {
         // 推广收益
         [self.navigationController pushViewController:[UGPromotionIncomeController new] animated:YES];
@@ -397,12 +393,11 @@
     else if ([model.subId isEqualToString:@"9"]) {
         // 优惠活动
        [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGPromotionsController") animated:YES];
-      
     }
     else if ([model.subId isEqualToString:@"10"]) {
         // 游戏记录
-       UGBetRecordViewController *vc = [[UGBetRecordViewController alloc] init];
-      [self.navigationController pushViewController:vc animated:true];
+        UGBetRecordViewController *vc = [[UGBetRecordViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:true];
     }
     else if ([model.subId isEqualToString:@"11"]) {
         // QQ客服
@@ -412,20 +407,18 @@
         } else {
             qqstr = SysConf.serviceQQ1;
         }
-      NSString *qq=[NSString stringWithFormat:@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web",qqstr];
-      NSURL *url = [NSURL URLWithString:qq];
+        NSString *qq=[NSString stringWithFormat:@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web",qqstr];
+        NSURL *url = [NSURL URLWithString:qq];
         [[UIApplication sharedApplication] openURL:url];
-
     }
-    else{
+    else {
        TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
        webViewVC.url = model.url;
        webViewVC.webTitle = model.title;
        [self.navigationController pushViewController:webViewVC animated:YES];
-        
-
     }
 }
+
 - (void)getUserInfo {
 	if (!UGLoginIsAuthorized()) {
 		return;

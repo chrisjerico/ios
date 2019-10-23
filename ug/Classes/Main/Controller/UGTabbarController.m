@@ -24,7 +24,7 @@
 #import "UGSigInCodeViewController.h"       // 每日签到
 #import "UGPromotionIncomeController.h"     // 推广收益
 #import "UGBalanceConversionController.h"   // 额度转换
-
+#import "UGAgentViewController.h"           // 申请代理
 
 
 #import "UGSystemConfigModel.h"
@@ -124,6 +124,7 @@ static UGTabbarController *_tabBarVC = nil;
         [UGmobileMenu menu:@"/yuebao"          :@"利息宝" :@"lixibao" :@"lixibao"         :[UGYubaoViewController class]],
         [UGmobileMenu menu:@"/Sign"            :@"签到" :@"qiandao" :@"qiandaosel"       :[UGSigInCodeViewController class]],
         [UGmobileMenu menu:@"/referrer"        :@"推荐收益" :@"shouyi1" :@"shouyi1sel"     :[UGPromotionIncomeController class]],
+        [UGmobileMenu menu:@"/暂无"             :@"申请代理" :@"shouyi1" :@"shouyi1sel"     :[UGAgentViewController class]],
     ];
     
     self.delegate = self;
@@ -177,26 +178,6 @@ static UGTabbarController *_tabBarVC = nil;
 - (void)setUpTabBarItemTextAttributes {
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[[UGSkinManagers shareInstance] settabNOSelectColor]} forState:UIControlStateNormal];
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[[UGSkinManagers shareInstance] settabSelectColor]} forState:UIControlStateSelected];
-}
-
-/**
- *  添加一个子控制器
- *
- *  @param viewController    控制器
- *  @param title             标题
- *  @param imageName         图片
- *  @param selectedImageName 选中图片
- */
-
-- (void)addOneChildViewController:(UIViewController *)viewController WithTitle:(NSString *)title imageName:(NSString *)imageName selectedImageName:(NSString *)selectedImageName{
-    
-    viewController.view.backgroundColor     = UGBackgroundColor;
-    viewController.tabBarItem.title         = title;
-    viewController.tabBarItem.image         = [UIImage imageNamed:imageName];
-    UIImage *image = [UIImage imageNamed:selectedImageName];
-    image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    viewController.tabBarItem.selectedImage = image;
-    [self addChildViewController:viewController];
 }
 
 
@@ -271,8 +252,51 @@ static UGTabbarController *_tabBarVC = nil;
 #pragma mark - UITabBarControllerDelegate
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
+    
+    UIViewController *vc = ((UINavigationController *)viewController).viewControllers.firstObject;
+    if (UGLoginIsAuthorized()) {
+        // 去推荐收益前判断如果用户不是代理，应该去申请代理页面
+        // 去申请代理前判断如果用户是代理，应该去推荐收益页面
+        if (([vc isKindOfClass:[UGPromotionIncomeController class]] && !UserI.isAgent) ||
+            ([vc isKindOfClass:[UGAgentViewController class]] && UserI.isAgent)) {
+            
+            __weakSelf_(__self);
+            [SVProgressHUD showWithStatus:nil];
+            [CMNetwork teamAgentApplyInfoWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:^(CMResult<id> *model, NSError *err) {
+                [CMResult processWithResult:model success:^{
+                    
+                    [SVProgressHUD dismiss];
+                    UGagentApplyInfo *obj  = (UGagentApplyInfo *)model.data;
+                    int intStatus = obj.reviewStatus.intValue;
+                    
+                    //0 未提交  1 待审核  2 审核通过 3 审核拒绝
+                    if (intStatus == 2) {
+                        UGmobileMenu *gm = [__self.gms objectWithValue:@"推荐收益" keyPath:@"name"];
+                        UGPromotionIncomeController *vc = [UGPromotionIncomeController new];
+                        vc.tabBarItem.title = gm.name;
+                        vc.tabBarItem.image = [UIImage imageNamed:gm.icon];
+                        vc.tabBarItem.selectedImage = [[UIImage imageNamed:gm.selectedIcon] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+                        ((UINavigationController *)viewController).viewControllers = @[vc];
+                    } else {
+                        UGmobileMenu *gm = [__self.gms objectWithValue:@"申请代理" keyPath:@"name"];
+                        UGAgentViewController *vc = [[UGAgentViewController alloc] init];
+                        vc.item = obj;
+                        vc.tabBarItem.title = gm.name;
+                        vc.tabBarItem.image = [UIImage imageNamed:gm.icon];
+                        vc.tabBarItem.selectedImage = [[UIImage imageNamed:gm.selectedIcon] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+                        ((UINavigationController *)viewController).viewControllers = @[vc];
+                    }
+                    tabBarController.selectedViewController = viewController;
+                } failure:^(id msg) {
+                    [SVProgressHUD showErrorWithStatus:msg];
+                }];
+            }];
+            return false;
+        }
+    }
+    
     // push权限判断
-    return [UGTabbarController canPushToViewController:((UINavigationController *)viewController).viewControllers.firstObject];
+    return [UGTabbarController canPushToViewController:vc];
 }
 
 @end
