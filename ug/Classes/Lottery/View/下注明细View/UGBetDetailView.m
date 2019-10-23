@@ -229,12 +229,18 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
        for (int i = 0; i< self.betArray.count; i++)  {
            UGGameBetModel *model = [self.betArray objectAtIndex:i];
            NSLog(@"model=%@",model);
+           NSString *name = @"";
+           if ([CMCommon stringIsNull:model.betInfo]) {
+               name = model.name;
+           } else {
+               name = model.betInfo;
+           }
            {// 组装list
                UGbetListModel *betList = [UGbetListModel new];
                [betList setBetMoney:model.money];
                [betList setIndex:[NSString stringWithFormat:@"%d",i]];
                [betList setOdds:model.odds];
-               [betList setName:model.name];
+               [betList setName:name];
                NSDictionary* dict = [betList toDictionary];
                [list addObject:dict];
            }
@@ -243,7 +249,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
              
                   UGbetParamModel *betList = [UGbetParamModel new];
                   [betList setMoney:model.money];
-                  [betList setName:model.name];
+                  [betList setName:name];
                   [betList setOdds:model.odds];
                   [betList setPlayId:model.playId];
                   [betParams addObject:betList];
@@ -254,14 +260,9 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
            {// 组装playNameArray
                 UGplayNameModel *betList = [UGplayNameModel new];
                
-               NSString *name = @"";
-               if ([CMCommon stringIsNull:model.betInfo]) {
-                   name = model.name;
-               } else {
-                   name = model.betInfo;
-               }
+        
                 [betList setPlayName1:[NSString stringWithFormat:@"%@-%@",model.title,name]];
-                [betList setPlayName2:model.name];
+                [betList setPlayName2:name];
                 [playNameArray addObject:betList];
                 [betModel setPlayNameArray:playNameArray];
 
