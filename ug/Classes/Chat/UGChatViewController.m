@@ -9,11 +9,9 @@
 #import "UGChatViewController.h"
 #import "STBarButtonItem.h"
 
-@interface UGChatViewController (){
-    UIButton *closeBtn;
-}
+@interface UGChatViewController ()
 @property (nonatomic) UIView *statusBarBgView;
-
+@property (nonatomic) UIButton *closeBtn;
 @end
 
 
@@ -52,9 +50,7 @@
                url;
            });
     }
-  
-
-
+    
     self.title = @"聊天室";
     
     self.fd_prefersNavigationBarHidden = YES;
@@ -69,16 +65,38 @@
     // 返回按钮
     {
         __weakSelf_(__self);
-        closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        closeBtn.frame = CGRectMake(APP.Width-80, APP.StatusBarHeight, 40, 45);
-        [closeBtn setImage:[UIImage imageNamed:@"c_login_close_fff"] forState:UIControlStateNormal];
-        [closeBtn handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
+        _closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _closeBtn.frame = CGRectMake(APP.Width-80, APP.StatusBarHeight, 40, 45);
+        [_closeBtn setImage:[UIImage imageNamed:@"c_login_close_fff"] forState:UIControlStateNormal];
+        [_closeBtn handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
             [__self.navigationController popViewControllerAnimated:true];
         }];
         
         if (self.navigationController.viewControllers.firstObject != self){
-             [self.view addSubview:closeBtn];
+             [self.view addSubview:_closeBtn];
         }
+    }
+    
+    // 没秒判断一下 window.canShare 参数为YES才进行分享
+    if (_jsonStr.length) {
+        __weakSelf_(__self);
+        __block NSTimer *__timer = nil;
+        __timer = [NSTimer scheduledTimerWithInterval:1 repeats:true block:^(NSTimer *timer) {
+            [__self.tgWebView evaluateJavaScript:@"window.canShare" completionHandler:^(id obj, NSError *error) {
+                if ([obj isKindOfClass:[NSNumber class]] && [obj boolValue]) {
+                    [__self.tgWebView evaluateJavaScript:__self.jsonStr completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+                        NSLog(@"分享结果：%@----%@", result, error);
+                    }];
+                    [__timer invalidate];
+                    __timer = nil;
+                }
+                
+                if (!__self) {
+                    [__timer invalidate];
+                    __timer = nil;
+                }
+            }];
+        }];
     }
 }
 
@@ -91,42 +109,13 @@
     [self.view addSubview:_statusBarBgView];
 }
 
-
 - (void)setJsonStr:(NSString *)jsonStr {
     _jsonStr = jsonStr;
     NSLog(@"_jsonStr = %@",_jsonStr);
     if (![CMCommon stringIsNull:_jsonStr]){
-        [self.view addSubview:closeBtn];
+        [self.view addSubview:_closeBtn];
     }
 }
-
-
-#pragma mark - UIWebViewDelegate
-
-
-- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
-    [self.webProgressLayer tg_finishedLoadWithError:nil];
-    
-    if (self.jsonStr.length) {
-//        self.jsContext =  [webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
-//        self.bridge =[[PICBridge alloc]init];
-        
-        
-        dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC));
-        dispatch_after(delayTime, dispatch_get_main_queue(), ^{
-            [self.tgWebView evaluateJavaScript:self.jsonStr completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-                NSLog(@"%@----%@", result, error);
-            }];
-        });
-     }
-}
-
-- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error {
-    [self.webProgressLayer tg_finishedLoadWithError:error];
-    NSLog(@"didFailProvisionalNavigation----%@", error);
-}
-
-
 
 @end
 
