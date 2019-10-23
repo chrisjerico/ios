@@ -147,6 +147,11 @@
      self.gameNavigationView.layer.borderColor = [[UGSkinManagers shareInstance] sethomeContentBorderColor].CGColor;
     
     [self.gameNavigationView reloadData];
+//    if (self.gameCategorys) {
+//        self.gameTypeView.gameTypeArray = self.gameCategorys;
+//    }
+    
+       
 
     [[UGSkinManagers shareInstance] navigationBar:(UGNavigationController *)self.navigationController bgColor: [[UGSkinManagers shareInstance] setNavbgColor]];
 }

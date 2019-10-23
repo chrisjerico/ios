@@ -226,9 +226,9 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
        NSMutableArray *list = [NSMutableArray new];
        NSMutableArray<UGbetParamModel> *betParams = [NSMutableArray<UGbetParamModel> new];
        NSMutableArray<UGplayNameModel> *playNameArray = [NSMutableArray<UGplayNameModel> new];
-       for (int i = 0; i< self.dataArray.count; i++)  {
-           UGGameBetModel *model = [self.dataArray objectAtIndex:i];
-//           NSLog(@"model=%@",model);
+       for (int i = 0; i< self.betArray.count; i++)  {
+           UGGameBetModel *model = [self.betArray objectAtIndex:i];
+           NSLog(@"model=%@",model);
            {// 组装list
                UGbetListModel *betList = [UGbetListModel new];
                [betList setBetMoney:model.money];
@@ -247,16 +247,25 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
                   [betList setOdds:model.odds];
                   [betList setPlayId:model.playId];
                   [betParams addObject:betList];
-                 NSLog(@"model.name = %@,model.money = %@",model.name,model.money);
-               [betModel setBetParams:betParams];
+                  NSLog(@"model.name = %@,model.money = %@",model.name,model.money);
+                 [betModel setBetParams:betParams];
            }
            
            {// 组装playNameArray
-                     UGplayNameModel *betList = [UGplayNameModel new];
-                     [betList setPlayName1:[NSString stringWithFormat:@"%@-%@",model.title,model.name]];
-                     [betList setPlayName2:model.name];
-                     [playNameArray addObject:betList];
-               [betModel setPlayNameArray:playNameArray];
+                UGplayNameModel *betList = [UGplayNameModel new];
+               
+               NSString *name = @"";
+               if ([CMCommon stringIsNull:model.betInfo]) {
+                   name = model.name;
+               } else {
+                   name = model.betInfo;
+               }
+                [betList setPlayName1:[NSString stringWithFormat:@"%@-%@",model.title,name]];
+                [betList setPlayName2:model.name];
+                [playNameArray addObject:betList];
+                [betModel setPlayNameArray:playNameArray];
+
+                    
            }
 
        }
@@ -274,6 +283,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
             
             if ([self.code isEqualToString:@"LMA"] ||[self.code isEqualToString:@"ZX"] ||[self.code isEqualToString:@"HX"] ||[self.code isEqualToString:@"LX"] ||[self.code isEqualToString:@"LW"] ||[self.code isEqualToString:@"ZXBZ"] ) {
                  betModel.specialPlay = YES;
+                
             } else {
                  betModel.specialPlay = NO;
             }
