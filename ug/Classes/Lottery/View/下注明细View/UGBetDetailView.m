@@ -62,32 +62,12 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 		[self addSubview:self.tableView];
 		
 		self.countDown = [[CountDown alloc] init];
-        [self getSystemConfig];
 		SANotificationEventSubscribe(UGNotificationloginTimeout, self, ^(typeof (self) self, id obj) {
 			[self hiddenSelf];
 		});
 	}
 	return self;
 }
-
-
-#pragma mark - 获得系统设置
-
-- (void)getSystemConfig {
-
-    [SVProgressHUD showWithStatus: nil];
-    [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-      
-        [CMResult processWithResult:model success:^{
-            [SVProgressHUD dismiss];
-            UGSystemConfigModel *config = model.data;
-            UGSystemConfigModel.currentConfig = config;
-        } failure:^(id msg) {
-            [SVProgressHUD dismiss];
-        }];
-    }];
-}
-
 
 - (IBAction)cancelClick:(id)sender {
 	if (self.cancelBlock) {
