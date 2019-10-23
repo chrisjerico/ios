@@ -40,18 +40,15 @@
     self.title = self.webTitle;
 }
 
-- (void)setUrl:(NSString *)url{
-    
+- (void)setUrl:(NSString *)url {
     if (!self.tgWebView) {
         self.tgWebView  = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
         self.tgWebView.navigationDelegate = self;
         [self.view addSubview:self.tgWebView];
     }
     if ( ![url hasPrefix:@"http"] ) {
-                 [self.navigationController.view makeToast:@"该url不包含http"
-                 duration:1.5
-                 position:CSToastPositionCenter];
-       return;
+        [self.navigationController.view makeToast:@"该url不包含http" duration:1.5 position:CSToastPositionCenter];
+        return;
     }
     _url = url;
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
@@ -78,20 +75,20 @@
     [self.webProgressLayer tg_finishedLoadWithError:error];
 }
 
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
-{
-     if ([keyPath isEqualToString:@"title"]){
+
+#pragma mark - KVO
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+     if ([keyPath isEqualToString:@"title"]) {
         if (object == self.tgWebView) {
             if ([CMCommon stringIsNull:_webTitle]) {
                  self.title = self.tgWebView.title;
             }
-           
-        }else{
+        } else{
             [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
         }
     }
 }
-
 
 - (void)dealloc {
     [self.webProgressLayer tg_closeTimer];

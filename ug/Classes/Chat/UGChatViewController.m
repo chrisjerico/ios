@@ -94,9 +94,9 @@
 
 - (void)setJsonStr:(NSString *)jsonStr {
     _jsonStr = jsonStr;
-        NSLog(@"_jsonStr = %@",_jsonStr);
+    NSLog(@"_jsonStr = %@",_jsonStr);
     if (![CMCommon stringIsNull:_jsonStr]){
-             [self.view addSubview:closeBtn];
+        [self.view addSubview:closeBtn];
     }
 }
 
@@ -107,21 +107,28 @@
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     [self.webProgressLayer tg_finishedLoadWithError:nil];
     
-   if (self.jsonStr.length) {
-       
-       dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC));
-       dispatch_after(delayTime, dispatch_get_main_queue(), ^{
-             [self.tgWebView evaluateJavaScript:self.jsonStr completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-                               NSLog(@"%@----%@",result, error);
-                           }];
-       });
+    if (self.jsonStr.length) {
+//        self.jsContext =  [webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
+//        self.bridge =[[PICBridge alloc]init];
         
+        
+        dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC));
+        dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+            [self.tgWebView evaluateJavaScript:self.jsonStr completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+                NSLog(@"%@----%@", result, error);
+            }];
+        });
      }
 }
 
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error {
     [self.webProgressLayer tg_finishedLoadWithError:error];
-     NSLog(@"didFailProvisionalNavigation----%@", error);
+    NSLog(@"didFailProvisionalNavigation----%@", error);
 }
 
+
+
 @end
+
+
+

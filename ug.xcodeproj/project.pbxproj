@@ -2604,13 +2604,12 @@
 			children = (
 				CF48BF67235590EB00DFF4BC /* SlideSegmentView */,
 				CFD3BF4423473D0500FCDA6D /* LogHelper */,
-				CFD3BF2823471A4F00FCDA6D /* ZJNetwork */,
+				CFD3BF2823471A4F00FCDA6D /* CCNetworkRequests1 */,
 				CFD3BF172347196600FCDA6D /* HUD and Alert */,
 				CFD3BE972347137E00FCDA6D /* FishUtility.h */,
 				CFD3BE982347137E00FCDA6D /* IBInspectable Views */,
 				CFD3BEA12347137E00FCDA6D /* define */,
 				CFD3BEA52347137E00FCDA6D /* Category */,
-				CFD3BEEE2347137E00FCDA6D /* cc_objc_msgSend.h */,
 			);
 			path = FishUtility;
 			sourceTree = "<group>";
@@ -2638,6 +2637,7 @@
 				CFD3BEA22347137E00FCDA6D /* define_default.h */,
 				CFD3BEA32347137E00FCDA6D /* define_log.h */,
 				CFD3BEA42347137E00FCDA6D /* cc_runtime_property.h */,
+				CFD3BEEE2347137E00FCDA6D /* cc_objc_msgSend.h */,
 			);
 			path = define;
 			sourceTree = "<group>";
@@ -2803,7 +2803,7 @@
 			path = "HUD and Alert";
 			sourceTree = "<group>";
 		};
-		CFD3BF2823471A4F00FCDA6D /* ZJNetwork */ = {
+		CFD3BF2823471A4F00FCDA6D /* CCNetworkRequests1 */ = {
 			isa = PBXGroup;
 			children = (
 				CFD3BF3523471A4F00FCDA6D /* CCNetworkRequests1.h */,
@@ -2813,7 +2813,7 @@
 				CFD3BF3A23471A4F00FCDA6D /* CCSessionModel.h */,
 				CFD3BF3423471A4F00FCDA6D /* CCSessionModel.m */,
 			);
-			path = ZJNetwork;
+			path = CCNetworkRequests1;
 			sourceTree = "<group>";
 		};
 		CFD3BF4423473D0500FCDA6D /* LogHelper */ = {
