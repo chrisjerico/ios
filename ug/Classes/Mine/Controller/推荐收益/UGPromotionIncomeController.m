@@ -51,8 +51,19 @@
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    if (OBJOnceToken(self)) {
-        [self initView];
+    
+    // 在viewWillAppear:之后执行一次[self initView];
+    {
+        static BOOL __viewWillAppear = false;
+        if (OBJOnceToken(self)) {
+            [self aspect_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
+                __viewWillAppear = true;
+            } error:nil];
+        }
+        if (__viewWillAppear) {
+            [self initView];
+            __viewWillAppear = false;
+        }
     }
 }
 

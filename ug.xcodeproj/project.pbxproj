@@ -63,7 +63,7 @@
 		CFD3BF202347196600FCDA6D /* LoadingView1.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFD3BF1A2347196600FCDA6D /* LoadingView1.xib */; };
 		CFD3BF212347196600FCDA6D /* HUDHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BF1B2347196600FCDA6D /* HUDHelper.m */; };
 		CFD3BF222347196600FCDA6D /* AlertHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BF1C2347196600FCDA6D /* AlertHelper.m */; };
-		CFD3BF232347196600FCDA6D /* loading.png in Resources */ = {isa = PBXBuildFile; fileRef = CFD3BF1E2347196600FCDA6D /* loading.png */; };
+		CFD3BF232347196600FCDA6D /* loadingA.png in Resources */ = {isa = PBXBuildFile; fileRef = CFD3BF1E2347196600FCDA6D /* loadingA.png */; };
 		CFD3BF27234719F100FCDA6D /* AppDefine.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BF25234719F100FCDA6D /* AppDefine.m */; };
 		CFD3BF3B23471A4F00FCDA6D /* CCNetworkRequests1.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BF2923471A4F00FCDA6D /* CCNetworkRequests1.m */; };
 		CFD3BF3F23471A4F00FCDA6D /* CCNetworkRequests1+HTTPS.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BF3323471A4F00FCDA6D /* CCNetworkRequests1+HTTPS.m */; };
@@ -722,7 +722,7 @@
 		CFD3BF1B2347196600FCDA6D /* HUDHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDHelper.m; sourceTree = "<group>"; };
 		CFD3BF1C2347196600FCDA6D /* AlertHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertHelper.m; sourceTree = "<group>"; };
 		CFD3BF1D2347196600FCDA6D /* HUDHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDHelper.h; sourceTree = "<group>"; };
-		CFD3BF1E2347196600FCDA6D /* loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading.png; sourceTree = "<group>"; };
+		CFD3BF1E2347196600FCDA6D /* loadingA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loadingA.png; sourceTree = "<group>"; };
 		CFD3BF25234719F100FCDA6D /* AppDefine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDefine.m; sourceTree = "<group>"; };
 		CFD3BF26234719F100FCDA6D /* AppDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDefine.h; sourceTree = "<group>"; };
 		CFD3BF2923471A4F00FCDA6D /* CCNetworkRequests1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCNetworkRequests1.m; sourceTree = "<group>"; };
@@ -2798,7 +2798,7 @@
 				CFD3BF1A2347196600FCDA6D /* LoadingView1.xib */,
 				CFD3BF1D2347196600FCDA6D /* HUDHelper.h */,
 				CFD3BF1B2347196600FCDA6D /* HUDHelper.m */,
-				CFD3BF1E2347196600FCDA6D /* loading.png */,
+				CFD3BF1E2347196600FCDA6D /* loadingA.png */,
 			);
 			path = "HUD and Alert";
 			sourceTree = "<group>";
@@ -4285,7 +4285,7 @@
 				D49A36CB22A2CF6A000057D2 /* UGPCDDLotteryController.storyboard in Resources */,
 				D48224E322A0F3F500F7DE72 /* UGPlatformNoticeView.xib in Resources */,
 				D48224F722A10B5F00F7DE72 /* UGNoticeHeaderView.xib in Resources */,
-				CFD3BF232347196600FCDA6D /* loading.png in Resources */,
+				CFD3BF232347196600FCDA6D /* loadingA.png in Resources */,
 				D40FA8C4229911CA003E596F /* UGYubaoViewController.storyboard in Resources */,
 				D41C3DFC228E882200BF6436 /* UGIntegralConvertRecordController.storyboard in Resources */,
 				CFD3BF4E23473D5900FCDA6D /* TextFieldAlertView.xib in Resources */,

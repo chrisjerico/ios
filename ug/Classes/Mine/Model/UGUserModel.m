@@ -39,7 +39,20 @@ MJExtensionCodingImplementation
 }
 
 + (void)setCurrentUser:(UGUserModel *)user {
-    g_currentUser = user;
+    
+    if (user.token.length && [user.token isEqualToString:g_currentUser.token]) {
+        Class cls = [UGUserModel class];
+        while (cls != [NSObject class]) {
+            for (NSString *key in [cls ivarList]) {
+                id value = [user valueForKey:key];
+                if (value)
+                    [g_currentUser setValue:value forKey:key];
+            }
+            cls = [cls superclass];
+        }
+    } else {
+        g_currentUser = user;
+    }
     //归档
     [NSKeyedArchiver archiveRootObject:user toFile:filePath];
 }

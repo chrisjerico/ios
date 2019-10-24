@@ -46,7 +46,7 @@
         self.tgWebView.navigationDelegate = self;
         [self.view addSubview:self.tgWebView];
     }
-    if ( ![url hasPrefix:@"http"] ) {
+    if (![url hasPrefix:@"http"] ) {
         [self.navigationController.view makeToast:@"该url不包含http" duration:1.5 position:CSToastPositionCenter];
         return;
     }
@@ -64,14 +64,17 @@
 #pragma mark - UIWebViewDelegate
 
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
+    [HUDHelper showLoadingViewWithSuperview:self.view];
     [self.webProgressLayer tg_startLoad];
 }
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+    [HUDHelper hideLoadingView:self.view];
     [self.webProgressLayer tg_finishedLoadWithError:nil];
 }
 
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error {
+    [HUDHelper hideLoadingView:self.view];
     [self.webProgressLayer tg_finishedLoadWithError:error];
 }
 

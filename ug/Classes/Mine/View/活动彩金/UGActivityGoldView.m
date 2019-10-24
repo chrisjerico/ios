@@ -273,10 +273,9 @@
         if ([url rangeOfString:@"http"].location != NSNotFound)
         {
             //跳转到你想跳转的页面
-
-                TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
-                  webViewVC.url = url;
-                [NavController1 pushViewController:webViewVC animated:YES];
+            TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
+            webViewVC.url = url;
+            [NavController1 pushViewController:webViewVC animated:YES];
             
             [self close:nil];
 

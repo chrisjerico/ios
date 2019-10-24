@@ -186,7 +186,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
                        .LeeAction(@"取消", nil)
                        .LeeAction(@"分享", ^{//跳到聊天界面，把分享数据传过去
                            NSString *jsonStr = [self shareBettingData];
-                           NSString *url = _NSString(@"%@%@%@&color=%@&back=hide&loginsessid=%@&logintoken=%@", baseServerUrl, chatRoomUrl, SysConf.chatRoomName, [[UGSkinManagers shareInstance] setChatNavbgStringColor], [UGUserModel currentUser].sessid, [UGUserModel currentUser].token);
+                           NSString *url = _NSString(@"%@%@%@&color=%@&back=hide&loginsessid=%@&logintoken=%@&from=app", baseServerUrl, chatRoomUrl, SysConf.chatRoomName, [[UGSkinManagers shareInstance] setChatNavbgStringColor], [UGUserModel currentUser].sessid, [UGUserModel currentUser].token);
                            NSLog(@"url = %@",url);
                            UGChatViewController *chatVC = [[UGChatViewController alloc] init];
                            chatVC.jsonStr = jsonStr;
