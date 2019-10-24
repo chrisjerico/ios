@@ -868,7 +868,7 @@ BOOL isOk = NO;
     double floatString = [user.balance doubleValue];
     self.userMoneyLabel.text =  [NSString stringWithFormat:@"￥%.2f",floatString];
     //进度条
-    double progress = (user.taskRewardTotal.doubleValue - user.curLevelInt.doubleValue)/(user.nextLevelInt.doubleValue - user.curLevelInt.doubleValue);
+    double progress = user.taskRewardTotal.doubleValue/user.nextLevelInt.doubleValue;
     self.progressLayer.path = [self progressPathWithProgress:progress].CGPath;
 }
 
