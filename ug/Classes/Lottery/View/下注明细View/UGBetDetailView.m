@@ -226,14 +226,20 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
        NSMutableArray *list = [NSMutableArray new];
        NSMutableArray<UGbetParamModel> *betParams = [NSMutableArray<UGbetParamModel> new];
        NSMutableArray<UGplayNameModel> *playNameArray = [NSMutableArray<UGplayNameModel> new];
+       
        for (int i = 0; i< self.betArray.count; i++)  {
            UGGameBetModel *model = [self.betArray objectAtIndex:i];
            NSLog(@"model=%@",model);
-           NSString *name = @"";
+           NSMutableString *name = [NSMutableString new];
+           if ([CMCommon stringIsNull:model.alias]) {
+               [name appendString:@""];
+            } else {
+                [name appendString:model.alias];
+            }
            if ([CMCommon stringIsNull:model.betInfo]) {
-               name = model.name;
+                [name appendString:model.name];
            } else {
-               name = model.betInfo;
+                [name appendString:model.betInfo];
            }
            {// 组装list
                UGbetListModel *betList = [UGbetListModel new];
