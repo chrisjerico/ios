@@ -14,7 +14,6 @@
 #import "UGFundsBankView.h"
 #import "SLWebViewController.h"
 #import "TGWebViewController.h"
-#import "BAWebViewController.h"
 
 @interface UGDepositDetailsViewController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate, UICollectionViewDataSource>
 

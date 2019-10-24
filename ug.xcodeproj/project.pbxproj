@@ -387,11 +387,6 @@
 		D42620F82339027400BC2E83 /* UGagentApplyInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D42620F72339027400BC2E83 /* UGagentApplyInfo.m */; };
 		D42A06B122CA212E005488F8 /* UGHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D42A06B022CA212E005488F8 /* UGHomeViewController.m */; };
 		D42A06B322CA22D9005488F8 /* UGHomeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D42A06B222CA22D9005488F8 /* UGHomeViewController.storyboard */; };
-		D43555922334CDCE00515704 /* BAKit_WebView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D43555862334CDCE00515704 /* BAKit_WebView.bundle */; };
-		D43555932334CDCE00515704 /* NSObject+BARunTime.m in Sources */ = {isa = PBXBuildFile; fileRef = D43555892334CDCE00515704 /* NSObject+BARunTime.m */; };
-		D43555942334CDCE00515704 /* UIAlertController+BAKit.m in Sources */ = {isa = PBXBuildFile; fileRef = D435558B2334CDCE00515704 /* UIAlertController+BAKit.m */; };
-		D43555952334CDCE00515704 /* NSMutableAttributedString+BAKit.m in Sources */ = {isa = PBXBuildFile; fileRef = D43555902334CDCE00515704 /* NSMutableAttributedString+BAKit.m */; };
-		D43555962334CDCE00515704 /* BAWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D43555912334CDCE00515704 /* BAWebViewController.m */; };
 		D4527D1822828C27000EC1C2 /* UGPlatformBalanceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4527D1622828C27000EC1C2 /* UGPlatformBalanceTableViewCell.m */; };
 		D4527D1922828C27000EC1C2 /* UGPlatformBalanceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4527D1722828C27000EC1C2 /* UGPlatformBalanceTableViewCell.xib */; };
 		D4527D1C2282FBD8000EC1C2 /* UGBalanceConversionRecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4527D1B2282FBD8000EC1C2 /* UGBalanceConversionRecordController.m */; };
@@ -1307,17 +1302,6 @@
 		D42A06AF22CA212E005488F8 /* UGHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGHomeViewController.h; sourceTree = "<group>"; };
 		D42A06B022CA212E005488F8 /* UGHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGHomeViewController.m; sourceTree = "<group>"; };
 		D42A06B222CA22D9005488F8 /* UGHomeViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UGHomeViewController.storyboard; sourceTree = "<group>"; };
-		D43555862334CDCE00515704 /* BAKit_WebView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BAKit_WebView.bundle; sourceTree = "<group>"; };
-		D43555872334CDCE00515704 /* BAWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAWebViewController.h; sourceTree = "<group>"; };
-		D43555892334CDCE00515704 /* NSObject+BARunTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+BARunTime.m"; sourceTree = "<group>"; };
-		D435558A2334CDCE00515704 /* BAKit_ConfigurationDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAKit_ConfigurationDefine.h; sourceTree = "<group>"; };
-		D435558B2334CDCE00515704 /* UIAlertController+BAKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+BAKit.m"; sourceTree = "<group>"; };
-		D435558C2334CDCE00515704 /* BAAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAAlertController.h; sourceTree = "<group>"; };
-		D435558D2334CDCE00515704 /* NSMutableAttributedString+BAKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+BAKit.h"; sourceTree = "<group>"; };
-		D435558E2334CDCE00515704 /* NSObject+BARunTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BARunTime.h"; sourceTree = "<group>"; };
-		D435558F2334CDCE00515704 /* UIAlertController+BAKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+BAKit.h"; sourceTree = "<group>"; };
-		D43555902334CDCE00515704 /* NSMutableAttributedString+BAKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+BAKit.m"; sourceTree = "<group>"; };
-		D43555912334CDCE00515704 /* BAWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAWebViewController.m; sourceTree = "<group>"; };
 		D4527D1522828C27000EC1C2 /* UGPlatformBalanceTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGPlatformBalanceTableViewCell.h; sourceTree = "<group>"; };
 		D4527D1622828C27000EC1C2 /* UGPlatformBalanceTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGPlatformBalanceTableViewCell.m; sourceTree = "<group>"; };
 		D4527D1722828C27000EC1C2 /* UGPlatformBalanceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGPlatformBalanceTableViewCell.xib; sourceTree = "<group>"; };
@@ -3076,7 +3060,6 @@
 				CFD3BE962347137E00FCDA6D /* FishUtility */,
 				D4145A7522B3BC1900D8165F /* CMNetwork */,
 				D4A1E905232BC3AC0045F5B4 /* CMCommon */,
-				D43555852334CDCE00515704 /* BAWebViewController */,
 				D41FF93023332E5600FE3F70 /* NullSafe */,
 				D4241C36232914D100BF4DE1 /* Extenslon */,
 				D4185E31231D2E1A008DB5F2 /* MOFSPickerManager */,
@@ -3496,32 +3479,6 @@
 				D422D67E22D9A764008E7065 /* address.json */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		D43555852334CDCE00515704 /* BAWebViewController */ = {
-			isa = PBXGroup;
-			children = (
-				D43555862334CDCE00515704 /* BAKit_WebView.bundle */,
-				D43555872334CDCE00515704 /* BAWebViewController.h */,
-				D43555882334CDCE00515704 /* BAAlertController */,
-				D43555912334CDCE00515704 /* BAWebViewController.m */,
-			);
-			path = BAWebViewController;
-			sourceTree = "<group>";
-		};
-		D43555882334CDCE00515704 /* BAAlertController */ = {
-			isa = PBXGroup;
-			children = (
-				D43555892334CDCE00515704 /* NSObject+BARunTime.m */,
-				D435558A2334CDCE00515704 /* BAKit_ConfigurationDefine.h */,
-				D435558B2334CDCE00515704 /* UIAlertController+BAKit.m */,
-				D435558C2334CDCE00515704 /* BAAlertController.h */,
-				D435558D2334CDCE00515704 /* NSMutableAttributedString+BAKit.h */,
-				D435558E2334CDCE00515704 /* NSObject+BARunTime.h */,
-				D435558F2334CDCE00515704 /* UIAlertController+BAKit.h */,
-				D43555902334CDCE00515704 /* NSMutableAttributedString+BAKit.m */,
-			);
-			path = BAAlertController;
 			sourceTree = "<group>";
 		};
 		D4527D1E22830603000EC1C2 /* 推荐收益 */ = {
@@ -4295,7 +4252,6 @@
 				D4145A9C22B61C6A00D8165F /* UGBJKL8LotteryController.storyboard in Resources */,
 				D49F41AD2326149B00A381AD /* UGPormotionUserInfoView.xib in Resources */,
 				D4185E3F231D2E1B008DB5F2 /* province_data.xml in Resources */,
-				D43555922334CDCE00515704 /* BAKit_WebView.bundle in Resources */,
 				D4BBFC06232A80A800147C4A /* UGFundsTransferView.xib in Resources */,
 				D4FB62E62355FF7F008EACB2 /* UGYUbaoTitleView.xib in Resources */,
 				D417EFD02330A4880024F634 /* UGredEnvelopeView.xib in Resources */,
@@ -4654,7 +4610,6 @@
 				D405B25E227974D000F8C586 /* UIColor+CTop.m in Sources */,
 				D4EE8F97234222A8006FA0E2 /* UGSkinCollectionViewCell.m in Sources */,
 				D4EE8F872341DD4A006FA0E2 /* UGhomeRecommendCollectionViewCell.m in Sources */,
-				D43555962334CDCE00515704 /* BAWebViewController.m in Sources */,
 				D422A57F229E79780068D0AD /* UGYubaoInComeController.m in Sources */,
 				D4704EC522B7566200528DC7 /* UGPK10NNLotteryController.m in Sources */,
 				CFD3BF092347137F00FCDA6D /* NSTimer+Block.m in Sources */,
@@ -4670,9 +4625,7 @@
 				D4A3663C233E4A9E00F6D770 /* UINavigationController+UGExtension.m in Sources */,
 				D40FA8D2229938FA003E596F /* ZZCountingLabel.m in Sources */,
 				CFD3BF0D2347137F00FCDA6D /* NSArray+Utils.m in Sources */,
-				D43555942334CDCE00515704 /* UIAlertController+BAKit.m in Sources */,
 				D424DDDC22E72E940009E2E6 /* UGSystemConfigModel.m in Sources */,
-				D43555952334CDCE00515704 /* NSMutableAttributedString+BAKit.m in Sources */,
 				D49F41AB2326132C00A381AD /* UGPormotionUserInfoView.m in Sources */,
 				D49D359E22C79E7900318D73 /* UGNoticePopView.m in Sources */,
 				D4D422522326469C006E680B /* UGwithdrawStatModel.m in Sources */,
@@ -4802,7 +4755,6 @@
 				D405B37622801F8400F8C586 /* UGWriteMessageViewController.m in Sources */,
 				CFD3BEFD2347137F00FCDA6D /* UIResponder+InterfaceOrientation.m in Sources */,
 				D42620F82339027400BC2E83 /* UGagentApplyInfo.m in Sources */,
-				D43555932334CDCE00515704 /* NSObject+BARunTime.m in Sources */,
 				D420A78723157C460089C0C5 /* UGFundLogsModel.m in Sources */,
 				D41AEA6B22E58D9E003E28C3 /* UGAvatarModel.m in Sources */,
 				D422A582229E7AE90068D0AD /* UGYubaoIncomeTableViewCell.m in Sources */,

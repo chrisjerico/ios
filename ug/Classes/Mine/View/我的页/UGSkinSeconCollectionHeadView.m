@@ -17,31 +17,31 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
-    
     self.layer.masksToBounds = YES;
     self.layer.borderWidth = 1;
     self.layer.borderColor = UGRGBColor(231, 230, 230).CGColor;
 }
 
+// 充值
 - (IBAction)chongzhiAction:(id)sender {
-    //存款
     UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
     fundsVC.selectIndex = 2;
     [NavController1 pushViewController:fundsVC animated:YES];
 }
 
+// 体现
 - (IBAction)tixianAcition:(id)sender {
-    //存款
     UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
     fundsVC.selectIndex = 3;
     [NavController1 pushViewController:fundsVC animated:YES];
 }
 
+// 投注记录
 - (IBAction)touzhuAction:(id)sender {
     [NavController1 pushViewController:[UGBetRecordViewController new] animated:YES];
 }
 
+// 在线客服
 - (IBAction)kehuaAction:(id)sender {
     SLWebViewController *webViewVC = [[SLWebViewController alloc] init];
     UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
