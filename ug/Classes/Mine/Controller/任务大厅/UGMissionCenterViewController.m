@@ -67,10 +67,11 @@
         
     });
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-        
         [self skin];
     });
-
+    SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
+        [self setupUserInfo];
+    });
     [self initView];
 
 }
@@ -292,13 +293,9 @@
             user.token = oldUser.token;
             UGUserModel.currentUser = user;
             [self setupUserInfo];
-            
-             [self stopAnimation];
-            
-        } failure:^(id msg) {
-            
             [self stopAnimation];
-
+        } failure:^(id msg) {
+            [self stopAnimation];
         }];
     }];
 }

@@ -190,7 +190,7 @@
             NSLog(@"7天领取");
             [weakSelf checkinBonusData:@"7"];
         };
-         [mUIScrollView addSubview:mUGSignInScrFootView];
+        [mUIScrollView addSubview:mUGSignInScrFootView];
     }
    
     //=================================================
@@ -250,11 +250,11 @@
     if (kisCheckIn) {
         [mUGSignInButton setTitle:@"今日已签" forState:UIControlStateNormal];
         mUGSignInButton.userInteractionEnabled =NO;//交互关闭
-        mUGSignInButton.alpha= 0.8;//透明度
+        mUGSignInButton.alpha = 0.8;    // 透明度
     } else {
         [mUGSignInButton setTitle:@"马上签到" forState:UIControlStateNormal];
-        mUGSignInButton.userInteractionEnabled =YES;//交互
-        mUGSignInButton.alpha= 1;//透明度
+        mUGSignInButton.userInteractionEnabled = YES;//交互
+        mUGSignInButton.alpha = 1;      // 透明度
     }
 }
 
@@ -380,10 +380,9 @@
             [AlertHelper showAlertView:@"温馨提示" msg:model.msg btnTitles:@[@"确认"]];
             [self getCheckinListData];
             
+            SANotificationEventPost(UGNotificationGetUserInfo, nil);
         } failure:^(id msg) {
-            
             [SVProgressHUD showErrorWithStatus:msg];
-            
         }];
     }];
 }
@@ -397,19 +396,13 @@
 //    WeakSelf;
     [CMNetwork checkinHistoryWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
-            
             [SVProgressHUD dismiss];
             self->_historyDataArray = model.data;
             NSLog(@"_historyDataArray = %@",self->_historyDataArray);
             NSLog(@"model.data = %@",model.data);
-            
-         
             [self showUGSignInHistoryView];
-            
         } failure:^(id msg) {
-            
             [SVProgressHUD showErrorWithStatus:msg];
-            
         }];
     }];
 }

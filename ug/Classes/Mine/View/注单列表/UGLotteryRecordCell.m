@@ -34,19 +34,18 @@
     subLabel(@"注单号Label").text = item.betId;
     subLabel(@"赔率Label").text = item.odds;
     subLabel(@"注单金额Label").text = item.betAmount;
-    subLabel(@"盈亏Label2").text = _NSString(@"%@%@元", (item.expectAmount.doubleValue>0 ? @"+" : @""), item.expectAmount);
+    subLabel(@"盈亏Label2").text = _NSString(@"%@%@元", (item.settleAmount.doubleValue>0 ? @"+" : @""), item.settleAmount);
     subLabel(@"玩法Label").text = _NSString(@"%@ %@ %@", item.playGroupName, item.playName, item.betInfo);
     subLabel(@"开奖号码Label").text = item.lotteryNo;
     subButton(@"撤单Button").hidden = !(item.status==1 && [UGSystemConfigModel currentConfig].allowMemberCancelBet); // 等待开奖时才显示
     
     if (item.status == 1) {
         subLabel(@"开奖号码Label").text = @"等待开奖";
-        double money = item.odds.floatValue * item.betAmount.floatValue;
         subLabel(@"盈亏Label1").text = @"可赢金额:";
-       
+        subLabel(@"盈亏Label2").text = _NSString(@"%@%@元", (item.expectAmount.doubleValue>0 ? @"+" : @""), item.expectAmount);
     } else if (item.status == 4) {
         subLabel(@"开奖号码Label").text = @"已撤单";
-       
+        subLabel(@"盈亏Label2").text = @"--";
     }
 }
 
