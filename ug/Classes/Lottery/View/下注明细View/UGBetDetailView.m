@@ -231,16 +231,22 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
            UGGameBetModel *model = [self.betArray objectAtIndex:i];
            NSLog(@"model=%@",model);
            NSMutableString *name = [NSMutableString new];
-           if ([CMCommon stringIsNull:model.alias]) {
-               [name appendString:@""];
-            } else {
-                [name appendString:model.alias];
-            }
+           
+           if (([self.nextIssueModel.gameType isEqualToString:@"cqssc"]&&[self.code isEqualToString:@"LHD"] )||
+               ([self.nextIssueModel.gameType isEqualToString:@"lhc"]&&[self.code isEqualToString:@"ZM1-6"])) {
+               if ([CMCommon stringIsNull:model.alias]) {
+                  [name appendString:@""];
+               } else {
+                  [name appendString:model.alias];
+               }
+           }
+           
            if ([CMCommon stringIsNull:model.betInfo]) {
                 [name appendString:model.name];
            } else {
                 [name appendString:model.betInfo];
            }
+           
            {// 组装list
                UGbetListModel *betList = [UGbetListModel new];
                [betList setBetMoney:model.money];
@@ -265,19 +271,16 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
            
            {// 组装playNameArray
                 UGplayNameModel *betList = [UGplayNameModel new];
-               
-        
                 [betList setPlayName1:[NSString stringWithFormat:@"%@-%@",model.title,name]];
                 [betList setPlayName2:name];
                 [playNameArray addObject:betList];
                 [betModel setPlayNameArray:playNameArray];
-
-                    
            }
 
        }
     
         {//其他数据
+            NSLog(@"self.nextIssueModel = %@",self.nextIssueModel);
                   betModel.gameName = self.nextIssueModel.title;
                   betModel.gameId = self.nextIssueModel.gameId;
                   betModel.totalNums = [NSString stringWithFormat:@"%ld",(long)count];
