@@ -52,12 +52,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [IQKeyboardManager.sharedManager.disabledDistanceHandlingClasses addObject:[self class]];
+    self.fd_interactivePopDisabled = true;
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         [self skin];
     });
     
-//    self.fd_interactivePopDisabled = YES;
     self.navigationItem.title = @"登录";
     self.loginButton.layer.cornerRadius = 5;
     self.loginButton.layer.masksToBounds = YES;

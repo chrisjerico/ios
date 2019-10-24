@@ -77,12 +77,13 @@
         }
     }
     
-    // 没秒判断一下 window.canShare 参数为YES才进行分享
+    // 每秒判断一下 window.canShare 参数为YES才进行分享
     if (_jsonStr.length) {
         __weakSelf_(__self);
         __block NSTimer *__timer = nil;
         __timer = [NSTimer scheduledTimerWithInterval:1 repeats:true block:^(NSTimer *timer) {
             [__self.tgWebView evaluateJavaScript:@"window.canShare" completionHandler:^(id obj, NSError *error) {
+                NSLog(@"是否可以分享：%d", [obj boolValue]);
                 if ([obj isKindOfClass:[NSNumber class]] && [obj boolValue]) {
                     [__self.tgWebView evaluateJavaScript:__self.jsonStr completionHandler:^(id _Nullable result, NSError * _Nullable error) {
                         NSLog(@"分享结果：%@----%@", result, error);

@@ -763,6 +763,10 @@
 #pragma mark - SDCycleScrollViewDelegate
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
 	UGBannerCellModel *banner = self.bannerArray[index];
+    if ([banner.url containsString:@"mobile"]) {
+        // 若跳转地址包含mobile则不做跳转
+        return;
+    }
 	if ([banner.url stringByReplacingOccurrencesOfString:@" " withString:@""].length) {
 		SLWebViewController *webVC = [[SLWebViewController alloc] init];
 		webVC.urlStr = banner.url;

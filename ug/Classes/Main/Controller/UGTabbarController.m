@@ -254,39 +254,52 @@ static UGTabbarController *_tabBarVC = nil;
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
     
     UIViewController *vc = ((UINavigationController *)viewController).viewControllers.firstObject;
-    if (UGLoginIsAuthorized()) {
+    if (UGLoginIsAuthorized()
+        && ([vc isKindOfClass:[UGPromotionIncomeController class]] || [vc isKindOfClass:[UGAgentViewController class]])) {
+        
+        __weakSelf_(__self);
+        void (^push)(NSString *, UIViewController *) = ^(NSString *name, UIViewController *vc) {
+            // 初始化控制器
+            UGmobileMenu *gm = [__self.gms objectWithValue:name keyPath:@"name"];
+            vc.tabBarItem.title = gm.name;
+            vc.tabBarItem.image = [UIImage imageNamed:gm.icon];
+            vc.tabBarItem.selectedImage = [[UIImage imageNamed:gm.selectedIcon] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            ((UINavigationController *)viewController).viewControllers = @[vc];
+            tabBarController.selectedViewController = viewController;
+        };
+        
+        // 试玩账号直接去推荐收益
+        if (UserI.isTest) {
+            push(@"推荐收益", [UGPromotionIncomeController new]);
+            return false;
+        }
+        
         // 去推荐收益前判断如果用户不是代理，应该去申请代理页面
         // 去申请代理前判断如果用户是代理，应该去推荐收益页面
         if (([vc isKindOfClass:[UGPromotionIncomeController class]] && !UserI.isAgent) ||
             ([vc isKindOfClass:[UGAgentViewController class]] && UserI.isAgent)) {
             
-            __weakSelf_(__self);
             [SVProgressHUD showWithStatus:nil];
             [CMNetwork teamAgentApplyInfoWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:^(CMResult<id> *model, NSError *err) {
                 [CMResult processWithResult:model success:^{
-                    
                     [SVProgressHUD dismiss];
                     UGagentApplyInfo *obj  = (UGagentApplyInfo *)model.data;
                     int intStatus = obj.reviewStatus.intValue;
                     
                     //0 未提交  1 待审核  2 审核通过 3 审核拒绝
                     if (intStatus == 2) {
-                        UGmobileMenu *gm = [__self.gms objectWithValue:@"推荐收益" keyPath:@"name"];
-                        UGPromotionIncomeController *vc = [UGPromotionIncomeController new];
-                        vc.tabBarItem.title = gm.name;
-                        vc.tabBarItem.image = [UIImage imageNamed:gm.icon];
-                        vc.tabBarItem.selectedImage = [[UIImage imageNamed:gm.selectedIcon] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-                        ((UINavigationController *)viewController).viewControllers = @[vc];
+                        push(@"推荐收益", [UGPromotionIncomeController new]);
                     } else {
-                        UGmobileMenu *gm = [__self.gms objectWithValue:@"申请代理" keyPath:@"name"];
-                        UGAgentViewController *vc = [[UGAgentViewController alloc] init];
-                        vc.item = obj;
-                        vc.tabBarItem.title = gm.name;
-                        vc.tabBarItem.image = [UIImage imageNamed:gm.icon];
-                        vc.tabBarItem.selectedImage = [[UIImage imageNamed:gm.selectedIcon] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-                        ((UINavigationController *)viewController).viewControllers = @[vc];
+                        if (![SysConf.agent_m_apply isEqualToString:@"1"]) {
+                            [HUDHelper showMsg:@"在线注册代理已关闭"];
+                            return ;
+                        }
+                        push(@"申请代理", ({
+                            UGAgentViewController *vc = [UGAgentViewController new];
+                            vc.item = obj;
+                            vc;
+                        }));
                     }
-                    tabBarController.selectedViewController = viewController;
                 } failure:^(id msg) {
                     [SVProgressHUD showErrorWithStatus:msg];
                 }];

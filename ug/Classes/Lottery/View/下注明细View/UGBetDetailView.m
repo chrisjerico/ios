@@ -178,7 +178,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
                 float amountfloat = [self->amount floatValue];
                 float webAmountfloat = [SysConf.chatMinFollowAmount floatValue];
 
-                if (SysConf.chatFollowSwitch && (amountfloat >= webAmountfloat)) {
+                if (!UserI.isTest && SysConf.chatFollowSwitch && (amountfloat >= webAmountfloat)) {
                     //==>弹出分享框
                    [LEEAlert alert].config
                        .LeeTitle(@"分享注单")
@@ -186,7 +186,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
                        .LeeAction(@"取消", nil)
                        .LeeAction(@"分享", ^{//跳到聊天界面，把分享数据传过去
                            NSString *jsonStr = [self shareBettingData];
-                           NSString *url = _NSString(@"%@%@%@&color=%@&back=hide&from=app&loginsessid=%@&logintoken=%@", baseServerUrl, chatRoomUrl, SysConf.chatRoomName, [[UGSkinManagers shareInstance] setChatNavbgStringColor], [UGUserModel currentUser].sessid, [UGUserModel currentUser].token);
+                           NSString *url = _NSString(@"%@%@%@&color=%@&back=hide&loginsessid=%@&logintoken=%@", baseServerUrl, chatRoomUrl, SysConf.chatRoomName, [[UGSkinManagers shareInstance] setChatNavbgStringColor], [UGUserModel currentUser].sessid, [UGUserModel currentUser].token);
                            NSLog(@"url = %@",url);
                            UGChatViewController *chatVC = [[UGChatViewController alloc] init];
                            chatVC.jsonStr = jsonStr;

@@ -682,26 +682,33 @@ BOOL isOk = NO;
     else if ([title isEqualToString:@"额度转换"]) {
         [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGBalanceConversionController")  animated:YES];
     }
-    else if ([title isEqualToString:@"推荐收益"]) {
-        [self.navigationController pushViewController:[UGPromotionIncomeController new] animated:YES];
-    }
-    else if ([title isEqualToString:@"申请代理"]) {
-        UGUserModel *user = [UGUserModel currentUser];
-        if (user.isTest) {
-            [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                if (buttonIndex == 1) {
-                    SANotificationEventPost(UGNotificationShowLoginView, nil);
-                }
-            }];
+    else if ([title isEqualToString:@"申请代理"] || [title isEqualToString:@"推荐收益"]) {
+        if (UserI.isTest) {
+            [self.navigationController pushViewController:[UGPromotionIncomeController new] animated:YES];
         } else {
-            UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
-            NSLog(@"config.agent_m_apply = %@",config.agent_m_apply);
-            if ([config.agent_m_apply isEqualToString:@"1"]) {/**<   允许会员中心申请代理 */
-                //调接口
-                [self teamAgentApplyInfoWithParams];
-            } else {
-                [self.navigationController.view makeToast:@"在线注册代理已关闭" duration:1.5 position:CSToastPositionCenter];
-            }
+            [SVProgressHUD showWithStatus:nil];
+            [CMNetwork teamAgentApplyInfoWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:^(CMResult<id> *model, NSError *err) {
+                [CMResult processWithResult:model success:^{
+                    [SVProgressHUD dismiss];
+                    UGagentApplyInfo *obj  = (UGagentApplyInfo *)model.data;
+                    int intStatus = obj.reviewStatus.intValue;
+                    
+                    //0 未提交  1 待审核  2 审核通过 3 审核拒绝
+                    if (intStatus == 2) {
+                        [self.navigationController pushViewController:[UGPromotionIncomeController new] animated:YES];
+                    } else {
+                        if (![SysConf.agent_m_apply isEqualToString:@"1"]) {
+                            [HUDHelper showMsg:@"在线注册代理已关闭"];
+                            return ;
+                        }
+                        UGAgentViewController *vc = [[UGAgentViewController alloc] init];
+                        vc.item = obj;
+                        [NavController1 pushViewController:vc animated:YES];
+                    }
+                } failure:^(id msg) {
+                    [SVProgressHUD showErrorWithStatus:msg];
+                }];
+            }];
         }
     }
     else if ([title isEqualToString:@"安全中心"]) {
@@ -865,42 +872,8 @@ BOOL isOk = NO;
     self.progressLayer.path = [self progressPathWithProgress:progress].CGPath;
 }
 
-#pragma mark -- 网络请求
 
-//用户签到（签到类型：0是签到，1是补签）
-- (void)teamAgentApplyInfoWithParams {
-    
-    //    NSString *date = @"2019-09-04";
-    
-    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid
-                             };
-    
-    [SVProgressHUD showWithStatus:nil];
-    //    WeakSelf;
-    [CMNetwork teamAgentApplyInfoWithParams:params completion:^(CMResult<id> *model, NSError *err) {
-        [CMResult processWithResult:model success:^{
-            
-            [SVProgressHUD dismiss];
-            UGagentApplyInfo *obj  = (UGagentApplyInfo *)model.data;
-            
-            NSLog(@"%@",obj.reviewStatus);
-            
-            int intStatus = obj.reviewStatus.intValue;
-            
-            //0 未提交  1 待审核  2 审核通过 3 审核拒绝
-            if (intStatus == 2) {
-                [NavController1 pushViewController:[UGPromotionIncomeController new] animated:YES];
-            }
-            else {
-                UGAgentViewController *vc = [[UGAgentViewController alloc] init];
-                vc.item = obj;
-                [NavController1 pushViewController:vc animated:YES];
-            }
-        } failure:^(id msg) {
-            [SVProgressHUD showErrorWithStatus:msg];
-        }];
-    }];
-}
+#pragma mark -- 网络请求
 
 - (void)getUserInfo {
     [self startAnimation];
