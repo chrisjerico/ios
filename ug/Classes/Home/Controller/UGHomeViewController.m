@@ -96,7 +96,6 @@
 @property (nonatomic, strong) SDCycleScrollView *bannerView;            /**<   滚动广告面板 */
 
 @property (nonatomic, strong) NSMutableArray *leftwardMarqueeViewData;      /**<   公告数据 */
-@property (nonatomic, strong) NSMutableArray *upwardMultiMarqueeViewData;   /**<   中奖排行榜数据 */
 @property (nonatomic, strong) NSMutableArray *popNoticeArray;
 
 
@@ -106,7 +105,7 @@
 
 @property (nonatomic, strong) NSArray *bannerArray;
 @property (nonatomic, strong) NSArray *noticeArray;
-@property (nonatomic, strong) NSArray *rankArray;
+@property (nonatomic, strong) NSArray<UGRankModel *> *rankArray;           /**<   中奖排行榜数据 */
 @property (nonatomic, strong) NSArray *lotteryGamesArray;
 @property (nonatomic, assign) BOOL initSubview;
 @property (weak, nonatomic) IBOutlet UILabel *bottomLabel;
@@ -627,7 +626,15 @@
 				// 需要在主线程执行的代码
 				UGRankListModel *rank = model.data;
 				self.rankListModel = rank;
-				self.rankArray = rank.list.mutableCopy;
+                self.rankArray = ({
+                    // 填充5条空数据，看起来就有一段空白形成翻页效果
+                    NSMutableArray *temp = rank.list.mutableCopy;
+                    for (int i=0; i<5; i++) {
+                        UGRankModel *rm = [UGRankModel new];
+                        [temp addObject:rm];
+                    }
+                    [temp copy];
+                });
 				
 				
 				UGSystemConfigModel * config = UGSystemConfigModel.currentConfig;
@@ -839,7 +846,7 @@
 		[content setTextColor:UIColor.blackColor];
 		
 		UILabel *coin = [itemView viewWithTag:1002];
-		coin.text = [NSString stringWithFormat:@"%@元",rank.coin];
+        coin.text = rank.coin.length ? _NSString(@"%@元",rank.coin) : nil;
 		
 		UILabel *game = [itemView viewWithTag:1004];
 		game.text = rank.type;
@@ -848,7 +855,10 @@
 		UIImageView *icon = [itemView viewWithTag:1003];
 		NSString *imgName = nil;
 		icon.hidden = NO;
-		if (index == 0) {
+        if (!rank.coin.length) {
+            imgName = @"yuandian";
+            icon.hidden = YES;
+        } else if (index == 0) {
 			imgName = @"diyiming";
 		} else if (index == 1) {
 			imgName = @"dierming";
@@ -1185,13 +1195,6 @@
 		_leftwardMarqueeViewData = [NSMutableArray array];
 	}
 	return _leftwardMarqueeViewData;
-}
-
-- (NSMutableArray *)upwardMultiMarqueeViewData {
-	if (_upwardMultiMarqueeViewData == nil) {
-		_upwardMultiMarqueeViewData = [NSMutableArray array];
-	}
-	return _upwardMultiMarqueeViewData;
 }
 
 - (NSMutableArray *)popNoticeArray {

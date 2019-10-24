@@ -122,7 +122,7 @@ static UGDocumentView *_singleInstance = nil;
     
     __weakSelf_(__self);
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        NSString *str = _NSString(@"<head><style>img{width:%f !important;height:auto}</style></head>%@%@%@", __self.width-50, model.header, model.content, model.footer);
+        NSString *str = _NSString(@"<head><style>img{width:%f !important;height:auto}</style></head>%@%@%@", APP.Width-50, model.header, model.content, model.footer);
          NSAttributedString *attStr = [[NSAttributedString alloc] initWithData:[str dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
          dispatch_async(dispatch_get_main_queue(), ^{
             __self.textView.attributedText = attStr;
