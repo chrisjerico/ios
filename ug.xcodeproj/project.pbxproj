@@ -66,7 +66,6 @@
 		CFD3BF232347196600FCDA6D /* loadingA.png in Resources */ = {isa = PBXBuildFile; fileRef = CFD3BF1E2347196600FCDA6D /* loadingA.png */; };
 		CFD3BF27234719F100FCDA6D /* AppDefine.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BF25234719F100FCDA6D /* AppDefine.m */; };
 		CFD3BF3B23471A4F00FCDA6D /* CCNetworkRequests1.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BF2923471A4F00FCDA6D /* CCNetworkRequests1.m */; };
-		CFD3BF3F23471A4F00FCDA6D /* CCNetworkRequests1+HTTPS.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BF3323471A4F00FCDA6D /* CCNetworkRequests1+HTTPS.m */; };
 		CFD3BF4023471A4F00FCDA6D /* CCSessionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BF3423471A4F00FCDA6D /* CCSessionModel.m */; };
 		CFD3BF432347241000FCDA6D /* Promote.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFD3BF422347241000FCDA6D /* Promote.storyboard */; };
 		CFD3BF4823473D0500FCDA6D /* Log.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFD3BF4523473D0500FCDA6D /* Log.storyboard */; };
@@ -721,10 +720,8 @@
 		CFD3BF25234719F100FCDA6D /* AppDefine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDefine.m; sourceTree = "<group>"; };
 		CFD3BF26234719F100FCDA6D /* AppDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDefine.h; sourceTree = "<group>"; };
 		CFD3BF2923471A4F00FCDA6D /* CCNetworkRequests1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCNetworkRequests1.m; sourceTree = "<group>"; };
-		CFD3BF3323471A4F00FCDA6D /* CCNetworkRequests1+HTTPS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCNetworkRequests1+HTTPS.m"; sourceTree = "<group>"; };
 		CFD3BF3423471A4F00FCDA6D /* CCSessionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCSessionModel.m; sourceTree = "<group>"; };
 		CFD3BF3523471A4F00FCDA6D /* CCNetworkRequests1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCNetworkRequests1.h; sourceTree = "<group>"; };
-		CFD3BF3623471A4F00FCDA6D /* CCNetworkRequests1+HTTPS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCNetworkRequests1+HTTPS.h"; sourceTree = "<group>"; };
 		CFD3BF3A23471A4F00FCDA6D /* CCSessionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSessionModel.h; sourceTree = "<group>"; };
 		CFD3BF422347241000FCDA6D /* Promote.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Promote.storyboard; sourceTree = "<group>"; };
 		CFD3BF4523473D0500FCDA6D /* Log.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Log.storyboard; sourceTree = "<group>"; };
@@ -2792,8 +2789,6 @@
 			children = (
 				CFD3BF3523471A4F00FCDA6D /* CCNetworkRequests1.h */,
 				CFD3BF2923471A4F00FCDA6D /* CCNetworkRequests1.m */,
-				CFD3BF3623471A4F00FCDA6D /* CCNetworkRequests1+HTTPS.h */,
-				CFD3BF3323471A4F00FCDA6D /* CCNetworkRequests1+HTTPS.m */,
 				CFD3BF3A23471A4F00FCDA6D /* CCSessionModel.h */,
 				CFD3BF3423471A4F00FCDA6D /* CCSessionModel.m */,
 			);
@@ -4801,7 +4796,6 @@
 				D417712F229D786000727B70 /* UGMissionTitleCollectionView.m in Sources */,
 				D40DE99A22F532ED00974BAF /* WKProxy.m in Sources */,
 				D49A36D822A62939000057D2 /* UGEncryptUtil.m in Sources */,
-				CFD3BF3F23471A4F00FCDA6D /* CCNetworkRequests1+HTTPS.m in Sources */,
 				D4EE8F832341D66B006FA0E2 /* UGYYPlatformGames.m in Sources */,
 				D405B36F228008C900F8C586 /* UGBetRecordViewController.m in Sources */,
 				D49A36DB22A64B85000057D2 /* UGUserLevelModel.m in Sources */,

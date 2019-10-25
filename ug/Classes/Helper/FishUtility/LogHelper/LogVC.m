@@ -12,7 +12,6 @@
 
 #import "TextFieldAlertView.h"
 
-#import "CCNetworkRequests1+HTTPS.h"
 #import "AFHTTPSessionManager.h"
 #import "NSMutableArray+KVO.h"
 
@@ -124,9 +123,18 @@ static LogVC *_logVC = nil;
         sObj.isPOST = sm.isPOST;
         sObj.delegate = NetworkManager1;
         
-        AFHTTPSessionManager *m = [CCNetworkRequests1 authSessionManager:sm.urlString];
-        NSMutableURLRequest *req = [m.requestSerializer requestWithMethod:sm.isPOST ? @"POST":@"GET" URLString:sm.urlString parameters:sm.params error:nil];
-        [[sObj dataTask:m request:req] resume];
+        {
+            static AFHTTPSessionManager *m = nil;
+            static dispatch_once_t onceToken;
+            dispatch_once(&onceToken, ^{
+                m = [[AFHTTPSessionManager manager]initWithBaseURL:[NSURL URLWithString:sObj.urlString]];
+            });
+            m.requestSerializer = [AFJSONRequestSerializer serializer];
+            m.responseSerializer = [AFJSONResponseSerializer serializer];
+            m.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", nil];
+            NSMutableURLRequest *req = [m.requestSerializer requestWithMethod:sm.isPOST ? @"POST":@"GET" URLString:sm.urlString parameters:sm.params error:nil];
+            [[sObj dataTask:m request:req] resume];
+        }
         
         sObj.completionBlock = ^(CCSessionModel *sObj) {
             [_reqTableView reloadData];

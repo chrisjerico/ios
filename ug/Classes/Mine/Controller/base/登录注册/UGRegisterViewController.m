@@ -241,12 +241,21 @@
         // 校验密码格式
         {
             UITextField *tf = self.passwordTextF;
-            ck_parameter_less_length(tf.text, _NSString(@"%ld", config.pass_length_min), tf.placeholder);
+            ck_parameter_less_length(tf.text, _NSString(@"%ld", (long)config.pass_length_min), tf.placeholder);
             
             if (config.pass_limit == 1) {
-                ck_parameter_non_zero(_NSString(@"%d", [tf.text isMatch:RX(@"^[0-9A-Za-z]*$")]), tf.placeholder);
-            } else if (config.pass_limit == 1) {
-                ck_parameter_non_zero(_NSString(@"%d", [tf.text isMatch:RX(@"^[\\x20-\\x7E]*$")]), tf.placeholder);
+                ck_parameter_non_zero(_NSString(@"%d", (tf.text.hasNumber && tf.text.hasLetter)), tf.placeholder);
+            }
+            else if (config.pass_limit == 2) {
+                BOOL hasSymbols = false;
+                NSString *symbols = @" (@、!\"#$%&,()*+,-./:;[{</|=]}>^`?_";
+                for (NSString *s in symbols) {
+                    if ([tf.text containsString:s]) {
+                        hasSymbols = true;
+                        break;
+                    }
+                }
+                ck_parameter_non_zero(_NSString(@"%d", (tf.text.hasNumber && tf.text.hasLetter && hasSymbols)), tf.placeholder);
             }
         }
         

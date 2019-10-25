@@ -58,7 +58,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL showReal;
 @property (nonatomic, assign) BOOL testFlag;
 @property (nonatomic, assign) NSInteger type;
-@property (nonatomic, assign) NSString* usr;
+@property (nonatomic, assign) NSString *usr;
 
 @property (nonatomic, assign) BOOL yuebaoSwitch;    /**<   是否是开启利息宝 */
 @property (nonatomic, assign) BOOL chatRoomSwitch;  /**<   是否是开启聊天室 */

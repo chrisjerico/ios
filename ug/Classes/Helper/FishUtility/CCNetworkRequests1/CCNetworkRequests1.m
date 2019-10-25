@@ -8,7 +8,6 @@
 
 #import "CCNetworkRequests1.h"
 #import "AFNetworking.h"
-#import "CCNetworkRequests1+HTTPS.h"
 
 @interface CCNetworkRequests1 ()<CCRequestDelegate>
 @property (readonly) NSDictionary *publicParams;            /**<    公共参数 */
@@ -143,7 +142,14 @@
     
     // 发起请求
     {
-        AFHTTPSessionManager *m = [CCNetworkRequests1 authSessionManager:urlString];
+        static AFHTTPSessionManager *m = nil;
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            m = [[AFHTTPSessionManager manager]initWithBaseURL:[NSURL URLWithString:urlString]];
+        });
+        m.requestSerializer = [AFJSONRequestSerializer serializer];
+        m.responseSerializer = [AFJSONResponseSerializer serializer];
+        m.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", nil];
         NSMutableURLRequest *req = [m.requestSerializer requestWithMethod:isPOST ? @"POST":@"GET" URLString:urlString parameters:params error:nil];
 //        [req addValue:UserI.token forHTTPHeaderField:@"ACCESS_TOKEN"];
         [[sm dataTask:m request:req] resume];
