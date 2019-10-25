@@ -226,7 +226,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
        NSMutableArray *list = [NSMutableArray new];
        NSMutableArray<UGbetParamModel> *betParams = [NSMutableArray<UGbetParamModel> new];
        NSMutableArray<UGplayNameModel> *playNameArray = [NSMutableArray<UGplayNameModel> new];
-       
+       UGselectSubModel *subModel = [UGselectSubModel new];
        for (int i = 0; i< self.betArray.count; i++)  {
            UGGameBetModel *model = [self.betArray objectAtIndex:i];
            NSLog(@"model=%@",model);
@@ -276,6 +276,101 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
                 [playNameArray addObject:betList];
                 [betModel setPlayNameArray:playNameArray];
            }
+           
+           {//UGselectSubModel
+               NSString *max = @"";
+               NSString *min = @"";
+               NSString *alias = model.alias;
+               if ([self.nextIssueModel.gameType isEqualToString:@"lhc"]) {
+                   if ([alias containsString:@"三中二"]){
+                       max = @"7";
+                       min = @"3";
+                   }
+                   else if ([alias containsString:@"二全中"] ||[alias containsString:@"二中特"] ||[alias containsString:@"特串"] ) {
+                       max = @"7";
+                       min = @"2";
+                   }
+                   else if ([alias containsString:@"三全中"]) {
+                       max = @"10";
+                       min = @"3";
+                   }
+                   else if ([alias containsString:@"四全中"]) {
+                        max = @"4";
+                        min = @"4";
+                   }
+                   else {
+                       
+                   }
+               }
+               else if([self.nextIssueModel.gameType isEqualToString:@"gd11x5"]){
+                   if ([alias containsString:@"二中二"]) {
+                       max = @"2";
+                       min = @"2";
+                   }
+                   else if ([alias containsString:@"三中三"]) {
+                       max = @"3";
+                       min = @"3";
+                   }
+                   else if ([alias containsString:@"四中四"]) {
+                       max = @"4";
+                       min = @"4";
+                   }
+                   else if ([alias containsString:@"五中五"]){
+                       max = @"5";
+                       min = @"5";
+                   }
+                   else if ([alias containsString:@"前二组选"]){
+                       max = @"5";
+                       min = @"2";
+                   }
+                   else if ([alias containsString:@"前三组选"]){
+                       max = @"5";
+                       min = @"3";
+                   }
+                   else if ([alias containsString:@"六中五"]) {
+                       max = @"6";
+                       min = @"5";
+                   }
+                   else if ([alias containsString:@"七中五"]) {
+                       max = @"7";
+                       min = @"5";
+                   }
+                   else if ([alias containsString:@"八中五"]) {
+                       max = @"8";
+                       min = @"5";
+                   }
+                   else {
+                       
+                   }
+               }
+               else if([self.nextIssueModel.gameType isEqualToString:@"gdkl10"]){
+                    if ([alias containsString:@"任选二"] ||
+                        [alias containsString:@"选二连组"]){
+                        max = @"7";
+                        min = @"2";
+                    }
+                   else if ([alias containsString:@"任选三"] ||[alias containsString:@"选三前组"]) {
+                       max = @"7";
+                       min = @"3";
+                   }
+                   else if ([alias containsString:@"任选四"]){
+                       max = @"5";
+                       min = @"4";
+                   }
+                   else if ([alias containsString:@"任选五"]){
+                       max = @"5";
+                       min = @"5";
+                    }
+                   else {
+                           
+                    }
+               }
+               subModel.max = max;
+               subModel.min = min;
+               subModel.id = model.playId;
+               subModel.text = model.name;
+               subModel.type = self.code;
+           }
 
        }
     
@@ -290,7 +385,10 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
                   NSLog(@"time = %ld",(long)timeInt);
                   betModel.ftime = [NSString stringWithFormat:@"%ld",(long)timeInt];
                   betModel.code = self.code;
-            
+            if ([self.code isEqualToString:@"LMA"]&&([self.nextIssueModel.gameType isEqualToString:@"gdkl10"]||[self.nextIssueModel.gameType isEqualToString:@"gd11x5"]||[self.nextIssueModel.gameType isEqualToString:@"lhc"])) {
+                  betModel.selectSub = subModel;
+            }
+           
             if ([self.code isEqualToString:@"LMA"] ||[self.code isEqualToString:@"ZX"] ||[self.code isEqualToString:@"HX"] ||[self.code isEqualToString:@"LX"] ||[self.code isEqualToString:@"LW"] ||[self.code isEqualToString:@"ZXBZ"] ) {
                  betModel.specialPlay = YES;
                 
@@ -300,10 +398,12 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
                  
         }
     
+      
+    
    //以字符串形式导出
     NSString* paramsjsonString = [betModel toJSONString];
     
-//    NSLog(@"paramsjsonString = %@",paramsjsonString);
+    NSLog(@"paramsjsonString = %@",paramsjsonString);
     
     NSString *listjsonString;
        {

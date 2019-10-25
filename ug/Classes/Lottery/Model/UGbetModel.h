@@ -41,6 +41,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@protocol UGselectSubModel <NSObject>
+
+@end
+@interface UGselectSubModel : UGModel<UGselectSubModel>
+@property (nonatomic, strong) NSString *id;   /**玩法id*/
+@property (nonatomic, strong) NSString *max;   /**<   最大选择数*/
+@property (nonatomic, strong) NSString *min;   /**<   最小选择数*/
+@property (nonatomic, strong) NSString *text;   /**<   玩法名称*/
+@property (nonatomic, strong) NSString *type;   /**<   连码*/
+@end
+
 
 @interface UGbetModel : UGModel
 @property (nonatomic, strong) NSString *gameName;    /**<   游戏名称*/
@@ -54,6 +65,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *turnNum;        /**<   当前期号*/
 @property (nonatomic, strong) NSArray<UGbetParamModel> *betParams;
 @property (nonatomic, strong) NSArray<UGplayNameModel> *playNameArray;
+@property (nonatomic, strong) UGselectSubModel *selectSub; /**<   用于电脑版*/
 @end
 
 NS_ASSUME_NONNULL_END

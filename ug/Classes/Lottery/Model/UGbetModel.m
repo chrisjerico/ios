@@ -23,6 +23,11 @@
 
 @end
 
+@implementation UGselectSubModel
+
+
+@end
+
 @implementation UGbetModel
 
 @end
