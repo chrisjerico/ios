@@ -25,6 +25,7 @@
 		CF48BF6D235590EC00DFF4BC /* SlideSegmentView1.m in Sources */ = {isa = PBXBuildFile; fileRef = CF48BF68235590EB00DFF4BC /* SlideSegmentView1.m */; };
 		CF48BF6E235590EC00DFF4BC /* SlideSegmentView2.m in Sources */ = {isa = PBXBuildFile; fileRef = CF48BF69235590EB00DFF4BC /* SlideSegmentView2.m */; };
 		CF48BF6F235590EC00DFF4BC /* SlideSegmentView1.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF48BF6A235590EB00DFF4BC /* SlideSegmentView1.xib */; };
+		CF84BE282362E32D0058F055 /* CCNetworkRequests1+UGLiuHe.m in Sources */ = {isa = PBXBuildFile; fileRef = CF84BE272362E32D0058F055 /* CCNetworkRequests1+UGLiuHe.m */; };
 		CFD3BEEF2347137F00FCDA6D /* category.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BE9A2347137E00FCDA6D /* category.m */; };
 		CFD3BEF02347137F00FCDA6D /* IBTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BE9C2347137E00FCDA6D /* IBTextField.m */; };
 		CFD3BEF12347137F00FCDA6D /* IBButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BE9D2347137E00FCDA6D /* IBButton.m */; };
@@ -637,6 +638,8 @@
 		CF48BF6A235590EB00DFF4BC /* SlideSegmentView1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SlideSegmentView1.xib; sourceTree = "<group>"; };
 		CF48BF6B235590EB00DFF4BC /* SlideSegmentView1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideSegmentView1.h; sourceTree = "<group>"; };
 		CF48BF6C235590EB00DFF4BC /* SlideSegmentView2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideSegmentView2.h; sourceTree = "<group>"; };
+		CF84BE262362E32D0058F055 /* CCNetworkRequests1+UGLiuHe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CCNetworkRequests1+UGLiuHe.h"; sourceTree = "<group>"; };
+		CF84BE272362E32D0058F055 /* CCNetworkRequests1+UGLiuHe.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CCNetworkRequests1+UGLiuHe.m"; sourceTree = "<group>"; };
 		CFD3BE972347137E00FCDA6D /* FishUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishUtility.h; sourceTree = "<group>"; };
 		CFD3BE992347137E00FCDA6D /* IBView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBView.h; sourceTree = "<group>"; };
 		CFD3BE9A2347137E00FCDA6D /* category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = category.m; sourceTree = "<group>"; };
@@ -2789,6 +2792,8 @@
 			children = (
 				CFD3BF3523471A4F00FCDA6D /* CCNetworkRequests1.h */,
 				CFD3BF2923471A4F00FCDA6D /* CCNetworkRequests1.m */,
+				CF84BE262362E32D0058F055 /* CCNetworkRequests1+UGLiuHe.h */,
+				CF84BE272362E32D0058F055 /* CCNetworkRequests1+UGLiuHe.m */,
 				CFD3BF3A23471A4F00FCDA6D /* CCSessionModel.h */,
 				CFD3BF3423471A4F00FCDA6D /* CCSessionModel.m */,
 			);
@@ -4500,6 +4505,7 @@
 				D405B1D5227972C100F8C586 /* AFHTTPSessionManager.m in Sources */,
 				D45F98C622E34DAB00194139 /* UGMineViewController.m in Sources */,
 				D4A02B5B23227B7D004D5894 /* UGSingInHistoryTableViewCell.m in Sources */,
+				CF84BE282362E32D0058F055 /* CCNetworkRequests1+UGLiuHe.m in Sources */,
 				D409C55B22AB86D90042A0DD /* UGFeedBackController.m in Sources */,
 				CFD3BEF52347137F00FCDA6D /* NSNull+Safe.m in Sources */,
 				D4D8DF802287065F00446BAF /* UGTimeLotteryBetHeaderView.m in Sources */,

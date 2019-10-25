@@ -329,6 +329,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     });
 }
 
+
 #pragma mark - YBPopupMenuDelegate
 
 - (void)ybPopupMenuDidSelectedAtIndex:(NSInteger)index ybPopupMenu:(YBPopupMenu *)ybPopupMenu {
@@ -340,22 +341,20 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             
         }
     }
-    
 }
 
+
 #pragma mark - UITableViewDataSource
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
     return self.gameDataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     UGTimeLotteryLeftTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:leftTitleCellid forIndexPath:indexPath];
     UGGameplayModel *model = self.gameDataArray[indexPath.row];
     cell.item = model;
@@ -373,11 +372,9 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     self.typeIndexPath = indexPath;
     [self.betCollectionView reloadData];
     [self.betCollectionView setContentOffset:CGPointMake(0, 0) animated:YES];
-    
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -446,8 +443,6 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             cell.title = self.preNumArray[indexPath.row];
             cell.showAdd = NO;
             cell.showBorder = NO;
-            cell.layer.cornerRadius = 5;
-            cell.layer.masksToBounds = YES;
             cell.backgroundColor = [CMCommon getPreNumColor:self.preNumArray[indexPath.row]];
             return cell;
         }else {
@@ -520,36 +515,33 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 }
 
 #pragma mark - WSLWaterFlowLayoutDelegate
+
 //返回每个item大小
-- (CGSize)waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-   
+- (CGSize)waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     return CGSizeMake((UGScreenW / 4 * 3 - 4) / 2, 40);
-    
-    
 }
 
 /** 头视图Size */
--(CGSize )waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForHeaderViewInSection:(NSInteger)section{
+-(CGSize )waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForHeaderViewInSection:(NSInteger)section {
     return CGSizeMake(UGScreenW / 4 * 3 - 1, 35);
 }
 
 /** 列间距*/
--(CGFloat)columnMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
+-(CGFloat)columnMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout {
     if (self.typeIndexPath.row == 17) {
         return 10;
     }
     return 1;
 }
 /** 行间距*/
--(CGFloat)rowMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
+-(CGFloat)rowMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout {
     if (self.typeIndexPath.row == 17) {
         return 10;
     }
     return 1;
 }
 /** 边缘之间的间距*/
--(UIEdgeInsets)edgeInsetInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
+-(UIEdgeInsets)edgeInsetInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout {
     
 //    if (self.typeIndexPath.row == 17) {
 //        self.betCollectionView.backgroundColor = [UIColor whiteColor];

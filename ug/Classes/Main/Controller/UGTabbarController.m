@@ -224,9 +224,9 @@ static UGTabbarController *_tabBarVC = nil;
         
         // 已存在的控制器不需要重新初始化
         BOOL existed = false;
-        for (UIViewController *vc in self.viewControllers) {
-            if ([vc isKindOfClass:gm.cls]) {
-                [vcs addObject:vc];
+        for (UINavigationController *nav in self.viewControllers) {
+            if ([nav.viewControllers.firstObject isKindOfClass:gm.cls]) {
+                [vcs addObject:nav];
                 existed = true;
                 break;
             }

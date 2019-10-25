@@ -422,8 +422,6 @@ static NSString *lotterySubResultCellid = @"UGPK10SubResultCollectionViewCell";
             cell.title = self.preNumArray[indexPath.row];
             cell.showAdd = NO;
             cell.showBorder = NO;
-            cell.layer.cornerRadius = 3;
-            cell.layer.masksToBounds = YES;
             cell.backgroundColor = [CMCommon getPreNumColor:self.preNumArray[indexPath.row]];
             return cell;
         }else {

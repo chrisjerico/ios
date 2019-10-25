@@ -63,7 +63,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     BOOL isLogin = UGLoginIsAuthorized();
     if (isLogin) {
-        [[NSNotificationCenter defaultCenter] postNotification: [NSNotification notificationWithName:@"gameNavigationItemTaped" object: self.sourceData[indexPath.item]]];
+        [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"gameNavigationItemTaped" object:self.sourceData[indexPath.item]]];
     } else {
         SANotificationEventPost(UGNotificationShowLoginView, nil);
     }

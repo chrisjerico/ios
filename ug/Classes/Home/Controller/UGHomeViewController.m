@@ -38,6 +38,7 @@
 #import "UGRegisterViewController.h"
 #import "UGPromoteDetailController.h"   // 优惠活动详情
 #import "UGPromotionsController.h"
+#import "UGAgentViewController.h"   // 申请代理
 
 // View
 #import "SDCycleScrollView.h"
@@ -224,9 +225,7 @@
 	});
     
     [self xw_addNotificationForName:UGNotificationShowLoginView block:^(NSNotification * _Nonnull noti) {
-        if (OBJOnceToken(noti)) {
-            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLoginViewController") animated:true];
-        }
+        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLoginViewController") animated:true];
     }];
 	SANotificationEventSubscribe(UGNotificationGetUserInfo, self, ^(typeof (self) self, id obj) {
 		[self getUserInfo];
@@ -271,7 +270,10 @@
     [self systemOnlineCount];
     [self getPromoteList];      // 优惠活动
 	
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gameNavigationItemTaped:) name:@"gameNavigationItemTaped" object:nil];
+    __weakSelf_(__self);
+    [self xw_addNotificationForName:@"gameNavigationItemTaped" block:^(NSNotification * _Nonnull noti) {
+        [__self gameNavigationAction:noti.object];
+    }];
 	
 	WeakSelf
 	self.gameTypeView.gameItemSelectBlock = ^(GameModel * _Nonnull game) {
@@ -357,11 +359,6 @@
 	self.initSubview = YES;
 }
 
-- (void)gameNavigationItemTaped:(NSNotification *)notification {
-	GameModel *model = notification.object;
-    [self gameNavigationAction:model];
-}
-
 - (void)gameNavigationAction: (GameModel *)model{
     
     if ([model.subId isEqualToString:@"1"]) {
@@ -380,7 +377,33 @@
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_NSString(@"%@/Open_prize/index.php", baseServerUrl)]];
     } else if ([model.subId isEqualToString:@"6"]) {
         // 推广收益
-        [self.navigationController pushViewController:[UGPromotionIncomeController new] animated:YES];
+        if (UserI.isTest) {
+            [self.navigationController pushViewController:[UGPromotionIncomeController new] animated:YES];
+        } else {
+            [SVProgressHUD showWithStatus:nil];
+            [CMNetwork teamAgentApplyInfoWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:^(CMResult<id> *model, NSError *err) {
+                [CMResult processWithResult:model success:^{
+                    [SVProgressHUD dismiss];
+                    UGagentApplyInfo *obj  = (UGagentApplyInfo *)model.data;
+                    int intStatus = obj.reviewStatus.intValue;
+                    
+                    //0 未提交  1 待审核  2 审核通过 3 审核拒绝
+                    if (intStatus == 2) {
+                        [NavController1 pushViewController:[UGPromotionIncomeController new] animated:YES];
+                    } else {
+                        if (![SysConf.agent_m_apply isEqualToString:@"1"]) {
+                            [HUDHelper showMsg:@"在线注册代理已关闭"];
+                            return ;
+                        }
+                        UGAgentViewController *vc = [[UGAgentViewController alloc] init];
+                        vc.item = obj;
+                        [NavController1 pushViewController:vc animated:YES];
+                    }
+                } failure:^(id msg) {
+                    [SVProgressHUD showErrorWithStatus:msg];
+                }];
+            }];
+        }
     } else if ([model.subId isEqualToString:@"2"]) {
         // APP下载
         [[UGAppVersionManager shareInstance] updateVersionApi:true];

@@ -109,7 +109,7 @@
     _statusBarBgView.backgroundColor = [UGSkinManagers.shareInstance setNavbgColor];
     [self.view addSubview:_statusBarBgView];
     
-    if ([self.title isEqualToString:@"聊天室"]) {
+    if ([self.title isEqualToString:@"聊天室"] && !_jsonStr.length) {
         if (OBJOnceToken(UserI)) {
             [self.tgWebView stopLoading];
             self.url = _NSString(@"%@%@%@&loginsessid=%@&color=%@&back=hide&from=app", baseServerUrl, newChatRoomUrl, [UGUserModel currentUser].token, [UGUserModel currentUser].sessid, [[UGSkinManagers shareInstance] setChatNavbgStringColor]);
