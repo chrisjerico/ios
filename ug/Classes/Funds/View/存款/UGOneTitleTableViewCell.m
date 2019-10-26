@@ -18,19 +18,12 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-      [self setBackgroundColor: [[UGSkinManagers shareInstance] setCellbgColor]];
+    [self setBackgroundColor: [[UGSkinManagers shareInstance] setCellbgColor]];
 }
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
 
 - (void)setItem:(UGrechargeBankModel *)item {
     _item = item;
-    
     self.title1Label.text = item.name;
 }
+
 @end

@@ -26,6 +26,7 @@
 		CF48BF6E235590EC00DFF4BC /* SlideSegmentView2.m in Sources */ = {isa = PBXBuildFile; fileRef = CF48BF69235590EB00DFF4BC /* SlideSegmentView2.m */; };
 		CF48BF6F235590EC00DFF4BC /* SlideSegmentView1.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF48BF6A235590EB00DFF4BC /* SlideSegmentView1.xib */; };
 		CF84BE282362E32D0058F055 /* CCNetworkRequests1+UGLiuHe.m in Sources */ = {isa = PBXBuildFile; fileRef = CF84BE272362E32D0058F055 /* CCNetworkRequests1+UGLiuHe.m */; };
+		CF84BE2B236416C20058F055 /* UGLHC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF84BE2A236416C20058F055 /* UGLHC.storyboard */; };
 		CFD3BEEF2347137F00FCDA6D /* category.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BE9A2347137E00FCDA6D /* category.m */; };
 		CFD3BEF02347137F00FCDA6D /* IBTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BE9C2347137E00FCDA6D /* IBTextField.m */; };
 		CFD3BEF12347137F00FCDA6D /* IBButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BE9D2347137E00FCDA6D /* IBButton.m */; };
@@ -640,6 +641,7 @@
 		CF48BF6C235590EB00DFF4BC /* SlideSegmentView2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideSegmentView2.h; sourceTree = "<group>"; };
 		CF84BE262362E32D0058F055 /* CCNetworkRequests1+UGLiuHe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CCNetworkRequests1+UGLiuHe.h"; sourceTree = "<group>"; };
 		CF84BE272362E32D0058F055 /* CCNetworkRequests1+UGLiuHe.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CCNetworkRequests1+UGLiuHe.m"; sourceTree = "<group>"; };
+		CF84BE2A236416C20058F055 /* UGLHC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UGLHC.storyboard; sourceTree = "<group>"; };
 		CFD3BE972347137E00FCDA6D /* FishUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishUtility.h; sourceTree = "<group>"; };
 		CFD3BE992347137E00FCDA6D /* IBView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBView.h; sourceTree = "<group>"; };
 		CFD3BE9A2347137E00FCDA6D /* category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = category.m; sourceTree = "<group>"; };
@@ -1480,7 +1482,7 @@
 		D4B6E6ED22D3325A0006B03F /* UGHomeTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGHomeTitleView.h; sourceTree = "<group>"; };
 		D4B6E6EE22D3325A0006B03F /* UGHomeTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGHomeTitleView.m; sourceTree = "<group>"; };
 		D4B6E6F022D332720006B03F /* UGHomeTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGHomeTitleView.xib; sourceTree = "<group>"; };
-		D4B75E092278025E0007047C /* ug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ug.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4B75E092278025E0007047C /* 49彩票.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "49彩票.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4B75E0C2278025E0007047C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D4B75E15227802600007047C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4B75E18227802600007047C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -2583,6 +2585,14 @@
 			path = SlideSegmentView;
 			sourceTree = "<group>";
 		};
+		CF84BE29236416A20058F055 /* 六合页面 */ = {
+			isa = PBXGroup;
+			children = (
+				CF84BE2A236416C20058F055 /* UGLHC.storyboard */,
+			);
+			path = "六合页面";
+			sourceTree = "<group>";
+		};
 		CFD3BE962347137E00FCDA6D /* FishUtility */ = {
 			isa = PBXGroup;
 			children = (
@@ -3654,7 +3664,7 @@
 		D4B75E0A2278025E0007047C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D4B75E092278025E0007047C /* ug.app */,
+				D4B75E092278025E0007047C /* 49彩票.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3700,6 +3710,7 @@
 		D4B75E24227811D50007047C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				CF84BE29236416A20058F055 /* 六合页面 */,
 				CF3B0E6B234B2B9C0035AF50 /* 长龙助手 */,
 				CF3B0E6C234B2BA70035AF50 /* 开奖记录 */,
 				CF07900E2359F4ED007C09D8 /* 资料页 */,
@@ -4146,7 +4157,7 @@
 			);
 			name = ug;
 			productName = ug;
-			productReference = D4B75E092278025E0007047C /* ug.app */;
+			productReference = D4B75E092278025E0007047C /* 49彩票.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -4304,6 +4315,7 @@
 				D4B75E16227802600007047C /* Assets.xcassets in Resources */,
 				D409B150229686C00053DA33 /* UGHKLHCLotteryController.storyboard in Resources */,
 				D4704EC722B7567B00528DC7 /* UGPK10NNLotteryController.storyboard in Resources */,
+				CF84BE2B236416C20058F055 /* UGLHC.storyboard in Resources */,
 				D41FF937233330DB00FE3F70 /* UGActivityGoldView.xib in Resources */,
 				D425282E23212717007DE522 /* UGSignInScrFootView.xib in Resources */,
 				D4DE2687229BCB960072A4A2 /* icon_arrow_up@2x.png in Resources */,
@@ -4981,11 +4993,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.UGGame.cp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "49彩票";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -5007,11 +5019,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.UGGame.cp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "49彩票";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -595,7 +595,7 @@
     
     UGFundsBankView *notiveView = [[UGFundsBankView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - 260)];
     notiveView.dataArray = self->_blankDataArray ;
-    notiveView.nameStr = @"请选择银行";
+    notiveView.nameStr = @"--- 请选择银行 ---";
     
     WeakSelf;
     notiveView.signInHeaderViewnBlock =  ^(id model) {

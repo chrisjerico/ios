@@ -195,13 +195,11 @@
                  
              }];
             //==================================================================
-            [self.blank_button  mas_remakeConstraints:^(MASConstraintMaker *make)
-             {
-                 make.left.equalTo(self.view.mas_left).with.offset(0);
-                 make.right.equalTo(self.view.mas_right).with.offset(0);
-                 make.top.equalTo(self.tableView.mas_bottom).offset(10);
+            [self.blank_button mas_remakeConstraints:^(MASConstraintMaker *make) {
+                 make.left.equalTo(self.view).offset(20);
+                 make.right.equalTo(self.view).offset(-20);
+                 make.top.equalTo(self.tableView.mas_bottom).offset(20);
                  make.height.mas_equalTo(44);
-                 
              }];
              
             //==================================================================
@@ -351,22 +349,11 @@
     
     if (self.blank_button == nil) {
         UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        button.frame = CGRectMake(0, 500, UGScreenW, 44);
+        button.frame = CGRectMake(20, 510, APP.Width-40, 44);
         // 按钮的正常状态
-        [button setTitle:@"请选择银行" forState:UIControlStateNormal];
-        // 设置按钮的背景色
-        button.backgroundColor = [[UGSkinManagers shareInstance] setNavbgColor];
-        
-        // 设置正常状态下按钮文字的颜色，如果不写其他状态，默认都是用这个文字的颜色
-        
-        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        
-        // 设置按下状态文字的颜色
-        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
-        
-        // titleLabel：UILabel控件
+        [button setTitle:@"请选择银行 ▼" forState:UIControlStateNormal];
+        [button setTitleColor:[[UGSkinManagers shareInstance] setNavbgColor] forState:UIControlStateNormal];
         button.titleLabel.font = [UIFont systemFontOfSize:16];
-        
         [button addTarget:self action:@selector(showBlackList:) forControlEvents:UIControlEventTouchUpInside];
         
         CALayer *layer= button.layer;
@@ -402,41 +389,20 @@
     if (self.submit_button == nil) {
         UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         button.frame = CGRectMake(0, 500, UGScreenW, 44);
-        // 按钮的正常状态
         [button setTitle:@"开始充值" forState:UIControlStateNormal];
-        // 设置按钮的背景色
         button.backgroundColor = [[UGSkinManagers shareInstance] setNavbgColor];
-        
-        // 设置正常状态下按钮文字的颜色，如果不写其他状态，默认都是用这个文字的颜色
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        
-        // 设置按下状态文字的颜色
-        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
-        
-        
-        // titleLabel：UILabel控件
         button.titleLabel.font = [UIFont systemFontOfSize:16];
-        
+        button.layer.cornerRadius = 5;
+        button.layer.masksToBounds = true;
         [button addTarget:self action:@selector(submit_buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
-        
-        CALayer *layer= button.layer;
-        //是否设置边框以及是否可见
-        [layer setMasksToBounds:YES];
-        //设置边框圆角的弧度
-        [layer setCornerRadius:5];
-        //设置边框线的宽
-        [layer setBorderWidth:1];
-        //设置边框线的颜色
-        [layer setBorderColor:[[UGSkinManagers shareInstance] setNavbgColor].CGColor];
-        
-        
         [self.submit_View addSubview:button ];
         self.submit_button = button;
         [self.submit_button  mas_makeConstraints:^(MASConstraintMaker *make) {
              make.left.equalTo(self.view.mas_left).with.offset(20);
              make.right.equalTo(self.view.mas_right).with.offset(-20);
-             make.bottom.equalTo(self.view.mas_bottom).offset(-IPHONE_SAFEBOTTOMAREA_HEIGHT);
-             make.height.mas_equalTo(40);
+             make.bottom.equalTo(self.view.mas_bottom).offset(-IPHONE_SAFEBOTTOMAREA_HEIGHT - 20);
+             make.height.mas_equalTo(44);
         }];
         
         //=================================================
@@ -477,15 +443,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UGDepositDetailsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UGDepositDetailsTableViewCell" forIndexPath:indexPath];
     UGchannelModel *channelModel = [_tableDataArray objectAtIndex:indexPath.row];
-    
-   
-    
     cell.nameStr = channelModel.payeeName;
-    
-    
-    
     NSInteger row = [indexPath row];
-    
     NSInteger oldRow = [lastPath row];
     
     if (row == oldRow && self.lastPath!=nil) {
@@ -535,7 +494,7 @@
 -(void)showBlackList:(UIButton *)sender{
     UGFundsBankView *notiveView = [[UGFundsBankView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - 260)];
     notiveView.dataArray = self->_blankDataArray ;
-    notiveView.nameStr = @"请选择银行";
+    notiveView.nameStr = @"--- 请选择银行 ---";
     
     WeakSelf;
     notiveView.signInHeaderViewnBlock =  ^(id model) {
