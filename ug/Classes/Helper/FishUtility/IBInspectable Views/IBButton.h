@@ -8,8 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-//IB_DESIGNABLE
-
+IB_DESIGNABLE
 @interface IBButton : UIButton
 
 // 集成IBView 参数
@@ -21,7 +20,6 @@
 @property (nonatomic) IBInspectable UIColor *borderColor;
 @property (nonatomic) IBInspectable CGFloat borderWidth;
 
-
 // IBButton参数
 @property (nonatomic) IBInspectable UIColor *选中时描边颜色;
 
@@ -31,9 +29,11 @@
 
 @property (nonatomic) IBInspectable BOOL 选中时字体加粗;
 
+@property (nonatomic) IBInspectable CGFloat 文字左间距;
 @end
 
 
 @interface UIButton (IBInspectableUtils)
 @property (nonatomic) IBInspectable BOOL imgFitOrFill;
+@property (nonatomic) IBInspectable CGFloat imgScaling;
 @end

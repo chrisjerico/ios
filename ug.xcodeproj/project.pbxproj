@@ -33,6 +33,8 @@
 		CFA67A1B2365697F003B31B1 /* UGSearchPostVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA67A1A2365697F003B31B1 /* UGSearchPostVC.m */; };
 		CFA67A1E236569F8003B31B1 /* UGDocumentListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA67A1D236569F8003B31B1 /* UGDocumentListVC.m */; };
 		CFA67A2423658205003B31B1 /* UGLHGalleryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA67A2323658205003B31B1 /* UGLHGalleryVC.m */; };
+		CFC8C33823658DDA00C7A398 /* UGPostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CFC8C33723658DDA00C7A398 /* UGPostCell.m */; };
+		CFC8C33C23658E4600C7A398 /* UGPostModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFC8C33B23658E4600C7A398 /* UGPostModel.m */; };
 		CFD3BEEF2347137F00FCDA6D /* category.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BE9A2347137E00FCDA6D /* category.m */; };
 		CFD3BEF02347137F00FCDA6D /* IBTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BE9C2347137E00FCDA6D /* IBTextField.m */; };
 		CFD3BEF12347137F00FCDA6D /* IBButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BE9D2347137E00FCDA6D /* IBButton.m */; };
@@ -660,6 +662,10 @@
 		CFA67A1D236569F8003B31B1 /* UGDocumentListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGDocumentListVC.m; sourceTree = "<group>"; };
 		CFA67A2223658205003B31B1 /* UGLHGalleryVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLHGalleryVC.h; sourceTree = "<group>"; };
 		CFA67A2323658205003B31B1 /* UGLHGalleryVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLHGalleryVC.m; sourceTree = "<group>"; };
+		CFC8C33623658DDA00C7A398 /* UGPostCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGPostCell.h; sourceTree = "<group>"; };
+		CFC8C33723658DDA00C7A398 /* UGPostCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGPostCell.m; sourceTree = "<group>"; };
+		CFC8C33A23658E4600C7A398 /* UGPostModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGPostModel.h; sourceTree = "<group>"; };
+		CFC8C33B23658E4600C7A398 /* UGPostModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGPostModel.m; sourceTree = "<group>"; };
 		CFD3BE972347137E00FCDA6D /* FishUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishUtility.h; sourceTree = "<group>"; };
 		CFD3BE992347137E00FCDA6D /* IBView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBView.h; sourceTree = "<group>"; };
 		CFD3BE9A2347137E00FCDA6D /* category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = category.m; sourceTree = "<group>"; };
@@ -2623,6 +2629,24 @@
 			path = "六合页面";
 			sourceTree = "<group>";
 		};
+		CFC8C33523658DA900C7A398 /* 六合板块 */ = {
+			isa = PBXGroup;
+			children = (
+				CFC8C33623658DDA00C7A398 /* UGPostCell.h */,
+				CFC8C33723658DDA00C7A398 /* UGPostCell.m */,
+			);
+			path = "六合板块";
+			sourceTree = "<group>";
+		};
+		CFC8C33923658E3300C7A398 /* 六合板块 */ = {
+			isa = PBXGroup;
+			children = (
+				CFC8C33A23658E4600C7A398 /* UGPostModel.h */,
+				CFC8C33B23658E4600C7A398 /* UGPostModel.m */,
+			);
+			path = "六合板块";
+			sourceTree = "<group>";
+		};
 		CFD3BE962347137E00FCDA6D /* FishUtility */ = {
 			isa = PBXGroup;
 			children = (
@@ -3756,6 +3780,7 @@
 		D4B75E25227811D50007047C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CFC8C33923658E3300C7A398 /* 六合板块 */,
 				D411D3942292E1780072603B /* UGChanglongaideModel.h */,
 				D411D3952292E1780072603B /* UGChanglongaideModel.m */,
 				D411D3972292E1AD0072603B /* UGBetItemModel.h */,
@@ -3793,6 +3818,7 @@
 		D4B75E26227811D50007047C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CFC8C33523658DA900C7A398 /* 六合板块 */,
 				CF0279D4235849DB00C3D923 /* 首页 */,
 				D40C6E4023504F5600651983 /* 侧边栏 */,
 				CF0279D12358454900C3D923 /* 长龙助手 */,
@@ -4656,6 +4682,7 @@
 				D4EE8F872341DD4A006FA0E2 /* UGhomeRecommendCollectionViewCell.m in Sources */,
 				D422A57F229E79780068D0AD /* UGYubaoInComeController.m in Sources */,
 				D4704EC522B7566200528DC7 /* UGPK10NNLotteryController.m in Sources */,
+				CFC8C33823658DDA00C7A398 /* UGPostCell.m in Sources */,
 				CFD3BF092347137F00FCDA6D /* NSTimer+Block.m in Sources */,
 				D4185E44231D2E1B008DB5F2 /* AddressModel.m in Sources */,
 				D41AEA6E22E5D44F003E28C3 /* UGLotteryHistoryModel.m in Sources */,
@@ -4828,6 +4855,7 @@
 				033177A72337382D000D7663 /* UGPlatformCollectionView.m in Sources */,
 				D40E1E5622BF5409004D4664 /* UGNoticeModel.m in Sources */,
 				CFD3BF062347137F00FCDA6D /* UIImage+Utils.m in Sources */,
+				CFC8C33C23658E4600C7A398 /* UGPostModel.m in Sources */,
 				D4DE2684229BCB960072A4A2 /* WMNavTabBar.m in Sources */,
 				D4A1E90E232BC4A50045F5B4 /* NSDate+XHCategory.m in Sources */,
 				CFA67A2423658205003B31B1 /* UGLHGalleryVC.m in Sources */,
@@ -5030,7 +5058,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.UGGame.cp;
+				PRODUCT_BUNDLE_IDENTIFIER = io.fhpt.H59;
 				PRODUCT_NAME = "新2彩票";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -5056,7 +5084,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.UGGame.cp;
+				PRODUCT_BUNDLE_IDENTIFIER = io.fhpt.H59;
 				PRODUCT_NAME = "新2彩票";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
