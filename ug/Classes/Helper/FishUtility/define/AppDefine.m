@@ -66,6 +66,7 @@
                 sb(@"Mine"),
                 sb(@"UGFC3DLotteryController"),
                 sb(@"Promote"),
+                sb(@"UGLHC"),
                 ];
     });
     

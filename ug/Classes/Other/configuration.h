@@ -12,7 +12,7 @@
 #import <Foundation/Foundation.h>
 
 
-#define FishTest 1     // Fish调试用的标识
+#define FishTest 0     // Fish调试用的标识
 #define AndrewTest 0    // Andrew调试用的标识
 
 //路径转换为restful开关
@@ -29,7 +29,7 @@
 
 //static NSString *baseServerUrl = @"http://test10.6yc.com";                // test10
 //static NSString *baseServerUrl = @"http://test100f.fhptcdn.com";
-static NSString *baseServerUrl = @"http://103.9.230.243";                   // c083
+//static NSString *baseServerUrl = @"http://103.9.230.243";                   // c083
 //static NSString *baseServerUrl = @"http://oxhzpa002znukb.techlotgame.com";    // a002
 //static NSString *baseServerUrl = @"http://gruhhgcc013kvfh.playhappy123.com";  // c013
 //static NSString *baseServerUrl = @"http://feqmoligc022kqmvqegv.playzone88.com"; // c022
@@ -38,6 +38,8 @@ static NSString *baseServerUrl = @"http://103.9.230.243";                   // c
 //static NSString *baseServerUrl = @"http://etgnfb001kwa.phlotplay.com";//b001
 //static NSString *baseServerUrl = @"http://jbchpwpc163ybwnmsxc.phlotbet.com";//c163
 //static NSString *baseServerUrl = @"http://torfkic192wehfw.phlotgame.com";                // c192
+static NSString *baseServerUrl = @"https://5049uuu.com";  // a002
+//static NSString *baseServerUrl = @"http://oxhzpa002znukb.techlotgame.com";  // a002
 
 static NSString *swiperVerifyUrl = @"/dist/index.html#/swiperverify?platform=native";
 
