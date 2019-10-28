@@ -10,7 +10,7 @@
 
 // 当 DEBUG 或 APP_TEST 时，启用LogVC
 #if defined(DEBUG) || defined(APP_TEST)
-#define NSLog(s, ...) {NSString *log = [NSString stringWithFormat:(s), ##__VA_ARGS__];[LogVC addLog:log];NSLog( @"%@", log);}
+//#define NSLog(s, ...) {NSString *log = [NSString stringWithFormat:(s), ##__VA_ARGS__];[LogVC addLog:log];NSLog( @"%@", log);}
 
 @interface LogVC : UIViewController
 

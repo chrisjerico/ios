@@ -27,6 +27,14 @@
 		CF48BF6F235590EC00DFF4BC /* SlideSegmentView1.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF48BF6A235590EB00DFF4BC /* SlideSegmentView1.xib */; };
 		CF84BE282362E32D0058F055 /* CCNetworkRequests1+UGLiuHe.m in Sources */ = {isa = PBXBuildFile; fileRef = CF84BE272362E32D0058F055 /* CCNetworkRequests1+UGLiuHe.m */; };
 		CF84BE2B236416C20058F055 /* UGLHC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF84BE2A236416C20058F055 /* UGLHC.storyboard */; };
+		CFA67A122365692F003B31B1 /* UGPostListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA67A112365692F003B31B1 /* UGPostListVC.m */; };
+		CFA67A1523656953003B31B1 /* UGSubmitPostVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA67A1423656953003B31B1 /* UGSubmitPostVC.m */; };
+		CFA67A182365696A003B31B1 /* UGPostDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA67A172365696A003B31B1 /* UGPostDetailVC.m */; };
+		CFA67A1B2365697F003B31B1 /* UGSearchPostVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA67A1A2365697F003B31B1 /* UGSearchPostVC.m */; };
+		CFA67A1E236569F8003B31B1 /* UGDocumentListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA67A1D236569F8003B31B1 /* UGDocumentListVC.m */; };
+		CFA67A2423658205003B31B1 /* UGLHGalleryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA67A2323658205003B31B1 /* UGLHGalleryVC.m */; };
+		CFC8C33823658DDA00C7A398 /* UGPostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CFC8C33723658DDA00C7A398 /* UGPostCell.m */; };
+		CFC8C33C23658E4600C7A398 /* UGPostModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFC8C33B23658E4600C7A398 /* UGPostModel.m */; };
 		CFD3BEEF2347137F00FCDA6D /* category.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BE9A2347137E00FCDA6D /* category.m */; };
 		CFD3BEF02347137F00FCDA6D /* IBTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BE9C2347137E00FCDA6D /* IBTextField.m */; };
 		CFD3BEF12347137F00FCDA6D /* IBButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BE9D2347137E00FCDA6D /* IBButton.m */; };
@@ -642,6 +650,22 @@
 		CF84BE262362E32D0058F055 /* CCNetworkRequests1+UGLiuHe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CCNetworkRequests1+UGLiuHe.h"; sourceTree = "<group>"; };
 		CF84BE272362E32D0058F055 /* CCNetworkRequests1+UGLiuHe.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CCNetworkRequests1+UGLiuHe.m"; sourceTree = "<group>"; };
 		CF84BE2A236416C20058F055 /* UGLHC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UGLHC.storyboard; sourceTree = "<group>"; };
+		CFA67A102365692F003B31B1 /* UGPostListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGPostListVC.h; sourceTree = "<group>"; };
+		CFA67A112365692F003B31B1 /* UGPostListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGPostListVC.m; sourceTree = "<group>"; };
+		CFA67A1323656953003B31B1 /* UGSubmitPostVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGSubmitPostVC.h; sourceTree = "<group>"; };
+		CFA67A1423656953003B31B1 /* UGSubmitPostVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGSubmitPostVC.m; sourceTree = "<group>"; };
+		CFA67A162365696A003B31B1 /* UGPostDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGPostDetailVC.h; sourceTree = "<group>"; };
+		CFA67A172365696A003B31B1 /* UGPostDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGPostDetailVC.m; sourceTree = "<group>"; };
+		CFA67A192365697F003B31B1 /* UGSearchPostVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGSearchPostVC.h; sourceTree = "<group>"; };
+		CFA67A1A2365697F003B31B1 /* UGSearchPostVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGSearchPostVC.m; sourceTree = "<group>"; };
+		CFA67A1C236569F8003B31B1 /* UGDocumentListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGDocumentListVC.h; sourceTree = "<group>"; };
+		CFA67A1D236569F8003B31B1 /* UGDocumentListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGDocumentListVC.m; sourceTree = "<group>"; };
+		CFA67A2223658205003B31B1 /* UGLHGalleryVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLHGalleryVC.h; sourceTree = "<group>"; };
+		CFA67A2323658205003B31B1 /* UGLHGalleryVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLHGalleryVC.m; sourceTree = "<group>"; };
+		CFC8C33623658DDA00C7A398 /* UGPostCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGPostCell.h; sourceTree = "<group>"; };
+		CFC8C33723658DDA00C7A398 /* UGPostCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGPostCell.m; sourceTree = "<group>"; };
+		CFC8C33A23658E4600C7A398 /* UGPostModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGPostModel.h; sourceTree = "<group>"; };
+		CFC8C33B23658E4600C7A398 /* UGPostModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGPostModel.m; sourceTree = "<group>"; };
 		CFD3BE972347137E00FCDA6D /* FishUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishUtility.h; sourceTree = "<group>"; };
 		CFD3BE992347137E00FCDA6D /* IBView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBView.h; sourceTree = "<group>"; };
 		CFD3BE9A2347137E00FCDA6D /* category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = category.m; sourceTree = "<group>"; };
@@ -1482,7 +1506,7 @@
 		D4B6E6ED22D3325A0006B03F /* UGHomeTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGHomeTitleView.h; sourceTree = "<group>"; };
 		D4B6E6EE22D3325A0006B03F /* UGHomeTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGHomeTitleView.m; sourceTree = "<group>"; };
 		D4B6E6F022D332720006B03F /* UGHomeTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGHomeTitleView.xib; sourceTree = "<group>"; };
-		D4B75E092278025E0007047C /* 49彩票.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "49彩票.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4B75E092278025E0007047C /* 新2彩票.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "新2彩票.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4B75E0C2278025E0007047C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D4B75E15227802600007047C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4B75E18227802600007047C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -2589,8 +2613,38 @@
 			isa = PBXGroup;
 			children = (
 				CF84BE2A236416C20058F055 /* UGLHC.storyboard */,
+				CFA67A1323656953003B31B1 /* UGSubmitPostVC.h */,
+				CFA67A1423656953003B31B1 /* UGSubmitPostVC.m */,
+				CFA67A102365692F003B31B1 /* UGPostListVC.h */,
+				CFA67A112365692F003B31B1 /* UGPostListVC.m */,
+				CFA67A162365696A003B31B1 /* UGPostDetailVC.h */,
+				CFA67A172365696A003B31B1 /* UGPostDetailVC.m */,
+				CFA67A192365697F003B31B1 /* UGSearchPostVC.h */,
+				CFA67A1A2365697F003B31B1 /* UGSearchPostVC.m */,
+				CFA67A1C236569F8003B31B1 /* UGDocumentListVC.h */,
+				CFA67A1D236569F8003B31B1 /* UGDocumentListVC.m */,
+				CFA67A2223658205003B31B1 /* UGLHGalleryVC.h */,
+				CFA67A2323658205003B31B1 /* UGLHGalleryVC.m */,
 			);
 			path = "六合页面";
+			sourceTree = "<group>";
+		};
+		CFC8C33523658DA900C7A398 /* 六合板块 */ = {
+			isa = PBXGroup;
+			children = (
+				CFC8C33623658DDA00C7A398 /* UGPostCell.h */,
+				CFC8C33723658DDA00C7A398 /* UGPostCell.m */,
+			);
+			path = "六合板块";
+			sourceTree = "<group>";
+		};
+		CFC8C33923658E3300C7A398 /* 六合板块 */ = {
+			isa = PBXGroup;
+			children = (
+				CFC8C33A23658E4600C7A398 /* UGPostModel.h */,
+				CFC8C33B23658E4600C7A398 /* UGPostModel.m */,
+			);
+			path = "六合板块";
 			sourceTree = "<group>";
 		};
 		CFD3BE962347137E00FCDA6D /* FishUtility */ = {
@@ -3664,7 +3718,7 @@
 		D4B75E0A2278025E0007047C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D4B75E092278025E0007047C /* 49彩票.app */,
+				D4B75E092278025E0007047C /* 新2彩票.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3726,6 +3780,7 @@
 		D4B75E25227811D50007047C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CFC8C33923658E3300C7A398 /* 六合板块 */,
 				D411D3942292E1780072603B /* UGChanglongaideModel.h */,
 				D411D3952292E1780072603B /* UGChanglongaideModel.m */,
 				D411D3972292E1AD0072603B /* UGBetItemModel.h */,
@@ -3763,6 +3818,7 @@
 		D4B75E26227811D50007047C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CFC8C33523658DA900C7A398 /* 六合板块 */,
 				CF0279D4235849DB00C3D923 /* 首页 */,
 				D40C6E4023504F5600651983 /* 侧边栏 */,
 				CF0279D12358454900C3D923 /* 长龙助手 */,
@@ -4157,7 +4213,7 @@
 			);
 			name = ug;
 			productName = ug;
-			productReference = D4B75E092278025E0007047C /* 49彩票.app */;
+			productReference = D4B75E092278025E0007047C /* 新2彩票.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -4458,6 +4514,7 @@
 				D4D4226B23276CEF006E680B /* UGdepositModel.m in Sources */,
 				D405B330227DA8F700F8C586 /* SAROPSessionConfiguration.m in Sources */,
 				D422FE68232539040063EA4E /* UGinviteLisModel.m in Sources */,
+				CFA67A182365696A003B31B1 /* UGPostDetailVC.m in Sources */,
 				D405B3982281B18600F8C586 /* UGBalanceConversionController.m in Sources */,
 				D4DE269E229C17580072A4A2 /* UGBJPK10LotteryController.m in Sources */,
 				D41EDF7823164B39005798CC /* UGWithdrawLogsModel.m in Sources */,
@@ -4625,6 +4682,7 @@
 				D4EE8F872341DD4A006FA0E2 /* UGhomeRecommendCollectionViewCell.m in Sources */,
 				D422A57F229E79780068D0AD /* UGYubaoInComeController.m in Sources */,
 				D4704EC522B7566200528DC7 /* UGPK10NNLotteryController.m in Sources */,
+				CFC8C33823658DDA00C7A398 /* UGPostCell.m in Sources */,
 				CFD3BF092347137F00FCDA6D /* NSTimer+Block.m in Sources */,
 				D4185E44231D2E1B008DB5F2 /* AddressModel.m in Sources */,
 				D41AEA6E22E5D44F003E28C3 /* UGLotteryHistoryModel.m in Sources */,
@@ -4636,12 +4694,14 @@
 				D463B4E92284732300EAC0F7 /* UGBindCardViewController.m in Sources */,
 				D405B233227973C500F8C586 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				D4A3663C233E4A9E00F6D770 /* UINavigationController+UGExtension.m in Sources */,
+				CFA67A1B2365697F003B31B1 /* UGSearchPostVC.m in Sources */,
 				D40FA8D2229938FA003E596F /* ZZCountingLabel.m in Sources */,
 				CFD3BF0D2347137F00FCDA6D /* NSArray+Utils.m in Sources */,
 				D424DDDC22E72E940009E2E6 /* UGSystemConfigModel.m in Sources */,
 				D49F41AB2326132C00A381AD /* UGPormotionUserInfoView.m in Sources */,
 				D49D359E22C79E7900318D73 /* UGNoticePopView.m in Sources */,
 				D4D422522326469C006E680B /* UGwithdrawStatModel.m in Sources */,
+				CFA67A1523656953003B31B1 /* UGSubmitPostVC.m in Sources */,
 				D41F260D2318EFE4004FB9C6 /* UGChanglongBetRecrodCell.m in Sources */,
 				D4DCDBD42328D1AC00CF4CEE /* UGDepositDetailsTableViewCell.m in Sources */,
 				D40FA8C222991142003E596F /* UGYubaoViewController.m in Sources */,
@@ -4692,6 +4752,7 @@
 				D41246A92285525A006881E2 /* UGPromotionInfoController.m in Sources */,
 				D405B331227DA8F700F8C586 /* SAROPSession.m in Sources */,
 				D4D8DF702286B14C00446BAF /* UGSSCLotteryController.m in Sources */,
+				CFA67A122365692F003B31B1 /* UGPostListVC.m in Sources */,
 				D4EDC93F2343A20800BA4C4D /* UGCollectionViewCell.m in Sources */,
 				D40D58CA228AF7BA0025963A /* CountDown.m in Sources */,
 				D405B245227973F200F8C586 /* UIImage+ST.m in Sources */,
@@ -4794,8 +4855,10 @@
 				033177A72337382D000D7663 /* UGPlatformCollectionView.m in Sources */,
 				D40E1E5622BF5409004D4664 /* UGNoticeModel.m in Sources */,
 				CFD3BF062347137F00FCDA6D /* UIImage+Utils.m in Sources */,
+				CFC8C33C23658E4600C7A398 /* UGPostModel.m in Sources */,
 				D4DE2684229BCB960072A4A2 /* WMNavTabBar.m in Sources */,
 				D4A1E90E232BC4A50045F5B4 /* NSDate+XHCategory.m in Sources */,
+				CFA67A2423658205003B31B1 /* UGLHGalleryVC.m in Sources */,
 				D405B334227DA98500F8C586 /* CMNetworkStorage.m in Sources */,
 				CFD3BEF42347137F00FCDA6D /* NSString+Safe.m in Sources */,
 				D424DDDF22E74DA40009E2E6 /* UGRealBetRecordViewController.m in Sources */,
@@ -4804,6 +4867,7 @@
 				D405B1F8227972C900F8C586 /* JSONModelArray.m in Sources */,
 				D405B1FC227972C900F8C586 /* JSONModel+networking.m in Sources */,
 				D45A94BD233B8AF90089E86C /* UGGoogleAuthenticationSecondViewController.m in Sources */,
+				CFA67A1E236569F8003B31B1 /* UGDocumentListVC.m in Sources */,
 				D40FA8D3229938FA003E596F /* ZZCircleProgress.m in Sources */,
 				CFD3BF4F23473D5900FCDA6D /* TextFieldAlertView.m in Sources */,
 				D4DE2690229BCB960072A4A2 /* WMDropDownView.m in Sources */,
@@ -4994,8 +5058,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.UGGame.cp;
-				PRODUCT_NAME = "49彩票";
+				PRODUCT_BUNDLE_IDENTIFIER = io.fhpt.H59;
+				PRODUCT_NAME = "新2彩票";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -5020,8 +5084,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.UGGame.cp;
-				PRODUCT_NAME = "49彩票";
+				PRODUCT_BUNDLE_IDENTIFIER = io.fhpt.H59;
+				PRODUCT_NAME = "新2彩票";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
