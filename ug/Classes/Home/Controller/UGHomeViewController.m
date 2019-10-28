@@ -55,6 +55,10 @@
 #import "STButton.h"
 #import "UGPlatformNoticeView.h"
 #import "UGAppVersionManager.h"
+// 六合View
+#import "UGLHLotteryCollectionViewCell.h"
+#import "UGLHHomeContentCollectionViewCell.h"
+
 
 // Model
 #import "UGBannerModel.h"
@@ -76,7 +80,7 @@
 
 #import "UGPromotionIncomeController.h"
 
-@interface UGHomeViewController ()<SDCycleScrollViewDelegate,UUMarqueeViewDelegate>
+@interface UGHomeViewController ()<SDCycleScrollViewDelegate,UUMarqueeViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIView *bannerBgView;                          /**<   Banner */
 @property (weak, nonatomic) IBOutlet UGGameNavigationView *gameNavigationView;      /**<   游戏导航父视图 */
@@ -88,6 +92,7 @@
 
 @property (weak, nonatomic) IBOutlet UUMarqueeView *leftwardMarqueeView;    /**<   滚动公告 */
 @property (weak, nonatomic) IBOutlet UUMarqueeView *upwardMultiMarqueeView; /**<   中奖排行榜 */
+@property (weak, nonatomic) IBOutlet UIView *promotionView;                 /**<   优惠活动 view*/
 @property (weak, nonatomic) IBOutlet UIStackView *promotionsStackView;      /**<   优惠活动 */
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *gameViewHeight;
@@ -125,6 +130,19 @@
 @property (weak, nonatomic) IBOutlet UILabel *rankLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *rankViewHeight;
 
+
+//-------------------------------------------
+//六合
+@property (weak, nonatomic) IBOutlet UILabel *lotteryTitleLabel;        /**<   XX期开奖结果*/
+@property (weak, nonatomic) IBOutlet UILabel *remarkLabel;              /**<   咪*/
+@property (weak, nonatomic) IBOutlet UICollectionView *lotteryCollectionView;/**<  开奖的显示*/
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;                /**<  开奖的时间显示*/
+@property (weak, nonatomic) IBOutlet UILabel *countdownLabel;           /**<  开奖的倒计时显示*/
+@property (weak, nonatomic) IBOutlet UICollectionView *contentCollectionView; /**<  论坛，专帖XXX显示*/
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *heightLayoutConstraint;/**<  contentCollectionView 的约束高*/
+
+//--------------------------------------------
+
 @end
 
 @implementation UGHomeViewController
@@ -160,7 +178,8 @@
 
 - (void)viewDidLoad {
 	
-	[super viewDidLoad];
+	
+    [super viewDidLoad];
 	
 	SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
 		
@@ -197,7 +216,9 @@
 	
 	
 	[self setupSubView];
-	
+    {//六合
+        [self initLHCollectionView];
+    }
 	
 	
 	SANotificationEventSubscribe(UGNotificationTryPlay, self, ^(typeof (self) self, id obj) {
@@ -358,7 +379,81 @@
 	[self.upwardMultiMarqueeView pause];//fixbug  发热  掉电快
 	self.initSubview = YES;
 }
+#pragma mark - 六合方法
+- (void)initLHCollectionView {
+//六合内容
+    self.contentCollectionView.backgroundColor = RGBA(221, 221, 221, 1);
+    self.contentCollectionView.dataSource = self;
+    self.contentCollectionView.delegate = self;
+    self.tagString= @"六合内容";
+    [self.contentCollectionView registerNib:[UINib nibWithNibName:@"UGLHHomeContentCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"cell"];
+//六合开奖
+    self.lotteryCollectionView.backgroundColor = [UIColor whiteColor];
+    self.lotteryCollectionView.dataSource = self;
+    self.lotteryCollectionView.delegate = self;
+    self.tagString= @"六合开奖";
+    [self.lotteryCollectionView registerNib:[UINib nibWithNibName:@"UGLHLotteryCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"cell"];
+    [self.lotteryCollectionView setShowsHorizontalScrollIndicator:NO];
+    
+}
 
+#pragma mark UICollectionView datasource
+//collectionView有几个section
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+ 
+    return 1;
+}
+//每个section有几个item
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    int rows = 0;
+    if ([collectionView.tagString isEqualToString:@"六合内容"]) {
+         rows = 14;
+    } else {
+        rows = 8;
+    }
+    return rows;
+}
+//每个cell的具体内容
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    if ([collectionView.tagString isEqualToString:@"六合内容"]) {
+           UGLHHomeContentCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UGLHHomeContentCollectionViewCell" forIndexPath:indexPath];
+         //        NSDictionary *dic = [self.menuNameArray objectAtIndex:indexPath.row];
+             FastSubViewCode(cell);
+             [cell setBackgroundColor: [UIColor whiteColor]];
+             return cell;
+    } else {
+          UGLHLotteryCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+        //        NSDictionary *dic = [self.menuNameArray objectAtIndex:indexPath.row];
+//            FastSubViewCode(cell);
+            [cell setBackgroundColor: [UIColor whiteColor]];
+            return cell;
+    }
+      
+}
+//cell size
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    if ([collectionView.tagString isEqualToString:@"六合内容"]) {
+         float itemW = (UGScreenW-2)/ 2.0;
+         CGSize size = {itemW, 100};
+         return size;
+    } else {
+        float itemW = (UGScreenW-40)/ 8;
+        CGSize size = {itemW, itemW*7/4};
+        return size;
+    }
+}
+//item偏移
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    return UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0);
+}
+//行间距
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    return 1.0;
+}
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+    return 0.0;
+}
+#pragma mark ---------------- 六合方法
 - (void)gameNavigationAction: (GameModel *)model{
     
     if ([model.subId isEqualToString:@"1"]) {
@@ -770,10 +865,7 @@
     }];
 }
 
-// 查看更多优惠活动
-- (IBAction)onShowMorePromoteBtnClick:(UIButton *)sender {
-    [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGPromotionsController") animated:YES];
-}
+
 
 
 - (void)showPlatformNoticeView {
@@ -1233,6 +1325,11 @@
 	}
 	return _gameCategorys;
 }
+#pragma mark - 其他按钮事件
+// 查看更多优惠活动
+- (IBAction)onShowMorePromoteBtnClick:(UIButton *)sender {
+    [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGPromotionsController") animated:YES];
+}
 - (IBAction)goPCVC:(id)sender {
     BOOL isLogin = UGLoginIsAuthorized();
     if (isLogin) {
@@ -1259,6 +1356,21 @@
          SANotificationEventPost(UGNotificationShowLoginView, nil);
     }
    
+}
+- (IBAction)historyAcion:(id)sender {
+
+    
+}
+- (IBAction)voiceAction:(id)sender {
+}
+- (IBAction)loteryValueChange:(id)sender {
+    #pragma mark - 测试
+        self.heightLayoutConstraint.constant = 7*100;
+        self.gameNavigationViewHeight.constant = 0;
+        self.gameNavigationView.hidden = YES;
+        self.gameTypeView.hidden = YES;
+        self.rankingView.hidden = YES;
+    //    self.promotionView.hidden = YES;
 }
 
 @end

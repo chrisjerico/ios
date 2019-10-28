@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+//IB_DESIGNABLE
 @interface IBTextField : UITextField
 // 集成IBView 参数
 @property (nonatomic) IBInspectable CGFloat 圆角偏移量;

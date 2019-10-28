@@ -67,6 +67,8 @@
                 sb(@"UGFC3DLotteryController"),
                 sb(@"Promote"),
                 sb(@"UGLHC"),
+                sb(@"UGLHH"),
+
                 ];
     });
     

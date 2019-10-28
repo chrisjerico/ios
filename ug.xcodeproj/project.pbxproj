@@ -188,6 +188,7 @@
 		D405B39222817A7C00F8C586 /* UGModifyPayPwdController.m in Sources */ = {isa = PBXBuildFile; fileRef = D405B39122817A7C00F8C586 /* UGModifyPayPwdController.m */; };
 		D405B39522817AB700F8C586 /* UGModifyLoginPlaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = D405B39422817AB700F8C586 /* UGModifyLoginPlaceController.m */; };
 		D405B3982281B18600F8C586 /* UGBalanceConversionController.m in Sources */ = {isa = PBXBuildFile; fileRef = D405B3972281B18600F8C586 /* UGBalanceConversionController.m */; };
+		D407B0362366A53C00B4DEF4 /* UGLHH.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D407B0352366A53B00B4DEF4 /* UGLHH.storyboard */; };
 		D4087DAF22951F15000C4CB0 /* CMNetwork+Mine.m in Sources */ = {isa = PBXBuildFile; fileRef = D4087DAE22951F15000C4CB0 /* CMNetwork+Mine.m */; };
 		D4087DB222952D4A000C4CB0 /* UGMissionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4087DB122952D4A000C4CB0 /* UGMissionModel.m */; };
 		D4087DB522956B02000C4CB0 /* UGMissionLevelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4087DB422956B02000C4CB0 /* UGMissionLevelModel.m */; };
@@ -970,6 +971,7 @@
 		D405B39422817AB700F8C586 /* UGModifyLoginPlaceController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGModifyLoginPlaceController.m; sourceTree = "<group>"; };
 		D405B3962281B18600F8C586 /* UGBalanceConversionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGBalanceConversionController.h; sourceTree = "<group>"; };
 		D405B3972281B18600F8C586 /* UGBalanceConversionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGBalanceConversionController.m; sourceTree = "<group>"; };
+		D407B0352366A53B00B4DEF4 /* UGLHH.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UGLHH.storyboard; sourceTree = "<group>"; };
 		D4087DAD22951F15000C4CB0 /* CMNetwork+Mine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CMNetwork+Mine.h"; sourceTree = "<group>"; };
 		D4087DAE22951F15000C4CB0 /* CMNetwork+Mine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CMNetwork+Mine.m"; sourceTree = "<group>"; };
 		D4087DB022952D4A000C4CB0 /* UGMissionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGMissionModel.h; sourceTree = "<group>"; };
@@ -2612,6 +2614,7 @@
 		CF84BE29236416A20058F055 /* 六合页面 */ = {
 			isa = PBXGroup;
 			children = (
+				D407B0352366A53B00B4DEF4 /* UGLHH.storyboard */,
 				CF84BE2A236416C20058F055 /* UGLHC.storyboard */,
 				CFA67A1323656953003B31B1 /* UGSubmitPostVC.h */,
 				CFA67A1423656953003B31B1 /* UGSubmitPostVC.m */,
@@ -4347,6 +4350,7 @@
 				D4090F6A228D83B700D6DA43 /* UGMissionCenterViewController.storyboard in Resources */,
 				D41C3E0E228ED0EE00BF6436 /* UGBetRecordDetailViewController.storyboard in Resources */,
 				D4241C48232A2F0100BF4DE1 /* UGOneTitleTableViewCell.xib in Resources */,
+				D407B0362366A53C00B4DEF4 /* UGLHH.storyboard in Resources */,
 				D405B2CB227ADA4E00F8C586 /* UGGameTypeColletionViewCell.xib in Resources */,
 				D4527D1922828C27000EC1C2 /* UGPlatformBalanceTableViewCell.xib in Resources */,
 				D4E8A41122A0326C00EFE171 /* UGBetRecorddHeaderView.xib in Resources */,
