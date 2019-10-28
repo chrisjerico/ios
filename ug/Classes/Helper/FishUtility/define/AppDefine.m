@@ -68,7 +68,6 @@
                 sb(@"Promote"),
                 sb(@"UGLHC"),
                 sb(@"UGLHH"),
-
                 ];
     });
     

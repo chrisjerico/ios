@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D4B75E082278025E0007047C"
-               BuildableName = "&#x65b0;2&#x5f69;&#x7968;.app"
+               BuildableName = "49&#x5f69;&#x7968;.app"
                BlueprintName = "ug"
                ReferencedContainer = "container:ug.xcodeproj">
             </BuildableReference>
@@ -31,7 +31,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D4B75E082278025E0007047C"
-            BuildableName = "&#x65b0;2&#x5f69;&#x7968;.app"
+            BuildableName = "49&#x5f69;&#x7968;.app"
             BlueprintName = "ug"
             ReferencedContainer = "container:ug.xcodeproj">
          </BuildableReference>
@@ -40,7 +40,7 @@
       </Testables>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -54,7 +54,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D4B75E082278025E0007047C"
-            BuildableName = "&#x65b0;2&#x5f69;&#x7968;.app"
+            BuildableName = "49&#x5f69;&#x7968;.app"
             BlueprintName = "ug"
             ReferencedContainer = "container:ug.xcodeproj">
          </BuildableReference>
@@ -71,7 +71,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D4B75E082278025E0007047C"
-            BuildableName = "&#x65b0;2&#x5f69;&#x7968;.app"
+            BuildableName = "49&#x5f69;&#x7968;.app"
             BlueprintName = "ug"
             ReferencedContainer = "container:ug.xcodeproj">
          </BuildableReference>
