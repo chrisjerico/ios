@@ -85,28 +85,22 @@
     NSOperationQueue *waitQueue = [[NSOperationQueue alloc] init];
     [waitQueue addOperationWithBlock:^{
         UGparaModel *bankModel= channelModel.para;
-        
-        
         self->_blankDataArray = bankModel.bankList ;//显示银行数据
-        
-       
         if ([CMCommon stringIsNull:bankModel.fixedAmount]) {
-            
             self.amountDataArray = [[NSMutableArray alloc] initWithArray:self->_item.quickAmount];
         }
         else{
-            
             NSArray  *array = [bankModel.fixedAmount componentsSeparatedByString:@" "];
-            
+            if (![CMCommon arryIsNull:self.amountDataArray]) {
+                [self.amountDataArray removeAllObjects];
+            }
             for (int i = 0; i<array.count; i++) {
                 if (![CMCommon stringIsNull:[array objectAtIndex:i]]) {
                     [self.amountDataArray addObject:[array objectAtIndex:i]];
                 }
             }
-        
         }
-        
-        
+
         float height ;
         
         if ([CMCommon judgeStr:(int)self.amountDataArray.count with:3]) {

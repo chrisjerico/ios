@@ -38,8 +38,10 @@
 //static NSString *baseServerUrl = @"http://etgnfb001kwa.phlotplay.com";//b001
 //static NSString *baseServerUrl = @"http://jbchpwpc163ybwnmsxc.phlotbet.com";//c163
 //static NSString *baseServerUrl = @"http://torfkic192wehfw.phlotgame.com";                // c192
-static NSString *baseServerUrl = @"https://5049uuu.com";  // a002
+//static NSString *baseServerUrl = @"https://5049uuu.com";  // a002
 //static NSString *baseServerUrl = @"http://oxhzpa002znukb.techlotgame.com";  // a002
+static NSString *baseServerUrl = @"http://igphayfc001hdkihq.phlotbet.com";  // c001
+
 
 static NSString *swiperVerifyUrl = @"/dist/index.html#/swiperverify?platform=native";
 
