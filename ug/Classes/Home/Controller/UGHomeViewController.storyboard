@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -13,11 +14,11 @@
             <objects>
                 <viewController storyboardIdentifier="UGHomeViewController" id="Qlk-11-xZ9" customClass="UGHomeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gRF-Ef-tWq">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="2000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aKo-Go-xPf">
-                                <rect key="frame" x="0.0" y="44" width="414" height="1522"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="1922"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="rQY-Xe-Kcn">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1838"/>
@@ -190,7 +191,7 @@
                                                         <cells/>
                                                     </collectionView>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="zeS-hM-HiN" firstAttribute="top" secondItem="d41-PF-3Ff" secondAttribute="bottom" id="0bA-1p-q4v"/>
                                                     <constraint firstItem="D3S-17-6Nf" firstAttribute="leading" secondItem="gWg-lE-My5" secondAttribute="trailing" constant="1" id="2Fq-BU-yL7"/>
@@ -216,30 +217,45 @@
                                                     <constraint firstItem="5hz-n1-Cwv" firstAttribute="top" secondItem="fkl-T2-F9z" secondAttribute="top" constant="1" id="ujN-Zs-6JN"/>
                                                     <constraint firstAttribute="bottom" secondItem="eqz-dJ-Isq" secondAttribute="bottom" constant="10" id="wNj-L4-fP8"/>
                                                 </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="开奖结果"/>
+                                                </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qz7-G5-OUZ">
                                                 <rect key="frame" x="0.0" y="389" width="414" height="200"/>
                                                 <subviews>
-                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="a68-cY-Zyl">
+                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="uPM-oZ-8sL">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="xzJ-Dg-exk">
+                                                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="h8Q-5U-3Qi">
                                                             <size key="itemSize" width="50" height="50"/>
                                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         </collectionViewFlowLayout>
-                                                        <cells/>
+                                                        <cells>
+                                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="qnP-W1-3gV">
+                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Onx-oC-hhP">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                    <autoresizingMask key="autoresizingMask"/>
+                                                                </collectionViewCellContentView>
+                                                            </collectionViewCell>
+                                                        </cells>
                                                     </collectionView>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
-                                                    <constraint firstItem="a68-cY-Zyl" firstAttribute="leading" secondItem="qz7-G5-OUZ" secondAttribute="leading" id="Baz-L5-gn3"/>
-                                                    <constraint firstItem="a68-cY-Zyl" firstAttribute="top" secondItem="qz7-G5-OUZ" secondAttribute="top" id="KDz-bz-cp1"/>
-                                                    <constraint firstAttribute="bottom" secondItem="a68-cY-Zyl" secondAttribute="bottom" id="MbR-r2-Qis"/>
-                                                    <constraint firstAttribute="trailing" secondItem="a68-cY-Zyl" secondAttribute="trailing" id="Yml-GK-E6Z"/>
+                                                    <constraint firstAttribute="bottom" secondItem="uPM-oZ-8sL" secondAttribute="bottom" id="GVe-xf-amP"/>
+                                                    <constraint firstAttribute="trailing" secondItem="uPM-oZ-8sL" secondAttribute="trailing" id="I98-c9-G2F"/>
+                                                    <constraint firstItem="uPM-oZ-8sL" firstAttribute="top" secondItem="qz7-G5-OUZ" secondAttribute="top" id="WFX-Kf-4fd"/>
                                                     <constraint firstAttribute="height" constant="200" id="pX9-oq-xNE"/>
+                                                    <constraint firstItem="uPM-oZ-8sL" firstAttribute="leading" secondItem="qz7-G5-OUZ" secondAttribute="leading" id="tMU-cz-CjJ"/>
                                                 </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="六合论坛"/>
+                                                </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Za-hn-bpN">
                                                 <rect key="frame" x="0.0" y="589" width="414" height="200"/>
@@ -700,12 +716,12 @@
                         <viewLayoutGuide key="safeArea" id="Cio-2N-9zp"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="414" height="1600"/>
+                    <size key="freeformSize" width="414" height="2000"/>
                     <connections>
                         <outlet property="bannerBgView" destination="net-c8-MAp" id="SVn-VV-nOV"/>
                         <outlet property="bottomLabel" destination="bF5-Qk-pg4" id="9gR-5K-PS0"/>
                         <outlet property="bottomView" destination="M2E-aZ-PrH" id="0uG-uN-G9G"/>
-                        <outlet property="contentCollectionView" destination="a68-cY-Zyl" id="wfs-Yo-52h"/>
+                        <outlet property="contentCollectionView" destination="uPM-oZ-8sL" id="vbP-W2-2WI"/>
                         <outlet property="countdownLabel" destination="RVR-ie-KBF" id="b30-Jq-87w"/>
                         <outlet property="gameNavigationView" destination="4ix-we-22e" id="CN0-S8-2nX"/>
                         <outlet property="gameNavigationViewHeight" destination="hun-5b-6Zi" id="2ny-R8-2cr"/>
@@ -715,6 +731,7 @@
                         <outlet property="leftwardMarqueeView" destination="fSS-lB-1r2" id="u7Y-XH-UTU"/>
                         <outlet property="lotteryCollectionView" destination="d41-PF-3Ff" id="luD-CR-cHL"/>
                         <outlet property="lotteryTitleLabel" destination="D3S-17-6Nf" id="Uc1-94-Jl0"/>
+                        <outlet property="lotteryUISwitch" destination="5hz-n1-Cwv" id="gzl-rE-uf7"/>
                         <outlet property="promotionView" destination="7oT-DH-Tz9" id="r07-f1-ldk"/>
                         <outlet property="promotionsStackView" destination="xgj-Ln-Ukx" id="HAh-7F-6YB"/>
                         <outlet property="rankLabel" destination="7pj-to-Bil" id="gE2-Al-CqK"/>

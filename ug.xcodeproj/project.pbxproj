@@ -75,6 +75,7 @@
 		CFD3BF4E23473D5900FCDA6D /* TextFieldAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFD3BF4B23473D5900FCDA6D /* TextFieldAlertView.xib */; };
 		CFD3BF4F23473D5900FCDA6D /* TextFieldAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BF4D23473D5900FCDA6D /* TextFieldAlertView.m */; };
 		D4000C59232E51C4000705B1 /* UITextView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = D4000C58232E51C4000705B1 /* UITextView+Extension.m */; };
+		D403E5662366E614009171D3 /* UIView+Events.m in Sources */ = {isa = PBXBuildFile; fileRef = D403E5642366E614009171D3 /* UIView+Events.m */; };
 		D40499C12335E5B30019C249 /* UGPromotion6rowButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D40499BF2335E5B30019C249 /* UGPromotion6rowButtonTableViewCell.m */; };
 		D40499C22335E5B30019C249 /* UGPromotion6rowButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D40499C02335E5B30019C249 /* UGPromotion6rowButtonTableViewCell.xib */; };
 		D405AFF122783DCC00F8C586 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D405AFD822783DCC00F8C586 /* NSLayoutConstraint+MASDebugAdditions.m */; };
@@ -435,6 +436,7 @@
 		D48224F522A10B5100F7DE72 /* UGNoticeHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D48224F422A10B5100F7DE72 /* UGNoticeHeaderView.m */; };
 		D48224F722A10B5F00F7DE72 /* UGNoticeHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D48224F622A10B5F00F7DE72 /* UGNoticeHeaderView.xib */; };
 		D48224FA22A120E500F7DE72 /* UGPlatformNoticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D48224F922A120E500F7DE72 /* UGPlatformNoticeModel.m */; };
+		D494C7042366D567001C310F /* OttoScratchView.m in Sources */ = {isa = PBXBuildFile; fileRef = D494C7032366D567001C310F /* OttoScratchView.m */; };
 		D49649B22324E3FA00BA8872 /* UGinviteInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D49649B12324E3FA00BA8872 /* UGinviteInfoModel.m */; };
 		D4997331234F16A7000ECBA3 /* UGgoBindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D499732F234F16A7000ECBA3 /* UGgoBindViewController.m */; };
 		D4997332234F16A7000ECBA3 /* UGgoBindViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4997330234F16A7000ECBA3 /* UGgoBindViewController.xib */; };
@@ -453,6 +455,8 @@
 		D49A36DB22A64B85000057D2 /* UGUserLevelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D49A36DA22A64B85000057D2 /* UGUserLevelModel.m */; };
 		D49D359E22C79E7900318D73 /* UGNoticePopView.m in Sources */ = {isa = PBXBuildFile; fileRef = D49D359D22C79E7900318D73 /* UGNoticePopView.m */; };
 		D49D35A022C7A11100318D73 /* UGNoticePopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D49D359F22C7A11100318D73 /* UGNoticePopView.xib */; };
+		D49DE7A42366CD4100683AFE /* UGScratchMusicView.m in Sources */ = {isa = PBXBuildFile; fileRef = D49DE7A32366CD4100683AFE /* UGScratchMusicView.m */; };
+		D49DE7A62366CD5900683AFE /* UGScratchMusicView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D49DE7A52366CD5900683AFE /* UGScratchMusicView.xib */; };
 		D49F41AB2326132C00A381AD /* UGPormotionUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = D49F41AA2326132C00A381AD /* UGPormotionUserInfoView.m */; };
 		D49F41AD2326149B00A381AD /* UGPormotionUserInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D49F41AC2326149B00A381AD /* UGPormotionUserInfoView.xib */; };
 		D49F41B02326346D00A381AD /* UGinviteDomainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D49F41AF2326346D00A381AD /* UGinviteDomainModel.m */; };
@@ -528,8 +532,6 @@
 		D4C93B4422D8C02000608B67 /* UGLoginAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C93B4322D8C02000608B67 /* UGLoginAddressModel.m */; };
 		D4CD654F2365E72600D26D5D /* UGLHLotteryCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4CD654D2365E72600D26D5D /* UGLHLotteryCollectionViewCell.m */; };
 		D4CD65502365E72600D26D5D /* UGLHLotteryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4CD654E2365E72600D26D5D /* UGLHLotteryCollectionViewCell.xib */; };
-		D4CF9761236581470096BC92 /* UGLHHomeLotteryCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4CF975F236581470096BC92 /* UGLHHomeLotteryCollectionViewCell.m */; };
-		D4CF9762236581470096BC92 /* UGLHHomeLotteryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4CF9760236581470096BC92 /* UGLHHomeLotteryCollectionViewCell.xib */; };
 		D4D4224F23264340006E680B /* UGdepositListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4D4224E23264340006E680B /* UGdepositListModel.m */; };
 		D4D422522326469C006E680B /* UGwithdrawStatModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4D422512326469C006E680B /* UGwithdrawStatModel.m */; };
 		D4D4225523264B94006E680B /* UGwithdrawListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4D4225423264B94006E680B /* UGwithdrawListModel.m */; };
@@ -750,6 +752,8 @@
 		CFD3BF4D23473D5900FCDA6D /* TextFieldAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldAlertView.m; sourceTree = "<group>"; };
 		D4000C57232E51C4000705B1 /* UITextView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+Extension.h"; sourceTree = "<group>"; };
 		D4000C58232E51C4000705B1 /* UITextView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+Extension.m"; sourceTree = "<group>"; };
+		D403E5642366E614009171D3 /* UIView+Events.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Events.m"; sourceTree = "<group>"; };
+		D403E5652366E614009171D3 /* UIView+Events.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Events.h"; sourceTree = "<group>"; };
 		D40499BE2335E5B30019C249 /* UGPromotion6rowButtonTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGPromotion6rowButtonTableViewCell.h; sourceTree = "<group>"; };
 		D40499BF2335E5B30019C249 /* UGPromotion6rowButtonTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGPromotion6rowButtonTableViewCell.m; sourceTree = "<group>"; };
 		D40499C02335E5B30019C249 /* UGPromotion6rowButtonTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGPromotion6rowButtonTableViewCell.xib; sourceTree = "<group>"; };
@@ -1397,6 +1401,8 @@
 		D48224F622A10B5F00F7DE72 /* UGNoticeHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGNoticeHeaderView.xib; sourceTree = "<group>"; };
 		D48224F822A120E500F7DE72 /* UGPlatformNoticeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGPlatformNoticeModel.h; sourceTree = "<group>"; };
 		D48224F922A120E500F7DE72 /* UGPlatformNoticeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGPlatformNoticeModel.m; sourceTree = "<group>"; };
+		D494C7022366D567001C310F /* OttoScratchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OttoScratchView.h; sourceTree = "<group>"; };
+		D494C7032366D567001C310F /* OttoScratchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OttoScratchView.m; sourceTree = "<group>"; };
 		D49649B02324E3FA00BA8872 /* UGinviteInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGinviteInfoModel.h; sourceTree = "<group>"; };
 		D49649B12324E3FA00BA8872 /* UGinviteInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGinviteInfoModel.m; sourceTree = "<group>"; };
 		D499732E234F16A7000ECBA3 /* UGgoBindViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGgoBindViewController.h; sourceTree = "<group>"; };
@@ -1426,6 +1432,9 @@
 		D49D359C22C79E7900318D73 /* UGNoticePopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGNoticePopView.h; sourceTree = "<group>"; };
 		D49D359D22C79E7900318D73 /* UGNoticePopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGNoticePopView.m; sourceTree = "<group>"; };
 		D49D359F22C7A11100318D73 /* UGNoticePopView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGNoticePopView.xib; sourceTree = "<group>"; };
+		D49DE7A22366CD4100683AFE /* UGScratchMusicView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGScratchMusicView.h; sourceTree = "<group>"; };
+		D49DE7A32366CD4100683AFE /* UGScratchMusicView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGScratchMusicView.m; sourceTree = "<group>"; };
+		D49DE7A52366CD5900683AFE /* UGScratchMusicView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGScratchMusicView.xib; sourceTree = "<group>"; };
 		D49F41A92326132C00A381AD /* UGPormotionUserInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGPormotionUserInfoView.h; sourceTree = "<group>"; };
 		D49F41AA2326132C00A381AD /* UGPormotionUserInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGPormotionUserInfoView.m; sourceTree = "<group>"; };
 		D49F41AC2326149B00A381AD /* UGPormotionUserInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGPormotionUserInfoView.xib; sourceTree = "<group>"; };
@@ -1561,9 +1570,6 @@
 		D4CD654C2365E72600D26D5D /* UGLHLotteryCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLHLotteryCollectionViewCell.h; sourceTree = "<group>"; };
 		D4CD654D2365E72600D26D5D /* UGLHLotteryCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLHLotteryCollectionViewCell.m; sourceTree = "<group>"; };
 		D4CD654E2365E72600D26D5D /* UGLHLotteryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGLHLotteryCollectionViewCell.xib; sourceTree = "<group>"; };
-		D4CF975E236581470096BC92 /* UGLHHomeLotteryCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLHHomeLotteryCollectionViewCell.h; sourceTree = "<group>"; };
-		D4CF975F236581470096BC92 /* UGLHHomeLotteryCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLHHomeLotteryCollectionViewCell.m; sourceTree = "<group>"; };
-		D4CF9760236581470096BC92 /* UGLHHomeLotteryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGLHHomeLotteryCollectionViewCell.xib; sourceTree = "<group>"; };
 		D4D4224D23264340006E680B /* UGdepositListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGdepositListModel.h; sourceTree = "<group>"; };
 		D4D4224E23264340006E680B /* UGdepositListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGdepositListModel.m; sourceTree = "<group>"; };
 		D4D422502326469C006E680B /* UGwithdrawStatModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGwithdrawStatModel.h; sourceTree = "<group>"; };
@@ -2889,6 +2895,15 @@
 			path = "AppDelegate+";
 			sourceTree = "<group>";
 		};
+		D403E5632366E5F6009171D3 /* 手势 */ = {
+			isa = PBXGroup;
+			children = (
+				D403E5652366E614009171D3 /* UIView+Events.h */,
+				D403E5642366E614009171D3 /* UIView+Events.m */,
+			);
+			path = "手势";
+			sourceTree = "<group>";
+		};
 		D405AFCF22782C1D00F8C586 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -3116,6 +3131,8 @@
 		D405B22D227973C500F8C586 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				D403E5632366E5F6009171D3 /* 手势 */,
+				D494C7012366D532001C310F /* 刮刮乐 */,
 				CFD3BE962347137E00FCDA6D /* FishUtility */,
 				D4145A7522B3BC1900D8165F /* CMNetwork */,
 				D4A1E905232BC3AC0045F5B4 /* CMCommon */,
@@ -3578,6 +3595,15 @@
 				D4DFBE7422E3545E002BAFB0 /* Mine.storyboard */,
 			);
 			path = base;
+			sourceTree = "<group>";
+		};
+		D494C7012366D532001C310F /* 刮刮乐 */ = {
+			isa = PBXGroup;
+			children = (
+				D494C7022366D567001C310F /* OttoScratchView.h */,
+				D494C7032366D567001C310F /* OttoScratchView.m */,
+			);
+			path = "刮刮乐";
 			sourceTree = "<group>";
 		};
 		D4A1E905232BC3AC0045F5B4 /* CMCommon */ = {
@@ -4075,15 +4101,15 @@
 		D4CF975D236580E70096BC92 /* 六合首页 */ = {
 			isa = PBXGroup;
 			children = (
-				D4CF975E236581470096BC92 /* UGLHHomeLotteryCollectionViewCell.h */,
-				D4CF975F236581470096BC92 /* UGLHHomeLotteryCollectionViewCell.m */,
-				D4CF9760236581470096BC92 /* UGLHHomeLotteryCollectionViewCell.xib */,
 				D4B8A30B2365C88500B79B3E /* UGLHHomeContentCollectionViewCell.h */,
 				D4B8A30C2365C88500B79B3E /* UGLHHomeContentCollectionViewCell.m */,
 				D4B8A30D2365C88500B79B3E /* UGLHHomeContentCollectionViewCell.xib */,
 				D4CD654C2365E72600D26D5D /* UGLHLotteryCollectionViewCell.h */,
 				D4CD654D2365E72600D26D5D /* UGLHLotteryCollectionViewCell.m */,
 				D4CD654E2365E72600D26D5D /* UGLHLotteryCollectionViewCell.xib */,
+				D49DE7A22366CD4100683AFE /* UGScratchMusicView.h */,
+				D49DE7A32366CD4100683AFE /* UGScratchMusicView.m */,
+				D49DE7A52366CD5900683AFE /* UGScratchMusicView.xib */,
 			);
 			path = "六合首页";
 			sourceTree = "<group>";
@@ -4331,7 +4357,6 @@
 				D41C3DFC228E882200BF6436 /* UGIntegralConvertRecordController.storyboard in Resources */,
 				CFD3BF4E23473D5900FCDA6D /* TextFieldAlertView.xib in Resources */,
 				D405B2FF227C310600F8C586 /* UGWithdrawalViewController.storyboard in Resources */,
-				D4CF9762236581470096BC92 /* UGLHHomeLotteryCollectionViewCell.xib in Resources */,
 				D4A36638233E311E00F6D770 /* UGYYRightMenuView.xib in Resources */,
 				D422D67822D997AA008E7065 /* UGSafety.storyboard in Resources */,
 				D4145A9C22B61C6A00D8165F /* UGBJKL8LotteryController.storyboard in Resources */,
@@ -4350,6 +4375,7 @@
 				D4145AA122B6349700D8165F /* UGGDKL10LotteryController.storyboard in Resources */,
 				D4704ECC22B7647F00528DC7 /* UGPK10SubResultCollectionViewCell.xib in Resources */,
 				D4D8DF89228714A300446BAF /* UGLotteryResultCollectionViewCell.xib in Resources */,
+				D49DE7A62366CD5900683AFE /* UGScratchMusicView.xib in Resources */,
 				D4A02B57232257D5004D5894 /* UGSignInHistoryView.xib in Resources */,
 				D4A02B5C23227B7D004D5894 /* UGSingInHistoryTableViewCell.xib in Resources */,
 				D4D8DF7C2286F7F600446BAF /* UGTimeLotteryBetCollectionViewCell.xib in Resources */,
@@ -4587,6 +4613,7 @@
 				D41C3E17228EF2A600BF6436 /* UGFastThreeTwoCollectionViewCell.m in Sources */,
 				D405B2E7227BFE5F00F8C586 /* UGLotteryCollectionViewCell.m in Sources */,
 				D405B1F7227972C900F8C586 /* JSONModelError.m in Sources */,
+				D49DE7A42366CD4100683AFE /* UGScratchMusicView.m in Sources */,
 				D4AE641F2295871D00DD265A /* MJRefreshComponent.m in Sources */,
 				CFD3BF27234719F100FCDA6D /* AppDefine.m in Sources */,
 				D4527D212283062D000EC1C2 /* UGPromotionIncomeController.m in Sources */,
@@ -4610,6 +4637,7 @@
 				CFD3BF052347137F00FCDA6D /* UIView+TagString.m in Sources */,
 				D405B2EF227C166900F8C586 /* XYYSegmentControl.m in Sources */,
 				D4185E40231D2E1B008DB5F2 /* MOFSDatePicker.m in Sources */,
+				D403E5662366E614009171D3 /* UIView+Events.m in Sources */,
 				D4D8DF88228714A300446BAF /* UGLotteryResultCollectionViewCell.m in Sources */,
 				D40DE98622F335E300974BAF /* TADotView.m in Sources */,
 				D49A36BF22A29C7A000057D2 /* UGLotteryRulesView.m in Sources */,
@@ -4763,7 +4791,6 @@
 				D405B1F5227972C900F8C586 /* JSONKeyMapper.m in Sources */,
 				D499B7A82323C67D00EF92C1 /* UGCreditsLogModel.m in Sources */,
 				D4AE641E2295871D00DD265A /* MJRefreshAutoFooter.m in Sources */,
-				D4CF9761236581470096BC92 /* UGLHHomeLotteryCollectionViewCell.m in Sources */,
 				D41C3DF7228E75F100BF6436 /* UIView+WZLBadge.m in Sources */,
 				D4DE2691229BCB960072A4A2 /* WMTabControl.m in Sources */,
 				D41EDF832317BE06005798CC /* UGFundRecordDetailView.m in Sources */,
@@ -4850,6 +4877,7 @@
 				CFD3BF4923473D0500FCDA6D /* LogVC.m in Sources */,
 				D405B346227DB22100F8C586 /* UGNotificationEvent.m in Sources */,
 				D405B367227DE67600F8C586 /* CMNetwork+Hall.m in Sources */,
+				D494C7042366D567001C310F /* OttoScratchView.m in Sources */,
 				D405B37622801F8400F8C586 /* UGWriteMessageViewController.m in Sources */,
 				CFD3BEFD2347137F00FCDA6D /* UIResponder+InterfaceOrientation.m in Sources */,
 				D42620F82339027400BC2E83 /* UGagentApplyInfo.m in Sources */,
