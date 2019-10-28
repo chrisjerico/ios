@@ -2624,6 +2624,8 @@
 		CF84BE29236416A20058F055 /* 六合页面 */ = {
 			isa = PBXGroup;
 			children = (
+				CF84BE2A236416C20058F055 /* UGLHC.storyboard */,
+				D47C8987236557B2000CD518 /* UGLHH.storyboard */,
 				D407B0372366A69700B4DEF4 /* UGDocumentListVC.h */,
 				D407B03C2366A69800B4DEF4 /* UGDocumentListVC.m */,
 				D407B03F2366A69800B4DEF4 /* UGLHGalleryVC.h */,
@@ -2636,8 +2638,6 @@
 				D407B03A2366A69800B4DEF4 /* UGSearchPostVC.m */,
 				D407B03B2366A69800B4DEF4 /* UGSubmitPostVC.h */,
 				D407B0412366A69800B4DEF4 /* UGSubmitPostVC.m */,
-				CF84BE2A236416C20058F055 /* UGLHC.storyboard */,
-				D47C8987236557B2000CD518 /* UGLHH.storyboard */,
 			);
 			path = "六合页面";
 			sourceTree = "<group>";
