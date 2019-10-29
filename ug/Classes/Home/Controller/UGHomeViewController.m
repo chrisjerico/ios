@@ -1191,6 +1191,7 @@
 	self.bannerView.scrollDirection = UICollectionViewScrollDirectionHorizontal;
 	self.bannerView.autoScrollTimeInterval = 2.0;
 	self.bannerView.delegate = self;
+    self.bannerView.pageDotColor = RGBA(210, 210, 210, 0.4);
 	[self.bannerBgView addSubview:self.bannerView];
     
     
