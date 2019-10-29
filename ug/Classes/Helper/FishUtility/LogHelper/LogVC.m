@@ -6,7 +6,7 @@
 //  Copyright © 2018年 fish. All rights reserved.
 //
 
-#if defined(DEBUG) || defined(APP_TEST)
+#if defined(DEBUG)
 
 #import "LogVC.h"
 

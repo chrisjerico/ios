@@ -557,9 +557,7 @@
         } else {
             qqstr = SysConf.serviceQQ1;
         }
-        NSString *qq=[NSString stringWithFormat:@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web",qqstr];
-        NSURL *url = [NSURL URLWithString:qq];
-        [[UIApplication sharedApplication] openURL:url];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_NSString(@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web", qqstr)]];
     }
     else {
        TGWebViewController *webViewVC = [[TGWebViewController alloc] init];

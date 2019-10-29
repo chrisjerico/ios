@@ -155,7 +155,7 @@
         [[sm dataTask:m request:req] resume];
     }
     
-#if defined(DEBUG) || defined(APP_TEST)
+#if defined(DEBUG)
 //    [LogVC addRequestModel:sm];
 #endif
     return sm;
