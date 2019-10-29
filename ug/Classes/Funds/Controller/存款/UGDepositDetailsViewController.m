@@ -113,7 +113,24 @@
         }
         
         NSLog(@"height = %f",height);
+        
+        CGSize basetipSize = CGSizeMake(UGScreenW -40, CGFLOAT_MAX);
+           CGSize tipsize  = [self.item.prompt
+           boundingRectWithSize:basetipSize
+           options:NSStringDrawingUsesLineFragmentOrigin
+           attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:14.0]}
+           context:nil].size;
+           
+           int tipHeigth = tipsize.height +20;//lab 的高
 
+        CGSize baseSize = CGSizeMake(UGScreenW -40, CGFLOAT_MAX);
+           CGSize tip2size  = [self.item.transferPrompt
+           boundingRectWithSize:baseSize
+           options:NSStringDrawingUsesLineFragmentOrigin
+           attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:14.0]}
+           context:nil].size;
+           
+           int tip2Heigth = tip2size.height +20;
         // 同步到主线程
          dispatch_async(dispatch_get_main_queue(), ^{
             
@@ -207,7 +224,7 @@
 //              }];
              
              
-              self.mUIScrollView.contentSize = CGSizeMake(UGScreenW, 50.0+height+self.bg_label.height+self.tiplabel.height+tableViewHeight+self.blank_button .height+60);
+              self.mUIScrollView.contentSize = CGSizeMake(UGScreenW, 60.0+height+tipHeigth+tip2Heigth+tableViewHeight+self.blank_button .height);
         });
     }];
 }
