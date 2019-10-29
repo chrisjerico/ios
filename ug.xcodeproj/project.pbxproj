@@ -415,6 +415,11 @@
 		D4704ECB22B7647F00528DC7 /* UGPK10SubResultCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4704EC922B7647F00528DC7 /* UGPK10SubResultCollectionViewCell.m */; };
 		D4704ECC22B7647F00528DC7 /* UGPK10SubResultCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4704ECA22B7647F00528DC7 /* UGPK10SubResultCollectionViewCell.xib */; };
 		D4704EDD22B7BCE900528DC7 /* GLEncryptManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D4704EDC22B7BCE900528DC7 /* GLEncryptManager.m */; };
+		D4781A122368207A004FBB97 /* UGLHMyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4781A112368207A004FBB97 /* UGLHMyViewController.m */; };
+		D4781A152368209E004FBB97 /* UGLHMyAttentionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4781A142368209E004FBB97 /* UGLHMyAttentionViewController.m */; };
+		D4781A18236820EA004FBB97 /* UGMyFansViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4781A17236820EA004FBB97 /* UGMyFansViewController.m */; };
+		D4781A1B236820FD004FBB97 /* UGStuffViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4781A1A236820FD004FBB97 /* UGStuffViewController.m */; };
+		D4781A1E2368211C004FBB97 /* UGChessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4781A1D2368211C004FBB97 /* UGChessViewController.m */; };
 		D47C8988236557B2000CD518 /* UGLHH.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D47C8987236557B2000CD518 /* UGLHH.storyboard */; };
 		D481AB432331EC340099685B /* UGMosaicGoldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D481AB422331EC340099685B /* UGMosaicGoldViewController.m */; };
 		D481AB472331F1300099685B /* UGMosaicGoldTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D481AB452331F1300099685B /* UGMosaicGoldTableViewCell.m */; };
@@ -1366,6 +1371,16 @@
 		D4704ECA22B7647F00528DC7 /* UGPK10SubResultCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGPK10SubResultCollectionViewCell.xib; sourceTree = "<group>"; };
 		D4704EDB22B7BCE900528DC7 /* GLEncryptManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLEncryptManager.h; sourceTree = "<group>"; };
 		D4704EDC22B7BCE900528DC7 /* GLEncryptManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLEncryptManager.m; sourceTree = "<group>"; };
+		D4781A102368207A004FBB97 /* UGLHMyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLHMyViewController.h; sourceTree = "<group>"; };
+		D4781A112368207A004FBB97 /* UGLHMyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLHMyViewController.m; sourceTree = "<group>"; };
+		D4781A132368209E004FBB97 /* UGLHMyAttentionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLHMyAttentionViewController.h; sourceTree = "<group>"; };
+		D4781A142368209E004FBB97 /* UGLHMyAttentionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLHMyAttentionViewController.m; sourceTree = "<group>"; };
+		D4781A16236820EA004FBB97 /* UGMyFansViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGMyFansViewController.h; sourceTree = "<group>"; };
+		D4781A17236820EA004FBB97 /* UGMyFansViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGMyFansViewController.m; sourceTree = "<group>"; };
+		D4781A19236820FD004FBB97 /* UGStuffViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGStuffViewController.h; sourceTree = "<group>"; };
+		D4781A1A236820FD004FBB97 /* UGStuffViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGStuffViewController.m; sourceTree = "<group>"; };
+		D4781A1C2368211C004FBB97 /* UGChessViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGChessViewController.h; sourceTree = "<group>"; };
+		D4781A1D2368211C004FBB97 /* UGChessViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGChessViewController.m; sourceTree = "<group>"; };
 		D47C8987236557B2000CD518 /* UGLHH.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UGLHH.storyboard; sourceTree = "<group>"; };
 		D481AB412331EC340099685B /* UGMosaicGoldViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGMosaicGoldViewController.h; sourceTree = "<group>"; };
 		D481AB422331EC340099685B /* UGMosaicGoldViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGMosaicGoldViewController.m; sourceTree = "<group>"; };
@@ -2644,6 +2659,16 @@
 				D407B03A2366A69800B4DEF4 /* UGSearchPostVC.m */,
 				D407B03B2366A69800B4DEF4 /* UGSubmitPostVC.h */,
 				D407B0412366A69800B4DEF4 /* UGSubmitPostVC.m */,
+				D4781A102368207A004FBB97 /* UGLHMyViewController.h */,
+				D4781A112368207A004FBB97 /* UGLHMyViewController.m */,
+				D4781A132368209E004FBB97 /* UGLHMyAttentionViewController.h */,
+				D4781A142368209E004FBB97 /* UGLHMyAttentionViewController.m */,
+				D4781A16236820EA004FBB97 /* UGMyFansViewController.h */,
+				D4781A17236820EA004FBB97 /* UGMyFansViewController.m */,
+				D4781A19236820FD004FBB97 /* UGStuffViewController.h */,
+				D4781A1A236820FD004FBB97 /* UGStuffViewController.m */,
+				D4781A1C2368211C004FBB97 /* UGChessViewController.h */,
+				D4781A1D2368211C004FBB97 /* UGChessViewController.m */,
 			);
 			path = "六合页面";
 			sourceTree = "<group>";
@@ -4547,6 +4572,7 @@
 				D481EFFA2327C8DA000611ED /* UGDepositDetailsViewController.m in Sources */,
 				D422FE5A23251E190063EA4E /* UGPromotion4rowTableViewCell.m in Sources */,
 				CFD3BEFE2347137F00FCDA6D /* NSObject+XWAdd.m in Sources */,
+				D4781A18236820EA004FBB97 /* UGMyFansViewController.m in Sources */,
 				D4C165732344C9E1005A0F12 /* UGMineSkinFirstCollectionHeadView.m in Sources */,
 				D48224F522A10B5100F7DE72 /* UGNoticeHeaderView.m in Sources */,
 				D40FA8CA22992F42003E596F /* UGYubaoConversionViewController.m in Sources */,
@@ -4663,6 +4689,7 @@
 				D405B33D227DAD6E00F8C586 /* SANotDataView.m in Sources */,
 				D49F41B3232638D100A381AD /* UGdepositStatModel.m in Sources */,
 				CFD3BF16234718F200FCDA6D /* UITableView+Refresh.m in Sources */,
+				D4781A152368209E004FBB97 /* UGLHMyAttentionViewController.m in Sources */,
 				D42528192320EB01007DE522 /* UGSigInCodeViewController.m in Sources */,
 				D41246B62285C64C006881E2 /* UGUserInfoViewController.m in Sources */,
 				D4DE2699229BDBC80072A4A2 /* UIView+SGExtension.m in Sources */,
@@ -4737,6 +4764,7 @@
 				D4185E44231D2E1B008DB5F2 /* AddressModel.m in Sources */,
 				D41AEA6E22E5D44F003E28C3 /* UGLotteryHistoryModel.m in Sources */,
 				D405B244227973F200F8C586 /* NSString+ST.m in Sources */,
+				D4781A1E2368211C004FBB97 /* UGChessViewController.m in Sources */,
 				D4AE64162295871D00DD265A /* MJRefreshAutoGifFooter.m in Sources */,
 				D4AE64122295871D00DD265A /* MJRefreshBackGifFooter.m in Sources */,
 				CFD3BF102347137F00FCDA6D /* NSUserDefaults+Utils.m in Sources */,
@@ -4871,6 +4899,7 @@
 				D41E0EEB228D98C100D6C42A /* UGIntegralConvertController.m in Sources */,
 				D4145A9A22B61AA800D8165F /* UGBJKL8LotteryController.m in Sources */,
 				D41F26112318F459004FB9C6 /* UGChanglongBetRecordController.m in Sources */,
+				D4781A1B236820FD004FBB97 /* UGStuffViewController.m in Sources */,
 				D40D32C32297BED600B89398 /* UGSetupPayPwdController.m in Sources */,
 				D405B2FA227C23C300F8C586 /* UGRechargeTypeTableViewController.m in Sources */,
 				D405AFF422783DCC00F8C586 /* MASConstraintMaker.m in Sources */,
@@ -4885,6 +4914,7 @@
 				D41AEA6B22E58D9E003E28C3 /* UGAvatarModel.m in Sources */,
 				D422A582229E7AE90068D0AD /* UGYubaoIncomeTableViewCell.m in Sources */,
 				D405AFF822783DCC00F8C586 /* MASConstraint.m in Sources */,
+				D4781A122368207A004FBB97 /* UGLHMyViewController.m in Sources */,
 				D4B1B98223431C4600651815 /* UGSkinManagers.m in Sources */,
 				D42A06B122CA212E005488F8 /* UGHomeViewController.m in Sources */,
 				D405B27E227981D400F8C586 /* UUMarqueeView.m in Sources */,

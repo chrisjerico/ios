@@ -158,12 +158,12 @@
     NSString* skitType = [[UGSkinManagers shareInstance] skitType];
     if ([skitType isEqualToString:@"六合资料"]) {//六合资料
       #pragma mark - 测试
-        self.heightLayoutConstraint.constant = 7*100;
+        self.heightLayoutConstraint.constant = 7*100+5;
         self.gameNavigationViewHeight.constant = 0;
         self.gameNavigationView.hidden = YES;
         self.gameTypeView.hidden = YES;
         self.rankingView.hidden = YES;
-//        self.promotionView.hidden = NO;
+        self.promotionView.hidden = NO;
         subView(@"开奖结果").hidden = NO;
         subView(@"六合论坛").hidden = NO;
    
@@ -175,7 +175,7 @@
         self.rankingView.hidden = NO;
         subView(@"开奖结果").hidden = YES;
         subView(@"六合论坛").hidden = YES;
-//        self.promotionView.hidden = NO;
+        self.promotionView.hidden = NO;
     }
     
 	[self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
@@ -395,7 +395,8 @@
     self.lotteryCollectionView.delegate = self;
     self.lotteryCollectionView.tagString= @"六合开奖";
     [self.lotteryCollectionView registerNib:[UINib nibWithNibName:@"UGLHLotteryCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"cell"];
-    [self.lotteryCollectionView setShowsHorizontalScrollIndicator:NO];
+    [self.lotteryCollectionView setBounces:NO];
+    [self.lotteryCollectionView setScrollEnabled:NO];
     
 }
 
