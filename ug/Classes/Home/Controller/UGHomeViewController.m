@@ -203,13 +203,14 @@
 	self.gameNavigationView.layer.borderWidth = 1;
 	self.gameNavigationView.layer.borderColor = [[UGSkinManagers shareInstance] sethomeContentBorderColor].CGColor;
 	[self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
-//	[self.rankingView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
+    
+	[self.rankingView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
 	[self.upwardMultiMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
 	[self.rollingView setBackgroundColor:[[UGSkinManagers shareInstance]sethomeContentColor]];
 	[self.gameNavigationView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
 	[self.leftwardMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
 	[self.gameTypeView setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
-//    [self.bottomView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
+    [self.bottomView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
     [[UGSkinManagers shareInstance] navigationBar:(UGNavigationController *)self.navigationController bgColor: [[UGSkinManagers shareInstance] setNavbgColor]];
     
 	[[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:[[UGSkinManagers shareInstance] setTabbgColor]]];
@@ -270,33 +271,26 @@
 	self.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
 
 		[self getSystemConfig];     // APP配置信息
-		[self getCustomGameList];   // 自定义游戏列表
 		[self getBannerList];       // Banner图
         if (self.notiveView == nil) {
             [self getNoticeList];   // 公告列表
         }
-		[self getRankList];         // 中奖列表
 		[self getUserInfo];         // 用户信息
-		[self getAllNextIssueData]; // 彩票大厅数据
 		[self getCheckinListData];  // 红包数据
 		[self systemOnlineCount];   // 在线人数
         [self getPromoteList];      // 优惠活动
        
         [[UGSkinManagers shareInstance] navigationBar:(UGNavigationController *)self.navigationController bgColor: [[UGSkinManagers shareInstance] setNavbgColor]];
 	}];
-    
-    
-    [self getCustomGameList];
+
     [self getBannerList];
     if (self.notiveView == nil) {
         [self getNoticeList];
         [self getSystemConfig];
     }
-    [self getRankList];
-    [self getAllNextIssueData];
-    [self getUserInfo];
-    [self getCheckinListData];
-    [self systemOnlineCount];
+    [self getUserInfo];        // 用户信息
+    [self getCheckinListData]; // 红包数据
+    [self systemOnlineCount];  // 在线人数
     [self getPromoteList];      // 优惠活动
 	
     __weakSelf_(__self);
@@ -311,7 +305,6 @@
 	
 	self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
 
-    
     // 红包事件
     {
         self.uGredEnvelopeView = [[UGredEnvelopeView alloc] initWithFrame:CGRectMake(UGScreenW-100, 150, 95, 95) ];
@@ -691,10 +684,14 @@
 			
 			UGSystemConfigModel *config = model.data;
 			UGSystemConfigModel.currentConfig = config;
-			
-			
+
 			[[UGSkinManagers shareInstance] setSkin];
-			
+            NSString* skitType = [[UGSkinManagers shareInstance] skitType];
+            if (![skitType isEqualToString:@"六合资料"]) {//六合资料
+                 [self getCustomGameList];   // 自定义游戏列表
+                 [self getRankList];         // 中奖列表
+                 [self getAllNextIssueData]; // 彩票大厅数据
+            }
             NSString *title =[NSString stringWithFormat:@"COPYRIGHT © %@ RESERVED",config.webName];
             [self.bottomLabel setText:title];
 			[self.titleView setImgName:config.mobile_logo];
