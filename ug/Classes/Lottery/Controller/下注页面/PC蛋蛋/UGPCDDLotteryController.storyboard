@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ach-m1-H1F">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ach-m1-H1F">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -140,27 +140,47 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hss-T0-LaY">
-                                        <rect key="frame" x="25" y="32" width="35" height="35"/>
+                                        <rect key="frame" x="25" y="27" width="35" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="35" id="Lak-MW-aSK"/>
-                                            <constraint firstAttribute="height" constant="35" id="dUA-0l-7EG"/>
+                                            <constraint firstAttribute="height" constant="40" id="dUA-0l-7EG"/>
                                         </constraints>
-                                        <state key="normal" image="chat"/>
                                         <connections>
                                             <action selector="showChatRoom:" destination="Ach-m1-H1F" eventType="touchUpInside" id="HZH-0m-Jj0"/>
                                         </connections>
                                     </button>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chat" translatesAutoresizingMaskIntoConstraints="NO" id="11c-9z-9fK">
+                                        <rect key="frame" x="27" y="29" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="Ien-Yh-vT9"/>
+                                            <constraint firstAttribute="width" constant="30" id="WII-Ch-q1i"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="聊天室" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="54H-sJ-ILX">
+                                        <rect key="frame" x="25" y="54" width="37" height="15"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="37" id="DHy-HM-V1r"/>
+                                            <constraint firstAttribute="height" constant="15" id="vvS-5h-GOC"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="le1-8m-YTC" secondAttribute="trailing" id="3ct-LJ-eUE"/>
                                     <constraint firstItem="8Jk-4I-1RQ" firstAttribute="leading" secondItem="o3I-f8-kAo" secondAttribute="leading" constant="5" id="5Ex-us-es0"/>
+                                    <constraint firstItem="54H-sJ-ILX" firstAttribute="top" secondItem="8Jk-4I-1RQ" secondAttribute="bottom" constant="27" id="8Ib-eh-Fs9"/>
                                     <constraint firstAttribute="height" constant="70" id="CzB-iZ-leg"/>
                                     <constraint firstItem="tDX-6R-vTv" firstAttribute="leading" secondItem="8Jk-4I-1RQ" secondAttribute="trailing" constant="5" id="FCj-V9-fxP"/>
+                                    <constraint firstItem="11c-9z-9fK" firstAttribute="leading" secondItem="o3I-f8-kAo" secondAttribute="leading" constant="27" id="FDp-25-bE6"/>
                                     <constraint firstAttribute="trailing" secondItem="tDX-6R-vTv" secondAttribute="trailing" constant="5" id="Gjf-xu-GNo"/>
                                     <constraint firstAttribute="bottom" secondItem="Hss-T0-LaY" secondAttribute="bottom" constant="3" id="Mxt-6e-qbj"/>
                                     <constraint firstItem="8Jk-4I-1RQ" firstAttribute="top" secondItem="o3I-f8-kAo" secondAttribute="top" constant="10" id="ZvU-58-Pss"/>
                                     <constraint firstAttribute="bottom" secondItem="le1-8m-YTC" secondAttribute="bottom" id="eOt-Gp-Udn"/>
+                                    <constraint firstItem="11c-9z-9fK" firstAttribute="top" secondItem="8Jk-4I-1RQ" secondAttribute="bottom" constant="2" id="f8i-lp-VWa"/>
+                                    <constraint firstItem="54H-sJ-ILX" firstAttribute="leading" secondItem="o3I-f8-kAo" secondAttribute="leading" constant="25" id="hq4-ns-Oej"/>
                                     <constraint firstItem="Hss-T0-LaY" firstAttribute="leading" secondItem="o3I-f8-kAo" secondAttribute="leading" constant="25" id="iII-xv-hUh"/>
                                     <constraint firstAttribute="bottom" secondItem="tDX-6R-vTv" secondAttribute="bottom" constant="10" id="jCk-up-J1f"/>
                                     <constraint firstItem="tDX-6R-vTv" firstAttribute="top" secondItem="o3I-f8-kAo" secondAttribute="top" constant="5" id="sN2-so-7TZ"/>

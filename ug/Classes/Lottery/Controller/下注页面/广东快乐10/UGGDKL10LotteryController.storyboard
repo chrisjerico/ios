@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4k1-Qb-ehd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4k1-Qb-ehd">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -140,27 +140,47 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r71-Ew-Tlh">
-                                        <rect key="frame" x="25" y="32" width="35" height="35"/>
+                                        <rect key="frame" x="25" y="27" width="35" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="35" id="JkC-a8-J2T"/>
-                                            <constraint firstAttribute="height" constant="35" id="qdx-iQ-hdU"/>
+                                            <constraint firstAttribute="height" constant="40" id="qdx-iQ-hdU"/>
                                         </constraints>
-                                        <state key="normal" image="chat"/>
                                         <connections>
                                             <action selector="showChatRoom:" destination="4k1-Qb-ehd" eventType="touchUpInside" id="1YS-YG-HbZ"/>
                                         </connections>
                                     </button>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chat" translatesAutoresizingMaskIntoConstraints="NO" id="pwe-IH-HZL">
+                                        <rect key="frame" x="27" y="29" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="UJv-Bl-F6y"/>
+                                            <constraint firstAttribute="width" constant="30" id="WZn-7F-YYc"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="聊天室" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yBg-1E-Hyf">
+                                        <rect key="frame" x="25" y="55" width="37" height="15"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="15" id="Rbu-Ro-emW"/>
+                                            <constraint firstAttribute="width" constant="37" id="s4s-go-DsO"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="eqx-XF-nT0" secondAttribute="trailing" constant="5" id="3UY-zi-fFM"/>
                                     <constraint firstItem="eqx-XF-nT0" firstAttribute="leading" secondItem="lu7-DU-m8h" secondAttribute="trailing" constant="5" id="AUq-PY-rxA"/>
                                     <constraint firstAttribute="trailing" secondItem="He0-9M-2a3" secondAttribute="trailing" id="AuU-Dz-zzj"/>
+                                    <constraint firstItem="yBg-1E-Hyf" firstAttribute="leading" secondItem="QOX-5V-kfx" secondAttribute="leading" constant="25" id="CYH-TX-kwO"/>
+                                    <constraint firstItem="yBg-1E-Hyf" firstAttribute="top" secondItem="lu7-DU-m8h" secondAttribute="bottom" constant="28" id="DhP-GT-GTM"/>
                                     <constraint firstAttribute="height" constant="70" id="NPd-71-dPx"/>
                                     <constraint firstItem="lu7-DU-m8h" firstAttribute="leading" secondItem="QOX-5V-kfx" secondAttribute="leading" constant="5" id="NqZ-Ip-5EV"/>
                                     <constraint firstItem="He0-9M-2a3" firstAttribute="leading" secondItem="QOX-5V-kfx" secondAttribute="leading" id="Pvb-3L-hLb"/>
+                                    <constraint firstItem="pwe-IH-HZL" firstAttribute="leading" secondItem="QOX-5V-kfx" secondAttribute="leading" constant="27" id="Qj1-4G-5aQ"/>
                                     <constraint firstAttribute="bottom" secondItem="eqx-XF-nT0" secondAttribute="bottom" constant="10" id="RCE-s5-9BK"/>
                                     <constraint firstAttribute="bottom" secondItem="r71-Ew-Tlh" secondAttribute="bottom" constant="3" id="SeR-vs-CnO"/>
+                                    <constraint firstItem="pwe-IH-HZL" firstAttribute="top" secondItem="lu7-DU-m8h" secondAttribute="bottom" constant="2" id="UrA-IT-7kp"/>
                                     <constraint firstItem="lu7-DU-m8h" firstAttribute="top" secondItem="QOX-5V-kfx" secondAttribute="top" constant="10" id="bbB-3k-rSA"/>
                                     <constraint firstItem="r71-Ew-Tlh" firstAttribute="leading" secondItem="QOX-5V-kfx" secondAttribute="leading" constant="25" id="e9B-wv-Jjp"/>
                                     <constraint firstAttribute="bottom" secondItem="He0-9M-2a3" secondAttribute="bottom" id="lzj-9H-kGF"/>
