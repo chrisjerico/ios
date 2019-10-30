@@ -21,7 +21,6 @@
     UGOnlineWithdrawalsView *myOnlineView;      /**<   线上取款 视图 */
     
     NSMutableArray *myCollectArray;          /**<   myCollectionView数据*/
-    NSMutableArray *companyArray;             /**<  公司数据*/
     NSString * selectNav;                     /**<  选中的按钮组的按钮标题*/
 }
 
