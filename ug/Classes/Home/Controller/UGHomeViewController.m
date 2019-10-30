@@ -1380,18 +1380,26 @@
     }
 }
 - (IBAction)goYOUHUIVC:(id)sender {
-    BOOL isLogin = UGLoginIsAuthorized();
-    if (isLogin) {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Promote" bundle:nil];
-        UGPromotionsController *qdwebVC = [storyboard instantiateViewControllerWithIdentifier:@"UGPromotionsController"];
-        [self.navigationController pushViewController:qdwebVC  animated:YES];
-    }
-    else {
-         SANotificationEventPost(UGNotificationShowLoginView, nil);
-    }
+
     
-//    UGfinancialViewViewController *vc = [UGfinancialViewViewController new];
-//    [self.navigationController pushViewController:vc  animated:YES];
+    #ifdef DEBUG
+        UGfinancialViewViewController *vc = [UGfinancialViewViewController new];
+        [self.navigationController pushViewController:vc  animated:YES];
+
+    #else
+    
+        BOOL isLogin = UGLoginIsAuthorized();
+        if (isLogin) {
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Promote" bundle:nil];
+            UGPromotionsController *qdwebVC = [storyboard instantiateViewControllerWithIdentifier:@"UGPromotionsController"];
+            [self.navigationController pushViewController:qdwebVC  animated:YES];
+        }
+        else {
+             SANotificationEventPost(UGNotificationShowLoginView, nil);
+        }
+    #endif
+    
+
    
 }
 - (IBAction)historyAcion:(id)sender {

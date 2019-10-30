@@ -200,6 +200,10 @@
 		D4091B52236950000056BAEE /* UGBMHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4091B51236950000056BAEE /* UGBMHeaderView.xib */; };
 		D4091B56236961C70056BAEE /* UGfinancialViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4091B55236961C70056BAEE /* UGfinancialViewViewController.m */; };
 		D4091B5A236966E10056BAEE /* SyyRadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D4091B58236966E10056BAEE /* SyyRadioButton.m */; };
+		D4091B70236986130056BAEE /* UGBMfinancialCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4091B6E236986130056BAEE /* UGBMfinancialCollectionViewCell.m */; };
+		D4091B71236986130056BAEE /* UGBMfinancialCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4091B6F236986130056BAEE /* UGBMfinancialCollectionViewCell.xib */; };
+		D4091B742369B7BE0056BAEE /* UGfinancialView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4091B732369B7BE0056BAEE /* UGfinancialView.m */; };
+		D4091B762369B7CF0056BAEE /* UGfinancialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4091B752369B7CF0056BAEE /* UGfinancialView.xib */; };
 		D409B14E2296826D0053DA33 /* UGHKLHCLotteryController.m in Sources */ = {isa = PBXBuildFile; fileRef = D409B14D2296826D0053DA33 /* UGHKLHCLotteryController.m */; };
 		D409B150229686C00053DA33 /* UGHKLHCLotteryController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D409B14F229686C00053DA33 /* UGHKLHCLotteryController.storyboard */; };
 		D409B1542296E0020053DA33 /* UGMarkSixLotteryBetItem0Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = D409B1522296E0020053DA33 /* UGMarkSixLotteryBetItem0Cell.m */; };
@@ -317,6 +321,8 @@
 		D41C3E18228EF2A600BF6436 /* UGFastThreeTwoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D41C3E16228EF2A600BF6436 /* UGFastThreeTwoCollectionViewCell.xib */; };
 		D41C3E1B228EF6C400BF6436 /* UGJSK3LotteryController.m in Sources */ = {isa = PBXBuildFile; fileRef = D41C3E1A228EF6C400BF6436 /* UGJSK3LotteryController.m */; };
 		D41C3E1D228EF72600BF6436 /* UGJSK3LotteryController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D41C3E1C228EF72600BF6436 /* UGJSK3LotteryController.storyboard */; };
+		D41C5EBD2369D758007AF77D /* UGOnlineWithdrawalsView.m in Sources */ = {isa = PBXBuildFile; fileRef = D41C5EBC2369D758007AF77D /* UGOnlineWithdrawalsView.m */; };
+		D41C5EBF2369D76D007AF77D /* UGOnlineWithdrawalsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D41C5EBE2369D76D007AF77D /* UGOnlineWithdrawalsView.xib */; };
 		D41E0EE0228D88BC00D6C42A /* UGMissionLevelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D41E0EDE228D88BC00D6C42A /* UGMissionLevelTableViewCell.m */; };
 		D41E0EE1228D88BC00D6C42A /* UGMissionLevelTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D41E0EDF228D88BC00D6C42A /* UGMissionLevelTableViewCell.xib */; };
 		D41E0EEB228D98C100D6C42A /* UGIntegralConvertController.m in Sources */ = {isa = PBXBuildFile; fileRef = D41E0EEA228D98C100D6C42A /* UGIntegralConvertController.m */; };
@@ -1006,6 +1012,12 @@
 		D4091B55236961C70056BAEE /* UGfinancialViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGfinancialViewViewController.m; sourceTree = "<group>"; };
 		D4091B58236966E10056BAEE /* SyyRadioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyyRadioButton.m; sourceTree = "<group>"; };
 		D4091B59236966E10056BAEE /* SyyRadioButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyyRadioButton.h; sourceTree = "<group>"; };
+		D4091B6D236986130056BAEE /* UGBMfinancialCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGBMfinancialCollectionViewCell.h; sourceTree = "<group>"; };
+		D4091B6E236986130056BAEE /* UGBMfinancialCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGBMfinancialCollectionViewCell.m; sourceTree = "<group>"; };
+		D4091B6F236986130056BAEE /* UGBMfinancialCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGBMfinancialCollectionViewCell.xib; sourceTree = "<group>"; };
+		D4091B722369B7BE0056BAEE /* UGfinancialView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGfinancialView.h; sourceTree = "<group>"; };
+		D4091B732369B7BE0056BAEE /* UGfinancialView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGfinancialView.m; sourceTree = "<group>"; };
+		D4091B752369B7CF0056BAEE /* UGfinancialView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGfinancialView.xib; sourceTree = "<group>"; };
 		D409B14C2296826D0053DA33 /* UGHKLHCLotteryController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGHKLHCLotteryController.h; sourceTree = "<group>"; };
 		D409B14D2296826D0053DA33 /* UGHKLHCLotteryController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGHKLHCLotteryController.m; sourceTree = "<group>"; };
 		D409B14F229686C00053DA33 /* UGHKLHCLotteryController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UGHKLHCLotteryController.storyboard; sourceTree = "<group>"; };
@@ -1212,6 +1224,9 @@
 		D41C3E19228EF6C400BF6436 /* UGJSK3LotteryController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGJSK3LotteryController.h; sourceTree = "<group>"; };
 		D41C3E1A228EF6C400BF6436 /* UGJSK3LotteryController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGJSK3LotteryController.m; sourceTree = "<group>"; };
 		D41C3E1C228EF72600BF6436 /* UGJSK3LotteryController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UGJSK3LotteryController.storyboard; sourceTree = "<group>"; };
+		D41C5EBB2369D758007AF77D /* UGOnlineWithdrawalsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGOnlineWithdrawalsView.h; sourceTree = "<group>"; };
+		D41C5EBC2369D758007AF77D /* UGOnlineWithdrawalsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGOnlineWithdrawalsView.m; sourceTree = "<group>"; };
+		D41C5EBE2369D76D007AF77D /* UGOnlineWithdrawalsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGOnlineWithdrawalsView.xib; sourceTree = "<group>"; };
 		D41E0EDD228D88BC00D6C42A /* UGMissionLevelTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGMissionLevelTableViewCell.h; sourceTree = "<group>"; };
 		D41E0EDE228D88BC00D6C42A /* UGMissionLevelTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGMissionLevelTableViewCell.m; sourceTree = "<group>"; };
 		D41E0EDF228D88BC00D6C42A /* UGMissionLevelTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGMissionLevelTableViewCell.xib; sourceTree = "<group>"; };
@@ -3399,6 +3414,15 @@
 		D4091B5B236977870056BAEE /* 财务中心 */ = {
 			isa = PBXGroup;
 			children = (
+				D4091B6D236986130056BAEE /* UGBMfinancialCollectionViewCell.h */,
+				D4091B6E236986130056BAEE /* UGBMfinancialCollectionViewCell.m */,
+				D4091B6F236986130056BAEE /* UGBMfinancialCollectionViewCell.xib */,
+				D4091B722369B7BE0056BAEE /* UGfinancialView.h */,
+				D4091B732369B7BE0056BAEE /* UGfinancialView.m */,
+				D4091B752369B7CF0056BAEE /* UGfinancialView.xib */,
+				D41C5EBB2369D758007AF77D /* UGOnlineWithdrawalsView.h */,
+				D41C5EBC2369D758007AF77D /* UGOnlineWithdrawalsView.m */,
+				D41C5EBE2369D76D007AF77D /* UGOnlineWithdrawalsView.xib */,
 			);
 			path = "财务中心";
 			sourceTree = "<group>";
@@ -4429,6 +4453,7 @@
 				D41C3E1D228EF72600BF6436 /* UGJSK3LotteryController.storyboard in Resources */,
 				D4145A9222B52D0600D8165F /* UGGD11X5LotteryController.storyboard in Resources */,
 				D4DE2685229BCB960072A4A2 /* icon_arrow@2x.png in Resources */,
+				D41C5EBF2369D76D007AF77D /* UGOnlineWithdrawalsView.xib in Resources */,
 				D40D58C6228A9A230025963A /* UGBetDetailTableViewCell.xib in Resources */,
 				D41246B32285B5CB006881E2 /* UGMissionTableViewCell.xib in Resources */,
 				D48224EB22A0FDD000F7DE72 /* UGPlatformNoticeCell.xib in Resources */,
@@ -4459,6 +4484,7 @@
 				D49A36CB22A2CF6A000057D2 /* UGPCDDLotteryController.storyboard in Resources */,
 				D48224E322A0F3F500F7DE72 /* UGPlatformNoticeView.xib in Resources */,
 				D48224F722A10B5F00F7DE72 /* UGNoticeHeaderView.xib in Resources */,
+				D4091B71236986130056BAEE /* UGBMfinancialCollectionViewCell.xib in Resources */,
 				CFD3BF232347196600FCDA6D /* loadingA.png in Resources */,
 				D40FA8C4229911CA003E596F /* UGYubaoViewController.storyboard in Resources */,
 				D41C3DFC228E882200BF6436 /* UGIntegralConvertRecordController.storyboard in Resources */,
@@ -4503,6 +4529,7 @@
 				D405B2CB227ADA4E00F8C586 /* UGGameTypeColletionViewCell.xib in Resources */,
 				D4527D1922828C27000EC1C2 /* UGPlatformBalanceTableViewCell.xib in Resources */,
 				D4E8A41122A0326C00EFE171 /* UGBetRecorddHeaderView.xib in Resources */,
+				D4091B762369B7CF0056BAEE /* UGfinancialView.xib in Resources */,
 				D4C1656F2344C3C0005A0F12 /* UGMineSkinCollectionViewCell.xib in Resources */,
 				D4DE268A229BCB960072A4A2 /* icon_arrow@3x.png in Resources */,
 				CF3B0E392349CDAC0035AF50 /* UGCalenderAlertView.xib in Resources */,
@@ -4613,6 +4640,7 @@
 				D405B24F2279740A00F8C586 /* NSDictionary+HYBUnicodeReadable.m in Sources */,
 				CFD3BF0A2347137F00FCDA6D /* NSDate+Millisecond.m in Sources */,
 				D4C1657C2344CF1C005A0F12 /* UGMineSkinModel.m in Sources */,
+				D4091B70236986130056BAEE /* UGBMfinancialCollectionViewCell.m in Sources */,
 				D463B4DC2283ECFB00EAC0F7 /* UGPromotionTableController.m in Sources */,
 				D40DE98322F335E300974BAF /* SDCycleScrollView.m in Sources */,
 				D4AE42F92359E5ED00EC7E8E /* UGbetModel.m in Sources */,
@@ -4940,6 +4968,7 @@
 				D4C93B4422D8C02000608B67 /* UGLoginAddressModel.m in Sources */,
 				D4527D1822828C27000EC1C2 /* UGPlatformBalanceTableViewCell.m in Sources */,
 				CFD3BEF32347137F00FCDA6D /* NSDictionary+NilSafe.m in Sources */,
+				D41C5EBD2369D758007AF77D /* UGOnlineWithdrawalsView.m in Sources */,
 				D48224FA22A120E500F7DE72 /* UGPlatformNoticeModel.m in Sources */,
 				D4C93B3E22D8751F00608B67 /* UGFeedbackDetailController.m in Sources */,
 				D405B3812281442B00F8C586 /* SLWebViewController.m in Sources */,
@@ -5001,6 +5030,7 @@
 				D422A582229E7AE90068D0AD /* UGYubaoIncomeTableViewCell.m in Sources */,
 				D405AFF822783DCC00F8C586 /* MASConstraint.m in Sources */,
 				D4781A122368207A004FBB97 /* UGLHMyViewController.m in Sources */,
+				D4091B742369B7BE0056BAEE /* UGfinancialView.m in Sources */,
 				D4B1B98223431C4600651815 /* UGSkinManagers.m in Sources */,
 				D42A06B122CA212E005488F8 /* UGHomeViewController.m in Sources */,
 				D405B27E227981D400F8C586 /* UUMarqueeView.m in Sources */,

@@ -516,11 +516,16 @@ static NSString *uuidKey =@"uuidKey";
  *
  *  @return 高度
  */
-+ (CGFloat)getLabelWidthWithText:(NSString *)text stringFont:(UIFont *)font allowHeight:(CGFloat)height{
-    CGFloat width;
-    CGRect rect = [text boundingRectWithSize:CGSizeMake(2000, height) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:font} context:nil];
-    width = rect.size.width;
-    return width;
++ (CGFloat)getLabelWidthWithText:(NSString *)text stringFont:(UIFont *)font allowHeight:(CGFloat)width{
+    CGFloat height;
+    CGSize basetipSize = CGSizeMake(width, CGFLOAT_MAX);
+    CGSize rect  = [text
+             boundingRectWithSize:basetipSize
+             options:NSStringDrawingUsesLineFragmentOrigin
+             attributes:@{NSFontAttributeName:font}
+             context:nil].size;
+    height = rect.height +20;
+    return height;
 }
 
 /**

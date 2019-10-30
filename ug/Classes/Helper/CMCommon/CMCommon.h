@@ -103,7 +103,7 @@
  *
  *  @return 高度
  */
-+ (CGFloat)getLabelWidthWithText:(NSString *)text stringFont:(UIFont *)font allowHeight:(CGFloat)height;
++ (CGFloat)getLabelWidthWithText:(NSString *)text stringFont:(UIFont *)font allowHeight:(CGFloat)width;
 
 /**
  *  UIImageView 加载含有汉字的url处理方法
