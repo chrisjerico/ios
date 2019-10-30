@@ -338,6 +338,8 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 #define UGBlueColor UGRGBColor(76,150,236)
 #define UGTextColor UGRGBColor(165,135,91)
 
+#define UGBlackModelColor UGRGBColor(35,35,35)//黑色模板的黑色背景
+
 #define UGNumColor1 [UIColor colorWithHex:0xe6de00]
 #define UGNumColor2 [UIColor colorWithHex:0x0092dd]
 #define UGNumColor3 [UIColor colorWithHex:0x4b4b4b]

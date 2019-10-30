@@ -11,6 +11,7 @@
 #import "UGBMHeaderView.h"
 @interface UGfinancialViewViewController ()<SyyRadioButtonDelegate>{
     UGBMHeaderView *headView;
+    UIView *contentView;
 }
 
 @end
@@ -22,7 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.view setBackgroundColor:[UIColor blackColor]];
+    [self.view setBackgroundColor:UGBlackModelColor];
     self.fd_prefersNavigationBarHidden = YES;
     [self creatView];
     
@@ -84,6 +85,18 @@
         make.top.equalTo(btnView.mas_top).with.offset(0);
         make.height.equalTo([NSNumber numberWithFloat:height]);
     }];
+    //===============内容面板布局=================
+    contentView = [UIView new];
+    [contentView setBackgroundColor:UGRGBColor(17, 17, 17)];
+    [self.view addSubview:contentView];
+    [contentView mas_makeConstraints:^(MASConstraintMaker *make) { //数组额你不必须都是view
+           make.top.equalTo(btnView.mas_bottom).with.offset(0);
+           make.left.equalTo(self.view.mas_left).offset(0);
+           make.bottom.equalTo(self.view.mas_bottom).with.offset(0);
+           make.width.equalTo([NSNumber numberWithFloat:UGScreenW]);
+    }];
+    //线上支付+快速充值
+    
     
 }
 
