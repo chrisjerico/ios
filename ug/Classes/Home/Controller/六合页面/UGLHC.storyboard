@@ -200,18 +200,18 @@
                                 <rect key="frame" x="0.0" y="60" width="414" height="748"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="SsN-GL-eJK">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="369.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="SsN-GL-eJK" customClass="UGPostCell">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="371"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SsN-GL-eJK" id="N9k-oR-H3i">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="369.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="371"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2go-5n-Oj9" customClass="IBView">
-                                                    <rect key="frame" x="10" y="10" width="394" height="349.5"/>
+                                                    <rect key="frame" x="10" y="10" width="394" height="351"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="zww-U8-73A">
-                                                            <rect key="frame" x="15" y="15" width="364" height="276.5"/>
+                                                            <rect key="frame" x="15" y="15" width="364" height="278"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DE9-d8-Xh0">
                                                                     <rect key="frame" x="0.0" y="0.0" width="364" height="55"/>
@@ -309,7 +309,7 @@
                                                                     </constraints>
                                                                 </view>
                                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="VA0-Fr-LZe">
-                                                                    <rect key="frame" x="0.0" y="131.5" width="364" height="145"/>
+                                                                    <rect key="frame" x="0.0" y="131.5" width="364" height="146.5"/>
                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                                     <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="QuW-wq-hmB">
                                                                         <size key="itemSize" width="106" height="100"/>
@@ -332,7 +332,7 @@
                                                             </subviews>
                                                         </stackView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SH5-RW-CAO" customClass="IBView">
-                                                            <rect key="frame" x="-2" y="301.5" width="398" height="50"/>
+                                                            <rect key="frame" x="-2" y="303" width="398" height="50"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ReT-8v-fCT">
                                                                     <rect key="frame" x="0.0" y="0.0" width="398" height="50"/>
@@ -426,8 +426,15 @@
                                                 <constraint firstItem="2go-5n-Oj9" firstAttribute="leading" secondItem="N9k-oR-H3i" secondAttribute="leading" constant="10" id="sM9-JX-RiM"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="collectionView" destination="VA0-Fr-LZe" id="e0h-rL-Nxq"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="vPh-Fl-aJc" id="9Sz-ZT-vm8"/>
+                                    <outlet property="delegate" destination="vPh-Fl-aJc" id="d81-M2-YDd"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -736,6 +743,10 @@
                                                 <constraint firstItem="xDh-Zf-fFc" firstAttribute="centerX" secondItem="QKN-6z-Znu" secondAttribute="centerX" id="rzc-tT-FfR"/>
                                             </constraints>
                                         </view>
+                                        <connections>
+                                            <outlet property="dataSource" destination="dcb-h9-Xqb" id="ZeC-wz-NlF"/>
+                                            <outlet property="delegate" destination="dcb-h9-Xqb" id="dfO-IP-yeR"/>
+                                        </connections>
                                     </tableView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Np-2u-5CL">
                                         <rect key="frame" x="0.0" y="1062" width="414" height="50"/>
@@ -891,6 +902,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="zfk-AR-SZz" id="knc-SR-mqU"/>
+                                    <outlet property="delegate" destination="zfk-AR-SZz" id="jGX-b2-ZmS"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>

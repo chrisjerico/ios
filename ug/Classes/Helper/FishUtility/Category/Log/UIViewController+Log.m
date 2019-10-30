@@ -18,12 +18,26 @@
         [UIViewController jr_swizzleMethod:@selector(cc_dealloc) withMethod:NSSelectorFromString(@"dealloc") error:nil];
         [UIViewController jr_swizzleMethod:@selector(cc_viewWillAppear:) withMethod:@selector(viewWillAppear:) error:nil];
         
+        __block NSDate *__lastDate = nil;
+        NSMutableDictionary *dict = @{}.mutableCopy;
         [UIView aspect_hookSelector:@selector(didAddSubview:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
             UIView *v = ai.arguments.lastObject;
-            if (v.classIsCustom && ![NSStringFromClass(v.class) hasPrefix:@"IB"]) {
-                NSLog(@"——————————————添加自定义View： %@", v.class);
+            if (v.classIsCustom) {
+                dict[NSStringFromClass(v.class)] = @([dict[NSStringFromClass(v.class)] intValue] + 1);
+                __lastDate = [NSDate date];
+//                NSLog(@"——————————————添加自定义View： %@", NSStringFromClass(v.class));
             }
         } error:nil];
+        
+        static NSTimer *__timer;
+        __timer = [NSTimer scheduledTimerWithInterval:0.8 repeats:true block:^(NSTimer *timer) {
+            if ([__lastDate timeIntervalSinceDate:[NSDate date]] < -1) {
+                for (NSString *clsName in dict.allKeys) {
+                    NSLog(@"——————————————添加了 %@ 个自定义View： %@", dict[clsName], clsName);
+                }
+                [dict removeAllObjects];
+            }
+        }];
     });
 }
 

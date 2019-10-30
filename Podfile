@@ -5,22 +5,15 @@ target "ug" do
 inhibit_all_warnings!
 
 # Andrew新增
- # 布局自动适应库
-pod 'Masonry'
- # 类似Android提示库
-pod 'Toast', '~> 4.0.0'
- # 键盘库
-pod 'IQKeyboardManager'
- # alert提示框
-pod 'LEEAlert'
- # 防奔溃
-pod 'AvoidCrash'
- #web浏览器
-pod 'BAWKWebView' 
- #二维码生成与扫描
-pod 'SGQRCode', '~> 3.0.1'
- #网络图
-pod 'YYWebImage'
+pod 'Masonry'             # 布局自动适应库
+pod 'Toast', '~> 4.0.0'   # 类似Android提示库
+pod 'IQKeyboardManager'   # 键盘库
+pod 'LEEAlert'            # alert提示框
+pod 'AvoidCrash'          # 防奔溃
+pod 'BAWKWebView'         #web浏览器
+pod 'SGQRCode', '~> 3.0.1'#二维码生成与扫描
+pod 'YYWebImage'          #网络图
+pod 'SGBrowserView'       # 动画弹出
 
 
 

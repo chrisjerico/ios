@@ -463,7 +463,7 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
             completion(result, error);
         }
         
-#if defined(DEBUG) || defined(APP_TEST)
+#if defined(DEBUG)
         [LogVC addRequestModel:({
             CCSessionModel *sm = [CCSessionModel new];
             sm.urlString = method;
@@ -488,7 +488,7 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
             return ;
         }
         if (errResponse.statusCode == 403) {
-             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:error.userInfo[@"com.alamofire.serialization.response.error.data"] options:0 error:nil];
+            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:error.userInfo[@"com.alamofire.serialization.response.error.data"] options:0 error:nil];
             NSError *err;
             CMResult* result  = [resultClass resultWithJSON:json dataClass:dataClass error:&err];
             if (completion != nil) {
@@ -501,7 +501,7 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
             completion(result, error);
         }
         
-#if defined(DEBUG) || defined(APP_TEST)
+#if defined(DEBUG)
         [LogVC addRequestModel:({
             CCSessionModel *sm = [CCSessionModel new];
             sm.urlString = method;
@@ -562,7 +562,7 @@ completion:(CMNetworkBlock)completion {
             completion(result, error);
         }
         
-#if defined(DEBUG) || defined(APP_TEST)
+#if defined(DEBUG)
         [LogVC addRequestModel:({
             CCSessionModel *sm = [CCSessionModel new];
             sm.urlString = method;
@@ -600,7 +600,7 @@ completion:(CMNetworkBlock)completion {
             completion(result, error);
         }
         
-#if defined(DEBUG) || defined(APP_TEST)
+#if defined(DEBUG)
         [LogVC addRequestModel:({
             CCSessionModel *sm = [CCSessionModel new];
             sm.urlString = method;

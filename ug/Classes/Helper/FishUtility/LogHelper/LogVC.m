@@ -6,7 +6,7 @@
 //  Copyright © 2018年 fish. All rights reserved.
 //
 
-#if defined(DEBUG) || defined(APP_TEST)
+#if defined(DEBUG)
 
 #import "LogVC.h"
 
@@ -19,9 +19,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *reqTableView;     /**<    请求TableView */
 @property (weak, nonatomic) IBOutlet UITableView *paramsTableView;  /**<    参数TableView */
 @property (weak, nonatomic) IBOutlet UITextView *resTextView;       /**<    响应TextView */
-@property (weak, nonatomic) IBOutlet UITextView *logTextView;       /**<    日志TextView */
 @property (weak, nonatomic) IBOutlet UIButton *collectButton;       /**<    收藏按钮 */
-@property (weak, nonatomic) IBOutlet UISegmentedControl *hostSegmentedControl;  /**<    主机地址 SegmentedControl */
 @property (weak, nonatomic) IBOutlet UISegmentedControl *toolSegmentedControl;
 
 @property (nonatomic) NSMutableArray <CCSessionModel *>*allRequest; /**<    请求列表 */
@@ -69,8 +67,6 @@ static LogVC *_logVC = nil;
     if (_logVC.view.by > 10) {
         [_logVC.reqTableView reloadData];
     }
-//    if (_logVC.allRequest.count > 50)
-//        [_logVC.allRequest removeLastObject];
 }
 
 + (void)addLog:(NSString *)log {
@@ -87,10 +83,6 @@ static LogVC *_logVC = nil;
         _collects = [NSMutableArray array];
     [_collects addObserver:self];
     
-    if ([[NSUserDefaults standardUserDefaults] containsKey:@"HostIndex"])
-        _hostSegmentedControl.selectedSegmentIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"HostIndex"];
-    [self onHostSegmentedControlValueChanged:_hostSegmentedControl];
-    
     _reqTableView.rowHeight = 46;
     _paramsTableView.rowHeight = 25;
     _paramsTableView.hidden = true;
@@ -99,6 +91,7 @@ static LogVC *_logVC = nil;
 
 #pragma mark - IBAction
 
+// 清空
 - (IBAction)onClearBtnClick:(UIButton *)sender {
     if (_toolSegmentedControl.selectedSegmentIndex == 0) {
         [_allRequest removeAllObjects];
@@ -112,6 +105,7 @@ static LogVC *_logVC = nil;
     }
 }
 
+// 重发
 - (IBAction)onRepeatBtnClick:(UIButton *)sender {
     NSInteger idx = [_reqTableView indexPathForSelectedRow].row;
     NSMutableArray <CCSessionModel *>*requests = (_collectButton.selected ? _collects : _allRequest);
@@ -145,6 +139,41 @@ static LogVC *_logVC = nil;
     }
 }
 
+// 六合
+- (IBAction)onLHBtnClick:(UIButton *)sender {
+    UIAlertController *ac = [AlertHelper showActionSheet:nil msg:nil btnTitles:@[@"高手论坛", @"极品专贴", @"我的动态",
+                                                                                 @"每期资料", @"公式规律", @"六合图库",
+                                                                                 @"幽默猜测", @"跑狗玄机", @"四不像",] cancel:@"取消"];
+    [ac setActionAtTitle:@"高手论坛" handler:^(UIAlertAction *aa) {
+        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGPostListVC") animated:true];
+    }];
+    [ac setActionAtTitle:@"极品专贴" handler:^(UIAlertAction *aa) {
+        
+    }];
+    [ac setActionAtTitle:@"我的动态" handler:^(UIAlertAction *aa) {
+        
+    }];
+    [ac setActionAtTitle:@"每期资料" handler:^(UIAlertAction *aa) {
+        
+    }];
+    [ac setActionAtTitle:@"公式规律" handler:^(UIAlertAction *aa) {
+        
+    }];
+    [ac setActionAtTitle:@"六合图库" handler:^(UIAlertAction *aa) {
+        
+    }];
+    [ac setActionAtTitle:@"幽默猜测" handler:^(UIAlertAction *aa) {
+        
+    }];
+    [ac setActionAtTitle:@"跑狗玄机" handler:^(UIAlertAction *aa) {
+        
+    }];
+    [ac setActionAtTitle:@"四不像" handler:^(UIAlertAction *aa) {
+        
+    }];
+}
+
+// 收藏
 - (IBAction)onCollectBtnClick:(UIButton *)sender {
     if (sender.selected) {
         [_collects removeObject:_selectedModel];
@@ -155,6 +184,7 @@ static LogVC *_logVC = nil;
     }
 }
 
+// 关闭
 - (IBAction)onHideBtnClick:(UIButton *)sender {
     UIView *superview = APP.Window;
     [UIView animateWithDuration:0.25 animations:^{
@@ -164,35 +194,12 @@ static LogVC *_logVC = nil;
     }];
 }
 
-// 切换服务器
-- (IBAction)onHostSegmentedControlValueChanged:(UISegmentedControl *)sender {
-    static NSInteger selectedIdx = 0;
-    NSInteger idx = sender.selectedSegmentIndex;
-    NSString *host = nil;
-    switch (idx) {
-        case 1: {   // test10
-            host = @"http://test10.6yc.com/";
-            break;
-        }
-        default: {  // c083
-            host = @"http://103.9.230.243/";
-        }
-    }
-    APP.HOST = baseServerUrl = host;
-    [[NSUserDefaults standardUserDefaults] setInteger:idx forKey:@"HostIndex"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    selectedIdx = idx;
-}
-
 // 全部请求、书签、日志
 - (IBAction)onTopSegmentedControlValueChanged:(UISegmentedControl *)sender {
     if (sender.selectedSegmentIndex == 0) {
         _collectButton.selected = false;
     } else if (sender.selectedSegmentIndex == 1) {
         _collectButton.selected = true;
-    } else if (sender.selectedSegmentIndex == 2) {
-        _logTextView.text = _log;
-        [_logTextView scrollRangeToVisible:_logTextView.selectedRange];
     }
     
     _reqTableView.superview.hidden = sender.selectedSegmentIndex == 2;

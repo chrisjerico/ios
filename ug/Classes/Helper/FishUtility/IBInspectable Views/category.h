@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 // —————————— IBInspectableUtils 类别
 // ——————————————————————————————————————————————————
-
+//IB_DESIGNABLE
 @interface UILabel (IBInspectableUtils)
 @property (nonatomic) IBInspectable CGFloat lineSpacing1;   /**<    行间距 */
 @property (nonatomic) IBInspectable CGPoint 内边距;          /**<    x=left=right，y=top=bottom */

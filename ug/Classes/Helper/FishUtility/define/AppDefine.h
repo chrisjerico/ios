@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define APP_TEST 1      // 测试环境宏
+
 #define API_Version 3   // 接口版本号
 /*
  以下是接口版本与对应的需求版本：

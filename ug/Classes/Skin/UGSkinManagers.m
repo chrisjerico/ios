@@ -172,8 +172,9 @@
         navBgColor = kUIColorFromRGB(0xDE1C27);
     }
     else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
-//        navBgColor = kUIColorFromRGB(0x3D80E7);
-         navBgColor = kUIColorFromRGB(0x609AC5);
+        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[RGBA(168, 114, 247, 1),RGBA(155, 213, 209, 1)] andGradientType:GradientDirectionLeftToRight];
+        navBgColor = [UIColor colorWithPatternImage:backImage];
+
     }
     else {// 默认   经典  1蓝色
         navBgColor = kUIColorFromRGB(0x609AC5);
@@ -252,8 +253,7 @@
         tabBgColor = kUIColorFromRGB(0xDE1C27);
     }
     else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
-//        tabBgColor = kUIColorFromRGB(0xFFFFFF);
-         tabBgColor = kUIColorFromRGB(0xC1CBC9);
+         tabBgColor = kUIColorFromRGB(0xF5F5F5);
     }
     else {//默认 经典  1蓝色
         tabBgColor = kUIColorFromRGB(0xC1CBC9);
@@ -460,9 +460,8 @@
         bgColor = kUIColorFromRGB(0xFFFFFF);
     }
     else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
-//        bgColor = kUIColorFromRGB(0x3D80E7);
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x7F9493),kUIColorFromRGB(0x5389B3)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
+        bgColor = [UIColor whiteColor];
+       
     }
     else {//默认 经典  1蓝色
         UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x7F9493),kUIColorFromRGB(0x5389B3)] andGradientType:GradientDirectionLeftToRight];
@@ -675,11 +674,8 @@
         bgColor = [UIColor colorWithPatternImage:backImage];
     }
     else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
-//        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x3D80E7),kUIColorFromRGB(0x3D80E7)] andGradientType:GradientDirectionLeftToRight];
-//        bgColor = [UIColor colorWithPatternImage:backImage];
-        
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x5f9bc6),kUIColorFromRGB(0xfb5959)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
+        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[RGBA(168, 114, 247, 1),RGBA(155, 213, 209, 1)] andGradientType:GradientDirectionLeftToRight];
+         bgColor = [UIColor colorWithPatternImage:backImage];
     }
     else {//默认 经典  1蓝色
         UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x5f9bc6),kUIColorFromRGB(0xfb5959)] andGradientType:GradientDirectionLeftToRight];
@@ -838,8 +834,8 @@
         contentColor = [UIColor whiteColor];
     }
     else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
-//        contentColor = [UIColor whiteColor];
-          contentColor = kUIColorFromRGB(0xb2cde0);
+        contentColor = [UIColor whiteColor];
+//          contentColor = kUIColorFromRGB(0xb2cde0);
     }
     else {//默认 经典  1蓝色
         contentColor = kUIColorFromRGB(0xb2cde0);
@@ -919,8 +915,8 @@
         contentColor = RGBA(231, 230, 230, 1);
     }
     else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
-//        contentColor = kUIColorFromRGB(0x3D80E7);
-        contentColor = kUIColorFromRGB(0xb2cde0);
+        contentColor = RGBA(231, 230, 230, 1);
+//        contentColor = kUIColorFromRGB(0xb2cde0);
     }
     else  {//默认 经典  1蓝色
         contentColor = kUIColorFromRGB(0xb2cde0);
@@ -1064,8 +1060,8 @@
         skitType = @"石榴红";
     }
     else if([config.mobileTemplateCategory isEqualToString:@"4"]) {
-//        skitType = @"六合资料";
-        skitType = config.mobileTemplateBackground;
+        skitType = @"六合资料";
+//        skitType = config.mobileTemplateBackground;
     }
     else{
         skitType = @"新年红";

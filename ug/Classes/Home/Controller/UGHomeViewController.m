@@ -55,6 +55,12 @@
 #import "STButton.h"
 #import "UGPlatformNoticeView.h"
 #import "UGAppVersionManager.h"
+#import "UGPromotionIncomeController.h"
+
+// 六合View
+#import "UGLHLotteryCollectionViewCell.h"
+#import "UGLHHomeContentCollectionViewCell.h"
+#import "UGScratchMusicView.h"
 
 // Model
 #import "UGBannerModel.h"
@@ -73,10 +79,9 @@
 #import "UGonlineCount.h"
 #import <SafariServices/SafariServices.h>
 #import "UIImage+YYgradientImage.h"
+#import "SGBrowserView.h"
 
-#import "UGPromotionIncomeController.h"
-
-@interface UGHomeViewController ()<SDCycleScrollViewDelegate,UUMarqueeViewDelegate>
+@interface UGHomeViewController ()<SDCycleScrollViewDelegate,UUMarqueeViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIView *bannerBgView;                          /**<   Banner */
 @property (weak, nonatomic) IBOutlet UGGameNavigationView *gameNavigationView;      /**<   游戏导航父视图 */
@@ -88,6 +93,7 @@
 
 @property (weak, nonatomic) IBOutlet UUMarqueeView *leftwardMarqueeView;    /**<   滚动公告 */
 @property (weak, nonatomic) IBOutlet UUMarqueeView *upwardMultiMarqueeView; /**<   中奖排行榜 */
+@property (weak, nonatomic) IBOutlet UIView *promotionView;                 /**<   优惠活动 view*/
 @property (weak, nonatomic) IBOutlet UIStackView *promotionsStackView;      /**<   优惠活动 */
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *gameViewHeight;
@@ -125,6 +131,20 @@
 @property (weak, nonatomic) IBOutlet UILabel *rankLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *rankViewHeight;
 
+
+//-------------------------------------------
+//六合
+@property (weak, nonatomic) IBOutlet UILabel *lotteryTitleLabel;        /**<   XX期开奖结果*/
+@property (weak, nonatomic) IBOutlet UILabel *remarkLabel;              /**<   咪*/
+@property (weak, nonatomic) IBOutlet UICollectionView *lotteryCollectionView;/**<  开奖的显示*/
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;                /**<  开奖的时间显示*/
+@property (weak, nonatomic) IBOutlet UILabel *countdownLabel;           /**<  开奖的倒计时显示*/
+@property (weak, nonatomic) IBOutlet UICollectionView *contentCollectionView; /**<  论坛，专帖XXX显示*/
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *heightLayoutConstraint;/**<  contentCollectionView 的约束高*/
+@property (weak, nonatomic) IBOutlet UISwitch *lotteryUISwitch;
+
+//--------------------------------------------
+
 @end
 
 @implementation UGHomeViewController
@@ -133,56 +153,64 @@
 }
 
 - (void)skin {
+    
+    FastSubViewCode(self.view);
+    NSString* skitType = [[UGSkinManagers shareInstance] skitType];
+    if ([skitType isEqualToString:@"六合资料"]) {//六合资料
+      #pragma mark - 测试
+        self.heightLayoutConstraint.constant = 7*100+5;
+        self.gameNavigationViewHeight.constant = 0;
+        self.gameNavigationView.hidden = YES;
+        self.gameTypeView.hidden = YES;
+        self.rankingView.hidden = YES;
+        self.promotionView.hidden = NO;
+        subView(@"开奖结果").hidden = NO;
+        subView(@"六合论坛").hidden = NO;
+   
+    }
+    else{
+        self.heightLayoutConstraint.constant = 0;
+        self.gameNavigationView.hidden = NO;
+        self.gameTypeView.hidden = NO;
+        self.rankingView.hidden = NO;
+        subView(@"开奖结果").hidden = YES;
+        subView(@"六合论坛").hidden = YES;
+        self.promotionView.hidden = NO;
+    }
+    
 	[self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
-	
-	
-//    [self.bottomView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
-//	[self.rankingView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
-
     [self.upwardMultiMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
     [self.rollingView setBackgroundColor:[[UGSkinManagers shareInstance]sethomeContentColor]];
     [self.gameNavigationView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
-     [self.leftwardMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
-     [self.gameTypeView setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
+    [self.leftwardMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
+    [self.gameTypeView setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
      self.gameNavigationView.layer.borderColor = [[UGSkinManagers shareInstance] sethomeContentBorderColor].CGColor;
-    
     [self.gameNavigationView reloadData];
-//    if (self.gameCategorys) {
-//        self.gameTypeView.gameTypeArray = self.gameCategorys;
-//    }
-    
-       
-
     [[UGSkinManagers shareInstance] navigationBar:(UGNavigationController *)self.navigationController bgColor: [[UGSkinManagers shareInstance] setNavbgColor]];
 }
 
 - (BOOL)允许游客访问 { return true; }
 
 - (void)viewDidLoad {
-	
-	[super viewDidLoad];
-	
+
+    [super viewDidLoad];
+
 	SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-		
 		[self skin];
 	});
-	
-	
-	
 	self.gameNavigationView.layer.cornerRadius = 8;
 	self.gameNavigationView.layer.masksToBounds = true;
 	self.gameNavigationView.layer.borderWidth = 1;
 	self.gameNavigationView.layer.borderColor = [[UGSkinManagers shareInstance] sethomeContentBorderColor].CGColor;
-	
 	[self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
-	
-//	[self.rankingView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
+    
+	[self.rankingView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
 	[self.upwardMultiMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
 	[self.rollingView setBackgroundColor:[[UGSkinManagers shareInstance]sethomeContentColor]];
 	[self.gameNavigationView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
 	[self.leftwardMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
 	[self.gameTypeView setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
-//    [self.bottomView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
+    [self.bottomView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
     [[UGSkinManagers shareInstance] navigationBar:(UGNavigationController *)self.navigationController bgColor: [[UGSkinManagers shareInstance] setNavbgColor]];
     
 	[[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:[[UGSkinManagers shareInstance] setTabbgColor]]];
@@ -197,7 +225,9 @@
 	
 	
 	[self setupSubView];
-	
+    {//六合
+        [self initLHCollectionView];
+    }
 	
 	
 	SANotificationEventSubscribe(UGNotificationTryPlay, self, ^(typeof (self) self, id obj) {
@@ -241,33 +271,26 @@
 	self.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
 
 		[self getSystemConfig];     // APP配置信息
-		[self getCustomGameList];   // 自定义游戏列表
 		[self getBannerList];       // Banner图
         if (self.notiveView == nil) {
             [self getNoticeList];   // 公告列表
         }
-		[self getRankList];         // 中奖列表
 		[self getUserInfo];         // 用户信息
-		[self getAllNextIssueData]; // 彩票大厅数据
 		[self getCheckinListData];  // 红包数据
 		[self systemOnlineCount];   // 在线人数
         [self getPromoteList];      // 优惠活动
        
         [[UGSkinManagers shareInstance] navigationBar:(UGNavigationController *)self.navigationController bgColor: [[UGSkinManagers shareInstance] setNavbgColor]];
 	}];
-    
-    
-    [self getCustomGameList];
+
     [self getBannerList];
     if (self.notiveView == nil) {
         [self getNoticeList];
         [self getSystemConfig];
     }
-    [self getRankList];
-    [self getAllNextIssueData];
-    [self getUserInfo];
-    [self getCheckinListData];
-    [self systemOnlineCount];
+    [self getUserInfo];        // 用户信息
+    [self getCheckinListData]; // 红包数据
+    [self systemOnlineCount];  // 在线人数
     [self getPromoteList];      // 优惠活动
 	
     __weakSelf_(__self);
@@ -282,7 +305,6 @@
 	
 	self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
 
-    
     // 红包事件
     {
         self.uGredEnvelopeView = [[UGredEnvelopeView alloc] initWithFrame:CGRectMake(UGScreenW-100, 150, 95, 95) ];
@@ -358,7 +380,108 @@
 	[self.upwardMultiMarqueeView pause];//fixbug  发热  掉电快
 	self.initSubview = YES;
 }
+#pragma mark - 六合方法
+- (void)initLHCollectionView {
+//六合内容
+    self.contentCollectionView.backgroundColor = RGBA(221, 221, 221, 1);
+    self.contentCollectionView.dataSource = self;
+    self.contentCollectionView.delegate = self;
+    self.contentCollectionView.tagString= @"六合内容";
+    [self.contentCollectionView registerNib:[UINib nibWithNibName:@"UGLHHomeContentCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"cell"];
+    [CMCommon setBorderWithView:self.contentCollectionView top:YES left:YES bottom:YES right:YES borderColor:RGBA(221, 221, 221, 1) borderWidth:1];
+//六合开奖
+    self.lotteryCollectionView.backgroundColor = [UIColor whiteColor];
+    self.lotteryCollectionView.dataSource = self;
+    self.lotteryCollectionView.delegate = self;
+    self.lotteryCollectionView.tagString= @"六合开奖";
+    [self.lotteryCollectionView registerNib:[UINib nibWithNibName:@"UGLHLotteryCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"cell"];
+    [self.lotteryCollectionView setBounces:NO];
+    [self.lotteryCollectionView setScrollEnabled:NO];
+    
+}
 
+#pragma mark UICollectionView datasource
+//collectionView有几个section
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+ 
+    return 1;
+}
+//每个section有几个item
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    int rows = 0;
+    if ([collectionView.tagString isEqualToString:@"六合内容"]) {
+         rows = 14;
+    } else {
+        rows = 8;
+    }
+    return rows;
+}
+//每个cell的具体内容
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    if ([collectionView.tagString isEqualToString:@"六合内容"]) {
+       UGLHHomeContentCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+     //        NSDictionary *dic = [self.menuNameArray objectAtIndex:indexPath.row];
+         FastSubViewCode(cell);
+         [cell setBackgroundColor: [UIColor whiteColor]];
+         return cell;
+    } else {
+      UGLHLotteryCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+    //        NSDictionary *dic = [self.menuNameArray objectAtIndex:indexPath.row];
+        FastSubViewCode(cell);
+        if (indexPath.row == 6) {
+            subImageView(@"球图").hidden = YES;
+            subLabel(@"球内字").hidden = YES;
+            subLabel(@"加").hidden = NO;
+            subLabel(@"球下字").hidden = YES;
+            subButton(@"刮刮乐").hidden = YES;
+        }
+        else if (self.lotteryUISwitch.isOn&&indexPath.row == 7) {
+            subImageView(@"球图").hidden = YES;
+            subLabel(@"球内字").hidden = YES;
+            subLabel(@"加").hidden = NO;
+            subLabel(@"球下字").hidden = YES;
+            subButton(@"刮刮乐").hidden = NO;
+             [subButton(@"刮刮乐") handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
+                NSLog(@"---");
+                 UGScratchMusicView *inviteView = [[UGScratchMusicView alloc] initView];
+                [SGBrowserView showMoveView:inviteView];
+            }];
+        }
+        else {
+            subImageView(@"球图").hidden = NO;
+            subLabel(@"球内字").hidden = NO;
+            subLabel(@"加").hidden = YES;
+            subLabel(@"球下字").hidden = NO;
+            subButton(@"刮刮乐").hidden = YES;
+        }
+        [cell setBackgroundColor: [UIColor whiteColor]];
+        return cell;
+    }
+      
+}
+//cell size
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    if ([collectionView.tagString isEqualToString:@"六合内容"]) {
+         float itemW = (UGScreenW-1)/ 2.0;
+         CGSize size = {itemW, 100};
+         return size;
+    } else {
+        CGSize size = {40, 70};
+        return size;
+    }
+}
+//item偏移
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    return UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0);
+}
+//行间距
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    return 1.0;
+}
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+    return 0.0;
+}
+#pragma mark ---------------- 六合方法
 - (void)gameNavigationAction: (GameModel *)model{
     
     if ([model.subId isEqualToString:@"1"]) {
@@ -434,9 +557,7 @@
         } else {
             qqstr = SysConf.serviceQQ1;
         }
-        NSString *qq=[NSString stringWithFormat:@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web",qqstr];
-        NSURL *url = [NSURL URLWithString:qq];
-        [[UIApplication sharedApplication] openURL:url];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_NSString(@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web", qqstr)]];
     }
     else {
        TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
@@ -562,10 +683,14 @@
 			
 			UGSystemConfigModel *config = model.data;
 			UGSystemConfigModel.currentConfig = config;
-			
-			
+
 			[[UGSkinManagers shareInstance] setSkin];
-			
+            NSString* skitType = [[UGSkinManagers shareInstance] skitType];
+            if (![skitType isEqualToString:@"六合资料"]) {//六合资料
+                 [self getCustomGameList];   // 自定义游戏列表
+                 [self getRankList];         // 中奖列表
+                 [self getAllNextIssueData]; // 彩票大厅数据
+            }
             NSString *title =[NSString stringWithFormat:@"COPYRIGHT © %@ RESERVED",config.webName];
             [self.bottomLabel setText:title];
 			[self.titleView setImgName:config.mobile_logo];
@@ -770,10 +895,7 @@
     }];
 }
 
-// 查看更多优惠活动
-- (IBAction)onShowMorePromoteBtnClick:(UIButton *)sender {
-    [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGPromotionsController") animated:YES];
-}
+
 
 
 - (void)showPlatformNoticeView {
@@ -1234,6 +1356,11 @@
 	}
 	return _gameCategorys;
 }
+#pragma mark - 其他按钮事件
+// 查看更多优惠活动
+- (IBAction)onShowMorePromoteBtnClick:(UIButton *)sender {
+    [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGPromotionsController") animated:YES];
+}
 - (IBAction)goPCVC:(id)sender {
     BOOL isLogin = UGLoginIsAuthorized();
     if (isLogin) {
@@ -1260,6 +1387,16 @@
          SANotificationEventPost(UGNotificationShowLoginView, nil);
     }
    
+}
+- (IBAction)historyAcion:(id)sender {
+
+    
+}
+- (IBAction)voiceAction:(id)sender {
+}
+- (IBAction)loteryValueChange:(id)sender {
+    
+    [self.lotteryCollectionView reloadData];
 }
 
 @end
