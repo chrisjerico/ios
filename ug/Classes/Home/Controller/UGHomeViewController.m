@@ -40,6 +40,9 @@
 #import "UGPromotionsController.h"
 #import "UGAgentViewController.h"   // 申请代理
 
+//测试--黑色模板
+#import "UGfinancialViewViewController.h"
+
 // View
 #import "SDCycleScrollView.h"
 #import "CustomCollectionViewCell.h"
@@ -1377,15 +1380,18 @@
     }
 }
 - (IBAction)goYOUHUIVC:(id)sender {
-    BOOL isLogin = UGLoginIsAuthorized();
-    if (isLogin) {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Promote" bundle:nil];
-        UGPromotionsController *qdwebVC = [storyboard instantiateViewControllerWithIdentifier:@"UGPromotionsController"];
-        [self.navigationController pushViewController:qdwebVC  animated:YES];
-    }
-    else {
-         SANotificationEventPost(UGNotificationShowLoginView, nil);
-    }
+//    BOOL isLogin = UGLoginIsAuthorized();
+//    if (isLogin) {
+//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Promote" bundle:nil];
+//        UGPromotionsController *qdwebVC = [storyboard instantiateViewControllerWithIdentifier:@"UGPromotionsController"];
+//        [self.navigationController pushViewController:qdwebVC  animated:YES];
+//    }
+//    else {
+//         SANotificationEventPost(UGNotificationShowLoginView, nil);
+//    }
+    
+    UGfinancialViewViewController *vc = [UGfinancialViewViewController new];
+    [self.navigationController pushViewController:vc  animated:YES];
    
 }
 - (IBAction)historyAcion:(id)sender {

@@ -196,6 +196,10 @@
 		D4090F67228D4F7200D6DA43 /* UGAvaterCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4090F65228D4F7200D6DA43 /* UGAvaterCollectionViewCell.m */; };
 		D4090F68228D4F7200D6DA43 /* UGAvaterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4090F66228D4F7200D6DA43 /* UGAvaterCollectionViewCell.xib */; };
 		D4090F6A228D83B700D6DA43 /* UGMissionCenterViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4090F69228D83B700D6DA43 /* UGMissionCenterViewController.storyboard */; };
+		D4091B5023694FDC0056BAEE /* UGBMHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4091B4F23694FDC0056BAEE /* UGBMHeaderView.m */; };
+		D4091B52236950000056BAEE /* UGBMHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4091B51236950000056BAEE /* UGBMHeaderView.xib */; };
+		D4091B56236961C70056BAEE /* UGfinancialViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4091B55236961C70056BAEE /* UGfinancialViewViewController.m */; };
+		D4091B5A236966E10056BAEE /* SyyRadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D4091B58236966E10056BAEE /* SyyRadioButton.m */; };
 		D409B14E2296826D0053DA33 /* UGHKLHCLotteryController.m in Sources */ = {isa = PBXBuildFile; fileRef = D409B14D2296826D0053DA33 /* UGHKLHCLotteryController.m */; };
 		D409B150229686C00053DA33 /* UGHKLHCLotteryController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D409B14F229686C00053DA33 /* UGHKLHCLotteryController.storyboard */; };
 		D409B1542296E0020053DA33 /* UGMarkSixLotteryBetItem0Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = D409B1522296E0020053DA33 /* UGMarkSixLotteryBetItem0Cell.m */; };
@@ -995,6 +999,13 @@
 		D4090F65228D4F7200D6DA43 /* UGAvaterCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGAvaterCollectionViewCell.m; sourceTree = "<group>"; };
 		D4090F66228D4F7200D6DA43 /* UGAvaterCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGAvaterCollectionViewCell.xib; sourceTree = "<group>"; };
 		D4090F69228D83B700D6DA43 /* UGMissionCenterViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UGMissionCenterViewController.storyboard; sourceTree = "<group>"; };
+		D4091B4E23694FDC0056BAEE /* UGBMHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGBMHeaderView.h; sourceTree = "<group>"; };
+		D4091B4F23694FDC0056BAEE /* UGBMHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGBMHeaderView.m; sourceTree = "<group>"; };
+		D4091B51236950000056BAEE /* UGBMHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGBMHeaderView.xib; sourceTree = "<group>"; };
+		D4091B54236961C70056BAEE /* UGfinancialViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGfinancialViewViewController.h; sourceTree = "<group>"; };
+		D4091B55236961C70056BAEE /* UGfinancialViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGfinancialViewViewController.m; sourceTree = "<group>"; };
+		D4091B58236966E10056BAEE /* SyyRadioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyyRadioButton.m; sourceTree = "<group>"; };
+		D4091B59236966E10056BAEE /* SyyRadioButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyyRadioButton.h; sourceTree = "<group>"; };
 		D409B14C2296826D0053DA33 /* UGHKLHCLotteryController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGHKLHCLotteryController.h; sourceTree = "<group>"; };
 		D409B14D2296826D0053DA33 /* UGHKLHCLotteryController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGHKLHCLotteryController.m; sourceTree = "<group>"; };
 		D409B14F229686C00053DA33 /* UGHKLHCLotteryController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UGHKLHCLotteryController.storyboard; sourceTree = "<group>"; };
@@ -3161,6 +3172,7 @@
 				CFD3BE962347137E00FCDA6D /* FishUtility */,
 				D4145A7522B3BC1900D8165F /* CMNetwork */,
 				D4A1E905232BC3AC0045F5B4 /* CMCommon */,
+				D4091B57236966E10056BAEE /* SYY单选按钮组 */,
 				D41FF93023332E5600FE3F70 /* NullSafe */,
 				D4241C36232914D100BF4DE1 /* Extenslon */,
 				D4185E31231D2E1A008DB5F2 /* MOFSPickerManager */,
@@ -3320,6 +3332,75 @@
 				D4239BCF22CCEC9D00700D8E /* UIWebView+DKProgress.m */,
 			);
 			path = SLWebView;
+			sourceTree = "<group>";
+		};
+		D4091B4823694AF80056BAEE /* 黑色模板 */ = {
+			isa = PBXGroup;
+			children = (
+				D4091B4B23694B370056BAEE /* Model */,
+				D4091B4A23694B300056BAEE /* View */,
+				D4091B4923694B120056BAEE /* Controller */,
+			);
+			path = "黑色模板";
+			sourceTree = "<group>";
+		};
+		D4091B4923694B120056BAEE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D4091B4D23694C4A0056BAEE /* 财务中心 */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D4091B4A23694B300056BAEE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D4091B5B236977870056BAEE /* 财务中心 */,
+				D4091B4C23694C300056BAEE /* 公共的导航头 */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D4091B4B23694B370056BAEE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D4091B4C23694C300056BAEE /* 公共的导航头 */ = {
+			isa = PBXGroup;
+			children = (
+				D4091B4E23694FDC0056BAEE /* UGBMHeaderView.h */,
+				D4091B4F23694FDC0056BAEE /* UGBMHeaderView.m */,
+				D4091B51236950000056BAEE /* UGBMHeaderView.xib */,
+			);
+			path = "公共的导航头";
+			sourceTree = "<group>";
+		};
+		D4091B4D23694C4A0056BAEE /* 财务中心 */ = {
+			isa = PBXGroup;
+			children = (
+				D4091B54236961C70056BAEE /* UGfinancialViewViewController.h */,
+				D4091B55236961C70056BAEE /* UGfinancialViewViewController.m */,
+			);
+			path = "财务中心";
+			sourceTree = "<group>";
+		};
+		D4091B57236966E10056BAEE /* SYY单选按钮组 */ = {
+			isa = PBXGroup;
+			children = (
+				D4091B58236966E10056BAEE /* SyyRadioButton.m */,
+				D4091B59236966E10056BAEE /* SyyRadioButton.h */,
+			);
+			path = "SYY单选按钮组";
+			sourceTree = "<group>";
+		};
+		D4091B5B236977870056BAEE /* 财务中心 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "财务中心";
 			sourceTree = "<group>";
 		};
 		D40C6E4023504F5600651983 /* 侧边栏 */ = {
@@ -3781,6 +3862,7 @@
 		D4B75E22227811D50007047C /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				D4091B4823694AF80056BAEE /* 黑色模板 */,
 				D4EE8F9023421C1C006FA0E2 /* Skin */,
 				D4E1F622233664680022A1DC /* Chat */,
 				D4B75E33227811D50007047C /* Main */,
@@ -4429,6 +4511,7 @@
 				D41C300D233F220000541254 /* UGYYRightMenuTableViewCell.xib in Resources */,
 				D41246B82285C65D006881E2 /* UGUserInfoViewController.storyboard in Resources */,
 				D409C55D22AB87480042A0DD /* UGFeedBackController.storyboard in Resources */,
+				D4091B52236950000056BAEE /* UGBMHeaderView.xib in Resources */,
 				D41C3E06228E9D8900BF6436 /* UGBetRecordTableViewCell.xib in Resources */,
 				D4DCDBD52328D1AC00CF4CEE /* UGDepositDetailsTableViewCell.xib in Resources */,
 				D416BB2922CE35C100BA0450 /* UGSegmentCollectionViewCell.xib in Resources */,
@@ -4561,6 +4644,7 @@
 				D4216F5122EEB8C2000F1F66 /* UGLotterySettingModel.m in Sources */,
 				D4000C59232E51C4000705B1 /* UITextView+Extension.m in Sources */,
 				D4AE64132295871D00DD265A /* MJRefreshBackStateFooter.m in Sources */,
+				D4091B5023694FDC0056BAEE /* UGBMHeaderView.m in Sources */,
 				CFD3BF122347137F00FCDA6D /* UIViewController+Log.m in Sources */,
 				D405B321227D816500F8C586 /* CMNetwork.m in Sources */,
 				D48224EA22A0FDD000F7DE72 /* UGPlatformNoticeCell.m in Sources */,
@@ -4644,6 +4728,7 @@
 				CFD3BF27234719F100FCDA6D /* AppDefine.m in Sources */,
 				D4527D212283062D000EC1C2 /* UGPromotionIncomeController.m in Sources */,
 				D4239BD022CCEC9D00700D8E /* DKProgressLayer.m in Sources */,
+				D4091B5A236966E10056BAEE /* SyyRadioButton.m in Sources */,
 				D40DE98522F335E300974BAF /* SDCollectionViewCell.m in Sources */,
 				D41A57782306924D00C26023 /* UGBackToastView.m in Sources */,
 				D405B1D5227972C100F8C586 /* AFHTTPSessionManager.m in Sources */,
@@ -4691,6 +4776,7 @@
 				CFD3BF16234718F200FCDA6D /* UITableView+Refresh.m in Sources */,
 				D4781A152368209E004FBB97 /* UGLHMyAttentionViewController.m in Sources */,
 				D42528192320EB01007DE522 /* UGSigInCodeViewController.m in Sources */,
+				D4091B56236961C70056BAEE /* UGfinancialViewViewController.m in Sources */,
 				D41246B62285C64C006881E2 /* UGUserInfoViewController.m in Sources */,
 				D4DE2699229BDBC80072A4A2 /* UIView+SGExtension.m in Sources */,
 				D40DE99422F466FC00974BAF /* OpenUDID.m in Sources */,
