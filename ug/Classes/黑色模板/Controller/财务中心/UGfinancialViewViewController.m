@@ -134,7 +134,7 @@
            make.bottom.equalTo(self.view.mas_bottom).with.offset(0);
            make.width.equalTo([NSNumber numberWithFloat:UGScreenW]);
     }];
-    //线上支付+快速充值
+    //线上支付+快速充值+公司入款
     [self initLHCollectionView];
     [contentView addSubview:myView];
     [myView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -191,7 +191,7 @@
     
 }
 
-#pragma mark - 线上+充值
+#pragma mark - 线上支付+快速充值+公司入款
 - (void)initLHCollectionView {
     myView = [[UGfinancialView alloc] initView];
     myView.myCollectionView.dataSource = self;
@@ -203,7 +203,6 @@
 #pragma mark UICollectionView datasource
 //collectionView有几个section
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
- 
     return 1;
 }
 //每个section有几个item
@@ -214,14 +213,12 @@
 }
 //每个cell的具体内容
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-
    UGBMfinancialCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     NSDictionary *dic = [myCollectArray objectAtIndex:indexPath.row];
     FastSubViewCode(cell);
     [subImageView(@"图片") setImage:[UIImage imageNamed:[dic objectForKey:@"imgName"]]];
     [subLabel(@"内容") setText:[dic objectForKey:@"title"]];
     return cell;
-      
 }
 //cell size
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -240,9 +237,6 @@
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
     return 0.0;
 }
-#pragma mark ---------------- 六合方法
-
-#pragma mark - Others Delegate 代理（其他）
 
 #pragma mark - SyyRadioButtonDelegate
 - (void)didSelectedRadioButton:(SyyRadioButton *)radio groupId:(NSString *)groupId{
