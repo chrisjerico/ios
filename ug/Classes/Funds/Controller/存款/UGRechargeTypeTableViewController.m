@@ -37,8 +37,13 @@ static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 180, 0);
     
     self.tableViewDataArray = [NSMutableArray new];
-    
-    [self rechargeCashierData];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if (!self.tableViewDataArray.count) {
+        [self rechargeCashierData];
+    }
 }
 
 
@@ -93,7 +98,9 @@ static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
     if ([UGUserModel currentUser].isTest) {
         return;
     }
-    
+    if (!UGLoginIsAuthorized()) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
     
     [SVProgressHUD showWithStatus:nil];

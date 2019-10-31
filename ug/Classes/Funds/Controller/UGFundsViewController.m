@@ -35,16 +35,15 @@
     [super viewDidLoad];
     self.navigationItem.title = @"资金管理";
     [self buildSegment];
+    
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-        
         [self skin];
     });
 }
 
 - (void)viewDidLayoutSubviews {
-    
+    [super viewDidLayoutSubviews];
     [self.slideSwitchView changeSlideAtSegmentIndex:self.selectIndex];
-   
 }
 
 
@@ -54,7 +53,6 @@
 {
     SANotificationEventSubscribe(UGNotificationDepositSuccessfully, self, ^(typeof (self) self, id obj) {
         [self.slideSwitchView changeSlideAtSegmentIndex:2];
-         
     });
     
     self.itemArray = @[@"存款",@"取款",@"存款记录",@"取款记录",@"资金明细"];
@@ -124,7 +122,7 @@
         SANotificationEventPost(UGNotificationFundTitlesTap, nil);
     
     if (number == 2) {
-         SANotificationEventPost(UGNotificationWithRecordOfDeposit, nil);
+        SANotificationEventPost(UGNotificationWithRecordOfDeposit, nil);
     }
     
 }
