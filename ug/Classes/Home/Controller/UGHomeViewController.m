@@ -359,8 +359,7 @@
                         [weakSelf.uGredActivityView show];
                     }
                 } failure:^(id msg) {
-                    [SVProgressHUD dismiss];
-//                    [SVProgressHUD showErrorWithStatus:msg];
+                    [SVProgressHUD showErrorWithStatus:msg];
                 }];
             }];
         };

@@ -124,6 +124,7 @@ static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
                 });
             }];
         } failure:^(id msg) {
+            [SVProgressHUD dismiss];
 //            [SVProgressHUD showErrorWithStatus:msg];
         }];
     }];
