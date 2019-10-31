@@ -47,13 +47,12 @@
     [SVProgressHUD show];
     [CMNetwork getPromoteListWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [__self.tableView.mj_header endRefreshing];
+        [SVProgressHUD dismiss];
         [CMResult processWithResult:model success:^{
             UGPromoteListModel *listModel = model.data;
             [__self.tableView.dataArray setArray:listModel.list];
             [__self.tableView reloadData];
-        } failure:^(id msg) {
-            [SVProgressHUD dismiss];
-        }];
+        } failure:nil];
     }];
 }
 
