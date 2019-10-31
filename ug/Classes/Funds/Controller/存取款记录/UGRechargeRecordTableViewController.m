@@ -32,19 +32,15 @@ static NSString *rechargeRecordCellid = @"UGRechargeRecordCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
     SANotificationEventSubscribe(UGNotificationWithdrawalsSuccess, self, ^(typeof (self) self, id obj) {
         [self getWithdrawData];
-        
     });
     
     SANotificationEventSubscribe(UGNotificationWithRecordOfDeposit, self, ^(typeof (self) self, id obj) {
-          
-         // 马上进入刷新状态
-          [self.tableView.mj_header beginRefreshing];
-      });
-     [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+        // 马上进入刷新状态
+        [self.tableView.mj_header beginRefreshing];
+    });
+    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
     self.pageSize = size;
     self.pageNumber = page;
     self.tableView.rowHeight = 50;
@@ -63,10 +59,13 @@ static NSString *rechargeRecordCellid = @"UGRechargeRecordCell";
     [self setupRefreshView];
     if (self.recordType == RecordTypeWithdraw) {
         [self getWithdrawData];
-    }else {
-        
+    } else {
         [self getRechargeData];
     }
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
 }
 
 //添加上下拉刷新
@@ -96,6 +95,9 @@ static NSString *rechargeRecordCellid = @"UGRechargeRecordCell";
 }
 
 - (void)getRechargeData {
+    if (UserI.isTest) {
+        return;
+    }
     if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
         return;
     }

@@ -34,11 +34,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"资金管理";
-    [self buildSegment];
     
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         [self skin];
     });
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if (OBJOnceToken(self)) {
+        [self buildSegment];
+    }
 }
 
 - (void)viewDidLayoutSubviews {

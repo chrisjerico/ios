@@ -17,6 +17,7 @@
 
 @implementation UGPromotionsController
 
+- (BOOL)允许未登录访问 { return true; }
 - (BOOL)允许游客访问 { return true; }
 
 - (void)skin {
@@ -43,6 +44,7 @@
 
 - (void)getPromoteList {
     __weakSelf_(__self);
+    [SVProgressHUD show];
     [CMNetwork getPromoteListWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [__self.tableView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
@@ -64,11 +66,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    cell.backgroundColor = [[UGSkinManagers shareInstance] setCellbgColor];
     UGPromoteModel *pm = tableView.dataArray[indexPath.row];
     FastSubViewCode(cell);
     NSLog(@"pm.title = %@", pm.title);
     subLabel(@"标题Label").text = pm.title;
-    [subImageView(@"图片ImageView") sd_setImageWithURL:[NSURL URLWithString:pm.pic] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    [subImageView(@"图片ImageView") sd_setImageWithURL:[NSURL URLWithString:pm.pic] placeholderImage:[UIImage imageNamed:@"placeholder"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        if (image) {
+            subImageView(@"图片ImageView").cc_constraints.height.constant = image.height/image.width * (APP.Width - 48);
+        }
+    }];
     return cell;
 }
 
