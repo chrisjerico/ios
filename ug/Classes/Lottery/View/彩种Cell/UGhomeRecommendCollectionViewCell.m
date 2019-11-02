@@ -16,7 +16,7 @@
 @end
 @implementation UGhomeRecommendCollectionViewCell
 //-(void)skin{
-//     [self setBackgroundColor: [[UGSkinManagers shareInstance] sethomeContentColor]];
+//     [self setBackgroundColor: Skin1.homeContentColor];
 //}
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -24,8 +24,8 @@
     self.layer.cornerRadius = 10;
     self.layer.masksToBounds = YES;
     self.layer.borderWidth = 1;
-    self.layer.borderColor = [[[UGSkinManagers shareInstance] sethomeContentColor] CGColor];
-    [self setBackgroundColor: [[UGSkinManagers shareInstance] sethomeContentColor]];
+    self.layer.borderColor = [Skin1.homeContentColor CGColor];
+    [self setBackgroundColor:Skin1.homeContentColor];
     
 //    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
 //        

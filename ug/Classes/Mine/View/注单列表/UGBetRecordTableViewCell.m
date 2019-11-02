@@ -28,8 +28,8 @@
     // Initialization code
     self.cancelButton.layer.cornerRadius = 5;
     self.cancelButton.layer.masksToBounds = YES;
-    self.cancelButton.backgroundColor = UGNavColor;
-    [self setBackgroundColor: [[UGSkinManagers shareInstance] setCellbgColor]];
+    self.cancelButton.backgroundColor = Skin1.navBarBgColor;
+    [self setBackgroundColor: Skin1.cellBgColor];
 }
 
 - (void)setItem:(UGBetsRecordModel *)item {

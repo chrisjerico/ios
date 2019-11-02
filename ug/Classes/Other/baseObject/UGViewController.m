@@ -23,7 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-//    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+//    [self.view setBackgroundColor: Skin1.bgColor];
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.extendedLayoutIncludesOpaqueBars = NO;
     

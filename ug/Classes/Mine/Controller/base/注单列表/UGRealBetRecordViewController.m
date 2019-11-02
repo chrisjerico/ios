@@ -46,16 +46,16 @@ static int size = 20;
 static NSString *realBetRecordCellId = @"UGRealBetRecordCell";
 @implementation UGRealBetRecordViewController
 -(void)skin{
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    [self.view setBackgroundColor: Skin1.bgColor];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = UGBackgroundColor;
+    self.view.backgroundColor = Skin1.bgColor;
     self.navigationItem.title = @"真人注单";
     self.navigationItem.titleView = self.titleView;
     self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithImageName:@"riqi" target:self action:@selector(rightBarButtonItemClick)];
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    [self.view setBackgroundColor: Skin1.bgColor];
     
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         [self skin];

@@ -107,7 +107,7 @@ static UGDocumentView *_singleInstance = nil;
 		_confirmButton = [UIButton buttonWithType:UIButtonTypeCustom];
 		[_confirmButton setTitle:@"确定" forState:UIControlStateNormal];
 		[_confirmButton addTarget:self action:@selector(dismissSelf:) forControlEvents:UIControlEventTouchUpInside];
-		_confirmButton.backgroundColor = UGNavColor;
+		_confirmButton.backgroundColor = Skin1.navBarBgColor;
 	}
 	return _confirmButton;
 }

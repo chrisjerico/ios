@@ -48,7 +48,7 @@
         subTextField(@"联系电话TextField").userInteractionEnabled = state == 0;
         subTextView(@"内容TextView").userInteractionEnabled = state == 0;
         subButton(@"申请Button").userInteractionEnabled = state == 0;
-        subButton(@"申请Button").backgroundColor = state == 0 ? [[UGSkinManagers shareInstance] setNavbgColor] : [UIColor grayColor];
+        subButton(@"申请Button").backgroundColor = state == 0 ? Skin1.navBarBgColor : [UIColor grayColor];
         subLabel(@"已申请提示Label").hidden = state == 0;
     }
     else if (state == 3) {
@@ -58,7 +58,7 @@
         subLabel(@"QQLabel").text = _item.qq;
         subLabel(@"联系电话Label").text = _item.mobile;
         subLabel(@"拒绝原因Label").text = _item.reviewResult;
-        subButton(@"申请Button").backgroundColor = [[UGSkinManagers shareInstance] setNavbgColor];
+        subButton(@"申请Button").backgroundColor = Skin1.navBarBgColor;
     }
     
     _sv1.hidden = state == 3;

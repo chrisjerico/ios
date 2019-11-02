@@ -40,7 +40,7 @@
     _imageName = imageName;
 
     UIImage *image = [UIImage imageNamed:imageName];
-    UIImage *afterImage = [image qmui_imageWithTintColor:UGNavColor];
+    UIImage *afterImage = [image qmui_imageWithTintColor:Skin1.navBarBgColor];
     self.imageView.image = afterImage;
 
     

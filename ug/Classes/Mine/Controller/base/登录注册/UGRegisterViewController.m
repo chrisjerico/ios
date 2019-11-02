@@ -79,9 +79,9 @@
 @implementation UGRegisterViewController
 
 - (void)skin {
-    [self.registerButton setBackgroundColor:UGNavColor];
-    [self.goHomeButton setTitleColor:UGNavColor forState:UIControlStateNormal];
-    [self.goLoginButton setTitleColor:UGNavColor forState:UIControlStateNormal];
+    [self.registerButton setBackgroundColor:Skin1.navBarBgColor];
+    [self.goHomeButton setTitleColor:Skin1.navBarBgColor forState:UIControlStateNormal];
+    [self.goLoginButton setTitleColor:Skin1.navBarBgColor forState:UIControlStateNormal];
 }
 
 - (BOOL)允许未登录访问 { return true; }
@@ -101,21 +101,21 @@
     self.navigationItem.title = @"注册";
     self.registerButton.layer.cornerRadius = 5;
     self.registerButton.layer.masksToBounds = YES;
-    [self.registerButton setBackgroundColor:UGNavColor];
+    [self.registerButton setBackgroundColor:Skin1.navBarBgColor];
     
 
     self.goHomeButton.layer.cornerRadius = 5;
     self.goHomeButton.layer.masksToBounds = YES;
-    [self.goHomeButton setTitleColor:UGNavColor forState:UIControlStateNormal];
+    [self.goHomeButton setTitleColor:Skin1.navBarBgColor forState:UIControlStateNormal];
     
     self.goLoginButton.layer.cornerRadius = 5;
     self.goLoginButton.layer.masksToBounds = YES;
-    [self.goLoginButton setTitleColor:UGNavColor forState:UIControlStateNormal];
+    [self.goLoginButton setTitleColor:Skin1.navBarBgColor forState:UIControlStateNormal];
     
     [self.myScrollView setBackgroundColor:[UIColor grayColor]];
     //    选中的颜色
     
-//     [self.mySegmentCV setTitleTextAttributes:@{NSForegroundColorAttributeName:UGNavColor} forState:UIControlStateSelected];
+//     [self.mySegmentCV setTitleTextAttributes:@{NSForegroundColorAttributeName:Skin1.navBarBgColor} forState:UIControlStateSelected];
 	[self.userNameDisabledNotice setHidden:true];
     self.userNameTextF.delegate = self;
     self.passwordTextF.delegate = self;

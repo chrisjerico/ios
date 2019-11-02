@@ -69,7 +69,7 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
         }
     }
     
-    [_titleView setBackgroundColor: [[UGSkinManagers shareInstance] sethomeContentColor]];
+    [_titleView setBackgroundColor: Skin1.homeContentColor];
     
     // TitleView
     _titleView.gameTypeArray = gameTypeArray;

@@ -29,13 +29,13 @@
 
 @implementation UGBetRecordDetailViewController
 -(void)skin{
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    [self.view setBackgroundColor: Skin1.bgColor];
     
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    [self.view setBackgroundColor: Skin1.bgColor];
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         
         [self skin];

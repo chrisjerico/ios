@@ -20,7 +20,7 @@
     // Initialization code
     self.layer.cornerRadius = 15;
     self.layer.masksToBounds = YES;
-      [self setBackgroundColor: [[UGSkinManagers shareInstance] setCellbgColor]];
+      [self setBackgroundColor: Skin1.cellBgColor];
     
 }
 

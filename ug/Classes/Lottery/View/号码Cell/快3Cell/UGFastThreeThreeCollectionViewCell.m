@@ -31,7 +31,7 @@
     self.imgView1.image = [UIImage imageNamed:[NSString stringWithFormat:@"shaizi%@",arr.lastObject]];
     
     if (item.select) {
-        self.layer.borderColor = UGNavColor.CGColor;
+        self.layer.borderColor = Skin1.navBarBgColor.CGColor;
         self.layer.borderWidth = 1;
     }else {
         self.layer.borderWidth = 0.7;

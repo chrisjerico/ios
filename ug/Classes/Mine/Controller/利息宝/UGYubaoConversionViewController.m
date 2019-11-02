@@ -50,9 +50,9 @@ static NSString *convertCellid = @"UGConvertCollectionViewCell";
 @implementation UGYubaoConversionViewController
 -(void)skin{
 //    UIImage *image = [UIImage imageNamed:@"bgyubao1"];
-//    UIImage *afterImage = [image qmui_imageWithBlendColor: [[UGSkinManagers shareInstance] setNavbgColor]];
+//    UIImage *afterImage = [image qmui_imageWithBlendColor: Skin1.navBarBgColor];
 //    self.bgView.image = afterImage;
-        [_yyBgView setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
+        [_yyBgView setBackgroundColor:Skin1.bgColor];
 }
 
 
@@ -65,11 +65,11 @@ static NSString *convertCellid = @"UGConvertCollectionViewCell";
     self.title = @"利息宝";
     self.submitButton.layer.cornerRadius = 5;
     self.submitButton.layer.masksToBounds = YES;
-    [self.submitButton setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
+    [self.submitButton setBackgroundColor:Skin1.navBarBgColor];
     
     self.turnInButton.layer.cornerRadius = 5;
     self.turnInButton.layer.masksToBounds = YES;
-    [self.turnInButton setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
+    [self.turnInButton setBackgroundColor:Skin1.navBarBgColor];
     
     self.turnOutButton.layer.cornerRadius = 5;
     self.turnOutButton.layer.masksToBounds = YES;
@@ -83,16 +83,16 @@ static NSString *convertCellid = @"UGConvertCollectionViewCell";
     [self.waveView startWaveAnimation];
     
     
-    NSString *skitType = [[UGSkinManagers shareInstance] skitType];
-    if ([skitType isEqualToString:@"新年红"]||[skitType isEqualToString:@"石榴红"]) {
-        [_yyBgView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
-        self.waveBotomView.backgroundColor =  [[UGSkinManagers shareInstance] setNavbgColor];
-        self.waveView.realWaveColor =  [[UGSkinManagers shareInstance] setNavbgColor];
+    NSString *skitType = Skin1.skitType;
+    if ([skitType isEqualToString:@"新年红"] || [skitType isEqualToString:@"石榴红"]) {
+        [_yyBgView setBackgroundColor:Skin1.navBarBgColor];
+        self.waveBotomView.backgroundColor =  Skin1.navBarBgColor;
+        self.waveView.realWaveColor =  Skin1.navBarBgColor;
     }
     else  {
-         [_yyBgView setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
-        self.waveBotomView.backgroundColor =  [[UGSkinManagers shareInstance] setbgColor];
-        self.waveView.realWaveColor =  [[UGSkinManagers shareInstance] setbgColor];
+         [_yyBgView setBackgroundColor:Skin1.bgColor];
+        self.waveBotomView.backgroundColor =  Skin1.bgColor;
+        self.waveView.realWaveColor =  Skin1.bgColor;
     }
 
     

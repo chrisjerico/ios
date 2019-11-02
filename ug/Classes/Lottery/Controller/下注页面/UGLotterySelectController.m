@@ -78,7 +78,7 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.view.backgroundColor = UIColor.whiteColor;
-    self.navigationController.navigationBar.backgroundColor = [[UGSkinManagers shareInstance] setNavbgColor];
+    self.navigationController.navigationBar.backgroundColor = Skin1.navBarBgColor;
     self.countDown = [[CountDown alloc] init];
 	self.navigationItem.title = @"点击图标切换彩票";
 	UIButton * rightItem = [UIButton buttonWithType:UIButtonTypeSystem];
@@ -143,8 +143,8 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
 	UGLotteryGameCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:letteryTicketCellID forIndexPath:indexPath];
 	UGAllNextIssueListModel *model = self.dataArray[indexPath.section];
 	cell.item = model.list[indexPath.row];
-	[cell setBackgroundColor: [[UGSkinManagers shareInstance] sethomeContentColor]];
-	cell.layer.borderColor = [[[UGSkinManagers shareInstance] sethomeContentColor] CGColor];
+	[cell setBackgroundColor: Skin1.homeContentColor];
+	cell.layer.borderColor = [Skin1.homeContentColor CGColor];
 	
 	return cell;
 }

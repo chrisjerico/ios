@@ -39,7 +39,7 @@
 
 - (void)skin {
     [self initView];
-    mUGSignInButton.backgroundColor = [[UGSkinManagers shareInstance] setNavbgColor];
+    mUGSignInButton.backgroundColor = Skin1.navBarBgColor;
 }
 
 - (void)viewDidLoad {
@@ -50,7 +50,7 @@
 -(void)initView{
     self.title = @"签到";
     //    self.view.backgroundColor = UGRGBColor(89, 109, 191);
-    self.view.backgroundColor = [[UGSkinManagers shareInstance] setSignbgColor];
+    self.view.backgroundColor = Skin1.signBgColor;
     _collectionDataArray = [NSMutableArray new];
     _historyDataArray = [NSMutableArray new];
     [self getCheckinListData];
@@ -166,7 +166,7 @@
     }
     
     // 设置按钮的背景色
-    mUGSignInButton.backgroundColor = [[UGSkinManagers shareInstance] setNavbgColor];
+    mUGSignInButton.backgroundColor = Skin1.navBarBgColor;
     [mUGSignInButton mas_makeConstraints:^(MASConstraintMaker *make) {
          make.top.mas_equalTo(self.collectionView.mas_bottom).offset(-20.0);
          make.centerX.mas_equalTo(self.view.mas_centerX);
@@ -416,7 +416,7 @@
     notiveView.dataArray = self->_historyDataArray;
     notiveView.checkinMoney = self.checkinListModel.checkinMoney;
     notiveView.checkinTimes= [NSString stringWithFormat:@"%@",self.checkinListModel.checkinTimes];
-    [notiveView.bgView setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
+    [notiveView.bgView setBackgroundColor: Skin1.navBarBgColor];
 //    if (![CMCommon arryIsNull:self->_historyDataArray]) {
         [notiveView show];
 //    }

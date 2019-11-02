@@ -36,14 +36,14 @@ static NSString *recordFilterCellid = @"UGRecordFilterCollectionViewCell";
 @implementation UGBetRecordViewController
 
 - (void)skin {
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    [self.view setBackgroundColor: Skin1.bgColor];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     self.title = @"投注记录";
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    [self.view setBackgroundColor: Skin1.bgColor];
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         
         [self skin];
@@ -156,11 +156,11 @@ static NSString *recordFilterCellid = @"UGRecordFilterCollectionViewCell";
         self.slideSwitchView.tabItemNormalColor = [UIColor grayColor];
         self.slideSwitchView.tabItemNormalFont = 13;
         //设置tab 被选中的颜色(可选)
-        self.slideSwitchView.tabItemSelectedColor = UGNavColor;
+        self.slideSwitchView.tabItemSelectedColor = Skin1.navBarBgColor;
         //设置tab 背景颜色(可选)
         self.slideSwitchView.tabItemNormalBackgroundColor = [UIColor whiteColor];;
         //设置tab 被选中的标识的颜色(可选)
-        self.slideSwitchView.tabItemSelectionIndicatorColor = UGNavColor;
+        self.slideSwitchView.tabItemSelectionIndicatorColor = Skin1.navBarBgColor;
         [self.view addSubview:self.slideSwitchView];
     }
 }

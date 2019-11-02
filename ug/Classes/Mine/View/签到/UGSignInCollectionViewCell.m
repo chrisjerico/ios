@@ -30,7 +30,7 @@
     
     subButton(@"签到Button").userInteractionEnabled = !item.isCheckin;
     subButton(@"签到Button").alpha = !item.isCheckin ? 0.4 : 1;
-    subImageView(@"背景ImageView").image = [[UIImage imageNamed:item.isCheckin ? @"signed" : @"nosign"] qmui_imageWithBlendColor:[[UGSkinManagers shareInstance] setNavbgColor]];
+    subImageView(@"背景ImageView").image = [[UIImage imageNamed:item.isCheckin ? @"signed" : @"nosign"] qmui_imageWithBlendColor:Skin1.navBarBgColor];
     
     if (item.isCheckin) {
         subLabel(@"签到状态Label").text = @"已签到";

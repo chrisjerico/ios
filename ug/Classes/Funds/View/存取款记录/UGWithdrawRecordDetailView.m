@@ -33,7 +33,7 @@
         self.layer.cornerRadius = 10;
         self.layer.masksToBounds = YES;
         [self setBackgroundColor: [UIColor whiteColor]];
-        [self.myButton setTitleColor:UGNavColor forState:UIControlStateNormal];
+        [self.myButton setTitleColor:Skin1.navBarBgColor forState:UIControlStateNormal];
     }
     
     return self;

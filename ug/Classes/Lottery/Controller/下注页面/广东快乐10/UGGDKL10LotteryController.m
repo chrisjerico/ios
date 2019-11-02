@@ -779,7 +779,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 - (void)updateSelectLabelWithCount:(NSInteger)count {
     self.selectLabel.text = [NSString stringWithFormat:@"已选中 %ld 注",count];
     NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.selectLabel.text];
-    [abStr addAttribute:NSForegroundColorAttributeName value:UGNavColor range:NSMakeRange(3, self.selectLabel.text.length - 4)];
+    [abStr addAttribute:NSForegroundColorAttributeName value:Skin1.navBarBgColor range:NSMakeRange(3, self.selectLabel.text.length - 4)];
     self.selectLabel.attributedText = abStr;
     
 }
@@ -824,7 +824,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     if (self.openTimeLabel.text.length) {
         
         NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.openTimeLabel.text];
-        [abStr addAttribute:NSForegroundColorAttributeName value:UGNavColor range:NSMakeRange(3, self.openTimeLabel.text.length - 3)];
+        [abStr addAttribute:NSForegroundColorAttributeName value:Skin1.navBarBgColor range:NSMakeRange(3, self.openTimeLabel.text.length - 3)];
         self.openTimeLabel.attributedText = abStr;
     }
 }

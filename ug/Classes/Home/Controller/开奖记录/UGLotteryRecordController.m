@@ -58,7 +58,7 @@ static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
     }
     
     self.navigationItem.title = @"开奖记录";
-    self.view.backgroundColor = UGBackgroundColor;
+    self.view.backgroundColor = Skin1.bgColor;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.estimatedRowHeight = 100;

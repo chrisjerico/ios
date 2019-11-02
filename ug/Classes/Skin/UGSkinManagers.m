@@ -1,1188 +1,732 @@
 //
 //  UGSkinManagers.m
-//  ug
+//  abcc4
 //
-//  Created by ug on 2019/10/1.
-//  Copyright © 2019 ug. All rights reserved.
+//  Created by fish on 2019/11/1.
+//  Copyright © 2019 fish. All rights reserved.
 //
 
 #import "UGSkinManagers.h"
-#import "UIImage+YYgradientImage.h"
-#import "UGSystemConfigModel.h"
+
+#define SkinAlpha 0.99
 
 
 @implementation UGSkinManagers
 
-+(UGSkinManagers *)shareInstance{
-    static UGSkinManagers *instance = nil;
-    static dispatch_once_t predicate;
-    dispatch_once(&predicate, ^{
-        instance = [[[self class] alloc] init];
-    });
-    return instance;
-    
-
-}
+static NSPointerArray *__viewPointers = nil;
+static UGSkinManagers *__currentSkin1 = nil;
+static UGSkinManagers *__lastSkin1 = nil;
 
 
--(NSString *)navbarbgColorString:(NSString *)skitType{
-    
-    NSString *navBgColor ;
-    
-    if ([skitType isEqualToString:@"1"]) {//经典  1蓝色
-        navBgColor = @"0x609AC5";
-    }
-    else  if ([skitType isEqualToString:@"2"]) {//经典 2红色
-        navBgColor = @"0x73315C";
-    }
-    else  if ([skitType isEqualToString:@"3"]) {//经典 3褐色
-        navBgColor = @"0x7E503C";
-    }
-    else  if ([skitType isEqualToString:@"4"]) {//经典 4绿色
-        navBgColor = @"0x58BEA4";
-    }
-    else  if ([skitType isEqualToString:@"5"]) {//经典  5褐色
-        navBgColor = @"0x662E3E";
-    }
-    else  if ([skitType isEqualToString:@"6"]) {//经典 6淡蓝色
-        navBgColor = @"0x2E647C";
-    }
-    else  if ([skitType isEqualToString:@"7"]) {//经典 7深蓝
-        navBgColor = @"0x3F5658";
-    }
-    else  if ([skitType isEqualToString:@"8"]) {//经典 8紫色
-        navBgColor = @"0x814689";
-    }
-    else  if ([skitType isEqualToString:@"9"]) {//经典 9深红
-        navBgColor = @"0x880506";
-    }
-    else  if ([skitType isEqualToString:@"10"]) {//经典 10淡灰
-        navBgColor = @"0xFF8705";
-    }
-    else  if ([skitType isEqualToString:@"11"]) {//经典 11橘红
-        navBgColor = @"0x8B2B2A";
-    }
-    else  if ([skitType isEqualToString:@"12"]) {//经典 12星空蓝
-        navBgColor = @"0x68A7A0";
-    }
-    else  if ([skitType isEqualToString:@"13"]) {//经典 13紫色
-        navBgColor = @"0x9533DD";
-    }
-    else  if ([skitType isEqualToString:@"14"]) {//经典 14粉红
-        navBgColor = @"0xEFCFDD";
-    }
-    else  if ([skitType isEqualToString:@"15"]) {//经典 15淡蓝
-        navBgColor = @"0x66C6EA";
-    }
-    else  if ([skitType isEqualToString:@"16"]) {//经典 16淡灰
-        navBgColor = @"0x6505E6";
-    }
-    else  if ([skitType isEqualToString:@"17"]) {//经典 17淡灰
-        navBgColor = @"0xFFAF06";
-    }
-    else  if ([skitType isEqualToString:@"18"]) {//18钻石蓝
-        navBgColor = @"0xC1C1C1";
-    }
-    else  if ([skitType isEqualToString:@"19"]) {//19经典 忧郁蓝
-        navBgColor = @"0x4CABFA";
-    }
-    else  if ([skitType isEqualToString:@"石榴红"]) {//石榴红
-        navBgColor = @"0xCC022C";
-    }
-    else  if ([skitType isEqualToString:@"新年红"]) {//新年红
-        navBgColor = @"0xDE1C27";
-    }
-    else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
-//        navBgColor = @"0x3D80E7";
-                navBgColor = @"0x609AC5";
-    }
-    else {// 默认   经典  1蓝色
-        navBgColor = @"0x609AC5";
-    }
-    return navBgColor;
-    
-}
+#pragma mark - 换肤核心逻辑
 
-
--(UIColor *)navbarbgColor:(NSString *)skitType{
-    
-    UIColor *navBgColor ;
-    
-    if ([skitType isEqualToString:@"1"]) {//经典  1蓝色
-        navBgColor = kUIColorFromRGB(0x609AC5);
-    }
-    else  if ([skitType isEqualToString:@"2"]) {//经典 2红色
-        navBgColor = kUIColorFromRGB(0x73315C);
-    }
-    else  if ([skitType isEqualToString:@"3"]) {//经典 3褐色
-        navBgColor = kUIColorFromRGB(0x7E503C);
-    }
-    else  if ([skitType isEqualToString:@"4"]) {//经典 4绿色
-        navBgColor = kUIColorFromRGB(0x58BEA4);
-    }
-    else  if ([skitType isEqualToString:@"5"]) {//经典  5褐色
-        navBgColor = kUIColorFromRGB(0x662E3E);
-    }
-    else  if ([skitType isEqualToString:@"6"]) {//经典 6淡蓝色
-        navBgColor = kUIColorFromRGB(0x2E647C);
-    }
-    else  if ([skitType isEqualToString:@"7"]) {//经典 7深蓝
-        navBgColor = kUIColorFromRGB(0x3F5658);
-    }
-    else  if ([skitType isEqualToString:@"8"]) {//经典 8紫色
-        navBgColor = kUIColorFromRGB(0x814689);
-    }
-    else  if ([skitType isEqualToString:@"9"]) {//经典 9深红
-        navBgColor = kUIColorFromRGB(0x880506);
-    }
-    else  if ([skitType isEqualToString:@"10"]) {//经典 10淡灰
-        navBgColor = kUIColorFromRGB(0xFF8705);
-    }
-    else  if ([skitType isEqualToString:@"11"]) {//经典 11橘红
-        navBgColor = kUIColorFromRGB(0x8B2B2A);
-    }
-    else  if ([skitType isEqualToString:@"12"]) {//经典 12星空蓝
-        navBgColor = kUIColorFromRGB(0x68A7A0);
-    }
-    else  if ([skitType isEqualToString:@"13"]) {//经典 13紫色
-        navBgColor = kUIColorFromRGB(0x9533DD);
-    }
-    else  if ([skitType isEqualToString:@"14"]) {//经典 14粉红
-        navBgColor = kUIColorFromRGB(0xEFCFDD);
-    }
-    else  if ([skitType isEqualToString:@"15"]) {//经典 15淡蓝
-        navBgColor = kUIColorFromRGB(0x66C6EA);
-    }
-    else  if ([skitType isEqualToString:@"16"]) {//经典 16淡灰
-        navBgColor = kUIColorFromRGB(0x6505E6);
-    }
-    else  if ([skitType isEqualToString:@"17"]) {//经典 17淡灰
-        navBgColor = kUIColorFromRGB(0xFFAF06);
-    }
-    else  if ([skitType isEqualToString:@"18"]) {//18钻石蓝
-        navBgColor = kUIColorFromRGB(0xC1C1C1);
-    }
-    else  if ([skitType isEqualToString:@"19"]) {//19经典 忧郁蓝
-        navBgColor = kUIColorFromRGB(0x4CABFA);
-    }
-    else  if ([skitType isEqualToString:@"石榴红"]) {//石榴红
-        navBgColor = kUIColorFromRGB(0xCC022C);
-    }
-    else  if ([skitType isEqualToString:@"新年红"]) {//新年红
-        navBgColor = kUIColorFromRGB(0xDE1C27);
-    }
-    else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[RGBA(168, 114, 247, 1),RGBA(155, 213, 209, 1)] andGradientType:GradientDirectionLeftToRight];
-        navBgColor = [UIColor colorWithPatternImage:backImage];
-
-    }
-    else {// 默认   经典  1蓝色
-        navBgColor = kUIColorFromRGB(0x609AC5);
-    }
-    return navBgColor;
-    
-}
-
-
--(UIColor *)tabbarbgColor:(NSString *)skitType{
-    
-    UIColor *tabBgColor ;
-    
-    if ([skitType isEqualToString:@"1"]) {//经典  1蓝色
-        tabBgColor = kUIColorFromRGB(0xC1CBC9);
-    }
-    else  if ([skitType isEqualToString:@"2"]) {//经典 2红色
-        tabBgColor = kUIColorFromRGB(0xDFB9B5);
-    }
-    else  if ([skitType isEqualToString:@"3"]) {//经典 3褐色
-        tabBgColor = kUIColorFromRGB(0xDFC8A1);
-    }
-    else  if ([skitType isEqualToString:@"4"]) {//经典 4绿色
-        tabBgColor = kUIColorFromRGB(0xB6DDB6);
-    }
-    else  if ([skitType isEqualToString:@"5"]) {//经典  5褐色
-        tabBgColor = kUIColorFromRGB(0xFBE0B8);
-    }
-    else  if ([skitType isEqualToString:@"6"]) {//经典 6淡蓝色
-        tabBgColor = kUIColorFromRGB(0xC5EAE7);
-    }
-    else  if ([skitType isEqualToString:@"7"]) {//经典 7深蓝
-        tabBgColor = kUIColorFromRGB(0xABC2B4);
-    }
-    else  if ([skitType isEqualToString:@"8"]) {//经典 8紫色
-        tabBgColor = kUIColorFromRGB(0xD1A4D7);
-    }
-    else  if ([skitType isEqualToString:@"9"]) {//经典 9深红
-        tabBgColor = kUIColorFromRGB(0xDE9595);
-    }
-    else  if ([skitType isEqualToString:@"10"]) {//经典 10淡灰
-        tabBgColor = kUIColorFromRGB(0xFFB666);
-    }
-    else  if ([skitType isEqualToString:@"11"]) {//经典 11橘红
-        tabBgColor = kUIColorFromRGB(0xDC7D6E);
-    }
-    else  if ([skitType isEqualToString:@"12"]) {//经典 12星空蓝
-        tabBgColor = kUIColorFromRGB(0x98BEBB);
-    }
-    else  if ([skitType isEqualToString:@"13"]) {//经典 13紫色
-        tabBgColor = kUIColorFromRGB(0xC367D7);
-    }
-    else  if ([skitType isEqualToString:@"14"]) {//经典 14粉红
-        tabBgColor = kUIColorFromRGB(0xFEC1D5);
-    }
-    else  if ([skitType isEqualToString:@"15"]) {//经典 15淡蓝
-        tabBgColor = kUIColorFromRGB(0x5DC3EB);
-    }
-    else  if ([skitType isEqualToString:@"16"]) {//经典 16淡灰
-        tabBgColor = kUIColorFromRGB(0xA766F7);
-    }
-    else  if ([skitType isEqualToString:@"17"]) {//经典 17淡灰
-        tabBgColor = kUIColorFromRGB(0xFFE066);
-    }
-    else  if ([skitType isEqualToString:@"18"]) {//18钻石蓝
-        tabBgColor = kUIColorFromRGB(0xD9D9D9);
-    }
-    else  if ([skitType isEqualToString:@"19"]) {//19经典 忧郁蓝
-        tabBgColor = kUIColorFromRGB(0x8CB9F4);
-    }
-    else  if ([skitType isEqualToString:@"石榴红"]) {//石榴红
-//        tabBgColor = kUIColorFromRGB(0xF8F8F8);0xCC022C
-        tabBgColor = kUIColorFromRGB(0xCC022C);
-    }
-    else  if ([skitType isEqualToString:@"新年红"]) {//新年红
-        tabBgColor = kUIColorFromRGB(0xDE1C27);
-    }
-    else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
-         tabBgColor = kUIColorFromRGB(0xF5F5F5);
-    }
-    else {//默认 经典  1蓝色
-        tabBgColor = kUIColorFromRGB(0xC1CBC9);
-    }
-    return tabBgColor;
-    
-}
-
-
-
--(UIColor *)bgColor:(NSString *)skitType{
-    
-    UIColor *bgColor ;
-    
-    if ([skitType isEqualToString:@"1"]) {//经典  1蓝色
-         UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x7F9493),kUIColorFromRGB(0x5389B3)] andGradientType:GradientDirectionLeftToRight];
-         bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"2"]) {//经典 2红色
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xd19885),kUIColorFromRGB(0x904a6e)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"3"]) {//经典 3褐色
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xB48A46),kUIColorFromRGB(0x8A5C3E)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"4"]) {//经典 4绿色
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x78BC67),kUIColorFromRGB(0x4DB48B)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"5"]) {//经典  5褐色
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x913D3E),kUIColorFromRGB(0xEAAD72)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"6"]) {//经典 6淡蓝色
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x61A8B4),kUIColorFromRGB(0xC7F3E5)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"7"]) {//经典 7深蓝
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x486869),kUIColorFromRGB(0x436363)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
++ (void)load {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
         
-    }
-    else  if ([skitType isEqualToString:@"8"]) {//经典 8紫色
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x934FB4),kUIColorFromRGB(0x9146A0)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"9"]) {//经典 9深红
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x871113),kUIColorFromRGB(0x871B1F)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-        
-    }
-    else  if ([skitType isEqualToString:@"10"]) {//经典 10淡灰
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xFC7008),kUIColorFromRGB(0xFC7008)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"11"]) {//经典 11橘红
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xB52A18),kUIColorFromRGB(0x8F1115)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"12"]) {//经典 12星空蓝
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x008CAC),kUIColorFromRGB(0x00A9CA)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-        
-    }
-    else  if ([skitType isEqualToString:@"13"]) {//经典 13紫色
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x9800B7),kUIColorFromRGB(0x46D8D6)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-        
-    }
-    else  if ([skitType isEqualToString:@"14"]) {//经典 14粉红
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xFFBED4),kUIColorFromRGB(0xFEC1D5)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"15"]) {//经典 15淡蓝
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x4CAEDC),kUIColorFromRGB(0x5DC3EB)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"16"]) {//经典 16淡灰
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x4300DA),kUIColorFromRGB(0x5800EE)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"17"]) {//经典 17淡灰
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xFECC0A),kUIColorFromRGB(0xFE9C08)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-        
-    }
-    else  if ([skitType isEqualToString:@"18"]) {//18钻石蓝
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xB3B3B3),kUIColorFromRGB(0xB3B3B3)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"19"]) {//19经典 忧郁蓝
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x00B2FF),kUIColorFromRGB(0x005ED6)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"石榴红"]) {//石榴红
-        bgColor = kUIColorFromRGB(0xFFFFFF);
-    }
-    else  if ([skitType isEqualToString:@"新年红"]) {//新年红
-        bgColor = kUIColorFromRGB(0xFFFFFF);
-    }
-    else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
-//        bgColor = kUIColorFromRGB(0xFFFFFF);
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x7F9493),kUIColorFromRGB(0x5389B3)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  {//默认 经典  1蓝色
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x7F9493),kUIColorFromRGB(0x5389B3)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    return bgColor;
-    
-}
-
--(UIColor *)signbgColor:(NSString *)skitType{
-    
-    UIColor *bgColor ;
-    
-    if ([skitType isEqualToString:@"1"]) {//经典  1蓝色
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x7F9493),kUIColorFromRGB(0x5389B3)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"2"]) {//经典 2红色
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xd19885),kUIColorFromRGB(0x904a6e)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"3"]) {//经典 3褐色
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xB48A46),kUIColorFromRGB(0x8A5C3E)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"4"]) {//经典 4绿色
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x78BC67),kUIColorFromRGB(0x4DB48B)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"5"]) {//经典  5褐色
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x913D3E),kUIColorFromRGB(0xEAAD72)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"6"]) {//经典 6淡蓝色
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x61A8B4),kUIColorFromRGB(0xC7F3E5)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"7"]) {//经典 7深蓝
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x486869),kUIColorFromRGB(0x436363)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-        
-    }
-    else  if ([skitType isEqualToString:@"8"]) {//经典 8紫色
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x934FB4),kUIColorFromRGB(0x9146A0)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"9"]) {//经典 9深红
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x871113),kUIColorFromRGB(0x871B1F)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-        
-    }
-    else  if ([skitType isEqualToString:@"10"]) {//经典 10淡灰
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xFC7008),kUIColorFromRGB(0xFC7008)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"11"]) {//经典 11橘红
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xB52A18),kUIColorFromRGB(0x8F1115)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"12"]) {//经典 12星空蓝
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x008CAC),kUIColorFromRGB(0x00A9CA)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-        
-    }
-    else  if ([skitType isEqualToString:@"13"]) {//经典 13紫色
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x9800B7),kUIColorFromRGB(0x46D8D6)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-        
-    }
-    else  if ([skitType isEqualToString:@"14"]) {//经典 14粉红
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xFFBED4),kUIColorFromRGB(0xFEC1D5)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"15"]) {//经典 15淡蓝
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x4CAEDC),kUIColorFromRGB(0x5DC3EB)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"16"]) {//经典 16淡灰
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x4300DA),kUIColorFromRGB(0x5800EE)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"17"]) {//经典 17淡灰
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xFECC0A),kUIColorFromRGB(0xFE9C08)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-        
-    }
-    else  if ([skitType isEqualToString:@"18"]) {//18钻石蓝
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xB3B3B3),kUIColorFromRGB(0xB3B3B3)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"19"]) {//19经典 忧郁蓝
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x00B2FF),kUIColorFromRGB(0x005ED6)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"石榴红"]) {//石榴红
-        bgColor = kUIColorFromRGB(0xFFFFFF);
-    }
-    else  if ([skitType isEqualToString:@"新年红"]) {//新年红
-        bgColor = kUIColorFromRGB(0xFFFFFF);
-    }
-    else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
-        bgColor = [UIColor whiteColor];
-       
-    }
-    else {//默认 经典  1蓝色
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x7F9493),kUIColorFromRGB(0x5389B3)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    return bgColor;
-    
-}
-
-
-
-
--(UIColor *)mineProgressViewColor:(NSString *)skitType{
-    
-    UIColor *bgColor ;
-    
-    if ([skitType isEqualToString:@"1"]) {//经典  1蓝色
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xd80000),kUIColorFromRGB(0xfb5959)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"2"]) {//经典 2红色
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xd80000),kUIColorFromRGB(0xfb5959)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"3"]) {//经典 3褐色
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xd80000),kUIColorFromRGB(0xfb5959)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"4"]) {//经典 4绿色
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xd80000),kUIColorFromRGB(0xfb5959)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"5"]) {//经典  5褐色
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xd80000),kUIColorFromRGB(0xfb5959)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"6"]) {//经典 6淡蓝色
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xd80000),kUIColorFromRGB(0xfb5959)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"7"]) {//经典 7深蓝
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xd80000),kUIColorFromRGB(0xfb5959)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-        
-    }
-    else  if ([skitType isEqualToString:@"8"]) {//经典 8紫色
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xd80000),kUIColorFromRGB(0xfb5959)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"9"]) {//经典 9深红
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xd80000),kUIColorFromRGB(0xfb5959)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-        
-    }
-    else  if ([skitType isEqualToString:@"10"]) {//经典 10淡灰
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xd80000),kUIColorFromRGB(0xfb5959)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"11"]) {//经典 11橘红
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xd80000),kUIColorFromRGB(0xfb5959)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"12"]) {//经典 12星空蓝
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xd80000),kUIColorFromRGB(0xfb5959)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-        
-    }
-    else  if ([skitType isEqualToString:@"13"]) {//经典 13紫色
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xd80000),kUIColorFromRGB(0xfb5959)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"14"]) {//经典 14粉红
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xd80000),kUIColorFromRGB(0xfb5959)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"15"]) {//经典 15淡蓝
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xd80000),kUIColorFromRGB(0xfb5959)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"16"]) {//经典 16淡灰
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xd80000),kUIColorFromRGB(0xfb5959)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"17"]) {//经典 17淡灰
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xd80000),kUIColorFromRGB(0xfb5959)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-        
-    }
-    else  if ([skitType isEqualToString:@"18"]) {//18钻石蓝
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xd80000),kUIColorFromRGB(0xfb5959)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"19"]) {//19经典 忧郁蓝
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xd80000),kUIColorFromRGB(0xfb5959)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"石榴红"]) {//石榴红
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xFEC434),kUIColorFromRGB(0xFE8A23)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"新年红"]) {//新年红
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xFEC434),kUIColorFromRGB(0xFE8A23)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
-//        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xFEC434),kUIColorFromRGB(0xFE8A23)] andGradientType:GradientDirectionLeftToRight];
-//        bgColor = [UIColor colorWithPatternImage:backImage];
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xd80000),kUIColorFromRGB(0xfb5959)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else {//默认 经典  1蓝色
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xd80000),kUIColorFromRGB(0xfb5959)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    return bgColor;
-    
-}
-
-
--(UIColor *)menuHeadViewColor:(NSString *)skitType{
-    
-    UIColor *bgColor ;
-    
-    if ([skitType isEqualToString:@"1"]) {//经典  1蓝色
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x5f9bc6),kUIColorFromRGB(0xfb5959)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"2"]) {//经典 2红色
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xbf338e),kUIColorFromRGB(0xfb95db)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"3"]) {//经典 3褐色
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xbf7555),kUIColorFromRGB(0xfefb398)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"4"]) {//经典 4绿色
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x49a791),kUIColorFromRGB(0x7cead3)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"5"]) {//经典  5褐色
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xa06577),kUIColorFromRGB(0xf1adc4)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"6"]) {//经典 6淡蓝色
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x4c91a9),kUIColorFromRGB(0x85d2ec)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"7"]) {//经典 7深蓝
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x65898c),kUIColorFromRGB(0x9fd3d8)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-        
-    }
-    else  if ([skitType isEqualToString:@"8"]) {//经典 8紫色
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xc161c3),kUIColorFromRGB(0xf889fb)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"9"]) {//经典 9深红
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xc30808),kUIColorFromRGB(0xf98080)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-        
-    }
-    else  if ([skitType isEqualToString:@"10"]) {//经典 10淡灰
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xffa33f),kUIColorFromRGB(0xfbd2a5)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"11"]) {//经典 11橘红
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xd24040),kUIColorFromRGB(0xdc9191)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"12"]) {//经典 12星空蓝
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x22667b),kUIColorFromRGB(0x5fc5e2)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-        
-    }
-    else  if ([skitType isEqualToString:@"13"]) {//经典 13紫色
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xaa83e8),kUIColorFromRGB(0xdbc5ff)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"14"]) {//经典 14粉红
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xe499b0),kUIColorFromRGB(0xfecfdd)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"15"]) {//经典 15淡蓝
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x5ebee5),kUIColorFromRGB(0xaddef3)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"16"]) {//经典 16淡灰
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x9041fd),kUIColorFromRGB(0xc19bf5)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"17"]) {//经典 17淡灰
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xffc344),kUIColorFromRGB(0xffe1a2)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-        
-    }
-    else  if ([skitType isEqualToString:@"18"]) {//18钻石蓝
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xc1c1c1),kUIColorFromRGB(0xececec)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"19"]) {//19经典 忧郁蓝
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x4ba2fa),kUIColorFromRGB(0x64d0ef)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"石榴红"]) {//石榴红
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xd7213a),kUIColorFromRGB(0xf99695)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"新年红"]) {//新年红
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0xe63534),kUIColorFromRGB(0xf99695)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[RGBA(168, 114, 247, 1),RGBA(155, 213, 209, 1)] andGradientType:GradientDirectionLeftToRight];
-         bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    else {//默认 经典  1蓝色
-        UIImage *backImage = [UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,UGScerrnH) andColors:@[kUIColorFromRGB(0x5f9bc6),kUIColorFromRGB(0xfb5959)] andGradientType:GradientDirectionLeftToRight];
-        bgColor = [UIColor colorWithPatternImage:backImage];
-    }
-    return bgColor;
-    
-}
-
--(UIColor *)cellbgColor:(NSString *)skitType{
-    
-    UIColor *tabBgColor ;
-    
-    if ([skitType isEqualToString:@"1"]) {//经典  1蓝色
-        tabBgColor = kUIColorFromRGB(0xC1CBC9);
-    }
-    else  if ([skitType isEqualToString:@"2"]) {//经典 2红色
-        tabBgColor = kUIColorFromRGB(0xDFB9B5);
-    }
-    else  if ([skitType isEqualToString:@"3"]) {//经典 3褐色
-        tabBgColor = kUIColorFromRGB(0xDFC8A1);
-    }
-    else  if ([skitType isEqualToString:@"4"]) {//经典 4绿色
-        tabBgColor = kUIColorFromRGB(0xB6DDB6);
-    }
-    else  if ([skitType isEqualToString:@"5"]) {//经典  5褐色
-        tabBgColor = kUIColorFromRGB(0xF7E2C0);
-    }
-    else  if ([skitType isEqualToString:@"6"]) {//经典 6淡蓝色
-        tabBgColor = kUIColorFromRGB(0xC5EAE7);
-    }
-    else  if ([skitType isEqualToString:@"7"]) {//经典 7深蓝
-        tabBgColor = kUIColorFromRGB(0xABC2B4);
-    }
-    else  if ([skitType isEqualToString:@"8"]) {//经典 8紫色
-        tabBgColor = kUIColorFromRGB(0xD1A4D7);
-    }
-    else  if ([skitType isEqualToString:@"9"]) {//经典 9深红
-        tabBgColor = kUIColorFromRGB(0xD1A4D7);
-    }
-    else  if ([skitType isEqualToString:@"10"]) {//经典 10淡灰
-        tabBgColor = kUIColorFromRGB(0xFFB666);
-    }
-    else  if ([skitType isEqualToString:@"11"]) {//经典 11橘红
-        tabBgColor = kUIColorFromRGB(0xDC7D6E);
-    }
-    else  if ([skitType isEqualToString:@"12"]) {//经典 12星空蓝
-        tabBgColor = kUIColorFromRGB(0x98BEBB);
-    }
-    else  if ([skitType isEqualToString:@"13"]) {//经典 13紫色
-        tabBgColor = kUIColorFromRGB(0xC367D7);
-    }
-    else  if ([skitType isEqualToString:@"14"]) {//经典 14粉红
-        tabBgColor = kUIColorFromRGB(0xFEC1D5);
-    }
-    else  if ([skitType isEqualToString:@"15"]) {//经典 15淡蓝
-        tabBgColor = kUIColorFromRGB(0x5DC3EB);
-    }
-    else  if ([skitType isEqualToString:@"16"]) {//经典 16淡灰
-        tabBgColor = kUIColorFromRGB(0xA766F7);
-    }
-    else  if ([skitType isEqualToString:@"17"]) {//经典 17淡灰
-        tabBgColor = kUIColorFromRGB(0xFFE066);
-    }
-    else  if ([skitType isEqualToString:@"18"]) {//18钻石蓝
-        tabBgColor = kUIColorFromRGB(0xD9D9D9);
-    }
-    else  if ([skitType isEqualToString:@"19"]) {//19经典 忧郁蓝
-        tabBgColor = kUIColorFromRGB(0x8CB9F4);
-    }
-    else  if ([skitType isEqualToString:@"石榴红"]) {//石榴红
-        //        tabBgColor = kUIColorFromRGB(0xF8F8F8);0xCC022C
-        tabBgColor = [UIColor whiteColor];
-    }
-    else  if ([skitType isEqualToString:@"新年红"]) {//新年红
-        tabBgColor = [UIColor whiteColor];
-    }
-    else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
-//        tabBgColor = [UIColor whiteColor];
-         tabBgColor = kUIColorFromRGB(0xC1CBC9);
-    }
-    else {//默认 经典  1蓝色
-        tabBgColor = kUIColorFromRGB(0xC1CBC9);
-    }
-    return tabBgColor;
-    
-}
-
-//首页的内容：cell，广告条，长龙，彩票
--(UIColor *)homeContentColor:(NSString *)skitType{
-    
-    UIColor *contentColor ;
-    
-    if ([skitType isEqualToString:@"1"]) {//经典  1蓝色
-        contentColor = kUIColorFromRGB(0xb2cde0);
-    }
-    else  if ([skitType isEqualToString:@"2"]) {//经典 2红色
-        contentColor = kUIColorFromRGB(0xd0aeb7);
-    }
-    else  if ([skitType isEqualToString:@"3"]) {//经典 3褐色
-        contentColor = kUIColorFromRGB(0xd2bea6);
-    }
-    else  if ([skitType isEqualToString:@"4"]) {//经典 4绿色
-        contentColor = kUIColorFromRGB(0xc4e5c7);
-    }
-    else  if ([skitType isEqualToString:@"5"]) {//经典  5褐色
-        contentColor = kUIColorFromRGB(0xc1a8aa);
-    }
-    else  if ([skitType isEqualToString:@"6"]) {//经典 6淡蓝色
-        contentColor = kUIColorFromRGB(0xc1e1e6);
-    }
-    else  if ([skitType isEqualToString:@"7"]) {//经典 7深蓝
-        contentColor = kUIColorFromRGB(0xacbdbe);
-    }
-    else  if ([skitType isEqualToString:@"8"]) {//经典 8紫色
-        contentColor = kUIColorFromRGB(0xd7b6e3);
-    }
-    else  if ([skitType isEqualToString:@"9"]) {//经典 9深红
-        contentColor = kUIColorFromRGB(0xcd908d);
-    }
-    else  if ([skitType isEqualToString:@"10"]) {//经典 10淡灰
-        contentColor = kUIColorFromRGB(0xffc280);
-    }
-    else  if ([skitType isEqualToString:@"11"]) {//经典 11橘红
-        contentColor = kUIColorFromRGB(0xdba497);
-    }
-    else  if ([skitType isEqualToString:@"12"]) {//经典 12星空蓝
-        contentColor = kUIColorFromRGB(0xade5ed);
-    }
-    else  if ([skitType isEqualToString:@"13"]) {//经典 13紫色
-        contentColor = kUIColorFromRGB(0xccadee);
-    }
-    else  if ([skitType isEqualToString:@"14"]) {//经典 14粉红
-        contentColor = kUIColorFromRGB(0xffe7ee);
-    }
-    else  if ([skitType isEqualToString:@"15"]) {//经典 15淡蓝
-        contentColor = kUIColorFromRGB(0xb1e2f3);
-    }
-    else  if ([skitType isEqualToString:@"16"]) {//经典 16淡灰
-        contentColor = kUIColorFromRGB(0xb680f8);
-    }
-    else  if ([skitType isEqualToString:@"17"]) {//经典 17淡灰
-        contentColor = kUIColorFromRGB(0xffe280);
-    }
-    else  if ([skitType isEqualToString:@"18"]) {//18钻石蓝
-        contentColor = kUIColorFromRGB(0xe0e0e0);
-    }
-    else  if ([skitType isEqualToString:@"19"]) {//19经典 忧郁蓝
-        contentColor = kUIColorFromRGB(0xa1ccff);
-    }
-    else  if ([skitType isEqualToString:@"石榴红"]) {//石榴红
-        //        tabBgColor = kUIColorFromRGB(0xF8F8F8);0xCC022C
-        contentColor = [UIColor whiteColor];
-    }
-    else  if ([skitType isEqualToString:@"新年红"]) {//新年红
-        contentColor = [UIColor whiteColor];
-    }
-    else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
-        contentColor = [UIColor whiteColor];
-//          contentColor = kUIColorFromRGB(0xb2cde0);
-    }
-    else {//默认 经典  1蓝色
-        contentColor = kUIColorFromRGB(0xb2cde0);
-    }
-    return contentColor;
-    
-}
-
-
-//首页的内容：cell，广告条，长龙，彩票
--(UIColor *)homeContentBorderColor:(NSString *)skitType{
-    
-    UIColor *contentColor ;
-    
-    if ([skitType isEqualToString:@"1"]) {//经典  1蓝色
-        contentColor = kUIColorFromRGB(0xb2cde0);
-    }
-    else  if ([skitType isEqualToString:@"2"]) {//经典 2红色
-        contentColor = kUIColorFromRGB(0xd0aeb7);
-    }
-    else  if ([skitType isEqualToString:@"3"]) {//经典 3褐色
-        contentColor = kUIColorFromRGB(0xd2bea6);
-    }
-    else  if ([skitType isEqualToString:@"4"]) {//经典 4绿色
-        contentColor = kUIColorFromRGB(0xc4e5c7);
-    }
-    else  if ([skitType isEqualToString:@"5"]) {//经典  5褐色
-        contentColor = kUIColorFromRGB(0xc1a8aa);
-    }
-    else  if ([skitType isEqualToString:@"6"]) {//经典 6淡蓝色
-        contentColor = kUIColorFromRGB(0xc1e1e6);
-    }
-    else  if ([skitType isEqualToString:@"7"]) {//经典 7深蓝
-        contentColor = kUIColorFromRGB(0xacbdbe);
-    }
-    else  if ([skitType isEqualToString:@"8"]) {//经典 8紫色
-        contentColor = kUIColorFromRGB(0xd7b6e3);
-    }
-    else  if ([skitType isEqualToString:@"9"]) {//经典 9深红
-        contentColor = kUIColorFromRGB(0xcd908d);
-    }
-    else  if ([skitType isEqualToString:@"10"]) {//经典 10淡灰
-        contentColor = kUIColorFromRGB(0xffc280);
-    }
-    else  if ([skitType isEqualToString:@"11"]) {//经典 11橘红
-        contentColor = kUIColorFromRGB(0xdba497);
-    }
-    else  if ([skitType isEqualToString:@"12"]) {//经典 12星空蓝
-        contentColor = kUIColorFromRGB(0xade5ed);
-    }
-    else  if ([skitType isEqualToString:@"13"]) {//经典 13紫色
-        contentColor = kUIColorFromRGB(0xccadee);
-    }
-    else  if ([skitType isEqualToString:@"14"]) {//经典 14粉红
-        contentColor = kUIColorFromRGB(0xffe7ee);
-    }
-    else  if ([skitType isEqualToString:@"15"]) {//经典 15淡蓝
-        contentColor = kUIColorFromRGB(0xb1e2f3);
-    }
-    else  if ([skitType isEqualToString:@"16"]) {//经典 16淡灰
-        contentColor = kUIColorFromRGB(0xb680f8);
-    }
-    else  if ([skitType isEqualToString:@"17"]) {//经典 17淡灰
-        contentColor = kUIColorFromRGB(0xffe280);
-    }
-    else  if ([skitType isEqualToString:@"18"]) {//18钻石蓝
-        contentColor = kUIColorFromRGB(0xe0e0e0);
-    }
-    else  if ([skitType isEqualToString:@"19"]) {//19经典 忧郁蓝
-        contentColor = kUIColorFromRGB(0xa1ccff);
-    }
-    else  if ([skitType isEqualToString:@"石榴红"]) {//石榴红
-        //        tabBgColor = kUIColorFromRGB(0xF8F8F8);0xCC022C
-        contentColor = RGBA(231, 230, 230, 1);
-    }
-    else  if ([skitType isEqualToString:@"新年红"]) {//新年红
-        contentColor = RGBA(231, 230, 230, 1);
-    }
-    else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
-        contentColor = RGBA(231, 230, 230, 1);
-//        contentColor = kUIColorFromRGB(0xb2cde0);
-    }
-    else  {//默认 经典  1蓝色
-        contentColor = kUIColorFromRGB(0xb2cde0);
-    }
-    return contentColor;
-    
-}
-
-
--(void)resetNavbarAndTabBarBgColor:(NSString *)skitType{
-    
-    [[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:[self tabbarbgColor :skitType]]];
-    
-    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[[UGSkinManagers shareInstance] settabNOSelectColor], NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
-    
-    [[UITabBarItem appearance] setTitleTextAttributes:                                                         [NSDictionary dictionaryWithObjectsAndKeys: [[UGSkinManagers shareInstance] settabSelectColor],NSForegroundColorAttributeName, nil]forState:UIControlStateSelected];
-
-    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[[UGSkinManagers shareInstance] settabNOSelectColor], NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
-    
-    [[UITabBarItem appearance] setTitleTextAttributes:                                                         [NSDictionary dictionaryWithObjectsAndKeys: [[UGSkinManagers shareInstance] settabSelectColor],NSForegroundColorAttributeName, nil]forState:UIControlStateSelected];
-    
-    UGTabbarController *tabbar = TabBarController1;
-    [tabbar.tabBar setBackgroundImage:[UIImage imageWithColor:[self tabbarbgColor :skitType]]];
-     
-     [tabbar.tabBar setSelectedImageTintColor: [[UGSkinManagers shareInstance] settabSelectColor]];
-     
-     [tabbar.tabBar setUnselectedItemTintColor: [[UGSkinManagers shareInstance] settabNOSelectColor]];
-    
-    for (UIBarItem *item in tabbar.tabBar.items) {
-        [item setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                      [[UGSkinManagers shareInstance] settabNOSelectColor], NSForegroundColorAttributeName, nil]
-                            forState:UIControlStateNormal];
-        [item setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                      [[UGSkinManagers shareInstance] settabSelectColor],NSForegroundColorAttributeName, nil]
-                            forState:UIControlStateSelected];
-    }
-    
-
-
-
-    if (@available(iOS 13.0, *)) {
-        for (UGNavigationController *nav in TabBarController1.viewControllers) {
-            
-            [self navigationBar:nav bgColor:[self navbarbgColor:skitType]];
-            
-            
-            UIView *stateView = [nav.navigationBar viewWithTagString:@"状态栏背景View"];
-            if (!stateView) {
-                stateView = [[UIView alloc] initWithFrame:CGRectMake(0, -k_Height_StatusBar, UGScreenW, k_Height_StatusBar)];
-                stateView.tagString = @"状态栏背景View";
-                [nav.navigationBar addSubview:stateView];
+        NSString *(^colorNameWithColor)(UIColor *) = ^NSString *(UIColor *c1) {
+            for (NSString *colorName in [UGSkinManagers propertyList]) {
+                if ([colorName.lowercaseString containsString:@"color"]) {
+                    UIColor *c2 = [__lastSkin1 valueForKey:colorName];
+                    if ([c1 isEqualToColor:c2]) {
+                        return colorName;
+                    }
+                }
             }
-            stateView.backgroundColor = [self navbarbgColor:skitType];
-        }
-    }
-    else {
+            return nil;
+        };
         
-        for (UGNavigationController *nav in TabBarController1.viewControllers) {
-            [self navigationBar:nav bgColor:[self navbarbgColor:skitType]];
+        // 获取SkinColor
+        UIColor *(^getSkinColor)(UIColor *) = ^UIColor *(UIColor *c) {
+            if (c.alpha == SkinAlpha) {
+                return [__currentSkin1 performSelector:colorNameWithColor(c).UTF8String];
+            }
+            return nil;
+        };
+        
+        // 如果是SkinColor，就把【对象、函数、色彩类型】保存起来，换肤时遍历一遍修改颜色
+        {
+            // 处理UIColor类型
+            void (^block1)(id<AspectInfo>) = ^(id<AspectInfo> ai) {
+                UIColor *c = ai.arguments.firstObject;
+                NSString *colorName = c.cc_userInfo[@"colorName"];
+                NSInvocation *invocation = ai.originalInvocation;
+                if (colorName.length) {
+                    if (![__viewPointers.allObjects containsObject:ai.instance]) {
+                        [__viewPointers addPointer:(__bridge void * _Nullable)(ai.instance)];
+                    }
+                    if (OBJOnceToken(ai.instance)) {
+                        [ai.instance cc_userInfo][@"SkinBlocks"] = @{}.mutableCopy;
+                    }
+                    [ai.instance cc_userInfo][@"SkinBlocks"][NSStringFromSelector(invocation.selector)] = ^{
+                        UIColor *c = [__currentSkin1 performSelector:colorName.UTF8String];
+                        [invocation setArgument:&c atIndex:2];
+                        [invocation invoke];
+                    };
+                } else {
+                    [ai.instance cc_userInfo][@"SkinBlocks"][NSStringFromSelector(invocation.selector)] = nil;
+                }
+                [ai.originalInvocation invoke];
+            };
+            [UIView aspect_hookSelector:@selector(setBackgroundColor:) withOptions:AspectPositionInstead usingBlock:block1 error:nil];
+            [UIView aspect_hookSelector:@selector(setTintColor:) withOptions:AspectPositionInstead usingBlock:block1 error:nil];
+            [UILabel aspect_hookSelector:@selector(setTextColor:) withOptions:AspectPositionInstead usingBlock:block1 error:nil];
+            [UITextField aspect_hookSelector:@selector(setTextColor:) withOptions:AspectPositionInstead usingBlock:block1 error:nil];
+            [UITextView aspect_hookSelector:@selector(setTextColor:) withOptions:AspectPositionInstead usingBlock:block1 error:nil];
+            [UIButton aspect_hookSelector:@selector(setTitleColor:forState:) withOptions:AspectPositionInstead usingBlock:block1 error:nil];
+            [UIButton aspect_hookSelector:@selector(setTitleShadowColor:forState:) withOptions:AspectPositionInstead usingBlock:block1 error:nil];
+            [UITabBar aspect_hookSelector:@selector(setUnselectedItemTintColor:) withOptions:AspectPositionInstead usingBlock:block1 error:nil];
+            [UITabBar aspect_hookSelector:@selector(setSelectedImageTintColor:) withOptions:AspectPositionInstead usingBlock:block1 error:nil];
+            [UITabBar aspect_hookSelector:@selector(setBarTintColor:) withOptions:AspectPositionInstead usingBlock:block1 error:nil];
+            [UINavigationBar aspect_hookSelector:@selector(setBarTintColor:) withOptions:AspectPositionInstead usingBlock:block1 error:nil];
+
+            
+            // 处理CGColorRef类型（描边色）
+            void (^block2)(id<AspectInfo>) = ^(id<AspectInfo> ai) {
+                CGColorRef cr = [ai.arguments.firstObject CGColorValue];
+                NSInvocation *invocation = ai.originalInvocation;
+                if (CGColorGetAlpha(cr) == SkinAlpha) {
+                    NSString *colorName = colorNameWithColor([UIColor colorWithCGColor:cr]);
+
+                    if (![__viewPointers.allObjects containsObject:ai.instance]) {
+                        [__viewPointers addPointer:(__bridge void * _Nullable)(ai.instance)];
+                    }
+                    if (OBJOnceToken(ai.instance)) {
+                        [ai.instance cc_userInfo][@"SkinBlocks"] = @{}.mutableCopy;
+                    }
+                    [ai.instance cc_userInfo][@"SkinBlocks"][NSStringFromSelector(invocation.selector)] = ^{
+                        UIColor *c = [__currentSkin1 performSelector:colorName.UTF8String];
+                        CGColorRef cr = c.CGColor;
+                        [invocation setArgument:&cr atIndex:2];
+                        [invocation invoke];
+                    };
+                } else {
+                    [ai.instance cc_userInfo][@"SkinBlocks"][NSStringFromSelector(invocation.selector)] = nil;
+                }
+                [ai.originalInvocation invoke];
+            };
+            [CALayer aspect_hookSelector:@selector(setBorderColor:) withOptions:AspectPositionInstead usingBlock:block2 error:nil];
+            [CALayer aspect_hookSelector:@selector(setBackgroundColor:) withOptions:AspectPositionInstead usingBlock:block2 error:nil];
+            [CALayer aspect_hookSelector:@selector(setShadowColor:) withOptions:AspectPositionInstead usingBlock:block2 error:nil];
+            
+            
+            // 处理NSDictionary类型（UITabBarItem）
+            NSArray *attrKeys = @[NSForegroundColorAttributeName, NSBackgroundColorAttributeName, NSStrokeColorAttributeName, NSUnderlineColorAttributeName, NSStrikethroughColorAttributeName];
+            [UITabBarItem aspect_hookSelector:@selector(setTitleTextAttributes:forState:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> ai) {
+                NSDictionary *dict = ai.arguments.firstObject;
+                NSInvocation *invocation = ai.originalInvocation;
+                
+                // 判断是否存在SkinColor
+                BOOL hasSkinColor = false;
+                for (NSString *key in attrKeys) {
+                    if (((UIColor *)dict[key]).alpha == SkinAlpha) {
+                        hasSkinColor = true;
+                        break;
+                    }
+                }
+                if (hasSkinColor) {
+                    if (![__viewPointers.allObjects containsObject:ai.instance]) {
+                        [__viewPointers addPointer:(__bridge void * _Nullable)(ai.instance)];
+                    }
+                    if (OBJOnceToken(ai.instance)) {
+                        [ai.instance cc_userInfo][@"SkinBlocks"] = @{}.mutableCopy;
+                    }
+                    [ai.instance cc_userInfo][@"SkinBlocks"][NSStringFromSelector(invocation.selector)] = ^{
+                        NSMutableDictionary *md = dict.mutableCopy;
+                        UIColor *c = nil;
+                        for (NSString *key in attrKeys) {
+                            if ((c = getSkinColor(dict[key]))) {
+                                md[key] = c;
+                            }
+                        }
+                        [ai.originalInvocation setArgument:&md atIndex:2];
+                        [invocation invoke];
+                    };
+                } else {
+                    [ai.instance cc_userInfo][@"SkinBlocks"][NSStringFromSelector(invocation.selector)] = nil;
+                }
+                [ai.originalInvocation invoke];
+            } error:nil];
+            
+            
+            // 处理NSAttributedString类型（富文本）
+            void (^block3)(id<AspectInfo>) = ^(id<AspectInfo> ai) {
+                NSAttributedString *as = ai.arguments.firstObject;
+                NSInvocation *invocation = ai.originalInvocation;
+                
+                // 判断是否存在SkinColor
+                BOOL hasSkinColor = false;
+                for (int i=0; i<as.length; i++) {
+                    NSRange r = NSMakeRange(0, as.length);
+                    NSMutableDictionary *dict = [as attributesAtIndex:i effectiveRange:&r].mutableCopy;
+                    for (NSString *key in attrKeys) {
+                        if (((UIColor *)dict[key]).alpha == SkinAlpha) {
+                            hasSkinColor = true;
+                            break;
+                        }
+                    }
+                    if (hasSkinColor) {
+                        break;
+                    }
+                }
+                if (hasSkinColor) {
+                    if (![__viewPointers.allObjects containsObject:ai.instance]) {
+                        [__viewPointers addPointer:(__bridge void * _Nullable)(ai.instance)];
+                    }
+                    if (OBJOnceToken(ai.instance)) {
+                        [ai.instance cc_userInfo][@"SkinBlocks"] = @{}.mutableCopy;
+                    }
+                    [ai.instance cc_userInfo][@"SkinBlocks"][NSStringFromSelector(invocation.selector)] = ^{
+                        NSMutableAttributedString *mas = as.mutableCopy;
+                        UIColor *c = nil;
+                        for (int i=0; i<as.length; i++) {
+                            NSRange r = NSMakeRange(0, as.length);
+                            NSMutableDictionary *dict = [as attributesAtIndex:i effectiveRange:&r].mutableCopy;
+                            BOOL isChange = false;
+                            for (NSString *key in attrKeys) {
+                                if ((c = getSkinColor(dict[key]))) {
+                                    dict[key] = c;
+                                    isChange = true;
+                                }
+                            }
+                            if (isChange) {
+                                [mas addAttributes:dict range:NSMakeRange(i, 1)];
+                            }
+                        }
+                        [ai.originalInvocation setArgument:&mas atIndex:2];
+                        [invocation invoke];
+                    };
+                } else {
+                    [ai.instance cc_userInfo][@"SkinBlocks"][NSStringFromSelector(invocation.selector)] = nil;
+                }
+                [ai.originalInvocation invoke];
+            };
+            [UILabel aspect_hookSelector:@selector(setAttributedText:) withOptions:AspectPositionInstead usingBlock:block3 error:nil];
+            [UITextField aspect_hookSelector:@selector(setAttributedText:) withOptions:AspectPositionInstead usingBlock:block3 error:nil];
+            [UITextField aspect_hookSelector:@selector(setAttributedPlaceholder:) withOptions:AspectPositionInstead usingBlock:block3 error:nil];;
+            [UITextView aspect_hookSelector:@selector(setAttributedText:) withOptions:AspectPositionInstead usingBlock:block3 error:nil];
+            [UIButton aspect_hookSelector:@selector(setAttributedTitle:forState:) withOptions:AspectPositionInstead usingBlock:block3 error:nil];
         }
-        //   bug: iOS13 崩溃
-        UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
-        if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
-            statusBar.backgroundColor = [self navbarbgColor:skitType];
+        
+        // 把从xib、Storybard加载出来的颜色替换为SkinColor
+        [UIView aspect_hookSelector:@selector(awakeFromNib) withOptions:AspectPositionBefore usingBlock:^(id<AspectInfo> ai) {
+            // 替换颜色
+            UIColor *c = nil;
+            if ([ai.instance isKindOfClass:[UIView class]]) {
+                UIView *v = ai.instance;
+                if ((c = getSkinColor(v.backgroundColor))) {
+                    v.backgroundColor = c;
+                }
+                if ([v isKindOfClass:[UIButton class]]) {
+                    UIButton *btn = (id)v;
+                    for (NSNumber *state in @[@(UIControlStateNormal), @(UIControlStateHighlighted), @(UIControlStateDisabled), @(UIControlStateSelected)]) {
+                        if ((c = getSkinColor([btn titleColorForState:state.intValue]))) {
+                            [btn setTitleColor:c forState:state.intValue];
+                        }
+                        if ((c = getSkinColor([btn titleShadowColorForState:state.intValue]))) {
+                            [btn setTitleShadowColor:c forState:state.intValue];
+                        }
+                    }
+                }
+                else if ([v isKindOfClass:UILabel.class] || [v isKindOfClass:UITextField.class] || [v isKindOfClass:UITextView.class]) {
+                    UILabel *lb = (id)v;
+                    if ((c = getSkinColor(lb.textColor))) {
+                        lb.textColor = c;
+                    }
+                }
+                else if ([v isKindOfClass:CALayer.class] && (c = getSkinColor([UIColor colorWithCGColor:[(CALayer *)v borderColor]]))) {
+                    ((CALayer *)v).borderColor = c.CGColor;
+                }
+            }
+        } error:nil];
+    });
+}
+
+
+#pragma mark - 色值
+
++ (NSDictionary<NSString *,UGSkinManagers *> *)allSkin {
+    static NSDictionary <NSString *, UGSkinManagers *>*__dict = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        __viewPointers = [NSPointerArray pointerArrayWithOptions:NSPointerFunctionsWeakMemory];
+        
+        UIColor *(^color)(NSString *) = ^UIColor *(NSString *hexString) {
+            NSMutableArray <UIColor *> *colors = @[].mutableCopy;
+            for (NSString *hs in [hexString componentsSeparatedByString:@","]) {
+                [colors addObject:[UIColor colorWithHexString:hs]];
+            }
+            if (colors.count > 1) {
+                return [UIColor colorWithPatternImage:[UIImage gradientImageWithBounds:APP.Bounds andColors:colors andGradientType:GradientDirectionLeftToRight]];
+            } else {
+                return colors.firstObject;
+            }
+        };
+        
+        // 设置c.cc_userInfo[@"colorName"] = colorName; 和设置透明度
+        for (NSString *colorName in [UGSkinManagers propertyList]) {
+            if ([colorName.lowercaseString containsString:@"color"]) {
+                NSString *setterName = _NSString(@"set%@%@:", colorName[0].uppercaseString, [colorName substringFromIndex:1]);
+                [UGSkinManagers aspect_hookSelector:NSSelectorFromString(setterName) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> ai) {
+                    UIColor *c = ai.arguments.firstObject;
+                    c = [c colorWithAlphaComponent:SkinAlpha];
+                    c.cc_userInfo[@"colorName"] = colorName;
+                    [ai.originalInvocation setArgument:&c atIndex:2];
+                    [ai.originalInvocation invoke];
+                } error:nil];
+            }
+        }
+        
+        // 渐变色有多个色值，用英文逗号隔开
+        __dict = @{
+        //经典 1蓝色
+        @"1":({
+            UGSkinManagers *sm = [UGSkinManagers new];
+            sm.skitType = @"经典";
+            sm.bgColor = color(@"7F9493,5389B3");
+            sm.navBarBgColor = color(@"609AC5");
+            sm.tabBarBgColor = color(@"C1CBC9");
+            sm.tabNoSelectColor = color(@"717176");
+            sm.tabSelectedColor = color(@"FFFFFF");
+            sm.cellBgColor = color(@"C1CBC9");
+            sm.progressBgColor = color(@"d80000,fb5959");
+            sm.homeContentColor = color(@"b2cde0");
+            sm.homeContentBorderColor = color(@"b2cde0");
+            sm.menuHeadViewColor = color(@"5f9bc6,fb5959");
+            sm.signBgColor = color(@"7F9493,5389B3");
+            sm;
+        }),
+        //经典 2红色
+        @"2":({
+            UGSkinManagers *sm = [UGSkinManagers new];
+            sm.skitType = @"经典";
+            sm.bgColor = color(@"d19885,904a6e");
+            sm.navBarBgColor = color(@"73315C");
+            sm.tabBarBgColor = color(@"DFB9B5");
+            sm.tabNoSelectColor = color(@"717176");
+            sm.tabSelectedColor = color(@"FFFFFF");
+            sm.cellBgColor = color(@"DFB9B5");
+            sm.progressBgColor = color(@"d80000,fb5959");
+            sm.homeContentColor = color(@"d0aeb7");
+            sm.homeContentBorderColor = color(@"d0aeb7");
+            sm.menuHeadViewColor = color(@"bf338e,fb95db");
+            sm.signBgColor = color(@"d19885,904a6e");
+            sm;
+        }),
+        //经典 3褐色
+        @"3":({
+            UGSkinManagers *sm = [UGSkinManagers new];
+            sm.skitType = @"经典";
+            sm.bgColor = color(@"B48A46,8A5C3E");
+            sm.navBarBgColor = color(@"7E503C");
+            sm.tabBarBgColor = color(@"DFC8A1");
+            sm.tabNoSelectColor = color(@"717176");
+            sm.tabSelectedColor = color(@"FFFFFF");
+            sm.cellBgColor = color(@"DFC8A1");
+            sm.progressBgColor = color(@"d80000,fb5959");
+            sm.homeContentColor = color(@"d2bea6");
+            sm.homeContentBorderColor = color(@"d2bea6");
+            sm.menuHeadViewColor = color(@"bf7555,efb398");
+            sm.signBgColor = color(@"B48A46,8A5C3E");
+            sm;
+        }),
+        //经典 4绿色
+        @"4":({
+            UGSkinManagers *sm = [UGSkinManagers new];
+            sm.skitType = @"经典";
+            sm.bgColor = color(@"78BC67,4DB48B");
+            sm.navBarBgColor = color(@"58BEA4");
+            sm.tabBarBgColor = color(@"B6DDB6");
+            sm.tabNoSelectColor = color(@"717176");
+            sm.tabSelectedColor = color(@"FFFFFF");
+            sm.cellBgColor = color(@"B6DDB6");
+            sm.progressBgColor = color(@"d80000,fb5959");
+            sm.homeContentColor = color(@"c4e5c7");
+            sm.homeContentBorderColor = color(@"c4e5c7");
+            sm.menuHeadViewColor = color(@"49a791,7cead3");
+            sm.signBgColor = color(@"78BC67,4DB48B");
+            sm;
+        }),
+        //经典 5褐色
+        @"5":({
+            UGSkinManagers *sm = [UGSkinManagers new];
+            sm.skitType = @"经典";
+            sm.bgColor = color(@"913D3E,EAAD72");
+            sm.navBarBgColor = color(@"662E3E");
+            sm.tabBarBgColor = color(@"FBE0B8");
+            sm.tabNoSelectColor = color(@"717176");
+            sm.tabSelectedColor = color(@"FFFFFF");
+            sm.cellBgColor = color(@"F7E2C0");
+            sm.progressBgColor = color(@"d80000,fb5959");
+            sm.homeContentColor = color(@"c1a8aa");
+            sm.homeContentBorderColor = color(@"c1a8aa");
+            sm.menuHeadViewColor = color(@"a06577,f1adc4");
+            sm.signBgColor = color(@"913D3E,EAAD72");
+            sm;
+        }),
+        //经典 6淡蓝色
+        @"6":({
+            UGSkinManagers *sm = [UGSkinManagers new];
+            sm.skitType = @"经典";
+            sm.bgColor = color(@"61A8B4,C7F3E5");
+            sm.navBarBgColor = color(@"2E647C");
+            sm.tabBarBgColor = color(@"C5EAE7");
+            sm.tabNoSelectColor = color(@"717176");
+            sm.tabSelectedColor = color(@"FFFFFF");
+            sm.cellBgColor = color(@"C5EAE7");
+            sm.progressBgColor = color(@"d80000,fb5959");
+            sm.homeContentColor = color(@"c1e1e6");
+            sm.homeContentBorderColor = color(@"c1e1e6");
+            sm.menuHeadViewColor = color(@"4c91a9,85d2ec");
+            sm.signBgColor = color(@"61A8B4,C7F3E5");
+            sm;
+        }),
+        //经典 7深蓝
+        @"7":({
+            UGSkinManagers *sm = [UGSkinManagers new];
+            sm.skitType = @"经典";
+            sm.bgColor = color(@"486869,436363");
+            sm.navBarBgColor = color(@"3F5658");
+            sm.tabBarBgColor = color(@"ABC2B4");
+            sm.tabNoSelectColor = color(@"717176");
+            sm.tabSelectedColor = color(@"FFFFFF");
+            sm.cellBgColor = color(@"ABC2B4");
+            sm.progressBgColor = color(@"d80000,fb5959");
+            sm.homeContentColor = color(@"acbdbe");
+            sm.homeContentBorderColor = color(@"acbdbe");
+            sm.menuHeadViewColor = color(@"65898c,9fd3d8");
+            sm.signBgColor = color(@"486869,436363");
+            sm;
+        }),
+        //经典 8紫色
+        @"8":({
+            UGSkinManagers *sm = [UGSkinManagers new];
+            sm.skitType = @"经典";
+            sm.bgColor = color(@"934FB4,9146A0");
+            sm.navBarBgColor = color(@"814689");
+            sm.tabBarBgColor = color(@"D1A4D7");
+            sm.tabNoSelectColor = color(@"717176");
+            sm.tabSelectedColor = color(@"FFFFFF");
+            sm.cellBgColor = color(@"D1A4D7");
+            sm.progressBgColor = color(@"d80000,fb5959");
+            sm.homeContentColor = color(@"d7b6e3");
+            sm.homeContentBorderColor = color(@"d7b6e3");
+            sm.menuHeadViewColor = color(@"c161c3,f889fb");
+            sm.signBgColor = color(@"934FB4,9146A0");
+            sm;
+        }),
+        //经典 9深红
+        @"9":({
+            UGSkinManagers *sm = [UGSkinManagers new];
+            sm.skitType = @"经典";
+            sm.bgColor = color(@"871113,871B1F");
+            sm.navBarBgColor = color(@"880506");
+            sm.tabBarBgColor = color(@"DE9595");
+            sm.tabNoSelectColor = color(@"717176");
+            sm.tabSelectedColor = color(@"FFFFFF");
+            sm.cellBgColor = color(@"D1A4D7");
+            sm.progressBgColor = color(@"d80000,fb5959");
+            sm.homeContentColor = color(@"cd908d");
+            sm.homeContentBorderColor = color(@"cd908d");
+            sm.menuHeadViewColor = color(@"c30808,f98080");
+            sm.signBgColor = color(@"871113,871B1F");
+            sm;
+        }),
+        //经典 10淡灰
+        @"10":({
+            UGSkinManagers *sm = [UGSkinManagers new];
+            sm.skitType = @"经典";
+            sm.bgColor = color(@"FC7008,FC7008");
+            sm.navBarBgColor = color(@"FF8705");
+            sm.tabBarBgColor = color(@"FFB666");
+            sm.tabNoSelectColor = color(@"717176");
+            sm.tabSelectedColor = color(@"FFFFFF");
+            sm.cellBgColor = color(@"FFB666");
+            sm.progressBgColor = color(@"d80000,fb5959");
+            sm.homeContentColor = color(@"ffc280");
+            sm.homeContentBorderColor = color(@"ffc280");
+            sm.menuHeadViewColor = color(@"ffa33f,fbd2a5");
+            sm.signBgColor = color(@"FC7008,FC7008");
+            sm;
+        }),
+        //经典 11橘红
+        @"11":({
+            UGSkinManagers *sm = [UGSkinManagers new];
+            sm.skitType = @"经典";
+            sm.bgColor = color(@"B52A18,8F1115");
+            sm.navBarBgColor = color(@"8B2B2A");
+            sm.tabBarBgColor = color(@"DC7D6E");
+            sm.tabNoSelectColor = color(@"717176");
+            sm.tabSelectedColor = color(@"FFFFFF");
+            sm.cellBgColor = color(@"DC7D6E");
+            sm.progressBgColor = color(@"d80000,fb5959");
+            sm.homeContentColor = color(@"dba497");
+            sm.homeContentBorderColor = color(@"dba497");
+            sm.menuHeadViewColor = color(@"d24040,dc9191");
+            sm.signBgColor = color(@"B52A18,8F1115");
+            sm;
+        }),
+        //经典 12星空蓝
+        @"12":({
+            UGSkinManagers *sm = [UGSkinManagers new];
+            sm.skitType = @"经典";
+            sm.bgColor = color(@"008CAC,00A9CA");
+            sm.navBarBgColor = color(@"68A7A0");
+            sm.tabBarBgColor = color(@"98BEBB");
+            sm.tabNoSelectColor = color(@"717176");
+            sm.tabSelectedColor = color(@"FFFFFF");
+            sm.cellBgColor = color(@"98BEBB");
+            sm.progressBgColor = color(@"d80000,fb5959");
+            sm.homeContentColor = color(@"ade5ed");
+            sm.homeContentBorderColor = color(@"ade5ed");
+            sm.menuHeadViewColor = color(@"22667b,5fc5e2");
+            sm.signBgColor = color(@"008CAC,00A9CA");
+            sm;
+        }),
+        //经典 13紫色
+        @"13":({
+            UGSkinManagers *sm = [UGSkinManagers new];
+            sm.skitType = @"经典";
+            sm.bgColor = color(@"9800B7,46D8D6");
+            sm.navBarBgColor = color(@"9533DD");
+            sm.tabBarBgColor = color(@"C367D7");
+            sm.tabNoSelectColor = color(@"717176");
+            sm.tabSelectedColor = color(@"FFFFFF");
+            sm.cellBgColor = color(@"C367D7");
+            sm.progressBgColor = color(@"d80000,fb5959");
+            sm.homeContentColor = color(@"ccadee");
+            sm.homeContentBorderColor = color(@"ccadee");
+            sm.menuHeadViewColor = color(@"aa83e8,dbc5ff");
+            sm.signBgColor = color(@"9800B7,46D8D6");
+            sm;
+        }),
+        //经典 14粉红
+        @"14":({
+            UGSkinManagers *sm = [UGSkinManagers new];
+            sm.skitType = @"经典";
+            sm.bgColor = color(@"FFBED4,FEC1D5");
+            sm.navBarBgColor = color(@"EFCFDD");
+            sm.tabBarBgColor = color(@"FEC1D5");
+            sm.tabNoSelectColor = color(@"717176");
+            sm.tabSelectedColor = color(@"FFFFFF");
+            sm.cellBgColor = color(@"FEC1D5");
+            sm.progressBgColor = color(@"d80000,fb5959");
+            sm.homeContentColor = color(@"ffe7ee");
+            sm.homeContentBorderColor = color(@"ffe7ee");
+            sm.menuHeadViewColor = color(@"e499b0,fecfdd");
+            sm.signBgColor = color(@"FFBED4,FEC1D5");
+            sm;
+        }),
+        //经典 15淡蓝
+        @"15":({
+            UGSkinManagers *sm = [UGSkinManagers new];
+            sm.skitType = @"经典";
+            sm.bgColor = color(@"4CAEDC,5DC3EB");
+            sm.navBarBgColor = color(@"66C6EA");
+            sm.tabBarBgColor = color(@"5DC3EB");
+            sm.tabNoSelectColor = color(@"717176");
+            sm.tabSelectedColor = color(@"FFFFFF");
+            sm.cellBgColor = color(@"5DC3EB");
+            sm.progressBgColor = color(@"d80000,fb5959");
+            sm.homeContentColor = color(@"b1e2f3");
+            sm.homeContentBorderColor = color(@"b1e2f3");
+            sm.menuHeadViewColor = color(@"5ebee5,addef3");
+            sm.signBgColor = color(@"4CAEDC,5DC3EB");
+            sm;
+        }),
+        //经典 16淡灰
+        @"16":({
+            UGSkinManagers *sm = [UGSkinManagers new];
+            sm.skitType = @"经典";
+            sm.bgColor = color(@"4300DA,5800EE");
+            sm.navBarBgColor = color(@"6505E6");
+            sm.tabBarBgColor = color(@"A766F7");
+            sm.tabNoSelectColor = color(@"717176");
+            sm.tabSelectedColor = color(@"FFFFFF");
+            sm.cellBgColor = color(@"A766F7");
+            sm.progressBgColor = color(@"d80000,fb5959");
+            sm.homeContentColor = color(@"b680f8");
+            sm.homeContentBorderColor = color(@"b680f8");
+            sm.menuHeadViewColor = color(@"9041fd,c19bf5");
+            sm.signBgColor = color(@"4300DA,5800EE");
+            sm;
+        }),
+        //经典 17淡灰
+        @"17":({
+            UGSkinManagers *sm = [UGSkinManagers new];
+            sm.skitType = @"经典";
+            sm.bgColor = color(@"FECC0A,FE9C08");
+            sm.navBarBgColor = color(@"FFAF06");
+            sm.tabBarBgColor = color(@"FFE066");
+            sm.tabNoSelectColor = color(@"717176");
+            sm.tabSelectedColor = color(@"FFFFFF");
+            sm.cellBgColor = color(@"FFE066");
+            sm.progressBgColor = color(@"d80000,fb5959");
+            sm.homeContentColor = color(@"ffe280");
+            sm.homeContentBorderColor = color(@"ffe280");
+            sm.menuHeadViewColor = color(@"ffc344,ffe1a2");
+            sm.signBgColor = color(@"FECC0A,FE9C08");
+            sm;
+        }),
+        //18钻石蓝
+        @"18":({
+            UGSkinManagers *sm = [UGSkinManagers new];
+            sm.skitType = @"经典";
+            sm.bgColor = color(@"B3B3B3,B3B3B3");
+            sm.navBarBgColor = color(@"C1C1C1");
+            sm.tabBarBgColor = color(@"D9D9D9");
+            sm.tabNoSelectColor = color(@"717176");
+            sm.tabSelectedColor = color(@"FFFFFF");
+            sm.cellBgColor = color(@"D9D9D9");
+            sm.progressBgColor = color(@"d80000,fb5959");
+            sm.homeContentColor = color(@"e0e0e0");
+            sm.homeContentBorderColor = color(@"e0e0e0");
+            sm.menuHeadViewColor = color(@"c1c1c1,ececec");
+            sm.signBgColor = color(@"B3B3B3,B3B3B3");
+            sm;
+        }),
+        //19经典 忧郁蓝
+        @"19":({
+            UGSkinManagers *sm = [UGSkinManagers new];
+            sm.skitType = @"经典";
+            sm.bgColor = color(@"00B2FF,005ED6");
+            sm.navBarBgColor = color(@"4CABFA");
+            sm.tabBarBgColor = color(@"8CB9F4");
+            sm.tabNoSelectColor = color(@"717176");
+            sm.tabSelectedColor = color(@"FFFFFF");
+            sm.cellBgColor = color(@"8CB9F4");
+            sm.progressBgColor = color(@"d80000,fb5959");
+            sm.homeContentColor = color(@"a1ccff");
+            sm.homeContentBorderColor = color(@"a1ccff");
+            sm.menuHeadViewColor = color(@"4ba2fa,64d0ef");
+            sm.signBgColor = color(@"00B2FF,005ED6");
+            sm;
+        }),
+        //石榴红
+        @"石榴红":({
+            UGSkinManagers *sm = [UGSkinManagers new];
+            sm.skitType = @"石榴红";
+            sm.bgColor = color(@"FFFFFF");
+            sm.navBarBgColor = color(@"CC022C");
+            sm.tabBarBgColor = color(@"CC022C");
+            sm.tabNoSelectColor = color(@"FFFFFF");
+            sm.tabSelectedColor = color(@"F1B709");
+            sm.cellBgColor = color(@"FFFFFF");
+            sm.progressBgColor = color(@"FEC434,FE8A23");
+            sm.homeContentColor = color(@"FFFFFF");
+            sm.homeContentBorderColor = color(@"E7E6E6");
+            sm.menuHeadViewColor = color(@"d7213a,f99695");
+            sm.signBgColor = color(@"FFFFFF");
+            sm;
+        }),
+        //新年红
+        @"新年红":({
+            UGSkinManagers *sm = [UGSkinManagers new];
+            sm.skitType = @"新年红";
+            sm.bgColor = color(@"FFFFFF");
+            sm.navBarBgColor = color(@"DE1C27");
+            sm.tabBarBgColor = color(@"DE1C27");
+            sm.tabNoSelectColor = color(@"FFFFFF");
+            sm.tabSelectedColor = color(@"F1B709");
+            sm.cellBgColor = color(@"FFFFFF");
+            sm.progressBgColor = color(@"FEC434,FE8A23");
+            sm.homeContentColor = color(@"FFFFFF");
+            sm.homeContentBorderColor = color(@"E7E6E6");
+            sm.menuHeadViewColor = color(@"e63534,f99695");
+            sm.signBgColor = color(@"FFFFFF");
+            sm;
+        }),
+        //六合资料
+        @"六合资料":({
+            UGSkinManagers *sm = [UGSkinManagers new];
+            sm.skitType = @"六合资料";
+            sm.bgColor = color(@"7F9493,5389B3");
+            sm.navBarBgColor = color(@"609AC5");
+            sm.tabBarBgColor = color(@"C1CBC9");
+            sm.tabNoSelectColor = color(@"717176");
+            sm.tabSelectedColor = color(@"3D80E7");
+            sm.cellBgColor = color(@"C1CBC9");
+            sm.progressBgColor = color(@"d80000,fb5959");
+            sm.homeContentColor = color(@"b2cde0");
+            sm.homeContentBorderColor = color(@"b2cde0");
+            sm.menuHeadViewColor = color(@"5f9bc6,fb5959");
+            sm.signBgColor = color(@"7F9493,5389B3");
+            sm;
+        }),
+        };
+        
+        __currentSkin1 = __lastSkin1 = __dict[@"1"];
+    });
+    return __dict;
+}
+
+
+#pragma mark - 对外开放的函数
+
++ (UGSkinManagers *)skinWithSysConf {
+    NSDictionary *dict = @{@"0":SysConf.mobileTemplateBackground,
+                           @"2":@"新年红",
+                           @"3":@"石榴红",
+                           @"4":@"六合资料",
+    };
+    NSString *skitType = dict[SysConf.mobileTemplateCategory];
+    return [UGSkinManagers allSkin][skitType];
+}
+
+
++ (UGSkinManagers *)currentSkin {
+    if (!__currentSkin1) {
+        [UGSkinManagers allSkin];
+    }
+    return __currentSkin1;
+}
+
+- (void)useSkin {
+    __currentSkin1 = self;
+    // 遍历对象执行换肤block
+    for (NSObject *obj in __viewPointers.allObjects) {
+        for (void (^block)(void) in ((NSDictionary *)obj.cc_userInfo[@"SkinBlocks"]).allValues) {
+            block();
         }
     }
+    __lastSkin1 = self;
+    [[NSNotificationCenter defaultCenter] postNotificationName:UGNotificationWithSkinSuccess object:nil];
 }
-
--(void)navigationBarBgColor:(UGNavigationController *)nav  BgColor:(NSString *)skitType{
-    
-}
-
-
--(void)navigationBar:(UGNavigationController *)nav bgColor:(UIColor *)bgColor{
-    nav.navigationBar.backgroundColor = bgColor;
-    [nav.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-    nav.navigationBar.shadowImage = [UIImage new];
-}
-
-
--(UIColor *)tabSelectColor:(NSString *)skitType{
-    
-    UIColor *bgColor ;
-    
- 
-   if ([skitType isEqualToString:@"石榴红"]) {//石榴红
-         bgColor = [UIColor yellowColor];
-    }
-    else  if ([skitType isEqualToString:@"新年红"]) {//新年红
-        bgColor = [UIColor yellowColor];
-    }
-    else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
-        bgColor = kUIColorFromRGB(0x3D80E7);
-    }
-    else  {//
-        bgColor = [UIColor whiteColor];
-    }
-    return bgColor;
-    
-}
-
--(UIColor *)tabNOSelectColor:(NSString *)skitType{
-    
-    UIColor *bgColor ;
-    
-    
-    if ([skitType isEqualToString:@"石榴红"]) {//石榴红
-       bgColor = [UIColor whiteColor];
-    }
-    else  if ([skitType isEqualToString:@"新年红"]) {//新年红
-        bgColor = [UIColor whiteColor];
-    }
-    else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
-        bgColor = [UIColor grayColor];
-    }
-    else  {//
-        bgColor = [UIColor grayColor];
-    }
-    return bgColor;
-    
-}
-
-
--(NSString *)conversionSkitType{
-    
-//    mobileTemplateCategory = “2”,==>新年红
-//    mobileTemplateCategory = “3”,==>石榴红
-//    mobileTemplateCategory = “0”,==>经典
-    
-//    mobileTemplateBackground == “19”
-    NSString *skitType = @"";
-    
-     UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
-    if ([config.mobileTemplateCategory isEqualToString:@"0"]) {
-        skitType = config.mobileTemplateBackground;
-    }
-    else if([config.mobileTemplateCategory isEqualToString:@"2"]) {
-        skitType = @"新年红";
-    }
-    else if([config.mobileTemplateCategory isEqualToString:@"3"]) {
-        skitType = @"石榴红";
-    }
-    else if([config.mobileTemplateCategory isEqualToString:@"4"]) {
-        skitType = @"六合资料";
-//        skitType = config.mobileTemplateBackground;
-    }
-    else{
-        skitType = @"新年红";
-    }
-    return skitType;
-}
-
--(NSString *)skitType{
-
-    NSString *skitType = @"";
-    
-    UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
-    if ([config.mobileTemplateCategory isEqualToString:@"0"]) {
-        skitType = @"经典";
-    }
-    else if([config.mobileTemplateCategory isEqualToString:@"2"]) {
-        skitType = @"新年红";
-    }
-    else if([config.mobileTemplateCategory isEqualToString:@"3"]) {
-        skitType = @"石榴红";
-    }
-    else if([config.mobileTemplateCategory isEqualToString:@"4"]) {
-        skitType = @"六合资料";
-    }
-    else{
-        skitType = @"新年红";
-    }
-    
-    return skitType;
-}
-
--(void)setNavbarAndTabarSkin{
-     [self resetNavbarAndTabBarBgColor:[self conversionSkitType]];
-}
-
--(void)setSkin {
-    [self setNavbarAndTabarSkin];
-    SANotificationEventPost(UGNotificationWithSkinSuccess, nil);
-}
-
--(UIColor *)setTabbgColor{
-    return [self tabbarbgColor:[self conversionSkitType]];
-}
-
--(UIColor *)setNavbgColor{
-    return [self navbarbgColor:[self conversionSkitType]];
-}
-
--(UIColor *)setbgColor{
-    return [self bgColor:[self conversionSkitType]];
-}
-
--(UIColor *)setSignbgColor{
-    return [self signbgColor:[self conversionSkitType]];
-}
-
--(UIColor *)settabNOSelectColor{
-    return [self tabNOSelectColor:[self conversionSkitType]];
-}
-
--(UIColor *)settabSelectColor{
-    return [self tabSelectColor:[self conversionSkitType]];
-}
-
--(UIColor *)setCellbgColor{
-    return [self cellbgColor:[self conversionSkitType]];
-}
-
--(UIColor *)sethomeContentColor{
-    return [self homeContentColor:[self conversionSkitType]];
-}
-
--(UIColor *)sethomeContentBorderColor{
-    return [self homeContentBorderColor:[self conversionSkitType]];
-}
-
--(NSString *)setNavbgStringColor{
-    return [self navbarbgColorString:[self conversionSkitType]];
-}
-
--(UIColor *)setMineProgressViewColor{
-    
-     return [self mineProgressViewColor:[self conversionSkitType]];
-}
-
--(UIColor *)setMenuHeadViewColor{
-    
-    return [self menuHeadViewColor:[self conversionSkitType]];
-}
-
--(NSString *)setChatNavbgStringColor{
-    
-    NSString *str = [self navbarbgColorString:[self conversionSkitType]];
-    //先以16为参数告诉strtoul字符串参数表示16进制数字，然后使用0x%X转为数字类型 16进制转10进制
-//    unsigned long red = strtoul([str UTF8String],0,16);
-    
-    NSString * subString2 = [str substringFromIndex:2];
-    NSLog(@"%@", subString2);
-    return subString2;
-}
-@end
-
-@implementation UGSkinManagers (ThemeColor)
-
-static NSArray<UIColor *> *themeColors = nil;
 
 + (UIColor *)randomThemeColor {
-    if (!themeColors) {
+    #define UIColorTheme1 UGRGBColor(239, 83, 98) // Grapefruit
+    #define UIColorTheme2 UGRGBColor(254, 109, 75) // Bittersweet
+    #define UIColorTheme3 UGRGBColor(255, 207, 71) // Sunflower
+    #define UIColorTheme4 UGRGBColor(159, 214, 97) // Grass
+    #define UIColorTheme5 UGRGBColor(63, 208, 173) // Mint
+    #define UIColorTheme6 UGRGBColor(49, 189, 243) // Aqua
+    #define UIColorTheme7 UGRGBColor(90, 154, 239) // Blue Jeans
+    #define UIColorTheme8 UGRGBColor(172, 143, 239) // Lavender
+    #define UIColorTheme9 UGRGBColor(238, 133, 193) // Pink Rose
+    #define UIColorTheme10 UGRGBColor(39, 192, 243) // Dark
+    
+    static NSArray<UIColor *> *themeColors = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
         themeColors = @[
-                        UIColorTheme1,
-                        UIColorTheme2,
-                        UIColorTheme3,
-                        UIColorTheme4,
-                        UIColorTheme5,
-                        UIColorTheme6,
-                        UIColorTheme7,
-                        UIColorTheme8,
-                        UIColorTheme9,
-                        UIColorTheme10];
-    }
+        UIColorTheme1,
+        UIColorTheme2,
+        UIColorTheme3,
+        UIColorTheme4,
+        UIColorTheme5,
+        UIColorTheme6,
+        UIColorTheme7,
+        UIColorTheme8,
+        UIColorTheme9,
+        UIColorTheme10];
+    });
     return themeColors[arc4random() % themeColors.count];
+}
+
++ (UGSkinManagers *)randomSkin {
+    static NSInteger __i = 0;
+    NSInteger cnt = [UGSkinManagers allSkin].count;
+    return [UGSkinManagers allSkin].allValues[++__i%cnt];
 }
 
 @end

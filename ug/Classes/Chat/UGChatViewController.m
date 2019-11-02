@@ -20,13 +20,13 @@
 - (void)skin {
      if([self.url containsString:@"logintoken"]) {
          self.url = ({
-             NSString *url = _NSString(@"%@%@%@&loginsessid=%@&color=%@&back=hide&from=app", baseServerUrl, newChatRoomUrl, [UGUserModel currentUser].token, [UGUserModel currentUser].sessid, [[UGSkinManagers shareInstance] setChatNavbgStringColor]);
+             NSString *url = _NSString(@"%@%@%@&loginsessid=%@&color=%@&back=hide&from=app", baseServerUrl, newChatRoomUrl, [UGUserModel currentUser].token, [UGUserModel currentUser].sessid, Skin1.navBarBgColor.hexString);
              if (_gameId.length)
                  url = [url stringByAppendingFormat:@"&id=%@", self.gameId];
              url;
          });
      } else {
-        self.url = _NSString(@"%@%@%@&color=%@&back=hide&from=app", baseServerUrl, chatRoomUrl,SysConf.chatRoomName,[[UGSkinManagers shareInstance] setChatNavbgStringColor]);
+        self.url = _NSString(@"%@%@%@&color=%@&back=hide&from=app", baseServerUrl, chatRoomUrl,SysConf.chatRoomName,Skin1.navBarBgColor.hexString);
      }
 }
 
@@ -42,7 +42,7 @@
     if ([CMCommon stringIsNull:self.url]) {
         NSLog(@"url = %@",self.url);
         self.url = ({
-               NSString *url = _NSString(@"%@%@%@&loginsessid=%@&color=%@&back=hide&from=app", baseServerUrl, newChatRoomUrl, [UGUserModel currentUser].token, [UGUserModel currentUser].sessid, [[UGSkinManagers shareInstance] setChatNavbgStringColor]);
+               NSString *url = _NSString(@"%@%@%@&loginsessid=%@&color=%@&back=hide&from=app", baseServerUrl, newChatRoomUrl, [UGUserModel currentUser].token, [UGUserModel currentUser].sessid, Skin1.navBarBgColor.hexString);
                if (_gameId.length)
                    url = [url stringByAppendingFormat:@"&id=%@", self.gameId];
             
@@ -106,13 +106,13 @@
     if (OBJOnceToken(self)) {
         _statusBarBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APP.Width, APP.StatusBarHeight)];
     }
-    _statusBarBgView.backgroundColor = [UGSkinManagers.shareInstance setNavbgColor];
+    _statusBarBgView.backgroundColor = Skin1.navBarBgColor;
     [self.view addSubview:_statusBarBgView];
     
     if ([self.title isEqualToString:@"聊天室"] && !_jsonStr.length) {
         if (OBJOnceToken(UserI)) {
             [self.tgWebView stopLoading];
-            self.url = _NSString(@"%@%@%@&loginsessid=%@&color=%@&back=hide&from=app", baseServerUrl, newChatRoomUrl, [UGUserModel currentUser].token, [UGUserModel currentUser].sessid, [[UGSkinManagers shareInstance] setChatNavbgStringColor]);
+            self.url = _NSString(@"%@%@%@&loginsessid=%@&color=%@&back=hide&from=app", baseServerUrl, newChatRoomUrl, [UGUserModel currentUser].token, [UGUserModel currentUser].sessid, Skin1.navBarBgColor.hexString);
             [self.tgWebView reloadFromOrigin];
         }
     }

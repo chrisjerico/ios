@@ -22,10 +22,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     FastSubViewCode(self.view);
-    [subButton(@"立即绑定") setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
+    [subButton(@"立即绑定") setBackgroundColor: Skin1.navBarBgColor];
 //    subButton(@"asdfas") sd_setImageWithURL:<#(nullable NSURL *)#> forState:<#(UIControlState)#>
 //       IBButton  *button = [self viewWithTagString:@"WebView"];
-//    [_myButton setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
+//    [_myButton setBackgroundColor: Skin1.navBarBgColor];
 }
 
 

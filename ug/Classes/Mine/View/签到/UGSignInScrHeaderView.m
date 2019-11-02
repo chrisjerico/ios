@@ -22,7 +22,7 @@
     if (self) {
         self = [[NSBundle mainBundle] loadNibNamed:@"UGSignInScrHeaderView" owner:self options:0].firstObject;
         self.frame = frame;
-        [self setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+        [self setBackgroundColor: Skin1.bgColor];
        
     }
     return self;

@@ -25,7 +25,7 @@ static int size = 20;
 static NSString *transferLogsCellId = @"UGBalanceTransferLogsCell";
 @implementation UGBalanceConversionRecordController
 -(void)skin{
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    [self.view setBackgroundColor: Skin1.bgColor];
     
 }
 - (void)viewDidLoad {
@@ -33,7 +33,7 @@ static NSString *transferLogsCellId = @"UGBalanceTransferLogsCell";
     
     self.pageSize = size;
     self.pageNumber = page;
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    [self.view setBackgroundColor: Skin1.bgColor];
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         
         [self skin];

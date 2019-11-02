@@ -55,7 +55,7 @@ static NSString *integralCellid = @"UGConvertCollectionViewCell";
     self.view.backgroundColor = [UIColor whiteColor];
     self.convertView.layer.cornerRadius = 3;
     self.convertView.layer.masksToBounds = YES;
-    self.convertView.layer.borderColor = UGBackgroundColor.CGColor;
+    self.convertView.layer.borderColor = Skin1.bgColor.CGColor;
     self.convertView.layer.borderWidth = 1;
     self.submitButton.layer.cornerRadius = 3;
     self.submitButton.layer.masksToBounds = YES;
@@ -64,7 +64,7 @@ static NSString *integralCellid = @"UGConvertCollectionViewCell";
     
 
     
-        [self getSystemConfig];
+    [self getSystemConfig];
 }
 
 - (IBAction)submitButton:(id)sender {
@@ -247,7 +247,7 @@ static NSString *integralCellid = @"UGConvertCollectionViewCell";
                 [self.submitButton setEnabled:YES];
                 self.submitButton.alpha = 1;
                 [self.submitButton setTitle:@"确认兑换" forState:UIControlStateNormal];
-                [self.submitButton setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
+                [self.submitButton setBackgroundColor:Skin1.navBarBgColor];
             }
             
             NSString *str1 = [NSString stringWithFormat:@"%@%@:1元人民币",config.missionBili,config.missionName];

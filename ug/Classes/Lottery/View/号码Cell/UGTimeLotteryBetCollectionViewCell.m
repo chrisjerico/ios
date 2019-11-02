@@ -31,8 +31,8 @@
    
     self.titleLabel.text = [NSString stringWithFormat:@"%@  %@",item.name,[item.odds removeFloatAllZero]];
     if (item.select) {
-        self.titleLabel.textColor = UGNavColor;
-        self.layer.borderColor = UGNavColor.CGColor;
+        self.titleLabel.textColor = Skin1.navBarBgColor;
+        self.layer.borderColor = Skin1.navBarBgColor.CGColor;
         self.layer.borderWidth = 1;
     }else {
         self.titleLabel.textColor = [UIColor blackColor];

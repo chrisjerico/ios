@@ -33,7 +33,7 @@
         self.avaterImageView.layer.cornerRadius = self.avaterImageView.height / 2 ;
         self.avaterImageView.layer.masksToBounds = YES;
         self.avaterImageView.userInteractionEnabled = YES;
-        [self setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
+        [self setBackgroundColor: Skin1.navBarBgColor];
 
         [self setupUserInfo];
         
@@ -69,8 +69,8 @@
     [self.waveBgView addSubview:self.waveView];
     [self.waveBgView addSubview:self.waveView];
     self.waveView.backgroundColor = [UIColor clearColor];
-    self.waveBottomView.backgroundColor =  [[UGSkinManagers shareInstance] setNavbgColor];
-    self.waveView.realWaveColor =  [[UGSkinManagers shareInstance] setNavbgColor];
+    self.waveBottomView.backgroundColor =  Skin1.navBarBgColor;
+    self.waveView.realWaveColor =  Skin1.navBarBgColor;
     self.waveView.maskWaveColor = [UIColor clearColor];
     self.waveView.waveHeight = 10;
     [self.waveView startWaveAnimation];

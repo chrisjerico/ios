@@ -54,10 +54,10 @@
 
 -(void)skin{
     
-    [_yyBgView setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
+    [_yyBgView setBackgroundColor:Skin1.bgColor];
     
-    self.waveBotomView.backgroundColor =  [[UGSkinManagers shareInstance] setNavbgColor];
-    self.waveView.realWaveColor =  [[UGSkinManagers shareInstance] setNavbgColor];
+    self.waveBotomView.backgroundColor =  Skin1.navBarBgColor;
+    self.waveView.realWaveColor =  Skin1.navBarBgColor;
     [self.view setBackgroundColor: [UIColor whiteColor]];
 }
 - (void)viewDidLoad {
@@ -73,8 +73,8 @@
     [self.waveBgView addSubview:self.waveView];
     self.waveView.backgroundColor = [UIColor clearColor];
 
-    self.waveBotomView.backgroundColor =  [[UGSkinManagers shareInstance] setbgColor];
-    self.waveView.realWaveColor =  [[UGSkinManagers shareInstance] setbgColor];
+    self.waveBotomView.backgroundColor =  Skin1.bgColor;
+    self.waveView.realWaveColor =  Skin1.bgColor;
     self.waveView.maskWaveColor = [UIColor clearColor];
     self.waveView.waveHeight = 10;
     [self.waveView startWaveAnimation];
@@ -84,16 +84,16 @@
     self.animatedImageView.animatedImage = bgAnimateImage;
     self.animatedImageView.hidden = YES;
     
-    NSString *skitType = [[UGSkinManagers shareInstance] skitType];
-    if ([skitType isEqualToString:@"新年红"]||[skitType isEqualToString:@"石榴红"]) {
-        [_yyBgView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
-        self.waveBotomView.backgroundColor =  [[UGSkinManagers shareInstance] setNavbgColor];
-        self.waveView.realWaveColor =  [[UGSkinManagers shareInstance] setNavbgColor];
+    NSString *skitType = Skin1.skitType;
+    if ([skitType isEqualToString:@"新年红"] || [skitType isEqualToString:@"石榴红"]) {
+        [_yyBgView setBackgroundColor:Skin1.navBarBgColor];
+        self.waveBotomView.backgroundColor =  Skin1.navBarBgColor;
+        self.waveView.realWaveColor =  Skin1.navBarBgColor;
     }
     else  {
-         [_yyBgView setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
-        self.waveBotomView.backgroundColor =  [[UGSkinManagers shareInstance] setbgColor];
-        self.waveView.realWaveColor =  [[UGSkinManagers shareInstance] setbgColor];
+         [_yyBgView setBackgroundColor:Skin1.bgColor];
+        self.waveBotomView.backgroundColor =  Skin1.bgColor;
+        self.waveView.realWaveColor =  Skin1.bgColor;
     }
    
     

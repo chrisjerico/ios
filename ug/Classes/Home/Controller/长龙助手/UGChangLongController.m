@@ -24,7 +24,7 @@
 @implementation UGChangLongController
 
 - (void)skin {
-    self.view.backgroundColor = UGBackgroundColor;
+    self.view.backgroundColor = Skin1.bgColor;
     [self buildSegment];
     [self getAllNextIssueData];
 }
@@ -35,7 +35,7 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"长龙助手";
-    self.view.backgroundColor = UGBackgroundColor;
+    self.view.backgroundColor = Skin1.bgColor;
     
     SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
         STButton *button = (STButton *)self.rightItem1.customView;
@@ -77,11 +77,11 @@
     self.slideSwitchView.tabItemNormalColor = [UIColor grayColor];
     self.slideSwitchView.tabItemNormalFont = 13;
     //设置tab 被选中的颜色(可选)
-    self.slideSwitchView.tabItemSelectedColor = UGNavColor;
+    self.slideSwitchView.tabItemSelectedColor = Skin1.navBarBgColor;
     //设置tab 背景颜色(可选)
     self.slideSwitchView.tabItemNormalBackgroundColor = [UIColor whiteColor];
     //设置tab 被选中的标识的颜色(可选)
-    self.slideSwitchView.tabItemSelectionIndicatorColor = UGNavColor;
+    self.slideSwitchView.tabItemSelectionIndicatorColor = Skin1.navBarBgColor;
     [self.view addSubview:self.slideSwitchView];
 }
 
@@ -140,11 +140,8 @@
 
 - (void )getAllNextIssueData {
     [CMNetwork getAllNextIssueWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-       
         [CMResult processWithResult:model success:^{
-            
             self.lotteryGamesArray = model.data;
-            
         } failure:^(id msg) {
             [SVProgressHUD dismiss];
         }];

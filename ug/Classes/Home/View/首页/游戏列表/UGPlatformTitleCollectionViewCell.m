@@ -20,7 +20,7 @@
     [super awakeFromNib];
     // Initialization code
 
-    [self setBackgroundColor: [[UGSkinManagers shareInstance] sethomeContentColor]];
+    [self setBackgroundColor: Skin1.homeContentColor];
 }
 
 - (void)setItem:(GameCategoryModel *)item {

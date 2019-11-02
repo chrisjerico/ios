@@ -39,3 +39,18 @@
 }
 
 @end
+
+
+@implementation NSValue (CGColorValue)
+
++ (NSValue *)valueWithCGColor:(CGColorRef)color {
+    return [NSValue valueWithBytes:&color objCType:@encode(CGColorRef)];
+}
+
+- (CGColorRef)CGColorValue {
+    CGColorRef color;
+    [self getValue:&color];
+    return color;
+}
+
+@end

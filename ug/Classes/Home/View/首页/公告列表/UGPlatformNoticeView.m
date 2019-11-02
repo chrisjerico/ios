@@ -75,7 +75,7 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
 
 
 - (void)show {
-    [self.bgView setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
+    [self.bgView setBackgroundColor: Skin1.navBarBgColor];
     
     UIWindow* window = UIApplication.sharedApplication.keyWindow;
     UIView* maskView = [[UIView alloc] initWithFrame:window.bounds];
@@ -150,7 +150,7 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
     UIView *topLineView = [cell viewWithTagString:@"topLineView"];
     if (!topLineView) {
         topLineView = [UIView new];
-        topLineView.backgroundColor = [[UGSkinManagers shareInstance] setNavbgColor];
+        topLineView.backgroundColor = Skin1.navBarBgColor;
         topLineView.tagString = @"topLineView";
         [cell addSubview:topLineView];
         
@@ -162,7 +162,7 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
     UIView *bottomLineView = [cell viewWithTagString:@"bottomLineView"];
     if (!bottomLineView) {
         bottomLineView = [UIView new];
-        bottomLineView.backgroundColor = [[UGSkinManagers shareInstance] setNavbgColor];
+        bottomLineView.backgroundColor = Skin1.navBarBgColor;
         bottomLineView.tagString = @"bottomLineView";
         [cell addSubview:bottomLineView];
         

@@ -82,16 +82,16 @@
 @implementation UGMineSkinViewController
 
 - (void)skin {
-    [self.userInfoView setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
+    [self.userInfoView setBackgroundColor: Skin1.navBarBgColor];
     
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    [self.view setBackgroundColor: Skin1.bgColor];
     
-    [self.myCollectionView setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
-    _progressLayer.strokeColor = [[UGSkinManagers shareInstance] setMineProgressViewColor].CGColor;
+    [self.myCollectionView setBackgroundColor: Skin1.bgColor];
+    _progressLayer.strokeColor = Skin1.progressBgColor.CGColor;
      [self.progressView.layer addSublayer:self.progressLayer];
     
 
-    skitType = [[UGSkinManagers shareInstance] skitType];
+    skitType = Skin1.skitType;
     
     if ([skitType isEqualToString:@"经典"]) {
         self.topupView.hidden = YES;
@@ -175,11 +175,11 @@
     
     
     //设置皮肤
-    [self.view setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
-    [self.userInfoView setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
+    [self.view setBackgroundColor:Skin1.bgColor];
+    [self.userInfoView setBackgroundColor: Skin1.navBarBgColor];
     
     
-    skitType = [[UGSkinManagers shareInstance] skitType];
+    skitType = Skin1.skitType;
     
     if ([skitType isEqualToString:@"经典"] || [skitType isEqualToString:@"六合资料"]) {
         self.topupView.hidden = YES;
@@ -398,7 +398,7 @@ BOOL isOk = NO;
 
 - (void)initCollectionView {
     
-       skitType = [[UGSkinManagers shareInstance] skitType];
+       skitType = Skin1.skitType;
     
 //    float itemW = (UGScreenW - 8) / 3;
     UICollectionViewFlowLayout *layout = ({
@@ -426,7 +426,7 @@ BOOL isOk = NO;
         
     });
 
-        self.myCollectionView.backgroundColor = [[UGSkinManagers shareInstance] setbgColor];
+        self.myCollectionView.backgroundColor = Skin1.bgColor;
         self.myCollectionView.dataSource = self;
         self.myCollectionView.delegate = self;
         [self.myCollectionView registerNib:[UINib nibWithNibName:@"UGMineMenuCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UGMineMenuCollectionViewCell"];
@@ -449,7 +449,7 @@ BOOL isOk = NO;
 //collectionView有几个section
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     int sections = 1;
-    skitType = [[UGSkinManagers shareInstance] skitType];
+    skitType = Skin1.skitType;
     if ([skitType isEqualToString:@"新年红"]) {
         sections = (int) self.menuSecondNameArray.count;
     }
@@ -468,7 +468,7 @@ BOOL isOk = NO;
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
     int rows = 1;
-    skitType = [[UGSkinManagers shareInstance] skitType];
+    skitType = Skin1.skitType;
     if ([skitType isEqualToString:@"新年红"]) {
        UGMineSkinModel *dic = [self.menuSecondNameArray objectAtIndex:section];
         rows = (int)  dic.dataArray.count;
@@ -487,7 +487,7 @@ BOOL isOk = NO;
 //每个cell的具体内容
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-//    NSString *skitType = [[UGSkinManagers shareInstance] skitType];
+//    NSString *skitType = Skin1.skitType;
     if ([skitType isEqualToString:@"新年红"]) {
         UGMineSkinCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UGMineSkinCollectionViewCell" forIndexPath:indexPath];
         
@@ -820,7 +820,7 @@ BOOL isOk = NO;
     if (!_progressLayer) {
         _progressLayer = [self defaultLayer];
         _progressLayer.lineWidth = self.progressView.height;
-        _progressLayer.strokeColor = [[UGSkinManagers shareInstance] setMineProgressViewColor].CGColor;
+        _progressLayer.strokeColor = Skin1.progressBgColor.CGColor;
     }
     return _progressLayer;
 }

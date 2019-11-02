@@ -266,7 +266,7 @@
     
     self.bg_label.layer.cornerRadius = 5;
     self.bg_label.layer.masksToBounds = YES;
-    [self.bg_label setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
+    [self.bg_label setBackgroundColor:Skin1.navBarBgColor];
     //==================================================================
     [self.blank_button  mas_remakeConstraints:^(MASConstraintMaker *make)
      {
@@ -350,7 +350,7 @@
         label.textAlignment = NSTextAlignmentLeft;
         //        label.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
         label.font = [UIFont boldSystemFontOfSize:14];
-        label.textColor = [[UGSkinManagers shareInstance] setNavbgColor];
+        label.textColor = Skin1.navBarBgColor;
         label.backgroundColor = [UIColor whiteColor];
 //        label.backgroundColor = [UIColor redColor];
         label.numberOfLines = 0;
@@ -367,7 +367,7 @@
         label.textAlignment = NSTextAlignmentLeft;
         //        label.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
         label.font = [UIFont boldSystemFontOfSize:14];
-        label.textColor = [[UGSkinManagers shareInstance] setNavbgColor];
+        label.textColor = Skin1.navBarBgColor;
         label.backgroundColor = [UIColor whiteColor];
 //        label.backgroundColor = [UIColor yellowColor];
 
@@ -423,7 +423,7 @@
         //        label.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
         label.font = [UIFont systemFontOfSize:14];
         label.textColor = [UIColor whiteColor];
-        label.backgroundColor = [[UGSkinManagers shareInstance] setNavbgColor];
+        label.backgroundColor = Skin1.navBarBgColor;
         label.numberOfLines = 0;
         label.text = @"";
         [self.mUIScrollView addSubview:label];
@@ -439,7 +439,7 @@
         // 按钮的正常状态
         [button setTitle:@"请选择银行" forState:UIControlStateNormal];
         // 设置按钮的背景色
-        button.backgroundColor = [[UGSkinManagers shareInstance] setNavbgColor];
+        button.backgroundColor = Skin1.navBarBgColor;
         
         // 设置正常状态下按钮文字的颜色，如果不写其他状态，默认都是用这个文字的颜色
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -461,7 +461,7 @@
         //设置边框线的宽
         [layer setBorderWidth:1];
         //设置边框线的颜色
-        [layer setBorderColor:[[UGSkinManagers shareInstance] setNavbgColor].CGColor];
+        [layer setBorderColor:Skin1.navBarBgColor.CGColor];
         
         
         [self.mUIScrollView addSubview:button ];
@@ -475,7 +475,7 @@
         // 按钮的正常状态
         [button setTitle:@"提交" forState:UIControlStateNormal];
         // 设置按钮的背景色
-        button.backgroundColor = [[UGSkinManagers shareInstance] setNavbgColor];
+        button.backgroundColor = Skin1.navBarBgColor;
         
         // 设置正常状态下按钮文字的颜色，如果不写其他状态，默认都是用这个文字的颜色
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -499,7 +499,7 @@
         //设置边框线的宽
         [layer setBorderWidth:1];
         //设置边框线的颜色
-        [layer setBorderColor:[[UGSkinManagers shareInstance] setNavbgColor].CGColor];
+        [layer setBorderColor:Skin1.navBarBgColor.CGColor];
         
         
         [self.mUIScrollView addSubview:button ];

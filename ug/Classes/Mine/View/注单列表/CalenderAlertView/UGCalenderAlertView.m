@@ -29,7 +29,7 @@
         _calendar.allowsMultipleSelection = false;
         _calendar.scrollEnabled = true;
         _calendar.appearance.headerDateFormat = @"yyyy年M月";
-        _calendar.appearance.selectionColor = [[UGSkinManagers shareInstance] setNavbgColor];
+        _calendar.appearance.selectionColor = Skin1.navBarBgColor;
         _calendar.appearance.headerTitleColor = [UIColor blackColor];
         _calendar.appearance.headerMinimumDissolvedAlpha = 0;
         _calendar.appearance.caseOptions = FSCalendarCaseOptionsHeaderUsesUpperCase;

@@ -142,40 +142,46 @@ static UGTabbarController *_tabBarVC = nil;
     
     //    版本更新
     [[UGAppVersionManager shareInstance] updateVersionApi:false];
+    [self setTabbarStyle];
 }
 
 - (void)setTabbarStyle {
-    // 设置 TabBarItemTestAttributes 的颜色。
-    [self setUpTabBarItemTextAttributes];
+    [self xw_addNotificationForName:UGNotificationWithSkinSuccess block:^(NSNotification * _Nonnull noti) {
+        [TabBarController1.tabBar setBackgroundImage:[UIImage imageWithColor:Skin1.tabBarBgColor]];
+        [[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:Skin1.tabBarBgColor]];
+        [[UINavigationBar appearance] setBackgroundImage:[UIImage imageWithColor:Skin1.navBarBgColor] forBarMetrics:UIBarMetricsDefault];
+        
+        for (UGNavigationController *nav in TabBarController1.viewControllers) {
+            [nav.navigationBar setBackgroundImage:[UIImage imageWithColor:Skin1.navBarBgColor] forBarMetrics:UIBarMetricsDefault];
+        }
+    }];
     
-  
-    [[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:[[UGSkinManagers shareInstance] setTabbgColor]]];
-    //去除 TabBar 自带的顶部阴影
-    //    [[UITabBar appearance] setShadowImage:[[UIImage alloc] init]];
-    //设置导航控制器颜色
-    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageWithColor:[[UGSkinManagers shareInstance] setNavbgColor]] forBarMetrics:UIBarMetricsDefault];
+    [self.tabBar setSelectedImageTintColor: Skin1.tabSelectedColor];
+    [self.tabBar setUnselectedItemTintColor:Skin1.tabNoSelectColor];
+    [[UITabBar appearance] setSelectedImageTintColor: Skin1.tabSelectedColor];
+    [[UITabBar appearance] setUnselectedItemTintColor:Skin1.tabNoSelectColor];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:Skin1.tabNoSelectColor} forState:UIControlStateNormal];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:Skin1.tabSelectedColor} forState:UIControlStateSelected];
+    for (UIBarItem *item in self.tabBar.items) {
+        [item setTitleTextAttributes:@{NSForegroundColorAttributeName:Skin1.tabNoSelectColor} forState:UIControlStateNormal];
+        [item setTitleTextAttributes:@{NSForegroundColorAttributeName:Skin1.tabSelectedColor} forState:UIControlStateSelected];
+    }
     
-    
-    [[UITabBar appearance] setSelectedImageTintColor: [[UGSkinManagers shareInstance] settabSelectColor]];
-    
-    [[UITabBar appearance] setUnselectedItemTintColor: [[UGSkinManagers shareInstance] settabNOSelectColor]];
+    for (UGNavigationController *nav in TabBarController1.viewControllers) {
+        UIView *stateView = [nav.navigationBar viewWithTagString:@"状态栏背景View"];
+        if (!stateView) {
+            stateView = [[UIView alloc] initWithFrame:CGRectMake(0, -k_Height_StatusBar, UGScreenW, k_Height_StatusBar)];
+            stateView.tagString = @"状态栏背景View";
+            [nav.navigationBar addSubview:stateView];
+            stateView.backgroundColor = Skin1.navBarBgColor;
+        }
+    }
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleDefault;
     //UIStatusBarStyleDefault = 0 黑色文字，浅色背景时使用
 //   return UIStatusBarStyleLightContent = 1 //白色文字，深色背景时使用
-}
-
-
-#pragma mark - Private Methods
-
-/**
- *  tabBarItem 的选中和不选中文字属性
- */
-- (void)setUpTabBarItemTextAttributes {
-    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[[UGSkinManagers shareInstance] settabNOSelectColor]} forState:UIControlStateNormal];
-    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[[UGSkinManagers shareInstance] settabSelectColor]} forState:UIControlStateSelected];
 }
 
 
@@ -195,7 +201,7 @@ static UGTabbarController *_tabBarVC = nil;
             
             [self setTabbarStyle];
             
-            [[UGSkinManagers shareInstance] setSkin];
+            [[UGSkinManagers skinWithSysConf] useSkin];
             
             NSArray<UGmobileMenu *> *menus = [[UGmobileMenu arrayOfModelsFromDictionaries:SysConf.mobileMenu error:nil] sortedArrayUsingComparator:^NSComparisonResult(UGmobileMenu *obj1, UGmobileMenu *obj2) {
                 return obj1.sort > obj2.sort;

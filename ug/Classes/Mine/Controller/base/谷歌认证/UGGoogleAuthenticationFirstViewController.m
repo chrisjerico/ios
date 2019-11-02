@@ -64,7 +64,7 @@
            //没绑定
            _myTitle.text = @"您将通过谷歌身份验证器免费获得验证码，增强您的账号资金安全。如果您的手机已经安装谷歌验证器，请点击下一步进行绑定，如果没有请根据您的设备选择下方链接进行安装。";
              [_appleButton setHidden:NO];
-             [self.myButton setBackgroundColor:UGNavColor];
+             [self.myButton setBackgroundColor:Skin1.navBarBgColor];
              [_myButton setTitle:@"我已安装，下一步" forState:UIControlStateNormal];
        }
 }

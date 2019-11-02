@@ -24,8 +24,8 @@
 @implementation UGBankCardInfoController
 -(void)skin{
 	self.infoView.layer.borderColor = [[UIColor grayColor] CGColor];
-	[self.infoView setBackgroundColor: [[UGSkinManagers shareInstance] sethomeContentColor]];
-	[self.view setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
+	[self.infoView setBackgroundColor: Skin1.homeContentColor];
+	[self.view setBackgroundColor:Skin1.bgColor];
 }
 - (void)viewDidLoad {
 	[super viewDidLoad];
@@ -39,8 +39,8 @@
 	self.infoView.layer.masksToBounds = YES;
 	self.infoView.layer.borderWidth = 1;
 	self.infoView.layer.borderColor = [[UIColor grayColor] CGColor];
-	[self.infoView setBackgroundColor: [[UGSkinManagers shareInstance] sethomeContentColor]];
-	[self.view setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
+	[self.infoView setBackgroundColor: Skin1.homeContentColor];
+	[self.view setBackgroundColor:Skin1.bgColor];
 	[self getCardInfo];
 }
 

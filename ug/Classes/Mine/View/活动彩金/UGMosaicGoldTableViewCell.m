@@ -24,8 +24,8 @@
     
     self.myButton.layer.cornerRadius = 5; 
     self.myButton.layer.masksToBounds = YES;
-    [self.myButton setBackgroundColor:UGNavColor];
-      [self setBackgroundColor: [[UGSkinManagers shareInstance] setCellbgColor]];
+    [self.myButton setBackgroundColor:Skin1.navBarBgColor];
+      [self setBackgroundColor: Skin1.cellBgColor];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

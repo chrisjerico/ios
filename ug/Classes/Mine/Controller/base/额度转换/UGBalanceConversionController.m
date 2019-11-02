@@ -47,15 +47,15 @@ static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
 }
 
 - (void)skin {
-    [self.conversionButton setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
-    [self.view setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
+    [self.conversionButton setBackgroundColor:Skin1.navBarBgColor];
+    [self.view setBackgroundColor:Skin1.bgColor];
     [self.tableView reloadData];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.navigationItem.title = @"额度转换";
-    [self.conversionButton setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
+    [self.conversionButton setBackgroundColor:Skin1.navBarBgColor];
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         
         [self skin];
@@ -255,7 +255,7 @@ static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
     UGPlatformBalanceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:balanceCellid forIndexPath:indexPath];
     UGPlatformGameModel *model = self.dataArray[indexPath.row];
     cell.item = model;
-    [cell.nameLabel setTextColor:[[UGSkinManagers shareInstance] setNavbgColor]];
+    [cell.nameLabel setTextColor:Skin1.navBarBgColor];
     WeakSelf
     cell.refreshBlock = ^{
         model.refreshing = YES;

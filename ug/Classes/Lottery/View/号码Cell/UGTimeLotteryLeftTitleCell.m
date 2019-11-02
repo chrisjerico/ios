@@ -30,7 +30,7 @@
     _item = item;
     self.titleLabel.text = item.name;
     if (item.select) {
-        self.leftPoint.backgroundColor = UGNavColor;
+        self.leftPoint.backgroundColor = Skin1.navBarBgColor;
     } else {
         self.leftPoint.backgroundColor = UGRGBColor(195, 195, 196);
     }
@@ -44,11 +44,11 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
     if (selected) {
-        self.titleLabel.textColor = [[UGSkinManagers shareInstance] setNavbgColor];
+        self.titleLabel.textColor = Skin1.navBarBgColor;
         self.bottomLine.hidden = NO;
-        self.layer.borderColor = UGNavColor.CGColor;
+        self.layer.borderColor = Skin1.navBarBgColor.CGColor;
         self.layer.borderWidth = 1;
-        self.leftPoint.backgroundColor = UGNavColor;
+        self.leftPoint.backgroundColor = Skin1.navBarBgColor;
     } else {
         self.titleLabel.textColor = [UIColor blackColor];
         self.bottomLine.hidden = YES;

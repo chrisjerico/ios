@@ -13,7 +13,7 @@
 
 - (void)drawRect:(CGRect)rect {
     // Drawing code
-//     [self setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+//     [self setBackgroundColor: Skin1.bgColor];
 }
 
 

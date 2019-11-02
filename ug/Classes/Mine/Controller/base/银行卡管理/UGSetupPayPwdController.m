@@ -19,7 +19,7 @@
 
 @implementation UGSetupPayPwdController
 -(void)skin{
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    [self.view setBackgroundColor: Skin1.bgColor];
     
 }
 - (void)viewDidLoad {
@@ -33,7 +33,7 @@
     });
     self.submitButton.layer.cornerRadius = 3;
     self.submitButton.layer.masksToBounds = YES;
-    [self.submitButton setBackgroundColor:UGNavColor];
+    [self.submitButton setBackgroundColor:Skin1.navBarBgColor];
 
     self.loginPwdTextF.delegate = self;
     self.fundPwdTextF.delegate = self;

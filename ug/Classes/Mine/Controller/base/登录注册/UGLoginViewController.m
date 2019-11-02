@@ -41,10 +41,10 @@
 @implementation UGLoginViewController
 
 - (void)skin {
-    [self.loginButton setBackgroundColor:UGNavColor];
-    [self.rigesterButton setTitleColor:UGNavColor forState:UIControlStateNormal];
-    [self.playButton setTitleColor:UGNavColor forState:UIControlStateNormal];
-    [self.goHomeButton setTitleColor:UGNavColor forState:UIControlStateNormal];
+    [self.loginButton setBackgroundColor:Skin1.navBarBgColor];
+    [self.rigesterButton setTitleColor:Skin1.navBarBgColor forState:UIControlStateNormal];
+    [self.playButton setTitleColor:Skin1.navBarBgColor forState:UIControlStateNormal];
+    [self.goHomeButton setTitleColor:Skin1.navBarBgColor forState:UIControlStateNormal];
 }
 
 - (BOOL)允许未登录访问 { return true; }
@@ -60,19 +60,19 @@
     self.navigationItem.title = @"登录";
     self.loginButton.layer.cornerRadius = 5;
     self.loginButton.layer.masksToBounds = YES;
-    [self.loginButton setBackgroundColor:UGNavColor];
+    [self.loginButton setBackgroundColor:Skin1.navBarBgColor];
     
     self.rigesterButton.layer.cornerRadius = 5;
     self.rigesterButton.layer.masksToBounds = YES;
-     [self.rigesterButton setTitleColor:UGNavColor forState:UIControlStateNormal];
+     [self.rigesterButton setTitleColor:Skin1.navBarBgColor forState:UIControlStateNormal];
     
     self.playButton.layer.cornerRadius = 5;
     self.playButton.layer.masksToBounds = YES;
-    [self.playButton setTitleColor:UGNavColor forState:UIControlStateNormal];
+    [self.playButton setTitleColor:Skin1.navBarBgColor forState:UIControlStateNormal];
     
     self.goHomeButton.layer.cornerRadius = 5;
     self.goHomeButton.layer.masksToBounds = YES;
-    [self.goHomeButton setTitleColor:UGNavColor forState:UIControlStateNormal];
+    [self.goHomeButton setTitleColor:Skin1.navBarBgColor forState:UIControlStateNormal];
     
     self.userNameTextF.delegate = self;
     self.passwordTextF.delegate = self;

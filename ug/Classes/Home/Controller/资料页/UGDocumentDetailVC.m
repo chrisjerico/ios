@@ -26,7 +26,7 @@
 	
 	UIView * titleBGView = [UIView new];
 	
-	titleBGView.backgroundColor = UGNavColor;
+	titleBGView.backgroundColor = Skin1.navBarBgColor;
 	
 	[self.view addSubview:titleBGView];
 	[titleBGView mas_makeConstraints:^(MASConstraintMaker *make) {

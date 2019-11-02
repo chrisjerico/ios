@@ -312,7 +312,7 @@
         label.textAlignment = NSTextAlignmentLeft;
 //        label.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
         label.font = [UIFont systemFontOfSize:14];
-        label.textColor = [[UGSkinManagers shareInstance] setNavbgColor];
+        label.textColor = Skin1.navBarBgColor;
         label.backgroundColor = [UIColor whiteColor];
         label.numberOfLines = 0;
         label.text = @"";
@@ -329,7 +329,7 @@
         label.textAlignment = NSTextAlignmentLeft;
 //        label.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
         label.font = [UIFont systemFontOfSize:14];
-        label.textColor =  [[UGSkinManagers shareInstance] setNavbgColor];
+        label.textColor =  Skin1.navBarBgColor;
         label.backgroundColor = [UIColor whiteColor];
         label.numberOfLines = 0;
         label.text = @"";
@@ -363,7 +363,7 @@
         button.frame = CGRectMake(20, 510, APP.Width-40, 44);
         // 按钮的正常状态
         [button setTitle:@"请选择银行 ▼" forState:UIControlStateNormal];
-        [button setTitleColor:[[UGSkinManagers shareInstance] setNavbgColor] forState:UIControlStateNormal];
+        [button setTitleColor:Skin1.navBarBgColor forState:UIControlStateNormal];
         button.titleLabel.font = [UIFont systemFontOfSize:16];
         [button addTarget:self action:@selector(showBlackList:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -375,7 +375,7 @@
         //设置边框线的宽
         [layer setBorderWidth:1];
         //设置边框线的颜色
-        [layer setBorderColor:[[UGSkinManagers shareInstance] setNavbgColor].CGColor];
+        [layer setBorderColor:Skin1.navBarBgColor.CGColor];
         
         [self.mUIScrollView addSubview:button ];
         self.blank_button = button;
@@ -401,7 +401,7 @@
         UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         button.frame = CGRectMake(0, 500, UGScreenW, 44);
         [button setTitle:@"开始充值" forState:UIControlStateNormal];
-        button.backgroundColor = [[UGSkinManagers shareInstance] setNavbgColor];
+        button.backgroundColor = Skin1.navBarBgColor;
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         button.titleLabel.font = [UIFont systemFontOfSize:16];
         button.layer.cornerRadius = 5;

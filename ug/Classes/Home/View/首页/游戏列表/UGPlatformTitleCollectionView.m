@@ -36,7 +36,7 @@ static NSString *platformTitleCellid = @"UGPlatformTitleCollectionViewCell";
         
         UICollectionView *collectionView = ({
             collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, APP.Width, itemW) collectionViewLayout:layout];
-            collectionView.backgroundColor = [[UGSkinManagers shareInstance] sethomeContentColor];
+            collectionView.backgroundColor = Skin1.homeContentColor;
             collectionView.dataSource = self;
             collectionView.delegate = self;
             [collectionView registerNib:[UINib nibWithNibName:@"UGPlatformTitleCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:platformTitleCellid];
@@ -67,7 +67,7 @@ static NSString *platformTitleCellid = @"UGPlatformTitleCollectionViewCell";
 - (void)setGameTypeArray:(NSArray<GameCategoryModel *> *)gameTypeArray {
     _gameTypeArray = gameTypeArray;
     [self.collectionView reloadData];
-    _collectionView.backgroundColor = [[UGSkinManagers shareInstance] sethomeContentColor];
+    _collectionView.backgroundColor = Skin1.homeContentColor;
 }
 
 

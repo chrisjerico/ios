@@ -22,14 +22,14 @@
 - (BOOL)允许游客访问 { return true; }
 
 - (void)skin {
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    [self.view setBackgroundColor: Skin1.bgColor];
     [self getPlatformGamesWithParams];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     _dataArray = [NSMutableArray array];
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    [self.view setBackgroundColor: Skin1.bgColor];
     self.title = @"购彩大厅";
     
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
@@ -91,8 +91,8 @@
     UGhomeRecommendCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UGhomeRecommendCollectionViewCell" forIndexPath:indexPath];
     UGYYPlatformGames *model = self.dataArray[indexPath.row];
     cell.item = model;
-    [cell setBackgroundColor: [[UGSkinManagers shareInstance] sethomeContentColor]];
-     cell.layer.borderColor = [[[UGSkinManagers shareInstance] sethomeContentColor] CGColor];
+    [cell setBackgroundColor: Skin1.homeContentColor];
+     cell.layer.borderColor = [Skin1.homeContentColor CGColor];
     return cell;
 }
 

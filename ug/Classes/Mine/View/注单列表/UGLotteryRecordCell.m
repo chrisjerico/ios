@@ -22,7 +22,7 @@
     [super awakeFromNib];
     self.cancelButton.layer.cornerRadius = 5;
     self.cancelButton.layer.masksToBounds = YES;
-    self.cancelButton.backgroundColor = UGNavColor;
+    self.cancelButton.backgroundColor = Skin1.navBarBgColor;
 }
 
 - (void)setItem:(UGBetsRecordModel *)item {

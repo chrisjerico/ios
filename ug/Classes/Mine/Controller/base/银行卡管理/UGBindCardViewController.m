@@ -30,7 +30,7 @@
 @implementation UGBindCardViewController
 
 - (void)skin {
-    [self.submitButton setBackgroundColor:UGNavColor];
+    [self.submitButton setBackgroundColor:Skin1.navBarBgColor];
 }
 
 - (void)viewDidLoad {
@@ -42,7 +42,7 @@
     });
     self.submitButton.layer.cornerRadius = 3;
     self.submitButton.layer.masksToBounds = YES;
-    [self.submitButton setBackgroundColor:UGNavColor];
+    [self.submitButton setBackgroundColor:Skin1.navBarBgColor];
     self.selIndex = -1;
     self.bankAddressTextF.delegate = self;
     self.cardNumberTextF.delegate = self;

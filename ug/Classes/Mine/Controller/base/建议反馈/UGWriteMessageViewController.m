@@ -22,7 +22,7 @@
 @implementation UGWriteMessageViewController
 -(void)skin{
     
-      [self.submitButton setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
+      [self.submitButton setBackgroundColor:Skin1.navBarBgColor];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,7 +36,7 @@
         [self skin];
     });    self.submitButton.layer.cornerRadius = 3;
     self.submitButton.layer.masksToBounds = YES;
-    [self.submitButton setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
+    [self.submitButton setBackgroundColor:Skin1.navBarBgColor];
     self.typeArray = @[@"反馈类型：提交建议",@"反馈类型：我要投诉"];
     self.messageTypeLabel.text = self.typeArray[self.feedType];
 }

@@ -72,7 +72,7 @@
     {
         if (_uGPormotionView == nil) {
             _uGPormotionView = [[UGPormotionView alloc] initWithFrame:CGRectMake(0,0 , APP.Width, 128+k_Height_NavBar)];
-            [_uGPormotionView setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
+            [_uGPormotionView setBackgroundColor: Skin1.navBarBgColor];
         }
         [self.view addSubview:_uGPormotionView];
         
@@ -140,11 +140,11 @@
     self.slideSwitchView.tabItemNormalColor = [UIColor grayColor];
     self.slideSwitchView.tabItemNormalFont = 13;
     //设置tab 被选中的颜色(可选)
-    self.slideSwitchView.tabItemSelectedColor = UGNavColor;
+    self.slideSwitchView.tabItemSelectedColor = Skin1.navBarBgColor;
     //设置tab 背景颜色(可选)
     self.slideSwitchView.tabItemNormalBackgroundColor = [UIColor whiteColor];;
     //设置tab 被选中的标识的颜色(可选)
-    self.slideSwitchView.tabItemSelectionIndicatorColor = UGNavColor;
+    self.slideSwitchView.tabItemSelectionIndicatorColor = Skin1.navBarBgColor;
     [self.view addSubview:self.slideSwitchView];
 }
 

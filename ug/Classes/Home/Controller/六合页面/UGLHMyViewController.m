@@ -80,18 +80,17 @@
 @implementation UGLHMyViewController
 
 - (void)skin {
-    [self.userInfoView setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
+    [self.userInfoView setBackgroundColor: Skin1.navBarBgColor];
     
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    [self.view setBackgroundColor: Skin1.bgColor];
     
-    [self.myCollectionView setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
-    _progressLayer.strokeColor = [[UGSkinManagers shareInstance] setMineProgressViewColor].CGColor;
+    [self.myCollectionView setBackgroundColor: Skin1.bgColor];
+    _progressLayer.strokeColor = Skin1.progressBgColor.CGColor;
      [self.progressView.layer addSublayer:self.progressLayer];
     
 
-    skitType = [[UGSkinManagers shareInstance] skitType];
+    skitType = Skin1.skitType;
     [self.myCollectionView reloadData];
-
 }
 
 - (BOOL)允许游客访问 { return true; }
@@ -159,8 +158,8 @@
     self.progressView.backgroundColor = UGRGBColor(213, 224, 237);
     
     //设置皮肤
-    [self.view setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
-    [self.userInfoView setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
+    [self.view setBackgroundColor:Skin1.bgColor];
+    [self.userInfoView setBackgroundColor: Skin1.navBarBgColor];
 
     self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithImageName:@"gengduo" target:self action:@selector(rightBarBtnClick)];
 
@@ -348,7 +347,7 @@
 
 - (void)initCollectionView {
     
-       skitType = [[UGSkinManagers shareInstance] skitType];
+       skitType = Skin1.skitType;
     
 //    float itemW = (UGScreenW - 8) / 3;
     UICollectionViewFlowLayout *layout = ({
@@ -376,7 +375,7 @@
         
     });
 
-        self.myCollectionView.backgroundColor = [[UGSkinManagers shareInstance] setbgColor];
+        self.myCollectionView.backgroundColor = Skin1.bgColor;
         self.myCollectionView.dataSource = self;
         self.myCollectionView.delegate = self;
         [self.myCollectionView registerNib:[UINib nibWithNibName:@"UGMineMenuCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UGMineMenuCollectionViewCell"];
@@ -399,7 +398,7 @@
 //collectionView有几个section
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     int sections = 1;
-    skitType = [[UGSkinManagers shareInstance] skitType];
+    skitType = Skin1.skitType;
     if ([skitType isEqualToString:@"新年红"]) {
         sections = (int) self.menuSecondNameArray.count;
     }
@@ -418,7 +417,7 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
     int rows = 1;
-    skitType = [[UGSkinManagers shareInstance] skitType];
+    skitType = Skin1.skitType;
     if ([skitType isEqualToString:@"新年红"]) {
        UGMineSkinModel *dic = [self.menuSecondNameArray objectAtIndex:section];
         rows = (int)  dic.dataArray.count;
@@ -437,7 +436,7 @@
 //每个cell的具体内容
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-//    NSString *skitType = [[UGSkinManagers shareInstance] skitType];
+//    NSString *skitType = Skin1.skitType;
     if ([skitType isEqualToString:@"新年红"]) {
         UGMineSkinCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UGMineSkinCollectionViewCell" forIndexPath:indexPath];
         
@@ -770,7 +769,7 @@
     if (!_progressLayer) {
         _progressLayer = [self defaultLayer];
         _progressLayer.lineWidth = self.progressView.height;
-        _progressLayer.strokeColor = [[UGSkinManagers shareInstance] setMineProgressViewColor].CGColor;
+        _progressLayer.strokeColor = Skin1.progressBgColor.CGColor;
     }
     return _progressLayer;
 }

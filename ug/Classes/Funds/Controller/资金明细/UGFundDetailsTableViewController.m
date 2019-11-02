@@ -31,7 +31,7 @@ static NSString *fundDetailsCellid = @"UGFundDetailsCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-     [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+     [self.view setBackgroundColor: Skin1.bgColor];
     self.pageSize = size;
     self.pageNumber = page;
     self.tableView.rowHeight = 50;
@@ -166,7 +166,7 @@ static NSString *fundDetailsCellid = @"UGFundDetailsCell";
     balanceLabel.font = [UIFont systemFontOfSize:14 weight:UIFontWeightHeavy];
     
 //    UILabel *line = [[UILabel alloc] initWithFrame:CGRectMake(15, 43, UGScreenW, 0.5)];
-//    line.backgroundColor = UGBackgroundColor;
+//    line.backgroundColor = Skin1.bgColor;
 //
     [headerView addSubview:timeLable];
     [headerView addSubview:amountLabel];

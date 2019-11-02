@@ -101,7 +101,7 @@ static NSString *lotteryOneCellId = @"UGFastThreeOneCollectionViewCell";
             cell.backgroundColor = [CMCommon getPreNumColor:self.numArray[indexPath.row]];
             cell.title = self.numArray[indexPath.row];
         } else {
-            cell.backgroundColor = [[UGSkinManagers shareInstance] setNavbgColor];
+            cell.backgroundColor = Skin1.navBarBgColor;
             cell.title = self.numArray[indexPath.row];
         }
         return cell;

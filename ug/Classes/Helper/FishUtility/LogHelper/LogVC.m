@@ -148,7 +148,7 @@ static LogVC *_logVC = nil;
         [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGPostListVC") animated:true];
     }];
     [ac setActionAtTitle:@"极品专贴" handler:^(UIAlertAction *aa) {
-        
+        [[UGSkinManagers randomSkin] useSkin];
     }];
     [ac setActionAtTitle:@"我的动态" handler:^(UIAlertAction *aa) {
         

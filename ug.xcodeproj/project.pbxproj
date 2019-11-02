@@ -25,6 +25,7 @@
 		CF48BF6D235590EC00DFF4BC /* SlideSegmentView1.m in Sources */ = {isa = PBXBuildFile; fileRef = CF48BF68235590EB00DFF4BC /* SlideSegmentView1.m */; };
 		CF48BF6E235590EC00DFF4BC /* SlideSegmentView2.m in Sources */ = {isa = PBXBuildFile; fileRef = CF48BF69235590EB00DFF4BC /* SlideSegmentView2.m */; };
 		CF48BF6F235590EC00DFF4BC /* SlideSegmentView1.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF48BF6A235590EB00DFF4BC /* SlideSegmentView1.xib */; };
+		CF724E54236D6E5E0099947A /* UGSkinManagers.m in Sources */ = {isa = PBXBuildFile; fileRef = CF724E52236D6E5E0099947A /* UGSkinManagers.m */; };
 		CF84BE282362E32D0058F055 /* CCNetworkRequests1+UGLiuHe.m in Sources */ = {isa = PBXBuildFile; fileRef = CF84BE272362E32D0058F055 /* CCNetworkRequests1+UGLiuHe.m */; };
 		CF84BE2B236416C20058F055 /* UGLHC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF84BE2A236416C20058F055 /* UGLHC.storyboard */; };
 		CFD3BEEF2347137F00FCDA6D /* category.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BE9A2347137E00FCDA6D /* category.m */; };
@@ -513,7 +514,6 @@
 		D4AE641D2295871D00DD265A /* MJRefreshBackFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AE64062295871D00DD265A /* MJRefreshBackFooter.m */; };
 		D4AE641E2295871D00DD265A /* MJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AE64072295871D00DD265A /* MJRefreshAutoFooter.m */; };
 		D4AE641F2295871D00DD265A /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AE64092295871D00DD265A /* MJRefreshComponent.m */; };
-		D4B1B98223431C4600651815 /* UGSkinManagers.m in Sources */ = {isa = PBXBuildFile; fileRef = D4B1B98123431C4600651815 /* UGSkinManagers.m */; };
 		D4B6E6EF22D3325A0006B03F /* UGHomeTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4B6E6EE22D3325A0006B03F /* UGHomeTitleView.m */; };
 		D4B6E6F122D332720006B03F /* UGHomeTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4B6E6F022D332720006B03F /* UGHomeTitleView.xib */; };
 		D4B75E16227802600007047C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4B75E15227802600007047C /* Assets.xcassets */; };
@@ -669,6 +669,8 @@
 		CF48BF6A235590EB00DFF4BC /* SlideSegmentView1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SlideSegmentView1.xib; sourceTree = "<group>"; };
 		CF48BF6B235590EB00DFF4BC /* SlideSegmentView1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideSegmentView1.h; sourceTree = "<group>"; };
 		CF48BF6C235590EB00DFF4BC /* SlideSegmentView2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideSegmentView2.h; sourceTree = "<group>"; };
+		CF724E52236D6E5E0099947A /* UGSkinManagers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGSkinManagers.m; sourceTree = "<group>"; };
+		CF724E53236D6E5E0099947A /* UGSkinManagers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGSkinManagers.h; sourceTree = "<group>"; };
 		CF84BE262362E32D0058F055 /* CCNetworkRequests1+UGLiuHe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CCNetworkRequests1+UGLiuHe.h"; sourceTree = "<group>"; };
 		CF84BE272362E32D0058F055 /* CCNetworkRequests1+UGLiuHe.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CCNetworkRequests1+UGLiuHe.m"; sourceTree = "<group>"; };
 		CF84BE2A236416C20058F055 /* UGLHC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UGLHC.storyboard; sourceTree = "<group>"; };
@@ -1553,8 +1555,6 @@
 		D4AE64092295871D00DD265A /* MJRefreshComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshComponent.m; sourceTree = "<group>"; };
 		D4AE640A2295871D00DD265A /* MJRefreshFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshFooter.h; sourceTree = "<group>"; };
 		D4AE640B2295871D00DD265A /* MJRefreshBackFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBackFooter.h; sourceTree = "<group>"; };
-		D4B1B98023431C4600651815 /* UGSkinManagers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGSkinManagers.h; sourceTree = "<group>"; };
-		D4B1B98123431C4600651815 /* UGSkinManagers.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGSkinManagers.m; sourceTree = "<group>"; };
 		D4B6E6ED22D3325A0006B03F /* UGHomeTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGHomeTitleView.h; sourceTree = "<group>"; };
 		D4B6E6EE22D3325A0006B03F /* UGHomeTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGHomeTitleView.m; sourceTree = "<group>"; };
 		D4B6E6F022D332720006B03F /* UGHomeTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGHomeTitleView.xib; sourceTree = "<group>"; };
@@ -2775,12 +2775,12 @@
 				CFD3BEA92347137E00FCDA6D /* NSDictionary+NilSafe.m */,
 				CFD3BEAA2347137E00FCDA6D /* NSString+Safe.m */,
 				CFD3BEAB2347137E00FCDA6D /* NSNumber+Safe.h */,
-				CFD3BEAC2347137E00FCDA6D /* NSArray+Safe.h */,
+				CFD3BEB12347137E00FCDA6D /* NSNull+Safe.h */,
 				CFD3BEAD2347137E00FCDA6D /* NSNull+Safe.m */,
 				CFD3BEAE2347137E00FCDA6D /* NSString+Safe.h */,
 				CFD3BEAF2347137E00FCDA6D /* NSDictionary+NilSafe.h */,
 				CFD3BEB02347137E00FCDA6D /* NSNumber+Safe.m */,
-				CFD3BEB12347137E00FCDA6D /* NSNull+Safe.h */,
+				CFD3BEAC2347137E00FCDA6D /* NSArray+Safe.h */,
 				CFD3BEB22347137E00FCDA6D /* NSArray+Safe.m */,
 			);
 			path = Safe;
@@ -2816,6 +2816,7 @@
 				CFD3BEC72347137E00FCDA6D /* UIView+TagString.h */,
 				CFD3BEC82347137E00FCDA6D /* UICollectionViewCell+Utils.m */,
 				CFD3BEC92347137E00FCDA6D /* UIControl+Utils.h */,
+				CFD3BED42347137E00FCDA6D /* UIColor+Utils.h */,
 				CFD3BECA2347137E00FCDA6D /* UIColor+Utils.m */,
 				CFD3BECB2347137E00FCDA6D /* UIAlertController+Utils.h */,
 				CFD3BECC2347137E00FCDA6D /* UIView+Utils.h */,
@@ -2826,7 +2827,6 @@
 				CFD3BED12347137E00FCDA6D /* UIImage+Utils.m */,
 				CFD3BED22347137E00FCDA6D /* UIScrollView+Utils.h */,
 				CFD3BED32347137E00FCDA6D /* UIAlertController+Utils.m */,
-				CFD3BED42347137E00FCDA6D /* UIColor+Utils.h */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -2834,7 +2834,6 @@
 		CFD3BED52347137E00FCDA6D /* NS */ = {
 			isa = PBXGroup;
 			children = (
-				CFD3BED62347137E00FCDA6D /* NSObject+Utils.m */,
 				CFD3BED72347137E00FCDA6D /* NSTimer+Block.m */,
 				CFD3BED82347137E00FCDA6D /* NSURL+Utils.h */,
 				CFD3BED92347137E00FCDA6D /* NSDate+Millisecond.m */,
@@ -2843,6 +2842,7 @@
 				CFD3BEDF2347137E00FCDA6D /* NSArray+Utils.m */,
 				CFD3BEE02347137E00FCDA6D /* NSMutableAttributedString+Utils.m */,
 				CFD3BEE12347137E00FCDA6D /* NSObject+Utils.h */,
+				CFD3BED62347137E00FCDA6D /* NSObject+Utils.m */,
 				CFD3BEE22347137E00FCDA6D /* NSURL+Utils.m */,
 				CFD3BEE32347137E00FCDA6D /* NSTimer+Block.h */,
 				CFD3BEE42347137E00FCDA6D /* NSMutableAttributedString+Utils.h */,
@@ -4362,8 +4362,8 @@
 				D4EE8F96234222A8006FA0E2 /* UGSkinCollectionViewCell.xib */,
 				D4EE8FA323424E5F006FA0E2 /* UIImage+YYgradientImage.h */,
 				D4EE8FA423424E5F006FA0E2 /* UIImage+YYgradientImage.m */,
-				D4B1B98023431C4600651815 /* UGSkinManagers.h */,
-				D4B1B98123431C4600651815 /* UGSkinManagers.m */,
+				CF724E53236D6E5E0099947A /* UGSkinManagers.h */,
+				CF724E52236D6E5E0099947A /* UGSkinManagers.m */,
 			);
 			path = Skin;
 			sourceTree = "<group>";
@@ -4966,6 +4966,7 @@
 				D4FB62E52355FF7F008EACB2 /* UGYUbaoTitleView.m in Sources */,
 				CFD3BEF92347137F00FCDA6D /* NSMutableArray+KVO.m in Sources */,
 				D4C93B4422D8C02000608B67 /* UGLoginAddressModel.m in Sources */,
+				CF724E54236D6E5E0099947A /* UGSkinManagers.m in Sources */,
 				D4527D1822828C27000EC1C2 /* UGPlatformBalanceTableViewCell.m in Sources */,
 				CFD3BEF32347137F00FCDA6D /* NSDictionary+NilSafe.m in Sources */,
 				D41C5EBD2369D758007AF77D /* UGOnlineWithdrawalsView.m in Sources */,
@@ -5031,7 +5032,6 @@
 				D405AFF822783DCC00F8C586 /* MASConstraint.m in Sources */,
 				D4781A122368207A004FBB97 /* UGLHMyViewController.m in Sources */,
 				D4091B742369B7BE0056BAEE /* UGfinancialView.m in Sources */,
-				D4B1B98223431C4600651815 /* UGSkinManagers.m in Sources */,
 				D42A06B122CA212E005488F8 /* UGHomeViewController.m in Sources */,
 				D405B27E227981D400F8C586 /* UUMarqueeView.m in Sources */,
 				CFD3BEF62347137F00FCDA6D /* NSNumber+Safe.m in Sources */,

@@ -21,20 +21,16 @@
 @implementation UGGameTypeColletionViewCell
 
 -(void)skin{
-    self.layer.borderColor = [[UGSkinManagers shareInstance] sethomeContentBorderColor].CGColor;
-     [self setBackgroundColor: [[UGSkinManagers shareInstance] setCellbgColor]];
+    self.layer.borderColor = Skin1.homeContentBorderColor.CGColor;
+     [self setBackgroundColor: Skin1.cellBgColor];
 }
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-        [self skin];
-    });
-    
-    [self setBackgroundColor: [[UGSkinManagers shareInstance] setCellbgColor]];
+    [self setBackgroundColor: Skin1.cellBgColor];
     self.layer.cornerRadius = 10;
     self.layer.masksToBounds = YES;
-    self.layer.borderColor = [[UGSkinManagers shareInstance] sethomeContentBorderColor].CGColor;
+    self.layer.borderColor = Skin1.homeContentBorderColor.CGColor;
     self.layer.borderWidth = 1;
     self.hotImageView.hidden = YES;
 	[self addSubview:self.hasSubSign];

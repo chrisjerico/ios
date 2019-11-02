@@ -44,8 +44,8 @@
         self.layer.cornerRadius = 10; 
         self.layer.masksToBounds = true;
         
-        subLabel(@"标题Label").textColor = [[UGSkinManagers shareInstance] setNavbgColor];
-        subButton(@"确定Button").backgroundColor = [[UGSkinManagers shareInstance] setNavbgColor];
+        subLabel(@"标题Label").textColor = Skin1.navBarBgColor;
+        subButton(@"确定Button").backgroundColor = Skin1.navBarBgColor;
         
         [_collectionView registerNib:[UINib nibWithNibName:@"UGContentMoneyCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UGContentMoneyCollectionViewCell"];
         _collectionView.dataSource = self;

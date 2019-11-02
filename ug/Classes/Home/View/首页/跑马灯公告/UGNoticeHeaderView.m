@@ -21,7 +21,7 @@
 - (void)awakeFromNib {
     
     [super awakeFromNib];
-    self.lineLabel.backgroundColor = UGBackgroundColor;
+    self.lineLabel.backgroundColor = Skin1.bgColor;
     
 }
 

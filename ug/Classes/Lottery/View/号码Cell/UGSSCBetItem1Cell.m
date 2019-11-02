@@ -30,8 +30,8 @@
     self.oddsLabel.text = [item.odds removeFloatAllZero];
     
     if (item.select) {
-        self.oddsLabel.textColor = UGNavColor;
-        self.layer.borderColor = UGNavColor.CGColor;
+        self.oddsLabel.textColor = Skin1.navBarBgColor;
+        self.layer.borderColor = Skin1.navBarBgColor.CGColor;
         self.layer.borderWidth = 1;
     }else {
         self.oddsLabel.textColor = [UIColor blackColor];

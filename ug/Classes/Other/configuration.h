@@ -24,9 +24,11 @@
 
 #define RSAPublicKey @"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0CZTn+50HHM0QkziEunofDfIG77buLuRwItL8My9EYAyuLSW1qkLgqta2z2bIedx7Ro6enOZ0PZNFnqsztltGctwTwAVQDGoB+kpqUi5gs5jRTcoRkytgaLs7xZey45H0c2Hof4W+rcdHR/xc7C0hT5fBNqEDjBmGvoLlYpHag/p4m7h+JgpWHmKGWg7ijHMPWJQSFD1JPnP7upQlTJ8BKl24em6n2lSyH8qkoJKoEzUfQ7HricpF4S6MVCm36BSfkz35Oy4La7WxDrwW8KDs3ahKHM4uifgDlupZ+nV/dgzCQWDi5lNiQlvWR0xKsjwwrnXTdHPnMYDX8NdDTvTcQIDAQAB"
 
-//static NSString *baseServerUrl = @"http://test10.6yc.com";    // test10
+
+static NSString *baseServerUrl = @"http://test10.6yc.com";    // test10
 //static NSString *baseServerUrl = @"http://103.9.230.243";     // c083
-static NSString *baseServerUrl = @"http://nvlzc134ciokp.fhptcdn.com";         // c143
+//static NSString *baseServerUrl = @"http://nvlzc134ciokp.fhptcdn.com";
+
 
 static NSString *swiperVerifyUrl = @"/dist/index.html#/swiperverify?platform=native";
 
@@ -306,8 +308,6 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 #define IPHONE_SAFEBOTTOMAREA_HEIGHT (IS_PhoneXAll ? 34 : 0)//安全的底部区域
 #define IPHONE_TOPSENSOR_HEIGHT      (IS_PhoneXAll ? 32 : 0)//高级传感器
 
-#define UGNavColor [[UGSkinManagers shareInstance] setNavbgColor]
-#define UGBackgroundColor [[UGSkinManagers shareInstance] setbgColor]
 #define UGRGBColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0] ///< 用10进制表示颜色，例如（255,255,255）黑色
 #define RGBA(_R,_G,_B,_A) \
 [UIColor colorWithRed:((_R) / 255.0) green:((_G) / 255.0) blue:((_B) / 255.0) alpha:_A]

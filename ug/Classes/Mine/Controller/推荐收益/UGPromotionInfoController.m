@@ -55,11 +55,11 @@
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 90, 0);
     self.urlCopy1Button.layer.cornerRadius = 3;
     self.urlCopy1Button.layer.masksToBounds = YES;
-    [self.urlCopy1Button setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
+    [self.urlCopy1Button setBackgroundColor:Skin1.navBarBgColor];
     
     self.urlCopy2Button.layer.cornerRadius = 3;
     self.urlCopy2Button.layer.masksToBounds = YES;
-     [self.urlCopy2Button setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
+     [self.urlCopy2Button setBackgroundColor:Skin1.navBarBgColor];
     
     self.userNameLabel.text = @"";
     self.promotionIdlabel.text =@"";

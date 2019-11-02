@@ -50,14 +50,14 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
 - (BOOL)允许游客访问 { return true; }
 
 - (void)skin{
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    [self.view setBackgroundColor: Skin1.bgColor];
     [self getAllNextIssueData];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-   [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+   [self.view setBackgroundColor: Skin1.bgColor];
     
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         
@@ -145,8 +145,8 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
     UGLotteryGameCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:letteryTicketCellID forIndexPath:indexPath];
     UGAllNextIssueListModel *model = self.dataArray[indexPath.section];
     cell.item = model.list[indexPath.row];
-    [cell setBackgroundColor: [[UGSkinManagers shareInstance] sethomeContentColor]];
-    cell.layer.borderColor = [[[UGSkinManagers shareInstance] sethomeContentColor] CGColor];
+    [cell setBackgroundColor: Skin1.homeContentColor];
+    cell.layer.borderColor = [Skin1.homeContentColor CGColor];
     
     return cell;
 }

@@ -16,7 +16,7 @@
 
 @implementation UGGoogleAuthenticationThirdViewController
 -(void)skin{
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    [self.view setBackgroundColor: Skin1.bgColor];
     
 }
 - (void)viewDidLoad {

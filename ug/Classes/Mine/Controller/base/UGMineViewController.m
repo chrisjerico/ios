@@ -120,8 +120,8 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
 }
 
 -(void)skin{
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
-    [self.userInfoView setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
+    [self.view setBackgroundColor: Skin1.bgColor];
+    [self.userInfoView setBackgroundColor: Skin1.navBarBgColor];
     
    [self.tableView reloadData];
     
@@ -131,8 +131,8 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
-    [self.userInfoView setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
+    [self.view setBackgroundColor: Skin1.bgColor];
+    [self.userInfoView setBackgroundColor: Skin1.navBarBgColor];
     
     
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
@@ -146,10 +146,10 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
     });
     
     self.navigationItem.title = @"我的";
-    self.userInfoView.backgroundColor = [[UGSkinManagers shareInstance] setbgColor];
+    self.userInfoView.backgroundColor = Skin1.bgColor;
     self.avaterImageView.layer.cornerRadius = self.avaterImageView.height / 2 ;
     self.avaterImageView.layer.masksToBounds = YES;
-    self.view.backgroundColor = [[UGSkinManagers shareInstance] setbgColor];
+    self.view.backgroundColor = Skin1.bgColor;
     self.avaterImageView.userInteractionEnabled = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showAvaterSelectView)];
     [self.avaterImageView addGestureRecognizer:tap];
@@ -163,7 +163,7 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
     [self.progressView.layer addSublayer:self.progressLayer];
     self.progressView.layer.cornerRadius = self.progressView.height / 2;
     self.progressView.layer.masksToBounds = YES;
-    self.progressView.backgroundColor = [[UGSkinManagers shareInstance] setbgColor];
+    self.progressView.backgroundColor = Skin1.bgColor;
     
    
     
@@ -173,8 +173,8 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
     self.waveView = [[WavesView alloc] initWithFrame:self.waveBgView.bounds];
     [self.waveBgView addSubview:self.waveView];
     self.waveView.backgroundColor = [UIColor clearColor];
-    self.waveBottomView.backgroundColor = [[UGSkinManagers shareInstance] setTabbgColor];
-    self.waveView.realWaveColor = [[UGSkinManagers shareInstance] setTabbgColor];
+    self.waveBottomView.backgroundColor = Skin1.tabBarBgColor;
+    self.waveView.realWaveColor = Skin1.tabBarBgColor;
     self.waveView.maskWaveColor = [UIColor clearColor];
     self.waveView.waveHeight = 10;
    

@@ -158,7 +158,7 @@
 - (void)skin {
     
     FastSubViewCode(self.view);
-    NSString* skitType = [[UGSkinManagers shareInstance] skitType];
+    NSString* skitType = Skin1.skitType;
     if ([skitType isEqualToString:@"六合资料"]) {//六合资料
       #pragma mark - 测试
         self.heightLayoutConstraint.constant = 7*100+5;
@@ -181,15 +181,14 @@
         self.promotionView.hidden = NO;
     }
     
-	[self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
-    [self.upwardMultiMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
-    [self.rollingView setBackgroundColor:[[UGSkinManagers shareInstance]sethomeContentColor]];
-    [self.gameNavigationView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
-    [self.leftwardMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
-    [self.gameTypeView setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
-     self.gameNavigationView.layer.borderColor = [[UGSkinManagers shareInstance] sethomeContentBorderColor].CGColor;
+	[self.view setBackgroundColor: Skin1.bgColor];
+    [self.upwardMultiMarqueeView setBackgroundColor:Skin1.homeContentColor];
+    [self.rollingView setBackgroundColor:Skin1.homeContentColor];
+    [self.gameNavigationView setBackgroundColor:Skin1.homeContentColor];
+    [self.leftwardMarqueeView setBackgroundColor:Skin1.homeContentColor];
+    [self.gameTypeView setBackgroundColor:Skin1.bgColor];
+    self.gameNavigationView.layer.borderColor = Skin1.homeContentBorderColor.CGColor;
     [self.gameNavigationView reloadData];
-    [[UGSkinManagers shareInstance] navigationBar:(UGNavigationController *)self.navigationController bgColor: [[UGSkinManagers shareInstance] setNavbgColor]];
 }
 
 - (BOOL)允许游客访问 { return true; }
@@ -204,28 +203,30 @@
 	self.gameNavigationView.layer.cornerRadius = 8;
 	self.gameNavigationView.layer.masksToBounds = true;
 	self.gameNavigationView.layer.borderWidth = 1;
-	self.gameNavigationView.layer.borderColor = [[UGSkinManagers shareInstance] sethomeContentBorderColor].CGColor;
-	[self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+	self.gameNavigationView.layer.borderColor = Skin1.homeContentBorderColor.CGColor;
+	[self.view setBackgroundColor: Skin1.bgColor];
     
-	[self.rankingView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
-	[self.upwardMultiMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
-	[self.rollingView setBackgroundColor:[[UGSkinManagers shareInstance]sethomeContentColor]];
-	[self.gameNavigationView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
-	[self.leftwardMarqueeView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
-	[self.gameTypeView setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
-    [self.bottomView setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
-    [[UGSkinManagers shareInstance] navigationBar:(UGNavigationController *)self.navigationController bgColor: [[UGSkinManagers shareInstance] setNavbgColor]];
+	[self.rankingView setBackgroundColor:Skin1.navBarBgColor];
+	[self.upwardMultiMarqueeView setBackgroundColor:Skin1.homeContentColor];
+	[self.rollingView setBackgroundColor:Skin1.homeContentColor];
+	[self.gameNavigationView setBackgroundColor:Skin1.homeContentColor];
+	[self.leftwardMarqueeView setBackgroundColor:Skin1.homeContentColor];
+	[self.gameTypeView setBackgroundColor:Skin1.bgColor];
+    [self.bottomView setBackgroundColor:Skin1.navBarBgColor];
     
-	[[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:[[UGSkinManagers shareInstance] setTabbgColor]]];
+	[[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:Skin1.tabBarBgColor]];
 	
-	[[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[[UGSkinManagers shareInstance] settabNOSelectColor], NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
+	[[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:Skin1.tabNoSelectColor, NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
+	 
+	[[UITabBarItem appearance] setTitleTextAttributes:                                                         [NSDictionary dictionaryWithObjectsAndKeys: Skin1.tabSelectedColor,NSForegroundColorAttributeName, nil]forState:UIControlStateSelected];
 	
-	[[UITabBarItem appearance] setTitleTextAttributes:                                                         [NSDictionary dictionaryWithObjectsAndKeys: [[UGSkinManagers shareInstance] settabSelectColor],NSForegroundColorAttributeName, nil]forState:UIControlStateSelected];
+	[[UITabBar appearance] setSelectedImageTintColor: Skin1.tabSelectedColor];
 	
-	[[UITabBar appearance] setSelectedImageTintColor: [[UGSkinManagers shareInstance] settabSelectColor]];
-	
-	[[UITabBar appearance] setUnselectedItemTintColor: [[UGSkinManagers shareInstance] settabNOSelectColor]];
-	
+	[[UITabBar appearance] setUnselectedItemTintColor: Skin1.tabNoSelectColor];
+	self.navigationController.navigationBar.backgroundColor = Skin1.navBarBgColor;
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    
 	
 	[self setupSubView];
     {//六合
@@ -282,8 +283,6 @@
 		[self getCheckinListData];  // 红包数据
 		[self systemOnlineCount];   // 在线人数
         [self getPromoteList];      // 优惠活动
-       
-        [[UGSkinManagers shareInstance] navigationBar:(UGNavigationController *)self.navigationController bgColor: [[UGSkinManagers shareInstance] setNavbgColor]];
 	}];
 
     [self getBannerList];
@@ -686,8 +685,9 @@
 			UGSystemConfigModel *config = model.data;
 			UGSystemConfigModel.currentConfig = config;
 
-			[[UGSkinManagers shareInstance] setSkin];
-            NSString* skitType = [[UGSkinManagers shareInstance] skitType];
+			[[UGSkinManagers skinWithSysConf] useSkin];
+            
+            NSString* skitType = Skin1.skitType;
             if (![skitType isEqualToString:@"六合资料"]) {//六合资料
                  [self getCustomGameList];   // 自定义游戏列表
                  [self getRankList];         // 中奖列表
@@ -907,7 +907,7 @@
         if (!appDelegate.notiveViewHasShow) {
             self.notiveView = [[UGPlatformNoticeView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - 260)];
             self.notiveView.dataArray = self.popNoticeArray;
-            [self.notiveView.bgView setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
+            [self.notiveView.bgView setBackgroundColor: Skin1.navBarBgColor];
             [self.notiveView show];
         }
         appDelegate.notiveViewHasShow = YES;
@@ -1017,7 +1017,7 @@
 		}
 		icon.image = [UIImage imageNamed:imgName];
 		
-		[itemView setBackgroundColor:[[UGSkinManagers shareInstance] sethomeContentColor]];
+		[itemView setBackgroundColor:Skin1.homeContentColor];
 		
 	}
 }
@@ -1307,7 +1307,7 @@
 	
 	self.scrollView.scrollEnabled = YES;
 	self.scrollView.bounces = YES;
-	//	self.scrollView.backgroundColor = UGBackgroundColor;
+	//	self.scrollView.backgroundColor = Skin1.bgColor;
 //	self.bannerView =  [SDCycleScrollView cycleScrollViewWithFrame:self.bannerBgView.bounds delegate:self placeholderImage:[UIImage imageNamed:@"placeholder"]];
     self.bannerView =  [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, UGScreenW, 280/640.0 * APP.Width) delegate:self placeholderImage:[UIImage imageNamed:@"placeholder"]];
 	self.bannerView.backgroundColor = [UIColor clearColor];

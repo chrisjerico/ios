@@ -232,10 +232,10 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
 }
 
 - (void)show {
-    [self.rechargeView setBackgroundColor:UGNavColor];
-    [self.withdrawlView setBackgroundColor:UGNavColor];
+    [self.rechargeView setBackgroundColor:Skin1.navBarBgColor];
+    [self.withdrawlView setBackgroundColor:Skin1.navBarBgColor];
     
-    [self.bgView setBackgroundColor:[[UGSkinManagers shareInstance] setMenuHeadViewColor]];
+    [self.bgView setBackgroundColor:Skin1.menuHeadViewColor];
     
     UIWindow* window = UIApplication.sharedApplication.keyWindow;
     UIView* maskView = [[UIView alloc] initWithFrame:window.bounds];

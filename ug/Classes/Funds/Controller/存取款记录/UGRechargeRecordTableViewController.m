@@ -40,7 +40,7 @@ static NSString *rechargeRecordCellid = @"UGRechargeRecordCell";
         // 马上进入刷新状态
         [self.tableView.mj_header beginRefreshing];
     });
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    [self.view setBackgroundColor: Skin1.bgColor];
     self.pageSize = size;
     self.pageNumber = page;
     self.tableView.rowHeight = 50;

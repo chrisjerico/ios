@@ -37,7 +37,7 @@
 
 - (void)setSelected:(BOOL)selected {
     if (selected) {
-        self.layer.borderColor = UGNavColor.CGColor;
+        self.layer.borderColor = Skin1.navBarBgColor.CGColor;
         self.layer.borderWidth = 1;
     }else {
         

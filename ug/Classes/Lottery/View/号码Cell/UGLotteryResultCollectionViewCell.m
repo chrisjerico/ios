@@ -54,7 +54,7 @@
         self.titleLabel.textColor = [UIColor blackColor];
     } else {
         self.layer.borderColor = [UIColor clearColor].CGColor;
-        self.backgroundColor = [[UGSkinManagers shareInstance] setNavbgColor];
+        self.backgroundColor = Skin1.navBarBgColor;
         self.titleLabel.textColor = [UIColor whiteColor];
     }
 }
@@ -73,7 +73,7 @@
             self.titleLabel.text = @"+";
         }
     }else {
-        self.backgroundColor = [[UGSkinManagers shareInstance] setNavbgColor];
+        self.backgroundColor = Skin1.navBarBgColor;
         self.titleLabel.textColor = [UIColor whiteColor];
         
     }

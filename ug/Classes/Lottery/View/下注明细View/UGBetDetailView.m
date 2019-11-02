@@ -55,7 +55,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 		self.submitButton.layer.masksToBounds = YES;
 		self.cancelButton.layer.cornerRadius = 3;
 		self.cancelButton.layer.masksToBounds = YES;
-		self.cancelButton.layer.borderColor = UGBackgroundColor.CGColor;
+		self.cancelButton.layer.borderColor = Skin1.bgColor.CGColor;
 		self.cancelButton.layer.borderWidth = 0.7;
 		self.layer.cornerRadius = 6;
 		self.layer.masksToBounds = YES;
@@ -186,7 +186,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
                        .LeeAction(@"取消", nil)
                        .LeeAction(@"分享", ^{//跳到聊天界面，把分享数据传过去
                            NSString *jsonStr = [self shareBettingData];
-                           NSString *url = _NSString(@"%@%@%@&color=%@&back=hide&loginsessid=%@&logintoken=%@&from=app", baseServerUrl, @"/dist/index.html#/home?roomId=0&roomName=", SysConf.chatRoomName, [[UGSkinManagers shareInstance] setChatNavbgStringColor], [UGUserModel currentUser].sessid, [UGUserModel currentUser].token);
+                           NSString *url = _NSString(@"%@%@%@&color=%@&back=hide&loginsessid=%@&logintoken=%@&from=app", baseServerUrl, @"/dist/index.html#/home?roomId=0&roomName=", SysConf.chatRoomName, Skin1.navBarBgColor.hexString, [UGUserModel currentUser].sessid, [UGUserModel currentUser].token);
                            NSLog(@"url = %@",url);
                            UGChatViewController *chatVC = [[UGChatViewController alloc] init];
                            chatVC.jsonStr = jsonStr;
@@ -697,8 +697,8 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 	self.totalAmountLabel.text = [NSString stringWithFormat:@"合计注数：%ld，总金额：¥%@",count,amount];
 	
 	NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.totalAmountLabel.text];
-	[abStr addAttribute:NSForegroundColorAttributeName value:UGNavColor range:NSMakeRange(5, [NSString stringWithFormat:@"%ld",count].length)];
-	[abStr addAttribute:NSForegroundColorAttributeName value:UGNavColor range:NSMakeRange(5 + 5 + [NSString stringWithFormat:@"%ld",count].length, amount.length + 1)];
+	[abStr addAttribute:NSForegroundColorAttributeName value:Skin1.navBarBgColor range:NSMakeRange(5, [NSString stringWithFormat:@"%ld",count].length)];
+	[abStr addAttribute:NSForegroundColorAttributeName value:Skin1.navBarBgColor range:NSMakeRange(5 + 5 + [NSString stringWithFormat:@"%ld",count].length, amount.length + 1)];
 	
 	self.totalAmountLabel.attributedText = abStr;
 }

@@ -26,7 +26,7 @@
 
 - (void)setSelected:(BOOL)selected {
     if (selected) {
-        self.titleLabel.textColor = UGNavColor;
+        self.titleLabel.textColor = Skin1.navBarBgColor;
     }else {
         self.titleLabel.textColor = [UIColor blackColor];
     }

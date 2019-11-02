@@ -23,7 +23,7 @@
     
     self.layer.cornerRadius = 3;
     self.layer.masksToBounds = YES;
-    self.layer.borderColor = [[UGSkinManagers shareInstance] setNavbgColor].CGColor;
+    self.layer.borderColor = Skin1.navBarBgColor.CGColor;
     self.layer.borderWidth = 0.8;
     self.titleArray = @[@"庄家",@"闲一",@"闲二",@"闲三",@"闲四",@"闲五"];
     self.imgArray = @[@"wn",@"n1",@"n2",@"n3",@"n4",@"n5",@"n6",@"n7",@"n8",@"n9",@"nn"];

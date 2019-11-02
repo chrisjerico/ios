@@ -20,7 +20,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-      [self setBackgroundColor: [[UGSkinManagers shareInstance] sethomeContentColor]];
+      [self setBackgroundColor: Skin1.homeContentColor];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -42,12 +42,12 @@ static NSString *avaterCellid = @"UGAvaterCollectionViewCell";
         self.submitButton.layer.cornerRadius = 3;
         self.submitButton.layer.masksToBounds = YES;
        
-        [self.submitButton setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
+        [self.submitButton setBackgroundColor: Skin1.navBarBgColor];
         self.cancelButton.layer.cornerRadius = 3;
         self.cancelButton.layer.masksToBounds = YES;
         [self initCollectionView];
         [self getAvatarList];
-        [self setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+        [self setBackgroundColor: Skin1.bgColor];
     }
     return self;
 }

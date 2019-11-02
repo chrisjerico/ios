@@ -86,7 +86,7 @@
     self.fd_prefersNavigationBarHidden = NO;
     self.navigationItem.title = @"任务中心";
     self.view.backgroundColor = [UIColor whiteColor];
-    self.userInfoView.backgroundColor = UGNavColor;
+    self.userInfoView.backgroundColor = Skin1.navBarBgColor;
     self.avaterImageView.layer.cornerRadius = self.avaterImageView.height / 2 ;
     self.avaterImageView.layer.masksToBounds = YES;
     self.levelNameLabel.layer.cornerRadius = self.levelNameLabel.height / 2;
@@ -95,13 +95,13 @@
     self.progressLayer.path = [self progressPathWithProgress:0.3].CGPath;
     self.progressView.layer.cornerRadius = self.progressView.height / 2;
     self.progressView.layer.masksToBounds = YES;
-    self.progressView.backgroundColor = UGBackgroundColor;
+    self.progressView.backgroundColor = Skin1.bgColor;
     
     self.waveView = [[WavesView alloc] initWithFrame:self.waveBgView.bounds];
     [self.waveBgView addSubview:self.waveView];
     self.waveView.backgroundColor = [UIColor clearColor];
-    self.waveBottomView.backgroundColor = [[UGSkinManagers shareInstance] setTabbgColor];
-    self.waveView.realWaveColor = [[UGSkinManagers shareInstance] setTabbgColor];
+    self.waveBottomView.backgroundColor = Skin1.tabBarBgColor;
+    self.waveView.realWaveColor = Skin1.tabBarBgColor;
     self.waveView.maskWaveColor = [UIColor clearColor];
     self.waveView.waveHeight = 10;
     [self.waveView startWaveAnimation];

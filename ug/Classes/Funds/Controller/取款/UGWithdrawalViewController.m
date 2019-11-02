@@ -31,14 +31,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    self.view.backgroundColor = UGBackgroundColor;
+//    self.view.backgroundColor = Skin1.bgColor;
     self.commitButton.layer.cornerRadius = 3;
     self.commitButton.layer.masksToBounds = YES;
-    [self.commitButton setBackgroundColor:UGNavColor];
+    [self.commitButton setBackgroundColor:Skin1.navBarBgColor];
     
     self.bandCardButton.layer.cornerRadius = 3;
     self.bandCardButton.layer.masksToBounds = YES;
-    [self.bandCardButton setBackgroundColor:UGNavColor];
+    [self.bandCardButton setBackgroundColor:Skin1.navBarBgColor];
     self.amountTextF.delegate = self;
     self.pwdTextF.delegate = self;
 

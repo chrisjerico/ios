@@ -26,9 +26,9 @@
     //设置边框线的宽
     [layer setBorderWidth:1];
     //设置边框线的颜色
-    [layer setBorderColor:[[UGSkinManagers shareInstance] setNavbgColor].CGColor];
+    [layer setBorderColor:Skin1.navBarBgColor.CGColor];
     
-     [_myLabel setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
+     [_myLabel setBackgroundColor: Skin1.navBarBgColor];
     
     [self.myLabel setTextColor:[UIColor whiteColor]];
 }

@@ -28,7 +28,7 @@
 //    [layer setBorderWidth:1];
 //    //设置边框线的颜色
 //    [layer setBorderColor:UGRGBColor(96, 149, 229).CGColor];
-      [self setBackgroundColor: [[UGSkinManagers shareInstance] setCellbgColor]];
+      [self setBackgroundColor: Skin1.cellBgColor];
     
 }
 

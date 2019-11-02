@@ -499,7 +499,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 	}
 	self.openTimeLabel.text = [NSString stringWithFormat:@"开奖：%@",timeStr];
 	NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.openTimeLabel.text];
-	[abStr addAttribute:NSForegroundColorAttributeName value:UGNavColor range:NSMakeRange(3, self.openTimeLabel.text.length - 3)];
+	[abStr addAttribute:NSForegroundColorAttributeName value:Skin1.navBarBgColor range:NSMakeRange(3, self.openTimeLabel.text.length - 3)];
 	self.openTimeLabel.attributedText = abStr;
 }
 

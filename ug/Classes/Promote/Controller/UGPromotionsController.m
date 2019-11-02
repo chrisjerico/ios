@@ -21,8 +21,8 @@
 - (BOOL)允许游客访问 { return true; }
 
 - (void)skin {
-    self.view.backgroundColor = UGBackgroundColor;
-    self.tableView.backgroundColor = UGBackgroundColor;
+    self.view.backgroundColor = Skin1.bgColor;
+    self.tableView.backgroundColor = Skin1.bgColor;
 }
 
 - (void)viewDidLoad {
@@ -31,13 +31,12 @@
         [self skin];
     });
     self.navigationItem.title = @"优惠活动";
-    self.view.backgroundColor = UGBackgroundColor;
+    self.view.backgroundColor = Skin1.bgColor;
 
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self getPromoteList];
-        self.view.backgroundColor = UGBackgroundColor;
-        self.tableView.backgroundColor = UGBackgroundColor;
-        
+        self.view.backgroundColor = Skin1.bgColor;
+        self.tableView.backgroundColor = Skin1.bgColor;
     }];
     [self getPromoteList];
 }
@@ -65,7 +64,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    cell.backgroundColor = [[UGSkinManagers shareInstance] setCellbgColor];
+    cell.backgroundColor = Skin1.cellBgColor;
     UGPromoteModel *pm = tableView.dataArray[indexPath.row];
     FastSubViewCode(cell);
     NSLog(@"pm.title = %@", pm.title);

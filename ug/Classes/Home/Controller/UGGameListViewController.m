@@ -26,7 +26,7 @@ static NSString *gameListCellId = @"UGGameListCollectionViewCell";
     [super viewDidLoad];
     
     self.navigationItem.title = self.game.title;
-    self.view.backgroundColor = UGBackgroundColor;
+    self.view.backgroundColor = Skin1.bgColor;
     [self.view addSubview:self.collectionView];
     [self getGameList];
 }

@@ -13,7 +13,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
 //    // Initialization code
-//    [self setBackgroundColor: [[UGSkinManagers shareInstance] setCellbgColor]];
+//    [self setBackgroundColor: Skin1.cellBgColor];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
