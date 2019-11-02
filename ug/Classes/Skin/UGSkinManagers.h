@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
  输入参数 : 1-19 石榴红，新年红
  输出参数 : N/A
  返回参数 : UIColor
- 备注信息 :
+ 备注信息 :111
  ******************************************************************************/
 -(UIColor *)tabbarbgColor:(NSString *)skitType;
 
