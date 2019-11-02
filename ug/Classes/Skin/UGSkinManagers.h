@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+
 #define Skin1 [UGSkinManagers currentSkin]
 
 @interface UGSkinManagers : NSObject
