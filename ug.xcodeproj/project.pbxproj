@@ -631,6 +631,11 @@
 		D4FBBBE0228BD0E600153FB5 /* UGBetDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FBBBDF228BD0E600153FB5 /* UGBetDetailModel.m */; };
 		D4FBBBE3228C034100153FB5 /* UGHallLotteryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FBBBE2228C034100153FB5 /* UGHallLotteryModel.m */; };
 		D4FBBBE6228C5D5200153FB5 /* UGAllNextIssueListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FBBBE5228C5D5200153FB5 /* UGAllNextIssueListModel.m */; };
+		D4FD7B27236E92DD00D171AC /* LeeTagItemViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FD7B21236E92DC00D171AC /* LeeTagItemViewModel.m */; };
+		D4FD7B28236E92DD00D171AC /* LeeTagItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FD7B23236E92DC00D171AC /* LeeTagItem.m */; };
+		D4FD7B29236E92DD00D171AC /* LeeTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FD7B24236E92DC00D171AC /* LeeTagView.m */; };
+		D4FD7B2C236E941000D171AC /* UGBMpreferentialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FD7B2B236E941000D171AC /* UGBMpreferentialViewController.m */; };
+		D4FD7B2E236E942200D171AC /* BMpreferential.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4FD7B2D236E942200D171AC /* BMpreferential.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1750,6 +1755,15 @@
 		D4FBBBE2228C034100153FB5 /* UGHallLotteryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGHallLotteryModel.m; sourceTree = "<group>"; };
 		D4FBBBE4228C5D5200153FB5 /* UGAllNextIssueListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGAllNextIssueListModel.h; sourceTree = "<group>"; };
 		D4FBBBE5228C5D5200153FB5 /* UGAllNextIssueListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGAllNextIssueListModel.m; sourceTree = "<group>"; };
+		D4FD7B20236E92DC00D171AC /* LeeTagItemViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeeTagItemViewModel.h; sourceTree = "<group>"; };
+		D4FD7B21236E92DC00D171AC /* LeeTagItemViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeeTagItemViewModel.m; sourceTree = "<group>"; };
+		D4FD7B23236E92DC00D171AC /* LeeTagItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeeTagItem.m; sourceTree = "<group>"; };
+		D4FD7B24236E92DC00D171AC /* LeeTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeeTagView.m; sourceTree = "<group>"; };
+		D4FD7B25236E92DC00D171AC /* LeeTagItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeeTagItem.h; sourceTree = "<group>"; };
+		D4FD7B26236E92DC00D171AC /* LeeTagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeeTagView.h; sourceTree = "<group>"; };
+		D4FD7B2A236E941000D171AC /* UGBMpreferentialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGBMpreferentialViewController.h; sourceTree = "<group>"; };
+		D4FD7B2B236E941000D171AC /* UGBMpreferentialViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGBMpreferentialViewController.m; sourceTree = "<group>"; };
+		D4FD7B2D236E942200D171AC /* BMpreferential.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BMpreferential.storyboard; sourceTree = "<group>"; };
 		E98695D8DC0D2512B92A7C32 /* Pods-ug.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ug.debug.xcconfig"; path = "Target Support Files/Pods-ug/Pods-ug.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -3185,6 +3199,7 @@
 				CFD3BE962347137E00FCDA6D /* FishUtility */,
 				D4145A7522B3BC1900D8165F /* CMNetwork */,
 				D4A1E905232BC3AC0045F5B4 /* CMCommon */,
+				D4FD7B1E236E92DC00D171AC /* LeeTagView */,
 				D4091B57236966E10056BAEE /* SYY单选按钮组 */,
 				D403E5632366E5F6009171D3 /* 手势 */,
 				D494C7012366D532001C310F /* 刮刮乐 */,
@@ -3362,6 +3377,7 @@
 		D4091B4923694B120056BAEE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D4FD7B1D236E91FE00D171AC /* 优惠专区 */,
 				D4091B4D23694C4A0056BAEE /* 财务中心 */,
 			);
 			path = Controller;
@@ -4368,6 +4384,45 @@
 			path = Skin;
 			sourceTree = "<group>";
 		};
+		D4FD7B1D236E91FE00D171AC /* 优惠专区 */ = {
+			isa = PBXGroup;
+			children = (
+				D4FD7B2A236E941000D171AC /* UGBMpreferentialViewController.h */,
+				D4FD7B2B236E941000D171AC /* UGBMpreferentialViewController.m */,
+				D4FD7B2D236E942200D171AC /* BMpreferential.storyboard */,
+			);
+			path = "优惠专区";
+			sourceTree = "<group>";
+		};
+		D4FD7B1E236E92DC00D171AC /* LeeTagView */ = {
+			isa = PBXGroup;
+			children = (
+				D4FD7B1F236E92DC00D171AC /* TagViewModel */,
+				D4FD7B22236E92DC00D171AC /* TagView */,
+			);
+			path = LeeTagView;
+			sourceTree = "<group>";
+		};
+		D4FD7B1F236E92DC00D171AC /* TagViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				D4FD7B20236E92DC00D171AC /* LeeTagItemViewModel.h */,
+				D4FD7B21236E92DC00D171AC /* LeeTagItemViewModel.m */,
+			);
+			path = TagViewModel;
+			sourceTree = "<group>";
+		};
+		D4FD7B22236E92DC00D171AC /* TagView */ = {
+			isa = PBXGroup;
+			children = (
+				D4FD7B23236E92DC00D171AC /* LeeTagItem.m */,
+				D4FD7B24236E92DC00D171AC /* LeeTagView.m */,
+				D4FD7B25236E92DC00D171AC /* LeeTagItem.h */,
+				D4FD7B26236E92DC00D171AC /* LeeTagView.h */,
+			);
+			path = TagView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -4524,6 +4579,7 @@
 				D41246AB2285537F006881E2 /* UGPromotionInfoController.storyboard in Resources */,
 				D4090F6A228D83B700D6DA43 /* UGMissionCenterViewController.storyboard in Resources */,
 				D41C3E0E228ED0EE00BF6436 /* UGBetRecordDetailViewController.storyboard in Resources */,
+				D4FD7B2E236E942200D171AC /* BMpreferential.storyboard in Resources */,
 				D4241C48232A2F0100BF4DE1 /* UGOneTitleTableViewCell.xib in Resources */,
 				D47C8988236557B2000CD518 /* UGLHH.storyboard in Resources */,
 				D405B2CB227ADA4E00F8C586 /* UGGameTypeColletionViewCell.xib in Resources */,
@@ -4706,6 +4762,7 @@
 				D41EDF7823164B39005798CC /* UGWithdrawLogsModel.m in Sources */,
 				D4DE268F229BCB960072A4A2 /* WMDropDown2View.m in Sources */,
 				D405B39222817A7C00F8C586 /* UGModifyPayPwdController.m in Sources */,
+				D4FD7B28236E92DD00D171AC /* LeeTagItem.m in Sources */,
 				D4D8DF6D22869B2D00446BAF /* UGLotteryAssistantTableViewCell.m in Sources */,
 				D4C93B3B22D8560500608B67 /* UGFeedbackTableViewCell.m in Sources */,
 				0322AD6523432A4A00E9857E /* UGCommonLotteryController.m in Sources */,
@@ -4848,6 +4905,7 @@
 				D40DE96F22F3357100974BAF /* CMNetwork+Home.m in Sources */,
 				D420A781231558120089C0C5 /* UGYuebaoProfitReportModel.m in Sources */,
 				D405B33A227DAC4800F8C586 /* UGUserModel.m in Sources */,
+				D4FD7B29236E92DD00D171AC /* LeeTagView.m in Sources */,
 				033177AF2338E026000D7663 /* UGBetResultView.m in Sources */,
 				D419DF35233664E6009636F0 /* UGChatViewController.m in Sources */,
 				D4145A7B22B3C0F900D8165F /* UGPlatformGameModel.m in Sources */,
@@ -4912,6 +4970,7 @@
 				D4177133229D79AB00727B70 /* UGMissionTitleCell.m in Sources */,
 				0322AD5C233DD75300E9857E /* CMNetwork+Document.m in Sources */,
 				D40A2A8122BCFF6500DAAFC8 /* UGbankModel.m in Sources */,
+				D4FD7B2C236E941000D171AC /* UGBMpreferentialViewController.m in Sources */,
 				D48224E122A0F2F200F7DE72 /* UGPlatformNoticeView.m in Sources */,
 				CFD3BF0F2347137F00FCDA6D /* NSURL+Utils.m in Sources */,
 				D4EE8F8B2341EB22006FA0E2 /* UGYYLotteryHomeViewController.m in Sources */,
@@ -5050,6 +5109,7 @@
 				D4C165692344B1AB005A0F12 /* UGMineSkinViewController.m in Sources */,
 				D417EFDB2330D24C0024F634 /* AppDelegate+HgBugly.m in Sources */,
 				D4090F61228D3D7B00D6DA43 /* UGAvaterSelectView.m in Sources */,
+				D4FD7B27236E92DD00D171AC /* LeeTagItemViewModel.m in Sources */,
 				033177A72337382D000D7663 /* UGPlatformCollectionView.m in Sources */,
 				D40E1E5622BF5409004D4664 /* UGNoticeModel.m in Sources */,
 				CFD3BF062347137F00FCDA6D /* UIImage+Utils.m in Sources */,

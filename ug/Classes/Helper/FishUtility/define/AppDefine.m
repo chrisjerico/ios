@@ -68,6 +68,7 @@
                 sb(@"Promote"),
                 sb(@"UGLHC"),
                 sb(@"UGLHH"),
+                sb(@"BMpreferential"),
                 ];
     });
     

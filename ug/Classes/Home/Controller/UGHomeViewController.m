@@ -1382,8 +1382,19 @@
 
     
     #ifdef DEBUG
-        UGfinancialViewViewController *vc = [UGfinancialViewViewController new];
-        [self.navigationController pushViewController:vc  animated:YES];
+    {
+        //黑色模板财务中心
+        //        UGfinancialViewViewController *vc = [UGfinancialViewViewController new];
+        //        [self.navigationController pushViewController:vc  animated:YES];
+    }
+
+    {
+        //黑色模板优惠专区
+        [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGBMpreferentialViewController") animated:true];
+//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"BMpreferential" bundle:[NSBundle mainBundle]];
+//        SWViewController *swVC = [storyboard instantiateViewControllerWithIdentifier:@"UGBMpreferentialViewController"];
+//        [self.navigationController pushViewController:swVC animated:YES];
+    }
 
     #else
     
