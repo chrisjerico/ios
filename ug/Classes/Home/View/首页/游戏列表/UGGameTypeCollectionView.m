@@ -36,14 +36,18 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
         // _titleView
         {
             _titleView = [[UGPlatformTitleCollectionView alloc] initWithFrame:CGRectZero];
+            _titleView.layer.cornerRadius = 10;
+            _titleView.layer.masksToBounds = true;
             _titleView.platformTitleSelectBlock = ^(NSInteger selectIndex) {
                 __self.contentScrollView.contentOffset = CGPointMake(__self.width * selectIndex, 0);
                 [__self refreshHeight];
             };
             [self addSubview:_titleView];
             [_titleView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.right.top.equalTo(self);
-                make.height.equalTo(@80);
+                make.top.equalTo(self);
+                make.left.equalTo(self).offset(5);
+                make.right.equalTo(self).offset(-5);
+                make.height.equalTo(@55);
             }];
         }
         

@@ -24,18 +24,19 @@ static NSString *platformTitleCellid = @"UGPlatformTitleCollectionViewCell";
 {
     self = [super initWithFrame:frame];
     if (self) {
-        float itemW = 80;
+        float itemW = 90, itemH = 55;
         UICollectionViewFlowLayout *layout = ({
             layout = [[UICollectionViewFlowLayout alloc] init];
-            layout.itemSize = CGSizeMake(itemW, itemW);
+            layout.itemSize = CGSizeMake(itemW, itemH);
             layout.minimumInteritemSpacing = 0;
             layout.minimumLineSpacing = 0;
+            layout.sectionInset = UIEdgeInsetsMake(0, 15, 0, 15);
             layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
             layout;
         });
         
         UICollectionView *collectionView = ({
-            collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, APP.Width, itemW) collectionViewLayout:layout];
+            collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, APP.Width, itemH) collectionViewLayout:layout];
             collectionView.backgroundColor = Skin1.homeContentColor;
             collectionView.dataSource = self;
             collectionView.delegate = self;
