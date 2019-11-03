@@ -55,6 +55,13 @@
 @end
 
 @implementation UGMissionCenterViewController
+
+static NSString *__title = nil;
+
++ (void)setTitle:(NSString *)title {
+    __title = title;
+}
+
 - (void)skin {
     [self initView];
 }
@@ -84,7 +91,7 @@
 - (void)initView {
     [self.integralLabel setHidden:YES];
     self.fd_prefersNavigationBarHidden = NO;
-    self.navigationItem.title = @"任务中心";
+    self.navigationItem.title = __title.length ? __title : @"任务中心";
     self.view.backgroundColor = [UIColor whiteColor];
     self.userInfoView.backgroundColor = Skin1.navBarBgColor;
     self.avaterImageView.layer.cornerRadius = self.avaterImageView.height / 2 ;

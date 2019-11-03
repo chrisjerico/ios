@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UGMissionCenterViewController :UGViewController
 
++ (void)setTitle:(NSString *)title;
 @end
 
 NS_ASSUME_NONNULL_END

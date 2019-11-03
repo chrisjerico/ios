@@ -32,7 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong)NSString * category;    /**<   图标分类 */
 @property(nonatomic, strong)NSString * sort;        /**<   排序 */
 @property(nonatomic, strong)NSString * seriesId;    /**<   系列ID：1 普通彩票 2 真人视讯 3 捕鱼游戏 4 电子游戏 5 棋牌游戏 6 体育赛事 7导航图标 */
-@property(nonatomic, assign)NSInteger  subId;       /**<   1存取款 2APP下载 3聊天室 4在线客服 5长龙助手 6推广收益 7开奖网 8利息宝 9优惠活动 10游戏记录 11QQ客服 */
+@property(nonatomic, assign)NSInteger  subId;       /**<   1存取款 2APP下载 3聊天室 4在线客服 5长龙助手 6推广收益 7开奖网 8利息宝 9优惠活动 10游戏记录 11QQ客服 13任务大厅 */
 @property(nonatomic, strong)NSString * tipFlag;     /**<   标记：0 无 1 热门 */
 @property(nonatomic, strong)NSString * openWay;     /**<   打开方式：0 本窗口 1 新窗口 */
 @property(nonatomic, strong)NSString * title;       /**<   游戏名称 */

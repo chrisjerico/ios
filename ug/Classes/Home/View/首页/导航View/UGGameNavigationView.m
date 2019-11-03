@@ -143,8 +143,7 @@
     [_iconImage startAnimating];
     if ([CMCommon stringIsNull:model.name]) {
         _titleLabel.text = model.title;
-    }
-    else{
+    } else {
         _titleLabel.text = model.name;
     }
 	

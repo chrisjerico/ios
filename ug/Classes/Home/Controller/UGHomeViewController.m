@@ -39,6 +39,7 @@
 #import "UGPromoteDetailController.h"   // 优惠活动详情
 #import "UGPromotionsController.h"
 #import "UGAgentViewController.h"   // 申请代理
+#import "UGMissionCenterViewController.h"   // 任务中心
 
 //测试--黑色模板
 #import "UGfinancialViewViewController.h"
@@ -574,6 +575,11 @@
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_NSString(@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web", qqstr)]];
             break;
         }
+        case 13: {
+            // 任务大厅
+            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController") animated:true];
+            break;
+        }
             
         default: {
             // 外部链接
@@ -648,6 +654,10 @@
 					NSArray<GameModel *> *sourceData = customGameModel.navs;
                     self.gameNavigationView.superview.hidden = !sourceData.count;
 					self.gameNavigationView.sourceData = sourceData;
+                    // 设置任务大厅页的标题
+                    GameModel *gm = [sourceData objectWithValue:@13 keyPath:@"subId"];
+                    [UGMissionCenterViewController setTitle:gm.name.length ? gm.name : gm.title];
+                    
 					if (sourceData.count > 0) {
 						self.gameNavigationViewHeight.constant = ((sourceData.count - 1)/4 + 1)*80;
 						[self.view layoutIfNeeded];
