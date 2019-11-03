@@ -146,7 +146,7 @@ static UGTabbarController *_tabBarVC = nil;
 }
 
 - (void)setTabbarStyle {
-    [self xw_addNotificationForName:UGNotificationWithSkinSuccess block:^(NSNotification * _Nonnull noti) {
+    void (^block1)(NSNotification *) = ^(NSNotification *noti) {
         [TabBarController1.tabBar setBackgroundImage:[UIImage imageWithColor:Skin1.tabBarBgColor]];
         [[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:Skin1.tabBarBgColor]];
         [[UINavigationBar appearance] setBackgroundImage:[UIImage imageWithColor:Skin1.navBarBgColor] forBarMetrics:UIBarMetricsDefault];
@@ -154,7 +154,9 @@ static UGTabbarController *_tabBarVC = nil;
         for (UGNavigationController *nav in TabBarController1.viewControllers) {
             [nav.navigationBar setBackgroundImage:[UIImage imageWithColor:Skin1.navBarBgColor] forBarMetrics:UIBarMetricsDefault];
         }
-    }];
+    };
+    [self xw_addNotificationForName:UGNotificationWithSkinSuccess block:block1];
+    block1(nil);
     
     [self.tabBar setSelectedImageTintColor: Skin1.tabSelectedColor];
     [self.tabBar setUnselectedItemTintColor:Skin1.tabNoSelectColor];
@@ -248,8 +250,10 @@ static UGTabbarController *_tabBarVC = nil;
         UGNavigationController *nav = [[UGNavigationController alloc] initWithRootViewController:vc];
         [vcs addObject:nav];
     }
-    if (vcs.count > 2)
+    if (vcs.count > 2) {
         self.viewControllers = vcs;
+        [self setTabbarStyle];
+    }
 }
 
 

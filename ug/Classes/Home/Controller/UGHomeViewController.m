@@ -1319,7 +1319,6 @@
 	self.leftwardMarqueeView.scrollSpeed = 60.0f;
 	self.leftwardMarqueeView.itemSpacing = 20.0f;
 	self.leftwardMarqueeView.touchEnabled = YES;
-	self.leftwardMarqueeView.backgroundColor = [UIColor whiteColor];
 	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showNoticeInfo)];
 	[self.leftwardMarqueeView addGestureRecognizer:tap];
 	
