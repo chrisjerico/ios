@@ -27,17 +27,8 @@
 - (BOOL)允许未登录访问 { return true; }
 - (BOOL)允许游客访问 { return true; }
 
-- (void)skin {
-//    self.view.backgroundColor = Skin1.bgColor;
-//    self.tableView.backgroundColor = Skin1.bgColor;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-              [self skin];
-    });
     self.navigationItem.title = @"优惠活动";
     [self.view setBackgroundColor:UGBlackModelColor];
     self.fd_prefersNavigationBarHidden = YES;
@@ -45,9 +36,9 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-      [self getPromoteList];
-//      self.view.backgroundColor = Skin1.bgColor;
-//      self.tableView.backgroundColor = Skin1.bgColor;
+        [self getPromoteList];
+        self.view.backgroundColor = Skin1.bgColor;
+        self.tableView.backgroundColor = Skin1.bgColor;
     }];
     [self getPromoteList];
 }
