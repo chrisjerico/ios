@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-@class UGYuebaoTransferLogsModel;
+#import "UGYuebaoTransferLogsModel.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UGYubaoConversionRecordCell : UITableViewCell

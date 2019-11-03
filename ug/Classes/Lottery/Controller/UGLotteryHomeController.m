@@ -373,7 +373,7 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
     }];
 }
 
-- (NSMutableArray *)dataArray {
+- (NSMutableArray<UGAllNextIssueListModel *> *)dataArray {
     if (_dataArray == nil) {
         _dataArray = [NSMutableArray array];
 

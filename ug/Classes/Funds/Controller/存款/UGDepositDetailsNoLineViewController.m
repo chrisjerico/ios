@@ -23,12 +23,12 @@
 @property (nonatomic, strong) UGchannelModel *selectChannelModel ;
 @property (nonatomic, strong) NSIndexPath *lastPath;
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray *tableDataArray;
+@property (nonatomic, strong) NSMutableArray <UGchannelModel *> *tableDataArray;
 
 @property (nonatomic, strong) UIView *bg_label;
 @property (nonatomic, strong) UILabel *label;
 @property (nonatomic, strong) UILabel *tiplabel;
-@property (nonatomic, strong) NSArray *channelDataArray;
+@property (nonatomic, strong) NSArray <UGchannelModel *> *channelDataArray;
 @property (nonatomic, strong) UILabel *tip2label;
 @property (nonatomic, strong) UGFundsTransferView *uGFundsTransferView;
 @property (nonatomic, strong) UGFundsTransfer2View *uGFundsTransfer2View;

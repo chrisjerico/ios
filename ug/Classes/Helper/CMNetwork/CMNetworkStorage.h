@@ -4,6 +4,7 @@
 //
 
 #import "SAROPSessionStorage.h"
+#import "UGAllNextIssueListModel.h"
 
 @interface CMNetworkStorage : SAROPSessionStorage
 /// 用户名
@@ -14,7 +15,7 @@
 @property (nonatomic, assign) BOOL wechatRegister;
 
 @property (nonatomic, strong) NSString *serverName;
-@property (nonatomic, strong) NSArray *lotteryGamesArray;
+@property (nonatomic, strong) NSArray<UGAllNextIssueListModel *> *lotteryGamesArray;
 
 
 @end

@@ -20,7 +20,7 @@
     UGfinancialView *myView;      /**<   线上支付+快速充值+公司入款 视图 */
     UGOnlineWithdrawalsView *myOnlineView;      /**<   线上取款 视图 */
     
-    NSMutableArray *myCollectArray;          /**<   myCollectionView数据*/
+    NSMutableArray <NSDictionary *> *myCollectArray;          /**<   myCollectionView数据*/
     NSString * selectNav;                     /**<  选中的按钮组的按钮标题*/
 }
 

@@ -63,16 +63,16 @@
 
 @property (nonatomic, strong) UICollectionView *betCollectionView;
 
-@property (nonatomic, strong) NSArray *chipArray;
-@property (nonatomic, strong) NSMutableArray *gameDataArray;
+@property (nonatomic, strong) NSArray <NSString *> *chipArray;
+@property (nonatomic, strong) NSMutableArray <UGGameplayModel *> *gameDataArray;
 @property (nonatomic, strong) NSIndexPath *typeIndexPath;
 @property (nonatomic, strong) NSIndexPath *itemIndexPath;
 
-@property (strong, nonatomic)  CountDown *countDown;
+@property (strong, nonatomic) CountDown *countDown;
 @property (nonatomic, strong) CountDown *nextIssueCountDown;
 @property (nonatomic, strong) STBarButtonItem *rightItem1;
-@property (nonatomic, strong) NSMutableArray *preNumArray;
-@property (nonatomic, strong) NSArray *preNumSxArray;
+@property (nonatomic, strong) NSMutableArray <NSString *> *preNumArray;
+@property (nonatomic, strong) NSArray <NSString *> *preNumSxArray;
 @property (nonatomic, assign) BOOL showAdPoppuView;
 
 @property (strong, nonatomic)UGYYRightMenuView *yymenuView;
@@ -737,7 +737,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     return _tableView;
 }
 
-- (NSMutableArray *)gameDataArray {
+- (NSMutableArray<UGGameplayModel *> *)gameDataArray {
     if (_gameDataArray == nil) {
         _gameDataArray = [NSMutableArray array];
         
@@ -746,7 +746,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     return _gameDataArray;
 }
 
-- (NSMutableArray *)preNumArray {
+- (NSMutableArray<NSString *> *)preNumArray {
     if (_preNumArray == nil) {
         _preNumArray = [NSMutableArray array];
     }

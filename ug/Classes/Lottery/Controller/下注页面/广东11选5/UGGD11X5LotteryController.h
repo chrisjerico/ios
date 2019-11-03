@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 typedef void(^GD11X5LotteryBlock)(void);
 
 @interface UGGD11X5LotteryController : UGCommonLotteryController
-@property (nonatomic, strong) NSArray *lotteryGamesArray;
+@property (nonatomic, strong) NSArray<UGAllNextIssueListModel *> *lotteryGamesArray;
 @property (nonatomic, strong) UGNextIssueModel *nextIssueModel;
 @property (nonatomic, strong) NSString *gameId;
 

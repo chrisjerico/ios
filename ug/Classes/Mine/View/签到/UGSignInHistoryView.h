@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UGSignInHistoryModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UGSignInHistoryView : UIView
 
-@property (nonatomic, strong) NSArray *dataArray;
+@property (nonatomic, strong) NSArray <UGSignInHistoryModel *> *dataArray;
 
 @property (nonatomic, strong) NSString *checkinTimes;
 

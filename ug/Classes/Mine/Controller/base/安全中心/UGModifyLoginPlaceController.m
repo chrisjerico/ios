@@ -26,15 +26,15 @@
 @property (weak, nonatomic) IBOutlet UIView *addressListView;
 @property (nonatomic, strong) UICollectionView *collectionView;
 
-@property (nonatomic, strong) NSArray *countryArray;
-@property (nonatomic, strong) NSMutableArray *provinceArray;
-@property (nonatomic, strong) NSMutableArray *cityArray;
+@property (nonatomic, strong) NSArray <NSString *> *countryArray;
+@property (nonatomic, strong) NSMutableArray <NSString *> *provinceArray;
+@property (nonatomic, strong) NSMutableArray <NSString *> *cityArray;
 
 @property (nonatomic, strong) YBPopupMenu *countryPopView;
 @property (nonatomic, strong) YBPopupMenu *provincePopView;
 @property (nonatomic, strong) YBPopupMenu *cityPopView;
-@property (nonatomic, strong) NSMutableArray *addressArray;
-@property (nonatomic, strong) NSMutableArray *loginAddressArray;
+@property (nonatomic, strong) NSMutableArray <UGAddressListModel *> *addressArray;
+@property (nonatomic, strong) NSMutableArray <UGLoginAddressModel *> *loginAddressArray;
 @property (nonatomic, assign) NSInteger countryIndex;
 
 
@@ -298,28 +298,28 @@ static NSString *addressCellId = @"UGAddressCollectionViewCell";
     return _collectionView;
 }
 
-- (NSMutableArray *)addressArray {
+- (NSMutableArray<UGAddressListModel *> *)addressArray {
     if (_addressArray == nil) {
         _addressArray = [NSMutableArray array];
     }
     return _addressArray;
 }
 
-- (NSMutableArray *)loginAddressArray {
+- (NSMutableArray<UGLoginAddressModel *> *)loginAddressArray {
     if (_loginAddressArray == nil) {
         _loginAddressArray = [NSMutableArray array];
     }
     return _loginAddressArray;
 }
 
-- (NSMutableArray *)provinceArray {
+- (NSMutableArray<NSString *> *)provinceArray {
     if (_provinceArray == nil) {
         _provinceArray = [NSMutableArray array];
     }
     return _provinceArray;
 }
 
-- (NSMutableArray *)cityArray {
+- (NSMutableArray<NSString *> *)cityArray {
     if (_cityArray == nil) {
         _cityArray = [NSMutableArray array];
     }

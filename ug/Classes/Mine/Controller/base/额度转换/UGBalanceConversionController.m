@@ -33,8 +33,8 @@
 
 @property (nonatomic, strong) YBPopupMenu *transferOutPopView;
 @property (nonatomic, strong) YBPopupMenu *transferInPopView;
-@property (nonatomic, strong) NSMutableArray *transferArray;
-@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray <NSString *> *transferArray;
+@property (nonatomic, strong) NSMutableArray <UGPlatformGameModel *> *dataArray;
 @property (nonatomic, assign) NSInteger outIndex;
 @property (nonatomic, assign) NSInteger inIndex;
 
@@ -325,14 +325,14 @@ static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
     return _tableView;
 }
 
-- (NSMutableArray *)dataArray {
+- (NSMutableArray<UGPlatformGameModel *> *)dataArray {
     if (_dataArray == nil) {
         _dataArray = [NSMutableArray array];
     }
     return _dataArray;
 }
 
-- (NSMutableArray *)transferArray {
+- (NSMutableArray<NSString *> *)transferArray {
     if (_transferArray == nil) {
         _transferArray = [NSMutableArray array];
     }

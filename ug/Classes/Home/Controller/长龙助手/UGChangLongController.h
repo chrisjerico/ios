@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UGAllNextIssueListModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UGChangLongController :UGViewController
-@property (nonatomic, strong) NSArray *lotteryGamesArray;
+@property (nonatomic, strong) NSArray<UGAllNextIssueListModel *> *lotteryGamesArray;
 
 @end
 

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-@class UGMessageModel;
+#import "UGMessageModel.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UGFeedbackTableViewCell : UITableViewCell

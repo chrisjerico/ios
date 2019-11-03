@@ -66,18 +66,18 @@
 
 @property (nonatomic, strong) UICollectionView *betCollectionView;
 
-@property (nonatomic, strong) NSArray *chipArray;
-@property (nonatomic, strong) NSMutableArray *gameDataArray;
+@property (nonatomic, strong) NSArray <NSString *> *chipArray;
+@property (nonatomic, strong) NSMutableArray <UGGameplayModel *> *gameDataArray;
 @property (nonatomic, strong) NSIndexPath *typeIndexPath;
 @property (nonatomic, strong) NSIndexPath *itemIndexPath;
-@property (nonatomic, strong) NSArray *preNumArray;
-@property (nonatomic, strong) NSArray *preNumSxArray;
+@property (nonatomic, strong) NSArray <NSString *> *preNumArray;
+@property (nonatomic, strong) NSArray <NSString *> *preNumSxArray;
 
-@property (strong, nonatomic)  CountDown *countDown;
+@property (strong, nonatomic) CountDown *countDown;
 @property (nonatomic, strong) CountDown *nextIssueCountDown;
 @property (nonatomic, strong) STBarButtonItem *rightItem1;
 @property (nonatomic, strong) UGSegmentView *segmentView;
-@property (nonatomic, strong) NSMutableArray *segmentTitleArray;
+@property (nonatomic, strong) NSMutableArray <NSString *> *segmentTitleArray;
 @property (nonatomic, assign) NSInteger segmentIndex;
 @property (nonatomic, assign) BOOL showAdPoppuView;
 
@@ -920,14 +920,14 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     
 }
 
-- (NSMutableArray *)gameDataArray {
+- (NSMutableArray<UGGameplayModel *> *)gameDataArray {
     if (_gameDataArray == nil) {
         _gameDataArray = [NSMutableArray array];
     }
     return _gameDataArray;
 }
 
-- (NSMutableArray *)segmentTitleArray {
+- (NSMutableArray<NSString *> *)segmentTitleArray {
     if (_segmentTitleArray == nil) {
         _segmentTitleArray = [NSMutableArray array];
     }

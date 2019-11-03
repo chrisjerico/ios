@@ -11,7 +11,7 @@
 #import "UGYuebaoProfitReportModel.h"
 @interface UGYubaoInComeController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray <UGYuebaoProfitReportModel *> *dataArray;
 @property (nonatomic, strong) NSString *startTime;
 @property(nonatomic, assign) int pageSize;
 @property(nonatomic, assign) int pageNumber;
@@ -130,7 +130,7 @@ static int size = 20;
     return 0.001;
 }
 
-- (NSMutableArray *)dataArray {
+- (NSMutableArray<UGYuebaoProfitReportModel *> *)dataArray {
     if (_dataArray == nil) {
         _dataArray = [NSMutableArray array];
     }

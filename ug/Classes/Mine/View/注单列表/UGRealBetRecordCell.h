@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-@class UGBetsRecordModel;
+#import "UGBetsRecordListModel.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UGRealBetRecordCell : UITableViewCell

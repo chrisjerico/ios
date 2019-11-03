@@ -105,30 +105,29 @@
 @property (nonatomic, strong) UGHomeTitleView *titleView;               /**<   自定义导航条 */
 @property (nonatomic, strong) SDCycleScrollView *bannerView;            /**<   滚动广告面板 */
 
-@property (nonatomic, strong) NSMutableArray *leftwardMarqueeViewData;      /**<   公告数据 */
-@property (nonatomic, strong) NSMutableArray *popNoticeArray;
+@property (nonatomic, strong) NSMutableArray <NSString *> *leftwardMarqueeViewData;      /**<   公告数据 */
+@property (nonatomic, strong) NSMutableArray <UGNoticeModel *> *popNoticeArray;
 
 
-@property (nonatomic, strong) NSMutableArray *gameCategorys;
+@property (nonatomic, strong) NSMutableArray<GameCategoryModel *> *gameCategorys;
 @property (nonatomic, strong) UGNoticeTypeModel *noticeTypeModel;
 @property (nonatomic, strong) UGRankListModel *rankListModel;
 
-@property (nonatomic, strong) NSArray *bannerArray;
-@property (nonatomic, strong) NSArray *noticeArray;
+@property (nonatomic, strong) NSArray <UGBannerCellModel *> *bannerArray;
 @property (nonatomic, strong) NSArray<UGRankModel *> *rankArray;           /**<   中奖排行榜数据 */
-@property (nonatomic, strong) NSArray *lotteryGamesArray;
+@property (nonatomic, strong) NSArray<UGAllNextIssueListModel *> *lotteryGamesArray;
 @property (nonatomic, assign) BOOL initSubview;
 @property (weak, nonatomic) IBOutlet UILabel *bottomLabel;
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 
-@property (strong, nonatomic)  UGredEnvelopeView *uGredEnvelopeView;    /**<   红包浮动按钮 */
-@property (strong, nonatomic)  UGredActivityView *uGredActivityView;    /**<   红包弹框 */
+@property (nonatomic, strong)  UGredEnvelopeView *uGredEnvelopeView;    /**<   红包浮动按钮 */
+@property (nonatomic, strong)  UGredActivityView *uGredActivityView;    /**<   红包弹框 */
 
-@property (strong, nonatomic)UGYYRightMenuView *yymenuView;   /**<   侧边栏 */
+@property (nonatomic, strong) UGYYRightMenuView *yymenuView;   /**<   侧边栏 */
 
 @property (nonatomic, strong) UGonlineCount *mUGonlineCount;
 
-@property (strong, nonatomic)UILabel *nolineLabel;
+@property (nonatomic, strong) UILabel *nolineLabel;
 
 @property (weak, nonatomic) IBOutlet UIView *rollingView;
 @property (weak, nonatomic) IBOutlet UILabel *rankLabel;
@@ -184,6 +183,7 @@
     [self.gameNavigationView reloadData];
 }
 
+- (BOOL)允许未登录访问 { return true; }
 - (BOOL)允许游客访问 { return true; }
 
 - (void)viewDidLoad {
@@ -280,10 +280,10 @@
         [self getPromoteList];      // 优惠活动
 	}];
 
-    [self getBannerList];
+    [self getBannerList];       // 轮播图
     if (self.notiveView == nil) {
-        [self getNoticeList];
-        [self getSystemConfig];
+        [self getNoticeList];   // 公告列表
+        [self getSystemConfig]; // 系统配置
     }
     [self getUserInfo];        // 用户信息
     [self getCheckinListData]; // 红包数据
@@ -480,86 +480,109 @@
 #pragma mark ---------------- 六合方法
 - (void)gameNavigationAction: (GameModel *)model{
     
-    if ([model.subId isEqualToString:@"1"]) {
-        // 资金管理
-        [self.navigationController pushViewController:[UGFundsViewController new] animated:true];
-    } else if ([model.subId isEqualToString:@"8"]) {
-        // 利息宝
-        [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGYubaoViewController")  animated:YES];
-    } else if ([model.subId isEqualToString:@"5"]) {
-        // 长龙助手
-        UGChangLongController *changlongVC = [[UGChangLongController alloc] init];
-        changlongVC.lotteryGamesArray = self.lotteryGamesArray;
-        [self.navigationController pushViewController:changlongVC animated:YES];
-    } else if ([model.subId isEqualToString:@"7"]) {
-        // 开奖网
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_NSString(@"%@/Open_prize/index.php", baseServerUrl)]];
-    } else if ([model.subId isEqualToString:@"6"]) {
-        // 推广收益
-        if (UserI.isTest) {
-            [self.navigationController pushViewController:[UGPromotionIncomeController new] animated:YES];
-        } else {
-            [SVProgressHUD showWithStatus:nil];
-            [CMNetwork teamAgentApplyInfoWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:^(CMResult<id> *model, NSError *err) {
-                [CMResult processWithResult:model success:^{
-                    [SVProgressHUD dismiss];
-                    UGagentApplyInfo *obj  = (UGagentApplyInfo *)model.data;
-                    int intStatus = obj.reviewStatus.intValue;
-                    
-                    //0 未提交  1 待审核  2 审核通过 3 审核拒绝
-                    if (intStatus == 2) {
-                        [NavController1 pushViewController:[UGPromotionIncomeController new] animated:YES];
-                    } else {
-                        if (![SysConf.agent_m_apply isEqualToString:@"1"]) {
-                            [HUDHelper showMsg:@"在线注册代理已关闭"];
-                            return ;
+    switch (model.subId) {
+        case 1: {
+            // 资金管理
+            [self.navigationController pushViewController:[UGFundsViewController new] animated:true];
+            break;
+        }
+        case 2: {
+            // APP下载
+            [[UGAppVersionManager shareInstance] updateVersionApi:true];
+            break;
+        }
+        case 3: {
+            // 聊天室
+            [self.navigationController pushViewController:[UGChatViewController new] animated:YES];
+            break;
+        }
+        case 4: {
+            // 在线客服
+            TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
+            webViewVC.url = SysConf.zxkfUrl;
+            webViewVC.webTitle = @"在线客服";
+            [self.navigationController pushViewController:webViewVC animated:YES];
+            break;
+        }
+        case 5: {
+            // 长龙助手
+            UGChangLongController *changlongVC = [[UGChangLongController alloc] init];
+            changlongVC.lotteryGamesArray = self.lotteryGamesArray;
+            [self.navigationController pushViewController:changlongVC animated:YES];
+            break;
+        }
+        case 6: {
+            // 推广收益
+            if (UserI.isTest) {
+                [self.navigationController pushViewController:[UGPromotionIncomeController new] animated:YES];
+            } else {
+                [SVProgressHUD showWithStatus:nil];
+                [CMNetwork teamAgentApplyInfoWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:^(CMResult<id> *model, NSError *err) {
+                    [CMResult processWithResult:model success:^{
+                        [SVProgressHUD dismiss];
+                        UGagentApplyInfo *obj  = (UGagentApplyInfo *)model.data;
+                        int intStatus = obj.reviewStatus.intValue;
+                        
+                        //0 未提交  1 待审核  2 审核通过 3 审核拒绝
+                        if (intStatus == 2) {
+                            [NavController1 pushViewController:[UGPromotionIncomeController new] animated:YES];
+                        } else {
+                            if (![SysConf.agent_m_apply isEqualToString:@"1"]) {
+                                [HUDHelper showMsg:@"在线注册代理已关闭"];
+                                return ;
+                            }
+                            UGAgentViewController *vc = [[UGAgentViewController alloc] init];
+                            vc.item = obj;
+                            [NavController1 pushViewController:vc animated:YES];
                         }
-                        UGAgentViewController *vc = [[UGAgentViewController alloc] init];
-                        vc.item = obj;
-                        [NavController1 pushViewController:vc animated:YES];
-                    }
-                } failure:^(id msg) {
-                    [SVProgressHUD showErrorWithStatus:msg];
+                    } failure:^(id msg) {
+                        [SVProgressHUD showErrorWithStatus:msg];
+                    }];
                 }];
-            }];
+            }
+            break;
         }
-    } else if ([model.subId isEqualToString:@"2"]) {
-        // APP下载
-        [[UGAppVersionManager shareInstance] updateVersionApi:true];
-    } else if ([model.subId isEqualToString:@"3"]) {
-        // 聊天室
-        [self.navigationController pushViewController:[UGChatViewController new] animated:YES];
-    } else if ([model.subId isEqualToString:@"4"]) {
-        // 在线客服
-        TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
-        webViewVC.url = SysConf.zxkfUrl;
-        webViewVC.webTitle = @"在线客服";
-        [self.navigationController pushViewController:webViewVC animated:YES];
-    }
-    else if ([model.subId isEqualToString:@"9"]) {
-        // 优惠活动
-       [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGPromotionsController") animated:YES];
-    }
-    else if ([model.subId isEqualToString:@"10"]) {
-        // 游戏记录
-        UGBetRecordViewController *vc = [[UGBetRecordViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:true];
-    }
-    else if ([model.subId isEqualToString:@"11"]) {
-        // QQ客服
-        NSString *qqstr;
-        if ([CMCommon stringIsNull:SysConf.serviceQQ1]) {
-            qqstr = SysConf.serviceQQ2;
-        } else {
-            qqstr = SysConf.serviceQQ1;
+        case 7: {
+            // 开奖网
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_NSString(@"%@/Open_prize/index.php", baseServerUrl)]];
+            break;
         }
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_NSString(@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web", qqstr)]];
-    }
-    else {
-       TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
-       webViewVC.url = model.url;
-       webViewVC.webTitle = model.title;
-       [self.navigationController pushViewController:webViewVC animated:YES];
+        case 8: {
+            // 利息宝
+            [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGYubaoViewController")  animated:YES];
+            break;
+        }
+        case 9: {
+            // 优惠活动
+            [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGPromotionsController") animated:YES];
+            break;
+        }
+        case 10: {
+            // 游戏记录
+            UGBetRecordViewController *vc = [[UGBetRecordViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:true];
+            break;
+        }
+        case 11: {
+            // QQ客服
+            NSString *qqstr;
+            if ([CMCommon stringIsNull:SysConf.serviceQQ1]) {
+                qqstr = SysConf.serviceQQ2;
+            } else {
+                qqstr = SysConf.serviceQQ1;
+            }
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_NSString(@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web", qqstr)]];
+            break;
+        }
+            
+        default: {
+            // 外部链接
+            TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
+            webViewVC.url = model.url;
+            webViewVC.webTitle = model.title;
+            [self.navigationController pushViewController:webViewVC animated:YES];
+            break;
+        }
     }
 }
 
@@ -605,14 +628,9 @@
 	[CMNetwork getAllNextIssueWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
 		[SVProgressHUD dismiss];
 		[CMResult processWithResult:model success:^{
-			
 			self.lotteryGamesArray = model.data;
-			
-		} failure:^(id msg) {
-			
-		}];
+		} failure:nil];
 	}];
-	
 }
 
 // 自定义游戏列表
@@ -624,9 +642,9 @@
 			[SVProgressHUD dismiss];
 			if (model.data) {
 				dispatch_async(dispatch_get_main_queue(), ^{
-					GameCategoryDataModel * customGameModel = (GameCategoryDataModel*)model.data;
-                    self.gameCategorys = customGameModel.icons.mutableCopy;
-					
+					GameCategoryDataModel *customGameModel = (GameCategoryDataModel*)model.data;
+                    
+                    // 首页导航
 					NSArray<GameModel *> *sourceData = customGameModel.navs;
                     self.gameNavigationView.superview.hidden = !sourceData.count;
 					self.gameNavigationView.sourceData = sourceData;
@@ -634,7 +652,9 @@
 						self.gameNavigationViewHeight.constant = ((sourceData.count - 1)/4 + 1)*80;
 						[self.view layoutIfNeeded];
 					}
-					self.gameTypeView.gameTypeArray = self.gameCategorys;
+                    
+                    // 游戏列表
+					self.gameTypeView.gameTypeArray = self.gameCategorys = customGameModel.icons.mutableCopy;
 				});
 			}
 		} failure:^(id msg) {
@@ -812,25 +832,16 @@
 
 //得到红包详情数据
 - (void)getCheckinListData {
-	BOOL isLogin = UGLoginIsAuthorized();
 	NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
-	
 	[SVProgressHUD showWithStatus:nil];
-	WeakSelf;
 	[CMNetwork activityRedBagDetailWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        [SVProgressHUD dismiss];
 		[CMResult processWithResult:model success:^{
-			dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-				// 需要在主线程执行的代码
-				// 需要在主线程执行的代码
-				[SVProgressHUD dismiss];
-				self.uGredEnvelopeView.item = (UGRedEnvelopeModel*)model.data;
-				[[NSOperationQueue mainQueue] addOperationWithBlock:^{
-					//需要在主线程执行的代码
-					[self.uGredEnvelopeView setHidden:NO];
-				}];
-			});
+            UGRedEnvelopeModel *rem = model.data;
+            self.uGredEnvelopeView.item = rem;
+            self.uGredEnvelopeView.hidden = false;
 		} failure:^(id msg) {
-			[self.uGredEnvelopeView setHidden:YES];
+            self.uGredEnvelopeView.hidden = true;
 			[SVProgressHUD dismiss];
 		}];
 	}];
@@ -1331,21 +1342,21 @@
 	
 }
 
-- (NSMutableArray *)leftwardMarqueeViewData {
+- (NSMutableArray<NSString *> *)leftwardMarqueeViewData {
 	if (_leftwardMarqueeViewData == nil) {
 		_leftwardMarqueeViewData = [NSMutableArray array];
 	}
 	return _leftwardMarqueeViewData;
 }
 
-- (NSMutableArray *)popNoticeArray {
+- (NSMutableArray<UGNoticeModel *> *)popNoticeArray {
 	if (_popNoticeArray == nil) {
 		_popNoticeArray = [NSMutableArray array];
 	}
 	return _popNoticeArray;
 }
 
-- (NSMutableArray *)gameCategorys {
+- (NSMutableArray<GameCategoryModel *> *)gameCategorys {
 	if (_gameCategorys == nil) {
 		_gameCategorys = [NSMutableArray array];
 	}

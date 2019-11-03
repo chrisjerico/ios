@@ -32,8 +32,8 @@
 @property(nonatomic, assign) NSInteger levelindex;
 
 @property (nonatomic, strong) UIView *titleView;
-@property (nonatomic, strong) NSArray *titleArray;
-@property (nonatomic, strong) NSArray *levelArray;
+@property (nonatomic, strong) NSArray <NSString *> *titleArray;
+@property (nonatomic, strong) NSArray <NSString *> *levelArray;
 @property (nonatomic, strong) UIButton *levelButton;
 @property (nonatomic, assign) PromotionTableType tableType;
 @property (nonatomic, strong) UIImageView *arrowImageView;
@@ -41,7 +41,7 @@
 #pragma mark - 表格
 @property (nonatomic,strong)UITableView *tableView;
 #pragma mark - 数据 （NSMutableArray 可变数组;NSArray 数组）
-@property (nonatomic,strong)NSMutableArray *dataArray;
+@property (nonatomic,strong)NSMutableArray <UGinviteLisModel *> *dataArray;
 @end
 
 @implementation UGPromotionTableController

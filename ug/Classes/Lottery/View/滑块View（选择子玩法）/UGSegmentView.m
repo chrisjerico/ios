@@ -17,7 +17,7 @@ static NSString *segmentCellId = @"UGSegmentCollectionViewCell";
 
 @implementation UGSegmentView
 
-- (instancetype)initWithFrame:(CGRect)frame titleArray:(NSArray *)array{
+- (instancetype)initWithFrame:(CGRect)frame titleArray:(nonnull NSArray<NSString *> *)array {
     self = [super initWithFrame:frame];
     if (self) {
         self.dataArray = array;
@@ -28,7 +28,7 @@ static NSString *segmentCellId = @"UGSegmentCollectionViewCell";
     return self;
 }
 
-- (void)setDataArray:(NSArray *)dataArray {
+- (void)setDataArray:(NSArray<NSString *> *)dataArray {
     _dataArray = dataArray;
     
     [self.collectionView reloadData];

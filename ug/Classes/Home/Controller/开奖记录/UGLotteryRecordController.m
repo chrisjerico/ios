@@ -25,10 +25,10 @@
 
 @property (nonatomic, strong) YBPopupMenu *lotteryTypePopView;  /**<   彩种选择弹框 */
 
-@property (nonatomic, strong) NSMutableArray *dateArray;
-@property (nonatomic, strong) NSMutableArray *gameArray;
-@property (nonatomic, strong) NSMutableArray *gameNameArray;
-@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray <NSString *> *dateArray;
+@property (nonatomic, strong) NSMutableArray <UGNextIssueModel *> *gameArray;
+@property (nonatomic, strong) NSMutableArray <NSString *> *gameNameArray;
+@property (nonatomic, strong) NSMutableArray <UGLotteryHistoryModel *> *dataArray;
 @property (nonatomic, assign) NSInteger selGameIndex;
 @end
 

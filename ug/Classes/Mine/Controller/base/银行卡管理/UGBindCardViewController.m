@@ -20,8 +20,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *bankTypeArrow;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 
-@property (nonatomic, strong) NSArray *bankListArray;
-@property (nonatomic, strong) NSMutableArray *titlesArray;
+@property (nonatomic, strong) NSArray <UGbankModel *> *bankListArray;
+@property (nonatomic, strong) NSMutableArray <NSString *> *titlesArray;
 @property (nonatomic, assign) NSInteger selIndex;
 
 
@@ -131,7 +131,7 @@
     }
 }
 
-- (NSMutableArray *)titlesArray {
+- (NSMutableArray<NSString *> *)titlesArray {
     if (_titlesArray == nil) {
         _titlesArray = [NSMutableArray array];
     }

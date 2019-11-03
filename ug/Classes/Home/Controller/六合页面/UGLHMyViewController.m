@@ -72,7 +72,7 @@
 @property (strong, nonatomic)UGYYRightMenuView *yymenuView;   /**<   侧边栏 */
 
 //===================================================
-@property (nonatomic, strong) NSMutableArray *menuNameArray;
+@property (nonatomic, strong) NSMutableArray<NSDictionary *> *menuNameArray;
 @property (nonatomic, strong) NSMutableArray<UGMineSkinModel *> *menuSecondNameArray;
 
 @end
@@ -259,7 +259,7 @@
     //新年红
     self.menuSecondNameArray = [NSMutableArray array];
     {
-         NSMutableArray *dataArrayOne = [NSMutableArray array];
+        NSMutableArray *dataArrayOne = [NSMutableArray array];
         UGUserModel *user = [UGUserModel currentUser];
         NSLog(@"isAgent= %d",user.isAgent);
         NSLog(@"hasActLottery= %d",user.hasActLottery);

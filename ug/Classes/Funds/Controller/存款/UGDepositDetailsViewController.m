@@ -22,18 +22,18 @@
 @property (nonatomic, strong) UGchannelModel *selectChannelModel ;
 @property(nonatomic,strong)NSIndexPath *lastPath;
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray *tableDataArray;
+@property (nonatomic, strong) NSMutableArray <UGchannelModel *> *tableDataArray;
 
 @property (nonatomic, strong)UIView *bg_label;
 @property (nonatomic, strong)UILabel *label;
 @property (nonatomic, strong)UILabel *tiplabel;
 @property (nonatomic, strong)UITextField *textField;
 @property (nonatomic, strong) UICollectionView *collectionView ;
-@property (nonatomic, strong) NSArray *channelDataArray;
-@property (nonatomic, strong) NSMutableArray *amountDataArray;
+@property (nonatomic, strong) NSArray <UGchannelModel *> *channelDataArray;
+@property (nonatomic, strong) NSMutableArray <NSString *> *amountDataArray;
 
 @property (nonatomic, strong)UIButton *blank_button;
-@property (nonatomic, strong) NSMutableArray<UGrechargeBankModel> *blankDataArray;
+@property (nonatomic, strong) NSMutableArray <UGrechargeBankModel *> *blankDataArray;
 @property (nonatomic, strong)UGrechargeBankModel *selectBank;
 
 @property (nonatomic, strong)UIButton *submit_button;
@@ -48,7 +48,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     _amountDataArray = [NSMutableArray new];
-    _channelDataArray = [NSArray new];
+    _channelDataArray = @[];
     _tableDataArray = [NSMutableArray new];
     _blankDataArray = [NSMutableArray<UGrechargeBankModel> new];
     
@@ -81,11 +81,11 @@
 
         //==============================================================
 
-    self->_blankDataArray = nil;
+    self.blankDataArray = nil;
     NSOperationQueue *waitQueue = [[NSOperationQueue alloc] init];
     [waitQueue addOperationWithBlock:^{
         UGparaModel *bankModel= channelModel.para;
-        self->_blankDataArray = bankModel.bankList ;//显示银行数据
+        self.blankDataArray = bankModel.bankList ;//显示银行数据
         if ([CMCommon stringIsNull:bankModel.fixedAmount]) {
             self.amountDataArray = [[NSMutableArray alloc] initWithArray:self->_item.quickAmount];
         }
@@ -134,7 +134,7 @@
         // 同步到主线程
          dispatch_async(dispatch_get_main_queue(), ^{
             
-            if ([CMCommon arryIsNull:self->_blankDataArray]) {
+            if ([CMCommon arryIsNull:self.blankDataArray]) {
                 [self->_blank_button setHidden:YES];
             } else {
                 [self->_blank_button setHidden:NO];
@@ -504,7 +504,7 @@
 
 -(void)showBlackList:(UIButton *)sender{
     UGFundsBankView *notiveView = [[UGFundsBankView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - 260)];
-    notiveView.dataArray = self->_blankDataArray ;
+    notiveView.dataArray = self.blankDataArray ;
     notiveView.nameStr = @"--- 请选择银行 ---";
     
     WeakSelf;
@@ -514,7 +514,7 @@
         [weakSelf.blank_button setTitle:weakSelf.selectBank.name forState:UIControlStateNormal];
     };
     
-    if (![CMCommon arryIsNull:self->_blankDataArray ]) {
+    if (![CMCommon arryIsNull:self.blankDataArray ]) {
         [notiveView show];
     }
 }
@@ -557,7 +557,14 @@
                 [SVProgressHUD dismiss];
                 //通知==》存款记录刷新
                 SANotificationEventPost(UGNotificationWithRecordOfDeposit, nil);
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:model.data]];
+                NSString *url = nil;
+                if ([model.data isKindOfClass:[NSDictionary class]]) {
+                    url = model.data[@"url"];
+                } else if ([model.data isKindOfClass:[NSString class]]) {
+                    url = model.data;
+                }
+                url = [CMNetwork encryptionCheckSignForURL:url];
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
    
             }
         } failure:^(id msg) {

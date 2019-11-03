@@ -267,8 +267,8 @@
 @property (strong, nonatomic) UILabel *closeTimeLabel;
 @property (strong, nonatomic) UILabel *openTimeLabel;
 @property (strong, nonatomic) UIView *nextIssueView;
-@property (nonatomic, strong) NSArray *preNumArray;
-@property (nonatomic, strong) NSArray *subPreNumArray;
+@property (nonatomic, strong) NSArray <NSString *> *preNumArray;
+@property (nonatomic, strong) NSArray <NSString *> *subPreNumArray;
 @property (nonatomic, strong) dispatch_source_t timer;
 
 @end

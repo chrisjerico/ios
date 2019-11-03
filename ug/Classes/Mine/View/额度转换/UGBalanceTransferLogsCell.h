@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-@class UGBalanceTransferLogsModel;
+#import "UGBalanceTransferLogsModel.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UGBalanceTransferLogsCell : UITableViewCell

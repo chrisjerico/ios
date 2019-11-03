@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@class UGRedEnvelopeModel;
+#import "UGRedEnvelopeModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 typedef void(^RedEnvelopeCancelBlock)(void);

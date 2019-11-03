@@ -10,6 +10,7 @@
 #import "OttoScratchView.h"
 #import "UIView+Events.h"
 #import "SGBrowserView.h"
+
 @interface UGScratchMusicView ()<OttoScratchViewDelegate>
 @property (nonatomic,strong) OttoScratchView * ottoScratchView;
 @property (weak, nonatomic) IBOutlet UIView *answerView;
@@ -18,12 +19,11 @@
 @property (weak, nonatomic) IBOutlet UIButton *showButton;
 
 @end
+
 @implementation UGScratchMusicView
 
--(instancetype) UGScratchMusicView{
-    NSBundle *bundle=[NSBundle mainBundle];
-    NSArray *objs=[bundle loadNibNamed:@"UGScratchMusicView" owner:nil options:nil];
-    return [objs firstObject];
+- (instancetype)UGScratchMusicView {
+    return _LoadView_from_nib_(@"UGScratchMusicView");
 }
 
 -(instancetype)initView{

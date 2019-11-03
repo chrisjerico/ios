@@ -42,8 +42,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *icon1ImgeView;
 @property (weak, nonatomic) IBOutlet UIImageView *icon2ImageView;
 
-@property (nonatomic, strong) NSMutableArray *titleArray;
-@property (nonatomic, strong) NSMutableArray *imageNameArray;
+@property (nonatomic, strong) NSMutableArray <NSString *> *titleArray;
+@property (nonatomic, strong) NSMutableArray <NSString *> *imageNameArray;
 @end
 
 static NSString *menuCellid = @"UGYYRightMenuTableViewCell";

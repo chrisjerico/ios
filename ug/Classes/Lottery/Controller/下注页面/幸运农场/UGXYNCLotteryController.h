@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 //=======
 @interface UGXYNCLotteryController: UGCommonLotteryController
 //>>>>>>> dev_andrew
-@property (nonatomic, strong) NSArray *lotteryGamesArray;
+@property (nonatomic, strong) NSArray<UGAllNextIssueListModel *> *lotteryGamesArray;
 @property (nonatomic, strong) UGNextIssueModel *nextIssueModel;
 @property (nonatomic, strong) NSString *gameId;
 @end

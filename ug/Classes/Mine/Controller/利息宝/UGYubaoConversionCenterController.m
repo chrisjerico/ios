@@ -12,7 +12,7 @@
 
 @interface UGYubaoConversionCenterController ()<XYYSegmentControlDelegate>
 @property (nonatomic, strong) XYYSegmentControl *slideSwitchView;
-@property (nonatomic,strong)  NSArray *itemArray;
+@property (nonatomic,strong)  NSArray <NSString *> *itemArray;
 @end
 
 @implementation UGYubaoConversionCenterController

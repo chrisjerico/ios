@@ -38,7 +38,7 @@
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 
-@property (nonatomic, strong) NSMutableArray *amountArray;
+@property (nonatomic, strong) NSMutableArray <NSString *> *amountArray;
 @property (nonatomic, strong) NSString *inputFundPwd;
 @property (nonatomic, strong) NSString *transferType;
 @property (weak, nonatomic) IBOutlet UIImageView *bgView;
@@ -298,7 +298,7 @@ static NSString *convertCellid = @"UGConvertCollectionViewCell";
     self.yubaoAmountLabel.text = self.infoModel.balance;
 }
 
-- (NSMutableArray *)amountArray {
+- (NSMutableArray<NSString *> *)amountArray {
     if (_amountArray == nil) {
         _amountArray = [NSMutableArray array];
         

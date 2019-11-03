@@ -83,8 +83,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (nonatomic, strong) WavesView *waveView;
-@property (nonatomic, strong) NSArray *imageNameArray;
-@property (nonatomic, strong) NSArray *menuNameArray;
+@property (nonatomic, strong) NSArray <NSString *> *imageNameArray;
+@property (nonatomic, strong) NSArray <NSString *> *menuNameArray;
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) CAShapeLayer *containerLayer;
@@ -92,7 +92,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *signButton;
 
-@property (nonatomic, strong) NSArray *lotteryGamesArray;
+@property (nonatomic, strong) NSArray<UGAllNextIssueListModel *> *lotteryGamesArray;
 
 //====================================
 @property (nonatomic, strong) UICollectionView *mcollectionView;

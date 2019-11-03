@@ -14,7 +14,7 @@
 
 
 @interface UGMosaicGoldController ()
-@property (nonatomic, strong) NSArray *dataArray;
+@property (nonatomic, strong) NSArray <UGMosaicGoldModel *> *dataArray;
 
 @end
 

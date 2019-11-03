@@ -27,7 +27,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *imageButton;
 
 
-@property (strong, nonatomic) NSMutableArray *quickAmountArray;
+@property (strong, nonatomic) NSMutableArray <NSString *> *quickAmountArray;
 
 @property (nonatomic, assign) NSInteger selectSection;
 @end

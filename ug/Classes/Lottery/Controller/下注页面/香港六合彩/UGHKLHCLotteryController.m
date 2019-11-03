@@ -76,17 +76,17 @@
 @property (nonatomic, strong) CountDown *countDown;             /**<   倒数器 */
 @property (nonatomic, strong) CountDown *nextIssueCountDown;    /**<   下期倒数器 */
 
-@property (nonatomic, strong) NSArray *chipArray;               /**<   筹码数组 */
+@property (nonatomic, strong) NSArray <NSString *> *chipArray;               /**<   筹码数组 */
 @property (nonatomic, strong) UGPlayOddsModel *playOddsModel;   /**<   玩法赔率Model */
 @property (nonatomic, strong) NSMutableArray <UGGameplayModel *>*gameDataArray;    /**<   玩法列表 */
-@property (nonatomic, strong) NSArray *preNumArray;
-@property (nonatomic, strong) NSArray *subPreNumArray;
-@property (nonatomic, strong) NSArray *numColorArray;
-@property (nonatomic, strong) NSMutableArray *tmTitleArray;     /**<   特码 的子玩法标题Array */
-@property (nonatomic, strong) NSMutableArray *lmTitleArray;     /**<   连码 的子玩法标题Array */
-@property (nonatomic, strong) NSMutableArray *ztTitleArray;     /**<   正特 的子玩法标题Array */
-@property (nonatomic, strong) NSMutableArray *lxTitleArray;     /**<   连肖 的子玩法标题Array */
-@property (nonatomic, strong) NSMutableArray *lwTitleArray;     /**<   连尾 的子玩法标题Array */
+@property (nonatomic, strong) NSArray <NSString *> *preNumArray;
+@property (nonatomic, strong) NSArray <NSString *> *subPreNumArray;
+@property (nonatomic, strong) NSArray <NSString *> *numColorArray;
+@property (nonatomic, strong) NSMutableArray <NSString *> *tmTitleArray;     /**<   特码 的子玩法标题Array */
+@property (nonatomic, strong) NSMutableArray <NSString *> *lmTitleArray;     /**<   连码 的子玩法标题Array */
+@property (nonatomic, strong) NSMutableArray <NSString *> *ztTitleArray;     /**<   正特 的子玩法标题Array */
+@property (nonatomic, strong) NSMutableArray <NSString *> *lxTitleArray;     /**<   连肖 的子玩法标题Array */
+@property (nonatomic, strong) NSMutableArray <NSString *> *lwTitleArray;     /**<   连尾 的子玩法标题Array */
 
 @property (nonatomic, strong) NSIndexPath *typeIndexPath;       /**<   类型下标 */
 @property (nonatomic, strong) NSIndexPath *itemIndexPath;       /**<   item下标 */
@@ -1488,14 +1488,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     return _zodiacScrollView;
 }
 
-//- (NSArray *)subPreNumArray {
-//    if (_subPreNumArray == nil) {
-//        _subPreNumArray = [self.nextIssueModel.preNumSx componentsSeparatedByString:@","];
-//    }
-//    return _subPreNumArray;
-//}
-
-- (NSArray *)numColorArray {
+- (NSArray<NSString *> *)numColorArray {
     if (_numColorArray == nil) {
         _numColorArray = [self.nextIssueModel.preNumColor componentsSeparatedByString:@","];
     }

@@ -18,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *placeholderLabel;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 
-@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray <UGMessageModel *> *dataArray;
 
 @end
 
@@ -137,7 +137,7 @@
     [self.dataArray insertObject:item atIndex:0];
 }
 
-- (NSMutableArray *)dataArray {
+- (NSMutableArray<UGMessageModel *> *)dataArray {
     if (_dataArray == nil) {
         _dataArray = [NSMutableArray array];
     }

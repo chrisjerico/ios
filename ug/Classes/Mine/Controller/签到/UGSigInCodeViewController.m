@@ -29,9 +29,9 @@
     
 }
 @property (nonatomic, strong) UICollectionView *collectionView;
-@property (nonatomic, strong) NSMutableArray *collectionDataArray;
+@property (nonatomic, strong) NSMutableArray <UGCheckinListModel *> *collectionDataArray;
 @property (nonatomic, strong) UGSignInModel *checkinListModel;
-@property (nonatomic, strong) NSMutableArray *historyDataArray;
+@property (nonatomic, strong) NSMutableArray <UGSignInHistoryModel *> *historyDataArray;
 
 @end
 
@@ -397,8 +397,8 @@
     [CMNetwork checkinHistoryWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             [SVProgressHUD dismiss];
-            self->_historyDataArray = model.data;
-            NSLog(@"_historyDataArray = %@",self->_historyDataArray);
+            self.historyDataArray = model.data;
+            NSLog(@"_historyDataArray = %@",self.historyDataArray);
             NSLog(@"model.data = %@",model.data);
             [self showUGSignInHistoryView];
         } failure:^(id msg) {
@@ -413,11 +413,11 @@
 - (void)showUGSignInHistoryView {
     
     UGSignInHistoryView *notiveView = [[UGSignInHistoryView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - 260)];
-    notiveView.dataArray = self->_historyDataArray;
+    notiveView.dataArray = self.historyDataArray;
     notiveView.checkinMoney = self.checkinListModel.checkinMoney;
     notiveView.checkinTimes= [NSString stringWithFormat:@"%@",self.checkinListModel.checkinTimes];
     [notiveView.bgView setBackgroundColor: Skin1.navBarBgColor];
-//    if (![CMCommon arryIsNull:self->_historyDataArray]) {
+//    if (![CMCommon arryIsNull:self.historyDataArray]) {
         [notiveView show];
 //    }
 }

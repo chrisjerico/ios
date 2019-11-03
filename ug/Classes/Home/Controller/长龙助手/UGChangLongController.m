@@ -16,7 +16,7 @@
 
 @interface UGChangLongController ()<XYYSegmentControlDelegate>
 @property (nonatomic, strong) XYYSegmentControl *slideSwitchView;
-@property (nonatomic,strong)  NSArray *itemArray;
+@property (nonatomic,strong)  NSArray<NSString *> *itemArray;
 
 @property (nonatomic, strong) STBarButtonItem *rightItem1;
 @end

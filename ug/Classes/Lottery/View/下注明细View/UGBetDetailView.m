@@ -29,7 +29,7 @@
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) CountDown *countDown;
-@property (nonatomic, strong) NSMutableArray *betArray;
+@property (nonatomic, strong) NSMutableArray <UGBetModel *> *betArray;
 
 @end
 
@@ -460,7 +460,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 	return 0.001f;
 }
 
-- (void)setDataArray:(NSArray *)dataArray {
+- (void)setDataArray:(NSArray<UGGameBetModel *> *)dataArray {
 	_dataArray = dataArray;
 	NSMutableArray *array = [NSMutableArray array];
 	for (UGGameBetModel *model in dataArray) {
@@ -737,7 +737,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 	return _tableView;
 }
 
-- (NSMutableArray *)betArray {
+- (NSMutableArray<UGBetModel *> *)betArray {
 	if (_betArray == nil) {
 		_betArray = [NSMutableArray array];
 	}

@@ -14,7 +14,7 @@
 #import "UGWithdrawRecordDetailView.h"
 @interface UGRechargeRecordTableViewController ()
 
-@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray <UGRechargeLogsModel *> *dataArray;
 @property (nonatomic, strong) NSString *startTime;
 
 @property(nonatomic, assign) int pageSize;
@@ -313,7 +313,7 @@ static NSString *rechargeRecordCellid = @"UGRechargeRecordCell";
     }
 }
 
-- (NSMutableArray *)dataArray {
+- (NSMutableArray<UGRechargeLogsModel *> *)dataArray {
     if (_dataArray == nil) {
         _dataArray = [NSMutableArray array];
     }

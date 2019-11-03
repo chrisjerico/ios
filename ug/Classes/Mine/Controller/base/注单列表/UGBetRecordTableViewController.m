@@ -24,7 +24,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *winAmountLabel;
 
 @property (nonatomic, strong) CountDown *countDown;
-@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray <UGBetsRecordModel *> *dataArray;
 @property(nonatomic, assign) int pageSize;
 @property(nonatomic, assign) int pageNumber;
 @end
@@ -278,7 +278,7 @@ static NSString *betRecordCellid = @"UGLotteryRecordCell";
     self.winAmountLabel.attributedText = abStr;
 }
 
-- (NSMutableArray *)dataArray {
+- (NSMutableArray<UGBetsRecordModel *> *)dataArray {
     if (_dataArray == nil) {
         _dataArray = [NSMutableArray array];
     }

@@ -13,7 +13,7 @@
 
 @interface UGFundDetailsTableViewController ()
 
-@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray <UGFundLogsModel *> *dataArray;
 @property (nonatomic, strong) NSString *startTime;
 
 @property(nonatomic, assign) int pageSize;
@@ -179,7 +179,7 @@ static NSString *fundDetailsCellid = @"UGFundDetailsCell";
     
 }
 
-- (NSMutableArray *)dataArray {
+- (NSMutableArray<UGFundLogsModel *> *)dataArray {
     if (_dataArray == nil) {
         _dataArray = [NSMutableArray array];
     }

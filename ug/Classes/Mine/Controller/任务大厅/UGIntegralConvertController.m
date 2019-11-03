@@ -21,7 +21,7 @@
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 
-@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray <UGMissionLevelModel *> *dataArray;
 
 
 @end
@@ -170,7 +170,7 @@ static NSString *integralCellid = @"UGConvertCollectionViewCell";
     return YES;
 }
 
-- (NSMutableArray *)dataArray {
+- (NSMutableArray<UGMissionLevelModel *> *)dataArray {
     if (_dataArray == nil) {
         _dataArray = [NSMutableArray array];
         UGMissionLevelModel *model0 =  [[UGMissionLevelModel alloc] init];

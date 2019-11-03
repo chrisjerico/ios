@@ -18,7 +18,7 @@ typedef void(^PCDDLotteryBlock)(void);
 //=======
 @interface UGPCDDLotteryController : UGCommonLotteryController
 
-@property (nonatomic, strong) NSArray *lotteryGamesArray;
+@property (nonatomic, strong) NSArray<UGAllNextIssueListModel *> *lotteryGamesArray;
 @property (nonatomic, strong) UGNextIssueModel *nextIssueModel;
 @property (nonatomic, strong) NSString *gameId;
 

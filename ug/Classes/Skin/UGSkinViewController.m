@@ -16,7 +16,7 @@
 
 //@property (nonatomic, strong) UIScrollView *mUIScrollView;
 @property (nonatomic, strong) UICollectionView *collectionView ;
-@property (nonatomic, strong) NSMutableArray *colorDataArray;
+@property (nonatomic, strong) NSMutableArray<UIColor *> *colorDataArray;
 @property (nonatomic, strong)UILabel *tiplabel;
 
 @property (nonatomic, strong)UIButton *default_button;

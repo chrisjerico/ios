@@ -12,7 +12,7 @@
 #import "UGapplyWinLogDetail.h"
 
 @interface UGActivityGoldTableViewController ()
-@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray <UGActivityGoldModel *> *dataArray;
 
 @end
 

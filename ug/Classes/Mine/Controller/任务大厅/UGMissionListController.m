@@ -12,7 +12,7 @@
 
 @interface UGMissionListController ()
 
-@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray <UGMissionModel *> *dataArray;
 //@property(nonatomic, assign) int pageSize;
 //@property(nonatomic, assign) int pageNumber;
 

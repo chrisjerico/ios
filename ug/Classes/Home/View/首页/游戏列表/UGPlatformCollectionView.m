@@ -17,7 +17,7 @@
 }
 @property (nonatomic, strong) UICollectionView *gameCollectionView;
 
-@property (nonatomic, strong) NSMutableArray * sectionedDataArray;
+@property (nonatomic, strong) NSMutableArray <NSMutableArray *> *sectionedDataArray;
 
 @end
 
@@ -48,7 +48,7 @@ static NSString *const footerId = @"footerId";
 }
 
 
-- (void)setDataArray:(NSArray *)dataArray {
+- (void)setDataArray:(NSArray<GameModel *> *)dataArray {
     _dataArray = dataArray;
 	_selectedPath = nil;
 	if (dataArray.count <= 0) {
@@ -174,7 +174,7 @@ static NSString *const footerId = @"footerId";
 	[collectionView reloadData];
 }
 
-- (NSMutableArray *)sectionedDataArray {
+- (NSMutableArray<NSMutableArray *> *)sectionedDataArray {
 	if (!_sectionedDataArray) {
 		_sectionedDataArray = [NSMutableArray array];
 	}

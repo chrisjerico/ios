@@ -26,13 +26,13 @@
 @property (nonatomic, strong) YBPopupMenu *statePopView;
 @property (nonatomic, strong) YBPopupMenu *typePopView;
 
-@property (nonatomic, strong) NSMutableArray *dateArray;
-@property (nonatomic, strong) NSMutableArray *stateArray;
-@property (nonatomic, strong) NSMutableArray *typeArray;
+@property (nonatomic, strong) NSMutableArray <NSString *> *dateArray;
+@property (nonatomic, strong) NSMutableArray <NSString *> *stateArray;
+@property (nonatomic, strong) NSMutableArray <NSString *> *typeArray;
 
 @property (nonatomic, assign) NSInteger selectType;
 @property (nonatomic, assign) NSInteger selectStatus;
-@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray <UGMessageModel *> *dataArray;
 @property(nonatomic, assign) int pageSize;
 @property(nonatomic, assign) int pageNumber;
 @end
@@ -240,7 +240,7 @@ static int size = 20;
     self.typeArrow.transform = transform;
 }
 
-- (NSMutableArray *)dateArray {
+- (NSMutableArray<NSString *> *)dateArray {
     if (_dateArray == nil) {
         _dateArray = [NSMutableArray array];
         for (int i = 0; i < 30; i++) {
@@ -256,14 +256,14 @@ static int size = 20;
     return _dateArray;
 }
 
-- (NSMutableArray *)dataArray {
+- (NSMutableArray<UGMessageModel *> *)dataArray {
     if (_dataArray == nil) {
         _dataArray = [NSMutableArray array];
     }
     return _dataArray;
 }
 
-- (NSMutableArray *)stateArray {
+- (NSMutableArray<NSString *> *)stateArray {
     if (_stateArray == nil) {
         _stateArray = [NSMutableArray array];
     }

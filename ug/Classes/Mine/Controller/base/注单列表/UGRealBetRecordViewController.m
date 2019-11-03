@@ -35,7 +35,7 @@
 
 @property (nonatomic, strong) STButton *titleView;
 
-@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray <UGBetsRecordModel *> *dataArray;
 @property(nonatomic, assign) int pageSize;
 @property(nonatomic, assign) int pageNumber;
 @end
@@ -263,7 +263,7 @@ static NSString *realBetRecordCellId = @"UGRealBetRecordCell";
     return _titleView;
 }
 
-- (NSMutableArray *)dataArray {
+- (NSMutableArray<UGBetsRecordModel *> *)dataArray {
     if (_dataArray == nil) {
         _dataArray = [NSMutableArray array];
     }

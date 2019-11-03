@@ -44,7 +44,7 @@
     [self hiddenSelf];
 }
 
-- (void)setDataArray:(NSArray *)dataArray {
+- (void)setDataArray:(NSArray<UGrechargeBankModel *> *)dataArray {
     _dataArray = dataArray;
     [self.tableView reloadData];
 }

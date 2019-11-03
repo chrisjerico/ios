@@ -49,7 +49,7 @@
     [self hiddenSelf];
 }
 
-- (void)setDataArray:(NSArray *)dataArray {
+- (void)setDataArray:(NSArray<UGSignInHistoryModel *> *)dataArray {
     _dataArray = dataArray;
     [self.tableView reloadData];
     

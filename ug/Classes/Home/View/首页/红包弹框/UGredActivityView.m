@@ -81,8 +81,10 @@
     
     if (item.canGet) {
         [self.redButton setTitle:@"立即开抢" forState:UIControlStateNormal];
+    } else if (item.attendedTimes) {
+        [self.redButton setTitle:@"已参与活动" forState:UIControlStateNormal];
     } else {
-         [self.redButton setTitle:@"已参与活动" forState:UIControlStateNormal];
+        [self.redButton setTitle:@"立即开抢" forState:UIControlStateNormal];
     }
 }
 

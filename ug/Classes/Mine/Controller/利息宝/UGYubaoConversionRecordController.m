@@ -11,7 +11,7 @@
 #import "UGYuebaoTransferLogsModel.h"
 @interface UGYubaoConversionRecordController ()<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray <UGYuebaoTransferLogsModel *> *dataArray;
 @property (nonatomic, strong) NSString *startTime;
 
 @property(nonatomic, assign) int pageSize;
@@ -132,7 +132,7 @@ static int size = 20;
 }
 
 
-- (NSMutableArray *)dataArray {
+- (NSMutableArray<UGYuebaoTransferLogsModel *> *)dataArray {
     if (_dataArray == nil) {
         _dataArray = [NSMutableArray array];
     }

@@ -15,7 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *numberLabel;
 @property (weak, nonatomic) IBOutlet UILabel *placeholderLabel;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
-@property (nonatomic, strong) NSArray *typeArray;
+@property (nonatomic, strong) NSArray <NSString *> *typeArray;
 
 @end
 

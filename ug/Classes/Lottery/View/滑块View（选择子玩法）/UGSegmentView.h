@@ -12,10 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 typedef void(^SegmentIndexBlock)(NSInteger row);
 @interface UGSegmentView : UIView
 
-@property (nonatomic, strong) NSArray *dataArray;
+@property (nonatomic, strong) NSArray <NSString *> *dataArray;
 @property (nonatomic, copy) SegmentIndexBlock segmentIndexBlock;
 
-- (instancetype)initWithFrame:(CGRect)frame titleArray:(NSArray *)array;
+- (instancetype)initWithFrame:(CGRect)frame titleArray:(NSArray <NSString *> *)array;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -14,7 +14,7 @@
 
 @interface UGGameListViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,WSLWaterFlowLayoutDelegate>
 @property (nonatomic, strong) UICollectionView *collectionView;
-@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray <UGSubGameModel *> *dataArray;
 
 @end
 
@@ -159,7 +159,7 @@ static NSString *gameListCellId = @"UGGameListCollectionViewCell";
     return _collectionView;
 }
 
-- (NSArray *)dataArray {
+- (NSMutableArray<UGSubGameModel *> *)dataArray {
     if (_dataArray == nil) {
         _dataArray = [NSMutableArray array];
         

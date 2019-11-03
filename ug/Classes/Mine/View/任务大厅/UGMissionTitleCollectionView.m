@@ -12,8 +12,8 @@
 
 @interface UGMissionTitleCollectionView ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *collectionView;
-@property (nonatomic, strong) NSArray *titleArray;
-@property (nonatomic, strong) NSArray *imageArray;
+@property (nonatomic, strong) NSArray <NSString *> *titleArray;
+@property (nonatomic, strong) NSArray <NSString *> *imageArray;
 @end
 
 static NSString *titleCellid = @"UGMissionTitleCell";

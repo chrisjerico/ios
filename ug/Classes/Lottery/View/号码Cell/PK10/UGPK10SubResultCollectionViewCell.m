@@ -12,9 +12,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
 
-@property (nonatomic, strong) NSArray *titleArray;
-@property (nonatomic, strong) NSArray *imgArray;
-@property (nonatomic, strong) NSArray *resultArray;
+@property (nonatomic, strong) NSArray <NSString *> *titleArray;
+@property (nonatomic, strong) NSArray <NSString *> *imgArray;
+@property (nonatomic, strong) NSArray <NSString *> *resultArray;
 @end
 @implementation UGPK10SubResultCollectionViewCell
 

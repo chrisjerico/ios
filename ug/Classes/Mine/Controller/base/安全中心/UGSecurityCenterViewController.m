@@ -18,7 +18,7 @@
 #import "UGgoBindViewController.h"
 @interface UGSecurityCenterViewController ()<XYYSegmentControlDelegate>
 @property (nonatomic, strong) XYYSegmentControl *slideSwitchView;
-@property (nonatomic,strong)   NSMutableArray *itemArray;
+@property (nonatomic,strong)   NSMutableArray <NSString *> *itemArray;
 @end
 
 @implementation UGSecurityCenterViewController

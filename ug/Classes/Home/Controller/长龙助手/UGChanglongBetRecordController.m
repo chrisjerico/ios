@@ -14,7 +14,7 @@
 #import "UGAllNextIssueListModel.h"
 @interface UGChanglongBetRecordController ()
 
-@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray<UGChanglongBetRecordModel *> *dataArray;
 
 @end
 static NSString *changlongBetRecordCellId = @"UGChanglongBetRecrodCell";
@@ -111,7 +111,7 @@ static NSString *changlongBetRecordCellId = @"UGChanglongBetRecrodCell";
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 
-- (NSMutableArray *)dataArray {
+- (NSMutableArray<UGChanglongBetRecordModel *> *)dataArray {
     if (_dataArray == nil) {
         _dataArray = [NSMutableArray array];
     }

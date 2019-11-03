@@ -12,7 +12,7 @@
 @interface UGBalanceConversionRecordController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIView *titleView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray <UGBalanceTransferLogsModel *> *dataArray;
 
 @property (nonatomic, strong) NSString *startTime;
 
@@ -138,7 +138,7 @@ static NSString *transferLogsCellId = @"UGBalanceTransferLogsCell";
     return 0.001f;
 }
 
--(NSMutableArray *)dataArray {
+- (NSMutableArray<UGBalanceTransferLogsModel *> *)dataArray {
     if (_dataArray == nil) {
         _dataArray = [NSMutableArray array];
     }

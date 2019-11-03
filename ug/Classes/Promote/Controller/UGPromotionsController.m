@@ -7,8 +7,17 @@
 //
 
 #import "UGPromotionsController.h"
+#import "UGPromoteDetailController.h"   // 优惠详情
+#import "UGFundsViewController.h"       // 资金管理
+#import "UGChangLongController.h"       // 长龙助手
+#import "UGPromotionIncomeController.h" // 推广收益
+#import "UGAgentViewController.h"       // 申请代理
+#import "UGBetRecordViewController.h"   // 注单记录
+
+#import "UGAppVersionManager.h"         // 版本更新弹框
+
 #import "UGPromoteModel.h"
-#import "UGPromoteDetailController.h"
+
 
 @interface UGPromotionsController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -79,10 +88,135 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    UGPromoteModel *model = tableView.dataArray[indexPath.row];
-    UGPromoteDetailController *detailVC = [[UGPromoteDetailController alloc] init];
-    detailVC.item = model;
-    [self.navigationController pushViewController:detailVC animated:YES];
+    UGPromoteModel *pm = tableView.dataArray[indexPath.row];
+    
+    // 去功能页面
+    
+    
+    //
+    switch (pm.linkCategory) {
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+        case 6: {
+            
+            
+            break;
+        }
+        case 7: {
+            
+            break;
+        }
+        default:;
+    }
+    
+    if (pm.linkCategory) {
+        switch (pm.linkPosition) {
+            case 1: {
+                // 资金管理
+                [self.navigationController pushViewController:[UGFundsViewController new] animated:true];
+                break;
+            }
+            case 2: {
+                // APP下载
+                [[UGAppVersionManager shareInstance] updateVersionApi:true];
+                break;
+            }
+            case 3: {
+                // 聊天室
+                [self.navigationController pushViewController:[UGChatViewController new] animated:YES];
+                break;
+            }
+            case 4: {
+                // 在线客服
+                TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
+                webViewVC.url = SysConf.zxkfUrl;
+                webViewVC.webTitle = @"在线客服";
+                [self.navigationController pushViewController:webViewVC animated:YES];
+                break;
+            }
+            case 5: {
+                // 长龙助手
+                UGChangLongController *changlongVC = [[UGChangLongController alloc] init];
+//                changlongVC.lotteryGamesArray = self.lotteryGamesArray;
+                [self.navigationController pushViewController:changlongVC animated:YES];
+                break;
+            }
+            case 6: {
+                // 推广收益
+                if (UserI.isTest) {
+                    [self.navigationController pushViewController:[UGPromotionIncomeController new] animated:YES];
+                } else {
+                    [SVProgressHUD showWithStatus:nil];
+                    [CMNetwork teamAgentApplyInfoWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:^(CMResult<id> *model, NSError *err) {
+                        [CMResult processWithResult:model success:^{
+                            [SVProgressHUD dismiss];
+                            UGagentApplyInfo *obj  = (UGagentApplyInfo *)model.data;
+                            int intStatus = obj.reviewStatus.intValue;
+                            
+                            //0 未提交  1 待审核  2 审核通过 3 审核拒绝
+                            if (intStatus == 2) {
+                                [NavController1 pushViewController:[UGPromotionIncomeController new] animated:YES];
+                            } else {
+                                if (![SysConf.agent_m_apply isEqualToString:@"1"]) {
+                                    [HUDHelper showMsg:@"在线注册代理已关闭"];
+                                    return ;
+                                }
+                                UGAgentViewController *vc = [[UGAgentViewController alloc] init];
+                                vc.item = obj;
+                                [NavController1 pushViewController:vc animated:YES];
+                            }
+                        } failure:^(id msg) {
+                            [SVProgressHUD showErrorWithStatus:msg];
+                        }];
+                    }];
+                }
+                break;
+            }
+            case 7: {
+                // 开奖网
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_NSString(@"%@/Open_prize/index.php", baseServerUrl)]];
+                break;
+            }
+            case 8: {
+                // 利息宝
+                [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGYubaoViewController")  animated:YES];
+                break;
+            }
+            case 9: {
+                // 优惠活动
+                [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGPromotionsController") animated:YES];
+                break;
+            }
+            case 10: {
+                // 注单记录
+                UGBetRecordViewController *vc = [[UGBetRecordViewController alloc] init];
+                [self.navigationController pushViewController:vc animated:true];
+                break;
+            }
+            case 11: {
+                // QQ客服
+                NSString *qqstr;
+                if ([CMCommon stringIsNull:SysConf.serviceQQ1]) {
+                    qqstr = SysConf.serviceQQ2;
+                } else {
+                    qqstr = SysConf.serviceQQ1;
+                }
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_NSString(@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web", qqstr)]];
+                break;
+            }
+                
+            default: {
+                // 优惠详情
+                UGPromoteDetailController *detailVC = [[UGPromoteDetailController alloc] init];
+                detailVC.item = pm;
+                [self.navigationController pushViewController:detailVC animated:YES];
+                break;
+            }
+        }
+    }
 }
 
 @end

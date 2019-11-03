@@ -20,8 +20,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *numberLabel;
 @property (weak, nonatomic) IBOutlet UILabel *balanceLabel;
 
-@property (nonatomic, strong) NSArray *dateArray;
-@property (nonatomic, strong) NSMutableArray *tableDataArray;
+@property (nonatomic, strong) NSArray <NSString *> *dateArray;
+@property (nonatomic, strong) NSMutableArray <UGCreditsLogModel *> *tableDataArray;
 
 @property(nonatomic, assign) int pageSize;
 @property(nonatomic, assign) int pageNumber;

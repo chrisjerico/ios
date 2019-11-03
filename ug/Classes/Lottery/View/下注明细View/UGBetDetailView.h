@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UGGameplayModel.h"
+
 @class UGNextIssueModel;
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,7 +18,7 @@ typedef void(^BetDetailViewCancelBlock)(void);
 
 @property (nonatomic, copy) BetDetailViewBetBlock betClickBlock;
 @property (nonatomic, copy) BetDetailViewCancelBlock cancelBlock;
-@property (nonatomic, copy) NSArray *dataArray;
+@property (nonatomic, copy) NSArray <UGGameBetModel *> *dataArray;
 @property (nonatomic, strong) UGNextIssueModel *nextIssueModel;
 @property (nonatomic, copy) NSString *code;
 - (void)show;

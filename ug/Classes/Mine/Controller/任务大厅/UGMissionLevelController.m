@@ -13,7 +13,7 @@
 
 @interface UGMissionLevelController ()
 
-@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray <UGlevelsModel *> *dataArray;
 
 @end
 

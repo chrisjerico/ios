@@ -14,7 +14,7 @@
 
 @interface UGMailBoxTableViewController ()
 
-@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray <UGMessageModel *> *dataArray;
 @property(nonatomic, assign) int pageSize;
 @property(nonatomic, assign) int pageNumber;
 @end
@@ -166,7 +166,7 @@ static NSString *messageCellid = @"UGMessageTableViewCell";
 
 }
 
-- (NSMutableArray *)dataArray {
+- (NSMutableArray<UGMessageModel *> *)dataArray {
     if (_dataArray == nil) {
         _dataArray = [NSMutableArray array];
 

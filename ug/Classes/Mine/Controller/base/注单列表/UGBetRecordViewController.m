@@ -22,12 +22,12 @@
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 
-@property (nonatomic,strong)  NSArray *filterItemArray; /**<   筛选时间 */
+@property (nonatomic,strong)  NSArray <NSString *> *filterItemArray; /**<   筛选时间 */
 @property (nonatomic, strong) UIView *bottomView;
 @property (nonatomic, strong) UILabel *amountLabel;     /**<   金额 */
-@property (nonatomic, strong) NSArray *itemArray;
-@property (nonatomic, strong) NSMutableArray *dateArray;
-@property (nonatomic, strong) NSMutableArray *controllersArray;
+@property (nonatomic, strong) NSArray <NSString *> *itemArray;
+@property (nonatomic, strong) NSMutableArray <NSString *> *dateArray;
+@property (nonatomic, strong) NSMutableArray <UGBetRecordTableViewController *> *controllersArray;
 @property (nonatomic, assign) NSInteger dateIndex;
 @property (nonatomic, assign) NSInteger controllerIndex;
 @end
@@ -224,7 +224,7 @@ static NSString *recordFilterCellid = @"UGRecordFilterCollectionViewCell";
     return _amountLabel;
 }
 
-- (NSMutableArray *)dateArray {
+- (NSMutableArray<NSString *> *)dateArray {
     if (_dateArray == nil) {
         _dateArray = [NSMutableArray array];
         [_dateArray addObject:[CMCommon getDateStringWithLastDate:0]];
@@ -236,7 +236,7 @@ static NSString *recordFilterCellid = @"UGRecordFilterCollectionViewCell";
     
 }
 
-- (NSMutableArray *)controllersArray {
+- (NSMutableArray<UGBetRecordTableViewController *> *)controllersArray {
     if (_controllersArray == nil) {
         _controllersArray = [NSMutableArray array];
     }

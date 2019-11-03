@@ -21,8 +21,8 @@
 @property (weak, nonatomic) IBOutlet UIView *collectionBgView;
 
 @property (nonatomic, strong) UICollectionView *collectionView;
-@property (nonatomic, strong) NSArray *numArray;
-@property (nonatomic, strong) NSArray *resultArray;
+@property (nonatomic, strong) NSArray <NSString *> *numArray;
+@property (nonatomic, strong) NSArray <NSString *> *resultArray;
 
 @end
 

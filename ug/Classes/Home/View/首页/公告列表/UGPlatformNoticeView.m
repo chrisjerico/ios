@@ -66,7 +66,7 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
     [self hiddenSelf];
 }
 
-- (void)setDataArray:(NSArray *)dataArray {
+- (void)setDataArray:(NSArray<UGNoticeModel *> *)dataArray {
     _dataArray = dataArray;
     UGNoticeModel *model = dataArray.firstObject;
     model.hiddenBottomLine = YES;

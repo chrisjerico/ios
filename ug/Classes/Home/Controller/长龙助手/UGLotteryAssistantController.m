@@ -32,7 +32,7 @@
 @property (nonatomic, strong) UGBetItemModel *selBetItem;
 @property (nonatomic, strong) NSTimer *timer;
 
-@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray<UGChanglongaideModel *> *dataArray;
 
 @property (nonatomic, assign)BOOL isHaveDian;
 
@@ -442,7 +442,7 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
     return YES;
 }
 
-- (NSMutableArray *)dataArray {
+- (NSMutableArray<UGChanglongaideModel *> *)dataArray {
     if (_dataArray == nil) {
         _dataArray = [NSMutableArray array];
 

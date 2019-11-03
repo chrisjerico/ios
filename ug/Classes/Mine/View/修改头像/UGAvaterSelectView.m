@@ -20,7 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIView *avatersBgView;
 
 @property (nonatomic, strong) UICollectionView *collectionView;
-@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray <UGAvatarModel *> *dataArray;
 @property (nonatomic, assign) CGRect oldFrame;
 @property (nonatomic, assign) NSInteger selIndex;
 @property (nonatomic, assign) NSInteger leftIndex;
@@ -217,7 +217,7 @@ static NSString *avaterCellid = @"UGAvaterCollectionViewCell";
     }];
 }
 
-- (NSMutableArray *)dataArray {
+- (NSMutableArray<UGAvatarModel *> *)dataArray {
     if (!_dataArray) {
         _dataArray = [NSMutableArray array];
     }
