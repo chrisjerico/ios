@@ -827,9 +827,8 @@
 					self.rankViewHeight.constant = 250;
 					[self.view layoutIfNeeded];
 					self.rankLabel.text = @"投注排行榜";
-
 				}
-				
+                self.rankLabel.textColor = Skin1.textColor1;
 				[self.upwardMultiMarqueeView reloadData];
 
 			});
@@ -1000,19 +999,20 @@
 - (void)updateItemView:(UIView *)itemView atIndex:(NSUInteger)index forMarqueeView:(UUMarqueeView *)marqueeView {
 	if (marqueeView == self.leftwardMarqueeView) {
 		UILabel *content = [itemView viewWithTag:1001];
+        content.textColor = Skin1.textColor1;
 		content.text = self.leftwardMarqueeViewData[index];
 	} else {
 		UGRankModel *rank = self.rankArray[index];
 		UILabel *content = [itemView viewWithTag:1001];
 		content.text = rank.username;
-		[content setTextColor:UIColor.blackColor];
+        content.textColor = Skin1.textColor1;
 		
 		UILabel *coin = [itemView viewWithTag:1002];
         coin.text = rank.coin.length ? _NSString(@"%@元",rank.coin) : nil;
 		
 		UILabel *game = [itemView viewWithTag:1004];
 		game.text = rank.type;
-		
+        game.textColor = Skin1.textColor1;
 		
 		UIImageView *icon = [itemView viewWithTag:1003];
 		NSString *imgName = nil;

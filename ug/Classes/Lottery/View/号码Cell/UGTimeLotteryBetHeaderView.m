@@ -17,25 +17,23 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
 }
 
 - (void)setTitle:(NSString *)title {
     _title = title;
     self.titleLabel.text = title;
-    
 }
 
 - (void)setLeftTitle:(BOOL)leftTitle {
     _leftTitle = leftTitle;
     if (leftTitle) {
-        self.titleLabel.textColor = [UIColor blackColor];
+        self.titleLabel.textColor = Skin1.textColor1;
         self.titleLabel.font = [UIFont systemFontOfSize:18 weight:UIFontWeightHeavy];
         [self.titleLabel mas_updateConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.left).offset(15);
         }];
     }else {
-        self.titleLabel.textColor = [UIColor darkGrayColor];
+        self.titleLabel.textColor = Skin1.textColor2;
         self.titleLabel.font = [UIFont systemFontOfSize:15];
         [self.titleLabel mas_updateConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.left).offset(0);

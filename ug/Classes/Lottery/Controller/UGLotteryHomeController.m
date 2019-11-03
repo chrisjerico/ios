@@ -50,7 +50,6 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
 - (BOOL)允许游客访问 { return true; }
 
 - (void)skin{
-    [self.view setBackgroundColor: Skin1.bgColor];
     [self getAllNextIssueData];
 }
 

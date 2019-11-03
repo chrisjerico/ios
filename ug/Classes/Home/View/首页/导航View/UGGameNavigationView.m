@@ -108,7 +108,7 @@
 		_iconImage = [YYAnimatedImageView new];
         _iconImage.contentMode = UIViewContentModeScaleAspectFill;
 		_titleLabel = [UILabel new];
-		_titleLabel.textColor = [UIColor blackColor];
+        _titleLabel.textColor = Skin1.textColor1;
 		_titleLabel.font = [UIFont systemFontOfSize:14];
 		[self addSubview:_iconImage];
 		[_iconImage mas_makeConstraints:^(MASConstraintMaker *make) {

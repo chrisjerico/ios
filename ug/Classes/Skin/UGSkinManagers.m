@@ -714,7 +714,7 @@ static UGSkinManagers *__initSkin1 = nil;
             sm.progressBgColor          = color(@"d80000,fb5959");
             sm.homeContentColor         = color(@"333333");
             sm.cellBgColor              = color(@"171717");
-            sm.menuHeadViewColor        = color(@"000000");
+            sm.menuHeadViewColor        = color(@"333333");
             sm.textColor1               = color(@"FFFFFF");
             sm.textColor2               = color(@"C1C1C1");
             sm.textColor3               = color(@"555555");
@@ -738,7 +738,9 @@ static UGSkinManagers *__initSkin1 = nil;
                            @"4":@"六合资料",
     };
     NSString *skitType = dict[SysConf.mobileTemplateCategory];
-    skitType = @"黑色模板";
+#if DEBUG
+//    skitType = @"黑色模板";
+#endif
     return [UGSkinManagers allSkin][skitType];
 }
 
