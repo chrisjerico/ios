@@ -15,22 +15,13 @@
 
 @end
 @implementation UGhomeRecommendCollectionViewCell
-//-(void)skin{
-//     [self setBackgroundColor: Skin1.homeContentColor];
-//}
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
     self.layer.cornerRadius = 10;
     self.layer.masksToBounds = YES;
-    self.layer.borderWidth = 1;
-    self.layer.borderColor = [Skin1.homeContentColor CGColor];
     [self setBackgroundColor:Skin1.homeContentColor];
-    
-//    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-//        
-//        [self skin];
-//    });
 }
 
 - (void)setItem:(UGYYPlatformGames *)item {

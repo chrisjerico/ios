@@ -73,7 +73,7 @@
 
 //===================================================
 @property (nonatomic, strong) NSMutableArray *menuNameArray;
-@property (nonatomic, strong) NSMutableArray *menuSecondNameArray;
+@property (nonatomic, strong) NSMutableArray<UGMineSkinModel *> *menuSecondNameArray;
 
 @end
 
@@ -416,20 +416,11 @@
 //每个section有几个item
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    int rows = 1;
+    NSInteger rows = self.menuNameArray.count;
     skitType = Skin1.skitType;
     if ([skitType isEqualToString:@"新年红"]) {
-       UGMineSkinModel *dic = [self.menuSecondNameArray objectAtIndex:section];
-        rows = (int)  dic.dataArray.count;
-    }
-    else  if([skitType isEqualToString:@"石榴红"]){
-          rows = (int) self.menuNameArray.count;
-    }
-    else  if([skitType isEqualToString:@"经典"]){
-        rows = (int) self.menuNameArray.count;
-    }
-    else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
-        rows = (int) self.menuNameArray.count;
+        UGMineSkinModel *dic = self.menuSecondNameArray[section];
+        rows = dic.dataArray.count;
     }
     return rows;
 }

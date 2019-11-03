@@ -92,7 +92,6 @@
     UGYYPlatformGames *model = self.dataArray[indexPath.row];
     cell.item = model;
     [cell setBackgroundColor: Skin1.homeContentColor];
-     cell.layer.borderColor = [Skin1.homeContentColor CGColor];
     return cell;
 }
 

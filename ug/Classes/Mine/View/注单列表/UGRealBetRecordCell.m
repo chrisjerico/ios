@@ -21,7 +21,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-      [self setBackgroundColor:Skin1.cellBgColor];
+    [self setBackgroundColor:Skin1.cellBgColor];
 }
 
 - (void)setItem:(UGBetsRecordModel *)item {

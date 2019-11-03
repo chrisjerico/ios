@@ -84,7 +84,6 @@
     UGhomeRecommendCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UGhomeRecommendCollectionViewCell" forIndexPath:indexPath];
     cell.itemGame = (UGYYGames *)self.dataArray[indexPath.row];
     [cell setBackgroundColor: Skin1.homeContentColor];
-    cell.layer.borderColor = [Skin1.homeContentColor CGColor];
     return cell;
 }
 

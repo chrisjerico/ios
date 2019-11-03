@@ -34,7 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.view setBackgroundColor:UGBlackModelColor];
+    self.view.backgroundColor = Skin1.bgColor;
     self.fd_prefersNavigationBarHidden = YES;
     selectNav = @"线上支付";
     myCollectArray = [NSMutableArray new];

@@ -18,22 +18,19 @@
 @property (nonatomic, strong)UIImageView *hasSubSign;
 
 @end
-@implementation UGGameTypeColletionViewCell
 
--(void)skin{
-    self.layer.borderColor = Skin1.homeContentBorderColor.CGColor;
-     [self setBackgroundColor: Skin1.cellBgColor];
-}
+@implementation UGGameTypeColletionViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     [self setBackgroundColor: Skin1.cellBgColor];
     self.layer.cornerRadius = 10;
     self.layer.masksToBounds = YES;
-    self.layer.borderColor = Skin1.homeContentBorderColor.CGColor;
+    self.layer.borderColor = Skin1.homeContentColor.CGColor;
     self.layer.borderWidth = 1;
     self.hotImageView.hidden = YES;
 	[self addSubview:self.hasSubSign];
+    _nameLabel.textColor = Skin1.textColor1;
 	[self.hasSubSign mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.centerY.equalTo(self);
 		make.right.equalTo(self);

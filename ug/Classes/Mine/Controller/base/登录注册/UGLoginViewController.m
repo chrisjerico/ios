@@ -128,6 +128,7 @@
         NSDictionary *params = @{@"usr":self.userNameTextF.text,
                                  @"pwd":[UGEncryptUtil md5:self.passwordTextF.text],
                                  @"ggCode":self->ggCode.length ? ggCode : @"",
+                                 @"device":@"3",    // 0未知，1PC，2原生安卓，3原生iOS，4安卓H5，5iOS_H5，6豪华安卓，7豪华iOS，8混合安卓，9混合iOS，10聊天安卓，11聊天iOS
                                  };
       
         NSMutableDictionary *mutDict = [[NSMutableDictionary alloc] initWithDictionary:params];

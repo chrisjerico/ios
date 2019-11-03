@@ -51,7 +51,7 @@
     } else {
         self.amountLabel.textColor = [UIColor redColor];
     }
-    if ([@"1" isEqualToString:status] && [UGSystemConfigModel currentConfig].allowMemberCancelBet) {
+    if ([@"1" isEqualToString:status] && UserI.allowMemberCancelBet) {
         self.cancelButton.hidden = NO;
     } else {
         self.cancelButton.hidden = YES;

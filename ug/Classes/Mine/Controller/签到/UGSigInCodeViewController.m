@@ -50,7 +50,7 @@
 -(void)initView{
     self.title = @"签到";
     //    self.view.backgroundColor = UGRGBColor(89, 109, 191);
-    self.view.backgroundColor = Skin1.signBgColor;
+    self.view.backgroundColor = Skin1.bgColor;
     _collectionDataArray = [NSMutableArray new];
     _historyDataArray = [NSMutableArray new];
     [self getCheckinListData];

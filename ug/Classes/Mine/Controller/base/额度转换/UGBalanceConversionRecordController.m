@@ -24,20 +24,13 @@ static int page = 1;
 static int size = 20;
 static NSString *transferLogsCellId = @"UGBalanceTransferLogsCell";
 @implementation UGBalanceConversionRecordController
--(void)skin{
-    [self.view setBackgroundColor: Skin1.bgColor];
-    
-}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.pageSize = size;
     self.pageNumber = page;
     [self.view setBackgroundColor: Skin1.bgColor];
-    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-        
-        [self skin];
-    });
     self.navigationItem.title = @"额度转换记录";
     self.tableView.delegate = self;
     self.tableView.dataSource = self;

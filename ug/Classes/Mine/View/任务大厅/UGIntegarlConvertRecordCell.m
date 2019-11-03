@@ -38,7 +38,5 @@
     self.integralLabel.text = item.integral;
     self.gnewIntLabel.text = item.gnewInt;
     self.addTimeLabel.text = item.addTime;
-
-    
 }
 @end

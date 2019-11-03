@@ -64,6 +64,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL chatRoomSwitch;  /**<   是否是开启聊天室 */
 @property (nonatomic, assign) BOOL isAgent;         /**<   是否是代理 */
 @property (nonatomic, assign) BOOL checkinSwitch;   /**<   是否签到开关： */
+@property (nonatomic, assign) BOOL allowMemberCancelBet;    /**<   是否允许会员撤单 */
 
 @property (nonatomic, assign) NSInteger ggCheck;    /**<   1 要google验证 */
 

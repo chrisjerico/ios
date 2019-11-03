@@ -21,17 +21,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSString *skitType;               /**<   皮肤类型 */
 
-@property (nonatomic, strong) UIColor *bgColor;                 /**<    背景色 */
+@property (nonatomic, strong) UIColor *bgColor;                 /**<    背景 渐变色 */
 @property (nonatomic, strong) UIColor *navBarBgColor;           /**<    导航条背景色 */
 @property (nonatomic, strong) UIColor *tabBarBgColor;           /**<    Tabbar背景色 */
-@property (nonatomic, strong) UIColor *tabNoSelectColor;        /**<    Tabbar非选中颜色 */
+@property (nonatomic, strong) UIColor *tabNoSelectColor;        /**<    Tabbar未选中颜色 */
 @property (nonatomic, strong) UIColor *tabSelectedColor;        /**<    Tabbar已选中颜色 */
 @property (nonatomic, strong) UIColor *cellBgColor;             /**<    Cell背景色 */
-@property (nonatomic, strong) UIColor *progressBgColor;         /**<    进度条背景色 */
-@property (nonatomic, strong) UIColor *homeContentColor;
-@property (nonatomic, strong) UIColor *homeContentBorderColor;  /**<    描边色 */
-@property (nonatomic, strong) UIColor *menuHeadViewColor;
-@property (nonatomic, strong) UIColor *signBgColor;             /**<    签到页背景色 */
+@property (nonatomic, strong) UIColor *progressBgColor;         /**<    进度条背景渐变色 */
+@property (nonatomic, strong) UIColor *homeContentColor;        /**<   首页内容底色 */
+@property (nonatomic, strong) UIColor *menuHeadViewColor;       /**<    侧边栏顶部背景渐变色 */
+@property (nonatomic, strong) UIColor *textColor1;              /**<    默认字颜色 黑色 */
+@property (nonatomic, strong) UIColor *textColor2;              /**<    占位字颜色 深灰色 */
+@property (nonatomic, strong) UIColor *textColor3;              /**<    占位字颜色 淡灰色 */
+@property (nonatomic, strong) UIColor *textColor4;              /**<    反差字颜色 白色 */
 
 - (void)useSkin;    /**<   应用此皮肤 */
 

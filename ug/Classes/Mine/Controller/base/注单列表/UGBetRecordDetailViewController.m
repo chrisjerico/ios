@@ -50,7 +50,7 @@
     if (self.item.status) {
         self.cancelBetButton.hidden = YES;
     } else {
-        self.cancelBetButton.hidden = ![UGSystemConfigModel currentConfig].allowMemberCancelBet;
+        self.cancelBetButton.hidden = !UserI.allowMemberCancelBet;
     }
     [self.imgView sd_setImageWithURL:[NSURL URLWithString:self.item.pic] placeholderImage:[UIImage imageNamed:@"loading"]];
     self.titleLabel.text = self.item.title;

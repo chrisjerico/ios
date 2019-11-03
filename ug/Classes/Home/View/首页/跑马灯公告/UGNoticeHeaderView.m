@@ -19,10 +19,8 @@
 @implementation UGNoticeHeaderView
 
 - (void)awakeFromNib {
-    
     [super awakeFromNib];
     self.lineLabel.backgroundColor = Skin1.bgColor;
-    
 }
 
 - (void)setItem:(UGNoticeModel *)item {

@@ -146,8 +146,6 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
     UGAllNextIssueListModel *model = self.dataArray[indexPath.section];
     cell.item = model.list[indexPath.row];
     [cell setBackgroundColor: Skin1.homeContentColor];
-    cell.layer.borderColor = [Skin1.homeContentColor CGColor];
-    
     return cell;
 }
 

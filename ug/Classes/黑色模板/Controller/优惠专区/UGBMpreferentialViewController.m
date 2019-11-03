@@ -30,15 +30,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"优惠活动";
-    [self.view setBackgroundColor:UGBlackModelColor];
     self.fd_prefersNavigationBarHidden = YES;
     [self creatView];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.view.backgroundColor = Skin1.bgColor;
+    self.tableView.backgroundColor = Skin1.bgColor;
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self getPromoteList];
-        self.view.backgroundColor = Skin1.bgColor;
-        self.tableView.backgroundColor = Skin1.bgColor;
     }];
     [self getPromoteList];
 }

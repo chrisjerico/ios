@@ -156,7 +156,6 @@
 }
 
 - (void)skin {
-    
 //    FastSubViewCode(self.view);
 //    NSString* skitType = Skin1.skitType;
 //    if ([skitType isEqualToString:@"六合资料"]) {//六合资料
@@ -182,31 +181,26 @@
 //        self.promotionView.hidden = NO;
 //    }
     
-	[self.view setBackgroundColor: Skin1.bgColor];
-    [self.upwardMultiMarqueeView setBackgroundColor:Skin1.homeContentColor];
-    [self.rollingView setBackgroundColor:Skin1.homeContentColor];
-    [self.gameNavigationView setBackgroundColor:Skin1.homeContentColor];
-    [self.leftwardMarqueeView setBackgroundColor:Skin1.homeContentColor];
-    [self.gameTypeView setBackgroundColor:Skin1.bgColor];
-    self.gameNavigationView.layer.borderColor = Skin1.homeContentBorderColor.CGColor;
     [self.gameNavigationView reloadData];
 }
 
 - (BOOL)允许游客访问 { return true; }
 
 - (void)viewDidLoad {
-
     [super viewDidLoad];
-
+    FastSubViewCode(self.view);
+    subView(@"开奖结果").hidden = YES;
+    subView(@"六合论坛").hidden = YES;
+    
 	SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
 		[self skin];
 	});
 	self.gameNavigationView.layer.cornerRadius = 8;
 	self.gameNavigationView.layer.masksToBounds = true;
 	self.gameNavigationView.layer.borderWidth = 1;
-	self.gameNavigationView.layer.borderColor = Skin1.homeContentBorderColor.CGColor;
-	[self.view setBackgroundColor: Skin1.bgColor];
+	self.gameNavigationView.layer.borderColor = Skin1.homeContentColor.CGColor;
     
+	[self.view setBackgroundColor: Skin1.bgColor];
 	[self.rankingView setBackgroundColor:Skin1.navBarBgColor];
 	[self.upwardMultiMarqueeView setBackgroundColor:Skin1.homeContentColor];
 	[self.rollingView setBackgroundColor:Skin1.homeContentColor];
@@ -727,7 +721,6 @@
 				NSMutableArray *mutArr = [NSMutableArray array];
 				if (self.bannerArray.count) {
 					for (UGBannerCellModel *banner in self.bannerArray) {
-						
 						[mutArr addObject:banner.pic];
 					}
 					self.bannerView.imageURLStringsGroup = mutArr.mutableCopy;
@@ -1124,11 +1117,11 @@
 		model.gameId = model.game_id;
 	}
 	
-	void(^judeBlock)(UGCommonLotteryController * lotteryVC) = ^(UGCommonLotteryController * lotteryVC) {
+	void(^judeBlock)(UGCommonLotteryController *lotteryVC) = ^(UGCommonLotteryController *lotteryVC) {
 		if ([@[@"7", @"11", @"9"] containsObject: model.gameId]) {
 			lotteryVC.shoulHideHeader = true;
 		}
-		UGNextIssueModel * nextIssueModel = [UGNextIssueModel new];
+		UGNextIssueModel *nextIssueModel = [UGNextIssueModel new];
 		nextIssueModel.gameId = model.gameId;
 		nextIssueModel.title = model.title;
 		lotteryVC.model = nextIssueModel;
@@ -1246,7 +1239,7 @@
 		if (model.url && ![model.url isEqualToString:@""]) {
 			NSURL * url = [NSURL URLWithString:model.url];
 			if (url.scheme == nil) {
-				url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@", model.url]];
+				url = [NSURL URLWithString:_NSString(@"http://%@", model.url)];
 			}
 			SFSafariViewController *sf = [[SFSafariViewController alloc] initWithURL:url];
 			[self presentViewController:sf animated:YES completion:nil];

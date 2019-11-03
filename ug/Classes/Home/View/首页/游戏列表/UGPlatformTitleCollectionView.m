@@ -68,7 +68,6 @@ static NSString *platformTitleCellid = @"UGPlatformTitleCollectionViewCell";
 - (void)setGameTypeArray:(NSArray<GameCategoryModel *> *)gameTypeArray {
     _gameTypeArray = gameTypeArray;
     [self.collectionView reloadData];
-    _collectionView.backgroundColor = Skin1.homeContentColor;
 }
 
 

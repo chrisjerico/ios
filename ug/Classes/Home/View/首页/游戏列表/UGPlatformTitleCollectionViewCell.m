@@ -18,9 +18,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
-
-    [self setBackgroundColor: Skin1.homeContentColor];
+    [self setBackgroundColor:Skin1.homeContentColor];
+    _titleLabel.textColor = Skin1.textColor1;
 }
 
 - (void)setItem:(GameCategoryModel *)item {
@@ -54,14 +53,13 @@
         }
         [UIImage imageNamed:imgName];
     });
-    
 }
 
 - (void)setSelected:(BOOL)selected {
     if (selected) {
         self.titleLabel.textColor = [UIColor redColor];
-    }else {
-        self.titleLabel.textColor = [UIColor blackColor];
+    } else {
+        self.titleLabel.textColor = Skin1.textColor1;
     }
 }
 

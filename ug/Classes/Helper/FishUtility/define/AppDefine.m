@@ -69,6 +69,7 @@
                 sb(@"UGLHC"),
                 sb(@"UGLHH"),
                 sb(@"BMpreferential"),
+                sb(@"BlackTemplate"),
                 ];
     });
     
