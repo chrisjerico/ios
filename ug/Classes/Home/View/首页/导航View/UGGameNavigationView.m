@@ -42,8 +42,6 @@
 	[super awakeFromNib];
 
 	[self initWithFrame:CGRectZero];
-    
-
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -73,11 +71,11 @@
 #pragma mark ---- UICollectionViewDelegateFlowLayout
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return (CGSize){(UGScreenW - 20)/4,80};
+	return (CGSize){(UGScreenW - 40)/4, 75};
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-	return UIEdgeInsetsMake(0, 0, 0, 0);
+	return UIEdgeInsetsMake(10, 8, 10, 8);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
@@ -116,7 +114,7 @@
 		[_iconImage mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.top.equalTo(self).offset(5);
 			make.centerX.equalTo(self);
-			make.width.height.equalTo(@40);
+			make.width.height.equalTo(@37);
 		}];
         
         _iconImage.layer.cornerRadius = 20;
