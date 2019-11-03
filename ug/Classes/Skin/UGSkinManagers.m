@@ -16,6 +16,7 @@
 static NSPointerArray *__viewPointers = nil;
 static UGSkinManagers *__currentSkin1 = nil;
 static UGSkinManagers *__lastSkin1 = nil;
+static UGSkinManagers *__initSkin1 = nil;
 
 
 #pragma mark - 换肤核心逻辑
@@ -24,11 +25,11 @@ static UGSkinManagers *__lastSkin1 = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         
-        NSString *(^colorNameWithColor)(UIColor *) = ^NSString *(UIColor *c1) {
+        NSString *(^colorNameWithColor)(UGSkinManagers *, UIColor *) = ^NSString *(UGSkinManagers *sm, UIColor *c1) {
             for (NSString *colorName in [UGSkinManagers propertyList]) {
                 if ([colorName.lowercaseString containsString:@"color"]) {
-                    UIColor *c2 = [__lastSkin1 valueForKey:colorName];
-                    if ([c1 isEqualToColor:c2]) {
+                    UIColor *c2 = [sm valueForKey:colorName];
+                    if ([c1 isEqualToColor:c2] || [c1.hexString isEqualToString:c2.hexString]) {
                         return colorName;
                     }
                 }
@@ -37,9 +38,9 @@ static UGSkinManagers *__lastSkin1 = nil;
         };
         
         // 获取SkinColor
-        UIColor *(^getSkinColor)(UIColor *) = ^UIColor *(UIColor *c) {
+        UIColor *(^getSkinColor)(UGSkinManagers *, UIColor *) = ^UIColor *(UGSkinManagers *sm, UIColor *c) {
             if (c.alpha == SkinAlpha) {
-                return [__currentSkin1 performSelector:colorNameWithColor(c).UTF8String];
+                return [__currentSkin1 performSelector:colorNameWithColor(sm, c).UTF8String];
             }
             return nil;
         };
@@ -88,7 +89,7 @@ static UGSkinManagers *__lastSkin1 = nil;
                 CGColorRef cr = [ai.arguments.firstObject CGColorValue];
                 NSInvocation *invocation = ai.originalInvocation;
                 if (CGColorGetAlpha(cr) == SkinAlpha) {
-                    NSString *colorName = colorNameWithColor([UIColor colorWithCGColor:cr]);
+                    NSString *colorName = colorNameWithColor(__lastSkin1, [UIColor colorWithCGColor:cr]);
 
                     if (![__viewPointers.allObjects containsObject:ai.instance]) {
                         [__viewPointers addPointer:(__bridge void * _Nullable)(ai.instance)];
@@ -137,7 +138,7 @@ static UGSkinManagers *__lastSkin1 = nil;
                         NSMutableDictionary *md = dict.mutableCopy;
                         UIColor *c = nil;
                         for (NSString *key in attrKeys) {
-                            if ((c = getSkinColor(dict[key]))) {
+                            if ((c = getSkinColor(__lastSkin1, dict[key]))) {
                                 md[key] = c;
                             }
                         }
@@ -186,7 +187,7 @@ static UGSkinManagers *__lastSkin1 = nil;
                             NSMutableDictionary *dict = [as attributesAtIndex:i effectiveRange:&r].mutableCopy;
                             BOOL isChange = false;
                             for (NSString *key in attrKeys) {
-                                if ((c = getSkinColor(dict[key]))) {
+                                if ((c = getSkinColor(__lastSkin1, dict[key]))) {
                                     dict[key] = c;
                                     isChange = true;
                                 }
@@ -216,31 +217,33 @@ static UGSkinManagers *__lastSkin1 = nil;
             UIColor *c = nil;
             if ([ai.instance isKindOfClass:[UIView class]]) {
                 UIView *v = ai.instance;
-                if ((c = getSkinColor(v.backgroundColor))) {
+                if ((c = getSkinColor(__initSkin1, v.backgroundColor))) {
                     v.backgroundColor = c;
                 }
                 if ([v isKindOfClass:[UIButton class]]) {
                     UIButton *btn = (id)v;
                     for (NSNumber *state in @[@(UIControlStateNormal), @(UIControlStateHighlighted), @(UIControlStateDisabled), @(UIControlStateSelected)]) {
-                        if ((c = getSkinColor([btn titleColorForState:state.intValue]))) {
+                        if ((c = getSkinColor(__initSkin1, [btn titleColorForState:state.intValue]))) {
                             [btn setTitleColor:c forState:state.intValue];
                         }
-                        if ((c = getSkinColor([btn titleShadowColorForState:state.intValue]))) {
+                        if ((c = getSkinColor(__initSkin1, [btn titleShadowColorForState:state.intValue]))) {
                             [btn setTitleShadowColor:c forState:state.intValue];
                         }
                     }
                 }
                 else if ([v isKindOfClass:UILabel.class] || [v isKindOfClass:UITextField.class] || [v isKindOfClass:UITextView.class]) {
                     UILabel *lb = (id)v;
-                    if ((c = getSkinColor(lb.textColor))) {
+                    if ((c = getSkinColor(__initSkin1, lb.textColor))) {
                         lb.textColor = c;
                     }
                 }
-                else if ([v isKindOfClass:CALayer.class] && (c = getSkinColor([UIColor colorWithCGColor:[(CALayer *)v borderColor]]))) {
+                else if ([v isKindOfClass:CALayer.class] && (c = getSkinColor(__initSkin1, [UIColor colorWithCGColor:[(CALayer *)v borderColor]]))) {
                     ((CALayer *)v).borderColor = c.CGColor;
                 }
             }
         } error:nil];
+        
+//        [UGSkinManagers allSkin];
     });
 }
 
@@ -286,18 +289,18 @@ static UGSkinManagers *__lastSkin1 = nil;
             UGSkinManagers *sm = [UGSkinManagers new];
             sm.skitType                 = @"经典";
             sm.bgColor                  = color(@"7F9493,5389B3");
-            sm.navBarBgColor            = color(@"609AC5");
-            sm.tabBarBgColor            = color(@"C1CBC9");
-            sm.tabNoSelectColor         = color(@"717176");
-            sm.tabSelectedColor         = color(@"FFFFFF");
+            sm.navBarBgColor            = color(@"4b9bc9");
+            sm.tabBarBgColor            = color(@"becbc8");
+            sm.tabNoSelectColor         = color(@"707176");
+            sm.tabSelectedColor         = color(@"fefffe");
             sm.progressBgColor          = color(@"d80000,fb5959");
-            sm.homeContentColor         = color(@"b2cde0");
-            sm.cellBgColor              = color(@"C1CBC9");
+            sm.homeContentColor         = color(@"abcee2");
+            sm.cellBgColor              = color(@"becbc7");
             sm.menuHeadViewColor        = color(@"5f9bc6,fb5959");
             sm.textColor1               = color(@"000000");
-            sm.textColor2               = color(@"555555");
-            sm.textColor3               = color(@"C1C1C1");
-            sm.textColor4               = color(@"FFFFFF");
+            sm.textColor2               = color(@"545554");
+            sm.textColor3               = color(@"c0c1c0");
+            sm.textColor4               = color(@"fffffe");
             sm;
         }),
         //经典 2红色
@@ -720,7 +723,7 @@ static UGSkinManagers *__lastSkin1 = nil;
         }),
         };
         
-        __currentSkin1 = __lastSkin1 = __dict[@"1"];
+        __currentSkin1 = __lastSkin1 = __initSkin1 = __dict[@"1"];
     });
     return __dict;
 }
@@ -735,6 +738,7 @@ static UGSkinManagers *__lastSkin1 = nil;
                            @"4":@"六合资料",
     };
     NSString *skitType = dict[SysConf.mobileTemplateCategory];
+    skitType = @"黑色模板";
     return [UGSkinManagers allSkin][skitType];
 }
 
