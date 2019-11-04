@@ -116,7 +116,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="玩法:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZDr-1E-3wi">
                                         <rect key="frame" x="0.0" y="0.0" width="30.5" height="16"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="0.98999999999999999" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="连码 二中特中特 25,26" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vvj-oT-1uu">
@@ -286,14 +286,25 @@
                             <action selector="cancelClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="OLd-NV-6Rt"/>
                         </connections>
                     </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P9f-uQ-UlQ">
+                        <rect key="frame" x="12" y="154.5" width="385" height="0.5"/>
+                        <color key="backgroundColor" red="0.75406885150000003" green="0.75408679249999999" blue="0.75407713649999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="58n-Zz-bVs"/>
+                        </constraints>
+                    </view>
                 </subviews>
+                <color key="backgroundColor" red="1" green="1" blue="0.99607843137254903" alpha="0.98999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
+                    <constraint firstAttribute="bottom" secondItem="P9f-uQ-UlQ" secondAttribute="bottom" id="5eU-iE-gUy"/>
                     <constraint firstItem="GJq-TE-cMj" firstAttribute="top" secondItem="j2r-hl-utK" secondAttribute="top" id="HeU-Hj-dl7"/>
                     <constraint firstItem="j2r-hl-utK" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ITe-HP-DFt"/>
                     <constraint firstItem="aqB-p2-J6D" firstAttribute="leading" secondItem="j2r-hl-utK" secondAttribute="trailing" constant="3" id="Mzq-pO-lTw"/>
                     <constraint firstAttribute="trailing" secondItem="aqB-p2-J6D" secondAttribute="trailing" constant="10" id="VM1-hx-TGP"/>
                     <constraint firstItem="j2r-hl-utK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="WmD-bM-qZA"/>
+                    <constraint firstAttribute="trailing" secondItem="P9f-uQ-UlQ" secondAttribute="trailing" id="WnJ-m8-sWq"/>
                     <constraint firstItem="j2r-hl-utK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="YRP-Lz-71p"/>
+                    <constraint firstItem="P9f-uQ-UlQ" firstAttribute="leading" secondItem="j2r-hl-utK" secondAttribute="leading" id="ism-EW-1BF"/>
                     <constraint firstItem="GJq-TE-cMj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="190" id="n5n-e9-Qt3"/>
                     <constraint firstAttribute="bottom" secondItem="aqB-p2-J6D" secondAttribute="bottom" constant="10" id="qG9-jf-cUN"/>
                 </constraints>

@@ -27,21 +27,12 @@
     self.titleLabel.text = item.title;
     self.timeLabel.text = item.updateTime;
     if (item.isRead) {
-        
-        self.titleLabel.textColor = [UIColor lightGrayColor];
-        self.timeLabel.textColor = [UIColor lightGrayColor];
-    }else {
-        self.titleLabel.textColor = [UIColor blackColor];
-        self.timeLabel.textColor = [UIColor blackColor];
+        self.titleLabel.textColor = Skin1.textColor2;
+        self.timeLabel.textColor = Skin1.textColor2;
+    } else {
+        self.titleLabel.textColor = Skin1.textColor1;
+        self.timeLabel.textColor = Skin1.textColor1;
     }
-
-}
-
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end

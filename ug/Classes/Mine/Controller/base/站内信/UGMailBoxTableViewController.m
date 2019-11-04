@@ -28,13 +28,10 @@ static NSString *messageCellid = @"UGMessageTableViewCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
-    
     self.navigationItem.title = @"站内信";
     self.pageSize = size;
     self.pageNumber = page;
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = Skin1.textColor4;
     [self.tableView registerNib:[UINib nibWithNibName:@"UGMessageTableViewCell" bundle:nil] forCellReuseIdentifier:messageCellid];
     self.tableView.rowHeight = 44;
     self.tableView.estimatedSectionFooterHeight = 0;
@@ -141,17 +138,14 @@ static NSString *messageCellid = @"UGMessageTableViewCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UGMessageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:messageCellid forIndexPath:indexPath];
     cell.item = self.dataArray[indexPath.row];
-    
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    
     return 0.001f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    
     return 0.001f;
 }
 
