@@ -12,11 +12,12 @@
 #import "UGChanglongBetRecordModel.h"
 #import "UGBetRecordDetailViewController.h"
 #import "UGAllNextIssueListModel.h"
+
 @interface UGChanglongBetRecordController ()
 
 @property (nonatomic, strong) NSMutableArray<UGChanglongBetRecordModel *> *dataArray;
-
 @end
+
 static NSString *changlongBetRecordCellId = @"UGChanglongBetRecrodCell";
 @implementation UGChanglongBetRecordController
 
@@ -102,11 +103,7 @@ static NSString *changlongBetRecordCellId = @"UGChanglongBetRecrodCell";
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGBetRecordDetailViewController" bundle:nil];
     UGBetRecordDetailViewController *detailVC = [storyboard instantiateInitialViewController];
     UGChanglongBetRecordModel *model = self.dataArray[indexPath.row];
-    for (UGAllNextIssueListModel *listGame in self.lotteryGamesArray) {
-        for (UGNextIssueModel *game in listGame.list)
-            if ([game.gameId isEqualToString:model.gameId])
-                model.pic = game.pic;
-    }
+    model.pic = [UGNextIssueModel modelWithGameId:model.gameId].pic;
     detailVC.item = model;
     [self.navigationController pushViewController:detailVC animated:YES];
 }

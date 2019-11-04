@@ -16,8 +16,7 @@
 
 @interface UGChangLongController ()<XYYSegmentControlDelegate>
 @property (nonatomic, strong) XYYSegmentControl *slideSwitchView;
-@property (nonatomic,strong)  NSArray<NSString *> *itemArray;
-
+@property (nonatomic, strong)  NSArray<NSString *> *itemArray;
 @property (nonatomic, strong) STBarButtonItem *rightItem1;
 @end
 
@@ -121,14 +120,7 @@
         UGLotteryAssistantController *assistantView = [storyboard instantiateViewControllerWithIdentifier:@"UGLotteryAssistantController"];
         return assistantView;
     } else {
-        UGChanglongBetRecordController *betRecordVC = [[UGChanglongBetRecordController alloc] initWithStyle:UITableViewStyleGrouped];
-        if ([CMCommon arryIsNull:self.lotteryGamesArray]) {
-            return betRecordVC;
-        }
-        else {
-            betRecordVC.lotteryGamesArray = self.lotteryGamesArray;
-            return betRecordVC;
-        }
+        return [[UGChanglongBetRecordController alloc] initWithStyle:UITableViewStyleGrouped];
     }
 }
 
@@ -141,7 +133,7 @@
 - (void )getAllNextIssueData {
     [CMNetwork getAllNextIssueWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
-            self.lotteryGamesArray = model.data;
+            UGAllNextIssueListModel.lotteryGamesArray = model.data;
         } failure:^(id msg) {
             [SVProgressHUD dismiss];
         }];

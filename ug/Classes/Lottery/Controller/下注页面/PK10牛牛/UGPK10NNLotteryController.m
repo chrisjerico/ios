@@ -167,7 +167,7 @@ static NSString *lotterySubResultCellid = @"UGPK10SubResultCollectionViewCell";
 
 - (IBAction)showChatRoom:(id)sender {
     UGChatViewController *chatVC = [[UGChatViewController alloc] init];
-    chatVC.gameId = _gameId;
+    chatVC.gameId = self.gameId;
     [self.navigationController pushViewController:chatVC animated:YES];
 }
 
@@ -215,7 +215,7 @@ static NSString *lotterySubResultCellid = @"UGPK10SubResultCollectionViewCell";
 }
 
 - (void)setNextIssueModel:(UGNextIssueModel *)nextIssueModel {
-    _nextIssueModel = nextIssueModel;
+    [super setNextIssueModel:nextIssueModel];
     self.preNumArray = [nextIssueModel.preNum componentsSeparatedByString:@","];
     if (nextIssueModel.preNumSx.length) {
         self.preNumSxArray = [nextIssueModel.preNumSx componentsSeparatedByString:@","];
@@ -227,7 +227,6 @@ static NSString *lotterySubResultCellid = @"UGPK10SubResultCollectionViewCell";
 
 - (void)showRightMenueView {
     self.yymenuView = [[UGYYRightMenuView alloc] initWithFrame:CGRectMake(UGScreenW /2 , 0, UGScreenW / 2, UGScerrnH)];
-    self.yymenuView.lotteryGamesArray = self.lotteryGamesArray;
     self.yymenuView.titleType = @"2";
     self.yymenuView.gameId = self.gameId;
     self.yymenuView.gameName = self.nextIssueModel.title;
@@ -591,8 +590,8 @@ static NSString *lotterySubResultCellid = @"UGPK10SubResultCollectionViewCell";
 - (void)updateHeaderViewData {
     self.currentIssueLabel.text = [NSString stringWithFormat:@"%@期",self.nextIssueModel.preIssue];
     self.nextIssueLabel.text = [NSString stringWithFormat:@"%@期",self.nextIssueModel.curIssue];
-    _currentIssueLabel.hidden = !_nextIssueModel.preIssue.length;
-    _nextIssueLabel.hidden = !_nextIssueModel.curIssue.length;
+    _currentIssueLabel.hidden = !self.nextIssueModel.preIssue.length;
+    _nextIssueLabel.hidden = !self.nextIssueModel.curIssue.length;
     [self updateCloseLabelText];
     [self updateOpenLabelText];
     CGSize size = [self.nextIssueModel.preIssue sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(MAXFLOAT, 30)];
@@ -663,8 +662,6 @@ static NSString *lotterySubResultCellid = @"UGPK10SubResultCollectionViewCell";
     if (model.adEnable && !self.showAdPoppuView) {
         UGLotteryAdPopView *adView = [[UGLotteryAdPopView alloc] initWithFrame:CGRectMake(0, self.view.width / 2, self.view.width, self.view.width)];
         adView.nm = model;
-        adView.allList = self.allList;
-        adView.lotteryGamesArray = self.lotteryGamesArray;
         [adView show];
         self.showAdPoppuView = YES;
     }

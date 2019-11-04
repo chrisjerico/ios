@@ -13,10 +13,12 @@
 #import "UGPromotionIncomeController.h" // 推广收益
 #import "UGAgentViewController.h"       // 申请代理
 #import "UGBetRecordViewController.h"   // 注单记录
+#import "UGCommonLotteryController.h"   // 下注页基类
 
 #import "UGAppVersionManager.h"         // 版本更新弹框
 
 #import "UGPromoteModel.h"
+#import "GameCategoryDataModel.h"
 
 
 @interface UGPromotionsController ()
@@ -90,10 +92,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UGPromoteModel *pm = tableView.dataArray[indexPath.row];
     
-    // 去功能页面
-    
-    
-    //
+    // 去游戏页面
     switch (pm.linkCategory) {
         case 1:
         case 2:
@@ -101,18 +100,14 @@
         case 4:
         case 5:
         case 6: {
-            
-            
-            break;
-        }
-        case 7: {
-            
-            break;
+            [UGCommonLotteryController pushWithModel:[UGNextIssueModel modelWithGameId:@(pm.linkPosition).stringValue]];
+            return;
         }
         default:;
     }
     
-    if (pm.linkCategory) {
+    // 去功能页面
+    if (pm.linkCategory == 7) {
         switch (pm.linkPosition) {
             case 1: {
                 // 资金管理
@@ -139,9 +134,7 @@
             }
             case 5: {
                 // 长龙助手
-                UGChangLongController *changlongVC = [[UGChangLongController alloc] init];
-//                changlongVC.lotteryGamesArray = self.lotteryGamesArray;
-                [self.navigationController pushViewController:changlongVC animated:YES];
+                [self.navigationController pushViewController:[UGChangLongController new] animated:YES];
                 break;
             }
             case 6: {
@@ -207,16 +200,14 @@
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_NSString(@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web", qqstr)]];
                 break;
             }
-                
-            default: {
-                // 优惠详情
-                UGPromoteDetailController *detailVC = [[UGPromoteDetailController alloc] init];
-                detailVC.item = pm;
-                [self.navigationController pushViewController:detailVC animated:YES];
-                break;
-            }
         }
+        return;
     }
+    
+    // 去优惠详情
+    UGPromoteDetailController *detailVC = [[UGPromoteDetailController alloc] init];
+    detailVC.item = pm;
+    [NavController1 pushViewController:detailVC animated:YES];
 }
 
 @end

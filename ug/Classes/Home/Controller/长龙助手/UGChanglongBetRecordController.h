@@ -12,7 +12,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UGChanglongBetRecordController : UITableViewController
-@property (nonatomic, strong) NSArray<UGAllNextIssueListModel *> *lotteryGamesArray;
 
 @end
 

@@ -114,9 +114,8 @@
 @property (nonatomic, strong) UGNoticeTypeModel *noticeTypeModel;
 @property (nonatomic, strong) UGRankListModel *rankListModel;
 
-@property (nonatomic, strong) NSArray <UGBannerCellModel *> *bannerArray;
-@property (nonatomic, strong) NSArray<UGRankModel *> *rankArray;           /**<   中奖排行榜数据 */
-@property (nonatomic, strong) NSArray<UGAllNextIssueListModel *> *lotteryGamesArray;
+@property (nonatomic, strong) NSArray <UGBannerCellModel *> *bannerArray;               /**<   横幅数据 */
+@property (nonatomic, strong) NSArray<UGRankModel *> *rankArray;                        /**<   中奖排行榜数据 */
 @property (nonatomic, assign) BOOL initSubview;
 @property (weak, nonatomic) IBOutlet UILabel *bottomLabel;
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
@@ -195,6 +194,10 @@
     
 	SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
 		[self skin];
+        subImageView(@"公告图标ImageView").image = [[UIImage imageNamed:@"notice"] qmui_imageWithTintColor:Skin1.textColor1];
+        subImageView(@"优惠活动图标ImageView").image = [[UIImage imageNamed:@"礼品-(1)"] qmui_imageWithTintColor:Skin1.textColor1];
+        subLabel(@"优惠活动标题Label").textColor = Skin1.textColor1;
+        [subButton(@"查看更多优惠活动Button") setTitleColor:Skin1.textColor1 forState:UIControlStateNormal];
 	});
 	self.gameNavigationView.layer.cornerRadius = 8;
 	self.gameNavigationView.layer.masksToBounds = true;
@@ -209,6 +212,8 @@
 	[self.leftwardMarqueeView setBackgroundColor:Skin1.homeContentColor];
 	[self.gameTypeView setBackgroundColor:Skin1.bgColor];
     [self.bottomView setBackgroundColor:Skin1.navBarBgColor];
+    
+    
     
 	[[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:Skin1.tabBarBgColor]];
 	
@@ -298,7 +303,7 @@
 	
 	WeakSelf
 	self.gameTypeView.gameItemSelectBlock = ^(GameModel * _Nonnull game) {
-		[weakSelf showGameVC:game];
+        [game pushViewController];
 	};
 	
 	self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
@@ -507,9 +512,7 @@
         }
         case 5: {
             // 长龙助手
-            UGChangLongController *changlongVC = [[UGChangLongController alloc] init];
-            changlongVC.lotteryGamesArray = self.lotteryGamesArray;
-            [self.navigationController pushViewController:changlongVC animated:YES];
+            [self.navigationController pushViewController:[UGChangLongController new] animated:YES];
             break;
         }
         case 6: {
@@ -634,7 +637,7 @@
 	[CMNetwork getAllNextIssueWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
 		[SVProgressHUD dismiss];
 		[CMResult processWithResult:model success:^{
-			self.lotteryGamesArray = model.data;
+            UGAllNextIssueListModel.lotteryGamesArray = model.data;
 		} failure:nil];
 	}];
 }
@@ -667,32 +670,6 @@
 					self.gameTypeView.gameTypeArray = self.gameCategorys = customGameModel.icons.mutableCopy;
 				});
 			}
-		} failure:^(id msg) {
-			[SVProgressHUD showErrorWithStatus:msg];
-		}];
-	}];
-}
-
-// 获取三方游戏路径
-- (void)getGotoGameUrl:(UGPlatformGameModel *)game {
-    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
-        return;
-    }
-	NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
-							 @"id":game.gameId
-	};
-	[SVProgressHUD showWithStatus:nil];
-	[CMNetwork getGotoGameUrlWithParams:params completion:^(CMResult<id> *model, NSError *err) {
-		[CMResult processWithResult:model success:^{
-			[SVProgressHUD dismiss];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				QDWebViewController *qdwebVC = [[QDWebViewController alloc] init];
-                
-                NSLog(@"网络链接：model.data = %@",model.data);
-                qdwebVC.urlString = [CMNetwork encryptionCheckSignForURL:model.data];
-				qdwebVC.enterGame = YES;
-				[self.navigationController pushViewController:qdwebVC  animated:YES];
-			});
 		} failure:^(id msg) {
 			[SVProgressHUD showErrorWithStatus:msg];
 		}];
@@ -1057,7 +1034,6 @@
 - (void)rightBarBtnClick {
 	self.yymenuView = [[UGYYRightMenuView alloc] initWithFrame:CGRectMake(UGScreenW /2 , 0, UGScreenW / 2, UGScerrnH)];
 	self.yymenuView.titleType = @"1";
-	self.yymenuView.lotteryGamesArray = self.lotteryGamesArray;
 	[self.yymenuView show];
 }
 
@@ -1081,31 +1057,6 @@
 	}];
 }
 
-- (void)showBalanceTrans {
-	UIAlertController * alert = [UIAlertController alertControllerWithTitle:nil message:@"余额转换" preferredStyle:UIAlertControllerStyleAlert];
-	UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-		
-	}];
-	UIAlertAction *sure = [UIAlertAction actionWithTitle:@"确定转入" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-		
-		
-	}];
-	UIAlertAction *enter = [UIAlertAction actionWithTitle:@"进入游戏" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-		
-		
-	}];
-	[alert addAction:cancel];
-	[alert addAction:sure];
-	[alert addAction:enter];
-	[alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-		textField.placeholder = @"请输入需要转入的金额";
-		//        [textField addTarget:self action:nil forControlEvents:UIControlEventEditingChanged];
-	}];
-	
-	[self presentViewController:alert animated:YES completion:nil];
-	
-}
-
 - (void)showNoticeInfo {
 	NSMutableString *str = [[NSMutableString alloc] init];
 	for (UGNoticeModel *notice in self.noticeTypeModel.scroll) {
@@ -1121,156 +1072,6 @@
 		UGNoticePopView *popView = [[UGNoticePopView alloc] initWithFrame:CGRectMake(40, y, UGScreenW - 80, UGScerrnH - y * 2)];
 		popView.content = str;
 		[popView show];
-	}
-}
-
-- (void)showGameVC:(GameModel *)model {
-	if (!UGLoginIsAuthorized()) {
-		SANotificationEventPost(UGNotificationShowLoginView, nil);
-		return;
-	}
-	if ([model.docType intValue] == 1) {
-		UGDocumentVC * vc = [[UGDocumentVC alloc] initWithModel:model];
-		[self.navigationController pushViewController: vc animated:true];
-		return;
-	}
-	if (model.game_id) {
-		model.gameId = model.game_id;
-	}
-	
-	void(^judeBlock)(UGCommonLotteryController *lotteryVC) = ^(UGCommonLotteryController *lotteryVC) {
-		if ([@[@"7", @"11", @"9"] containsObject: model.gameId]) {
-			lotteryVC.shoulHideHeader = true;
-		}
-		UGNextIssueModel *nextIssueModel = [UGNextIssueModel new];
-		nextIssueModel.gameId = model.gameId;
-		nextIssueModel.title = model.title;
-		lotteryVC.model = nextIssueModel;
-		lotteryVC.allList = self.lotteryGamesArray;
-	};
-	
-	
-	if ([@"cqssc" isEqualToString:model.gameType]) {
-		UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGSSCLotteryController" bundle:nil];
-		UGSSCLotteryController *lotteryVC = [storyboard instantiateInitialViewController];
-		lotteryVC.gameId = model.gameId;
-		lotteryVC.lotteryGamesArray = self.lotteryGamesArray;
-		judeBlock(lotteryVC);
-		[self.navigationController pushViewController:lotteryVC animated:YES];
-	} else if ([@"pk10" isEqualToString:model.gameType] ||
-			  [@"xyft" isEqualToString:model.gameType]) {
-		UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGBJPK10LotteryController" bundle:nil];
-		UGBJPK10LotteryController *markSixVC = [storyboard instantiateInitialViewController];
-		markSixVC.gameId = model.gameId;
-		markSixVC.lotteryGamesArray = self.lotteryGamesArray;
-		judeBlock(markSixVC);
-		
-		[self.navigationController pushViewController:markSixVC animated:YES];
-		
-	} else if ([@"qxc" isEqualToString:model.gameType]) {
-		UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGQXCLotteryController" bundle:nil];
-		UGQXCLotteryController *sevenVC = [storyboard instantiateInitialViewController];
-		sevenVC.gameId = model.gameId;
-		sevenVC.lotteryGamesArray = self.lotteryGamesArray;
-		judeBlock(sevenVC);
-		
-		[self.navigationController pushViewController:sevenVC animated:YES];
-		
-	} else if ([@"lhc" isEqualToString:model.gameType]) {
-		UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGHKLHCLotteryController" bundle:nil];
-		UGHKLHCLotteryController *markSixVC = [storyboard instantiateInitialViewController];
-		markSixVC.gameId = model.gameId;
-		markSixVC.lotteryGamesArray = self.lotteryGamesArray;
-		judeBlock(markSixVC);
-
-		[self.navigationController pushViewController:markSixVC animated:YES];
-		
-	} else if ([@"jsk3" isEqualToString:model.gameType]) {
-		UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGJSK3LotteryController" bundle:nil];
-		UGJSK3LotteryController *fastThreeVC = [storyboard instantiateInitialViewController];
-		fastThreeVC.gameId = model.gameId;
-		fastThreeVC.lotteryGamesArray = self.lotteryGamesArray;
-		judeBlock(fastThreeVC);
-
-		[self.navigationController pushViewController:fastThreeVC animated:YES];
-	} else if ([@"pcdd" isEqualToString:model.gameType]) {
-		UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGPCDDLotteryController" bundle:nil];
-		UGPCDDLotteryController *PCVC = [storyboard instantiateInitialViewController];
-		PCVC.gameId = model.gameId;
-		PCVC.lotteryGamesArray = self.lotteryGamesArray;
-		judeBlock(PCVC);
-
-		[self.navigationController pushViewController:PCVC animated:YES];
-		
-	} else if ([@"gd11x5" isEqualToString:model.gameType]) {
-		UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGGD11X5LotteryController" bundle:nil];
-		UGGD11X5LotteryController *PCVC = [storyboard instantiateInitialViewController];
-		PCVC.gameId = model.gameId;
-		PCVC.lotteryGamesArray = self.lotteryGamesArray;
-		judeBlock(PCVC);
-
-		[self.navigationController pushViewController:PCVC animated:YES];
-		
-	} else if ([@"xync" isEqualToString:model.gameType]) {
-		UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGXYNCLotteryController" bundle:nil];
-		UGXYNCLotteryController *PCVC = [storyboard instantiateInitialViewController];
-		PCVC.gameId = model.gameId;
-		PCVC.lotteryGamesArray = self.lotteryGamesArray;
-		judeBlock(PCVC);
-
-		[self.navigationController pushViewController:PCVC animated:YES];
-		
-	} else if ([@"bjkl8" isEqualToString:model.gameType]) {
-		UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGBJKL8LotteryController" bundle:nil];
-		UGBJKL8LotteryController *PCVC = [storyboard instantiateInitialViewController];
-		PCVC.gameId = model.gameId;
-		PCVC.lotteryGamesArray = self.lotteryGamesArray;
-		judeBlock(PCVC);
-
-		[self.navigationController pushViewController:PCVC animated:YES];
-		
-	} else if ([@"gdkl10" isEqualToString:model.gameType]) {
-		UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGGDKL10LotteryController" bundle:nil];
-		UGGDKL10LotteryController *PCVC = [storyboard instantiateInitialViewController];
-		PCVC.gameId = model.gameId;
-		PCVC.lotteryGamesArray = self.lotteryGamesArray;
-		judeBlock(PCVC);
-
-		[self.navigationController pushViewController:PCVC animated:YES];
-		
-	} else if ([@"fc3d" isEqualToString:model.gameType]) {
-		UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGFC3DLotteryController" bundle:nil];
-		UGFC3DLotteryController *markSixVC = [storyboard instantiateInitialViewController];
-		markSixVC.gameId = model.gameId;
-		markSixVC.lotteryGamesArray = self.lotteryGamesArray;
-		judeBlock(markSixVC);
-
-		[self.navigationController pushViewController:markSixVC animated:YES];
-		
-	} else if ([@"pk10nn" isEqualToString:model.gameType]) {
-		UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGPK10NNLotteryController" bundle:nil];
-		UGPK10NNLotteryController *markSixVC = [storyboard instantiateInitialViewController];
-		markSixVC.gameId = model.gameId;
-		markSixVC.lotteryGamesArray = self.lotteryGamesArray;
-		judeBlock(markSixVC);
-
-		[self.navigationController pushViewController:markSixVC animated:YES];
-	} else {
-		// 进入第三方游戏
-		if (model.url && ![model.url isEqualToString:@""]) {
-			NSURL * url = [NSURL URLWithString:model.url];
-			if (url.scheme == nil) {
-				url = [NSURL URLWithString:_NSString(@"http://%@", model.url)];
-			}
-			SFSafariViewController *sf = [[SFSafariViewController alloc] initWithURL:url];
-			[self presentViewController:sf animated:YES completion:nil];
-		} else if (model.subType.count > 0) {
-			UGGameListViewController *gameListVC = [[UGGameListViewController alloc] init];
-			gameListVC.game = model;
-			[self.navigationController pushViewController:gameListVC animated:YES];
-		} else {
-			[self getGotoGameUrl:model];
-		}
 	}
 }
 

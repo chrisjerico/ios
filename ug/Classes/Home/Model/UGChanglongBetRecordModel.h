@@ -42,8 +42,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *resultMoney;
 @property (nonatomic, strong) NSString *msg;
 
+// 自定义字段
 @property (nonatomic, strong) NSString *pic;
-
 
 @end
 

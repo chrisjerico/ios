@@ -15,7 +15,6 @@ typedef void(^YYRightMenuBlock)(void);
 @interface UGYYRightMenuView : UIView
 
 @property (nonatomic, copy) YYRightMenuBlock backToHomeBlock;
-@property (nonatomic, strong) NSArray<UGAllNextIssueListModel *> *lotteryGamesArray;
 @property (nonatomic, strong) NSString *gameId;
 @property (nonatomic, strong) NSString *gameName;
 @property (nonatomic, strong) NSString *titleType;//1 为首页，2 为彩种

@@ -597,7 +597,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 }
 
 - (void)setNextIssueModel:(UGNextIssueModel *)nextIssueModel {
-	_nextIssueModel = nextIssueModel;
+    _nextIssueModel = nextIssueModel;
 	
 	WeakSelf
 	[self.countDown countDownWithPER_SECBlock:^{

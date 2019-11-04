@@ -375,13 +375,10 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
     else if ([title isEqualToString:@"开奖记录" ]) {
         UGLotteryRecordController *recordVC = _LoadVC_from_storyboard_(@"UGLotteryRecordController");
         recordVC.gameId = self.gameId;
-        recordVC.lotteryGamesArray = self.lotteryGamesArray;
         [NavController1 pushViewController:recordVC animated:true];
     }
     else if ([title isEqualToString:@"长龙助手"]) {
-        UGChangLongController *changlongVC = [[UGChangLongController alloc] init];
-        changlongVC.lotteryGamesArray = self.lotteryGamesArray;
-        [NavController1 pushViewController:changlongVC animated:true];
+        [NavController1 pushViewController:[UGChangLongController new] animated:true];
     }
     else if ([title isEqualToString:@"站内信"]) {
         [NavController1 pushViewController:[[UGMailBoxTableViewController alloc] initWithStyle:UITableViewStyleGrouped] animated:true];

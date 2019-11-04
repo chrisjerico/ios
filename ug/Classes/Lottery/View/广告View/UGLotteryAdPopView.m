@@ -21,6 +21,9 @@
 #import "UGFC3DLotteryController.h"
 #import "UGPK10NNLotteryController.h"
 
+// Mdoel
+#import "GameCategoryDataModel.h"
+
 @interface UGLotteryAdPopView ()
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
 @property (weak, nonatomic) IBOutlet UIButton *closeButton;
@@ -65,14 +68,7 @@
         return;
     }
     // 去彩票下注页面
-    for (UGAllNextIssueListModel *listMoel in self.lotteryGamesArray) {
-        for (UGNextIssueModel *nextModel in listMoel.list) {
-            if ([nextModel.gameId isEqualToString:_nm.adLink]) {
-                [self showAdLottery:nextModel];
-                break;
-            }
-        }
-    }
+    [UGCommonLotteryController pushWithModel:[UGNextIssueModel modelWithGameId:_nm.adLink]];
 }
 
 - (void)show {
@@ -95,108 +91,4 @@
     [view removeFromSuperview];
 }
 
-- (void)showAdLottery:(UGNextIssueModel *)nextModel {
-    if ([@"cqssc" isEqualToString:nextModel.gameType]) {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGSSCLotteryController" bundle:nil];
-        UGSSCLotteryController *lotteryVC = [storyboard instantiateInitialViewController];
-        lotteryVC.nextIssueModel = nextModel;
-        lotteryVC.gameId = nextModel.gameId;
-        lotteryVC.lotteryGamesArray = self.lotteryGamesArray;
-        lotteryVC.allList = self.allList;
-        [NavController1 pushViewController:lotteryVC animated:YES];
-    } else if ([@"pk10" isEqualToString:nextModel.gameType] ||
-              [@"xyft" isEqualToString:nextModel.gameType]) {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGBJPK10LotteryController" bundle:nil];
-        UGBJPK10LotteryController *markSixVC = [storyboard instantiateInitialViewController];
-        markSixVC.nextIssueModel = nextModel;
-        markSixVC.gameId = nextModel.gameId;
-        markSixVC.lotteryGamesArray = self.lotteryGamesArray;
-        markSixVC.allList = self.allList;
-        [NavController1 pushViewController:markSixVC animated:YES];
-        
-    } else if ([@"qxc" isEqualToString:nextModel.gameType]) {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGQXCLotteryController" bundle:nil];
-        UGQXCLotteryController *sevenVC = [storyboard instantiateInitialViewController];
-        sevenVC.nextIssueModel = nextModel;
-        sevenVC.gameId = nextModel.gameId;
-        sevenVC.lotteryGamesArray = self.lotteryGamesArray;
-        sevenVC.allList = self.allList;
-        [NavController1 pushViewController:sevenVC animated:YES];
-        
-    } else if ([@"lhc" isEqualToString:nextModel.gameType]) {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGHKLHCLotteryController" bundle:nil];
-        UGHKLHCLotteryController *markSixVC = [storyboard instantiateInitialViewController];
-        markSixVC.nextIssueModel = nextModel;
-        markSixVC.gameId = nextModel.gameId;
-        markSixVC.lotteryGamesArray = self.lotteryGamesArray;
-        markSixVC.allList = self.allList;
-        [NavController1 pushViewController:markSixVC animated:YES];
-        
-    } else if ([@"jsk3" isEqualToString:nextModel.gameType]) {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGJSK3LotteryController" bundle:nil];
-        UGJSK3LotteryController *fastThreeVC = [storyboard instantiateInitialViewController];
-        fastThreeVC.nextIssueModel = nextModel;
-        fastThreeVC.gameId = nextModel.gameId;
-        fastThreeVC.lotteryGamesArray = self.lotteryGamesArray;
-        fastThreeVC.allList = self.allList;
-        [NavController1 pushViewController:fastThreeVC animated:YES];
-    } else if ([@"pcdd" isEqualToString:nextModel.gameType]) {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGPCDDLotteryController" bundle:nil];
-        UGPCDDLotteryController *PCVC = [storyboard instantiateInitialViewController];
-        PCVC.nextIssueModel = nextModel;
-        PCVC.gameId = nextModel.gameId;
-        PCVC.lotteryGamesArray = self.lotteryGamesArray;
-        PCVC.allList = self.allList;
-        [NavController1 pushViewController:PCVC animated:YES];
-        
-    } else if ([@"gd11x5" isEqualToString:nextModel.gameType]) {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGGD11X5LotteryController" bundle:nil];
-        UGGD11X5LotteryController *PCVC = [storyboard instantiateInitialViewController];
-        PCVC.nextIssueModel = nextModel;
-        PCVC.gameId = nextModel.gameId;
-        PCVC.lotteryGamesArray = self.lotteryGamesArray;
-        PCVC.allList = self.allList;
-        [NavController1 pushViewController:PCVC animated:YES];
-        
-    } else if ([@"bjkl8" isEqualToString:nextModel.gameType]) {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGBJKL8LotteryController" bundle:nil];
-        UGBJKL8LotteryController *PCVC = [storyboard instantiateInitialViewController];
-        PCVC.nextIssueModel = nextModel;
-        PCVC.gameId = nextModel.gameId;
-        PCVC.lotteryGamesArray = self.lotteryGamesArray;
-        PCVC.allList = self.allList;
-        [NavController1 pushViewController:PCVC animated:YES];
-        
-    } else if ([@"gdkl10" isEqualToString:nextModel.gameType] ||
-              [@"xync" isEqualToString:nextModel.gameType]) {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGGDKL10LotteryController" bundle:nil];
-        UGGDKL10LotteryController *PCVC = [storyboard instantiateInitialViewController];
-        PCVC.nextIssueModel = nextModel;
-        PCVC.gameId = nextModel.gameId;
-        PCVC.lotteryGamesArray = self.lotteryGamesArray;
-        PCVC.allList = self.allList;
-        [NavController1 pushViewController:PCVC animated:YES];
-        
-    } else if ([@"fc3d" isEqualToString:nextModel.gameType]) {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGFC3DLotteryController" bundle:nil];
-        UGFC3DLotteryController *markSixVC = [storyboard instantiateInitialViewController];
-        markSixVC.nextIssueModel = nextModel;
-        markSixVC.gameId = nextModel.gameId;
-        markSixVC.lotteryGamesArray = self.lotteryGamesArray;
-        markSixVC.allList = self.allList;
-        [NavController1 pushViewController:markSixVC animated:YES];
-        
-    } else if ([@"pk10nn" isEqualToString:nextModel.gameType]) {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGPK10NNLotteryController" bundle:nil];
-        UGPK10NNLotteryController *markSixVC = [storyboard instantiateInitialViewController];
-        markSixVC.nextIssueModel = nextModel;
-        markSixVC.gameId = nextModel.gameId;
-        markSixVC.lotteryGamesArray = self.lotteryGamesArray;
-        markSixVC.allList = self.allList;
-        [NavController1 pushViewController:markSixVC animated:YES];
-        
-    } else {
-        
-    }
-}
 @end

@@ -34,6 +34,8 @@
 #import "UGFC3DLotteryController.h"
 #import "UGPK10NNLotteryController.h"
 
+// Mdoel
+#import "GameCategoryDataModel.h"
 
 @interface UGLotteryHomeController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 
@@ -49,30 +51,20 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
 
 - (BOOL)允许游客访问 { return true; }
 
-- (void)skin{
-    [self getAllNextIssueData];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
    [self.view setBackgroundColor: Skin1.bgColor];
-    
-    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-        
-        [self skin];
-    });
     self.navigationItem.title = @"彩票大厅";
 //    self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithImageName:@"gengduo" target:self action:@selector(rightBarBtnClick)];
     self.countDown = [[CountDown alloc] init];
     [self initCollectionView];
+    
     WeakSelf
-   
     self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [weakSelf getAllNextIssueData];
     }];
     [self getAllNextIssueData];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -165,164 +157,7 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
     
     UGAllNextIssueListModel *listModel = self.dataArray[indexPath.section];
     UGNextIssueModel *nextModel = listModel.list[indexPath.row];
-	void(^judeBlock)(UGCommonLotteryController * lotteryVC) = ^(UGCommonLotteryController * lotteryVC) {
-		if ([@[@"7", @"11", @"9"] containsObject: nextModel.gameId]) {
-				lotteryVC.shoulHideHeader = true;
-			}
-		lotteryVC.model = [nextModel copy];
-		lotteryVC.allList = self.dataArray;
-	};
-	
-	
-	
-    if ([@"cqssc" isEqualToString:nextModel.gameType]) {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGSSCLotteryController" bundle:nil];
-        UGSSCLotteryController *lotteryVC = [storyboard instantiateInitialViewController];
-        lotteryVC.nextIssueModel = nextModel;
-        lotteryVC.gameId = nextModel.gameId;
-        lotteryVC.lotteryGamesArray = self.dataArray;
-        //此处为重点
-        lotteryVC.gotoTabBlock = ^{
-            self.navigationController.tabBarController.selectedIndex = 0;
-        };
-		judeBlock(lotteryVC);
-        [self.navigationController pushViewController:lotteryVC animated:YES];
-    } else if ([@"pk10" isEqualToString:nextModel.gameType] ||
-              [@"xyft" isEqualToString:nextModel.gameType]) {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGBJPK10LotteryController" bundle:nil];
-        UGBJPK10LotteryController *markSixVC = [storyboard instantiateInitialViewController];
-        markSixVC.nextIssueModel = nextModel;
-        markSixVC.gameId = nextModel.gameId;
-        markSixVC.lotteryGamesArray = self.dataArray;
-        //此处为重点
-        markSixVC.gotoTabBlock = ^{
-            self.navigationController.tabBarController.selectedIndex = 0;
-        };
-		judeBlock(markSixVC);
-
-        [self.navigationController pushViewController:markSixVC animated:YES];
-        
-    } else if ([@"qxc" isEqualToString:nextModel.gameType]) {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGQXCLotteryController" bundle:nil];
-        UGQXCLotteryController *sevenVC = [storyboard instantiateInitialViewController];
-        sevenVC.nextIssueModel = nextModel;
-        sevenVC.gameId = nextModel.gameId;
-        sevenVC.lotteryGamesArray = self.dataArray;
-        sevenVC.gotoTabBlock = ^{
-            self.navigationController.tabBarController.selectedIndex = 0;
-        };
-		judeBlock(sevenVC);
-
-        [self.navigationController pushViewController:sevenVC animated:YES];
-        
-    } else if ([@"lhc" isEqualToString:nextModel.gameType]) {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGHKLHCLotteryController" bundle:nil];
-        UGHKLHCLotteryController *markSixVC = [storyboard instantiateInitialViewController];
-        markSixVC.nextIssueModel = nextModel;
-        markSixVC.gameId = nextModel.gameId;
-        markSixVC.lotteryGamesArray = self.dataArray;
-        markSixVC.gotoTabBlock = ^{
-            self.navigationController.tabBarController.selectedIndex = 0;
-        };
-		judeBlock(markSixVC);
-
-        [self.navigationController pushViewController:markSixVC animated:YES];
-        
-    } else if ([@"jsk3" isEqualToString:nextModel.gameType]) {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGJSK3LotteryController" bundle:nil];
-        UGJSK3LotteryController *fastThreeVC = [storyboard instantiateInitialViewController];
-        fastThreeVC.nextIssueModel = nextModel;
-        fastThreeVC.gameId = nextModel.gameId;
-        fastThreeVC.lotteryGamesArray = self.dataArray;
-        fastThreeVC.gotoTabBlock = ^{
-            self.navigationController.tabBarController.selectedIndex = 0;
-        };
-		judeBlock(fastThreeVC);
-
-        [self.navigationController pushViewController:fastThreeVC animated:YES];
-    } else if ([@"pcdd" isEqualToString:nextModel.gameType]) {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGPCDDLotteryController" bundle:nil];
-        UGPCDDLotteryController *PCVC = [storyboard instantiateInitialViewController];
-        PCVC.nextIssueModel = nextModel;
-        PCVC.gameId = nextModel.gameId;
-        PCVC.lotteryGamesArray = self.dataArray;
-        PCVC.gotoTabBlock = ^{
-            self.navigationController.tabBarController.selectedIndex = 0;
-        };
-		judeBlock(PCVC);
-
-        [self.navigationController pushViewController:PCVC animated:YES];
-        
-    } else if ([@"gd11x5" isEqualToString:nextModel.gameType]) {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGGD11X5LotteryController" bundle:nil];
-        UGGD11X5LotteryController *PCVC = [storyboard instantiateInitialViewController];
-        PCVC.nextIssueModel = nextModel;
-        PCVC.gameId = nextModel.gameId;
-        PCVC.lotteryGamesArray = self.dataArray;
-        PCVC.gotoTabBlock = ^{
-            self.navigationController.tabBarController.selectedIndex = 0;
-        };
-		judeBlock(PCVC);
-
-        [self.navigationController pushViewController:PCVC animated:YES];
-        
-    } else if ([@"bjkl8" isEqualToString:nextModel.gameType]) {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGBJKL8LotteryController" bundle:nil];
-        UGBJKL8LotteryController *PCVC = [storyboard instantiateInitialViewController];
-        PCVC.nextIssueModel = nextModel;
-        PCVC.gameId = nextModel.gameId;
-        PCVC.lotteryGamesArray = self.dataArray;
-        PCVC.gotoTabBlock = ^{
-            self.navigationController.tabBarController.selectedIndex = 0;
-        };
-		judeBlock(PCVC);
-
-        [self.navigationController pushViewController:PCVC animated:YES];
-        
-    } else if ([@"gdkl10" isEqualToString:nextModel.gameType] ||
-              [@"xync" isEqualToString:nextModel.gameType]) {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGGDKL10LotteryController" bundle:nil];
-        UGGDKL10LotteryController *PCVC = [storyboard instantiateInitialViewController];
-        PCVC.nextIssueModel = nextModel;
-        PCVC.gameId = nextModel.gameId;
-        PCVC.lotteryGamesArray = self.dataArray;
-        PCVC.gotoTabBlock = ^{
-            self.navigationController.tabBarController.selectedIndex = 0;
-        };
-		judeBlock(PCVC);
-
-        [self.navigationController pushViewController:PCVC animated:YES];
-        
-    } else if ([@"fc3d" isEqualToString:nextModel.gameType]) {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGFC3DLotteryController" bundle:nil];
-        UGFC3DLotteryController *markSixVC = [storyboard instantiateInitialViewController];
-        markSixVC.nextIssueModel = nextModel;
-        markSixVC.gameId = nextModel.gameId;
-        markSixVC.lotteryGamesArray = self.dataArray;
-        markSixVC.gotoTabBlock = ^{
-            self.navigationController.tabBarController.selectedIndex = 0;
-        };
-		judeBlock(markSixVC);
-
-        [self.navigationController pushViewController:markSixVC animated:YES];
-        
-    } else if ([@"pk10nn" isEqualToString:nextModel.gameType]) {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGPK10NNLotteryController" bundle:nil];
-        UGPK10NNLotteryController *markSixVC = [storyboard instantiateInitialViewController];
-        markSixVC.nextIssueModel = nextModel;
-        markSixVC.gameId = nextModel.gameId;
-        markSixVC.lotteryGamesArray = self.dataArray;
-        markSixVC.gotoTabBlock = ^{
-            self.navigationController.tabBarController.selectedIndex = 0;
-        };
-		judeBlock(markSixVC);
-
-        [self.navigationController pushViewController:markSixVC animated:YES];
-        
-    } else {
-        
-    }
-
+    [UGCommonLotteryController pushWithModel:nextModel];
 }
 
 - (void)initCollectionView {

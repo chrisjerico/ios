@@ -47,7 +47,6 @@
     self.betView1.layer.borderWidth = 0.7;
     self.betView2.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.betView2.layer.borderWidth = 0.7;
-    
 }
 
 - (void)setItem:(UGChanglongaideModel *)item {

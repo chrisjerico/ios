@@ -11,8 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGLotteryRecordController :UGViewController
-@property (nonatomic, strong) NSArray<UGAllNextIssueListModel *> *lotteryGamesArray;
+@interface UGLotteryRecordController : UGViewController
 @property (nonatomic, strong) NSString *gameId;
 
 @end

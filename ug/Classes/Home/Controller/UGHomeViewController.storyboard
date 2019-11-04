@@ -40,6 +40,9 @@
                                                             <constraint firstAttribute="height" constant="25" id="gRJ-yT-2zU"/>
                                                             <constraint firstAttribute="width" constant="25" id="n17-YK-VPb"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="公告图标ImageView"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </imageView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fSS-lB-1r2" customClass="UUMarqueeView">
                                                         <rect key="frame" x="38" y="0.0" width="376" height="44"/>
@@ -314,11 +317,17 @@
                                                             <constraint firstAttribute="height" constant="17" id="4Iv-Zq-J2H"/>
                                                             <constraint firstAttribute="width" secondItem="yz2-ux-rNj" secondAttribute="height" multiplier="1:1" id="iAi-o4-jzZ"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="优惠活动图标ImageView"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="优惠活动" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SLG-f0-19X">
                                                         <rect key="frame" x="35" y="15" width="65.5" height="19.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="优惠活动标题Label"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F4G-6g-UAw">
                                                         <rect key="frame" x="309" y="0.0" width="105" height="49"/>
@@ -328,6 +337,9 @@
                                                         <state key="normal" title="查看更多&gt;&gt;">
                                                             <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                         </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="查看更多优惠活动Button"/>
+                                                        </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="onShowMorePromoteBtnClick:" destination="Qlk-11-xZ9" eventType="touchUpInside" id="DO7-zM-Auz"/>
                                                         </connections>

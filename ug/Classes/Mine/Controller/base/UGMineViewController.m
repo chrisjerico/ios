@@ -92,8 +92,6 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *signButton;
 
-@property (nonatomic, strong) NSArray<UGAllNextIssueListModel *> *lotteryGamesArray;
-
 //====================================
 @property (nonatomic, strong) UICollectionView *mcollectionView;
 
@@ -592,8 +590,7 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
     [CMNetwork getAllNextIssueWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [SVProgressHUD dismiss];
         [CMResult processWithResult:model success:^{
-            
-            self.lotteryGamesArray = model.data;
+            UGAllNextIssueListModel.lotteryGamesArray = model.data;
             
         } failure:^(id msg) {
             [SVProgressHUD dismiss];

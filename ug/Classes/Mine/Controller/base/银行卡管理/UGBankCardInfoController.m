@@ -31,6 +31,11 @@
 	self.infoView.layer.masksToBounds = YES;
 	self.infoView.layer.borderWidth = 1;
 	self.infoView.layer.borderColor = [[UIColor grayColor] CGColor];
+    self.bankNameLabel.textColor = Skin1.textColor1;
+    self.userNameLabel.textColor = Skin1.textColor1;
+    self.accountLabel.textColor = Skin1.textColor1;
+    self.addressLabel.textColor = Skin1.textColor1;
+    [self.editButton setImage:[[UIImage imageNamed:@"xiugai"] qmui_imageWithTintColor:Skin1.textColor1] forState:UIControlStateNormal];
 	[self.infoView setBackgroundColor: Skin1.homeContentColor];
 	[self.view setBackgroundColor:Skin1.bgColor];
 	[self getCardInfo];

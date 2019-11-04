@@ -50,6 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *adLink;         /**<   彩票广告链接：-2=任务大厅，-1=利息宝，其他=彩票 */
 @property (nonatomic, assign) BOOL adEnable;            /**<   彩票广告是否开启：1=开启，0=关闭 */
 
++ (instancetype)modelWithGameId:(NSString *)gameId;
 @end
 
 @protocol UGAllNextIssueListModel <NSObject>
@@ -61,6 +62,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *gameTypeName;   /**<   游戏分类名称 */
 @property (nonatomic, strong) NSArray<UGNextIssueModel> *list;
 
+
+@property (nonatomic, class) NSArray<UGAllNextIssueListModel *> *lotteryGamesArray; /**<   彩票大厅数据（升级为类方法全局使用） */
 @end
 
 NS_ASSUME_NONNULL_END

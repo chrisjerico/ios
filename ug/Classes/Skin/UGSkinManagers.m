@@ -255,18 +255,18 @@ static UGSkinManagers *__initSkin1 = nil;
             UGSkinManagers *sm = [UGSkinManagers new];
             sm.skitType                 = @"经典";
             sm.bgColor                  = color(@"7F9493,5389B3");
-            sm.navBarBgColor            = color(@"4b9bc9");
-            sm.tabBarBgColor            = color(@"becbc8");
-            sm.tabNoSelectColor         = color(@"707176");
-            sm.tabSelectedColor         = color(@"fefffe");
+            sm.navBarBgColor            = color(@"609AC5");
+            sm.tabBarBgColor            = color(@"C1CBC9");
+            sm.tabNoSelectColor         = color(@"717176");
+            sm.tabSelectedColor         = color(@"FFFFFF");
             sm.progressBgColor          = color(@"d80000,fb5959");
-            sm.homeContentColor         = color(@"abcee2");
-            sm.cellBgColor              = color(@"becbc7");
+            sm.homeContentColor         = color(@"b2cde0");
+            sm.cellBgColor              = color(@"C1CBC9");
             sm.menuHeadViewColor        = color(@"5f9bc6,fb5959");
             sm.textColor1               = color(@"000000");
-            sm.textColor2               = color(@"545554");
-            sm.textColor3               = color(@"c0c1c0");
-            sm.textColor4               = color(@"fffffe");
+            sm.textColor2               = color(@"555555");
+            sm.textColor3               = color(@"C1C1C1");
+            sm.textColor4               = color(@"FFFFFF");
             sm;
         }),
         //经典 2红色

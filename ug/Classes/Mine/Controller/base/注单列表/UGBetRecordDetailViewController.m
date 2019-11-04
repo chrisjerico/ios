@@ -28,21 +28,26 @@
 @end
 
 @implementation UGBetRecordDetailViewController
--(void)skin{
-    [self.view setBackgroundColor: Skin1.bgColor];
-    
-}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self.view setBackgroundColor: Skin1.bgColor];
-    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-        
-        [self skin];
-    });
     self.navigationItem.title = @"注单详情";
     self.cancelBetButton.layer.cornerRadius = 3;
     self.cancelBetButton.layer.masksToBounds = YES;
+    self.titleLabel.textColor = Skin1.textColor1;
+    self.issueLabel.textColor = Skin1.textColor1;
+    self.betTimeLabel.textColor = Skin1.textColor1;
+    self.orderNoLabel.textColor = Skin1.textColor1;
+    self.winAmountLabel.textColor = Skin1.textColor1;
+    self.playTitleLabel.textColor = Skin1.textColor3;
+    self.resultMoneyLabel.textColor = Skin1.textColor3;
+    FastSubViewCode(self.view);
+    subLabel(@"投注时间Label").textColor = Skin1.textColor1;
+    subLabel(@"投注单号Label").textColor = Skin1.textColor1;
+    subLabel(@"投注金额Label").textColor = Skin1.textColor1;
+    subLabel(@"派奖金额Label").textColor = Skin1.textColor1;
+    subLabel(@"开奖号码Label").textColor = Skin1.textColor1;
     [self setupInfo];
 }
 

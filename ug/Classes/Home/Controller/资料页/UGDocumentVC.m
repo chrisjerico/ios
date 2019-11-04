@@ -403,7 +403,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 	return _timer;
 }
 - (void)setNextIssueModel:(UGNextIssueModel *)nextIssueModel {
-	_nextIssueModel = nextIssueModel;
+    _nextIssueModel = nextIssueModel;
 	if (nextIssueModel == nil) {
 		return;
 	}

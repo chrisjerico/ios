@@ -98,8 +98,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
-
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -109,7 +107,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.view.backgroundColor = Skin1.bgColor;
     self.fd_prefersNavigationBarHidden = YES;
     // 禁用侧滑返回
     self.fd_interactivePopDisabled = true;

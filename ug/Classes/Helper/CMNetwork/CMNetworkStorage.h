@@ -15,7 +15,7 @@
 @property (nonatomic, assign) BOOL wechatRegister;
 
 @property (nonatomic, strong) NSString *serverName;
-@property (nonatomic, strong) NSArray<UGAllNextIssueListModel *> *lotteryGamesArray;
+@property (nonatomic, strong) NSArray *lotteryGamesArray;
 
 
 @end

@@ -13,8 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UGLotteryAdPopView : UIView
 @property (nonatomic) UGNextIssueModel *nm;
-@property (nonatomic) NSArray<UGAllNextIssueListModel *> *allList;
-@property (nonatomic) NSArray<UGAllNextIssueListModel *> *lotteryGamesArray;
 
 - (void)show;
 @end

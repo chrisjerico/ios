@@ -9,20 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "UGCommonLotteryController.h"
 
-@class UGNextIssueModel;
 NS_ASSUME_NONNULL_BEGIN
-typedef void(^QXCLotteryBlock)(void);
 
-//<<<<<<< HEAD
-//@interface UGQXCLotteryController :UGViewController
-//=======
 @interface UGQXCLotteryController : UGCommonLotteryController
-//>>>>>>> dev_andrew
-@property (nonatomic, strong) NSArray<UGAllNextIssueListModel *> *lotteryGamesArray;
-@property (nonatomic, strong) UGNextIssueModel *nextIssueModel;
-@property (nonatomic, strong) NSString *gameId;
 
-@property (nonatomic,copy)QXCLotteryBlock gotoTabBlock;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (nonatomic, strong) YBPopupMenu *lotteryTypePopView;  /**<   彩种选择弹框 */
+@property (nonatomic, readonly) NSArray<UGAllNextIssueListModel *> *lotteryGamesArray;/**<   彩票大厅数据 */
 
 @property (nonatomic, strong) NSMutableArray <NSString *> *dateArray;
 @property (nonatomic, strong) NSMutableArray <UGNextIssueModel *> *gameArray;
@@ -76,6 +77,7 @@ static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
     
     // 初始化彩种列表数据
     {
+        _lotteryGamesArray = UGAllNextIssueListModel.lotteryGamesArray;
         __weakSelf_(__self);
         void (^setupData)(void) = ^{
             for (UGAllNextIssueListModel *listModel in __self.lotteryGamesArray) {
@@ -103,8 +105,7 @@ static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
             // 获取彩票大厅数据
             [CMNetwork getAllNextIssueWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
                 [CMResult processWithResult:model success:^{
-                    
-                    __self.lotteryGamesArray = model.data;
+                    self->_lotteryGamesArray = UGAllNextIssueListModel.lotteryGamesArray = model.data;
                     
                     UGAllNextIssueListModel *model = self.lotteryGamesArray.firstObject;
                     UGNextIssueModel *game = model.list.firstObject;
