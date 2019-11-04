@@ -57,7 +57,7 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="hot" width="25" height="25"/>
+        <image name="hot" width="50" height="50"/>
         <image name="zwt" width="100" height="100"/>
     </resources>
 </document>

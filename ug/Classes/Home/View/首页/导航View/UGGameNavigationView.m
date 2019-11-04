@@ -147,12 +147,13 @@
         _titleLabel.text = model.name;
     }
 	
-    if ([model.tipFlag isEqualToString:@"1"]) {
-        [_hotImage setHidden:NO];
-    } else {
-          [_hotImage setHidden:YES];
-    }
-    [_hotImage setImage:[UIImage imageNamed:@"icon_remen"]];
+    __weak_Obj_(_hotImage, __hotImageView);
+    [_hotImage sd_setImageWithURL:[NSURL URLWithString:model.hotIcon] placeholderImage:[UIImage imageNamed:@"icon_remen"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        if (error) {
+            __hotImageView.image = [UIImage imageNamed:@"icon_remen"];
+        }
+    }];
+    _hotImage.hidden = !model.tipFlag;
 }
 
 

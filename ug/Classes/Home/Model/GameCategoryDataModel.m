@@ -40,12 +40,10 @@
     return nil;
 }
 
-- (NSString *)logo {
-    return _logo.length ? _logo : _icon;
-}
-- (NSString *)icon {
-    return _logo.length ? _logo : _icon;
-}
+- (NSString *)logo { return _logo.length ? _logo : _icon; }
+- (NSString *)icon { return _logo.length ? _logo : _icon; }
+- (NSString *)hotIcon  { return _hotIcon.length ? _hotIcon : _hot_icon; }
+- (NSString *)hot_icon { return _hotIcon.length ? _hotIcon : _hot_icon; }
 
 - (void)pushViewController {
     GameModel *model = self;

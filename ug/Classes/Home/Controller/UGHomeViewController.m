@@ -123,7 +123,7 @@
 @property (nonatomic, strong)  UGredEnvelopeView *uGredEnvelopeView;    /**<   红包浮动按钮 */
 @property (nonatomic, strong)  UGredActivityView *uGredActivityView;    /**<   红包弹框 */
 
-@property (nonatomic, strong) UGYYRightMenuView *yymenuView;   /**<   侧边栏 */
+@property (nonatomic, strong) UGYYRightMenuView *yymenuView;            /**<   侧边栏 */
 
 @property (nonatomic, strong) UGonlineCount *mUGonlineCount;
 
@@ -879,17 +879,18 @@
                 }];
                 [subButton(@"优惠活动Button") removeActionBlocksForControlEvents:UIControlEventTouchUpInside];
                 [subButton(@"优惠活动Button") handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
-                    UGPromoteDetailController *detailVC = [[UGPromoteDetailController alloc] init];
-                    detailVC.item = pm;
-                    [__self.navigationController pushViewController:detailVC animated:YES];
+                    BOOL ret = [UGPromoteModel pushViewControllerWithLinkCategory:pm.linkCategory linkPosition:pm.linkPosition];
+                    if (!ret) {
+                        // 去优惠详情
+                        UGPromoteDetailController *detailVC = [[UGPromoteDetailController alloc] init];
+                        detailVC.item = pm;
+                        [NavController1 pushViewController:detailVC animated:YES];
+                    }
                 }];
             }
         } failure:nil];
     }];
 }
-
-
-
 
 - (void)showPlatformNoticeView {
     if (self.notiveView == nil) {
@@ -908,15 +909,19 @@
 #pragma mark - SDCycleScrollViewDelegate
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
 	UGBannerCellModel *banner = self.bannerArray[index];
-    if ([banner.url containsString:@"mobile"]) {
-        // 若跳转地址包含mobile则不做跳转
-        return;
+    BOOL ret = [UGPromoteModel pushViewControllerWithLinkCategory:banner.linkCategory linkPosition:banner.linkPosition];
+    if (!ret) {
+        if ([banner.url containsString:@"mobile"]) {
+            // 若跳转地址包含mobile则不做跳转
+            return;
+        }
+        // 去外部链接
+        if ([banner.url stringByReplacingOccurrencesOfString:@" " withString:@""].length) {
+            SLWebViewController *webVC = [[SLWebViewController alloc] init];
+            webVC.urlStr = banner.url;
+            [self.navigationController pushViewController:webVC animated:YES];
+        }
     }
-	if ([banner.url stringByReplacingOccurrencesOfString:@" " withString:@""].length) {
-		SLWebViewController *webVC = [[SLWebViewController alloc] init];
-		webVC.urlStr = banner.url;
-		[self.navigationController pushViewController:webVC animated:YES];
-	}
 }
 
 #pragma mark - UUMarqueeViewDelegate

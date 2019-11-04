@@ -53,12 +53,14 @@
 	[self.hasSubSign setHidden: (item.subType.count > 0 ? false : true)];
 
     [self.imgView sd_setImageWithURL:[NSURL URLWithString:item.icon] placeholderImage:[UIImage imageNamed:@"loading"]];
-	
-    if ([item.tipFlag isEqualToString:@"1"]) {
-         self.hotImageView.hidden = NO;
-    } else {
-         self.hotImageView.hidden = YES;
-    }
+    
+    __weakSelf_(__self);
+    [self.hotImageView sd_setImageWithURL:[NSURL URLWithString:item.hotIcon] placeholderImage:[UIImage imageNamed:@"hot"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        if (error) {
+            __self.hotImageView.image = [UIImage imageNamed:@"hot"];
+        }
+    }];
+    self.hotImageView.hidden = !item.tipFlag;
 }
 - (UIImageView *)hasSubSign {
 	if (!_hasSubSign) {
