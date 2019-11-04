@@ -28,20 +28,25 @@
 
 @implementation UGUserInfoViewController
 
-- (void)skin {
-}
-
 - (BOOL)允许游客访问 { return true; }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
-    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-        
-        [self skin];
-    });
     self.navigationItem.title = @"我的资料";
+    {
+        self.view.backgroundColor = Skin1.textColor4;
+        self.userNameLabel.textColor = Skin1.textColor1;
+        self.timeLabel.textColor = Skin1.textColor2;
+        self.accountLabel.textColor = Skin1.textColor1;
+        self.fullNameLabel.textColor = Skin1.textColor1;
+        self.qqLabel.textColor = Skin1.textColor1;
+        self.phoneLabel.textColor = Skin1.textColor1;
+        self.emailLabel.textColor = Skin1.textColor1;
+        self.moneyType.textColor = Skin1.textColor1;
+        ((UILabel *)[self.view viewWithTagString:@"我的资料Label"]).textColor = Skin1.textColor1;
+    }
+    
+    
     [self setupUserInfo];
     [self getUserInfo];
     

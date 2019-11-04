@@ -26,6 +26,7 @@ subLabel(nil);subButton(nil);subImageView(nil);subTextField(nil);subTextView(nil
 
 @property (nonatomic, copy) IBInspectable NSString *tagString;  /**<   tag字符串 */
 
+- (NSArray <__kindof UIView *> *)viewsWithMemberOfClass:(Class)cls;                     /**<   获取所有cls类型的子视图 */
 - (__kindof UIView *)viewWithTagString:(NSString *)tagString;                           /**<    根据TagString获取子视图 */
 - (__kindof UIView *)superviewWithTagString:(NSString *)tagString;                      /**<    根据TagString获取父视图 */
 - (__kindof UIGestureRecognizer *)gestureRecognizerWithTagString:(NSString *)tagString; /**<    根据TagString获取手势 */

@@ -210,40 +210,6 @@ static UGSkinManagers *__initSkin1 = nil;
             [UITextView aspect_hookSelector:@selector(setAttributedText:) withOptions:AspectPositionInstead usingBlock:block3 error:nil];
             [UIButton aspect_hookSelector:@selector(setAttributedTitle:forState:) withOptions:AspectPositionInstead usingBlock:block3 error:nil];
         }
-        
-        // 把从xib、Storybard加载出来的颜色替换为SkinColor
-        [UIView aspect_hookSelector:@selector(awakeFromNib) withOptions:AspectPositionBefore usingBlock:^(id<AspectInfo> ai) {
-            // 替换颜色
-            UIColor *c = nil;
-            if ([ai.instance isKindOfClass:[UIView class]]) {
-                UIView *v = ai.instance;
-                if ((c = getSkinColor(__initSkin1, v.backgroundColor))) {
-                    v.backgroundColor = c;
-                }
-                if ([v isKindOfClass:[UIButton class]]) {
-                    UIButton *btn = (id)v;
-                    for (NSNumber *state in @[@(UIControlStateNormal), @(UIControlStateHighlighted), @(UIControlStateDisabled), @(UIControlStateSelected)]) {
-                        if ((c = getSkinColor(__initSkin1, [btn titleColorForState:state.intValue]))) {
-                            [btn setTitleColor:c forState:state.intValue];
-                        }
-                        if ((c = getSkinColor(__initSkin1, [btn titleShadowColorForState:state.intValue]))) {
-                            [btn setTitleShadowColor:c forState:state.intValue];
-                        }
-                    }
-                }
-                else if ([v isKindOfClass:UILabel.class] || [v isKindOfClass:UITextField.class] || [v isKindOfClass:UITextView.class]) {
-                    UILabel *lb = (id)v;
-                    if ((c = getSkinColor(__initSkin1, lb.textColor))) {
-                        lb.textColor = c;
-                    }
-                }
-                else if ([v isKindOfClass:CALayer.class] && (c = getSkinColor(__initSkin1, [UIColor colorWithCGColor:[(CALayer *)v borderColor]]))) {
-                    ((CALayer *)v).borderColor = c.CGColor;
-                }
-            }
-        } error:nil];
-        
-//        [UGSkinManagers allSkin];
     });
 }
 

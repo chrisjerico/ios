@@ -123,7 +123,7 @@
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MTa-57-yzI">
-                            <rect key="frame" x="326" y="64" width="80" height="39"/>
+                            <rect key="frame" x="326" y="81" width="80" height="22"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="80" id="Msh-Dr-pYp"/>
                             </constraints>
@@ -206,7 +206,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7v7-0G-dRt">
-                    <rect key="frame" x="0.0" y="197" width="414" height="60"/>
+                    <rect key="frame" x="0.0" y="197" width="414" height="63"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qfS-3o-6Gl">
                             <rect key="frame" x="0.0" y="0.0" width="138" height="60"/>
@@ -229,6 +229,9 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.98999999999999999" colorSpace="custom" customColorSpace="displayP3"/>
                                             <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="存款Label"/>
+                                            </userDefinedRuntimeAttributes>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dKO-ch-btY">
                                             <rect key="frame" x="0.0" y="0.0" width="82" height="60"/>
@@ -279,6 +282,9 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.98999999999999999" colorSpace="custom" customColorSpace="displayP3"/>
                                             <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="提现Label"/>
+                                            </userDefinedRuntimeAttributes>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gzc-ZQ-MVS">
                                             <rect key="frame" x="0.0" y="0.0" width="82" height="60"/>
@@ -327,6 +333,9 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.98999999999999999" colorSpace="custom" customColorSpace="displayP3"/>
                                             <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="转换Label"/>
+                                            </userDefinedRuntimeAttributes>
                                         </label>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -355,9 +364,9 @@
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" red="0.37647058823529411" green="0.60392156862745094" blue="0.77254901960784317" alpha="0.98999999999999999" colorSpace="custom" customColorSpace="displayP3"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="60" id="5Hs-c4-JyG"/>
+                        <constraint firstAttribute="height" constant="63" id="5Hs-c4-JyG"/>
                         <constraint firstItem="qfS-3o-6Gl" firstAttribute="leading" secondItem="7v7-0G-dRt" secondAttribute="leading" id="63A-AN-yQX"/>
                         <constraint firstItem="8aw-8g-P9M" firstAttribute="bottom" secondItem="qfS-3o-6Gl" secondAttribute="bottom" id="7A3-Ct-jtS"/>
                         <constraint firstItem="qfS-3o-6Gl" firstAttribute="top" secondItem="7v7-0G-dRt" secondAttribute="top" id="Ckd-Zn-qdE"/>
@@ -371,7 +380,7 @@
                     </constraints>
                 </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="fp3-uj-1mp">
-                    <rect key="frame" x="0.0" y="257" width="414" height="604"/>
+                    <rect key="frame" x="0.0" y="260" width="414" height="601"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="hmd-mK-D7K">
                         <size key="itemSize" width="50" height="50"/>

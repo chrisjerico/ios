@@ -18,10 +18,10 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
     self.layer.cornerRadius = 10;
     self.layer.masksToBounds = YES;
-    [self setBackgroundColor:Skin1.homeContentColor];
+    self.backgroundColor = Skin1.homeContentColor;
+    self.nameLabel.textColor = Skin1.textColor1;
 }
 
 - (void)setItem:(UGYYPlatformGames *)item {

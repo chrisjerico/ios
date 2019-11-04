@@ -88,25 +88,23 @@
     
     [self.myCollectionView setBackgroundColor: Skin1.bgColor];
     _progressLayer.strokeColor = Skin1.progressBgColor.CGColor;
-     [self.progressView.layer addSublayer:self.progressLayer];
+    [self.progressView.layer addSublayer:self.progressLayer];
     
-
+    
     skitType = Skin1.skitType;
-    
     if ([skitType isEqualToString:@"经典"]) {
         self.topupView.hidden = YES;
         self.topupViewNSLayoutConstraintHight.constant = 0.1;
     }
-    else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
+    else if ([skitType isEqualToString:@"六合资料"]) {//六合资料
         self.topupView.hidden = YES;
         self.topupViewNSLayoutConstraintHight.constant = 0.1;
     }
-    else{
+    else {
         self.topupView.hidden = NO;
-        self.topupViewNSLayoutConstraintHight.constant = 60;
+        self.topupViewNSLayoutConstraintHight.constant = 63;
     }
     [self.myCollectionView reloadData];
-
 }
 
 - (BOOL)允许游客访问 { return true; }
@@ -172,6 +170,11 @@
     self.progressView.layer.cornerRadius = self.progressView.height / 2;
     self.progressView.layer.masksToBounds = YES;
     self.progressView.backgroundColor = UGRGBColor(213, 224, 237);
+//    self.topupView.backgroundColor = Skin1.navBarBgColor;
+//    FastSubViewCode(self.topupView);
+//    subLabel(@"存款Label").textColor = Skin1.textColor1;
+//    subLabel(@"提现Label").textColor = Skin1.textColor1;
+//    subLabel(@"转换Label").textColor = Skin1.textColor1;
     
     
     //设置皮肤
@@ -187,7 +190,7 @@
     }
     else {
         self.topupView.hidden = NO;
-        self.topupViewNSLayoutConstraintHight.constant = 60;
+        self.topupViewNSLayoutConstraintHight.constant = 63;
         [CMCommon setBorderWithView:self.topupView top:NO left:NO bottom:YES right:NO borderColor: UGRGBColor(236, 235, 235) borderWidth:1];
     }
     
@@ -231,7 +234,7 @@ BOOL isOk = NO;
     }
     else{
         self.topupView.hidden = NO;
-        self.topupViewNSLayoutConstraintHight.constant = 60;
+        self.topupViewNSLayoutConstraintHight.constant = 63;
         skitType = @"石榴红";
     }
     [self.myCollectionView reloadData];

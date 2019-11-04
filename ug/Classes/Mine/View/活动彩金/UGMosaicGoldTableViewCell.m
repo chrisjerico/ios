@@ -19,19 +19,13 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
-     self.tiltleLabel.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.4];
+    _tiltleLabel.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.4];
     
-    self.myButton.layer.cornerRadius = 5; 
-    self.myButton.layer.masksToBounds = YES;
-    [self.myButton setBackgroundColor:Skin1.navBarBgColor];
-      [self setBackgroundColor: Skin1.cellBgColor];
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    _myButton.layer.cornerRadius = 5;
+    _myButton.layer.masksToBounds = YES;
+    _myButton.layer.borderColor = [UIColor whiteColor].CGColor;
+    _myButton.layer.borderWidth = 1;
+    _myButton.backgroundColor = Skin1.navBarBgColor;
 }
 
 - (void)setItem:(UGMosaicGoldModel *)item {
@@ -39,7 +33,6 @@
     self.tiltleLabel.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.4];
     [self.imgView sd_setImageWithURL:[NSURL URLWithString:item.param.win_apply_image] placeholderImage:[UIImage imageNamed:@"winapply_default"]];
     self.tiltleLabel.text = item.name;
-    
 }
 
 - (IBAction)buttonClick:(id)sender {

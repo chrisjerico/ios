@@ -20,10 +20,6 @@
 
 @implementation UGMosaicGoldController
 
-- (void)skin {
-    
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    UGMosaicGoldModel *model = [UGMosaicGoldModel new];
@@ -56,13 +52,8 @@
 //    .LeeAction(@"确认", nil)
 //    .LeeCancelAction(@"取消", nil)
 //    .LeeShow();
-
-    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-        
-        [self skin];
-    });
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.tableView.backgroundColor = Skin1.textColor4;
     self.tableView.estimatedRowHeight = 0;
     self.tableView.estimatedSectionHeaderHeight = 0;
     self.tableView.estimatedSectionFooterHeight = 0;

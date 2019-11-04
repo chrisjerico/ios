@@ -28,6 +28,7 @@
     self.timeLabel.textColor = [UIColor redColor];
     self.layer.borderWidth = 1;
     self.layer.borderColor = Skin1.homeContentColor.CGColor;
+    self.nameLabel.textColor = Skin1.textColor1;
 }
 
 - (void)setItem:(UGNextIssueModel *)item {

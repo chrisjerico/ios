@@ -17,8 +17,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
-    [self setBackgroundColor:Skin1.cellBgColor];
+    self.backgroundColor = Skin1.cellBgColor;
+    self.nameLabel.textColor = Skin1.textColor1;
 }
 
 

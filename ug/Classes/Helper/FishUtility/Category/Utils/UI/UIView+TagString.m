@@ -13,6 +13,21 @@
 
 _CCRuntimeProperty_Copy(NSString *, tagString, setTagString)
 
+- (NSArray<UIView *> *)viewsWithMemberOfClass:(Class)cls {
+    NSMutableArray *vs = @[].mutableCopy;
+    void (^findSubview)(UIView *) = nil;
+    void (^__block __findSubview)(UIView *) = findSubview = ^(UIView *v) {
+        for (UIView *subview in v.subviews) {
+            if ([subview isMemberOfClass:cls]) {
+                [vs addObject:subview];
+            }
+            
+            __findSubview(subview);
+        }
+    };
+    findSubview(self);
+    return vs.copy;
+}
 
 - (nullable __kindof UIView *)viewWithTagString:(NSString *)tagString {
     if (!tagString.length)

@@ -23,6 +23,19 @@
     self.cancelButton.layer.cornerRadius = 5;
     self.cancelButton.layer.masksToBounds = YES;
     self.cancelButton.backgroundColor = Skin1.navBarBgColor;
+    self.cancelButton.layer.borderWidth = 1;
+    self.cancelButton.layer.borderColor = [UIColor whiteColor].CGColor;
+    
+    for (UILabel *lb in [self viewsWithMemberOfClass:[UILabel class]]) {
+        lb.textColor = Skin1.textColor2;
+    }
+    FastSubViewCode(self);
+    subLabel(@"注单号Label").textColor = UIColorHex(69AC5B);
+    subLabel(@"赔率Label").textColor = UIColorHex(69AC5B);
+    subLabel(@"注单金额Label").textColor = UIColorHex(FF3B30);
+    subLabel(@"盈亏Label2").textColor = UIColorHex(FF3B30);
+    subLabel(@"玩法Label").textColor = UIColorHex(4C96EC);
+    subLabel(@"开奖号码Label").textColor = UIColorHex(4C96EC);
 }
 
 - (void)setItem:(UGBetsRecordModel *)item {

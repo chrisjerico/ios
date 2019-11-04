@@ -17,15 +17,10 @@
 @end
 
 @implementation UGActivityGoldTableViewController
--(void)skin{
-    
-}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-        
-        [self skin];
-    });
+    self.tableView.backgroundColor = Skin1.textColor4;
     self.tableView.rowHeight = 44;
     self.tableView.estimatedSectionHeaderHeight = 0;
     self.tableView.estimatedSectionFooterHeight = 0;
@@ -34,24 +29,19 @@
     
     [self setupRefreshView];
     
-     [self activityApplyWinLog];
-}
-
--(void)rootLoadData{
     [self activityApplyWinLog];
 }
+
+- (void)rootLoadData {
+    [self activityApplyWinLog];
+}
+
 //添加上下拉刷新
-- (void)setupRefreshView
-{
+- (void)setupRefreshView {
     WeakSelf
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        
-
-            [weakSelf activityApplyWinLog];
-  
+        [weakSelf activityApplyWinLog];
     }];
-
-    
 }
 
 #pragma mark -- 网络请求
@@ -90,7 +80,7 @@
             .LeeAddContent(^(UILabel *label) {
                 
                 label.text = str;
-                
+                label.lineSpacing1 = 5;
                 label.textAlignment = NSTextAlignmentLeft;
             })
             .LeeAction(@"关闭", nil)
@@ -161,7 +151,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
     UGActivityGoldTableViewCell *headerView = (UGActivityGoldTableViewCell*)[[NSBundle mainBundle] loadNibNamed:@"UGActivityGoldTableViewCell" owner:self options:0].firstObject;
-    
+    headerView.frame = CGRectMake(0, 0, APP.Width, 44);
     headerView.firstLabel.text = @"申请日期";
     headerView.secondLabel.text = @"申请金额";
     headerView.thirdLabel.text = @"状态";
@@ -171,12 +161,10 @@
     [headerView.thirdLabel setFont:[UIFont boldSystemFontOfSize:13]];
     
     [CMCommon setBorderWithView:headerView top:NO left:NO bottom:YES right:NO borderColor:UGRGBColor(239, 239, 239) borderWidth:1];
-    
     return headerView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    
     return 0.001f;
 }
 

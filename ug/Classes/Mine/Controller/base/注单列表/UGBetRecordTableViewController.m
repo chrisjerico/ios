@@ -34,23 +34,14 @@ static int page = 1;
 static int size = 20;
 static NSString *betRecordCellid = @"UGLotteryRecordCell";
 @implementation UGBetRecordTableViewController
--(void)skin{
-    
-}
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.title = @"彩票注单记录";
-
     self.pageSize = size;
     self.pageNumber = page;
-    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-        
-        [self skin];
-    });
-    self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.backgroundColor = Skin1.textColor4;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.estimatedSectionHeaderHeight = 0;
@@ -90,8 +81,6 @@ static NSString *betRecordCellid = @"UGLotteryRecordCell";
     } else {
         self.winAmountLabel.hidden = YES;
     }
-    
-
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -235,7 +224,11 @@ static NSString *betRecordCellid = @"UGLotteryRecordCell";
     UGLotteryRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:betRecordCellid forIndexPath:indexPath];
     UGBetsRecordModel *model = self.dataArray[indexPath.row];
     cell.item = model;
-    cell.backgroundColor = indexPath.row%2 ? APP.WhiteColor : APP.BackgroundColor;
+    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+        cell.backgroundColor = indexPath.row%2 ? Skin1.textColor4 : Skin1.bgColor;
+    } else {
+        cell.backgroundColor = indexPath.row%2 ? Skin1.textColor4 : APP.BackgroundColor;
+    }
     WeakSelf
     cell.cancelBlock = ^{
         [QDAlertView showWithTitle:@"温馨提示" message:[NSString stringWithFormat:@"您要撤销注单号%@订单吗？",model.betId] cancelButtonTitle:@"取消" otherButtonTitle:@"确定" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
@@ -246,7 +239,6 @@ static NSString *betRecordCellid = @"UGLotteryRecordCell";
             }
         }];
     };
-    
     return cell;
 }
 
@@ -263,7 +255,6 @@ static NSString *betRecordCellid = @"UGLotteryRecordCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-
 }
 
 - (void)setupTotalAmountLabelTextColor {

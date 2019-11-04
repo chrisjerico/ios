@@ -12,13 +12,10 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    self.backgroundColor = Skin1.textColor4;
+    self.firstLabel.textColor = Skin1.textColor1;
+    self.secondLabel.textColor = Skin1.textColor1;
+    self.thirdLabel.textColor = Skin1.textColor1;
 }
 
 @end

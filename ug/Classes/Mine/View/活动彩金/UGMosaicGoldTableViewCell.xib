@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,22 +14,35 @@
             <rect key="frame" x="0.0" y="0.0" width="323" height="210"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="323" height="209.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="323" height="210"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="youhuihuodong1" translatesAutoresizingMaskIntoConstraints="NO" id="4lV-Km-8ca">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="youhuihuodong1" translatesAutoresizingMaskIntoConstraints="NO" id="4lV-Km-8ca">
                         <rect key="frame" x="0.0" y="0.0" width="323" height="165"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </imageView>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9EA-Ll-UaK">
-                        <rect key="frame" x="0.0" y="165" width="328" height="45"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1231231323132312312312312313231231231231231232312312313" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GV6-28-H33">
+                        <rect key="frame" x="0.0" y="131.5" width="323" height="33.5"/>
+                        <color key="backgroundColor" systemColor="tertiaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="point" keyPath="内边距">
+                                <point key="value" x="0.0" y="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9EA-Ll-UaK">
+                        <rect key="frame" x="0.0" y="165" width="323" height="45"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H9J-5c-mE5">
-                                <rect key="frame" x="113" y="7" width="103" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H9J-5c-mE5">
+                                <rect key="frame" x="107" y="8" width="110" height="30"/>
                                 <color key="backgroundColor" red="0.37063515186309814" green="0.57926970720291138" blue="0.89804404973983765" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="LBP-Rb-qaT"/>
+                                    <constraint firstAttribute="width" constant="110" id="xsi-11-u1f"/>
+                                </constraints>
                                 <state key="normal" title="点击申请">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -40,19 +51,29 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="H9J-5c-mE5" firstAttribute="centerY" secondItem="9EA-Ll-UaK" secondAttribute="centerY" id="1Oy-yl-H8l"/>
+                            <constraint firstItem="H9J-5c-mE5" firstAttribute="centerX" secondItem="9EA-Ll-UaK" secondAttribute="centerX" id="8gC-jH-KUK"/>
+                        </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1231231323132312312312312313231231231231231232312312313" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GV6-28-H33">
-                        <rect key="frame" x="0.0" y="125" width="328" height="40"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" red="0.66667121648788452" green="0.66665846109390259" blue="0.66666716337203979" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                 </subviews>
-                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="GV6-28-H33" firstAttribute="bottom" secondItem="4lV-Km-8ca" secondAttribute="bottom" id="21n-Ss-kyV"/>
+                    <constraint firstItem="GV6-28-H33" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="2xE-2L-Gui"/>
+                    <constraint firstAttribute="trailing" secondItem="4lV-Km-8ca" secondAttribute="trailing" id="8lA-kB-dna"/>
+                    <constraint firstItem="9EA-Ll-UaK" firstAttribute="top" secondItem="4lV-Km-8ca" secondAttribute="bottom" id="Ihy-dq-bZq"/>
+                    <constraint firstAttribute="bottom" secondItem="4lV-Km-8ca" secondAttribute="bottom" constant="45" id="SMk-Fq-2vH"/>
+                    <constraint firstItem="4lV-Km-8ca" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="X6R-a5-9sA"/>
+                    <constraint firstItem="4lV-Km-8ca" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="f7H-hn-SB3"/>
+                    <constraint firstAttribute="bottom" secondItem="9EA-Ll-UaK" secondAttribute="bottom" id="nk2-XX-TNH"/>
+                    <constraint firstAttribute="trailing" secondItem="GV6-28-H33" secondAttribute="trailing" id="sTw-Wu-euz"/>
+                    <constraint firstAttribute="trailing" secondItem="9EA-Ll-UaK" secondAttribute="trailing" id="t0t-pu-afB"/>
+                    <constraint firstItem="9EA-Ll-UaK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="tSY-Tw-qac"/>
+                </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="imgView" destination="4lV-Km-8ca" id="doB-JC-5Wf"/>
