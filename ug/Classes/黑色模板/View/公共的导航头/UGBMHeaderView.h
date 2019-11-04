@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (weak, nonatomic) IBOutlet UUMarqueeView *leftwardMarqueeView;    /**<   滚动公告 */
 @property (nonatomic, strong) NSMutableArray <NSString *> *leftwardMarqueeViewData;      /**<   公告数据 */
-@property (nonatomic, strong) UGNoticeTypeModel *noticeTypeModel;
+@property (nonatomic, strong) UGNoticeTypeModel *noticeTypeModel;   /**<   公告提示数据 */
 @property (nonatomic, strong) UGYYRightMenuView *yymenuView;   /**<   侧边栏 */
 -(instancetype)initView;
 @end

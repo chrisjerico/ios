@@ -1412,8 +1412,12 @@
      }
     {
          //黑色模版注册
-         [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGBMRegisterViewController") animated:true];
+//         [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGBMRegisterViewController") animated:true];
      }
+    {
+             //黑色模版会员中心
+             [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGBMMemberCenterViewController") animated:true];
+    }
 
     #else
     

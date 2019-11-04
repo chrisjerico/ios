@@ -540,6 +540,7 @@
 		D4C1657C2344CF1C005A0F12 /* UGMineSkinModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C1657B2344CF1C005A0F12 /* UGMineSkinModel.m */; };
 		D4C1E9C5236EF26E00BD120A /* UGBMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C1E9C4236EF26E00BD120A /* UGBMLoginViewController.m */; };
 		D4C1E9CA236F2DEA00BD120A /* UGBMRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C1E9C9236F2DEA00BD120A /* UGBMRegisterViewController.m */; };
+		D4C1E9CF237040B300BD120A /* UGBMMemberCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C1E9CE237040B300BD120A /* UGBMMemberCenterViewController.m */; };
 		D4C46F8F232B56CB0062564D /* UGDepositDetailsNoLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C46F8E232B56CB0062564D /* UGDepositDetailsNoLineViewController.m */; };
 		D4C46F92232B88BF0062564D /* UGFunds2microcodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C46F91232B88BF0062564D /* UGFunds2microcodeView.m */; };
 		D4C46F94232B88D80062564D /* UGFunds2microcodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4C46F93232B88D80062564D /* UGFunds2microcodeView.xib */; };
@@ -1609,6 +1610,8 @@
 		D4C1E9C4236EF26E00BD120A /* UGBMLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGBMLoginViewController.m; sourceTree = "<group>"; };
 		D4C1E9C8236F2DEA00BD120A /* UGBMRegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGBMRegisterViewController.h; sourceTree = "<group>"; };
 		D4C1E9C9236F2DEA00BD120A /* UGBMRegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGBMRegisterViewController.m; sourceTree = "<group>"; };
+		D4C1E9CD237040B300BD120A /* UGBMMemberCenterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGBMMemberCenterViewController.h; sourceTree = "<group>"; };
+		D4C1E9CE237040B300BD120A /* UGBMMemberCenterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGBMMemberCenterViewController.m; sourceTree = "<group>"; };
 		D4C46F8D232B56CB0062564D /* UGDepositDetailsNoLineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGDepositDetailsNoLineViewController.h; sourceTree = "<group>"; };
 		D4C46F8E232B56CB0062564D /* UGDepositDetailsNoLineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGDepositDetailsNoLineViewController.m; sourceTree = "<group>"; };
 		D4C46F90232B88BF0062564D /* UGFunds2microcodeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGFunds2microcodeView.h; sourceTree = "<group>"; };
@@ -3399,12 +3402,15 @@
 		D4091B4923694B120056BAEE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D4C1E9CC23701EDA00BD120A /* 会员中心 */,
 				D4C1E9CB237001D700BD120A /* 最近浏览 */,
 				D4FD7B2F236EB82000D171AC /* 我的 */,
 				D4FD7B1D236E91FE00D171AC /* 优惠专区 */,
 				CF724E5F236EAEF20099947A /* 首页 */,
 				D4091B4D23694C4A0056BAEE /* 财务中心 */,
 				CF724E60236EAF2B0099947A /* BlackTemplate.storyboard */,
+				D4FD7B30236EB85000D171AC /* BMMine.storyboard */,
+				D4FD7B2D236E942200D171AC /* BMpreferential.storyboard */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -4288,6 +4294,15 @@
 			path = "最近浏览";
 			sourceTree = "<group>";
 		};
+		D4C1E9CC23701EDA00BD120A /* 会员中心 */ = {
+			isa = PBXGroup;
+			children = (
+				D4C1E9CD237040B300BD120A /* UGBMMemberCenterViewController.h */,
+				D4C1E9CE237040B300BD120A /* UGBMMemberCenterViewController.m */,
+			);
+			path = "会员中心";
+			sourceTree = "<group>";
+		};
 		D4CF975C2365801B0096BC92 /* 六合页面 */ = {
 			isa = PBXGroup;
 			children = (
@@ -4440,7 +4455,6 @@
 			children = (
 				D4FD7B2A236E941000D171AC /* UGBMpreferentialViewController.h */,
 				D4FD7B2B236E941000D171AC /* UGBMpreferentialViewController.m */,
-				D4FD7B2D236E942200D171AC /* BMpreferential.storyboard */,
 			);
 			path = "优惠专区";
 			sourceTree = "<group>";
@@ -4479,7 +4493,6 @@
 			children = (
 				D4C1E9C7236F039A00BD120A /* 注册 */,
 				D4C1E9C6236F038C00BD120A /* 登录 */,
-				D4FD7B30236EB85000D171AC /* BMMine.storyboard */,
 			);
 			path = "我的";
 			sourceTree = "<group>";
@@ -5119,6 +5132,7 @@
 				D405B1F6227972C900F8C586 /* JSONModel.m in Sources */,
 				D407B0482366A69800B4DEF4 /* UGLHGalleryVC.m in Sources */,
 				D405AFF322783DCC00F8C586 /* MASCompositeConstraint.m in Sources */,
+				D4C1E9CF237040B300BD120A /* UGBMMemberCenterViewController.m in Sources */,
 				D4261EC72323D6BC006E0A5D /* UGlevelsModel.m in Sources */,
 				D4DE269B229BDBC80072A4A2 /* SGImageButton.m in Sources */,
 				D405AFF722783DCC00F8C586 /* View+MASAdditions.m in Sources */,

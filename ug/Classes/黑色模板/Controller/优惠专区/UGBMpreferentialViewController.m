@@ -29,7 +29,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [headView.leftwardMarqueeView start];
-
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
