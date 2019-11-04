@@ -147,7 +147,7 @@ static NSString *recordFilterCellid = @"UGRecordFilterCollectionViewCell";
 
 - (void)buildSegment {
     if (!self.slideSwitchView) {
-        self.itemArray = @[@"已中奖", @"未中奖", @"等待开奖", @"已撤单"];
+        self.itemArray = UserI.allowMemberCancelBet ? @[@"已中奖", @"未中奖", @"等待开奖", @"已撤单"] : @[@"已中奖", @"未中奖", @"等待开奖"];
         self.slideSwitchView = [[XYYSegmentControl alloc] initWithFrame:CGRectMake(0 , 0, self.view.width, self.view.height) channelName:self.itemArray source:self];
         [self.slideSwitchView setUserInteractionEnabled:YES];
         self.slideSwitchView.segmentControlDelegate = self;
