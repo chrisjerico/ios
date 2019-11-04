@@ -1398,19 +1398,21 @@
     #ifdef DEBUG
     {
         //黑色模板财务中心
-        //        UGfinancialViewViewController *vc = [UGfinancialViewViewController new];
-        //        [self.navigationController pushViewController:vc  animated:YES];
+//                UGfinancialViewViewController *vc = [UGfinancialViewViewController new];
+//                [self.navigationController pushViewController:vc  animated:YES];
     }
 
     {
         //黑色模板优惠专区
 //        [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGBMpreferentialViewController") animated:true];
-
     }
     {
          //黑色模板登录
-         [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGBMLoginViewController") animated:true];
-
+//         [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGBMLoginViewController") animated:true];
+     }
+    {
+         //黑色模版注册
+         [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGBMRegisterViewController") animated:true];
      }
 
     #else

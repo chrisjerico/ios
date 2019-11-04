@@ -96,10 +96,20 @@
 - (BOOL)允许未登录访问 { return true; }
 - (BOOL)允许游客访问 { return true; }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
+
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [headView.leftwardMarqueeView pause];//fixbug  发热  掉电快
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.view setBackgroundColor:UGBlackModelColor];
     self.fd_prefersNavigationBarHidden = YES;
     // 禁用侧滑返回
     self.fd_interactivePopDisabled = true;
@@ -123,6 +133,8 @@
     self.smsVcodeTextF.delegate = self;
     self.imgVcodeTextF.delegate = self;
     self.regType = @"user";
+    self.checkPasswordTextF.secureTextEntry = YES;
+    self.passwordTextF.secureTextEntry = YES;
     
     //限制弹出数字键盘
     
@@ -532,34 +544,7 @@
     } else {
 
     }
-    
-    [self.goLoginButton setHidden:NO];
-    [self.goHomeButton setHidden:NO];
-    [self.goLoginButton  mas_remakeConstraints:^(MASConstraintMaker *make)
-     {
-         make.left.equalTo(self.registerButton.mas_left);
-         make.right.equalTo(self.registerButton.mas_right);
-         make.width.equalTo(self.registerButton.mas_width);
-         make.height.equalTo(self.registerButton.mas_height);
-         make.top.equalTo(self.registerButton.mas_bottom).offset(15);
-         
-     }];
-    
-    [self.goHomeButton  mas_remakeConstraints:^(MASConstraintMaker *make)
-     {
-         make.left.equalTo(self.registerButton.mas_left);
-         make.right.equalTo(self.registerButton.mas_right);
-         make.width.equalTo(self.registerButton.mas_width);
-         make.height.equalTo(self.registerButton.mas_height);
-         make.top.equalTo(self.goLoginButton.mas_bottom).offset(15);
-         
-     }];
-    
 
-//    self.myScrollView.contentSize = CGSizeMake(UGScreenW, CGRectGetMaxY(self.goHomeButton.frame)+self.goHomeButton.frame.size.height +100);
-    
-    
-   
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {

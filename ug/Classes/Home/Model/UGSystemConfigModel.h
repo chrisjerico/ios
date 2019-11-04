@@ -80,7 +80,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) BOOL chatFollowSwitch;                  /**<   是否允许聊天室跟注 */
 @property (nonatomic, copy) NSString *chatMinFollowAmount;    /**<   聊天室跟注最小金额*/
 
-
+@property (nonatomic, copy) NSString *easyRememberDomain;    /**<   黑色模板易记的网址*/
 + (instancetype)currentConfig;
 
 + (void)setCurrentConfig:(UGSystemConfigModel *)config;

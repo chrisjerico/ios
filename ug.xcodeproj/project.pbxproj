@@ -3399,6 +3399,7 @@
 		D4091B4923694B120056BAEE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D4C1E9CB237001D700BD120A /* 最近浏览 */,
 				D4FD7B2F236EB82000D171AC /* 我的 */,
 				D4FD7B1D236E91FE00D171AC /* 优惠专区 */,
 				CF724E5F236EAEF20099947A /* 首页 */,
@@ -4278,6 +4279,13 @@
 				D4C1E9C9236F2DEA00BD120A /* UGBMRegisterViewController.m */,
 			);
 			path = "注册";
+			sourceTree = "<group>";
+		};
+		D4C1E9CB237001D700BD120A /* 最近浏览 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "最近浏览";
 			sourceTree = "<group>";
 		};
 		D4CF975C2365801B0096BC92 /* 六合页面 */ = {

@@ -26,6 +26,17 @@
 - (BOOL)允许未登录访问 { return true; }
 - (BOOL)允许游客访问 { return true; }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [headView.leftwardMarqueeView start];
+
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [headView.leftwardMarqueeView pause];//fixbug  发热  掉电快
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"优惠活动";

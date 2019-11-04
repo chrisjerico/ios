@@ -7,10 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "UUMarqueeView.h"
+#import "UGNoticeModel.h"
+#import "UGYYRightMenuView.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UGBMHeaderView : UIView
+
+@property (weak, nonatomic) IBOutlet UUMarqueeView *leftwardMarqueeView;    /**<   滚动公告 */
+@property (nonatomic, strong) NSMutableArray <NSString *> *leftwardMarqueeViewData;      /**<   公告数据 */
+@property (nonatomic, strong) UGNoticeTypeModel *noticeTypeModel;
+@property (nonatomic, strong) UGYYRightMenuView *yymenuView;   /**<   侧边栏 */
 -(instancetype)initView;
 @end
 
