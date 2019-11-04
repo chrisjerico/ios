@@ -538,6 +538,8 @@
 		D4C165782344CAB6005A0F12 /* UGSkinSeconCollectionHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C165762344CAB6005A0F12 /* UGSkinSeconCollectionHeadView.m */; };
 		D4C165792344CAB6005A0F12 /* UGSkinSeconCollectionHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4C165772344CAB6005A0F12 /* UGSkinSeconCollectionHeadView.xib */; };
 		D4C1657C2344CF1C005A0F12 /* UGMineSkinModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C1657B2344CF1C005A0F12 /* UGMineSkinModel.m */; };
+		D4C1E9C5236EF26E00BD120A /* UGBMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C1E9C4236EF26E00BD120A /* UGBMLoginViewController.m */; };
+		D4C1E9CA236F2DEA00BD120A /* UGBMRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C1E9C9236F2DEA00BD120A /* UGBMRegisterViewController.m */; };
 		D4C46F8F232B56CB0062564D /* UGDepositDetailsNoLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C46F8E232B56CB0062564D /* UGDepositDetailsNoLineViewController.m */; };
 		D4C46F92232B88BF0062564D /* UGFunds2microcodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C46F91232B88BF0062564D /* UGFunds2microcodeView.m */; };
 		D4C46F94232B88D80062564D /* UGFunds2microcodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4C46F93232B88D80062564D /* UGFunds2microcodeView.xib */; };
@@ -638,6 +640,7 @@
 		D4FD7B29236E92DD00D171AC /* LeeTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FD7B24236E92DC00D171AC /* LeeTagView.m */; };
 		D4FD7B2C236E941000D171AC /* UGBMpreferentialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FD7B2B236E941000D171AC /* UGBMpreferentialViewController.m */; };
 		D4FD7B2E236E942200D171AC /* BMpreferential.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4FD7B2D236E942200D171AC /* BMpreferential.storyboard */; };
+		D4FD7B31236EB85000D171AC /* BMMine.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4FD7B30236EB85000D171AC /* BMMine.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1602,6 +1605,10 @@
 		D4C165772344CAB6005A0F12 /* UGSkinSeconCollectionHeadView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGSkinSeconCollectionHeadView.xib; sourceTree = "<group>"; };
 		D4C1657A2344CF1C005A0F12 /* UGMineSkinModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGMineSkinModel.h; sourceTree = "<group>"; };
 		D4C1657B2344CF1C005A0F12 /* UGMineSkinModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGMineSkinModel.m; sourceTree = "<group>"; };
+		D4C1E9C3236EF26E00BD120A /* UGBMLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGBMLoginViewController.h; sourceTree = "<group>"; };
+		D4C1E9C4236EF26E00BD120A /* UGBMLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGBMLoginViewController.m; sourceTree = "<group>"; };
+		D4C1E9C8236F2DEA00BD120A /* UGBMRegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGBMRegisterViewController.h; sourceTree = "<group>"; };
+		D4C1E9C9236F2DEA00BD120A /* UGBMRegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGBMRegisterViewController.m; sourceTree = "<group>"; };
 		D4C46F8D232B56CB0062564D /* UGDepositDetailsNoLineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGDepositDetailsNoLineViewController.h; sourceTree = "<group>"; };
 		D4C46F8E232B56CB0062564D /* UGDepositDetailsNoLineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGDepositDetailsNoLineViewController.m; sourceTree = "<group>"; };
 		D4C46F90232B88BF0062564D /* UGFunds2microcodeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGFunds2microcodeView.h; sourceTree = "<group>"; };
@@ -1769,6 +1776,7 @@
 		D4FD7B2A236E941000D171AC /* UGBMpreferentialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGBMpreferentialViewController.h; sourceTree = "<group>"; };
 		D4FD7B2B236E941000D171AC /* UGBMpreferentialViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGBMpreferentialViewController.m; sourceTree = "<group>"; };
 		D4FD7B2D236E942200D171AC /* BMpreferential.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BMpreferential.storyboard; sourceTree = "<group>"; };
+		D4FD7B30236EB85000D171AC /* BMMine.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BMMine.storyboard; sourceTree = "<group>"; };
 		E98695D8DC0D2512B92A7C32 /* Pods-ug.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ug.debug.xcconfig"; path = "Target Support Files/Pods-ug/Pods-ug.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -3391,6 +3399,7 @@
 		D4091B4923694B120056BAEE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D4FD7B2F236EB82000D171AC /* 我的 */,
 				D4FD7B1D236E91FE00D171AC /* 优惠专区 */,
 				CF724E5F236EAEF20099947A /* 首页 */,
 				D4091B4D23694C4A0056BAEE /* 财务中心 */,
@@ -4253,6 +4262,24 @@
 			path = TGWebController;
 			sourceTree = "<group>";
 		};
+		D4C1E9C6236F038C00BD120A /* 登录 */ = {
+			isa = PBXGroup;
+			children = (
+				D4C1E9C3236EF26E00BD120A /* UGBMLoginViewController.h */,
+				D4C1E9C4236EF26E00BD120A /* UGBMLoginViewController.m */,
+			);
+			path = "登录";
+			sourceTree = "<group>";
+		};
+		D4C1E9C7236F039A00BD120A /* 注册 */ = {
+			isa = PBXGroup;
+			children = (
+				D4C1E9C8236F2DEA00BD120A /* UGBMRegisterViewController.h */,
+				D4C1E9C9236F2DEA00BD120A /* UGBMRegisterViewController.m */,
+			);
+			path = "注册";
+			sourceTree = "<group>";
+		};
 		D4CF975C2365801B0096BC92 /* 六合页面 */ = {
 			isa = PBXGroup;
 			children = (
@@ -4439,6 +4466,16 @@
 			path = TagView;
 			sourceTree = "<group>";
 		};
+		D4FD7B2F236EB82000D171AC /* 我的 */ = {
+			isa = PBXGroup;
+			children = (
+				D4C1E9C7236F039A00BD120A /* 注册 */,
+				D4C1E9C6236F038C00BD120A /* 登录 */,
+				D4FD7B30236EB85000D171AC /* BMMine.storyboard */,
+			);
+			path = "我的";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -4518,6 +4555,7 @@
 				D41FF93C2333471F00FE3F70 /* UGContentMoneyCollectionViewCell.xib in Resources */,
 				D4DE2688229BCB960072A4A2 /* tag_list_s@2x.png in Resources */,
 				D481EFFF2327CAD8000611ED /* UGDepositDetailsCollectionViewCell.xib in Resources */,
+				D4FD7B31236EB85000D171AC /* BMMine.storyboard in Resources */,
 				D49D35A022C7A11100318D73 /* UGNoticePopView.xib in Resources */,
 				D41C3E18228EF2A600BF6436 /* UGFastThreeTwoCollectionViewCell.xib in Resources */,
 				D4D8DF6A228693ED00446BAF /* UGLotteryAssistantController.storyboard in Resources */,
@@ -4781,6 +4819,7 @@
 				D405B39222817A7C00F8C586 /* UGModifyPayPwdController.m in Sources */,
 				D4FD7B28236E92DD00D171AC /* LeeTagItem.m in Sources */,
 				D4D8DF6D22869B2D00446BAF /* UGLotteryAssistantTableViewCell.m in Sources */,
+				D4C1E9C5236EF26E00BD120A /* UGBMLoginViewController.m in Sources */,
 				D4C93B3B22D8560500608B67 /* UGFeedbackTableViewCell.m in Sources */,
 				0322AD6523432A4A00E9857E /* UGCommonLotteryController.m in Sources */,
 				D40DE99722F4866600974BAF /* UGImgVcodeModel.m in Sources */,
@@ -5161,6 +5200,7 @@
 				D4FBBBE6228C5D5200153FB5 /* UGAllNextIssueListModel.m in Sources */,
 				D422A588229E813C0068D0AD /* UGYubaoConversionRecordCell.m in Sources */,
 				D422D68222D9A8E8008E7065 /* UGAddressListModel.m in Sources */,
+				D4C1E9CA236F2DEA00BD120A /* UGBMRegisterViewController.m in Sources */,
 				D4AE64172295871D00DD265A /* MJRefreshAutoNormalFooter.m in Sources */,
 				D4FBBBE3228C034100153FB5 /* UGHallLotteryModel.m in Sources */,
 				D405B340227DAEF000F8C586 /* QDAlertView.m in Sources */,

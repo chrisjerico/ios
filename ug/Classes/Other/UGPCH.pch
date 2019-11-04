@@ -57,6 +57,7 @@
 #import "UGView.h"
 #import "UIImage+YYgradientImage.h"
 #import "SGQRCode.h"
+#import "UIView+Events.h"//添加手势
 
 
 #endif /* UGPCH_pch */

@@ -15,7 +15,6 @@
 @interface UGBMpreferentialViewController ()<LeeTagViewDelegate,UITableViewDelegate,UITableViewDataSource>
 {
      UGBMHeaderView *headView;                /**<   导航头 */
-    
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet LeeTagView *radioTagView; /**<   单选标签组 */
@@ -92,7 +91,6 @@
             UGPromoteListModel *listModel = model.data;
             [__self.tableView.dataArray setArray:listModel.list];
             [__self.tableView reloadData];
-//            __self.radioTagView.height = __self.radioTagView.height +20;
         } failure:nil];
     }];
 }

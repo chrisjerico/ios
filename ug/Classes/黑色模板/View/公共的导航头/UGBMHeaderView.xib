@@ -209,27 +209,25 @@
                                 <constraint firstAttribute="height" constant="20" id="h7P-ak-wGP"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="asdaDasdaSDasd" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ict-eN-fBG">
-                            <rect key="frame" x="36" y="5" width="370" height="20"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <nil key="highlightedColor"/>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="滚动条"/>
-                            </userDefinedRuntimeAttributes>
-                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wnj-sr-eZV" customClass="UUMarqueeView">
+                            <rect key="frame" x="36" y="0.0" width="370" height="30"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="AXd-R4-wNU"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" red="0.066667437553405762" green="0.066665269434452057" blue="0.066666752099990845" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="Ict-eN-fBG" secondAttribute="trailing" constant="8" id="9P5-bI-ILp"/>
+                        <constraint firstItem="Wnj-sr-eZV" firstAttribute="top" secondItem="O3H-EL-0U7" secondAttribute="top" id="73s-2d-o3l"/>
                         <constraint firstItem="d8r-lG-yGw" firstAttribute="centerY" secondItem="O3H-EL-0U7" secondAttribute="centerY" id="Cjs-dQ-ThS"/>
-                        <constraint firstItem="Ict-eN-fBG" firstAttribute="top" secondItem="Nbk-uE-5hm" secondAttribute="bottom" constant="4" id="GXI-VU-bCx"/>
+                        <constraint firstAttribute="bottom" secondItem="Wnj-sr-eZV" secondAttribute="bottom" id="GUh-cy-9RX"/>
                         <constraint firstItem="Nbk-uE-5hm" firstAttribute="leading" secondItem="O3H-EL-0U7" secondAttribute="leading" id="JSJ-cU-qRB"/>
                         <constraint firstAttribute="height" constant="30" id="Lvn-bH-qkb"/>
                         <constraint firstAttribute="trailing" secondItem="Nbk-uE-5hm" secondAttribute="trailing" id="N2x-Tk-pka"/>
-                        <constraint firstItem="Ict-eN-fBG" firstAttribute="leading" secondItem="d8r-lG-yGw" secondAttribute="trailing" constant="8" id="Rz0-Me-IhM"/>
                         <constraint firstItem="Nbk-uE-5hm" firstAttribute="top" secondItem="O3H-EL-0U7" secondAttribute="top" id="Snm-EJ-knL"/>
-                        <constraint firstItem="7QW-X5-stM" firstAttribute="top" secondItem="Ict-eN-fBG" secondAttribute="bottom" constant="4" id="WKy-qS-TqE"/>
+                        <constraint firstAttribute="trailing" secondItem="Wnj-sr-eZV" secondAttribute="trailing" constant="8" id="cny-EY-9n7"/>
+                        <constraint firstItem="Wnj-sr-eZV" firstAttribute="leading" secondItem="d8r-lG-yGw" secondAttribute="trailing" constant="8" id="kwp-p0-evS"/>
                         <constraint firstItem="d8r-lG-yGw" firstAttribute="leading" secondItem="O3H-EL-0U7" secondAttribute="leading" constant="8" id="pUl-Xf-5ie"/>
                         <constraint firstAttribute="bottom" secondItem="7QW-X5-stM" secondAttribute="bottom" id="uOe-JE-aes"/>
                         <constraint firstItem="7QW-X5-stM" firstAttribute="leading" secondItem="O3H-EL-0U7" secondAttribute="leading" id="uv7-0z-3dI"/>

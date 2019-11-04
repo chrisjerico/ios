@@ -660,7 +660,7 @@
                                                             <action selector="pwdTextSwitch:" destination="blf-Ei-b2L" eventType="touchUpInside" id="17Y-VB-VcT"/>
                                                         </connections>
                                                     </button>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="biyan" translatesAutoresizingMaskIntoConstraints="NO" id="XWd-GP-9IA">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="mi" translatesAutoresizingMaskIntoConstraints="NO" id="XWd-GP-9IA">
                                                         <rect key="frame" x="349" y="12" width="20" height="20"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
                                                     </imageView>
@@ -864,6 +864,18 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                     </textField>
+                                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GFK-I5-qgq">
+                                                        <rect key="frame" x="26" y="-2" width="354" height="44"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                        <color key="backgroundColor" red="0.91758114099502563" green="0.92137300968170166" blue="0.93725579977035522" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                        <state key="normal" title="返回登录">
+                                                            <color key="titleColor" red="0.2839455307" green="0.57867711779999997" blue="0.92549556489999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="showLogin:" destination="blf-Ei-b2L" eventType="touchUpInside" id="fOw-fg-NkL"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -1100,7 +1112,7 @@
                                                 </connections>
                                             </button>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0iL-pK-9eb">
-                                                <rect key="frame" x="30" y="530" width="354" height="44"/>
+                                                <rect key="frame" x="30" y="477" width="354" height="44"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.91758114099502563" green="0.92137300968170166" blue="0.93725579977035522" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -1109,18 +1121,6 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="goHomeAction:" destination="blf-Ei-b2L" eventType="touchUpInside" id="mqh-4I-v2X"/>
-                                                </connections>
-                                            </button>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GFK-I5-qgq">
-                                                <rect key="frame" x="30" y="622" width="354" height="44"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.91758114099502563" green="0.92137300968170166" blue="0.93725579977035522" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                <state key="normal" title="返回登录">
-                                                    <color key="titleColor" red="0.2839455307" green="0.57867711779999997" blue="0.92549556489999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="showLogin:" destination="blf-Ei-b2L" eventType="touchUpInside" id="fOw-fg-NkL"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -1719,6 +1719,7 @@
         <image name="imgVcode" width="100" height="100"/>
         <image name="jiantou1" width="16" height="16"/>
         <image name="lvzhuan" width="50" height="50"/>
+        <image name="mi" width="16" height="16"/>
         <image name="mima" width="24" height="24"/>
         <image name="missionhall" width="75" height="19.5"/>
         <image name="qq" width="24" height="24"/>

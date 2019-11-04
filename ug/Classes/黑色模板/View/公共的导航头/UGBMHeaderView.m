@@ -10,6 +10,8 @@
 
 @implementation UGBMHeaderView
 
+@property (weak, nonatomic) IBOutlet UUMarqueeView *leftwardMarqueeView;    /**<   滚动公告 */
+
 -(instancetype) UGBMHeaderView{
     NSBundle *bundle=[NSBundle mainBundle];
     NSArray *objs=[bundle loadNibNamed:@"UGBMHeaderView" owner:nil options:nil];

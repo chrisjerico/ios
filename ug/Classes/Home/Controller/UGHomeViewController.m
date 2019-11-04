@@ -1404,11 +1404,14 @@
 
     {
         //黑色模板优惠专区
-        [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGBMpreferentialViewController") animated:true];
-//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"BMpreferential" bundle:[NSBundle mainBundle]];
-//        SWViewController *swVC = [storyboard instantiateViewControllerWithIdentifier:@"UGBMpreferentialViewController"];
-//        [self.navigationController pushViewController:swVC animated:YES];
+//        [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGBMpreferentialViewController") animated:true];
+
     }
+    {
+         //黑色模板登录
+         [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGBMLoginViewController") animated:true];
+
+     }
 
     #else
     

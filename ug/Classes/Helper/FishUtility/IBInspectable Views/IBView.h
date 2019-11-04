@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-//IB_DESIGNABLE
+IB_DESIGNABLE
 @interface IBView : UIView
 @property (nonatomic) IBInspectable CGFloat 圆角偏移量;
 @property (nonatomic) IBInspectable CGPoint 圆角倍数;

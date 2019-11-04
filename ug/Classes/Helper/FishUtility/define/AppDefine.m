@@ -70,6 +70,7 @@
                 sb(@"UGLHH"),
                 sb(@"BMpreferential"),
                 sb(@"BlackTemplate"),
+                sb(@"BMMine"),
                 ];
     });
     

@@ -1,12 +1,13 @@
 //
-//  UGRegisterViewController.m
+//  UGBMRegisterViewController.m
 //  ug
 //
-//  Created by ug on 2019/5/4.
+//  Created by ug on 2019/11/3.
 //  Copyright © 2019 ug. All rights reserved.
 //
 
-#import "UGRegisterViewController.h"
+#import "UGBMRegisterViewController.h"
+#import "UGBMHeaderView.h"
 #import "UGLoginViewController.h"
 #import "UGEncryptUtil.h"
 #import "UGSystemConfigModel.h"
@@ -16,66 +17,75 @@
 #import "WKProxy.h"
 #import "RegExCategories.h"
 
-@interface UGRegisterViewController ()<UITextFieldDelegate,UINavigationControllerDelegate,WKScriptMessageHandler,WKNavigationDelegate,WKUIDelegate>
+@interface UGBMRegisterViewController ()<UITextFieldDelegate,UINavigationControllerDelegate,WKScriptMessageHandler,WKNavigationDelegate,WKUIDelegate>
+{
+     UGBMHeaderView *headView;                /**<   导航头 */
+}
+
+@property (weak, nonatomic) IBOutlet UISegmentedControl *mySegmentCV;                        /**<   */
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *mySegmentHightConstraint;           /**<    */
+
 @property (weak, nonatomic) IBOutlet UIScrollView *myScrollView;
-@property (weak, nonatomic) IBOutlet UITextField *inviterTextF;
-@property (weak, nonatomic) IBOutlet UITextField *userNameTextF;
-@property (weak, nonatomic) IBOutlet UITextField *passwordTextF;
-@property (weak, nonatomic) IBOutlet UITextField *checkPasswordTextF;
-@property (weak, nonatomic) IBOutlet UITextField *realNameTextF;
-@property (weak, nonatomic) IBOutlet UITextField *fundPwdTextF;
-@property (weak, nonatomic) IBOutlet UITextField *QQTextF;
-@property (weak, nonatomic) IBOutlet UITextField *wechatTextF;
-@property (weak, nonatomic) IBOutlet UITextField *phoneTextF;
-@property (weak, nonatomic) IBOutlet UITextField *emailTextF;
-@property (weak, nonatomic) IBOutlet UIButton *registerButton;
-@property (weak, nonatomic) IBOutlet UITextField *smsVcodeTextF;
-@property (weak, nonatomic) IBOutlet UITextField *imgVcodeTextF;
-@property (weak, nonatomic) IBOutlet UIButton *smsVcodeButton;
-@property (weak, nonatomic) IBOutlet UIImageView *imgVcodeImageView;
+@property (weak, nonatomic) IBOutlet UITextField *inviterTextF;           /**<   推荐人ID */
+@property (weak, nonatomic) IBOutlet UITextField *userNameTextF;           /**<   用户名 */
+@property (weak, nonatomic) IBOutlet UILabel *userNameDisabledNotice;           /**<   该账号已被注册，不可用 */
+@property (weak, nonatomic) IBOutlet UITextField *passwordTextF;           /**<   用户密码 */
+@property (weak, nonatomic) IBOutlet UITextField *checkPasswordTextF;           /**<  确认密码 */
+@property (weak, nonatomic) IBOutlet UIImageView *pwdImgeView;           /**<   密码眼睛1*/
+@property (weak, nonatomic) IBOutlet UIImageView *pwd2ImageView;           /**<   密码眼睛2 */
+@property (weak, nonatomic) IBOutlet UITextField *realNameTextF;           /**<  真实姓名 */
+@property (weak, nonatomic) IBOutlet UITextField *fundPwdTextF;           /**<   取款密码 */
+@property (weak, nonatomic) IBOutlet UITextField *QQTextF;           /**<   QQ号码 */
+@property (weak, nonatomic) IBOutlet UITextField *wechatTextF;           /**<   微信号 */
+@property (weak, nonatomic) IBOutlet UITextField *emailTextF;           /**<   邮箱号码*/
+@property (weak, nonatomic) IBOutlet UITextField *phoneTextF;           /**<   手机号码 */
+@property (weak, nonatomic) IBOutlet UITextField *smsVcodeTextF;           /**<   短信验证码 */
+@property (weak, nonatomic) IBOutlet UIButton *smsVcodeButton;           /**<   短信验证码按钮 */
+@property (weak, nonatomic) IBOutlet UITextField *imgVcodeTextF;           /**<   图片验证码 */
+@property (weak, nonatomic) IBOutlet UIImageView *imgVcodeImageView;           /**<    图片验证码图片 */
 
-@property (weak, nonatomic) IBOutlet UIView *inviterView;
-@property (weak, nonatomic) IBOutlet UIView *fullNameView;
-@property (weak, nonatomic) IBOutlet UIView *fundPwdView;
-@property (weak, nonatomic) IBOutlet UIView *qqView;
-@property (weak, nonatomic) IBOutlet UIView *wechatView;
-@property (weak, nonatomic) IBOutlet UIView *phoneView;
-@property (weak, nonatomic) IBOutlet UIView *emailView;
-@property (weak, nonatomic) IBOutlet UIView *smsVcodeView;
-@property (weak, nonatomic) IBOutlet UIView *imgVcodeView;
-@property (weak, nonatomic) IBOutlet UIView *webBgView;
+@property (weak, nonatomic) IBOutlet UIView *inviterView;           /**<   推荐人IDView */
+@property (weak, nonatomic) IBOutlet UIView *fullNameView;           /**<   真实姓名View */
+@property (weak, nonatomic) IBOutlet UIView *fundPwdView;           /**<  取款密码View */
+@property (weak, nonatomic) IBOutlet UIView *qqView;           /**<   QQ号码View */
+@property (weak, nonatomic) IBOutlet UIView *wechatView;           /**<    微信号View */
+@property (weak, nonatomic) IBOutlet UIView *emailView;           /**<   邮箱号码View */
+@property (weak, nonatomic) IBOutlet UIView *phoneView;           /**<   手机号码View */
+@property (weak, nonatomic) IBOutlet UIView *smsVcodeView;           /**<   短信验证码View*/
+@property (weak, nonatomic) IBOutlet UIView *imgVcodeView;           /**<   图片验证码View */
+@property (weak, nonatomic) IBOutlet UIView *webBgView;           /**<   谷歌验证View */
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *userHightConstraint;
+@property (weak, nonatomic) IBOutlet UIButton *goLoginButton;           /**<   返回登录*/
+@property (weak, nonatomic) IBOutlet UIButton *goHomeButton;           /**<   回到首页 */
+@property (weak, nonatomic) IBOutlet UIButton *registerButton;           /**<   注册按钮 */
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *inviterViewHightConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *fullNameViewHeightConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *fundPwdViewHeightConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *qqViewHeightConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *wechatViewHeightConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *phoneVeiwHeightConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *emailViewHeightConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *smsVcodeViewHeightConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imgVcodeViewHeightConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *webBgViewHeightConstraint;
-@property (weak, nonatomic) IBOutlet UILabel *userNameDisabledNotice;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *inviterViewHightConstraint;           /**<   推荐人ID*/
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *userHightConstraint;           /**<   用户名 */
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *fullNameViewHeightConstraint;           /**<   真实姓名 */
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *fundPwdViewHeightConstraint;           /**<   取款密码 */
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *qqViewHeightConstraint;           /**<   QQ号码 */
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *wechatViewHeightConstraint;           /**<   微信号 */
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *emailViewHeightConstraint;           /**<   邮箱号码 */
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *phoneVeiwHeightConstraint;           /**<   手机号码 */
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *smsVcodeViewHeightConstraint;           /**<   短信验证码*/
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imgVcodeViewHeightConstraint;           /**<   图片验证码 */
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *webBgViewHeightConstraint;           /**<   谷歌验证 */
 
-@property (nonatomic, strong) WKWebView *webView;
-@property (nonatomic, strong) UGImgVcodeModel *imgVcodeModel;
 
-@property (strong, nonatomic) NSTimer* timer;
-@property (assign, nonatomic) NSTimeInterval vcodeRequestTime;
-@property (weak, nonatomic) IBOutlet UIImageView *pwdImgeView;
-@property (weak, nonatomic) IBOutlet UIImageView *pwd2ImageView;
-@property (weak, nonatomic) IBOutlet UIButton *goHomeButton;
-@property (weak, nonatomic) IBOutlet UIButton *goLoginButton;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *mySegmentCV;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *mySegmentHightConstraint;
+@property (nonatomic, strong) WKWebView *webView;                       /**<   用户名 */
+@property (nonatomic, strong) UGImgVcodeModel *imgVcodeModel;           /**<   用户名 */
+
+@property (strong, nonatomic) NSTimer* timer;                            /**<   用户名 */
+@property (assign, nonatomic) NSTimeInterval vcodeRequestTime;           /**<   用户名 */
+
+
+
+
 
 @property (nonatomic, strong) NSString *regType;
 @end
 
-
-@implementation UGRegisterViewController
+@implementation UGBMRegisterViewController
 
 - (void)skin {
     [self.registerButton setBackgroundColor:Skin1.navBarBgColor];
@@ -88,34 +98,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    [self.view setBackgroundColor:UGBlackModelColor];
+    self.fd_prefersNavigationBarHidden = YES;
     // 禁用侧滑返回
     self.fd_interactivePopDisabled = true;
-    
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         [self skin];
     });
+    [self creatView];
+    self.extendedLayoutIncludesOpaqueBars = YES;
     
-    self.extendedLayoutIncludesOpaqueBars = YES; 
-    
-    self.navigationItem.title = @"注册";
-    self.registerButton.layer.cornerRadius = 5;
-    self.registerButton.layer.masksToBounds = YES;
-    [self.registerButton setBackgroundColor:Skin1.navBarBgColor];
-    
-
-    self.goHomeButton.layer.cornerRadius = 5;
-    self.goHomeButton.layer.masksToBounds = YES;
-    [self.goHomeButton setTitleColor:Skin1.navBarBgColor forState:UIControlStateNormal];
-    
-    self.goLoginButton.layer.cornerRadius = 5;
-    self.goLoginButton.layer.masksToBounds = YES;
-    [self.goLoginButton setTitleColor:Skin1.navBarBgColor forState:UIControlStateNormal];
-    
-    [self.myScrollView setBackgroundColor:[UIColor grayColor]];
-    //    选中的颜色
-    
-//     [self.mySegmentCV setTitleTextAttributes:@{NSForegroundColorAttributeName:Skin1.navBarBgColor} forState:UIControlStateSelected];
-	[self.userNameDisabledNotice setHidden:true];
+    [self.userNameDisabledNotice setHidden:true];
     self.userNameTextF.delegate = self;
     self.passwordTextF.delegate = self;
     self.checkPasswordTextF.delegate = self;
@@ -168,8 +162,19 @@
             [self.navigationController popViewControllerAnimated:YES];
         }];
     }
+}
+
+-(void)creatView{
+//===============导航头布局=================
+   headView = [[UGBMHeaderView alloc] initView];
+   [self.view addSubview:headView];
+   [headView mas_makeConstraints:^(MASConstraintMaker *make) { //数组额你不必须都是view
+       make.top.equalTo(self.view.mas_top).with.offset(k_Height_StatusBar);
+       make.left.equalTo(self.view.mas_left).offset(0);
+       make.height.equalTo([NSNumber numberWithFloat:100]);
+       make.width.equalTo([NSNumber numberWithFloat:UGScreenW]);
+   }];
     
-//    self.myScrollView.frame = CGRectMake(0, 0, UGScreenW, UGScerrnH);
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
@@ -599,22 +604,22 @@
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-	if (textField != self.userNameTextF) {
-		return;
-	}
-	[CMNetwork.manager requestWithMethod:[[NSString stringWithFormat:@"%@/wjapp/api.php?c=user&a=exists", baseServerUrl] stringToRestfulUrlWithFlag:RESTFUL]
-								  params:@{@"usr": textField.text}
-								   model:nil
-									post:true
-							  completion:^(CMResult<id> *model, NSError *err) {
-		
-		if (model.code == 1) {
-			[self.userNameDisabledNotice setHidden:false];
-			self.userNameDisabledNotice.text = model.msg;
-		} else {
-			[self.userNameDisabledNotice setHidden:true];
-		}
-	}];
+    if (textField != self.userNameTextF) {
+        return;
+    }
+    [CMNetwork.manager requestWithMethod:[[NSString stringWithFormat:@"%@/wjapp/api.php?c=user&a=exists", baseServerUrl] stringToRestfulUrlWithFlag:RESTFUL]
+                                  params:@{@"usr": textField.text}
+                                   model:nil
+                                    post:true
+                              completion:^(CMResult<id> *model, NSError *err) {
+        
+        if (model.code == 1) {
+            [self.userNameDisabledNotice setHidden:false];
+            self.userNameDisabledNotice.text = model.msg;
+        } else {
+            [self.userNameDisabledNotice setHidden:true];
+        }
+    }];
 }
 
 - (BOOL)validateNumber:(NSString*)number {
@@ -790,3 +795,4 @@
 }
 
 @end
+
