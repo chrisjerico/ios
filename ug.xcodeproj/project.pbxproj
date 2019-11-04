@@ -541,6 +541,8 @@
 		D4C1E9C5236EF26E00BD120A /* UGBMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C1E9C4236EF26E00BD120A /* UGBMLoginViewController.m */; };
 		D4C1E9CA236F2DEA00BD120A /* UGBMRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C1E9C9236F2DEA00BD120A /* UGBMRegisterViewController.m */; };
 		D4C1E9CF237040B300BD120A /* UGBMMemberCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C1E9CE237040B300BD120A /* UGBMMemberCenterViewController.m */; };
+		D4C1E9D3237052E200BD120A /* UGBMUnderMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C1E9D2237052E200BD120A /* UGBMUnderMenuView.m */; };
+		D4C1E9D52370531800BD120A /* UGBMUnderMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4C1E9D42370531800BD120A /* UGBMUnderMenuView.xib */; };
 		D4C46F8F232B56CB0062564D /* UGDepositDetailsNoLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C46F8E232B56CB0062564D /* UGDepositDetailsNoLineViewController.m */; };
 		D4C46F92232B88BF0062564D /* UGFunds2microcodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C46F91232B88BF0062564D /* UGFunds2microcodeView.m */; };
 		D4C46F94232B88D80062564D /* UGFunds2microcodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4C46F93232B88D80062564D /* UGFunds2microcodeView.xib */; };
@@ -1612,6 +1614,9 @@
 		D4C1E9C9236F2DEA00BD120A /* UGBMRegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGBMRegisterViewController.m; sourceTree = "<group>"; };
 		D4C1E9CD237040B300BD120A /* UGBMMemberCenterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGBMMemberCenterViewController.h; sourceTree = "<group>"; };
 		D4C1E9CE237040B300BD120A /* UGBMMemberCenterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGBMMemberCenterViewController.m; sourceTree = "<group>"; };
+		D4C1E9D1237052E200BD120A /* UGBMUnderMenuView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGBMUnderMenuView.h; sourceTree = "<group>"; };
+		D4C1E9D2237052E200BD120A /* UGBMUnderMenuView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGBMUnderMenuView.m; sourceTree = "<group>"; };
+		D4C1E9D42370531800BD120A /* UGBMUnderMenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGBMUnderMenuView.xib; sourceTree = "<group>"; };
 		D4C46F8D232B56CB0062564D /* UGDepositDetailsNoLineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGDepositDetailsNoLineViewController.h; sourceTree = "<group>"; };
 		D4C46F8E232B56CB0062564D /* UGDepositDetailsNoLineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGDepositDetailsNoLineViewController.m; sourceTree = "<group>"; };
 		D4C46F90232B88BF0062564D /* UGFunds2microcodeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGFunds2microcodeView.h; sourceTree = "<group>"; };
@@ -3418,7 +3423,7 @@
 		D4091B4A23694B300056BAEE /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D4091B5B236977870056BAEE /* 财务中心 */,
+				D4C1E9D02370527A00BD120A /* 下边栏 */,
 				D4091B4C23694C300056BAEE /* 公共的导航头 */,
 			);
 			path = View;
@@ -4303,6 +4308,17 @@
 			path = "会员中心";
 			sourceTree = "<group>";
 		};
+		D4C1E9D02370527A00BD120A /* 下边栏 */ = {
+			isa = PBXGroup;
+			children = (
+				D4C1E9D1237052E200BD120A /* UGBMUnderMenuView.h */,
+				D4C1E9D2237052E200BD120A /* UGBMUnderMenuView.m */,
+				D4C1E9D42370531800BD120A /* UGBMUnderMenuView.xib */,
+				D4091B5B236977870056BAEE /* 财务中心 */,
+			);
+			path = "下边栏";
+			sourceTree = "<group>";
+		};
 		D4CF975C2365801B0096BC92 /* 六合页面 */ = {
 			isa = PBXGroup;
 			children = (
@@ -4693,6 +4709,7 @@
 				D409B1552296E0020053DA33 /* UGMarkSixLotteryBetItem0Cell.xib in Resources */,
 				D4D4226623268736006E680B /* UGPormotionView.xib in Resources */,
 				D4F0477722E9E22E008EBB56 /* UGLinkNumCollectionViewCell.xib in Resources */,
+				D4C1E9D52370531800BD120A /* UGBMUnderMenuView.xib in Resources */,
 				D4DE268B229BCB960072A4A2 /* Shade_left@2x.png in Resources */,
 				D4177134229D79AB00727B70 /* UGMissionTitleCell.xib in Resources */,
 				D4E2876F22B666FE0002B2BF /* UGFC3DLotteryController.storyboard in Resources */,
@@ -5006,6 +5023,7 @@
 				CFD3BF3B23471A4F00FCDA6D /* CCNetworkRequests1.m in Sources */,
 				D405B25E227974D000F8C586 /* UIColor+CTop.m in Sources */,
 				D4EE8F97234222A8006FA0E2 /* UGSkinCollectionViewCell.m in Sources */,
+				D4C1E9D3237052E200BD120A /* UGBMUnderMenuView.m in Sources */,
 				D4EE8F872341DD4A006FA0E2 /* UGhomeRecommendCollectionViewCell.m in Sources */,
 				D422A57F229E79780068D0AD /* UGYubaoInComeController.m in Sources */,
 				D4704EC522B7566200528DC7 /* UGPK10NNLotteryController.m in Sources */,

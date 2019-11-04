@@ -25,6 +25,7 @@
 #import "UGPromotionIncomeController.h"     // 推广收益
 #import "UGBalanceConversionController.h"   // 额度转换
 #import "UGAgentViewController.h"           // 申请代理
+#import "UGBMMemberCenterViewController.h"  // 黑色模板会员中心
 
 
 #import "UGSystemConfigModel.h"
@@ -115,6 +116,7 @@ static UGTabbarController *_tabBarVC = nil;
         [UGmobileMenu menu:@"/chatRoomList"    :@"聊天室" :@"liaotian" :@"liaotiansel"    :[UGChatViewController class]],
         [UGmobileMenu menu:@"/lotteryRecord"   :@"开奖记录" :@"zdgl" :@"zdgl"              :[UGLotteryRecordController class]],
         [UGmobileMenu menu:@"/user"            :@"我的" :@"wode" :@"wodesel"             :[UGMineSkinViewController class]],
+        [UGmobileMenu menu:@"/user2"            :@"我的" :@"wode" :@"wodesel"             :[UGBMMemberCenterViewController class]],
         [UGmobileMenu menu:@"/task"            :@"任务中心" :@"renwu" :@"renwusel"         :[UGMissionCenterViewController class]],
         [UGmobileMenu menu:@"/securityCenter"  :@"安全中心" :@"ziyuan" :@"ziyuan"          :[UGSecurityCenterViewController class]],
         [UGmobileMenu menu:@"/funds"           :@"资金管理" :@"jinlingyingcaiwangtubiao" :@"jinlingyingcaiwangtubiaosel" :[UGFundsViewController class]],
@@ -130,10 +132,10 @@ static UGTabbarController *_tabBarVC = nil;
     self.delegate = self;
     
     // 设置初始控制器
-    [self resetUpChildViewController:@[@"/home", @"/lotteryList", @"/chatRoomList", @"/activity", @"/user", ]];
+    [self resetUpChildViewController:@[@"/home", @"/lotteryList", @"/chatRoomList", @"/activity", @"/user2", ]];
     
     // 更新为后台配置的控制器
-    [self getSystemConfig];
+//    [self getSystemConfig];
 
     
 //    SANotificationEventSubscribe(UGNotificationWithResetTabSuccess, self, ^(typeof (self) self, id obj) {

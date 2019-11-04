@@ -41,6 +41,9 @@
 #import "UGChangLongController.h"
 #import "STBarButtonItem.h"
 #import "UGYYRightMenuView.h"
+
+#import "UGBMUnderMenuView.h"
+
 @interface UGBMMemberCenterViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 {
      UGBMHeaderView *headView;                /**<   导航头 */
@@ -51,6 +54,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *refreshFirstButton;
 //===================================================
 @property (nonatomic, strong) NSMutableArray *menuNameArray;
+
+@property (nonatomic, strong)UGBMUnderMenuView *underMenu;
+
 @end
 
 @implementation UGBMMemberCenterViewController
@@ -98,6 +104,11 @@
     [self creatView];
     //初始化
     [self initCollectionView];
+    
+    self.underMenu = [[UGBMUnderMenuView alloc] initViewWithStatusBar];
+    [self.view addSubview:self.underMenu];
+    
+   
 }
 
 -(void)creatView{
