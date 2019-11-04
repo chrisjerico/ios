@@ -298,7 +298,7 @@
 	
     __weakSelf_(__self);
     [self xw_addNotificationForName:@"gameNavigationItemTaped" block:^(NSNotification * _Nonnull noti) {
-        [__self gameNavigationAction:noti.object];
+        [(GameModel *)noti.object pushViewController];
     }];
 	
 	WeakSelf
@@ -483,117 +483,9 @@
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
     return 0.0;
 }
+
+
 #pragma mark ---------------- 六合方法
-- (void)gameNavigationAction: (GameModel *)model{
-    
-    switch (model.subId) {
-        case 1: {
-            // 资金管理
-            [self.navigationController pushViewController:[UGFundsViewController new] animated:true];
-            break;
-        }
-        case 2: {
-            // APP下载
-            [[UGAppVersionManager shareInstance] updateVersionApi:true];
-            break;
-        }
-        case 3: {
-            // 聊天室
-            [self.navigationController pushViewController:[UGChatViewController new] animated:YES];
-            break;
-        }
-        case 4: {
-            // 在线客服
-            TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
-            webViewVC.url = SysConf.zxkfUrl;
-            webViewVC.webTitle = @"在线客服";
-            [self.navigationController pushViewController:webViewVC animated:YES];
-            break;
-        }
-        case 5: {
-            // 长龙助手
-            [self.navigationController pushViewController:[UGChangLongController new] animated:YES];
-            break;
-        }
-        case 6: {
-            // 推广收益
-            if (UserI.isTest) {
-                [self.navigationController pushViewController:[UGPromotionIncomeController new] animated:YES];
-            } else {
-                [SVProgressHUD showWithStatus:nil];
-                [CMNetwork teamAgentApplyInfoWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:^(CMResult<id> *model, NSError *err) {
-                    [CMResult processWithResult:model success:^{
-                        [SVProgressHUD dismiss];
-                        UGagentApplyInfo *obj  = (UGagentApplyInfo *)model.data;
-                        int intStatus = obj.reviewStatus.intValue;
-                        
-                        //0 未提交  1 待审核  2 审核通过 3 审核拒绝
-                        if (intStatus == 2) {
-                            [NavController1 pushViewController:[UGPromotionIncomeController new] animated:YES];
-                        } else {
-                            if (![SysConf.agent_m_apply isEqualToString:@"1"]) {
-                                [HUDHelper showMsg:@"在线注册代理已关闭"];
-                                return ;
-                            }
-                            UGAgentViewController *vc = [[UGAgentViewController alloc] init];
-                            vc.item = obj;
-                            [NavController1 pushViewController:vc animated:YES];
-                        }
-                    } failure:^(id msg) {
-                        [SVProgressHUD showErrorWithStatus:msg];
-                    }];
-                }];
-            }
-            break;
-        }
-        case 7: {
-            // 开奖网
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_NSString(@"%@/Open_prize/index.php", baseServerUrl)]];
-            break;
-        }
-        case 8: {
-            // 利息宝
-            [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGYubaoViewController")  animated:YES];
-            break;
-        }
-        case 9: {
-            // 优惠活动
-            [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGPromotionsController") animated:YES];
-            break;
-        }
-        case 10: {
-            // 游戏记录
-            UGBetRecordViewController *vc = [[UGBetRecordViewController alloc] init];
-            [self.navigationController pushViewController:vc animated:true];
-            break;
-        }
-        case 11: {
-            // QQ客服
-            NSString *qqstr;
-            if ([CMCommon stringIsNull:SysConf.serviceQQ1]) {
-                qqstr = SysConf.serviceQQ2;
-            } else {
-                qqstr = SysConf.serviceQQ1;
-            }
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_NSString(@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web", qqstr)]];
-            break;
-        }
-        case 13: {
-            // 任务大厅
-            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController") animated:true];
-            break;
-        }
-            
-        default: {
-            // 外部链接
-            TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
-            webViewVC.url = model.url;
-            webViewVC.webTitle = model.title;
-            [self.navigationController pushViewController:webViewVC animated:YES];
-            break;
-        }
-    }
-}
 
 - (void)getUserInfo {
 	if (!UGLoginIsAuthorized()) {

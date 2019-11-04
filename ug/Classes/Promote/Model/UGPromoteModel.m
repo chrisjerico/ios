@@ -138,6 +138,11 @@
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_NSString(@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web", qqstr)]];
             break;
         }
+        case 13: {
+            // 任务大厅
+            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController") animated:true];
+            break;
+        }
         default: {
             return false;
         }

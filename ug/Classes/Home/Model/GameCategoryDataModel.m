@@ -8,6 +8,7 @@
 
 #import "GameCategoryDataModel.h"
 #import "UGPlatformGameModel.h"
+#import "UGPromoteModel.h"
 
 #import "UGDocumentVC.h"                // 资料
 #import "UGCommonLotteryController.h"   // 下注页基类
@@ -64,7 +65,9 @@
         [nim setValuesWithObject:model];
         nim;
     })];
-    
+    if (!ret) {
+        ret = [UGPromoteModel pushViewControllerWithLinkCategory:model.seriesId linkPosition:model.subId];
+    }
     if (!ret) {
         // 进入第三方游戏
         if (model.url && ![model.url isEqualToString:@""]) {

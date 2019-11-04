@@ -56,7 +56,7 @@
         [CMResult processWithResult:model success:^{
             
             if (model.data) {
-                NSString *str = [NSString stringWithFormat:@"<head><style>img{width:%f !important;height:auto}</style></head>%@",self.frame.size.width - 10,model.data];
+                NSString *str = [NSString stringWithFormat:@"<head><style>img{width:auto !important;max-width:%f;height:auto}</style></head>%@", self.frame.size.width - 10,model.data];
                 dispatch_async(dispatch_get_global_queue(0, 0), ^{
                     NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithData:[str dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
                     NSMutableParagraphStyle *ps = [NSMutableParagraphStyle new];

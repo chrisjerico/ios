@@ -29,7 +29,7 @@
 - (void)setContent:(NSString *)content {
     _content = content;
     
-    NSString *str = [NSString stringWithFormat:@"<head><style>img{width:%f !important;height:auto}</style></head>%@",self.frame.size.width - 5,content];
+    NSString *str = [NSString stringWithFormat:@"<head><style>img{width:auto !important;max-width:%f;height:auto}</style></head>%@", self.frame.size.width - 5,content];
     NSAttributedString *__block attStr = [[NSAttributedString alloc] init];
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
          attStr = [[NSAttributedString alloc] initWithData:[str dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
