@@ -13,9 +13,9 @@
 
 @implementation UGSkinManagers
 
-static NSPointerArray *__viewPointers = nil;
-static UGSkinManagers *__currentSkin1 = nil;
-static UGSkinManagers *__lastSkin1 = nil;
+static NSPointerArray *__viewPointers = nil;    // 保存需要换肤的对象
+static UGSkinManagers *__currentSkin1 = nil;    // 当前皮肤
+static UGSkinManagers *__lastSkin1 = nil;       // 上一个皮肤，用来做CGColor的色值匹配
 static UGSkinManagers *__initSkin1 = nil;
 
 
@@ -59,6 +59,7 @@ static UGSkinManagers *__initSkin1 = nil;
                     if (OBJOnceToken(ai.instance)) {
                         [ai.instance cc_userInfo][@"SkinBlocks"] = @{}.mutableCopy;
                     }
+                    // 设置换肤block
                     [ai.instance cc_userInfo][@"SkinBlocks"][NSStringFromSelector(invocation.selector)] = ^{
                         UIColor *c = [__currentSkin1 performSelector:colorName.UTF8String];
                         [invocation setArgument:&c atIndex:2];
@@ -112,7 +113,6 @@ static UGSkinManagers *__initSkin1 = nil;
             [CALayer aspect_hookSelector:@selector(setBackgroundColor:) withOptions:AspectPositionInstead usingBlock:block2 error:nil];
             [CALayer aspect_hookSelector:@selector(setShadowColor:) withOptions:AspectPositionInstead usingBlock:block2 error:nil];
             
-            
             // 处理NSDictionary类型（UITabBarItem）
             NSArray *attrKeys = @[NSForegroundColorAttributeName, NSBackgroundColorAttributeName, NSStrokeColorAttributeName, NSUnderlineColorAttributeName, NSStrikethroughColorAttributeName];
             [UITabBarItem aspect_hookSelector:@selector(setTitleTextAttributes:forState:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> ai) {
@@ -120,13 +120,16 @@ static UGSkinManagers *__initSkin1 = nil;
                 NSInvocation *invocation = ai.originalInvocation;
                 
                 // 判断是否存在SkinColor
-                BOOL hasSkinColor = false;
-                for (NSString *key in attrKeys) {
-                    if (((UIColor *)dict[key]).alpha == SkinAlpha) {
-                        hasSkinColor = true;
-                        break;
+                BOOL hasSkinColor = ({
+                    hasSkinColor = false;
+                    for (NSString *key in attrKeys) {
+                        if (((UIColor *)dict[key]).alpha == SkinAlpha) {
+                            hasSkinColor = true;
+                            break;
+                        }
                     }
-                }
+                    hasSkinColor;
+                });
                 if (hasSkinColor) {
                     if (![__viewPointers.allObjects containsObject:ai.instance]) {
                         [__viewPointers addPointer:(__bridge void * _Nullable)(ai.instance)];
