@@ -9,10 +9,14 @@
 #import "UGBMUnderMenuView.h"
 #import "UGGameTypeColletionViewCell.h"
 #import "UGAllNextIssueListModel.h"
+#import "UGCommonLotteryController.h"
 
-@interface UGBMUnderMenuView ()<UICollectionViewDelegate,UICollectionViewDataSource>
+@interface UGBMUnderMenuView ()<UICollectionViewDelegate,UICollectionViewDataSource>{
+     NSMutableArray <UGNextIssueModel *> *myDataArray; /**<   数据源 */
+}
 @property (nonatomic, assign) CGRect oldFrame; /**<   老的fram */
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+
 @end
 @implementation UGBMUnderMenuView
 
@@ -31,7 +35,10 @@
         self.frame = frame;
         [self setOldFrame:frame];
         [self setBackgroundColor: Skin1.bgColor];
+        [self organizData];
         [self initCollectionView];
+        
+        NSLog(@"%@",UGAllNextIssueListModel.lotteryGamesArray);
          FastSubViewCode(self);
           __block BOOL isok = YES;
           __weak __typeof(self)weakSelf = self;
@@ -80,12 +87,17 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 10;
+
+    return myDataArray.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UGGameTypeColletionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UGGameTypeColletionViewCell" forIndexPath:indexPath];
-//    cell.item = ((NSArray *)self.sectionedDataArray[indexPath.section])[indexPath.row];
+    UGNextIssueModel * object = [myDataArray objectAtIndex:indexPath.row];
+    [cell.imgView sd_setImageWithURL:[NSURL URLWithString:object.pic] placeholderImage:[UIImage imageNamed:@"zwt"]];
+    cell.nameLabel.text = object.title;
+    [cell.hotImageView setHidden:YES];
+    [cell.hasSubSign setHidden:YES];
     [cell setBackgroundColor: Skin1.homeContentColor];
     return cell;
 }
@@ -93,7 +105,7 @@
 //cell size
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     float itemW = 104;
-    float itemH = 115;
+    float itemH = 114;
     CGSize size = {itemW, itemH};
     return size;
 }
@@ -105,35 +117,29 @@
 
 //行间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    return 0.0;
+    return 5.0;
 }
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
-    return 0;
+    return 5.0;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    [collectionView deselectItemAtIndexPath:indexPath animated:YES];
-    
+     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
+
+    UGNextIssueModel *nextModel = myDataArray[indexPath.row];
+    [UGCommonLotteryController pushWithModel:nextModel];
 }
 
-//- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset{    //将要停止前的坐标
-//
-//    CGFloat velocityFloat = velocity.x;
-//    CGFloat screenFloat = self.bounds.size.width/2;
-//    CGFloat currentCenter = screenFloat-scrollView.contentOffset.x;//当前中心点偏移
-//
-//    CGPoint currentPoint = [self convertPoint:self.collectionView.center toView:self.collectionView];
-//    NSIndexPath *idxPath = [self.collectionView indexPathForItemAtPoint:currentPoint];
-//
-//    CGFloat collectionWidth = self.bounds.size.width - 16 - 29;
-//    CGFloat nextX = idxPath.row*collectionWidth;
-//
-//    if (velocityFloat > 0 || velocityFloat < 0) {
-//        targetContentOffset->x = nextX;
-//        targetContentOffset->y = 0;
-//    }else{
-//        targetContentOffset->x = targetContentOffset->x;
-//        targetContentOffset->y = 0;
-//    }
-//}
+-(void)organizData{
+    myDataArray = [NSMutableArray new];
+    for (int i = 0; i< UGAllNextIssueListModel.lotteryGamesArray.count; i++) {
+        UGAllNextIssueListModel *model = [UGAllNextIssueListModel.lotteryGamesArray objectAtIndex:i];
+        UGNextIssueModel * object = [model.list objectAtIndex:[CMCommon getRandomNumber:0 to:(int)(model.list.count-1)]];
+        [myDataArray addObject:object];
+    }
+
+}
+
+
+
 @end

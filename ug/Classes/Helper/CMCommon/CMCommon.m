@@ -595,4 +595,11 @@ static NSString *uuidKey =@"uuidKey";
     NSLog(@"tempDic:%@",tempDic);
     return tempDic;
 }
+
+//ios 指定范围内的随机数
++(int)getRandomNumber:(int)from to:(int)to
+{
+    return (int)(from + (arc4random() % (to - from + 1)));
+    
+}
 @end

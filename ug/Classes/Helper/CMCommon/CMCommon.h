@@ -137,5 +137,6 @@
  ******************************************************************************/
 + (NSMutableDictionary *)yyUrlConversionParameter:(NSString *)urlStr;
 
-
+//ios 指定范围内的随机数
++(int)getRandomNumber:(int)from to:(int)to;
 @end

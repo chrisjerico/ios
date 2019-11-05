@@ -14,6 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UGGameTypeColletionViewCell : UICollectionViewCell
 
+@property (weak, nonatomic) IBOutlet UIImageView *imgView;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *hotImageView;
+@property (nonatomic, strong)UIImageView *hasSubSign;
 
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *imgName;

@@ -3423,6 +3423,7 @@
 		D4091B4A23694B300056BAEE /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D4091B5B236977870056BAEE /* 财务中心 */,
 				D4C1E9D02370527A00BD120A /* 下边栏 */,
 				D4091B4C23694C300056BAEE /* 公共的导航头 */,
 			);
@@ -4314,7 +4315,6 @@
 				D4C1E9D1237052E200BD120A /* UGBMUnderMenuView.h */,
 				D4C1E9D2237052E200BD120A /* UGBMUnderMenuView.m */,
 				D4C1E9D42370531800BD120A /* UGBMUnderMenuView.xib */,
-				D4091B5B236977870056BAEE /* 财务中心 */,
 			);
 			path = "下边栏";
 			sourceTree = "<group>";
