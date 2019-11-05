@@ -7,6 +7,8 @@
 //
 
 #import "UGYYLotterySecondHomeViewController.h"
+#import "UGGameListViewController.h"
+
 #import "UGhomeRecommendCollectionViewCell.h"
 
 @interface UGYYLotterySecondHomeViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
@@ -89,34 +91,26 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
-    [self getGotoGameUrl:self.dataArray[indexPath.row]];
-}
-
-
-#pragma mark 网络请求
-
-- (void)getGotoGameUrl:(UGYYGames *)game {
-    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+    
+    UGYYGames *game = self.dataArray[indexPath.row];
+    // 去二级游戏列表
+    if (game.isPopup) {
+        UGGameListViewController *vc = [[UGGameListViewController alloc] init];
+        vc.game = game;
+        [NavController1 pushViewController:vc animated:YES];
         return;
     }
-    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
-                             @"id":game.gameId
-                             };
-    [SVProgressHUD showWithStatus:nil];
-    [CMNetwork getGotoGameUrlWithParams:params completion:^(CMResult<id> *model, NSError *err) {
-        [CMResult processWithResult:model success:^{
-            [SVProgressHUD dismiss];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                QDWebViewController *qdwebVC = [[QDWebViewController alloc] init];
-                 NSLog(@"网络链接：model.data = %@",model.data);
-                qdwebVC.urlString = [CMNetwork encryptionCheckSignForURL:model.data];
-                qdwebVC.enterGame = YES;
-                [self.navigationController pushViewController:qdwebVC  animated:YES];
-            });
-        } failure:^(id msg) {
-            [SVProgressHUD showErrorWithStatus:msg];
-        }];
-    }];
+    NSDictionary *dict = @{@"real":@2,
+                           @"fish":@3,
+                           @"game":@4,
+                           @"card":@5,
+                           @"sport":@6,
+    };
+    NSInteger linkCategory = [dict[game.category] intValue];
+    if (!linkCategory) {
+        linkCategory = 2;
+    }
+    [NavController1 pushViewControllerWithLinkCategory:linkCategory linkPosition:game.gameId.intValue];
 }
 
 @end

@@ -9,6 +9,22 @@
 #import "UGNavigationController.h"
 #import "UGBMMemberCenterViewController.h"
 #import "UGBMBrowseViewController.h"
+
+// ViewController
+#import "UGCommonLotteryController.h"
+#import "UGChangLongController.h"
+#import "UGFundsViewController.h"
+#import "UGAgentViewController.h"
+#import "UGPromotionIncomeController.h"
+#import "UGBetRecordViewController.h"
+#import "UGGameListViewController.h"
+#import "UGDocumentVC.h"
+#import <SafariServices/SafariServices.h>
+
+// Tools
+#import "UGAppVersionManager.h"
+
+
 @interface UGNavigationController ()
 
 @end
@@ -94,6 +110,260 @@ static UGNavigationController *_navController = nil;
     
     // 真正在执行跳转
     [super pushViewController:viewController animated:animated];
+}
+
+
+#pragma mark - 根据Model快捷跳转函数
+
+- (void)pushViewControllerWithGameModel:(GameModel *)model {
+    if (!UGLoginIsAuthorized()) {
+        SANotificationEventPost(UGNotificationShowLoginView, nil);
+        return;
+    }
+    
+    if (model.game_id) {
+        model.gameId = model.game_id;
+    }
+    
+    // 去资料页
+    if ([model.docType intValue] == 1) {
+        [NavController1 pushViewController:[[UGDocumentVC alloc] initWithModel:model] animated:true];
+        return;
+    }
+    // 去外部链接
+    if (model.url.length) {
+        NSURL * url = [NSURL URLWithString:model.url];
+        if (url.scheme == nil) {
+            url = [NSURL URLWithString:_NSString(@"http://%@", model.url)];
+        }
+        SFSafariViewController *sf = [[SFSafariViewController alloc] initWithURL:url];
+        [NavController1 presentViewController:sf animated:YES completion:nil];
+        return;
+    }
+    // 去二级游戏列表
+    if (model.isPopup) {
+        UGGameListViewController *gameListVC = [[UGGameListViewController alloc] init];
+        gameListVC.game = model;
+        [NavController1 pushViewController:gameListVC animated:YES];
+        return;
+    }
+    
+    // 去彩票下注页、或第三方游戏页
+    [NavController1 pushViewControllerWithLinkCategory:model.seriesId linkPosition:model.subId];
+}
+
+- (BOOL)pushViewControllerWithNextIssueModel:(UGNextIssueModel *)model {
+    if (!UGLoginIsAuthorized()) {
+        SANotificationEventPost(UGNotificationShowLoginView, nil);
+        return true;
+    }
+    
+    NSDictionary *dict = @{@"cqssc" :@"UGSSCLotteryController",     // 重庆时时彩
+                           @"pk10"  :@"UGBJPK10LotteryController",  // pk10
+                           @"xyft"  :@"UGBJPK10LotteryController",  // 幸运飞艇
+                           @"qxc"   :@"UGQXCLotteryController",     // 七星彩
+                           @"lhc"   :@"UGHKLHCLotteryController",   // 六合彩
+                           @"jsk3"  :@"UGJSK3LotteryController",    // 江苏快3
+                           @"pcdd"  :@"UGPCDDLotteryController",    // pc蛋蛋
+                           @"gd11x5":@"UGGD11X5LotteryController",  // 广东11选5
+                           @"xync"  :@"UGXYNCLotteryController",    // 幸运农场
+                           @"bjkl8" :@"UGBJKL8LotteryController",   // 北京快乐8
+                           @"gdkl10":@"UGGDKL10LotteryController",  // 广东快乐10
+                           @"fc3d"  :@"UGFC3DLotteryController",    // 福彩3D
+                           @"pk10nn":@"UGPK10NNLotteryController",  // pk10牛牛
+    };
+    
+    NSString *vcName = dict[model.gameType];
+    if (vcName.length) {
+        UGCommonLotteryController *vc = _LoadVC_from_storyboard_(vcName);
+        if ([@[@"7", @"11", @"9"] containsObject:model.gameId]) {
+            vc.shoulHideHeader = true;
+        }
+        UGNextIssueModel *nextIssueModel = [UGNextIssueModel new];
+        [nextIssueModel setValuesWithObject:model];
+        vc.nextIssueModel = nextIssueModel;
+        vc.gameId = model.gameId;
+        vc.gotoTabBlock = ^{
+            TabBarController1.selectedIndex = 0;
+        };
+        // 设置导航条返回按钮
+        {
+            UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            [backButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [backButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
+            [backButton setImage:[UIImage imageNamed:@"c_navi_back"] forState:UIControlStateNormal];
+            [backButton setImage:[UIImage imageNamed:@"c_navi_back"] forState:UIControlStateHighlighted];
+            [backButton sizeToFit];
+            [backButton handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
+                [NavController1 popViewControllerAnimated:true];
+            }];
+            UIView *containView = [[UIView alloc] initWithFrame:backButton.bounds];
+            [containView addSubview:backButton];
+            UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:containView];
+            // 设置返回按钮
+            vc.navigationItem.leftBarButtonItem = item;
+            // 隐藏底部条
+            vc.hidesBottomBarWhenPushed = YES;
+        }
+        // Push
+        [NavController1 setViewControllers:({
+            NSMutableArray *vcs = NavController1.viewControllers.mutableCopy;
+            for (UIViewController *vc in NavController1.viewControllers) {
+                if ([vc isKindOfClass:[UGCommonLotteryController class]]) {
+                    [vcs removeObject:vc];
+                }
+            }
+            [vcs addObject:vc];
+            vcs;
+        }) animated:YES];
+        return true;
+    }
+    return false;
+}
+
+- (BOOL)pushViewControllerWithLinkCategory:(NSInteger)linkCategory linkPosition:(NSInteger)linkPosition {
+    if (!UGLoginIsAuthorized()) {
+        SANotificationEventPost(UGNotificationShowLoginView, nil);
+        return true;
+    }
+    // 去游戏页面
+    switch (linkCategory) {
+        case 1: {
+            return [UGCommonLotteryController pushWithModel:[UGNextIssueModel modelWithGameId:@(linkPosition).stringValue]];
+        }
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+        case 6: {
+            NSDictionary *params = @{@"token":UserI.sessid, @"id":@(linkPosition).stringValue};
+            [SVProgressHUD showWithStatus:nil];
+            [CMNetwork getGotoGameUrlWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+                [CMResult processWithResult:model success:^{
+                    [SVProgressHUD dismiss];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        QDWebViewController *qdwebVC = [[QDWebViewController alloc] init];
+                        NSLog(@"网络链接：model.data = %@", model.data);
+                        qdwebVC.urlString = [CMNetwork encryptionCheckSignForURL:model.data];
+                        qdwebVC.enterGame = YES;
+                        [NavController1 pushViewController:qdwebVC animated:YES];
+                    });
+                } failure:^(id msg) {
+                    [SVProgressHUD showErrorWithStatus:msg];
+                }];
+            }];
+            return true;
+        }
+        default:;
+    }
+    
+    // 去功能页面
+    if (linkCategory != 7) {
+        return false;
+    }
+    
+    switch (linkPosition) {
+        case 1: {
+            // 资金管理
+            [NavController1 pushViewController:[UGFundsViewController new] animated:true];
+            break;
+        }
+        case 2: {
+            // APP下载
+            [[UGAppVersionManager shareInstance] updateVersionApi:true];
+            break;
+        }
+        case 3: {
+            // 聊天室
+            [NavController1 pushViewController:[UGChatViewController new] animated:YES];
+            break;
+        }
+        case 4: {
+            // 在线客服
+            TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
+            webViewVC.url = SysConf.zxkfUrl;
+            webViewVC.webTitle = @"在线客服";
+            [NavController1 pushViewController:webViewVC animated:YES];
+            break;
+        }
+        case 5: {
+            // 长龙助手
+            [NavController1 pushViewController:[UGChangLongController new] animated:YES];
+            break;
+        }
+        case 6: {
+            // 推广收益
+            if (UserI.isTest) {
+                [NavController1 pushViewController:[UGPromotionIncomeController new] animated:YES];
+            } else {
+                [SVProgressHUD showWithStatus:nil];
+                [CMNetwork teamAgentApplyInfoWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:^(CMResult<id> *model, NSError *err) {
+                    [CMResult processWithResult:model success:^{
+                        [SVProgressHUD dismiss];
+                        UGagentApplyInfo *obj  = (UGagentApplyInfo *)model.data;
+                        int intStatus = obj.reviewStatus.intValue;
+                        
+                        //0 未提交  1 待审核  2 审核通过 3 审核拒绝
+                        if (intStatus == 2) {
+                            [NavController1 pushViewController:[UGPromotionIncomeController new] animated:YES];
+                        } else {
+                            if (![SysConf.agent_m_apply isEqualToString:@"1"]) {
+                                [HUDHelper showMsg:@"在线注册代理已关闭"];
+                                return ;
+                            }
+                            UGAgentViewController *vc = [[UGAgentViewController alloc] init];
+                            vc.item = obj;
+                            [NavController1 pushViewController:vc animated:YES];
+                        }
+                    } failure:^(id msg) {
+                        [SVProgressHUD showErrorWithStatus:msg];
+                    }];
+                }];
+            }
+            break;
+        }
+        case 7: {
+            // 开奖网
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_NSString(@"%@/Open_prize/index.php", baseServerUrl)]];
+            break;
+        }
+        case 8: {
+            // 利息宝
+            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGYubaoViewController")  animated:YES];
+            break;
+        }
+        case 9: {
+            // 优惠活动
+            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGPromotionsController") animated:YES];
+            break;
+        }
+        case 10: {
+            // 注单记录
+            UGBetRecordViewController *vc = [[UGBetRecordViewController alloc] init];
+            [NavController1 pushViewController:vc animated:true];
+            break;
+        }
+        case 11: {
+            // QQ客服
+            NSString *qqstr;
+            if ([CMCommon stringIsNull:SysConf.serviceQQ1]) {
+                qqstr = SysConf.serviceQQ2;
+            } else {
+                qqstr = SysConf.serviceQQ1;
+            }
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_NSString(@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web", qqstr)]];
+            break;
+        }
+        case 13: {
+            // 任务大厅
+            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController") animated:true];
+            break;
+        }
+        default: {
+            return false;
+        }
+    }
+    return true;
 }
 
 @end

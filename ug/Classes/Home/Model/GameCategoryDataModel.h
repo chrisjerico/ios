@@ -44,10 +44,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString * accessRule;
 @property (nonatomic, strong) NSString * hotIcon;     /**<   热门图标url */
 @property (nonatomic, strong) NSString * hot_icon;    /**<   热门图标url */
+@property (nonatomic, assign) BOOL isPopup;           /**<   是否存在二级游戏列表 */
 
 @property(nonatomic, strong) NSArray<GameSubModel> * subType;
 
-- (void)pushViewController;
 @end
 
 

@@ -8,22 +8,6 @@
 
 #import "UGLotteryAdPopView.h"
 
-// ViewController
-#import "UGPCDDLotteryController.h"
-#import "UGJSK3LotteryController.h"
-#import "UGHKLHCLotteryController.h"
-#import "UGBJPK10LotteryController.h"
-#import "UGQXCLotteryController.h"
-#import "UGSSCLotteryController.h"
-#import "UGGD11X5LotteryController.h"
-#import "UGBJKL8LotteryController.h"
-#import "UGGDKL10LotteryController.h"
-#import "UGFC3DLotteryController.h"
-#import "UGPK10NNLotteryController.h"
-
-// Mdoel
-#import "GameCategoryDataModel.h"
-
 @interface UGLotteryAdPopView ()
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
 @property (weak, nonatomic) IBOutlet UIButton *closeButton;
@@ -68,7 +52,7 @@
         return;
     }
     // 去彩票下注页面
-    [UGCommonLotteryController pushWithModel:[UGNextIssueModel modelWithGameId:_nm.adLink]];
+    [NavController1 pushViewControllerWithNextIssueModel:[UGNextIssueModel modelWithGameId:_nm.adLink]];
 }
 
 - (void)show {

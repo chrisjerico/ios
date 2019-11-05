@@ -298,13 +298,12 @@
 	
     __weakSelf_(__self);
     [self xw_addNotificationForName:@"gameNavigationItemTaped" block:^(NSNotification * _Nonnull noti) {
-        [(GameModel *)noti.object pushViewController];
+        [NavController1 pushViewControllerWithGameModel:(GameModel *)noti.object];
     }];
 	
 	WeakSelf
 	self.gameTypeView.gameItemSelectBlock = ^(GameModel * _Nonnull game) {
-        [game pushViewController];
-        //加游戏id
+        [NavController1 pushViewControllerWithGameModel:game];
 	};
 	
 	self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
@@ -772,7 +771,7 @@
                 }];
                 [subButton(@"优惠活动Button") removeActionBlocksForControlEvents:UIControlEventTouchUpInside];
                 [subButton(@"优惠活动Button") handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
-                    BOOL ret = [UGPromoteModel pushViewControllerWithLinkCategory:pm.linkCategory linkPosition:pm.linkPosition];
+                    BOOL ret = [NavController1 pushViewControllerWithLinkCategory:pm.linkCategory linkPosition:pm.linkPosition];
                     if (!ret) {
                         // 去优惠详情
                         UGPromoteDetailController *detailVC = [[UGPromoteDetailController alloc] init];
@@ -802,7 +801,7 @@
 #pragma mark - SDCycleScrollViewDelegate
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
 	UGBannerCellModel *banner = self.bannerArray[index];
-    BOOL ret = [UGPromoteModel pushViewControllerWithLinkCategory:banner.linkCategory linkPosition:banner.linkPosition];
+    BOOL ret = [NavController1 pushViewControllerWithLinkCategory:banner.linkCategory linkPosition:banner.linkPosition];
     if (!ret) {
         if ([banner.url containsString:@"mobile"]) {
             // 若跳转地址包含mobile则不做跳转

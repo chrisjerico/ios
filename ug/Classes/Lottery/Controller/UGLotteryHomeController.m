@@ -7,41 +7,20 @@
 //
 
 #import "UGLotteryHomeController.h"
-#import "STBarButtonItem.h"
+
+// View
 #import "UGLotteryCollectionViewCell.h"
-#import "CMCommon.h"
-#import "UGLotteryAssistantController.h"
-#import "CountDown.h"
-#import "UGHallLotteryModel.h"
-#import "UGChangLongController.h"
-#import "UGAllNextIssueListModel.h"
-#import "UGFundsViewController.h"
-#import "UGBetRecordViewController.h"
-#import "UGLotteryRulesView.h"
-#import "UGTimeLotteryBetHeaderView.h"
 #import "UGLotteryGameCollectionViewCell.h"
+#import "UGTimeLotteryBetHeaderView.h"
 
-#import "UGPCDDLotteryController.h"
-#import "UGJSK3LotteryController.h"
-#import "UGHKLHCLotteryController.h"
-#import "UGBJPK10LotteryController.h"
-#import "UGQXCLotteryController.h"
-#import "UGSSCLotteryController.h"
-#import "UGGD11X5LotteryController.h"
-#import "UGXYNCLotteryController.h"
-#import "UGBJKL8LotteryController.h"
-#import "UGGDKL10LotteryController.h"
-#import "UGFC3DLotteryController.h"
-#import "UGPK10NNLotteryController.h"
-
-// Mdoel
-#import "GameCategoryDataModel.h"
+// Tools
+#import "CountDown.h"
 
 @interface UGLotteryHomeController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) CountDown *countDown;
-@property (nonatomic, strong) NSMutableArray<UGAllNextIssueListModel *> *dataArray;
+@property (nonatomic, strong) NSArray<UGAllNextIssueListModel *> *lotteryGamesArray;
 
 @end
 
@@ -78,7 +57,7 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
         
         // 间隔超过5秒，且存在过期数据时才刷新数据
         if ([__lastRefresh timeIntervalSinceDate:[NSDate date]] < -5) {
-            for (UGAllNextIssueListModel *anilm in weakSelf.dataArray) {
+            for (UGAllNextIssueListModel *anilm in weakSelf.lotteryGamesArray) {
                 for (UGNextIssueModel *nim in anilm.list) {
                     // 判断是否存在过期数据（预留3秒等待下一期开盘）
                     if ([[nim.curOpenTime dateWithFormat:@"yyyy-MM-dd HH:mm:ss"] timeIntervalSinceDate:[NSDate date]] < -3) {
@@ -101,7 +80,7 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
     [CMNetwork getAllNextIssueWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [self.collectionView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
-            self.dataArray = model.data;
+            self.lotteryGamesArray = UGAllNextIssueListModel.lotteryGamesArray = model.data;
             [self.collectionView reloadData];
         } failure:^(id msg) {
             [SVProgressHUD dismiss];
@@ -120,21 +99,19 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
 #pragma mark UICollectionView datasource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    
-    return self.dataArray.count;
-
+    return self.lotteryGamesArray.count;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    UGAllNextIssueListModel *model = self.dataArray[section];
+    UGAllNextIssueListModel *model = self.lotteryGamesArray[section];
     return model.list.count;
     
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UGLotteryGameCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:letteryTicketCellID forIndexPath:indexPath];
-    UGAllNextIssueListModel *model = self.dataArray[indexPath.section];
+    UGAllNextIssueListModel *model = self.lotteryGamesArray[indexPath.section];
     cell.item = model.list[indexPath.row];
     [cell setBackgroundColor: Skin1.homeContentColor];
     return cell;
@@ -144,7 +121,7 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
     
     if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
         UGTimeLotteryBetHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerViewID forIndexPath:indexPath];
-        UGAllNextIssueListModel *model = self.dataArray[indexPath.section];
+        UGAllNextIssueListModel *model = self.lotteryGamesArray[indexPath.section];
         headerView.title = model.gameTypeName;
         headerView.leftTitle = YES;
         return headerView;
@@ -155,9 +132,9 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
      [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     
-    UGAllNextIssueListModel *listModel = self.dataArray[indexPath.section];
+    UGAllNextIssueListModel *listModel = self.lotteryGamesArray[indexPath.section];
     UGNextIssueModel *nextModel = listModel.list[indexPath.row];
-    [UGCommonLotteryController pushWithModel:nextModel];
+    [NavController1 pushViewControllerWithNextIssueModel:nextModel];
 }
 
 - (void)initCollectionView {
@@ -206,15 +183,5 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
          make.bottom.equalTo(self.view.mas_bottom).offset(-IPHONE_SAFEBOTTOMAREA_HEIGHT);
     }];
 }
-
-- (NSMutableArray<UGAllNextIssueListModel *> *)dataArray {
-    if (_dataArray == nil) {
-        _dataArray = [NSMutableArray array];
-
-    }
-    return _dataArray;
-    
-}
-
 
 @end

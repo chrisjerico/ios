@@ -28,19 +28,8 @@
 #import "UGPK10SubResultCollectionViewCell.h"
 #import "UGLotteryRecordController.h"
 
+// View
 #import "UGLotteryAdPopView.h"
-#import "UGPCDDLotteryController.h"
-#import "UGJSK3LotteryController.h"
-#import "UGHKLHCLotteryController.h"
-#import "UGBJPK10LotteryController.h"
-#import "UGQXCLotteryController.h"
-#import "UGSSCLotteryController.h"
-#import "UGGD11X5LotteryController.h"
-#import "UGXYNCLotteryController.h"
-#import "UGBJKL8LotteryController.h"
-#import "UGGDKL10LotteryController.h"
-#import "UGFC3DLotteryController.h"
-
 #import "UGYYRightMenuView.h"
 
 @interface UGPK10NNLotteryController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,YBPopupMenuDelegate,UITextFieldDelegate,WSLWaterFlowLayoutDelegate>

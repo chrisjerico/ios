@@ -91,7 +91,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UGPromoteModel *pm = tableView.dataArray[indexPath.row];
-    BOOL ret = [UGPromoteModel pushViewControllerWithLinkCategory:pm.linkCategory linkPosition:pm.linkPosition];
+    BOOL ret = [NavController1 pushViewControllerWithLinkCategory:pm.linkCategory linkPosition:pm.linkPosition];
     if (!ret) {
         // 去优惠详情
         UGPromoteDetailController *detailVC = [[UGPromoteDetailController alloc] init];
