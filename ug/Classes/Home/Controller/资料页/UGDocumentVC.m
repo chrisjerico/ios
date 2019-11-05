@@ -71,33 +71,30 @@
 }
 
 - (void)titleButtonTaped: (UIButton *)sender {
+    __weakSelf_(__self);
 	[DocumentTypeList showIn:self.view completionHandle:^(GameModel * _Nonnull model) {
-		self.model = model;
+		__self.model = model;
 		[SVProgressHUD showWithStatus:nil];
 //		[sender setTitle:[NSString stringWithFormat:@"%@ ▼", self.model.name] forState:UIControlStateNormal];
-		[self requestData:@"" page:1];
+		[__self requestData:@"" page:1];
 	}];
 }
 
 - (void)requestData:(NSString *)title page:(NSInteger)page {
-	
 	NSMutableDictionary *params = @{@"id": self.model.type}.mutableCopy;
-	WeakSelf
-	
+    
+    __weakSelf_(__self);
 	if ([title isEqualToString:@""]) {
-		dispatch_group_enter(self.completionGroup);
 		[CMNetwork getNextIssueWithParams:params completion:^(CMResult<id> *model, NSError *err) {
 			[CMResult processWithResult:model success:^{
-				weakSelf.nextIssue = model.data;
-				dispatch_group_leave(weakSelf.completionGroup);
-				
-			} failure:^(id msg) {
-				dispatch_group_leave(weakSelf.completionGroup);
-			}];
+				__self.nextIssue = model.data;
+                [SVProgressHUD dismiss];
+                [__self.tableView.mj_header endRefreshing];
+                [__self.tableView reloadData];
+			} failure:nil];
 		}];
 	}
 	
-	dispatch_group_enter(self.completionGroup);
 	params[@"category"] = self.model.gameId;
 	params[@"title"] = title;
     params[@"rows"] = _NSString(@"%ld", APP.PageCount);
@@ -107,29 +104,20 @@
 			
 			DocumentListModel *data = model.data;
             if (page == 1) {
-                [weakSelf.documentListData removeAllObjects];
+                [__self.documentListData removeAllObjects];
             }
-			[weakSelf.documentListData addObjectsFromArray:data.list];
+			[__self.documentListData addObjectsFromArray:data.list];
 			
 			if (data.list.count < 20) {
-                [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
+                [__self.tableView.mj_footer endRefreshingWithNoMoreData];
 			} else {
-				weakSelf.tableView.mj_footer.state = MJRefreshStateIdle;
+				__self.tableView.mj_footer.state = MJRefreshStateIdle;
 			}
-            [weakSelf.tableView reloadData];
-			dispatch_group_leave(weakSelf.completionGroup);
-		} failure:^(id msg) {
-			dispatch_group_leave(weakSelf.completionGroup);
-		}];
+            [SVProgressHUD dismiss];
+            [__self.tableView.mj_header endRefreshing];
+            [__self.tableView reloadData];
+		} failure:nil];
 	}];
-	
-	dispatch_group_notify(self.completionGroup, dispatch_get_main_queue(), ^{
-		[SVProgressHUD dismiss];
-		[weakSelf.tableView.mj_header endRefreshing];
-		[weakSelf.tableView reloadData];
-		//		weakSelf.navigationItem.title = weakSelf.nextIssue.title;
-	});
-	
 }
 
 - (UITableView *)tableView {
