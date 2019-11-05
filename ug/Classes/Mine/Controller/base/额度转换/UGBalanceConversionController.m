@@ -17,19 +17,19 @@
 
 @interface UGBalanceConversionController () <UITableViewDelegate, UITableViewDataSource, YBPopupMenuDelegate, UITextFieldDelegate>
 
-@property (weak, nonatomic) IBOutlet UIButton *conversionButton;    /**<   开始转换Button */
 @property (weak, nonatomic) IBOutlet UIView *balanceView;           /**<   余额View */
 @property (weak, nonatomic) IBOutlet UIImageView *transferOutArrow; /**<   转出箭头ImageView */
 @property (weak, nonatomic) IBOutlet UIImageView *tarnsferInArrow;  /**<   转入箭头ImageView */
 @property (weak, nonatomic) IBOutlet UILabel *transferOutLabel;     /**<   转出钱包Label */
 @property (weak, nonatomic) IBOutlet UILabel *transferInLabel;      /**<   转入钱包Label */
 @property (weak, nonatomic) IBOutlet UITextField *amountTextF;      /**<   转换金额TextField */
+@property (weak, nonatomic) IBOutlet UILabel *balanceLabel;         /**<   余额Label */
+@property (weak, nonatomic) IBOutlet UIButton *conversionButton;    /**<   开始转换Button */
+@property (weak, nonatomic) IBOutlet UIButton *refreshButton;       /**<   刷新余额Button */
 @property (weak, nonatomic) IBOutlet UIButton *tarnsferOutButton;   /**<   选择转出钱包Button */
 @property (weak, nonatomic) IBOutlet UIButton *transferInButton;    /**<   选择转入钱包Button */
-@property (weak, nonatomic) IBOutlet UIButton *refreshButton;       /**<   刷新余额Button */
-@property (weak, nonatomic) IBOutlet UILabel *balanceLabel;         /**<   余额Label */
 
-@property (nonatomic, strong) UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (nonatomic, strong) YBPopupMenu *transferOutPopView;
 @property (nonatomic, strong) YBPopupMenu *transferInPopView;
@@ -41,46 +41,35 @@
 @end
 
 static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
+
 @implementation UGBalanceConversionController
+
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)skin {
-    [self.conversionButton setBackgroundColor:Skin1.navBarBgColor];
-    [self.view setBackgroundColor:Skin1.bgColor];
-    [self.tableView reloadData];
-}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.navigationItem.title = @"额度转换";
-    [self.conversionButton setBackgroundColor:Skin1.navBarBgColor];
-    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-        
-        [self skin];
-    });
+    self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithTitle:@"转换记录" target:self action:@selector(rightBarButtonItemClick)];
+    
+    self.view.backgroundColor = Skin1.bgColor;
+    self.conversionButton.backgroundColor = Skin1.navBarBgColor;
+    [self.view viewWithTagString:@"一键提取Button"].backgroundColor = Skin1.navBarBgColor;
+    [self.tableView registerNib:[UINib nibWithNibName:@"UGPlatformBalanceTableViewCell" bundle:nil] forCellReuseIdentifier:balanceCellid];
+    self.tableView.rowHeight = 50;
+    self.tableView.layer.cornerRadius = 10;
+    self.tableView.layer.masksToBounds = true;
+    self.balanceLabel.text = [NSString stringWithFormat:@"¥%@", [UserI.balance removeFloatAllZero]];
+    
     SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
         [self.refreshButton.layer removeAllAnimations];
-        UGUserModel *model = [UGUserModel currentUser];
-        self.balanceLabel.text = [NSString stringWithFormat:@"¥%@",[model.balance removeFloatAllZero]];
+        self.balanceLabel.text = [NSString stringWithFormat:@"¥%@", [UserI.balance removeFloatAllZero]];
     });
-    self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithTitle:@"转换记录" target:self action:@selector(rightBarButtonItemClick)];
-    self.amountTextF.delegate = self;
-    UGUserModel *user = [UGUserModel currentUser];
-    self.balanceLabel.text = [NSString stringWithFormat:@"¥%@",[user.balance removeFloatAllZero]];
-  
-    [self getRealGames];
-}
-
-
-- (void)viewDidLayoutSubviews {
-    [self.view addSubview:self.tableView];
-    [self.tableView registerNib:[UINib nibWithNibName:@"UGPlatformBalanceTableViewCell" bundle:nil] forCellReuseIdentifier:balanceCellid];
-    self.tableView.estimatedRowHeight = 0;
-    self.tableView.estimatedSectionFooterHeight = 0;
-    self.tableView.estimatedSectionHeaderHeight = 0;
     
+    
+    [self getRealGames];
 }
 
 // 刷新余额
@@ -152,19 +141,47 @@ static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
     });
 }
 
+- (IBAction)onExtractAllBtnClick:(UIButton *)sender {
+    if (!_dataArray.count) {
+        return;
+    }
+    
+    __weakSelf_(__self);
+    __block NSInteger __cnt = 0;
+    [SVProgressHUD show];
+    for (UGPlatformGameModel *pgm in __self.dataArray) {
+        // 快速转出游戏余额
+        [CMNetwork quickTransferOutWithParams:@{@"token":UserI.sessid, @"id":pgm.gameId} completion:^(CMResult<id> *model, NSError *err) {
+            __cnt++;
+            if (__cnt == __self.dataArray.count) {
+                [SVProgressHUD showSuccessWithStatus:@"一键提取成功"];
+                // 刷新余额并刷新UI
+                SANotificationEventPost(UGNotificationGetUserInfo, nil);
+                for (UGPlatformGameModel *pgm in __self.dataArray) {
+                    pgm.balance = @"0.00";
+                }
+                __self.transferOutLabel.text = nil;
+                __self.transferInLabel.text = nil;
+                __self.amountTextF.text = nil;
+                [__self.tableView reloadData];
+            }
+        }];
+    }
+}
+
 - (void)getRealGames {
+    __weakSelf_(__self);
     [SVProgressHUD showWithStatus:nil];
     [CMNetwork getRealGamesWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             [SVProgressHUD dismiss];
-            self.dataArray = model.data;
-            [self.transferArray addObject:@"我的钱包"];
+            __self.dataArray = model.data;
+            [__self.transferArray addObject:@"我的钱包"];
             for (UGPlatformGameModel *game in self.dataArray) {
-                [self.transferArray addObject:game.title];
-                [self checkRealBalance:game];
+                [__self.transferArray addObject:game.title];
+//                [self checkRealBalance:game];
             }
-            [self.tableView reloadData];
-           
+            [__self.tableView reloadData];
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
         }];
@@ -242,10 +259,6 @@ static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
 
 #pragma mark - tableView delegate
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.dataArray.count;
 }
@@ -265,21 +278,6 @@ static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 50;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 0.001f;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 0.001f;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
 
 #pragma mark - UITextFieldDelegate
 
@@ -294,36 +292,8 @@ static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
     return YES;
 }
 
+
 #pragma mark - Getter
-
-- (UITableView *)tableView {
-    float height;
-
-    if ([TabBarController1.viewControllers containsObject:self]) {
-        if ([CMCommon isPhoneX]) {
-            height = UGScerrnH - CGRectGetMaxY(self.balanceView.frame) - k_Height_TabBar -IPHONE_SAFEBOTTOMAREA_HEIGHT-44;
-        } else {
-            height = UGScerrnH - CGRectGetMaxY(self.balanceView.frame) - k_Height_TabBar -IPHONE_SAFEBOTTOMAREA_HEIGHT-44;
-        }
-    }
-    else {
-        if ([CMCommon isPhoneX]) {
-            height = UGScerrnH - CGRectGetMaxY(self.balanceView.frame) - k_Height_TabBar -IPHONE_SAFEBOTTOMAREA_HEIGHT;
-        } else {
-            height = UGScerrnH - CGRectGetMaxY(self.balanceView.frame) - k_Height_TabBar -IPHONE_SAFEBOTTOMAREA_HEIGHT;
-        }
-    }
-    
-    if (_tableView == nil) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(self.balanceView.frame) + 10, UGScreenW - 20, height) style:UITableViewStylePlain];
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-        _tableView.layer.cornerRadius = 10;
-        _tableView.layer.masksToBounds = YES;
-        _tableView.contentInset = UIEdgeInsetsMake(0, 0, 60, 0);
-    }
-    return _tableView;
-}
 
 - (NSMutableArray<UGPlatformGameModel *> *)dataArray {
     if (_dataArray == nil) {

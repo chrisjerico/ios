@@ -426,8 +426,6 @@
     
     
     CMMETHOD_END;
-    
-    
 }
 
 //手动额度转换记录
@@ -442,7 +440,28 @@
     
     
     CMMETHOD_END;
+}
 
+// 额度一键转出，第一步：获取需要转出的真人ID
++ (void)oneKeyTransferOutWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock {
+    CMMETHOD_BEGIN;
+    [self.manager requestInMainThreadWithMethod:[oneKeyTransferOutUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
+                                           post:YES
+                                     completion:completionBlock];
+    CMMETHOD_END;
+}
+
+// 额度一键转出，第二步：根据真人ID并发请求单游戏快速转出
++ (void)quickTransferOutWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock {
+    CMMETHOD_BEGIN;
+    [self.manager requestInMainThreadWithMethod:[quickTransferOutUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
+                                           post:YES
+                                     completion:completionBlock];
+    CMMETHOD_END;
 }
 
 //真人余额查询

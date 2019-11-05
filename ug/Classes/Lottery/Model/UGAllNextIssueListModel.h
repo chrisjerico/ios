@@ -56,6 +56,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol UGAllNextIssueListModel <NSObject>
 
 @end
+
 @interface UGAllNextIssueListModel : UGModel<UGAllNextIssueListModel>
 
 @property (nonatomic, strong) NSString *gameType;       /**<   游戏分类标识 */

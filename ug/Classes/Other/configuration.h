@@ -148,6 +148,10 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 
 #define transferLogsUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=real&a=transferLogs"]
 
+#define oneKeyTransferOutUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=real&a=oneKeyTransferOut"]
+
+#define quickTransferOutUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=real&a=quickTransferOut"]
+
 #define checkRealBalanceUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=real&a=checkBalance"]
 
 #define yuebaoInfoUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=yuebao&a=stat"]

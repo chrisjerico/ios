@@ -46,9 +46,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *balance;        /**<   真人余额（额度转换列表） */
 @property (nonatomic, assign) BOOL refreshing;
 
-
-//@property (nonatomic, strong) NSArray<UGSubGameModel> *gameList;
-
 @end
 
 @protocol UGPlatformModel <NSObject>

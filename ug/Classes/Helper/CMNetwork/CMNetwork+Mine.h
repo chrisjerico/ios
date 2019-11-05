@@ -93,6 +93,12 @@ NS_ASSUME_NONNULL_BEGIN
 //手动额度转换记录
 + (void)transferLogsWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 
+// 额度一键转出，第一步：获取需要转出的真人ID
++ (void)oneKeyTransferOutWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+// 额度一键转出，第二步：根据真人ID并发请求单游戏快速转出
++ (void)quickTransferOutWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
 //真人余额查询
 + (void)checkRealBalanceWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 
