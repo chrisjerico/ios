@@ -116,11 +116,6 @@ static UGNavigationController *_navController = nil;
 #pragma mark - 根据Model快捷跳转函数
 
 - (void)pushViewControllerWithGameModel:(GameModel *)model {
-    if (!UGLoginIsAuthorized()) {
-        SANotificationEventPost(UGNotificationShowLoginView, nil);
-        return;
-    }
-    
     if (model.game_id) {
         model.gameId = model.game_id;
     }
@@ -130,16 +125,6 @@ static UGNavigationController *_navController = nil;
         [NavController1 pushViewController:[[UGDocumentVC alloc] initWithModel:model] animated:true];
         return;
     }
-    // 去外部链接
-    if (model.url.length) {
-        NSURL * url = [NSURL URLWithString:model.url];
-        if (url.scheme == nil) {
-            url = [NSURL URLWithString:_NSString(@"http://%@", model.url)];
-        }
-        SFSafariViewController *sf = [[SFSafariViewController alloc] initWithURL:url];
-        [NavController1 presentViewController:sf animated:YES completion:nil];
-        return;
-    }
     // 去二级游戏列表
     if (model.isPopup) {
         UGGameListViewController *gameListVC = [[UGGameListViewController alloc] init];
@@ -147,17 +132,26 @@ static UGNavigationController *_navController = nil;
         [NavController1 pushViewController:gameListVC animated:YES];
         return;
     }
+    // 去彩票下注页、或第三方游戏页、或功能页
+    BOOL ret = [NavController1 pushViewControllerWithLinkCategory:model.seriesId linkPosition:model.subId];
     
-    // 去彩票下注页、或第三方游戏页
-    [NavController1 pushViewControllerWithLinkCategory:model.seriesId linkPosition:model.subId];
+    if (!ret) {
+        // 去外部链接
+        if (model.url.length) {
+            NSURL *url = [NSURL URLWithString:model.url];
+            if (url.scheme == nil) {
+                url = [NSURL URLWithString:_NSString(@"http://%@", model.url)];
+            }
+            SFSafariViewController *sf = [[SFSafariViewController alloc] initWithURL:url];
+            sf.允许未登录访问 = true;
+            sf.允许游客访问 = true;
+            [NavController1 presentViewController:sf animated:YES completion:nil];
+            return;
+        }
+    }
 }
 
 - (BOOL)pushViewControllerWithNextIssueModel:(UGNextIssueModel *)model {
-    if (!UGLoginIsAuthorized()) {
-        SANotificationEventPost(UGNotificationShowLoginView, nil);
-        return true;
-    }
-    
     NSDictionary *dict = @{@"cqssc" :@"UGSSCLotteryController",     // 重庆时时彩
                            @"pk10"  :@"UGBJPK10LotteryController",  // pk10
                            @"xyft"  :@"UGBJPK10LotteryController",  // 幸运飞艇
@@ -206,29 +200,28 @@ static UGNavigationController *_navController = nil;
             vc.hidesBottomBarWhenPushed = YES;
         }
         // Push
-        [NavController1 setViewControllers:({
-            NSMutableArray *vcs = NavController1.viewControllers.mutableCopy;
-            for (UIViewController *vc in NavController1.viewControllers) {
-                if ([vc isKindOfClass:[UGCommonLotteryController class]]) {
-                    [vcs removeObject:vc];
+        if ([UGTabbarController canPushToViewController:vc]) {
+            [NavController1 setViewControllers:({
+                NSMutableArray *vcs = NavController1.viewControllers.mutableCopy;
+                for (UIViewController *vc in NavController1.viewControllers) {
+                    if ([vc isKindOfClass:[UGCommonLotteryController class]]) {
+                        [vcs removeObject:vc];
+                    }
                 }
-            }
-            [vcs addObject:vc];
-            vcs;
-        }) animated:YES];
+                [vcs addObject:vc];
+                vcs;
+            }) animated:YES];
+        }
         return true;
     }
     return false;
 }
 
 - (BOOL)pushViewControllerWithLinkCategory:(NSInteger)linkCategory linkPosition:(NSInteger)linkPosition {
-    if (!UGLoginIsAuthorized()) {
-        SANotificationEventPost(UGNotificationShowLoginView, nil);
-        return true;
-    }
     // 去游戏页面
     switch (linkCategory) {
         case 1: {
+            // 去彩票下注页
             return [NavController1 pushViewControllerWithNextIssueModel:[UGNextIssueModel modelWithGameId:@(linkPosition).stringValue]];
         }
         case 2:
@@ -236,6 +229,11 @@ static UGNavigationController *_navController = nil;
         case 4:
         case 5:
         case 6: {
+            // 去第三方游戏页面
+            if (!UGLoginIsAuthorized()) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:UGNotificationShowLoginView object:nil];
+                return true;
+            }
             NSDictionary *params = @{@"token":UserI.sessid, @"id":@(linkPosition).stringValue};
             [SVProgressHUD showWithStatus:nil];
             [CMNetwork getGotoGameUrlWithParams:params completion:^(CMResult<id> *model, NSError *err) {
@@ -257,11 +255,11 @@ static UGNavigationController *_navController = nil;
         default:;
     }
     
-    // 去功能页面
     if (linkCategory != 7) {
         return false;
     }
     
+    // 去功能页面
     switch (linkPosition) {
         case 1: {
             // 资金管理

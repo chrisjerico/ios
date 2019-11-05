@@ -93,7 +93,7 @@
 {
 	YYAnimatedImageView * _iconImage;
 	UILabel * _titleLabel;
-     UIImageView * _hotImage;
+    UIImageView * _hotImage;
 }
 
 @end
@@ -106,7 +106,7 @@
 	if (self) {
         _hotImage = [UIImageView new];
 		_iconImage = [YYAnimatedImageView new];
-        _iconImage.contentMode = UIViewContentModeScaleAspectFill;
+        _iconImage.contentMode = UIViewContentModeScaleAspectFit;
 		_titleLabel = [UILabel new];
         _titleLabel.textColor = Skin1.textColor1;
 		_titleLabel.font = [UIFont systemFontOfSize:14];

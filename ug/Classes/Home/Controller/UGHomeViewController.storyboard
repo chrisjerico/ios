@@ -261,7 +261,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Za-hn-bpN">
-                                                <rect key="frame" x="0.0" y="225" width="414" height="200"/>
+                                                <rect key="frame" x="0.0" y="225" width="414" height="190"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ix-we-22e" userLabel="GameNavigationView" customClass="UGGameNavigationView">
                                                         <rect key="frame" x="10" y="10" width="394" height="180"/>
@@ -296,16 +296,28 @@
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="4ix-we-22e" firstAttribute="top" secondItem="0Za-hn-bpN" secondAttribute="top" constant="10" id="3tF-vw-YEA"/>
+                                                    <constraint firstAttribute="bottom" secondItem="4ix-we-22e" secondAttribute="bottom" id="B1b-F4-07C"/>
                                                     <constraint firstItem="4ix-we-22e" firstAttribute="leading" secondItem="0Za-hn-bpN" secondAttribute="leading" constant="10" id="NW1-D0-79J"/>
                                                     <constraint firstItem="4ix-we-22e" firstAttribute="centerX" secondItem="0Za-hn-bpN" secondAttribute="centerX" id="czv-GB-T8F"/>
-                                                    <constraint firstItem="4ix-we-22e" firstAttribute="centerY" secondItem="0Za-hn-bpN" secondAttribute="centerY" id="y8L-8z-y4e"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g3O-cs-ZTw" userLabel="Game View" customClass="UGGameTypeCollectionView">
-                                                <rect key="frame" x="0.0" y="425" width="414" height="200"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sit-Aa-i9v">
+                                                <rect key="frame" x="0.0" y="415" width="414" height="210"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g3O-cs-ZTw" userLabel="Game View" customClass="UGGameTypeCollectionView">
+                                                        <rect key="frame" x="0.0" y="10" width="414" height="200"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="200" id="h0I-VV-udc"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="200" id="h0I-VV-udc"/>
+                                                    <constraint firstAttribute="bottom" secondItem="g3O-cs-ZTw" secondAttribute="bottom" id="Fwo-ze-lxc"/>
+                                                    <constraint firstItem="g3O-cs-ZTw" firstAttribute="leading" secondItem="Sit-Aa-i9v" secondAttribute="leading" id="S9M-iD-UEW"/>
+                                                    <constraint firstAttribute="trailing" secondItem="g3O-cs-ZTw" secondAttribute="trailing" id="bvI-1V-AXb"/>
+                                                    <constraint firstItem="g3O-cs-ZTw" firstAttribute="top" secondItem="Sit-Aa-i9v" secondAttribute="top" constant="10" id="cmx-iz-zcF"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="7oT-DH-Tz9">

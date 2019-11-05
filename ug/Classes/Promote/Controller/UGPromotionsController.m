@@ -31,23 +31,19 @@
 - (BOOL)允许未登录访问 { return true; }
 - (BOOL)允许游客访问 { return true; }
 
-- (void)skin {
-    self.view.backgroundColor = Skin1.bgColor;
-    self.tableView.backgroundColor = Skin1.bgColor;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-        [self skin];
-    });
     self.navigationItem.title = @"优惠活动";
     self.view.backgroundColor = Skin1.bgColor;
-
+    self.tableView.backgroundColor = Skin1.bgColor;
+    
+    self.tableView.tableFooterView = ({
+        UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APP.Width, 15)];
+        v.backgroundColor = Skin1.cellBgColor;
+        v;
+    });
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self getPromoteList];
-        self.view.backgroundColor = Skin1.bgColor;
-        self.tableView.backgroundColor = Skin1.bgColor;
     }];
     [self getPromoteList];
 }

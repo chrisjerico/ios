@@ -22,6 +22,9 @@ static NSString *gameListCellId = @"UGGameListCollectionViewCell";
 
 @implementation UGGameListViewController
 
+- (BOOL)允许未登录访问 { return true; }
+- (BOOL)允许游客访问 { return true; }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -47,7 +50,8 @@ static NSString *gameListCellId = @"UGGameListCollectionViewCell";
 }
 
 - (void)getGotoGameUrl:(UGSubGameModel *)game {
-    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+    if (!UGLoginIsAuthorized()) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:UGNotificationShowLoginView object:nil];
         return;
     }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
