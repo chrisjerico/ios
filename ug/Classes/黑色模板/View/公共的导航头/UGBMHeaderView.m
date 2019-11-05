@@ -11,6 +11,7 @@
 #import "UGBMMemberCenterViewController.h"
 #import "UGBMLoginViewController.h"
 #import "UGBMRegisterViewController.h"
+#import "UGBMBrowseViewController.h"
 @interface UGBMHeaderView ()<UUMarqueeViewDelegate>
 
 @end
@@ -33,14 +34,18 @@
             [subButton(@"按钮1") removeActionBlocksForControlEvents:UIControlEventTouchUpInside];
             [subButton(@"按钮1") handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
                 //会员中心
-                NSLog(@"NavController1.topView = %@",NavController1.firstVC);
-                if (![NavController1.firstVC isKindOfClass:UGBMMemberCenterViewController.class]) {
+                NSLog(@"NavController1.lastVC = %@",NavController1.lastVC);
+                if (![NavController1.lastVC isKindOfClass:UGBMMemberCenterViewController.class]) {
                      [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGBMMemberCenterViewController") animated:true];
                 }
             }];
             [subButton(@"按钮2") removeActionBlocksForControlEvents:UIControlEventTouchUpInside];
             [subButton(@"按钮2") handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
                 //最近浏览
+                 NSLog(@"NavController1.lastVC = %@",NavController1.viewControllers.lastObject);
+                if (![NavController1.lastVC isKindOfClass:UGBMBrowseViewController.class]) {
+                     [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGBMBrowseViewController") animated:true];
+                }
             }];
         }
         else{
@@ -49,7 +54,7 @@
             [subButton(@"按钮1") removeActionBlocksForControlEvents:UIControlEventTouchUpInside];
             [subButton(@"按钮1") handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
                 //登录
-                if (![NavController1.firstVC isKindOfClass:UGBMLoginViewController.class]) {
+                if (![NavController1.lastVC isKindOfClass:UGBMLoginViewController.class]) {
                     [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGBMLoginViewController") animated:true];
                 }
                                
@@ -57,7 +62,7 @@
             [subButton(@"按钮2") removeActionBlocksForControlEvents:UIControlEventTouchUpInside];
             [subButton(@"按钮2") handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
                 //注册
-                if (![NavController1.firstVC isKindOfClass:UGBMRegisterViewController.class]) {
+                if (![NavController1.lastVC isKindOfClass:UGBMRegisterViewController.class]) {
                     [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGBMRegisterViewController") animated:true];
                 }
             }];

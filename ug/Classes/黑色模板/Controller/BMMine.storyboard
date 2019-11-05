@@ -1266,20 +1266,119 @@
             </objects>
             <point key="canvasLocation" x="1937.68115942029" y="-18.080357142857142"/>
         </scene>
-        <!--View Controller-->
+        <!--最近浏览-->
         <scene sceneID="A1z-jR-5E6">
             <objects>
-                <viewController id="Rtj-HT-LhT" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UGBMBrowseViewController" title="最近浏览" id="Rtj-HT-LhT" customClass="UGBMBrowseViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VXN-9F-pws">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="h57-Dv-sfw">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DYF-Kt-hHF">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="t88-5c-A79"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p78-pM-K7b">
+                                        <rect key="frame" x="0.0" y="100" width="414" height="80"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hUZ-Nq-6zl">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
+                                                <color key="backgroundColor" red="0.28627666829999998" green="0.28627061840000001" blue="0.28627473120000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="x3o-Ab-ndc"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kzO-cI-oAG">
+                                                <rect key="frame" x="0.0" y="78.5" width="414" height="1.5"/>
+                                                <color key="backgroundColor" red="0.28627666829999998" green="0.28627061840000001" blue="0.28627473120000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1.5" id="hBZ-BM-Un9"/>
+                                                </constraints>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="最近浏览" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S1m-CT-6IM">
+                                                <rect key="frame" x="172.5" y="30" width="69.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.10196178409999999" green="0.10195901239999999" blue="0.1019609049" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="hUZ-Nq-6zl" secondAttribute="trailing" id="4v6-F2-Y0y"/>
+                                            <constraint firstItem="hUZ-Nq-6zl" firstAttribute="leading" secondItem="p78-pM-K7b" secondAttribute="leading" id="9li-P3-yhT"/>
+                                            <constraint firstAttribute="bottom" secondItem="kzO-cI-oAG" secondAttribute="bottom" id="Fj2-Pm-88k"/>
+                                            <constraint firstItem="hUZ-Nq-6zl" firstAttribute="top" secondItem="p78-pM-K7b" secondAttribute="top" id="KzW-kM-RkI"/>
+                                            <constraint firstAttribute="trailing" secondItem="kzO-cI-oAG" secondAttribute="trailing" id="QDk-Ni-UDb"/>
+                                            <constraint firstItem="S1m-CT-6IM" firstAttribute="centerX" secondItem="p78-pM-K7b" secondAttribute="centerX" id="bHV-bG-1mq"/>
+                                            <constraint firstItem="S1m-CT-6IM" firstAttribute="centerY" secondItem="p78-pM-K7b" secondAttribute="centerY" id="f7P-uu-7OQ"/>
+                                            <constraint firstItem="kzO-cI-oAG" firstAttribute="leading" secondItem="p78-pM-K7b" secondAttribute="leading" id="hcu-fx-eft"/>
+                                            <constraint firstAttribute="height" constant="80" id="ql6-zH-Atu"/>
+                                        </constraints>
+                                    </view>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="SVD-zI-ZzB">
+                                        <rect key="frame" x="0.0" y="180" width="414" height="31"/>
+                                        <color key="backgroundColor" red="0.92265206575393677" green="0.30340838432312012" blue="0.23918381333351135" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="vlv-bT-MzF"/>
+                                        </constraints>
+                                        <segments>
+                                            <segment title="最近浏览"/>
+                                            <segment title="最近活动"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="segmentedChanged:" destination="Rtj-HT-LhT" eventType="valueChanged" id="b9X-vc-buM"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gg6-ah-AMw">
+                                        <rect key="frame" x="0.0" y="210" width="414" height="608"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Kol-lR-Lt8">
+                                            <size key="itemSize" width="50" height="50"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="VF9-i3-hxb">
+                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Hrk-Ls-ojh">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </collectionViewCellContentView>
+                                            </collectionViewCell>
+                                        </cells>
+                                    </collectionView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="DYF-Kt-hHF" firstAttribute="leading" secondItem="h57-Dv-sfw" secondAttribute="leading" id="FE3-Om-p3N"/>
+                                    <constraint firstItem="DYF-Kt-hHF" firstAttribute="top" secondItem="h57-Dv-sfw" secondAttribute="top" id="cUO-vx-PQs"/>
+                                    <constraint firstAttribute="trailing" secondItem="DYF-Kt-hHF" secondAttribute="trailing" id="nMj-Ey-94u"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Mhq-97-gW1" firstAttribute="bottom" secondItem="h57-Dv-sfw" secondAttribute="bottom" id="4Wv-Lo-4iY"/>
+                            <constraint firstItem="Mhq-97-gW1" firstAttribute="trailing" secondItem="h57-Dv-sfw" secondAttribute="trailing" id="8lK-db-bbd"/>
+                            <constraint firstItem="h57-Dv-sfw" firstAttribute="top" secondItem="Mhq-97-gW1" secondAttribute="top" id="Lh7-Sn-ajC"/>
+                            <constraint firstItem="h57-Dv-sfw" firstAttribute="leading" secondItem="Mhq-97-gW1" secondAttribute="leading" id="cgp-3I-wWH"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Mhq-97-gW1"/>
                     </view>
+                    <connections>
+                        <outlet property="myCollectionView" destination="gg6-ah-AMw" id="abz-ZT-kG2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="odh-8P-TrI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2829" y="-18"/>
+            <point key="canvasLocation" x="2828.985507246377" y="-18.080357142857142"/>
         </scene>
     </scenes>
     <resources>

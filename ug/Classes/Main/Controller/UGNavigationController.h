@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UGNavigationController : UINavigationController
 - (UIView *)topView;
 - (UIViewController *)firstVC;
+- (UIViewController *)lastVC;
 @end
 
 NS_ASSUME_NONNULL_END

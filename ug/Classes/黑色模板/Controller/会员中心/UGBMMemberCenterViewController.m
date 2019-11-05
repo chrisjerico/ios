@@ -50,8 +50,8 @@
      NSString *unreadMsg;
 }
 @property (weak, nonatomic) IBOutlet UICollectionView *myCollectionView;
-@property (weak, nonatomic) IBOutlet UILabel *userMoneyLabel;
-@property (weak, nonatomic) IBOutlet UIButton *refreshFirstButton;
+@property (weak, nonatomic) IBOutlet UILabel *userMoneyLabel;    /**<  显示余额 */
+@property (weak, nonatomic) IBOutlet UIButton *refreshFirstButton; /**<  刷新按钮 */
 //===================================================
 @property (nonatomic, strong) NSMutableArray *menuNameArray;
 
@@ -75,7 +75,7 @@
 //       NSArray *views = self.tabBarController.view.subviews;
 //       UIView *contentView = [views objectAtIndex:0];
 //       contentView.height -= k_Height_TabBar;
-//        self.tabBarController.tabBar.hidden = NO;
+        self.tabBarController.tabBar.hidden = NO;
 
 
 }
@@ -144,11 +144,6 @@
 }
 
 - (void)initCollectionView {
-    UICollectionViewFlowLayout *layout = ({
-        layout = [[UICollectionViewFlowLayout alloc] init];
-        layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-        layout;
-    });
 
         self.myCollectionView.backgroundColor = Skin1.bgColor;
         self.myCollectionView.dataSource = self;

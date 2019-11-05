@@ -304,6 +304,7 @@
 	WeakSelf
 	self.gameTypeView.gameItemSelectBlock = ^(GameModel * _Nonnull game) {
         [game pushViewController];
+        //加游戏id
 	};
 	
 	self.navigationController.navigationBar.barStyle = UIBarStyleDefault;

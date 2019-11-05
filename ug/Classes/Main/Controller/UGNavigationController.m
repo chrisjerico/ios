@@ -7,7 +7,8 @@
 //
 
 #import "UGNavigationController.h"
-
+#import "UGBMMemberCenterViewController.h"
+#import "UGBMBrowseViewController.h"
 @interface UGNavigationController ()
 
 @end
@@ -51,6 +52,10 @@ static UGNavigationController *_navController = nil;
     return _navController.viewControllers.firstObject;
 }
 
+- (UIViewController *)lastVC{
+    return _navController.viewControllers.lastObject;
+}
+
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
     // push权限判断
     if (self.viewControllers.count && ![UGTabbarController canPushToViewController:viewController])
@@ -74,8 +79,17 @@ static UGNavigationController *_navController = nil;
         UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:containView];
         // 设置返回按钮
         viewController.navigationItem.leftBarButtonItem = item;
-        // 隐藏底部条
-        viewController.hidesBottomBarWhenPushed = YES;
+        
+        if ([viewController isKindOfClass:UGBMBrowseViewController.class]||[viewController isKindOfClass:UGBMMemberCenterViewController.class]) {
+             // 不隐藏底部条
+                viewController.hidesBottomBarWhenPushed = NO;
+        }
+        else{
+             // 隐藏底部条
+               viewController.hidesBottomBarWhenPushed = YES;
+        }
+        
+   
     }
     
     // 真正在执行跳转
