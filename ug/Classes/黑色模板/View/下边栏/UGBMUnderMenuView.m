@@ -127,7 +127,7 @@
      [collectionView deselectItemAtIndexPath:indexPath animated:YES];
 
     UGNextIssueModel *nextModel = myDataArray[indexPath.row];
-    [UGCommonLotteryController pushWithModel:nextModel];
+    [NavController1 pushViewControllerWithNextIssueModel:nextModel];
 }
 
 -(void)organizData{

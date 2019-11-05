@@ -28,8 +28,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)getGameDatas;
 - (void)getNextIssueData;
 
-+ (BOOL)pushWithModel:(UGNextIssueModel *)nim;
-
 @end
 
 NS_ASSUME_NONNULL_END

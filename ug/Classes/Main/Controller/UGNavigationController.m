@@ -229,7 +229,7 @@ static UGNavigationController *_navController = nil;
     // 去游戏页面
     switch (linkCategory) {
         case 1: {
-            return [UGCommonLotteryController pushWithModel:[UGNextIssueModel modelWithGameId:@(linkPosition).stringValue]];
+            return [NavController1 pushViewControllerWithNextIssueModel:[UGNextIssueModel modelWithGameId:@(linkPosition).stringValue]];
         }
         case 2:
         case 3:
