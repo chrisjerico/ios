@@ -26,7 +26,24 @@
 -(instancetype)initView{
     if (self = [super init]) {
         self = [self UGBMHeaderView];
+        [self refreshUI];
+        self.leftwardMarqueeView.direction = UUMarqueeViewDirectionLeftward;
+        self.leftwardMarqueeView.delegate = self;
+        self.leftwardMarqueeView.timeIntervalPerScroll = 0.5f;
+        self.leftwardMarqueeView.scrollSpeed = 60.0f;
+        self.leftwardMarqueeView.itemSpacing = 20.0f;
+        self.leftwardMarqueeView.touchEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showNoticeInfo)];
+        [self.leftwardMarqueeView addGestureRecognizer:tap];
+        [self getSystemConfig];
+        [self getNoticeList];   // 公告列表
+        [self.leftwardMarqueeView start];
         
+    }
+    return self;
+}
+
+-(void)refreshUI{
         FastSubViewCode(self);
         if (UGLoginIsAuthorized()) {//已经登录
             [subButton(@"按钮1") setTitle:@"会员中心" forState:(UIControlStateNormal)];
@@ -67,21 +84,6 @@
                 }
             }];
         }
-        
-        self.leftwardMarqueeView.direction = UUMarqueeViewDirectionLeftward;
-        self.leftwardMarqueeView.delegate = self;
-        self.leftwardMarqueeView.timeIntervalPerScroll = 0.5f;
-        self.leftwardMarqueeView.scrollSpeed = 60.0f;
-        self.leftwardMarqueeView.itemSpacing = 20.0f;
-        self.leftwardMarqueeView.touchEnabled = YES;
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showNoticeInfo)];
-        [self.leftwardMarqueeView addGestureRecognizer:tap];
-        [self getSystemConfig];
-        [self getNoticeList];   // 公告列表
-        [self.leftwardMarqueeView start];
-        
-    }
-    return self;
 }
 
 - (void)showNoticeInfo {

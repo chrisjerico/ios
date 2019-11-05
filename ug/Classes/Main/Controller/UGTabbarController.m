@@ -132,10 +132,10 @@ static UGTabbarController *_tabBarVC = nil;
     self.delegate = self;
     
     // 设置初始控制器
-    [self resetUpChildViewController:@[@"/home", @"/lotteryList", @"/chatRoomList", @"/activity", @"/user2", ]];
+    [self resetUpChildViewController:@[@"/home", @"/lotteryList", @"/chatRoomList", @"/activity", @"/user", ]];
     
     // 更新为后台配置的控制器
-//    [self getSystemConfig];
+    [self getSystemConfig];
 
     
 //    SANotificationEventSubscribe(UGNotificationWithResetTabSuccess, self, ^(typeof (self) self, id obj) {
