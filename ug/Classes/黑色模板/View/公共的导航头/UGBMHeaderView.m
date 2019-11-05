@@ -8,6 +8,9 @@
 
 #import "UGBMHeaderView.h"
 #import "UGNoticePopView.h"
+#import "UGBMMemberCenterViewController.h"
+#import "UGBMLoginViewController.h"
+#import "UGBMRegisterViewController.h"
 @interface UGBMHeaderView ()<UUMarqueeViewDelegate>
 
 @end
@@ -30,6 +33,10 @@
             [subButton(@"按钮1") removeActionBlocksForControlEvents:UIControlEventTouchUpInside];
             [subButton(@"按钮1") handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
                 //会员中心
+                NSLog(@"NavController1.topView = %@",NavController1.firstVC);
+                if (![NavController1.firstVC isKindOfClass:UGBMMemberCenterViewController.class]) {
+                     [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGBMMemberCenterViewController") animated:true];
+                }
             }];
             [subButton(@"按钮2") removeActionBlocksForControlEvents:UIControlEventTouchUpInside];
             [subButton(@"按钮2") handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
@@ -42,12 +49,17 @@
             [subButton(@"按钮1") removeActionBlocksForControlEvents:UIControlEventTouchUpInside];
             [subButton(@"按钮1") handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
                 //登录
-                [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGBMLoginViewController") animated:true];
+                if (![NavController1.firstVC isKindOfClass:UGBMLoginViewController.class]) {
+                    [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGBMLoginViewController") animated:true];
+                }
+                               
             }];
             [subButton(@"按钮2") removeActionBlocksForControlEvents:UIControlEventTouchUpInside];
             [subButton(@"按钮2") handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
                 //注册
-                [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGBMRegisterViewController") animated:true];
+                if (![NavController1.firstVC isKindOfClass:UGBMRegisterViewController.class]) {
+                    [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGBMRegisterViewController") animated:true];
+                }
             }];
         }
         

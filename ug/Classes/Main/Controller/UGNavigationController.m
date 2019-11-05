@@ -47,6 +47,9 @@ static UGNavigationController *_navController = nil;
 - (UIView *)topView {
     return _navController.viewControllers.lastObject.view;
 }
+- (UIViewController *)firstVC{
+    return _navController.viewControllers.firstObject;
+}
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
     // push权限判断

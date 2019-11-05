@@ -71,12 +71,26 @@
     if (!self.menuNameArray.count) {
        [self refreshBalance:nil];
     }
+    // 强制显示tabbar
+//       NSArray *views = self.tabBarController.view.subviews;
+//       UIView *contentView = [views objectAtIndex:0];
+//       contentView.height -= k_Height_TabBar;
+//        self.tabBarController.tabBar.hidden = NO;
+
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [headView.leftwardMarqueeView pause];//fixbug  发热  掉电快
     [self.refreshFirstButton.layer removeAllAnimations];
+    
+//    // 强制隐藏tabbar
+//    NSArray *views = self.tabBarController.view.subviews;
+//    UIView *contentView = [views objectAtIndex:0];
+//    contentView.height += k_Height_TabBar;
+//    self.tabBarController.tabBar.hidden = YES;
+
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -101,11 +115,17 @@
     
     self.navigationItem.title = @"会员中心";
     self.fd_prefersNavigationBarHidden = YES;
+    [self.view setBackgroundColor: Skin1.bgColor];
     [self creatView];
     //初始化
     [self initCollectionView];
     
-    self.underMenu = [[UGBMUnderMenuView alloc] initViewWithStatusBar];
+//    if (self.tabBarController.tabBar.isHidden) {
+//         self.underMenu = [[UGBMUnderMenuView alloc] initView];
+//    } else {
+         self.underMenu = [[UGBMUnderMenuView alloc] initViewWithStatusBar];
+//    }
+   
     [self.view addSubview:self.underMenu];
     
    
