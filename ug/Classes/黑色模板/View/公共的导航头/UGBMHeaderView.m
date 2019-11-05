@@ -23,10 +23,29 @@
     return [objs firstObject];
 }
 
+- (void)setNeedsLayout{
+    [super setNeedsLayout];
+//    if (OBJOnceToken(self)) {
+//         NSLog(@"setNeedsLayout");
+//    }
+}
+- (void)drawRect:(CGRect)rect;{
+    [super drawRect :rect];
+//    NSLog(@"drawRect");
+}
+
 -(instancetype)initView{
     if (self = [super init]) {
         self = [self UGBMHeaderView];
         [self refreshUI];
+        [self xw_addNotificationForName:UGNotificationLoginComplete block:^(NSNotification *notification) {
+             NSLog(@"收到登录通知1：%@", notification.userInfo);
+            [self refreshUI];
+        }];
+        [self xw_addNotificationForName:UGNotificationUserLogout block:^(NSNotification *notification) {
+                  NSLog(@"收到退出通知1：%@", notification.userInfo);
+                 [self refreshUI];
+        }];
         self.leftwardMarqueeView.direction = UUMarqueeViewDirectionLeftward;
         self.leftwardMarqueeView.delegate = self;
         self.leftwardMarqueeView.timeIntervalPerScroll = 0.5f;
