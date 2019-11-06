@@ -29,6 +29,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [headView.leftwardMarqueeView start];
+    [self.navigationController setNavigationBarHidden:YES];//强制隐藏NavBar
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -83,12 +85,31 @@
           [self.radioTagView addTag:tagModel];
       }];
     //=============== table布局=================
-    [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) { 
-              make.top.equalTo(_radioTagView.mas_bottom).with.offset(0);
-              make.left.equalTo(self.view.mas_left).offset(0);
-              make.bottom.equalTo(self.view.mas_bottom).offset(0);
-              make.width.equalTo([NSNumber numberWithFloat:UGScreenW]);
-     }];
+    
+//    if ([self.tabBarController.tabBar isHidden]) {
+//        [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+//                     make.top.equalTo(_radioTagView.mas_bottom).with.offset(0);
+//                     make.left.equalTo(self.view.mas_left).offset(0);
+//                     make.bottom.equalTo(self.view.mas_bottom).offset(0);
+//                     make.width.equalTo([NSNumber numberWithFloat:UGScreenW]);
+//        }];
+//    }
+//    else{
+//        [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+//                     make.top.equalTo(_radioTagView.mas_bottom).with.offset(0);
+//                     make.left.equalTo(self.view.mas_left).offset(0);
+//                     make.bottom.equalTo(self.view.mas_bottom).offset(-k_Height_TabBar);
+//                     make.width.equalTo([NSNumber numberWithFloat:UGScreenW]);
+//        }];
+//    }
+    
+    [self.tableView setFrame:CGRectMake(0, 0, UGScreenW, ({
+        CGFloat h = APP.Height;
+        if ([NavController1.viewControllers.firstObject isKindOfClass:[UGBMpreferentialViewController class]])
+            h -= APP.Height - TabBarController1.tabBar.y;
+        h;
+    }))];
+   
 }
 
 - (void)getPromoteList {

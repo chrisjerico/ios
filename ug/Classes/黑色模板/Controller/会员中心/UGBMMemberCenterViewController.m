@@ -66,6 +66,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES];//强制隐藏NavBar
     [headView.leftwardMarqueeView start];
     [self.view layoutSubviews];
     if (!self.menuNameArray.count) {
@@ -112,13 +113,14 @@
         [self setupUserInfo:NO];
         [self.myCollectionView reloadData];
     });
-    
     self.navigationItem.title = @"会员中心";
     self.fd_prefersNavigationBarHidden = YES;
     [self.view setBackgroundColor: Skin1.bgColor];
     [self creatView];
+
     //初始化
     [self initCollectionView];
+    
     
 //    if (self.tabBarController.tabBar.isHidden) {
 //         self.underMenu = [[UGBMUnderMenuView alloc] initView];
@@ -151,6 +153,9 @@
         [self.myCollectionView registerNib:[UINib nibWithNibName:@"UGMineMenuCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UGMineMenuCollectionViewCell"];
         [self.myCollectionView registerNib:[UINib nibWithNibName:@"UGMineSkinCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UGMineSkinCollectionViewCell"];
     [self.myCollectionView setShowsHorizontalScrollIndicator:NO];
+    
+    //初始化数据
+    [self getDateSource];
 }
 
 #pragma mark UICollectionView datasource

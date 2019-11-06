@@ -1093,7 +1093,7 @@
 - (IBAction)goYOUHUIVC:(id)sender {
 
     
-    #ifdef DEBUG
+//    #ifdef DEBUG
     {
         //黑色模板财务中心
 //                UGfinancialViewViewController *vc = [UGfinancialViewViewController new];
@@ -1114,10 +1114,10 @@
      }
     {
              //黑色模版会员中心
-             [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGBMMemberCenterViewController") animated:true];
+//             [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGBMMemberCenterViewController") animated:true];
     }
 
-    #else
+//    #else
     
         BOOL isLogin = UGLoginIsAuthorized();
         if (isLogin) {
@@ -1128,7 +1128,7 @@
         else {
              SANotificationEventPost(UGNotificationShowLoginView, nil);
         }
-    #endif
+//    #endif
     
 
    

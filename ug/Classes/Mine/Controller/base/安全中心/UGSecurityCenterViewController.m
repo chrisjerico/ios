@@ -34,7 +34,7 @@
         [self skin];
     });
     
-    if ([self.fromVC  isEqualToString:@"UGLoginViewController"]) {
+    if ([self.fromVC  isEqualToString:@"fromLoginViewController"]) {
 
         UIImage *sureImage = [UIImage imageNamed:@"back_icon"];
         UIButton *sureButton = [UIButton buttonWithType:UIButtonTypeCustom];

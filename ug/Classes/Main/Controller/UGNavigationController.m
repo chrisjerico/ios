@@ -20,7 +20,12 @@
 #import "UGGameListViewController.h"
 #import "UGDocumentVC.h"
 #import <SafariServices/SafariServices.h>
-
+#import "UGBMRegisterViewController.h"           // 黑色模板注册
+#import "UGBMLoginViewController.h"              // 黑色模板登录
+#import "UGLoginViewController.h"                // 模板登录
+#import "UGRegisterViewController.h"             // 模板注册
+#import "UGBMpreferentialViewController.h"       // 黑色模板优惠专区
+#import "UGPromotionsController.h"               // 模板优惠专区
 // Tools
 #import "UGAppVersionManager.h"
 
@@ -103,6 +108,39 @@ static UGNavigationController *_navController = nil;
         else{
              // 隐藏底部条
                viewController.hidesBottomBarWhenPushed = YES;
+        }
+
+//        __weakSelf_(__self);
+//        void (^navPush)(UIViewController *) = ^(UIViewController *vc) {
+//             // 真正在执行跳转
+//            [super pushViewController:viewController animated:animated];
+//        };
+        //如果是黑色模板==》黑色模板  登录 注册  优惠专区
+        //如果不是黑色模板==》登录 注册  优惠专区  优惠活动
+        if ([viewController isKindOfClass:[UGBMRegisterViewController class]] || [viewController isKindOfClass:[UGBMLoginViewController class]]
+            ||[viewController isKindOfClass:[UGRegisterViewController class]] || [viewController isKindOfClass:[UGLoginViewController class]]
+            ||[viewController isKindOfClass:[UGBMpreferentialViewController class]] || [viewController isKindOfClass:[UGPromotionsController class]]) {
+            //黑色模板的登录 注册+不是黑色模板
+            //登录 注册+是黑色模板
+            if (([viewController isKindOfClass:[UGBMRegisterViewController class]] && ![Skin1.skitType isEqualToString:@"黑色模板"])){
+                viewController =  _LoadVC_from_storyboard_(@"UGRegisterViewController");
+            }
+            if (([viewController isKindOfClass:[UGRegisterViewController class]] && [Skin1.skitType isEqualToString:@"黑色模板"])){
+                viewController = _LoadVC_from_storyboard_(@"UGBMRegisterViewController");
+            }
+            if (([viewController isKindOfClass:[UGBMLoginViewController class]] && ![Skin1.skitType isEqualToString:@"黑色模板"])){
+                viewController = _LoadVC_from_storyboard_(@"UGLoginViewController");
+            }
+            if (([viewController isKindOfClass:[UGLoginViewController class]] && [Skin1.skitType isEqualToString:@"黑色模板"])){
+                viewController = _LoadVC_from_storyboard_(@"UGBMLoginViewController");
+            }
+            if (([viewController isKindOfClass:[UGBMpreferentialViewController class]] && ![Skin1.skitType isEqualToString:@"黑色模板"])){
+                viewController = _LoadVC_from_storyboard_(@"UGPromotionsController");
+            }
+            if (([viewController isKindOfClass:[UGPromotionsController class]] && [Skin1.skitType isEqualToString:@"黑色模板"])){
+                viewController = _LoadVC_from_storyboard_(@"UGBMpreferentialViewController");
+            }
+           
         }
         
    

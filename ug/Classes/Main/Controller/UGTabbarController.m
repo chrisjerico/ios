@@ -26,7 +26,7 @@
 #import "UGBalanceConversionController.h"   // 额度转换
 #import "UGAgentViewController.h"           // 申请代理
 #import "UGBMMemberCenterViewController.h"  // 黑色模板会员中心
-
+#import "UGBMpreferentialViewController.h"  // 黑色模板优惠专区
 
 #import "UGSystemConfigModel.h"
 #import "UGAppVersionManager.h"
@@ -264,20 +264,45 @@ static UGTabbarController *_tabBarVC = nil;
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
     
     UIViewController *vc = ((UINavigationController *)viewController).viewControllers.firstObject;
+
+    __weakSelf_(__self);
+    void (^push)(NSString *, UIViewController *) = ^(NSString *name, UIViewController *vc) {
+        // 初始化控制器
+        UGmobileMenu *gm = [__self.gms objectWithValue:name keyPath:@"name"];
+        vc.tabBarItem.title = gm.name;
+        vc.tabBarItem.image = [UIImage imageNamed:gm.icon];
+        vc.tabBarItem.selectedImage = [[UIImage imageNamed:gm.selectedIcon] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        ((UINavigationController *)viewController).viewControllers = @[vc];
+        tabBarController.selectedViewController = viewController;
+    };
+    //如果是黑色模板或者其他模板：我的 和 黑色模板的我的 进行判断
+    if (UGLoginIsAuthorized()
+          && ([vc isKindOfClass:[UGMineSkinViewController class]] || [vc isKindOfClass:[UGBMMemberCenterViewController class]]
+              ||[vc isKindOfClass:[UGBMpreferentialViewController class]] || [vc isKindOfClass:[UGPromotionsController class]])) {
+        //黑色模板的我的+不是黑色模板
+        //我的+是黑色模板
+        if (([vc isKindOfClass:[UGBMMemberCenterViewController class]] && ![Skin1.skitType isEqualToString:@"黑色模板"])){
+            push(@"我的", [UGMineSkinViewController new]);
+            return false;
+        }
+        if ([vc isKindOfClass:[UGMineSkinViewController class]] && [Skin1.skitType isEqualToString:@"黑色模板"]) {
+            push(@"我的", _LoadVC_from_storyboard_(@"UGBMMemberCenterViewController"));
+            return false;
+        }
+        if (([vc isKindOfClass:[UGBMpreferentialViewController class]] && ![Skin1.skitType isEqualToString:@"黑色模板"])){
+            push(@"优惠活动", _LoadVC_from_storyboard_(@"UGPromotionsController"));
+                       return false;
+        }
+        if (([vc isKindOfClass:[UGPromotionsController class]] && [Skin1.skitType isEqualToString:@"黑色模板"])){
+            push(@"优惠活动", _LoadVC_from_storyboard_(@"UGBMpreferentialViewController"));
+            return false;
+        }
+       
+    }
+    
     if (UGLoginIsAuthorized()
         && ([vc isKindOfClass:[UGPromotionIncomeController class]] || [vc isKindOfClass:[UGAgentViewController class]])) {
-        
-        __weakSelf_(__self);
-        void (^push)(NSString *, UIViewController *) = ^(NSString *name, UIViewController *vc) {
-            // 初始化控制器
-            UGmobileMenu *gm = [__self.gms objectWithValue:name keyPath:@"name"];
-            vc.tabBarItem.title = gm.name;
-            vc.tabBarItem.image = [UIImage imageNamed:gm.icon];
-            vc.tabBarItem.selectedImage = [[UIImage imageNamed:gm.selectedIcon] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-            ((UINavigationController *)viewController).viewControllers = @[vc];
-            tabBarController.selectedViewController = viewController;
-        };
-        
+
         // 试玩账号直接去推荐收益
         if (UserI.isTest) {
             push(@"推荐收益", [UGPromotionIncomeController new]);

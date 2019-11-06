@@ -184,7 +184,7 @@
                 } else {
                     [self.navigationController.view makeToast:@"你的密码过于简单，可能存在风险，请把密码修改成复杂密码" duration:3.0 position:CSToastPositionCenter];
                     UGSecurityCenterViewController *vc = [[UGSecurityCenterViewController alloc] init] ;
-                    vc.fromVC = @"UGLoginViewController";
+                    vc.fromVC = @"fromLoginViewController";
                     [self.navigationController pushViewController:vc animated:YES];
                 }
                

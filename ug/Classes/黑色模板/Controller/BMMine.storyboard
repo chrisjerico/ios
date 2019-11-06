@@ -1257,7 +1257,7 @@
                         <viewLayoutGuide key="safeArea" id="hkf-Ro-pc9"/>
                     </view>
                     <connections>
-                        <outlet property="myCollectionView" destination="Icy-2K-HAF" id="gxr-v7-0l1"/>
+                        <outlet property="myCollectionView" destination="Icy-2K-HAF" id="k2N-gX-yYe"/>
                         <outlet property="refreshFirstButton" destination="ZLv-nl-FlJ" id="beD-98-ONH"/>
                         <outlet property="userMoneyLabel" destination="jpd-U2-Ar8" id="d6F-ZA-tOr"/>
                     </connections>

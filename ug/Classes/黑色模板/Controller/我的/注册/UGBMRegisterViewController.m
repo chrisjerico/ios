@@ -443,7 +443,7 @@
 
         }
     }
-    UGLoginViewController *registerVC = [self.storyboard instantiateViewControllerWithIdentifier:@"UGLoginViewController"];
+    UGLoginViewController *registerVC = _LoadVC_from_storyboard_(@"UGLoginViewController");
     [self.navigationController pushViewController:registerVC animated:YES];
     
 }
