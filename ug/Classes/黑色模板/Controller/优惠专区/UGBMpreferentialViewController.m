@@ -138,6 +138,7 @@
     UGPromoteModel *pm = tableView.dataArray[indexPath.row];
     FastSubViewCode(cell);
     NSLog(@"pm.title = %@", pm.title);
+    subLabel(@"标题Label").textColor = Skin1.textColor1;
     subLabel(@"标题Label").text = pm.title;
     [subImageView(@"图片ImageView") sd_setImageWithURL:[NSURL URLWithString:pm.pic] placeholderImage:[UIImage imageNamed:@"placeholder"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         if (image) {
@@ -148,10 +149,14 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    UGPromoteModel *model = tableView.dataArray[indexPath.row];
-    UGPromoteDetailController *detailVC = [[UGPromoteDetailController alloc] init];
-    detailVC.item = model;
-    [self.navigationController pushViewController:detailVC animated:YES];
+    UGPromoteModel *pm = tableView.dataArray[indexPath.row];
+    BOOL ret = [NavController1 pushViewControllerWithLinkCategory:pm.linkCategory linkPosition:pm.linkPosition];
+    if (!ret) {
+        // 去优惠详情
+        UGPromoteDetailController *detailVC = [[UGPromoteDetailController alloc] init];
+        detailVC.item = pm;
+        [NavController1 pushViewController:detailVC animated:YES];
+    }
 }
 
 -(NSArray *)tagDataArray{
