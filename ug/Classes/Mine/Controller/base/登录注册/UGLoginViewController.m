@@ -275,7 +275,6 @@
 }
 
 - (IBAction)playAction:(id)sender {
-  
     SANotificationEventPost(UGNotificationTryPlay, nil);
     [self.navigationController popToRootViewControllerAnimated:YES];
 }

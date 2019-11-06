@@ -141,6 +141,9 @@ static LogVC *_logVC = nil;
 
 // 六合
 - (IBAction)onLHBtnClick:(UIButton *)sender {
+    [[UGSkinManagers randomSkin] useSkin];
+    return;
+    
     UIAlertController *ac = [AlertHelper showActionSheet:nil msg:nil btnTitles:@[@"高手论坛", @"极品专贴", @"我的动态",
                                                                                  @"每期资料", @"公式规律", @"六合图库",
                                                                                  @"幽默猜测", @"跑狗玄机", @"四不像",] cancel:@"取消"];

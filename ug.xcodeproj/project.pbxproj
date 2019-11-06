@@ -77,6 +77,8 @@
 		CFD3BF4923473D0500FCDA6D /* LogVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BF4723473D0500FCDA6D /* LogVC.m */; };
 		CFD3BF4E23473D5900FCDA6D /* TextFieldAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFD3BF4B23473D5900FCDA6D /* TextFieldAlertView.xib */; };
 		CFD3BF4F23473D5900FCDA6D /* TextFieldAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BF4D23473D5900FCDA6D /* TextFieldAlertView.m */; };
+		CFFAB5882372F01C009593AF /* UGPlatformTitleBlackCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFAB5862372F01C009593AF /* UGPlatformTitleBlackCell.m */; };
+		CFFAB5892372F01C009593AF /* UGPlatformTitleBlackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFFAB5872372F01C009593AF /* UGPlatformTitleBlackCell.xib */; };
 		D4000C59232E51C4000705B1 /* UITextView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = D4000C58232E51C4000705B1 /* UITextView+Extension.m */; };
 		D403E5662366E614009171D3 /* UIView+Events.m in Sources */ = {isa = PBXBuildFile; fileRef = D403E5642366E614009171D3 /* UIView+Events.m */; };
 		D40499C12335E5B30019C249 /* UGPromotion6rowButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D40499BF2335E5B30019C249 /* UGPromotion6rowButtonTableViewCell.m */; };
@@ -784,6 +786,9 @@
 		CFD3BF4B23473D5900FCDA6D /* TextFieldAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextFieldAlertView.xib; sourceTree = "<group>"; };
 		CFD3BF4C23473D5900FCDA6D /* TextFieldAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldAlertView.h; sourceTree = "<group>"; };
 		CFD3BF4D23473D5900FCDA6D /* TextFieldAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldAlertView.m; sourceTree = "<group>"; };
+		CFFAB5852372F01C009593AF /* UGPlatformTitleBlackCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGPlatformTitleBlackCell.h; sourceTree = "<group>"; };
+		CFFAB5862372F01C009593AF /* UGPlatformTitleBlackCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGPlatformTitleBlackCell.m; sourceTree = "<group>"; };
+		CFFAB5872372F01C009593AF /* UGPlatformTitleBlackCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGPlatformTitleBlackCell.xib; sourceTree = "<group>"; };
 		D4000C57232E51C4000705B1 /* UITextView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+Extension.h"; sourceTree = "<group>"; };
 		D4000C58232E51C4000705B1 /* UITextView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+Extension.m"; sourceTree = "<group>"; };
 		D403E5642366E614009171D3 /* UIView+Events.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Events.m"; sourceTree = "<group>"; };
@@ -1898,6 +1903,9 @@
 				D405B2D2227AE38900F8C586 /* UGGameTypeCollectionView.m */,
 				D405B2D9227B122000F8C586 /* UGPlatformTitleCollectionView.h */,
 				D405B2DA227B122000F8C586 /* UGPlatformTitleCollectionView.m */,
+				CFFAB5852372F01C009593AF /* UGPlatformTitleBlackCell.h */,
+				CFFAB5862372F01C009593AF /* UGPlatformTitleBlackCell.m */,
+				CFFAB5872372F01C009593AF /* UGPlatformTitleBlackCell.xib */,
 				D405B2D4227B0FE100F8C586 /* UGPlatformTitleCollectionViewCell.h */,
 				D405B2D5227B0FE100F8C586 /* UGPlatformTitleCollectionViewCell.m */,
 				D405B2D6227B0FE100F8C586 /* UGPlatformTitleCollectionViewCell.xib */,
@@ -4721,6 +4729,7 @@
 				D405B2F7227C230400F8C586 /* UGRechargeTypeCell.xib in Resources */,
 				D4CD65502365E72600D26D5D /* UGLHLotteryCollectionViewCell.xib in Resources */,
 				D49A36D022A3C13B000057D2 /* UGLotteryRecordController.storyboard in Resources */,
+				CFFAB5892372F01C009593AF /* UGPlatformTitleBlackCell.xib in Resources */,
 				D422D67D22D99F1E008E7065 /* UGAddressCollectionViewCell.xib in Resources */,
 				D4DFBE7522E35460002BAFB0 /* Mine.storyboard in Resources */,
 				D41E0EF2228DA44500D6C42A /* UGConvertCollectionViewCell.xib in Resources */,
@@ -5132,6 +5141,7 @@
 				D41C5EBD2369D758007AF77D /* UGOnlineWithdrawalsView.m in Sources */,
 				D48224FA22A120E500F7DE72 /* UGPlatformNoticeModel.m in Sources */,
 				D4C93B3E22D8751F00608B67 /* UGFeedbackDetailController.m in Sources */,
+				CFFAB5882372F01C009593AF /* UGPlatformTitleBlackCell.m in Sources */,
 				D405B3812281442B00F8C586 /* SLWebViewController.m in Sources */,
 				0322AD68234342DB00E9857E /* UGDocumentView.m in Sources */,
 				D4BBFC00232A797600147C4A /* NSTimer+addition.m in Sources */,

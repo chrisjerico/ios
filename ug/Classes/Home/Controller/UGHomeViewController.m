@@ -85,11 +85,11 @@
 #import "SGBrowserView.h"
 
 @interface UGHomeViewController ()<SDCycleScrollViewDelegate,UUMarqueeViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UIScrollView *contentScrollView;           /**<   最外层的ScrollView */
+@property (weak, nonatomic) IBOutlet UIStackView *contentStackView;             /**<   最外层的StackView */
 @property (weak, nonatomic) IBOutlet UIView *bannerBgView;                          /**<   Banner */
 @property (weak, nonatomic) IBOutlet UGGameNavigationView *gameNavigationView;      /**<   游戏导航父视图 */
-
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *gameNavigationViewHeight;  /**<   游戏导航 */
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *gameNavigationViewHeight;  /**<   游戏导航Height约束 */
 
 @property (weak, nonatomic) IBOutlet UGGameTypeCollectionView *gameTypeView;/**<   游戏列表 */
 @property (weak, nonatomic) IBOutlet UIView *rankingView;                   /**<   中奖排行榜父视图 */
@@ -156,18 +156,25 @@
 - (void)skin {
     FastSubViewCode(self.view);
 #ifdef DEBUG
-//    BOOL isLiuHe = [Skin1.skitType isEqualToString:@"六合资料"];
-//    BOOL isBlack = [Skin1.skitType isEqualToString:@"黑色模板"];
-//    {
-////        _heightLayoutConstraint.constant = 7*100+5;
-////        _gameNavigationViewHeight.constant = 0;
-//        _gameNavigationView.superview.hidden = !isLiuHe || !isBlack;
-//        _gameTypeView.hidden = !isLiuHe;
-//        _rankingView.hidden = !isLiuHe || !isBlack;
-//        _promotionView.hidden = !isBlack;
-//        subView(@"开奖结果").hidden = !isLiuHe;
-//        subView(@"六合论坛").hidden = !isLiuHe;
-//    }
+    for (UIView *v in _contentStackView.arrangedSubviews) {
+        [v removeFromSuperview];
+    }
+    NSDictionary *dict = @{@"六合资料":@[_bannerBgView, _rollingView, subView(@"开奖结果"), subView(@"六合论坛"), _promotionView, _bottomView],
+                           @"黑色模板":@[_rollingView, _bannerBgView, _gameTypeView.superview, ],
+    };
+    
+    NSArray *arrangedSubviews = dict[Skin1.skitType];
+    if (!arrangedSubviews) {
+        // 默认展示内容
+        arrangedSubviews = @[_bannerBgView, _rollingView, _gameNavigationView.superview, _gameTypeView.superview, _promotionView, _rankingView, _bottomView];
+    }
+    for (UIView *v in arrangedSubviews) {
+        [_contentStackView addArrangedSubview:v];
+    }
+    
+    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+        _rollingView.backgroundColor = Skin1.bgColor;
+    }
 #endif
     
     [self.gameNavigationView reloadData];
@@ -187,7 +194,7 @@
         SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
             [__self skin];
         });
-        //
+        // 免费试玩
         SANotificationEventSubscribe(UGNotificationTryPlay, self, ^(typeof (self) self, id obj) {
             [__self tryPlayClick];
         });
@@ -247,10 +254,9 @@
         [self.upwardMultiMarqueeView setBackgroundColor:Skin1.homeContentColor];
         [self.rollingView setBackgroundColor:Skin1.homeContentColor];
         [self.gameNavigationView setBackgroundColor:Skin1.homeContentColor];
-        [self.leftwardMarqueeView setBackgroundColor:Skin1.homeContentColor];
         [self.gameTypeView setBackgroundColor:Skin1.bgColor];
         [self.bottomView setBackgroundColor:Skin1.navBarBgColor];
-        
+        self.contentScrollView.contentInset = UIEdgeInsetsMake(0, 0, 20, 0);
         
         [self setupSubView];
         {//六合
@@ -320,7 +326,7 @@
     }
 	
 	// 拉取数据
-	self.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+	_contentScrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
 		[__self getSystemConfig];     // APP配置信息
 		[__self getBannerList];       // Banner图
         if (__self.notiveView == nil) {
@@ -331,8 +337,8 @@
 		[__self systemOnlineCount];   // 在线人数
         [__self getPromoteList];      // 优惠活动
 	}];
-    if (self.scrollView.mj_header.refreshingBlock) {
-        self.scrollView.mj_header.refreshingBlock();
+    if (_contentScrollView.mj_header.refreshingBlock) {
+        _contentScrollView.mj_header.refreshingBlock();
     }
 }
 
@@ -463,7 +469,7 @@
 	}
 	NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
 	[CMNetwork getUserInfoWithParams:params completion:^(CMResult<id> *model, NSError *err) {
-		[self.scrollView.mj_header endRefreshing];
+		[self.contentScrollView.mj_header endRefreshing];
 		[CMResult processWithResult:model success:^{
 			UGUserModel *user = model.data;
 			UGUserModel *oldUser = [UGUserModel currentUser];
@@ -498,7 +504,7 @@
 - (void)getCustomGameList {
 	[SVProgressHUD showWithStatus: nil];
 	[CMNetwork getCustomGamesWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-		[self.scrollView.mj_header endRefreshing];
+		[self.contentScrollView.mj_header endRefreshing];
 		[CMResult processWithResult:model success:^{
 			[SVProgressHUD dismiss];
 			if (model.data) {
@@ -531,7 +537,7 @@
 // 获取系统配置
 - (void)getSystemConfig {
 	[CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-		[self.scrollView.mj_header endRefreshing];
+		[self.contentScrollView.mj_header endRefreshing];
 		[CMResult processWithResult:model success:^{
 			
 			NSLog(@"model = %@",model);
@@ -541,8 +547,7 @@
 
 			[[UGSkinManagers skinWithSysConf] useSkin];
             
-            NSString* skitType = Skin1.skitType;
-            if (![skitType isEqualToString:@"六合资料"]) {//六合资料
+            if (![Skin1.skitType isEqualToString:@"六合资料"]) {//六合资料
                  [self getCustomGameList];   // 自定义游戏列表
                  [self getRankList];         // 中奖列表
                  [self getAllNextIssueData]; // 彩票大厅数据
@@ -571,7 +576,7 @@
 // 横幅广告
 - (void)getBannerList {
 	[CMNetwork getBannerListWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-		[self.scrollView.mj_header endRefreshing];
+		[self.contentScrollView.mj_header endRefreshing];
 		[CMResult processWithResult:model success:^{
 			
 			dispatch_async(dispatch_get_main_queue(), ^{
@@ -596,7 +601,7 @@
 // 公告列表
 - (void)getNoticeList {
 	[CMNetwork getNoticeListWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-		[self.scrollView.mj_header endRefreshing];
+		[self.contentScrollView.mj_header endRefreshing];
 		[CMResult processWithResult:model success:^{
 			dispatch_async(dispatch_get_main_queue(), ^{
 				UGNoticeTypeModel *type = model.data;
@@ -622,7 +627,7 @@
 // 中奖排行榜、投注排行榜
 - (void)getRankList {
 	[CMNetwork getRankListWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-		[self.scrollView.mj_header endRefreshing];
+		[self.contentScrollView.mj_header endRefreshing];
 		[CMResult processWithResult:model success:^{
 			
 			dispatch_async(dispatch_get_main_queue(), ^{
@@ -688,7 +693,7 @@
 // APP在线人数
 - (void)systemOnlineCount {
 	[CMNetwork systemOnlineCountWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-		[self.scrollView.mj_header endRefreshing];
+		[self.contentScrollView.mj_header endRefreshing];
 		[CMResult processWithResult:model success:^{
 			
 			dispatch_async(dispatch_get_main_queue(), ^{
@@ -896,7 +901,6 @@
 }
 
 - (void)tryPlayClick {
-	
 	NSDictionary *params = @{@"usr":@"46da83e1773338540e1e1c973f6c8a68",
 							 @"pwd":@"46da83e1773338540e1e1c973f6c8a68"
 	};
@@ -979,8 +983,8 @@
 	}
 	
 	
-	self.scrollView.scrollEnabled = YES;
-	self.scrollView.bounces = YES;
+	self.contentScrollView.scrollEnabled = YES;
+	self.contentScrollView.bounces = YES;
 	//	self.scrollView.backgroundColor = Skin1.bgColor;
 //	self.bannerView =  [SDCycleScrollView cycleScrollViewWithFrame:self.bannerBgView.bounds delegate:self placeholderImage:[UIImage imageNamed:@"placeholder"]];
     self.bannerView =  [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, UGScreenW, 280/640.0 * APP.Width) delegate:self placeholderImage:[UIImage imageNamed:@"placeholder"]];

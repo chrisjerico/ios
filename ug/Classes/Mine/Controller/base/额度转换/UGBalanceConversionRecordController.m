@@ -49,6 +49,12 @@ static NSString *transferLogsCellId = @"UGBalanceTransferLogsCell";
     
     [self setupRefreshView];
     [self getTransferLogs];
+    
+    FastSubViewCode(self.view);
+    subLabel(@"游戏TitleLabel").textColor = Skin1.textColor1;
+    subLabel(@"金额TitleLabel").textColor = Skin1.textColor1;
+    subLabel(@"日期TitleLabel").textColor = Skin1.textColor1;
+    subLabel(@"模式TitleLabel").textColor = Skin1.textColor1;
 }
 
 //添加上下拉刷新

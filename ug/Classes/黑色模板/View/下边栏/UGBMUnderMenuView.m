@@ -98,7 +98,6 @@
     cell.nameLabel.text = object.title;
     [cell.hotImageView setHidden:YES];
     [cell.hasSubSign setHidden:YES];
-    [cell setBackgroundColor: Skin1.homeContentColor];
     return cell;
 }
 

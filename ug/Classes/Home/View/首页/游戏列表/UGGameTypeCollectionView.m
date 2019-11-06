@@ -35,19 +35,26 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
     if (OBJOnceToken(self)) {
         // _titleView
         {
+            BOOL isBlack = [Skin1.skitType isEqualToString:@"黑色模板"];
             _titleView = [[UGPlatformTitleCollectionView alloc] initWithFrame:CGRectZero];
-            _titleView.layer.cornerRadius = 10;
+            _titleView.layer.cornerRadius = isBlack ? 0 : 10;
             _titleView.layer.masksToBounds = true;
             _titleView.platformTitleSelectBlock = ^(NSInteger selectIndex) {
                 __self.contentScrollView.contentOffset = CGPointMake(__self.width * selectIndex, 0);
                 [__self refreshHeight];
             };
             [self addSubview:_titleView];
+            
             [_titleView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.equalTo(self);
-                make.left.equalTo(self).offset(5);
-                make.right.equalTo(self).offset(-5);
-                make.height.equalTo(@55);
+                if (isBlack) {
+                    make.top.left.right.equalTo(self);
+                    make.height.equalTo(@140);
+                } else {
+                    make.top.equalTo(self);
+                    make.left.equalTo(self).offset(5);
+                    make.right.equalTo(self).offset(-5);
+                    make.height.equalTo(@55);
+                }
             }];
         }
         

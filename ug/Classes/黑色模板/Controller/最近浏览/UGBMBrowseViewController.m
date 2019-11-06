@@ -35,6 +35,7 @@
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"会员中心";
     self.fd_prefersNavigationBarHidden = YES;
+    self.fd_interactivePopDisabled = true;
     [self.view setBackgroundColor: Skin1.bgColor];
     [self creatView];
 
@@ -42,6 +43,9 @@
     [self initCollectionView];
     [self organizData ];
     [self.myCollectionView reloadData];
+    
+    FastSubViewCode(self.view);
+    subView(@"状态栏背景色View").backgroundColor = Skin1.navBarBgColor;
 }
 
 -(void)creatView{
@@ -84,14 +88,13 @@
 
 //每个cell的具体内容
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-        UGGameTypeColletionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UGGameTypeColletionViewCell" forIndexPath:indexPath];
-        UGNextIssueModel * object = [self.myDataArray objectAtIndex:indexPath.row];
-        [cell.imgView sd_setImageWithURL:[NSURL URLWithString:object.pic] placeholderImage:[UIImage imageNamed:@"zwt"]];
-        cell.nameLabel.text = object.title;
-        [cell.hotImageView setHidden:YES];
-        [cell.hasSubSign setHidden:YES];
-        [cell setBackgroundColor: Skin1.homeContentColor];
-        return cell;
+    UGGameTypeColletionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UGGameTypeColletionViewCell" forIndexPath:indexPath];
+    UGNextIssueModel * object = [self.myDataArray objectAtIndex:indexPath.row];
+    [cell.imgView sd_setImageWithURL:[NSURL URLWithString:object.pic] placeholderImage:[UIImage imageNamed:@"zwt"]];
+    cell.nameLabel.text = object.title;
+    [cell.hotImageView setHidden:YES];
+    [cell.hasSubSign setHidden:YES];
+    return cell;
 }
 
 //cell size

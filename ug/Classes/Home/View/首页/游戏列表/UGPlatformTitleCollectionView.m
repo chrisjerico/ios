@@ -7,15 +7,15 @@
 //
 
 #import "UGPlatformTitleCollectionView.h"
+
 #import "UGPlatformTitleCollectionViewCell.h"
+#import "UGPlatformTitleBlackCell.h"
+
 #import "UGPlatformGameModel.h"
 
 @interface UGPlatformTitleCollectionView ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *collectionView;
 @end
-
-
-static NSString *platformTitleCellid = @"UGPlatformTitleCollectionViewCell";
 
 
 @implementation UGPlatformTitleCollectionView
@@ -24,36 +24,45 @@ static NSString *platformTitleCellid = @"UGPlatformTitleCollectionViewCell";
 {
     self = [super initWithFrame:frame];
     if (self) {
-        float itemW = 90, itemH = 55;
+        
+        BOOL isBlack = [Skin1.skitType isEqualToString:@"黑色模板"];
         UICollectionViewFlowLayout *layout = ({
             layout = [[UICollectionViewFlowLayout alloc] init];
-            layout.itemSize = CGSizeMake(itemW, itemH);
             layout.minimumInteritemSpacing = 0;
             layout.minimumLineSpacing = 0;
-            layout.sectionInset = UIEdgeInsetsMake(0, 15, 0, 15);
+            layout.sectionInset = isBlack ? UIEdgeInsetsZero : UIEdgeInsetsMake(0, 15, 0, 15);
             layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
             layout;
         });
         
         UICollectionView *collectionView = ({
-            collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, APP.Width, itemH) collectionViewLayout:layout];
-            collectionView.backgroundColor = Skin1.homeContentColor;
+            collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, APP.Width, 55) collectionViewLayout:layout];
+            collectionView.backgroundColor = isBlack ? Skin1.bgColor : Skin1.homeContentColor;
             collectionView.dataSource = self;
             collectionView.delegate = self;
-            [collectionView registerNib:[UINib nibWithNibName:@"UGPlatformTitleCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:platformTitleCellid];
+            [collectionView registerNib:[UINib nibWithNibName:@"UGPlatformTitleCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"默认Cell"];
+            [collectionView registerNib:[UINib nibWithNibName:@"UGPlatformTitleBlackCell" bundle:nil] forCellWithReuseIdentifier:@"黑色模板Cell"];
             [collectionView setShowsHorizontalScrollIndicator:NO];
             collectionView;
         });
         
         self.collectionView = collectionView;
         [self addSubview:collectionView];
+        [collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self);
+        }];
+        
+        __weakSelf_(__self);
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            ((UICollectionViewFlowLayout *)__self.collectionView.collectionViewLayout).itemSize = CGSizeMake(90, __self.height);
+        });
     }
     return self;
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:self.selectIndex inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
+    [_collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:self.selectIndex inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
 }
 
 - (void)setSelectIndex:(NSInteger)selectIndex {
@@ -78,8 +87,13 @@ static NSString *platformTitleCellid = @"UGPlatformTitleCollectionViewCell";
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UGPlatformTitleCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:platformTitleCellid forIndexPath:indexPath];
-    cell.item = self.gameTypeArray[indexPath.row];
+    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+        UGPlatformTitleBlackCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"黑色模板Cell" forIndexPath:indexPath];
+        cell.gcm = _gameTypeArray[indexPath.row];
+        return cell;
+    }
+    UGPlatformTitleCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"默认Cell" forIndexPath:indexPath];
+    cell.item = _gameTypeArray[indexPath.row];
     cell.backgroundColor = [UIColor clearColor];
     return cell;
 }

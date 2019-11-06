@@ -44,31 +44,45 @@ static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
 
 @implementation UGBalanceConversionController
 
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"额度转换";
-    self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithTitle:@"转换记录" target:self action:@selector(rightBarButtonItemClick)];
+    // 设置初始UI
+    {
+        self.navigationItem.title = @"额度转换";
+        self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithTitle:@"转换记录" target:self action:@selector(rightBarButtonItemClick)];
+        
+        self.view.backgroundColor = Skin1.bgColor;
+        self.conversionButton.backgroundColor = Skin1.navBarBgColor;
+        [self.view viewWithTagString:@"一键提取Button"].backgroundColor = Skin1.navBarBgColor;
+        [self.tableView registerNib:[UINib nibWithNibName:@"UGPlatformBalanceTableViewCell" bundle:nil] forCellReuseIdentifier:balanceCellid];
+        self.tableView.rowHeight = 50;
+        self.tableView.layer.cornerRadius = 10;
+        self.tableView.layer.masksToBounds = true;
+        self.balanceLabel.text = [NSString stringWithFormat:@"¥%@", [UserI.balance removeFloatAllZero]];
+        self.amountTextF.textColor = Skin1.textColor1;
+        self.transferOutLabel.textColor = Skin1.textColor1;
+        self.transferInLabel.textColor = Skin1.textColor1;
+        self.transferOutArrow.image = [[UIImage imageNamed:@"jiantou1"] qmui_imageWithTintColor:Skin1.textColor1];
+        self.tarnsferInArrow.image = [[UIImage imageNamed:@"jiantou1"] qmui_imageWithTintColor:Skin1.textColor1];
+        FastSubViewCode(self.view);
+        subLabel(@"转出钱包Label").textColor = Skin1.textColor1;
+        subLabel(@"转入钱包Label").textColor = Skin1.textColor1;
+        subLabel(@"转换金额Label").textColor = Skin1.textColor1;
+    }
     
-    self.view.backgroundColor = Skin1.bgColor;
-    self.conversionButton.backgroundColor = Skin1.navBarBgColor;
-    [self.view viewWithTagString:@"一键提取Button"].backgroundColor = Skin1.navBarBgColor;
-    [self.tableView registerNib:[UINib nibWithNibName:@"UGPlatformBalanceTableViewCell" bundle:nil] forCellReuseIdentifier:balanceCellid];
-    self.tableView.rowHeight = 50;
-    self.tableView.layer.cornerRadius = 10;
-    self.tableView.layer.masksToBounds = true;
-    self.balanceLabel.text = [NSString stringWithFormat:@"¥%@", [UserI.balance removeFloatAllZero]];
-    
+    // 用户信息获取成功
     SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
         [self.refreshButton.layer removeAllAnimations];
         self.balanceLabel.text = [NSString stringWithFormat:@"¥%@", [UserI.balance removeFloatAllZero]];
     });
+    // 换肤
+    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
+        self.transferOutArrow.image = [[UIImage imageNamed:@"jiantou1"] qmui_imageWithTintColor:Skin1.textColor1];
+        self.tarnsferInArrow.image = [[UIImage imageNamed:@"jiantou1"] qmui_imageWithTintColor:Skin1.textColor1];
+    });
     
-    
+    // 拉取数据
     [self getRealGames];
 }
 

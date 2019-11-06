@@ -20,14 +20,13 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    [self setBackgroundColor: Skin1.cellBgColor];
+    self.backgroundColor = [Skin1.skitType isEqualToString:@"黑色模板"] ? Skin1.bgColor : Skin1.homeContentColor;
     self.layer.cornerRadius = 10;
     self.layer.masksToBounds = YES;
-    self.layer.borderColor = Skin1.homeContentColor.CGColor;
-    self.layer.borderWidth = 1;
+    self.nameLabel.textColor = Skin1.textColor1;
     self.hotImageView.hidden = YES;
+    
 	[self addSubview:self.hasSubSign];
-    _nameLabel.textColor = Skin1.textColor1;
 	[self.hasSubSign mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.centerY.equalTo(self);
 		make.right.equalTo(self);

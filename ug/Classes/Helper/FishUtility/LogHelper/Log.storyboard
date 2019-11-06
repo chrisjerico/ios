@@ -47,7 +47,7 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I5H-uQ-5AM">
                                                         <rect key="frame" x="150" y="0.0" width="75" height="35"/>
                                                         <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <state key="normal" title="六合"/>
+                                                        <state key="normal" title="切换主题"/>
                                                         <connections>
                                                             <action selector="onLHBtnClick:" destination="jnV-av-miB" eventType="touchUpInside" id="GY6-zy-kg8"/>
                                                         </connections>
