@@ -11,6 +11,8 @@
 
 @interface UGLotteryAssistantTableViewCell ()
 
+@property (weak, nonatomic) IBOutlet UIView *bgView;
+
 @property (weak, nonatomic) IBOutlet UIView *betView1;
 @property (weak, nonatomic) IBOutlet UIView *betView2;
 
@@ -43,10 +45,20 @@
     self.betView1.layer.masksToBounds = YES;
     self.betView2.layer.cornerRadius = 5;
     self.betView2.layer.masksToBounds = YES;
-    self.betView1.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.betView1.layer.borderColor = Skin1.textColor1.CGColor;
     self.betView1.layer.borderWidth = 0.7;
-    self.betView2.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.betView2.layer.borderColor = Skin1.textColor1.CGColor;
     self.betView2.layer.borderWidth = 0.7;
+    
+    [_bgView setBackgroundColor:Skin1.textColor4];
+    _titleLabel.textColor = Skin1.textColor1;
+    _issueLabel.textColor = Skin1.textColor1;
+    _playNameLabel1.textColor = Skin1.textColor1;
+    _oddsLabel1.textColor = Skin1.textColor1;
+    _playNameLabel2.textColor = Skin1.textColor1;
+    _oddsLabel2.textColor = Skin1.textColor1;
+    
+    
 }
 
 - (void)setItem:(UGChanglongaideModel *)item {

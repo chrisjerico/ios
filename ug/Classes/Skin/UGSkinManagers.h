@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIColor *textColor1;              /**<    默认字颜色 黑色 */
 @property (nonatomic, strong) UIColor *textColor2;              /**<    占位字颜色 深灰色 */
 @property (nonatomic, strong) UIColor *textColor3;              /**<    占位字颜色 淡灰色 */
-
+@property (nonatomic, strong) UIColor *textColor4;              /**<    反差字体 */
 
 - (void)useSkin;    /**<   应用此皮肤 */
 

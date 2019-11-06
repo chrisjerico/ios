@@ -31,13 +31,14 @@ static NSString *changlongBetRecordCellId = @"UGChanglongBetRecrodCell";
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 200, 0);
     [self.tableView registerNib:[UINib nibWithNibName:@"UGChanglongBetRecrodCell" bundle:nil] forCellReuseIdentifier:changlongBetRecordCellId];
     
+    [self.view setBackgroundColor:Skin1.CLBgColor];
     UIView *footerVC = [[UIView alloc] init];
     footerVC.backgroundColor = [UIColor clearColor];
     footerVC.size = CGSizeMake(UGScreenW, 80);
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(10, 20, UGScreenW - 20, 44)];
-    button.backgroundColor = [UIColor whiteColor];
+    button.backgroundColor = Skin1.textColor1;
     [button setTitle:@"查看更多" forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [button setTitleColor:Skin1.textColor4 forState:UIControlStateNormal];
     [button addTarget:self action:@selector(showBetRrecordList) forControlEvents:UIControlEventTouchUpInside];
     [footerVC addSubview:button];
     self.tableView.tableFooterView = footerVC;

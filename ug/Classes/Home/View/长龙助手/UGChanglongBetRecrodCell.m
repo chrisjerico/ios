@@ -9,6 +9,7 @@
 #import "UGChanglongBetRecrodCell.h"
 #import "UGChanglongBetRecordModel.h"
 @interface UGChanglongBetRecrodCell ()
+@property (weak, nonatomic) IBOutlet UIView *bgView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *betAmountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *issueLabel;
@@ -21,6 +22,9 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    [_bgView setBackgroundColor:Skin1.textColor4];
+    [_nameLabel setTextColor:Skin1.textColor1];
+    
 }
 
 - (void)setItem:(UGChanglongBetRecordModel *)item {

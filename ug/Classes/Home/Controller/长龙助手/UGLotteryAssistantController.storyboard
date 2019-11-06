@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="M5X-6o-TG0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="M5X-6o-TG0">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -42,12 +42,18 @@
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="标题label"/>
+                                                            </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20190511009" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uRp-Yf-8kV">
                                                             <rect key="frame" x="71" y="29" width="83" height="16"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="标题2label"/>
+                                                            </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:03:32" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PFV-tS-JWs">
                                                             <rect key="frame" x="159" y="29" width="56" height="16"/>
@@ -144,6 +150,9 @@
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zr4-jY-mDQ">
                                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="按钮1"/>
+                                                                    </userDefinedRuntimeAttributes>
                                                                     <connections>
                                                                         <action selector="betItem0Click:" destination="74t-CX-e8m" eventType="touchUpInside" id="VpS-uC-nEe"/>
                                                                     </connections>
@@ -198,6 +207,9 @@
                                                         <constraint firstItem="ysJ-ve-EyT" firstAttribute="top" secondItem="Ini-bE-fZJ" secondAttribute="top" id="hEM-PV-QQH"/>
                                                         <constraint firstItem="Ini-bE-fZJ" firstAttribute="leading" secondItem="7EQ-aR-bpM" secondAttribute="trailing" constant="7" id="jdT-yv-cJY"/>
                                                     </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="行View"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
                                             <constraints>
@@ -211,6 +223,7 @@
                                         <connections>
                                             <outlet property="betView1" destination="vlr-oc-fk1" id="uGO-12-wyu"/>
                                             <outlet property="betView2" destination="QwI-Z9-FfT" id="ott-bQ-rQA"/>
+                                            <outlet property="bgView" destination="LoM-ng-8kI" id="uQF-x2-VH9"/>
                                             <outlet property="countLabel" destination="ysJ-ve-EyT" id="FNd-dg-rdq"/>
                                             <outlet property="issueLabel" destination="uRp-Yf-8kV" id="7wc-b1-Uv6"/>
                                             <outlet property="logoView" destination="MTg-j7-j5N" id="N2y-Ti-Ecc"/>
