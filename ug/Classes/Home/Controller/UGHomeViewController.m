@@ -155,18 +155,20 @@
 
 - (void)skin {
     FastSubViewCode(self.view);
-    BOOL isLiuHe = [Skin1.skitType isEqualToString:@"六合资料"];
-    BOOL isBlack = [Skin1.skitType isEqualToString:@"黑色模板"];
-    {
-//        _heightLayoutConstraint.constant = 7*100+5;
-//        _gameNavigationViewHeight.constant = 0;
-        _gameNavigationView.superview.hidden = isLiuHe || isBlack;
-        _gameTypeView.hidden = isLiuHe;
-        _rankingView.hidden = isLiuHe || isBlack;
-        _promotionView.hidden = isBlack;
-        subView(@"开奖结果").hidden = isLiuHe;
-        subView(@"六合论坛").hidden = isLiuHe;
-    }
+#ifdef DEBUG
+//    BOOL isLiuHe = [Skin1.skitType isEqualToString:@"六合资料"];
+//    BOOL isBlack = [Skin1.skitType isEqualToString:@"黑色模板"];
+//    {
+////        _heightLayoutConstraint.constant = 7*100+5;
+////        _gameNavigationViewHeight.constant = 0;
+//        _gameNavigationView.superview.hidden = !isLiuHe || !isBlack;
+//        _gameTypeView.hidden = !isLiuHe;
+//        _rankingView.hidden = !isLiuHe || !isBlack;
+//        _promotionView.hidden = !isBlack;
+//        subView(@"开奖结果").hidden = !isLiuHe;
+//        subView(@"六合论坛").hidden = !isLiuHe;
+//    }
+#endif
     
     [self.gameNavigationView reloadData];
 }
