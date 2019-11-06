@@ -82,7 +82,6 @@ static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
         self.tarnsferInArrow.image = [[UIImage imageNamed:@"jiantou1"] qmui_imageWithTintColor:Skin1.textColor1];
     });
     
-    // 拉取数据
     [self getRealGames];
 }
 
