@@ -60,7 +60,7 @@
        [headView mas_makeConstraints:^(MASConstraintMaker *make) { //数组额你不必须都是view
            make.top.equalTo(self.view.mas_top).with.offset(k_Height_StatusBar);
            make.left.equalTo(self.view.mas_left).offset(0);
-           make.height.equalTo([NSNumber numberWithFloat:100]);
+           make.height.equalTo([NSNumber numberWithFloat:110]);
            make.width.equalTo([NSNumber numberWithFloat:UGScreenW]);
        }];
     //=============== 单选标签组=================
