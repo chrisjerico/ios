@@ -203,7 +203,9 @@
     self.yymenuView.titleType = @"1";
     //此处为重点
     self.yymenuView.backToHomeBlock = ^{
-        NavController1.tabBarController.selectedIndex = 0;
+        [NavController1 popToRootViewControllerAnimated:true];
+        TabBarController1.selectedIndex = 0;
+//        NavController1.tabBarController.selectedIndex = 0;
     };
     [self.yymenuView show];
 }
