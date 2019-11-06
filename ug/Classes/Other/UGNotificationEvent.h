@@ -17,7 +17,6 @@ FOUNDATION_EXTERN NSString *UGNotificationGetUserInfo;              // 获取我
 FOUNDATION_EXTERN NSString *UGNotificationGetUserInfoComplete;      // 获取我的信息完成
 FOUNDATION_EXTERN NSString *UGNotificationGetSystemConfigComplete;  // 获取配置信息完成
 FOUNDATION_EXTERN NSString *UGNotificationUserAvatarChanged;
-FOUNDATION_EXTERN NSString *UGNotificationAutoTransferOut;
 FOUNDATION_EXTERN NSString *UGNotificationYuebaoInfoChanged;
 FOUNDATION_EXTERN NSString *UGNotificationGetYuebaoInfo;
 FOUNDATION_EXTERN NSString *UGNotificationFundTitlesTap;

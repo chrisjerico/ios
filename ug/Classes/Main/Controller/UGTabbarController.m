@@ -145,6 +145,31 @@ static UGTabbarController *_tabBarVC = nil;
     //    版本更新
     [[UGAppVersionManager shareInstance] updateVersionApi:false];
     [self setTabbarStyle];
+    
+    
+    // 更新黑色模板状态栏
+    [self xw_addNotificationForName:UGNotificationWithSkinSuccess block:^(NSNotification * _Nonnull noti) {
+        UIStackView *sv = [TabBarController1.tabBar viewWithTagString:@"描边StackView"];
+        if (!sv) {
+            sv = [[UIStackView alloc] initWithFrame:CGRectMake(0, 0, APP.Width, 60)];
+            sv.axis = UILayoutConstraintAxisHorizontal;
+            sv.distribution = UIStackViewDistributionFillEqually;
+            sv.spacing = -0.75;
+            sv.tagString = @"描边StackView";
+            for (int i=0; i<TabBarController1.tabBar.items.count; i++) {
+                UIView *v = [UIView new];
+                v.layer.borderWidth = 1;
+                v.layer.borderColor = APP.TextColor2.CGColor;
+                v.backgroundColor = [UIColor clearColor];
+                [sv addArrangedSubview:v];
+            }
+            sv.userInteractionEnabled = false;
+            [TabBarController1.tabBar addSubview:sv];
+        }
+        BOOL black = [Skin1.skitType isEqualToString:@"黑色模板"];
+        sv.hidden = !black;
+        [TabBarController1 setTabbarHeight:black ? 55 : 49];
+    }];
 }
 
 - (void)setTabbarStyle {
@@ -186,6 +211,23 @@ static UGTabbarController *_tabBarVC = nil;
     return UIStatusBarStyleDefault;
     //UIStatusBarStyleDefault = 0 黑色文字，浅色背景时使用
 //   return UIStatusBarStyleLightContent = 1 //白色文字，深色背景时使用
+}
+
+- (void)setTabbarHeight:(CGFloat)height {
+    static CGFloat __height = 50;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [UITabBar aspect_hookSelector:@selector(sizeThatFits:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> ai) {
+            CGSize size = CGSizeZero;
+            [ai.originalInvocation getReturnValue:&size];
+            size.height = __height;
+            [ai.originalInvocation invoke];
+            [ai.originalInvocation setReturnValue:&size];
+        } error:nil];
+    });
+    __height = height + APP.BottomSafeHeight;
+    [self.view layoutSubviews];
+    [self.selectedViewController.view layoutSubviews];
 }
 
 

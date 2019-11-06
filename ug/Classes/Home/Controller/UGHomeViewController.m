@@ -1,4 +1,3 @@
-
 //
 //  UGMainViewController.m
 //  ug
@@ -155,30 +154,19 @@
 }
 
 - (void)skin {
-//    FastSubViewCode(self.view);
-//    NSString* skitType = Skin1.skitType;
-//    if ([skitType isEqualToString:@"六合资料"]) {//六合资料
-//      #pragma mark - 测试
-//        self.heightLayoutConstraint.constant = 7*100+5;
-//        self.gameNavigationViewHeight.constant = 0;
-//        self.gameNavigationView.hidden = YES;
-//        self.gameTypeView.hidden = YES;
-//        self.rankingView.hidden = YES;
-//        self.promotionView.hidden = NO;
-//        subView(@"开奖结果").hidden = NO;
-//        subView(@"六合论坛").hidden = NO;
-//   
-//    }
-//    else
-//    {
-//        self.heightLayoutConstraint.constant = 0;
-//        self.gameNavigationView.hidden = NO;
-//        self.gameTypeView.hidden = NO;
-//        self.rankingView.hidden = NO;
-//        subView(@"开奖结果").hidden = YES;
-//        subView(@"六合论坛").hidden = YES;
-//        self.promotionView.hidden = NO;
-//    }
+    FastSubViewCode(self.view);
+    BOOL isLiuHe = [Skin1.skitType isEqualToString:@"六合资料"];
+    BOOL isBlack = [Skin1.skitType isEqualToString:@"黑色模板"];
+    {
+//        _heightLayoutConstraint.constant = 7*100+5;
+//        _gameNavigationViewHeight.constant = 0;
+        _gameNavigationView.superview.hidden = isLiuHe || isBlack;
+        _gameTypeView.hidden = isLiuHe;
+        _rankingView.hidden = isLiuHe || isBlack;
+        _promotionView.hidden = isBlack;
+        subView(@"开奖结果").hidden = isLiuHe;
+        subView(@"六合论坛").hidden = isLiuHe;
+    }
     
     [self.gameNavigationView reloadData];
 }
@@ -189,144 +177,108 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     FastSubViewCode(self.view);
-    subView(@"开奖结果").hidden = YES;
-    subView(@"六合论坛").hidden = YES;
     
-	SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-		[self skin];
+    __weakSelf_(__self);
+    // 配置通知事件
+    {
+        // 换肤
+        SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
+            [__self skin];
+        });
+        //
+        SANotificationEventSubscribe(UGNotificationTryPlay, self, ^(typeof (self) self, id obj) {
+            [__self tryPlayClick];
+        });
+        // 去登录
+        [self xw_addNotificationForName:UGNotificationShowLoginView block:^(NSNotification * _Nonnull noti) {
+            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLoginViewController") animated:true];
+        }];
+        // 登录成功
+        SANotificationEventSubscribe(UGNotificationLoginComplete, self, ^(typeof (self) self, id obj) {
+            [__self getUserInfo];
+            __self.titleView.showLoginView = NO;
+            
+        });
+        // 退出登陆
+        SANotificationEventSubscribe(UGNotificationUserLogout, self, ^(typeof (self) self, id obj) {
+            [__self userLogout];
+        });
+        // 登录超时
+        SANotificationEventSubscribe(UGNotificationloginTimeout, self, ^(typeof (self) self, id obj) {
+            // onceToken 函数的作用是，限制为只弹一次框，修复弹框多次的bug
+            if (OBJOnceToken(UGUserModel.currentUser)) {
+                UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"您的账号已经登录超时，请重新登录。" btnTitles:@[@"确定"]];
+                [ac setActionAtTitle:@"确定" handler:^(UIAlertAction *aa) {
+                    __self.titleView.showLoginView = YES;
+                    UGUserModel.currentUser = nil;
+                    [__self.tabBarController setSelectedIndex:0];
+                    [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLoginViewController") animated:true];
+                }];
+            }
+        });
+        // 获取用户信息成功
+        SANotificationEventSubscribe(UGNotificationGetUserInfo, self, ^(typeof (self) self, id obj) {
+            [__self getUserInfo];
+        });
+        // 获取系统配置成功
+        SANotificationEventSubscribe(UGNotificationGetSystemConfigComplete, self, ^(typeof (self) self, id obj) {
+            [__self.promotionsStackView superviewWithTagString:@"优惠活动ContentView"].hidden = !SysConf.m_promote_pos;
+        });
+    }
+    
+    // 配置初始UI
+    {
+        subView(@"开奖结果").hidden = YES;
+        subView(@"六合论坛").hidden = YES;
+        
         subImageView(@"公告图标ImageView").image = [[UIImage imageNamed:@"notice"] qmui_imageWithTintColor:Skin1.textColor1];
         subImageView(@"优惠活动图标ImageView").image = [[UIImage imageNamed:@"礼品-(1)"] qmui_imageWithTintColor:Skin1.textColor1];
         subLabel(@"优惠活动标题Label").textColor = Skin1.textColor1;
         [subButton(@"查看更多优惠活动Button") setTitleColor:Skin1.textColor1 forState:UIControlStateNormal];
-	});
-	self.gameNavigationView.layer.cornerRadius = 8;
-	self.gameNavigationView.layer.masksToBounds = true;
-	self.gameNavigationView.layer.borderWidth = 1;
-	self.gameNavigationView.layer.borderColor = Skin1.homeContentColor.CGColor;
-    
-	[self.view setBackgroundColor: Skin1.bgColor];
-	[self.rankingView setBackgroundColor:Skin1.navBarBgColor];
-	[self.upwardMultiMarqueeView setBackgroundColor:Skin1.homeContentColor];
-	[self.rollingView setBackgroundColor:Skin1.homeContentColor];
-	[self.gameNavigationView setBackgroundColor:Skin1.homeContentColor];
-	[self.leftwardMarqueeView setBackgroundColor:Skin1.homeContentColor];
-	[self.gameTypeView setBackgroundColor:Skin1.bgColor];
-    [self.bottomView setBackgroundColor:Skin1.navBarBgColor];
-    
-    
-    
-	[[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:Skin1.tabBarBgColor]];
-	
-	[[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:Skin1.tabNoSelectColor, NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
-	 
-	[[UITabBarItem appearance] setTitleTextAttributes:                                                         [NSDictionary dictionaryWithObjectsAndKeys: Skin1.tabSelectedColor,NSForegroundColorAttributeName, nil]forState:UIControlStateSelected];
-	
-	[[UITabBar appearance] setSelectedImageTintColor: Skin1.tabSelectedColor];
-	
-	[[UITabBar appearance] setUnselectedItemTintColor: Skin1.tabNoSelectColor];
-	self.navigationController.navigationBar.backgroundColor = Skin1.navBarBgColor;
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-    self.navigationController.navigationBar.shadowImage = [UIImage new];
-    
-	
-	[self setupSubView];
-    {//六合
-        [self initLHCollectionView];
-    }
-	
-	
-	SANotificationEventSubscribe(UGNotificationTryPlay, self, ^(typeof (self) self, id obj) {
-		[self tryPlayClick];
-	});
-	
-	SANotificationEventSubscribe(UGNotificationLoginComplete, self, ^(typeof (self) self, id obj) {
-		[self getUserInfo];
-		self.titleView.showLoginView = NO;
-		
-	});
-	SANotificationEventSubscribe(UGNotificationUserLogout, self, ^(typeof (self) self, id obj) {
-		[self userLogout];
-	});
-	SANotificationEventSubscribe(UGNotificationloginTimeout, self, ^(typeof (self) self, id obj) {
-		// onceToken 函数的作用是，限制为只弹一次框，修复弹框多次的bug
-        if (OBJOnceToken(UGUserModel.currentUser)) {
-            [QDAlertView showWithTitle:@"提示" message:@"您的账号已经登录超时，请重新登录。" cancelButtonTitle:nil otherButtonTitle:@"确定" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                self.titleView.showLoginView = YES;
-                UGUserModel.currentUser = nil;
-                [self.tabBarController setSelectedIndex:0];
-                [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLoginViewController") animated:true];
-            }];
+        self.gameNavigationView.layer.cornerRadius = 8;
+        self.gameNavigationView.layer.masksToBounds = true;
+        self.gameNavigationView.layer.borderWidth = 1;
+        self.gameNavigationView.layer.borderColor = Skin1.homeContentColor.CGColor;
+        
+        [self.view setBackgroundColor: Skin1.bgColor];
+        [self.rankingView setBackgroundColor:Skin1.navBarBgColor];
+        [self.upwardMultiMarqueeView setBackgroundColor:Skin1.homeContentColor];
+        [self.rollingView setBackgroundColor:Skin1.homeContentColor];
+        [self.gameNavigationView setBackgroundColor:Skin1.homeContentColor];
+        [self.leftwardMarqueeView setBackgroundColor:Skin1.homeContentColor];
+        [self.gameTypeView setBackgroundColor:Skin1.bgColor];
+        [self.bottomView setBackgroundColor:Skin1.navBarBgColor];
+        
+        
+        [self setupSubView];
+        {//六合
+            [self initLHCollectionView];
         }
-	});
-    
-    [self xw_addNotificationForName:UGNotificationShowLoginView block:^(NSNotification * _Nonnull noti) {
-        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLoginViewController") animated:true];
-    }];
-	SANotificationEventSubscribe(UGNotificationGetUserInfo, self, ^(typeof (self) self, id obj) {
-		[self getUserInfo];
-	});
-	SANotificationEventSubscribe(UGNotificationAutoTransferOut, self, ^(typeof (self) self, id obj) {
-		[self autoTransferOut];
-	});
-    SANotificationEventSubscribe(UGNotificationGetSystemConfigComplete, self, ^(typeof (self) self, id obj) {
-        [self.promotionsStackView superviewWithTagString:@"优惠活动ContentView"].hidden = !SysConf.m_promote_pos;
-    });
-    
-	
-	self.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-
-		[self getSystemConfig];     // APP配置信息
-		[self getBannerList];       // Banner图
-        if (self.notiveView == nil) {
-            [self getNoticeList];   // 公告列表
-        }
-		[self getUserInfo];         // 用户信息
-		[self getCheckinListData];  // 红包数据
-		[self systemOnlineCount];   // 在线人数
-        [self getPromoteList];      // 优惠活动
-	}];
-
-    [self getBannerList];       // 轮播图
-    if (self.notiveView == nil) {
-        [self getNoticeList];   // 公告列表
-        [self getSystemConfig]; // 系统配置
+        [self skin];
+        
+        self.gameTypeView.gameItemSelectBlock = ^(GameModel * _Nonnull game) {
+            [NavController1 pushViewControllerWithGameModel:game];
+        };
     }
-    [self getUserInfo];        // 用户信息
-    [self getCheckinListData]; // 红包数据
-    [self systemOnlineCount];  // 在线人数
-    [self getPromoteList];      // 优惠活动
-	
-    __weakSelf_(__self);
-    [self xw_addNotificationForName:@"gameNavigationItemTaped" block:^(NSNotification * _Nonnull noti) {
-        [NavController1 pushViewControllerWithGameModel:(GameModel *)noti.object];
-    }];
-	
-	WeakSelf
-	self.gameTypeView.gameItemSelectBlock = ^(GameModel * _Nonnull game) {
-        [NavController1 pushViewControllerWithGameModel:game];
-	};
-	
-	self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
-
+    
     // 红包事件
     {
         self.uGredEnvelopeView = [[UGredEnvelopeView alloc] initWithFrame:CGRectMake(UGScreenW-100, 150, 95, 95) ];
         [self.view addSubview:_uGredEnvelopeView];
         [self.uGredEnvelopeView setHidden:YES];
         [self.uGredEnvelopeView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(self.view.mas_right).with.offset(-10);
+            make.right.equalTo(__self.view.mas_right).with.offset(-10);
             make.width.mas_equalTo(95.0);
             make.height.mas_equalTo(95.0);
-            make.top.equalTo(self.view.mas_top).offset(150);
+            make.top.equalTo(__self.view.mas_top).offset(150);
         }];
         self.uGredEnvelopeView.cancelClickBlock = ^(void) {
-            [weakSelf.uGredEnvelopeView setHidden:YES];
+            [__self.uGredEnvelopeView setHidden:YES];
         };
         
         // 红包弹框
-        WeakSelf;
         self.uGredEnvelopeView.redClickBlock = ^(void) {
-            //        [weakSelf.uGredEnvelopeView setHidden:YES];
+            //        [__self.uGredEnvelopeView setHidden:YES];
             if (!UGLoginIsAuthorized()) {
                 UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"您还未登录" btnTitles:@[@"取消", @"马上登录"]];
                 [ac setActionAtTitle:@"马上登录" handler:^(UIAlertAction *aa) {
@@ -351,18 +303,34 @@
             [CMNetwork activityRedBagDetailWithParams:params completion:^(CMResult<id> *model, NSError *err) {
                 [CMResult processWithResult:model success:^{
                     [SVProgressHUD dismiss];
-                    weakSelf.uGredEnvelopeView.item = (UGRedEnvelopeModel*)model.data;
+                    __self.uGredEnvelopeView.item = (UGRedEnvelopeModel*)model.data;
                     
-                    weakSelf.uGredActivityView = [[UGredActivityView alloc] initWithFrame:CGRectMake(20,100, UGScreenW-50, UGScreenW-50+150) ];
-                    weakSelf.uGredActivityView.item = weakSelf.uGredEnvelopeView.item;
-                    if (weakSelf.uGredEnvelopeView.item) {
-                        [weakSelf.uGredActivityView show];
+                    __self.uGredActivityView = [[UGredActivityView alloc] initWithFrame:CGRectMake(20,100, UGScreenW-50, UGScreenW-50+150) ];
+                    __self.uGredActivityView.item = __self.uGredEnvelopeView.item;
+                    if (__self.uGredEnvelopeView.item) {
+                        [__self.uGredActivityView show];
                     }
                 } failure:^(id msg) {
                     [SVProgressHUD showErrorWithStatus:msg];
                 }];
             }];
         };
+    }
+	
+	// 拉取数据
+	self.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+		[__self getSystemConfig];     // APP配置信息
+		[__self getBannerList];       // Banner图
+        if (__self.notiveView == nil) {
+            [__self getNoticeList];   // 公告列表
+        }
+		[__self getUserInfo];         // 用户信息
+		[__self getCheckinListData];  // 红包数据
+		[__self systemOnlineCount];   // 在线人数
+        [__self getPromoteList];      // 优惠活动
+	}];
+    if (self.scrollView.mj_header.refreshingBlock) {
+        self.scrollView.mj_header.refreshingBlock();
     }
 }
 
@@ -510,16 +478,6 @@
 			}
 			[SVProgressHUD showErrorWithStatus:msg];
 		}];
-	}];
-}
-
-//游戏中的余额自动转出
-- (void)autoTransferOut {
-	if (!UGLoginIsAuthorized()) {
-		return;
-	}
-	[CMNetwork autoTransferOutWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:^(CMResult<id> *model, NSError *err) {
-		
 	}];
 }
 
@@ -799,6 +757,7 @@
 }
 
 #pragma mark - SDCycleScrollViewDelegate
+
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
 	UGBannerCellModel *banner = self.bannerArray[index];
     BOOL ret = [NavController1 pushViewControllerWithLinkCategory:banner.linkCategory linkPosition:banner.linkPosition];

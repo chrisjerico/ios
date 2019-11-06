@@ -18,7 +18,6 @@ NSString *UGNotificationGetUserInfo = @"UGNotificationGetUserInfo";
 NSString *UGNotificationGetUserInfoComplete = @"UGNotificationGetUserInfoComplete";
 NSString *UGNotificationGetSystemConfigComplete = @"UGNotificationGetSystemConfigComplete";
 NSString *UGNotificationUserAvatarChanged = @"UGNotificationUserAvatarChanged";
-NSString *UGNotificationAutoTransferOut = @"UGNotificationAutoTransferOut";
 NSString *UGNotificationYuebaoInfoChanged = @"UGNotificationYuebaoInfoChanged";
 NSString *UGNotificationGetYuebaoInfo = @"UGNotificationGetYuebaoInfo";
 NSString *UGNotificationFundTitlesTap = @"UGNotificationFundTitlesTap";

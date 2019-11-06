@@ -140,8 +140,8 @@ UIActionSheetDelegate> {
         self.navigationController.navigationBarHidden = NO;
     }
     
-    // 自动游戏额度转出
-    SANotificationEventPost(UGNotificationAutoTransferOut, nil);
+    // 自动转出游戏余额
+    [CMNetwork autoTransferOutWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:^(CMResult<id> *model, NSError *err) {}];
 }
 
 - (void)backClick {

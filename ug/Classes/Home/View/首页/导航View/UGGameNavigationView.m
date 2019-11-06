@@ -59,12 +59,12 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    BOOL isLogin = UGLoginIsAuthorized();
-    if (isLogin) {
-        [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"gameNavigationItemTaped" object:self.sourceData[indexPath.item]]];
-    } else {
+    if (!UGLoginIsAuthorized()) {
         SANotificationEventPost(UGNotificationShowLoginView, nil);
+        return;
     }
+    GameModel *gm = self.sourceData[indexPath.item];
+    [NavController1 pushViewControllerWithGameModel:gm];
 }
 
 

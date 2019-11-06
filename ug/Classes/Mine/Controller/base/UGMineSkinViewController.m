@@ -250,9 +250,8 @@ BOOL isOk = NO;
 
 
 - (UIImage *)retureRandomThemeColorImage:(NSString *)imageName {
-    UIImage *image = [UIImage imageNamed:imageName];
-    UIImage *afterImage = [image qmui_imageWithTintColor:[UGSkinManagers randomThemeColor]];
-    return afterImage;
+    UIColor *tintColor = [Skin1.skitType isEqualToString:@"黑色模板"] ? [UIColor whiteColor] : [UGSkinManagers randomThemeColor];
+    return [[UIImage imageNamed:imageName] qmui_imageWithTintColor:tintColor];
 }
 - (void)skinFirstdataSource {
     //经典+石榴红
@@ -483,22 +482,10 @@ BOOL isOk = NO;
 //    NSString *skitType = Skin1.skitType;
     if ([skitType isEqualToString:@"新年红"]) {
         UGMineSkinCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UGMineSkinCollectionViewCell" forIndexPath:indexPath];
-        
-        UGMineSkinModel *model = [self.menuSecondNameArray objectAtIndex:indexPath.section];
-        NSDictionary *dic = [model.dataArray objectAtIndex:indexPath.row];
-        
-        [cell setMenuName: [dic objectForKey:@"title"]];
-        
-        
-        cell.imageView.image = [dic objectForKey:@"imgName"];
-        if ([[dic objectForKey:@"title"] isEqualToString:@"站内信"]) {
-            if (![CMCommon stringIsNull:unreadMsg]) {
-                [cell setBadgeNum:[unreadMsg intValue]];
-            }
-        }
-        else{
-            [cell setBadgeNum:0];
-        }
+        NSDictionary *dic = self.menuSecondNameArray[indexPath.section].dataArray[indexPath.row];
+        cell.menuName = dic[@"title"];
+        cell.imageView.image = dic[@"imgName"];
+        [cell setBadgeNum:[dic[@"title"] isEqualToString:@"站内信"] && unreadMsg.length ? unreadMsg.intValue : 0];
         [cell setBackgroundColor: [UIColor clearColor]];
         cell.layer.borderWidth = 0.5;
         cell.layer.borderColor = UGRGBColor(231, 230, 230).CGColor;
@@ -506,23 +493,13 @@ BOOL isOk = NO;
     }
     else  {
         UGMineMenuCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UGMineMenuCollectionViewCell" forIndexPath:indexPath];
-        NSDictionary *dic = [self.menuNameArray objectAtIndex:indexPath.row];
-        
-        [cell setMenuName: [dic objectForKey:@"title"]];
-        
-        cell.imageView.image = [dic objectForKey:@"imgName"];
-        
-        if ([[dic objectForKey:@"title"] isEqualToString:@"站内信"]) {
-            if (![CMCommon stringIsNull:unreadMsg])
-                [cell setBadgeNum:[unreadMsg intValue]];
-        }
-        else{
-            [cell setBadgeNum:0];
-        }
-        
+        NSDictionary *dic = self.menuNameArray[indexPath.row];
+        cell.menuName = dic[@"title"];
+        cell.imageView.image = dic[@"imgName"];
+        [cell setBadgeNum:[dic[@"title"] isEqualToString:@"站内信"] && unreadMsg.length ? unreadMsg.intValue : 0];
         [cell setBackgroundColor: [UIColor clearColor]];
         cell.layer.borderWidth = 0.5;
-        cell.layer.borderColor = [[[UIColor whiteColor] colorWithAlphaComponent:0.9] CGColor];
+        cell.layer.borderColor = [Skin1.skitType isEqualToString:@"黑色模板"] ? [UIColor clearColor].CGColor : [[[UIColor whiteColor] colorWithAlphaComponent:0.9] CGColor];
         return cell;
     }
     return nil;
