@@ -44,6 +44,11 @@
 @property (weak, nonatomic) IBOutlet UIImageView *myQrcode1ImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *myQrcode2ImageView;
 
+@property (weak, nonatomic) IBOutlet UIView *cellBgView;         /**<   我的cellbg*/
+@property (weak, nonatomic) IBOutlet UILabel *myLabel;          /**<   我的 */
+@property (weak, nonatomic) IBOutlet UIView *cell2BgView;         /**<   我的推荐cellbg*/
+@property (weak, nonatomic) IBOutlet UILabel *myIDLabel;          /**<   我的推荐 */
+
 @end
 
 @implementation UGPromotionInfoController
@@ -60,6 +65,14 @@
     self.urlCopy2Button.layer.cornerRadius = 3;
     self.urlCopy2Button.layer.masksToBounds = YES;
      [self.urlCopy2Button setBackgroundColor:Skin1.navBarBgColor];
+    
+    [self.cellBgView setBackgroundColor:Skin1.textColor4];
+    [self.myLabel setTextColor:Skin1.textColor1];
+    [self.userNameLabel setTextColor:Skin1.textColor1];
+    
+    [self.cell2BgView setBackgroundColor:Skin1.textColor4];
+    [self.myIDLabel setTextColor:Skin1.textColor1];
+    [self.promotionIdlabel setTextColor:Skin1.textColor1];
     
     self.userNameLabel.text = @"";
     self.promotionIdlabel.text =@"";

@@ -134,7 +134,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="erweima" translatesAutoresizingMaskIntoConstraints="NO" id="P56-fu-vzD">
-                                                    <rect key="frame" x="127" y="114" width="160" height="160"/>
+                                                    <rect key="frame" x="126.99999999999999" y="113.99999999999999" width="160.00000000000003" height="160.00000000000003"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="160" id="85f-cR-moJ"/>
                                                         <constraint firstAttribute="height" constant="160" id="Q6d-Pb-2nk"/>
@@ -209,7 +209,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="erweima" translatesAutoresizingMaskIntoConstraints="NO" id="5nO-7N-HNL">
-                                                    <rect key="frame" x="127" y="114" width="160" height="160"/>
+                                                    <rect key="frame" x="126.99999999999999" y="113.99999999999999" width="160.00000000000003" height="160.00000000000003"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="160" id="02d-mg-5Gy"/>
                                                         <constraint firstAttribute="width" constant="160" id="cVH-rC-jha"/>
@@ -369,9 +369,13 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="cell2BgView" destination="Xaa-ca-iJ3" id="xdr-Vo-Rnp"/>
+                        <outlet property="cellBgView" destination="7Gi-R2-N7B" id="O3u-Kl-ezN"/>
                         <outlet property="headerImageView" destination="XhW-bo-bWz" id="U4z-T9-1c5"/>
                         <outlet property="incomeLabel" destination="VUO-HK-SKv" id="tlM-J1-K5A"/>
                         <outlet property="monthMembers" destination="B6p-7j-9R6" id="AZn-8F-Wi3"/>
+                        <outlet property="myIDLabel" destination="nMb-Ou-rsD" id="1hl-fW-xOt"/>
+                        <outlet property="myLabel" destination="hup-2M-InL" id="Jzl-Ue-y7Z"/>
                         <outlet property="myQrcode1ImageView" destination="P56-fu-vzD" id="Mia-o1-XSa"/>
                         <outlet property="myQrcode2ImageView" destination="5nO-7N-HNL" id="snW-t1-TRq"/>
                         <outlet property="promotionIdlabel" destination="Vt3-uR-eWE" id="3rc-vi-C4a"/>
