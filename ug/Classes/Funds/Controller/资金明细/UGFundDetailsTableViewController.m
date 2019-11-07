@@ -140,7 +140,7 @@ static NSString *fundDetailsCellid = @"UGFundDetailsCell";
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UGScreenW, 44)];
-    headerView.backgroundColor = [UIColor whiteColor];
+    headerView.backgroundColor = Skin1.textColor4;
     UILabel *timeLable = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, UGScreenW / 4, 44)];
     timeLable.text = @"日期";
     timeLable.textColor = [UIColor blackColor];
@@ -149,20 +149,20 @@ static NSString *fundDetailsCellid = @"UGFundDetailsCell";
     
     UILabel *amountLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(timeLable.frame), 0,UGScreenW / 4, 44)];
     amountLabel.text = @"金额";
-    amountLabel.textColor = [UIColor blackColor];
+    amountLabel.textColor = Skin1.textColor1;
     amountLabel.textAlignment = NSTextAlignmentCenter;
     amountLabel.font = [UIFont systemFontOfSize:14 weight:UIFontWeightHeavy];
     
     UILabel *stateLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(amountLabel.frame), 0, UGScreenW / 4, 44)];
     stateLabel.text = @"类型";
     stateLabel.textAlignment = NSTextAlignmentCenter;
-    stateLabel.textColor = [UIColor blackColor];
+    stateLabel.textColor = Skin1.textColor1;
     stateLabel.font = [UIFont systemFontOfSize:14 weight:UIFontWeightHeavy];
     
     UILabel *balanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(stateLabel.frame), 0, UGScreenW / 4, 44)];
     balanceLabel.text = @"余额";
     balanceLabel.textAlignment = NSTextAlignmentCenter;
-    balanceLabel.textColor = [UIColor blackColor];
+    balanceLabel.textColor = Skin1.textColor1;
     balanceLabel.font = [UIFont systemFontOfSize:14 weight:UIFontWeightHeavy];
     
 //    UILabel *line = [[UILabel alloc] initWithFrame:CGRectMake(15, 43, UGScreenW, 0.5)];

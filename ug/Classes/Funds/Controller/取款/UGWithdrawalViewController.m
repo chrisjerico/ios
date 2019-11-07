@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *pwdTextF;
 @property (weak, nonatomic) IBOutlet UILabel *cardInfoLabel;
 @property (weak, nonatomic) IBOutlet UILabel *limitLabel;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;   /**<   当前到账银行卡*/
 
 @end
 
@@ -31,7 +32,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    self.view.backgroundColor = Skin1.bgColor;
+    self.view.backgroundColor = Skin1.textColor4;
+    [self.limitLabel setTextColor:Skin1.textColor1];
+    [self.titleLabel setTextColor:Skin1.textColor1];
+    [self.amountTextF setTextColor:Skin1.textColor1];
+    // "通过KVC修改占位文字的颜色"
+    [self.amountTextF setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
+    [self.cardInfoLabel setTextColor:Skin1.textColor3];
+    [self.pwdTextF setTextColor:Skin1.textColor1];
+    // "通过KVC修改占位文字的颜色"
+    [self.pwdTextF setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
+    
+    
     self.commitButton.layer.cornerRadius = 3;
     self.commitButton.layer.masksToBounds = YES;
     [self.commitButton setBackgroundColor:Skin1.navBarBgColor];
@@ -41,6 +53,8 @@
     [self.bandCardButton setBackgroundColor:Skin1.navBarBgColor];
     self.amountTextF.delegate = self;
     self.pwdTextF.delegate = self;
+    
+    
 
     UGUserModel *user = [UGUserModel currentUser];
     if (!user.hasBankCard) {

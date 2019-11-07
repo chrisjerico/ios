@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Xjh-QV-lKb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Xjh-QV-lKb">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -146,7 +146,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="HBj-8F-aRa" firstAttribute="top" secondItem="oN9-be-qaU" secondAttribute="bottom" id="72N-d7-WNC"/>
                                     <constraint firstItem="T03-E2-gIY" firstAttribute="trailing" secondItem="HBj-8F-aRa" secondAttribute="trailing" id="B6R-bq-4XV"/>
@@ -163,7 +163,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.90598434209823608" green="0.90195208787918091" blue="0.90196138620376587" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="yC0-wx-rcd" firstAttribute="top" secondItem="JVk-5x-bc7" secondAttribute="top" id="BRb-Vk-a2t"/>
                             <constraint firstItem="JVk-5x-bc7" firstAttribute="trailing" secondItem="yC0-wx-rcd" secondAttribute="trailing" constant="5" id="KfZ-F4-HrB"/>
@@ -180,6 +180,7 @@
                         <outlet property="commitButton" destination="joU-SE-sho" id="uFw-wa-DvG"/>
                         <outlet property="limitLabel" destination="AtA-d6-tFx" id="KM1-4n-3Zk"/>
                         <outlet property="pwdTextF" destination="Brl-cT-GNM" id="CUH-Hr-zui"/>
+                        <outlet property="titleLabel" destination="vBk-Yr-wB3" id="0Lc-r6-EFg"/>
                         <outlet property="withdrawalView" destination="yC0-wx-rcd" id="NuE-kw-ZQh"/>
                     </connections>
                 </viewController>
