@@ -10,6 +10,7 @@
 
 @interface UGGoogleAuthenticationThirdViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *myTextField;
+@property (weak, nonatomic) IBOutlet UILabel *myTitle;
 @property (weak, nonatomic) IBOutlet UIButton *returnButton;
 @property (weak, nonatomic) IBOutlet UIButton *nextButton;
 @end
@@ -23,7 +24,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = @"二次验证";
-    
+    [self.view setBackgroundColor:Skin1.textColor4];
+    [self.myTitle setTextColor:Skin1.textColor1];
+    [self.myTextField setTextColor:Skin1.textColor1];
+    // "通过KVC修改占位文字的颜色"
+    [self.myTextField setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
+    [self.returnButton setBackgroundColor:Skin1.navBarBgColor];
+    [self.nextButton setBackgroundColor:Skin1.navBarBgColor];
     [IQKeyboardManager.sharedManager.disabledDistanceHandlingClasses addObject:[self class]];
     
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {

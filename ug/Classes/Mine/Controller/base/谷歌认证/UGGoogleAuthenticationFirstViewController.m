@@ -28,8 +28,8 @@
         
         [self skin];
     });
-    
-    
+    [self.view setBackgroundColor:Skin1.textColor4];
+    [self.myTitle setTextColor:Skin1.textColor1];
     [self getUserInfo];
    
 }

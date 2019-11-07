@@ -57,7 +57,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = Skin1.textColor1;
 //    self.view.backgroundColor = [UIColor redColor];
     switch (self.tableType) {
         case PromotionTableTypeMember://会员管理
@@ -113,6 +113,7 @@
             [self.tableView registerNib:[UINib nibWithNibName:@"UGPromotion6rowButtonTableViewCell" bundle:nil] forCellReuseIdentifier:@"UGPromotion6rowButtonTableViewCell"];
         self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 150, 0);
         self.tableView.rowHeight = 44;
+        [self.tableView setBackgroundColor: Skin1.textColor4];
     }
     [self.view addSubview:_tableView];
     
@@ -236,7 +237,7 @@
 - (UIView *)titleView {
     if (_titleView == nil) {
         _titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UGScreenW, 44)];
-        _titleView.backgroundColor = [UIColor clearColor];
+        _titleView.backgroundColor = Skin1.textColor4;
         for (int i = 0; i < self.titleArray.count; i++) {
             UIView *view = [[UIView alloc] initWithFrame:CGRectMake(UGScreenW / self.titleArray.count * i, 0, UGScreenW / self.titleArray.count, 44)];
             
@@ -248,9 +249,15 @@
                     self.levelButton = button;
                     [view addSubview:button];
                     UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(view.width - 18, (view.height - 18) / 2, 18, 18)];
-                    imgView.image = [UIImage imageNamed:@"jiantou"];
                     [view addSubview:imgView];
                     self.arrowImageView = imgView;
+                    
+                    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+                        imgView.image = [UIImage imageNamed:@"baijiantou"];
+                    } else {
+                        imgView.image = [UIImage imageNamed:@"jiantou1"];
+                    }
+                
                 }
             }
             
@@ -258,7 +265,7 @@
             UILabel *titleLabel = [[UILabel alloc] initWithFrame:view.bounds];
             titleLabel.text = self.titleArray[i];
             titleLabel.textAlignment = NSTextAlignmentCenter;
-            titleLabel.textColor = [UIColor blackColor];
+            titleLabel.textColor = Skin1.textColor1;
             titleLabel.font = [UIFont systemFontOfSize:14 weight:UIFontWeightHeavy];
             [view addSubview:titleLabel];
             

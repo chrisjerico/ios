@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *payPwdTextF;
 @property (weak, nonatomic) IBOutlet UITextField *checkPayPwdTextF;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
+@property (strong, nonatomic) IBOutlet UIView *bgView;
 
 
 @end
@@ -35,6 +36,22 @@
     self.loginPwdTextF.delegate = self;
     self.payPwdTextF.delegate = self;
     self.checkPayPwdTextF.delegate = self;
+    
+    FastSubViewCode(self.view);
+   [_bgView setBackgroundColor:Skin1.textColor4];
+   [subView(@"背景view") setBackgroundColor:Skin1.textColor4];
+   [subLabel(@"旧取款密码label") setTextColor:Skin1.textColor1];
+   [subLabel(@"旧取款密码txt") setTextColor:Skin1.textColor1];
+   // "通过KVC修改占位文字的颜色"
+   [subLabel(@"旧取款密码txt") setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
+   [subLabel(@"新密码label") setTextColor:Skin1.textColor1];
+   [subLabel(@"新密码txt") setTextColor:Skin1.textColor1];
+   // "通过KVC修改占位文字的颜色"
+   [subLabel(@"新密码txt") setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
+   [subLabel(@"确认新密码label") setTextColor:Skin1.textColor1];
+   [subLabel(@"确认新密码txt") setTextColor:Skin1.textColor1];
+   // "通过KVC修改占位文字的颜色"
+   [subLabel(@"确认新密码txt") setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {

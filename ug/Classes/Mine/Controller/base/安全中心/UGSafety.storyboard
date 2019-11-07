@@ -34,6 +34,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="原登录密码label"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入原登录密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="yja-ma-yeX">
                                                 <rect key="frame" x="15" y="26.5" width="384" height="40"/>
@@ -42,9 +45,12 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="原登录密码txt"/>
+                                                </userDefinedRuntimeAttributes>
                                             </textField>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="jnE-8T-Wfb" firstAttribute="leading" secondItem="jiJ-Ez-djB" secondAttribute="leading" constant="15" id="4M5-Mw-Gie"/>
                                             <constraint firstItem="WTl-8j-wNW" firstAttribute="leading" secondItem="jiJ-Ez-djB" secondAttribute="leading" constant="15" id="QOW-Ru-7J9"/>
@@ -72,6 +78,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="新密码label"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入新密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="sOi-nR-tFc">
                                                 <rect key="frame" x="15" y="26.5" width="384" height="40"/>
@@ -80,9 +89,12 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="新密码txt"/>
+                                                </userDefinedRuntimeAttributes>
                                             </textField>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="sOi-nR-tFc" secondAttribute="trailing" constant="15" id="C2g-fG-e2U"/>
                                             <constraint firstAttribute="height" constant="70" id="CJ3-Px-ZgW"/>
@@ -110,6 +122,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="确认新密码label"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请确认新密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="pOt-Io-PkH">
                                                 <rect key="frame" x="15" y="26.5" width="384" height="40"/>
@@ -118,9 +133,12 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="确认新密码txt"/>
+                                                </userDefinedRuntimeAttributes>
                                             </textField>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="ekt-7D-MeV" firstAttribute="top" secondItem="pOt-Io-PkH" secondAttribute="bottom" constant="3" id="9vm-N5-Nb8"/>
                                             <constraint firstAttribute="height" constant="70" id="C1m-pG-pfI"/>
@@ -148,7 +166,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="420" id="0iV-WJ-Pug"/>
                                     <constraint firstAttribute="trailing" secondItem="jiJ-Ez-djB" secondAttribute="trailing" id="1Ri-yy-pri"/>
@@ -165,6 +183,9 @@
                                     <constraint firstAttribute="trailing" secondItem="1Ur-j9-AZd" secondAttribute="trailing" constant="40" id="qnh-TZ-b12"/>
                                     <constraint firstItem="1Ur-j9-AZd" firstAttribute="centerX" secondItem="k1B-NZ-dYa" secondAttribute="centerX" id="rUq-Ut-bMx"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="背景view"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -174,8 +195,12 @@
                             <constraint firstItem="hUh-Ue-etr" firstAttribute="trailing" secondItem="k1B-NZ-dYa" secondAttribute="trailing" id="rFJ-WP-zdH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hUh-Ue-etr"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="大背景view"/>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <connections>
+                        <outlet property="bgView" destination="5a9-Om-6rC" id="ehX-Ti-m0q"/>
                         <outlet property="checkLoginPwdTextF" destination="pOt-Io-PkH" id="22E-WZ-wZ7"/>
                         <outlet property="loginPwdTextF" destination="sOi-nR-tFc" id="ILZ-GI-tVD"/>
                         <outlet property="oldLoginPwdTextF" destination="yja-ma-yeX" id="1kg-oC-GBv"/>
@@ -212,6 +237,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="旧取款密码label"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入旧取款密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="F7b-7W-FpJ">
                                                 <rect key="frame" x="15" y="26.5" width="384" height="40"/>
@@ -225,10 +253,11 @@
                                                     <userDefinedRuntimeAttribute type="number" keyPath="限制长度">
                                                         <integer key="value" value="4"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="旧取款密码txt"/>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="bow-Yh-vhf" firstAttribute="leading" secondItem="oCC-EQ-V0H" secondAttribute="leading" constant="15" id="5bi-Bk-VGv"/>
                                             <constraint firstAttribute="height" constant="70" id="9HB-hp-MTF"/>
@@ -256,6 +285,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="新密码label"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入新密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="uGP-dt-hq4">
                                                 <rect key="frame" x="15" y="26.5" width="384" height="40"/>
@@ -269,10 +301,11 @@
                                                     <userDefinedRuntimeAttribute type="number" keyPath="限制长度">
                                                         <integer key="value" value="4"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="新密码txt"/>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="iSD-e4-o68" secondAttribute="bottom" id="1YJ-XX-1zj"/>
                                             <constraint firstAttribute="trailing" secondItem="uGP-dt-hq4" secondAttribute="trailing" constant="15" id="3FS-H7-Ldg"/>
@@ -300,6 +333,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="确认新密码label"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请确认新密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="4Aq-Hm-XeJ">
                                                 <rect key="frame" x="15" y="26.5" width="384" height="40"/>
@@ -313,10 +349,11 @@
                                                     <userDefinedRuntimeAttribute type="number" keyPath="限制长度">
                                                         <integer key="value" value="4"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="确认新密码txt"/>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="4Aq-Hm-XeJ" secondAttribute="trailing" constant="15" id="4Ki-Ou-ZPQ"/>
                                             <constraint firstItem="zo2-Sn-Epc" firstAttribute="leading" secondItem="OVF-GM-F7g" secondAttribute="leading" constant="15" id="Ish-6N-OSV"/>
@@ -361,6 +398,9 @@
                                     <constraint firstItem="NzP-gt-dWR" firstAttribute="centerX" secondItem="AXg-ML-GKa" secondAttribute="centerX" id="msn-cN-Wog"/>
                                     <constraint firstItem="OVF-GM-F7g" firstAttribute="top" secondItem="Vj8-dY-Phj" secondAttribute="bottom" constant="20" id="xe3-NO-rcI"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="背景view"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -372,6 +412,7 @@
                         <viewLayoutGuide key="safeArea" id="TmT-M1-RyG"/>
                     </view>
                     <connections>
+                        <outlet property="bgView" destination="fba-en-uVk" id="z89-51-Jbk"/>
                         <outlet property="checkPayPwdTextF" destination="4Aq-Hm-XeJ" id="Eiz-o3-WRR"/>
                         <outlet property="loginPwdTextF" destination="F7b-7W-FpJ" id="9j2-Ce-pju"/>
                         <outlet property="payPwdTextF" destination="uGP-dt-hq4" id="NKY-Qb-C9p"/>
@@ -398,6 +439,9 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="常用登录地label"/>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dli-uq-HXf">
                                         <rect key="frame" x="15" y="76" width="384" height="44"/>
@@ -435,7 +479,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="bottom" secondItem="osP-k1-1o3" secondAttribute="bottom" id="04x-v1-nCU"/>
                                                     <constraint firstItem="osP-k1-1o3" firstAttribute="top" secondItem="JWU-h0-H8k" secondAttribute="top" id="6D2-HN-2kf"/>
@@ -484,7 +528,7 @@
                                                         </constraints>
                                                     </imageView>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="ccV-Ls-Rdd" firstAttribute="leading" secondItem="NeC-Rr-mHd" secondAttribute="leading" constant="5" id="2XJ-Fm-qF6"/>
                                                     <constraint firstAttribute="trailing" secondItem="XYh-b8-sQY" secondAttribute="trailing" id="7C3-o6-XPi"/>
@@ -532,7 +576,7 @@
                                                         </constraints>
                                                     </imageView>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="Jza-xJ-kyf" firstAttribute="leading" secondItem="Qed-SV-5VU" secondAttribute="leading" constant="5" id="DWN-t5-zZZ"/>
                                                     <constraint firstAttribute="trailing" secondItem="9Ad-V3-EDD" secondAttribute="trailing" id="FDN-Le-Awj"/>
@@ -548,7 +592,7 @@
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="Qed-SV-5VU" firstAttribute="top" secondItem="dli-uq-HXf" secondAttribute="top" id="08W-gN-VDZ"/>
                                             <constraint firstItem="NeC-Rr-mHd" firstAttribute="height" secondItem="JWU-h0-H8k" secondAttribute="height" id="4FQ-9n-Mu7"/>
@@ -589,9 +633,12 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="已添加label"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="UoR-C9-1DS"/>
                                             <constraint firstItem="mTC-QS-B1V" firstAttribute="leading" secondItem="ggP-av-EAF" secondAttribute="leading" id="bfh-gg-jU6"/>
@@ -614,6 +661,9 @@
                                     <constraint firstAttribute="trailing" secondItem="dli-uq-HXf" secondAttribute="trailing" constant="15" id="oEi-Ab-4WH"/>
                                     <constraint firstAttribute="trailing" secondItem="Xsl-Ro-Ajm" secondAttribute="trailing" constant="40" id="yLG-yx-zzu"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="背景view"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -626,6 +676,7 @@
                     </view>
                     <connections>
                         <outlet property="addressListView" destination="ggP-av-EAF" id="rNo-F6-5gr"/>
+                        <outlet property="bgView" destination="6pE-Qh-7KU" id="EoT-fO-Ie3"/>
                         <outlet property="cityArrow" destination="wT5-pQ-2Hl" id="ejo-eK-dMk"/>
                         <outlet property="cityLabel" destination="Jza-xJ-kyf" id="aj1-Dn-aZk"/>
                         <outlet property="cityView" destination="Qed-SV-5VU" id="da5-16-1Qf"/>

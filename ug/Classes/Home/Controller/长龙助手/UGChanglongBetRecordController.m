@@ -41,6 +41,7 @@ static NSString *changlongBetRecordCellId = @"UGChanglongBetRecrodCell";
     [button setTitleColor:Skin1.textColor4 forState:UIControlStateNormal];
     [button addTarget:self action:@selector(showBetRrecordList) forControlEvents:UIControlEventTouchUpInside];
     [footerVC addSubview:button];
+    [button makeRoundedCorner:5];
     self.tableView.tableFooterView = footerVC;
     WeakSelf
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{

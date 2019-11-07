@@ -12,6 +12,9 @@
 #import "UGFeedbackTableViewCell.h"
 #import "UGMessageModel.h"
 @interface UGFeedBackRecordController ()<UITableViewDelegate,UITableViewDataSource,YBPopupMenuDelegate>
+
+@property (strong, nonatomic) IBOutlet UIView *bgView;
+
 @property (weak, nonatomic) IBOutlet UIImageView *dateArrow;
 @property (weak, nonatomic) IBOutlet UIImageView *stateArrow;
 @property (weak, nonatomic) IBOutlet UIImageView *typeArrow;
@@ -22,6 +25,13 @@
 @property (weak, nonatomic) IBOutlet UIButton *dateButton;
 @property (weak, nonatomic) IBOutlet UIButton *stateButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property (weak, nonatomic) IBOutlet UILabel *ktypeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *kstateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *kConternLabel;
+
+
+
 @property (nonatomic, strong) YBPopupMenu *datePopView;
 @property (nonatomic, strong) YBPopupMenu *statePopView;
 @property (nonatomic, strong) YBPopupMenu *typePopView;
@@ -54,6 +64,26 @@ static int size = 20;
         
         [self skin];
     });
+    
+    [self.bgView setBackgroundColor:Skin1.textColor4];
+    [self.dateLabel setTextColor:Skin1.textColor1];
+    [self.stateLabel setTextColor:Skin1.textColor1];
+    [self.typeLabel setTextColor:Skin1.textColor1];
+    [self.ktypeLabel setTextColor:Skin1.textColor1];
+    [self.kstateLabel setTextColor:Skin1.textColor1];
+    [self.kConternLabel setTextColor:Skin1.textColor1];
+    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+        _dateArrow.image =  [UIImage imageNamed:@"baijiantou"];
+        _stateArrow.image =  [UIImage imageNamed:@"baijiantou"];
+        _typeArrow.image =  [UIImage imageNamed:@"baijiantou"];
+
+    } else {
+        _dateArrow.image =  [UIImage imageNamed:@"jiantou1"];
+        _stateArrow.image =  [UIImage imageNamed:@"jiantou1"];
+        _typeArrow.image =  [UIImage imageNamed:@"jiantou1"];
+    }
+    
+    
     self.navigationItem.title = @"反馈记录";
     self.pageSize = size;
     self.pageNumber = page;
@@ -62,6 +92,7 @@ static int size = 20;
     self.tableView.rowHeight = 60;
     self.tableView.estimatedSectionHeaderHeight = 0;
     self.tableView.estimatedSectionFooterHeight = 0;
+    [self.tableView setBackgroundColor:Skin1.textColor4];
     self.stateArray = @[@"全部",@"已回复",@"待回复"].mutableCopy;
     self.typeArray = @[@"全部",@"建议反馈",@"投诉建议"].mutableCopy;
     self.dateLabel.text = self.dateArray.firstObject;

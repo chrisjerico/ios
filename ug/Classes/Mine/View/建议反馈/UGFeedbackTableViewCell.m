@@ -19,6 +19,10 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    [self.contentView setBackgroundColor:Skin1.textColor4];
+    [self.typeLabel setTextColor:Skin1.textColor1];
+    [self.statusLabel setTextColor:Skin1.textColor1];
+    [self.contentLabel setTextColor:Skin1.textColor1];
 }
 
 - (void)setItem:(UGMessageModel *)item {

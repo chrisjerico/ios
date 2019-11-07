@@ -37,6 +37,7 @@
 @property (nonatomic, strong) NSMutableArray <UGLoginAddressModel *> *loginAddressArray;
 @property (nonatomic, assign) NSInteger countryIndex;
 
+@property (weak, nonatomic) IBOutlet UIView *bgView;
 
 @end
 
@@ -57,6 +58,27 @@ static NSString *addressCellId = @"UGAddressCollectionViewCell";
     self.submitButton.layer.cornerRadius = 3;
     self.submitButton.layer.masksToBounds = YES;
     [self.submitButton setBackgroundColor:Skin1.navBarBgColor];
+    
+     FastSubViewCode(self.view);
+    [_bgView setBackgroundColor:Skin1.textColor4];
+    [subView(@"背景view") setBackgroundColor:Skin1.textColor4];
+    [subLabel(@"常用登录地label") setTextColor:Skin1.textColor1];
+    [subLabel(@"已添加label") setTextColor:Skin1.textColor1];
+    [_countryLabel setTextColor:Skin1.textColor1];
+    [_provinceLabel setTextColor:Skin1.textColor1];
+    [_cityLabel setTextColor:Skin1.textColor1];
+    
+    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+        _countryArrow.image =  [UIImage imageNamed:@"baijiantou"];
+        _provinceArrow.image =  [UIImage imageNamed:@"baijiantou"];
+        _cityArrow.image =  [UIImage imageNamed:@"baijiantou"];
+    } else {
+        _countryArrow.image =  [UIImage imageNamed:@"jiantou1"];
+        _provinceArrow.image =  [UIImage imageNamed:@"jiantou1"];
+        _cityArrow.image =  [UIImage imageNamed:@"jiantou1"];
+    }
+    
+    
     self.countryArray = @[@"中国",@"国外"];
     self.countryIndex = 0;
     NSString *path = [[NSBundle mainBundle] pathForResource:@"address" ofType:@"json"];
@@ -289,7 +311,7 @@ static NSString *addressCellId = @"UGAddressCollectionViewCell";
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(60, 0, self.addressListView.width - 65, self.addressListView.height) collectionViewLayout:layout];
-        _collectionView.backgroundColor = [UIColor whiteColor];
+        _collectionView.backgroundColor = Skin1.textColor4;
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         [_collectionView registerNib:[UINib nibWithNibName:@"UGAddressCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:addressCellId];

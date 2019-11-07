@@ -10,6 +10,10 @@
 #import "YBPopupMenu.h"
 
 @interface UGWriteMessageViewController ()<UITextViewDelegate,YBPopupMenuDelegate>
+
+@property (strong, nonatomic) IBOutlet UIView *bgView;
+
+@property (weak, nonatomic) IBOutlet UIView *bg2View;
 @property (weak, nonatomic) IBOutlet UILabel *messageTypeLabel;
 @property (weak, nonatomic) IBOutlet UITextView *contentTextView;
 @property (weak, nonatomic) IBOutlet UILabel *numberLabel;
@@ -30,7 +34,14 @@
     self.contentTextView.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.contentTextView.layer.borderWidth = 0.8;
     self.contentTextView.delegate = self;
-    [self.view setBackgroundColor: [UIColor whiteColor]];
+    [self.bgView setBackgroundColor: Skin1.textColor4];
+    [self.bg2View setBackgroundColor: Skin1.textColor4];
+    [_messageTypeLabel setTextColor:Skin1.textColor1];
+    [_contentTextView setTextColor:Skin1.textColor1];
+    [_numberLabel setTextColor:Skin1.textColor3];
+    [_placeholderLabel setTextColor:Skin1.textColor3];
+    
+    
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         
         [self skin];

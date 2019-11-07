@@ -32,6 +32,12 @@
         
         [self skin];
     });
+    
+    FastSubViewCode(self.view);
+    [self.view setBackgroundColor:Skin1.textColor4];
+    [subLabel(@"标题1") setTextColor:Skin1.textColor1];
+    [subLabel(@"标题2") setTextColor:Skin1.textColor1];
+    [_numberLabel setTextColor:Skin1.textColor1];
     [self secureGaCaptchaWithGen];
 }
 -(void)viewDidLayoutSubviews{

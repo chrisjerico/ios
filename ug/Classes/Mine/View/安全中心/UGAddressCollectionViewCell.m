@@ -10,6 +10,7 @@
 #import "UGLoginAddressModel.h"
 @interface UGAddressCollectionViewCell ()
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+@property (weak, nonatomic) IBOutlet UIButton *btn;
 
 @end
 
@@ -20,7 +21,14 @@
     // Initialization code
     self.layer.cornerRadius = 15;
     self.layer.masksToBounds = YES;
-      [self setBackgroundColor: Skin1.cellBgColor];
+
+    [self setBackgroundColor: Skin1.textColor1];
+    [_addressLabel setTextColor:Skin1.textColor4];
+    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+        [_btn setImage:[UIImage imageNamed:@"BMcha"] forState:(UIControlStateNormal)];
+    } else {
+        [_btn setImage:[UIImage imageNamed:@"guanbi"] forState:(UIControlStateNormal)];
+    }
     
 }
 
