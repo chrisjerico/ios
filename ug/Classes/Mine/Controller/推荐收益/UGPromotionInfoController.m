@@ -48,7 +48,21 @@
 @property (weak, nonatomic) IBOutlet UILabel *myLabel;          /**<   我的 */
 @property (weak, nonatomic) IBOutlet UIView *cell2BgView;         /**<   我的推荐cellbg*/
 @property (weak, nonatomic) IBOutlet UILabel *myIDLabel;          /**<   我的推荐 */
-
+@property (weak, nonatomic) IBOutlet UIView *cell3BgView;         /**<   首页推荐cellbg*/
+@property (weak, nonatomic) IBOutlet UILabel *homeLabel;          /**<   首页推荐 */
+@property (weak, nonatomic) IBOutlet UILabel *twowmLabel;          /**<   2微码 */
+@property (weak, nonatomic) IBOutlet UIView *cell4BgView;         /**<   注册推荐cellbg*/
+@property (weak, nonatomic) IBOutlet UILabel *registeredLabel;          /**<   注册推荐 */
+@property (weak, nonatomic) IBOutlet UILabel *two2wmLabel;          /**<   2微码2 */
+@property (weak, nonatomic) IBOutlet UIView *cell5BgView;         /**<   佣金cellbg*/
+@property (weak, nonatomic) IBOutlet UILabel *moneyLabel;          /**<   佣金 */
+@property (weak, nonatomic) IBOutlet UIView *cell6BgView;         /**<   本月推荐cellbg*/
+@property (weak, nonatomic) IBOutlet UILabel *monthLabel;          /**<   本月 */
+@property (weak, nonatomic) IBOutlet UIView *cell7BgView;         /**<   本月推荐会员cellbg*/
+@property (weak, nonatomic) IBOutlet UILabel *monthUserLabel;          /**<   本月推荐会员 */
+@property (weak, nonatomic) IBOutlet UIView *cell8BgView;         /**<   推荐会员总计cellbg*/
+@property (weak, nonatomic) IBOutlet UILabel *countLabel;          /**<  推荐会员总计 */
+@property (weak, nonatomic) IBOutlet UIView *cell9BgView;         /**<  最下面cellbg*/
 @end
 
 @implementation UGPromotionInfoController
@@ -56,7 +70,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = Skin1.textColor4;
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 90, 0);
     self.urlCopy1Button.layer.cornerRadius = 3;
     self.urlCopy1Button.layer.masksToBounds = YES;
@@ -73,6 +87,33 @@
     [self.cell2BgView setBackgroundColor:Skin1.textColor4];
     [self.myIDLabel setTextColor:Skin1.textColor1];
     [self.promotionIdlabel setTextColor:Skin1.textColor1];
+    
+    [self.cell3BgView setBackgroundColor:Skin1.textColor4];
+    [self.homeLabel setTextColor:Skin1.textColor1];
+    [self.twowmLabel setTextColor:Skin1.textColor1];
+    
+    [self.cell4BgView setBackgroundColor:Skin1.textColor4];
+    [self.registeredLabel setTextColor:Skin1.textColor1];
+    [self.two2wmLabel setTextColor:Skin1.textColor1];
+    
+    [self.cell5BgView setBackgroundColor:Skin1.CLBgColor];
+    [self.moneyLabel setTextColor:Skin1.textColor1];
+    [self.sectionLabel4 setTextColor:Skin1.textColor1];
+    
+    [self.cell6BgView setBackgroundColor:Skin1.textColor4];
+    [self.monthLabel setTextColor:Skin1.textColor1];
+    [self.incomeLabel setTextColor:Skin1.textColor1];
+    
+    [self.cell7BgView setBackgroundColor:Skin1.textColor4];
+    [self.monthUserLabel setTextColor:Skin1.textColor1];
+    [self.monthMembers setTextColor:Skin1.textColor1];
+    
+    [self.cell8BgView setBackgroundColor:Skin1.textColor4];
+    [self.countLabel setTextColor:Skin1.textColor1];
+    [self.totalMembers setTextColor:Skin1.textColor1];
+    
+    [self.cell9BgView setBackgroundColor:Skin1.CLBgColor];
+    [self.sectionLabel4 setTextColor:Skin1.textColor1];
     
     self.userNameLabel.text = @"";
     self.promotionIdlabel.text =@"";

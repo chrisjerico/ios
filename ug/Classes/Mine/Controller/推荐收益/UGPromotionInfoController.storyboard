@@ -22,7 +22,7 @@
                         <view key="tableFooterView" contentMode="scaleToFill" id="ebK-lA-jpc">
                             <rect key="frame" x="0.0" y="1207" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
                         <sections>
                             <tableViewSection id="lrJ-Hv-Jg3">
@@ -134,7 +134,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="erweima" translatesAutoresizingMaskIntoConstraints="NO" id="P56-fu-vzD">
-                                                    <rect key="frame" x="126.99999999999999" y="113.99999999999999" width="160.00000000000003" height="160.00000000000003"/>
+                                                    <rect key="frame" x="127" y="114" width="160" height="160"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="160" id="85f-cR-moJ"/>
                                                         <constraint firstAttribute="height" constant="160" id="Q6d-Pb-2nk"/>
@@ -209,7 +209,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="erweima" translatesAutoresizingMaskIntoConstraints="NO" id="5nO-7N-HNL">
-                                                    <rect key="frame" x="126.99999999999999" y="113.99999999999999" width="160.00000000000003" height="160.00000000000003"/>
+                                                    <rect key="frame" x="127" y="114" width="160" height="160"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="160" id="02d-mg-5Gy"/>
                                                         <constraint firstAttribute="width" constant="160" id="cVH-rC-jha"/>
@@ -370,10 +370,22 @@
                     </tableView>
                     <connections>
                         <outlet property="cell2BgView" destination="Xaa-ca-iJ3" id="xdr-Vo-Rnp"/>
+                        <outlet property="cell3BgView" destination="ecH-iT-Aww" id="Gv3-0v-Ygo"/>
+                        <outlet property="cell4BgView" destination="aZq-Is-6MT" id="0xN-Nt-5rT"/>
+                        <outlet property="cell5BgView" destination="JVJ-Kc-Ie2" id="TZa-cI-snr"/>
+                        <outlet property="cell6BgView" destination="Wxn-r3-bz0" id="0b1-ro-Ox3"/>
+                        <outlet property="cell7BgView" destination="zqt-9a-XCv" id="BBg-Z6-lfr"/>
+                        <outlet property="cell8BgView" destination="WwS-cE-sSF" id="T4c-qC-WQs"/>
+                        <outlet property="cell9BgView" destination="Ddf-K8-7Ae" id="qqF-EB-T1j"/>
                         <outlet property="cellBgView" destination="7Gi-R2-N7B" id="O3u-Kl-ezN"/>
+                        <outlet property="countLabel" destination="AxK-xS-VKX" id="gXM-GW-OLO"/>
                         <outlet property="headerImageView" destination="XhW-bo-bWz" id="U4z-T9-1c5"/>
+                        <outlet property="homeLabel" destination="t5s-XF-TvY" id="Yf1-HI-bQ3"/>
                         <outlet property="incomeLabel" destination="VUO-HK-SKv" id="tlM-J1-K5A"/>
+                        <outlet property="moneyLabel" destination="zXA-Om-f1T" id="ySU-bF-s4L"/>
+                        <outlet property="monthLabel" destination="QP0-nB-1mN" id="Z26-uZ-vE1"/>
                         <outlet property="monthMembers" destination="B6p-7j-9R6" id="AZn-8F-Wi3"/>
+                        <outlet property="monthUserLabel" destination="4G3-Xy-02T" id="dUi-Bc-gBK"/>
                         <outlet property="myIDLabel" destination="nMb-Ou-rsD" id="1hl-fW-xOt"/>
                         <outlet property="myLabel" destination="hup-2M-InL" id="Jzl-Ue-y7Z"/>
                         <outlet property="myQrcode1ImageView" destination="P56-fu-vzD" id="Mia-o1-XSa"/>
@@ -381,10 +393,13 @@
                         <outlet property="promotionIdlabel" destination="Vt3-uR-eWE" id="3rc-vi-C4a"/>
                         <outlet property="promotionUrlLabel" destination="moF-1T-Fkh" id="jFM-tx-K1B"/>
                         <outlet property="registerUrlLabel" destination="3lZ-2f-H5h" id="iTA-8N-AdM"/>
+                        <outlet property="registeredLabel" destination="LDy-Qo-kgt" id="DUM-Io-GB5"/>
                         <outlet property="sectionLabel3" destination="Dkm-gC-zrj" id="AKV-r5-ORe"/>
                         <outlet property="sectionLabel4" destination="bBS-0D-Nlx" id="hhk-X4-pM2"/>
                         <outlet property="tableView" destination="igE-W2-VWS" id="sco-41-kzL"/>
                         <outlet property="totalMembers" destination="2dP-7y-yod" id="5dp-AK-8IM"/>
+                        <outlet property="two2wmLabel" destination="mcU-Hl-dQb" id="NFT-o2-hO1"/>
+                        <outlet property="twowmLabel" destination="w56-B4-nDD" id="aDA-iZ-Lm6"/>
                         <outlet property="urlCopy1Button" destination="lMI-3l-wep" id="X8i-uh-HYt"/>
                         <outlet property="urlCopy2Button" destination="sA6-5L-mrh" id="Fhi-HH-frG"/>
                         <outlet property="userNameLabel" destination="acf-gB-Th4" id="Ez8-xH-5er"/>
