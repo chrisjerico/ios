@@ -16,8 +16,9 @@
 {
      UGBMHeaderView *headView;                /**<   导航头 */
 }
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property (weak, nonatomic) IBOutlet UICollectionView *myCollectionView;
-@property (nonatomic, strong) NSMutableArray *myDataArray;  /**<   数据源 */
+@property (nonatomic, strong) NSMutableArray <GameModel *> *dataArray;  /**<   数据源 */
 @end
 @implementation UGBMBrowseViewController
 
@@ -32,7 +33,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    _dataArray = UGNavigationController.browsingHistoryArray;
+    
     self.navigationItem.title = @"会员中心";
     self.fd_prefersNavigationBarHidden = YES;
     self.fd_interactivePopDisabled = true;
@@ -41,8 +43,9 @@
 
     //初始化
     [self initCollectionView];
-    [self organizData ];
     [self.myCollectionView reloadData];
+//    [_segmentedControl setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
+    
     
     FastSubViewCode(self.view);
     subView(@"状态栏背景色View").backgroundColor = Skin1.navBarBgColor;
@@ -75,41 +78,19 @@
 }
 
 #pragma mark UICollectionView datasource
-//collectionView有几个section
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    int sections = 1;
-    return sections;
-}
-//每个section有几个item
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    NSInteger rows = self.myDataArray.count;
-    return rows;
+    return self.dataArray.count;
 }
 
-//每个cell的具体内容
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UGGameTypeColletionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UGGameTypeColletionViewCell" forIndexPath:indexPath];
-    UGNextIssueModel * object = [self.myDataArray objectAtIndex:indexPath.row];
-    [cell.imgView sd_setImageWithURL:[NSURL URLWithString:object.pic] placeholderImage:[UIImage imageNamed:@"zwt"]];
-    cell.nameLabel.text = object.title;
-    [cell.hotImageView setHidden:YES];
-    [cell.hasSubSign setHidden:YES];
+    cell.item = self.dataArray[indexPath.row];
     return cell;
 }
 
-//cell size
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
    return CGSizeMake(UGScreenW/3-8, 110);
-}
-
-//item偏移
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(6, 5, 0, 5);
-}
-
-//行间距
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
-    return 0.f;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
@@ -117,36 +98,21 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
-
-    UGNextIssueModel *nextModel = _myDataArray[indexPath.row];
-    [NavController1 pushViewControllerWithNextIssueModel:nextModel];
+    [collectionView deselectItemAtIndexPath:indexPath animated:YES];
+    [NavController1 pushViewControllerWithGameModel:_dataArray[indexPath.row]];
 }
 
--(void)organizData{
-    _myDataArray = [NSMutableArray new];
-    for (int i = 0; i< UGAllNextIssueListModel.lotteryGamesArray.count; i++) {
-        UGAllNextIssueListModel *model = [UGAllNextIssueListModel.lotteryGamesArray objectAtIndex:i];
-        UGNextIssueModel * object = [model.list objectAtIndex:[CMCommon getRandomNumber:0 to:(int)(model.list.count-1)]];
-        [_myDataArray addObject:object];
-    }
-
-}
 - (IBAction)segmentedChanged:(id)sender {
     UISegmentedControl *sc = (UISegmentedControl*)sender;
     if (sc.selectedSegmentIndex == 0) {
         NSLog(@"最近浏览");
-        [self organizData ];
+        _dataArray = UGNavigationController.browsingHistoryArray;
         [self.myCollectionView reloadData];
-        
     } else {
         NSLog(@"最近活动");
-        [_myDataArray removeAllObjects];
+        _dataArray = nil;
         [self.myCollectionView reloadData];
-        [self.view makeToast:@"敬请期待！"
-                                                  duration:1.5
-                                                  position:CSToastPositionCenter];
-
+        [self.view makeToast:@"敬请期待！" duration:1.5 position:CSToastPositionCenter];
     }
 }
 

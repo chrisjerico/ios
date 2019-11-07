@@ -46,4 +46,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) UITextField *textField;
 @end
 
+
+@interface UISegmentedControl (IBInspectableUtils)
+@property (nonatomic) IBInspectable UIColor *textColor1;
+@end
+
 NS_ASSUME_NONNULL_END

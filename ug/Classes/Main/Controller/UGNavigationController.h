@@ -22,8 +22,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (UIViewController *)lastVC;
 
 
+@property (nonatomic, class, readonly) NSMutableArray <GameModel *> *browsingHistoryArray;
+
 // —————— 跳转游戏页面 ————————
-- (void)pushViewControllerWithGameModel:(GameModel *)gm;                /**<   跳转到彩票下注页，或内部功能页，或第三方游戏页，或游戏资料页 */
+- (BOOL)pushViewControllerWithGameModel:(GameModel *)gm;                /**<   跳转到彩票下注页，或内部功能页，或第三方游戏页，或游戏资料页 */
 - (BOOL)pushViewControllerWithNextIssueModel:(UGNextIssueModel *)nim;   /**<   跳转到彩票下注页 */
 - (BOOL)pushViewControllerWithLinkCategory:(NSInteger)linkCategory linkPosition:(NSInteger)linkPosition;    /**<   跳转到彩票下注页，或内部功能页 */
 @end

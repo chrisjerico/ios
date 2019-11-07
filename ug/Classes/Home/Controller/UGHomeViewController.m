@@ -85,52 +85,53 @@
 #import "SGBrowserView.h"
 
 @interface UGHomeViewController ()<SDCycleScrollViewDelegate,UUMarqueeViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
-@property (weak, nonatomic) IBOutlet UIScrollView *contentScrollView;           /**<   最外层的ScrollView */
-@property (weak, nonatomic) IBOutlet UIStackView *contentStackView;             /**<   最外层的StackView */
-@property (weak, nonatomic) IBOutlet UIView *bannerBgView;                          /**<   Banner */
-@property (weak, nonatomic) IBOutlet UGGameNavigationView *gameNavigationView;      /**<   游戏导航父视图 */
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *gameNavigationViewHeight;  /**<   游戏导航Height约束 */
 
-@property (weak, nonatomic) IBOutlet UGGameTypeCollectionView *gameTypeView;/**<   游戏列表 */
-@property (weak, nonatomic) IBOutlet UIView *rankingView;                   /**<   中奖排行榜父视图 */
+@property (nonatomic, strong) UGHomeTitleView *titleView;       /**<   自定义导航条 */
 
-@property (weak, nonatomic) IBOutlet UUMarqueeView *leftwardMarqueeView;    /**<   滚动公告 */
-@property (weak, nonatomic) IBOutlet UUMarqueeView *upwardMultiMarqueeView; /**<   中奖排行榜 */
-@property (weak, nonatomic) IBOutlet UIView *promotionView;                 /**<   优惠活动 view*/
-@property (weak, nonatomic) IBOutlet UIStackView *promotionsStackView;      /**<   优惠活动 */
+@property (nonatomic, strong) UGYYRightMenuView *yymenuView;    /**<   侧边栏 */
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *gameViewHeight;
-@property (nonatomic, strong)UGPlatformNoticeView *notiveView;        /**<   平台公告 */
-
-@property (nonatomic, strong) UGHomeTitleView *titleView;               /**<   自定义导航条 */
-@property (nonatomic, strong) SDCycleScrollView *bannerView;            /**<   滚动广告面板 */
-
-@property (nonatomic, strong) NSMutableArray <NSString *> *leftwardMarqueeViewData;      /**<   公告数据 */
-@property (nonatomic, strong) NSMutableArray <UGNoticeModel *> *popNoticeArray;
-
-
-@property (nonatomic, strong) NSMutableArray<GameCategoryModel *> *gameCategorys;
-@property (nonatomic, strong) UGNoticeTypeModel *noticeTypeModel;
-@property (nonatomic, strong) UGRankListModel *rankListModel;
-
-@property (nonatomic, strong) NSArray <UGBannerCellModel *> *bannerArray;               /**<   横幅数据 */
-@property (nonatomic, strong) NSArray<UGRankModel *> *rankArray;                        /**<   中奖排行榜数据 */
-@property (nonatomic, assign) BOOL initSubview;
-@property (weak, nonatomic) IBOutlet UILabel *bottomLabel;
-@property (weak, nonatomic) IBOutlet UIView *bottomView;
+@property (nonatomic, strong) UILabel *nolineLabel;             /**<   在线人数Label */
+@property (nonatomic, strong) UGonlineCount *mUGonlineCount;    /**<   在线人数数据 */
 
 @property (nonatomic, strong)  UGredEnvelopeView *uGredEnvelopeView;    /**<   红包浮动按钮 */
 @property (nonatomic, strong)  UGredActivityView *uGredActivityView;    /**<   红包弹框 */
 
-@property (nonatomic, strong) UGYYRightMenuView *yymenuView;            /**<   侧边栏 */
+@property (weak, nonatomic) IBOutlet UIScrollView *contentScrollView;       /**<   最外层的ScrollView */
+@property (weak, nonatomic) IBOutlet UIStackView *contentStackView;         /**<   最外层的StackView */
 
-@property (nonatomic, strong) UGonlineCount *mUGonlineCount;
+@property (weak, nonatomic) IBOutlet UIView *bannerBgView;                  /**<   横幅背景View */
+@property (nonatomic, strong) SDCycleScrollView *bannerView;                /**<   横幅View */
+@property (nonatomic, strong) NSArray <UGBannerCellModel *> *bannerArray;   /**<   横幅数据 */
 
-@property (nonatomic, strong) UILabel *nolineLabel;
+@property (weak, nonatomic) IBOutlet UGGameNavigationView *gameNavigationView;      /**<   游戏导航父视图 */
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *gameNavigationViewHeight;  /**<   游戏导航Height约束 */
 
-@property (weak, nonatomic) IBOutlet UIView *rollingView;
-@property (weak, nonatomic) IBOutlet UILabel *rankLabel;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *rankViewHeight;
+@property (weak, nonatomic) IBOutlet UGGameTypeCollectionView *gameTypeView;        /**<   游戏列表 */
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *gameViewHeight;            /**<   游戏列表Height约束 */
+@property (nonatomic, strong) NSMutableArray<GameCategoryModel *> *gameCategorys;   /**<   游戏列表数据 */
+
+@property (weak, nonatomic) IBOutlet UIView *promotionView;                         /**<   优惠活动 view*/
+@property (weak, nonatomic) IBOutlet UIStackView *promotionsStackView;              /**<   优惠活动 */
+
+@property (weak, nonatomic) IBOutlet UIView *rollingView;                           /**<   跑马灯父视图 */
+@property (weak, nonatomic) IBOutlet UUMarqueeView *leftwardMarqueeView;            /**<   跑马灯 */
+@property (nonatomic, strong) NSMutableArray <NSString *> *leftwardMarqueeViewData; /**<   跑马灯数据 */
+@property (nonatomic, strong) UGNoticeTypeModel *noticeTypeModel;                   /**<   点击跑马灯弹出的数据 */
+
+@property (nonatomic, strong) UGPlatformNoticeView *notiveView;                     /**<   平台公告View */
+@property (nonatomic, strong) NSMutableArray <UGNoticeModel *> *popNoticeArray;     /**<   公告数据 */
+
+@property (weak, nonatomic) IBOutlet UIView *rankingView;                   /**<   中奖排行榜父视图 */
+@property (weak, nonatomic) IBOutlet UILabel *rankLabel;                    /**<   中奖排行标题Label */
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *rankViewHeight;    /**<   中奖排行榜Height约束 */
+@property (weak, nonatomic) IBOutlet UUMarqueeView *upwardMultiMarqueeView; /**<   中奖排行榜 */
+@property (nonatomic, strong) UGRankListModel *rankListModel;               /**<   中奖排行榜数据 */
+@property (nonatomic, strong) NSArray<UGRankModel *> *rankArray;            /**<   中奖排行榜数据 */
+
+@property (weak, nonatomic) IBOutlet UILabel *bottomLabel;  /**<   底部商标Label */
+@property (weak, nonatomic) IBOutlet UIView *bottomView;    /**<   底部商标ContentView */
+
+
 
 
 //-------------------------------------------
@@ -356,7 +357,6 @@
     [super viewWillDisappear:animated];
 	[self.leftwardMarqueeView pause];//fixbug  发热  掉电快
 	[self.upwardMultiMarqueeView pause];//fixbug  发热  掉电快
-	self.initSubview = YES;
 }
 #pragma mark - 六合方法
 - (void)initLHCollectionView {
@@ -509,7 +509,7 @@
 			[SVProgressHUD dismiss];
 			if (model.data) {
 				dispatch_async(dispatch_get_main_queue(), ^{
-					GameCategoryDataModel *customGameModel = (GameCategoryDataModel*)model.data;
+					GameCategoryDataModel *customGameModel = GameCategoryDataModel.gameCategoryData = (GameCategoryDataModel *)model.data;
                     
                     // 首页导航
 					NSArray<GameModel *> *sourceData = customGameModel.navs;
@@ -598,7 +598,7 @@
 	}];
 }
 
-// 公告列表
+// 跑马灯数据
 - (void)getNoticeList {
 	[CMNetwork getNoticeListWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
 		[self.contentScrollView.mj_header endRefreshing];

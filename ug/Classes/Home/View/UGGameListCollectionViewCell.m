@@ -20,17 +20,15 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
     self.playLabel.layer.cornerRadius = self.playLabel.height / 2;
     self.playLabel.layer.masksToBounds = YES;
-    
+    self.nameLabel.textColor = Skin1.textColor2;
 }
 
 - (void)setItem:(UGSubGameModel *)item {
     _item = item;
     self.nameLabel.text = item.name;
     [self.imgView sd_setImageWithURL:[NSURL URLWithString:item.pic] placeholderImage:[UIImage imageNamed:@"loading"]];
-    
 }
 
 @end

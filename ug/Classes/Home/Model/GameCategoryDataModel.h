@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString * sort;        /**<   排序 */
 @property (nonatomic, assign) NSInteger  seriesId;    /**<   系列ID：1 普通彩票 2 真人视讯 3 捕鱼游戏 4 电子游戏 5 棋牌游戏 6 体育赛事 7导航链接 */
 @property (nonatomic, assign) NSInteger  subId;       /**<   1存取款 2APP下载 3聊天室 4在线客服 5长龙助手 6推广收益 7开奖网 8利息宝 9优惠活动 10游戏记录 11QQ客服 13任务大厅 */
-@property (nonatomic, assign) BOOL       tipFlag;     /**<   标记：0 无 1 热门 */
+@property (nonatomic, assign) NSInteger  tipFlag;     /**<   标记：0 无 1 热门 2 活动 3 大奖 */
 @property (nonatomic, strong) NSString * openWay;     /**<   打开方式：0 本窗口 1 新窗口 */
 @property (nonatomic, strong) NSString * title;       /**<   游戏名称 */
 @property (nonatomic, strong) NSString * gameId;      /**<   游戏ID */
@@ -48,6 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, strong) NSArray<GameSubModel> * subType;
 
++ (instancetype)modelWithSeriesId:(NSInteger)seriesId subId:(NSInteger)subId;
 @end
 
 
@@ -62,8 +63,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GameCategoryDataModel: UGModel
 
-@property (nonatomic) NSArray<GameCategoryModel> *icons;    /**<   游戏列表 */
-@property (nonatomic) NSArray<GameModel> *navs;             /**<   导航按钮 */
+@property (nonatomic, strong) NSArray<GameCategoryModel> *icons;    /**<   游戏列表 */
+@property (nonatomic, strong) NSArray<GameModel> *navs;             /**<   导航按钮 */
+
+@property (nonatomic, class) GameCategoryDataModel *gameCategoryData; /**<   首页导航按钮、游戏列表数据（升级为类方法全局使用） */
 @end
 
 
@@ -71,10 +74,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface GameSubModel: GameModel<GameSubModel>
 @property(nonatomic, strong)NSString * parentId;
 @property(nonatomic, strong)NSString * isDelete;
-@property(nonatomic, strong)NSString * isInstant;
-@property(nonatomic, strong)NSString * isSeal;
 @property(nonatomic, strong)NSString * isClose;
-
+@property(nonatomic) BOOL isInstant;    /**<   是否是即开彩：1=是，0=否 */
+@property(nonatomic) BOOL isSeal;       /**<   是否封盘：1=是，0=否 */
 @end
 
 

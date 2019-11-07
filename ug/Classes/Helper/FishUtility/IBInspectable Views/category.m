@@ -232,3 +232,15 @@ _CCRuntimeProperty_Assign(CGFloat, fontSize, setFontSize)
 }
 @end
 
+
+
+
+
+
+@implementation UISegmentedControl (IBInspectableUtils)
+- (UIColor *)textColor1 { return nil; }
+- (void)setTextColor1:(UIColor *)textColor1 {
+    [self setTitleTextAttributes:@{NSForegroundColorAttributeName:textColor1} forState:UIControlStateNormal];
+}
+@end
+

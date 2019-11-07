@@ -36,10 +36,15 @@
 
 @implementation UGNavigationController
 
-static UGNavigationController *_navController = nil;
+static UGNavigationController *__navController = nil;
+static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
 
 + (instancetype)shared {
-    return _navController;
+    return __navController;
+}
+
++ (NSMutableArray<GameModel *> *)browsingHistoryArray {
+    return __browsingHistoryArray;
 }
 
 + (void)load {
@@ -53,13 +58,36 @@ static UGNavigationController *_navController = nil;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _navController = self;
+    __navController = self;
     
     //去除导航栏下方的横线
-    [self.navigationBar setBackgroundImage:[UIImage new]
-                            forBarPosition:UIBarPositionAny
-                                barMetrics:UIBarMetricsDefault];
+    [self.navigationBar setBackgroundImage:[UIImage new] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
     [self.navigationBar setShadowImage:[UIImage new]];
+    
+    // 记录浏览历史
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSMutableArray *dataArray = __browsingHistoryArray = [NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"浏览历史"]]];
+        [UGNavigationController aspect_hookSelector:@selector(pushViewControllerWithGameModel:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
+            BOOL ret = false;
+            [ai.originalInvocation getReturnValue:&ret];
+            if (ret) {
+                [dataArray removeObject:ai.arguments.firstObject];
+                [dataArray insertObject:ai.arguments.firstObject atIndex:0];
+                if (dataArray.count > 10) {
+                    [dataArray setArray:[dataArray subarrayWithRange:NSMakeRange(0, 10)]];
+                }
+            }
+        } error:nil];
+        
+        // 缓存到NSUserDefaults
+        [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationWillResignActiveNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+            [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:dataArray] forKey:@"浏览历史"];
+        }];
+        [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationWillTerminateNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+            [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:dataArray] forKey:@"浏览历史"];
+        }];
+    });
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
@@ -67,14 +95,14 @@ static UGNavigationController *_navController = nil;
 }
 
 - (UIView *)topView {
-    return _navController.viewControllers.lastObject.view;
+    return __navController.viewControllers.lastObject.view;
 }
 - (UIViewController *)firstVC{
-    return _navController.viewControllers.firstObject;
+    return __navController.viewControllers.firstObject;
 }
 
 - (UIViewController *)lastVC{
-    return _navController.viewControllers.lastObject;
+    return __navController.viewControllers.lastObject;
 }
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
@@ -142,8 +170,6 @@ static UGNavigationController *_navController = nil;
             }
            
         }
-        
-   
     }
     
     // 真正在执行跳转
@@ -153,7 +179,7 @@ static UGNavigationController *_navController = nil;
 
 #pragma mark - 根据Model快捷跳转函数
 
-- (void)pushViewControllerWithGameModel:(GameModel *)model {
+- (BOOL)pushViewControllerWithGameModel:(GameModel *)model {
     if (model.game_id) {
         model.gameId = model.game_id;
     }
@@ -161,14 +187,14 @@ static UGNavigationController *_navController = nil;
     // 去资料页
     if ([model.docType intValue] == 1) {
         [NavController1 pushViewController:[[UGDocumentVC alloc] initWithModel:model] animated:true];
-        return;
+        return true;
     }
     // 去二级游戏列表
     if (model.isPopup) {
         UGGameListViewController *gameListVC = [[UGGameListViewController alloc] init];
         gameListVC.game = model;
         [NavController1 pushViewController:gameListVC animated:YES];
-        return;
+        return true;
     }
     // 去彩票下注页、或第三方游戏页、或功能页
     BOOL ret = [NavController1 pushViewControllerWithLinkCategory:model.seriesId linkPosition:model.subId];
@@ -184,9 +210,12 @@ static UGNavigationController *_navController = nil;
             sf.允许未登录访问 = true;
             sf.允许游客访问 = true;
             [NavController1 presentViewController:sf animated:YES completion:nil];
-            return;
+            return true;
         }
+    } else {
+        return true;
     }
+    return false;
 }
 
 - (BOOL)pushViewControllerWithNextIssueModel:(UGNextIssueModel *)model {

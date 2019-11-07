@@ -133,9 +133,6 @@ static NSString *const footerId = @"footerId";
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
-        return UIEdgeInsetsMake(6, -5, 0, 5);
-    }
 	return UIEdgeInsetsMake(6, 5, 0, 5);
 }
 
