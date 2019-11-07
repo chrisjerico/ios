@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -44,6 +44,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="QQ1Label"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入QQ" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eBz-MD-cLE">
                                                     <rect key="frame" x="151.33333333333337" y="5" width="203.66666666666663" height="34"/>
@@ -67,6 +70,9 @@
                                                 <constraint firstAttribute="height" constant="44" id="wCu-fA-Cph"/>
                                                 <constraint firstItem="eBz-MD-cLE" firstAttribute="centerY" secondItem="2v0-yk-pLg" secondAttribute="centerY" id="wtC-cJ-StF"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="QQ1View"/>
+                                            </userDefinedRuntimeAttributes>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lqM-KE-TKY">
                                             <rect key="frame" x="0.0" y="49" width="375" height="44"/>
@@ -94,6 +100,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="联系电话1label"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -107,6 +116,9 @@
                                                 <constraint firstItem="2Ps-wF-eDb" firstAttribute="leading" secondItem="Dy0-Wl-tyY" secondAttribute="trailing" constant="20" id="qdU-9j-8UC"/>
                                                 <constraint firstItem="Zb0-c6-k3Z" firstAttribute="leading" secondItem="lqM-KE-TKY" secondAttribute="leading" constant="20" id="z73-o4-izq"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="联系电话1View"/>
+                                            </userDefinedRuntimeAttributes>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QOZ-tV-bTR">
                                             <rect key="frame" x="0.0" y="98" width="375" height="44"/>
@@ -116,6 +128,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="申请内容label"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -123,13 +138,16 @@
                                                 <constraint firstItem="7RL-dn-t2b" firstAttribute="centerY" secondItem="QOZ-tV-bTR" secondAttribute="centerY" id="I1R-pb-Ckz"/>
                                                 <constraint firstAttribute="height" constant="44" id="UFd-oB-qAQ"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="申请内容View"/>
+                                            </userDefinedRuntimeAttributes>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pAi-UK-APk">
                                             <rect key="frame" x="0.0" y="147" width="375" height="120"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="a3H-uH-oxf">
                                                     <rect key="frame" x="20" y="10" width="335" height="100"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="100" id="By8-1g-QIX"/>
                                                     </constraints>
@@ -159,6 +177,9 @@
                                                 <constraint firstItem="a3H-uH-oxf" firstAttribute="top" secondItem="pAi-UK-APk" secondAttribute="top" constant="10" id="k2K-3Q-PGy"/>
                                                 <constraint firstItem="rPZ-aX-Wl9" firstAttribute="top" secondItem="a3H-uH-oxf" secondAttribute="top" id="q0v-de-NLH"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="申请理由View"/>
+                                            </userDefinedRuntimeAttributes>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NlU-Ss-fyv">
                                             <rect key="frame" x="0.0" y="272" width="375" height="80"/>
@@ -186,7 +207,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您已申请代理，请耐心等待工作人员审核" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SRL-Rf-mh9">
                                                     <rect key="frame" x="68" y="53" width="239" height="15.666666666666671"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="已申请提示Label"/>
@@ -202,6 +223,9 @@
                                                 <constraint firstItem="XZf-JJ-jdA" firstAttribute="top" secondItem="NlU-Ss-fyv" secondAttribute="top" constant="3" id="w3I-OM-ItV"/>
                                                 <constraint firstItem="XZf-JJ-jdA" firstAttribute="leading" secondItem="NlU-Ss-fyv" secondAttribute="leading" constant="20" id="x64-n4-kGa"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="申请按钮View"/>
+                                            </userDefinedRuntimeAttributes>
                                         </view>
                                     </subviews>
                                     <constraints>
@@ -228,6 +252,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="用户label"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="qiyue200" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xu8-Dh-CEk">
                                                     <rect key="frame" x="290.33333333333331" y="13" width="64.666666666666686" height="18"/>
@@ -249,6 +276,9 @@
                                                 <constraint firstItem="rma-C1-WHZ" firstAttribute="centerY" secondItem="wOd-aX-yBb" secondAttribute="centerY" id="nHe-Vp-wCZ"/>
                                                 <constraint firstAttribute="trailing" secondItem="Xu8-Dh-CEk" secondAttribute="trailing" constant="20" id="xOi-Kk-tRe"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="用户View"/>
+                                            </userDefinedRuntimeAttributes>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G51-ci-MBn">
                                             <rect key="frame" x="0.0" y="49" width="375" height="44"/>
@@ -265,6 +295,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="QQ2Label"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9999999" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TEk-4j-kHM">
                                                     <rect key="frame" x="289.66666666666669" y="13" width="65.333333333333314" height="18"/>
@@ -286,6 +319,9 @@
                                                 <constraint firstAttribute="height" constant="44" id="rxO-PL-qdx"/>
                                                 <constraint firstItem="GOp-Q3-pOc" firstAttribute="leading" secondItem="G51-ci-MBn" secondAttribute="leading" constant="20" id="zqh-sR-h8j"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="QQ2View"/>
+                                            </userDefinedRuntimeAttributes>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CFi-1E-13b">
                                             <rect key="frame" x="0.0" y="98" width="375" height="44"/>
@@ -302,6 +338,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="联系电话2Label"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8888888" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7aM-NV-RVZ">
                                                     <rect key="frame" x="289.33333333333331" y="13" width="65.666666666666686" height="18"/>
@@ -323,6 +362,9 @@
                                                 <constraint firstAttribute="height" constant="44" id="fS0-XT-xar"/>
                                                 <constraint firstAttribute="trailing" secondItem="7aM-NV-RVZ" secondAttribute="trailing" constant="20" id="lQd-Dd-3CU"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="联系电话2View"/>
+                                            </userDefinedRuntimeAttributes>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="axR-2x-t5I">
                                             <rect key="frame" x="0.0" y="147" width="375" height="44"/>
@@ -339,6 +381,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="申请状态2Label"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="代理审核拒绝" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bY8-cl-soJ">
                                                     <rect key="frame" x="263" y="13" width="92" height="18"/>
@@ -360,6 +405,9 @@
                                                 <constraint firstItem="qLT-od-kQT" firstAttribute="centerY" secondItem="axR-2x-t5I" secondAttribute="centerY" id="qra-n0-8ZS"/>
                                                 <constraint firstItem="aUv-16-7eg" firstAttribute="leading" secondItem="qLT-od-kQT" secondAttribute="trailing" constant="22" id="vj6-n2-LEv"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="申请状态View"/>
+                                            </userDefinedRuntimeAttributes>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IrG-ro-bbj">
                                             <rect key="frame" x="0.0" y="196" width="375" height="44"/>
@@ -376,6 +424,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="拒绝原因2Label"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="6666666" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="daj-be-z3x">
                                                     <rect key="frame" x="141.33333333333337" y="13" width="213.66666666666663" height="18"/>
@@ -398,6 +449,9 @@
                                                 <constraint firstItem="foZ-UV-naG" firstAttribute="leading" secondItem="IrG-ro-bbj" secondAttribute="leading" constant="20" id="ohQ-OZ-HZM"/>
                                                 <constraint firstAttribute="trailing" secondItem="daj-be-z3x" secondAttribute="trailing" constant="20" id="tYG-dy-MXF"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="拒绝原因View"/>
+                                            </userDefinedRuntimeAttributes>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LXM-2q-JlJ">
                                             <rect key="frame" x="0.0" y="245" width="375" height="44"/>
@@ -429,12 +483,16 @@
                                                 <constraint firstItem="rNn-cW-4Bh" firstAttribute="top" secondItem="LXM-2q-JlJ" secondAttribute="top" constant="3" id="ngA-FS-avg"/>
                                                 <constraint firstItem="rNn-cW-4Bh" firstAttribute="centerX" secondItem="LXM-2q-JlJ" secondAttribute="centerX" id="np7-Hb-c7G"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="再次申请View"/>
+                                            </userDefinedRuntimeAttributes>
                                         </view>
                                     </subviews>
                                 </stackView>
                             </subviews>
                         </stackView>
                     </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="zge-Tg-1fs" secondAttribute="bottom" id="1nW-qx-JS6"/>
                         <constraint firstItem="zge-Tg-1fs" firstAttribute="centerX" secondItem="Tk9-W0-xxC" secondAttribute="centerX" id="4g3-b4-qjt"/>

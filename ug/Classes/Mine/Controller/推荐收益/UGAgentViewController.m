@@ -22,9 +22,11 @@
     self.title  = @"代理申请";
     self.extendedLayoutIncludesOpaqueBars = YES;
     
+    
+    FastSubViewCode(self.view);
     // 占位Label
     {
-        FastSubViewCode(self.view);
+    
         [subTextView(@"内容TextView") aspect_hookSelector:@selector(setText:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
             subLabel(@"占位Label").hidden = subTextView(@"内容TextView").text.length;
         } error:nil];
@@ -32,6 +34,51 @@
             subLabel(@"占位Label").hidden = subTextView(@"内容TextView").text.length;
         }];
     }
+    
+    [self.view setBackgroundColor:Skin1.textColor4];
+    
+    [subLabel(@"QQ1Label") setTextColor:Skin1.textColor1];
+    [subTextField(@"QQTextField") setTextColor:Skin1.textColor1];
+    // "通过KVC修改占位文字的颜色"
+    [subTextField(@"QQTextField") setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
+    [subView(@"QQ1View") setBackgroundColor:Skin1.CLBgColor];
+    
+    [subLabel(@"联系电话1label") setTextColor:Skin1.textColor1];
+    [subTextField(@"联系电话TextField") setTextColor:Skin1.textColor1];
+    // "通过KVC修改占位文字的颜色"
+    [subTextField(@"联系电话TextField") setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
+    [subView(@"联系电话1View") setBackgroundColor:Skin1.textColor4];
+    
+    [subLabel(@"申请内容label") setTextColor:Skin1.textColor1];
+    [subView(@"申请内容View") setBackgroundColor:Skin1.CLBgColor];
+    
+    [subLabel(@"占位Label") setTextColor:Skin1.textColor3];
+    [subTextView(@"内容TextView") setTextColor:Skin1.textColor1];
+    [subView(@"申请理由View") setBackgroundColor:Skin1.textColor4];
+    
+    [subView(@"申请按钮View") setBackgroundColor:Skin1.textColor4];
+    
+    [subLabel(@"用户label") setTextColor:Skin1.textColor1];
+    [subLabel(@"用户名Label") setTextColor:Skin1.textColor1];
+    [subView(@"用户View") setBackgroundColor:Skin1.textColor4];
+    
+    [subLabel(@"QQLabel") setTextColor:Skin1.textColor1];
+    [subLabel(@"QQ2Label") setTextColor:Skin1.textColor1];
+    [subView(@"QQ2View") setBackgroundColor:Skin1.CLBgColor];
+    
+    [subLabel(@"联系电话Label") setTextColor:Skin1.textColor1];
+    [subLabel(@"联系电话2Label") setTextColor:Skin1.textColor1];
+    [subView(@"联系电话2View") setBackgroundColor:Skin1.textColor4];
+    
+    [subLabel(@"申请状态Label") setTextColor:Skin1.textColor1];
+    [subLabel(@"申请状态2Label") setTextColor:Skin1.textColor1];
+    [subView(@"申请状态View") setBackgroundColor:Skin1.CLBgColor];
+    
+    [subLabel(@"拒绝原因Label") setTextColor:Skin1.textColor1];
+    [subLabel(@"拒绝原因2Label") setTextColor:Skin1.textColor1];
+    [subView(@"拒绝原因View") setBackgroundColor:Skin1.textColor4];
+    
+    [subView(@"再次申请View") setBackgroundColor:Skin1.textColor4];
     
     [self refreshUI];
 }

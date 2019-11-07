@@ -44,15 +44,15 @@
     [subLabel(@"原登录密码label") setTextColor:Skin1.textColor1];
     [subLabel(@"原登录密码txt") setTextColor:Skin1.textColor1];
     // "通过KVC修改占位文字的颜色"
-    [subLabel(@"原登录密码txt") setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
+    [subTextField(@"原登录密码txt") setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
     [subLabel(@"新密码label") setTextColor:Skin1.textColor1];
-    [subLabel(@"新密码txt") setTextColor:Skin1.textColor1];
+    [subTextField(@"新密码txt") setTextColor:Skin1.textColor1];
     // "通过KVC修改占位文字的颜色"
-    [subLabel(@"新密码txt") setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
+    [subTextField(@"新密码txt") setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
     [subLabel(@"确认新密码label") setTextColor:Skin1.textColor1];
-    [subLabel(@"确认新密码txt") setTextColor:Skin1.textColor1];
+    [subTextField(@"确认新密码txt") setTextColor:Skin1.textColor1];
     // "通过KVC修改占位文字的颜色"
-    [subLabel(@"确认新密码txt") setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
+    [subTextField(@"确认新密码txt") setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
     
      UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
     if (config.pass_limit == 0) {

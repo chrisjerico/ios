@@ -347,7 +347,6 @@ static UGTabbarController *_tabBarVC = nil;
     
     if (UGLoginIsAuthorized()
         && ([vc isKindOfClass:[UGPromotionIncomeController class]] || [vc isKindOfClass:[UGAgentViewController class]])) {
-
         // 试玩账号直接去推荐收益
         if (UserI.isTest) {
             push(@"推荐收益", [UGPromotionIncomeController new]);
@@ -365,7 +364,7 @@ static UGTabbarController *_tabBarVC = nil;
                     [SVProgressHUD dismiss];
                     UGagentApplyInfo *obj  = (UGagentApplyInfo *)model.data;
                     int intStatus = obj.reviewStatus.intValue;
-                    
+
                     //0 未提交  1 待审核  2 审核通过 3 审核拒绝
                     if (intStatus == 2) {
                         push(@"推荐收益", [UGPromotionIncomeController new]);
