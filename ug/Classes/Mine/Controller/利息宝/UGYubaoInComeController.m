@@ -25,6 +25,13 @@ static int size = 20;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    FastSubViewCode(self.view);
+    [self.view setBackgroundColor:Skin1.textColor4];
+    [self.tableView setBackgroundColor:Skin1.textColor4];
+    [subLabel(@"结算时间label") setTextColor:Skin1.textColor1];
+    [subLabel(@"收益label") setTextColor:Skin1.textColor1];
+    [subLabel(@"余额label") setTextColor:Skin1.textColor1];
+    
     self.pageSize = size;
     self.pageNumber = page;
     self.navigationItem.title = @"收益报表";

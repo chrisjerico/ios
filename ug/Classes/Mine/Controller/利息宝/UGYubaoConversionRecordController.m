@@ -26,6 +26,14 @@ static int size = 20;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    FastSubViewCode(self.view);
+    [self.view setBackgroundColor:Skin1.textColor4];
+    [self.tableView setBackgroundColor:Skin1.textColor4];
+    [subLabel(@"时间label") setTextColor:Skin1.textColor1];
+    [subLabel(@"类型label") setTextColor:Skin1.textColor1];
+    [subLabel(@"账变金额label") setTextColor:Skin1.textColor1];
+    [subLabel(@"余额label") setTextColor:Skin1.textColor1];
+    
     self.pageSize = size;
     self.pageNumber = page;
     self.view.badgeBgColor = [UIColor whiteColor];

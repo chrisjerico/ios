@@ -270,6 +270,7 @@
         [myView setHidden:YES];
         [myOnlineView setHidden:NO];
     }
+
 }
 /*
 #pragma mark - Navigation

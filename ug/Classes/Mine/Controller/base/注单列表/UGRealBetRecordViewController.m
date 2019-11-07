@@ -61,6 +61,14 @@ static NSString *realBetRecordCellId = @"UGRealBetRecordCell";
         [self skin];
     });
     
+    FastSubViewCode(self.view);
+    [self.view setBackgroundColor:Skin1.textColor4];
+    [subLabel(@"游戏label") setTextColor:Skin1.textColor1];
+    [subLabel(@"时间label") setTextColor:Skin1.textColor1];
+    [subLabel(@"下注金额label") setTextColor:Skin1.textColor1];
+    [subLabel(@"输赢label") setTextColor:Skin1.textColor1];
+    [self.tableView setBackgroundColor:Skin1.textColor4];
+    
     self.startDate = [[NSDate date] stringWithFormat:@"yyyy-MM-dd"];
     
     self.pageSize = size;

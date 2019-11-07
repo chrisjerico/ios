@@ -19,6 +19,10 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    [self.contentView setBackgroundColor:Skin1.textColor4];
+    [_timeLabel setTextColor:Skin1.textColor1];
+    [_incomeLabel setTextColor:Skin1.textColor1];
+    [_balanceLabel setTextColor:Skin1.textColor1];
 }
 
 - (void)setItem:(UGYuebaoProfitReportModel *)item {
