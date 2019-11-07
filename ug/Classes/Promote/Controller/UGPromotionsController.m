@@ -77,9 +77,12 @@
     NSLog(@"pm.title = %@", pm.title);
     subLabel(@"标题Label").textColor = Skin1.textColor1;
     subLabel(@"标题Label").text = pm.title;
+    __weakSelf_(__self);
     [subImageView(@"图片ImageView") sd_setImageWithURL:[NSURL URLWithString:pm.pic] placeholderImage:[UIImage imageNamed:@"placeholder"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         if (image) {
             subImageView(@"图片ImageView").cc_constraints.height.constant = image.height/image.width * (APP.Width - 48);
+            [__self.tableView beginUpdates];
+            [__self.tableView endUpdates];
         }
     }];
     return cell;

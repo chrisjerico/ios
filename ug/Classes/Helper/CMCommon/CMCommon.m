@@ -532,8 +532,8 @@ static NSString *uuidKey =@"uuidKey";
  *  UIImageView 加载含有汉字的url处理方法
  *
  */
-+ (NSString *)imgformat:(NSString *)string{
-    NSString *url = [string stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet  URLQueryAllowedCharacterSet]];
++ (NSString *)imgformat:(NSString *)string {
+    NSString *url = [string stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     return url;
 }
 /**
