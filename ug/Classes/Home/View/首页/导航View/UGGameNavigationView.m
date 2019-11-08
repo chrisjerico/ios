@@ -8,6 +8,9 @@
 
 #import "UGGameNavigationView.h"
 #import "YYWebImage.h"
+
+#define OneLineCnt 5    // 一行显示多少个Cell
+
 @interface UGGameNavigationView()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @end
@@ -71,11 +74,11 @@
 #pragma mark ---- UICollectionViewDelegateFlowLayout
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return (CGSize){(UGScreenW - 40)/4, 75};
+	return (CGSize){(UGScreenW - 40)/OneLineCnt, 75};
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-	return UIEdgeInsetsMake(10, 8, 10, 8);
+	return UIEdgeInsetsMake(5, 0, 0, 4);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {

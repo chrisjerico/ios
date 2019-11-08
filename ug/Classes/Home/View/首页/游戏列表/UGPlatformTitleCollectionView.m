@@ -40,6 +40,8 @@
             collectionView.backgroundColor = isBlack ? Skin1.bgColor : Skin1.homeContentColor;
             collectionView.dataSource = self;
             collectionView.delegate = self;
+            collectionView.layer.cornerRadius = isBlack ? 0 : 10;
+            collectionView.layer.masksToBounds = true;
             [collectionView registerNib:[UINib nibWithNibName:@"UGPlatformTitleCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"默认Cell"];
             [collectionView registerNib:[UINib nibWithNibName:@"UGPlatformTitleBlackCell" bundle:nil] forCellWithReuseIdentifier:@"黑色模板Cell"];
             [collectionView setShowsHorizontalScrollIndicator:NO];
@@ -51,6 +53,24 @@
         [collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self);
         }];
+        // 背景
+        {
+            UIView *left = [UIView new];
+            left.backgroundColor = collectionView.backgroundColor;
+            [self insertSubview:left atIndex:0];
+            [left mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.bottom.equalTo(self);
+                make.width.height.mas_equalTo(20);
+            }];
+            
+            UIView *rifht = [UIView new];
+            rifht.backgroundColor = collectionView.backgroundColor;
+            [self insertSubview:rifht atIndex:0];
+            [rifht mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.right.top.equalTo(self);
+                make.width.height.mas_equalTo(20);
+            }];
+        }
         
         __weakSelf_(__self);
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -101,6 +121,12 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (self.platformTitleSelectBlock)
         self.platformTitleSelectBlock(_selectIndex = indexPath.row);
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    GameCategoryModel *gcm = _gameTypeArray[indexPath.row];
+    CGFloat w = [gcm.name widthForFont:[UIFont systemFontOfSize:18]] + 30;
+    return CGSizeMake(w, 110);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {

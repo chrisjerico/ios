@@ -59,6 +59,7 @@
 #import "UGPlatformNoticeView.h"
 #import "UGAppVersionManager.h"
 #import "UGPromotionIncomeController.h"
+#import "FLAnimatedImageView.h"
 
 // 六合View
 #import "UGLHLotteryCollectionViewCell.h"
@@ -327,6 +328,18 @@
         };
     }
 	
+    // c200站点定制需求
+    {
+        FLAnimatedImageView *gifImageView = [[FLAnimatedImageView alloc] initWithFrame:CGRectMake(APP.Width-100, 300, 100, 100)];
+        gifImageView.contentMode = UIViewContentModeScaleAspectFit;
+        gifImageView.userInteractionEnabled = true;
+        [self.view addSubview:gifImageView];
+        [gifImageView sd_setImageWithURL:[[NSBundle mainBundle] URLForResource:@"lxb" withExtension:@"gif"]];
+        [gifImageView addGestureTapEventHandle:^(id sender, UITapGestureRecognizer *gestureRecognizer) {
+            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGYubaoViewController") animated:true];
+        }];
+    }
+    
 	// 拉取数据
 	_contentScrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
 		[__self getSystemConfig];     // APP配置信息
@@ -523,7 +536,7 @@
                     [UGMissionCenterViewController setTitle:gm.name.length ? gm.name : gm.title];
                     
 					if (sourceData.count > 0) {
-						self.gameNavigationViewHeight.constant = ((sourceData.count - 1)/4 + 1)*80;
+						self.gameNavigationViewHeight.constant = ((sourceData.count - 1)/5 + 1)*80;
 						[self.view layoutIfNeeded];
 					}
                     

@@ -37,8 +37,7 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
         {
             BOOL isBlack = [Skin1.skitType isEqualToString:@"黑色模板"];
             _titleView = [[UGPlatformTitleCollectionView alloc] initWithFrame:CGRectZero];
-            _titleView.layer.cornerRadius = isBlack ? 0 : 10;
-            _titleView.layer.masksToBounds = true;
+            _titleView.backgroundColor = [UIColor clearColor];
             _titleView.platformTitleSelectBlock = ^(NSInteger selectIndex) {
                 __self.contentScrollView.contentOffset = CGPointMake(__self.width * selectIndex, 0);
                 [__self refreshHeight];
@@ -79,8 +78,6 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
             }];
         }
     }
-    
-    [_titleView setBackgroundColor: Skin1.homeContentColor];
     
     // TitleView
     _titleView.gameTypeArray = gameTypeArray;
