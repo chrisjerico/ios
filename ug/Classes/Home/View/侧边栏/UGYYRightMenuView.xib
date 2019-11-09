@@ -229,7 +229,7 @@
                 <outlet property="balanceLabel" destination="Eel-Ef-jeF" id="6Ih-u4-3Dk"/>
                 <outlet property="bgImgeView" destination="Nfw-kf-ZEo" id="zWk-p2-YgQ"/>
                 <outlet property="bgView" destination="1gL-Jl-h4n" id="lLz-rf-Djm"/>
-                <outlet property="headImageView" destination="2ke-TU-Vc9" id="Na4-f1-A0R"/>
+                <outlet property="headImageView" destination="2ke-TU-Vc9" id="Z7A-p8-vUT"/>
                 <outlet property="icon1ImgeView" destination="2MS-fb-M9G" id="5Zr-Cc-DNS"/>
                 <outlet property="icon2ImageView" destination="R9r-jh-6K4" id="Yne-eB-XFq"/>
                 <outlet property="rechargeView" destination="pyg-1t-XcU" id="BT3-FK-xav"/>
