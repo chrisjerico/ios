@@ -21,7 +21,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="247" height="244"/>
                             <subviews>
                                 <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bluebg" translatesAutoresizingMaskIntoConstraints="NO" id="Nfw-kf-ZEo">
-                                    <rect key="frame" x="0.0" y="44" width="247" height="200"/>
+                                    <rect key="frame" x="0.0" y="44" width="247.00000000000023" height="200"/>
                                     <color key="backgroundColor" red="0.32385197281837463" green="0.68189215660095215" blue="0.97255474328994751" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="200" id="qRz-IY-W2o"/>
@@ -54,7 +54,7 @@
                                     </connections>
                                 </button>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BMprofile" translatesAutoresizingMaskIntoConstraints="NO" id="2ke-TU-Vc9">
-                                    <rect key="frame" x="13.5" y="72" width="220" height="100"/>
+                                    <rect key="frame" x="68.5" y="72" width="110" height="100"/>
                                 </imageView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jur-kM-k1O" customClass="IBButton">
                                     <rect key="frame" x="50" y="184" width="147" height="26"/>
@@ -229,6 +229,7 @@
                 <outlet property="balanceLabel" destination="Eel-Ef-jeF" id="6Ih-u4-3Dk"/>
                 <outlet property="bgImgeView" destination="Nfw-kf-ZEo" id="zWk-p2-YgQ"/>
                 <outlet property="bgView" destination="1gL-Jl-h4n" id="lLz-rf-Djm"/>
+                <outlet property="headImageView" destination="2ke-TU-Vc9" id="Na4-f1-A0R"/>
                 <outlet property="icon1ImgeView" destination="2MS-fb-M9G" id="5Zr-Cc-DNS"/>
                 <outlet property="icon2ImageView" destination="R9r-jh-6K4" id="Yne-eB-XFq"/>
                 <outlet property="rechargeView" destination="pyg-1t-XcU" id="BT3-FK-xav"/>

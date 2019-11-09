@@ -39,6 +39,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *icon1ImgeView;
 @property (weak, nonatomic) IBOutlet UIImageView *icon2ImageView;
 
+@property (weak, nonatomic) IBOutlet UIImageView *headImageView; /**<   头像 */
+
 @property (nonatomic, strong) NSMutableArray <NSString *> *titleArray;
 @property (nonatomic, strong) NSMutableArray <NSString *> *imageNameArray;
 @end
@@ -171,6 +173,9 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
             [self.tableView reloadData];
         });
         
+        SANotificationEventSubscribe(UGNotificationUserAvatarChanged, self, ^(typeof (self) self, id obj) {
+            [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[UGUserModel currentUser].avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
+        });
         
         SANotificationEventSubscribe(UGNotificationloginTimeout, self, ^(typeof (self) self, id obj) {
             [self hiddenSelf];
