@@ -160,7 +160,8 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         self.tableView.estimatedSectionFooterHeight = 0;
         self.userNameLabel.text = [UGUserModel currentUser].username;
         self.balanceLabel.text = [NSString stringWithFormat:@"¥%@",[[UGUserModel currentUser].balance removeFloatAllZero]];
-		
+        self.headImageView.layer.cornerRadius = self.headImageView.height / 2 ;
+        self.headImageView.layer.masksToBounds = YES;
 		
 
         SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
@@ -176,7 +177,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         });
 
         SANotificationEventSubscribe(UGNotificationUserAvatarChanged, self, ^(typeof (self) self, id obj) {
-            [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[UGUserModel currentUser].avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
+            [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[UGUserModel currentUser].avatar] placeholderImage:[UIImage imageNamed:@"BMprofile"]];
         });
         
         SANotificationEventSubscribe(UGNotificationloginTimeout, self, ^(typeof (self) self, id obj) {
@@ -221,6 +222,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
          [subButton(@"登入按钮") setHidden:YES];
          [subButton(@"免费开户按钮") setHidden:YES];
  
+         [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[UGUserModel currentUser].avatar] placeholderImage:[UIImage imageNamed:@"BMprofile"]];
      }
      else{
          [_userNameLabel setHidden:YES];
