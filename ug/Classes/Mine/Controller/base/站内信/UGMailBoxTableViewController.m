@@ -152,7 +152,16 @@ static NSString *messageCellid = @"UGMessageTableViewCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     UGMessageModel *model = self.dataArray[indexPath.row];
-    [QDAlertView showWithTitle:model.title message:model.content];
+    //    [QDAlertView showWithTitle:model.title message:model.content];
+    [LEEAlert alert].config
+    .LeeTitle(model.title)
+    .LeeAddContent(^(UILabel *label) {
+         
+         label.attributedText = [[NSAttributedString alloc] initWithData:[model.content dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+     })
+     .LeeAction(@"确定", nil)
+    .LeeShow(); // 设置完成后 别忘记调用Show来显示
+
     if (model.isRead == 0) {
         
         [self modifyMessageState:model];

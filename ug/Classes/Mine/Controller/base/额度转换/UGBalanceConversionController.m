@@ -59,16 +59,29 @@ static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
         self.tableView.rowHeight = 50;
         self.tableView.layer.cornerRadius = 10;
         self.tableView.layer.masksToBounds = true;
+        [self.tableView setBackgroundColor:Skin1.textColor4];
         self.balanceLabel.text = [NSString stringWithFormat:@"¥%@", [UserI.balance removeFloatAllZero]];
         self.amountTextF.textColor = Skin1.textColor1;
         self.transferOutLabel.textColor = Skin1.textColor1;
         self.transferInLabel.textColor = Skin1.textColor1;
-        self.transferOutArrow.image = [[UIImage imageNamed:@"jiantou1"] qmui_imageWithTintColor:Skin1.textColor1];
-        self.tarnsferInArrow.image = [[UIImage imageNamed:@"jiantou1"] qmui_imageWithTintColor:Skin1.textColor1];
+//        self.transferOutArrow.image = [[UIImage imageNamed:@"jiantou1"] qmui_imageWithTintColor:Skin1.textColor1];
+//        self.tarnsferInArrow.image = [[UIImage imageNamed:@"jiantou1"] qmui_imageWithTintColor:Skin1.textColor1];
         FastSubViewCode(self.view);
         subLabel(@"转出钱包Label").textColor = Skin1.textColor1;
         subLabel(@"转入钱包Label").textColor = Skin1.textColor1;
         subLabel(@"转换金额Label").textColor = Skin1.textColor1;
+        subLabel(@"账户余额label").textColor = Skin1.textColor1;
+        _balanceLabel.textColor = Skin1.textColor1;
+        [_balanceView setBackgroundColor:Skin1.navBarBgColor];
+        if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+            self.tarnsferInArrow.image = [UIImage imageNamed:@"baijiantou"] ;
+            self.transferOutArrow.image = [UIImage imageNamed:@"baijiantou"] ;
+            [self.refreshButton setImage:[UIImage imageNamed:@"BMrefresh"] forState:(UIControlStateNormal)];
+        } else {
+            self.tarnsferInArrow.image = [UIImage imageNamed:@"jiantou1"] ;
+            self.transferOutArrow.image = [UIImage imageNamed:@"jiantou1"] ;
+            [self.refreshButton setImage:[UIImage imageNamed:@"shuaxindef"] forState:(UIControlStateNormal)];
+        }
     }
     
     // 用户信息获取成功
@@ -76,11 +89,11 @@ static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
         [self.refreshButton.layer removeAllAnimations];
         self.balanceLabel.text = [NSString stringWithFormat:@"¥%@", [UserI.balance removeFloatAllZero]];
     });
-    // 换肤
-    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-        self.transferOutArrow.image = [[UIImage imageNamed:@"jiantou1"] qmui_imageWithTintColor:Skin1.textColor1];
-        self.tarnsferInArrow.image = [[UIImage imageNamed:@"jiantou1"] qmui_imageWithTintColor:Skin1.textColor1];
-    });
+//    // 换肤
+//    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
+//        self.transferOutArrow.image = [[UIImage imageNamed:@"jiantou1"] qmui_imageWithTintColor:Skin1.textColor1];
+//        self.tarnsferInArrow.image = [[UIImage imageNamed:@"jiantou1"] qmui_imageWithTintColor:Skin1.textColor1];
+//    });
     
     [self getRealGames];
 }
@@ -281,7 +294,8 @@ static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
     UGPlatformBalanceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:balanceCellid forIndexPath:indexPath];
     UGPlatformGameModel *model = self.dataArray[indexPath.row];
     cell.item = model;
-    [cell.nameLabel setTextColor:Skin1.navBarBgColor];
+    [cell.nameLabel setTextColor:Skin1.textColor1];
+    [cell.contentView setBackgroundColor:Skin1.textColor4];
     WeakSelf
     cell.refreshBlock = ^{
         model.refreshing = YES;

@@ -730,7 +730,11 @@ static UGSkinManagers *__initSkin1 = nil;
                            @"4":@"六合资料",
                            @"5":@"黑色模板",
     };
+    
     NSString *skitType = dict[SysConf.mobileTemplateCategory];
+    #if DEBUG
+        skitType = @"黑色模板";
+    #endif
     return [UGSkinManagers allSkin][skitType];
 }
 

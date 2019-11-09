@@ -121,6 +121,14 @@
             [_dataArray addObject:gm];
         }
     }
+//        for (int i = 0; i<temp.count; i++) {
+//            GameModel *gm = temp[i];
+//            NSLog(@"i = %d,mode = %@",i,gm);
+//            NSLog(@"======================");
+//            if (![_dataArray containsObject:gm]) {
+//                [_dataArray addObject:gm];
+//            }
+//        }
 }
 
 @end

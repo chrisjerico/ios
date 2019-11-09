@@ -32,7 +32,7 @@
 
 - (void)setTipStr:(NSString *)tipStr {
     _tipStr = tipStr;
-    self.tipLabel.attributedText = [[NSAttributedString alloc] initWithData:[tipStr dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];;
+    self.tipLabel.attributedText = [[NSAttributedString alloc] initWithData:[tipStr dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
 }
 
 - (void)setHeaderImageStr:(NSString *)headerImageStr {
