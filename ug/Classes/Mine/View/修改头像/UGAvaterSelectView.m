@@ -73,7 +73,7 @@ static NSString *avaterCellid = @"UGAvaterCollectionViewCell";
             }
             UGAvatarModel *avatar = self.dataArray.firstObject;
             [self.collectionView reloadData];
-            [self.bigImgView sd_setImageWithURL:[NSURL URLWithString:avatar.url] placeholderImage:[UIImage imageNamed:@"txp"]];
+            [self.bigImgView sd_setImageWithURL:[NSURL URLWithString:avatar.url] placeholderImage:[UIImage imageNamed:@"txp"] options:SDWebImageAllowInvalidSSLCertificates];
         } failure:^(id msg) {
             
             [SVProgressHUD showErrorWithStatus:msg];
