@@ -22,6 +22,10 @@
     _fourthLabel.textColor = Skin1.textColor1;
     _fifthLabel.textColor = Skin1.textColor1;
     
+    [_fifthButton setBackgroundColor:Skin1.textColor4];
+    
+    [_fifthButton setTitleColor:Skin1.textColor1 forState:(UIControlStateNormal)];
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

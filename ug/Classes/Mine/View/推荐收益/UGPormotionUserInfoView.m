@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *coinLabel;
 @property (weak, nonatomic) IBOutlet UILabel *myCoinLabel;
 @property (weak, nonatomic) IBOutlet UITextField *moneyTextField;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;  /**<   标题*/
 
 
 @end
@@ -30,7 +31,8 @@
         self.backgroundColor = [UIColor whiteColor];
         self.layer.cornerRadius = 5;
         self.moneyTextField.keyboardType = UIKeyboardTypeDecimalPad;
-        
+        [self.titleLabel setTextColor:Skin1.textColor1];
+        [self makeRoundedCorner:6];
 
     }
     return self;
