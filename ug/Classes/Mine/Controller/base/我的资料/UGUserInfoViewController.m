@@ -110,7 +110,7 @@
     self.accountLabel.text = [NSString stringWithFormat:@"账号：%@",user.username];
     self.fullNameLabel.text = [NSString stringWithFormat:@"真实姓名：%@",user.fullName];
     self.qqLabel.text = [NSString stringWithFormat:@"QQ：%@",user.qq];
-    self.phoneLabel.text = [NSString stringWithFormat:@"手机：%@******%@", [user.phone substringToIndex:MIN(user.phone.length, 3)], [user.phone substringFromIndex:user.phone.length-MIN(user.phone.length, 2)]];
+    self.phoneLabel.text = [NSString stringWithFormat:@"手机：%@", user.phone.length ? _NSString(@"%@******%@", [user.phone substringToIndex:MIN(user.phone.length, 3)], [user.phone substringFromIndex:user.phone.length-MIN(user.phone.length, 2)]) : @""];
     self.emailLabel.text = [NSString stringWithFormat:@"邮箱：%@",user.email];
     self.timeLabel.text = [[NSDate date] stringWithFormat:@"yyyy.MM.dd HH:mm"];
     

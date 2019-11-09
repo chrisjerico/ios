@@ -20,6 +20,9 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+        self.backgroundColor = Skin1.textColor2;
+    }
 }
 
 - (void)setNameStr:(NSString *)nameStr {

@@ -47,14 +47,19 @@
     if (self) {
         self = [[NSBundle mainBundle] loadNibNamed:@"UGFundsTransferView" owner:self options:0].firstObject;
         self.frame = frame;
-        self.backgroundColor = [UIColor whiteColor];
         
         _bgView.layer.cornerRadius = 8;
         _bgView.layer.masksToBounds = YES;
         _bgView.layer.borderColor= UGRGBColor(221, 221, 221).CGColor;
         _bgView.layer.borderWidth=1;
-        
-        [self setBackgroundColor: [UIColor whiteColor]];
+        _name1Label.textColor = Skin1.textColor1;
+        _name2Label.textColor = Skin1.textColor1;
+        _name3Label.textColor = Skin1.textColor1;
+        _name4Label.textColor = Skin1.textColor1;
+        _remark1Label.textColor = Skin1.textColor1;
+        _remark2Label.textColor = Skin1.textColor1;
+        _remark3Label.textColor = Skin1.textColor1;
+        _remark4Label.textColor = Skin1.textColor1;
     }
     return self;
 }
@@ -67,7 +72,6 @@
     _bgView.layer.masksToBounds = YES;
     _bgView.layer.borderColor= UGRGBColor(221, 221, 221).CGColor;
     _bgView.layer.borderWidth=1;
-    [self setBackgroundColor: Skin1.bgColor];
     return self;
 }
 

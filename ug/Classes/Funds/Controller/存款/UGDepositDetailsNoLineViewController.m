@@ -51,12 +51,11 @@
     _tableDataArray = [NSMutableArray new];
     _blankDataArray = [NSMutableArray<UGrechargeBankModel> new];
     
-    [self.view setBackgroundColor: [UIColor whiteColor]];
+    [self.view setBackgroundColor:Skin1.textColor4];
     
     if (self.item) {
         _channelDataArray = item.channel;
-        _tableDataArray =[[NSMutableArray alloc] initWithArray:_channelDataArray];
-        
+        _tableDataArray = [[NSMutableArray alloc] initWithArray:_channelDataArray];
     }
     
     [self creatUI];
@@ -339,7 +338,7 @@
         //UIScrollView被push之后返回，会发生控件位置偏移，用下面的代码就OK
 //        self.automaticallyAdjustsScrollViewInsets = NO;
 //        self.edgesForExtendedLayout = UIRectEdgeNone;
-         mUIScrollView.backgroundColor = [UIColor whiteColor];
+         mUIScrollView.backgroundColor = [UIColor clearColor];
         
         [self.view addSubview:mUIScrollView];
         self.mUIScrollView = mUIScrollView;
@@ -348,11 +347,8 @@
     if (self.tiplabel == nil) {
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, UGScreenW, 40)];
         label.textAlignment = NSTextAlignmentLeft;
-        //        label.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
         label.font = [UIFont boldSystemFontOfSize:14];
-        label.textColor = Skin1.navBarBgColor;
-        label.backgroundColor = [UIColor whiteColor];
-//        label.backgroundColor = [UIColor redColor];
+        label.textColor = Skin1.textColor1;
         label.numberOfLines = 0;
         label.text = @"ewerqwerqwerqwerqwer";
         [self.mUIScrollView addSubview:label];
@@ -365,11 +361,8 @@
     if (self.tip2label == nil) {
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 40, UGScreenW, 40)];
         label.textAlignment = NSTextAlignmentLeft;
-        //        label.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
         label.font = [UIFont boldSystemFontOfSize:14];
-        label.textColor = Skin1.navBarBgColor;
-        label.backgroundColor = [UIColor whiteColor];
-//        label.backgroundColor = [UIColor yellowColor];
+        label.textColor = Skin1.textColor1;
 
         label.numberOfLines = 0;
         label.text = @"请选择一个任意转入账户";
@@ -383,7 +376,7 @@
         UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 500, UGScreenW , 120) style:UITableViewStyleGrouped];
         tableView.delegate = self;
         tableView.dataSource = self;
-        [tableView setBackgroundColor:UGRGBColor(239, 239, 244)];
+        [tableView setBackgroundColor:[UIColor clearColor]];
 //                [tableView setBackgroundColor:[UIColor greenColor]];
 
         [tableView registerNib:[UINib nibWithNibName:@"UGDepositDetailsTableViewCell" bundle:nil] forCellReuseIdentifier:@"UGDepositDetailsTableViewCell"];

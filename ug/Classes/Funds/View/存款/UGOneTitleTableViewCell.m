@@ -19,6 +19,7 @@
     [super awakeFromNib];
     // Initialization code
     [self setBackgroundColor: Skin1.cellBgColor];
+    self.title1Label.textColor = Skin1.textColor1;
 }
 
 - (void)setItem:(UGrechargeBankModel *)item {

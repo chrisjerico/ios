@@ -15,6 +15,7 @@
 
 @interface UGPlatformTitleCollectionView ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic) BOOL isBlack;
 @end
 
 
@@ -24,23 +25,22 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        
-        BOOL isBlack = [Skin1.skitType isEqualToString:@"黑色模板"];
+        _isBlack = [Skin1.skitType isEqualToString:@"黑色模板"];
         UICollectionViewFlowLayout *layout = ({
             layout = [[UICollectionViewFlowLayout alloc] init];
             layout.minimumInteritemSpacing = 0;
             layout.minimumLineSpacing = 0;
-            layout.sectionInset = isBlack ? UIEdgeInsetsZero : UIEdgeInsetsMake(0, 15, 0, 15);
+            layout.sectionInset = _isBlack ? UIEdgeInsetsZero : UIEdgeInsetsMake(0, 15, 0, 15);
             layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
             layout;
         });
         
         UICollectionView *collectionView = ({
             collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, APP.Width, 55) collectionViewLayout:layout];
-            collectionView.backgroundColor = isBlack ? Skin1.bgColor : Skin1.homeContentColor;
+            collectionView.backgroundColor = _isBlack ? Skin1.bgColor : Skin1.homeContentColor;
             collectionView.dataSource = self;
             collectionView.delegate = self;
-            collectionView.layer.cornerRadius = isBlack ? 0 : 10;
+            collectionView.layer.cornerRadius = _isBlack ? 0 : 10;
             collectionView.layer.masksToBounds = true;
             [collectionView registerNib:[UINib nibWithNibName:@"UGPlatformTitleCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"默认Cell"];
             [collectionView registerNib:[UINib nibWithNibName:@"UGPlatformTitleBlackCell" bundle:nil] forCellWithReuseIdentifier:@"黑色模板Cell"];
@@ -74,7 +74,7 @@
         
         __weakSelf_(__self);
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            ((UICollectionViewFlowLayout *)__self.collectionView.collectionViewLayout).itemSize = CGSizeMake(90, __self.height);
+            [__self.collectionView.collectionViewLayout invalidateLayout];
         });
     }
     return self;
@@ -107,7 +107,7 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (_isBlack) {
         UGPlatformTitleBlackCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"黑色模板Cell" forIndexPath:indexPath];
         cell.gcm = _gameTypeArray[indexPath.row];
         return cell;
@@ -124,13 +124,12 @@
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (_isBlack) {
+        return CGSizeMake(92, self.height);
+    }
     GameCategoryModel *gcm = _gameTypeArray[indexPath.row];
     CGFloat w = [gcm.name widthForFont:[UIFont systemFontOfSize:18]] + 30;
-    return CGSizeMake(w, 110);
-}
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
-    return 0;
+    return CGSizeMake(w, self.height);
 }
 
 @end

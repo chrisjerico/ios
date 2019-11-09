@@ -148,7 +148,7 @@ static UGTabbarController *_tabBarVC = nil;
     
     
     // 更新黑色模板状态栏
-    [self xw_addNotificationForName:UGNotificationWithSkinSuccess block:^(NSNotification * _Nonnull noti) {
+    {
         UIStackView *sv = [TabBarController1.tabBar viewWithTagString:@"描边StackView"];
         if (!sv) {
             sv = [[UIStackView alloc] initWithFrame:CGRectMake(0, 0, APP.Width, 65)];
@@ -161,18 +161,26 @@ static UGTabbarController *_tabBarVC = nil;
                 v.layer.borderWidth = 0.7;
                 v.layer.borderColor = APP.TextColor2.CGColor;
                 v.backgroundColor = [UIColor clearColor];
+                v.hidden = true;
                 [sv addArrangedSubview:v];
             }
             sv.userInteractionEnabled = false;
             [TabBarController1.tabBar addSubview:sv];
         }
-        for (UIView *v in sv.arrangedSubviews) {
-            v.hidden = !([sv.arrangedSubviews indexOfObject:v] < TabBarController1.tabBar.items.count);
-        }
-        BOOL black = [Skin1.skitType isEqualToString:@"黑色模板"];
-        sv.hidden = !black;
-        [TabBarController1 setTabbarHeight:black ? 53 : 49];
-    }];
+        [self aspect_hookSelector:@selector(setViewControllers:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
+            for (UIView *v in sv.arrangedSubviews) {
+                v.hidden = !([sv.arrangedSubviews indexOfObject:v] < TabBarController1.tabBar.items.count);
+            }
+        } error:nil];
+        [self xw_addNotificationForName:UGNotificationWithSkinSuccess block:^(NSNotification * _Nonnull noti) {
+            for (UIView *v in sv.arrangedSubviews) {
+                v.hidden = !([sv.arrangedSubviews indexOfObject:v] < TabBarController1.tabBar.items.count);
+            }
+            BOOL black = [Skin1.skitType isEqualToString:@"黑色模板"];
+            sv.hidden = !black;
+            [TabBarController1 setTabbarHeight:black ? 53 : 49];
+        }];
+    }
 }
 
 - (void)setTabbarStyle {

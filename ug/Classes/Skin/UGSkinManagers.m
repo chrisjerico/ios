@@ -637,7 +637,7 @@ static UGSkinManagers *__initSkin1 = nil;
         @"石榴红":({
             UGSkinManagers *sm = [UGSkinManagers new];
             sm.skitType                 = @"石榴红";
-            sm.bgColor                  = color(@"FFFFFF");
+            sm.bgColor                  = color(@"F8F8F8");
             sm.navBarBgColor            = color(@"CC022C");
             sm.tabBarBgColor            = color(@"CC022C");
             sm.tabNoSelectColor         = color(@"FFFFFF");
@@ -657,7 +657,7 @@ static UGSkinManagers *__initSkin1 = nil;
         @"新年红":({
             UGSkinManagers *sm = [UGSkinManagers new];
             sm.skitType                 = @"新年红";
-            sm.bgColor                  = color(@"FFFFFF");
+            sm.bgColor                  = color(@"F8F8F8");
             sm.navBarBgColor            = color(@"DE1C27");
             sm.tabBarBgColor            = color(@"DE1C27");
             sm.tabNoSelectColor         = color(@"FFFFFF");

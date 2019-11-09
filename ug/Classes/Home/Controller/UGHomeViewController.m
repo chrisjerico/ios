@@ -180,7 +180,7 @@
     BOOL isBlack = [Skin1.skitType isEqualToString:@"黑色模板"];
     _rollingView.backgroundColor = isBlack ? Skin1.bgColor : Skin1.navBarBgColor;
     _contentScrollView.contentInset = UIEdgeInsetsMake(0, 0, isBlack ? 20 : 0, 0);
-    
+    _gameTypeView.cc_constraints.top.constant = isBlack ? 0 : 10;
     [self.gameNavigationView reloadData];
 }
 
@@ -329,16 +329,16 @@
     }
 	
     // c200站点定制需求
-    {
-        FLAnimatedImageView *gifImageView = [[FLAnimatedImageView alloc] initWithFrame:CGRectMake(APP.Width-100, 300, 100, 100)];
-        gifImageView.contentMode = UIViewContentModeScaleAspectFit;
-        gifImageView.userInteractionEnabled = true;
-        [self.view addSubview:gifImageView];
-        [gifImageView sd_setImageWithURL:[[NSBundle mainBundle] URLForResource:@"lxb" withExtension:@"gif"]];
-        [gifImageView addGestureTapEventHandle:^(id sender, UITapGestureRecognizer *gestureRecognizer) {
-            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGYubaoViewController") animated:true];
-        }];
-    }
+//    {
+//        FLAnimatedImageView *gifImageView = [[FLAnimatedImageView alloc] initWithFrame:CGRectMake(APP.Width-100, 300, 100, 100)];
+//        gifImageView.contentMode = UIViewContentModeScaleAspectFit;
+//        gifImageView.userInteractionEnabled = true;
+//        [self.view addSubview:gifImageView];
+//        [gifImageView sd_setImageWithURL:[[NSBundle mainBundle] URLForResource:@"lxb" withExtension:@"gif"]];
+//        [gifImageView addGestureTapEventHandle:^(id sender, UITapGestureRecognizer *gestureRecognizer) {
+//            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGYubaoViewController") animated:true];
+//        }];
+//    }
     
 	// 拉取数据
 	_contentScrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{

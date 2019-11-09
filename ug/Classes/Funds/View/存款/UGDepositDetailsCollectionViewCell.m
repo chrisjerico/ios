@@ -24,11 +24,11 @@
     //设置边框圆角的弧度
     [layer setCornerRadius:5];
     //设置边框线的宽
-    [layer setBorderWidth:1];
+    [layer setBorderWidth:0];
     //设置边框线的颜色
-    [layer setBorderColor:Skin1.navBarBgColor.CGColor];
+    [layer setBorderColor:[UIColor whiteColor].CGColor];
     
-     [_myLabel setBackgroundColor: Skin1.navBarBgColor];
+    [_myLabel setBackgroundColor:Skin1.navBarBgColor];
     
     [self.myLabel setTextColor:[UIColor whiteColor]];
 }

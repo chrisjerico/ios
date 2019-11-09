@@ -20,24 +20,24 @@
 @property (nonatomic, strong) UIScrollView *mUIScrollView;
 
 @property (nonatomic, strong) UGchannelModel *selectChannelModel ;
-@property(nonatomic,strong)NSIndexPath *lastPath;
+@property (nonatomic, strong) NSIndexPath *lastPath;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray <UGchannelModel *> *tableDataArray;
 
-@property (nonatomic, strong)UIView *bg_label;
-@property (nonatomic, strong)UILabel *label;
-@property (nonatomic, strong)UILabel *tiplabel;
-@property (nonatomic, strong)UITextField *textField;
+@property (nonatomic, strong) UIView *bg_label;
+@property (nonatomic, strong) UILabel *label;
+@property (nonatomic, strong) UILabel *tiplabel;
+@property (nonatomic, strong) UITextField *textField;
 @property (nonatomic, strong) UICollectionView *collectionView ;
 @property (nonatomic, strong) NSArray <UGchannelModel *> *channelDataArray;
 @property (nonatomic, strong) NSMutableArray <NSString *> *amountDataArray;
 
-@property (nonatomic, strong)UIButton *blank_button;
+@property (nonatomic, strong) UIButton *blank_button;
 @property (nonatomic, strong) NSMutableArray <UGrechargeBankModel *> *blankDataArray;
-@property (nonatomic, strong)UGrechargeBankModel *selectBank;
+@property (nonatomic, strong) UGrechargeBankModel *selectBank;
 
-@property (nonatomic, strong)UIButton *submit_button;
-@property (nonatomic, strong)UIView *submit_View;
+@property (nonatomic, strong) UIButton *submit_button;
+@property (nonatomic, strong) UIView *submit_View;
 @end
 
 @implementation UGDepositDetailsViewController
@@ -52,14 +52,12 @@
     _tableDataArray = [NSMutableArray new];
     _blankDataArray = [NSMutableArray<UGrechargeBankModel> new];
     
-    [self.view setBackgroundColor:[UIColor whiteColor]];
-    
+    self.view.backgroundColor = Skin1.textColor4;
     
     
     if (self.item) {
         _channelDataArray = _item.channel;
         _tableDataArray =[[NSMutableArray alloc] initWithArray:_channelDataArray];
-        
     }
     
     [self creatUI];
@@ -273,7 +271,7 @@
         //UIScrollView被push之后返回，会发生控件位置偏移，用下面的代码就OK
         //        self.automaticallyAdjustsScrollViewInsets = NO;
         //        self.edgesForExtendedLayout = UIRectEdgeNone;
-        mUIScrollView.backgroundColor = [UIColor whiteColor];
+        mUIScrollView.backgroundColor = [UIColor clearColor];
         
         [self.view addSubview:mUIScrollView];
         self.mUIScrollView = mUIScrollView;
@@ -287,17 +285,12 @@
         layout.sectionInset = UIEdgeInsetsMake(5, 20, 5, 20);
         
         UICollectionView *collectionView = ({
-            
             collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0 , 50, UGScreenW  , 500) collectionViewLayout:layout];
-            collectionView.backgroundColor = [UIColor whiteColor];
-//            collectionView.backgroundColor = [UIColor redColor];
-
+            collectionView.backgroundColor = [UIColor clearColor];
             collectionView.dataSource = self;
             collectionView.delegate = self;
             [collectionView registerNib:[UINib nibWithNibName:@"UGDepositDetailsCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UGDepositDetailsCollectionViewCell"];
-            
             collectionView;
-            
         });
         [self.mUIScrollView addSubview:collectionView ];
         self.collectionView = collectionView;
@@ -310,10 +303,8 @@
         
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(100, 100, 0, 0)];
         label.textAlignment = NSTextAlignmentLeft;
-//        label.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
         label.font = [UIFont systemFontOfSize:14];
-        label.textColor = Skin1.navBarBgColor;
-        label.backgroundColor = [UIColor whiteColor];
+        label.textColor = Skin1.textColor1;
         label.numberOfLines = 0;
         label.text = @"";
         [self.view addSubview:label];
@@ -329,8 +320,7 @@
         label.textAlignment = NSTextAlignmentLeft;
 //        label.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
         label.font = [UIFont systemFontOfSize:14];
-        label.textColor =  Skin1.navBarBgColor;
-        label.backgroundColor = [UIColor whiteColor];
+        label.textColor =  Skin1.textColor1;
         label.numberOfLines = 0;
         label.text = @"";
         [self.view addSubview:label];
@@ -345,7 +335,7 @@
         UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 500, UGScreenW , 120) style:UITableViewStyleGrouped];
         tableView.delegate = self;
         tableView.dataSource = self;
-        [tableView setBackgroundColor:[UIColor whiteColor]];
+        [tableView setBackgroundColor:Skin1.textColor4];
         [tableView registerNib:[UINib nibWithNibName:@"UGDepositDetailsTableViewCell" bundle:nil] forCellReuseIdentifier:@"UGDepositDetailsTableViewCell"];
         tableView.estimatedRowHeight = 0;
         tableView.estimatedSectionHeaderHeight = 0;
@@ -363,7 +353,7 @@
         button.frame = CGRectMake(20, 510, APP.Width-40, 44);
         // 按钮的正常状态
         [button setTitle:@"请选择银行 ▼" forState:UIControlStateNormal];
-        [button setTitleColor:Skin1.navBarBgColor forState:UIControlStateNormal];
+        [button setTitleColor:Skin1.textColor1 forState:UIControlStateNormal];
         button.titleLabel.font = [UIFont systemFontOfSize:16];
         [button addTarget:self action:@selector(showBlackList:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -375,7 +365,7 @@
         //设置边框线的宽
         [layer setBorderWidth:1];
         //设置边框线的颜色
-        [layer setBorderColor:Skin1.navBarBgColor.CGColor];
+        [layer setBorderColor:Skin1.textColor2.CGColor];
         
         [self.mUIScrollView addSubview:button ];
         self.blank_button = button;
@@ -385,7 +375,7 @@
     if (self.submit_View == nil) {
         UIView* bg = [[UIView alloc] init];
         bg.frame = CGRectMake(0, 500, UGScreenW, 64);
-        bg.backgroundColor = [UIColor whiteColor];
+        bg.backgroundColor = [UIColor clearColor];
         [self.view addSubview:bg ];
         self.submit_View = bg;
         
@@ -406,6 +396,8 @@
         button.titleLabel.font = [UIFont systemFontOfSize:16];
         button.layer.cornerRadius = 5;
         button.layer.masksToBounds = true;
+        button.layer.borderWidth = 1;
+        button.layer.borderColor = [UIColor whiteColor].CGColor;
         [button addTarget:self action:@selector(submit_buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
         [self.submit_View addSubview:button ];
         self.submit_button = button;
