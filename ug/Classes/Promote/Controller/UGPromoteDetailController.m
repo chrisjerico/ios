@@ -26,7 +26,7 @@
     
     self.navigationItem.title = @"活动详情";
     self.view.backgroundColor = Skin1.textColor4;
-    self.contentTextView.backgroundColor = Skin1.textColor4;
+    self.contentTextView.backgroundColor = [UIColor whiteColor];
     self.titleLabel.textColor = Skin1.textColor1;
     [self.view addSubview:self.titleLabel];
     [self.view addSubview:self.contentTextView];
