@@ -3429,7 +3429,8 @@
 		D4091B4923694B120056BAEE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				D48C5DEC2377C848006454E6 /* 购彩大厅 */,
+				D48C5DF12377DBA7006454E6 /* 资金管理 */,
+				D48C5DEC2377C848006454E6 /* 彩票大厅 */,
 				D4C1E9CC23701EDA00BD120A /* 会员中心 */,
 				D4C1E9CB237001D700BD120A /* 最近浏览 */,
 				D4FD7B2F236EB82000D171AC /* 我的 */,
@@ -3815,13 +3816,20 @@
 			path = base;
 			sourceTree = "<group>";
 		};
-		D48C5DEC2377C848006454E6 /* 购彩大厅 */ = {
+		D48C5DEC2377C848006454E6 /* 彩票大厅 */ = {
 			isa = PBXGroup;
 			children = (
 				D48C5DED2377CBF5006454E6 /* UGBMLotteryHomeViewController.h */,
 				D48C5DEE2377CBF5006454E6 /* UGBMLotteryHomeViewController.m */,
 			);
-			path = "购彩大厅";
+			path = "彩票大厅";
+			sourceTree = "<group>";
+		};
+		D48C5DF12377DBA7006454E6 /* 资金管理 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "资金管理";
 			sourceTree = "<group>";
 		};
 		D494C7012366D532001C310F /* 刮刮乐 */ = {

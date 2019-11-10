@@ -47,6 +47,9 @@
     self.tableView.dataSource = self;
     self.view.backgroundColor = Skin1.bgColor;
     self.tableView.backgroundColor = Skin1.bgColor;
+    
+    FastSubViewCode(self.view);
+    subView(@"状态栏背景色View").backgroundColor = Skin1.navBarBgColor;
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self getPromoteList];
     }];

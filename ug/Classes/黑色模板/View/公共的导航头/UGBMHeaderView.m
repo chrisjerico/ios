@@ -46,6 +46,7 @@
                   NSLog(@"收到退出通知1：%@", notification.userInfo);
                  [self refreshUI];
         }];
+        [self setBackgroundColor:Skin1.navBarBgColor];
         self.leftwardMarqueeView.direction = UUMarqueeViewDirectionLeftward;
         self.leftwardMarqueeView.delegate = self;
         self.leftwardMarqueeView.timeIntervalPerScroll = 0.5f;

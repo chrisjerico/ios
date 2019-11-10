@@ -20,7 +20,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k66-NY-55g">
                             <rect key="frame" x="0.0" y="0.0" width="207" height="70"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BM_logo" translatesAutoresizingMaskIntoConstraints="NO" id="nZq-3J-sFU" customClass="FLAnimatedImageView">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nZq-3J-sFU" customClass="FLAnimatedImageView">
                                     <rect key="frame" x="0.0" y="0.0" width="169" height="70"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="nZq-3J-sFU" secondAttribute="height" multiplier="29:12" id="Loy-cR-8Xw"/>
@@ -214,7 +214,7 @@
                     <rect key="frame" x="0.0" y="70" width="414" height="40"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nbk-uE-5hm">
-                            <rect key="frame" x="0.0" y="1" width="414" height="1"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
                             <color key="backgroundColor" red="0.19608002901077271" green="0.19607555866241455" blue="0.19607856869697571" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="Dg1-JQ-Aso"/>
@@ -248,7 +248,7 @@
                         <constraint firstItem="Nbk-uE-5hm" firstAttribute="leading" secondItem="O3H-EL-0U7" secondAttribute="leading" id="JSJ-cU-qRB"/>
                         <constraint firstAttribute="height" constant="40" id="Lvn-bH-qkb"/>
                         <constraint firstAttribute="trailing" secondItem="Nbk-uE-5hm" secondAttribute="trailing" id="N2x-Tk-pka"/>
-                        <constraint firstItem="Nbk-uE-5hm" firstAttribute="top" secondItem="O3H-EL-0U7" secondAttribute="top" constant="1" id="Snm-EJ-knL"/>
+                        <constraint firstItem="Nbk-uE-5hm" firstAttribute="top" secondItem="O3H-EL-0U7" secondAttribute="top" id="Snm-EJ-knL"/>
                         <constraint firstAttribute="trailing" secondItem="Wnj-sr-eZV" secondAttribute="trailing" constant="8" id="cny-EY-9n7"/>
                         <constraint firstItem="Wnj-sr-eZV" firstAttribute="leading" secondItem="d8r-lG-yGw" secondAttribute="trailing" constant="8" id="kwp-p0-evS"/>
                         <constraint firstItem="d8r-lG-yGw" firstAttribute="leading" secondItem="O3H-EL-0U7" secondAttribute="leading" constant="8" id="pUl-Xf-5ie"/>
@@ -258,7 +258,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.1294129490852356" green="0.12940964102745056" blue="0.12941190600395203" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="0YT-qE-f1q" secondAttribute="trailing" id="5O5-ek-Qat"/>
                 <constraint firstItem="O3H-EL-0U7" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="9Q9-I4-9Hp"/>
@@ -278,6 +278,5 @@
     <resources>
         <image name="BM_but" width="100" height="100"/>
         <image name="BM_horn" width="48" height="48"/>
-        <image name="BM_logo" width="290" height="120"/>
     </resources>
 </document>
