@@ -180,20 +180,20 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
            
         }
     }
-//    NSLog(@"NavController1= %@",NavController1);
-//    NSLog(@"NavController1.viewControllers= %@",NavController1.viewControllers);
-//    NSLog(@"lastVC= %@",NavController1.lastVC);
-//    NSLog(@"viewControllers.lastObject= %@",NavController1.viewControllers.lastObject);
-//    NSLog(@"self.navigationController= %@",self.navigationController);
-//    NSLog(@"self.navigationController.lastObject= %@",self.navigationController.viewControllers.lastObject);
+    NSLog(@"NavController1= %@",NavController1);
+    NSLog(@"NavController1.viewControllers= %@",NavController1.viewControllers);
+    NSLog(@"lastVC= %@",NavController1.lastVC);
+    NSLog(@"viewControllers.lastObject= %@",NavController1.viewControllers.lastObject);
+    NSLog(@"self.navigationController= %@",self.navigationController);
+    NSLog(@"self.navigationController.lastObject= %@",self.navigationController.viewControllers.lastObject);
     // 登录
-    if ([NavController1.lastVC isKindOfClass:UGBMLoginViewController.class]) {
+    if ([NavController1.lastVC isKindOfClass:UGBMLoginViewController.class]&&[viewController isKindOfClass:[UGBMLoginViewController class]]) {
         UIViewController *vc = [NavController1.viewControllers objectWithValue:UGBMLoginViewController.class keyPath:@"class"];
         if (vc) {
             [NavController1 popToViewController:vc animated:false];
         }
     }
-    else if ([NavController1.lastVC isKindOfClass:UGLoginViewController.class]) {
+    else if ([NavController1.lastVC isKindOfClass:UGLoginViewController.class]&&[viewController isKindOfClass:[UGLoginViewController class]]) {
         UIViewController *vc = [NavController1.viewControllers objectWithValue:UGLoginViewController.class keyPath:@"class"];
         if (vc) {
             [NavController1 popToViewController:vc animated:false];
