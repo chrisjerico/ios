@@ -26,6 +26,8 @@
 #import "UGRegisterViewController.h"             // 模板注册
 #import "UGBMpreferentialViewController.h"       // 黑色模板优惠专区
 #import "UGPromotionsController.h"               // 模板优惠专区
+#import "UGBMLotteryHomeViewController.h"        // 黑色模板购彩大厅
+#import "UGYYLotteryHomeViewController.h"        // 购彩大厅
 // Tools
 #import "UGAppVersionManager.h"
 
@@ -147,7 +149,8 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         //如果不是黑色模板==》登录 注册  优惠专区  优惠活动
         if ([viewController isKindOfClass:[UGBMRegisterViewController class]] || [viewController isKindOfClass:[UGBMLoginViewController class]]
             ||[viewController isKindOfClass:[UGRegisterViewController class]] || [viewController isKindOfClass:[UGLoginViewController class]]
-            ||[viewController isKindOfClass:[UGBMpreferentialViewController class]] || [viewController isKindOfClass:[UGPromotionsController class]]) {
+            ||[viewController isKindOfClass:[UGBMpreferentialViewController class]] || [viewController isKindOfClass:[UGPromotionsController class]]
+            ||[viewController isKindOfClass:[UGBMLotteryHomeViewController class]] || [viewController isKindOfClass:[UGYYLotteryHomeViewController class]]) {
             //黑色模板的登录 注册+不是黑色模板
             //登录 注册+是黑色模板
             if (([viewController isKindOfClass:[UGBMRegisterViewController class]] && ![Skin1.skitType isEqualToString:@"黑色模板"])){
@@ -167,6 +170,12 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             }
             if (([viewController isKindOfClass:[UGPromotionsController class]] && [Skin1.skitType isEqualToString:@"黑色模板"])){
                 viewController = _LoadVC_from_storyboard_(@"UGBMpreferentialViewController");
+            }
+            if (([viewController isKindOfClass:[UGBMLotteryHomeViewController class]] && ![Skin1.skitType isEqualToString:@"黑色模板"])){
+                  viewController =  [UGYYLotteryHomeViewController new];
+            }
+            if (([viewController isKindOfClass:[UGYYLotteryHomeViewController class]] && [Skin1.skitType isEqualToString:@"黑色模板"])){
+                viewController =  _LoadVC_from_storyboard_(@"UGBMLotteryHomeViewController");
             }
            
         }

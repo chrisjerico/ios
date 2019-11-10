@@ -1376,13 +1376,24 @@
                                     </collectionView>
                                 </subviews>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pem-wn-fAa">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                <color key="backgroundColor" red="0.12941294910000001" green="0.12940964099999999" blue="0.12941190599999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="状态栏背景色View"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="xu6-YK-pet" firstAttribute="top" secondItem="pem-wn-fAa" secondAttribute="bottom" id="2bU-4d-hmo"/>
                             <constraint firstItem="hkf-Ro-pc9" firstAttribute="bottom" secondItem="xu6-YK-pet" secondAttribute="bottom" id="6Xh-tI-pLr"/>
+                            <constraint firstItem="pem-wn-fAa" firstAttribute="top" secondItem="SZ2-wi-JcQ" secondAttribute="top" id="CSf-HJ-kWc"/>
                             <constraint firstItem="xu6-YK-pet" firstAttribute="top" secondItem="hkf-Ro-pc9" secondAttribute="top" id="GyN-A9-aYB"/>
                             <constraint firstItem="xu6-YK-pet" firstAttribute="leading" secondItem="hkf-Ro-pc9" secondAttribute="leading" id="MFR-w8-75e"/>
+                            <constraint firstItem="pem-wn-fAa" firstAttribute="leading" secondItem="SZ2-wi-JcQ" secondAttribute="leading" id="So0-hF-6lm"/>
                             <constraint firstItem="hkf-Ro-pc9" firstAttribute="trailing" secondItem="xu6-YK-pet" secondAttribute="trailing" id="V9L-5Q-RKv"/>
+                            <constraint firstAttribute="trailing" secondItem="pem-wn-fAa" secondAttribute="trailing" id="gaM-HH-jvM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hkf-Ro-pc9"/>
                     </view>
@@ -1501,13 +1512,24 @@
                                     <constraint firstAttribute="trailing" secondItem="DYF-Kt-hHF" secondAttribute="trailing" id="nMj-Ey-94u"/>
                                 </constraints>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gdl-mY-Pu0">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                <color key="backgroundColor" red="0.12941294910000001" green="0.12940964099999999" blue="0.12941190599999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="状态栏背景色View"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="Mhq-97-gW1" firstAttribute="bottom" secondItem="h57-Dv-sfw" secondAttribute="bottom" id="4Wv-Lo-4iY"/>
                             <constraint firstItem="Mhq-97-gW1" firstAttribute="trailing" secondItem="h57-Dv-sfw" secondAttribute="trailing" id="8lK-db-bbd"/>
+                            <constraint firstItem="Gdl-mY-Pu0" firstAttribute="top" secondItem="VXN-9F-pws" secondAttribute="top" id="Cja-HC-TUW"/>
+                            <constraint firstAttribute="trailing" secondItem="Gdl-mY-Pu0" secondAttribute="trailing" id="E6B-9A-3oq"/>
                             <constraint firstItem="h57-Dv-sfw" firstAttribute="top" secondItem="Mhq-97-gW1" secondAttribute="top" id="Lh7-Sn-ajC"/>
+                            <constraint firstItem="h57-Dv-sfw" firstAttribute="top" secondItem="Gdl-mY-Pu0" secondAttribute="bottom" id="PJE-PI-E3A"/>
                             <constraint firstItem="h57-Dv-sfw" firstAttribute="leading" secondItem="Mhq-97-gW1" secondAttribute="leading" id="cgp-3I-wWH"/>
+                            <constraint firstItem="Gdl-mY-Pu0" firstAttribute="leading" secondItem="VXN-9F-pws" secondAttribute="leading" id="sOf-pw-AzN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Mhq-97-gW1"/>
                     </view>

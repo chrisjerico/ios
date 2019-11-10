@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -128,6 +129,13 @@
                                     <constraint firstItem="GPw-EB-XJK" firstAttribute="leading" secondItem="xNR-NS-Gzc" secondAttribute="leading" id="mpj-gM-TiF"/>
                                 </constraints>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oLh-4T-fXc">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                <color key="backgroundColor" red="0.12941294910000001" green="0.12940964099999999" blue="0.12941190599999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="状态栏背景色View"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -136,12 +144,16 @@
                             <constraint firstItem="0Cg-od-Lw7" firstAttribute="leading" secondItem="tTN-TS-Twb" secondAttribute="leading" id="HLx-ic-LXc"/>
                             <constraint firstItem="xNR-NS-Gzc" firstAttribute="leading" secondItem="tTN-TS-Twb" secondAttribute="leading" id="Lbt-DY-9Zh"/>
                             <constraint firstItem="xNR-NS-Gzc" firstAttribute="top" secondItem="0Cg-od-Lw7" secondAttribute="bottom" id="MK4-uf-k3h"/>
+                            <constraint firstAttribute="trailing" secondItem="oLh-4T-fXc" secondAttribute="trailing" id="OuB-Uy-Fy4"/>
                             <constraint firstItem="xNR-NS-Gzc" firstAttribute="bottom" secondItem="tTN-TS-Twb" secondAttribute="bottom" id="cZn-az-er9"/>
                             <constraint firstItem="0Cg-od-Lw7" firstAttribute="top" secondItem="Ee0-K7-64Z" secondAttribute="bottom" id="fgm-TK-P4b"/>
                             <constraint firstItem="Ee0-K7-64Z" firstAttribute="top" secondItem="tTN-TS-Twb" secondAttribute="top" id="mWW-ar-cuB"/>
+                            <constraint firstItem="oLh-4T-fXc" firstAttribute="leading" secondItem="zCJ-kO-hyQ" secondAttribute="leading" id="oV2-nh-fat"/>
                             <constraint firstItem="Ee0-K7-64Z" firstAttribute="leading" secondItem="tTN-TS-Twb" secondAttribute="leading" id="sh6-Ks-LJo"/>
+                            <constraint firstItem="oLh-4T-fXc" firstAttribute="top" secondItem="zCJ-kO-hyQ" secondAttribute="top" id="tBp-By-YTc"/>
                             <constraint firstItem="0Cg-od-Lw7" firstAttribute="trailing" secondItem="tTN-TS-Twb" secondAttribute="trailing" id="yj0-dT-4Wo"/>
                             <constraint firstItem="xNR-NS-Gzc" firstAttribute="trailing" secondItem="tTN-TS-Twb" secondAttribute="trailing" id="yx0-17-928"/>
+                            <constraint firstItem="Ee0-K7-64Z" firstAttribute="top" secondItem="oLh-4T-fXc" secondAttribute="bottom" id="zPE-f2-65x"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tTN-TS-Twb"/>
                     </view>
@@ -153,6 +165,112 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZG4-E9-kxT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-72.463768115942031" y="170.75892857142856"/>
+        </scene>
+        <!--购彩大厅-->
+        <scene sceneID="nFL-bf-lj2">
+            <objects>
+                <viewController storyboardIdentifier="UGBMLotteryHomeViewController" title="购彩大厅" id="DWs-cd-gC8" customClass="UGBMLotteryHomeViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vq2-H2-nI1">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="JAl-Nn-V0Z">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R2Z-Ep-6Gf">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="110"/>
+                                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="110" id="PD2-JM-CzG"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gh6-5H-WVp">
+                                        <rect key="frame" x="0.0" y="110" width="414" height="60"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qca-n6-Iew">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
+                                                <color key="backgroundColor" red="0.28627666829999998" green="0.28627061840000001" blue="0.28627473120000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="6LX-iC-ZJM"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6SP-50-cFx">
+                                                <rect key="frame" x="0.0" y="58.5" width="414" height="1.5"/>
+                                                <color key="backgroundColor" red="0.28627666829999998" green="0.28627061840000001" blue="0.28627473120000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1.5" id="Ges-pH-EHW"/>
+                                                </constraints>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="彩票大厅" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NSO-JV-alX">
+                                                <rect key="frame" x="170.5" y="19.5" width="73.5" height="21.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.10196178409999999" green="0.10195901239999999" blue="0.1019609049" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstItem="Qca-n6-Iew" firstAttribute="leading" secondItem="Gh6-5H-WVp" secondAttribute="leading" id="0CZ-iu-2d9"/>
+                                            <constraint firstAttribute="bottom" secondItem="6SP-50-cFx" secondAttribute="bottom" id="0V9-KH-dsH"/>
+                                            <constraint firstAttribute="trailing" secondItem="6SP-50-cFx" secondAttribute="trailing" id="2cw-2G-oTk"/>
+                                            <constraint firstItem="6SP-50-cFx" firstAttribute="leading" secondItem="Gh6-5H-WVp" secondAttribute="leading" id="EWv-Er-uyn"/>
+                                            <constraint firstItem="Qca-n6-Iew" firstAttribute="top" secondItem="Gh6-5H-WVp" secondAttribute="top" id="Imv-bi-ckN"/>
+                                            <constraint firstAttribute="height" constant="60" id="PHa-xL-UaZ"/>
+                                            <constraint firstItem="NSO-JV-alX" firstAttribute="centerX" secondItem="Gh6-5H-WVp" secondAttribute="centerX" id="Rxg-0c-IjU"/>
+                                            <constraint firstItem="NSO-JV-alX" firstAttribute="centerY" secondItem="Gh6-5H-WVp" secondAttribute="centerY" id="Yny-se-qwV"/>
+                                            <constraint firstAttribute="trailing" secondItem="Qca-n6-Iew" secondAttribute="trailing" id="j7N-vZ-h6w"/>
+                                        </constraints>
+                                    </view>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cir-Xi-YNh">
+                                        <rect key="frame" x="0.0" y="170" width="414" height="648"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="0ja-Aq-hZA">
+                                            <size key="itemSize" width="50" height="50"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="5" minY="6" maxX="5" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="1fj-A8-fKN">
+                                                <rect key="frame" x="5" y="6" width="50" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="fob-AQ-PD6">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </collectionViewCellContentView>
+                                            </collectionViewCell>
+                                        </cells>
+                                    </collectionView>
+                                </subviews>
+                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cdL-Ko-6Ne">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                <color key="backgroundColor" red="0.1294129490852356" green="0.12940964102745056" blue="0.12941190600395203" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="状态栏背景色View"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Fg3-Tn-uMl" firstAttribute="bottom" secondItem="JAl-Nn-V0Z" secondAttribute="bottom" id="5VM-uj-e29"/>
+                            <constraint firstItem="JAl-Nn-V0Z" firstAttribute="top" secondItem="Fg3-Tn-uMl" secondAttribute="top" id="92L-Nc-pgN"/>
+                            <constraint firstItem="JAl-Nn-V0Z" firstAttribute="leading" secondItem="vq2-H2-nI1" secondAttribute="leading" id="BD0-hy-U8y"/>
+                            <constraint firstItem="Fg3-Tn-uMl" firstAttribute="trailing" secondItem="JAl-Nn-V0Z" secondAttribute="trailing" id="Ca0-u9-dug"/>
+                            <constraint firstItem="cdL-Ko-6Ne" firstAttribute="top" secondItem="vq2-H2-nI1" secondAttribute="top" id="L6l-cN-Hze"/>
+                            <constraint firstAttribute="trailing" secondItem="cdL-Ko-6Ne" secondAttribute="trailing" id="MIy-e3-LUq"/>
+                            <constraint firstItem="cdL-Ko-6Ne" firstAttribute="leading" secondItem="vq2-H2-nI1" secondAttribute="leading" id="XHI-rG-a4r"/>
+                            <constraint firstItem="JAl-Nn-V0Z" firstAttribute="top" secondItem="cdL-Ko-6Ne" secondAttribute="bottom" id="wvC-PB-6ZW"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Fg3-Tn-uMl"/>
+                    </view>
+                    <connections>
+                        <outlet property="myCollectionView" destination="cir-Xi-YNh" id="qum-xW-YWL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OmO-xg-g27" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="724.63768115942037" y="170.75892857142856"/>
         </scene>
     </scenes>
 </document>

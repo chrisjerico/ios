@@ -460,6 +460,7 @@
 		D48224F522A10B5100F7DE72 /* UGNoticeHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D48224F422A10B5100F7DE72 /* UGNoticeHeaderView.m */; };
 		D48224F722A10B5F00F7DE72 /* UGNoticeHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D48224F622A10B5F00F7DE72 /* UGNoticeHeaderView.xib */; };
 		D48224FA22A120E500F7DE72 /* UGPlatformNoticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D48224F922A120E500F7DE72 /* UGPlatformNoticeModel.m */; };
+		D48C5DEF2377CBF5006454E6 /* UGBMLotteryHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D48C5DEE2377CBF5006454E6 /* UGBMLotteryHomeViewController.m */; };
 		D494C7042366D567001C310F /* OttoScratchView.m in Sources */ = {isa = PBXBuildFile; fileRef = D494C7032366D567001C310F /* OttoScratchView.m */; };
 		D49649B22324E3FA00BA8872 /* UGinviteInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D49649B12324E3FA00BA8872 /* UGinviteInfoModel.m */; };
 		D4997331234F16A7000ECBA3 /* UGgoBindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D499732F234F16A7000ECBA3 /* UGgoBindViewController.m */; };
@@ -1475,6 +1476,8 @@
 		D48224F622A10B5F00F7DE72 /* UGNoticeHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGNoticeHeaderView.xib; sourceTree = "<group>"; };
 		D48224F822A120E500F7DE72 /* UGPlatformNoticeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGPlatformNoticeModel.h; sourceTree = "<group>"; };
 		D48224F922A120E500F7DE72 /* UGPlatformNoticeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGPlatformNoticeModel.m; sourceTree = "<group>"; };
+		D48C5DED2377CBF5006454E6 /* UGBMLotteryHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGBMLotteryHomeViewController.h; sourceTree = "<group>"; };
+		D48C5DEE2377CBF5006454E6 /* UGBMLotteryHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGBMLotteryHomeViewController.m; sourceTree = "<group>"; };
 		D494C7022366D567001C310F /* OttoScratchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OttoScratchView.h; sourceTree = "<group>"; };
 		D494C7032366D567001C310F /* OttoScratchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OttoScratchView.m; sourceTree = "<group>"; };
 		D49649B02324E3FA00BA8872 /* UGinviteInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGinviteInfoModel.h; sourceTree = "<group>"; };
@@ -1589,7 +1592,7 @@
 		D4B6E6ED22D3325A0006B03F /* UGHomeTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGHomeTitleView.h; sourceTree = "<group>"; };
 		D4B6E6EE22D3325A0006B03F /* UGHomeTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGHomeTitleView.m; sourceTree = "<group>"; };
 		D4B6E6F022D332720006B03F /* UGHomeTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGHomeTitleView.xib; sourceTree = "<group>"; };
-		D4B75E092278025E0007047C /* c083.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = c083.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4B75E092278025E0007047C /* c083.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = c083.app; path = "1995澳门彩票.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4B75E0C2278025E0007047C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D4B75E15227802600007047C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4B75E18227802600007047C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -3426,6 +3429,7 @@
 		D4091B4923694B120056BAEE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D48C5DEC2377C848006454E6 /* 购彩大厅 */,
 				D4C1E9CC23701EDA00BD120A /* 会员中心 */,
 				D4C1E9CB237001D700BD120A /* 最近浏览 */,
 				D4FD7B2F236EB82000D171AC /* 我的 */,
@@ -3811,6 +3815,15 @@
 			path = base;
 			sourceTree = "<group>";
 		};
+		D48C5DEC2377C848006454E6 /* 购彩大厅 */ = {
+			isa = PBXGroup;
+			children = (
+				D48C5DED2377CBF5006454E6 /* UGBMLotteryHomeViewController.h */,
+				D48C5DEE2377CBF5006454E6 /* UGBMLotteryHomeViewController.m */,
+			);
+			path = "购彩大厅";
+			sourceTree = "<group>";
+		};
 		D494C7012366D532001C310F /* 刮刮乐 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3953,7 +3966,7 @@
 		D4B75E0A2278025E0007047C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D4B75E092278025E0007047C /* 1995澳门彩票.app */,
+				D4B75E092278025E0007047C /* c083.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -4564,7 +4577,7 @@
 			);
 			name = ug;
 			productName = ug;
-			productReference = D4B75E092278025E0007047C /* 1995澳门彩票.app */;
+			productReference = D4B75E092278025E0007047C /* c083.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -5037,6 +5050,7 @@
 				D420A781231558120089C0C5 /* UGYuebaoProfitReportModel.m in Sources */,
 				D405B33A227DAC4800F8C586 /* UGUserModel.m in Sources */,
 				D4FD7B29236E92DD00D171AC /* LeeTagView.m in Sources */,
+				D48C5DEF2377CBF5006454E6 /* UGBMLotteryHomeViewController.m in Sources */,
 				033177AF2338E026000D7663 /* UGBetResultView.m in Sources */,
 				D419DF35233664E6009636F0 /* UGChatViewController.m in Sources */,
 				D4145A7B22B3C0F900D8165F /* UGPlatformGameModel.m in Sources */,

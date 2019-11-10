@@ -27,6 +27,8 @@
 #import "UGAgentViewController.h"           // 申请代理
 #import "UGBMMemberCenterViewController.h"  // 黑色模板会员中心
 #import "UGBMpreferentialViewController.h"  // 黑色模板优惠专区
+#import "UGBMLotteryHomeViewController.h"   // 黑色模板购彩大厅
+#import "UGYYLotteryHomeViewController.h"   // 购彩大厅
 
 #import "UGSystemConfigModel.h"
 #import "UGAppVersionManager.h"
@@ -331,7 +333,8 @@ static UGTabbarController *_tabBarVC = nil;
     //如果是黑色模板或者其他模板：我的 和 黑色模板的我的 进行判断
     if (UGLoginIsAuthorized()
           && ([vc isKindOfClass:[UGMineSkinViewController class]] || [vc isKindOfClass:[UGBMMemberCenterViewController class]]
-              ||[vc isKindOfClass:[UGBMpreferentialViewController class]] || [vc isKindOfClass:[UGPromotionsController class]])) {
+              ||[vc isKindOfClass:[UGBMpreferentialViewController class]] || [vc isKindOfClass:[UGPromotionsController class]]
+              ||[vc isKindOfClass:[UGBMLotteryHomeViewController class]] || [vc isKindOfClass:[UGYYLotteryHomeViewController class]])) {
         //黑色模板的我的+不是黑色模板
         //我的+是黑色模板
         if (([vc isKindOfClass:[UGBMMemberCenterViewController class]] && ![Skin1.skitType isEqualToString:@"黑色模板"])){
@@ -350,7 +353,15 @@ static UGTabbarController *_tabBarVC = nil;
             push(@"优惠活动", _LoadVC_from_storyboard_(@"UGBMpreferentialViewController"));
             return false;
         }
-       
+        if (([vc isKindOfClass:[UGBMLotteryHomeViewController class]] && ![Skin1.skitType isEqualToString:@"黑色模板"])){
+                push(@"彩票大厅", [UGYYLotteryHomeViewController new]);
+                           return false;
+        }
+        if (([vc isKindOfClass:[UGYYLotteryHomeViewController class]] && [Skin1.skitType isEqualToString:@"黑色模板"])){
+            push(@"彩票大厅", _LoadVC_from_storyboard_(@"UGBMLotteryHomeViewController"));
+            return false;
+        }
+   
     }
     
     if (UGLoginIsAuthorized()
