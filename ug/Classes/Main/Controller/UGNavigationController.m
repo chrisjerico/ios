@@ -180,9 +180,15 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
            
         }
     }
-    
-    // 真正在执行跳转
-    [super pushViewController:viewController animated:animated];
+    // 登录
+    UIViewController *vc = [NavController1.viewControllers objectWithValue:UGBMLoginViewController.class keyPath:@"class"];
+    if (vc) {
+        [NavController1 popToViewController:vc animated:false];
+    } else {
+        // 真正在执行跳转
+        [super pushViewController:viewController animated:animated];
+    }
+   
 }
 
 
