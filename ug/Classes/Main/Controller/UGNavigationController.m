@@ -100,11 +100,11 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     return __navController.viewControllers.lastObject.view;
 }
 - (UIViewController *)firstVC{
-    return __navController.viewControllers.firstObject;
+    return NavController1.viewControllers.firstObject;
 }
 
 - (UIViewController *)lastVC{
-    return __navController.viewControllers.lastObject;
+    return NavController1.viewControllers.lastObject;
 }
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
@@ -180,6 +180,12 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
            
         }
     }
+//    NSLog(@"NavController1= %@",NavController1);
+//    NSLog(@"NavController1.viewControllers= %@",NavController1.viewControllers);
+//    NSLog(@"lastVC= %@",NavController1.lastVC);
+//    NSLog(@"viewControllers.lastObject= %@",NavController1.viewControllers.lastObject);
+//    NSLog(@"self.navigationController= %@",self.navigationController);
+//    NSLog(@"self.navigationController.lastObject= %@",self.navigationController.viewControllers.lastObject);
     // 登录
     if ([NavController1.lastVC isKindOfClass:UGBMLoginViewController.class]) {
         UIViewController *vc = [NavController1.viewControllers objectWithValue:UGBMLoginViewController.class keyPath:@"class"];

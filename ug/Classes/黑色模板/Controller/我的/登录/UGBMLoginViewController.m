@@ -68,6 +68,8 @@
         subImageView(@"记住密码图片").image = [UIImage imageNamed:@"dagou_off"];
     }
     
+    
+    
     [subButton(@"登录按钮") handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
         [self loginClick:nil];
     }];
@@ -95,6 +97,8 @@
     [subButton(@"眼睛按钮") handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
            [self pwdTextSwitch:subButton(@"眼睛按钮")];
     }];
+    
+    [self getSystemConfig];
 }
 
 - (void)pwdTextSwitch:(UIButton *)sender {
@@ -421,6 +425,27 @@
     return _webView;
 }
 
+// 获取系统配置
+- (void)getSystemConfig {
+    [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+       
+        [CMResult processWithResult:model success:^{
+            
+            NSLog(@"model = %@",model);
+            
+            UGSystemConfigModel *config = model.data;
+            UGSystemConfigModel.currentConfig = config;
+
+            NSString *title =[NSString stringWithFormat:@"COPYRIGHT © %@ RESERVED",config.webName];
+            FastSubViewCode(self.view);
+//            [self.bottomLabel setText:title];
+            subLabel(@"标识label").text = title;
+            SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
+        } failure:^(id msg) {
+            
+        }];
+    }];
+}
 
 
 @end

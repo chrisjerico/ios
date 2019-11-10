@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4hR-sl-JFX">
-                                        <rect key="frame" x="71.5" y="0.0" width="405" height="150"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="405" height="150"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BMprofile" translatesAutoresizingMaskIntoConstraints="NO" id="Y33-3n-yzo">
                                                 <rect key="frame" x="142.5" y="20" width="120" height="120"/>
@@ -64,7 +64,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ll-VL-r8z" customClass="IBView">
-                                        <rect key="frame" x="121.5" y="160" width="171" height="40"/>
+                                        <rect key="frame" x="50" y="160" width="314" height="40"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BMicon-user" translatesAutoresizingMaskIntoConstraints="NO" id="nyh-rX-jzn">
                                                 <rect key="frame" x="9" y="7.5" width="25" height="25"/>
@@ -74,7 +74,7 @@
                                                 </constraints>
                                             </imageView>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="账号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qhn-gl-4qS">
-                                                <rect key="frame" x="46" y="3" width="117" height="34"/>
+                                                <rect key="frame" x="46" y="3" width="260" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="34" id="7RA-ml-PJv"/>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="C5Y-kz-vQ0"/>
@@ -107,7 +107,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zGp-eJ-DuM" customClass="IBView">
-                                        <rect key="frame" x="121.5" y="210" width="171" height="40"/>
+                                        <rect key="frame" x="50" y="210" width="314" height="40"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BMicon-pwd" translatesAutoresizingMaskIntoConstraints="NO" id="gT7-Ba-dOg">
                                                 <rect key="frame" x="9" y="7.5" width="25" height="25"/>
@@ -117,7 +117,7 @@
                                                 </constraints>
                                             </imageView>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xKW-E0-mJV">
-                                                <rect key="frame" x="46" y="3" width="65" height="34"/>
+                                                <rect key="frame" x="46" y="3" width="208" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="7Th-hQ-wFR"/>
                                                     <constraint firstAttribute="height" constant="34" id="9bb-1K-3Tm"/>
@@ -129,7 +129,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BMeye_1" translatesAutoresizingMaskIntoConstraints="NO" id="Sfq-l4-XTp">
-                                                <rect key="frame" x="141" y="10" width="20" height="20"/>
+                                                <rect key="frame" x="284" y="10" width="20" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="7cY-ll-Ofq"/>
                                                 </constraints>
@@ -138,7 +138,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H89-Zf-xci">
-                                                <rect key="frame" x="125" y="0.0" width="40" height="40"/>
+                                                <rect key="frame" x="268" y="0.0" width="40" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="40" id="LRG-tx-fUa"/>
                                                     <constraint firstAttribute="height" constant="40" id="Y7O-vp-96n"/>
@@ -317,7 +317,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COPYRIGHT © test20-朗 RESERVED" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f6E-aF-skQ">
-                                        <rect key="frame" x="80" y="662" width="254" height="21"/>
+                                        <rect key="frame" x="89" y="662" width="236" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="2PU-2b-A7N"/>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="xds-U0-2Jc"/>
@@ -363,7 +363,6 @@
                                     <constraint firstItem="zGp-eJ-DuM" firstAttribute="leading" secondItem="rpg-0h-e24" secondAttribute="leading" constant="50" id="nOY-SY-a9n"/>
                                     <constraint firstItem="z6h-qf-sL7" firstAttribute="leading" secondItem="wlW-or-3rU" secondAttribute="leading" constant="13" id="w71-AJ-Eeh"/>
                                     <constraint firstAttribute="bottom" secondItem="4hR-sl-JFX" secondAttribute="bottom" constant="668" id="wl9-k7-Evo"/>
-                                    <constraint firstItem="f6E-aF-skQ" firstAttribute="leading" secondItem="wlW-or-3rU" secondAttribute="leading" constant="80" id="xFR-Hz-Gpj"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="wlW-or-3rU"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="rpg-0h-e24"/>
