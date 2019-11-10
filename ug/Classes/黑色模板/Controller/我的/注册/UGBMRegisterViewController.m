@@ -149,6 +149,7 @@
         
         [self getImgVcode:nil];
     }
+
     [self.webBgView addSubview:self.webView];
     
     
@@ -675,6 +676,7 @@
         _webView.navigationDelegate = self;
         
         [_webView setBackgroundColor:Skin1.bgColor];
+        [_webView setOpaque:NO];
     }
     return _webView;
 }

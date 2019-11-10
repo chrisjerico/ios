@@ -449,7 +449,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wZz-cd-Hmz">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wZz-cd-Hmz">
                                 <rect key="frame" x="0.0" y="260" width="414" height="1296"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="X6O-gS-ltv">
@@ -1101,8 +1101,8 @@
                                             </view>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vOr-LM-JsA" customClass="IBButton">
-                                        <rect key="frame" x="20" y="1105" width="374" height="44"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vOr-LM-JsA" customClass="IBButton">
+                                        <rect key="frame" x="20" y="1109" width="374" height="44"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="rr7-V8-lAe"/>
@@ -1122,7 +1122,7 @@
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qU3-PG-E6f">
                                         <rect key="frame" x="20" y="874" width="374" height="80"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="80" id="elQ-K5-uqv"/>
                                         </constraints>
@@ -1144,8 +1144,8 @@
                                             <action selector="myValueChanged:" destination="KrP-Z6-F4C" eventType="valueChanged" id="Atf-uu-5oU"/>
                                         </connections>
                                     </segmentedControl>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="itA-a4-WVu" customClass="IBButton">
-                                        <rect key="frame" x="20" y="1164" width="374" height="44"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="itA-a4-WVu" customClass="IBButton">
+                                        <rect key="frame" x="20" y="1168" width="374" height="44"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="8MZ-g3-ytC"/>
@@ -1164,8 +1164,8 @@
                                             <action selector="goHomeAction:" destination="KrP-Z6-F4C" eventType="touchUpInside" id="ZhJ-ft-AiG"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9EP-Fp-KmB" customClass="IBButton">
-                                        <rect key="frame" x="20" y="1042" width="374" height="44"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9EP-Fp-KmB" customClass="IBButton">
+                                        <rect key="frame" x="20" y="1050" width="374" height="44"/>
                                         <color key="backgroundColor" red="0.35649350289999998" green="0.1259486973" blue="0.1058736071" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="6JH-eV-sxv"/>
@@ -1198,13 +1198,15 @@
                                     <constraint firstAttribute="trailing" secondItem="itA-a4-WVu" secondAttribute="trailing" constant="20" id="RO0-RP-qJA"/>
                                     <constraint firstItem="cZW-OW-ZHb" firstAttribute="centerX" secondItem="wZz-cd-Hmz" secondAttribute="centerX" id="Rzz-nc-dmg"/>
                                     <constraint firstItem="cZW-OW-ZHb" firstAttribute="top" secondItem="qU3-PG-E6f" secondAttribute="bottom" constant="20" id="VEX-uT-dbt"/>
+                                    <constraint firstItem="9EP-Fp-KmB" firstAttribute="top" secondItem="cZW-OW-ZHb" secondAttribute="bottom" constant="40" id="VEk-be-gAL"/>
                                     <constraint firstItem="X6O-gS-ltv" firstAttribute="centerX" secondItem="wZz-cd-Hmz" secondAttribute="centerX" id="apH-G0-nde"/>
                                     <constraint firstItem="vOr-LM-JsA" firstAttribute="leading" secondItem="wZz-cd-Hmz" secondAttribute="leading" constant="20" id="bEj-c0-jtO"/>
                                     <constraint firstAttribute="trailing" secondItem="cZW-OW-ZHb" secondAttribute="trailing" constant="50" id="dzL-LP-B10"/>
                                     <constraint firstAttribute="trailing" secondItem="9EP-Fp-KmB" secondAttribute="trailing" constant="20" id="hSP-HG-GBD"/>
                                     <constraint firstItem="X6O-gS-ltv" firstAttribute="top" secondItem="wZz-cd-Hmz" secondAttribute="top" id="jvW-wX-lqu"/>
                                     <constraint firstItem="qU3-PG-E6f" firstAttribute="top" secondItem="X6O-gS-ltv" secondAttribute="bottom" constant="15" id="p7g-uS-Ma1"/>
-                                    <constraint firstItem="vOr-LM-JsA" firstAttribute="top" secondItem="9EP-Fp-KmB" secondAttribute="bottom" constant="15" id="yn3-NU-qwN"/>
+                                    <constraint firstItem="vOr-LM-JsA" firstAttribute="top" secondItem="9EP-Fp-KmB" secondAttribute="bottom" constant="15" id="wML-x3-qVi"/>
+                                    <constraint firstAttribute="bottom" secondItem="itA-a4-WVu" secondAttribute="bottom" constant="84" id="xdD-v0-jl9"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
