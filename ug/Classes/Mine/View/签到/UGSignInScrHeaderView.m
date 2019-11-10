@@ -34,7 +34,10 @@
     
     NSBundle *bundle=[NSBundle mainBundle];
     NSArray *objs=[bundle loadNibNamed:@"UGSignInScrHeaderView" owner:nil options:nil];
+    
     return [objs lastObject];
+    
+
     
 }
 

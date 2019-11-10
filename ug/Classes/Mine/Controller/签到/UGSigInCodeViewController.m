@@ -99,7 +99,8 @@
         mUGSignInScrHeaderView = [[UGSignInScrHeaderView alloc] initView];
         [mUGSignInScrHeaderView setFrame:CGRectMake(0, 0,UGScreenW, 95.0)];
         
-    
+        [mUGSignInScrHeaderView.title1Label setTextColor:Skin1.textColor1];
+        [mUGSignInScrHeaderView.title2Label setTextColor:Skin1.textColor1];
         [mUIScrollView addSubview:mUGSignInScrHeaderView];
     }
     

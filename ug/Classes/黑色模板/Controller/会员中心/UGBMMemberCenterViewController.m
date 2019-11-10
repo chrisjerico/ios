@@ -299,6 +299,9 @@
     else if ([title isEqualToString:@"长龙助手"]) {
         [self.navigationController pushViewController:[UGChangLongController new] animated:YES];
     }
+    else if ([title isEqualToString:@"任务中心"]) {
+        [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController")  animated:YES];
+    }
 }
 
 
@@ -339,6 +342,7 @@
         if (user.hasActLottery) {
             [self.menuNameArray addObject:@{@"title" : @"活动彩金" , @"imgName" : [self retureWhiteColorImage:@"zdgl"]}];
         }
+        [self.menuNameArray addObject:@{@"title" : @"任务中心" , @"imgName" :[self retureWhiteColorImage:@"BMrenwu"]}];
         
     } else {
         [self.menuNameArray addObject:@{@"title" : @"存款" , @"imgName" : [self retureWhiteColorImage:@"chongzhi"] }];
@@ -362,6 +366,7 @@
         if (user.hasActLottery) {
             [self.menuNameArray addObject:@{@"title" : @"活动彩金" , @"imgName" : [self retureWhiteColorImage:@"zdgl"]}];
         }
+        [self.menuNameArray addObject:@{@"title" : @"任务中心" , @"imgName" :[self retureWhiteColorImage:@"BMrenwu"]}];
     }
 }
 

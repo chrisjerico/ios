@@ -84,6 +84,10 @@
                  [self goHomeAction:nil];
      }];
     
+    [subButton(@"回到首页") handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
+                 [self goHomeAction:nil];
+     }];
+    
     [subButton(@"记住密码按钮") handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
         [self recoredBtnClick:nil];
     }];

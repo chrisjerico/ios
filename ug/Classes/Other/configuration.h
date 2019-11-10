@@ -29,6 +29,8 @@ static NSString *baseServerUrl = @"http://test10.6yc.com";    // test10
 //static NSString *baseServerUrl = @"http://t111f.fhptcdn.com";     // c083
 //static NSString *baseServerUrl = @"https://47c47webappqp.org";
 //static NSString *baseServerUrl = @"http://igphayfc001hdkihq.phlotbet.com"; // c001
+//static NSString *baseServerUrl = @"https://154977.com";     // c022
+
 
 
 static NSString *swiperVerifyUrl = @"/dist/index.html#/swiperverify?platform=native";
