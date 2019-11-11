@@ -23,6 +23,9 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    [self.contentView setBackgroundColor:Skin1.textColor4];
+    [_titleLabel setTextColor:Skin1.textColor1];
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -40,7 +43,13 @@
     _imageName = imageName;
 
     UIImage *image = [UIImage imageNamed:imageName];
-    UIImage *afterImage = [image qmui_imageWithTintColor:Skin1.navBarBgColor];
+    UIImage *afterImage;
+    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+        afterImage = [image qmui_imageWithTintColor:Skin1.textColor1];
+    } else {
+        afterImage = [image qmui_imageWithTintColor:Skin1.navBarBgColor];
+    }
+    
     self.imageView.image = afterImage;
 
     

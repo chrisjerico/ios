@@ -21,7 +21,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="247" height="244"/>
                             <subviews>
                                 <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bluebg" translatesAutoresizingMaskIntoConstraints="NO" id="Nfw-kf-ZEo">
-                                    <rect key="frame" x="0.0" y="44" width="247.00000000000023" height="200"/>
+                                    <rect key="frame" x="0.0" y="44" width="247" height="200"/>
                                     <color key="backgroundColor" red="0.32385197281837463" green="0.68189215660095215" blue="0.97255474328994751" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="200" id="qRz-IY-W2o"/>
@@ -223,7 +223,7 @@
                         </view>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="43P-ey-REM">
                             <rect key="frame" x="0.0" y="299" width="247" height="460"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <outlet property="dataSource" destination="-1" id="ztz-5v-jHT"/>
                                 <outlet property="delegate" destination="-1" id="B1g-AH-DiX"/>
@@ -232,7 +232,7 @@
                     </subviews>
                 </stackView>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="11X-4X-y0F" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="1sS-eR-uz2"/>
                 <constraint firstItem="11X-4X-y0F" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="28o-9J-IbU"/>
@@ -243,16 +243,19 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="balanceLabel" destination="Eel-Ef-jeF" id="6Ih-u4-3Dk"/>
+                <outlet property="bg2View" destination="MBZ-gP-6rH" id="J3N-eq-c7P"/>
                 <outlet property="bgImgeView" destination="Nfw-kf-ZEo" id="zWk-p2-YgQ"/>
                 <outlet property="bgView" destination="1gL-Jl-h4n" id="lLz-rf-Djm"/>
                 <outlet property="headImageView" destination="2ke-TU-Vc9" id="Z7A-p8-vUT"/>
                 <outlet property="icon1ImgeView" destination="2MS-fb-M9G" id="5Zr-Cc-DNS"/>
                 <outlet property="icon2ImageView" destination="R9r-jh-6K4" id="Yne-eB-XFq"/>
                 <outlet property="myButton" destination="oNc-d0-FPt" id="i7n-Mm-glG"/>
+                <outlet property="rechargeLabel" destination="ggw-wS-eQr" id="RVZ-Fk-kLb"/>
                 <outlet property="rechargeView" destination="pyg-1t-XcU" id="BT3-FK-xav"/>
                 <outlet property="refreshButton" destination="Whw-yN-B0t" id="L7p-cg-xQo"/>
                 <outlet property="tableView" destination="43P-ey-REM" id="QH6-Gl-oLP"/>
                 <outlet property="userNameLabel" destination="YYx-w7-e05" id="XFv-5p-n3w"/>
+                <outlet property="withdrawLabel" destination="gB9-0U-AYr" id="XMn-N8-QbT"/>
                 <outlet property="withdrawlView" destination="n5K-yu-wLZ" id="Sg8-vb-9GU"/>
             </connections>
             <point key="canvasLocation" x="48.550724637681164" y="82.03125"/>

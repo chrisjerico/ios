@@ -33,11 +33,15 @@
 
 @property (weak, nonatomic) IBOutlet UIView *bgView;
 
-@property (weak, nonatomic) IBOutlet UIView *rechargeView;
-@property (weak, nonatomic) IBOutlet UIView *withdrawlView;
+@property (weak, nonatomic) IBOutlet UIView *bg2View;           /**<   充值提现背景*/
+@property (weak, nonatomic) IBOutlet UIView *rechargeView;      /**<   充值背景*/
+@property (weak, nonatomic) IBOutlet UIView *withdrawlView;     /**<   提现背景*/
 @property (weak, nonatomic) IBOutlet UIImageView *bgImgeView;
-@property (weak, nonatomic) IBOutlet UIImageView *icon1ImgeView;
-@property (weak, nonatomic) IBOutlet UIImageView *icon2ImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *icon1ImgeView;  /**<   充值图片*/
+@property (weak, nonatomic) IBOutlet UIImageView *icon2ImageView; /**<  提现图片*/
+@property (weak, nonatomic) IBOutlet UILabel *rechargeLabel;      /**<   充值文字*/
+@property (weak, nonatomic) IBOutlet UILabel *withdrawLabel;      /**<   提现文字*/
+
 
 @property (weak, nonatomic) IBOutlet UIButton *myButton;            /**<   黑色模板去会员中心*/
 
@@ -163,6 +167,8 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         self.balanceLabel.text = [NSString stringWithFormat:@"¥%@",[[UGUserModel currentUser].balance removeFloatAllZero]];
         self.headImageView.layer.cornerRadius = self.headImageView.height / 2 ;
         self.headImageView.layer.masksToBounds = YES;
+        
+ 
 
         SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
             [self.refreshButton.layer removeAllAnimations];
@@ -324,8 +330,29 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
 }
 
 - (void)show {
-    [self.rechargeView setBackgroundColor:Skin1.navBarBgColor];
-    [self.withdrawlView setBackgroundColor:Skin1.navBarBgColor];
+    
+    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+         [self.tableView setBackgroundColor:Skin1.textColor4 ];
+         [self.rechargeView setBackgroundColor:Skin1.textColor1];
+         [self.withdrawlView setBackgroundColor:Skin1.textColor1];
+          self.rechargeView.layer.borderColor = Skin1.menuHeadViewColor.CGColor;
+          self.withdrawlView.layer.borderColor = Skin1.menuHeadViewColor.CGColor;
+        [self.bg2View setBackgroundColor:Skin1.menuHeadViewColor];
+         _icon1ImgeView.image = [UIImage imageNamed:@"BMchongzhi"];
+         _icon2ImageView.image = [UIImage imageNamed:@"BMtixian"];
+        [_rechargeLabel setTextColor:Skin1.navBarBgColor];
+        [_withdrawLabel setTextColor:Skin1.navBarBgColor];
+     } else {
+          [self.tableView setBackgroundColor:[UIColor clearColor] ];
+          [self.rechargeView setBackgroundColor:Skin1.navBarBgColor];
+          [self.withdrawlView setBackgroundColor:Skin1.navBarBgColor];
+          [self.bg2View setBackgroundColor:[UIColor whiteColor]];
+         _icon1ImgeView.image = [UIImage imageNamed:@"chongzhibai"];
+         _icon2ImageView.image = [UIImage imageNamed:@"tixianbai"];
+         [_rechargeLabel setTextColor:[UIColor whiteColor]];
+         [_withdrawLabel setTextColor:[UIColor whiteColor]];
+     }
+   
     
     [self.bgView setBackgroundColor:Skin1.menuHeadViewColor];
     
