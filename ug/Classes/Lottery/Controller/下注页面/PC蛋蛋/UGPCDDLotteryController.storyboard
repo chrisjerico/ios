@@ -253,6 +253,7 @@
                         <outlet property="betButton" destination="cIO-sN-KmF" id="6Wj-bA-pYf"/>
                         <outlet property="bottomCloseView" destination="oKP-uQ-UpD" id="iTk-N2-wV8"/>
                         <outlet property="bottomView" destination="nBV-Lg-CKy" id="trf-IP-zQx"/>
+                        <outlet property="chatTitleLabel" destination="54H-sJ-ILX" id="1By-JO-DdR"/>
                         <outlet property="chipButton" destination="bOa-Di-cXd" id="M6l-S3-4gY"/>
                         <outlet property="closeTimeLabel" destination="0kt-do-Ka6" id="k2i-uU-iwW"/>
                         <outlet property="currentIssueCollectionBgView" destination="tDX-6R-vTv" id="46W-zs-Ogx"/>

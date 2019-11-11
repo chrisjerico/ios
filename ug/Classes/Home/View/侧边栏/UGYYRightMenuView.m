@@ -39,6 +39,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *icon1ImgeView;
 @property (weak, nonatomic) IBOutlet UIImageView *icon2ImageView;
 
+@property (weak, nonatomic) IBOutlet UIButton *myButton;            /**<   黑色模板去会员中心*/
 
 @property (weak, nonatomic) IBOutlet UIImageView *headImageView;    /**<   头像*/
 
@@ -162,7 +163,6 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         self.balanceLabel.text = [NSString stringWithFormat:@"¥%@",[[UGUserModel currentUser].balance removeFloatAllZero]];
         self.headImageView.layer.cornerRadius = self.headImageView.height / 2 ;
         self.headImageView.layer.masksToBounds = YES;
-		
 
         SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
             [self.refreshButton.layer removeAllAnimations];
@@ -189,6 +189,14 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
     }
     return self;
     
+}
+
+-(IBAction)showMMemberCenterView{
+    NSLog(@"tap");
+    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+       [self hiddenSelf];
+       [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGBMMemberCenterViewController") animated:YES];
+    }
 }
 
 - (void)setTitleType:(NSString *)titleType {

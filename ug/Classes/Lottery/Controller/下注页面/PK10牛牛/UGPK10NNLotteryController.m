@@ -50,7 +50,7 @@
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UICollectionView *headerCollectionView;
-
+@property (weak, nonatomic) IBOutlet UILabel *chatTitleLabel;
 @property (nonatomic, strong) UICollectionView *betCollectionView;
 
 @property (nonatomic, strong) NSArray <NSString *> *chipArray;
@@ -573,6 +573,13 @@ static NSString *lotterySubResultCellid = @"UGPK10SubResultCollectionViewCell";
     
     self.headerCollectionView = collectionView;
     [self.view addSubview:collectionView];
+    
+    [ collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+           make.top.equalTo(self.view.mas_top).with.offset(5);
+           make.left.equalTo(self.chatTitleLabel.mas_right).offset(40);
+           make.height.equalTo([NSNumber numberWithFloat:100]);
+           make.width.equalTo([NSNumber numberWithFloat:(UGScreenW - 120)]);
+    }];
     
 }
 

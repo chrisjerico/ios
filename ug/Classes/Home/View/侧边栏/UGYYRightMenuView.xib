@@ -21,7 +21,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="247" height="244"/>
                             <subviews>
                                 <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bluebg" translatesAutoresizingMaskIntoConstraints="NO" id="Nfw-kf-ZEo">
-                                    <rect key="frame" x="0.0" y="44" width="247" height="200"/>
+                                    <rect key="frame" x="0.0" y="44" width="247.00000000000023" height="200"/>
                                     <color key="backgroundColor" red="0.32385197281837463" green="0.68189215660095215" blue="0.97255474328994751" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="200" id="qRz-IY-W2o"/>
@@ -96,6 +96,16 @@
                                         <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="免费开户按钮"/>
                                     </userDefinedRuntimeAttributes>
                                 </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oNc-d0-FPt">
+                                    <rect key="frame" x="58.5" y="52" width="130" height="130"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="130" id="Aco-po-Rsj"/>
+                                        <constraint firstAttribute="width" constant="130" id="PrE-pT-IMw"/>
+                                    </constraints>
+                                    <connections>
+                                        <action selector="showMMemberCenterView" destination="iN0-l3-epB" eventType="touchUpInside" id="5jJ-vy-SCg"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
@@ -108,6 +118,7 @@
                                 <constraint firstAttribute="trailing" secondItem="Nfw-kf-ZEo" secondAttribute="trailing" id="VIg-6W-Ihu"/>
                                 <constraint firstItem="Eel-Ef-jeF" firstAttribute="centerX" secondItem="1gL-Jl-h4n" secondAttribute="centerX" id="Wsk-kw-m9w"/>
                                 <constraint firstItem="Nfw-kf-ZEo" firstAttribute="top" secondItem="U1B-Oq-wrD" secondAttribute="top" id="XGX-8t-6Wh"/>
+                                <constraint firstItem="oNc-d0-FPt" firstAttribute="centerX" secondItem="1gL-Jl-h4n" secondAttribute="centerX" id="baD-qA-bUG"/>
                                 <constraint firstItem="2ke-TU-Vc9" firstAttribute="centerY" secondItem="1gL-Jl-h4n" secondAttribute="centerY" id="bf9-qn-dB3"/>
                                 <constraint firstItem="ZPA-Kv-lY5" firstAttribute="leading" secondItem="U1B-Oq-wrD" secondAttribute="leading" constant="50" id="cK0-4j-vrg"/>
                                 <constraint firstItem="ZPA-Kv-lY5" firstAttribute="top" secondItem="Jur-kM-k1O" secondAttribute="bottom" constant="2" id="cVs-pf-ajL"/>
@@ -116,6 +127,7 @@
                                 <constraint firstItem="2ke-TU-Vc9" firstAttribute="top" secondItem="U1B-Oq-wrD" secondAttribute="top" constant="28" id="l7h-OK-380"/>
                                 <constraint firstItem="U1B-Oq-wrD" firstAttribute="trailing" secondItem="ZPA-Kv-lY5" secondAttribute="trailing" constant="50" id="lPx-OY-af6"/>
                                 <constraint firstItem="Jur-kM-k1O" firstAttribute="leading" secondItem="U1B-Oq-wrD" secondAttribute="leading" constant="50" id="sNc-vU-Noz"/>
+                                <constraint firstItem="oNc-d0-FPt" firstAttribute="top" secondItem="U1B-Oq-wrD" secondAttribute="top" constant="8" id="uxM-Xu-KXJ"/>
                                 <constraint firstItem="Eel-Ef-jeF" firstAttribute="top" secondItem="YYx-w7-e05" secondAttribute="bottom" constant="8" id="xX8-rg-je8"/>
                                 <constraint firstItem="Nfw-kf-ZEo" firstAttribute="leading" secondItem="1gL-Jl-h4n" secondAttribute="leading" id="zSd-yl-p29"/>
                             </constraints>
@@ -236,6 +248,7 @@
                 <outlet property="headImageView" destination="2ke-TU-Vc9" id="Z7A-p8-vUT"/>
                 <outlet property="icon1ImgeView" destination="2MS-fb-M9G" id="5Zr-Cc-DNS"/>
                 <outlet property="icon2ImageView" destination="R9r-jh-6K4" id="Yne-eB-XFq"/>
+                <outlet property="myButton" destination="oNc-d0-FPt" id="i7n-Mm-glG"/>
                 <outlet property="rechargeView" destination="pyg-1t-XcU" id="BT3-FK-xav"/>
                 <outlet property="refreshButton" destination="Whw-yN-B0t" id="L7p-cg-xQo"/>
                 <outlet property="tableView" destination="43P-ey-REM" id="QH6-Gl-oLP"/>

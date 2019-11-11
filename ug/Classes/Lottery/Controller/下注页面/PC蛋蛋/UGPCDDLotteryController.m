@@ -60,6 +60,7 @@
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UICollectionView *headerCollectionView;
+@property (weak, nonatomic) IBOutlet UILabel *chatTitleLabel;
 
 @property (nonatomic, strong) UICollectionView *betCollectionView;
 
@@ -601,7 +602,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     
     UICollectionView *collectionView = ({
         
-        collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(120 , 5, UGScreenW - 120 , 100) collectionViewLayout:layout];
+        collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(150 , 5, UGScreenW - 120 , 100) collectionViewLayout:layout];
         collectionView.backgroundColor = [UIColor clearColor];
         collectionView.dataSource = self;
         collectionView.delegate = self;
@@ -614,6 +615,13 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     
     self.headerCollectionView = collectionView;
     [self.view addSubview:collectionView];
+
+    [ collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view.mas_top).with.offset(5);
+        make.left.equalTo(self.chatTitleLabel.mas_right).offset(40);
+        make.height.equalTo([NSNumber numberWithFloat:55]);
+        make.width.equalTo([NSNumber numberWithFloat:(UGScreenW - 120)]);
+    }];
     
 }
 
