@@ -17,6 +17,11 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+         self.titleLabel.textColor = [UIColor whiteColor];
+    } else {
+         self.titleLabel.textColor = Skin1.textColor1;
+    }
 }
 
 - (void)setTitle:(NSString *)title {
@@ -27,13 +32,21 @@
 - (void)setLeftTitle:(BOOL)leftTitle {
     _leftTitle = leftTitle;
     if (leftTitle) {
-        self.titleLabel.textColor = Skin1.textColor1;
+        if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+             self.titleLabel.textColor = [UIColor whiteColor];
+        } else {
+             self.titleLabel.textColor = Skin1.textColor1;
+        }
         self.titleLabel.font = [UIFont systemFontOfSize:18 weight:UIFontWeightHeavy];
         [self.titleLabel mas_updateConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.left).offset(15);
         }];
     }else {
-        self.titleLabel.textColor = Skin1.textColor2;
+        if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+             self.titleLabel.textColor = [UIColor whiteColor];
+        } else {
+             self.titleLabel.textColor = Skin1.textColor2;
+        }
         self.titleLabel.font = [UIFont systemFontOfSize:15];
         [self.titleLabel mas_updateConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.left).offset(0);

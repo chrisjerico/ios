@@ -24,6 +24,16 @@
     self.leftLabel.layer.borderColor = [UIColor redColor].CGColor;
     self.leftLabel.layer.borderWidth = 1;
     
+    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+        [self.rightLabel setTextColor:[UIColor whiteColor]];
+        [self.leftLabel setTextColor:[UIColor whiteColor]];
+        [self.contentView setBackgroundColor:Skin1.bgColor];
+    } else {
+        [self.rightLabel setTextColor:[UIColor blackColor]];
+        [self.leftLabel setTextColor:[UIColor blackColor]];
+        [self.contentView setBackgroundColor:[UIColor whiteColor]];
+    }
+    
 }
 
 - (void)setItem:(UGGameBetModel *)item {
@@ -33,13 +43,24 @@
     self.rightLabel.text = [item.odds removeFloatAllZero];
     self.rightLabel.hidden = [_rightLabel.text isEqualToString:@"0"];
     
-    if (item.select) {
-        self.layer.borderColor = Skin1.navBarBgColor.CGColor;
-        self.layer.borderWidth = 1;
+    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+         if (item.select) {
+               self.layer.borderColor = [UIColor whiteColor].CGColor;
+               self.layer.borderWidth = 1;
+           } else {
+               self.layer.borderWidth = 0.7;
+               self.layer.borderColor = Skin1.bgColor.CGColor;
+           }
     } else {
-        self.layer.borderWidth = 0.7;
-        self.layer.borderColor = [UIColor whiteColor].CGColor;
+        if (item.select) {
+               self.layer.borderColor = Skin1.navBarBgColor.CGColor;
+               self.layer.borderWidth = 1;
+           } else {
+               self.layer.borderWidth = 0.7;
+               self.layer.borderColor = [UIColor whiteColor].CGColor;
+           }
     }
+   
     
     self.leftLabel.layer.borderColor = [CMCommon getHKLotteryNumColor:item.name].CGColor;
     if (item.odds.length) {

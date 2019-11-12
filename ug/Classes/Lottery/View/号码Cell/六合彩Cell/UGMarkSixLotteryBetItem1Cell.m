@@ -50,6 +50,23 @@
     self.num4Label.layer.borderColor = [UIColor redColor].CGColor;
     self.num4Label.layer.borderWidth = 1;
     
+    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+        [self.contentView  setBackgroundColor:Skin1.bgColor];
+        [self.leftTitleLabel setTextColor:[UIColor whiteColor]];
+        [self.num0Label setTextColor:[UIColor whiteColor]];
+        [self.num1Label setTextColor:[UIColor whiteColor]];
+        [self.num2Label setTextColor:[UIColor whiteColor]];
+        [self.num3Label setTextColor:[UIColor whiteColor]];
+        [self.num4Label setTextColor:[UIColor whiteColor]];
+    } else {
+        [self.contentView  setBackgroundColor:[UIColor whiteColor]];
+        [self.num0Label setTextColor:[UIColor blackColor]];
+        [self.num1Label setTextColor:[UIColor blackColor]];
+        [self.num2Label setTextColor:[UIColor blackColor]];
+        [self.num3Label setTextColor:[UIColor blackColor]];
+        [self.num4Label setTextColor:[UIColor blackColor]];
+    }
+    
     
 }
 
@@ -59,13 +76,25 @@
     self.leftTitleLabel.text = [NSString stringWithFormat:@"%@ %@", item.name, [odds isEqualToString:@"0"] ? @"" : odds];
     [self setupNums:item];
     
-    if (item.select) {
-        self.layer.borderColor = Skin1.navBarBgColor.CGColor;
-        self.layer.borderWidth = 1;
-    }else {
-        self.layer.borderWidth = 0.7;
-        self.layer.borderColor = [UIColor whiteColor].CGColor;
+    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+        if (item.select) {
+            self.layer.borderColor = [UIColor whiteColor].CGColor;
+            self.layer.borderWidth = 1;
+        }else {
+            self.layer.borderWidth = 0.7;
+            self.layer.borderColor = Skin1.navBarBgColor.CGColor;
+        }
+    } else {
+        if (item.select) {
+            self.layer.borderColor = Skin1.navBarBgColor.CGColor;
+            self.layer.borderWidth = 1;
+        }else {
+            self.layer.borderWidth = 0.7;
+            self.layer.borderColor = [UIColor whiteColor].CGColor;
+        }
     }
+    
+    
     
 }
 

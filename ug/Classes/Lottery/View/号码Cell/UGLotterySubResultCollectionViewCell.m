@@ -20,6 +20,16 @@
     _bgImageView.image = [[UIImage imageNamed:@"qb"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
     _titleLabel.layer.cornerRadius = 3;
     _titleLabel.layer.masksToBounds = true;
+    
+    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+        [self  setBackgroundColor:Skin1.bgColor];
+         [_titleLabel setTextColor:[UIColor blackColor]];
+    } else {
+         [_titleLabel setTextColor:[UIColor blackColor]];
+         [self  setBackgroundColor:[UIColor whiteColor]];
+    }
+   
+    
 }
 
 - (void)setTitle:(NSString *)title {

@@ -19,6 +19,7 @@
     
     self.layer.cornerRadius = self.width / 2;
     self.layer.masksToBounds = YES;
+
 }
 
 - (void)setTitle:(NSString *)title {
