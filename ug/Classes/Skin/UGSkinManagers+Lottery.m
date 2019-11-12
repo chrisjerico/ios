@@ -26,11 +26,8 @@
 
 
 - (void)skinLottery  {
-
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-//        [UIViewController jr_swizzleMethod:@selector(cc_viewDidLoad:) withMethod:@selector(viewDidLoad:) error:nil];
-        // 设置页面统计
         NSArray *clsArray = @[UGSSCLotteryController.class,
                               UGGD11X5LotteryController.class,
                               UGBJKL8LotteryController.class,
@@ -94,8 +91,7 @@
                        }
                    }
                };
-              [UIViewController aspect_hookSelector:@selector(setBorderColor:) withOptions:AspectPositionInstead usingBlock:block1 error:nil];
-
+              [[aspectInfo.instance class] aspect_hookSelector:@selector(updateOpenLabel) withOptions:AspectPositionInstead usingBlock:block1 error:nil];
             }
         }
         error:NULL];
