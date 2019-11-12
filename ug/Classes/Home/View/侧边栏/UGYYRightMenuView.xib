@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -235,12 +235,11 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="11X-4X-y0F" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="1sS-eR-uz2"/>
-                <constraint firstItem="11X-4X-y0F" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="28o-9J-IbU"/>
-                <constraint firstItem="11X-4X-y0F" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="2dm-sI-crK"/>
-                <constraint firstItem="11X-4X-y0F" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="bWA-Dv-s9d"/>
+                <constraint firstItem="11X-4X-y0F" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" id="28o-9J-IbU"/>
+                <constraint firstItem="11X-4X-y0F" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="2dm-sI-crK"/>
+                <constraint firstItem="11X-4X-y0F" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="bWA-Dv-s9d"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="balanceLabel" destination="Eel-Ef-jeF" id="6Ih-u4-3Dk"/>
                 <outlet property="bg2View" destination="MBZ-gP-6rH" id="J3N-eq-c7P"/>

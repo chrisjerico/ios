@@ -22,10 +22,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
-    [self.contentView setBackgroundColor:Skin1.textColor4];
     [_titleLabel setTextColor:Skin1.textColor1];
-    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -51,8 +48,6 @@
     }
     
     self.imageView.image = afterImage;
-
-    
 }
 
 - (void)setImageIconName:(NSString *)imageIconName {

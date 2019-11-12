@@ -330,30 +330,27 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
 }
 
 - (void)show {
-    
     if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
-         [self.tableView setBackgroundColor:Skin1.textColor4 ];
-         [self.rechargeView setBackgroundColor:Skin1.textColor1];
-         [self.withdrawlView setBackgroundColor:Skin1.textColor1];
-          self.rechargeView.layer.borderColor = Skin1.menuHeadViewColor.CGColor;
-          self.withdrawlView.layer.borderColor = Skin1.menuHeadViewColor.CGColor;
+        [self.rechargeView setBackgroundColor:Skin1.textColor1];
+        [self.withdrawlView setBackgroundColor:Skin1.textColor1];
+        self.rechargeView.layer.borderColor = Skin1.menuHeadViewColor.CGColor;
+        self.withdrawlView.layer.borderColor = Skin1.menuHeadViewColor.CGColor;
         [self.bg2View setBackgroundColor:Skin1.menuHeadViewColor];
-         _icon1ImgeView.image = [UIImage imageNamed:@"BMchongzhi"];
-         _icon2ImageView.image = [UIImage imageNamed:@"BMtixian"];
+        _icon1ImgeView.image = [UIImage imageNamed:@"BMchongzhi"];
+        _icon2ImageView.image = [UIImage imageNamed:@"BMtixian"];
         [_rechargeLabel setTextColor:Skin1.navBarBgColor];
         [_withdrawLabel setTextColor:Skin1.navBarBgColor];
-     } else {
-          [self.tableView setBackgroundColor:[UIColor clearColor] ];
-          [self.rechargeView setBackgroundColor:Skin1.navBarBgColor];
-          [self.withdrawlView setBackgroundColor:Skin1.navBarBgColor];
-          [self.bg2View setBackgroundColor:[UIColor whiteColor]];
-         _icon1ImgeView.image = [UIImage imageNamed:@"chongzhibai"];
-         _icon2ImageView.image = [UIImage imageNamed:@"tixianbai"];
-         [_rechargeLabel setTextColor:[UIColor whiteColor]];
-         [_withdrawLabel setTextColor:[UIColor whiteColor]];
-     }
+    } else {
+        [self.rechargeView setBackgroundColor:Skin1.navBarBgColor];
+        [self.withdrawlView setBackgroundColor:Skin1.navBarBgColor];
+        [self.bg2View setBackgroundColor:[UIColor whiteColor]];
+        _icon1ImgeView.image = [UIImage imageNamed:@"chongzhibai"];
+        _icon2ImageView.image = [UIImage imageNamed:@"tixianbai"];
+        [_rechargeLabel setTextColor:[UIColor whiteColor]];
+        [_withdrawLabel setTextColor:[UIColor whiteColor]];
+    }
    
-    
+    self.backgroundColor = Skin1.textColor4;
     [self.bgView setBackgroundColor:Skin1.menuHeadViewColor];
     
     UIWindow* window = UIApplication.sharedApplication.keyWindow;
