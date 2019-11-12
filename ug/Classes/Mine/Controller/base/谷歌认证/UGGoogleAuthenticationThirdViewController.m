@@ -27,8 +27,7 @@
     [self.view setBackgroundColor:Skin1.textColor4];
     [self.myTitle setTextColor:Skin1.textColor1];
     [self.myTextField setTextColor:Skin1.textColor1];
-    // "通过KVC修改占位文字的颜色"
-    [self.myTextField setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
+    _myTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:_myTextField.placeholder attributes:@{NSForegroundColorAttributeName:Skin1.textColor3}];
     [self.returnButton setBackgroundColor:Skin1.navBarBgColor];
     [self.nextButton setBackgroundColor:Skin1.navBarBgColor];
     [IQKeyboardManager.sharedManager.disabledDistanceHandlingClasses addObject:[self class]];

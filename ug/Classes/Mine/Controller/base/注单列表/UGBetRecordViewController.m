@@ -177,7 +177,7 @@ static NSString *recordFilterCellid = @"UGRecordFilterCollectionViewCell";
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGBetRecordTableViewController" bundle:nil];
     UGBetRecordTableViewController *recordVC = [storyboard instantiateInitialViewController];
     recordVC.status = @[@"2", @"3", @"1", @"4"][number];
-    recordVC.startDate = self.dateArray.firstObject;
+    recordVC.startDate = number==2 ? self.dateArray[1] : self.dateArray[0]; // 等待开奖页默认加载最近三天，其他页面默认加载今天
     recordVC.gameType = @"lottery";
     recordVC.showFooterView = NO;
     [self.controllersArray addObject:recordVC];

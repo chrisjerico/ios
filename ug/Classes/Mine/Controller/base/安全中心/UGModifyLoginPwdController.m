@@ -43,25 +43,21 @@
     [subView(@"背景view") setBackgroundColor:Skin1.textColor4];
     [subLabel(@"原登录密码label") setTextColor:Skin1.textColor1];
     [subLabel(@"原登录密码txt") setTextColor:Skin1.textColor1];
-    // "通过KVC修改占位文字的颜色"
-    [subTextField(@"原登录密码txt") setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
     [subLabel(@"新密码label") setTextColor:Skin1.textColor1];
     [subTextField(@"新密码txt") setTextColor:Skin1.textColor1];
-    // "通过KVC修改占位文字的颜色"
-    [subTextField(@"新密码txt") setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
     [subLabel(@"确认新密码label") setTextColor:Skin1.textColor1];
     [subTextField(@"确认新密码txt") setTextColor:Skin1.textColor1];
-    // "通过KVC修改占位文字的颜色"
-    [subTextField(@"确认新密码txt") setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
+    subTextField(@"原登录密码txt").attributedPlaceholder = [[NSAttributedString alloc] initWithString:subTextField(@"原登录密码txt").placeholder attributes:@{NSForegroundColorAttributeName:Skin1.textColor3}];
+    subTextField(@"新密码txt").attributedPlaceholder = [[NSAttributedString alloc] initWithString:subTextField(@"新密码txt").placeholder attributes:@{NSForegroundColorAttributeName:Skin1.textColor3}];
+    subTextField(@"确认新密码txt").attributedPlaceholder = [[NSAttributedString alloc] initWithString:subTextField(@"确认新密码txt").placeholder attributes:@{NSForegroundColorAttributeName:Skin1.textColor3}];
     
-     UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
+    
+    UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
     if (config.pass_limit == 0) {
-        
         self.pwdPlaceholder = [NSString stringWithFormat:@"请输入%ld到%ld位长度的密码",config.pass_length_min,config.pass_length_max];
-    }else if(config.pass_limit == 1) {
+    } else if(config.pass_limit == 1) {
         self.pwdPlaceholder = [NSString stringWithFormat:@"请输入%ld到%ld位数字字母组成的密码",config.pass_length_min,config.pass_length_max];
-        
-    }else {
+    } else {
         self.pwdPlaceholder = [NSString stringWithFormat:@"请输入%ld到%ld位数字字母符号组成的密码",config.pass_length_min,config.pass_length_max];
     }
     self.loginPwdTextF.placeholder = self.pwdPlaceholder;

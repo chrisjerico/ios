@@ -42,16 +42,13 @@
    [subView(@"背景view") setBackgroundColor:Skin1.textColor4];
    [subLabel(@"旧取款密码label") setTextColor:Skin1.textColor1];
    [subTextField(@"旧取款密码txt") setTextColor:Skin1.textColor1];
-   // "通过KVC修改占位文字的颜色"
-   [subTextField(@"旧取款密码txt") setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
    [subLabel(@"新密码label") setTextColor:Skin1.textColor1];
    [subTextField(@"新密码txt") setTextColor:Skin1.textColor1];
-   // "通过KVC修改占位文字的颜色"
-   [subTextField(@"新密码txt") setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
    [subLabel(@"确认新密码label") setTextColor:Skin1.textColor1];
    [subTextField(@"确认新密码txt") setTextColor:Skin1.textColor1];
-   // "通过KVC修改占位文字的颜色"
-   [subTextField(@"确认新密码txt") setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
+    subTextField(@"旧取款密码txt").attributedPlaceholder = [[NSAttributedString alloc] initWithString:subTextField(@"旧取款密码txt").placeholder attributes:@{NSForegroundColorAttributeName:Skin1.textColor3}];
+    subTextField(@"新密码txt").attributedPlaceholder = [[NSAttributedString alloc] initWithString:subTextField(@"新密码txt").placeholder attributes:@{NSForegroundColorAttributeName:Skin1.textColor3}];
+    subTextField(@"确认新密码txt").attributedPlaceholder = [[NSAttributedString alloc] initWithString:subTextField(@"确认新密码txt").placeholder attributes:@{NSForegroundColorAttributeName:Skin1.textColor3}];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {

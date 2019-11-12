@@ -39,14 +39,12 @@
     
     [subLabel(@"QQ1Label") setTextColor:Skin1.textColor1];
     [subTextField(@"QQTextField") setTextColor:Skin1.textColor1];
-    // "通过KVC修改占位文字的颜色"
-    [subTextField(@"QQTextField") setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
+    subTextField(@"QQTextField").attributedPlaceholder = [[NSAttributedString alloc] initWithString:subTextField(@"QQTextField").placeholder attributes:@{NSForegroundColorAttributeName:Skin1.textColor3}];
     [subView(@"QQ1View") setBackgroundColor:Skin1.CLBgColor];
     
     [subLabel(@"联系电话1label") setTextColor:Skin1.textColor1];
     [subTextField(@"联系电话TextField") setTextColor:Skin1.textColor1];
-    // "通过KVC修改占位文字的颜色"
-    [subTextField(@"联系电话TextField") setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
+    subTextField(@"联系电话TextField").attributedPlaceholder = [[NSAttributedString alloc] initWithString:subTextField(@"联系电话TextField").placeholder attributes:@{NSForegroundColorAttributeName:Skin1.textColor3}];
     [subView(@"联系电话1View") setBackgroundColor:Skin1.textColor4];
     
     [subLabel(@"申请内容label") setTextColor:Skin1.textColor1];
