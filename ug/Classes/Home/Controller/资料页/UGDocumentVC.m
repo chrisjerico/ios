@@ -477,6 +477,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 	
 }
 
+//这个方法是有用的不要删除
 - (void)updateOpenLabelText {
 	NSString *timeStr = [CMCommon getNowTimeWithEndTimeStr:self.nextIssueModel.curOpenTime currentTimeStr:self.nextIssueModel.serverTime];
 	if (timeStr == nil) {

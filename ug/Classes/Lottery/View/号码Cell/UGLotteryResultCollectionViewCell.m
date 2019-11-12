@@ -66,7 +66,12 @@
     self.layer.masksToBounds = YES;
     if (showAdd) {
         self.backgroundColor = [UIColor clearColor];
-        self.titleLabel.textColor = [UIColor blackColor];
+        if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+            self.titleLabel.textColor = [UIColor whiteColor];
+
+        } else {
+            self.titleLabel.textColor = [UIColor blackColor];
+        }
         if (self.showIsequal) {
             self.titleLabel.text = @"=";
         }else {

@@ -40,10 +40,12 @@
                               UGFC3DLotteryController.class,
                               UGPK10NNLotteryController.class,
         ];
-        [UIViewController aspect_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionAfter usingBlock:^(id <AspectInfo> aspectInfo, BOOL animated) {
-           
+        [UIViewController aspect_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionAfter usingBlock:^(id <AspectInfo> aspectInfo, BOOL animated ) {
+//                   NSLog(@"%@", aspectInfo);
+//                   NSLog(@"%d", animated);
+
             if ([clsArray containsObject:[aspectInfo.instance class]]) {
-                 NSLog(@"%@-->:%@", @"Appear:😜😜😜", NSStringFromClass([aspectInfo.instance class]));
+                 NSLog(@"%@-->:%@", @"Appear 下注界面:😜😜😜", NSStringFromClass([aspectInfo.instance class]));
                 UIViewController *vc = (UIViewController *)aspectInfo.instance;
                 FastSubViewCode(vc.view);
                 if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
@@ -91,7 +93,7 @@
                        }
                    }
                };
-              [[aspectInfo.instance class] aspect_hookSelector:@selector(updateOpenLabel) withOptions:AspectPositionInstead usingBlock:block1 error:nil];
+              [[aspectInfo.instance class] aspect_hookSelector:@selector(updateOpenLabel ) withOptions:AspectPositionInstead usingBlock:block1 error:nil];
             }
         }
         error:NULL];

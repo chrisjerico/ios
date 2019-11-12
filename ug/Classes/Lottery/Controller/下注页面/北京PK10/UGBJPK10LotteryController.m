@@ -668,6 +668,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     [self updateCloseLabel];
 }
 
+
 - (void)updateOpenLabelText{
     NSString *timeStr = [CMCommon getNowTimeWithEndTimeStr:self.nextIssueModel.curOpenTime currentTimeStr:self.nextIssueModel.serverTime];
     if (timeStr == nil) {
@@ -685,6 +686,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     
 }
 
+//这个方法是有用的不要删除
 - (void)updateOpenLabel {
 //    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
 //           NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.openTimeLabel.text];
