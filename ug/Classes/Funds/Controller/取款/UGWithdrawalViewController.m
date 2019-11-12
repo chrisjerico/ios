@@ -36,12 +36,10 @@
     [self.limitLabel setTextColor:Skin1.textColor1];
     [self.titleLabel setTextColor:Skin1.textColor1];
     [self.amountTextF setTextColor:Skin1.textColor1];
-    // "通过KVC修改占位文字的颜色"
-    [self.amountTextF setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
     [self.cardInfoLabel setTextColor:Skin1.textColor3];
     [self.pwdTextF setTextColor:Skin1.textColor1];
-    // "通过KVC修改占位文字的颜色"
-    [self.pwdTextF setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
+    self.amountTextF.attributedPlaceholder = [[NSAttributedString alloc] initWithString:_amountTextF.placeholder attributes:@{NSForegroundColorAttributeName:Skin1.textColor3}];
+    self.pwdTextF.attributedPlaceholder = [[NSAttributedString alloc] initWithString:_pwdTextF.placeholder attributes:@{NSForegroundColorAttributeName:Skin1.textColor3}];
     
     
     self.commitButton.layer.cornerRadius = 3;

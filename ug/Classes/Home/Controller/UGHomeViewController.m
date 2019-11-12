@@ -582,14 +582,10 @@
 }
 
 - (void)userLogout {
-	NSDictionary *dict = @{@"token":[UGUserModel currentUser].sessid};
     [SVProgressHUD showSuccessWithStatus:@"退出成功"];
     self.titleView.showLoginView = YES;
-    UGUserModel.currentUser = nil;
     [NavController1 popToRootViewControllerAnimated:true];
     [TabBarController1 setSelectedIndex:0];
-    
-	[CMNetwork userLogoutWithParams:dict completion:nil];
 }
 
 // 横幅广告

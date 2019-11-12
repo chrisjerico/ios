@@ -50,17 +50,18 @@
 //    NSLog(@"drawRect");
 }
 
--(instancetype)initView{
+- (instancetype)initView {
     if (self = [super init]) {
         self = [self UGBMHeaderView];
         [self refreshUI];
+        __weakSelf_(__self);
         [self xw_addNotificationForName:UGNotificationLoginComplete block:^(NSNotification *notification) {
-             NSLog(@"收到登录通知1：%@", notification.userInfo);
-            [self refreshUI];
+            NSLog(@"收到登录通知1：%@", notification.userInfo);
+            [__self refreshUI];
         }];
         [self xw_addNotificationForName:UGNotificationUserLogout block:^(NSNotification *notification) {
-                  NSLog(@"收到退出通知1：%@", notification.userInfo);
-                 [self refreshUI];
+            NSLog(@"收到退出通知1：%@", notification.userInfo);
+            [__self refreshUI];
         }];
         [self setBackgroundColor:Skin1.navBarBgColor];
         self.leftwardMarqueeView.direction = UUMarqueeViewDirectionLeftward;
@@ -74,64 +75,61 @@
         [self getSystemConfig];
         [self getNoticeList];   // 公告列表
         [self.leftwardMarqueeView start];
-        
     }
     return self;
 }
 
--(void)refreshUI{
-    
-
+- (void)refreshUI {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         [TabBarController1 aspect_hookSelector:@selector(setSelectedViewController:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
             [NavController1 popToRootViewControllerAnimated:false];
         } error:nil];
     });
-        FastSubViewCode(self);
-        if (UGLoginIsAuthorized()) {//已经登录
-            [subButton(@"按钮1") setTitle:@"会员中心" forState:(UIControlStateNormal)];
-            [subButton(@"按钮2") setTitle:@"最近浏览" forState:(UIControlStateNormal)];
-            [subButton(@"按钮1") removeActionBlocksForControlEvents:UIControlEventTouchUpInside];
-            [subButton(@"按钮1") handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
-                // 会员中心
-                UIViewController *vc = [NavController1.viewControllers objectWithValue:UGBMMemberCenterViewController.class keyPath:@"class"];
-                if (vc) {
-                    [NavController1 popToViewController:vc animated:false];
-                } else {
-                    [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGBMMemberCenterViewController") animated:false];
-                }
-            }];
-            [subButton(@"按钮2") removeActionBlocksForControlEvents:UIControlEventTouchUpInside];
-            [subButton(@"按钮2") handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
-                //最近浏览
-                UIViewController *vc = [NavController1.viewControllers objectWithValue:UGBMBrowseViewController.class keyPath:@"class"];
-                if (vc) {
-                    [NavController1 popToViewController:vc animated:false];
-                } else {
-                    [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGBMBrowseViewController") animated:false];
-                }
-            }];
-        }
-        else{
-            [subButton(@"按钮1") setTitle:@"登入" forState:(UIControlStateNormal)];
-            [subButton(@"按钮2") setTitle:@"免费开户" forState:(UIControlStateNormal)];
-            [subButton(@"按钮1") removeActionBlocksForControlEvents:UIControlEventTouchUpInside];
-            [subButton(@"按钮1") handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
-                //登录
-                if (![NavController1.lastVC isKindOfClass:UGBMLoginViewController.class]) {
-                    [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGBMLoginViewController") animated:true];
-                }
-                               
-            }];
-            [subButton(@"按钮2") removeActionBlocksForControlEvents:UIControlEventTouchUpInside];
-            [subButton(@"按钮2") handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
-                //注册
-                if (![NavController1.lastVC isKindOfClass:UGBMRegisterViewController.class]) {
-                    [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGBMRegisterViewController") animated:true];
-                }
-            }];
-        }
+    FastSubViewCode(self);
+    if (UGLoginIsAuthorized()) {//已经登录
+        [subButton(@"按钮1") setTitle:@"会员中心" forState:(UIControlStateNormal)];
+        [subButton(@"按钮2") setTitle:@"最近浏览" forState:(UIControlStateNormal)];
+        [subButton(@"按钮1") removeActionBlocksForControlEvents:UIControlEventTouchUpInside];
+        [subButton(@"按钮1") handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
+            // 会员中心
+            UIViewController *vc = [NavController1.viewControllers objectWithValue:UGBMMemberCenterViewController.class keyPath:@"class"];
+            if (vc) {
+                [NavController1 popToViewController:vc animated:false];
+            } else {
+                [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGBMMemberCenterViewController") animated:false];
+            }
+        }];
+        [subButton(@"按钮2") removeActionBlocksForControlEvents:UIControlEventTouchUpInside];
+        [subButton(@"按钮2") handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
+            //最近浏览
+            UIViewController *vc = [NavController1.viewControllers objectWithValue:UGBMBrowseViewController.class keyPath:@"class"];
+            if (vc) {
+                [NavController1 popToViewController:vc animated:false];
+            } else {
+                [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGBMBrowseViewController") animated:false];
+            }
+        }];
+    }
+    else{
+        [subButton(@"按钮1") setTitle:@"登入" forState:(UIControlStateNormal)];
+        [subButton(@"按钮2") setTitle:@"免费开户" forState:(UIControlStateNormal)];
+        [subButton(@"按钮1") removeActionBlocksForControlEvents:UIControlEventTouchUpInside];
+        [subButton(@"按钮1") handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
+            //登录
+            if (![NavController1.lastVC isKindOfClass:UGBMLoginViewController.class]) {
+                [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGBMLoginViewController") animated:true];
+            }
+                           
+        }];
+        [subButton(@"按钮2") removeActionBlocksForControlEvents:UIControlEventTouchUpInside];
+        [subButton(@"按钮2") handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
+            //注册
+            if (![NavController1.lastVC isKindOfClass:UGBMRegisterViewController.class]) {
+                [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGBMRegisterViewController") animated:true];
+            }
+        }];
+    }
 }
 
 - (void)showNoticeInfo {
