@@ -12,7 +12,7 @@
 #import <Foundation/Foundation.h>
 
 // 在 AppDefine.m 文件里配好域名后，在这里改站点编号
-#define SiteNumber @"test10"
+#define SiteNumber @"c083"
 //参数是否加密
 #define checkSign 1
 
