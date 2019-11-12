@@ -28,7 +28,7 @@
     // 加载启动图
     {
         __block UIImageView *__imageView = [UIImageView new];
-        [CMNetwork.manager requestWithMethod:[[NSString stringWithFormat:@"%@/wjapp/api.php?c=system&a=launchImages", baseServerUrl] stringToRestfulUrlWithFlag:RESTFUL] params:nil model:CMResultArrayClassMake(LaunchPageModel.class) post:NO completion:^(CMResult<id> *model, NSError *err) {
+        [CMNetwork.manager requestWithMethod:[[NSString stringWithFormat:@"%@/wjapp/api.php?c=system&a=launchImages", APP.Host] stringToRestfulUrlWithFlag:RESTFUL] params:nil model:CMResultArrayClassMake(LaunchPageModel.class) post:NO completion:^(CMResult<id> *model, NSError *err) {
             if (!err) {
                 NSArray<LaunchPageModel *> * launchPics = model.data;
                 [[NSUserDefaults standardUserDefaults] setObject:launchPics.firstObject.pic forKey:@"launchImage"];

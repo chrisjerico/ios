@@ -12,15 +12,31 @@
 #import "UGBMLoginViewController.h"
 #import "UGBMRegisterViewController.h"
 #import "UGBMBrowseViewController.h"
+
 @interface UGBMHeaderView ()<UUMarqueeViewDelegate>
 
 @end
 @implementation UGBMHeaderView
 
--(instancetype) UGBMHeaderView{
+- (instancetype)UGBMHeaderView {
     NSBundle *bundle=[NSBundle mainBundle];
     NSArray *objs=[bundle loadNibNamed:@"UGBMHeaderView" owner:nil options:nil];
     return [objs firstObject];
+}
+
+
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (!self.subviews.count) {
+        UGBMHeaderView *v = [[UGBMHeaderView alloc] initView];
+        v.backgroundColor = Skin1.navBarBgColor;
+        [self addSubview:v];
+        [v mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self);
+        }];
+    }
+    return self;
 }
 
 - (void)setNeedsLayout{

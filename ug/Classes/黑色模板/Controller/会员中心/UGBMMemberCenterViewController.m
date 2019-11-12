@@ -130,9 +130,6 @@
 //    }
    
     [self.view addSubview:self.underMenu];
-    
-    FastSubViewCode(self.view);
-    subView(@"状态栏背景色View").backgroundColor = Skin1.navBarBgColor;
 }
 
 -(void)creatView{

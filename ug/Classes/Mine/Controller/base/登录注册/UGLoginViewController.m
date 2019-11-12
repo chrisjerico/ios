@@ -78,7 +78,7 @@
     self.passwordTextF.delegate = self;
     self.navigationController.delegate = self;
     [self.webBgView addSubview:self.webView];
-    NSString *url = [NSString stringWithFormat:@"%@%@",baseServerUrl,swiperVerifyUrl];
+    NSString *url = [NSString stringWithFormat:@"%@%@",APP.Host,swiperVerifyUrl];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
     [self.webView loadRequest:request];
     self.webBgView.hidden = YES;

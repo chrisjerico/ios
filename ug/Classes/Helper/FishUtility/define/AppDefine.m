@@ -7,7 +7,6 @@
 //
 
 #import "AppDefine.h"
-#import "UIResponder+InterfaceOrientation.h"
 
 @interface UIStoryboard ()
 - (BOOL)containsNibNamed:(NSString *)nibName;
@@ -22,7 +21,6 @@
 + (instancetype)shared {
     static id obj = nil;
     static dispatch_once_t onceToken;
-    
     dispatch_once(&onceToken, ^{
         obj = [self new];
     });
@@ -91,15 +89,6 @@
     return [[NSBundle mainBundle] loadNibNamed:nibName owner:nil options:nil].firstObject;
 }
 
-+ (void)createDirectoryAtPath:(NSString *)path {
-    if (![[NSFileManager defaultManager] fileExistsAtPath:path])
-        [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:true attributes:nil error:nil];
-}
-
-+ (void)setWindowInterfaceOrientation:(UIInterfaceOrientation)io {
-    [UIResponder setWindowInterfaceOrientation:io];
-}
-
 + (NSString *)stringWithFloat:(double)f decimal:(unsigned short)d {
     NSString *format = _NSString(@"%%.%df", d);
     NSString *s = _NSString(format, f);
@@ -110,43 +99,6 @@
     return s;
 }
 
-+ (NSString *)stringWithInteger:(NSInteger)i {
-    if (labs(i) > 9999)
-        return _NSString(@"%.1fw", i/10000.0);
-    return @(i).stringValue;
-}
-
-+ (NSString *)stringWithFileSize:(double)size {
-    if (size < 0)
-        return @"0B";
-    if (size < 1024)
-        return _NSString(@"%.fB", size);
-    if (size < 1024 * 1024)
-        return _NSString(@"%.fK", size/1024);
-    if (size < 1024 * 1024 * 1024)
-        return _NSString(@"%.1fM", size/1024/1024);
-    return _NSString(@"%.1fG", size/1024/1024/1024);
-}
-
-+ (double)folderSizeAtPath:(NSString *)folderPath {
-    if (![[NSFileManager defaultManager] fileExistsAtPath:folderPath])
-        return 0;
-    NSEnumerator *childFilesEnumerator = [[[NSFileManager defaultManager] subpathsAtPath:folderPath] objectEnumerator];
-    NSString *fileName;
-    double folderSize = 0;
-    while ((fileName = [childFilesEnumerator nextObject]) != nil) {
-        NSString *fileAbsolutePath = [folderPath stringByAppendingPathComponent:fileName];
-        folderSize += [self fileSizeAtPath:fileAbsolutePath];
-    }
-    return folderSize;
-}
-
-+ (unsigned long long)fileSizeAtPath:(NSString *)filePath {
-    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath])
-        return [[[NSFileManager defaultManager] attributesOfItemAtPath:filePath error:nil] fileSize];
-    return 0;
-}
-
 
 #pragma mark - Init
 
@@ -154,18 +106,135 @@
 {
     self = [super init];
     if (self) {
-        _HOST = @"https://www.pptdaka.com:8443/";
-        
-        _StoreID = @"1469008808";
+        NSDictionary *dict =
+        @{
+            @"a002":@"https://5049uuu.com",
+            @"a002a":@"",
+            @"a002b":@"",
+            @"a002c":@"",
+            @"a002d":@"",
+            @"a002e":@"",
+            @"b001":@"",
+            @"c001":@"https://47c47webappqp.org",
+            @"c002":@"https://154977.com",
+            @"c005":@"",
+            @"c006":@"https://xn--app-v85fh28j.com",
+            @"c011":@"https://www.hx627.com",
+            @"c012":@"https://20180849.com",
+            @"c015":@"",
+            @"c018":@"https://031122.com",
+            @"c018a":@"",
+            @"c018b":@"",
+            @"c021":@"",
+            @"c022":@"",
+            @"c028":@"",
+            @"c035":@"https://5504707.com",
+            @"c036":@"",
+            @"c039":@"",
+            @"c041":@"",
+            @"c047":@"https://x22xxx.com",
+            @"c048":@"",
+            @"c049":@"https://93922app.com",
+            @"c052":@"",
+            @"c053":@"https://988c53.com",
+            @"c054":@"https://666mv.cc",
+            @"c062":@"",
+            @"c067":@"",
+            @"c068":@"",
+            @"c069":@"",
+            @"c070":@"",
+            @"c073":@"https://c73hbs.com/",
+            @"c074":@"",
+            @"c076":@"",
+            @"c077":@"",
+            @"c078":@"",
+            @"c080":@"",
+            @"c084":@"https://papghawshugposwaughwsoohu.com",
+            @"c085":@"https://api.2003688.vip",
+            @"c085a":@"https://c10000ll.com",
+            @"c087":@"",
+            @"c089":@"",
+            @"c090":@"",
+            @"c091":@"https://83f9.com",
+            @"c092":@"https://4681kkk.com   4681lll.com  4681mmm.com",
+            @"c105":@"",
+            @"c106":@"",
+            @"c108":@"https://361865.com",
+            @"c112":@"",
+            @"c114":@"",
+            @"c115":@"",
+            @"c116":@"https://13532007.com/https://88677.cc",
+            @"c117":@"",
+            @"c120":@"https://asafew435yrtgre.net",
+            @"c125":@"",
+            @"c126":@"",
+            @"c129":@"https://7803000.com",
+            @"c130":@"",
+            @"c131":@"",
+            @"c132":@"",
+            @"c134":@"https://19972030.com",
+            @"c136":@"",
+            @"c137":@"https://7033005.com",
+            @"c139":@"",
+            @"c141":@"",
+            @"c142":@"",
+            @"c150":@"https://0187677.com",
+            @"c151":@"https://xpj501501401401.vip",
+            @"c153":@"https://yb247.cn",
+            @"c154":@"",
+            @"c155":@"",
+            @"c156":@"",
+            @"c157":@"",
+            @"c158":@"https://9055188.com",
+            @"c161":@"",
+            @"c162":@"",
+            @"c163":@"https://c91398.com",
+            @"c164":@"",
+            @"c165":@"https://1875006.com",
+            @"c166":@"",
+            @"c169":@"",
+            @"c171":@"",
+            @"c171":@"",
+            @"c171a":@"",
+            @"c171b":@"",
+            @"c171c":@"",
+            @"c171d":@"",
+            @"c171e":@"",
+            @"c172":@"",
+            @"c173":@"https://www.dfjt1.com",
+            @"c175":@"https://7053i.com",
+            @"c177":@"https://lzcp11.com",
+            @"c178":@"",
+            @"c182":@"",
+            @"c183":@"",
+            @"c184":@"https://0fhcp.cn",
+            @"c185":@"",
+            @"c186":@"",
+            @"c189":@"",
+            @"c190":@"",
+            @"c192":@"",
+            @"c193":@"",
+            @"c194":@"https://hc16324app95712gj5168168app.com",
+            @"c197":@"https://tycgw3.com",
+            @"c198":@"https://2909tycjt.com/",
+            @"c200":@"https://20191995.com",
+            @"c225":@"",
+            @"c601":@"",
+            @"h002":@"",
+            @"h003":@"",
+            @"h003a":@"",
+            // 测试站点
+            @"test10":@"http://test10.6yc.com",
+            @"c083":@"http://t111f.fhptcdn.com",
+        };
+        _SiteId = SiteNumber;
+        _Host = dict[_SiteId.lowercaseString];
+        if (!_Host.length) {
+            @throw [NSException exceptionWithName:@"缺少域名" reason:_NSString(@"（%@）该站点没有配置接口域名", _SiteId) userInfo:nil];
+        }
         
         _PhotoMaxLength = 60 * 1024;    // 约等于1M大小
         _PageCount = 20;
-        _DefaultUserPhoto = @"common_default_userphoto.png";
-        _DefaultUserPhotoURL = @"";
-        
-        _apiVersion = API_Version;
-        
-        _InviteCode = [[NSUserDefaults standardUserDefaults] stringForKey:@"InviteCode"];
         
         [self setupSystem];
         [self setupColor];
@@ -182,14 +251,6 @@
 - (CGFloat)Height                   { return _Window.bounds.size.height; }
 
 
-
-- (void)setInviteCode:(NSString *)InviteCode {
-    _InviteCode = InviteCode;
-    if (InviteCode.length)
-        [[NSUserDefaults standardUserDefaults] setObject:InviteCode forKey:@"InviteCode"];
-}
-
-
 #pragma mark - Setup
 
 - (void)setupSystem {
@@ -197,13 +258,6 @@
     _BundleId = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleIdentifier"];
     _Version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
     _Build = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
-    
-#ifdef DEBUG
-    _Debug = true;
-#endif
-#ifdef APP_TEST
-    _Test = true;
-#endif
     
     _Window = [UIApplication sharedApplication].windows.firstObject;
     
@@ -239,9 +293,6 @@
     _LoadingColor = UIColorRGB(238, 238, 238);
     _NavigationBarColor = UIColorRGB(243, 243, 243);
     _BackgroundColor = UIColorRGB(247, 247, 247);
-    _ShadeColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
-    _BlackColor = [UIColor blackColor];
-    _WhiteColor = [UIColor whiteColor];
 }
 
 @end

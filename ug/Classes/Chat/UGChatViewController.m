@@ -20,13 +20,13 @@
 - (void)skin {
      if([self.url containsString:@"logintoken"]) {
          self.url = ({
-             NSString *url = _NSString(@"%@%@%@&loginsessid=%@&color=%@&back=hide&from=app", baseServerUrl, newChatRoomUrl, [UGUserModel currentUser].token, [UGUserModel currentUser].sessid, Skin1.navBarBgColor.hexString);
+             NSString *url = _NSString(@"%@%@%@&loginsessid=%@&color=%@&back=hide&from=app", APP.Host, newChatRoomUrl, [UGUserModel currentUser].token, [UGUserModel currentUser].sessid, Skin1.navBarBgColor.hexString);
              if (_gameId.length)
                  url = [url stringByAppendingFormat:@"&id=%@", self.gameId];
              url;
          });
      } else {
-        self.url = _NSString(@"%@%@%@&color=%@&back=hide&from=app", baseServerUrl, chatRoomUrl,SysConf.chatRoomName,Skin1.navBarBgColor.hexString);
+        self.url = _NSString(@"%@%@%@&color=%@&back=hide&from=app", APP.Host, chatRoomUrl,SysConf.chatRoomName,Skin1.navBarBgColor.hexString);
      }
 }
 
@@ -42,7 +42,7 @@
     if ([CMCommon stringIsNull:self.url]) {
         NSLog(@"url = %@",self.url);
         self.url = ({
-               NSString *url = _NSString(@"%@%@%@&loginsessid=%@&color=%@&back=hide&from=app", baseServerUrl, newChatRoomUrl, [UGUserModel currentUser].token, [UGUserModel currentUser].sessid, Skin1.navBarBgColor.hexString);
+               NSString *url = _NSString(@"%@%@%@&loginsessid=%@&color=%@&back=hide&from=app", APP.Host, newChatRoomUrl, [UGUserModel currentUser].token, [UGUserModel currentUser].sessid, Skin1.navBarBgColor.hexString);
                if (_gameId.length)
                    url = [url stringByAppendingFormat:@"&id=%@", self.gameId];
             
@@ -112,7 +112,7 @@
     if ([self.title isEqualToString:@"聊天室"] && !_jsonStr.length) {
         if (OBJOnceToken(UserI)) {
             [self.tgWebView stopLoading];
-            self.url = _NSString(@"%@%@%@&loginsessid=%@&color=%@&back=hide&from=app", baseServerUrl, newChatRoomUrl, [UGUserModel currentUser].token, [UGUserModel currentUser].sessid, Skin1.navBarBgColor.hexString);
+            self.url = _NSString(@"%@%@%@&loginsessid=%@&color=%@&back=hide&from=app", APP.Host, newChatRoomUrl, [UGUserModel currentUser].token, [UGUserModel currentUser].sessid, Skin1.navBarBgColor.hexString);
             [self.tgWebView reloadFromOrigin];
         }
     }

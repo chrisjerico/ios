@@ -7,16 +7,24 @@
 //
 
 #import "UGBMBrowseViewController.h"
+
+// ViewController
+#import "UGPromoteDetailController.h"
+
+// View
 #import "UGBMHeaderView.h"
 #import "UGGameTypeColletionViewCell.h"
+
+// Model
 #import "UGAllNextIssueListModel.h"
-#import "UGCommonLotteryController.h"
+#import "UGPromoteModel.h"
 
 @interface UGBMBrowseViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 {
      UGBMHeaderView *headView;                /**<   导航头 */
 }
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UICollectionView *myCollectionView;
 @property (nonatomic, strong) NSMutableArray <GameModel *> *dataArray;  /**<   数据源 */
 @end
@@ -28,7 +36,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.tabBarController.tabBar.hidden = NO;
-
 }
 
 - (void)viewDidLoad {
@@ -38,44 +45,54 @@
     self.navigationItem.title = @"会员中心";
     self.fd_prefersNavigationBarHidden = YES;
     self.fd_interactivePopDisabled = true;
-    [self.view setBackgroundColor: Skin1.bgColor];
+    [self.view setBackgroundColor:Skin1.bgColor];
     [self creatView];
 
-    //初始化
-    [self initCollectionView];
-    [self.myCollectionView reloadData];
-//    [_segmentedControl setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
+    // CollectionView
+    {
+        
+        _myCollectionView.collectionViewLayout = ({
+            UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
+            layout.sectionInset = UIEdgeInsetsMake(10, 0, 0, 0);
+            layout.itemSize = CGSizeMake(UGScreenW/3-10, 110);;
+            layout;
+        });
+        [_myCollectionView registerNib:[UINib nibWithNibName:@"UGGameTypeColletionViewCell" bundle:nil] forCellWithReuseIdentifier:@"cell"];
+//        ((UICollectionViewFlowLayout *)_myCollectionView.collectionViewLayout).itemSize = CGSizeMake(UGScreenW/3-8, 110);
+        [_myCollectionView reloadData];
+    }
+
+    // TableView
+    {
+        __weakSelf_(__self);
+        _tableView.hidden = true;
+        self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            [CMNetwork getPromoteListWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+                [__self.tableView.mj_header endRefreshing];
+                [CMResult processWithResult:model success:^{
+                    UGPromoteListModel *listModel = model.data;
+                    [__self.tableView.dataArray setArray:listModel.list];
+                    [__self.tableView reloadData];
+                } failure:nil];
+            }];
+        }];
+    }
     
-    
-    FastSubViewCode(self.view);
-    subView(@"状态栏背景色View").backgroundColor = Skin1.navBarBgColor;
+    //    [_segmentedControl setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
 }
 
 -(void)creatView{
     //===============导航头布局=================
-       headView = [[UGBMHeaderView alloc] initView];
-       [self.view addSubview:headView];
-       [headView mas_makeConstraints:^(MASConstraintMaker *make) { //数组额你不必须都是view
-           make.top.equalTo(self.view.mas_top).with.offset(k_Height_StatusBar);
-           make.left.equalTo(self.view.mas_left).offset(0);
-           make.height.equalTo([NSNumber numberWithFloat:110]);
-           make.width.equalTo([NSNumber numberWithFloat:UGScreenW]);
-       }];
+    headView = [[UGBMHeaderView alloc] initView];
+    [self.view addSubview:headView];
+    [headView mas_makeConstraints:^(MASConstraintMaker *make) { //数组额你不必须都是view
+       make.top.equalTo(self.view.mas_top).with.offset(k_Height_StatusBar);
+       make.left.equalTo(self.view.mas_left).offset(0);
+       make.height.equalTo([NSNumber numberWithFloat:110]);
+       make.width.equalTo([NSNumber numberWithFloat:UGScreenW]);
+    }];
 }
 
-- (void)initCollectionView {
-    UICollectionViewFlowLayout *layout = ({
-        layout = [[UICollectionViewFlowLayout alloc] init];
-        layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-        layout;
-    });
-    [self.myCollectionView setCollectionViewLayout:layout];
-        self.myCollectionView.backgroundColor = Skin1.bgColor;
-        self.myCollectionView.dataSource = self;
-        self.myCollectionView.delegate = self;
-        [self.myCollectionView registerNib:[UINib nibWithNibName:@"UGGameTypeColletionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UGGameTypeColletionViewCell"];
-    [self.myCollectionView setShowsHorizontalScrollIndicator:NO];
-}
 
 #pragma mark UICollectionView datasource
 
@@ -84,35 +101,56 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UGGameTypeColletionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UGGameTypeColletionViewCell" forIndexPath:indexPath];
+    UGGameTypeColletionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     cell.item = self.dataArray[indexPath.row];
     return cell;
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-   return CGSizeMake(UGScreenW/3-8, 110);
-}
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
-    return CGSizeMake(UGScreenW, 0);
-}
-
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     [NavController1 pushViewControllerWithGameModel:_dataArray[indexPath.row]];
 }
 
-- (IBAction)segmentedChanged:(id)sender {
-    UISegmentedControl *sc = (UISegmentedControl*)sender;
-    if (sc.selectedSegmentIndex == 0) {
-        NSLog(@"最近浏览");
-        _dataArray = UGNavigationController.browsingHistoryArray;
-        [self.myCollectionView reloadData];
-    } else {
-        NSLog(@"最近活动");
-        _dataArray = nil;
-        [self.myCollectionView reloadData];
-        [self.view makeToast:@"敬请期待！" duration:1.5 position:CSToastPositionCenter];
+- (IBAction)segmentedChanged:(UISegmentedControl *)sender {
+    _myCollectionView.hidden = sender.selectedSegmentIndex;
+    _tableView.hidden = !sender.selectedSegmentIndex;
+    if (!_tableView.dataArray.count) {
+        [_tableView.mj_header beginRefreshing];
+    }
+}
+
+
+#pragma mark - Table view data source
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return tableView.dataArray.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    cell.backgroundColor = Skin1.cellBgColor;
+    UGPromoteModel *pm = tableView.dataArray[indexPath.row];
+    FastSubViewCode(cell);
+    subLabel(@"标题Label").textColor = Skin1.textColor1;
+    subLabel(@"标题Label").text = pm.title;
+    __weakSelf_(__self);
+    [subImageView(@"图片ImageView") sd_setImageWithURL:[NSURL URLWithString:pm.pic] placeholderImage:[UIImage imageNamed:@"placeholder"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        if (image) {
+            subImageView(@"图片ImageView").cc_constraints.height.constant = image.height/image.width * (APP.Width - 48);
+            [__self.tableView beginUpdates];
+            [__self.tableView endUpdates];
+        }
+    }];
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UGPromoteModel *pm = tableView.dataArray[indexPath.row];
+    BOOL ret = [NavController1 pushViewControllerWithLinkCategory:pm.linkCategory linkPosition:pm.linkPosition];
+    if (!ret) {
+        // 去优惠详情
+        UGPromoteDetailController *detailVC = [[UGPromoteDetailController alloc] init];
+        detailVC.item = pm;
+        [NavController1 pushViewController:detailVC animated:YES];
     }
 }
 

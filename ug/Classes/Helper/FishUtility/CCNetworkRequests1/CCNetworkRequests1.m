@@ -60,7 +60,7 @@
     }
     
     // 非P咖服务器则返nil
-    if (![sObj.urlString hasPrefix:APP.HOST])
+    if (![sObj.urlString hasPrefix:APP.Host])
         return nil;
     
     id responseObject = sObj.responseObject;
@@ -92,7 +92,6 @@
 #pragma mark - —— 公共参数
 - (NSDictionary *)publicParams {
     return [@{@"appVersion"     :APP.Version,
-              @"apiVersion"     :@(APP.apiVersion),
               @"phoneType"      :@0,    // 0为iOS，1安卓
 //              @"timeStamp"      :@((long long int)([[NSDate date] millisecondIntervalSince1970])),
 //              @"token"          :UserI.token,
@@ -103,7 +102,7 @@
 
 // 简写接口
 - (CCSessionModel *)req:(NSString *)pathComponent :(NSDictionary *)params :(BOOL)isPOST {
-    NSString *host = APP.HOST;
+    NSString *host = APP.Host;
     NSString *string = _NSString(@"%@%@", host, pathComponent);
     return [self sendRequest:string params:params isPOST:isPOST];
 }

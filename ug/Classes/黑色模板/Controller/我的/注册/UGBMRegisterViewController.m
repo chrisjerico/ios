@@ -164,7 +164,7 @@
         }
         placeholder;
     });
-    NSString *url = [NSString stringWithFormat:@"%@%@",baseServerUrl,swiperVerifyUrl];
+    NSString *url = [NSString stringWithFormat:@"%@%@",APP.Host,swiperVerifyUrl];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
     [self.webView loadRequest:request];
     
@@ -591,7 +591,7 @@
     if (textField != self.userNameTextF) {
         return;
     }
-    [CMNetwork.manager requestWithMethod:[[NSString stringWithFormat:@"%@/wjapp/api.php?c=user&a=exists", baseServerUrl] stringToRestfulUrlWithFlag:RESTFUL]
+    [CMNetwork.manager requestWithMethod:[[NSString stringWithFormat:@"%@/wjapp/api.php?c=user&a=exists", APP.Host] stringToRestfulUrlWithFlag:RESTFUL]
                                   params:@{@"usr": textField.text}
                                    model:nil
                                     post:true

@@ -74,7 +74,6 @@
     cell.backgroundColor = Skin1.cellBgColor;
     UGPromoteModel *pm = tableView.dataArray[indexPath.row];
     FastSubViewCode(cell);
-    NSLog(@"pm.title = %@", pm.title);
     subLabel(@"标题Label").textColor = Skin1.textColor1;
     subLabel(@"标题Label").text = pm.title;
     __weakSelf_(__self);

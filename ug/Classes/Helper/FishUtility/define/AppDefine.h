@@ -8,23 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-
-#define API_Version 3   // 接口版本号
-/*
- 以下是接口版本与对应的需求版本：
- apiVersion(0) = 1.0.0
- apiVersion(1) = 1.0.1
- apiVersion(2) = 1.1.0
- apiVersion(3) = 1.1.1
- */
-
-
-#define _FloatString1(f) [AppDefine stringWithFloat:f decimal:1]
-#define _FloatString2(f) [AppDefine stringWithFloat:f decimal:2]
-#define _FloatString4(f) [AppDefine stringWithFloat:f decimal:4]
-#define _IntString(i) [AppDefine stringWithInteger:i]
-#define _FileSizeString(byte) [AppDefine stringWithFileSize:(byte)]
-
 #define APP [AppDefine shared]
 
 #define _LoadVC_from_storyboard_(sid)   [AppDefine viewControllerWithStoryboardID:sid]
@@ -33,29 +16,16 @@
 
 @interface AppDefine : NSObject
 
-@property (nonatomic) NSString *StoreID;                /**<    在 App Store 上的 Appid */
-@property (nonatomic) NSString *HOST;                   /**<    服务器地址 */
-@property (nonatomic) NSInteger apiVersion;             /**<    接口版本 */
+@property (nonatomic, readonly) NSString *Host;         /**<    服务器地址 */
+@property (nonatomic, readonly) NSString *SiteId;       /**<   站点ID */
 
-@property (nonatomic) NSString *InviteCode;             /**<    被邀请码 */
-
-@property (nonatomic) NSString *DefaultUserPhoto;       /**<    默认用户头像 */
-@property (nonatomic) NSString *DefaultUserPhotoURL;    /**<    默认用户头像 */
 
 @property (nonatomic) NSInteger PageCount;              /**<    TableView每页显示多少条数据 */
-
 @property (nonatomic) NSUInteger PhotoMaxLength;        /**<    图片上传允许的最大大小 */
 
 
+
 + (instancetype)shared;
-
-// double
-+ (NSString *)stringWithFloat:(double)f decimal:(unsigned short)d;
-+ (NSString *)stringWithInteger:(NSInteger)i;
-+ (NSString *)stringWithFileSize:(double)size;
-+ (double)folderSizeAtPath:(NSString *)folderPath;
-+ (unsigned long long)fileSizeAtPath:(NSString *)filePath;
-
 @end
 
 
@@ -68,9 +38,6 @@
 @property (nonatomic) NSString *BundleId;           /**<    BundleID */
 @property (nonatomic) NSString *Version;            /**<    版本号 */
 @property (nonatomic) NSString *Build;              /**<    Build号 */
-
-@property (nonatomic) BOOL Debug;                   /**<    是否debug环境 */
-@property (nonatomic) BOOL Test;                    /**<    是否test环境 */
 
 @property (nonatomic) UIWindow *Window;             /**<    UIApplication.windows.first */
 @property (nonatomic) CGRect Bounds;                /**<    bounds */
@@ -88,9 +55,7 @@
 + (__kindof UIViewController *)viewControllerWithStoryboardID:(NSString *)sid;  /**<    从Storyboard加载vc */
 + (__kindof UIViewController *)viewControllerWithNibName:(NSString *)nibName;   /**<    从xib加载vc */
 + (__kindof UIView *)viewWithNibName:(NSString *)nibName;                       /**<    从xib加载view */
-+ (void)createDirectoryAtPath:(NSString *)path;
-+ (void)setWindowInterfaceOrientation:(UIInterfaceOrientation)io;               /**<    设置屏幕方向 */
-
++ (NSString *)stringWithFloat:(double)f decimal:(unsigned short)d;              /**<   double转字符串，去除末尾的0 */
 @end
 
 
@@ -118,13 +83,13 @@
 @property (nonatomic) UIColor *LoadingColor;         /**<    加载/缺省 淡灰色 238 */
 @property (nonatomic) UIColor *NavigationBarColor;   /**<    导航条 淡灰色 243 */
 @property (nonatomic) UIColor *BackgroundColor;      /**<    背景色 淡灰色 247 */
-
-// 半透明
-@property (nonatomic) UIColor *ShadeColor;           /**<    遮罩 黑色半透明 */
-
-// 黑/白色
-@property (nonatomic) UIColor *BlackColor;           /**<    黑色 */
-@property (nonatomic) UIColor *WhiteColor;           /**<    白色 */
-
 @end
+
+
+
+
+// double转字符串，去除末尾的0
+#define _FloatString1(f) [AppDefine stringWithFloat:f decimal:1]
+#define _FloatString2(f) [AppDefine stringWithFloat:f decimal:2]
+#define _FloatString4(f) [AppDefine stringWithFloat:f decimal:4]
 

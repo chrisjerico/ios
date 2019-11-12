@@ -204,7 +204,7 @@ UIActionSheetDelegate> {
             host = nil;
             [self aspect_hookSelector:@selector(webViewDidFinishLoad:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo>ai) {
                 if (!host.length)
-                    host = [baseServerUrl copy];
+                    host = [APP.Host copy];
             } error:nil];
         }
         NSString *url = request.URL.absoluteString;
@@ -276,8 +276,8 @@ UIActionSheetDelegate> {
     NSMutableDictionary *properties = [NSMutableDictionary dictionary];
     [properties setValue:user.sessid forKey:NSHTTPCookieValue];
     [properties setValue:@"loginsessid" forKey:NSHTTPCookieName];
-    [properties setValue:[[NSURL URLWithString:baseServerUrl] host] forKey:NSHTTPCookieDomain];
-    [properties setValue:[[NSURL URLWithString:baseServerUrl] path] forKey:NSHTTPCookiePath];
+    [properties setValue:[[NSURL URLWithString:APP.Host] host] forKey:NSHTTPCookieDomain];
+    [properties setValue:[[NSURL URLWithString:APP.Host] path] forKey:NSHTTPCookiePath];
     [properties setValue:[NSDate dateWithTimeIntervalSinceNow:60*60*24] forKey:NSHTTPCookieExpires];
     NSHTTPCookie *cookieuser = [[NSHTTPCookie alloc] initWithProperties:properties];
     [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookieuser];
@@ -285,8 +285,8 @@ UIActionSheetDelegate> {
     NSMutableDictionary *properties1 = [NSMutableDictionary dictionary];
     [properties1 setValue:user.token forKey:NSHTTPCookieValue];
     [properties1 setValue:@"logintoken" forKey:NSHTTPCookieName];
-    [properties1 setValue:[[NSURL URLWithString:baseServerUrl] host] forKey:NSHTTPCookieDomain];
-    [properties1 setValue:[[NSURL URLWithString:baseServerUrl] path] forKey:NSHTTPCookiePath];
+    [properties1 setValue:[[NSURL URLWithString:APP.Host] host] forKey:NSHTTPCookieDomain];
+    [properties1 setValue:[[NSURL URLWithString:APP.Host] path] forKey:NSHTTPCookiePath];
     [properties1 setValue:[NSDate dateWithTimeIntervalSinceNow:60*60*24] forKey:NSHTTPCookieExpires];
     
     NSHTTPCookie *cookieuser1 = [[NSHTTPCookie alloc] initWithProperties:properties1];

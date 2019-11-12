@@ -180,7 +180,7 @@ static UGTabbarController *_tabBarVC = nil;
             }
             BOOL black = [Skin1.skitType isEqualToString:@"黑色模板"];
             sv.hidden = !black;
-            [TabBarController1 setTabbarHeight:black ? 53 : 49];
+            [TabBarController1 setTabbarHeight:black ? 53 : 50];
         }];
     }
 }
@@ -209,12 +209,12 @@ static UGTabbarController *_tabBarVC = nil;
         [item setTitleTextAttributes:@{NSForegroundColorAttributeName:Skin1.tabSelectedColor} forState:UIControlStateSelected];
     }
     
-    for (UGNavigationController *nav in TabBarController1.viewControllers) {
-        UIView *stateView = [nav.navigationBar viewWithTagString:@"状态栏背景View"];
+    {
+        
+        static UIView *stateView = nil;
         if (!stateView) {
-            stateView = [[UIView alloc] initWithFrame:CGRectMake(0, -k_Height_StatusBar, UGScreenW, k_Height_StatusBar)];
-            stateView.tagString = @"状态栏背景View";
-            [nav.navigationBar addSubview:stateView];
+            stateView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APP.Width, APP.StatusBarHeight)];
+            [self.view addSubview:stateView];
             stateView.backgroundColor = Skin1.navBarBgColor;
         }
     }
@@ -281,8 +281,8 @@ static UGTabbarController *_tabBarVC = nil;
     for (NSString *path in paths) {
         UGmobileMenu *gm = [_gms objectWithValue:path keyPath:@"path"];
         
-        // 优惠活动展示在首页
-        if (gm.cls == [UGPromotionsController class] && SysConf.m_promote_pos)
+        // 判断优惠活动展示在首页还是内页（c001显示在内页）
+        if (gm.cls == [UGPromotionsController class] && SysConf.m_promote_pos && ![APP.SiteId isEqualToString:@"c001"] && ![Skin1.skitType isEqualToString:@"黑色模板"])
             continue;
         
         // 已存在的控制器不需要重新初始化

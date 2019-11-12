@@ -60,6 +60,7 @@
 #import "UGAppVersionManager.h"
 #import "UGPromotionIncomeController.h"
 #import "FLAnimatedImageView.h"
+#import "UGBMHeaderView.h"
 
 // 六合View
 #import "UGLHLotteryCollectionViewCell.h"
@@ -88,6 +89,7 @@
 @interface UGHomeViewController ()<SDCycleScrollViewDelegate,UUMarqueeViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
 
 @property (nonatomic, strong) UGHomeTitleView *titleView;       /**<   自定义导航条 */
+@property (weak, nonatomic) IBOutlet UGBMHeaderView *headerView;/**<   黑色模板导航头 */
 
 @property (nonatomic, strong) UGYYRightMenuView *yymenuView;    /**<   侧边栏 */
 
@@ -98,7 +100,7 @@
 @property (nonatomic, strong)  UGredActivityView *uGredActivityView;    /**<   红包弹框 */
 
 @property (weak, nonatomic) IBOutlet UIScrollView *contentScrollView;       /**<   最外层的ScrollView */
-@property (weak, nonatomic) IBOutlet UIStackView *contentStackView;         /**<   最外层的StackView */
+@property (weak, nonatomic) IBOutlet UIStackView *contentStackView;         /**<   contentScrollView的子视图StackView */
 
 @property (weak, nonatomic) IBOutlet UIView *bannerBgView;                  /**<   横幅背景View */
 @property (nonatomic, strong) SDCycleScrollView *bannerView;                /**<   横幅View */
@@ -164,7 +166,7 @@
             [v removeFromSuperview];
         }
         NSDictionary *dict = @{@"六合资料":@[_bannerBgView, _rollingView, subView(@"开奖结果"), subView(@"六合论坛"), _promotionView, _bottomView],
-                               @"黑色模板":@[_rollingView, _bannerBgView, _gameTypeView.superview, ],
+                               @"黑色模板":@[_bannerBgView, _gameTypeView.superview, ],
         };
         NSArray *arrangedSubviews = dict[Skin1.skitType];
         if (!arrangedSubviews) {
@@ -181,6 +183,8 @@
     _rollingView.backgroundColor = isBlack ? Skin1.bgColor : Skin1.navBarBgColor;
     _contentScrollView.contentInset = UIEdgeInsetsMake(0, 0, isBlack ? 20 : 0, 0);
     _gameTypeView.cc_constraints.top.constant = isBlack ? 0 : 10;
+    _headerView.hidden = !isBlack;
+    self.fd_prefersNavigationBarHidden = isBlack;
     [self.gameNavigationView reloadData];
 }
 
@@ -329,16 +333,16 @@
     }
 	
     // c200站点定制需求
-//    {
-//        FLAnimatedImageView *gifImageView = [[FLAnimatedImageView alloc] initWithFrame:CGRectMake(APP.Width-100, 300, 100, 100)];
-//        gifImageView.contentMode = UIViewContentModeScaleAspectFit;
-//        gifImageView.userInteractionEnabled = true;
-//        [self.view addSubview:gifImageView];
-//        [gifImageView sd_setImageWithURL:[[NSBundle mainBundle] URLForResource:@"lxb" withExtension:@"gif"]];
-//        [gifImageView addGestureTapEventHandle:^(id sender, UITapGestureRecognizer *gestureRecognizer) {
-//            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGYubaoViewController") animated:true];
-//        }];
-//    }
+    if ([APP.SiteId containsString:@"c200"]) {
+        FLAnimatedImageView *gifImageView = [[FLAnimatedImageView alloc] initWithFrame:CGRectMake(APP.Width-100, 300, 100, 100)];
+        gifImageView.contentMode = UIViewContentModeScaleAspectFit;
+        gifImageView.userInteractionEnabled = true;
+        [self.view addSubview:gifImageView];
+        [gifImageView sd_setImageWithURL:[[NSBundle mainBundle] URLForResource:@"lxb" withExtension:@"gif"]];
+        [gifImageView addGestureTapEventHandle:^(id sender, UITapGestureRecognizer *gestureRecognizer) {
+            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGYubaoViewController") animated:true];
+        }];
+    }
     
 	// 拉取数据
 	_contentScrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -667,16 +671,19 @@
 					self.rankingView.hidden = YES;
 					self.rankViewHeight.constant = 0;
 					[self.view layoutIfNeeded];
+                    [self.bottomView setBackgroundColor:[UIColor clearColor]];
 				} else if (config.rankingListSwitch == 1) {
 					self.rankingView.hidden = false;
 					self.rankViewHeight.constant = 250;
 					[self.view layoutIfNeeded];
 					self.rankLabel.text = @"中奖排行榜";
+                    [self.bottomView setBackgroundColor:Skin1.navBarBgColor];
 				} else if (config.rankingListSwitch == 2) {
 					self.rankingView.hidden = false;
 					self.rankViewHeight.constant = 250;
 					[self.view layoutIfNeeded];
 					self.rankLabel.text = @"投注排行榜";
+                    [self.bottomView setBackgroundColor:Skin1.navBarBgColor];
 				}
                 self.rankLabel.textColor = Skin1.textColor1;
 				[self.upwardMultiMarqueeView reloadData];
@@ -984,7 +991,7 @@
 	//	self.scrollView.contentSize = CGSizeMake(UGScreenW, self.scrollContentHeightConstraints.constant);
 	
 	if (self.nolineLabel == nil) {
-		UILabel *text = [[UILabel alloc]initWithFrame:CGRectMake(UGScreenW-140, 5, 140, 30)];
+		UILabel *text = [[UILabel alloc] initWithFrame:CGRectMake(UGScreenW-140, 5, 140, 30)];
 		text.backgroundColor = RGBA(27, 38, 116,0.5);
 		text.textColor = [UIColor whiteColor];
 		text.font = [UIFont systemFontOfSize:12];
@@ -996,6 +1003,12 @@
 		[self.view addSubview:text];
 		self.nolineLabel = text;
 		[self.nolineLabel setHidden:YES];
+        [text mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_contentScrollView.mas_top).offset(10);
+            make.right.equalTo(self.view.mas_right);
+            make.width.mas_equalTo(140);
+            make.height.mas_equalTo(30);
+        }];
 	}
 	
 	

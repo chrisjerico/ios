@@ -68,8 +68,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSInteger pass_limit;         /**<   注册密码强度，0、不限制；1、数字字母；2、数字字母符合 */
 @property (nonatomic) NSInteger pass_length_min;    /**<   注册密码最小长度 */
 @property (nonatomic) NSInteger pass_length_max;    /**<   注册密码最大长度 */
-@property (nonatomic) BOOL googleVerifier;     /**<   是否开启google 验证 */
-@property (nonatomic) int rankingListSwitch;
+@property (nonatomic) BOOL googleVerifier;          /**<   是否开启google 验证 */
+@property (nonatomic) int rankingListSwitch;        /**<   是否显示中奖/投注排行榜 */
 @property (nonatomic) BOOL recharge;                /**<   上级充值开关 */
 @property (nonatomic) BOOL smsVerify;               /**<   手机短信验证 */
 @property (nonatomic) BOOL allowreg;                /**<   是否开启注册功能。 */

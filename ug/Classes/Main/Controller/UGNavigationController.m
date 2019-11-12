@@ -419,7 +419,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         }
         case 7: {
             // 开奖网
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_NSString(@"%@/Open_prize/index.php", baseServerUrl)]];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_NSString(@"%@/Open_prize/index.php", APP.Host)]];
             break;
         }
         case 8: {

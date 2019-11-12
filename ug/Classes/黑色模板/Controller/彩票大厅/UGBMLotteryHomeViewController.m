@@ -46,9 +46,6 @@
     //初始化
     [self initCollectionView];
     
-    FastSubViewCode(self.view);
-    subView(@"状态栏背景色View").backgroundColor = Skin1.navBarBgColor;
-    
     WeakSelf
     self.myCollectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [weakSelf getPlatformGamesWithParams];

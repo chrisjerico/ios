@@ -48,8 +48,6 @@
     self.view.backgroundColor = Skin1.bgColor;
     self.tableView.backgroundColor = Skin1.bgColor;
     
-    FastSubViewCode(self.view);
-    subView(@"状态栏背景色View").backgroundColor = Skin1.navBarBgColor;
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self getPromoteList];
     }];
@@ -140,12 +138,14 @@
     cell.backgroundColor = Skin1.cellBgColor;
     UGPromoteModel *pm = tableView.dataArray[indexPath.row];
     FastSubViewCode(cell);
-    NSLog(@"pm.title = %@", pm.title);
+    __weakSelf_(__self);
     subLabel(@"标题Label").textColor = Skin1.textColor1;
     subLabel(@"标题Label").text = pm.title;
     [subImageView(@"图片ImageView") sd_setImageWithURL:[NSURL URLWithString:pm.pic] placeholderImage:[UIImage imageNamed:@"placeholder"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         if (image) {
             subImageView(@"图片ImageView").cc_constraints.height.constant = image.height/image.width * (APP.Width - 48);
+            [__self.tableView beginUpdates];
+            [__self.tableView endUpdates];
         }
     }];
     return cell;
