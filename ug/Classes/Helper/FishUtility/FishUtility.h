@@ -12,8 +12,9 @@
 #ifdef __OBJC__
 
     #ifdef DEBUG
-//        #import "define_log.h"
-//        #import "UIViewController+Log.h"
+        #import "define_log.h"
+        #import "UIViewController+Log.h"
+        #import "UGSkinManagers+Lottery.h"
     #endif
 
     // 第三方库

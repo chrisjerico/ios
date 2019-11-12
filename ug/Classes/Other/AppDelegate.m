@@ -75,9 +75,10 @@
     
     [self initBugly];
     [self userAgent];
-    
+    [Skin1 skinLottery ];
 #ifdef DEBUG
 	[LogVC enableLogVC];
+
     
 //    [CMTimeCommon getNowTimestamp];
     
