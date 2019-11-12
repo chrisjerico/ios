@@ -76,6 +76,9 @@
 		
 		UIImageView *imageView = [UIImageView new];
 		imageView.image = [UIImage imageNamed:@"subgame_bg"];
+        if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+            imageView.image = [imageView.image qmui_imageWithTintColor:Skin1.navBarBgColor];
+        }
 		[self addSubview:imageView];
 		[imageView mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.center.equalTo(self);

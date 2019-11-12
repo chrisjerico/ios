@@ -82,7 +82,7 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
     
     _lotteryGamesArray = UGAllNextIssueListModel.lotteryGamesArray;
     
-	self.view.backgroundColor = UIColor.whiteColor;
+	self.view.backgroundColor = Skin1.textColor4;
     self.navigationController.navigationBar.backgroundColor = Skin1.navBarBgColor;
     self.countDown = [[CountDown alloc] init];
 	self.navigationItem.title = @"点击图标切换彩票";

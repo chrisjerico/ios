@@ -29,6 +29,7 @@
 #import "UGBMpreferentialViewController.h"  // 黑色模板优惠专区
 #import "UGBMLotteryHomeViewController.h"   // 黑色模板购彩大厅
 #import "UGYYLotteryHomeViewController.h"   // 购彩大厅
+#import "UGBMLoginViewController.h"         // 黑色模板登录页
 
 #import "UGSystemConfigModel.h"
 #import "UGAppVersionManager.h"
@@ -210,13 +211,24 @@ static UGTabbarController *_tabBarVC = nil;
     }
     
     {
-        
-        static UIView *stateView = nil;
-        if (!stateView) {
-            stateView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APP.Width, APP.StatusBarHeight)];
-            [self.view addSubview:stateView];
-            stateView.backgroundColor = Skin1.navBarBgColor;
-        }
+        static UIView *__stateView = nil;
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            __stateView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APP.Width, APP.StatusBarHeight)];
+            __stateView.backgroundColor = Skin1.navBarBgColor;
+            [self.view addSubview:__stateView];
+            NSArray *clsArray = @[QDWebViewController.class, UGBMLoginViewController.class];
+            [UIViewController aspect_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
+                if ([clsArray containsObject:[ai.instance class]]) {
+                    __stateView.hidden = true;
+                }
+            } error:nil];
+            [UIViewController aspect_hookSelector:@selector(viewWillDisappear:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
+                if ([clsArray containsObject:[ai.instance class]]) {
+                    __stateView.hidden = false;
+                }
+            } error:nil];
+        });
     }
 }
 

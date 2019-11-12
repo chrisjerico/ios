@@ -1523,7 +1523,7 @@
                                                 </connections>
                                             </collectionView>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3Vo-sw-Q5B">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="613"/>
+                                                <rect key="frame" x="0.0" y="10" width="414" height="603"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <view key="tableFooterView" contentMode="scaleToFill" id="cwT-iF-Yta">
                                                     <rect key="frame" x="0.0" y="163" width="414" height="24"/>
@@ -1583,7 +1583,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="3Vo-sw-Q5B" secondAttribute="bottom" id="1X5-gn-24e"/>
-                                            <constraint firstItem="3Vo-sw-Q5B" firstAttribute="top" secondItem="ybB-iH-Gq5" secondAttribute="top" id="K5V-4Z-Iez"/>
+                                            <constraint firstItem="3Vo-sw-Q5B" firstAttribute="top" secondItem="ybB-iH-Gq5" secondAttribute="top" constant="10" id="K5V-4Z-Iez"/>
                                             <constraint firstItem="gg6-ah-AMw" firstAttribute="centerX" secondItem="ybB-iH-Gq5" secondAttribute="centerX" id="UaW-Xv-Tnx"/>
                                             <constraint firstItem="gg6-ah-AMw" firstAttribute="top" secondItem="ybB-iH-Gq5" secondAttribute="top" id="XvI-79-qek"/>
                                             <constraint firstItem="gg6-ah-AMw" firstAttribute="leading" secondItem="ybB-iH-Gq5" secondAttribute="leading" constant="5" id="dQe-o9-KV3"/>

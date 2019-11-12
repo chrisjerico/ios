@@ -26,7 +26,7 @@
     
     self.navigationItem.title = @"活动详情";
     self.view.backgroundColor = Skin1.textColor4;
-    self.contentTextView.backgroundColor = [UIColor whiteColor];
+    self.contentTextView.backgroundColor = [UIColor clearColor];
     self.titleLabel.textColor = Skin1.textColor1;
     [self.view addSubview:self.titleLabel];
     [self.view addSubview:self.contentTextView];
@@ -40,14 +40,25 @@
     [self.activity startAnimating];
     NSString *str = [NSString stringWithFormat:@"<head><style>img{width:auto !important;max-width:%f;height:auto}</style></head>%@", UGScreenW - 10, self.item.content];
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithData:[str dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+        NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithData:[str dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,} documentAttributes:nil error:nil];
         NSMutableParagraphStyle *ps = [NSMutableParagraphStyle new];
         ps.lineSpacing = 5;
-        [attStr addAttributes:@{NSParagraphStyleAttributeName:ps} range:NSMakeRange(0, attStr.length)];
+        [mas addAttributes:@{NSParagraphStyleAttributeName:ps,} range:NSMakeRange(0, mas.length)];
+        
+        // 替换文字颜色
+        NSAttributedString *as = [mas copy];
+        for (int i=0; i<as.length; i++) {
+            NSRange r = NSMakeRange(0, as.length);
+            NSMutableDictionary *dict = [as attributesAtIndex:i effectiveRange:&r].mutableCopy;
+            UIColor *c = dict[NSForegroundColorAttributeName];
+            if (fabs(c.red - c.green) < 0.05 && fabs(c.green - c.blue) < 0.05) {
+                dict[NSForegroundColorAttributeName] = Skin1.textColor2;
+                [mas addAttributes:dict range:NSMakeRange(i, 1)];
+            }
+        }
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.activity stopAnimating];
-            self.contentTextView.attributedText = attStr;
-   
+            self.contentTextView.attributedText = mas;
         });
     });
 }

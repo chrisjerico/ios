@@ -74,8 +74,12 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             BOOL ret = false;
             [ai.originalInvocation getReturnValue:&ret];
             if (ret) {
-                [dataArray removeObject:ai.arguments.firstObject];
-                [dataArray insertObject:ai.arguments.firstObject atIndex:0];
+                GameModel *gm = ai.arguments.firstObject;
+                for (GameModel *obj in [dataArray copy]) {
+                    if (obj.seriesId == gm.seriesId && obj.subId == gm.subId)
+                        [dataArray removeObject:obj];
+                }
+                [dataArray insertObject:gm atIndex:0];
                 if (dataArray.count > 10) {
                     [dataArray setArray:[dataArray subarrayWithRange:NSMakeRange(0, 10)]];
                 }

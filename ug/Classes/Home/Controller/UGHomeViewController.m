@@ -126,7 +126,6 @@
 
 @property (weak, nonatomic) IBOutlet UIView *rankingView;                   /**<   中奖排行榜父视图 */
 @property (weak, nonatomic) IBOutlet UILabel *rankLabel;                    /**<   中奖排行标题Label */
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *rankViewHeight;    /**<   中奖排行榜Height约束 */
 @property (weak, nonatomic) IBOutlet UUMarqueeView *upwardMultiMarqueeView; /**<   中奖排行榜 */
 @property (nonatomic, strong) UGRankListModel *rankListModel;               /**<   中奖排行榜数据 */
 @property (nonatomic, strong) NSArray<UGRankModel *> *rankArray;            /**<   中奖排行榜数据 */
@@ -166,7 +165,7 @@
             [v removeFromSuperview];
         }
         NSDictionary *dict = @{@"六合资料":@[_bannerBgView, _rollingView, subView(@"开奖结果"), subView(@"六合论坛"), _promotionView, _bottomView],
-                               @"黑色模板":@[_bannerBgView, _gameTypeView.superview, ],
+                               @"黑色模板":@[_bannerBgView, _gameTypeView.superview, _rankingView, _bottomView],
         };
         NSArray *arrangedSubviews = dict[Skin1.skitType];
         if (!arrangedSubviews) {
@@ -181,7 +180,7 @@
     // 黑色模板的UI调整
     BOOL isBlack = [Skin1.skitType isEqualToString:@"黑色模板"];
     _rollingView.backgroundColor = isBlack ? Skin1.bgColor : Skin1.navBarBgColor;
-    _contentScrollView.contentInset = UIEdgeInsetsMake(0, 0, isBlack ? 20 : 0, 0);
+    _rankingView.backgroundColor = isBlack ? Skin1.bgColor : Skin1.navBarBgColor;
     _gameTypeView.cc_constraints.top.constant = isBlack ? 0 : 10;
     _headerView.hidden = !isBlack;
     self.fd_prefersNavigationBarHidden = isBlack;
@@ -666,28 +665,17 @@
 				
 				
 				UGSystemConfigModel * config = UGSystemConfigModel.currentConfig;
-				
 				if (config.rankingListSwitch == 0) {
-					self.rankingView.hidden = YES;
-					self.rankViewHeight.constant = 0;
-					[self.view layoutIfNeeded];
-                    [self.bottomView setBackgroundColor:[UIColor clearColor]];
 				} else if (config.rankingListSwitch == 1) {
-					self.rankingView.hidden = false;
-					self.rankViewHeight.constant = 250;
-					[self.view layoutIfNeeded];
 					self.rankLabel.text = @"中奖排行榜";
-                    [self.bottomView setBackgroundColor:Skin1.navBarBgColor];
 				} else if (config.rankingListSwitch == 2) {
-					self.rankingView.hidden = false;
-					self.rankViewHeight.constant = 250;
-					[self.view layoutIfNeeded];
 					self.rankLabel.text = @"投注排行榜";
-                    [self.bottomView setBackgroundColor:Skin1.navBarBgColor];
 				}
+                self.rankingView.hidden = !config.rankingListSwitch;
+                self.bottomView.backgroundColor = [Skin1.skitType isEqualToString:@"黑色模板"] || !config.rankingListSwitch ? [UIColor clearColor] : Skin1.navBarBgColor;
                 self.rankLabel.textColor = Skin1.textColor1;
+                [self.view layoutIfNeeded];
 				[self.upwardMultiMarqueeView reloadData];
-
 			});
 			
 		} failure:^(id msg) {
@@ -986,12 +974,11 @@
 		self.titleView.userName = UserI.username;
 	}
 	//    self.bannerBgViewHeightConstraint.constant = UGScreenW * 0.5;
-	//	self.rankingViewHeightConstraints.constant = UGScreenW;
 	//	self.scrollContentHeightConstraints.constant = CGRectGetMaxY(self.rankingView.frame);
 	//	self.scrollView.contentSize = CGSizeMake(UGScreenW, self.scrollContentHeightConstraints.constant);
 	
 	if (self.nolineLabel == nil) {
-		UILabel *text = [[UILabel alloc] initWithFrame:CGRectMake(UGScreenW-140, 5, 140, 30)];
+		UILabel *text = [[UILabel alloc] initWithFrame:CGRectMake(UGScreenW-140, 10, 140, 30)];
 		text.backgroundColor = RGBA(27, 38, 116,0.5);
 		text.textColor = [UIColor whiteColor];
 		text.font = [UIFont systemFontOfSize:12];
@@ -1000,15 +987,8 @@
 		text.textAlignment= NSTextAlignmentCenter;
 		text.layer.cornerRadius = 15;
 		text.layer.masksToBounds = YES;
-		[self.view addSubview:text];
-		self.nolineLabel = text;
-		[self.nolineLabel setHidden:YES];
-        [text mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(_contentScrollView.mas_top).offset(10);
-            make.right.equalTo(self.view.mas_right);
-            make.width.mas_equalTo(140);
-            make.height.mas_equalTo(30);
-        }];
+        text.hidden = true;
+		[_bannerBgView addSubview:(_nolineLabel = text)];
 	}
 	
 	
@@ -1023,7 +1003,7 @@
 	self.bannerView.autoScrollTimeInterval = 2.0;
 	self.bannerView.delegate = self;
     self.bannerView.pageDotColor = RGBA(210, 210, 210, 0.4);
-	[self.bannerBgView addSubview:self.bannerView];
+	[self.bannerBgView insertSubview:self.bannerView atIndex:0];
     
     
 	self.leftwardMarqueeView.direction = UUMarqueeViewDirectionLeftward;
