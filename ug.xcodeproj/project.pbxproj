@@ -308,6 +308,7 @@
 		D41A57792306924D00C26023 /* UGBackToastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D41A57762306924C00C26023 /* UGBackToastView.xib */; };
 		D41AEA6B22E58D9E003E28C3 /* UGAvatarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D41AEA6A22E58D9E003E28C3 /* UGAvatarModel.m */; };
 		D41AEA6E22E5D44F003E28C3 /* UGLotteryHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D41AEA6D22E5D44F003E28C3 /* UGLotteryHistoryModel.m */; };
+		D41B2978237AD35400EC1A0B /* UGSkinManagers+Lottery.m in Sources */ = {isa = PBXBuildFile; fileRef = D41B2977237AD35400EC1A0B /* UGSkinManagers+Lottery.m */; };
 		D41C300C233F220000541254 /* UGYYRightMenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D41C300A233F220000541254 /* UGYYRightMenuTableViewCell.m */; };
 		D41C300D233F220000541254 /* UGYYRightMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D41C300B233F220000541254 /* UGYYRightMenuTableViewCell.xib */; };
 		D41C3DF4228E75F100BF6436 /* CAAnimation+WAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = D41C3DE7228E75F000BF6436 /* CAAnimation+WAnimation.m */; };
@@ -1219,6 +1220,8 @@
 		D41AEA6A22E58D9E003E28C3 /* UGAvatarModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGAvatarModel.m; sourceTree = "<group>"; };
 		D41AEA6C22E5D44F003E28C3 /* UGLotteryHistoryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLotteryHistoryModel.h; sourceTree = "<group>"; };
 		D41AEA6D22E5D44F003E28C3 /* UGLotteryHistoryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLotteryHistoryModel.m; sourceTree = "<group>"; };
+		D41B2976237AD35400EC1A0B /* UGSkinManagers+Lottery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UGSkinManagers+Lottery.h"; sourceTree = "<group>"; };
+		D41B2977237AD35400EC1A0B /* UGSkinManagers+Lottery.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UGSkinManagers+Lottery.m"; sourceTree = "<group>"; };
 		D41C3009233F220000541254 /* UGYYRightMenuTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGYYRightMenuTableViewCell.h; sourceTree = "<group>"; };
 		D41C300A233F220000541254 /* UGYYRightMenuTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGYYRightMenuTableViewCell.m; sourceTree = "<group>"; };
 		D41C300B233F220000541254 /* UGYYRightMenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGYYRightMenuTableViewCell.xib; sourceTree = "<group>"; };
@@ -4515,6 +4518,8 @@
 				D4EE8FA423424E5F006FA0E2 /* UIImage+YYgradientImage.m */,
 				CF724E53236D6E5E0099947A /* UGSkinManagers.h */,
 				CF724E52236D6E5E0099947A /* UGSkinManagers.m */,
+				D41B2976237AD35400EC1A0B /* UGSkinManagers+Lottery.h */,
+				D41B2977237AD35400EC1A0B /* UGSkinManagers+Lottery.m */,
 			);
 			path = Skin;
 			sourceTree = "<group>";
@@ -5070,6 +5075,7 @@
 				D4DE2681229BCB960072A4A2 /* WMSegmentControl.m in Sources */,
 				D40E1E5922BF7483004D4664 /* UGRankModel.m in Sources */,
 				D40DE98222F335E300974BAF /* CustomCollectionViewCell.m in Sources */,
+				D41B2978237AD35400EC1A0B /* UGSkinManagers+Lottery.m in Sources */,
 				D4090F67228D4F7200D6DA43 /* UGAvaterCollectionViewCell.m in Sources */,
 				CFD3BF0C2347137F00FCDA6D /* NSString+Utils.m in Sources */,
 				CFD3BEFA2347137F00FCDA6D /* UIView+Frame.m in Sources */,
