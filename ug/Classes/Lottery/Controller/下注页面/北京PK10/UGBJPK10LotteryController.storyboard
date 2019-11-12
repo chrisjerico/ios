@@ -124,10 +124,13 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="期数label"/>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JEr-gI-w8w">
                                         <rect key="frame" x="75.5" y="5" width="333.5" height="55"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8LJ-Yy-AQJ">
                                         <rect key="frame" x="0.0" y="69.5" width="414" height="0.5"/>
@@ -138,6 +141,9 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="线label"/>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ObZ-za-xef">
                                         <rect key="frame" x="25" y="27" width="35" height="40"/>
@@ -155,6 +161,9 @@
                                             <constraint firstAttribute="height" constant="30" id="PNq-JG-ueq"/>
                                             <constraint firstAttribute="width" constant="30" id="Wg7-5m-SPf"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="聊天室image"/>
+                                        </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="聊天室" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ytc-Tn-QV1">
                                         <rect key="frame" x="23" y="54" width="37" height="15"/>
@@ -165,6 +174,9 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="聊天室label"/>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -186,6 +198,9 @@
                                     <constraint firstItem="8LJ-Yy-AQJ" firstAttribute="leading" secondItem="OHO-OK-3VA" secondAttribute="leading" id="par-7c-l4V"/>
                                     <constraint firstItem="rsc-z2-cvm" firstAttribute="top" secondItem="OHO-OK-3VA" secondAttribute="top" constant="10" id="srt-92-5GD"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="上背景View"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N7s-uQ-Yqb">
                                 <rect key="frame" x="0.0" y="70" width="414" height="44"/>
@@ -217,9 +232,12 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="中间线label"/>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="CUG-OY-eI5" firstAttribute="centerY" secondItem="N7s-uQ-Yqb" secondAttribute="centerY" id="7hv-VU-QRn"/>
                                     <constraint firstItem="CUG-OY-eI5" firstAttribute="leading" secondItem="N7s-uQ-Yqb" secondAttribute="leading" constant="5" id="BvB-cM-jAd"/>
@@ -232,6 +250,9 @@
                                     <constraint firstAttribute="trailing" secondItem="vC8-wx-Rkr" secondAttribute="trailing" id="wMU-Do-zaR"/>
                                     <constraint firstItem="JFX-dp-6pp" firstAttribute="leading" secondItem="CUG-OY-eI5" secondAttribute="trailing" constant="15" id="yMW-bO-Rzj"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="中间view"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
