@@ -12,7 +12,7 @@
 #import <WebKit/WebKit.h>
 #import "UGImgVcodeModel.h"
 #import "UGSecurityCenterViewController.h"
-
+#import "SLWebViewController.h"
 
 @interface UGBMLoginViewController ()<UITextFieldDelegate,UINavigationControllerDelegate,WKScriptMessageHandler,WKNavigationDelegate,WKUIDelegate>
 {
@@ -92,6 +92,12 @@
     
     [subButton(@"记住密码按钮") handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
         [self recoredBtnClick:nil];
+    }];
+    
+    [subButton(@"忘记密码按钮") handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
+        SLWebViewController *webViewVC = [[SLWebViewController alloc] init];
+        webViewVC.urlStr = SysConf.zxkfUrl;
+        [NavController1 pushViewController:webViewVC animated:YES];
     }];
     
     [subButton(@"眼睛按钮") handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
