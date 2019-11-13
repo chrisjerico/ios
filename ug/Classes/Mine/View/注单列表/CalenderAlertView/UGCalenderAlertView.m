@@ -47,7 +47,7 @@
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(0, 0, 40, 45);
         [btn setImage:[UIImage imageNamed:@"jiantouzuo"] forState:UIControlStateNormal];
-        [btn handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
+        [btn addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
             [__self.calendar setCurrentPage:[__self.calendar.currentPage dateBySubtractingMonths:1] animated:YES];
         }];
         [_calendar addSubview:btn];
@@ -57,7 +57,7 @@
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(_calendar.width-40, 0, 40, 45);
         [btn setImage:[UIImage imageNamed:@"jiantouyou"] forState:UIControlStateNormal];
-        [btn handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
+        [btn addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
             [__self.calendar setCurrentPage:[__self.calendar.currentPage dateByAddingMonths:1] animated:YES];
         }];
         [_calendar addSubview:btn];

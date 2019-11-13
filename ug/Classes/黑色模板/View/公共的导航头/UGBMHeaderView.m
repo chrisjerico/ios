@@ -90,8 +90,8 @@
     if (UGLoginIsAuthorized()) {//已经登录
         [subButton(@"按钮1") setTitle:@"会员中心" forState:(UIControlStateNormal)];
         [subButton(@"按钮2") setTitle:@"最近浏览" forState:(UIControlStateNormal)];
-        [subButton(@"按钮1") removeActionBlocksForControlEvents:UIControlEventTouchUpInside];
-        [subButton(@"按钮1") handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
+        [subButton(@"按钮1") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+        [subButton(@"按钮1") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
             // 会员中心
             UIViewController *vc = [NavController1.viewControllers objectWithValue:UGBMMemberCenterViewController.class keyPath:@"class"];
             if (vc) {
@@ -100,8 +100,8 @@
                 [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGBMMemberCenterViewController") animated:false];
             }
         }];
-        [subButton(@"按钮2") removeActionBlocksForControlEvents:UIControlEventTouchUpInside];
-        [subButton(@"按钮2") handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
+        [subButton(@"按钮2") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+        [subButton(@"按钮2") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
             //最近浏览
             UIViewController *vc = [NavController1.viewControllers objectWithValue:UGBMBrowseViewController.class keyPath:@"class"];
             if (vc) {
@@ -114,16 +114,16 @@
     else{
         [subButton(@"按钮1") setTitle:@"登入" forState:(UIControlStateNormal)];
         [subButton(@"按钮2") setTitle:@"免费开户" forState:(UIControlStateNormal)];
-        [subButton(@"按钮1") removeActionBlocksForControlEvents:UIControlEventTouchUpInside];
-        [subButton(@"按钮1") handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
+        [subButton(@"按钮1") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+        [subButton(@"按钮1") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
             //登录
             if (![NavController1.lastVC isKindOfClass:UGBMLoginViewController.class]) {
                 [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGBMLoginViewController") animated:true];
             }
                            
         }];
-        [subButton(@"按钮2") removeActionBlocksForControlEvents:UIControlEventTouchUpInside];
-        [subButton(@"按钮2") handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
+        [subButton(@"按钮2") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+        [subButton(@"按钮2") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
             //注册
             if (![NavController1.lastVC isKindOfClass:UGBMRegisterViewController.class]) {
                 [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGBMRegisterViewController") animated:true];

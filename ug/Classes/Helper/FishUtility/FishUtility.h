@@ -41,7 +41,6 @@
     #import "UIImage+Utils.h"
     #import "UIColor+Utils.h"
     #import "UIAlertController+Utils.h"
-    #import "UIControl+Utils.h"
     #import "UIGestureRecognizer+Utils.h"
     #import "UICollectionViewCell+Utils.h"
     #import "NSMutableAttributedString+Utils.h"

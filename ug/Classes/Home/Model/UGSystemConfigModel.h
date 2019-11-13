@@ -54,6 +54,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *webName;                    /**<   首页底部文字   网址名称*/
 @property (nonatomic, copy) NSString *serviceQQ1;                    /**<   QQ客服q1*/
 @property (nonatomic, copy) NSString *serviceQQ2;                    /**<   QQ客服q2*/
+@property (nonatomic, copy) NSString *appPopupWechatNum;        /**<   微信客服号 */
+@property (nonatomic, copy) NSString *appPopupWechatImg;        /**<   微信客服二维码 */
 
 @property (nonatomic, copy) NSArray<UGmobileMenu *> *mobileMenu;
 

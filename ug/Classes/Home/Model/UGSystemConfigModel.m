@@ -40,5 +40,13 @@ MJExtensionCodingImplementation
     [NSKeyedArchiver archiveRootObject:user toFile:filePath];
 }
 
+- (NSString *)serviceQQ1 {
+    return _serviceQQ1.length ? _serviceQQ1 : _serviceQQ2;
+}
+
+- (NSString *)serviceQQ2 {
+    return _serviceQQ1.length ? _serviceQQ1 : _serviceQQ2;
+}
+
 @end
 

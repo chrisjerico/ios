@@ -126,7 +126,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         [backButton setImage:[UIImage imageNamed:@"c_navi_back"] forState:UIControlStateNormal];
         [backButton setImage:[UIImage imageNamed:@"c_navi_back"] forState:UIControlStateHighlighted];
         [backButton sizeToFit];
-        [backButton handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
+        [backButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
             [NavController1 popViewControllerAnimated:true];
         }];
         UIView *containView = [[UIView alloc] initWithFrame:backButton.bounds];
@@ -289,7 +289,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             [backButton setImage:[UIImage imageNamed:@"c_navi_back"] forState:UIControlStateNormal];
             [backButton setImage:[UIImage imageNamed:@"c_navi_back"] forState:UIControlStateHighlighted];
             [backButton sizeToFit];
-            [backButton handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
+            [backButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
                 [NavController1 popViewControllerAnimated:true];
             }];
             UIView *containView = [[UIView alloc] initWithFrame:backButton.bounds];
@@ -444,13 +444,26 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         }
         case 11: {
             // QQ客服
-            NSString *qqstr;
-            if ([CMCommon stringIsNull:SysConf.serviceQQ1]) {
-                qqstr = SysConf.serviceQQ2;
-            } else {
-                qqstr = SysConf.serviceQQ1;
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_NSString(@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web", SysConf.serviceQQ1)]];
+            break;
+        }
+        case 12: {
+            // 微信客服
+            __block UIView *__v = _LoadView_from_nib_(@"微信客服AlertView");
+            __v.frame = APP.Bounds;
+            FastSubViewCode(__v);
+            subLabel(@"微信号Label").text = @"微信客服";
+            if (SysConf.appPopupWechatNum.length) {
+                subLabel(@"微信号Label").text = _NSString(@"微信客服(%@)", SysConf.appPopupWechatNum);
             }
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_NSString(@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web", qqstr)]];
+            [subImageView(@"二维码ImageView") sd_setImageWithURL:[NSURL URLWithString:SysConf.appPopupWechatImg] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                subImageView(@"二维码ImageView").cc_constraints.height.constant = image.height/image.width * 280;
+            }];
+            [subButton(@"确定Button") addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
+                [__v removeFromSuperview];
+                __v = nil;
+            }];
+            [APP.Window addSubview:__v];
             break;
         }
         case 13: {

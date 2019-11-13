@@ -146,7 +146,7 @@
     FastSubViewCode(contentView);
     
      __block BOOL isOK = YES ;
-    [subButton(@"按钮") handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
+    [subButton(@"按钮") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
         if (isOK) {
             NSString *str = subLabel(@"内容").text;
             CGFloat height = [CMCommon getLabelWidthWithText:str stringFont:[UIFont systemFontOfSize:13.0] allowHeight:(UGScreenW-100)];
@@ -175,7 +175,7 @@
           make.width.equalTo([NSNumber numberWithFloat:UGScreenW]);
     }];
     
-    [subButton(@"在线View按钮") handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
+    [subButton(@"在线View按钮") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
           DLPickerView *pickerView = [[DLPickerView alloc] initWithDataSource:@[@"中国银行",@"工商银行"]
                                                              withSelectedItem:subTextView(@"在线银行Text").text
                                                             withSelectedBlock:^(id selectedItem) {

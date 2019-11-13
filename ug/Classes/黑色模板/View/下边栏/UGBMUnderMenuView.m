@@ -44,7 +44,7 @@
         __weak __typeof(self)weakSelf = self;
         subImageView(@"箭头图片").transform = CGAffineTransformMakeRotation(M_PI*1);//旋转
         subButton(@"按钮").backgroundColor = Skin1.bgColor;
-        [subButton(@"按钮") handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
+        [subButton(@"按钮") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
             if (isok) {
                 [UIView animateWithDuration:0.35 animations:^{
                     weakSelf.y = weakSelf.oldFrame.origin.y -(weakSelf.height-36);

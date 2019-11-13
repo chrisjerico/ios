@@ -439,7 +439,7 @@
             subLabel(@"加").hidden = NO;
             subLabel(@"球下字").hidden = YES;
             subButton(@"刮刮乐").hidden = NO;
-             [subButton(@"刮刮乐") handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
+             [subButton(@"刮刮乐") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
                 NSLog(@"---");
                  UGScratchMusicView *inviteView = [[UGScratchMusicView alloc] initView];
                 [SGBrowserView showMoveView:inviteView];
@@ -742,8 +742,8 @@
                         subImageView(@"优惠活动ImageView").cc_constraints.height.constant = image.height/image.width * (APP.Width - 48);
                     }
                 }];
-                [subButton(@"优惠活动Button") removeActionBlocksForControlEvents:UIControlEventTouchUpInside];
-                [subButton(@"优惠活动Button") handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
+                [subButton(@"优惠活动Button") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+                [subButton(@"优惠活动Button") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
                     BOOL ret = [NavController1 pushViewControllerWithLinkCategory:pm.linkCategory linkPosition:pm.linkPosition];
                     if (!ret) {
                         // 去优惠详情

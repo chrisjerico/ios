@@ -70,37 +70,37 @@
     
     
     
-    [subButton(@"登录按钮") handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
+    [subButton(@"登录按钮") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
         [self loginClick:nil];
     }];
     
-    [subButton(@"注册按钮") handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
+    [subButton(@"注册按钮") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
         [self showRegister:nil];
     }];
     
-    [subButton(@"试玩按钮") handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
+    [subButton(@"试玩按钮") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
         [self playAction:nil];
     }];
     
-    [subButton(@"关闭按钮") handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
+    [subButton(@"关闭按钮") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
                  [self goHomeAction:nil];
      }];
     
-    [subButton(@"回到首页") handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
+    [subButton(@"回到首页") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
                  [self goHomeAction:nil];
      }];
     
-    [subButton(@"记住密码按钮") handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
+    [subButton(@"记住密码按钮") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
         [self recoredBtnClick:nil];
     }];
     
-    [subButton(@"忘记密码按钮") handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
+    [subButton(@"忘记密码按钮") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
         SLWebViewController *webViewVC = [[SLWebViewController alloc] init];
         webViewVC.urlStr = SysConf.zxkfUrl;
         [NavController1 pushViewController:webViewVC animated:YES];
     }];
     
-    [subButton(@"眼睛按钮") handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
+    [subButton(@"眼睛按钮") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
            [self pwdTextSwitch:subButton(@"眼睛按钮")];
     }];
     

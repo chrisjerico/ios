@@ -1477,7 +1477,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             [btn setImage:[UIImage imageNamed:@"RadioButton-Unselected"] forState:UIControlStateNormal];
             [btn setImage:[UIImage imageNamed:@"RadioButton-Selected"] forState:UIControlStateSelected];
             // 点击生肖时，选中/取消选中对应号码
-            [btn handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
+            [btn addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
                 BOOL selected = sender.selected = !sender.selected;
                 NSInteger cnt = 0;
                 

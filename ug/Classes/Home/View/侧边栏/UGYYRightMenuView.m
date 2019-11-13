@@ -244,14 +244,14 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
          [_refreshButton setHidden:YES];
          [subButton(@"登入按钮") setHidden:NO];
          [subButton(@"免费开户按钮") setHidden:NO];
-         [subButton(@"登入按钮") removeActionBlocksForControlEvents:UIControlEventTouchUpInside];
-         [subButton(@"登入按钮") handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
+         [subButton(@"登入按钮") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+         [subButton(@"登入按钮") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
             [self hiddenSelf];
             //登录
             [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGBMLoginViewController") animated:true];
          }];
-         [subButton(@"免费开户按钮") removeActionBlocksForControlEvents:UIControlEventTouchUpInside];
-         [subButton(@"免费开户按钮") handleControlEvents:UIControlEventTouchUpInside actionBlock:^(__kindof UIControl *sender) {
+         [subButton(@"免费开户按钮") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+         [subButton(@"免费开户按钮") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
             [self hiddenSelf];
             //注册
             [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGBMRegisterViewController") animated:true];

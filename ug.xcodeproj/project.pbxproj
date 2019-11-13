@@ -30,6 +30,7 @@
 		CF724E64236EB0250099947A /* CCNetworkRequests1+UGBlackTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = CF724E63236EB0250099947A /* CCNetworkRequests1+UGBlackTemplate.m */; };
 		CF84BE282362E32D0058F055 /* CCNetworkRequests1+UGLiuHe.m in Sources */ = {isa = PBXBuildFile; fileRef = CF84BE272362E32D0058F055 /* CCNetworkRequests1+UGLiuHe.m */; };
 		CF84BE2B236416C20058F055 /* UGLHC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF84BE2A236416C20058F055 /* UGLHC.storyboard */; };
+		CFCADE43237BEB0900680F62 /* 微信客服AlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFCADE42237BEB0900680F62 /* 微信客服AlertView.xib */; };
 		CFD3BEEF2347137F00FCDA6D /* category.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BE9A2347137E00FCDA6D /* category.m */; };
 		CFD3BEF02347137F00FCDA6D /* IBTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BE9C2347137E00FCDA6D /* IBTextField.m */; };
 		CFD3BEF12347137F00FCDA6D /* IBButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BE9D2347137E00FCDA6D /* IBButton.m */; };
@@ -49,7 +50,6 @@
 		CFD3BF012347137F00FCDA6D /* UIScrollView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BEC52347137E00FCDA6D /* UIScrollView+Utils.m */; };
 		CFD3BF022347137F00FCDA6D /* UICollectionViewCell+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BEC82347137E00FCDA6D /* UICollectionViewCell+Utils.m */; };
 		CFD3BF032347137F00FCDA6D /* UIColor+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BECA2347137E00FCDA6D /* UIColor+Utils.m */; };
-		CFD3BF042347137F00FCDA6D /* UIControl+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BECE2347137E00FCDA6D /* UIControl+Utils.m */; };
 		CFD3BF052347137F00FCDA6D /* UIView+TagString.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BED02347137E00FCDA6D /* UIView+TagString.m */; };
 		CFD3BF062347137F00FCDA6D /* UIImage+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BED12347137E00FCDA6D /* UIImage+Utils.m */; };
 		CFD3BF072347137F00FCDA6D /* UIAlertController+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BED32347137E00FCDA6D /* UIAlertController+Utils.m */; };
@@ -698,6 +698,7 @@
 		CF84BE262362E32D0058F055 /* CCNetworkRequests1+UGLiuHe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CCNetworkRequests1+UGLiuHe.h"; sourceTree = "<group>"; };
 		CF84BE272362E32D0058F055 /* CCNetworkRequests1+UGLiuHe.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CCNetworkRequests1+UGLiuHe.m"; sourceTree = "<group>"; };
 		CF84BE2A236416C20058F055 /* UGLHC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UGLHC.storyboard; sourceTree = "<group>"; };
+		CFCADE42237BEB0900680F62 /* 微信客服AlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "微信客服AlertView.xib"; path = "ug/Classes/Main/Controller/微信客服AlertView.xib"; sourceTree = SOURCE_ROOT; };
 		CFD3BE972347137E00FCDA6D /* FishUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishUtility.h; sourceTree = "<group>"; };
 		CFD3BE992347137E00FCDA6D /* IBView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBView.h; sourceTree = "<group>"; };
 		CFD3BE9A2347137E00FCDA6D /* category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = category.m; sourceTree = "<group>"; };
@@ -736,12 +737,10 @@
 		CFD3BEC62347137E00FCDA6D /* UIImage+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utils.h"; sourceTree = "<group>"; };
 		CFD3BEC72347137E00FCDA6D /* UIView+TagString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TagString.h"; sourceTree = "<group>"; };
 		CFD3BEC82347137E00FCDA6D /* UICollectionViewCell+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionViewCell+Utils.m"; sourceTree = "<group>"; };
-		CFD3BEC92347137E00FCDA6D /* UIControl+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIControl+Utils.h"; sourceTree = "<group>"; };
 		CFD3BECA2347137E00FCDA6D /* UIColor+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Utils.m"; sourceTree = "<group>"; };
 		CFD3BECB2347137E00FCDA6D /* UIAlertController+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+Utils.h"; sourceTree = "<group>"; };
 		CFD3BECC2347137E00FCDA6D /* UIView+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Utils.h"; sourceTree = "<group>"; };
 		CFD3BECD2347137E00FCDA6D /* UIGestureRecognizer+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+Utils.h"; sourceTree = "<group>"; };
-		CFD3BECE2347137E00FCDA6D /* UIControl+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl+Utils.m"; sourceTree = "<group>"; };
 		CFD3BECF2347137E00FCDA6D /* UICollectionViewCell+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionViewCell+Utils.h"; sourceTree = "<group>"; };
 		CFD3BED02347137E00FCDA6D /* UIView+TagString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TagString.m"; sourceTree = "<group>"; };
 		CFD3BED12347137E00FCDA6D /* UIImage+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utils.m"; sourceTree = "<group>"; };
@@ -2881,13 +2880,11 @@
 				CFD3BEC62347137E00FCDA6D /* UIImage+Utils.h */,
 				CFD3BEC72347137E00FCDA6D /* UIView+TagString.h */,
 				CFD3BEC82347137E00FCDA6D /* UICollectionViewCell+Utils.m */,
-				CFD3BEC92347137E00FCDA6D /* UIControl+Utils.h */,
 				CFD3BED42347137E00FCDA6D /* UIColor+Utils.h */,
 				CFD3BECA2347137E00FCDA6D /* UIColor+Utils.m */,
 				CFD3BECB2347137E00FCDA6D /* UIAlertController+Utils.h */,
 				CFD3BECC2347137E00FCDA6D /* UIView+Utils.h */,
 				CFD3BECD2347137E00FCDA6D /* UIGestureRecognizer+Utils.h */,
-				CFD3BECE2347137E00FCDA6D /* UIControl+Utils.m */,
 				CFD3BECF2347137E00FCDA6D /* UICollectionViewCell+Utils.h */,
 				CFD3BED02347137E00FCDA6D /* UIView+TagString.m */,
 				CFD3BED12347137E00FCDA6D /* UIImage+Utils.m */,
@@ -4240,6 +4237,7 @@
 		D4B75E36227811D50007047C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CFCADE42237BEB0900680F62 /* 微信客服AlertView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4672,6 +4670,7 @@
 				D45A94C3233B9F070089E86C /* UGGoogleAuthenticationThirdViewController.xib in Resources */,
 				CFFAB58D23755569009593AF /* lxb.gif in Resources */,
 				D41FF77222E880A800FCCDD2 /* UGSSCBetItem1Cell.xib in Resources */,
+				CFCADE43237BEB0900680F62 /* 微信客服AlertView.xib in Resources */,
 				D45A94BE233B8AF90089E86C /* UGGoogleAuthenticationSecondViewController.xib in Resources */,
 				D4AE640E2295871D00DD265A /* MJRefresh.bundle in Resources */,
 				D4DE26A0229C1CCE0072A4A2 /* UGBJPK10LotteryController.storyboard in Resources */,
@@ -5158,7 +5157,6 @@
 				D405B373228013E600F8C586 /* SRActionSheet.m in Sources */,
 				03B26072234B422E00206652 /* UGLaunchPageVC.m in Sources */,
 				D405B2FD227C30F700F8C586 /* UGWithdrawalViewController.m in Sources */,
-				CFD3BF042347137F00FCDA6D /* UIControl+Utils.m in Sources */,
 				D4A36636233E310B00F6D770 /* UGYYRightMenuView.m in Sources */,
 				D4BBFC01232A797600147C4A /* TGWebProgressLayer.m in Sources */,
 				D41246A92285525A006881E2 /* UGPromotionInfoController.m in Sources */,
