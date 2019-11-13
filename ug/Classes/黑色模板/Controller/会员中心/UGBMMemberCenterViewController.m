@@ -68,14 +68,11 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];//强制隐藏NavBar
     [headView.leftwardMarqueeView start];
-    [self.view layoutSubviews];
+//    [self.view layoutSubviews];
     if (!self.menuNameArray.count) {
        [self refreshBalance:nil];
     }
     // 强制显示tabbar
-//       NSArray *views = self.tabBarController.view.subviews;
-//       UIView *contentView = [views objectAtIndex:0];
-//       contentView.height -= k_Height_TabBar;
         self.tabBarController.tabBar.hidden = NO;
 
 

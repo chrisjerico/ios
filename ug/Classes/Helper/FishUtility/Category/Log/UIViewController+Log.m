@@ -38,6 +38,30 @@
                 [dict removeAllObjects];
             }
         }];
+        
+//        [UIButton aspect_hookSelector:@selector(addTarget:action:forControlEvents:)
+//                             withOptions:AspectPositionAfter
+//                              usingBlock:^(id<AspectInfo> aspectInfo, id target, SEL action, UIControlEvents controlEvents) {
+//
+//                                  if ([aspectInfo.instance isKindOfClass:[UIButton class]]) {
+//
+//                                      UIButton *button = aspectInfo.instance;
+//                                      button.accessibilityHint = NSStringFromSelector(action);
+//                                  }
+//                              } error:NULL];
+//           
+//        [UIControl aspect_hookSelector:@selector(beginTrackingWithTouch:withEvent:)
+//                              withOptions:AspectPositionAfter
+//                               usingBlock:^(id<AspectInfo> aspectInfo, UITouch *touch, UIEvent *event) {
+//
+//                                   if ([aspectInfo.instance isKindOfClass:[UIButton class]]) {
+//
+//                                       UIButton *button = aspectInfo.instance;
+//                                       id object =  [button.allTargets anyObject];
+//                                       NSString *className = NSStringFromClass([object class]);
+//                                       NSLog(@"——————————————当前控制器：%@ ——————————————按钮方法：%@",className,button.accessibilityHint);
+//                                   }
+//                               } error:NULL];
     });
 }
 

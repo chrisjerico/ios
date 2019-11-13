@@ -93,7 +93,7 @@
                        }
                    }
                };
-              [[aspectInfo.instance class] aspect_hookSelector:@selector(updateOpenLabel ) withOptions:AspectPositionInstead usingBlock:block1 error:nil];
+              [[aspectInfo.instance class] aspect_hookSelector:@selector(updateOpenLabel ) withOptions:AspectPositionAfter usingBlock:block1 error:nil];
             }
         }
         error:NULL];
