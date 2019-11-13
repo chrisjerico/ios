@@ -50,7 +50,7 @@
 
 - (BOOL)允许游客访问 { return UserI.yuebaoSwitch; }
 
--(void)skin{
+- (void)skin {
     
     [_yyBgView setBackgroundColor:Skin1.bgColor];
     
@@ -58,14 +58,15 @@
     self.waveView.realWaveColor =  Skin1.navBarBgColor;
     [self.view setBackgroundColor: [UIColor whiteColor]];
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    self.fd_prefersNavigationBarHidden = YES;
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-        
         [self skin];
     });
-    [self.view setBackgroundColor: [UIColor whiteColor]];
+    
+    [self.view setBackgroundColor:[UIColor whiteColor]];
     self.navigationItem.title = @"利息宝";
     self.waveView = [[WavesView alloc] initWithFrame:self.waveBgView.bounds];
     [self.waveBgView addSubview:self.waveView];

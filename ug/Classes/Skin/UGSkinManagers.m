@@ -26,6 +26,10 @@ static UGSkinManagers *__initSkin1 = nil;
     dispatch_once(&onceToken, ^{
         
         NSString *(^colorNameWithColor)(UGSkinManagers *, UIColor *) = ^NSString *(UGSkinManagers *sm, UIColor *c1) {
+            NSString *colorName = c1.cc_userInfo[@"colorName"];
+            if (colorName.length) {
+                return colorName;
+            }
             for (NSString *colorName in [UGSkinManagers propertyList]) {
                 if ([colorName.lowercaseString containsString:@"color"]) {
                     UIColor *c2 = [sm valueForKey:colorName];

@@ -218,16 +218,19 @@ static UGTabbarController *_tabBarVC = nil;
             __stateView.backgroundColor = Skin1.navBarBgColor;
             [self.view addSubview:__stateView];
             NSArray *clsArray = @[QDWebViewController.class, UGBMLoginViewController.class];
-            [UIViewController aspect_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
-                if ([clsArray containsObject:[ai.instance class]]) {
-                    __stateView.hidden = true;
-                }
-            } error:nil];
-            [UIViewController aspect_hookSelector:@selector(viewWillDisappear:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
-                if ([clsArray containsObject:[ai.instance class]]) {
-                    __stateView.hidden = false;
-                }
-            } error:nil];
+            for (Class cls in clsArray) {
+                [cls aspect_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
+                    if ([clsArray containsObject:[ai.instance class]]) {
+                        __stateView.hidden = true;
+                    }
+                } error:nil];
+                [cls aspect_hookSelector:@selector(viewWillDisappear:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
+                    if ([clsArray containsObject:[ai.instance class]]) {
+                        __stateView.hidden = false;
+                    }
+                } error:nil];
+            }
+            
         });
     }
 }
