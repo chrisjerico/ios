@@ -1,36 +1,46 @@
 
-
-打包流程
 -——————————————————————
-
-
-
-打包前需更换：
-- logo；
-- app名；
-- 接口域名；（用https的，没有就找客服要）
-- bundleId；（如果苹果后台有就直接用，没有就去前端群问一下）
-- checkSign是否加密改为1；
-- 运行起来跑一遍；
-- 在Google文档备注一下；
-
+打包前：
+-——————————————————————
+    - logo；
+    - app名；
+    - 接口域名；（用https的，没有就找客服要）
+    - bundleId；（如果苹果后台有就直接用，没有就去前端群问一下）
+    - checkSign是否加密改为1；
+    - 在Release模式运行起来跑一遍；
 
 
 
 
 -——————————————————————
+上传：
+-——————————————————————
+    - 上传地址：https://appadmin.fhptcdn.com/real_admin/#/adminList
+    - 选择对应站点例如c150hy，请勿直接上传到c150是正式上线用的，必须传到hy，没有就创建一个；
+    
+    
+    （上传后如果下载不了就是plist文件没配置好）
+    ————
+    Plist文件修改：
+    - app名；
+    - bundle-identifier；（这里为了避免bundleId冲突，末尾加一个随机数）
+    - ipa下载地址；
+    - logo地址（两个）；
 
-
-安装包上传地址：
-- https://appadmin.fhptcdn.com/real_admin/#/adminList
-- 选择对应站点例如c150hy，请勿直接上传到c150是正式上线用的，必须传到hy，没有就创建一个；
-
-————（上传后如果下载不了就是缺少plist文件，在上传ipa的地方上传一个【plist文件配置：app名、bundle-identifier、ipa下载地址、logo地址】）
 
 
 -——————————————————————
+下载一遍看能不能打开：
+-——————————————————————
+    下载地址：（jump-后面的id记得改）
+    https://baidujump.app/eipeyipeyi/jump-173.html (c049原生iOS 已上传)
 
 
-下载地址：（index后面的id记得改）
-https://baidujump.app/eipeyipeyi/jump-173.html (c049原生iOS 已上传)
+
+
+-——————————————————————
+发到群里，并记录到文档：
+-——————————————————————
+    在Google文档备注一下；
+
 

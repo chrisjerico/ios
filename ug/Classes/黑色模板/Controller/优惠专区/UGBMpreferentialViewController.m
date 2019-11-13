@@ -144,8 +144,8 @@
     [subImageView(@"图片ImageView") sd_setImageWithURL:[NSURL URLWithString:pm.pic] placeholderImage:[UIImage imageNamed:@"placeholder"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         if (image) {
             subImageView(@"图片ImageView").cc_constraints.height.constant = image.height/image.width * (APP.Width - 48);
-            [__self.tableView beginUpdates];
-            [__self.tableView endUpdates];
+//            [__self.tableView beginUpdates];
+//            [__self.tableView endUpdates];
         }
     }];
     return cell;
