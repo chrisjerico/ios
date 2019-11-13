@@ -56,7 +56,35 @@
     
     self.waveBotomView.backgroundColor =  Skin1.navBarBgColor;
     self.waveView.realWaveColor =  Skin1.navBarBgColor;
-    [self.view setBackgroundColor: [UIColor whiteColor]];
+    FastSubViewCode(self.view)
+    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+        [self.view setBackgroundColor:Skin1.bgColor];
+        [subLabel(@"本周收益label") setTextColor:[UIColor whiteColor]];
+        [subLabel(@"本月收益label") setTextColor:[UIColor whiteColor]];
+        [subLabel(@"总收益label") setTextColor:[UIColor whiteColor]];
+        [subLabel(@"额度转入转出label") setTextColor:[UIColor whiteColor]];
+        [subLabel(@"收益报表label") setTextColor:[UIColor whiteColor]];
+        [subLabel(@"转入转出记录label") setTextColor:[UIColor whiteColor]];
+        [subLabel(@"内容label") setTextColor:[UIColor whiteColor]];
+        [_weekProfitLabel setTextColor:[UIColor whiteColor]];
+        [_monthProfitLabel setTextColor:[UIColor whiteColor]];
+        [_totalProfitLabel setTextColor:[UIColor whiteColor]];
+        [subImageView(@"浪图UIImagV") setHidden:YES];
+    } else {
+        [self.view setBackgroundColor: [UIColor whiteColor]];
+        [subLabel(@"本周收益label") setTextColor:[UIColor blackColor]];
+        [subLabel(@"本月收益label") setTextColor:[UIColor blackColor]];
+        [subLabel(@"总收益label") setTextColor:[UIColor blackColor]];
+        [subLabel(@"额度转入转出label") setTextColor:[UIColor blackColor]];
+        [subLabel(@"收益报表label") setTextColor:[UIColor blackColor]];
+        [subLabel(@"转入转出记录label") setTextColor:[UIColor blackColor]];
+        [subLabel(@"内容label") setTextColor:[UIColor blackColor]];
+        [_weekProfitLabel setTextColor:[UIColor blackColor]];
+        [_monthProfitLabel setTextColor:[UIColor blackColor]];
+        [_totalProfitLabel setTextColor:[UIColor blackColor]];
+        [subImageView(@"浪图UIImagV") setHidden:NO];
+    }
+ 
 }
 
 - (void)viewDidLoad {
@@ -65,8 +93,7 @@
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         [self skin];
     });
-    
-    [self.view setBackgroundColor:[UIColor whiteColor]];
+    [self skin];
     self.navigationItem.title = @"利息宝";
     self.waveView = [[WavesView alloc] initWithFrame:self.waveBgView.bounds];
     [self.waveBgView addSubview:self.waveView];

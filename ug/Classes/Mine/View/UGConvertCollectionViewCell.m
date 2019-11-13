@@ -21,7 +21,17 @@
     self.layer.cornerRadius = 3;
     self.layer.masksToBounds = YES;
     self.layer.borderWidth = 0.7;
-    self.layer.borderColor = UGRGBColor(177, 188, 189).CGColor;
+
+    
+    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+        [self.contentView setBackgroundColor:Skin1.navBarBgColor];
+        [_titleLabel setTextColor:[UIColor whiteColor]];
+        self.layer.borderColor = [UIColor whiteColor].CGColor;
+    } else {
+        [self.contentView setBackgroundColor:[UIColor whiteColor]];
+        [_titleLabel setTextColor:[UIColor blackColor]];
+        self.layer.borderColor = UGRGBColor(177, 188, 189).CGColor;
+    }
     
 }
 
