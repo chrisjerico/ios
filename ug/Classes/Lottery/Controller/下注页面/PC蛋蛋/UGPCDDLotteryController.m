@@ -87,7 +87,7 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
 static NSString *lotteryResultCellid = @"UGLotteryResultCollectionViewCell";
 static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell";
 @implementation UGPCDDLotteryController
-@synthesize nextIssueModel  = _nextIssueModel;
+//@synthesize nextIssueModel;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -204,7 +204,8 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     NSDictionary *params = @{@"id":self.gameId};
     [CMNetwork getNextIssueWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
-            self.nextIssueModel = model.data;
+            UGNextIssueModel *obj = (UGNextIssueModel *)model.data ;
+            [self setNextIssueModel:obj];
             [self showAdPoppuView:model.data];
             [self updateHeaderViewData];
         } failure:^(id msg) {
@@ -649,6 +650,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 }
 
 - (void)updateHeaderViewData {
+    NSLog(@"self.nextIssueModel= %@",self.nextIssueModel.preIssue );
     self.currentIssueLabel.text = [NSString stringWithFormat:@"%@期",self.nextIssueModel.preIssue];
     self.nextIssueLabel.text = [NSString stringWithFormat:@"%@期",self.nextIssueModel.curIssue];
     _currentIssueLabel.hidden = !self.nextIssueModel.preIssue.length;

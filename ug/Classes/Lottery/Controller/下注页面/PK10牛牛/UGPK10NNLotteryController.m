@@ -77,7 +77,7 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
 static NSString *lotteryResultCellid = @"UGLotteryResultCollectionViewCell";
 static NSString *lotterySubResultCellid = @"UGPK10SubResultCollectionViewCell";
 @implementation UGPK10NNLotteryController
-@synthesize nextIssueModel  = _nextIssueModel;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
