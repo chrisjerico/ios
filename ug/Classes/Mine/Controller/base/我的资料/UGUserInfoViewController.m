@@ -62,18 +62,26 @@
             if (hour <=5) {
                 __self.titleLabel.text = @"凌晨好，";
                 __self.time2Label.text = @"凌晨，时间不早了记得休息";
+                __self.userNameLabel.textColor = [UIColor whiteColor];
+                __self.timeLabel.textColor = [UIColor whiteColor];
             }
             else if (hour <=11) {
                 __self.titleLabel.text = @"上午好，";
                 __self.time2Label.text = @"上午，补充能量继续战斗";
+                __self.userNameLabel.textColor = [UIColor blackColor];
+                __self.timeLabel.textColor = [UIColor blackColor];
             }
             else if (hour <=17) {
                 __self.titleLabel.text = @"下午好，";
                 __self.time2Label.text = @"下午，补充能量继续战斗";
+                __self.userNameLabel.textColor = [UIColor blackColor];
+                __self.timeLabel.textColor = [UIColor blackColor];
             }
             else {
                 __self.titleLabel.text = @"晚上好，";
                 __self.time2Label.text = @"傍晚，安静的夜晚是不可多得的享受";
+                __self.userNameLabel.textColor = [UIColor whiteColor];
+                __self.timeLabel.textColor = [UIColor whiteColor];
             }
         }
         
@@ -84,6 +92,9 @@
             __timer = nil;
         }
     }];
+    if (__timer.block) {
+        __timer.block(nil);
+    }
 }
 
 - (void)getUserInfo {
