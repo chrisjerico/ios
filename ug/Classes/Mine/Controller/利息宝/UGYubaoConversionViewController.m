@@ -52,16 +52,52 @@ static NSString *convertCellid = @"UGConvertCollectionViewCell";
 //    UIImage *image = [UIImage imageNamed:@"bgyubao1"];
 //    UIImage *afterImage = [image qmui_imageWithBlendColor: Skin1.navBarBgColor];
 //    self.bgView.image = afterImage;
-        [_yyBgView setBackgroundColor:Skin1.bgColor];
+   [_yyBgView setBackgroundColor:Skin1.bgColor];
+   [self.view setBackgroundColor: [UIColor whiteColor]];
+    
+    FastSubViewCode(self.view)
+    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+          [self.view setBackgroundColor:Skin1.bgColor];
+          [subLabel(@"余额label") setTextColor:[UIColor lightGrayColor]];
+          [subLabel(@"利息宝余额label") setTextColor:[UIColor lightGrayColor]];
+          [subLabel(@"￥label") setTextColor:[UIColor whiteColor]];
+          [_balanceLabel setTextColor:[UIColor whiteColor]];
+          [_yubaoAmountLabel setTextColor:[UIColor whiteColor]];
+          [_inputTextF setTextColor:[UIColor whiteColor]];
+            // "通过KVC修改占位文字的颜色"
+          [_inputTextF setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
+          [_submitButton setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
+          [_submitButton setBackgroundColor:Skin1.navBarBgColor];
+          [_turnInButton setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
+          [_turnInButton setBackgroundColor:Skin1.navBarBgColor];
+          [_turnOutButton setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
+          [subImageView(@"浪图UIImagV") setHidden:YES];
+      } else {
+          [self.view setBackgroundColor: [UIColor whiteColor]];
+          [subLabel(@"余额label") setTextColor:[UIColor lightGrayColor]];
+          [subLabel(@"利息宝余额label") setTextColor:[UIColor lightGrayColor]];
+          [subLabel(@"￥label") setTextColor:[UIColor blackColor]];
+          [_balanceLabel setTextColor:[UIColor blackColor]];
+          [_yubaoAmountLabel setTextColor:[UIColor blackColor]];
+          [_inputTextF setTextColor:[UIColor blackColor]];
+          // "通过KVC修改占位文字的颜色"
+          [_inputTextF setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
+          [_submitButton setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
+          [_submitButton setBackgroundColor:Skin1.navBarBgColor];
+          [_turnInButton setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
+          [_turnInButton setBackgroundColor:Skin1.navBarBgColor];
+          [_turnOutButton setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
+          [subImageView(@"浪图UIImagV") setHidden:NO];
+      }
 }
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-        
         [self skin];
     });
+    [self skin];
     self.title = @"利息宝";
     self.submitButton.layer.cornerRadius = 5;
     self.submitButton.layer.masksToBounds = YES;
@@ -275,7 +311,7 @@ static NSString *convertCellid = @"UGConvertCollectionViewCell";
         
         UICollectionView *collectionView = ({
             collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(5, 85, UGScreenW - 10, 400) collectionViewLayout:layout];
-            collectionView.backgroundColor = [UIColor whiteColor];
+            collectionView.backgroundColor = [UIColor clearColor];
             collectionView.delegate = self;
             collectionView.dataSource = self;
             [collectionView registerNib:[UINib nibWithNibName:@"UGConvertCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:convertCellid];

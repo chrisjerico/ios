@@ -89,6 +89,9 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="tlG-Cc-e0C"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="浪图UIImagV"/>
+                                        </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="体验金" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LVP-4l-7uk">
                                         <rect key="frame" x="185.5" y="149" width="43" height="17"/>
@@ -156,6 +159,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="本周收益label"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="            " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IwB-hF-sMa">
                                                 <rect key="frame" x="46" y="42" width="46" height="17"/>
@@ -164,7 +170,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="d1Q-Tr-B82" secondAttribute="bottom" constant="15" id="6AV-yM-Cpw"/>
                                             <constraint firstItem="UOT-99-Pva" firstAttribute="top" secondItem="nGC-Nf-FYV" secondAttribute="top" constant="15" id="9va-AN-qxM"/>
@@ -193,6 +199,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="本月收益label"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="                 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aPj-Gf-jge">
                                                 <rect key="frame" x="36.5" y="42" width="65" height="17"/>
@@ -201,7 +210,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="5Ot-op-MXv" firstAttribute="top" secondItem="Kbg-Xv-FH7" secondAttribute="top" constant="15" id="9Oh-fO-ubk"/>
                                             <constraint firstItem="YB4-du-elr" firstAttribute="top" secondItem="Kbg-Xv-FH7" secondAttribute="top" constant="15" id="ASb-V6-8Gp"/>
@@ -220,6 +229,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="总收益label"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="             " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YmA-Hu-obB">
                                                 <rect key="frame" x="44.5" y="42" width="49.5" height="17"/>
@@ -228,7 +240,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="Uy0-Bw-ZcZ" firstAttribute="top" secondItem="HX4-xe-hUl" secondAttribute="top" constant="15" id="L2f-g7-KGK"/>
                                             <constraint firstItem="YmA-Hu-obB" firstAttribute="top" secondItem="Uy0-Bw-ZcZ" secondAttribute="bottom" constant="10" id="Vxd-0C-pdC"/>
@@ -240,7 +252,7 @@
                                         <rect key="frame" x="0.0" y="-50" width="414" height="130"/>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="HX4-xe-hUl" secondAttribute="bottom" id="0SL-cu-gei"/>
                                     <constraint firstItem="HX4-xe-hUl" firstAttribute="width" secondItem="nGC-Nf-FYV" secondAttribute="width" id="5R0-dy-gbk"/>
@@ -287,6 +299,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="额度转入转出label"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -322,6 +337,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="收益报表label"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -357,6 +375,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="转入转出记录label"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -372,7 +393,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="ZuB-U4-g8s" firstAttribute="leading" secondItem="0jT-SF-PnF" secondAttribute="leading" constant="10" id="0DK-DH-dcs"/>
                                     <constraint firstItem="wZ0-2z-ig9" firstAttribute="leading" secondItem="ZuB-U4-g8s" secondAttribute="trailing" constant="10" id="4XG-s5-TNa"/>
@@ -402,9 +423,12 @@
 3、转入转出无限制，随时随地享收益。</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="内容label"/>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="ulz-yg-jTK" firstAttribute="top" secondItem="SMC-fp-jEA" secondAttribute="top" constant="15" id="2UM-4a-m4h"/>
                                     <constraint firstAttribute="height" constant="160" id="4aq-Nb-7bW"/>
@@ -1177,6 +1201,9 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="U8u-YY-5iJ"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="浪图UIImagV"/>
+                                        </userDefinedRuntimeAttributes>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1230,6 +1257,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="余额label"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6666" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ShB-xf-C82">
                                                 <rect key="frame" x="83.5" y="43" width="40" height="19.5"/>
@@ -1238,7 +1268,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="ShB-xf-C82" firstAttribute="centerX" secondItem="AB2-N4-jxy" secondAttribute="centerX" id="0ka-eh-oaJ"/>
                                             <constraint firstItem="e1x-Hb-0vW" firstAttribute="centerX" secondItem="AB2-N4-jxy" secondAttribute="centerX" id="Idd-NM-KKu"/>
@@ -1257,6 +1287,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="利息宝余额label"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6666" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bRg-ft-JAh">
                                                 <rect key="frame" x="83.5" y="43" width="40" height="19.5"/>
@@ -1265,7 +1298,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="lmk-Cn-zYm" firstAttribute="top" secondItem="fj4-MA-tMb" secondAttribute="top" constant="15" id="2Wu-V7-7em"/>
                                             <constraint firstItem="bRg-ft-JAh" firstAttribute="top" secondItem="lmk-Cn-zYm" secondAttribute="bottom" constant="10" id="eMq-cU-Q64"/>
@@ -1274,7 +1307,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="AB2-N4-jxy" secondAttribute="bottom" id="1jj-dF-vCY"/>
                                     <constraint firstItem="AB2-N4-jxy" firstAttribute="leading" secondItem="sec-Be-3Qi" secondAttribute="leading" id="5Lw-l6-6O7"/>
@@ -1299,6 +1332,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="￥label"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入转入金额" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qyE-Gu-ecz">
                                                 <rect key="frame" x="39" y="15" width="235" height="50"/>
@@ -1327,7 +1363,7 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="CKi-il-kXe" firstAttribute="centerY" secondItem="u0Y-As-UYX" secondAttribute="centerY" id="29N-eF-Dj9"/>
                                             <constraint firstItem="bel-fM-CpY" firstAttribute="leading" secondItem="qyE-Gu-ecz" secondAttribute="trailing" constant="30" id="2v2-LH-2dN"/>
@@ -1340,7 +1376,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="u0Y-As-UYX" secondAttribute="trailing" id="8Yh-1f-auV"/>
                                     <constraint firstItem="u0Y-As-UYX" firstAttribute="leading" secondItem="t8F-Hw-5W6" secondAttribute="leading" id="LWV-Ju-bOt"/>
@@ -1373,7 +1409,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="JKG-v9-Di0" secondAttribute="bottom" constant="15" id="2JZ-fe-PV2"/>
                                     <constraint firstItem="JKG-v9-Di0" firstAttribute="top" secondItem="kIw-NT-DJV" secondAttribute="top" constant="15" id="8US-yl-cds"/>

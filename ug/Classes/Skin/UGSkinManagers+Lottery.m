@@ -41,10 +41,8 @@
                               UGPK10NNLotteryController.class,
         ];
         
-         for (Class cls in clsArray) {
-             [cls aspect_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionAfter usingBlock:^(id <AspectInfo> aspectInfo, BOOL animated ) {
-
-
+//         for (Class cls in clsArray) {
+             [UIViewController aspect_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionAfter usingBlock:^(id <AspectInfo> aspectInfo, BOOL animated ) {
                         if ([clsArray containsObject:[aspectInfo.instance class]]) {
                              NSLog(@"%@-->:%@", @"Appear 下注界面:😜😜😜", NSStringFromClass([aspectInfo.instance class]));
                             UIViewController *vc = (UIViewController *)aspectInfo.instance;
@@ -98,7 +96,7 @@
                         }
                     }
                     error:NULL];
-         }
+//         }
        
     });
 }
