@@ -62,7 +62,7 @@
         if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
             self.titleLabel.textColor = RGBA(159, 166, 173, 1);
             self.layer.borderColor = [UIColor lightGrayColor].CGColor;
-            [self.contentView setBackgroundColor:Skin1.navBarBgColor];
+            [self.contentView setBackgroundColor:Skin1.bgColor];
              self.leftPoint.backgroundColor = Skin1.bgColor;
         } else {
             self.titleLabel.textColor = [UIColor blackColor];

@@ -373,6 +373,7 @@
             [mutDict setObject:self.imgVcodeModel.nc_value forKey:sig];
         }
         [SVProgressHUD showWithStatus:@"正在注册..."];
+        NSLog(@"参数：%@ ",mutDict);
         [CMNetwork registerWithParams:mutDict completion:^(CMResult<id> *model, NSError *err) {
             [CMResult processWithResult:model success:^{
 
