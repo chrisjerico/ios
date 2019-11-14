@@ -39,11 +39,11 @@
 - (void)initCollectionView {
     float itemW = (UGScreenW - 15) / 2;
     UICollectionViewFlowLayout *layout = ({
-        
         layout = [[UICollectionViewFlowLayout alloc] init];
         layout.itemSize = CGSizeMake(itemW, itemW / 2);
         layout.minimumInteritemSpacing = 5;
         layout.minimumLineSpacing = 5;
+        layout.sectionInset = UIEdgeInsetsMake(0, 5, 0, 5);
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
         layout.headerReferenceSize = CGSizeMake(UGScreenW, 10);
         layout;
@@ -51,11 +51,8 @@
     });
     
     UICollectionView *collectionView = ({
-        float collectionViewH;
-        
-        collectionViewH = UGScerrnH - k_Height_NavBar -k_Height_StatusBar+20;
-        
-        collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(5,10, UGScreenW - 10, collectionViewH) collectionViewLayout:layout];
+        float collectionViewH = UGScerrnH - k_Height_NavBar -k_Height_StatusBar+20;
+        collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 10, UGScreenW, collectionViewH) collectionViewLayout:layout];
         collectionView.backgroundColor = [UIColor clearColor];
         collectionView.layer.cornerRadius = 10;
         collectionView.layer.masksToBounds = YES;
@@ -85,7 +82,6 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UGhomeRecommendCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UGhomeRecommendCollectionViewCell" forIndexPath:indexPath];
     cell.itemGame = (UGYYGames *)self.dataArray[indexPath.row];
-    [cell setBackgroundColor: Skin1.homeContentColor];
     return cell;
 }
 

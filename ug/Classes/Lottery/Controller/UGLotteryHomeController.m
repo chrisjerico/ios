@@ -139,37 +139,30 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
 
 - (void)initCollectionView {
     
-    float itemW = (UGScreenW - 15) / 2;
+    float itemW = (APP.Width - 16) / 2;
     UICollectionViewFlowLayout *layout = ({
-        
         layout = [[UICollectionViewFlowLayout alloc] init];
         layout.itemSize = CGSizeMake(itemW, itemW / 2);
         layout.minimumInteritemSpacing = 5;
         layout.minimumLineSpacing = 5;
+        layout.sectionInset = UIEdgeInsetsMake(0, 5, 0, 5);
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
         layout.headerReferenceSize = CGSizeMake(UGScreenW, 50);
         layout;
-        
     });
     
     UICollectionView *collectionView = ({
-        float collectionViewH;
-            collectionViewH = UGScerrnH - k_Height_NavBar -k_Height_StatusBar- 10;
-  
-        collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(5, 5, UGScreenW - 10, collectionViewH) collectionViewLayout:layout];
+        float collectionViewH = UGScerrnH - k_Height_NavBar -k_Height_StatusBar- 10;
+        collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 5, UGScreenW, collectionViewH) collectionViewLayout:layout];
         collectionView.backgroundColor = [UIColor clearColor];
         collectionView.layer.cornerRadius = 10;
         collectionView.layer.masksToBounds = YES;
         collectionView.dataSource = self;
         collectionView.delegate = self;
         [collectionView registerNib:[UINib nibWithNibName:@"UGLotteryGameCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:letteryTicketCellID];
-        
-        
         [collectionView registerNib:[UINib nibWithNibName:@"UGTimeLotteryBetHeaderView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerViewID];
-        
         [collectionView setShowsHorizontalScrollIndicator:NO];
         collectionView;
-        
     });
     
     self.collectionView = collectionView;
@@ -178,8 +171,8 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
     
     [self.collectionView  mas_makeConstraints:^(MASConstraintMaker *make) {
          make.top.equalTo(self.view.mas_top).with.offset(10);
-         make.left.equalTo(self.view.mas_left).with.offset(5);
-         make.right.equalTo(self.view.mas_right).with.offset(-5);
+         make.left.equalTo(self.view.mas_left);
+         make.right.equalTo(self.view.mas_right);
          make.bottom.equalTo(self.view.mas_bottom).offset(-IPHONE_SAFEBOTTOMAREA_HEIGHT);
     }];
 }

@@ -23,12 +23,15 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.layer.cornerRadius = 10;
-    self.layer.masksToBounds = YES;
     self.timeLabel.textColor = [UIColor redColor];
-    self.layer.borderWidth = 1;
-    self.layer.borderColor = Skin1.homeContentColor.CGColor;
     self.nameLabel.textColor = Skin1.textColor1;
+    
+    self.clipsToBounds = false;
+    self.layer.cornerRadius = 10;
+    self.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.layer.shadowOffset = CGSizeMake(0, 1);
+    self.layer.shadowRadius = 2;
+    self.layer.shadowOpacity = 0.1;
 }
 
 - (void)setItem:(UGNextIssueModel *)item {
