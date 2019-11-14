@@ -28,7 +28,8 @@
 - (void)skinLottery  {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSArray *clsArray = @[UGSSCLotteryController.class,
+        NSArray *clsArray = @[
+                              UGSSCLotteryController.class,
                               UGGD11X5LotteryController.class,
                               UGBJKL8LotteryController.class,
                               UGGDKL10LotteryController.class,
@@ -95,6 +96,16 @@
                                }
                            };
                           [[aspectInfo.instance class] aspect_hookSelector:@selector(updateOpenLabel ) withOptions:AspectPositionAfter usingBlock:block1 error:nil];
+                            
+//                        // 处理OpenLabel
+//                         void (^block2)(id<AspectInfo>) = ^(id<AspectInfo> aspectInfo) {
+//                             NSLog(@"cr = %@",aspectInfo.arguments.firstObject);
+//                             NSNumber *c= (NSNumber *) aspectInfo.arguments.firstObject;
+//                             int ci = [c intValue];
+//                              NSLog(@"ci = %d",ci);
+//
+//                         };
+//                            [[aspectInfo.instance class] aspect_hookSelector:@selector(updateSelectLabelWithCount: ) withOptions:AspectPositionAfter usingBlock:block2 error:nil];
                         }
                     }
                     error:NULL];

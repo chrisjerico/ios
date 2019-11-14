@@ -10,6 +10,7 @@
 
 @interface UGNoticePopView ()
 @property (weak, nonatomic) IBOutlet UITextView *contentTextV;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end
 @implementation UGNoticePopView
@@ -22,6 +23,14 @@
         self.layer.cornerRadius = 10;
         self.layer.masksToBounds = YES;
         self.contentTextV.editable = NO;
+        if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+             self.backgroundColor = Skin1.bgColor;
+            _titleLabel.textColor = Skin1.textColor1;
+        } else {
+             self.backgroundColor = [UIColor whiteColor];
+            _titleLabel.textColor = Skin1.textColor1;
+        }
+       
     }
     return self;
 }
@@ -30,11 +39,24 @@
     _content = content;
     
     NSString *str = [NSString stringWithFormat:@"<head><style>img{width:auto !important;max-width:%f;height:auto}</style></head>%@", self.frame.size.width - 5,content];
-    NSAttributedString *__block attStr = [[NSAttributedString alloc] init];
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-         attStr = [[NSAttributedString alloc] initWithData:[str dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+        NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithData:[str dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+        NSMutableParagraphStyle *ps = [NSMutableParagraphStyle new];
+        ps.lineSpacing = 5;
+        [mas addAttributes:@{NSParagraphStyleAttributeName:ps,} range:NSMakeRange(0, mas.length)];
+        // 替换文字颜色
+        NSAttributedString *as = [mas copy];
+        for (int i=0; i<as.length; i++) {
+            NSRange r = NSMakeRange(0, as.length);
+            NSMutableDictionary *dict = [as attributesAtIndex:i effectiveRange:&r].mutableCopy;
+            UIColor *c = dict[NSForegroundColorAttributeName];
+            if (fabs(c.red - c.green) < 0.05 && fabs(c.green - c.blue) < 0.05) {
+                dict[NSForegroundColorAttributeName] = Skin1.textColor2;
+                [mas addAttributes:dict range:NSMakeRange(i, 1)];
+            }
+        }
          dispatch_async(dispatch_get_main_queue(), ^{
-            self.contentTextV.attributedText = attStr;
+            self.contentTextV.attributedText = mas;
         });
     });
     
