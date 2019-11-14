@@ -193,3 +193,16 @@ typedef NS_ENUM(NSInteger, CCConstraintType) {
 
 
 @end
+
+
+
+
+@implementation UIStackView (CCUtils)
+
+- (void)addArrangedSubviews:(NSArray <UIView *> *)views {
+    for (UIView *v in views) {
+        [self addArrangedSubview:v];
+    }
+}
+
+@end

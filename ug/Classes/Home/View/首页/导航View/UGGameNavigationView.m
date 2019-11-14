@@ -123,12 +123,11 @@
         _iconImage.layer.cornerRadius = 20;
         _iconImage.layer.masksToBounds = YES;
         [self addSubview:_hotImage];
+        _hotImage.contentMode = UIViewContentModeScaleAspectFit;
         [_hotImage mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self);
-            make.left.equalTo(self->_iconImage.mas_left).offset(20);
-            make.right.equalTo(self->_iconImage.mas_right);
-            make.width.equalTo(@24);
-            make.height.equalTo(@12);
+            make.right.equalTo(self);
+            make.width.height.mas_equalTo(27);
         }];
 		[self addSubview:_titleLabel];
 		[_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {

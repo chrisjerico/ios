@@ -28,6 +28,8 @@
 #import "UGPromotionsController.h"               // 模板优惠专区
 #import "UGBMLotteryHomeViewController.h"        // 黑色模板购彩大厅
 #import "UGYYLotteryHomeViewController.h"        // 购彩大厅
+#import "UGMailBoxTableViewController.h"         // 站内信
+
 // Tools
 #import "UGAppVersionManager.h"
 
@@ -469,6 +471,11 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         case 13: {
             // 任务大厅
             [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController") animated:true];
+            break;
+        }
+        case 14: {
+            // 站内信
+            [NavController1 pushViewController:[[UGMailBoxTableViewController alloc] initWithStyle:UITableViewStyleGrouped] animated:true];
             break;
         }
         default: {

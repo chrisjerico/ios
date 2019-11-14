@@ -50,3 +50,13 @@
 
 @end
 
+
+
+
+
+
+
+@interface UIStackView (CCUtils)
+
+- (void)addArrangedSubviews:(NSArray <UIView *> *)views;
+@end

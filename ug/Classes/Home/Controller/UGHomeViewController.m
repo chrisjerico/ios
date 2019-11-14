@@ -167,13 +167,29 @@
         NSDictionary *dict = @{@"六合资料":@[_bannerBgView, _rollingView, subView(@"开奖结果"), subView(@"六合论坛"), _promotionView, _bottomView],
                                @"黑色模板":@[_bannerBgView, _gameTypeView.superview, _rankingView, _bottomView],
         };
-        NSArray *arrangedSubviews = dict[Skin1.skitType];
-        if (!arrangedSubviews) {
+        NSArray *views = dict[Skin1.skitType];
+        if (views.count) {
+            [_contentStackView addArrangedSubviews:views];
+        } else {
             // 默认展示内容
-            arrangedSubviews = @[_bannerBgView, _rollingView, _gameNavigationView.superview, _gameTypeView.superview, _promotionView, _rankingView, _bottomView];
-        }
-        for (UIView *v in arrangedSubviews) {
-            [_contentStackView addArrangedSubview:v];
+            [_contentStackView addArrangedSubviews:@[_bannerBgView, _rollingView, _gameNavigationView.superview, _gameTypeView.superview, _promotionView, _rankingView, _bottomView]];
+            
+            // c134在导航栏下添加一张动图
+            if ([APP.SiteId containsString:@"c134"]) {
+                UIView *v = [UIView new];
+                v.backgroundColor = [UIColor clearColor];
+                CGFloat h = (APP.Width-20)/1194.0 * 247;
+                [v addSubview:({
+                    FLAnimatedImageView *imgView = [[FLAnimatedImageView alloc] initWithFrame:CGRectMake(10, 10, APP.Width-20, h)];
+                    [imgView sd_setImageWithURL:[[NSBundle mainBundle] URLForResource:@"cplts_看图王" withExtension:@"gif"]];
+                    imgView;
+                })];
+                [_contentStackView insertArrangedSubview:v atIndex:3];
+                [v mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.width.mas_equalTo(APP.Width);
+                    make.height.mas_equalTo(h+10);
+                }];
+            }
         }
     }
     
