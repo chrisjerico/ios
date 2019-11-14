@@ -56,7 +56,9 @@
 
     UGUserModel *user = [UGUserModel currentUser];
     if (!user.hasBankCard) {
-        self.bandCardView.frame = self.withdrawalView.bounds;
+        self.bandCardView.frame = CGRectMake(0, 0, APP.Width, self.withdrawalView.height);
+        self.bandCardView.backgroundColor = Skin1.CLBgColor;
+        self.bandCardTitleLabel.textColor = Skin1.textColor1;
         [self.view addSubview:self.bandCardView];
     }
     
