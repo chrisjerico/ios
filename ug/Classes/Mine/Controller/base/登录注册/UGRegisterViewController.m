@@ -88,6 +88,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+ 
     // 禁用侧滑返回
     self.fd_interactivePopDisabled = true;
     
@@ -140,14 +141,42 @@
     
     [self setupSubViews];
     
+    _webView = ({
+        WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
+        // 设置偏好设置
+        config.preferences = [[WKPreferences alloc] init];
+        // 默认为0
+        config.preferences.minimumFontSize = 10;
+        // 默认认为YES
+        config.preferences.javaScriptEnabled = YES;
+        // 在iOS上默认为NO，表示不能自动通过窗口打开
+        config.preferences.javaScriptCanOpenWindowsAutomatically = NO;
+        // web内容处理池
+        config.processPool = [[WKProcessPool alloc] init];
+        // 通过JS与webview内容交互
+        config.userContentController = [[WKUserContentController alloc] init];
+        // 我们可以在WKScriptMessageHandler代理中接收到
+        [config.userContentController addScriptMessageHandler:self name:@"postSwiperData"];
+        
+        _webView = [[WKWebView alloc] initWithFrame:self.webBgView.bounds
+                                      configuration:config];
+        _webView.navigationDelegate = self;
+        NSString *url = [NSString stringWithFormat:@"%@%@",APP.Host,swiperVerifyUrl];
+            NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
+        [_webView loadRequest:request];
+        
+        _webView;
+        
+    });
+    
+    [self.webBgView addSubview:_webView];
+    
     UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
     if (config.reg_vcode == 1) {
         
         [self getImgVcode:nil];
     }
-    [self.webBgView addSubview:self.webView];
-    
-    
+
     self.passwordTextF.placeholder = ({
         NSString *placeholder = nil;
         if (config.pass_limit == 0) {
@@ -159,9 +188,7 @@
         }
         placeholder;
     });
-    NSString *url = [NSString stringWithFormat:@"%@%@",APP.Host,swiperVerifyUrl];
-    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
-    [self.webView loadRequest:request];
+
     
     if (!config.allowreg) {
         [QDAlertView showWithTitle:nil message:config.closeregreason cancelButtonTitle:nil otherButtonTitle:@"确定" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
@@ -346,6 +373,7 @@
             [mutDict setObject:self.imgVcodeModel.nc_value forKey:sig];
         }
         [SVProgressHUD showWithStatus:@"正在注册..."];
+        NSLog(@"参数：%@ ",mutDict);
         [CMNetwork registerWithParams:mutDict completion:^(CMResult<id> *model, NSError *err) {
             [CMResult processWithResult:model success:^{
 
@@ -664,30 +692,36 @@
     completionHandler(NSURLSessionAuthChallengePerformDefaultHandling, nil);
 }
 
-- (WKWebView *)webView {
-    if (_webView == nil) {
-        WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
-        // 设置偏好设置
-        config.preferences = [[WKPreferences alloc] init];
-        // 默认为0
-        config.preferences.minimumFontSize = 10;
-        // 默认认为YES
-        config.preferences.javaScriptEnabled = YES;
-        // 在iOS上默认为NO，表示不能自动通过窗口打开
-        config.preferences.javaScriptCanOpenWindowsAutomatically = NO;
-        // web内容处理池
-        config.processPool = [[WKProcessPool alloc] init];
-        // 通过JS与webview内容交互
-        config.userContentController = [[WKUserContentController alloc] init];
-        // 我们可以在WKScriptMessageHandler代理中接收到
-        [config.userContentController addScriptMessageHandler:self name:@"postSwiperData"];
-        
-        _webView = [[WKWebView alloc] initWithFrame:self.webBgView.bounds
-                                      configuration:config];
-        _webView.navigationDelegate = self;
-    }
-    return _webView;
-}
+//- (WKWebView *)webView {
+//    if (_webView == nil) {
+//        WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
+//        // 设置偏好设置
+//        config.preferences = [[WKPreferences alloc] init];
+//        // 默认为0
+//        config.preferences.minimumFontSize = 10;
+//        // 默认认为YES
+//        config.preferences.javaScriptEnabled = YES;
+//        // 在iOS上默认为NO，表示不能自动通过窗口打开
+//        config.preferences.javaScriptCanOpenWindowsAutomatically = NO;
+//        // web内容处理池
+//        config.processPool = [[WKProcessPool alloc] init];
+//        // 通过JS与webview内容交互
+//        config.userContentController = [[WKUserContentController alloc] init];
+//        // 我们可以在WKScriptMessageHandler代理中接收到
+//        [config.userContentController addScriptMessageHandler:self name:@"postSwiperData"];
+//
+//        _webView = [[WKWebView alloc] initWithFrame:self.webBgView.bounds
+//                                      configuration:config];
+//
+//        _webView.navigationDelegate = self;
+//    }
+//
+//    NSString *url = [NSString stringWithFormat:@"%@%@",APP.Host,swiperVerifyUrl];
+//     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
+//
+//     [_webView loadRequest:request];
+//    return _webView;
+//}
 
 
 #pragma mark timer

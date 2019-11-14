@@ -32,6 +32,7 @@
 @property (nonatomic, assign) BOOL refreshing;
 
 @property (weak, nonatomic) IBOutlet UIView *bgView;
+@property (weak, nonatomic) IBOutlet UILabel *welComeLabel;     /**<   欢迎您！*/
 
 @property (weak, nonatomic) IBOutlet UIView *bg2View;           /**<   充值提现背景*/
 @property (weak, nonatomic) IBOutlet UIView *rechargeView;      /**<   充值背景*/
@@ -340,6 +341,9 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         _icon2ImageView.image = [UIImage imageNamed:@"BMtixian"];
         [_rechargeLabel setTextColor:Skin1.navBarBgColor];
         [_withdrawLabel setTextColor:Skin1.navBarBgColor];
+        [_headImageView setHidden:NO];
+        [_myButton setHidden:NO];
+        [_welComeLabel setHidden:YES];
     } else {
         [self.rechargeView setBackgroundColor:Skin1.navBarBgColor];
         [self.withdrawlView setBackgroundColor:Skin1.navBarBgColor];
@@ -348,6 +352,9 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         _icon2ImageView.image = [UIImage imageNamed:@"tixianbai"];
         [_rechargeLabel setTextColor:[UIColor whiteColor]];
         [_withdrawLabel setTextColor:[UIColor whiteColor]];
+        [_headImageView setHidden:YES];
+        [_myButton setHidden:YES];
+        [_welComeLabel setHidden:NO];
     }
    
     self.backgroundColor = Skin1.textColor4;

@@ -1179,10 +1179,15 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 
 - (void)updateSelectLabelWithCount:(NSInteger)count {
 	self.selectLabel.text = [NSString stringWithFormat:@"已选中 %ld 注",count];
-	NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.selectLabel.text];
-	[abStr addAttribute:NSForegroundColorAttributeName value:Skin1.navBarBgColor range:NSMakeRange(3, self.selectLabel.text.length - 4)];
-	self.selectLabel.attributedText = abStr;
-	
+    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+        NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.selectLabel.text];
+        [abStr addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(3, self.selectLabel.text.length - 4)];
+        self.selectLabel.attributedText = abStr;
+    } else {
+        NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.selectLabel.text];
+        [abStr addAttribute:NSForegroundColorAttributeName value:Skin1.navBarBgColor range:NSMakeRange(3, self.selectLabel.text.length - 4)];
+        self.selectLabel.attributedText = abStr;
+    }
 }
 
 - (void)updateCloseLabelText{

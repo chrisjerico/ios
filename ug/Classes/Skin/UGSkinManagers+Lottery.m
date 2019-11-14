@@ -59,6 +59,7 @@
                                 [[vc valueForKey:@"openTimeLabel"] setTextColor:Skin1.textColor1];
                                 [subLabel(@"中间线label") setBackgroundColor:Skin1.textColor1];
                                 [[vc valueForKey:@"tableView"] setBackgroundColor:[UIColor clearColor]];
+                                [[vc valueForKey:@"bottomView"] setBackgroundColor:Skin1.bgColor];
                                 
                             } else {
                                 vc.view.backgroundColor =  [UIColor whiteColor];
@@ -71,6 +72,7 @@
                                 [[vc valueForKey:@"openTimeLabel"] setTextColor:[UIColor blackColor]];
                                 [subLabel(@"中间线label") setBackgroundColor:[UIColor lightGrayColor]];
                                 [[vc valueForKey:@"tableView"] setBackgroundColor:[UIColor whiteColor]];
+                                [[vc valueForKey:@"bottomView"] setBackgroundColor:RGBA(100, 101, 103, 1)];
                             }
                             // 处理OpenLabel
                            void (^block1)(id<AspectInfo>) = ^(id<AspectInfo> aspectInfo) {

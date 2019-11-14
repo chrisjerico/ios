@@ -22,11 +22,11 @@
 @implementation UGBMUnderMenuView
 
 - (instancetype)initView {
-    return [self initWithFrame:CGRectMake(0 , UGScerrnH-(36)-IPHONE_SAFEBOTTOMAREA_HEIGHT, UGScreenW, 151)];
+    return [self initWithFrame:CGRectMake(0 , UGScerrnH-(36)-IPHONE_SAFEBOTTOMAREA_HEIGHT, UGScreenW, 180)];
 }
 
 - (instancetype)initViewWithStatusBar {
-    return [self initWithFrame:CGRectMake(0 , UGScerrnH-(40)-IPHONE_SAFEBOTTOMAREA_HEIGHT-k_Height_StatusBar, UGScreenW, 170)];
+    return [self initWithFrame:CGRectMake(0 , UGScerrnH-(36)-IPHONE_SAFEBOTTOMAREA_HEIGHT-53, UGScreenW, 180)];//黑色模板的TabbarHeight 为53
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
