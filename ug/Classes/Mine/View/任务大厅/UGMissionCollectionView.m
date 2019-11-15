@@ -43,7 +43,12 @@ static NSString *missionCellid = @"missionCellid";
         
         self.viewConterllers = @[missionListVC,convertVC,recordVC,levelVC];
         [self initCollectionView];
-        [self setBackgroundColor: [UIColor whiteColor]];
+        
+        if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+            [self setBackgroundColor: [UIColor clearColor]];
+        } else {
+            [self setBackgroundColor: [UIColor whiteColor]];
+        }
 
         
     }

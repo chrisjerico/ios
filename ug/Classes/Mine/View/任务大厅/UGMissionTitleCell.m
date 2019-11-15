@@ -18,6 +18,13 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+        [self.contentView setBackgroundColor:Skin1.bgColor];
+        [self.titleLabel setTextColor:Skin1.textColor1];
+    } else {
+        [self.contentView setBackgroundColor:[UIColor whiteColor]];
+        [self.titleLabel setTextColor:[UIColor blackColor]];
+    }
     
 }
 
@@ -33,13 +40,24 @@
 }
 
 - (void)setSelected:(BOOL)selected {
-    if (selected) {
-        self.layer.borderColor = Skin1.navBarBgColor.CGColor;
-        self.layer.borderWidth = 1;
-    }else {
-        self.layer.borderColor = [UIColor whiteColor].CGColor;
-    
+    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+        if (selected) {
+            self.layer.borderColor = [UIColor whiteColor].CGColor;
+            self.layer.borderWidth = 1;
+        }else {
+            self.layer.borderColor = Skin1.navBarBgColor.CGColor;
+        
+        }
+    } else {
+        if (selected) {
+            self.layer.borderColor = Skin1.navBarBgColor.CGColor;
+            self.layer.borderWidth = 1;
+        }else {
+            self.layer.borderColor = [UIColor whiteColor].CGColor;
+        
+        }
     }
+
 }
 
 @end

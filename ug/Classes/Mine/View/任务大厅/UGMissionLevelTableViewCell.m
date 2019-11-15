@@ -23,7 +23,20 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-      [self setBackgroundColor: [UIColor whiteColor]];
+    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+        [self.levelsLabel setTextColor: Skin1.textColor1];
+        [self setBackgroundColor: Skin1.bgColor];
+        [self.levelTitleLabel setTextColor: Skin1.textColor1];
+        [self.integralLabel setTextColor: Skin1.textColor1];
+        [self.levelsSectionLabel setTextColor: Skin1.textColor1];
+    } else {
+        [self.levelsLabel setTextColor: [UIColor blackColor]];
+        [self setBackgroundColor: [UIColor whiteColor]];
+        [self.levelTitleLabel setTextColor: [UIColor blackColor]];
+        [self.integralLabel setTextColor: [UIColor blackColor]];
+        [self.levelsSectionLabel setTextColor: [UIColor blackColor]];
+    }
+
 }
 
 - (void)setItem:(UGlevelsModel *)item {

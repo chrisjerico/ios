@@ -29,7 +29,17 @@
     [super awakeFromNib];
     self.goButton.layer.cornerRadius = 3;
     self.goButton.layer.masksToBounds = YES;
-    [self setBackgroundColor: [UIColor whiteColor]];
+    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+        [self setBackgroundColor: Skin1.bgColor];
+        [_titleLabel setTextColor:Skin1.textColor1];
+        [_overTimeLabel setTextColor:Skin1.textColor1];
+        
+    } else {
+        [self setBackgroundColor: [UIColor whiteColor]];
+        [_titleLabel setTextColor:[UIColor blackColor]];
+        [_overTimeLabel setTextColor:[UIColor blackColor]];
+    }
+
 }
 
 - (IBAction)goButtonClick:(id)sender {

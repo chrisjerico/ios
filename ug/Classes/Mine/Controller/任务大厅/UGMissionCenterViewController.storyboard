@@ -245,6 +245,7 @@
                         <outlet property="vipImager" destination="gYa-0u-6vs" id="fzc-y0-v42"/>
                         <outlet property="waveBgView" destination="QRf-tD-WHm" id="XGy-21-bDG"/>
                         <outlet property="waveBottomView" destination="qik-ZV-Go7" id="AAE-NZ-Rmz"/>
+                        <outlet property="waveUImageV" destination="jTb-az-66R" id="uJr-gL-W4S"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yjT-74-ERu" userLabel="First Responder" sceneMemberID="firstResponder"/>

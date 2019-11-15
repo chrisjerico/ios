@@ -34,7 +34,23 @@ static NSString *convertRecordCellid = @"UGIntegarlConvertRecordCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+    FastSubViewCode(self.view)
+    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+         self.view.backgroundColor = Skin1.bgColor;
+         [subLabel(@"账变类型label") setTextColor:Skin1.textColor1];
+         [subLabel(@"积分账变label") setTextColor:Skin1.textColor1];
+         [subLabel(@"积分余额label") setTextColor:Skin1.textColor1];
+         [subLabel(@"全部日期label") setTextColor:Skin1.textColor1];
+         [_arrowImageView setImage:[UIImage imageNamed:@"baijiantou"]];
+    } else {
+        self.view.backgroundColor = [UIColor whiteColor];
+        [subLabel(@"账变类型label") setTextColor:[UIColor blackColor]];
+        [subLabel(@"积分账变label") setTextColor:[UIColor blackColor]];
+        [subLabel(@"积分余额label") setTextColor:[UIColor blackColor]];
+        [subLabel(@"全部日期label") setTextColor:[UIColor blackColor]];
+        [_arrowImageView setImage:[UIImage imageNamed:@"jiantou1"]];
+    }
+
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.rowHeight = 44;

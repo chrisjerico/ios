@@ -51,6 +51,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *integralLabel;//积分，暂时隐藏
 @property (weak, nonatomic) IBOutlet UILabel *taskRewradTitleLabel;
 
+@property (weak, nonatomic) IBOutlet UIImageView *waveUImageV;
 
 @end
 
@@ -92,7 +93,7 @@ static NSString *__title = nil;
     [self.integralLabel setHidden:YES];
     self.fd_prefersNavigationBarHidden = NO;
     self.navigationItem.title = __title.length ? __title : @"任务中心";
-    self.view.backgroundColor = [UIColor whiteColor];
+
     self.userInfoView.backgroundColor = Skin1.navBarBgColor;
     self.avaterImageView.layer.cornerRadius = self.avaterImageView.height / 2 ;
     self.avaterImageView.layer.masksToBounds = YES;
@@ -112,6 +113,14 @@ static NSString *__title = nil;
     self.waveView.maskWaveColor = [UIColor clearColor];
     self.waveView.waveHeight = 10;
     [self.waveView startWaveAnimation];
+    
+    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+        [_waveUImageV setHidden:YES];
+        self.view.backgroundColor = Skin1.bgColor;
+    } else {
+        [_waveUImageV setHidden:NO];
+        self.view.backgroundColor = [UIColor whiteColor];
+    }
     
     [self.view addSubview:self.titleCollectionView];
     [self.view addSubview:self.missionCollectionView];

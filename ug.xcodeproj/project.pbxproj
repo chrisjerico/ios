@@ -5479,7 +5479,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = io.dcloud.UNIB805F98;
 				PRODUCT_NAME = "⾹港国际";
@@ -5506,7 +5506,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = io.dcloud.UNIB805F98;
 				PRODUCT_NAME = "⾹港国际";
 				PROVISIONING_PROFILE_SPECIFIER = "";

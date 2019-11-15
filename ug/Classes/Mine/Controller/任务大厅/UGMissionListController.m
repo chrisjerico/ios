@@ -36,19 +36,7 @@ static NSString *missionCellid = @"UGMissionTableViewCell";
     [self.tableView registerNib:[UINib nibWithNibName:@"UGMissionTableViewCell" bundle:nil] forCellReuseIdentifier:missionCellid];
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 120, 0);
     self.tableView.rowHeight = 80;
-//    _pageSize = 20;
-//    _pageNumber = 1;
-    
-//     WeakSelf
-//    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-//        weakSelf.pageNumber = 1;
-//        [weakSelf getCenterData];
-//        
-//    }];
-//    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-//        weakSelf.pageNumber =weakSelf.pageNumber+1;
-//        [weakSelf getCenterData];
-//    }];
+    [self.view setBackgroundColor:[UIColor clearColor]];
     
   
 }
