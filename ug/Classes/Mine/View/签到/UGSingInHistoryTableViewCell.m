@@ -21,6 +21,15 @@
     [super awakeFromNib];
     // Initialization code
       [self setBackgroundColor: Skin1.homeContentColor];
+    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+        [_dateLabel setTextColor:[UIColor whiteColor]];
+        [_numberLabel setTextColor:[UIColor whiteColor]];
+        [_remarkLabel setTextColor:[UIColor whiteColor]];
+    } else {
+        [_dateLabel setTextColor:[UIColor blackColor]];
+        [_numberLabel setTextColor:[UIColor blackColor]];
+        [_remarkLabel setTextColor:[UIColor blackColor]];
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

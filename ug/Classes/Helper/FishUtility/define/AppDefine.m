@@ -227,7 +227,7 @@
             @"test10":@"http://test10.6yc.com",
             @"c083":@"http://t111f.fhptcdn.com",
         };
-        _SiteId = @"c083";
+        _SiteId = @"test10";
         _Host = dict[_SiteId.lowercaseString];
         if (!_Host.length) {
             @throw [NSException exceptionWithName:@"缺少域名" reason:_NSString(@"（%@）该站点没有配置接口域名", _SiteId) userInfo:nil];

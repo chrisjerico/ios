@@ -125,6 +125,12 @@
     maskView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
     maskView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
     
+    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+        [_title1Label setTextColor:[UIColor whiteColor]];
+    } else {
+        [_title1Label setTextColor:[UIColor blackColor]];
+    }
+    
     [maskView addSubview:view];
     [window addSubview:maskView];
     
