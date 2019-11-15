@@ -57,9 +57,25 @@ static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
             [_dateArray addObject:startDateStr];
         }
     }
+    FastSubViewCode(self.view)
+    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+        self.view.backgroundColor = Skin1.bgColor;
+        [_gameNameLabel setTextColor:Skin1.textColor1];
+        [_dateLabel setTextColor:Skin1.textColor1];
+        _arrowView.image =  [UIImage imageNamed:@"baijiantou"];
+        [subLabel(@"开奖号码label") setTextColor:Skin1.textColor1];
+        [subLabel(@"期数label") setTextColor:Skin1.textColor1];
+    } else {
+        self.view.backgroundColor = [UIColor whiteColor];
+        [_gameNameLabel setTextColor:[UIColor blackColor]];
+        [_dateLabel setTextColor:[UIColor blackColor]];
+        _arrowView.image =  [UIImage imageNamed:@"jiantou1"];
+        [subLabel(@"开奖号码label") setTextColor:[UIColor blackColor]];
+        [subLabel(@"期数label") setTextColor:[UIColor blackColor]];
+    }
     
     self.navigationItem.title = @"开奖记录";
-    self.view.backgroundColor = Skin1.bgColor;
+    [self.tableView setBackgroundColor:[UIColor clearColor]];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.estimatedRowHeight = 100;

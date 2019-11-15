@@ -22,7 +22,7 @@
     _titleLabel.layer.masksToBounds = true;
     
     if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
-        [self  setBackgroundColor:Skin1.bgColor];
+         [self  setBackgroundColor:Skin1.bgColor];
          [_titleLabel setTextColor:[UIColor blackColor]];
     } else {
          [_titleLabel setTextColor:[UIColor blackColor]];

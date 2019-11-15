@@ -66,16 +66,100 @@ static NSInteger versionNumber = 102;
         NSArray *btnTitles = isForce ? @[@"去升级"] : @[@"取消", @"去升级"];
         
         __weakSelf_(__self);
-        UIAlertController *ac = [AlertHelper showAlertView:@"新版本上线" msg:updateContent btnTitles:btnTitles];
-        [ac setActionAtTitle:@"去升级" handler:^(UIAlertAction *aa) {
-            [__self updateFromAppStore];
-        }];
+        if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+            UIColor *blueColor = [UIColor colorWithRed:90/255.0f green:154/255.0f blue:239/255.0f alpha:1.0f];
+            if (isForce) {
+                 [LEEAlert alert].config
+                 .LeeAddTitle(^(UILabel *label) {
+                    label.text = @"新版本上线";
+                    label.textColor = [UIColor whiteColor];
+                 })
+                .LeeAddContent(^(UILabel *label) {
+                    label.text = updateContent;
+                    label.textColor = [UIColor whiteColor];
+                 })
+                .LeeHeaderColor(Skin1.bgColor)
+                .LeeAddAction(^(LEEAction *action) {
+                    action.type = LEEActionTypeDefault;
+                    action.title = @"去升级";
+                    action.titleColor = blueColor;
+                    action.backgroundColor = Skin1.bgColor;
+                    action.clickBlock = ^{
+                        [__self updateFromAppStore];
+                    };
+                })
+                .LeeShow(); // 设置完成后 别忘记调用Show来显示
+            } else {
+                [LEEAlert alert].config
+                 .LeeAddTitle(^(UILabel *label) {
+                    label.text = @"新版本上线";
+                    label.textColor = [UIColor whiteColor];
+                 })
+                .LeeAddContent(^(UILabel *label) {
+                    label.text = updateContent;
+                    label.textColor = [UIColor whiteColor];
+                 })
+                .LeeHeaderColor(Skin1.bgColor)
+                .LeeAddAction(^(LEEAction *action) {
+                    action.type = LEEActionTypeCancel;
+                    action.title = @"取消";
+                    action.titleColor = blueColor;
+                    action.backgroundColor = Skin1.bgColor;
+                    action.clickBlock = ^{
+                    };
+                })
+                .LeeAddAction(^(LEEAction *action) {
+                    action.type = LEEActionTypeDefault;
+                    action.title = @"去升级";
+                    action.titleColor = blueColor;
+                    action.backgroundColor = Skin1.bgColor;
+                    action.clickBlock = ^{
+                        [__self updateFromAppStore];
+                    };
+                })
+                .LeeShow(); // 设置完成后 别忘记调用Show来显示
+            }
+        }
+        else{
+            UIAlertController *ac = [AlertHelper showAlertView:@"新版本上线" msg:updateContent btnTitles:btnTitles];
+            [ac setActionAtTitle:@"去升级" handler:^(UIAlertAction *aa) {
+                [__self updateFromAppStore];
+            }];
+        }
+        
+
         
         if (!isForce) {
             [self rememberVersionNowTime];
         }
     } else if (flag) {
-        [AlertHelper showAlertView:@"新版本上线" msg:@"您已经是最新版本！" btnTitles:@[@"确定"]];
+     
+        if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+          UIColor *blueColor = [UIColor colorWithRed:90/255.0f green:154/255.0f blue:239/255.0f alpha:1.0f];
+          [LEEAlert alert].config
+           .LeeAddTitle(^(UILabel *label) {
+              label.text = @"新版本上线";
+              label.textColor = [UIColor whiteColor];
+           })
+          .LeeAddContent(^(UILabel *label) {
+              label.text = @"您已经是最新版本！";
+              label.textColor = [UIColor whiteColor];
+           })
+          .LeeHeaderColor(Skin1.bgColor)
+          .LeeAddAction(^(LEEAction *action) {
+              action.type = LEEActionTypeCancel;
+              action.title = @"确定";
+              action.titleColor = blueColor;
+              action.backgroundColor = Skin1.bgColor;
+              action.clickBlock = ^{
+              };
+          })
+          .LeeShow(); // 设置完成后 别忘记调用Show来显示
+          
+      }
+      else{
+          [AlertHelper showAlertView:@"新版本上线" msg:@"您已经是最新版本！" btnTitles:@[@"确定"]];
+      }
     }
 }
 
