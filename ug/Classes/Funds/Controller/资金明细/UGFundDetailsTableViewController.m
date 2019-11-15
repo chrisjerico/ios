@@ -141,9 +141,10 @@ static NSString *fundDetailsCellid = @"UGFundDetailsCell";
     
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UGScreenW, 44)];
     headerView.backgroundColor = Skin1.textColor4;
+    
     UILabel *timeLable = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, UGScreenW / 4, 44)];
     timeLable.text = @"日期";
-    timeLable.textColor = [UIColor blackColor];
+    timeLable.textColor = Skin1.textColor1;
     timeLable.font = [UIFont systemFontOfSize:14 weight:UIFontWeightHeavy];
     timeLable.textAlignment = NSTextAlignmentCenter;
     

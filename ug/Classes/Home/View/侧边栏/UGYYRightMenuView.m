@@ -58,72 +58,43 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
 @implementation UGYYRightMenuView
 
 -(void)initTitleAndImgs{
-    
-      NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-      NSString *app_Version = [NSString stringWithFormat:@"当前版本号(%@)", [infoDictionary objectForKey:@"CFBundleShortVersionString"]] ;
-      NSString *str1;NSString *str2;
-      if (UGLoginIsAuthorized()) {//已经登录
-          str1 = [NSString stringWithFormat:@"即时注单(%@)",[UGUserModel currentUser].unsettleAmount];
-          str2 = [NSString stringWithFormat:@"今日输赢(%@)",[UGUserModel currentUser].todayWinAmount];
-      }
-      else{
-          str1 = @"即时注单";
-          str2 = @"今日输赢";
-      }
+
+    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+       [self titleArrayAndimageNameArrayInit];
+        
+        NSArray *arrayTmp = @[@"提现", @"充值"];
+       // NSMakeRange(1, 2)：1表示要插入的位置，2表示插入数组的个数
+        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, 2)];
+        [_titleArray insertObjects:arrayTmp atIndexes:indexSet];
+        
+         NSArray *arrayImg = @[@"BMchongzhi", @"BMtixian"];
+         [_imageNameArray insertObjects:arrayImg atIndexes:indexSet];
+        
+    } else {
+        [self titleArrayAndimageNameArrayInit];
+    }
      
-      
-      UGUserModel *user = [UGUserModel currentUser];
-      if ([self.titleType isEqualToString:@"1"]) {
-          
-          if (user.yuebaoSwitch) {
-               if (UGLoginIsAuthorized()) {//已经登录
-                   self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"长龙助手",@"利息宝",@"站内信",@"退出登录",app_Version, nil] ;
-                   self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"changlong",@"lixibao",@"zhanneixin",@"tuichudenglu",@"appVicon", nil] ;
-               }
-               else{
-                   self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"长龙助手",@"利息宝",@"站内信",app_Version, nil] ;
-                   self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"changlong",@"lixibao",@"zhanneixin",@"appVicon", nil] ;
-               }
-              
-          } else {
-               if (UGLoginIsAuthorized()) {//已经登录
-                   self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"长龙助手",@"站内信",@"退出登录",app_Version, nil] ;
-                   self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"changlong",@"zhanneixin",@"tuichudenglu",@"appVicon", nil] ;
-               }
-               else{
-                   self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"长龙助手",@"站内信",app_Version, nil] ;
-                   self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"changlong",@"zhanneixin",@"appVicon", nil] ;
-               }
-          }
-         
-      }
-      else  if([self.titleType isEqualToString:@"2"]){
-          
-          if (user.yuebaoSwitch) {
-               if (UGLoginIsAuthorized()) {//已经登录
-                   self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"彩种规则",@"长龙助手",@"利息宝",@"站内信",@"退出登录", app_Version,nil] ;
-                   self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"gantanhao",@"changlong",@"lixibao",@"zhanneixin",@"tuichudenglu",@"appVicon", nil] ;
-               }
-               else{
-                   self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"彩种规则",@"长龙助手",@"利息宝",@"站内信", app_Version,nil] ;
-                   self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"gantanhao",@"changlong",@"lixibao",@"zhanneixin",@"appVicon", nil] ;
-               }
-              
-          }
-          else{
-              if (UGLoginIsAuthorized()) {//已经登录
-                  self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"彩种规则",@"长龙助手",@"站内信",@"退出登录", app_Version,nil] ;
-                  self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"gantanhao",@"changlong",@"zhanneixin",@"tuichudenglu",@"appVicon", nil] ;
-              }
-              else{
-                  self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"彩种规则",@"长龙助手",@"站内信", app_Version,nil] ;
-                  self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"gantanhao",@"changlong",@"zhanneixin",@"appVicon", nil] ;
-              }
-            
-          }
-         
-      }
-      else{
+    
+    
+}
+
+
+-(void)titleArrayAndimageNameArrayInit{
+    
+    NSString *str1;NSString *str2;
+    if (UGLoginIsAuthorized()) {//已经登录
+        str1 = [NSString stringWithFormat:@"即时注单(%@)",[UGUserModel currentUser].unsettleAmount];
+        str2 = [NSString stringWithFormat:@"今日输赢(%@)",[UGUserModel currentUser].todayWinAmount];
+    }
+    else{
+        str1 = @"即时注单";
+        str2 = @"今日输赢";
+    }
+    UGUserModel *user = [UGUserModel currentUser];
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    NSString *app_Version = [NSString stringWithFormat:@"当前版本号(%@)", [infoDictionary objectForKey:@"CFBundleShortVersionString"]] ;
+    if ([self.titleType isEqualToString:@"1"]) {
+             
              if (user.yuebaoSwitch) {
                   if (UGLoginIsAuthorized()) {//已经登录
                       self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"长龙助手",@"利息宝",@"站内信",@"退出登录",app_Version, nil] ;
@@ -134,18 +105,67 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
                       self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"changlong",@"lixibao",@"zhanneixin",@"appVicon", nil] ;
                   }
                  
-              } else {
-                   if (UGLoginIsAuthorized()) {//已经登录
-                       self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"长龙助手",@"站内信",@"退出登录",app_Version, nil] ;
-                       self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"changlong",@"zhanneixin",@"tuichudenglu",@"appVicon", nil] ;
-                   }
-                   else{
-                       self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"长龙助手",@"站内信",app_Version, nil] ;
-                       self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"changlong",@"zhanneixin",@"appVicon", nil] ;
-                   }
+             } else {
+                  if (UGLoginIsAuthorized()) {//已经登录
+                      self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"长龙助手",@"站内信",@"退出登录",app_Version, nil] ;
+                      self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"changlong",@"zhanneixin",@"tuichudenglu",@"appVicon", nil] ;
+                  }
+                  else{
+                      self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"长龙助手",@"站内信",app_Version, nil] ;
+                      self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"changlong",@"zhanneixin",@"appVicon", nil] ;
+                  }
+             }
+            
+         }
+         else  if([self.titleType isEqualToString:@"2"]){
+             
+             if (user.yuebaoSwitch) {
+                  if (UGLoginIsAuthorized()) {//已经登录
+                      self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"彩种规则",@"长龙助手",@"利息宝",@"站内信",@"退出登录", app_Version,nil] ;
+                      self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"gantanhao",@"changlong",@"lixibao",@"zhanneixin",@"tuichudenglu",@"appVicon", nil] ;
+                  }
+                  else{
+                      self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"彩种规则",@"长龙助手",@"利息宝",@"站内信", app_Version,nil] ;
+                      self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"gantanhao",@"changlong",@"lixibao",@"zhanneixin",@"appVicon", nil] ;
+                  }
+                 
+             }
+             else{
+                 if (UGLoginIsAuthorized()) {//已经登录
+                     self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"彩种规则",@"长龙助手",@"站内信",@"退出登录", app_Version,nil] ;
+                     self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"gantanhao",@"changlong",@"zhanneixin",@"tuichudenglu",@"appVicon", nil] ;
+                 }
+                 else{
+                     self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"彩种规则",@"长龙助手",@"站内信", app_Version,nil] ;
+                     self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"gantanhao",@"changlong",@"zhanneixin",@"appVicon", nil] ;
+                 }
+               
+             }
+            
+         }
+         else{
+                if (user.yuebaoSwitch) {
+                     if (UGLoginIsAuthorized()) {//已经登录
+                         self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"长龙助手",@"利息宝",@"站内信",@"退出登录",app_Version, nil] ;
+                         self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"changlong",@"lixibao",@"zhanneixin",@"tuichudenglu",@"appVicon", nil] ;
+                     }
+                     else{
+                         self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"长龙助手",@"利息宝",@"站内信",app_Version, nil] ;
+                         self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"changlong",@"lixibao",@"zhanneixin",@"appVicon", nil] ;
+                     }
+                    
+                 } else {
+                      if (UGLoginIsAuthorized()) {//已经登录
+                          self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"长龙助手",@"站内信",@"退出登录",app_Version, nil] ;
+                          self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"changlong",@"zhanneixin",@"tuichudenglu",@"appVicon", nil] ;
+                      }
+                      else{
+                          self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"长龙助手",@"站内信",app_Version, nil] ;
+                          self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"changlong",@"zhanneixin",@"appVicon", nil] ;
+                      }
 
-              }
-      }
+                 }
+         }
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -344,6 +364,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         [_headImageView setHidden:NO];
         [_myButton setHidden:NO];
         [_welComeLabel setHidden:YES];
+        [_bg2View setHidden:YES];
     } else {
         [self.rechargeView setBackgroundColor:Skin1.navBarBgColor];
         [self.withdrawlView setBackgroundColor:Skin1.navBarBgColor];
@@ -355,6 +376,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         [_headImageView setHidden:YES];
         [_myButton setHidden:YES];
         [_welComeLabel setHidden:NO];
+        [_bg2View setHidden:NO];
     }
    
     self.backgroundColor = Skin1.textColor4;
@@ -458,6 +480,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
    else if ([title isEqualToString:@"换肤"]) {
        [NavController1 pushViewController:[UGSkinViewController new] animated:true];
    }
+
 }
 
 @end
