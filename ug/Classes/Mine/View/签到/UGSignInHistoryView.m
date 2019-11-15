@@ -38,7 +38,12 @@
 //         [self.tableView registerNib:[UINib nibWithNibName:@"UGSingInHistoryTableViewCell" bundle:nil] forHeaderFooterViewReuseIdentifier:historyHeaderViewid];
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         self.layer.cornerRadius = 5;
-        [self setBackgroundColor: Skin1.bgColor];
+
+        if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+            [self setBackgroundColor: Skin1.bgColor];
+        } else {
+            [self setBackgroundColor:[UIColor whiteColor]];
+        }
 
     }
     return self;
