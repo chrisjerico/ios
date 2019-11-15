@@ -24,21 +24,37 @@
         _calendar = [[FSCalendar alloc] initWithFrame:CGRectMake(30, 200, APP.Width-60, 300)];
         _calendar.layer.cornerRadius = 10;
         _calendar.layer.masksToBounds = true;
-        _calendar.backgroundColor = [UIColor whiteColor];
+
         _calendar.delegate = self;
         _calendar.allowsMultipleSelection = false;
         _calendar.scrollEnabled = true;
         _calendar.appearance.headerDateFormat = @"yyyy年M月";
-        _calendar.appearance.selectionColor = Skin1.navBarBgColor;
-        _calendar.appearance.headerTitleColor = [UIColor blackColor];
+
         _calendar.appearance.headerMinimumDissolvedAlpha = 0;
         _calendar.appearance.caseOptions = FSCalendarCaseOptionsHeaderUsesUpperCase;
-        // 设置周字体颜色
-        _calendar.appearance.weekdayTextColor = [UIColor lightGrayColor];
+
         _calendar.placeholderType = FSCalendarPlaceholderTypeNone;
-        _calendar.appearance.todayColor = [UIColor clearColor];
+;
 //        [_calendar selectDate:[NSDate date] scrollToDate:true];
         [self addSubview:_calendar];
+        
+        if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+            _calendar.backgroundColor = Skin1.bgColor;
+            _calendar.appearance.selectionColor = Skin1.navBarBgColor;
+            _calendar.appearance.titleDefaultColor = [UIColor whiteColor];
+            _calendar.appearance.headerTitleColor = [UIColor whiteColor];
+            // 设置周字体颜色
+            _calendar.appearance.weekdayTextColor = [UIColor lightGrayColor];
+            _calendar.appearance.todayColor = [UIColor clearColor];
+        } else {
+            _calendar.backgroundColor = [UIColor whiteColor];
+            _calendar.appearance.selectionColor = Skin1.navBarBgColor;
+            _calendar.appearance.titleDefaultColor = [UIColor blackColor];
+            _calendar.appearance.headerTitleColor = [UIColor blackColor];
+            // 设置周字体颜色
+            _calendar.appearance.weekdayTextColor = [UIColor lightGrayColor];
+            _calendar.appearance.todayColor = [UIColor clearColor];
+        }
     }
     
     __weakSelf_(__self);
