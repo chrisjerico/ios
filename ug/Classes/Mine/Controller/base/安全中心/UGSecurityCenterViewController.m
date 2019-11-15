@@ -153,19 +153,38 @@
 - (void)slideSwitchView:(XYYSegmentControl *)view didselectTab:(NSUInteger)number {
     NSString *titleStr = [self.itemArray objectAtIndex:number];
     if ([titleStr isEqualToString:@"常用登录地" ]) {
-        [LEEAlert alert].config
-        .LeeAddTitle(^(UILabel *label) {
-            label.text = @"⚠️为了您的账号安全，现在可以绑定常用登录地";
-            label.textColor = [UIColor redColor];
-            label.textAlignment = NSTextAlignmentCenter;
-        })
-        .LeeAddContent(^(UILabel *label) {
-            label.text = @"1、绑定后，只有在常用地范围内，才能正常登录\n2、可以绑定多个常用地\n3、绑定后，可选择默认选项（请选择国家-请选择省-请选择市）即可自行解除绑定";
-            label.textColor = [[UIColor blackColor] colorWithAlphaComponent:0.5f];
-            label.textAlignment = NSTextAlignmentLeft;
-        })
-        .LeeAction(@"我知道了", nil)
-        .LeeShow();
+
+        
+        if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+            [LEEAlert alert].config
+            .LeeAddTitle(^(UILabel *label) {
+                label.text = @"⚠️为了您的账号安全，现在可以绑定常用登录地";
+                label.textColor = [UIColor redColor];
+                label.textAlignment = NSTextAlignmentCenter;
+            })
+            .LeeAddContent(^(UILabel *label) {
+                label.text = @"1、绑定后，只有在常用地范围内，才能正常登录\n2、可以绑定多个常用地\n3、绑定后，可选择默认选项（请选择国家-请选择省-请选择市）即可自行解除绑定";
+                label.textColor = Skin1.textColor2 ;
+                label.textAlignment = NSTextAlignmentLeft;
+            })
+            .LeeHeaderColor(Skin1.bgColor)
+            .LeeAction(@"我知道了", nil)
+            .LeeShow();
+        } else {
+            [LEEAlert alert].config
+            .LeeAddTitle(^(UILabel *label) {
+                label.text = @"⚠️为了您的账号安全，现在可以绑定常用登录地";
+                label.textColor = [UIColor redColor];
+                label.textAlignment = NSTextAlignmentCenter;
+            })
+            .LeeAddContent(^(UILabel *label) {
+                label.text = @"1、绑定后，只有在常用地范围内，才能正常登录\n2、可以绑定多个常用地\n3、绑定后，可选择默认选项（请选择国家-请选择省-请选择市）即可自行解除绑定";
+                label.textColor = [[UIColor blackColor] colorWithAlphaComponent:0.5f];
+                label.textAlignment = NSTextAlignmentLeft;
+            })
+            .LeeAction(@"我知道了", nil)
+            .LeeShow();
+        }
     }
 }
 
