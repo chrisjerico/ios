@@ -156,12 +156,8 @@ static LogVC *_logVC = nil;
         [ac setActionAtTitle:key handler:^(UIAlertAction *aa) {
             [APP setValue:key forKey:@"_SiteId"];
             [APP setValue:APP.allSiteIds[key] forKey:@"_Host"];
-//            [[NSUserDefaults standardUserDefaults] setObject:key forKey:@"当前站点Key"];
-//            [[NSUserDefaults standardUserDefaults] synchronize];
-//            UIAlertController *ac = [AlertHelper showAlertView:@"切换成功，重启APP生效" msg:nil btnTitles:@[@"退出APP", @"暂不退出"]];
-//            [ac setActionAtTitle:@"退出APP" handler:^(UIAlertAction *aa) {
-//                exit(0);
-//            }];
+            [[NSUserDefaults standardUserDefaults] setObject:key forKey:@"当前站点Key"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
         }];
     }
 }
