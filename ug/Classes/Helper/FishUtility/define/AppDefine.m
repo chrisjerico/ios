@@ -227,8 +227,12 @@
             @"test10":@"http://test10.6yc.com",
             @"c083":@"http://t111f.fhptcdn.com",
         };
-        _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"] ? : @"a002";
-        _SiteId = @"c134";
+#ifdef DEBUG
+        _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
+#endif
+        if (!_SiteId.length) {
+            _SiteId = @"c194";
+        }
         _Host = dict[_SiteId.lowercaseString];
         if (!_Host.length) {
             @throw [NSException exceptionWithName:@"缺少域名" reason:_NSString(@"（%@）该站点没有配置接口域名", _SiteId) userInfo:nil];
