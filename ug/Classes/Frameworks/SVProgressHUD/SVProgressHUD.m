@@ -333,6 +333,10 @@ static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
 }
 
 + (void)dismiss {
+    SVProgressHUD *hud = [self sharedView];
+    if (hud.imageView.image == hud.errorImage) {
+        return;
+    }
     [self dismissWithDelay:0.0 completion:nil];
 }
 

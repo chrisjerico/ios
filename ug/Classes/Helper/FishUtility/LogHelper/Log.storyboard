@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -26,8 +26,9 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="35"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ztv-fB-Wdg">
-                                                        <rect key="frame" x="0.0" y="0.0" width="74.5" height="35"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="62" height="35"/>
                                                         <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                         <state key="normal" title="清空"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="清空Button"/>
@@ -37,25 +38,39 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vun-UF-JMa">
-                                                        <rect key="frame" x="75" y="0.0" width="74.5" height="35"/>
+                                                        <rect key="frame" x="62.5" y="0.0" width="62" height="35"/>
                                                         <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                         <state key="normal" title="重发"/>
                                                         <connections>
                                                             <action selector="onRepeatBtnClick:" destination="jnV-av-miB" eventType="touchUpInside" id="06d-nR-YfH"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I5H-uQ-5AM">
-                                                        <rect key="frame" x="150" y="0.0" width="75" height="35"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lUk-uB-tOf">
+                                                        <rect key="frame" x="125" y="0.0" width="62.5" height="35"/>
                                                         <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                        <state key="normal" title="切换站点"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="当前站点Button"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="onChangeSiteIdBtnClick:" destination="jnV-av-miB" eventType="touchUpInside" id="fEe-G9-JAw"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I5H-uQ-5AM">
+                                                        <rect key="frame" x="188" y="0.0" width="62" height="35"/>
+                                                        <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                         <state key="normal" title="切换主题"/>
                                                         <connections>
                                                             <action selector="onLHBtnClick:" destination="jnV-av-miB" eventType="touchUpInside" id="GY6-zy-kg8"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PHC-Wf-Otm">
-                                                        <rect key="frame" x="225.5" y="0.0" width="74.5" height="35"/>
+                                                        <rect key="frame" x="250.5" y="0.0" width="62" height="35"/>
                                                         <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                         <state key="normal" title="加书签">
                                                             <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
@@ -65,8 +80,9 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oXS-3Y-bRv">
-                                                        <rect key="frame" x="300.5" y="0.0" width="74.5" height="35"/>
+                                                        <rect key="frame" x="313" y="0.0" width="62" height="35"/>
                                                         <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                         <state key="normal" title="关闭"/>
                                                         <connections>
                                                             <action selector="onHideBtnClick:" destination="jnV-av-miB" eventType="touchUpInside" id="XkM-ao-d1L"/>
@@ -284,6 +300,7 @@
                     </view>
                     <connections>
                         <outlet property="collectButton" destination="PHC-Wf-Otm" id="k6F-pG-I0L"/>
+                        <outlet property="currentSiteIdButton" destination="lUk-uB-tOf" id="ALa-m8-Kbj"/>
                         <outlet property="paramsTableView" destination="lHh-li-cTe" id="y3T-NS-JvX"/>
                         <outlet property="reqTableView" destination="Cza-Fp-ltk" id="BDL-It-KWY"/>
                         <outlet property="resTextView" destination="N8E-cY-3ck" id="U5Z-NQ-KK6"/>

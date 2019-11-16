@@ -348,8 +348,8 @@
         };
     }
 	
-    // c200站点定制需求
-    if ([APP.SiteId containsString:@"c200"]) {
+    // c200、c035站点定制需求
+    if ([APP.SiteId containsString:@"c200"] || [APP.SiteId containsString:@"c035"]) {
         FLAnimatedImageView *gifImageView = [[FLAnimatedImageView alloc] initWithFrame:CGRectMake(APP.Width-100, 300, 100, 100)];
         gifImageView.contentMode = UIViewContentModeScaleAspectFit;
         gifImageView.userInteractionEnabled = true;
@@ -593,7 +593,7 @@
 			[self.titleView setImgName:config.mobile_logo];
 			SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
 		} failure:^(id msg) {
-			
+            [SVProgressHUD showErrorWithStatus:msg];
 		}];
 	}];
 }
@@ -625,7 +625,7 @@
 			});
 			
 		} failure:^(id msg) {
-			
+			[SVProgressHUD showErrorWithStatus:msg];
 		}];
 	}];
 }

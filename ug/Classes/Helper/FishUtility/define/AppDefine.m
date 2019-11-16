@@ -106,7 +106,7 @@
 {
     self = [super init];
     if (self) {
-        NSDictionary *dict =
+        NSDictionary *dict = _allSiteIds =
         @{
             @"a002":@"https://5049uuu.com",
             @"a002a":@"",
@@ -156,7 +156,7 @@
             @"c089":@"",
             @"c090":@"",
             @"c091":@"https://83f9.com",
-            @"c092":@"https://4681kkk.com   4681lll.com  4681mmm.com",
+            @"c092":@"https://4681kkk.com",// 4681lll.com  4681mmm.com 三个都可以
             @"c105":@"",
             @"c106":@"",
             @"c108":@"https://361865.com",
@@ -227,7 +227,8 @@
             @"test10":@"http://test10.6yc.com",
             @"c083":@"http://t111f.fhptcdn.com",
         };
-        _SiteId = @"c083";
+        _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"] ? : @"a002";
+        _SiteId = @"c134";
         _Host = dict[_SiteId.lowercaseString];
         if (!_Host.length) {
             @throw [NSException exceptionWithName:@"缺少域名" reason:_NSString(@"（%@）该站点没有配置接口域名", _SiteId) userInfo:nil];

@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *paramsTableView;  /**<    参数TableView */
 @property (weak, nonatomic) IBOutlet UITextView *resTextView;       /**<    响应TextView */
 @property (weak, nonatomic) IBOutlet UIButton *collectButton;       /**<    收藏按钮 */
+@property (weak, nonatomic) IBOutlet UIButton *currentSiteIdButton; /**<   当前站点按钮 */
 @property (weak, nonatomic) IBOutlet UISegmentedControl *toolSegmentedControl;
 
 @property (nonatomic) NSMutableArray <CCSessionModel *>*allRequest; /**<    请求列表 */
@@ -49,6 +50,7 @@ static LogVC *_logVC = nil;
         UISwipeGestureRecognizer *swipe = [UISwipeGestureRecognizer gestureRecognizer:^(UISwipeGestureRecognizer *sender) {
             [NavController1.topView endEditing:true];
             [superview addSubview:_logVC.view];
+            [_logVC.currentSiteIdButton setTitle:APP.SiteId forState:UIControlStateNormal];
             
             [UIView animateWithDuration:0.25 animations:^{
                 _logVC.view.center = CGPointMake(superview.width/2, superview.height/2);
@@ -136,6 +138,31 @@ static LogVC *_logVC = nil;
         
         [LogVC addRequestModel:sObj];
         [_reqTableView reloadData];
+    }
+}
+
+- (IBAction)onChangeSiteIdBtnClick:(UIButton *)sender {
+    NSMutableArray *titles = @[].mutableCopy;
+    for (NSString *key in APP.allSiteIds.allKeys) {
+        if ([APP.allSiteIds[key] length]) {
+            [titles addObject:key];
+        }
+    }
+    [titles sortUsingComparator:^NSComparisonResult(NSString *obj1, NSString *obj2) {
+        return [obj1 substringFromIndex:1].intValue > [obj2 substringFromIndex:1].intValue;
+    }];
+    UIAlertController *ac = [AlertHelper showAlertView:nil msg:nil btnTitles:[titles arrayByAddingObject:@"取消"]];
+    for (NSString *key in titles) {
+        [ac setActionAtTitle:key handler:^(UIAlertAction *aa) {
+            [APP setValue:key forKey:@"_SiteId"];
+            [APP setValue:APP.allSiteIds[key] forKey:@"_Host"];
+//            [[NSUserDefaults standardUserDefaults] setObject:key forKey:@"当前站点Key"];
+//            [[NSUserDefaults standardUserDefaults] synchronize];
+//            UIAlertController *ac = [AlertHelper showAlertView:@"切换成功，重启APP生效" msg:nil btnTitles:@[@"退出APP", @"暂不退出"]];
+//            [ac setActionAtTitle:@"退出APP" handler:^(UIAlertAction *aa) {
+//                exit(0);
+//            }];
+        }];
     }
 }
 

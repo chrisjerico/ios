@@ -58,7 +58,9 @@
             UGPromoteListModel *listModel = model.data;
             [__self.tableView.dataArray setArray:listModel.list];
             [__self.tableView reloadData];
-        } failure:nil];
+        } failure:^(id msg) {
+            [SVProgressHUD showErrorWithStatus:msg];
+        }];
     }];
 }
 

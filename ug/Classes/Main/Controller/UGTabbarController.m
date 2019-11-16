@@ -366,14 +366,13 @@ static UGTabbarController *_tabBarVC = nil;
             return false;
         }
         if (([vc isKindOfClass:[UGBMLotteryHomeViewController class]] && ![Skin1.skitType isEqualToString:@"黑色模板"])){
-                push(@"彩票大厅", [UGYYLotteryHomeViewController new]);
-                           return false;
+            push(@"彩票大厅", [UGYYLotteryHomeViewController new]);
+            return false;
         }
         if (([vc isKindOfClass:[UGYYLotteryHomeViewController class]] && [Skin1.skitType isEqualToString:@"黑色模板"])){
             push(@"彩票大厅", _LoadVC_from_storyboard_(@"UGBMLotteryHomeViewController"));
             return false;
         }
-   
     }
     
     if (UGLoginIsAuthorized()
