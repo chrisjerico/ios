@@ -89,6 +89,16 @@
     UIView* view = self;
     view.hidden = NO;
     
+    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+        [self setBackgroundColor:Skin1.bgColor];
+        [self.titleLabel setTextColor:[UIColor whiteColor]];
+        [self.contentTextView setTextColor:[UIColor whiteColor]];
+    } else {
+        [self setBackgroundColor:[UIColor whiteColor]];
+        [self.titleLabel setTextColor:[UIColor blackColor]];
+        [self.contentTextView setTextColor:[UIColor blackColor]];
+    }
+    
     maskView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
     maskView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
     
