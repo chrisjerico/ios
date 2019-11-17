@@ -446,24 +446,28 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         }
         case 11: {
             // QQ客服
-            __block UIView *__v = _LoadView_from_nib_(@"客服AlertView");
-            __v.frame = APP.Bounds;
-            FastSubViewCode(__v);
-            subLabel(@"微信号Label").text = @"QQ客服";
-            if (SysConf.appPopupQqNum.length) {
-                subLabel(@"微信号Label").text = _NSString(@"QQ客服(%@)", SysConf.appPopupQqNum);
+            if (SysConf.appPopupQqImg.length) {
+                __block UIView *__v = _LoadView_from_nib_(@"客服AlertView");
+                __v.frame = APP.Bounds;
+                FastSubViewCode(__v);
+                subLabel(@"微信号Label").text = @"QQ客服";
+                if (SysConf.appPopupQqNum.length) {
+                    subLabel(@"微信号Label").text = _NSString(@"QQ客服(%@)", SysConf.appPopupQqNum);
+                }
+                [subImageView(@"二维码ImageView") sd_setImageWithURL:[NSURL URLWithString:SysConf.appPopupQqImg] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                    if (image) {
+                        subImageView(@"二维码ImageView").cc_constraints.height.constant = image.height/image.width * 280;
+                    }
+                }];
+                [subButton(@"确定Button") addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
+                    [__v removeFromSuperview];
+                    __v = nil;
+                }];
+                [APP.Window addSubview:__v];
             }
-            [subImageView(@"二维码ImageView") sd_setImageWithURL:[NSURL URLWithString:SysConf.appPopupQqImg] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-                subImageView(@"二维码ImageView").cc_constraints.height.constant = image.height/image.width * 280;
-            }];
-            [subButton(@"确定Button") addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
-                [__v removeFromSuperview];
-                __v = nil;
-            }];
-            [APP.Window addSubview:__v];
-            
-            // 已弃用
-            // [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_NSString(@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web", SysConf.serviceQQ1)]];
+            else {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_NSString(@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web", SysConf.serviceQQ1)]];
+            }
             break;
         }
         case 12: {
@@ -476,7 +480,9 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
                 subLabel(@"微信号Label").text = _NSString(@"微信客服(%@)", SysConf.appPopupWechatNum);
             }
             [subImageView(@"二维码ImageView") sd_setImageWithURL:[NSURL URLWithString:SysConf.appPopupWechatImg] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-                subImageView(@"二维码ImageView").cc_constraints.height.constant = image.height/image.width * 280;
+                if (image) {
+                    subImageView(@"二维码ImageView").cc_constraints.height.constant = image.height/image.width * 280;
+                }
             }];
             [subButton(@"确定Button") addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
                 [__v removeFromSuperview];

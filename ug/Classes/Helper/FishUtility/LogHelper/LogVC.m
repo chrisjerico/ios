@@ -141,6 +141,7 @@ static LogVC *_logVC = nil;
     }
 }
 
+// 切换站点
 - (IBAction)onChangeSiteIdBtnClick:(UIButton *)sender {
     NSMutableArray *titles = @[].mutableCopy;
     for (NSString *key in APP.allSiteIds.allKeys) {
@@ -151,11 +152,12 @@ static LogVC *_logVC = nil;
     [titles sortUsingComparator:^NSComparisonResult(NSString *obj1, NSString *obj2) {
         return [obj1 substringFromIndex:1].intValue > [obj2 substringFromIndex:1].intValue;
     }];
-    UIAlertController *ac = [AlertHelper showAlertView:nil msg:nil btnTitles:[titles arrayByAddingObject:@"取消"]];
+    UIAlertController *ac = [AlertHelper showAlertView:nil msg:@"请选择要切换的站点" btnTitles:[titles arrayByAddingObject:@"取消"]];
     for (NSString *key in titles) {
         [ac setActionAtTitle:key handler:^(UIAlertAction *aa) {
             [APP setValue:key forKey:@"_SiteId"];
             [APP setValue:APP.allSiteIds[key] forKey:@"_Host"];
+            [_logVC.currentSiteIdButton setTitle:key forState:UIControlStateNormal];
             [[NSUserDefaults standardUserDefaults] setObject:key forKey:@"当前站点Key"];
             [[NSUserDefaults standardUserDefaults] synchronize];
         }];

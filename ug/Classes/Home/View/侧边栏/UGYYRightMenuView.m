@@ -32,12 +32,12 @@
 @property (nonatomic, assign) BOOL refreshing;
 
 @property (weak, nonatomic) IBOutlet UIView *bgView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bgViewHeightConstraint;    /**<   高度约束 */
 @property (weak, nonatomic) IBOutlet UILabel *welComeLabel;     /**<   欢迎您！*/
 
 @property (weak, nonatomic) IBOutlet UIView *bg2View;           /**<   充值提现背景*/
 @property (weak, nonatomic) IBOutlet UIView *rechargeView;      /**<   充值背景*/
 @property (weak, nonatomic) IBOutlet UIView *withdrawlView;     /**<   提现背景*/
-@property (weak, nonatomic) IBOutlet UIImageView *bgImgeView;
 @property (weak, nonatomic) IBOutlet UIImageView *icon1ImgeView;  /**<   充值图片*/
 @property (weak, nonatomic) IBOutlet UIImageView *icon2ImageView; /**<  提现图片*/
 @property (weak, nonatomic) IBOutlet UILabel *rechargeLabel;      /**<   充值文字*/
@@ -365,6 +365,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         [_myButton setHidden:NO];
         [_welComeLabel setHidden:YES];
         [_bg2View setHidden:YES];
+        self.bgViewHeightConstraint.constant = 244;
     } else {
         [self.rechargeView setBackgroundColor:Skin1.navBarBgColor];
         [self.withdrawlView setBackgroundColor:Skin1.navBarBgColor];
@@ -377,6 +378,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         [_myButton setHidden:YES];
         [_welComeLabel setHidden:NO];
         [_bg2View setHidden:NO];
+        self.bgViewHeightConstraint.constant = 180;
     }
    
     self.backgroundColor = Skin1.textColor4;
