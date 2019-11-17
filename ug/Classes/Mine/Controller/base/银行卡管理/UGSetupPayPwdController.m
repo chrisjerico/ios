@@ -34,6 +34,36 @@
     self.submitButton.layer.cornerRadius = 3;
     self.submitButton.layer.masksToBounds = YES;
     [self.submitButton setBackgroundColor:Skin1.navBarBgColor];
+    FastSubViewCode(self.view)
+    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+        [self.view setBackgroundColor:Skin1.bgColor];
+        [subLabel(@"标题label") setTextColor:[UIColor whiteColor]];
+        [subLabel(@"登录密码label") setTextColor:[UIColor whiteColor]];
+        [subLabel(@"取款密码label") setTextColor:[UIColor whiteColor]];
+        [subLabel(@"确认密码label") setTextColor:[UIColor whiteColor]];
+        [self.loginPwdTextF setTextColor:[UIColor whiteColor]];
+        [self.fundPwdTextF setTextColor:[UIColor whiteColor]];
+        [self.checkPwdTextF setTextColor:[UIColor whiteColor]];
+         // "通过KVC修改占位文字的颜色"
+        [self.loginPwdTextF setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
+        [self.fundPwdTextF setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
+        [self.checkPwdTextF setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
+  
+        
+    } else {
+        [self.view setBackgroundColor:Skin1.bgColor];
+        [subLabel(@"标题label") setTextColor:[UIColor whiteColor]];
+        [subLabel(@"登录密码label") setTextColor:[UIColor whiteColor]];
+        [subLabel(@"取款密码label") setTextColor:[UIColor whiteColor]];
+        [subLabel(@"确认密码label") setTextColor:[UIColor whiteColor]];
+        [self.loginPwdTextF setTextColor:[UIColor whiteColor]];
+        [self.fundPwdTextF setTextColor:[UIColor whiteColor]];
+        [self.checkPwdTextF setTextColor:[UIColor whiteColor]];
+         // "通过KVC修改占位文字的颜色"
+        [self.loginPwdTextF setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
+        [self.fundPwdTextF setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
+        [self.checkPwdTextF setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
+    }
 
     self.loginPwdTextF.delegate = self;
     self.fundPwdTextF.delegate = self;
