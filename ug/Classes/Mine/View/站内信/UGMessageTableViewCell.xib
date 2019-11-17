@@ -18,23 +18,27 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="消息标题" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kgg-Kf-smC">
-                        <rect key="frame" x="15" y="13.5" width="57.5" height="17"/>
+                        <rect key="frame" x="15" y="13.5" width="157" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2019-05-06 12:21:54" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oZN-0C-PvH">
                         <rect key="frame" x="180" y="14" width="130" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="5vk-lr-rpC"/>
+                            <constraint firstAttribute="width" constant="130" id="jJ0-9A-2ea"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="kgg-Kf-smC" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="SQa-sj-rbp"/>
+                    <constraint firstItem="oZN-0C-PvH" firstAttribute="leading" secondItem="kgg-Kf-smC" secondAttribute="trailing" constant="8" id="cWL-k2-0oz"/>
                     <constraint firstItem="kgg-Kf-smC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="n8c-ZX-Y1q"/>
                     <constraint firstAttribute="trailing" secondItem="oZN-0C-PvH" secondAttribute="trailing" constant="10" id="r5R-Nz-lC5"/>
                     <constraint firstItem="oZN-0C-PvH" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="u0p-Q6-Vpo"/>
-                    <constraint firstItem="oZN-0C-PvH" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="kgg-Kf-smC" secondAttribute="trailing" constant="3" id="zUJ-De-E9Q"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -43,7 +47,7 @@
                 <outlet property="timeLabel" destination="oZN-0C-PvH" id="koX-RI-guF"/>
                 <outlet property="titleLabel" destination="kgg-Kf-smC" id="Q32-QH-S2P"/>
             </connections>
-            <point key="canvasLocation" x="139" y="128"/>
+            <point key="canvasLocation" x="137.68115942028987" y="127.90178571428571"/>
         </tableViewCell>
     </objects>
 </document>
