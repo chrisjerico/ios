@@ -463,7 +463,7 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
             completion(result, error);
         }
         
-#if defined(DEBUG)
+#ifdef DEBUG
         [LogVC addRequestModel:({
             CCSessionModel *sm = [CCSessionModel new];
             sm.urlString = method;
@@ -503,7 +503,7 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
             completion(result, error);
         }
         
-#if defined(DEBUG)
+#ifdef DEBUG
         [LogVC addRequestModel:({
             CCSessionModel *sm = [CCSessionModel new];
             sm.urlString = method;
@@ -564,7 +564,7 @@ completion:(CMNetworkBlock)completion {
             completion(result, error);
         }
         
-#if defined(DEBUG)
+#ifdef DEBUG
         [LogVC addRequestModel:({
             CCSessionModel *sm = [CCSessionModel new];
             sm.urlString = method;
@@ -604,7 +604,7 @@ completion:(CMNetworkBlock)completion {
             completion(result, error);
         }
         
-#if defined(DEBUG)
+#ifdef DEBUG
         [LogVC addRequestModel:({
             CCSessionModel *sm = [CCSessionModel new];
             sm.urlString = method;
