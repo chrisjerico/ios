@@ -133,7 +133,7 @@
             @"c039":@"",
             @"c041":@"",
             @"c047":@"https://x22xxx.com",
-            @"c048":@"",
+            @"c048":@"https://dsjf43-43-f14-345-36-g54t-gfh54.com",
             @"c049":@"https://93922app.com",
             @"c052":@"",
             @"c053":@"https://988c53.com",
@@ -231,7 +231,7 @@
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
 #endif
         if (!_SiteId.length) {
-            _SiteId = @"test10";
+            _SiteId = @"c048";
         }
         _Host = dict[_SiteId.lowercaseString];
         if (!_Host.length) {
