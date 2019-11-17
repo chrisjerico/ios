@@ -22,9 +22,16 @@
 #import "UGPCDDLotteryController.h"          //PC蛋蛋
 #import "UGFC3DLotteryController.h"          //福彩3D
 #import "UGPK10NNLotteryController.h"        //PK10牛牛
+#import "YBPopupMenu.h"                      //pop弹出框
 @implementation UGSkinManagers (Lottery)
 
 
+//黑色模板控制
+- (void)skinSetUP{
+    [self skinLottery];
+//    [self skinYBPopupMenu];
+}
+////下注界面黑色模板控制
 - (void)skinLottery  {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -113,7 +120,24 @@
        
     });
 }
-
+////popView 弹出窗控制
+//- (void)skinYBPopupMenu  {
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+//        [YBPopupMenu aspect_hookSelector:@selector(show) withOptions:AspectPositionAfter usingBlock:^(id <AspectInfo> aspectInfo, BOOL animated ) {
+//            YBPopupMenu *vc = (YBPopupMenu *)aspectInfo.instance;
+//            NSLog(@"aspectInfo.instance= %@",aspectInfo.instance);
+//            if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+//                [[vc valueForKey:@"_textColor"] setColor:[UIColor whiteColor]];
+//                [[vc valueForKey:@"_contentColor"] setColor:Skin1.bgColor];
+//                [[vc valueForKey:@"_contentView"] setColor:Skin1.bgColor];
+//            } else {
+//                vc.type = YBPopupMenuTypeDefault;
+//            }
+//        } error:nil];
+//
+//    });
+//}
 
 
 

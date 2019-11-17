@@ -67,13 +67,15 @@ static NSString *recordFilterCellid = @"UGRecordFilterCollectionViewCell";
     
     YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:self.filterItemArray icons:nil menuWidth:CGSizeMake(120, 180) delegate:self];
     popView.fontSize = 14;
-    popView.type = YBPopupMenuTypeDefault;
+ 
     float y = 0;
     if ([CMCommon isPhoneX]) {
         y = 88;
     }else {
         y = 64;
     }
+    
+
     [popView showAtPoint:CGPointMake(UGScreenW - 75, y + 5)];
     
 }

@@ -150,7 +150,7 @@
             @"c078":@"",
             @"c080":@"",
             @"c084":@"https://papghawshugposwaughwsoohu.com",
-            @"c085":@"https://api.2003688.vip",
+            @"c085":@"https://xn--10app-308h91u.com",
             @"c085a":@"https://c10000ll.com",
             @"c087":@"",
             @"c089":@"",
@@ -231,7 +231,7 @@
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
 #endif
         if (!_SiteId.length) {
-            _SiteId = @"c048";
+            _SiteId = @"c083";
         }
         _Host = dict[_SiteId.lowercaseString];
         if (!_Host.length) {

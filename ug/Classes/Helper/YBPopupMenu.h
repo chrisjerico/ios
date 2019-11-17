@@ -10,7 +10,7 @@
 
 typedef NS_ENUM(NSInteger , YBPopupMenuType) {
     YBPopupMenuTypeDefault = 0,
-    YBPopupMenuTypeDark
+    YBPopupMenuTypeDark,
 };
 
 @class YBPopupMenu;

@@ -11,8 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UGSkinManagers (Lottery)
-//下注界面黑色模板控制
-- (void)skinLottery;
+
+//黑色模板控制
+- (void)skinSetUP;
+
 @end
 
 NS_ASSUME_NONNULL_END

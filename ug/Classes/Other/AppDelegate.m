@@ -75,7 +75,7 @@
     
     [self initBugly];
     [self userAgent];
-    [Skin1 skinLottery ];
+    [Skin1 skinSetUP ];
 #ifdef DEBUG
 	[LogVC enableLogVC];
 
