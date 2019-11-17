@@ -129,7 +129,7 @@
     sm.delegate = self;
     sm.reconnectCnt = 1;
     
-#if defined(DEBUG)
+#ifdef DEBUG
 //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 //        if (sm.successBlock)
 //            sm.successBlock(@{});
@@ -154,7 +154,7 @@
         [[sm dataTask:m request:req] resume];
     }
     
-#if defined(DEBUG)
+#ifdef DEBUG
 //    [LogVC addRequestModel:sm];
 #endif
     return sm;
