@@ -72,19 +72,36 @@
                              model1.state,
                              model1.adminComment];
             
-            [LEEAlert alert].config
-            .LeeAddTitle(^(UILabel *label) {
-                
-                label.text = @"查看详情";
-            })
-            .LeeAddContent(^(UILabel *label) {
-                
-                label.text = str;
-                label.lineSpacing1 = 5;
-                label.textAlignment = NSTextAlignmentLeft;
-            })
-            .LeeAction(@"关闭", nil)
-            .LeeShow();
+            if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+                [LEEAlert alert].config
+                .LeeAddTitle(^(UILabel *label) {
+                    label.textColor = [UIColor whiteColor];
+                    label.text = @"查看详情";
+                })
+                .LeeAddContent(^(UILabel *label) {
+                    label.text = str;
+                    label.lineSpacing1 = 5;
+                    label.textAlignment = NSTextAlignmentLeft;
+                })
+                .LeeAction(@"关闭", nil)
+                .LeeHeaderColor(Skin1.bgColor)
+                .LeeShow();
+            } else {
+                [LEEAlert alert].config
+                .LeeAddTitle(^(UILabel *label) {
+                    
+                    label.text = @"查看详情";
+                })
+                .LeeAddContent(^(UILabel *label) {
+                    
+                    label.text = str;
+                    label.lineSpacing1 = 5;
+                    label.textAlignment = NSTextAlignmentLeft;
+                })
+                .LeeAction(@"关闭", nil)
+                .LeeShow();
+            }
+
             
         } failure:^(id msg) {
             

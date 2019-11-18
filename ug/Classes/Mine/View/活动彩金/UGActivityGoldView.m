@@ -46,6 +46,7 @@
         
         subLabel(@"标题Label").textColor = Skin1.navBarBgColor;
         subButton(@"确定Button").backgroundColor = Skin1.navBarBgColor;
+        subButton(@"关闭btn").layer.borderWidth = 1;
         
         [_collectionView registerNib:[UINib nibWithNibName:@"UGContentMoneyCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UGContentMoneyCollectionViewCell"];
         _collectionView.dataSource = self;
@@ -60,6 +61,35 @@
             CGFloat h = [newVal CGSizeValue].height;
             ((UIWebView *)obj).cc_constraints.height.constant = h;
         }];
+        [_webView setOpaque:NO];
+        
+        if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+            [self setBackgroundColor:Skin1.bgColor];
+            [subLabel(@"标题Label") setTextColor:[UIColor whiteColor]];
+            [subLabel(@"活动说明Label") setTextColor:[UIColor whiteColor]];
+            [subLabel(@"快捷金额Label") setTextColor:[UIColor whiteColor]];
+            [subTextField(@"金额TextField") setTextColor:[UIColor whiteColor]];
+            [_textView setTextColor:[UIColor whiteColor]];
+            [subTextField(@"验证码TextField") setTextColor:[UIColor whiteColor]];
+            [subButton(@"关闭btn") setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
+            subButton(@"关闭btn").layer.borderColor = [UIColor whiteColor].CGColor;
+            // 占位颜色
+            [subTextField(@"验证码TextField") setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
+            [subTextField(@"金额TextField") setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
+        } else {
+            [self setBackgroundColor:[UIColor whiteColor]];
+            [subLabel(@"标题Label") setTextColor:[UIColor blackColor]];
+            [subLabel(@"活动说明Label") setTextColor:[UIColor blackColor]];
+            [subLabel(@"快捷金额Label") setTextColor:[UIColor blackColor]];
+            [subTextField(@"金额TextField") setTextColor:[UIColor blackColor]];
+            [_textView setTextColor:[UIColor blackColor]];
+            [subTextField(@"验证码TextField") setTextColor:[UIColor blackColor]];
+            [subButton(@"关闭btn") setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
+            subButton(@"关闭btn").layer.borderColor = [UIColor blackColor].CGColor;
+            // 占位颜色
+            [subTextField(@"验证码TextField") setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
+            [subTextField(@"金额TextField") setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
+        }
     }
     
     // 验证码
@@ -127,6 +157,30 @@
     NSLog(@"self.item.win_apply_content = %@", self.item.win_apply_content);
     
     [self.webView loadHTMLString:_NSString(@"<head><style>img{width:auto !important;max-width:%f;height:auto}</style></head>%@", self.width-30, self.item.win_apply_content) baseURL:nil];
+    
+    
+//    NSString *str = _NSString(@"<head><style>img{width:auto !important;max-width:%f;height:auto}</style></head>%@", self.width-30, self.item.win_apply_content);
+//    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+//        NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithData:[str dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,} documentAttributes:nil error:nil];
+//        NSMutableParagraphStyle *ps = [NSMutableParagraphStyle new];
+//        ps.lineSpacing = 5;
+//        [mas addAttributes:@{NSParagraphStyleAttributeName:ps,} range:NSMakeRange(0, mas.length)];
+//
+//        // 替换文字颜色
+//        NSAttributedString *as = [mas copy];
+//        for (int i=0; i<as.length; i++) {
+//            NSRange r = NSMakeRange(0, as.length);
+//            NSMutableDictionary *dict = [as attributesAtIndex:i effectiveRange:&r].mutableCopy;
+//            UIColor *c = dict[NSForegroundColorAttributeName];
+//            if (fabs(c.red - c.green) < 0.05 && fabs(c.green - c.blue) < 0.05) {
+//                dict[NSForegroundColorAttributeName] = Skin1.textColor2;
+//                [mas addAttributes:dict range:NSMakeRange(i, 1)];
+//            }
+//        }
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [self.webView loadHTMLString:mas baseURL:nil];
+//        });
+//    });
 }
 
 - (void)show {

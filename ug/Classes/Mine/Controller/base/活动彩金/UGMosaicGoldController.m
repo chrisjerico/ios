@@ -165,19 +165,36 @@
     
     [imgView sd_setImageWithURL:[NSURL URLWithString:model.param.win_apply_image] placeholderImage:[UIImage imageNamed:@"winapply_default"]];
     
-    [LEEAlert alert].config
-    .LeeTitle(@"彩金活动")
-    .LeeAddCustomView(^(LEECustomView *custom) {
-        
-        custom.view = imgView;
-        
-        custom.isAutoWidth = YES;
-        
-        //                custom.positionType = LEECustomViewPositionTypeRight;
-    })
-    .LeeAction(@"确认", nil)
-    .LeeCancelAction(@"关闭", nil)
-    .LeeShow();
+    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+        [LEEAlert alert].config
+        .LeeAddTitle(^(UILabel *label) {
+            label.text = @"彩金活动";
+            label.textColor = [UIColor whiteColor];
+        })
+        .LeeAddCustomView(^(LEECustomView *custom) {
+            custom.view = imgView;
+            custom.isAutoWidth = YES;
+            //                custom.positionType = LEECustomViewPositionTypeRight;
+        })
+        .LeeAction(@"确认", nil)
+        .LeeCancelAction(@"关闭", nil)
+        .LeeHeaderColor(Skin1.bgColor)
+        .LeeShow();
+    } else {
+        [LEEAlert alert].config
+        .LeeTitle(@"彩金活动")
+        .LeeAddCustomView(^(LEECustomView *custom) {
+            custom.view = imgView;
+            custom.isAutoWidth = YES;
+            
+            //                custom.positionType = LEECustomViewPositionTypeRight;
+        })
+        .LeeAction(@"确认", nil)
+        .LeeCancelAction(@"关闭", nil)
+        .LeeShow();
+    }
+    
+
 }
 
 @end
