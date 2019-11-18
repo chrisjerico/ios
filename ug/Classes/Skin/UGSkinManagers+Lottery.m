@@ -121,23 +121,23 @@
     });
 }
 ////popView 弹出窗控制
-//- (void)skinYBPopupMenu  {
-//    static dispatch_once_t onceToken;
-//    dispatch_once(&onceToken, ^{
-//        [YBPopupMenu aspect_hookSelector:@selector(show) withOptions:AspectPositionAfter usingBlock:^(id <AspectInfo> aspectInfo, BOOL animated ) {
-//            YBPopupMenu *vc = (YBPopupMenu *)aspectInfo.instance;
-//            NSLog(@"aspectInfo.instance= %@",aspectInfo.instance);
-//            if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
-//                [[vc valueForKey:@"_textColor"] setColor:[UIColor whiteColor]];
-//                [[vc valueForKey:@"_contentColor"] setColor:Skin1.bgColor];
-//                [[vc valueForKey:@"_contentView"] setColor:Skin1.bgColor];
-//            } else {
-//                vc.type = YBPopupMenuTypeDefault;
-//            }
-//        } error:nil];
-//
-//    });
-//}
+- (void)skinYBPopupMenu  {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [YBPopupMenu aspect_hookSelector:@selector(show) withOptions:AspectPositionAfter usingBlock:^(id <AspectInfo> aspectInfo, BOOL animated ) {
+            YBPopupMenu *vc = (YBPopupMenu *)aspectInfo.instance;
+            NSLog(@"aspectInfo.instance= %@",aspectInfo.instance);
+            if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+                [[vc valueForKey:@"_textColor"] setColor:[UIColor whiteColor]];
+                [[vc valueForKey:@"_contentColor"] setColor:Skin1.bgColor];
+                [[vc valueForKey:@"_contentView"] setColor:Skin1.bgColor];
+            } else {
+                vc.type = YBPopupMenuTypeDefault;
+            }
+        } error:nil];
+
+    });
+}
 
 
 

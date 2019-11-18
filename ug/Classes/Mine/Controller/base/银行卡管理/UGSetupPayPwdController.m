@@ -44,7 +44,7 @@
         [self.loginPwdTextF setTextColor:[UIColor whiteColor]];
         [self.fundPwdTextF setTextColor:[UIColor whiteColor]];
         [self.checkPwdTextF setTextColor:[UIColor whiteColor]];
-         // "通过KVC修改占位文字的颜色"
+        // "通过KVC修改占位文字的颜色"
         [self.loginPwdTextF setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
         [self.fundPwdTextF setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
         [self.checkPwdTextF setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
@@ -59,7 +59,7 @@
         [self.loginPwdTextF setTextColor:[UIColor whiteColor]];
         [self.fundPwdTextF setTextColor:[UIColor whiteColor]];
         [self.checkPwdTextF setTextColor:[UIColor whiteColor]];
-         // "通过KVC修改占位文字的颜色"
+        // "通过KVC修改占位文字的颜色"
         [self.loginPwdTextF setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
         [self.fundPwdTextF setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
         [self.checkPwdTextF setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];

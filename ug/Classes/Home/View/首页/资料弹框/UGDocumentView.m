@@ -30,22 +30,23 @@ static UGDocumentView *_singleInstance = nil;
 }
 
 + (void)showWith:(UGDocumentDetailData *)model {
-	UIWindow * window = UIApplication.sharedApplication.keyWindow;
-	UGDocumentView * documentView = [UGDocumentView shareInstance];
-	documentView.model = model;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+       UIWindow * window = UIApplication.sharedApplication.keyWindow;
+        UGDocumentView * documentView = [UGDocumentView shareInstance];
+        documentView.model = model;
+        [window addSubview: documentView];
+
+        [documentView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(window);
+        }];
+    });
 	
-	[window addSubview: documentView];
-	[documentView mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.edges.equalTo(window);
-	}];
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
 	self = [super initWithFrame:frame];
 	if (self) {
-		
-		self.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.5];
-		
 		UIView *contentView = [UIView new];
 		contentView.layer.cornerRadius = 10;
 		contentView.layer.masksToBounds = true;
@@ -54,13 +55,17 @@ static UGDocumentView *_singleInstance = nil;
 			make.left.right.equalTo(self).inset(20);
 			make.top.bottom.equalTo(self).inset(80);
 		}];
-		
+        contentView.backgroundColor = Skin1.textColor4;
+        //给图层添加一个有色边框
+        contentView.layer.borderWidth = 1;
+        contentView.layer.borderColor = Skin1.navBarBgColor.CGColor;
 		// TitleLabel
 		UILabel *titleLabel = [UILabel new];
 		titleLabel.text = @"温馨提示";
 		titleLabel.textAlignment = NSTextAlignmentCenter;
-		titleLabel.font = [UIFont boldSystemFontOfSize:20];
-		titleLabel.backgroundColor = [UIColor whiteColor];
+		titleLabel.font = [UIFont boldSystemFontOfSize:16];
+		titleLabel.backgroundColor = Skin1.textColor4;
+        [titleLabel setTextColor:Skin1.textColor1];
 		[contentView addSubview:_titleLabel = titleLabel];
 		[titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.top.equalTo(contentView);
@@ -81,6 +86,7 @@ static UGDocumentView *_singleInstance = nil;
         // TextView
         _textView = [[UITextView alloc] init];
         _textView.editable = false;
+        _textView.backgroundColor = [UIColor clearColor];
 		[contentView addSubview:_textView];
 		[_textView mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.left.right.equalTo(contentView);
@@ -95,8 +101,8 @@ static UGDocumentView *_singleInstance = nil;
 			make.left.right.equalTo(contentView);
 			make.height.equalTo(@45);
 		}];
-		
-        
+       
+
         
 	}
 	return self;
@@ -119,14 +125,29 @@ static UGDocumentView *_singleInstance = nil;
 - (void)setModel:(UGDocumentDetailData *)model {
 	_model = model;
     _titleLabel.text = model.title;
-    
+
     __weakSelf_(__self);
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         NSString *str = _NSString(@"<head><style>img{width:auto !important;max-width:%f;height:auto}</style></head>%@%@%@", APP.Width-50, model.header, model.content, model.footer);
-         NSAttributedString *attStr = [[NSAttributedString alloc] initWithData:[str dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+         NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithData:[str dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,} documentAttributes:nil error:nil];
+         NSMutableParagraphStyle *ps = [NSMutableParagraphStyle new];
+         ps.lineSpacing = 5;
+         [mas addAttributes:@{NSParagraphStyleAttributeName:ps,} range:NSMakeRange(0, mas.length)];
+         
+         // 替换文字颜色
+         NSAttributedString *as = [mas copy];
+         for (int i=0; i<as.length; i++) {
+             NSRange r = NSMakeRange(0, as.length);
+             NSMutableDictionary *dict = [as attributesAtIndex:i effectiveRange:&r].mutableCopy;
+             UIColor *c = dict[NSForegroundColorAttributeName];
+             if (fabs(c.red - c.green) < 0.05 && fabs(c.green - c.blue) < 0.05) {
+                 dict[NSForegroundColorAttributeName] = Skin1.textColor2;
+                 [mas addAttributes:dict range:NSMakeRange(i, 1)];
+             }
+         }
          dispatch_async(dispatch_get_main_queue(), ^{
-            __self.textView.attributedText = attStr;
-        });
+             __self.textView.attributedText = mas;
+         });
     });
 }
 @end

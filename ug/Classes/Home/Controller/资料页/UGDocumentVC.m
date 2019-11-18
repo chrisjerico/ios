@@ -52,13 +52,23 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
     _documentListData = @[].mutableCopy;
-    self.view.backgroundColor = [UIColor whiteColor];
+    
     
 	[self.view addSubview:self.tableView];
 	[self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.top.left.right.equalTo(self.view);
         make.bottom.equalTo(self.view).offset(-APP.BottomSafeHeight);
 	}];
+    
+    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+        self.view.backgroundColor = Skin1.bgColor;
+        [_tableView setBackgroundColor:Skin1.bgColor];
+
+    } else {
+        self.view.backgroundColor = [UIColor whiteColor];
+        [_tableView setBackgroundColor:[UIColor whiteColor]];
+
+    }
 	
 	[self requestData:@"" page:1];
 	
@@ -158,13 +168,22 @@
 	DocumentCell * cell = [tableView dequeueReusableCellWithIdentifier:@"DocumentCell"];
 	cell.textLabel.text = self.documentListData[indexPath.row].title;
 	cell.textLabel.font = [UIFont systemFontOfSize:15];
-	cell.textLabel.textColor = [UIColor colorWithWhite:0.2 alpha:1.0];
+	
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	UILabel *accessLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 22, 20)];
 	accessLabel.text = @">>";
 	accessLabel.font = [UIFont systemFontOfSize:14];
 	accessLabel.textColor = [UIColor blueColor];
 	cell.accessoryView = accessLabel;
+    
+    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+        [cell setBackgroundColor:Skin1.bgColor];
+        cell.textLabel.textColor = [UIColor whiteColor];
+    } else {
+        [cell setBackgroundColor:[UIColor whiteColor]];
+        cell.textLabel.textColor = [UIColor colorWithWhite:0.2 alpha:1.0];
+    }
+    
 	return cell;
 }
 
@@ -178,35 +197,124 @@
 		[CMResult processWithResult:model success:^{
 			[SVProgressHUD dismiss];
 			UGDocumentDetailData * documentDetailModel = model.data;
-			
+            UIColor *blueColor = [UIColor colorWithRed:90/255.0f green:154/255.0f blue:239/255.0f alpha:1.0f];
 			if (documentDetailModel.canRead) {
 //				UGDocumentDetailVC *vc = [UGDocumentDetailVC new];
 //				vc.model = documentDetailModel;
 //				[self presentViewController:vc animated:true completion:nil];
 				[UGDocumentView showWith:documentDetailModel];
 			} else if (user.isTest){
-				UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"该资料需要正式会员才能阅读，请登录后查看" preferredStyle:UIAlertControllerStyleAlert];
-				[alert addAction:[UIAlertAction actionWithTitle:@"确认" style: UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-					
-				}]];
-				[self presentViewController:alert animated:true completion:nil];
+                if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+                   [LEEAlert alert].config
+                   .LeeAddTitle(^(UILabel *label) {
+                       label.text = @"温馨提示";
+                       label.textColor = [UIColor whiteColor];
+                   })
+                   .LeeAddContent(^(UILabel *label) {
+                       label.text = @"该资料需要正式会员才能阅读，请登录后查看";
+                       label.textColor = [[UIColor whiteColor] colorWithAlphaComponent:0.75f];
+                   })
+                   .LeeAddAction(^(LEEAction *action) {
+                       action.type = LEEActionTypeDefault;
+                       action.title = @"确认";
+                       action.titleColor = blueColor;
+                       action.backgroundColor = Skin1.bgColor;
+                       action.clickBlock = ^{
+                           // 点击事件Block
+                       };
+                   })
+                   .LeeHeaderColor(Skin1.bgColor)
+                   .LeeShow();
+                } else {
+                    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"该资料需要正式会员才能阅读，请登录后查看" preferredStyle:UIAlertControllerStyleAlert];
+                    [alert addAction:[UIAlertAction actionWithTitle:@"确认" style: UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                        
+                    }]];
+                    [self presentViewController:alert animated:true completion:nil];
+                }
 				
 			} else if (!documentDetailModel.hasPay) {
-				UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"注意：您没有浏览权限。\n打赏后本期无限浏览此资料。" preferredStyle:UIAlertControllerStyleAlert];
-				[alert addAction:[UIAlertAction actionWithTitle:[NSString stringWithFormat:@"打赏%.2f元", documentDetailModel.amount] style: UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-					UIAlertController * alert = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"确认打赏%.2f元",documentDetailModel.amount] message:nil preferredStyle:UIAlertControllerStyleAlert];
-					[alert addAction: [UIAlertAction actionWithTitle:@"取消" style: UIAlertActionStyleDefault handler:nil]];
-					[alert addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-						[SVProgressHUD showWithStatus:nil];
-						
-						[CMNetwork getDocumnetPayWithParams:@{@"id": document.articleID, @"token": token} completion:^(CMResult<id> *model, NSError *err) {
-							[SVProgressHUD showInfoWithStatus:model.msg];
-						}];
-					}]];
-					[self presentViewController:alert animated:true completion:nil];
-				}]];
-				[alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
-				[self presentViewController:alert animated:true completion:nil];
+
+                if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+                    [LEEAlert alert].config
+                    .LeeAddTitle(^(UILabel *label) {
+                        label.text = @"温馨提示";
+                        label.textColor = [UIColor whiteColor];
+                    })
+                    .LeeAddContent(^(UILabel *label) {
+                        label.text = @"注意：您没有浏览权限。\n打赏后本期无限浏览此资料。";
+                        label.textColor = [[UIColor whiteColor] colorWithAlphaComponent:0.75f];
+                    })
+                    .LeeAddAction(^(LEEAction *action) {
+                          action.type = LEEActionTypeCancel;
+                          action.title = @"取消";
+                          action.titleColor = blueColor;
+                          action.backgroundColor = Skin1.bgColor;
+                          action.clickBlock = ^{
+                              // 取消点击事件Block
+                          };
+                      })
+                    .LeeAddAction(^(LEEAction *action) {
+                        action.type = LEEActionTypeDefault;
+                        action.title = [NSString stringWithFormat:@"打赏%.2f元", documentDetailModel.amount];
+                        action.titleColor = blueColor;
+                        action.backgroundColor = Skin1.bgColor;
+                        action.clickBlock = ^{
+                            // 点击事件Block
+                            [LEEAlert alert].config
+                            .LeeAddTitle(^(UILabel *label) {
+                                label.text = [NSString stringWithFormat:@"确认打赏%.2f元",documentDetailModel.amount] ;
+                                label.textColor = [UIColor whiteColor];
+                            })
+                            .LeeAddContent(^(UILabel *label) {
+                                label.text = @"";
+                                label.textColor = [[UIColor whiteColor] colorWithAlphaComponent:0.75f];
+                            })
+                            .LeeAddAction(^(LEEAction *action) {
+                                  action.type = LEEActionTypeCancel;
+                                  action.title = @"取消";
+                                  action.titleColor = blueColor;
+                                  action.backgroundColor = Skin1.bgColor;
+                                  action.clickBlock = ^{
+                                      // 取消点击事件Block
+                                  };
+                              })
+                            .LeeAddAction(^(LEEAction *action) {
+                                action.type = LEEActionTypeDefault;
+                                action.title = @"确认";
+                                action.titleColor = blueColor;
+                                action.backgroundColor = Skin1.bgColor;
+                                action.clickBlock = ^{
+                                    // 点击事件Block
+                                    [SVProgressHUD showWithStatus:nil];
+                                    [CMNetwork getDocumnetPayWithParams:@{@"id": document.articleID, @"token": token} completion:^(CMResult<id> *model, NSError *err) {
+                                        [SVProgressHUD showInfoWithStatus:model.msg];
+                                    }];
+                                };
+                            })
+                            .LeeHeaderColor(Skin1.bgColor)
+                            .LeeShow();
+                        };
+                    })
+                    .LeeHeaderColor(Skin1.bgColor)
+                    .LeeShow();
+                } else {
+                    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"注意：您没有浏览权限。\n打赏后本期无限浏览此资料。" preferredStyle:UIAlertControllerStyleAlert];
+                    [alert addAction:[UIAlertAction actionWithTitle:[NSString stringWithFormat:@"打赏%.2f元", documentDetailModel.amount] style: UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                        UIAlertController * alert = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"确认打赏%.2f元",documentDetailModel.amount] message:nil preferredStyle:UIAlertControllerStyleAlert];
+                        [alert addAction: [UIAlertAction actionWithTitle:@"取消" style: UIAlertActionStyleDefault handler:nil]];
+                        [alert addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                            [SVProgressHUD showWithStatus:nil];
+                            
+                            [CMNetwork getDocumnetPayWithParams:@{@"id": document.articleID, @"token": token} completion:^(CMResult<id> *model, NSError *err) {
+                                [SVProgressHUD showInfoWithStatus:model.msg];
+                            }];
+                        }]];
+                        [self presentViewController:alert animated:true completion:nil];
+                    }]];
+                    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+                    [self presentViewController:alert animated:true completion:nil];
+                }
 			}
 		}];
 	}];
@@ -276,7 +384,8 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 	if (self) {
 		
         UIView *bgView = [UIView new];
-        bgView.backgroundColor = [UIColor whiteColor];
+
+
         [self addSubview:bgView];
         [bgView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.left.right.equalTo(self);
@@ -359,7 +468,15 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 			make.height.equalTo(@0.5);
 		}];
 		
-		
+        if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+            bgView.backgroundColor = Skin1.bgColor;
+            [self.currentIssueLabel setTextColor:[UIColor whiteColor]];
+            [self.nextIssueLabel setTextColor:[UIColor whiteColor]];
+            [self.closeTimeLabel setTextColor:[UIColor whiteColor]];
+            [self.openTimeLabel setTextColor:[UIColor whiteColor]];
+        } else {
+            bgView.backgroundColor = [UIColor whiteColor];
+        }
 		dispatch_source_set_timer(self.timer, DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
 		__block int i = 0;
 		WeakSelf
@@ -477,7 +594,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 	
 }
 
-//这个方法是有用的不要删除
+
 - (void)updateOpenLabelText {
 	NSString *timeStr = [CMCommon getNowTimeWithEndTimeStr:self.nextIssueModel.curOpenTime currentTimeStr:self.nextIssueModel.serverTime];
 	if (timeStr == nil) {
@@ -488,8 +605,14 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 	}
 	self.openTimeLabel.text = [NSString stringWithFormat:@"开奖：%@",timeStr];
 	NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.openTimeLabel.text];
-	[abStr addAttribute:NSForegroundColorAttributeName value:Skin1.navBarBgColor range:NSMakeRange(3, self.openTimeLabel.text.length - 3)];
-	self.openTimeLabel.attributedText = abStr;
+
+    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+        [abStr addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(3, self.openTimeLabel.text.length - 3)];
+    } else {
+        [abStr addAttribute:NSForegroundColorAttributeName value:Skin1.navBarBgColor range:NSMakeRange(3, self.openTimeLabel.text.length - 3)];
+    }
+    self.openTimeLabel.attributedText = abStr;
+
 }
 
 - (UICollectionView *)collectionView {
