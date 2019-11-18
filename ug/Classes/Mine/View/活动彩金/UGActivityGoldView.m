@@ -73,9 +73,7 @@
             [subTextField(@"验证码TextField") setTextColor:[UIColor whiteColor]];
             [subButton(@"关闭btn") setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
             subButton(@"关闭btn").layer.borderColor = [UIColor whiteColor].CGColor;
-            // 占位颜色
-            [subTextField(@"验证码TextField") setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
-            [subTextField(@"金额TextField") setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
+
         } else {
             [self setBackgroundColor:[UIColor whiteColor]];
             [subLabel(@"标题Label") setTextColor:[UIColor blackColor]];
@@ -86,10 +84,11 @@
             [subTextField(@"验证码TextField") setTextColor:[UIColor blackColor]];
             [subButton(@"关闭btn") setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
             subButton(@"关闭btn").layer.borderColor = [UIColor blackColor].CGColor;
-            // 占位颜色
-            [subTextField(@"验证码TextField") setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
-            [subTextField(@"金额TextField") setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
+
         }
+        // 占位颜色
+        [subTextField(@"验证码TextField") setValue:RGBA(159, 166, 173, 1) forKeyPath:@"_placeholderLabel.textColor"];
+        [subTextField(@"金额TextField") setValue:RGBA(159, 166, 173, 1) forKeyPath:@"_placeholderLabel.textColor"];
     }
     
     // 验证码
