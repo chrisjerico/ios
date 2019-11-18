@@ -651,6 +651,7 @@
 - (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential *__nullable credential))completionHandler {
     
     completionHandler(NSURLSessionAuthChallengePerformDefaultHandling, nil);
+    [_webView evaluateJavaScript:@"document.body.style.backgroundColor=\"#171717\"" completionHandler:nil];
 }
 
 - (WKWebView *)webView {
@@ -675,8 +676,9 @@
                                       configuration:config];
         _webView.navigationDelegate = self;
         
-        [_webView setBackgroundColor:Skin1.bgColor];
+//        [_webView setBackgroundColor:Skin1.bgColor];
         [_webView setOpaque:NO];
+//         _webView.scrollView.backgroundColor = Skin1.bgColor;
     }
     return _webView;
 }
