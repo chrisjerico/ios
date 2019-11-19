@@ -59,6 +59,5 @@
 #import "SGQRCode.h"
 #import "UIView+Events.h"           //添加手势
 #import "UIView+yyCornerRadius.h"   //添加圆角
-#import "UGSkinManagers+Lottery.h"  //下注界面黑色模板控制
 
 #endif /* UGPCH_pch */

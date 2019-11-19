@@ -798,8 +798,6 @@
 #pragma mark - SDCycleScrollViewDelegate
 
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
-    [[UGSkinManagers randomSkin] useSkin];
-    return;
 	UGBannerCellModel *banner = self.bannerArray[index];
     BOOL ret = [NavController1 pushViewControllerWithLinkCategory:banner.linkCategory linkPosition:banner.linkPosition];
     if (!ret) {

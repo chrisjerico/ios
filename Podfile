@@ -20,7 +20,7 @@ pod 'DLPickerView'        # 一种支持单列数据选择，多列数据选择�
 
 # fish新增
 pod 'JRSwizzle'         # 方法交换库
-pod 'Aspects'           # 监听函数回调到Block
+#pod 'Aspects'           # 监听函数回调到Block
 pod 'RegExCategories'   # 正则表达式库
 pod 'YYCategories'      # Category 类型工具库（YYKit 组件之一）
 pod 'DateTools'         # 日期工具

@@ -485,14 +485,13 @@ UITableViewDataSource
 }
 
 - (void)show {
-
     if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
-          _textColor = [UIColor whiteColor];
-          _contentColor = Skin1.bgColor;
-          _contentView.backgroundColor = Skin1.bgColor;
-      } else {
-          self.type = YBPopupMenuTypeDefault;
-      }
+        _textColor = [UIColor whiteColor];
+        _contentColor = Skin1.bgColor;
+        _contentView.backgroundColor = Skin1.bgColor;
+    } else {
+        self.type = YBPopupMenuTypeDefault;
+    }
     
     [kMainWindow addSubview: _bgView];
     [kMainWindow addSubview: self]; 

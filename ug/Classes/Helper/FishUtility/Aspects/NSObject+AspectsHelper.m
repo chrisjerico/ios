@@ -67,25 +67,26 @@ static NSMutableArray *__hms = nil;
         __dict = @{}.mutableCopy;
     });
     
-    Class cls = self;
-    BOOL ok = false;
+    Class cls = nil;
+    Class temp = self;
     while (1) {
-        for (NSString *name in [cls methodList]) {
+        for (NSString *name in [temp methodList]) {
             if ([name isEqualToString:selector]) {
-                ok = true;
-                break;
+                cls = temp;
             }
         }
-        if (ok || cls == NSObject.class) {
+        if (temp == NSObject.class) {
             break;
         }
-        cls = [cls superclass];
+        temp = [temp superclass];
     }
-    NSString *key = _NSString(@"%@_%ld", selector, opt);
-    if (ok && !__dict[key]) {
-        __dict[key] = @true;
+    NSString *key = _NSString(@"%@_%@_%ld", cls, selector, opt);
+    if (cls && !__dict[key]) {
         NSError *error = nil;
         [cls aspect_hookSelector:NSSelectorFromString(selector) withOptions:opt usingBlock:^(id<AspectInfo> ai) {
+            if ([selector isEqualToString:@"show"]) {
+                NSLog(@"333");
+            }
             NSArray *hms = [__hms arrayByAddingObjectsFromArray:[ai.instance cc_userInfo][@"cc_hook_hms"]];
             for (HookModel *hm in [[hms objectsWithValue:@(opt) keyPath:@"opt"] objectsWithValue:selector keyPath:@"selector"]) {
                 if ([ai.instance isKindOfClass:hm.cls]) {
@@ -104,6 +105,8 @@ static NSMutableArray *__hms = nil;
                 *err = error;
             }
             @throw [NSException exceptionWithName:@"方法交换失败" reason:_NSString(@"-[%@ %@]   err = %@", self, selector, *err) userInfo:nil];
+        } else {
+            __dict[key] = @true;
         }
     }
 }
