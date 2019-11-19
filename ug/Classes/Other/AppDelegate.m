@@ -72,10 +72,10 @@
         entity;
     }) delegate:self];
     
-    
+#ifndef DEBUG
     [self initBugly];
+#endif
     [self userAgent];
-    [Skin1 skinSetUP ];
 #ifdef DEBUG
 	[LogVC enableLogVC];
 

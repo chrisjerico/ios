@@ -26,6 +26,9 @@
 		CF48BF6E235590EC00DFF4BC /* SlideSegmentView2.m in Sources */ = {isa = PBXBuildFile; fileRef = CF48BF69235590EB00DFF4BC /* SlideSegmentView2.m */; };
 		CF48BF6F235590EC00DFF4BC /* SlideSegmentView1.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF48BF6A235590EB00DFF4BC /* SlideSegmentView1.xib */; };
 		CF5C5BEA23831669001CFAB1 /* NSObject+AspectsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5C5BE923831669001CFAB1 /* NSObject+AspectsHelper.m */; };
+		CF5C5BF82383E7F4001CFAB1 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = CF5C5BF42383E7F4001CFAB1 /* LICENSE */; };
+		CF5C5BF92383E7F4001CFAB1 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = CF5C5BF62383E7F4001CFAB1 /* README.md */; };
+		CF5C5BFA2383E7F4001CFAB1 /* Aspects.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5C5BF72383E7F4001CFAB1 /* Aspects.m */; };
 		CF724E54236D6E5E0099947A /* UGSkinManagers.m in Sources */ = {isa = PBXBuildFile; fileRef = CF724E52236D6E5E0099947A /* UGSkinManagers.m */; };
 		CF724E61236EAF2B0099947A /* BlackTemplate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF724E60236EAF2B0099947A /* BlackTemplate.storyboard */; };
 		CF724E64236EB0250099947A /* CCNetworkRequests1+UGBlackTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = CF724E63236EB0250099947A /* CCNetworkRequests1+UGBlackTemplate.m */; };
@@ -310,7 +313,6 @@
 		D41A57792306924D00C26023 /* UGBackToastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D41A57762306924C00C26023 /* UGBackToastView.xib */; };
 		D41AEA6B22E58D9E003E28C3 /* UGAvatarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D41AEA6A22E58D9E003E28C3 /* UGAvatarModel.m */; };
 		D41AEA6E22E5D44F003E28C3 /* UGLotteryHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D41AEA6D22E5D44F003E28C3 /* UGLotteryHistoryModel.m */; };
-		D41B2978237AD35400EC1A0B /* UGSkinManagers+Lottery.m in Sources */ = {isa = PBXBuildFile; fileRef = D41B2977237AD35400EC1A0B /* UGSkinManagers+Lottery.m */; };
 		D41C300C233F220000541254 /* UGYYRightMenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D41C300A233F220000541254 /* UGYYRightMenuTableViewCell.m */; };
 		D41C300D233F220000541254 /* UGYYRightMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D41C300B233F220000541254 /* UGYYRightMenuTableViewCell.xib */; };
 		D41C3DF4228E75F100BF6436 /* CAAnimation+WAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = D41C3DE7228E75F000BF6436 /* CAAnimation+WAnimation.m */; };
@@ -694,6 +696,10 @@
 		CF48BF6C235590EB00DFF4BC /* SlideSegmentView2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideSegmentView2.h; sourceTree = "<group>"; };
 		CF5C5BE823831669001CFAB1 /* NSObject+AspectsHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+AspectsHelper.h"; sourceTree = "<group>"; };
 		CF5C5BE923831669001CFAB1 /* NSObject+AspectsHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+AspectsHelper.m"; sourceTree = "<group>"; };
+		CF5C5BF42383E7F4001CFAB1 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		CF5C5BF52383E7F4001CFAB1 /* Aspects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Aspects.h; sourceTree = "<group>"; };
+		CF5C5BF62383E7F4001CFAB1 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		CF5C5BF72383E7F4001CFAB1 /* Aspects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Aspects.m; sourceTree = "<group>"; };
 		CF724E52236D6E5E0099947A /* UGSkinManagers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGSkinManagers.m; sourceTree = "<group>"; };
 		CF724E53236D6E5E0099947A /* UGSkinManagers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGSkinManagers.h; sourceTree = "<group>"; };
 		CF724E60236EAF2B0099947A /* BlackTemplate.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BlackTemplate.storyboard; sourceTree = "<group>"; };
@@ -1224,8 +1230,6 @@
 		D41AEA6A22E58D9E003E28C3 /* UGAvatarModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGAvatarModel.m; sourceTree = "<group>"; };
 		D41AEA6C22E5D44F003E28C3 /* UGLotteryHistoryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLotteryHistoryModel.h; sourceTree = "<group>"; };
 		D41AEA6D22E5D44F003E28C3 /* UGLotteryHistoryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLotteryHistoryModel.m; sourceTree = "<group>"; };
-		D41B2976237AD35400EC1A0B /* UGSkinManagers+Lottery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UGSkinManagers+Lottery.h"; sourceTree = "<group>"; };
-		D41B2977237AD35400EC1A0B /* UGSkinManagers+Lottery.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UGSkinManagers+Lottery.m"; sourceTree = "<group>"; };
 		D41C3009233F220000541254 /* UGYYRightMenuTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGYYRightMenuTableViewCell.h; sourceTree = "<group>"; };
 		D41C300A233F220000541254 /* UGYYRightMenuTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGYYRightMenuTableViewCell.m; sourceTree = "<group>"; };
 		D41C300B233F220000541254 /* UGYYRightMenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGYYRightMenuTableViewCell.xib; sourceTree = "<group>"; };
@@ -2731,6 +2735,19 @@
 			path = SlideSegmentView;
 			sourceTree = "<group>";
 		};
+		CF5C5BF32383E7F4001CFAB1 /* Aspects */ = {
+			isa = PBXGroup;
+			children = (
+				CF5C5BF42383E7F4001CFAB1 /* LICENSE */,
+				CF5C5BF62383E7F4001CFAB1 /* README.md */,
+				CF5C5BF52383E7F4001CFAB1 /* Aspects.h */,
+				CF5C5BF72383E7F4001CFAB1 /* Aspects.m */,
+				CF5C5BE823831669001CFAB1 /* NSObject+AspectsHelper.h */,
+				CF5C5BE923831669001CFAB1 /* NSObject+AspectsHelper.m */,
+			);
+			path = Aspects;
+			sourceTree = "<group>";
+		};
 		CF724E5F236EAEF20099947A /* 首页 */ = {
 			isa = PBXGroup;
 			children = (
@@ -2772,13 +2789,12 @@
 		CFD3BE962347137E00FCDA6D /* FishUtility */ = {
 			isa = PBXGroup;
 			children = (
+				CF5C5BF32383E7F4001CFAB1 /* Aspects */,
 				CF48BF67235590EB00DFF4BC /* SlideSegmentView */,
 				CFD3BF4423473D0500FCDA6D /* LogHelper */,
 				CFD3BF2823471A4F00FCDA6D /* CCNetworkRequests1 */,
 				CFD3BF172347196600FCDA6D /* HUD and Alert */,
 				CFD3BE972347137E00FCDA6D /* FishUtility.h */,
-				CF5C5BE823831669001CFAB1 /* NSObject+AspectsHelper.h */,
-				CF5C5BE923831669001CFAB1 /* NSObject+AspectsHelper.m */,
 				CFD3BE982347137E00FCDA6D /* IBInspectable Views */,
 				CFD3BEA12347137E00FCDA6D /* define */,
 				CFD3BEA52347137E00FCDA6D /* Category */,
@@ -4524,8 +4540,6 @@
 				D4EE8FA423424E5F006FA0E2 /* UIImage+YYgradientImage.m */,
 				CF724E53236D6E5E0099947A /* UGSkinManagers.h */,
 				CF724E52236D6E5E0099947A /* UGSkinManagers.m */,
-				D41B2976237AD35400EC1A0B /* UGSkinManagers+Lottery.h */,
-				D41B2977237AD35400EC1A0B /* UGSkinManagers+Lottery.m */,
 			);
 			path = Skin;
 			sourceTree = "<group>";
@@ -4670,6 +4684,7 @@
 				D41246B32285B5CB006881E2 /* UGMissionTableViewCell.xib in Resources */,
 				D48224EB22A0FDD000F7DE72 /* UGPlatformNoticeCell.xib in Resources */,
 				D49A36C622A2C9ED000057D2 /* UGQXCLotteryController.storyboard in Resources */,
+				CF5C5BF82383E7F4001CFAB1 /* LICENSE in Resources */,
 				D463B4EB2284736200EAC0F7 /* UGBindCardViewController.storyboard in Resources */,
 				D41FF76D22E8141A00FCCDD2 /* UGLotteryRecordCell.xib in Resources */,
 				D4B75E19227802600007047C /* LaunchScreen.storyboard in Resources */,
@@ -4681,6 +4696,7 @@
 				D41FF77222E880A800FCCDD2 /* UGSSCBetItem1Cell.xib in Resources */,
 				CFCADE43237BEB0900680F62 /* 客服AlertView.xib in Resources */,
 				D45A94BE233B8AF90089E86C /* UGGoogleAuthenticationSecondViewController.xib in Resources */,
+				CF5C5BF92383E7F4001CFAB1 /* README.md in Resources */,
 				D4AE640E2295871D00DD265A /* MJRefresh.bundle in Resources */,
 				D4DE26A0229C1CCE0072A4A2 /* UGBJPK10LotteryController.storyboard in Resources */,
 				D4D8DF772286F01100446BAF /* UGTimeLotteryLeftTitleCell.xib in Resources */,
@@ -5082,8 +5098,8 @@
 				D40FA8BD229904D9003E596F /* UGBankCardInfoController.m in Sources */,
 				D4DE2681229BCB960072A4A2 /* WMSegmentControl.m in Sources */,
 				D40E1E5922BF7483004D4664 /* UGRankModel.m in Sources */,
+				CF5C5BFA2383E7F4001CFAB1 /* Aspects.m in Sources */,
 				D40DE98222F335E300974BAF /* CustomCollectionViewCell.m in Sources */,
-				D41B2978237AD35400EC1A0B /* UGSkinManagers+Lottery.m in Sources */,
 				D4090F67228D4F7200D6DA43 /* UGAvaterCollectionViewCell.m in Sources */,
 				CFD3BF0C2347137F00FCDA6D /* NSString+Utils.m in Sources */,
 				CFD3BEFA2347137F00FCDA6D /* UIView+Frame.m in Sources */,

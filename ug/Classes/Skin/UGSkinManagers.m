@@ -114,7 +114,6 @@ static UGSkinManagers *__initSkin1 = nil;
                 [ai.originalInvocation invoke];
             };
             [CALayer cc_hookSelector:@selector(setBorderColor:) withOptions:AspectPositionInstead usingBlock:block2 error:nil];
-            [CALayer cc_hookSelector:@selector(setBackgroundColor:) withOptions:AspectPositionInstead usingBlock:block2 error:nil];
             [CALayer cc_hookSelector:@selector(setShadowColor:) withOptions:AspectPositionInstead usingBlock:block2 error:nil];
             
             // 处理NSDictionary类型（UITabBarItem）
