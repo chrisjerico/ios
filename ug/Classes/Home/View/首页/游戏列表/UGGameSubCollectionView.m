@@ -73,12 +73,11 @@
 {
 	self = [super initWithFrame:frame];
 	if (self) {
-		
 		UIImageView *imageView = [UIImageView new];
-		imageView.image = [UIImage imageNamed:@"subgame_bg"];
-        if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
-            imageView.image = [imageView.image qmui_imageWithTintColor:Skin1.navBarBgColor];
-        }
+		imageView.image = [[UIImage imageNamed:@"subgame_bg"] qmui_imageWithTintColor:Skin1.homeContentSubColor];
+        [self xw_addNotificationForName:UGNotificationWithSkinSuccess block:^(NSNotification * _Nonnull noti) {
+            imageView.image = [[UIImage imageNamed:@"subgame_bg"] qmui_imageWithTintColor:Skin1.homeContentSubColor];
+        }];
 		[self addSubview:imageView];
 		[imageView mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.center.equalTo(self);
