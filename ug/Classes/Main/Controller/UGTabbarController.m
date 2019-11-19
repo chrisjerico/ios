@@ -170,7 +170,7 @@ static UGTabbarController *_tabBarVC = nil;
             sv.userInteractionEnabled = false;
             [TabBarController1.tabBar addSubview:sv];
         }
-        [self aspect_hookSelector:@selector(setViewControllers:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
+        [self cc_hookSelector:@selector(setViewControllers:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
             for (UIView *v in sv.arrangedSubviews) {
                 v.hidden = !([sv.arrangedSubviews indexOfObject:v] < TabBarController1.tabBar.items.count);
             }
@@ -218,16 +218,26 @@ static UGTabbarController *_tabBarVC = nil;
             __stateView.backgroundColor = Skin1.navBarBgColor;
             [self.view addSubview:__stateView];
             NSArray *clsArray = @[QDWebViewController.class, UGBMLoginViewController.class];
-            [UIViewController aspect_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
-                if ([clsArray containsObject:[ai.instance class]]) {
-                    __stateView.hidden = true;
-                }
-            } error:nil];
-            [UIViewController aspect_hookSelector:@selector(viewWillDisappear:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
-                if ([clsArray containsObject:[ai.instance class]]) {
+            for (Class cls in clsArray) {
+                [cls cc_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
+                    if ([clsArray containsObject:[ai.instance class]]) {
+                        __stateView.hidden = true;
+                    }
+                } error:nil];
+                [cls cc_hookSelector:@selector(viewWillDisappear:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
                     __stateView.hidden = false;
-                }
-            } error:nil];
+                } error:nil];
+            }
+//            [UIViewController cc_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
+//                if ([clsArray containsObject:[ai.instance class]]) {
+//                    __stateView.hidden = true;
+//                }
+//            } error:nil];
+//            [UIViewController cc_hookSelector:@selector(viewWillDisappear:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
+//                if ([clsArray containsObject:[ai.instance class]]) {
+//                    __stateView.hidden = false;
+//                }
+//            } error:nil];
         });
     }
 }
@@ -242,7 +252,7 @@ static UGTabbarController *_tabBarVC = nil;
     static CGFloat __height = 50;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [UITabBar aspect_hookSelector:@selector(sizeThatFits:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> ai) {
+        [UITabBar cc_hookSelector:@selector(sizeThatFits:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> ai) {
             CGSize size = CGSizeZero;
             [ai.originalInvocation getReturnValue:&size];
             size.height = __height;

@@ -20,7 +20,7 @@
         
         __block NSDate *__lastDate = nil;
         NSMutableDictionary *dict = @{}.mutableCopy;
-        [UIView aspect_hookSelector:@selector(didAddSubview:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
+        [UIView cc_hookSelector:@selector(didAddSubview:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
             UIView *v = ai.arguments.lastObject;
             if (v.classIsCustom) {
                 dict[NSStringFromClass(v.class)] = @([dict[NSStringFromClass(v.class)] intValue] + 1);
@@ -39,7 +39,7 @@
             }
         }];
         
-//        [UIButton aspect_hookSelector:@selector(addTarget:action:forControlEvents:)
+//        [UIButton cc_hookSelector:@selector(addTarget:action:forControlEvents:)
 //                             withOptions:AspectPositionAfter
 //                              usingBlock:^(id<AspectInfo> aspectInfo, id target, SEL action, UIControlEvents controlEvents) {
 //
@@ -50,7 +50,7 @@
 //                                  }
 //                              } error:NULL];
 //           
-//        [UIControl aspect_hookSelector:@selector(beginTrackingWithTouch:withEvent:)
+//        [UIControl cc_hookSelector:@selector(beginTrackingWithTouch:withEvent:)
 //                              withOptions:AspectPositionAfter
 //                               usingBlock:^(id<AspectInfo> aspectInfo, UITouch *touch, UIEvent *event) {
 //

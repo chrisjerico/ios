@@ -51,7 +51,7 @@
     self.navigationItem.titleView = [UIView new];   // 隐藏标题
     
     if (OBJOnceToken(self)) {
-        [self.navigationItem aspect_hookSelector:@selector(setTitle:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> ai) {
+        [self.navigationItem cc_hookSelector:@selector(setTitle:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> ai) {
             NSString *title = ai.arguments.lastObject;
             [(UIButton *)item0.customView setTitle:_NSString(@"%@ ▼", title) forState:UIControlStateNormal];
             [(UIButton *)item0.customView sizeToFit];

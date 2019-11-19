@@ -153,9 +153,9 @@ void updateAttributedText(UILabel *label, void (^block)(NSMutableAttributedStrin
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [UILabel aspect_hookSelector:@selector(setText:) withOptions:AspectPositionInstead usingBlock:setText error:nil];
-        [UILabel aspect_hookSelector:@selector(setFont:) withOptions:AspectPositionInstead usingBlock:setFont error:nil];
-        [UILabel aspect_hookSelector:@selector(setTextColor:) withOptions:AspectPositionInstead usingBlock:setTextColor error:nil];
+        [UILabel cc_hookSelector:@selector(setText:) withOptions:AspectPositionInstead usingBlock:setText error:nil];
+        [UILabel cc_hookSelector:@selector(setFont:) withOptions:AspectPositionInstead usingBlock:setFont error:nil];
+        [UILabel cc_hookSelector:@selector(setTextColor:) withOptions:AspectPositionInstead usingBlock:setTextColor error:nil];
     });
 }
 - (void)updateAttributedText:(void (^)(NSMutableAttributedString *))block {

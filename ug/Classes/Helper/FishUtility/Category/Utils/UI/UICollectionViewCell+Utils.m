@@ -19,7 +19,7 @@ _CCRuntimeProperty_Copy(void (^)(__kindof UICollectionViewCell *, BOOL), didSele
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [UICollectionViewCell aspect_hookSelector:@selector(setSelected:) withOptions:AspectPositionAfter usingBlock:^(id <AspectInfo>aInfo) {
+        [UICollectionViewCell cc_hookSelector:@selector(setSelected:) withOptions:AspectPositionAfter usingBlock:^(id <AspectInfo>aInfo) {
             UICollectionViewCell *cell = aInfo.instance;
             if (cell.didSelectedChange)
                 cell.didSelectedChange(aInfo.instance, [aInfo.arguments.firstObject boolValue]);

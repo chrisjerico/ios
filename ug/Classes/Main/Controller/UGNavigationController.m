@@ -72,7 +72,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         NSMutableArray *dataArray = __browsingHistoryArray = [NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"浏览历史"]]];
-        [UGNavigationController aspect_hookSelector:@selector(pushViewControllerWithGameModel:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
+        [UGNavigationController cc_hookSelector:@selector(pushViewControllerWithGameModel:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
             BOOL ret = false;
             [ai.originalInvocation getReturnValue:&ret];
             if (ret) {

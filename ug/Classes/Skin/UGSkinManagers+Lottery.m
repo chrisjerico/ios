@@ -9,7 +9,6 @@
 #import "UGSkinManagers+Lottery.h"
 #import "NSObject+Utils.h"
 #import "JRSwizzle.h"
-#import "Aspects.h"
 #import <objc/runtime.h>
 #import "UGSSCLotteryController.h"           // 时时彩
 #import "UGGD11X5LotteryController.h"        // 广东11选5
@@ -50,7 +49,7 @@
         ];
         
 //         for (Class cls in clsArray) {
-             [UIViewController aspect_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionAfter usingBlock:^(id <AspectInfo> aspectInfo, BOOL animated ) {
+             [UIViewController cc_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionAfter usingBlock:^(id <AspectInfo> aspectInfo) {
                         if ([clsArray containsObject:[aspectInfo.instance class]]) {
                              NSLog(@"%@-->:%@", @"Appear 下注界面:😜😜😜", NSStringFromClass([aspectInfo.instance class]));
                             UIViewController *vc = (UIViewController *)aspectInfo.instance;
@@ -102,7 +101,7 @@
                                    }
                                }
                            };
-                          [[aspectInfo.instance class] aspect_hookSelector:@selector(updateOpenLabel ) withOptions:AspectPositionAfter usingBlock:block1 error:nil];
+                          [[aspectInfo.instance class] cc_hookSelector:@selector(updateOpenLabel ) withOptions:AspectPositionAfter usingBlock:block1 error:nil];
                             
 //                        // 处理OpenLabel
 //                         void (^block2)(id<AspectInfo>) = ^(id<AspectInfo> aspectInfo) {
@@ -112,7 +111,7 @@
 //                              NSLog(@"ci = %d",ci);
 //
 //                         };
-//                            [[aspectInfo.instance class] aspect_hookSelector:@selector(updateSelectLabelWithCount: ) withOptions:AspectPositionAfter usingBlock:block2 error:nil];
+//                            [[aspectInfo.instance class] cc_hookSelector:@selector(updateSelectLabelWithCount: ) withOptions:AspectPositionAfter usingBlock:block2 error:nil];
                         }
                     }
                     error:NULL];
@@ -124,7 +123,7 @@
 - (void)skinYBPopupMenu  {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [YBPopupMenu aspect_hookSelector:@selector(show) withOptions:AspectPositionAfter usingBlock:^(id <AspectInfo> aspectInfo, BOOL animated ) {
+        [YBPopupMenu cc_hookSelector:@selector(show) withOptions:AspectPositionAfter usingBlock:^(id <AspectInfo> aspectInfo) {
             YBPopupMenu *vc = (YBPopupMenu *)aspectInfo.instance;
             NSLog(@"aspectInfo.instance= %@",aspectInfo.instance);
             if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
