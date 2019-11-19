@@ -226,6 +226,10 @@
             // 测试站点
             @"test10":@"http://test10.6yc.com",
             @"c083":@"http://t111f.fhptcdn.com",
+            @"test100":@"http://test100f.fhptcdn.com",
+            @"老虎":@"http://t005f.fhptcdn.com",
+            @"朗朗":@"http://test20.6yc.com",
+            @"小东":@"http://test29f.fhptcdn.com",
         };
 #ifdef DEBUG
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];

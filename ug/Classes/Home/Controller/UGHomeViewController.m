@@ -161,7 +161,15 @@
     
     // 根据模板显示对应内容
     {
+        static NSMutableArray *allViews = nil;
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            allViews = @[].mutableCopy;
+        });
         for (UIView *v in _contentStackView.arrangedSubviews) {
+            if (![allViews containsObject:v]) {
+                [allViews addObject:v];
+            }
             [v removeFromSuperview];
         }
         NSDictionary *dict = @{@"六合资料":@[_bannerBgView, _rollingView, subView(@"开奖结果"), subView(@"六合论坛"), _promotionView, _bottomView],
@@ -790,6 +798,8 @@
 #pragma mark - SDCycleScrollViewDelegate
 
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
+    [[UGSkinManagers randomSkin] useSkin];
+    return;
 	UGBannerCellModel *banner = self.bannerArray[index];
     BOOL ret = [NavController1 pushViewControllerWithLinkCategory:banner.linkCategory linkPosition:banner.linkPosition];
     if (!ret) {

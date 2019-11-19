@@ -597,7 +597,7 @@ static UGSkinManagers *__initSkin1 = nil;
             sm.textColor4               = color(@"FFFFFF");
             sm;
         }),
-        //18钻石蓝
+        //经典 18钻石蓝
         @"18":({
             UGSkinManagers *sm = [UGSkinManagers new];
             sm.skitType                 = @"经典";
@@ -617,7 +617,7 @@ static UGSkinManagers *__initSkin1 = nil;
             sm.textColor4               = color(@"FFFFFF");
             sm;
         }),
-        //19经典 忧郁蓝
+        //经典 19忧郁蓝
         @"19":({
             UGSkinManagers *sm = [UGSkinManagers new];
             sm.skitType                 = @"经典";
@@ -697,7 +697,7 @@ static UGSkinManagers *__initSkin1 = nil;
             sm.textColor4               = color(@"FFFFFF");
             sm;
         }),
-        //六合资料
+        //黑色模板
         @"黑色模板":({
             UGSkinManagers *sm = [UGSkinManagers new];
             sm.skitType                 = @"黑色模板";

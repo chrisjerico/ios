@@ -425,7 +425,12 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         }
         case 7: {
             // 开奖网
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_NSString(@"%@/Open_prize/index.php", APP.Host)]];
+            SFSafariViewController *sf = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:_NSString(@"%@/Open_prize/index.php", APP.Host)]];
+            sf.允许未登录访问 = true;
+            sf.允许游客访问 = true;
+            [NavController1 presentViewController:sf animated:YES completion:nil];
+            
+//            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_NSString(@"%@/Open_prize/index.php", APP.Host)]];
             break;
         }
         case 8: {
