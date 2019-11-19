@@ -51,14 +51,14 @@
   
         
     } else {
-        [self.view setBackgroundColor:Skin1.bgColor];
-        [subLabel(@"标题label") setTextColor:[UIColor whiteColor]];
-        [subLabel(@"登录密码label") setTextColor:[UIColor whiteColor]];
-        [subLabel(@"取款密码label") setTextColor:[UIColor whiteColor]];
-        [subLabel(@"确认密码label") setTextColor:[UIColor whiteColor]];
-        [self.loginPwdTextF setTextColor:[UIColor whiteColor]];
-        [self.fundPwdTextF setTextColor:[UIColor whiteColor]];
-        [self.checkPwdTextF setTextColor:[UIColor whiteColor]];
+        [self.view setBackgroundColor:[UIColor whiteColor]];
+        [subLabel(@"标题label") setTextColor:[UIColor blackColor]];
+        [subLabel(@"登录密码label") setTextColor:[UIColor blackColor]];
+        [subLabel(@"取款密码label") setTextColor:[UIColor blackColor]];
+        [subLabel(@"确认密码label") setTextColor:[UIColor blackColor]];
+        [self.loginPwdTextF setTextColor:[UIColor blackColor]];
+        [self.fundPwdTextF setTextColor:[UIColor blackColor]];
+        [self.checkPwdTextF setTextColor:[UIColor blackColor]];
         // "通过KVC修改占位文字的颜色"
         [self.loginPwdTextF setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
         [self.fundPwdTextF setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];

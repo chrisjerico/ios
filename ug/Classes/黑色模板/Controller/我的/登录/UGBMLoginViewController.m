@@ -398,6 +398,7 @@
 - (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential *__nullable credential))completionHandler {
     
     completionHandler(NSURLSessionAuthChallengePerformDefaultHandling, nil);
+    [_webView evaluateJavaScript:@"document.body.style.backgroundColor=\"#171717\"" completionHandler:nil];
 }
 
 - (void)webViewWebContentProcessDidTerminate:(WKWebView *)webView {
@@ -427,6 +428,8 @@
         _webView = [[WKWebView alloc] initWithFrame:self.webBgView.bounds
                                             configuration:config];
         _webView.navigationDelegate = self;
+        
+        [_webView setOpaque:NO];
     }
     return _webView;
 }

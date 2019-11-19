@@ -43,6 +43,43 @@
     self.submitButton.layer.cornerRadius = 3;
     self.submitButton.layer.masksToBounds = YES;
     [self.submitButton setBackgroundColor:Skin1.navBarBgColor];
+    FastSubViewCode(self.view)
+    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+        [self.view setBackgroundColor:Skin1.bgColor];
+        [subLabel(@"标题label") setTextColor:[UIColor whiteColor]];
+        [subLabel(@"开户银行label") setTextColor:[UIColor whiteColor]];
+        [subLabel(@"开户行地址label") setTextColor:[UIColor whiteColor]];
+        [subLabel(@"银行卡号label") setTextColor:[UIColor whiteColor]];
+        [subLabel(@"持卡人姓名label") setTextColor:[UIColor whiteColor]];
+        [self.bankTypeTextF setTextColor:[UIColor whiteColor]];
+        [self.bankAddressTextF setTextColor:[UIColor whiteColor]];
+        [self.cardNumberTextF setTextColor:[UIColor whiteColor]];
+        [self.nameTextF setTextColor:[UIColor whiteColor]];
+        // "通过KVC修改占位文字的颜色"
+        [self.bankTypeTextF setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
+        [self.bankAddressTextF setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
+        [self.cardNumberTextF setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
+        [self.nameTextF setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
+ 
+       
+    } else {
+       [self.view setBackgroundColor:[UIColor whiteColor]];
+       [subLabel(@"标题label") setTextColor:[UIColor whiteColor]];
+       [subLabel(@"开户银行label") setTextColor:[UIColor blackColor]];
+       [subLabel(@"开户行地址label") setTextColor:[UIColor blackColor]];
+       [subLabel(@"银行卡号label") setTextColor:[UIColor blackColor]];
+       [subLabel(@"持卡人姓名label") setTextColor:[UIColor blackColor]];
+       [self.bankTypeTextF setTextColor:[UIColor blackColor]];
+       [self.bankAddressTextF setTextColor:[UIColor blackColor]];
+       [self.cardNumberTextF setTextColor:[UIColor blackColor]];
+       [self.nameTextF setTextColor:[UIColor blackColor]];
+       // "通过KVC修改占位文字的颜色"
+       [self.bankTypeTextF setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
+       [self.bankAddressTextF setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
+       [self.cardNumberTextF setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
+       [self.nameTextF setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
+    }
+
     self.selIndex = -1;
     self.bankAddressTextF.delegate = self;
     self.cardNumberTextF.delegate = self;

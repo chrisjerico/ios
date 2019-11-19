@@ -58,16 +58,28 @@
             if (model.data) {
                 NSString *str = [NSString stringWithFormat:@"<head><style>img{width:auto !important;max-width:%f;height:auto}</style></head>%@", self.frame.size.width - 10,model.data];
                 dispatch_async(dispatch_get_global_queue(0, 0), ^{
-                    NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithData:[str dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+                    NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithData:[str dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
                     NSMutableParagraphStyle *ps = [NSMutableParagraphStyle new];
                     ps.lineSpacing = 5;
                     ps.alignment = NSTextAlignmentLeft;
                     ps.firstLineHeadIndent = 10;
                     ps.headIndent = 10;
-                    [attStr addAttributes:@{NSParagraphStyleAttributeName:ps} range:NSMakeRange(0, attStr.length)];
+                    [mas addAttributes:@{NSParagraphStyleAttributeName:ps,} range:NSMakeRange(0, mas.length)];
+                    // 替换文字颜色
+                        NSAttributedString *as = [mas copy];
+                        for (int i=0; i<as.length; i++) {
+                            NSRange r = NSMakeRange(0, as.length);
+                            NSMutableDictionary *dict = [as attributesAtIndex:i effectiveRange:&r].mutableCopy;
+                            UIColor *c = dict[NSForegroundColorAttributeName];
+                            if (fabs(c.red - c.green) < 0.05 && fabs(c.green - c.blue) < 0.05) {
+                                dict[NSForegroundColorAttributeName] = Skin1.textColor2;
+                                [mas addAttributes:dict range:NSMakeRange(i, 1)];
+                            }
+                        }
+
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [SVProgressHUD dismiss];
-                        self.contentTextView.attributedText = attStr;
+                        self.contentTextView.attributedText = mas;
                     });
                 });
             } else {
