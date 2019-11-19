@@ -56,7 +56,7 @@
         // 背景
         {
             UIView *left = [UIView new];
-            left.backgroundColor = collectionView.backgroundColor;
+            left.backgroundColor = _isBlack ? Skin1.bgColor : Skin1.homeContentColor;
             [self insertSubview:left atIndex:0];
             [left mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.bottom.equalTo(self);
@@ -64,7 +64,7 @@
             }];
             
             UIView *rifht = [UIView new];
-            rifht.backgroundColor = collectionView.backgroundColor;
+            rifht.backgroundColor = _isBlack ? Skin1.bgColor : Skin1.homeContentColor;
             [self insertSubview:rifht atIndex:0];
             [rifht mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.right.top.equalTo(self);
@@ -76,6 +76,23 @@
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [__self.collectionView.collectionViewLayout invalidateLayout];
         });
+        [self xw_addNotificationForName:UGNotificationWithSkinSuccess block:^(NSNotification * _Nonnull noti) {
+            __self.isBlack = [Skin1.skitType isEqualToString:@"黑色模板"];
+            [__self mas_updateConstraints:^(MASConstraintMaker *make) {
+                if (__self.isBlack) {
+                    make.top.left.right.equalTo(self).offset(0);
+                    make.height.equalTo(@140);
+                } else {
+                    make.top.equalTo(self);
+                    make.left.equalTo(self).offset(5);
+                    make.right.equalTo(self).offset(-5);
+                    make.height.equalTo(@55);
+                }
+            }];
+            __self.collectionView.layer.cornerRadius = __self.isBlack ? 0 : 10;
+            [__self.collectionView.collectionViewLayout invalidateLayout];
+            [__self.collectionView reloadData];
+        }];
     }
     return self;
 }
@@ -125,11 +142,11 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (_isBlack) {
-        return CGSizeMake(92, self.height);
+        return CGSizeMake(92, 140);
     }
     GameCategoryModel *gcm = _gameTypeArray[indexPath.row];
     CGFloat w = [gcm.name widthForFont:[UIFont systemFontOfSize:18]] + 30;
-    return CGSizeMake(w, self.height);
+    return CGSizeMake(w, 55);
 }
 
 @end

@@ -110,7 +110,6 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *gameNavigationViewHeight;  /**<   游戏导航Height约束 */
 
 @property (weak, nonatomic) IBOutlet UGGameTypeCollectionView *gameTypeView;        /**<   游戏列表 */
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *gameViewHeight;            /**<   游戏列表Height约束 */
 @property (nonatomic, strong) NSMutableArray<GameCategoryModel *> *gameCategorys;   /**<   游戏列表数据 */
 
 @property (weak, nonatomic) IBOutlet UIView *promotionView;                         /**<   优惠活动 view*/
@@ -798,6 +797,11 @@
 #pragma mark - SDCycleScrollViewDelegate
 
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
+#ifdef DEBUG
+//    [[UGSkinManagers randomSkin] useSkin];
+//    return;
+#endif
+    
 	UGBannerCellModel *banner = self.bannerArray[index];
     BOOL ret = [NavController1 pushViewControllerWithLinkCategory:banner.linkCategory linkPosition:banner.linkPosition];
     if (!ret) {

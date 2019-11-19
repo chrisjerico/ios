@@ -72,7 +72,14 @@
         self.leftwardMarqueeView.touchEnabled = YES;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showNoticeInfo)];
         [self.leftwardMarqueeView addGestureRecognizer:tap];
-        [self getSystemConfig];
+        
+        FastSubViewCode(self);
+        [subImageView(@"Logo图片") sd_setImageWithURL:[NSURL URLWithString:SysConf.mobile_logo] placeholderImage:nil];
+        subLabel(@"网址").text = SysConf.easyRememberDomain;
+        [self xw_addNotificationForName:UGNotificationGetSystemConfigComplete block:^(NSNotification * _Nonnull noti) {
+            [subImageView(@"Logo图片") sd_setImageWithURL:[NSURL URLWithString:SysConf.mobile_logo] placeholderImage:nil];
+            subLabel(@"网址").text = SysConf.easyRememberDomain;
+        }];
         [self getNoticeList];   // 公告列表
         [self.leftwardMarqueeView start];
     }
@@ -174,50 +181,29 @@
     }];
 }
 
-// 获取系统配置
-- (void)getSystemConfig {
-    [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-        [CMResult processWithResult:model success:^{
-            NSLog(@"model = %@",model);
-            UGSystemConfigModel *config = model.data;
-            UGSystemConfigModel.currentConfig = config;
-            FastSubViewCode(self);
-            [subImageView(@"Logo图片") sd_setImageWithURL:[NSURL URLWithString:config.mobile_logo] placeholderImage:nil];
-            if (![CMCommon stringIsNull:config.easyRememberDomain]) {
-                 subLabel(@"网址").text = config.easyRememberDomain;
-            }
-            else{
-                subLabel(@"网址").text = @"";
-            }
-
-        } failure:^(id msg) {
-            
-        }];
-    }];
-}
 
 #pragma mark - UUMarqueeViewDelegate
 
 - (NSUInteger)numberOfVisibleItemsForMarqueeView:(UUMarqueeView *)marqueeView {
-        return 1;
+    return 1;
 }
 
 - (NSUInteger)numberOfDataForMarqueeView:(UUMarqueeView *)marqueeView {
-        return self.leftwardMarqueeViewData ? self.leftwardMarqueeViewData.count : 0;
+    return self.leftwardMarqueeViewData ? self.leftwardMarqueeViewData.count : 0;
 }
 
 - (void)createItemView:(UIView *)itemView forMarqueeView:(UUMarqueeView *)marqueeView {
-        itemView.backgroundColor = [UIColor clearColor];
-        UILabel *content = [[UILabel alloc] initWithFrame:itemView.bounds];
-        content.font = [UIFont systemFontOfSize:14.0f];
-        content.tag = 1001;
-        [itemView addSubview:content];
+    itemView.backgroundColor = [UIColor clearColor];
+    UILabel *content = [[UILabel alloc] initWithFrame:itemView.bounds];
+    content.font = [UIFont systemFontOfSize:14.0f];
+    content.tag = 1001;
+    [itemView addSubview:content];
 }
 
 - (void)updateItemView:(UIView *)itemView atIndex:(NSUInteger)index forMarqueeView:(UUMarqueeView *)marqueeView {
-        UILabel *content = [itemView viewWithTag:1001];
-        content.textColor = Skin1.textColor1;
-        content.text = self.leftwardMarqueeViewData[index];
+    UILabel *content = [itemView viewWithTag:1001];
+    content.textColor = Skin1.textColor1;
+    content.text = self.leftwardMarqueeViewData[index];
 }
 - (CGFloat)itemViewWidthAtIndex:(NSUInteger)index forMarqueeView:(UUMarqueeView*)marqueeView {
     UILabel *content = [[UILabel alloc] init];

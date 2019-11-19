@@ -134,16 +134,32 @@ static UGTabbarController *_tabBarVC = nil;
     
     self.delegate = self;
     
-    // 设置初始控制器
-    [self resetUpChildViewController:@[@"/home", @"/lotteryList", @"/chatRoomList", @"/activity", @"/user", ]];
     
-    // 更新为后台配置的控制器
-    [self getSystemConfig];
-
+    [[UGSkinManagers skinWithSysConf] useSkin];
     
-//    SANotificationEventSubscribe(UGNotificationWithResetTabSuccess, self, ^(typeof (self) self, id obj) {
-//         [self resetUpChildViewController];
-//    });
+    {
+        NSArray<UGmobileMenu *> *menus = [[UGmobileMenu arrayOfModelsFromDictionaries:SysConf.mobileMenu error:nil] sortedArrayUsingComparator:^NSComparisonResult(UGmobileMenu *obj1, UGmobileMenu *obj2) {
+            return obj1.sort > obj2.sort;
+        }];
+        if (menus.count > 3) {
+            // 后台配置的页面
+            [self resetUpChildViewController:[menus valuesWithKeyPath:@"path"]];
+        } else {
+            // 默认加载的页面
+            [self resetUpChildViewController:@[@"/home", @"/lotteryList", @"/chatRoomList", @"/activity", @"/user", ]];
+        }
+    }
+    
+    SANotificationEventSubscribe(UGNotificationGetSystemConfigComplete, self, ^(typeof (self) self, id obj) {
+        NSArray<UGmobileMenu *> *menus = [[UGmobileMenu arrayOfModelsFromDictionaries:SysConf.mobileMenu error:nil] sortedArrayUsingComparator:^NSComparisonResult(UGmobileMenu *obj1, UGmobileMenu *obj2) {
+            return obj1.sort > obj2.sort;
+        }];
+        if (menus.count > 3) {
+            [TabBarController1 resetUpChildViewController:[menus valuesWithKeyPath:@"path"]];
+        }
+        
+        [[UGSkinManagers skinWithSysConf] useSkin];
+    });
     
     //    版本更新
     [[UGAppVersionManager shareInstance] updateVersionApi:false];
@@ -196,7 +212,9 @@ static UGTabbarController *_tabBarVC = nil;
             [nav.navigationBar setBackgroundImage:[UIImage imageWithColor:Skin1.navBarBgColor] forBarMetrics:UIBarMetricsDefault];
         }
     };
-    [self xw_addNotificationForName:UGNotificationWithSkinSuccess block:block1];
+    if (OBJOnceToken(self)) {
+        [self xw_addNotificationForName:UGNotificationWithSkinSuccess block:block1];
+    }
     block1(nil);
     
     [self.tabBar setSelectedImageTintColor: Skin1.tabSelectedColor];
@@ -217,27 +235,14 @@ static UGTabbarController *_tabBarVC = nil;
             __stateView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APP.Width, APP.StatusBarHeight)];
             __stateView.backgroundColor = Skin1.navBarBgColor;
             [self.view addSubview:__stateView];
-            NSArray *clsArray = @[QDWebViewController.class, UGBMLoginViewController.class];
-            for (Class cls in clsArray) {
+            for (Class cls in @[QDWebViewController.class, UGBMLoginViewController.class]) {
                 [cls cc_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
-                    if ([clsArray containsObject:[ai.instance class]]) {
-                        __stateView.hidden = true;
-                    }
+                    __stateView.hidden = true;
                 } error:nil];
                 [cls cc_hookSelector:@selector(viewWillDisappear:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
                     __stateView.hidden = false;
                 } error:nil];
             }
-//            [UIViewController cc_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
-//                if ([clsArray containsObject:[ai.instance class]]) {
-//                    __stateView.hidden = true;
-//                }
-//            } error:nil];
-//            [UIViewController cc_hookSelector:@selector(viewWillDisappear:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
-//                if ([clsArray containsObject:[ai.instance class]]) {
-//                    __stateView.hidden = false;
-//                }
-//            } error:nil];
         });
     }
 }
@@ -263,36 +268,6 @@ static UGTabbarController *_tabBarVC = nil;
     __height = height + APP.BottomSafeHeight;
     [self.view layoutSubviews];
     [self.selectedViewController.view layoutSubviews];
-}
-
-
-#pragma mark - 获得系统设置
-
-- (void)getSystemConfig {
-
-    [SVProgressHUD showWithStatus: nil];
-    [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-        [SVProgressHUD dismiss];
-        [CMResult processWithResult:model success:^{
-            
-            NSLog(@"model = %@",model);
-            
-            UGSystemConfigModel *config = model.data;
-            UGSystemConfigModel.currentConfig = config;
-            
-            [self setTabbarStyle];
-            
-            [[UGSkinManagers skinWithSysConf] useSkin];
-            
-            NSArray<UGmobileMenu *> *menus = [[UGmobileMenu arrayOfModelsFromDictionaries:SysConf.mobileMenu error:nil] sortedArrayUsingComparator:^NSComparisonResult(UGmobileMenu *obj1, UGmobileMenu *obj2) {
-                return obj1.sort > obj2.sort;
-            }];
-            [self resetUpChildViewController:[menus valuesWithKeyPath:@"path"]];
-            SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
-        } failure:^(id msg) {
-            [SVProgressHUD dismiss];
-        }];
-    }];
 }
 
 /**

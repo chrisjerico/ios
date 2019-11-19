@@ -774,6 +774,10 @@ static UGSkinManagers *__initSkin1 = nil;
 }
 
 - (void)useSkin {
+    if (self == __currentSkin1) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:UGNotificationWithSkinSuccess object:nil];
+        return;
+    }
     __currentSkin1 = self;
     // 遍历对象执行换肤block
     for (NSObject *obj in __viewPointers.allObjects) {

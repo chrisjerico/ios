@@ -230,6 +230,7 @@
             @"老虎":@"http://t005f.fhptcdn.com",
             @"朗朗":@"http://test20.6yc.com",
             @"小东":@"http://test29f.fhptcdn.com",
+            @"t032":@"http://t005f.fhptcdn.com",
         };
 #ifdef DEBUG
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
