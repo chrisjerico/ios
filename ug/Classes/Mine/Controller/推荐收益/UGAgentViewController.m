@@ -27,7 +27,7 @@
     // 占位Label
     {
     
-        [subTextView(@"内容TextView") aspect_hookSelector:@selector(setText:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
+        [subTextView(@"内容TextView") cc_hookSelector:@selector(setText:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
             subLabel(@"占位Label").hidden = subTextView(@"内容TextView").text.length;
         } error:nil];
         [self xw_addNotificationForName:UITextViewTextDidChangeNotification block:^(NSNotification * _Nonnull noti) {

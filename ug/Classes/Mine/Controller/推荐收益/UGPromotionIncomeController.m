@@ -56,9 +56,9 @@
     {
         static BOOL __viewWillAppear = false;
         if (OBJOnceToken(self)) {
-            [self aspect_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
-                __viewWillAppear = true;
-            } error:nil];
+//            [self cc_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
+//                __viewWillAppear = true;
+//            } error:nil];
         }
         if (__viewWillAppear) {
             [self initView];

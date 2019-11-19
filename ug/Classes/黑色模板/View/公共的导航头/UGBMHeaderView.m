@@ -82,7 +82,7 @@
 - (void)refreshUI {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [TabBarController1 aspect_hookSelector:@selector(setSelectedViewController:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
+        [TabBarController1 cc_hookSelector:@selector(setSelectedViewController:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
             [NavController1 popToRootViewControllerAnimated:false];
         } error:nil];
     });

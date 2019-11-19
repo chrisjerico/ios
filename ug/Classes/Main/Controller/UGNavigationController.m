@@ -72,7 +72,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         NSMutableArray *dataArray = __browsingHistoryArray = [NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"浏览历史"]]];
-        [UGNavigationController aspect_hookSelector:@selector(pushViewControllerWithGameModel:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
+        [UGNavigationController cc_hookSelector:@selector(pushViewControllerWithGameModel:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
             BOOL ret = false;
             [ai.originalInvocation getReturnValue:&ret];
             if (ret) {
@@ -425,7 +425,12 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         }
         case 7: {
             // 开奖网
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_NSString(@"%@/Open_prize/index.php", APP.Host)]];
+            SFSafariViewController *sf = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:_NSString(@"%@/Open_prize/index.php", APP.Host)]];
+            sf.允许未登录访问 = true;
+            sf.允许游客访问 = true;
+            [NavController1 presentViewController:sf animated:YES completion:nil];
+            
+//            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_NSString(@"%@/Open_prize/index.php", APP.Host)]];
             break;
         }
         case 8: {

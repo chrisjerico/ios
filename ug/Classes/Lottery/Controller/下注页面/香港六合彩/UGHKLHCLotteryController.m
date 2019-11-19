@@ -1504,7 +1504,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         }
         
         // 选中号码时，选中/取消选中对应生肖
-        [self aspect_hookSelector:@selector(collectionView:didSelectItemAtIndexPath:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo>ai) {
+        [self cc_hookSelector:@selector(collectionView:didSelectItemAtIndexPath:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo>ai) {
             UGGameplayModel *gm = __self.gameDataArray[__self.typeIndexPath.row];
             if ([gm.name isEqualToString:@"特码"]) {
                 for (UIButton *btn in btns) {
@@ -1524,7 +1524,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         } error:nil];
         
         // 显示zodiacScrollView后取消生肖按钮的选中状态
-        [sv aspect_hookSelector:@selector(setHidden:) withOptions:AspectPositionAfter usingBlock:^(id <AspectInfo>ai) {
+        [sv cc_hookSelector:@selector(setHidden:) withOptions:AspectPositionAfter usingBlock:^(id <AspectInfo>ai) {
             for (UIButton *btn in btns)
                 btn.selected = false;
         } error:nil];

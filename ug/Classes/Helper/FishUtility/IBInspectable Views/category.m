@@ -98,7 +98,7 @@ _CCRuntimeProperty_Copy(NSString *, 额外允许的字符, set额外允许的字
 - (void)cc_setDelegate:(id<UITextFieldDelegate>)delegate {
     [self cc_setDelegate:delegate];
     if ([delegate isKindOfClass:[NSObject class]] && OBJOnceToken(delegate)) {
-        [(id)delegate aspect_hookSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> aInfo) {
+        [(id)delegate cc_hookSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> aInfo) {
             [aInfo.originalInvocation invoke];
             // 过滤文本
             UITextField *tf = aInfo.arguments.firstObject;
@@ -162,7 +162,7 @@ _CCRuntimeGetterDoubleValue(BOOL, 内容紧贴边框)
 - (void)cc_setDelegate:(id<UITextViewDelegate>)delegate {
     [self cc_setDelegate:delegate];
     if ([delegate isKindOfClass:[NSObject class]] && OBJOnceToken(delegate)) {
-        [(id)delegate aspect_hookSelector:@selector(textView:shouldChangeTextInRange:replacementText:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> aInfo) {
+        [(id)delegate cc_hookSelector:@selector(textView:shouldChangeTextInRange:replacementText:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> aInfo) {
             [aInfo.originalInvocation invoke];
             
             // 过滤文本

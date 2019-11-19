@@ -90,7 +90,7 @@ UIActionSheetDelegate> {
     }
     
     // 退出页面前切换回竖屏
-    [self.navigationController aspect_hookSelector:@selector(popViewControllerAnimated:) withOptions:AspectPositionBefore usingBlock:^(id <AspectInfo>ai) {
+    [self.navigationController cc_hookSelector:@selector(popViewControllerAnimated:) withOptions:AspectPositionBefore usingBlock:^(id <AspectInfo>ai) {
         AppDelegate  *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
         appDelegate.allowRotation = 0;
         
@@ -202,7 +202,7 @@ UIActionSheetDelegate> {
         static NSString *host = nil;
         if (OBJOnceToken(self)) {
             host = nil;
-            [self aspect_hookSelector:@selector(webViewDidFinishLoad:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo>ai) {
+            [self cc_hookSelector:@selector(webViewDidFinishLoad:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo>ai) {
                 if (!host.length)
                     host = [APP.Host copy];
             } error:nil];

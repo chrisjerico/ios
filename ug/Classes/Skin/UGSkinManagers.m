@@ -74,19 +74,19 @@ static UGSkinManagers *__initSkin1 = nil;
                 }
                 [ai.originalInvocation invoke];
             };
-            [UIView aspect_hookSelector:@selector(setBackgroundColor:) withOptions:AspectPositionInstead usingBlock:block1 error:nil];
-            [UIView aspect_hookSelector:@selector(setTintColor:) withOptions:AspectPositionInstead usingBlock:block1 error:nil];
-            [UILabel aspect_hookSelector:@selector(setTextColor:) withOptions:AspectPositionInstead usingBlock:block1 error:nil];
-            [UITextField aspect_hookSelector:@selector(setTextColor:) withOptions:AspectPositionInstead usingBlock:block1 error:nil];
-            [UITextView aspect_hookSelector:@selector(setTextColor:) withOptions:AspectPositionInstead usingBlock:block1 error:nil];
-            [UIButton aspect_hookSelector:@selector(setTitleColor:forState:) withOptions:AspectPositionInstead usingBlock:block1 error:nil];
-            [UIButton aspect_hookSelector:@selector(setTitleShadowColor:forState:) withOptions:AspectPositionInstead usingBlock:block1 error:nil];
-            [UITabBar aspect_hookSelector:@selector(setUnselectedItemTintColor:) withOptions:AspectPositionInstead usingBlock:block1 error:nil];
-            [UITabBar aspect_hookSelector:@selector(setSelectedImageTintColor:) withOptions:AspectPositionInstead usingBlock:block1 error:nil];
-            [UITabBar aspect_hookSelector:@selector(setBarTintColor:) withOptions:AspectPositionInstead usingBlock:block1 error:nil];
-            [UINavigationBar aspect_hookSelector:@selector(setBarTintColor:) withOptions:AspectPositionInstead usingBlock:block1 error:nil];
-            [UISegmentedControl aspect_hookSelector:@selector(setBackgroundColor:) withOptions:AspectPositionInstead usingBlock:block1 error:nil];
-            [UISegmentedControl aspect_hookSelector:@selector(setSelectedSegmentTintColor:) withOptions:AspectPositionInstead usingBlock:block1 error:nil];
+            [UIView cc_hookSelector:@selector(setBackgroundColor:) withOptions:AspectPositionInstead usingBlock:block1 error:nil];
+            [UIView cc_hookSelector:@selector(setTintColor:) withOptions:AspectPositionInstead usingBlock:block1 error:nil];
+            [UILabel cc_hookSelector:@selector(setTextColor:) withOptions:AspectPositionInstead usingBlock:block1 error:nil];
+            [UITextField cc_hookSelector:@selector(setTextColor:) withOptions:AspectPositionInstead usingBlock:block1 error:nil];
+            [UITextView cc_hookSelector:@selector(setTextColor:) withOptions:AspectPositionInstead usingBlock:block1 error:nil];
+            [UIButton cc_hookSelector:@selector(setTitleColor:forState:) withOptions:AspectPositionInstead usingBlock:block1 error:nil];
+            [UIButton cc_hookSelector:@selector(setTitleShadowColor:forState:) withOptions:AspectPositionInstead usingBlock:block1 error:nil];
+            [UITabBar cc_hookSelector:@selector(setUnselectedItemTintColor:) withOptions:AspectPositionInstead usingBlock:block1 error:nil];
+            [UITabBar cc_hookSelector:@selector(setSelectedImageTintColor:) withOptions:AspectPositionInstead usingBlock:block1 error:nil];
+            [UITabBar cc_hookSelector:@selector(setBarTintColor:) withOptions:AspectPositionInstead usingBlock:block1 error:nil];
+            [UINavigationBar cc_hookSelector:@selector(setBarTintColor:) withOptions:AspectPositionInstead usingBlock:block1 error:nil];
+            [UISegmentedControl cc_hookSelector:@selector(setBackgroundColor:) withOptions:AspectPositionInstead usingBlock:block1 error:nil];
+            [UISegmentedControl cc_hookSelector:@selector(setSelectedSegmentTintColor:) withOptions:AspectPositionInstead usingBlock:block1 error:nil];
             
             
             // 处理CGColorRef类型（描边色）
@@ -113,13 +113,13 @@ static UGSkinManagers *__initSkin1 = nil;
                 }
                 [ai.originalInvocation invoke];
             };
-            [CALayer aspect_hookSelector:@selector(setBorderColor:) withOptions:AspectPositionInstead usingBlock:block2 error:nil];
-            [CALayer aspect_hookSelector:@selector(setBackgroundColor:) withOptions:AspectPositionInstead usingBlock:block2 error:nil];
-            [CALayer aspect_hookSelector:@selector(setShadowColor:) withOptions:AspectPositionInstead usingBlock:block2 error:nil];
+            [CALayer cc_hookSelector:@selector(setBorderColor:) withOptions:AspectPositionInstead usingBlock:block2 error:nil];
+            [CALayer cc_hookSelector:@selector(setBackgroundColor:) withOptions:AspectPositionInstead usingBlock:block2 error:nil];
+            [CALayer cc_hookSelector:@selector(setShadowColor:) withOptions:AspectPositionInstead usingBlock:block2 error:nil];
             
             // 处理NSDictionary类型（UITabBarItem）
             NSArray *attrKeys = @[NSForegroundColorAttributeName, NSBackgroundColorAttributeName, NSStrokeColorAttributeName, NSUnderlineColorAttributeName, NSStrikethroughColorAttributeName];
-            [UITabBarItem aspect_hookSelector:@selector(setTitleTextAttributes:forState:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> ai) {
+            [UITabBarItem cc_hookSelector:@selector(setTitleTextAttributes:forState:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> ai) {
                 NSDictionary *dict = ai.arguments.firstObject;
                 NSInvocation *invocation = ai.originalInvocation;
                 
@@ -211,11 +211,11 @@ static UGSkinManagers *__initSkin1 = nil;
                 }
                 [ai.originalInvocation invoke];
             };
-            [UILabel aspect_hookSelector:@selector(setAttributedText:) withOptions:AspectPositionInstead usingBlock:block3 error:nil];
-            [UITextField aspect_hookSelector:@selector(setAttributedText:) withOptions:AspectPositionInstead usingBlock:block3 error:nil];
-            [UITextField aspect_hookSelector:@selector(setAttributedPlaceholder:) withOptions:AspectPositionInstead usingBlock:block3 error:nil];;
-            [UITextView aspect_hookSelector:@selector(setAttributedText:) withOptions:AspectPositionInstead usingBlock:block3 error:nil];
-            [UIButton aspect_hookSelector:@selector(setAttributedTitle:forState:) withOptions:AspectPositionInstead usingBlock:block3 error:nil];
+            [UILabel cc_hookSelector:@selector(setAttributedText:) withOptions:AspectPositionInstead usingBlock:block3 error:nil];
+            [UITextField cc_hookSelector:@selector(setAttributedText:) withOptions:AspectPositionInstead usingBlock:block3 error:nil];
+            [UITextField cc_hookSelector:@selector(setAttributedPlaceholder:) withOptions:AspectPositionInstead usingBlock:block3 error:nil];;
+            [UITextView cc_hookSelector:@selector(setAttributedText:) withOptions:AspectPositionInstead usingBlock:block3 error:nil];
+            [UIButton cc_hookSelector:@selector(setAttributedTitle:forState:) withOptions:AspectPositionInstead usingBlock:block3 error:nil];
         }
     });
 }
@@ -245,7 +245,7 @@ static UGSkinManagers *__initSkin1 = nil;
         for (NSString *colorName in [UGSkinManagers propertyList]) {
             if ([colorName.lowercaseString containsString:@"color"]) {
                 NSString *setterName = _NSString(@"set%@%@:", colorName[0].uppercaseString, [colorName substringFromIndex:1]);
-                [UGSkinManagers aspect_hookSelector:NSSelectorFromString(setterName) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> ai) {
+                [UGSkinManagers cc_hookSelector:NSSelectorFromString(setterName) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> ai) {
                     UIColor *c = ai.arguments.firstObject;
                     c = [c colorWithAlphaComponent:SkinAlpha];
                     c.cc_userInfo[@"colorName"] = colorName;
@@ -597,7 +597,7 @@ static UGSkinManagers *__initSkin1 = nil;
             sm.textColor4               = color(@"FFFFFF");
             sm;
         }),
-        //18钻石蓝
+        //经典 18钻石蓝
         @"18":({
             UGSkinManagers *sm = [UGSkinManagers new];
             sm.skitType                 = @"经典";
@@ -617,7 +617,7 @@ static UGSkinManagers *__initSkin1 = nil;
             sm.textColor4               = color(@"FFFFFF");
             sm;
         }),
-        //19经典 忧郁蓝
+        //经典 19忧郁蓝
         @"19":({
             UGSkinManagers *sm = [UGSkinManagers new];
             sm.skitType                 = @"经典";
@@ -697,7 +697,7 @@ static UGSkinManagers *__initSkin1 = nil;
             sm.textColor4               = color(@"FFFFFF");
             sm;
         }),
-        //六合资料
+        //黑色模板
         @"黑色模板":({
             UGSkinManagers *sm = [UGSkinManagers new];
             sm.skitType                 = @"黑色模板";

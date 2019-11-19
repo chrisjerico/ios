@@ -68,6 +68,7 @@
     #import "UIView+Frame.h"
     #import "NSDate+Millisecond.h"
 
+#import "NSObject+AspectsHelper.h"
 
 #endif
 

@@ -226,6 +226,10 @@
             // 测试站点
             @"test10":@"http://test10.6yc.com",
             @"c083":@"http://t111f.fhptcdn.com",
+            @"test100":@"http://test100f.fhptcdn.com",
+            @"老虎":@"http://t005f.fhptcdn.com",
+            @"朗朗":@"http://test20.6yc.com",
+            @"小东":@"http://test29f.fhptcdn.com",
         };
 #ifdef DEBUG
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
@@ -274,7 +278,7 @@
     _StatusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
     _BottomSafeHeight = _Window.height - [UITabBarController new].tabBar.by;
     
-    [UIViewController aspect_hookSelector:@selector(viewDidLayoutSubviews) withOptions:AspectOptionAutomaticRemoval usingBlock:^(id<AspectInfo> ai) {
+    [UIViewController cc_hookSelector:@selector(viewDidLayoutSubviews) withOptions:AspectOptionAutomaticRemoval usingBlock:^(id<AspectInfo> ai) {
         if (@available(iOS 11.0, *)) {
             APP.BottomSafeHeight = ((UIViewController *)ai.instance).view.safeAreaInsets.bottom;
         }
