@@ -12,6 +12,7 @@
 @property (nonatomic) UILabel *titleLabel;
 @property (nonatomic) UITextView *textView;
 @property (nonatomic) UIButton *confirmButton;
+@property (nonatomic, strong) UIActivityIndicatorView *activity;
 @end
 
 @implementation UGDocumentView
@@ -102,7 +103,7 @@ static UGDocumentView *_singleInstance = nil;
 			make.height.equalTo(@45);
 		}];
        
-
+       [self addSubview:self.activity];
         
 	}
 	return self;
@@ -125,7 +126,7 @@ static UGDocumentView *_singleInstance = nil;
 - (void)setModel:(UGDocumentDetailData *)model {
 	_model = model;
     _titleLabel.text = model.title;
-
+    [self.activity startAnimating];
     __weakSelf_(__self);
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         NSString *str = _NSString(@"<head><style>img{width:auto !important;max-width:%f;height:auto}</style></head>%@%@%@", APP.Width-50, model.header, model.content, model.footer);
@@ -146,8 +147,19 @@ static UGDocumentView *_singleInstance = nil;
              }
          }
          dispatch_async(dispatch_get_main_queue(), ^{
+            [self.activity stopAnimating];
              __self.textView.attributedText = mas;
          });
     });
+}
+
+- (UIActivityIndicatorView *)activity {
+    if (!_activity) {
+        _activity = [[UIActivityIndicatorView alloc] init];
+        _activity.hidesWhenStopped = YES;
+        _activity.color = [UIColor lightGrayColor];
+        
+    }
+    return _activity;
 }
 @end

@@ -62,12 +62,21 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (!UGLoginIsAuthorized()) {
-        SANotificationEventPost(UGNotificationShowLoginView, nil);
-        return;
-    }
+
     GameModel *gm = self.sourceData[indexPath.item];
-    [NavController1 pushViewControllerWithGameModel:gm];
+    if (gm.subId == 4) {
+         [NavController1 pushViewControllerWithGameModel:gm];
+         return;
+    } else {
+        if (!UGLoginIsAuthorized()) {
+            SANotificationEventPost(UGNotificationShowLoginView, nil);
+            return;
+        }
+        [NavController1 pushViewControllerWithGameModel:gm];
+    }
+
+    
+   
 }
 
 
