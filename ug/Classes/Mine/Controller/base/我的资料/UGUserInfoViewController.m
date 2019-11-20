@@ -44,6 +44,10 @@
         self.emailLabel.textColor = Skin1.textColor1;
         self.moneyType.textColor = Skin1.textColor1;
         ((UILabel *)[self.view viewWithTagString:@"我的资料Label"]).textColor = Skin1.textColor1;
+        
+        _avaterImageView.layer.masksToBounds = YES;
+        _avaterImageView.layer.cornerRadius = 32.5;
+
     }
     
     
