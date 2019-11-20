@@ -21,6 +21,12 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
 	
+    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+        [self.oddsLabel setTextColor:[UIColor whiteColor]];
+    } else {
+        [self.oddsLabel setTextColor:[UIColor blackColor]];
+    }
+    
 	[self.amountField addTarget:self action:@selector(amountEdited:) forControlEvents:UIControlEventAllEditingEvents];
 	
 	UILabel * label = [UILabel new];

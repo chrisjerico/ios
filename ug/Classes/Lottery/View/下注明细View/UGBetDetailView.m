@@ -179,21 +179,47 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
                 float webAmountfloat = [SysConf.chatMinFollowAmount floatValue];
 
                 if (!UserI.isTest && SysConf.chatFollowSwitch && (amountfloat >= webAmountfloat)) {
-                    // ==> 弹出分享框
-                   [LEEAlert alert].config
-                       .LeeTitle(@"分享注单")
-                       .LeeContent(@"是否分享到聊天室")
-                       .LeeAction(@"取消", nil)
-                       .LeeAction(@"分享", ^{//跳到聊天界面，把分享数据传过去
-                           NSString *jsonStr = [self shareBettingData];
-                           NSString *url = _NSString(@"%@%@%@&color=%@&back=hide&loginsessid=%@&logintoken=%@&tag=3&from=app", APP.Host, @"/dist/index.html#/home?roomId=0&roomName=", SysConf.chatRoomName, Skin1.navBarBgColor.hexString, [UGUserModel currentUser].sessid, [UGUserModel currentUser].token);
-                           NSLog(@"url = %@",url);
-                           UGChatViewController *chatVC = [[UGChatViewController alloc] init];
-                           chatVC.jsonStr = jsonStr;
-                           [chatVC setUrl:url];
-                           [NavController1 pushViewController:chatVC animated:YES];
+                    
+                    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+                        [LEEAlert alert].config
+                        .LeeAddTitle(^(UILabel *label) {
+                            label.text = @"分享注单";
+                            label.textColor = [UIColor whiteColor];
                         })
-                       .LeeShow();
+                        .LeeAddContent(^(UILabel *label) {
+                            label.text = @"是否分享到聊天室";
+                            label.textColor = [UIColor whiteColor];
+                        })
+                        .LeeAction(@"取消", nil)
+                                   .LeeAction(@"分享", ^{//跳到聊天界面，把分享数据传过去
+                                       NSString *jsonStr = [self shareBettingData];
+                                       NSString *url = _NSString(@"%@%@%@&color=%@&back=hide&loginsessid=%@&logintoken=%@&tag=3&from=app", APP.Host, @"/dist/index.html#/home?roomId=0&roomName=", SysConf.chatRoomName, Skin1.navBarBgColor.hexString, [UGUserModel currentUser].sessid, [UGUserModel currentUser].token);
+                                       NSLog(@"url = %@",url);
+                                       UGChatViewController *chatVC = [[UGChatViewController alloc] init];
+                                       chatVC.jsonStr = jsonStr;
+                                       [chatVC setUrl:url];
+                                       [NavController1 pushViewController:chatVC animated:YES];
+                                    })
+                        .LeeHeaderColor(Skin1.bgColor)
+                        .LeeShow();
+                    } else {
+                         // ==> 弹出分享框
+                        [LEEAlert alert].config
+                            .LeeTitle(@"分享注单")
+                            .LeeContent(@"是否分享到聊天室")
+                            .LeeAction(@"取消", nil)
+                            .LeeAction(@"分享", ^{//跳到聊天界面，把分享数据传过去
+                                NSString *jsonStr = [self shareBettingData];
+                                NSString *url = _NSString(@"%@%@%@&color=%@&back=hide&loginsessid=%@&logintoken=%@&tag=3&from=app", APP.Host, @"/dist/index.html#/home?roomId=0&roomName=", SysConf.chatRoomName, Skin1.navBarBgColor.hexString, [UGUserModel currentUser].sessid, [UGUserModel currentUser].token);
+                                NSLog(@"url = %@",url);
+                                UGChatViewController *chatVC = [[UGChatViewController alloc] init];
+                                chatVC.jsonStr = jsonStr;
+                                [chatVC setUrl:url];
+                                [NavController1 pushViewController:chatVC animated:YES];
+                             })
+                            .LeeShow();
+                    }
+
                 } else {
                     [SVProgressHUD showSuccessWithStatus:model.msg];
                 }
@@ -704,6 +730,31 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 }
 
 - (void)show {
+    FastSubViewCode(self)
+    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+        [self setBackgroundColor:Skin1.bgColor];
+        [self.tableView setBackgroundColor:Skin1.bgColor];
+        [self.titleLabel setTextColor:[UIColor whiteColor]];
+        [self.closeTimeLabel setTextColor:[UIColor whiteColor]];
+        [self.totalAmountLabel setTextColor:[UIColor whiteColor]];
+        [subLabel(@"号码label")setTextColor:[UIColor whiteColor]];
+        [subLabel(@"赔率label")setTextColor:[UIColor whiteColor]];
+        [subLabel(@"金额label")setTextColor:[UIColor whiteColor]];
+        [subLabel(@"操作label")setTextColor:[UIColor whiteColor]];
+        [self.cancelButton setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
+    } else {
+        [self setBackgroundColor:[UIColor whiteColor]];
+        [self.tableView setBackgroundColor:[UIColor whiteColor]];
+        [self.titleLabel setTextColor:[UIColor blackColor]];
+        [self.closeTimeLabel setTextColor:[UIColor blackColor]];
+        [self.totalAmountLabel setTextColor:[UIColor blackColor]];
+        [subLabel(@"号码label")setTextColor:[UIColor blackColor]];
+        [subLabel(@"赔率label")setTextColor:[UIColor blackColor]];
+        [subLabel(@"金额label")setTextColor:[UIColor blackColor]];
+        [subLabel(@"操作label")setTextColor:[UIColor blackColor]];
+        [self.cancelButton setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
+    }
+    
 	UIWindow* window = UIApplication.sharedApplication.keyWindow;
 	UIView* maskView = [[UIView alloc] initWithFrame:window.bounds];
 	UIView* view = self;
