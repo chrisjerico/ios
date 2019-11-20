@@ -68,7 +68,7 @@
     else if ([item.pid isEqualToString:@"bank_transfer"]) {
         [self setHeaderImageStr:@"transfer"];
     }
-    else if ([item.pid isEqualToString:@"bank_online"]||[item.pid isEqualToString:@"tenpay_online"]||[item.pid isEqualToString:@"yinlian_online"]) {
+    else if ([item.pid isEqualToString:@"bank_online"]||[item.pid isEqualToString:@"yinlian_online"]) {
         [self setHeaderImageStr:@"bank_online"];
     }
     else if ([item.pid isEqualToString:@"tenpay_transfer"]) {
@@ -106,6 +106,9 @@
     }
     else if ([item.pid isEqualToString:@"xlsm_transfer"]) {//闲聊扫码
         [self setHeaderImageStr:@"xlsm"];
+    }
+    else if ([item.pid isEqualToString:@"tenpay_online"]) {//云闪付
+        [self setHeaderImageStr:@"yunshanfu"];
     }
    
 }
