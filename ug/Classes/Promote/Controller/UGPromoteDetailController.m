@@ -9,9 +9,11 @@
 #import "UGPromoteDetailController.h"
 #import "UGPromoteModel.h"
 
-@interface UGPromoteDetailController ()
+@interface UGPromoteDetailController ()<UIWebViewDelegate>
 @property (strong, nonatomic) UILabel *titleLabel;
+//@property (strong, nonatomic) UITextView *contentTextView;
 @property (strong, nonatomic) UITextView *contentTextView;
+@property (strong, nonatomic) UIWebView *myWebView;
 @property (nonatomic, strong) UIActivityIndicatorView *activity;
 
 @end
@@ -29,7 +31,8 @@
     self.contentTextView.backgroundColor = [UIColor clearColor];
     self.titleLabel.textColor = Skin1.textColor1;
     [self.view addSubview:self.titleLabel];
-    [self.view addSubview:self.contentTextView];
+//    [self.view addSubview:self.contentTextView];
+    [self.view addSubview:self.myWebView];
     [self.view addSubview:self.activity];
 
 }
@@ -40,27 +43,35 @@
     [self.activity startAnimating];
     NSString *str = [NSString stringWithFormat:@"<head><style>img{width:auto !important;max-width:%f;height:auto}</style></head>%@", UGScreenW - 10, self.item.content];
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithData:[str dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,} documentAttributes:nil error:nil];
-        NSMutableParagraphStyle *ps = [NSMutableParagraphStyle new];
-        ps.lineSpacing = 5;
-        [mas addAttributes:@{NSParagraphStyleAttributeName:ps,} range:NSMakeRange(0, mas.length)];
-        
-        // 替换文字颜色
-        NSAttributedString *as = [mas copy];
-        for (int i=0; i<as.length; i++) {
-            NSRange r = NSMakeRange(0, as.length);
-            NSMutableDictionary *dict = [as attributesAtIndex:i effectiveRange:&r].mutableCopy;
-            UIColor *c = dict[NSForegroundColorAttributeName];
-            if (fabs(c.red - c.green) < 0.05 && fabs(c.green - c.blue) < 0.05) {
-                dict[NSForegroundColorAttributeName] = Skin1.textColor2;
-                [mas addAttributes:dict range:NSMakeRange(i, 1)];
-            }
-        }
+//        NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithData:[str dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,} documentAttributes:nil error:nil];
+//        NSMutableParagraphStyle *ps = [NSMutableParagraphStyle new];
+//        ps.lineSpacing = 5;
+//        [mas addAttributes:@{NSParagraphStyleAttributeName:ps,} range:NSMakeRange(0, mas.length)];
+//
+//        // 替换文字颜色
+//        NSAttributedString *as = [mas copy];
+//        for (int i=0; i<as.length; i++) {
+//            NSRange r = NSMakeRange(0, as.length);
+//            NSMutableDictionary *dict = [as attributesAtIndex:i effectiveRange:&r].mutableCopy;
+//            UIColor *c = dict[NSForegroundColorAttributeName];
+//            if (fabs(c.red - c.green) < 0.05 && fabs(c.green - c.blue) < 0.05) {
+//                dict[NSForegroundColorAttributeName] = Skin1.textColor2;
+//                [mas addAttributes:dict range:NSMakeRange(i, 1)];
+//            }
+//        }
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.activity stopAnimating];
-            self.contentTextView.attributedText = mas;
+//            self.contentTextView.attributedText = mas;
+            // 加载本地HTML字符串
+              [self.myWebView loadHTMLString:str baseURL:[[NSBundle mainBundle] bundleURL]];
         });
     });
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
+    //字体颜色
+//       [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('body')[0].style.webkitTextFillColor= 'white'"];
+//       [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('body')[0].style.background='#171717'"];
 }
 
 - (void)viewWillLayoutSubviews
@@ -73,7 +84,9 @@
     self.titleLabel.frame = CGRectMake(labelX, labelY, labelW, 0);
     [self.titleLabel sizeToFit];
     
-    self.contentTextView.frame = CGRectMake(labelX, CGRectGetMaxY(self.titleLabel.frame) + 8, labelW, UGScerrnH - CGRectGetMaxY(self.titleLabel.frame) - 60 );
+//    self.contentTextView.frame = CGRectMake(labelX, CGRectGetMaxY(self.titleLabel.frame) + 8, labelW, UGScerrnH - CGRectGetMaxY(self.titleLabel.frame) - 60 );
+    
+    self.myWebView.frame = CGRectMake(labelX, CGRectGetMaxY(self.titleLabel.frame) + 8, labelW, UGScerrnH - CGRectGetMaxY(self.titleLabel.frame) - 60 );
     self.activity.center = CGPointMake(UGScreenW / 2, UGScerrnH / 2 - 50);
     
 }
@@ -107,5 +120,15 @@
         
     }
     return _activity;
+}
+
+- (UIWebView *)myWebView
+{
+    if (!_myWebView) {
+        _myWebView = [[UIWebView alloc]init];
+        _myWebView.delegate = self;
+//        [_myWebView setOpaque:NO];
+    }
+    return _myWebView;
 }
 @end
