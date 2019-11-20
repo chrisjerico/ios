@@ -262,7 +262,9 @@
         });
         // 获取系统配置成功
         SANotificationEventSubscribe(UGNotificationGetSystemConfigComplete, self, ^(typeof (self) self, id obj) {
-            [__self.promotionsStackView superviewWithTagString:@"优惠活动ContentView"].hidden = !SysConf.m_promote_pos;
+//            NSLog(@"SysConf.m_promote_pos = %d",SysConf.m_promote_pos);
+//            [__self.promotionsStackView superviewWithTagString:@"优惠活动ContentView"].hidden = !SysConf.m_promote_pos;
+            __self.promotionView.hidden = !SysConf.m_promote_pos;
         });
     }
     
