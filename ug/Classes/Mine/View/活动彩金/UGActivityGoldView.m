@@ -86,9 +86,8 @@
             subButton(@"关闭btn").layer.borderColor = [UIColor blackColor].CGColor;
 
         }
-        // 占位颜色
-        [subTextField(@"验证码TextField") setValue:RGBA(159, 166, 173, 1) forKeyPath:@"_placeholderLabel.textColor"];
-        [subTextField(@"金额TextField") setValue:RGBA(159, 166, 173, 1) forKeyPath:@"_placeholderLabel.textColor"];
+        [CMCommon textFieldSetPlaceholderLabelColor:RGBA(159, 166, 173, 1) TextField:subTextField(@"验证码TextField")];
+        [CMCommon textFieldSetPlaceholderLabelColor:RGBA(159, 166, 173, 1) TextField:subTextField(@"金额TextField")];
     }
     
     // 验证码

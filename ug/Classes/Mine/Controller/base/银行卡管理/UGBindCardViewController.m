@@ -55,13 +55,7 @@
         [self.bankAddressTextF setTextColor:[UIColor whiteColor]];
         [self.cardNumberTextF setTextColor:[UIColor whiteColor]];
         [self.nameTextF setTextColor:[UIColor whiteColor]];
-        // "通过KVC修改占位文字的颜色"
-        [self.bankTypeTextF setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
-        [self.bankAddressTextF setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
-        [self.cardNumberTextF setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
-        [self.nameTextF setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
  
-       
     } else {
        [self.view setBackgroundColor:[UIColor whiteColor]];
        [subLabel(@"标题label") setTextColor:[UIColor whiteColor]];
@@ -73,12 +67,12 @@
        [self.bankAddressTextF setTextColor:[UIColor blackColor]];
        [self.cardNumberTextF setTextColor:[UIColor blackColor]];
        [self.nameTextF setTextColor:[UIColor blackColor]];
-       // "通过KVC修改占位文字的颜色"
-       [self.bankTypeTextF setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
-       [self.bankAddressTextF setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
-       [self.cardNumberTextF setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
-       [self.nameTextF setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
     }
+    
+    [CMCommon textFieldSetPlaceholderLabelColor:Skin1.textColor3 TextField:self.bankTypeTextF];
+    [CMCommon textFieldSetPlaceholderLabelColor:Skin1.textColor3 TextField:self.bankAddressTextF];
+    [CMCommon textFieldSetPlaceholderLabelColor:Skin1.textColor3 TextField:self.cardNumberTextF];
+    [CMCommon textFieldSetPlaceholderLabelColor:Skin1.textColor3 TextField:self.nameTextF];
 
     self.selIndex = -1;
     self.bankAddressTextF.delegate = self;

@@ -156,4 +156,11 @@
  *
  */
 + (NSString *)urlformat:(NSString *)string ;
+
+/**
+ *  "通过KVC修改占位文字的颜色""
+ *  NSGenericException" - reason: "Access to UITextField's _placeholderLabel ivar is prohibited. This is an application bug"
+ *
+ */
++ (void )textFieldSetPlaceholderLabelColor:(UIColor *)color TextField:(UITextField *)txtF;
 @end

@@ -44,12 +44,7 @@
         [self.loginPwdTextF setTextColor:[UIColor whiteColor]];
         [self.fundPwdTextF setTextColor:[UIColor whiteColor]];
         [self.checkPwdTextF setTextColor:[UIColor whiteColor]];
-        // "通过KVC修改占位文字的颜色"
-        [self.loginPwdTextF setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
-        [self.fundPwdTextF setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
-        [self.checkPwdTextF setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
-  
-        
+
     } else {
         [self.view setBackgroundColor:[UIColor whiteColor]];
         [subLabel(@"标题label") setTextColor:[UIColor blackColor]];
@@ -59,12 +54,11 @@
         [self.loginPwdTextF setTextColor:[UIColor blackColor]];
         [self.fundPwdTextF setTextColor:[UIColor blackColor]];
         [self.checkPwdTextF setTextColor:[UIColor blackColor]];
-        // "通过KVC修改占位文字的颜色"
-        [self.loginPwdTextF setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
-        [self.fundPwdTextF setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
-        [self.checkPwdTextF setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
-    }
 
+    }
+    [CMCommon textFieldSetPlaceholderLabelColor:Skin1.textColor3 TextField:self.loginPwdTextF];
+    [CMCommon textFieldSetPlaceholderLabelColor:Skin1.textColor3 TextField:self.fundPwdTextF];
+    [CMCommon textFieldSetPlaceholderLabelColor:Skin1.textColor3 TextField:self.checkPwdTextF];
     self.loginPwdTextF.delegate = self;
     self.fundPwdTextF.delegate = self;
     self.checkPwdTextF.delegate = self;

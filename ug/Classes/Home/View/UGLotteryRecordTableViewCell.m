@@ -166,9 +166,11 @@ static NSString *lotteryOneCellId = @"UGFastThreeOneCollectionViewCell";
          return CGSizeMake(((AvailableWidth - 2) / 6), ((AvailableWidth - 5) / 10));
     } else if ([@"jsk3" isEqualToString:self.item.gameType]) {
         if (indexPath.section == 0) {
-            return CGSizeMake(((AvailableWidth - 2) / 6), ((AvailableWidth - 5) / 6));
+//            return CGSizeMake(((AvailableWidth - 2) / 6), ((AvailableWidth - 5) / 6));
+              return CGSizeMake(((AvailableWidth - 2) / 3), ((AvailableWidth - 5) / 6));
         } else {
-            return CGSizeMake(((AvailableWidth - 2) / 7), ((AvailableWidth - 5) / 7));
+//            return CGSizeMake(((AvailableWidth - 2) / 7), ((AvailableWidth - 5) / 7));
+              return CGSizeMake(((AvailableWidth - 2) / 3), ((AvailableWidth - 5) / 7));
         }
     } else {
         CGFloat w = AvailableWidth / 10;
@@ -196,14 +198,18 @@ static NSString *lotteryOneCellId = @"UGFastThreeOneCollectionViewCell";
     return UIEdgeInsetsMake(3, 1, 1, 1);
 }
 
+
+
 - (void)initcollectionView {
     WSLWaterFlowLayout *flow = [[WSLWaterFlowLayout alloc] init];
     flow.delegate = self;
     flow.flowLayoutStyle = WSLWaterFlowVerticalEqualHeight;
+   
     
     UICollectionView *collectionView = ({
         collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(115, 5, UGScreenW - 115, self.height) collectionViewLayout:flow];
         collectionView.backgroundColor = [UIColor clearColor];
+//        collectionView.backgroundColor = [UIColor greenColor];
         collectionView.dataSource = self;
         collectionView.delegate = self;
         [collectionView registerNib:[UINib nibWithNibName:@"UGLotteryResultCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:lotteryResultCellid];
@@ -218,5 +224,7 @@ static NSString *lotteryOneCellId = @"UGFastThreeOneCollectionViewCell";
     [self addSubview:collectionView];
     
 }
+
+
 
 @end

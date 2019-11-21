@@ -64,8 +64,6 @@ static NSString *convertCellid = @"UGConvertCollectionViewCell";
           [_balanceLabel setTextColor:[UIColor whiteColor]];
           [_yubaoAmountLabel setTextColor:[UIColor whiteColor]];
           [_inputTextF setTextColor:[UIColor whiteColor]];
-            // "通过KVC修改占位文字的颜色"
-          [_inputTextF setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
           [_submitButton setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
           [_submitButton setBackgroundColor:Skin1.navBarBgColor];
           [_turnInButton setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
@@ -80,8 +78,6 @@ static NSString *convertCellid = @"UGConvertCollectionViewCell";
           [_balanceLabel setTextColor:[UIColor blackColor]];
           [_yubaoAmountLabel setTextColor:[UIColor blackColor]];
           [_inputTextF setTextColor:[UIColor blackColor]];
-          // "通过KVC修改占位文字的颜色"
-          [_inputTextF setValue:Skin1.textColor3 forKeyPath:@"_placeholderLabel.textColor"];
           [_submitButton setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
           [_submitButton setBackgroundColor:Skin1.navBarBgColor];
           [_turnInButton setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
@@ -89,6 +85,7 @@ static NSString *convertCellid = @"UGConvertCollectionViewCell";
           [_turnOutButton setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
           [subImageView(@"浪图UIImagV") setHidden:NO];
       }
+      [CMCommon textFieldSetPlaceholderLabelColor:Skin1.textColor3 TextField:_inputTextF];
 }
 
 

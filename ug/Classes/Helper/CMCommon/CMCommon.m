@@ -2,7 +2,7 @@
 //  CMCommon.m
 
 #import "CMCommon.h"
-
+#import <objc/runtime.h>
 @implementation CMCommon
 /******************************************************************************
  函数名称 : + (BOOL)verifyPhoneNum:(NSString *)numStr
@@ -633,5 +633,17 @@ return NO;
 
 
     return encodedString;
+}
+
+/**
+ *  "通过KVC修改占位文字的颜色""
+ *  NSGenericException" - reason: "Access to UITextField's _placeholderLabel ivar is prohibited. This is an application bug"
+ *
+ */
++ (void )textFieldSetPlaceholderLabelColor:(UIColor *)color TextField:(UITextField *)txtF {
+     // "通过KVC修改占位文字的颜色"
+     Ivar ivar =  class_getInstanceVariable([UITextField class], "_placeholderLabel");
+     UILabel *placeholderLabel = object_getIvar(txtF, ivar);
+     placeholderLabel.textColor = color;
 }
 @end
