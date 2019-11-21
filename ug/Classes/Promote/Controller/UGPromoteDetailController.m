@@ -68,10 +68,26 @@
     });
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView{
-    //字体颜色
-//       [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('body')[0].style.webkitTextFillColor= 'white'"];
-//       [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('body')[0].style.background='#171717'"];
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+        // body.style默认字体色
+        [webView stringByEvaluatingJavaScriptFromString:@"document.body.style.color='#DDD'"];
+        // body.style背景色
+        [webView stringByEvaluatingJavaScriptFromString:@"document.body.style.background='#171717'"];
+        // 表格字体色、边框色
+        [webView stringByEvaluatingJavaScriptFromString:@"\
+           var eles = document.getElementsByTagName('table');\
+           for (var i = 0; i < eles.length; i++) {\
+               eles[i].setAttribute(\"style\", \"border: 0.5px solid white; background:#222\");\
+           }"
+        ];
+        [webView stringByEvaluatingJavaScriptFromString:@"\
+           var eles = document.getElementsByTagName('td');\
+           for (var i = 0; i < eles.length; i++) {\
+               eles[i].setAttribute(\"style\", \"color:#DDD; border: 0.5px solid white; background:#222\");\
+           }"
+        ];
+    }
 }
 
 - (void)viewWillLayoutSubviews
