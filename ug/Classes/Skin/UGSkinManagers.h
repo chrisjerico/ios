@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIColor *)randomThemeColor;
 
 @property (nonatomic, strong) NSString *skitType;               /**<   皮肤类型 */
+@property (nonatomic, strong) NSString *skitString;             /**<   皮肤类型 */
 
 @property (nonatomic, strong) UIColor *bgColor;                 /**<    背景 渐变色 */
 @property (nonatomic, strong) UIColor *navBarBgColor;           /**<    导航条背景色 */

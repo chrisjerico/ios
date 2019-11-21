@@ -230,7 +230,7 @@ static NSInteger versionNumber = 102;
 
 -(void)goToAppStore{
 
-    NSString *urlStr = self.versionModle.file;
+    NSString *urlStr = self.versionModle.downloadUrl;
     
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];
     
