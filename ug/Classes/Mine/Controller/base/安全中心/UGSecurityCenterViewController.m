@@ -26,6 +26,12 @@
     [self buildSegment];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO];//强制显示NavBar
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
