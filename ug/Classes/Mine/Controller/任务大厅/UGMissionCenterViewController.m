@@ -319,14 +319,22 @@ static NSString *__title = nil;
 
 #pragma mark - IBAction
 
-// 返回上一页
+//去会员中心
 - (IBAction)backCick:(id)sender {
-    if ([self.navigationController.viewControllers.firstObject isEqual:self]) {
-        //去会员中心
-        [self.navigationController pushViewController:[UGMineSkinViewController new] animated:YES];
-    } else {
-        [self.navigationController popViewControllerAnimated:YES];
-    }
+    
+    // 会员中心
+       UIViewController *vc = [NavController1.viewControllers objectWithValue:UGMineSkinViewController.class keyPath:@"class"];
+       if (vc) {
+           [NavController1 popToViewController:vc animated:false];
+       } else {
+           [self.navigationController pushViewController:[UGMineSkinViewController new] animated:YES];
+       }
+//    if ([self.navigationController.viewControllers.lastObject isEqual:self]) {
+//        //去会员中心
+//        [self.navigationController pushViewController:[UGMineSkinViewController new] animated:YES];
+//    } else {
+//        [self.navigationController popViewControllerAnimated:YES];
+//    }
 }
 
 // 刷新余额

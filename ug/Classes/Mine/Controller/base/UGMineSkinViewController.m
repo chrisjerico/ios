@@ -710,7 +710,13 @@ BOOL isOk = NO;
 
 // 任务中心
 - (IBAction)showMissionVC:(id)sender {
-    [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController") animated:YES];
+  // 任务中心
+       UIViewController *vc = [NavController1.viewControllers objectWithValue:UGMissionCenterViewController.class keyPath:@"class"];
+       if (vc) {
+           [NavController1 popToViewController:vc animated:false];
+       } else {
+           [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController") animated:false];
+       }
 }
 
 // 每日签到
