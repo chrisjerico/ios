@@ -23,7 +23,7 @@
 #import "UGrealBetStatModel.h"
 #import "UGrealBetListModel.h"
 #import "UGPromotion6rowButtonTableViewCell.h"
-
+#import "SGBrowserView.h"
 
 @interface UGPromotionTableController ()<YBPopupMenuDelegate,UITableViewDelegate,UITableViewDataSource>
 
@@ -1241,11 +1241,11 @@
 #pragma mark -- 其他方法
 - (void)showUGPormotionUserInfoViewWithModel :(UGinviteLisModel *)model{
     
-    UGPormotionUserInfoView *notiveView = [[UGPormotionUserInfoView alloc] initWithFrame:CGRectMake(20, 50, UGScreenW - 40, 430)];
-    [notiveView setBackgroundColor: Skin1.bgColor];
+    UGPormotionUserInfoView *notiveView = [[UGPormotionUserInfoView alloc] initWithFrame:CGRectMake(0, 0, UGScreenW - 40, 500)];
+
     notiveView.item = model;
-   
-    [notiveView show];
+    [SGBrowserView showZoomView:notiveView];
+//    [notiveView show];
    
 }
 @end

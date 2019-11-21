@@ -24,7 +24,7 @@
     
     [_fifthButton setBackgroundColor:Skin1.textColor4];
     
-    [_fifthButton setTitleColor:Skin1.textColor1 forState:(UIControlStateNormal)];
+    [_fifthButton setTitleColor:[UIColor greenColor] forState:(UIControlStateNormal)];
     
 }
 
