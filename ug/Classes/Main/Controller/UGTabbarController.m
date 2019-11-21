@@ -151,13 +151,14 @@ static UGTabbarController *_tabBarVC = nil;
     }
     
     SANotificationEventSubscribe(UGNotificationGetSystemConfigComplete, self, ^(typeof (self) self, id obj) {
-        NSArray<UGmobileMenu *> *menus = [[UGmobileMenu arrayOfModelsFromDictionaries:SysConf.mobileMenu error:nil] sortedArrayUsingComparator:^NSComparisonResult(UGmobileMenu *obj1, UGmobileMenu *obj2) {
-            return obj1.sort > obj2.sort;
-        }];
-        if (menus.count > 3) {
-            [TabBarController1 resetUpChildViewController:[menus valuesWithKeyPath:@"path"]];
+        if (OBJOnceToken(TabBarController1)) {
+            NSArray<UGmobileMenu *> *menus = [[UGmobileMenu arrayOfModelsFromDictionaries:SysConf.mobileMenu error:nil] sortedArrayUsingComparator:^NSComparisonResult(UGmobileMenu *obj1, UGmobileMenu *obj2) {
+                return obj1.sort > obj2.sort;
+            }];
+            if (menus.count > 3) {
+                [TabBarController1 resetUpChildViewController:[menus valuesWithKeyPath:@"path"]];
+            }
         }
-        
         [[UGSkinManagers skinWithSysConf] useSkin];
     });
     

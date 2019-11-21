@@ -207,7 +207,9 @@
     _gameTypeView.cc_constraints.top.constant = isBlack ? 0 : 10;
     _headerView.hidden = !isBlack;
     self.fd_prefersNavigationBarHidden = isBlack;
-    self.navigationController.navigationBarHidden = isBlack;
+    if (NavController1.topViewController == self) {
+        self.navigationController.navigationBarHidden = isBlack;
+    }
     [self.gameNavigationView reloadData];
 }
 
