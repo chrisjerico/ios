@@ -18,14 +18,6 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
-        [self.contentView setBackgroundColor:Skin1.bgColor];
-        [self.titleLabel setTextColor:[UIColor whiteColor]];
-    } else {
-        [self.contentView setBackgroundColor:[UIColor whiteColor]];
-        [self.titleLabel setTextColor:[UIColor blackColor]];
-    }
 }
 
 - (void)setTitle:(NSString *)title {
@@ -35,30 +27,36 @@
 
 - (void)setItem:(UGGameBetModel *)item {
     _item = item;
-   
-    self.titleLabel.text = [NSString stringWithFormat:@"%@  %@",item.name,[item.odds removeFloatAllZero]];
-     if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
-            if (item.select) {
-                   self.titleLabel.textColor = [UIColor whiteColor];
-                   self.layer.borderColor = [UIColor whiteColor].CGColor;
-                   self.layer.borderWidth = 1;
-               }else {
-                   self.titleLabel.textColor = RGBA(159, 166, 173, 1);
-                   self.layer.borderWidth = 0.7;
-                   self.layer.borderColor =  Skin1.navBarBgColor.CGColor;
-               }
-        } else {
-            if (item.select) {
-                   self.titleLabel.textColor = Skin1.navBarBgColor;
-                   self.layer.borderColor = Skin1.navBarBgColor.CGColor;
-                   self.layer.borderWidth = 1;
-               }else {
-                   self.titleLabel.textColor = [UIColor blackColor];
-                   self.layer.borderWidth = 0.7;
-                   self.layer.borderColor =  UGRGBColor(239, 239, 244).CGColor;
-               }
-        }
     
+    if ([APP.SiteId isEqualToString:@"c194"]) {
+        self.titleLabel.attributedText = ({
+            NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithString:_NSString(@"%@ %@",item.name, [item.odds removeFloatAllZero]) attributes:@{NSForegroundColorAttributeName:Skin1.textColor1}];
+            [mas addAttributes:@{NSForegroundColorAttributeName:APP.AuxiliaryColor2} withString:[item.odds removeFloatAllZero]];
+            mas;
+        });
+    } else {
+        self.titleLabel.text = _NSString(@"%@ %@",item.name, [item.odds removeFloatAllZero]);
+    }
+    
+    self.layer.borderWidth = item.select ? 1 : 0.5;
+    
+    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+        self.backgroundColor = item.select ? Skin1.homeContentSubColor : UIColorHex(101010);
+        self.layer.borderColor = (item.select ? [UIColor whiteColor] : Skin1.textColor3).CGColor;
+        
+        if (![APP.SiteId isEqualToString:@"c194"]) {
+            self.titleLabel.textColor = Skin1.textColor2;
+            self.titleLabel.highlightedTextColor = [UIColor whiteColor];
+            self.titleLabel.highlighted = item.select;
+        }
+    } else {
+        self.backgroundColor = item.select ? [Skin1.homeContentSubColor colorWithAlphaComponent:0.2] : [UIColor clearColor];
+        self.layer.borderColor = (item.select ? Skin1.navBarBgColor : APP.LineColor).CGColor;
+        
+        if (![APP.SiteId isEqualToString:@"c194"]) {
+            self.titleLabel.textColor = Skin1.textColor1;
+        }
+    }
 }
 
 - (void)setSelected:(BOOL)selected {

@@ -542,15 +542,23 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             if ([@"连码" isEqualToString:model.name]) {
                 type = model.list[self.segmentIndex];
                 UGBetModel *bet = type.list.firstObject;
-                headerView.title = [NSString stringWithFormat:@"赔率：%@",[bet.odds removeFloatAllZero]];
+                if ([APP.SiteId isEqualToString:@"c194"]) {
+                    headerView.titleLabel.attributedText = ({
+                        NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithString:_NSString(@"赔率：%@", [bet.odds removeFloatAllZero]) attributes:@{NSForegroundColorAttributeName:Skin1.textColor1}];
+                        [mas addAttributes:@{NSForegroundColorAttributeName:APP.AuxiliaryColor2} withString:[bet.odds removeFloatAllZero]];
+                        mas;
+                    });
+                } else {
+                    headerView.titleLabel.text = [NSString stringWithFormat:@"赔率：%@",[bet.odds removeFloatAllZero]];
+                }
             }else {
                 type = model.list[indexPath.section];
-                headerView.title = type.name;
+                headerView.titleLabel.text = type.name;
             }
            
         }else {
             
-            headerView.title = @"";
+            headerView.titleLabel.text = @"";
         }
         return headerView;
         

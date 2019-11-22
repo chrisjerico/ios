@@ -16,14 +16,6 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
-        [self.contentView setBackgroundColor: Skin1.bgColor];
-         self.titleLabel.textColor = [UIColor whiteColor];
-    } else {
-        [self.contentView setBackgroundColor: [UIColor whiteColor]];
-        self.titleLabel.textColor = [UIColor whiteColor];
-    }
     [self selectTextColor:self.selected];
 }
 
@@ -38,17 +30,9 @@
 
 -(void)selectTextColor:(BOOL)selected{
     if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
-        if (selected) {
-            self.titleLabel.textColor = [UIColor whiteColor];
-        }else {
-            self.titleLabel.textColor = RGBA(159, 166, 173, 1);
-        }
+        self.titleLabel.textColor = selected ? [UIColor whiteColor] : RGBA(159, 166, 173, 1);
     } else {
-        if (selected) {
-            self.titleLabel.textColor = Skin1.navBarBgColor;
-        }else {
-            self.titleLabel.textColor = [UIColor blackColor];
-        }
+        self.titleLabel.textColor = selected ? Skin1.navBarBgColor : [UIColor blackColor];
     }
 }
 

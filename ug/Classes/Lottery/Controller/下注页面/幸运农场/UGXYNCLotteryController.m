@@ -86,30 +86,30 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    FastSubViewCode(self.view);
-       if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
-           self.view.backgroundColor =  Skin1.bgColor;
-           [subView(@"上背景View") setBackgroundColor:Skin1.bgColor];
-           [subLabel(@"期数label") setTextColor:Skin1.textColor1];
-           [subLabel(@"聊天室label") setTextColor:Skin1.textColor1];
-           [subLabel(@"线label") setBackgroundColor:Skin1.textColor1];
-           [subView(@"中间view") setBackgroundColor:Skin1.bgColor];
-           [_nextIssueLabel setTextColor:Skin1.textColor1];
-           [_closeTimeLabel setTextColor:Skin1.textColor1];
-           [_openTimeLabel setTextColor:Skin1.textColor1];
-           [subLabel(@"中间线label") setBackgroundColor:Skin1.textColor1];
-           
-       } else {
-           self.view.backgroundColor =  [UIColor whiteColor];
-           [subView(@"上背景View") setBackgroundColor: [UIColor whiteColor]];
-           [subLabel(@"期数label") setTextColor: [UIColor blackColor]];
-           [subLabel(@"聊天室label") setTextColor:[UIColor blackColor]];
-           [subLabel(@"线label") setBackgroundColor:[UIColor lightGrayColor]];
-           [_nextIssueLabel setTextColor:[UIColor blackColor]];
-           [_closeTimeLabel setTextColor:[UIColor blackColor]];
-           [_openTimeLabel setTextColor:[UIColor blackColor]];
-           [subLabel(@"中间线label") setBackgroundColor:[UIColor lightGrayColor]];
-       }
+//    FastSubViewCode(self.view);
+//       if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+//           self.view.backgroundColor =  Skin1.bgColor;
+//           [subView(@"上背景View") setBackgroundColor:Skin1.bgColor];
+//           [subLabel(@"期数label") setTextColor:Skin1.textColor1];
+//           [subLabel(@"聊天室label") setTextColor:Skin1.textColor1];
+//           [subLabel(@"线label") setBackgroundColor:Skin1.textColor1];
+//           [subView(@"中间view") setBackgroundColor:Skin1.bgColor];
+//           [_nextIssueLabel setTextColor:Skin1.textColor1];
+//           [_closeTimeLabel setTextColor:Skin1.textColor1];
+//           [_openTimeLabel setTextColor:Skin1.textColor1];
+//           [subLabel(@"中间线label") setBackgroundColor:Skin1.textColor1];
+//           
+//       } else {
+//           self.view.backgroundColor =  [UIColor whiteColor];
+//           [subView(@"上背景View") setBackgroundColor: [UIColor whiteColor]];
+//           [subLabel(@"期数label") setTextColor: [UIColor blackColor]];
+//           [subLabel(@"聊天室label") setTextColor:[UIColor blackColor]];
+//           [subLabel(@"线label") setBackgroundColor:[UIColor lightGrayColor]];
+//           [_nextIssueLabel setTextColor:[UIColor blackColor]];
+//           [_closeTimeLabel setTextColor:[UIColor blackColor]];
+//           [_openTimeLabel setTextColor:[UIColor blackColor]];
+//           [subLabel(@"中间线label") setBackgroundColor:[UIColor lightGrayColor]];
+//       }
        
     self.chipButton.layer.cornerRadius = 5;
     self.chipButton.layer.masksToBounds = YES;
@@ -454,10 +454,10 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         if (collectionView == self.betCollectionView) {
             UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
             UGGameplaySectionModel *type = model.list[indexPath.section];
-            headerView.title = type.name;
+            headerView.titleLabel.text = type.name;
         }else {
             
-            headerView.title = @"";
+            headerView.titleLabel.text = @"";
         }
         return headerView;
         

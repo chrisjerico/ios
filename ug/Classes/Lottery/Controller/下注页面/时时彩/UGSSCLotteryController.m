@@ -527,10 +527,10 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         if (collectionView == self.betCollectionView) {
             UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
             UGGameplaySectionModel *type = model.list[indexPath.section];
-            headerView.title = type.alias;
+            headerView.titleLabel.text = type.alias;
         }else {
             
-            headerView.title = @"";
+            headerView.titleLabel.text = @"";
         }
         return headerView;
 

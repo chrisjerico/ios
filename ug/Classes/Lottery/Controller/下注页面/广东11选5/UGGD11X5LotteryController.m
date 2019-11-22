@@ -692,11 +692,19 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 					
 					type = model.list[self.segmentIndex];
 					UGBetModel *bet = type.list.firstObject;
-					headerView.title = [NSString stringWithFormat:@"赔率：%@",[bet.odds removeFloatAllZero]];
+                    if ([APP.SiteId isEqualToString:@"c194"]) {
+                        headerView.titleLabel.attributedText = ({
+                            NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithString:_NSString(@"赔率：%@", [bet.odds removeFloatAllZero]) attributes:@{NSForegroundColorAttributeName:Skin1.textColor1}];
+                            [mas addAttributes:@{NSForegroundColorAttributeName:APP.AuxiliaryColor2} withString:[bet.odds removeFloatAllZero]];
+                            mas;
+                        });
+                    } else {
+                        headerView.titleLabel.text = [NSString stringWithFormat:@"赔率：%@",[bet.odds removeFloatAllZero]];
+                    }
 				}
 			}else if ([@"直选" isEqualToString:model.name]) {
 				if (!model.list.count) {
-					headerView.title = @"";
+					headerView.titleLabel.text = @"";
 					return headerView;
 				}
 				if (indexPath.section == 0) {
@@ -708,7 +716,15 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 						type = model.list[2];
 					}
 					UGGameBetModel *bet = type.list.firstObject;
-					headerView.title = [NSString stringWithFormat:@"赔率：%@",[bet.odds removeFloatAllZero]];
+                    if ([APP.SiteId isEqualToString:@"c194"]) {
+                        headerView.titleLabel.attributedText = ({
+                            NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithString:_NSString(@"赔率：%@", [bet.odds removeFloatAllZero]) attributes:@{NSForegroundColorAttributeName:Skin1.textColor1}];
+                            [mas addAttributes:@{NSForegroundColorAttributeName:APP.AuxiliaryColor2} withString:[bet.odds removeFloatAllZero]];
+                            mas;
+                        });
+                    } else {
+                        headerView.titleLabel.text = [NSString stringWithFormat:@"赔率：%@",[bet.odds removeFloatAllZero]];
+                    }
 				}else {
 					
 					if (self.segmentIndex == 0) {
@@ -716,15 +732,15 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 					}else {
 						type = model.list[indexPath.section + 1];
 					}
-					headerView.title = type.name;
+					headerView.titleLabel.text = type.name;
 				}
 			}else {
 				type = model.list[indexPath.section];
-				headerView.title = type.name;
+				headerView.titleLabel.text = type.name;
 			}
 		}else {
 			
-			headerView.title = @"";
+			headerView.titleLabel.text = @"";
 		}
 		return headerView;
 		

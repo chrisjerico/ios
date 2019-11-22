@@ -591,8 +591,6 @@
 			
 			UGSystemConfigModel *config = model.data;
 			UGSystemConfigModel.currentConfig = config;
-
-			[[UGSkinManagers skinWithSysConf] useSkin];
             
             if (![Skin1.skitType isEqualToString:@"六合资料"]) {//六合资料
                  [self getCustomGameList];   // 自定义游戏列表
@@ -802,9 +800,9 @@
 
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
 #ifdef DEBUG
-//    [[UGSkinManagers randomSkin] useSkin];
-//    [HUDHelper showMsg:[UGSkinManagers currentSkin].skitString];
-//    return;
+    [[UGSkinManagers randomSkin] useSkin];
+    [HUDHelper showMsg:[UGSkinManagers currentSkin].skitString];
+    return;
 #endif
     
 	UGBannerCellModel *banner = self.bannerArray[index];

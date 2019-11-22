@@ -50,52 +50,46 @@
     self.num4Label.layer.borderColor = [UIColor redColor].CGColor;
     self.num4Label.layer.borderWidth = 1;
     
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
-        [self.contentView  setBackgroundColor:Skin1.bgColor];
-        [self.leftTitleLabel setTextColor:[UIColor whiteColor]];
-        [self.num0Label setTextColor:[UIColor whiteColor]];
-        [self.num1Label setTextColor:[UIColor whiteColor]];
-        [self.num2Label setTextColor:[UIColor whiteColor]];
-        [self.num3Label setTextColor:[UIColor whiteColor]];
-        [self.num4Label setTextColor:[UIColor whiteColor]];
-    } else {
-        [self.contentView  setBackgroundColor:[UIColor whiteColor]];
-        [self.num0Label setTextColor:[UIColor blackColor]];
-        [self.num1Label setTextColor:[UIColor blackColor]];
-        [self.num2Label setTextColor:[UIColor blackColor]];
-        [self.num3Label setTextColor:[UIColor blackColor]];
-        [self.num4Label setTextColor:[UIColor blackColor]];
-    }
-    
-    
+    [self.leftTitleLabel setTextColor:Skin1.textColor1];
+    [self.num0Label setTextColor:Skin1.textColor1];
+    [self.num1Label setTextColor:Skin1.textColor1];
+    [self.num2Label setTextColor:Skin1.textColor1];
+    [self.num3Label setTextColor:Skin1.textColor1];
+    [self.num4Label setTextColor:Skin1.textColor1];
 }
 
 - (void)setItem:(UGGameBetModel *)item {
     _item = item;
-    NSString *odds = [item.odds removeFloatAllZero];
-    self.leftTitleLabel.text = [NSString stringWithFormat:@"%@ %@", item.name, [odds isEqualToString:@"0"] ? @"" : odds];
-    [self setupNums:item];
+    self.layer.borderWidth = item.select ? 1 : 0.5;
     
+    if ([APP.SiteId isEqualToString:@"c194"]) {
+        self.leftTitleLabel.attributedText = ({
+            NSString *odds = [item.odds removeFloatAllZero];
+            NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithString:_NSString(@"%@ %@", item.name, [odds isEqualToString:@"0"] ? @"" : odds) attributes:@{NSForegroundColorAttributeName:Skin1.textColor1}];
+            [mas addAttributes:@{NSForegroundColorAttributeName:APP.AuxiliaryColor2} withString:odds];
+            mas;
+        });
+    } else {
+        self.leftTitleLabel.text = _NSString(@"%@ %@",item.name, [item.odds removeFloatAllZero]);
+    }
     if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
-        if (item.select) {
-            self.layer.borderColor = [UIColor whiteColor].CGColor;
-            self.layer.borderWidth = 1;
-        }else {
-            self.layer.borderWidth = 0.7;
-            self.layer.borderColor = Skin1.navBarBgColor.CGColor;
+        self.backgroundColor = item.select ? Skin1.homeContentSubColor : UIColorHex(101010);
+        self.layer.borderColor = (item.select ? [UIColor whiteColor] : Skin1.textColor3).CGColor;
+        
+        if (![APP.SiteId isEqualToString:@"c194"]) {
+            self.leftTitleLabel.textColor = Skin1.textColor2;
+            self.leftTitleLabel.highlightedTextColor = [UIColor whiteColor];
+            self.leftTitleLabel.highlighted = item.select;
         }
     } else {
-        if (item.select) {
-            self.layer.borderColor = Skin1.navBarBgColor.CGColor;
-            self.layer.borderWidth = 1;
-        }else {
-            self.layer.borderWidth = 0.7;
-            self.layer.borderColor = [UIColor whiteColor].CGColor;
+        self.backgroundColor = item.select ? [Skin1.homeContentSubColor colorWithAlphaComponent:0.2] : [UIColor clearColor];
+        self.layer.borderColor = (item.select ? Skin1.navBarBgColor : APP.LineColor).CGColor;
+        
+        if (![APP.SiteId isEqualToString:@"c194"]) {
+            self.leftTitleLabel.textColor = Skin1.textColor1;
         }
     }
-    
-    
-    
+    [self setupNums:item];
 }
 
 - (void)setNum4Hidden:(BOOL)num4Hidden {
@@ -141,13 +135,12 @@
         self.num4Label.layer.borderColor = [CMCommon getHKLotteryNumColor:num4].CGColor;
         if ([@"合肖" isEqualToString:self.item.typeName]) {
             self.num4Label.hidden = YES;
-        }else {
+        } else {
              self.num4Label.hidden = NO;
         }
         
-    }else {
+    } else {
         self.num4Label.hidden = YES;
-        
     }
 }
 

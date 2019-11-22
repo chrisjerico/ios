@@ -12,8 +12,12 @@
 // View
 #import "STBarButtonItem.h"
 
-@interface UGCommonLotteryController ()
-
+@interface UGCommonLotteryController (CC)
+@property (nonatomic) UITableView *tableView;
+@property (nonatomic) UIView *bottomView;
+@property (nonatomic) IBOutlet UILabel *nextIssueLabel;
+@property (nonatomic) IBOutlet UILabel *closeTimeLabel;
+@property (nonatomic) IBOutlet UILabel *openTimeLabel;
 @end
 
 
@@ -22,81 +26,54 @@
 - (BOOL)允许游客访问 { return true; }
 
 - (void)viewDidLoad {
-	[super viewDidLoad];
-	[self setupTitleView];
+    [super viewDidLoad];
+    [self setupTitleView];
     
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        [UGCommonLotteryController cc_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionAfter usingBlock:^(id <AspectInfo> aspectInfo) {
-            NSLog(@"%@-->:%@", @"Appear 下注界面:😜😜😜", NSStringFromClass([aspectInfo.instance class]));
-            UIViewController *vc = (UIViewController *)aspectInfo.instance;
-            FastSubViewCode(vc.view);
-            if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
-                vc.view.backgroundColor =  Skin1.bgColor;
-                [subView(@"上背景View") setBackgroundColor:Skin1.bgColor];
-                [subLabel(@"期数label") setTextColor:Skin1.textColor1];
-                [subLabel(@"聊天室label") setTextColor:Skin1.textColor1];
-                [subLabel(@"线label") setBackgroundColor:Skin1.textColor1];
-                [subView(@"中间view") setBackgroundColor:Skin1.bgColor];
-                [[vc valueForKey:@"nextIssueLabel"] setTextColor:Skin1.textColor1];
-                [[vc valueForKey:@"closeTimeLabel"] setTextColor:Skin1.textColor1];
-                [[vc valueForKey:@"openTimeLabel"] setTextColor:Skin1.textColor1];
-                [subLabel(@"中间线label") setBackgroundColor:Skin1.textColor1];
-                [[vc valueForKey:@"tableView"] setBackgroundColor:[UIColor clearColor]];
-                [[vc valueForKey:@"bottomView"] setBackgroundColor:Skin1.bgColor];
-                
-            } else {
-                vc.view.backgroundColor =  [UIColor whiteColor];
-                [subView(@"上背景View") setBackgroundColor: [UIColor whiteColor]];
-                [subLabel(@"期数label") setTextColor: [UIColor blackColor]];
-                [subLabel(@"聊天室label") setTextColor:[UIColor blackColor]];
-                [subLabel(@"线label") setBackgroundColor:[UIColor lightGrayColor]];
-                [[vc valueForKey:@"nextIssueLabel"] setTextColor:[UIColor blackColor]];
-                [[vc valueForKey:@"closeTimeLabel"] setTextColor:[UIColor blackColor]];
-                [[vc valueForKey:@"openTimeLabel"] setTextColor:[UIColor blackColor]];
-                [subLabel(@"中间线label") setBackgroundColor:[UIColor lightGrayColor]];
-                [[vc valueForKey:@"tableView"] setBackgroundColor:[UIColor whiteColor]];
-                [[vc valueForKey:@"bottomView"] setBackgroundColor:RGBA(100, 101, 103, 1)];
-            }
-        } error:NULL];
+    FastSubViewCode(self.view);
+    {
+        // 背景色
+        self.view.backgroundColor = Skin1.textColor4;
         
-        // 处理OpenLabel
-        [UGCommonLotteryController cc_hookSelector:@selector(updateOpenLabel) withOptions:AspectPositionAfter usingBlock:^(id <AspectInfo> aspectInfo) {
-            UIViewController *vc = (UIViewController *)aspectInfo.instance;
-            UILabel *openTimeLabel = [vc valueForKey:@"openTimeLabel"];
-            if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
-                if (openTimeLabel.text.length) {
-                    NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:openTimeLabel.text];
-                    [abStr addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(3, openTimeLabel.text.length - 3)];
-                    openTimeLabel.attributedText = abStr;
-                }
-            } else {
-                if (openTimeLabel.text.length) {
-                    NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:openTimeLabel.text];
-                    [abStr addAttribute:NSForegroundColorAttributeName value:Skin1.navBarBgColor range:NSMakeRange(3, openTimeLabel.text.length - 3)];
-                    openTimeLabel.attributedText = abStr;
-                }
-            }
-        } error:NULL];
-    });
+        // 左侧玩法栏背景色
+        self.tableView.backgroundColor = [UIColor clearColor];
+        self.tableView.separatorColor = [UIColor clearColor];
+        
+        // 顶部栏背景色
+        [subView(@"上背景View") setBackgroundColor:[UIColor clearColor]];
+        [subView(@"中间View") setBackgroundColor:[UIColor clearColor]];
+        subLabel(@"线label").hidden = true;
+        self.nextIssueLabel.textColor = Skin1.textColor1;
+        self.closeTimeLabel.textColor = Skin1.textColor1;
+        self.openTimeLabel.textColor = Skin1.textColor1;
+        
+        // 底部栏背景色
+        [self.bottomView setBackgroundColor:Skin1.bgColor];
+        [self.bottomView insertSubview:({
+            UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APP.Width, 200)];
+            bgView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
+            bgView;
+        }) atIndex:0];
+        
+        [subLabel(@"期数label") setTextColor:Skin1.textColor1];
+        [subLabel(@"聊天室label") setTextColor:Skin1.textColor1];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-	[super viewWillAppear:animated];
-	
-	if (self.shoulHideHeader) {
-		[self hideHeader];
-	}
+    [super viewWillAppear:animated];
+    
+    if (self.shoulHideHeader) {
+        [self hideHeader];
+    }
 }
 
 - (void)hideHeader {
-	UIImageView * mmcHeader = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mmcbg" ]];
-	[self.view addSubview:mmcHeader];
-	[mmcHeader mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.left.right.top.equalTo(self.view);
-		make.height.equalTo(@114);
-	}];
+    UIImageView * mmcHeader = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mmcbg" ]];
+    [self.view addSubview:mmcHeader];
+    [mmcHeader mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.equalTo(self.view);
+        make.height.equalTo(@114);
+    }];
 }
 
 - (void)getGameDatas {}

@@ -166,9 +166,6 @@ static LogVC *_logVC = nil;
 
 // 六合
 - (IBAction)onLHBtnClick:(UIButton *)sender {
-    [[UGSkinManagers randomSkin] useSkin];
-    return;
-    
     UIAlertController *ac = [AlertHelper showActionSheet:nil msg:nil btnTitles:@[@"高手论坛", @"极品专贴", @"我的动态",
                                                                                  @"每期资料", @"公式规律", @"六合图库",
                                                                                  @"幽默猜测", @"跑狗玄机", @"四不像",] cancel:@"取消"];
@@ -176,7 +173,7 @@ static LogVC *_logVC = nil;
         [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGPostListVC") animated:true];
     }];
     [ac setActionAtTitle:@"极品专贴" handler:^(UIAlertAction *aa) {
-        [[UGSkinManagers randomSkin] useSkin];
+        
     }];
     [ac setActionAtTitle:@"我的动态" handler:^(UIAlertAction *aa) {
         

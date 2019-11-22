@@ -9,7 +9,6 @@
 #import "UGTimeLotteryBetHeaderView.h"
 
 @interface UGTimeLotteryBetHeaderView ()
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleCenterXContstraint;
 
 @end
@@ -22,11 +21,6 @@
     } else {
          self.titleLabel.textColor = Skin1.textColor1;
     }
-}
-
-- (void)setTitle:(NSString *)title {
-    _title = title;
-    self.titleLabel.text = title;
 }
 
 - (void)setLeftTitle:(BOOL)leftTitle {

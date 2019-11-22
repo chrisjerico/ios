@@ -55,7 +55,6 @@
     [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             UGSystemConfigModel.currentConfig = model.data;
-            [[UGSkinManagers skinWithSysConf] useSkin];
             SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
         } failure:nil];
        

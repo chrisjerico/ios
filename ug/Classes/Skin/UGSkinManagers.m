@@ -635,14 +635,14 @@ static UGSkinManagers *__initSkin1 = nil;
             UGSkinManagers *sm = [UGSkinManagers new];
             sm.skitType                 = @"经典";
             sm.skitString               = @"经典 18钻石蓝";
-            sm.bgColor                  = color(@"B3B3B3,B3B3B3");
+            sm.bgColor                  = color(@"B3B3B3");
             sm.navBarBgColor            = color(@"C1C1C1");
             sm.tabBarBgColor            = color(@"D9D9D9");
             sm.tabNoSelectColor         = color(@"717176");
             sm.tabSelectedColor         = color(@"FFFFFF");
             sm.progressBgColor          = color(@"d80000,fb5959");
             sm.homeContentColor         = color(@"e0e0e0");
-            sm.homeContentSubColor      = color(@"F7F7F7");
+            sm.homeContentSubColor      = color(@"c1c1c1");
             sm.cellBgColor              = color(@"D9D9D9");
             sm.CLBgColor                = color(@"E6E6E6");
             sm.menuHeadViewColor        = color(@"c1c1c1,ececec");
@@ -751,12 +751,12 @@ static UGSkinManagers *__initSkin1 = nil;
             sm.tabNoSelectColor         = color(@"999999");
             sm.tabSelectedColor         = color(@"FFFFFF");
             sm.progressBgColor          = color(@"d80000,fb5959");
-            sm.homeContentColor         = color(@"333333");
-            sm.homeContentSubColor      = color(@"343434");
-            sm.cellBgColor              = color(@"171717");
+            sm.homeContentColor         = color(@"343434");
+            sm.homeContentSubColor      = color(@"353535");
+            sm.cellBgColor              = color(@"181818");
             sm.CLBgColor                = color(@"202122");
-            sm.menuHeadViewColor        = color(@"333333");
-            sm.textColor1               = color(@"FFFFFF");
+            sm.menuHeadViewColor        = color(@"323232");
+            sm.textColor1               = color(@"FEFEFE");
             sm.textColor2               = color(@"C1C1C1");
             sm.textColor3               = color(@"555555");
             sm.textColor4               = color(@"000000");
@@ -844,8 +844,8 @@ static UGSkinManagers *__initSkin1 = nil;
 
 + (UGSkinManagers *)randomSkin {
     static NSInteger __i = 0;
-    NSInteger cnt = [UGSkinManagers allSkin].count;
-    return [UGSkinManagers allSkin].allValues[++__i%cnt];
+    NSArray *keys = @[@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11", @"12", @"13", @"14", @"15", @"16", @"17", @"18", @"19", @"新年红", @"石榴红", @"六合资料", @"黑色模板", ];
+    return [UGSkinManagers allSkin][keys[++__i%keys.count]];
 }
 
 @end

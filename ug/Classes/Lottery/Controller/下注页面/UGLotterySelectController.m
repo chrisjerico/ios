@@ -157,7 +157,7 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
 	if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
 		UGTimeLotteryBetHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerViewID forIndexPath:indexPath];
 		UGAllNextIssueListModel *model = self.lotteryGamesArray[indexPath.section];
-		headerView.title = model.gameTypeName;
+		headerView.titleLabel.text = model.gameTypeName;
 		headerView.leftTitle = YES;
 		return headerView;
 	}

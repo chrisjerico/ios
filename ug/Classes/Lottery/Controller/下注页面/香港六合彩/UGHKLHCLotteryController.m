@@ -773,9 +773,9 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 -(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     
     if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
-  
-         UGTimeLotteryBetHeaderView*  headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerViewID forIndexPath:indexPath];
-    
+        
+        UGTimeLotteryBetHeaderView*  headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerViewID forIndexPath:indexPath];
+        
         if (collectionView == self.betCollectionView) {
             UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
             UGGameplaySectionModel *type = nil;
@@ -794,16 +794,27 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             } else {
                 type = model.list[indexPath.section];
             }
-            headerView.title = type.alias;
+            headerView.titleLabel.text = type.alias;
             
             if ([@"自选不中" isEqualToString:type.alias]) {
-                 headerView.title = _headerViewTitle;
+                headerView.titleLabel.text = _headerViewTitle;
             }
             if ([@"合肖" isEqualToString:type.alias]) {
-                       headerView.title = _hxheaderViewTitle;
+                headerView.titleLabel.text = _hxheaderViewTitle;
             }
         } else {
-            headerView.title = @"";
+            headerView.titleLabel.text = @"";
+        }
+        
+        // 如果显示的是赔率，则把赔率标红
+        headerView.titleLabel.textColor = Skin1.textColor1;
+        if ([APP.SiteId isEqualToString:@"c194"] && [headerView.titleLabel.text containsString:@"赔率："]) {
+            headerView.titleLabel.attributedText = ({
+                NSMutableAttributedString *mas = headerView.titleLabel.attributedText.mutableCopy;
+                [mas addAttributes:@{NSForegroundColorAttributeName:APP.AuxiliaryColor2} range:NSMakeRange(0, mas.length)];
+                [mas addAttributes:@{NSForegroundColorAttributeName:Skin1.textColor1} withString:@"赔率："];
+                mas;
+            });
         }
         return headerView;
     }
