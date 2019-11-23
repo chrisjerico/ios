@@ -67,26 +67,11 @@ static NSMutableArray *__hms = nil;
         __dict = @{}.mutableCopy;
     });
     
-    Class cls = nil;
-    Class temp = self;
-    while (1) {
-        for (NSString *name in [temp methodList]) {
-            if ([name isEqualToString:selector]) {
-                cls = temp;
-            }
-        }
-        if (temp == NSObject.class) {
-            break;
-        }
-        temp = [temp superclass];
-    }
+    Class cls = self;
     NSString *key = _NSString(@"%@_%@_%ld", cls, selector, opt);
     if (cls && !__dict[key]) {
         NSError *error = nil;
         [cls aspect_hookSelector:NSSelectorFromString(selector) withOptions:opt usingBlock:^(id<AspectInfo> ai) {
-            if ([selector isEqualToString:@"show"]) {
-                NSLog(@"333");
-            }
             NSArray *hms = [__hms arrayByAddingObjectsFromArray:[ai.instance cc_userInfo][@"cc_hook_hms"]];
             for (HookModel *hm in [[hms objectsWithValue:@(opt) keyPath:@"opt"] objectsWithValue:selector keyPath:@"selector"]) {
                 if ([ai.instance isKindOfClass:hm.cls]) {
