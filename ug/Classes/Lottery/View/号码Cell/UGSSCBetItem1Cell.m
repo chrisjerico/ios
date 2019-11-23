@@ -21,43 +21,33 @@
     self.nameLabel.layer.cornerRadius = self.nameLabel.height / 2;
     self.nameLabel.layer.masksToBounds = YES;
     self.nameLabel.backgroundColor = UGBlueColor;
-    
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
-        [_oddsLabel setTextColor:[UIColor whiteColor]];
-        [self.contentView setBackgroundColor:Skin1.bgColor];
-    } else {
-        [_oddsLabel setTextColor:[UIColor blackColor]];
-        [self.contentView setBackgroundColor:[UIColor whiteColor]];
-    }
-
 }
 
 - (void)setItem:(UGGameBetModel *)item {
     _item = item;
     self.nameLabel.text = item.name;
     self.oddsLabel.text = [item.odds removeFloatAllZero];
+    self.layer.borderWidth = item.select ? 1 : 0.5;
     
     if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
-        if (item.select) {
-            self.oddsLabel.textColor = [UIColor whiteColor];
-            self.layer.borderColor = [UIColor whiteColor].CGColor;
-            self.layer.borderWidth = 1;
-        }else {
-            self.oddsLabel.textColor = RGBA(159, 166, 173, 1);
-            self.layer.borderWidth = 0.7;
-            self.layer.borderColor =  Skin1.navBarBgColor.CGColor;
-           
+        self.backgroundColor = item.select ? Skin1.homeContentSubColor : UIColorHex(101010);
+        self.layer.borderColor = (item.select ? [UIColor whiteColor] : Skin1.textColor3).CGColor;
+        
+        if ([APP.SiteId isEqualToString:@"c194"]) {
+            self.oddsLabel.textColor = APP.AuxiliaryColor2;
+        } else {
+            self.oddsLabel.textColor = Skin1.textColor2;
+            self.oddsLabel.highlightedTextColor = [UIColor whiteColor];
+            self.oddsLabel.highlighted = item.select;
         }
     } else {
-        if (item.select) {
-            self.oddsLabel.textColor = Skin1.navBarBgColor;
-            self.layer.borderColor = Skin1.navBarBgColor.CGColor;
-            self.layer.borderWidth = 1;
-        }else {
-            self.oddsLabel.textColor = [UIColor blackColor];
-            self.layer.borderWidth = 0.7;
-            self.layer.borderColor =  UGRGBColor(218, 218, 218).CGColor;
-           
+        self.backgroundColor = item.select ? [Skin1.homeContentSubColor colorWithAlphaComponent:0.2] : [UIColor clearColor];
+        self.layer.borderColor = (item.select ? Skin1.navBarBgColor : APP.LineColor).CGColor;
+        
+        if ([APP.SiteId isEqualToString:@"c194"]) {
+            self.oddsLabel.textColor = APP.AuxiliaryColor2;
+        } else {
+            self.oddsLabel.textColor = APP.TextColor1;
         }
     }
 }

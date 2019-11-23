@@ -20,18 +20,6 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
-        [self.contentView setBackgroundColor:Skin1.bgColor];
-        [self.oddsLabel setTextColor:[UIColor whiteColor]];
-        self.layer.borderWidth = 0.7;
-        self.layer.borderColor = Skin1.bgColor.CGColor;
-    } else {
-        [self.contentView setBackgroundColor:[UIColor whiteColor]];
-        [self.oddsLabel setTextColor:[UIColor blackColor]];
-        self.layer.borderWidth = 0.7;
-        self.layer.borderColor = [UIColor whiteColor].CGColor;
-    }
 }
 
 - (void)setItem:(UGGameBetModel *)item {
@@ -43,22 +31,28 @@
     self.imgView1.image = [UIImage imageNamed:[NSString stringWithFormat:@"shaizi%@",arr[1]]];
     self.imgView2.image = [UIImage imageNamed:[NSString stringWithFormat:@"shaizi%@",arr[2]]];
     
-
+    self.layer.borderWidth = item.select ? 1 : 0.5;
+    
     if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
-         if (item.select) {
-             self.layer.borderColor = [UIColor whiteColor].CGColor;
-             self.layer.borderWidth = 1;
-         }else {
-             self.layer.borderWidth = 0.7;
-             self.layer.borderColor = Skin1.bgColor.CGColor;
-         }
+        self.backgroundColor = item.select ? Skin1.homeContentSubColor : UIColorHex(101010);
+        self.layer.borderColor = (item.select ? [UIColor whiteColor] : Skin1.textColor3).CGColor;
+        
+        if ([APP.SiteId isEqualToString:@"c194"]) {
+            self.oddsLabel.textColor = APP.AuxiliaryColor2;
+        } else {
+            self.oddsLabel.textColor = Skin1.textColor2;
+            self.oddsLabel.highlightedTextColor = [UIColor whiteColor];
+            self.oddsLabel.highlighted = item.select;
+        }
+        
     } else {
-        if (item.select) {
-            self.layer.borderColor = Skin1.navBarBgColor.CGColor;
-            self.layer.borderWidth = 1;
-        }else {
-            self.layer.borderWidth = 0.7;
-            self.layer.borderColor = [UIColor whiteColor].CGColor;
+        self.backgroundColor = item.select ? [Skin1.homeContentSubColor colorWithAlphaComponent:0.2] : [UIColor clearColor];
+        self.layer.borderColor = (item.select ? Skin1.navBarBgColor : APP.LineColor).CGColor;
+        
+        if ([APP.SiteId isEqualToString:@"c194"]) {
+            self.oddsLabel.textColor = APP.AuxiliaryColor2;
+        } else {
+            self.oddsLabel.textColor = APP.TextColor1;
         }
     }
 }

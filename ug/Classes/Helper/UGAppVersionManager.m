@@ -43,11 +43,14 @@ static NSInteger versionNumber = 102;
 
 //处理升级
 - (void)upgradeHandel:(BOOL)flag {
+    if (!_versionModle.downloadUrl.length) {
+        return;
+    }
     BOOL isForce = false;      // 是否强制升级
     BOOL hasUpdate = false; // 是否存在新版本
     
     NSArray *currentV = [APP.Version componentsSeparatedByString:@"."];
-    NSArray *newestV = [self.versionModle.versionName componentsSeparatedByString:@"."];
+    NSArray *newestV = [self.versionModle.versionCode componentsSeparatedByString:@"."];
     for (int i=0; i<4; i++) {
         NSString *v1 = currentV.count > i ? currentV[i] : nil;
         NSString *v2 = newestV.count > i ? newestV[i] : nil;
@@ -66,6 +69,9 @@ static NSInteger versionNumber = 102;
         NSArray *btnTitles = isForce ? @[@"去升级"] : @[@"取消", @"去升级"];
         
         __weakSelf_(__self);
+        void (^updateApp)(void) = ^{
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:__self.versionModle.downloadUrl]];
+        };
         if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
             UIColor *blueColor = [UIColor colorWithRed:90/255.0f green:154/255.0f blue:239/255.0f alpha:1.0f];
             if (isForce) {
@@ -85,7 +91,7 @@ static NSInteger versionNumber = 102;
                     action.titleColor = blueColor;
                     action.backgroundColor = Skin1.bgColor;
                     action.clickBlock = ^{
-                        [__self updateFromAppStore];
+                        updateApp();
                     };
                 })
                 .LeeShow(); // 设置完成后 别忘记调用Show来显示
@@ -114,7 +120,7 @@ static NSInteger versionNumber = 102;
                     action.titleColor = blueColor;
                     action.backgroundColor = Skin1.bgColor;
                     action.clickBlock = ^{
-                        [__self updateFromAppStore];
+                        updateApp();
                     };
                 })
                 .LeeShow(); // 设置完成后 别忘记调用Show来显示
@@ -123,7 +129,7 @@ static NSInteger versionNumber = 102;
         else{
             UIAlertController *ac = [AlertHelper showAlertView:@"新版本上线" msg:updateContent btnTitles:btnTitles];
             [ac setActionAtTitle:@"去升级" handler:^(UIAlertAction *aa) {
-                [__self updateFromAppStore];
+                updateApp();
             }];
         }
         
@@ -207,36 +213,6 @@ static NSInteger versionNumber = 102;
     }
     
     return NO;
-}
-
-//根据网络环境判断升级提示
--(void)updateFromAppStore{
-    [self  goToAppStore];
-    //    if ([[self getNetWorkStates] isEqualToString:@"WIFI"]) {
-    //        [self  goToAppStore];
-    //    }else{
-    //        [QDAlertView showWithTitle:@"提示"
-    //                           message:@"当前网络为非WIFI，是否继续下载？"
-    //                 cancelButtonTitle:@"取消"
-    //                  otherButtonTitle:@"继续"
-    //                   completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-    //                       if (buttonIndex != alertView.cancelButtonIndex) {
-    //                           [self  goToAppStore];
-    //                       }
-    //                   }];
-    //    }
-    
-}
-
--(void)goToAppStore{
-
-    NSString *urlStr = self.versionModle.downloadUrl;
-    
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];
-    
-//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat: @"itms-services://?action=download-manifest&url=%@",@"https://dg.syni.com/yejin/manifest.plist"]]];
-    
-    
 }
 
 -(NSString *)getNetWorkStates{

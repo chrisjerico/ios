@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UGTimeLotteryBetHeaderView : UICollectionReusableView
 
-@property (nonatomic, strong) NSString *title;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (nonatomic, assign) BOOL leftTitle;
 @end
 

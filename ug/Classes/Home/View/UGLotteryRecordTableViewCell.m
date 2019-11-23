@@ -147,7 +147,7 @@ static NSString *lotteryOneCellId = @"UGFastThreeOneCollectionViewCell";
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
         UGTimeLotteryBetHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerViewID forIndexPath:indexPath];
-        headerView.title = @"";
+        headerView.titleLabel.text = @"";
         return headerView;
     }
     return nil;

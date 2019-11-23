@@ -158,8 +158,9 @@ static UGTabbarController *_tabBarVC = nil;
             if (menus.count > 3) {
                 [TabBarController1 resetUpChildViewController:[menus valuesWithKeyPath:@"path"]];
             }
+            
+            [[UGSkinManagers skinWithSysConf] useSkin];
         }
-        [[UGSkinManagers skinWithSysConf] useSkin];
     });
     
     //    版本更新

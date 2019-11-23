@@ -22,7 +22,7 @@
          self.url = ({
              NSString *url = _NSString(@"%@%@%@&loginsessid=%@&color=%@&back=hide&from=app", APP.Host, newChatRoomUrl, [UGUserModel currentUser].token, [UGUserModel currentUser].sessid, Skin1.navBarBgColor.hexString);
              if (_gameId.length)
-                 url = [url stringByAppendingFormat:@"&id=%@", self.gameId];
+                 url = [url stringByAppendingFormat:@"&roomId=%@", self.gameId];
              url;
          });
      } else {
@@ -44,7 +44,7 @@
         self.url = ({
                NSString *url = _NSString(@"%@%@%@&loginsessid=%@&color=%@&back=hide&from=app", APP.Host, newChatRoomUrl, [UGUserModel currentUser].token, [UGUserModel currentUser].sessid, Skin1.navBarBgColor.hexString);
                if (_gameId.length)
-                   url = [url stringByAppendingFormat:@"&id=%@", self.gameId];
+                   url = [url stringByAppendingFormat:@"&roomId=%@", self.gameId];
             
             NSLog(@"viewDidLoad url = %@",url);
                url;
