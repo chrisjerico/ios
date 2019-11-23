@@ -69,6 +69,12 @@ NS_ASSUME_NONNULL_BEGIN
 // 关注/取消关注用户
 - (CCSessionModel *)lh_followPoster:(BOOL)follow uid:(NSString *)uid;
 
+//==========================我的============================================
+
+//==========================老黄历============================================
+// 老黄历
+- (CCSessionModel *)lh_getLhlList:(NSString *)date;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -166,12 +166,14 @@ static LogVC *_logVC = nil;
 
 // 六合
 - (IBAction)onLHBtnClick:(UIButton *)sender {
-    [[UGSkinManagers randomSkin] useSkin];
-    return;
+//    [[UGSkinManagers randomSkin] useSkin];
+//    return;
     
     UIAlertController *ac = [AlertHelper showActionSheet:nil msg:nil btnTitles:@[@"高手论坛", @"极品专贴", @"我的动态",
                                                                                  @"每期资料", @"公式规律", @"六合图库",
-                                                                                 @"幽默猜测", @"跑狗玄机", @"四不像",] cancel:@"取消"];
+                                                                                 @"幽默猜测", @"跑狗玄机", @"四不像",
+                                                                                 @"老黄历", @"我的", @"我的粉丝",
+                                                                                                ] cancel:@"取消"];
     [ac setActionAtTitle:@"高手论坛" handler:^(UIAlertAction *aa) {
         [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGPostListVC") animated:true];
     }];
@@ -198,6 +200,15 @@ static LogVC *_logVC = nil;
     }];
     [ac setActionAtTitle:@"四不像" handler:^(UIAlertAction *aa) {
         
+    }];
+    [ac setActionAtTitle:@"老黄历" handler:^(UIAlertAction *aa) {
+        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLHOldYearViewController") animated:true];
+    }];
+    [ac setActionAtTitle:@"我的" handler:^(UIAlertAction *aa) {
+        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLHMyViewController") animated:true];
+    }];
+    [ac setActionAtTitle:@"我的粉丝" handler:^(UIAlertAction *aa) {
+        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMyFansViewController") animated:true];
     }];
 }
 

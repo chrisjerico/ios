@@ -69,6 +69,7 @@
                 sb(@"BMpreferential"),
                 sb(@"BlackTemplate"),
                 sb(@"BMMine"),
+                sb(@"LHTemplate"),
                 ];
     });
     
@@ -236,7 +237,7 @@
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
 #endif
         if (!_SiteId.length) {
-            _SiteId = @"test10";
+            _SiteId = @"c083";
         }
         _Host = dict[_SiteId.lowercaseString];
         if (!_Host.length) {

@@ -417,6 +417,9 @@
 		D42620F82339027400BC2E83 /* UGagentApplyInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D42620F72339027400BC2E83 /* UGagentApplyInfo.m */; };
 		D42A06B122CA212E005488F8 /* UGHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D42A06B022CA212E005488F8 /* UGHomeViewController.m */; };
 		D42A06B322CA22D9005488F8 /* UGHomeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D42A06B222CA22D9005488F8 /* UGHomeViewController.storyboard */; };
+		D43348A82387D38A0056EB7D /* LHTemplate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D43348A22387D38A0056EB7D /* LHTemplate.storyboard */; };
+		D43348A92387D38A0056EB7D /* UGLHOldYearViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D43348A42387D38A0056EB7D /* UGLHOldYearViewController.m */; };
+		D43348AC23880A550056EB7D /* UGLHLhlModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D43348AB23880A550056EB7D /* UGLHLhlModel.m */; };
 		D434C7F02373D4BA00920832 /* UIView+yyCornerRadius.m in Sources */ = {isa = PBXBuildFile; fileRef = D434C7EF2373D4BA00920832 /* UIView+yyCornerRadius.m */; };
 		D4527D1822828C27000EC1C2 /* UGPlatformBalanceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4527D1622828C27000EC1C2 /* UGPlatformBalanceTableViewCell.m */; };
 		D4527D1922828C27000EC1C2 /* UGPlatformBalanceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4527D1722828C27000EC1C2 /* UGPlatformBalanceTableViewCell.xib */; };
@@ -1405,6 +1408,11 @@
 		D42A06AF22CA212E005488F8 /* UGHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGHomeViewController.h; sourceTree = "<group>"; };
 		D42A06B022CA212E005488F8 /* UGHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGHomeViewController.m; sourceTree = "<group>"; };
 		D42A06B222CA22D9005488F8 /* UGHomeViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UGHomeViewController.storyboard; sourceTree = "<group>"; };
+		D43348A22387D38A0056EB7D /* LHTemplate.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LHTemplate.storyboard; sourceTree = "<group>"; };
+		D43348A42387D38A0056EB7D /* UGLHOldYearViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGLHOldYearViewController.m; sourceTree = "<group>"; };
+		D43348A52387D38A0056EB7D /* UGLHOldYearViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGLHOldYearViewController.h; sourceTree = "<group>"; };
+		D43348AA23880A550056EB7D /* UGLHLhlModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLHLhlModel.h; sourceTree = "<group>"; };
+		D43348AB23880A550056EB7D /* UGLHLhlModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLHLhlModel.m; sourceTree = "<group>"; };
 		D434C7EE2373D4BA00920832 /* UIView+yyCornerRadius.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+yyCornerRadius.h"; sourceTree = "<group>"; };
 		D434C7EF2373D4BA00920832 /* UIView+yyCornerRadius.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+yyCornerRadius.m"; sourceTree = "<group>"; };
 		D4527D1522828C27000EC1C2 /* UGPlatformBalanceTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGPlatformBalanceTableViewCell.h; sourceTree = "<group>"; };
@@ -2758,8 +2766,6 @@
 		CF84BE29236416A20058F055 /* 六合页面 */ = {
 			isa = PBXGroup;
 			children = (
-				CF84BE2A236416C20058F055 /* UGLHC.storyboard */,
-				D47C8987236557B2000CD518 /* UGLHH.storyboard */,
 				D407B0372366A69700B4DEF4 /* UGDocumentListVC.h */,
 				D407B03C2366A69800B4DEF4 /* UGDocumentListVC.m */,
 				D407B03F2366A69800B4DEF4 /* UGLHGalleryVC.h */,
@@ -2772,12 +2778,6 @@
 				D407B03A2366A69800B4DEF4 /* UGSearchPostVC.m */,
 				D407B03B2366A69800B4DEF4 /* UGSubmitPostVC.h */,
 				D407B0412366A69800B4DEF4 /* UGSubmitPostVC.m */,
-				D4781A102368207A004FBB97 /* UGLHMyViewController.h */,
-				D4781A112368207A004FBB97 /* UGLHMyViewController.m */,
-				D4781A132368209E004FBB97 /* UGLHMyAttentionViewController.h */,
-				D4781A142368209E004FBB97 /* UGLHMyAttentionViewController.m */,
-				D4781A16236820EA004FBB97 /* UGMyFansViewController.h */,
-				D4781A17236820EA004FBB97 /* UGMyFansViewController.m */,
 				D4781A19236820FD004FBB97 /* UGStuffViewController.h */,
 				D4781A1A236820FD004FBB97 /* UGStuffViewController.m */,
 				D4781A1C2368211C004FBB97 /* UGChessViewController.h */,
@@ -3791,6 +3791,67 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		D433489F2387D38A0056EB7D /* 六合模板 */ = {
+			isa = PBXGroup;
+			children = (
+				D43348A02387D38A0056EB7D /* Controller */,
+				D43348A62387D38A0056EB7D /* Model */,
+				D43348A72387D38A0056EB7D /* View */,
+			);
+			path = "六合模板";
+			sourceTree = "<group>";
+		};
+		D43348A02387D38A0056EB7D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D47C8987236557B2000CD518 /* UGLHH.storyboard */,
+				CF84BE2A236416C20058F055 /* UGLHC.storyboard */,
+				D43348A22387D38A0056EB7D /* LHTemplate.storyboard */,
+				CF84BE29236416A20058F055 /* 六合页面 */,
+				D43348A12387D38A0056EB7D /* 我的 */,
+				D43348A32387D38A0056EB7D /* 老黄历 */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D43348A12387D38A0056EB7D /* 我的 */ = {
+			isa = PBXGroup;
+			children = (
+				D4781A132368209E004FBB97 /* UGLHMyAttentionViewController.h */,
+				D4781A142368209E004FBB97 /* UGLHMyAttentionViewController.m */,
+				D4781A16236820EA004FBB97 /* UGMyFansViewController.h */,
+				D4781A17236820EA004FBB97 /* UGMyFansViewController.m */,
+				D4781A102368207A004FBB97 /* UGLHMyViewController.h */,
+				D4781A112368207A004FBB97 /* UGLHMyViewController.m */,
+			);
+			path = "我的";
+			sourceTree = "<group>";
+		};
+		D43348A32387D38A0056EB7D /* 老黄历 */ = {
+			isa = PBXGroup;
+			children = (
+				D43348A52387D38A0056EB7D /* UGLHOldYearViewController.h */,
+				D43348A42387D38A0056EB7D /* UGLHOldYearViewController.m */,
+			);
+			path = "老黄历";
+			sourceTree = "<group>";
+		};
+		D43348A62387D38A0056EB7D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D43348AA23880A550056EB7D /* UGLHLhlModel.h */,
+				D43348AB23880A550056EB7D /* UGLHLhlModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D43348A72387D38A0056EB7D /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		D434C7ED2373D45E00920832 /* view圆角 */ = {
 			isa = PBXGroup;
 			children = (
@@ -4015,6 +4076,7 @@
 		D4B75E22227811D50007047C /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				D433489F2387D38A0056EB7D /* 六合模板 */,
 				D4091B4823694AF80056BAEE /* 黑色模板 */,
 				D4EE8F9023421C1C006FA0E2 /* Skin */,
 				D4E1F622233664680022A1DC /* Chat */,
@@ -4045,7 +4107,6 @@
 		D4B75E24227811D50007047C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				CF84BE29236416A20058F055 /* 六合页面 */,
 				CF3B0E6B234B2B9C0035AF50 /* 长龙助手 */,
 				CF3B0E6C234B2BA70035AF50 /* 开奖记录 */,
 				CF07900E2359F4ED007C09D8 /* 资料页 */,
@@ -4774,6 +4835,7 @@
 				D41C3E06228E9D8900BF6436 /* UGBetRecordTableViewCell.xib in Resources */,
 				D4DCDBD52328D1AC00CF4CEE /* UGDepositDetailsTableViewCell.xib in Resources */,
 				D416BB2922CE35C100BA0450 /* UGSegmentCollectionViewCell.xib in Resources */,
+				D43348A82387D38A0056EB7D /* LHTemplate.storyboard in Resources */,
 				D424DDE622E753C60009E2E6 /* UGRealBetRecordCell.xib in Resources */,
 				D49A36D522A40212000057D2 /* UGLotteryRecordTableViewCell.xib in Resources */,
 				D4D8DF8E2287155800446BAF /* UGLotterySubResultCollectionViewCell.xib in Resources */,
@@ -5308,6 +5370,7 @@
 				D405B241227973F200F8C586 /* STBarButtonItem.m in Sources */,
 				D4241C39232914FE00BF4DE1 /* UIView+Extension.m in Sources */,
 				D405B1F8227972C900F8C586 /* JSONModelArray.m in Sources */,
+				D43348A92387D38A0056EB7D /* UGLHOldYearViewController.m in Sources */,
 				D405B1FC227972C900F8C586 /* JSONModel+networking.m in Sources */,
 				D45A94BD233B8AF90089E86C /* UGGoogleAuthenticationSecondViewController.m in Sources */,
 				D407B0442366A69800B4DEF4 /* UGDocumentListVC.m in Sources */,
@@ -5352,6 +5415,7 @@
 				D4087DB522956B02000C4CB0 /* UGMissionLevelModel.m in Sources */,
 				D405B389228162C000F8C586 /* UGMailBoxTableViewController.m in Sources */,
 				D4185E43231D2E1B008DB5F2 /* MOFSPickerView.m in Sources */,
+				D43348AC23880A550056EB7D /* UGLHLhlModel.m in Sources */,
 				D4B75E3E227812A70007047C /* UGTabbarController.m in Sources */,
 				D4241C41232A1A6900BF4DE1 /* UGFundsBankView.m in Sources */,
 			);
