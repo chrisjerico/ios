@@ -7,6 +7,7 @@
 //
 
 #import "UGLaunchPageVC.h"
+#import "FLAnimatedImageView.h"
 
 @interface LaunchPageModel : UGModel
 @property (nonatomic) NSString *pic;
@@ -25,46 +26,90 @@
 	[super viewDidLoad];
 	self.view.backgroundColor = UIColor.whiteColor;
     
-    // 加载启动图
-    {
-        __block UIImageView *__imageView = [UIImageView new];
-        [CMNetwork.manager requestWithMethod:[[NSString stringWithFormat:@"%@/wjapp/api.php?c=system&a=launchImages", APP.Host] stringToRestfulUrlWithFlag:RESTFUL] params:nil model:CMResultArrayClassMake(LaunchPageModel.class) post:NO completion:^(CMResult<id> *model, NSError *err) {
-            if (!err) {
-                NSArray<LaunchPageModel *> * launchPics = model.data;
-                [[NSUserDefaults standardUserDefaults] setObject:launchPics.firstObject.pic forKey:@"launchImage"];
-                [__imageView sd_setImageWithURL:[NSURL URLWithString:launchPics.firstObject.pic] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-                    __imageView.backgroundColor = [UIColor clearColor];
-                    NSLog(@"启动图加载%@！", error ? @"失败" : @"成功");
-                }];
+    // 下载新的启动图
+    [CMNetwork.manager requestWithMethod:[[NSString stringWithFormat:@"%@/wjapp/api.php?c=system&a=launchImages", APP.Host] stringToRestfulUrlWithFlag:RESTFUL] params:nil model:CMResultArrayClassMake(LaunchPageModel.class) post:NO completion:^(CMResult<id> *model, NSError *err) {
+        if (!err) {
+            NSArray <LaunchPageModel *> *launchPics = model.data;
+            NSArray *pics = [launchPics valuesWithKeyPath:@"pic"];
+            [[NSUserDefaults standardUserDefaults] setObject:pics forKey:@"LaunchPics"];
+            for (NSString *pic in pics) {
+                [[SDWebImageManager sharedManager] diskImageExistsForURL:[NSURL URLWithString:pic] completion:nil];
             }
-        }];
-        
-        [self.view addSubview:__imageView];
-        [__imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        }
+    }];
+    
+    // 加载旧的启动图
+    CGFloat maxSecs = 7;    // ⌛️获取系统配置超时的等待时间
+    CGFloat minSecs = 3;    // ⌛️最少等3秒
+    __block BOOL __waitGif = false; // ⌛️等待gif播放完
+    __block CGFloat __waitSecs = maxSecs;
+    {
+        FLAnimatedImageView *imageView = [FLAnimatedImageView new];
+        [self.view addSubview:imageView];
+        [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self.view);
         }];
-        NSString *picURL = [[NSUserDefaults standardUserDefaults] valueForKey:@"launchImage"];
-        [__imageView sd_setImageWithURL:[NSURL URLWithString:picURL] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-            __imageView.backgroundColor = [UIColor clearColor];
-            NSLog(@"启动图加载%@！", error ? @"失败" : @"成功");
-        }];
+        
+        
+        NSMutableArray *pics = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] arrayForKey:@"LaunchPics"]];
+        // 以防上次没下载完，这里继续下载（会缓存到本地）
+        for (NSString *pic in pics) {
+            [[SDWebImageManager sharedManager] diskImageExistsForURL:[NSURL URLWithString:pic] completion:nil];
+        }
+        
+        // 加载图片
+        __weak_Obj_(imageView, __imageView);
+        void (^showPics)(void) = nil;
+        void (^__block __nextPic)(void) = showPics = ^{
+            NSString *pic = pics.firstObject;
+            [pics removeObject:pic];
+            [__imageView sd_setImageWithURL:[NSURL URLWithString:pic] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                __waitSecs = MAX(__waitSecs, pics.count ? 2 : 1);// 图片加载成功后最少显示1秒
+                __waitGif = image.isGIF;    // 等待gif播放完
+                
+                if (pics.count && !image.isGIF) {
+                    // 如果是静态图则1秒后显示下一张图片
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        __nextPic();
+                    });
+                }
+            }];
+        };
+        // 如果是gif图则播放完后显示下一张图片
+        imageView.loopCompletionBlock = ^(NSUInteger loopCountRemaining) {
+            __waitGif = false;
+            if (pics.count) {
+                __nextPic();
+            }
+        };
+        showPics();
     }
     
     // 获取系统配置
-    NSDate *date = [NSDate date];
     [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             UGSystemConfigModel.currentConfig = model.data;
             SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
         } failure:nil];
        
-        // 进入首页
-        CGFloat sec = [date timeIntervalSinceDate:[NSDate date]] + 3;
-        sec = MAX(sec, 0.1);
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(sec * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        // 如果很快拿到数据，就等足3秒就再去主页
+        __waitSecs -= MAX(maxSecs-minSecs, 0);
+    }];
+    
+    // 等Gif启动图显示完毕，获取系统配置完毕后才进入主页
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        while (1) {
+            [NSThread sleepForTimeInterval:0.2];
+            __waitSecs -= 0.2;
+            if (__waitGif || __waitSecs > 0) {
+                continue;
+            }
+            break;
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
             APP.Window.rootViewController = [[UGTabbarController alloc] init];
         });
-    }];
+    });
 }
 
 @end

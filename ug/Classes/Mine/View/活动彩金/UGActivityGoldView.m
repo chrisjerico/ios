@@ -328,9 +328,7 @@
             TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
             webViewVC.url = url;
             [NavController1 pushViewController:webViewVC animated:YES];
-            
             [self close:nil];
-
             return NO; //返回NO，此页面的链接点击不会继续执行，只会执行跳转到你想跳转的页面
         }
     }

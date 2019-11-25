@@ -65,13 +65,9 @@
 
     GameModel *gm = self.sourceData[indexPath.item];
     if (gm.subId == 4) {
-         [NavController1 pushViewControllerWithGameModel:gm];
-         return;
+        [NavController1 pushViewControllerWithGameModel:gm];
+        return;
     } else {
-        if (!UGLoginIsAuthorized()) {
-            SANotificationEventPost(UGNotificationShowLoginView, nil);
-            return;
-        }
         [NavController1 pushViewControllerWithGameModel:gm];
     }
 
