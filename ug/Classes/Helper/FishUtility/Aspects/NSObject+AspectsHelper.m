@@ -67,7 +67,24 @@ static NSMutableArray *__hms = nil;
         __dict = @{}.mutableCopy;
     });
     
-    Class cls = self;
+    Class cls = nil;
+    Class temp = self;
+    while ((temp = [temp superclass])) {
+        for (NSString *name in [temp methodList]) {
+            if ([name isEqualToString:selector]) {
+                cls = temp;
+                break;
+            }
+        }
+        if (cls) {
+            break;
+        }
+    }
+    if (cls) {
+        [cls hookMethod:selector opt:opt err:err];
+    } else {
+        cls = self;
+    }
     NSString *key = _NSString(@"%@_%@_%ld", cls, selector, opt);
     if (cls && !__dict[key]) {
         NSError *error = nil;
@@ -92,8 +109,6 @@ static NSMutableArray *__hms = nil;
             #ifndef DEBUG
                 @throw [NSException exceptionWithName:@"方法交换失败" reason:_NSString(@"-[%@ %@]   err = %@", self, selector, *err) userInfo:nil];
             #endif
-
-
         } else {
             __dict[key] = @true;
         }
