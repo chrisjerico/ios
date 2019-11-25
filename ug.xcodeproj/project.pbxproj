@@ -662,6 +662,16 @@
 		D4FD7B31236EB85000D171AC /* BMMine.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4FD7B30236EB85000D171AC /* BMMine.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		CF73AE60238C5C6B007EF904 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CF73AE5C238C5C6A007EF904 /* AutoPacking.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CF73AE52238C5C6A007EF904;
+			remoteInfo = AutoPacking;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		030BE80823337AE3004AB19A /* GameCategoryDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameCategoryDataModel.h; sourceTree = "<group>"; };
 		030BE80923337AE3004AB19A /* GameCategoryDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameCategoryDataModel.m; sourceTree = "<group>"; };
@@ -709,6 +719,7 @@
 		CF724E60236EAF2B0099947A /* BlackTemplate.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BlackTemplate.storyboard; sourceTree = "<group>"; };
 		CF724E62236EB0250099947A /* CCNetworkRequests1+UGBlackTemplate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CCNetworkRequests1+UGBlackTemplate.h"; sourceTree = "<group>"; };
 		CF724E63236EB0250099947A /* CCNetworkRequests1+UGBlackTemplate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CCNetworkRequests1+UGBlackTemplate.m"; sourceTree = "<group>"; };
+		CF73AE5C238C5C6A007EF904 /* AutoPacking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AutoPacking.xcodeproj; path = AutoPacking/AutoPacking.xcodeproj; sourceTree = "<group>"; };
 		CF84BE262362E32D0058F055 /* CCNetworkRequests1+UGLiuHe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CCNetworkRequests1+UGLiuHe.h"; sourceTree = "<group>"; };
 		CF84BE272362E32D0058F055 /* CCNetworkRequests1+UGLiuHe.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CCNetworkRequests1+UGLiuHe.m"; sourceTree = "<group>"; };
 		CF84BE2A236416C20058F055 /* UGLHC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UGLHC.storyboard; sourceTree = "<group>"; };
@@ -2766,6 +2777,14 @@
 			path = "首页";
 			sourceTree = "<group>";
 		};
+		CF73AE5D238C5C6A007EF904 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CF73AE61238C5C6B007EF904 /* AutoPacking */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		CF84BE29236416A20058F055 /* 六合页面 */ = {
 			isa = PBXGroup;
 			children = (
@@ -4054,6 +4073,7 @@
 		D4B75E002278025E0007047C = {
 			isa = PBXGroup;
 			children = (
+				CF73AE5C238C5C6A007EF904 /* AutoPacking.xcodeproj */,
 				D4B75E0B2278025E0007047C /* ug */,
 				D4B75E0A2278025E0007047C /* Products */,
 				2AA8F6FD940D74819498256A /* Pods */,
@@ -4708,12 +4728,28 @@
 			mainGroup = D4B75E002278025E0007047C;
 			productRefGroup = D4B75E0A2278025E0007047C /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = CF73AE5D238C5C6A007EF904 /* Products */;
+					ProjectRef = CF73AE5C238C5C6A007EF904 /* AutoPacking.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				D4B75E082278025E0007047C /* ug */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		CF73AE61238C5C6B007EF904 /* AutoPacking */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = AutoPacking;
+			remoteRef = CF73AE60238C5C6B007EF904 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		D4B75E072278025E0007047C /* Resources */ = {
