@@ -237,7 +237,7 @@
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
 #endif
         if (!_SiteId.length) {
-            _SiteId = @"c011";
+            _SiteId = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"SiteId"];
         }
         _Host = dict[_SiteId.lowercaseString];
         if (!_Host.length) {

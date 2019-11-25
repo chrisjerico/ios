@@ -12,6 +12,15 @@
 # ************************* 需要配置 Start ********************************
 
 
+
+# 从Xcode运行需要先cd到当前目录
+if [ ! -n "$3" ] ;then
+    echo "you have not input a word!"
+else
+    cd $3
+fi
+
+
 # 项目名称
 __BUILD_TARGET="ug"
 __SCHEME_NAME="ug"
@@ -46,9 +55,6 @@ fi
 
 # 文件输出目录
 __OUTPUT_PATH=$2
-
-#cd $3
-
 
 
 
@@ -158,7 +164,7 @@ __EXPORT_IPA_PATH="${__EXPORT_PATH}"
 # 获取时间 如:201706011145
 __CURRENT_DATE="$(date +%Y%m%d_%H%M%S)"
 # ipa 名字
-__IPA_NAME="${__SCHEME_NAME}_V${__BUNDLE_BUILD_VERSION}_${__CURRENT_DATE}"
+__IPA_NAME="${__SCHEME_NAME}_${__CURRENT_DATE}"
 
 function print_packing_message() {
 
@@ -197,7 +203,7 @@ if [[ $__IS_WORKSPACE_OPTION -eq 1 ]]; then
     > /dev/null
     
     printMessage "\n ———————— Clean完成，开始打包。。。  ———————— \n"
-    printMessage "\n ———————— 打包耗时较长（5-10分钟左右），请耐心等待。。。  ———————— \n"
+    printMessage "\n ———————— 打包耗时较长（3分钟左右），请耐心等待。。。  ———————— \n"
     printMessage "\n ———————— 优化 .pch文件、import 可以提高编译速度。  ———————— \n"
     
     # step 2. Archive
@@ -208,7 +214,7 @@ if [[ $__IS_WORKSPACE_OPTION -eq 1 ]]; then
     CFBundleVersion=${__BUNDLE_BUILD_VERSION} \
     -destination generic/platform=ios \
     -quiet \
-#    > /dev/null
+    > /dev/null
     
     #CODE_SIGN_IDENTITY="${__CODE_SIGN_DISTRIBUTION}"
   fi
@@ -319,6 +325,11 @@ fi
 
 # 输出打包总用时
 printMessage "使用YJShell脚本打包总耗时: ${SECONDS}s"
+printMessage "导出文件到服务器目录: $__IPA_NAME"
+printMessage "导出文件到服务器目录: $__OUTPUT_PATH"
+
+open /Library/WebServer/Documents
 
 # 拷贝到指定目录
-cp -rf $__IPA_NAME $__OUTPUT_PATH
+cp -rf "build/$__IPA_NAME.ipa" $__OUTPUT_PATH
+#cp -rf "../build/$__IPA_NAME.ipa" ../build/ug.ipa
