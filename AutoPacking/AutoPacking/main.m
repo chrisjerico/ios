@@ -43,10 +43,12 @@ int main(int argc, const char * argv[]) {
 //            myStatus = AuthorizationExecuteWithPrivileges(myAuthorizationRef, myToolPath, myFlags, myArguments, &myCommunicationsPipe);
 //        }
         
+        NSString *projectDir = @"/Users/fish/Documents/Code/Git Repository/Packing/AutoPacking";
 #ifdef DEBUG
-        [SiteModel startPackaging:@"hcc,c153,c194"];
+        // c108,c008 还没配置好文件，晚点再打包
+        [SiteModel startPackaging:@"c085,c048,c002,c194,c049,c175,c011" :projectDir];
 #else
-        [SiteModel startPackaging:@(argv[1])];
+        [SiteModel startPackaging:@(argv[1]) :projectDir];
 #endif
         
         __block SiteModel *__sm = nil;
@@ -64,22 +66,22 @@ int main(int argc, const char * argv[]) {
                 return ;
             }
             NSTask *task = [[NSTask alloc] init];
-            task.launchPath = [NSString stringWithFormat:@"%@/setup.sh", AutoPackingDir];;
+            task.launchPath = [NSString stringWithFormat:@"%@/setup.sh", projectDir];;
             task.arguments = @[__sm.siteId, __sm.appName, __sm.appId, ];
 #ifdef DEBUG
-            task.arguments = @[__sm.siteId, __sm.appName, __sm.appId, AutoPackingDir,];
+            task.arguments = @[__sm.siteId, __sm.appName, __sm.appId, projectDir,];
 #endif
             task.terminationHandler = ^(NSTask *ts) {
                 [ts terminate];
                 NSLog(@"站点信息配置完成，开始打包");
                 
                 NSTask *task = [[NSTask alloc] init];
-                task.launchPath = [NSString stringWithFormat:@"%@/autopacking.sh", AutoPackingDir];
+                task.launchPath = [NSString stringWithFormat:@"%@/autopacking.sh", projectDir];
                 task.arguments = @[
                     [__sm.type isEqualToString:@"企业包"] ? @"1" : @"2",
                     [NSString stringWithFormat:@"/Library/WebServer/Documents/%@/%@_%@.ipa", __sm.type, __sm.siteId, [df stringFromDate:[NSDate date]]],
 #ifdef DEBUG
-                    AutoPackingDir,
+                    projectDir,
 #endif
                 ];
                 task.terminationHandler = ^(NSTask *ts) {

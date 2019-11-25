@@ -8,9 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#define ProjectDir @"/Users/fish/fhcpIOSapp"
-#define AutoPackingDir [NSString stringWithFormat:@"%@/AutoPacking", ProjectDir]
-
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -23,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *host;   /**<   接口域名 */
 @property (nonatomic, readonly) NSString *outputFile;   /**<   导出文件路径 */
 
-+ (void)startPackaging:(NSString *)siteIds;
++ (void)startPackaging:(NSString *)siteIds :(NSString *)projectDir;
 + (instancetype)nextSite;
 @end
 

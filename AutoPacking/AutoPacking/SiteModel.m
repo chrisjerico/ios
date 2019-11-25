@@ -26,7 +26,7 @@
 
 static NSMutableArray <SiteModel *> *__sites = nil;
 
-+ (void)startPackaging:(NSString *)siteIds {
++ (void)startPackaging:(NSString *)siteIds :(NSString *)projectDir {
     [__sites removeAllObjects];
     
     NSMutableArray *errs = @[].mutableCopy;
@@ -42,7 +42,7 @@ static NSMutableArray <SiteModel *> *__sites = nil;
             if (!sm.host.length) {
                 [errs addObject:[NSString stringWithFormat:@"接口域名未配置, %@", sm.siteId]];
             }
-            if (![[NSFileManager defaultManager] fileExistsAtPath:[NSString stringWithFormat:@"%@/打包文件/各站点AppIcon（拷贝出来使用）/%@", AutoPackingDir, sm.siteId]]) {
+            if (![[NSFileManager defaultManager] fileExistsAtPath:[NSString stringWithFormat:@"%@/打包文件/各站点AppIcon（拷贝出来使用）/%@", projectDir, sm.siteId]]) {
                 [errs addObject:[NSString stringWithFormat:@"app图标未配置, %@", sm.siteId]];
             }
             [__sites addObject:sm];
