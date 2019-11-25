@@ -15,7 +15,7 @@ pod 'SGQRCode', '~> 3.0.1'#二维码生成与扫描
 pod 'YYWebImage'          #网络图
 pod 'SGBrowserView'       # 动画弹出
 pod 'DLPickerView'        # 一种支持单列数据选择，多列数据选择，plist读取数据选择的多功能数据选择器
-
+pod 'STPickerView', '2.4' # 一个多功能的选择器,有城市选择，日期选择和单数组源自定的功能
 
 
 # fish新增

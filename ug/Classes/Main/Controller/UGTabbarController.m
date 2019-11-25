@@ -30,7 +30,8 @@
 #import "UGBMLotteryHomeViewController.h"   // 黑色模板购彩大厅
 #import "UGYYLotteryHomeViewController.h"   // 购彩大厅
 #import "UGBMLoginViewController.h"         // 黑色模板登录页
-
+//======================================================
+#import "UGLHMineViewController.h"         // 六合模板我的
 #import "UGSystemConfigModel.h"
 #import "UGAppVersionManager.h"
 
@@ -330,20 +331,31 @@ static UGTabbarController *_tabBarVC = nil;
         tabBarController.selectedViewController = viewController;
     };
     //如果是黑色模板或者其他模板：我的 和 黑色模板的我的 进行判断
+    
     if (UGLoginIsAuthorized()
-          && ([vc isKindOfClass:[UGMineSkinViewController class]] || [vc isKindOfClass:[UGBMMemberCenterViewController class]]
-              ||[vc isKindOfClass:[UGBMpreferentialViewController class]] || [vc isKindOfClass:[UGPromotionsController class]]
+             && ([vc isKindOfClass:[UGMineSkinViewController class]] || [vc isKindOfClass:[UGBMMemberCenterViewController class]]
+                 || [vc isKindOfClass:[UGLHMineViewController class]])) {
+
+           if ([Skin1.skitType isEqualToString:@"六合资料"]) {
+               push(@"我的", _LoadVC_from_storyboard_(@"UGLHMineViewController"));
+               return false;
+           }
+           else if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+               push(@"我的", _LoadVC_from_storyboard_(@"UGBMMemberCenterViewController"));
+               return false;
+           }
+           else{
+               push(@"我的", [UGMineSkinViewController new]);
+                          return false;
+           }
+           
+    }
+    
+    if (UGLoginIsAuthorized()
+          && ([vc isKindOfClass:[UGBMpreferentialViewController class]] || [vc isKindOfClass:[UGPromotionsController class]]
               ||[vc isKindOfClass:[UGBMLotteryHomeViewController class]] || [vc isKindOfClass:[UGYYLotteryHomeViewController class]])) {
-        //黑色模板的我的+不是黑色模板
-        //我的+是黑色模板
-        if (([vc isKindOfClass:[UGBMMemberCenterViewController class]] && ![Skin1.skitType isEqualToString:@"黑色模板"])){
-            push(@"我的", [UGMineSkinViewController new]);
-            return false;
-        }
-        if ([vc isKindOfClass:[UGMineSkinViewController class]] && [Skin1.skitType isEqualToString:@"黑色模板"]) {
-            push(@"我的", _LoadVC_from_storyboard_(@"UGBMMemberCenterViewController"));
-            return false;
-        }
+
+        
         if (([vc isKindOfClass:[UGBMpreferentialViewController class]] && ![Skin1.skitType isEqualToString:@"黑色模板"])){
             push(@"优惠活动", _LoadVC_from_storyboard_(@"UGPromotionsController"));
                        return false;

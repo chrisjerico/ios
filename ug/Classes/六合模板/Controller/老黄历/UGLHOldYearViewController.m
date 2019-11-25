@@ -8,8 +8,9 @@
 
 #import "UGLHOldYearViewController.h"
 #import "UGLHLhlModel.h"
-
-@interface UGLHOldYearViewController ()
+#import "STBarButtonItem.h"
+#import "STPickerDate.h"
+@interface UGLHOldYearViewController ()<STPickerDateDelegate>
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 
 @end
@@ -23,8 +24,18 @@
     CGFloat scale = APP.Width/414;
     _contentView.transform = CGAffineTransformMakeScale(scale, scale);
     
+    self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithImageName:@"riqi" target:self action:@selector(rightBarButtonItemClick)];
 
     [self setTestDate];
+}
+
+- (void)rightBarButtonItemClick {
+    STPickerDate *pickerDate = [[STPickerDate alloc]init];
+    [pickerDate setYearLeast:2000];
+    [pickerDate setYearSum:50];
+    [pickerDate setDelegate:self];
+    [pickerDate show];
+    
 }
 
 -(void)setTestDate{
@@ -59,5 +70,10 @@
     NSLog(@"rightClicked");
 }
 
+- (void)pickerDate:(STPickerDate *)pickerDate year:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
+{
+    NSString *text = [NSString stringWithFormat:@"%zd年%zd月%zd日", year, month, day];
+    NSLog(@"text = %@",text);
+}
 
 @end

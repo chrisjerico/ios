@@ -87,6 +87,7 @@
 		CFFAB58B237315C2009593AF /* event.gif in Resources */ = {isa = PBXBuildFile; fileRef = CFFAB58A237315C2009593AF /* event.gif */; };
 		CFFAB58D23755569009593AF /* lxb.gif in Resources */ = {isa = PBXBuildFile; fileRef = CFFAB58C23755569009593AF /* lxb.gif */; };
 		D4000C59232E51C4000705B1 /* UITextView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = D4000C58232E51C4000705B1 /* UITextView+Extension.m */; };
+		D4003C82238BB7E7001F0AA5 /* UGLHMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4003C80238BB7E7001F0AA5 /* UGLHMineViewController.m */; };
 		D403E5662366E614009171D3 /* UIView+Events.m in Sources */ = {isa = PBXBuildFile; fileRef = D403E5642366E614009171D3 /* UIView+Events.m */; };
 		D40499C12335E5B30019C249 /* UGPromotion6rowButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D40499BF2335E5B30019C249 /* UGPromotion6rowButtonTableViewCell.m */; };
 		D40499C22335E5B30019C249 /* UGPromotion6rowButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D40499C02335E5B30019C249 /* UGPromotion6rowButtonTableViewCell.xib */; };
@@ -442,7 +443,6 @@
 		D4704ECB22B7647F00528DC7 /* UGPK10SubResultCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4704EC922B7647F00528DC7 /* UGPK10SubResultCollectionViewCell.m */; };
 		D4704ECC22B7647F00528DC7 /* UGPK10SubResultCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4704ECA22B7647F00528DC7 /* UGPK10SubResultCollectionViewCell.xib */; };
 		D4704EDD22B7BCE900528DC7 /* GLEncryptManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D4704EDC22B7BCE900528DC7 /* GLEncryptManager.m */; };
-		D4781A122368207A004FBB97 /* UGLHMyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4781A112368207A004FBB97 /* UGLHMyViewController.m */; };
 		D4781A152368209E004FBB97 /* UGLHMyAttentionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4781A142368209E004FBB97 /* UGLHMyAttentionViewController.m */; };
 		D4781A18236820EA004FBB97 /* UGMyFansViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4781A17236820EA004FBB97 /* UGMyFansViewController.m */; };
 		D4781A1B236820FD004FBB97 /* UGStuffViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4781A1A236820FD004FBB97 /* UGStuffViewController.m */; };
@@ -811,6 +811,8 @@
 		CFFAB58C23755569009593AF /* lxb.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = lxb.gif; sourceTree = "<group>"; };
 		D4000C57232E51C4000705B1 /* UITextView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+Extension.h"; sourceTree = "<group>"; };
 		D4000C58232E51C4000705B1 /* UITextView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+Extension.m"; sourceTree = "<group>"; };
+		D4003C80238BB7E7001F0AA5 /* UGLHMineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGLHMineViewController.m; sourceTree = "<group>"; };
+		D4003C81238BB7E7001F0AA5 /* UGLHMineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGLHMineViewController.h; sourceTree = "<group>"; };
 		D403E5642366E614009171D3 /* UIView+Events.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Events.m"; sourceTree = "<group>"; };
 		D403E5652366E614009171D3 /* UIView+Events.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Events.h"; sourceTree = "<group>"; };
 		D40499BE2335E5B30019C249 /* UGPromotion6rowButtonTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGPromotion6rowButtonTableViewCell.h; sourceTree = "<group>"; };
@@ -1450,8 +1452,6 @@
 		D4704ECA22B7647F00528DC7 /* UGPK10SubResultCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGPK10SubResultCollectionViewCell.xib; sourceTree = "<group>"; };
 		D4704EDB22B7BCE900528DC7 /* GLEncryptManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLEncryptManager.h; sourceTree = "<group>"; };
 		D4704EDC22B7BCE900528DC7 /* GLEncryptManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLEncryptManager.m; sourceTree = "<group>"; };
-		D4781A102368207A004FBB97 /* UGLHMyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLHMyViewController.h; sourceTree = "<group>"; };
-		D4781A112368207A004FBB97 /* UGLHMyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLHMyViewController.m; sourceTree = "<group>"; };
 		D4781A132368209E004FBB97 /* UGLHMyAttentionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLHMyAttentionViewController.h; sourceTree = "<group>"; };
 		D4781A142368209E004FBB97 /* UGLHMyAttentionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLHMyAttentionViewController.m; sourceTree = "<group>"; };
 		D4781A16236820EA004FBB97 /* UGMyFansViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGMyFansViewController.h; sourceTree = "<group>"; };
@@ -3817,12 +3817,12 @@
 		D43348A12387D38A0056EB7D /* 我的 */ = {
 			isa = PBXGroup;
 			children = (
+				D4003C81238BB7E7001F0AA5 /* UGLHMineViewController.h */,
+				D4003C80238BB7E7001F0AA5 /* UGLHMineViewController.m */,
 				D4781A132368209E004FBB97 /* UGLHMyAttentionViewController.h */,
 				D4781A142368209E004FBB97 /* UGLHMyAttentionViewController.m */,
 				D4781A16236820EA004FBB97 /* UGMyFansViewController.h */,
 				D4781A17236820EA004FBB97 /* UGMyFansViewController.m */,
-				D4781A102368207A004FBB97 /* UGLHMyViewController.h */,
-				D4781A112368207A004FBB97 /* UGLHMyViewController.m */,
 			);
 			path = "我的";
 			sourceTree = "<group>";
@@ -5226,6 +5226,7 @@
 				D405B315227C841A00F8C586 /* UGNavigationController.m in Sources */,
 				D4AE640F2295871D00DD265A /* UIScrollView+MJExtension.m in Sources */,
 				D481AB432331EC340099685B /* UGMosaicGoldViewController.m in Sources */,
+				D4003C82238BB7E7001F0AA5 /* UGLHMineViewController.m in Sources */,
 				D41C3DF6228E75F100BF6436 /* UITabBarItem+WZLBadge.m in Sources */,
 				D4252822232102CA007DE522 /* UGSignInHeaderView.m in Sources */,
 				D4145A9022B52C8000D8165F /* UGGD11X5LotteryController.m in Sources */,
@@ -5338,7 +5339,6 @@
 				D422A582229E7AE90068D0AD /* UGYubaoIncomeTableViewCell.m in Sources */,
 				CF724E64236EB0250099947A /* CCNetworkRequests1+UGBlackTemplate.m in Sources */,
 				D405AFF822783DCC00F8C586 /* MASConstraint.m in Sources */,
-				D4781A122368207A004FBB97 /* UGLHMyViewController.m in Sources */,
 				D4091B742369B7BE0056BAEE /* UGfinancialView.m in Sources */,
 				D42A06B122CA212E005488F8 /* UGHomeViewController.m in Sources */,
 				D405B27E227981D400F8C586 /* UUMarqueeView.m in Sources */,
