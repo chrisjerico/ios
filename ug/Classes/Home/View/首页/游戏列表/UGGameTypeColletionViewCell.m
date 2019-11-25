@@ -60,7 +60,7 @@
     [self.imgView sd_setImageWithURL:[NSURL URLWithString:item.icon] placeholderImage:[UIImage imageNamed:@"loading"]];
     
     __weakSelf_(__self);
-    [self.hotImageView sd_setImageWithURL:[NSURL URLWithString:item.hotIcon] placeholderImage:[UIImage imageNamed:@"hot"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+    [self.hotImageView sd_setImageWithURL:[NSURL URLWithString:item.hotIcon] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         if (error) {
             __self.hotImageView.image = [UIImage imageNamed:@"hot"];
         }

@@ -43,9 +43,6 @@ static NSInteger versionNumber = 102;
 
 //处理升级
 - (void)upgradeHandel:(BOOL)flag {
-    if (!_versionModle.downloadUrl.length) {
-        return;
-    }
     BOOL isForce = false;      // 是否强制升级
     BOOL hasUpdate = false; // 是否存在新版本
     
@@ -59,8 +56,8 @@ static NSInteger versionNumber = 102;
         if (v2.intValue != v1.intValue)
             break;
     }
-	
-	if (hasUpdate){
+    
+	if (_versionModle.downloadUrl.length && hasUpdate ){
         if (self.versionModle.switchUpdate) {
             isForce = YES;
         }
