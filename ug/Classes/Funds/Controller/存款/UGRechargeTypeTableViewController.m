@@ -28,7 +28,11 @@ static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
     self.tableView.estimatedRowHeight = 0;
     self.tableView.estimatedSectionHeaderHeight = 0;
     self.tableView.estimatedSectionFooterHeight = 0;
-    
+    self.tableView.tableFooterView = ({
+        UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APP.Width, 120)];
+        v.backgroundColor = [UIColor clearColor];
+        v;
+    });
     if (@available(iOS 11.0, *)) {
         self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     } else {

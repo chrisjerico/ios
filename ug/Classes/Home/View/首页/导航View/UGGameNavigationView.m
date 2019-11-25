@@ -62,17 +62,8 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-
     GameModel *gm = self.sourceData[indexPath.item];
-    if (gm.subId == 4) {
-        [NavController1 pushViewControllerWithGameModel:gm];
-        return;
-    } else {
-        [NavController1 pushViewControllerWithGameModel:gm];
-    }
-
-    
-   
+    [NavController1 pushViewControllerWithGameModel:gm];
 }
 
 
@@ -102,6 +93,7 @@
 	YYAnimatedImageView * _iconImage;
 	UILabel * _titleLabel;
     UIImageView * _hotImage;
+    UILabel *_unreadLabel;
 }
 
 @end

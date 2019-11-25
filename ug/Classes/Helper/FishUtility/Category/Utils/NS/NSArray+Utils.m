@@ -96,7 +96,7 @@ BOOL IsEqualValue(id obj, id value) {
 - (NSArray *)valuesWithKeyPath:(NSString *)keyPath {
     NSMutableArray *values = [NSMutableArray array];
     for (id obj in self) {
-        [values addObject:[obj valueForKeyPath:keyPath] ? : [NSNull null]];
+        [values addObject:[obj valueForKeyPath:keyPath]];
     }
     return [values copy];
 }
