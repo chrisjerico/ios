@@ -116,7 +116,7 @@
             @"a002d":@"",
             @"a002e":@"",
             @"b001":@"",
-            @"c001":@"https://47c47webappqp.org",
+            @"c001":@"https://c47c47webappqp.com",
             @"c002":@"https://154977.com",
             @"c005":@"",
             @"c006":@"https://xn--app-v85fh28j.com",
@@ -237,11 +237,14 @@
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
 #endif
         if (!_SiteId.length) {
-            _SiteId = @"c083";
+            _SiteId = @"c011";
         }
         _Host = dict[_SiteId.lowercaseString];
         if (!_Host.length) {
-            @throw [NSException exceptionWithName:@"缺少域名" reason:_NSString(@"（%@）该站点没有配置接口域名", _SiteId) userInfo:nil];
+            #ifndef DEBUG
+                 @throw [NSException exceptionWithName:@"缺少域名" reason:_NSString(@"（%@）该站点没有配置接口域名", _SiteId) userInfo:nil];
+            #endif
+         
         }
         
         _PhotoMaxLength = 60 * 1024;    // 约等于1M大小

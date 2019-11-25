@@ -86,8 +86,6 @@ static UGSkinManagers *__initSkin1 = nil;
             [UITabBar cc_hookSelector:@selector(setBarTintColor:) withOptions:AspectPositionInstead usingBlock:block1 error:nil];
             [UINavigationBar cc_hookSelector:@selector(setBarTintColor:) withOptions:AspectPositionInstead usingBlock:block1 error:nil];
             [UISegmentedControl cc_hookSelector:@selector(setBackgroundColor:) withOptions:AspectPositionInstead usingBlock:block1 error:nil];
-            [UISegmentedControl cc_hookSelector:@selector(setSelectedSegmentTintColor:) withOptions:AspectPositionInstead usingBlock:block1 error:nil];
-            
             
             // 处理CGColorRef类型（描边色）
             void (^block2)(id<AspectInfo>) = ^(id<AspectInfo> ai) {

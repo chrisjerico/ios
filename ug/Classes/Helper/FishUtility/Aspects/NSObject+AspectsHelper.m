@@ -89,7 +89,11 @@ static NSMutableArray *__hms = nil;
             if (err) {
                 *err = error;
             }
-            @throw [NSException exceptionWithName:@"方法交换失败" reason:_NSString(@"-[%@ %@]   err = %@", self, selector, *err) userInfo:nil];
+            #ifndef DEBUG
+                @throw [NSException exceptionWithName:@"方法交换失败" reason:_NSString(@"-[%@ %@]   err = %@", self, selector, *err) userInfo:nil];
+            #endif
+
+
         } else {
             __dict[key] = @true;
         }
