@@ -52,6 +52,38 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(NSString *)timestampSwitchTime:(NSInteger)timestamp andFormatter:(NSString *)format;
 
+
+//日期的年月日
++ (NSInteger)getYear;
++ (NSInteger)getMonth;
++ (NSInteger)getDay;
+//当前日期20090909
++ (NSString *)currentDateString;
+
+
+/******************************************************************************
+函数名称 : lastDayStr;
+函数描述 :
+   //前一天
+
+输入参数 : NSString *dateStr  20091102
+输出参数 : NSString
+返回参数 : NSString
+备注信息 :
+******************************************************************************/
++ (NSString *)lastDayStr:(NSString *)dateStr format:(NSString *)formatStr;
+
+/******************************************************************************
+函数名称 : nextDayStr;
+函数描述 :
+   //后一天
+
+输入参数 : NSString *dateStr  20091102
+输出参数 : NSString
+返回参数 : NSString
+备注信息 :
+******************************************************************************/
++ (NSString *)nextDayStr:(NSString *)dateStr format:(NSString *)formatStr;
 @end
 
 NS_ASSUME_NONNULL_END

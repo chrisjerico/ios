@@ -821,6 +821,10 @@
                     </view>
                     <connections>
                         <outlet property="contentView" destination="MKq-mT-vlV" id="TRC-8O-gRy"/>
+                        <outlet property="leftBtn" destination="4lX-wv-69g" id="cgu-OX-F3r"/>
+                        <outlet property="leftImgV" destination="jmB-9m-fjQ" id="MWj-En-Dea"/>
+                        <outlet property="reghtBtn" destination="lE4-WW-LLI" id="Sma-BG-GX4"/>
+                        <outlet property="rightImgV" destination="YtR-x0-1Of" id="LNO-jk-9Fw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SnN-ij-bKe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

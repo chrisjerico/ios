@@ -7,9 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "UGModel.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
-@interface UGLHLhlInfoModel : NSObject
+
+
+@protocol UGLHLhlInfoModel <NSObject>
+
+@end
+@interface UGLHLhlInfoModel : UGModel<UGLHLhlInfoModel>
 @property (copy, nonatomic) NSString *ganZhi;/**<   癸亥    天干地支" */
 @property (copy, nonatomic) NSString *jiShenYiQu;/**<   王日 续世 宝光    吉神宜趋" */
 @property (copy, nonatomic) NSString *yi;/**<   祭祀 沐浴 馀事勿取    宜" */
@@ -35,8 +42,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (copy, nonatomic) NSString *yearEN;/**<  2019     年份" */
 @end
 
+@protocol UGLHLhlModel <NSObject>
 
-@interface UGLHLhlModel : NSObject
+@end
+@interface UGLHLhlModel : UGModel <UGLHLhlModel>
 @property (strong, nonatomic) UGLHLhlInfoModel *info;;/**<   癸亥" */
 @property (copy, nonatomic) NSString *cid;/**<   " */
 @property (copy, nonatomic) NSString *date;/**<   " */

@@ -10,8 +10,16 @@
 #import "UGLHLhlModel.h"
 #import "STBarButtonItem.h"
 #import "STPickerDate.h"
-@interface UGLHOldYearViewController ()<STPickerDateDelegate>
+#import "CMNetwork.h"
+#import "CMTimeCommon.h"
+@interface UGLHOldYearViewController ()<STPickerDateDelegate>{
+    NSString *currentSelDataStr;
+}
 @property (weak, nonatomic) IBOutlet UIView *contentView;
+@property (weak, nonatomic) IBOutlet UIButton *leftBtn;
+@property (weak, nonatomic) IBOutlet UIButton *reghtBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *leftImgV;
+@property (weak, nonatomic) IBOutlet UIImageView *rightImgV;
 
 @end
 
@@ -25,10 +33,96 @@
     _contentView.transform = CGAffineTransformMakeScale(scale, scale);
     
     self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithImageName:@"riqi" target:self action:@selector(rightBarButtonItemClick)];
+    
+    [self imgVButtonInteractionEnabled];
+    NSString *dataStr = [CMTimeCommon currentDateString];
+    NSLog(@"dataStr= %@",dataStr);
+    [self getlhlDetail:dataStr];
 
-    [self setTestDate];
+}
+#pragma mark ---------------- 网络请求
+// 老黄历
+- (void)getlhlDetail:(NSString *)dataStr{
+
+    currentSelDataStr = dataStr;
+    [SVProgressHUD showWithStatus:nil];
+    [self imgVButtonInteractionNoEnabled];
+//    NSLog(@"currentSelDataStr= %@",currentSelDataStr);
+    NSDictionary *params = @{@"date":dataStr};
+    [CMNetwork lhlDetailWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            UGLHLhlModel *obj =   ((UGLHLhlModel*)model.data);
+//               NSLog(@"obj = %@",obj);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [SVProgressHUD dismiss];
+                [self imgVButtonInteractionEnabled];
+                if (obj) {
+                      [self setLHLDate:obj];
+                }
+            });
+            
+        } failure:^(id msg) {
+            [SVProgressHUD showErrorWithStatus:msg];
+            [self imgVButtonInteractionEnabled];
+  
+        }];
+    }];
 }
 
+
+
+-(void)setLHLDate :(UGLHLhlModel *)obj{
+    FastSubViewCode(self.view)
+    subLabel(@"月份中文label").text = [NSString stringWithFormat:@"%d月",obj.info.monthEN];
+    subLabel(@"月份英文label").text = obj.info.weekEN;
+    subLabel(@"年份label").text = [NSString stringWithFormat:@"%@",obj.info.yearEN];
+    subLabel(@"数字label").text = [NSString stringWithFormat:@"%d",obj.info.dayEN];
+    subLabel(@"中label").text = [NSString stringWithFormat:@"%@  %@  %@",obj.info.yearCN,obj.info.monthCN,obj.info.dayCN];
+    subLabel(@"星期label").text = [NSString stringWithFormat:@"%@",obj.info.weekCN];;
+    subLabel(@"日期label").text = [NSString stringWithFormat:@"%@",obj.info.dayCN];
+    subLabel(@"宜详细label").text = [NSString stringWithFormat:@"%@",obj.info.yi];
+    subLabel(@"吉神宜趋详细label").text = [NSString stringWithFormat:@"%@",obj.info.jiShenYiQu];
+    subLabel(@"六合吉数详细label").text = [NSString stringWithFormat:@"%@",obj.info.luckyNumber];
+    subLabel(@"凶煞宜忌详细label").text = [NSString stringWithFormat:@"%@",obj.info.xiongShaYiJi];
+    subLabel(@"忌详细label").text = [NSString stringWithFormat:@"%@",obj.info.ji];
+    subLabel(@"时辰吉凶详细label").text = [NSString stringWithFormat:@"%@",obj.info.jiShi];
+    subLabel(@"冲煞详细label").text = [NSString stringWithFormat:@"%@",obj.info.chongSha];
+    subLabel(@"天干地支详细label").text = [NSString stringWithFormat:@"%@",obj.info.ganZhi];
+    subLabel(@"喜神详细label").text = [NSString stringWithFormat:@"%@",obj.info.xiShen];
+    subLabel(@"福神详细label").text = [NSString stringWithFormat:@"%@",obj.info.fuShen];
+    subLabel(@"财神详细label").text = [NSString stringWithFormat:@"%@",obj.info.caiShen];
+    subLabel(@"白忌详细label").text = [NSString stringWithFormat:@"%@",obj.info.baiJi];
+    subLabel(@"日五行详细label").text = [NSString stringWithFormat:@"%@",obj.info.riWuXing];
+    
+
+    
+}
+#pragma mark ---------------- 其他方法
+
+-(void)imgVButtonInteractionEnabled{
+    self.leftBtn.userInteractionEnabled = YES;
+    self.reghtBtn.userInteractionEnabled = YES;
+    UIImage *image = [UIImage imageNamed:@"LH_icon_left"];
+    UIImage *afterImage = [image qmui_imageWithBlendColor: RGBA(173, 88, 0, 1)];
+    self.leftImgV.image = afterImage;
+    {
+        UIImage *image = [UIImage imageNamed:@"LH_icon_right"];
+        UIImage *afterImage = [image qmui_imageWithBlendColor: RGBA(173, 88, 0, 1)];
+        self.rightImgV.image = afterImage;
+    }
+
+}
+
+-(void)imgVButtonInteractionNoEnabled{
+    self.leftBtn.userInteractionEnabled = NO;
+    self.reghtBtn.userInteractionEnabled = NO;
+    UIImage *image = [UIImage imageNamed:@"LH_icon_left"];
+    self.leftImgV.image = image;
+    {
+        UIImage *image = [UIImage imageNamed:@"LH_icon_right"];
+         self.rightImgV.image = image;
+    }
+}
 - (void)rightBarButtonItemClick {
     STPickerDate *pickerDate = [[STPickerDate alloc]init];
     [pickerDate setYearLeast:2000];
@@ -37,43 +131,36 @@
     [pickerDate show];
     
 }
-
--(void)setTestDate{
-    FastSubViewCode(self.view)
-    subLabel(@"月份中文label").text = @"11";
-    subLabel(@"月份英文label").text = @"September";
-    subLabel(@"年份label").text = @"2019年";
-    subLabel(@"数字label").text = @"22";
-    subLabel(@"中label").text = @"已亥年  十月 大";
-    subLabel(@"星期label").text = @"星期五";
-    subLabel(@"日期label").text = @"二十六";
-    subLabel(@"宜详细label").text = @"祭祀 沐浴 馀事勿取";
-    subLabel(@"吉神宜趋详细label").text = @"王日 续世 宝光";
-    subLabel(@"六合吉数详细label").text = @"17 28 36 21 31";
-    subLabel(@"凶煞宜忌详细label").text = @" 月建 小时 土府 月刑 四废 九坎 九焦 血忌 重日 阳错 ";
-    subLabel(@"忌详细label").text = @"诸事不宜";
-    subLabel(@"时辰吉凶详细label").text = @"凶 吉 凶 凶 吉 凶 吉 吉 凶 凶 吉 凶";
-    subLabel(@"冲煞详细label").text = @"冲蛇(丁已)煞西";
-    subLabel(@"天干地支详细label").text = @" 癸亥";
-    subLabel(@"喜神详细label").text = @"东南";
-    subLabel(@"福神详细label").text = @"正西";
-    subLabel(@"财神详细label").text = @"正南";
-    subLabel(@"白忌详细label").text = @"癸不词讼理弱敌强 亥不嫁娶不利新郎";
-    subLabel(@"日五行详细label").text = @"大海水 建执位";
-    
-}
-
 - (IBAction)leftClicked:(id)sender {
     NSLog(@"leftClicked");
+    [self getlhlDetail:[CMTimeCommon lastDayStr:currentSelDataStr format:@"YYYYMMdd"]];
 }
 - (IBAction)rightClicked:(id)sender {
     NSLog(@"rightClicked");
+    [self getlhlDetail:[CMTimeCommon nextDayStr:currentSelDataStr format:@"YYYYMMdd"]];
 }
 
 - (void)pickerDate:(STPickerDate *)pickerDate year:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
 {
-    NSString *text = [NSString stringWithFormat:@"%zd年%zd月%zd日", year, month, day];
-    NSLog(@"text = %@",text);
+    NSString *monthStr  = @"";
+    if (month < 10) {
+        monthStr = [NSString stringWithFormat:@"0%zd",month];
+    } else {
+        monthStr = [NSString stringWithFormat:@"%zd",month];
+    }
+    NSLog(@"monthStr = %@",monthStr);
+    
+    NSString *dayStr  = @"";
+    if (day < 10) {
+        dayStr = [NSString stringWithFormat:@"0%zd",day];
+    } else {
+        dayStr = [NSString stringWithFormat:@"%zd",day];
+    }
+    NSLog(@"dayStr = %@",dayStr);
+    
+    NSString *dataStr = [NSString stringWithFormat:@"%zd%@%@", year, monthStr, dayStr];
+    NSLog(@"dataStr = %@",dataStr);
+    [self getlhlDetail:dataStr];
 }
 
 @end

@@ -242,6 +242,10 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 
 #define systemOnlineCountUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=system&a=onlineCount"]
 
+//=============六合====================================================================================================
+#define lhlDetailUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=lhcdoc&a=lhlDetail"]
+
+
 #if DEBUG
 
 //#define NSLog(...) NSLog(__VA_ARGS__)

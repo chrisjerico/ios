@@ -134,4 +134,109 @@
     return confromTimespStr;
 
 }
+
+//日期的年月日
++ (NSInteger)getYear {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"YYYY"];
+    NSString *currentTimeString = [formatter stringFromDate:self];
+    return currentTimeString.integerValue;
+}
++ (NSInteger)getMonth {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"MM"];
+    NSString *currentTimeString = [formatter stringFromDate:self];
+    return currentTimeString.integerValue;
+}
++ (NSInteger)getDay {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"dd"];
+    NSString *currentTimeString = [formatter stringFromDate:self];
+    return currentTimeString.integerValue;
+}
+
+//当前日期20090909
++ (NSString *)currentDateString {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"YYYYMMdd"];
+    NSDate *datenow = [NSDate date];
+    NSString *currentTimeString = [formatter stringFromDate:datenow];
+    return currentTimeString;
+}
+
+/******************************************************************************
+函数名称 : lastDay;
+函数描述 :
+   //前一天
+
+输入参数 : NSDate *date
+输出参数 : NSDate
+返回参数 : NSDate
+备注信息 :
+******************************************************************************/
++ (NSDate *)lastDay:(NSDate *)date {
+    return [NSDate dateWithTimeInterval:-24*60*60 sinceDate:date];//前一天
+}
+
+/******************************************************************************
+函数名称 : nextDay;
+函数描述 :
+   //nextDay
+
+输入参数 : NSDate *date
+输出参数 : NSDate
+返回参数 : NSDate
+备注信息 :
+******************************************************************************/
++ (NSDate *)nextDay:(NSDate *)date {
+    return [NSDate dateWithTimeInterval:24*60*60 sinceDate:date];//后一天
+}
+
+/******************************************************************************
+函数名称 : lastDayStr;
+函数描述 :
+   //前一天
+
+输入参数 : NSString *dateStr  20091102
+输出参数 : NSString
+返回参数 : NSString
+备注信息 :
+******************************************************************************/
++ (NSString *)lastDayStr:(NSString *)dateStr format:(NSString *)formatStr {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setLocale:[[NSLocale alloc]initWithLocaleIdentifier:@"zh_CN"] ];
+    [dateFormatter setDateFormat:formatStr];
+    NSDate *date = [dateFormatter dateFromString:dateStr];
+    NSDate *lastDaydate = [CMTimeCommon lastDay:date];
+    
+    NSString *lastStrDate = [dateFormatter stringFromDate:lastDaydate];
+    NSLog(@"lastStrDate = %@",lastStrDate);
+    return lastStrDate;
+}
+
+/******************************************************************************
+函数名称 : nextDayStr;
+函数描述 :
+   //后一天
+
+输入参数 : NSString *dateStr  20091102
+输出参数 : NSString
+返回参数 : NSString
+备注信息 :
+******************************************************************************/
++ (NSString *)nextDayStr:(NSString *)dateStr format:(NSString *)formatStr {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setLocale:[[NSLocale alloc]initWithLocaleIdentifier:@"zh_CN"] ];
+    [dateFormatter setDateFormat:formatStr];
+    NSDate *date = [dateFormatter dateFromString:dateStr];
+    NSDate *lastDaydate = [CMTimeCommon nextDay:date];
+    
+    NSString *lastStrDate = [dateFormatter stringFromDate:lastDaydate];
+    NSLog(@"dateStr = %@",dateStr);
+    NSLog(@"nextDayStr = %@",lastStrDate);
+    return lastStrDate;
+}
+
+
+
 @end

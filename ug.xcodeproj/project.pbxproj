@@ -425,7 +425,12 @@
 		D43B4896238C011600BB7960 /* UGLHMYDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D43B4895238C011600BB7960 /* UGLHMYDynamicViewController.m */; };
 		D43B48A0238C055F00BB7960 /* LSStretchableTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D43B489C238C055F00BB7960 /* LSStretchableTableHeaderView.m */; };
 		D43B48A1238C055F00BB7960 /* UITableView+LSEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = D43B489D238C055F00BB7960 /* UITableView+LSEmpty.m */; };
+
 		D43B48B9238D4DBC00BB7960 /* SiteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D43B48B7238D4DBC00BB7960 /* SiteModel.m */; };
+
+		D43B48A9238D0B8200BB7960 /* CMNetwork+LH.m in Sources */ = {isa = PBXBuildFile; fileRef = D43B48A6238D0B8200BB7960 /* CMNetwork+LH.m */; };
+		D43B48B1238D41DA00BB7960 /* UIButton+touch.m in Sources */ = {isa = PBXBuildFile; fileRef = D43B48AF238D41D900BB7960 /* UIButton+touch.m */; };
+
 		D4527D1822828C27000EC1C2 /* UGPlatformBalanceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4527D1622828C27000EC1C2 /* UGPlatformBalanceTableViewCell.m */; };
 		D4527D1922828C27000EC1C2 /* UGPlatformBalanceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4527D1722828C27000EC1C2 /* UGPlatformBalanceTableViewCell.xib */; };
 		D4527D1C2282FBD8000EC1C2 /* UGBalanceConversionRecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4527D1B2282FBD8000EC1C2 /* UGBalanceConversionRecordController.m */; };
@@ -1438,8 +1443,14 @@
 		D43B489D238C055F00BB7960 /* UITableView+LSEmpty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+LSEmpty.m"; sourceTree = "<group>"; };
 		D43B489E238C055F00BB7960 /* LSStretchableTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSStretchableTableHeaderView.h; sourceTree = "<group>"; };
 		D43B489F238C055F00BB7960 /* UITableView+LSEmpty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+LSEmpty.h"; sourceTree = "<group>"; };
+
 		D43B48B7238D4DBC00BB7960 /* SiteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SiteModel.m; path = AutoPacking/AutoPacking/SiteModel.m; sourceTree = SOURCE_ROOT; };
 		D43B48B8238D4DBC00BB7960 /* SiteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SiteModel.h; path = AutoPacking/AutoPacking/SiteModel.h; sourceTree = SOURCE_ROOT; };
+		D43B48A6238D0B8200BB7960 /* CMNetwork+LH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CMNetwork+LH.m"; sourceTree = "<group>"; };
+		D43B48A8238D0B8200BB7960 /* CMNetwork+LH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CMNetwork+LH.h"; sourceTree = "<group>"; };
+		D43B48AE238D41D900BB7960 /* UIButton+touch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+touch.h"; sourceTree = "<group>"; };
+		D43B48AF238D41D900BB7960 /* UIButton+touch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+touch.m"; sourceTree = "<group>"; };
+
 		D4527D1522828C27000EC1C2 /* UGPlatformBalanceTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGPlatformBalanceTableViewCell.h; sourceTree = "<group>"; };
 		D4527D1622828C27000EC1C2 /* UGPlatformBalanceTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGPlatformBalanceTableViewCell.m; sourceTree = "<group>"; };
 		D4527D1722828C27000EC1C2 /* UGPlatformBalanceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGPlatformBalanceTableViewCell.xib; sourceTree = "<group>"; };
@@ -3309,6 +3320,7 @@
 				D434C7ED2373D45E00920832 /* view圆角 */,
 				D43B489B238C055F00BB7960 /* UITableView无内容提示 */,
 				D403E5632366E5F6009171D3 /* 手势 */,
+				D43B48AD238D41D900BB7960 /* hookButtton间隔点击 */,
 				D494C7012366D532001C310F /* 刮刮乐 */,
 				D41FF93023332E5600FE3F70 /* NullSafe */,
 				D4241C36232914D100BF4DE1 /* Extenslon */,
@@ -3666,6 +3678,8 @@
 				D405B366227DE67600F8C586 /* CMNetwork+Hall.m */,
 				D40DE96D22F3357100974BAF /* CMNetwork+Home.h */,
 				D40DE96E22F3357100974BAF /* CMNetwork+Home.m */,
+				D43B48A8238D0B8200BB7960 /* CMNetwork+LH.h */,
+				D43B48A6238D0B8200BB7960 /* CMNetwork+LH.m */,
 				0322AD5A233DD75300E9857E /* CMNetwork+Document.h */,
 				0322AD5B233DD75300E9857E /* CMNetwork+Document.m */,
 			);
@@ -3904,6 +3918,15 @@
 				D43B489D238C055F00BB7960 /* UITableView+LSEmpty.m */,
 			);
 			path = "UITableView无内容提示";
+			sourceTree = "<group>";
+		};
+		D43B48AD238D41D900BB7960 /* hookButtton间隔点击 */ = {
+			isa = PBXGroup;
+			children = (
+				D43B48AE238D41D900BB7960 /* UIButton+touch.h */,
+				D43B48AF238D41D900BB7960 /* UIButton+touch.m */,
+			);
+			path = "hookButtton间隔点击";
 			sourceTree = "<group>";
 		};
 		D4527D1E22830603000EC1C2 /* 推荐收益 */ = {
@@ -5339,6 +5362,7 @@
 				CFD3BEF92347137F00FCDA6D /* NSMutableArray+KVO.m in Sources */,
 				D4C93B4422D8C02000608B67 /* UGLoginAddressModel.m in Sources */,
 				CF724E54236D6E5E0099947A /* UGSkinManagers.m in Sources */,
+				D43B48B1238D41DA00BB7960 /* UIButton+touch.m in Sources */,
 				D4527D1822828C27000EC1C2 /* UGPlatformBalanceTableViewCell.m in Sources */,
 				CFD3BEF32347137F00FCDA6D /* NSDictionary+NilSafe.m in Sources */,
 				D41C5EBD2369D758007AF77D /* UGOnlineWithdrawalsView.m in Sources */,
@@ -5361,6 +5385,7 @@
 				D4B6E6EF22D3325A0006B03F /* UGHomeTitleView.m in Sources */,
 				CFD3BEF22347137F00FCDA6D /* IBView.m in Sources */,
 				D4704EDD22B7BCE900528DC7 /* GLEncryptManager.m in Sources */,
+				D43B48A9238D0B8200BB7960 /* CMNetwork+LH.m in Sources */,
 				D4D42264232686A5006E680B /* UGPormotionView.m in Sources */,
 				D4A02B5523225782004D5894 /* UGSignInHistoryView.m in Sources */,
 				D422A585229E80EE0068D0AD /* UGYubaoConversionRecordController.m in Sources */,
