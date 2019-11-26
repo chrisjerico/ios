@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *host;   /**<   接口域名 */
 @property (nonatomic, readonly) NSString *outputFile;   /**<   导出文件路径 */
 
++ (NSArray *)allSites;
 + (void)startPackaging:(NSString *)siteIds :(NSString *)projectDir;
 + (instancetype)nextSite;
 @end

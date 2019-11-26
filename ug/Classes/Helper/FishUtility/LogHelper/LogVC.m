@@ -144,9 +144,9 @@ static LogVC *_logVC = nil;
 // 切换站点
 - (IBAction)onChangeSiteIdBtnClick:(UIButton *)sender {
     NSMutableArray *titles = @[].mutableCopy;
-    for (NSString *key in APP.allSiteIds.allKeys) {
-        if ([APP.allSiteIds[key] length]) {
-            [titles addObject:key];
+    for (SiteModel *sm in APP.allSites) {
+        if (sm.host.length) {
+            [titles addObject:sm.siteId];
         }
     }
     [titles sortUsingComparator:^NSComparisonResult(NSString *obj1, NSString *obj2) {
@@ -156,7 +156,7 @@ static LogVC *_logVC = nil;
     for (NSString *key in titles) {
         [ac setActionAtTitle:key handler:^(UIAlertAction *aa) {
             [APP setValue:key forKey:@"_SiteId"];
-            [APP setValue:APP.allSiteIds[key] forKey:@"_Host"];
+            [APP setValue:[APP.allSites objectWithValue:key keyPath:@"siteId"].host forKey:@"_Host"];
             [_logVC.currentSiteIdButton setTitle:key forState:UIControlStateNormal];
             [[NSUserDefaults standardUserDefaults] setObject:key forKey:@"当前站点Key"];
             [[NSUserDefaults standardUserDefaults] synchronize];
