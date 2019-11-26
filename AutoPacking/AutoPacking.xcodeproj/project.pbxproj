@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF2F687C238D4B090030E26D /* ShellHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2F687B238D4B080030E26D /* ShellHelper.m */; };
 		CF73AE56238C5C6A007EF904 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CF73AE55238C5C6A007EF904 /* main.m */; };
 		CF73AE64238C5CDC007EF904 /* SiteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF73AE62238C5CDC007EF904 /* SiteModel.m */; };
 /* End PBXBuildFile section */
@@ -24,13 +25,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		CF2F687A238D4B080030E26D /* ShellHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShellHelper.h; sourceTree = "<group>"; };
+		CF2F687B238D4B080030E26D /* ShellHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShellHelper.m; sourceTree = "<group>"; };
+		CF2F6885238D4EAF0030E26D /* 3packing.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = 3packing.sh; sourceTree = "<group>"; };
+		CF2F6886238D4EAF0030E26D /* 1pull.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = 1pull.sh; sourceTree = "<group>"; };
+		CF2F6887238D4EAF0030E26D /* 2setup.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = 2setup.sh; sourceTree = "<group>"; };
 		CF73AE52238C5C6A007EF904 /* AutoPacking */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AutoPacking; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF73AE55238C5C6A007EF904 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CF73AE62238C5CDC007EF904 /* SiteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SiteModel.m; sourceTree = "<group>"; };
 		CF73AE63238C5CDC007EF904 /* SiteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SiteModel.h; sourceTree = "<group>"; };
 		CF73AE67238C5D7E007EF904 /* 打包文件 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "打包文件"; sourceTree = SOURCE_ROOT; };
-		CF73AE69238C5DB0007EF904 /* setup.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = setup.sh; sourceTree = SOURCE_ROOT; };
-		CF73AE6A238C5DB0007EF904 /* autopacking.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = autopacking.sh; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +48,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CF2F6884238D4EAF0030E26D /* sh */ = {
+			isa = PBXGroup;
+			children = (
+				CF2F6886238D4EAF0030E26D /* 1pull.sh */,
+				CF2F6887238D4EAF0030E26D /* 2setup.sh */,
+				CF2F6885238D4EAF0030E26D /* 3packing.sh */,
+			);
+			path = sh;
+			sourceTree = SOURCE_ROOT;
+		};
 		CF73AE49238C5C6A007EF904 = {
 			isa = PBXGroup;
 			children = (
@@ -63,22 +77,15 @@
 		CF73AE54238C5C6A007EF904 /* AutoPacking */ = {
 			isa = PBXGroup;
 			children = (
+				CF2F6884238D4EAF0030E26D /* sh */,
 				CF73AE67238C5D7E007EF904 /* 打包文件 */,
-				CF73AE68238C5D85007EF904 /* sh */,
 				CF73AE63238C5CDC007EF904 /* SiteModel.h */,
 				CF73AE62238C5CDC007EF904 /* SiteModel.m */,
+				CF2F687A238D4B080030E26D /* ShellHelper.h */,
+				CF2F687B238D4B080030E26D /* ShellHelper.m */,
 				CF73AE55238C5C6A007EF904 /* main.m */,
 			);
 			path = AutoPacking;
-			sourceTree = "<group>";
-		};
-		CF73AE68238C5D85007EF904 /* sh */ = {
-			isa = PBXGroup;
-			children = (
-				CF73AE6A238C5DB0007EF904 /* autopacking.sh */,
-				CF73AE69238C5DB0007EF904 /* setup.sh */,
-			);
-			path = sh;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,6 +146,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF73AE64238C5CDC007EF904 /* SiteModel.m in Sources */,
+				CF2F687C238D4B090030E26D /* ShellHelper.m in Sources */,
 				CF73AE56238C5C6A007EF904 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

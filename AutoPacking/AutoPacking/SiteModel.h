@@ -21,7 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) NSString *outputFile;   /**<   导出文件路径 */
 
 + (NSArray *)allSites;
-+ (void)startPackaging:(NSString *)siteIds :(NSString *)projectDir;
++ (NSArray *)sites:(NSString *)siteIds;
++ (void)checkSiteInfo:(NSString *)siteIds :(NSString *)projectDir; /**<   检查站点配置 */
 + (instancetype)nextSite;
 @end
 

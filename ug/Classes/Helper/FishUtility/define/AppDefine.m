@@ -120,10 +120,9 @@
 #endif
         _Host = [_allSites objectWithValue:_SiteId.lowercaseString keyPath:@"siteId"].host;
         if (!_Host.length) {
-            #ifndef DEBUG
+            #ifdef DEBUG
                  @throw [NSException exceptionWithName:@"缺少域名" reason:_NSString(@"（%@）该站点没有配置接口域名", _SiteId) userInfo:nil];
             #endif
-         
         }
         
         _PhotoMaxLength = 60 * 1024;    // 约等于1M大小

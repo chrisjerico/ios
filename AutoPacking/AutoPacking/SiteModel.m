@@ -24,9 +24,17 @@
     return sm;
 }
 
++ (NSArray *)sites:(NSString *)siteIds {
+    NSMutableArray *temp = @[].mutableCopy;
+    for (NSString *siteId in [siteIds componentsSeparatedByString:@","]) {
+        [temp addObject:[self modelWithId:siteId]];
+    }
+    return temp.copy;
+}
+
 static NSMutableArray <SiteModel *> *__sites = nil;
 
-+ (void)startPackaging:(NSString *)siteIds :(NSString *)projectDir {
++ (void)checkSiteInfo:(NSString *)siteIds :(NSString *)projectDir {
     [__sites removeAllObjects];
     
     NSMutableArray *errs = @[].mutableCopy;
