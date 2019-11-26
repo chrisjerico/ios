@@ -20,7 +20,6 @@
 		0399E6FB233B9D34001E0A7F /* UGDocumentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0399E6FA233B9D34001E0A7F /* UGDocumentVC.m */; };
 		03B26072234B422E00206652 /* UGLaunchPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B26071234B422E00206652 /* UGLaunchPageVC.m */; };
 		A0C64CB6AEB0CF1B2031BBB8 /* Pods_ug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6486EFF4C273BEA0AE8994DD /* Pods_ug.framework */; };
-		CF2F685D238D0C990030E26D /* SiteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2F685B238D0C990030E26D /* SiteModel.m */; };
 		CF3B0E372349CDA50035AF50 /* UGCalenderAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3B0E362349CDA50035AF50 /* UGCalenderAlertView.m */; };
 		CF3B0E392349CDAC0035AF50 /* UGCalenderAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF3B0E382349CDAC0035AF50 /* UGCalenderAlertView.xib */; };
 		CF48BF6D235590EC00DFF4BC /* SlideSegmentView1.m in Sources */ = {isa = PBXBuildFile; fileRef = CF48BF68235590EB00DFF4BC /* SlideSegmentView1.m */; };
@@ -426,6 +425,7 @@
 		D43B4896238C011600BB7960 /* UGLHMYDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D43B4895238C011600BB7960 /* UGLHMYDynamicViewController.m */; };
 		D43B48A0238C055F00BB7960 /* LSStretchableTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D43B489C238C055F00BB7960 /* LSStretchableTableHeaderView.m */; };
 		D43B48A1238C055F00BB7960 /* UITableView+LSEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = D43B489D238C055F00BB7960 /* UITableView+LSEmpty.m */; };
+		D43B48B9238D4DBC00BB7960 /* SiteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D43B48B7238D4DBC00BB7960 /* SiteModel.m */; };
 		D4527D1822828C27000EC1C2 /* UGPlatformBalanceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4527D1622828C27000EC1C2 /* UGPlatformBalanceTableViewCell.m */; };
 		D4527D1922828C27000EC1C2 /* UGPlatformBalanceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4527D1722828C27000EC1C2 /* UGPlatformBalanceTableViewCell.xib */; };
 		D4527D1C2282FBD8000EC1C2 /* UGBalanceConversionRecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4527D1B2282FBD8000EC1C2 /* UGBalanceConversionRecordController.m */; };
@@ -703,8 +703,6 @@
 		03D4C80C234F4DEC0028B48F /* ug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ug.entitlements; sourceTree = "<group>"; };
 		443C93C1135A8C900E47477A /* Pods-ug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ug.release.xcconfig"; path = "Target Support Files/Pods-ug/Pods-ug.release.xcconfig"; sourceTree = "<group>"; };
 		6486EFF4C273BEA0AE8994DD /* Pods_ug.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ug.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CF2F685B238D0C990030E26D /* SiteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SiteModel.m; path = ../../../../Packing/AutoPacking/AutoPacking/SiteModel.m; sourceTree = "<group>"; };
-		CF2F685C238D0C990030E26D /* SiteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SiteModel.h; path = ../../../../Packing/AutoPacking/AutoPacking/SiteModel.h; sourceTree = "<group>"; };
 		CF3B0E352349CDA50035AF50 /* UGCalenderAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGCalenderAlertView.h; sourceTree = "<group>"; };
 		CF3B0E362349CDA50035AF50 /* UGCalenderAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGCalenderAlertView.m; sourceTree = "<group>"; };
 		CF3B0E382349CDAC0035AF50 /* UGCalenderAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGCalenderAlertView.xib; sourceTree = "<group>"; };
@@ -1440,6 +1438,8 @@
 		D43B489D238C055F00BB7960 /* UITableView+LSEmpty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+LSEmpty.m"; sourceTree = "<group>"; };
 		D43B489E238C055F00BB7960 /* LSStretchableTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSStretchableTableHeaderView.h; sourceTree = "<group>"; };
 		D43B489F238C055F00BB7960 /* UITableView+LSEmpty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+LSEmpty.h"; sourceTree = "<group>"; };
+		D43B48B7238D4DBC00BB7960 /* SiteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SiteModel.m; path = AutoPacking/AutoPacking/SiteModel.m; sourceTree = SOURCE_ROOT; };
+		D43B48B8238D4DBC00BB7960 /* SiteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SiteModel.h; path = AutoPacking/AutoPacking/SiteModel.h; sourceTree = SOURCE_ROOT; };
 		D4527D1522828C27000EC1C2 /* UGPlatformBalanceTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGPlatformBalanceTableViewCell.h; sourceTree = "<group>"; };
 		D4527D1622828C27000EC1C2 /* UGPlatformBalanceTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGPlatformBalanceTableViewCell.m; sourceTree = "<group>"; };
 		D4527D1722828C27000EC1C2 /* UGPlatformBalanceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGPlatformBalanceTableViewCell.xib; sourceTree = "<group>"; };
@@ -4437,10 +4437,10 @@
 				D4AE1C0922C0FCC300C142FE /* AppDelegate.m */,
 				D4B75E1B227802600007047C /* main.m */,
 				D4B75E1A227802600007047C /* Info.plist */,
+				D43B48B8238D4DBC00BB7960 /* SiteModel.h */,
+				D43B48B7238D4DBC00BB7960 /* SiteModel.m */,
 				D405AFCD227823D800F8C586 /* configuration.h */,
 				D405AFCE2278240A00F8C586 /* UGPCH.pch */,
-				CF2F685C238D0C990030E26D /* SiteModel.h */,
-				CF2F685B238D0C990030E26D /* SiteModel.m */,
 				D405B344227DB22100F8C586 /* UGNotificationEvent.h */,
 				D405B345227DB22100F8C586 /* UGNotificationEvent.m */,
 			);
@@ -5014,6 +5014,7 @@
 				D405AFF922783DCC00F8C586 /* MASViewConstraint.m in Sources */,
 				D405B2DE227B3CCB00F8C586 /* UGLotteryHomeController.m in Sources */,
 				D4AE640C2295871D00DD265A /* UIScrollView+MJRefresh.m in Sources */,
+				D43B48B9238D4DBC00BB7960 /* SiteModel.m in Sources */,
 				D40E1E5C22BFA391004D4664 /* UGPromoteModel.m in Sources */,
 				D4AE641D2295871D00DD265A /* MJRefreshBackFooter.m in Sources */,
 				D4BBFC04232A801700147C4A /* UGFundsTransferView.m in Sources */,
@@ -5204,7 +5205,6 @@
 				D422FE6B232553790063EA4E /* UGbetStatModel.m in Sources */,
 				CFD3BF082347137F00FCDA6D /* NSObject+Utils.m in Sources */,
 				D405B38C22816D1400F8C586 /* UGSecurityCenterViewController.m in Sources */,
-				CF2F685D238D0C990030E26D /* SiteModel.m in Sources */,
 				CFD3BEF12347137F00FCDA6D /* IBButton.m in Sources */,
 				CF3B0E372349CDA50035AF50 /* UGCalenderAlertView.m in Sources */,
 				D405B1FA227972C900F8C586 /* JSONHTTPClient.m in Sources */,
