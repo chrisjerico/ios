@@ -11,6 +11,9 @@ fi
 cd ..
 cd ..
 
+
+__CommitId=`git rev-parse HEAD`
+git reset --hard $__CommitId
 git clean -d -fx
 git pull
 
