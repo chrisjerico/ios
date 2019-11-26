@@ -56,7 +56,7 @@
     subLabel(@"冲煞详细label").text = @"冲蛇(丁已)煞西";
     subLabel(@"天干地支详细label").text = @" 癸亥";
     subLabel(@"喜神详细label").text = @"东南";
-    subLabel(@"福神label").text = @"正西";
+    subLabel(@"福神详细label").text = @"正西";
     subLabel(@"财神详细label").text = @"正南";
     subLabel(@"白忌详细label").text = @"癸不词讼理弱敌强 亥不嫁娶不利新郎";
     subLabel(@"日五行详细label").text = @"大海水 建执位";

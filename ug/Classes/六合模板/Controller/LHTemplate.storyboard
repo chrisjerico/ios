@@ -589,9 +589,6 @@
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                 <color key="textColor" red="0.63619810340000005" green="0.35877996680000002" blue="0.1254639924" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                                 <nil key="highlightedColor"/>
-                                                                                <userDefinedRuntimeAttributes>
-                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="福神label"/>
-                                                                                </userDefinedRuntimeAttributes>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="东南" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aZj-73-u0D">
                                                                                 <rect key="frame" x="76.666666666666686" y="0.0" width="76.333333333333314" height="21.666666666666668"/>
@@ -599,7 +596,7 @@
                                                                                 <color key="textColor" red="0.63619810340000005" green="0.35877996680000002" blue="0.1254639924" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                                 <nil key="highlightedColor"/>
                                                                                 <userDefinedRuntimeAttributes>
-                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="福神label"/>
+                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="福神详细label"/>
                                                                                 </userDefinedRuntimeAttributes>
                                                                             </label>
                                                                         </subviews>

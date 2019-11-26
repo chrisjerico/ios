@@ -206,7 +206,7 @@
 //==========================老黄历============================================
 // 老黄历
 - (CCSessionModel *)lh_getLhlList:(NSString *)date {
-    return [self req:@"mobile/lhcdoc/getLhlList"
+    return [self req:@"?c=lhcdoc&a=lhlDetail"
                     :@{@"date":date,
                     }
                     :false];

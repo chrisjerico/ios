@@ -29,6 +29,36 @@
 
 @implementation UGWithdrawalViewController
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    UGUserModel *user = [UGUserModel currentUser];
+    if (!user.hasBankCard) {
+        self.bandCardView.frame = CGRectMake(0, 0, APP.Width, self.withdrawalView.height);
+        self.bandCardView.backgroundColor = Skin1.CLBgColor;
+        self.bandCardTitleLabel.textColor = Skin1.textColor1;
+        [self.view addSubview:self.bandCardView];
+    }
+    
+    if (user.hasBankCard) {
+        UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
+        self.limitLabel.text = [NSString stringWithFormat:@"单笔下限%@，上限%@",[config.minWithdrawMoney removeFloatAllZero],[config.maxWithdrawMoney removeFloatAllZero]];
+        UGCardInfoModel *card = [UGCardInfoModel currentBankCardInfo];
+        if (card) {
+            self.cardInfoLabel.text = [NSString stringWithFormat:@"%@,尾号%@，%@",card.bankName,[card.bankCard substringFromIndex:card.bankCard.length - 4],card.ownerName];
+
+        }else {
+            [self getCardInfo];
+        }
+//        （IOS）判断一个view是否为另一个view的子视图
+        // 如果myView是self.view本身，也会返回yes
+        BOOL isSubView = [self.bandCardView isDescendantOfView:self.view];
+        if (isSubView) {
+            [self.bandCardView removeFromSuperview];
+        }
+         
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -51,28 +81,6 @@
     [self.bandCardButton setBackgroundColor:Skin1.navBarBgColor];
     self.amountTextF.delegate = self;
     self.pwdTextF.delegate = self;
-    
-    
-
-    UGUserModel *user = [UGUserModel currentUser];
-    if (!user.hasBankCard) {
-        self.bandCardView.frame = CGRectMake(0, 0, APP.Width, self.withdrawalView.height);
-        self.bandCardView.backgroundColor = Skin1.CLBgColor;
-        self.bandCardTitleLabel.textColor = Skin1.textColor1;
-        [self.view addSubview:self.bandCardView];
-    }
-    
-    if (user.hasBankCard) {
-        UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
-        self.limitLabel.text = [NSString stringWithFormat:@"单笔下限%@，上限%@",[config.minWithdrawMoney removeFloatAllZero],[config.maxWithdrawMoney removeFloatAllZero]];
-        UGCardInfoModel *card = [UGCardInfoModel currentBankCardInfo];
-        if (card) {
-            self.cardInfoLabel.text = [NSString stringWithFormat:@"%@,尾号%@，%@",card.bankName,[card.bankCard substringFromIndex:card.bankCard.length - 4],card.ownerName];
-
-        }else {
-            [self getCardInfo];
-        }
-    }
     
     SANotificationEventSubscribe(UGNotificationFundTitlesTap, self, ^(typeof (self) self, id obj) {
         [self.view endEditing:YES];

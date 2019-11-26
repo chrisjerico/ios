@@ -423,6 +423,8 @@
 		D43348AC23880A550056EB7D /* UGLHLhlModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D43348AB23880A550056EB7D /* UGLHLhlModel.m */; };
 		D434C7F02373D4BA00920832 /* UIView+yyCornerRadius.m in Sources */ = {isa = PBXBuildFile; fileRef = D434C7EF2373D4BA00920832 /* UIView+yyCornerRadius.m */; };
 		D43B4896238C011600BB7960 /* UGLHMYDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D43B4895238C011600BB7960 /* UGLHMYDynamicViewController.m */; };
+		D43B48A0238C055F00BB7960 /* LSStretchableTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D43B489C238C055F00BB7960 /* LSStretchableTableHeaderView.m */; };
+		D43B48A1238C055F00BB7960 /* UITableView+LSEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = D43B489D238C055F00BB7960 /* UITableView+LSEmpty.m */; };
 		D4527D1822828C27000EC1C2 /* UGPlatformBalanceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4527D1622828C27000EC1C2 /* UGPlatformBalanceTableViewCell.m */; };
 		D4527D1922828C27000EC1C2 /* UGPlatformBalanceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4527D1722828C27000EC1C2 /* UGPlatformBalanceTableViewCell.xib */; };
 		D4527D1C2282FBD8000EC1C2 /* UGBalanceConversionRecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4527D1B2282FBD8000EC1C2 /* UGBalanceConversionRecordController.m */; };
@@ -1420,6 +1422,10 @@
 		D434C7EF2373D4BA00920832 /* UIView+yyCornerRadius.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+yyCornerRadius.m"; sourceTree = "<group>"; };
 		D43B4894238C011600BB7960 /* UGLHMYDynamicViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLHMYDynamicViewController.h; sourceTree = "<group>"; };
 		D43B4895238C011600BB7960 /* UGLHMYDynamicViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLHMYDynamicViewController.m; sourceTree = "<group>"; };
+		D43B489C238C055F00BB7960 /* LSStretchableTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSStretchableTableHeaderView.m; sourceTree = "<group>"; };
+		D43B489D238C055F00BB7960 /* UITableView+LSEmpty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+LSEmpty.m"; sourceTree = "<group>"; };
+		D43B489E238C055F00BB7960 /* LSStretchableTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSStretchableTableHeaderView.h; sourceTree = "<group>"; };
+		D43B489F238C055F00BB7960 /* UITableView+LSEmpty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+LSEmpty.h"; sourceTree = "<group>"; };
 		D4527D1522828C27000EC1C2 /* UGPlatformBalanceTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGPlatformBalanceTableViewCell.h; sourceTree = "<group>"; };
 		D4527D1622828C27000EC1C2 /* UGPlatformBalanceTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGPlatformBalanceTableViewCell.m; sourceTree = "<group>"; };
 		D4527D1722828C27000EC1C2 /* UGPlatformBalanceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGPlatformBalanceTableViewCell.xib; sourceTree = "<group>"; };
@@ -3279,6 +3285,7 @@
 				D4FD7B1E236E92DC00D171AC /* LeeTagView */,
 				D4091B57236966E10056BAEE /* SYY单选按钮组 */,
 				D434C7ED2373D45E00920832 /* view圆角 */,
+				D43B489B238C055F00BB7960 /* UITableView无内容提示 */,
 				D403E5632366E5F6009171D3 /* 手势 */,
 				D494C7012366D532001C310F /* 刮刮乐 */,
 				D41FF93023332E5600FE3F70 /* NullSafe */,
@@ -3864,6 +3871,17 @@
 				D434C7EF2373D4BA00920832 /* UIView+yyCornerRadius.m */,
 			);
 			path = "view圆角";
+			sourceTree = "<group>";
+		};
+		D43B489B238C055F00BB7960 /* UITableView无内容提示 */ = {
+			isa = PBXGroup;
+			children = (
+				D43B489E238C055F00BB7960 /* LSStretchableTableHeaderView.h */,
+				D43B489C238C055F00BB7960 /* LSStretchableTableHeaderView.m */,
+				D43B489F238C055F00BB7960 /* UITableView+LSEmpty.h */,
+				D43B489D238C055F00BB7960 /* UITableView+LSEmpty.m */,
+			);
+			path = "UITableView无内容提示";
 			sourceTree = "<group>";
 		};
 		D4527D1E22830603000EC1C2 /* 推荐收益 */ = {
@@ -5060,6 +5078,7 @@
 				D4AE641F2295871D00DD265A /* MJRefreshComponent.m in Sources */,
 				CFD3BF27234719F100FCDA6D /* AppDefine.m in Sources */,
 				D4527D212283062D000EC1C2 /* UGPromotionIncomeController.m in Sources */,
+				D43B48A1238C055F00BB7960 /* UITableView+LSEmpty.m in Sources */,
 				D4239BD022CCEC9D00700D8E /* DKProgressLayer.m in Sources */,
 				D4091B5A236966E10056BAEE /* SyyRadioButton.m in Sources */,
 				D40DE98522F335E300974BAF /* SDCollectionViewCell.m in Sources */,
@@ -5112,6 +5131,7 @@
 				D4091B56236961C70056BAEE /* UGfinancialViewViewController.m in Sources */,
 				D41246B62285C64C006881E2 /* UGUserInfoViewController.m in Sources */,
 				D4DE2699229BDBC80072A4A2 /* UIView+SGExtension.m in Sources */,
+				D43B48A0238C055F00BB7960 /* LSStretchableTableHeaderView.m in Sources */,
 				D40DE99422F466FC00974BAF /* OpenUDID.m in Sources */,
 				D405B39522817AB700F8C586 /* UGModifyLoginPlaceController.m in Sources */,
 				CFD3BF222347196600FCDA6D /* AlertHelper.m in Sources */,
