@@ -240,7 +240,9 @@
         _SiteId = __SiteID__;
 #ifdef DEBUG
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
-        _SiteId = @"test10";
+        if (!_SiteId.length) {
+            _SiteId = @"test10";
+        }
 #endif
         _Host = dict[_SiteId.lowercaseString];
         if (!_Host.length) {
