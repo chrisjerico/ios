@@ -10,10 +10,6 @@
 
 @implementation SiteModel
 
-- (NSString *)outputFile {
-    return [NSString stringWithFormat:@"/Library/WebServer/Documents/%@/%@.ipa", _type, _siteId];
-}
-
 + (instancetype)site:(NSString *)siteId :(NSString *)type :(NSString *)name :(NSString *)appId :(NSString *)host {
     SiteModel *sm = [SiteModel new];
     sm.siteId = siteId;

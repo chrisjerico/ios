@@ -12,6 +12,10 @@
 # ************************* 需要配置 Start ********************************
 
 
+# 编译生成文件目录
+__EXPORT_PATH=`pwd`
+__EXPORT_PATH="$__EXPORT_PATH/AutoPackingDir"
+echo $__EXPORT_PATH
 
 # 从Xcode运行需要先cd到当前目录
 if [ ! -n "$2" ] ;then
@@ -19,7 +23,6 @@ if [ ! -n "$2" ] ;then
 else
     cd $2
 fi
-
 
 # 项目名称
 __BUILD_TARGET="ug"
@@ -133,9 +136,6 @@ __CURRENT_INFO_PLIST_PATH="${__PROJECT_NAME}/Classes/Other/${__CURRENT_INFO_PLIS
 __BUNDLE_VERSION=`/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" ${__CURRENT_INFO_PLIST_PATH}`
 # 获取编译版本号
 __BUNDLE_BUILD_VERSION=`/usr/libexec/PlistBuddy -c "Print CFBundleVersion" ${__CURRENT_INFO_PLIST_PATH}`
-
-# 编译生成文件目录
-__EXPORT_PATH="./build"
 
 # 指定输出文件目录不存在则创建
 if test -d "${__EXPORT_PATH}" ; then
@@ -279,12 +279,8 @@ fi
 # 输出打包总用时
 printMessage "使用YJShell脚本打包总耗时: ${SECONDS}s"
 
-open /Library/WebServer/Documents
-
-# 拷贝到指定目录
-mv -rf "build/$__IPA_NAME.ipa" ug.ipa
-
-# 把ug.xcarchive文件也铐出来
-#ug.xcarchive
-
-#cp -rf "../build/$__IPA_NAME.ipa" ../build/ug.ipa
+# 拷贝到ug.ipa
+rm -rf ug.ipa
+rm -rf ug.xcarchive
+mv $__EXPORT_ARCHIVE_PATH ug.xcarchive
+mv "$__EXPORT_PATH/$__IPA_NAME.ipa" ug.ipa

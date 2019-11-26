@@ -20,17 +20,14 @@ int main(int argc, const char * argv[]) {
         
         [SiteModel checkSiteInfo:ids :AutoPackingDir];
         
-//        [ShellHelper pullCode:^{
-//
-//        }];
-        [ShellHelper packing:[SiteModel sites:ids] completion:^{
-            
-            
-            [ShellHelper upload:^{
-                exit(0);
+        [ShellHelper pullCode:^{
+            [ShellHelper packing:[SiteModel sites:ids] completion:^{
+                [ShellHelper upload:^{
+                    [ShellHelper pullCode:^{}];
+                    exit(0);
+                }];
             }];
         }];
-        
         while (1) {}
     }
     return 0;

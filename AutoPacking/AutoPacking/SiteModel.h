@@ -18,7 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *appName;/**<   app名 */
 @property (nonatomic, strong) NSString *appId;  /**<   bundleId */
 @property (nonatomic, strong) NSString *host;   /**<   接口域名 */
-@property (nonatomic, readonly) NSString *outputFile;   /**<   导出文件路径 */
+
+@property (nonatomic, assign) NSInteger retryCnt;
 
 + (NSArray *)allSites;
 + (NSArray *)sites:(NSString *)siteIds;
