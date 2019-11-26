@@ -30,7 +30,7 @@
             layout = [[UICollectionViewFlowLayout alloc] init];
             layout.minimumInteritemSpacing = 0;
             layout.minimumLineSpacing = 0;
-            layout.sectionInset = _isBlack ? UIEdgeInsetsZero : UIEdgeInsetsMake(0, 15, 0, 15);
+            layout.sectionInset = _isBlack ? UIEdgeInsetsZero : UIEdgeInsetsMake(0, 8, 0, 8);
             layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
             layout;
         });
@@ -145,7 +145,7 @@
         return CGSizeMake(92, 140);
     }
     GameCategoryModel *gcm = _gameTypeArray[indexPath.row];
-    CGFloat w = [gcm.name widthForFont:[UIFont systemFontOfSize:18]] + 30;
+    CGFloat w = [gcm.name widthForFont:[UIFont systemFontOfSize:18]] + 18;
     return CGSizeMake(w, 55);
 }
 

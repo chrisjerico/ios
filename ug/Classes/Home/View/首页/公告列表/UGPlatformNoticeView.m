@@ -34,6 +34,11 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
         self.backgroundColor = [UIColor whiteColor];
        
         self.selectSection = 0;
+        if ([APP.SiteId isEqualToString:@"c085"]) {
+            // c085要求默认不展示第一条内容详情
+            self.selectSection = -1;
+        }
+        
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
         self.tableView.estimatedSectionHeaderHeight = 0;

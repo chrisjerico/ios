@@ -787,7 +787,7 @@
         
          AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         if (!appDelegate.notiveViewHasShow) {
-            self.notiveView = [[UGPlatformNoticeView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - 260)];
+            self.notiveView = [[UGPlatformNoticeView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - ([APP.SiteId isEqualToString:@"c085"] ? 160 : 200))];
             self.notiveView.dataArray = self.popNoticeArray;
             [self.notiveView.bgView setBackgroundColor: Skin1.navBarBgColor];
             [self.notiveView show];
@@ -1093,47 +1093,7 @@
     }
 }
 - (IBAction)goYOUHUIVC:(id)sender {
-
-    
-//    #ifdef DEBUG
-    {
-        //黑色模板财务中心
-//                UGfinancialViewViewController *vc = [UGfinancialViewViewController new];
-//                [self.navigationController pushViewController:vc  animated:YES];
-    }
-
-    {
-        //黑色模板优惠专区
-//        [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGBMpreferentialViewController") animated:true];
-    }
-    {
-         //黑色模板登录
-//         [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGBMLoginViewController") animated:true];
-     }
-    {
-         //黑色模版注册
-//         [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGBMRegisterViewController") animated:true];
-     }
-    {
-             //黑色模版会员中心
-//             [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGBMMemberCenterViewController") animated:true];
-    }
-
-//    #else
-    
-        BOOL isLogin = UGLoginIsAuthorized();
-        if (isLogin) {
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Promote" bundle:nil];
-            UGPromotionsController *qdwebVC = [storyboard instantiateViewControllerWithIdentifier:@"UGPromotionsController"];
-            [self.navigationController pushViewController:qdwebVC  animated:YES];
-        }
-        else {
-             SANotificationEventPost(UGNotificationShowLoginView, nil);
-        }
-//    #endif
-    
-
-   
+    [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGPromotionsController")  animated:YES];
 }
 - (IBAction)historyAcion:(id)sender {
 

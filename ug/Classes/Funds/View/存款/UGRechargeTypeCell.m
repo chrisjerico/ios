@@ -55,61 +55,58 @@
 
 - (void)setItem:(UGpaymentModel *)item {
     _item = item;
-    
     [self setNameStr:item.name];
     [self setTipStr:item.tip];
     
-    if ([item.pid isEqualToString:@"alipay_online"]||[item.pid isEqualToString:@"alipay_transfer"]||[item.pid isEqualToString:@"jingdong_online"]||[item.pid isEqualToString:@"zhifubao_transfer"]) {
-        [self setHeaderImageStr:@"zfb_icon"];
+    NSMutableDictionary *imgDict = @{
+        @"alihb_online"         :@"zfb_icon",       // 支付宝扫码支付成功率100%
+        @"alipay_online"        :@"zfb_icon",       // 支付宝转账银行卡
+        @"alipay_transfer"      :@"zfb_icon",
+        @"zhifubao_transfer"    :@"zfb_icon",
+        @"zfbzyhk_transfer"     :@"zfb_icon",       // 支付宝转银行卡
+        
+        @"wechat_alipay_transfer":@"wx_zfb",        // 微信,支付宝转账[成功率100%]
+        
+        @"wechat_online"        :@"wechat_online",  // 微信支付等你付
+        @"wxsm_transfer"        :@"wechat_online",  // 微信扫码
+        @"wechat_transfer"      :@"wechat_online",  // 微信转账[成功率100%]
+        @"xnb_online"           :@"wechat_online",
+        @"dk_online"            :@"wechat_online",
+        
+        @"qqpay_transfer"       :@"qq_online",      // QQ钱包转账
+        @"qq_online"            :@"qq_online",      // QQ钱包在线支付
+        
+        @"bank_online"          :@"quick_online",   // 网银
+        @"yinlian_online"       :@"bank_online",    // 银联钱包在线支
+        @"tenpay_online"        :@"cft_icon",       // 财付通
+        @"bank_transfer"        :@"transfer",       // 银行转账[成功率100%]
+        
+        
+        @"quick_online"         :@"quick_online",   // 快捷支付[成功率100%]
+        @"yunshanfu_transfer"   :@"yunshanfu",      // 云闪付[成功率100%]
+        
+        @"tenpay_transfer"      :@"cft_icon",       // 财付通转账
+        @"jingdong_online"      :@"jd",             // 京东钱包在线支付
+        @"jdzz_transfer"        :@"jd",             // 京东钱包转账
+        @"ddhb_transfer"        :@"dingding",       // 钉钉红包
+        @"dshb_transfer"        :@"duosan",         // 多闪红包
+        @"xlsm_transfer"        :@"xlsm",           // 闲聊扫码
+        @"baidu_online"         :@"baidu",          // 百度钱包在线支付
+    }.mutableCopy;
+    
+    if ([APP.SiteId isEqualToString:@"test10"]) {
+        imgDict[@"tenpay_online"] = @"bank_online";    // 银联
     }
-    else if ([item.pid isEqualToString:@"wechat_online"]||[item.pid isEqualToString:@"wechat_transfer"]||[item.pid isEqualToString:@"xnb_online"]||[item.pid isEqualToString:@"dk_online"]||[item.pid isEqualToString:@"wxsm_transfer"]) {
-        [self setHeaderImageStr:@"wechat_online"];
+    if ([APP.SiteId isEqualToString:@"c083"]) {
+        imgDict[@"tenpay_online"] = @"cft_icon";    // 财付通
     }
-    else if ([item.pid isEqualToString:@"bank_transfer"]) {
-        [self setHeaderImageStr:@"transfer"];
+    if ([APP.SiteId isEqualToString:@"c085"]) {
+        imgDict[@"tenpay_online"] = @"cft_icon";    // 财付通
     }
-    else if ([item.pid isEqualToString:@"bank_online"]||[item.pid isEqualToString:@"yinlian_online"]) {
-        [self setHeaderImageStr:@"bank_online"];
+    if ([APP.SiteId isEqualToString:@"a002"]) {
+        imgDict[@"tenpay_online"] = @"yunshanfu";    // 云闪付在线支付
     }
-    else if ([item.pid isEqualToString:@"tenpay_transfer"]) {
-        [self setHeaderImageStr:@"cft_icon"];
-    }
-    else if ([item.pid isEqualToString:@"tenpay_transfer"]) {//财付通转账
-        [self setHeaderImageStr:@"cft_icon"];
-    }
-    else if ([item.pid isEqualToString:@"qq_online"]||[item.pid isEqualToString:@"qqpay_transfer"]) {//QQ钱包在线支付
-        [self setHeaderImageStr:@"qq_online"];
-    }
-    else if ([item.pid isEqualToString:@"baidu_online"]) {//百度钱包在线支付
-        [self setHeaderImageStr:@"baidu"];
-    }
-    else if ([item.pid isEqualToString:@"quick_online"]) {//银联快捷支付[成功率100%]
-        [self setHeaderImageStr:@"quick_online"];
-    }
-    else if ([item.pid isEqualToString:@"yunshanfu_transfer"]) {//云闪付[成功率100%]
-        [self setHeaderImageStr:@"yunshanfu"];
-    }
-    else if ([item.pid isEqualToString:@"wechat_alipay_transfer"]) {//微信,支付宝转账[成功率100%]
-        [self setHeaderImageStr:@"wx_zfb"];
-    }
-    else if ([item.pid isEqualToString:@"alihb_online"]) {//支付宝扫码支付成功率100%"
-        [self setHeaderImageStr:@"xnb_icon"];
-    }
-    else if ([item.pid isEqualToString:@"jdzz_transfer"]) {//京东钱包转账
-        [self setHeaderImageStr:@"jd"];
-    }
-    else if ([item.pid isEqualToString:@"ddhb_transfer"]) {//钉钉红包
-        [self setHeaderImageStr:@"dingding"];
-    }
-    else if ([item.pid isEqualToString:@"dshb_transfer"]) {//多闪红包
-        [self setHeaderImageStr:@"duosan"];
-    }
-    else if ([item.pid isEqualToString:@"xlsm_transfer"]) {//闲聊扫码
-        [self setHeaderImageStr:@"xlsm"];
-    }
-    else if ([item.pid isEqualToString:@"tenpay_online"]) {//云闪付
-        [self setHeaderImageStr:@"yunshanfu"];
-    }
-   
+    
+    [self setHeaderImageStr:imgDict[item.pid]];
 }
 @end

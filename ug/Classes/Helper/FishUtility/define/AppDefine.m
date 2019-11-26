@@ -8,6 +8,9 @@
 
 #import "AppDefine.h"
 
+#define __SiteID__ @"c002"
+
+
 @interface UIStoryboard ()
 - (BOOL)containsNibNamed:(NSString *)nibName;
 @end
@@ -120,6 +123,7 @@
             @"c002":@"https://154977.com",
             @"c005":@"",
             @"c006":@"https://xn--app-v85fh28j.com",
+            @"c008":@"888123app.com",
             @"c011":@"https://www.hx627.com",
             @"c012":@"https://20180849.com",
             @"c015":@"",
@@ -151,7 +155,7 @@
             @"c078":@"",
             @"c080":@"",
             @"c084":@"https://papghawshugposwaughwsoohu.com",
-            @"c085":@"https://xn--10app-308h91u.com",
+            @"c085":@"https://xn--20app-308h91u.com/",
             @"c085a":@"https://c10000ll.com",
             @"c087":@"",
             @"c089":@"",
@@ -233,13 +237,13 @@
             @"小东":@"http://test29f.fhptcdn.com",
             @"t032":@"http://t005f.fhptcdn.com",
         };
+        _SiteId = __SiteID__;
 #ifdef DEBUG
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
-#endif
         if (!_SiteId.length) {
-//            _SiteId = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"SiteId"];
-            _SiteId = @"a002";
+            _SiteId = @"test10";
         }
+#endif
         _Host = dict[_SiteId.lowercaseString];
         if (!_Host.length) {
             #ifndef DEBUG
