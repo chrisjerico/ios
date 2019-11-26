@@ -59,9 +59,7 @@ static NSMutableArray <SiteModel *> *__sites = nil;
         }
     }
     
-    NSLog(@"-——————————————————————————————");
     NSLog(@"-——————————检查站点配置———————————");
-    NSLog(@"-——————————————————————————————");
     for (NSString *err in errs) {
         NSLog(@"%@", err);
     }

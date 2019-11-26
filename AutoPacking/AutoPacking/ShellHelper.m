@@ -52,23 +52,15 @@
             return ;
         }
         NSTask *task = [[NSTask alloc] init];
-        task.launchPath = [NSString stringWithFormat:@"%@/setup.sh", ShellDir];;
-        task.arguments = @[sm.siteId, sm.appName, sm.appId, ];
-#ifdef DEBUG
-        task.arguments = @[sm.siteId, sm.appName, sm.appId, ShellDir,];
-#endif
+        task.launchPath = [NSString stringWithFormat:@"%@/2setup.sh", ShellDir];;
+        task.arguments = @[sm.siteId, sm.appName, sm.appId, ProjectDir, ];
         task.terminationHandler = ^(NSTask *ts) {
             [ts terminate];
             NSLog(@"%@ 站点信息配置完成，开始打包", sm.siteId);
             
             NSTask *task = [[NSTask alloc] init];
-            task.launchPath = [NSString stringWithFormat:@"%@/autopacking.sh", ShellDir];
-            task.arguments = @[
-                [sm.type isEqualToString:@"企业包"] ? @"1" : @"2",
-#ifdef DEBUG
-                ShellDir,
-#endif
-            ];
+            task.launchPath = [NSString stringWithFormat:@"%@/3packing.sh", ShellDir];
+            task.arguments = @[[sm.type isEqualToString:@"企业包"] ? @"1" : @"2", ProjectDir, ];
             task.terminationHandler = ^(NSTask *ts) {
                 [ts terminate];
                 

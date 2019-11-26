@@ -9,10 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "SiteModel.h"
 
-#define ProjectDir @"/Users/fish/Documents/Code/GitRepository/dev"
-#define AutoPackingDir @"/Users/fish/Documents/Code/GitRepository/dev/AutoPacking"
-#define ShellDir @"/Users/fish/Documents/Code/GitRepository/dev/AutoPacking/sh"
-#define BuildDir @"/Users/fish/Documents/Code/GitRepository/dev/build"
+#define ProjectDir @"/Users/fish/Documents/Code/GitRepository/Packing"
+#define AutoPackingDir @"/Users/fish/Documents/Code/GitRepository/Packing/AutoPacking"
+#define ShellDir @"/Users/fish/Documents/Code/GitRepository/Packing/AutoPacking/sh"
+#define BuildDir @"/Users/fish/Documents/Code/GitRepository/Packing/build"
 
 
 NS_ASSUME_NONNULL_BEGIN

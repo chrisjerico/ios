@@ -14,10 +14,10 @@
 
 
 # 从Xcode运行需要先cd到当前目录
-if [ ! -n "$3" ] ;then
+if [ ! -n "$2" ] ;then
     echo "you have not input a word!"
 else
-    cd $3
+    cd $2
 fi
 
 
@@ -121,8 +121,7 @@ function printMessage() {
 # ===============================自动打包部分=============================
 # 打包计时
 __CONSUME_TIME=0
-# 回退到工程目录
-cd ../
+
 __PROGECT_PATH=`pwd`
 
 # 已经指定Target的Info.plist文件路径 【配置Info.plist的名称】
@@ -193,7 +192,6 @@ if [[ $__IS_WORKSPACE_OPTION -eq 1 ]]; then
     printMessage "\n ———————— Clean完成，开始打包。。。  ———————— \n"
     printMessage "\n ———————— 打包耗时较长（3分钟左右），请耐心等待。。。  ———————— \n"
     printMessage "\n ———————— 优化 .pch文件、import 可以提高编译速度。  ———————— \n"
-    
 
     # step 2. Archive
     xcodebuild archive  -workspace ${__PROJECT_NAME}.xcworkspace \
@@ -202,8 +200,8 @@ if [[ $__IS_WORKSPACE_OPTION -eq 1 ]]; then
     -archivePath ${__EXPORT_ARCHIVE_PATH} \
     CFBundleVersion=1 \
     -destination generic/platform=ios \
-#    -quiet \
-#    > /dev/null
+    -quiet \
+    > /dev/null
     
     #CODE_SIGN_IDENTITY="${__CODE_SIGN_DISTRIBUTION}"
   fi
