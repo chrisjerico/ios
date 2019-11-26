@@ -8,6 +8,9 @@
 
 #import "AppDefine.h"
 
+#define __SiteID__ @"c002"
+
+
 @interface UIStoryboard ()
 - (BOOL)containsNibNamed:(NSString *)nibName;
 @end
@@ -234,12 +237,11 @@
             @"小东":@"http://test29f.fhptcdn.com",
             @"t032":@"http://t005f.fhptcdn.com",
         };
+        _SiteId = __SiteID__;
 #ifdef DEBUG
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
+        _SiteId = @"test10";
 #endif
-        if (!_SiteId.length) {
-            _SiteId = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"SiteId"];
-        }
         _Host = dict[_SiteId.lowercaseString];
         if (!_Host.length) {
             #ifndef DEBUG

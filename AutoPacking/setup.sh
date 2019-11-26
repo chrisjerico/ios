@@ -13,16 +13,14 @@ fi
 
 
 
-
 # 替换站点ID
-/usr/libexec/PlistBuddy -c "Add :SiteId string $__SiteId" ../ug/Classes/Other/Info.plist
-/usr/libexec/PlistBuddy -c "Set :SiteId $__SiteId" ../ug/Classes/Other/Info.plist
+sed "s/#define __SiteID__.*$/#define __SiteID__ @\"$__SiteId\"/g" ../ug/Classes/Helper/FishUtility/define/AppDefine.m > tmp.txt
+mv tmp.txt ../ug/Classes/Helper/FishUtility/define/AppDefine.m
 
 # 替换APP名
 /usr/libexec/PlistBuddy -c "Set :CFBundleDisplayName $__DisplayName" ../ug/Classes/Other/Info.plist
 
 # 替换BundleId（修改project.pbxproj文件）
-#/usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier $__BundleId" ../ug/Classes/Other/Info.plist
 sed "s/PRODUCT_BUNDLE_IDENTIFIER.*$/PRODUCT_BUNDLE_IDENTIFIER = $__BundleId;/g" ../ug.xcodeproj/project.pbxproj > tmp.txt
 mv tmp.txt ../ug.xcodeproj/project.pbxproj
 
