@@ -43,7 +43,7 @@
 @interface UGMineSkinViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 {
     NSString *skitType;
-    NSString *unreadMsg;
+    NSInteger unreadMsg;
 }
 @property (weak, nonatomic) IBOutlet UIView *userInfoView;
 @property (weak, nonatomic) IBOutlet UIView *topupView;
@@ -485,7 +485,7 @@ BOOL isOk = NO;
         NSDictionary *dic = self.menuSecondNameArray[indexPath.section].dataArray[indexPath.row];
         cell.menuName = dic[@"title"];
         cell.imageView.image = dic[@"imgName"];
-        [cell setBadgeNum:[dic[@"title"] isEqualToString:@"站内信"] && unreadMsg.length ? unreadMsg.intValue : 0];
+        [cell setBadgeNum:[dic[@"title"] isEqualToString:@"站内信"] ? unreadMsg : 0];
         [cell setBackgroundColor: [UIColor clearColor]];
         cell.layer.borderWidth = 0.5;
         cell.layer.borderColor = UGRGBColor(231, 230, 230).CGColor;
@@ -496,7 +496,7 @@ BOOL isOk = NO;
         NSDictionary *dic = self.menuNameArray[indexPath.row];
         cell.menuName = dic[@"title"];
         cell.imageView.image = dic[@"imgName"];
-        [cell setBadgeNum:[dic[@"title"] isEqualToString:@"站内信"] && unreadMsg.length ? unreadMsg.intValue : 0];
+        [cell setBadgeNum:[dic[@"title"] isEqualToString:@"站内信"] ? unreadMsg : 0];
         [cell setBackgroundColor: [UIColor clearColor]];
         cell.layer.borderWidth = 0.5;
         cell.layer.borderColor = [Skin1.skitType isEqualToString:@"黑色模板"] ? [UIColor clearColor].CGColor : [[[UIColor whiteColor] colorWithAlphaComponent:0.9] CGColor];

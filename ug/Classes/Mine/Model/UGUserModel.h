@@ -48,7 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL hasFundPwd;/**<   是否置取款密码的账号 */
 @property (nonatomic, assign) BOOL hasBankCard;
 @property (nonatomic, assign) NSInteger unreadFaq;
-@property (nonatomic, strong) NSString *unreadMsg;
+@property (nonatomic, assign) NSInteger unreadMsg;  /**<   站内信未读消息数量 */
 @property (nonatomic, assign) BOOL googleVerifier;  /**<   是否显示活动彩金 */
 @property (nonatomic, assign) BOOL hasActLottery;   /**<   是否显示活动彩金 */
 @property (nonatomic, strong) NSString *phone;

@@ -159,7 +159,7 @@
     [subImageView(@"图片ImageView") setImage:[UIImage imageNamed:self.imageNameArray[indexPath.row]]];
     if ([subLabel(@"标题Label").text isEqualToString:@"站内信"]) {
         [subLabel(@"红点Label") setHidden:NO];
-        subLabel(@"红点Label").text = [UGUserModel currentUser].unreadMsg;
+        subLabel(@"红点Label").text = @([UGUserModel currentUser].unreadMsg).stringValue;
     } else {
         [subLabel(@"红点Label") setHidden:YES];
     }

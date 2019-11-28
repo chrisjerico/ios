@@ -131,28 +131,50 @@
 			make.centerX.equalTo(self);
 			make.bottom.equalTo(self).offset(-10);
 		}];
+        
+        UILabel *unreadCnt = _unreadLabel = [UILabel new];
+        unreadCnt.textAlignment = NSTextAlignmentCenter;
+        unreadCnt.font = [UIFont systemFontOfSize:12];
+        unreadCnt.内边距 = CGPointMake(1, 0);
+        unreadCnt.textColor = [UIColor whiteColor];
+        unreadCnt.backgroundColor = [UIColor redColor];
+        unreadCnt.layer.cornerRadius = 10;
+        unreadCnt.layer.masksToBounds = true;
+        [self addSubview:unreadCnt];
+        [unreadCnt mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(20);
+            make.width.mas_greaterThanOrEqualTo(20);
+            make.centerX.equalTo(self).offset(20);
+            make.top.equalTo(self);
+        }];
 	}
 	return self;
 }
 
 -(void)setModel:(GameModel *)model {
 	_model = model;
-    [_iconImage yy_setImageWithURL:[NSURL URLWithString:model.icon] placeholder:[UIImage imageNamed:@"zwt"]];
-    NSLog(@"model.icon = %@", model.icon);
-    [_iconImage startAnimating];
-    if ([CMCommon stringIsNull:model.name]) {
-        _titleLabel.text = model.title;
-    } else {
-        _titleLabel.text = model.name;
-    }
-	
-    __weak_Obj_(_hotImage, __hotImageView);
-    [_hotImage sd_setImageWithURL:[NSURL URLWithString:model.hotIcon] placeholderImage:[UIImage imageNamed:@"icon_remen"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-        if (error) {
-            __hotImageView.image = [UIImage imageNamed:@"icon_remen"];
-        }
+    
+    // 站内信未读消息数量
+    _unreadLabel.hidden = !(model.seriesId==7 && model.subId==14 && UserI.unreadMsg);
+    _unreadLabel.text = _NSString(@"%d", (int)UserI.unreadMsg);
+    __weak_Obj_(_unreadLabel, __unreadLabel);
+    [self xw_removeNotificationForName:UGNotificationGetUserInfoComplete];
+    [self xw_addNotificationForName:UGNotificationGetUserInfoComplete block:^(NSNotification * _Nonnull noti) {
+        __unreadLabel.hidden = !(model.seriesId==7 && model.subId==14 && UserI.unreadMsg);
+        __unreadLabel.text = _NSString(@"%d", (int)UserI.unreadMsg);
     }];
+    
+    // 热门图标
+    __weak_Obj_(_hotImage, __hotImageView);
     _hotImage.hidden = !model.tipFlag;
+    [_hotImage sd_setImageWithURL:[NSURL URLWithString:model.hotIcon] placeholderImage:[UIImage imageNamed:@"icon_remen"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        if (error)
+            __hotImageView.image = [UIImage imageNamed:@"icon_remen"];
+    }];
+    
+    [_iconImage yy_setImageWithURL:[NSURL URLWithString:model.icon] placeholder:[UIImage imageNamed:@"zwt"]];
+    [_iconImage startAnimating];
+    _titleLabel.text = model.name.length ? model.name : model.title;
 }
 
 
