@@ -61,6 +61,24 @@ _CCRuntimeGetterDoubleValue(CGFloat, lineSpacing1)
 
 
 
+@interface _CCTextDelegateModel : NSObject<UITextFieldDelegate, UITextViewDelegate>
+@end
+@implementation _CCTextDelegateModel
++ (instancetype)shared {
+    static _CCTextDelegateModel *obj = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        obj = [_CCTextDelegateModel new];
+    });
+    return obj;
+}
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    return true;
+}
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    return true;
+}
+@end
 
 
 @implementation UITextField (IBInspectableUtils)
@@ -91,7 +109,7 @@ _CCRuntimeProperty_Copy(NSString *, 额外允许的字符, set额外允许的字
 }
 - (void)cc_layoutSubviews {
     if (!self.delegate && OBJOnceToken(self)) {
-        self.delegate = (id)self;
+        self.delegate = [_CCTextDelegateModel shared];
     }
     [self cc_layoutSubviews];
 }
@@ -155,7 +173,7 @@ _CCRuntimeGetterDoubleValue(BOOL, 内容紧贴边框)
 }
 - (void)cc_layoutSubviews {
     if (!self.delegate && OBJOnceToken(self)) {
-        self.delegate = (id)self;
+        self.delegate = [_CCTextDelegateModel shared];
     }
     [self cc_layoutSubviews];
 }
@@ -190,18 +208,6 @@ _CCRuntimeGetterDoubleValue(BOOL, 内容紧贴边框)
     objc_setAssociatedObject(self, @selector(内容紧贴边框), @(内容紧贴边框), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     if (内容紧贴边框)
         self.contentInset = UIEdgeInsetsMake(-8, -5, -8, -5);
-}
-@end
-
-
-@interface NSObject (IBInspectableUtils)
-@end
-@implementation NSObject (IBInspectableUtils)
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    return true;
-}
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-    return true;
 }
 @end
 

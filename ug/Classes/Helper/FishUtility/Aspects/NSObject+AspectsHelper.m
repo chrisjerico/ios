@@ -82,15 +82,16 @@ static NSMutableArray *__hms = nil;
     }
     if (cls) {
         [cls hookMethod:selector opt:opt err:err];
-    } else {
-        cls = self;
     }
+    cls = self;
     NSString *key = _NSString(@"%@_%@_%ld", cls, selector, opt);
     if (cls && !__dict[key]) {
         NSError *error = nil;
         [cls aspect_hookSelector:NSSelectorFromString(selector) withOptions:opt usingBlock:^(id<AspectInfo> ai) {
             NSArray *hms = [__hms arrayByAddingObjectsFromArray:[ai.instance cc_userInfo][@"cc_hook_hms"]];
-            for (HookModel *hm in [[hms objectsWithValue:@(opt) keyPath:@"opt"] objectsWithValue:selector keyPath:@"selector"]) {
+            hms = [hms objectsWithValue:selector keyPath:@"selector"];
+            hms = [hms objectsWithValue:@(opt) keyPath:@"opt"];
+            for (HookModel *hm in hms) {
                 if ([ai.instance isKindOfClass:hm.cls]) {
                     if (hm.block) {
                         hm.block(ai);
@@ -100,6 +101,9 @@ static NSMutableArray *__hms = nil;
                         [[ai.instance cc_userInfo][@"cc_hook_hms"] removeObject:hm];
                     }
                 }
+            }
+            if (opt == AspectPositionInstead && !hms.count) {
+                [ai.originalInvocation invoke];
             }
         } error:&error];
         if (error) {
