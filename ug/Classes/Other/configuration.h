@@ -245,6 +245,9 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 //=============六合====================================================================================================
 #define lhlDetailUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=lhcdoc&a=lhlDetail"]
 
+#define categoryListUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=lhcdoc&a=categoryList"]
+
+#define lotteryNumberUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=lhcdoc&a=lotteryNumber"]
 
 #if DEBUG
 

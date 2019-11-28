@@ -16,6 +16,12 @@ NS_ASSUME_NONNULL_BEGIN
 //老黄历
 + (void)lhlDetailWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 
+//栏目列表
++ (void)categoryListWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+//当前开奖信息
++ (void)lotteryNumberWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
 @end
 
 NS_ASSUME_NONNULL_END

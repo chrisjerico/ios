@@ -77,7 +77,8 @@
 #import "UGYYRightMenuView.h"
 #import "UGGameNavigationView.h"
 #import "UGPlatformGameModel.h"
-
+#import "UGLHCategoryListModel.h"
+#import "UGLHlotteryNumberModel.h"
 // Tools
 #import "UIImageView+WebCache.h"
 #import "CMCommon.h"
@@ -85,8 +86,11 @@
 #import <SafariServices/SafariServices.h>
 #import "UIImage+YYgradientImage.h"
 #import "SGBrowserView.h"
+#import "CMLabelCommon.h"
+#import "CMTimeCommon.h"
+#import "CountDown.h"
 
-@interface UGHomeViewController ()<SDCycleScrollViewDelegate,UUMarqueeViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
+@interface UGHomeViewController ()<SDCycleScrollViewDelegate,UUMarqueeViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,WSLWaterFlowLayoutDelegate>
 
 @property (nonatomic, strong) UGHomeTitleView *titleView;       /**<   自定义导航条 */
 @property (weak, nonatomic) IBOutlet UGBMHeaderView *headerView;/**<   黑色模板导航头 */
@@ -145,17 +149,25 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *contentCollectionView; /**<  论坛，专帖XXX显示*/
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *heightLayoutConstraint;/**<  contentCollectionView 的约束高*/
 @property (weak, nonatomic) IBOutlet UISwitch *lotteryUISwitch;
+@property (weak, nonatomic) IBOutlet UIView *liuheForumContentView;
+@property (weak, nonatomic) IBOutlet UIView *liuheResultContentView;
 
+@property (nonatomic, strong) NSMutableArray<UGLHCategoryListModel *> *lHCategoryList;   /**<   栏目列表数据 */
+@property (nonatomic, strong) UGLHlotteryNumberModel *lhModel;
+@property (strong, nonatomic)  CountDown *countDownForLabel;
 //--------------------------------------------
 
 @end
 
 @implementation UGHomeViewController
 - (void)dealloc {
+    [_countDownForLabel destoryTimer];
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)skin {
+    
+//    return;
     FastSubViewCode(self.view);
     
     // 根据模板显示对应内容
@@ -171,7 +183,7 @@
             }
             [v removeFromSuperview];
         }
-        NSDictionary *dict = @{@"六合资料":@[_bannerBgView, _rollingView, subView(@"开奖结果"), subView(@"六合论坛"), _promotionView, _bottomView],
+        NSDictionary *dict = @{@"六合资料":@[_bannerBgView, _rollingView, _liuheResultContentView, _liuheForumContentView, _promotionView, _bottomView],
                                @"黑色模板":@[_bannerBgView, _gameTypeView.superview, _rankingView, _bottomView],
         };
         NSArray *views = dict[Skin1.skitType];
@@ -272,9 +284,6 @@
     
     // 配置初始UI
     {
-        subView(@"开奖结果").hidden = YES;
-        subView(@"六合论坛").hidden = YES;
-        
         subImageView(@"公告图标ImageView").image = [[UIImage imageNamed:@"notice"] qmui_imageWithTintColor:Skin1.textColor1];
         subImageView(@"优惠活动图标ImageView").image = [[UIImage imageNamed:@"礼品-(1)"] qmui_imageWithTintColor:Skin1.textColor1];
         subLabel(@"优惠活动标题Label").textColor = Skin1.textColor1;
@@ -293,10 +302,17 @@
         [self.bottomView setBackgroundColor:Skin1.navBarBgColor];
         
         [self setupSubView];
-        {//六合
-            [self initLHCollectionView];
-        }
+
         [self skin];
+        
+        {//六合
+            if ([Skin1.skitType isEqualToString:@"六合资料"]) {
+                _countDownForLabel = [[CountDown alloc] init];
+                _lHCategoryList = [NSMutableArray<UGLHCategoryListModel *> new];
+                [self initLHCollectionView];
+            }
+           
+        }
         
         self.gameTypeView.gameItemSelectBlock = ^(GameModel * _Nonnull game) {
             [NavController1 pushViewControllerWithGameModel:game];
@@ -382,6 +398,13 @@
 		[__self getCheckinListData];  // 红包数据
 		[__self systemOnlineCount];   // 在线人数
         [__self getPromoteList];      // 优惠活动
+        
+        if ([Skin1.skitType isEqualToString:@"六合资料"]) {
+            [__self getCategoryList];     //栏目列表
+            [__self getLotteryNumberList];//当前开奖信息
+        }
+      
+        
 	}];
     if (_contentScrollView.mj_header.refreshingBlock) {
         _contentScrollView.mj_header.refreshingBlock();
@@ -408,12 +431,18 @@
 #pragma mark - 六合方法
 - (void)initLHCollectionView {
 //六合内容
+    WSLWaterFlowLayout * _flow;
+    _flow = [[WSLWaterFlowLayout alloc] init];
+    _flow.delegate = self;
+    _flow.flowLayoutStyle = WSLWaterFlowVerticalEqualHeight;
+    
     self.contentCollectionView.backgroundColor = RGBA(221, 221, 221, 1);
     self.contentCollectionView.dataSource = self;
     self.contentCollectionView.delegate = self;
     self.contentCollectionView.tagString= @"六合内容";
     [self.contentCollectionView registerNib:[UINib nibWithNibName:@"UGLHHomeContentCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"cell"];
     [CMCommon setBorderWithView:self.contentCollectionView top:YES left:YES bottom:YES right:YES borderColor:RGBA(221, 221, 221, 1) borderWidth:1];
+    [self.contentCollectionView setCollectionViewLayout:_flow];
 //六合开奖
     self.lotteryCollectionView.backgroundColor = [UIColor whiteColor];
     self.lotteryCollectionView.dataSource = self;
@@ -424,18 +453,53 @@
     [self.lotteryCollectionView setScrollEnabled:NO];
     
 }
+#pragma mark - WSLWaterFlowLayoutDelegate
+//返回每个item大小
+- (CGSize)waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+
+     float itemW = (UGScreenW-1)/ 2.0;
+     CGSize size = {itemW, 100};
+     return size;
+       
+   
+}
+
+/** 列数*/
+-(CGFloat)columnCountInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
+    return 1;
+}
+/** 行数*/
+//-(CGFloat)rowCountInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
+//    return 5;
+//}
+/** 列间距*/
+-(CGFloat)columnMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
+    return 1;
+}
+/** 行间距*/
+-(CGFloat)rowMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
+    return 1;
+}
+/** 边缘之间的间距*/
+-(UIEdgeInsets)edgeInsetInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
+
+    return UIEdgeInsetsMake(0, 0, 0,0);
+}
+
+
 
 #pragma mark UICollectionView datasource
-//collectionView有几个section
+////组个数
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
  
     return 1;
+
 }
-//每个section有几个item
+//组内成员个数
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     int rows = 0;
     if ([collectionView.tagString isEqualToString:@"六合内容"]) {
-         rows = 14;
+         rows = (int)_lHCategoryList.count;
     } else {
         rows = 8;
     }
@@ -444,15 +508,32 @@
 //每个cell的具体内容
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     if ([collectionView.tagString isEqualToString:@"六合内容"]) {
-       UGLHHomeContentCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-     //        NSDictionary *dic = [self.menuNameArray objectAtIndex:indexPath.row];
-         FastSubViewCode(cell);
-         [cell setBackgroundColor: [UIColor whiteColor]];
-         return cell;
+        UGLHHomeContentCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+        UGLHCategoryListModel *model = [self.lHCategoryList objectAtIndex:indexPath.row];
+        FastSubViewCode(cell);
+        [subImageView(@"图片ImgV") sd_setImageWithURL:[NSURL URLWithString:model.icon] placeholderImage:[UIImage imageNamed:@"loading"]];
+        [subLabel(@"标题Label") setText:model.name];
+        [subLabel(@"详细Label") setText:model.desc];
+
+        [cell setBackgroundColor: [UIColor whiteColor]];
+        return cell;
     } else {
       UGLHLotteryCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     //        NSDictionary *dic = [self.menuNameArray objectAtIndex:indexPath.row];
+       
         FastSubViewCode(cell);
+        if (indexPath.row <= 5) {
+            subLabel(@"球下字").text =  [_lhModel.numSxArrary objectAtIndex:indexPath.row];
+            subLabel(@"球内字").text =  [_lhModel.numbersArrary objectAtIndex:indexPath.row];
+            [subImageView(@"球图") setImage:[UIImage imageNamed:[NSString stringWithFormat:@"icon_%@", [_lhModel.numColorArrary objectAtIndex:indexPath.row]]]];
+        }
+        if (indexPath.row == 7) {
+            subLabel(@"球下字").text =  [_lhModel.numSxArrary objectAtIndex:indexPath.row-1];
+            subLabel(@"球内字").text =  [_lhModel.numbersArrary objectAtIndex:indexPath.row-1];
+            [subImageView(@"球图") setImage:[UIImage imageNamed:[NSString stringWithFormat:@"icon_%@", [_lhModel.numColorArrary objectAtIndex:indexPath.row-1]]]];
+        }
+        
+
         if (indexPath.row == 6) {
             subImageView(@"球图").hidden = YES;
             subLabel(@"球内字").hidden = YES;
@@ -468,7 +549,13 @@
             subButton(@"刮刮乐").hidden = NO;
              [subButton(@"刮刮乐") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
                 NSLog(@"---");
+                 NSString *imgStr = [self->_lhModel.numColorArrary objectAtIndex:indexPath.row-1];
+                 NSString *titileStr = [self->_lhModel.numbersArrary objectAtIndex:indexPath.row-1];
+                 NSString *titile2Str = [self->_lhModel.numSxArrary objectAtIndex:indexPath.row-1];
                  UGScratchMusicView *inviteView = [[UGScratchMusicView alloc] initView];
+                 [inviteView.iconImgV setImage:[UIImage imageNamed:imgStr]];
+                 inviteView.titleLabel.text = titileStr;
+                 inviteView.title2Label.text = titile2Str;
                 [SGBrowserView showMoveView:inviteView];
             }];
         }
@@ -484,18 +571,19 @@
     }
       
 }
-//cell size
+////cell size
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    if ([collectionView.tagString isEqualToString:@"六合内容"]) {
-         float itemW = (UGScreenW-1)/ 2.0;
-         CGSize size = {itemW, 100};
-         return size;
-    } else {
+    if ([collectionView.tagString isEqualToString:@"六合开奖"]) {
+
         CGSize size = {40, 70};
+        return size;
+    } else {
+        float itemW = (UGScreenW-1)/ 2.0;
+        CGSize size = {itemW, 100};
         return size;
     }
 }
-//item偏移
+////item偏移
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     return UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0);
 }
@@ -507,6 +595,100 @@
     return 0.0;
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    [collectionView deselectItemAtIndexPath:indexPath animated:YES];
+    if ([collectionView.tagString isEqualToString:@"六合内容"]) {
+          UGLHCategoryListModel *model = [self.lHCategoryList objectAtIndex:indexPath.row];
+        if ([CMCommon stringIsNull:model.link]) {
+            
+            switch ([model.cid intValue]) {
+                case 1:
+                    NSLog(@"高手论坛");
+                    break;
+                case 2:
+                    NSLog(@"极品专贴");
+                    break;
+                case 3:
+                    NSLog(@"每期资料");
+                    break;
+                case 4:
+                    NSLog(@"公式规律");
+                    break;
+                case 5:
+                    NSLog(@"六合图库");
+                    break;
+                case 6:
+                    NSLog(@"幽默猜测");
+                    break;
+                case 7:
+                    NSLog(@"跑狗玄机");
+                    break;
+                case 8:
+                    NSLog(@"四不像");
+                    break;
+                case 9:
+                {
+                    NSLog(@"老黃历");
+                    [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLHOldYearViewController") animated:true];
+                }
+                    
+                    break;
+                case 16:
+                    NSLog(@"全民竞猜");
+                    break;
+                case 17:
+                {
+                    NSLog(@"任务中心");
+                    // 任务中心
+                    [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController") animated:false];
+                }
+                 
+                    break;
+                case 18:
+                {
+                    NSLog(@"长龙助手");
+                    [NavController1 pushViewController:[UGChangLongController new] animated:YES];
+                }
+                    break;
+                case 19:
+                    NSLog(@"在线客服");
+                {
+                    SLWebViewController *webViewVC = [[SLWebViewController alloc] init];
+                    webViewVC.urlStr = SysConf.zxkfUrl;
+                    [self.navigationController pushViewController:webViewVC animated:YES];
+                }
+                    break;
+                case 28:
+                    NSLog(@"全民竞猜");
+                    break;
+                case 29:
+                    NSLog(@"任务中心");
+                    break;
+                case 30:
+                    NSLog(@"长龙助手_为您分享大数据");
+                    break;
+                case 31:
+                    NSLog(@"在线客服");
+                    break;
+                case 32:
+                    NSLog(@"APP下载");
+                    break;
+           
+                    
+                default:
+                    break;
+            }
+            
+        } else {
+            TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
+            webViewVC.url = model.link;
+            webViewVC.webTitle = model.name;
+            [NavController1 pushViewController:webViewVC animated:YES];
+        }
+    } else {
+        
+    }
+}
 
 #pragma mark ---------------- 六合方法
 
@@ -570,7 +752,6 @@
 						self.gameNavigationViewHeight.constant = ((sourceData.count - 1)/5 + 1)*80;
 						[self.view layoutIfNeeded];
 					}
-                    
                     // 游戏列表
 					self.gameTypeView.gameTypeArray = self.gameCategorys = customGameModel.icons.mutableCopy;
 				});
@@ -782,6 +963,105 @@
     }];
 }
 
+//------------六合------------------------------------------------------
+// 栏目列表
+- (void)getCategoryList {
+    [CMNetwork categoryListWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+        [self.contentScrollView.mj_header endRefreshing];
+        [CMResult processWithResult:model success:^{
+            self->_lHCategoryList = [NSMutableArray<UGLHCategoryListModel *> new];
+            NSLog(@"model= %@",model.data);
+            NSArray *modelArr = (NSArray *)model.data;         //数组转模型数组
+
+                   
+            if (modelArr.count) {
+                for (int i = 0 ;i<modelArr.count;i++) {
+                    UGLHCategoryListModel *obj = [modelArr objectAtIndex:i];
+                   
+                    [self->_lHCategoryList addObject:obj];
+                    NSLog(@"obj= %@",obj);
+                }
+            }
+            //数组转模型数组
+            NSLog(@"self->_lHCategoryList= %@",self->_lHCategoryList);
+            FastSubViewCode(self.view)
+//            subView(@"开奖结果").hidden = NO;
+//            subView(@"六合论坛").hidden = NO;
+            // 需要在主线程执行的代码
+            [self.contentCollectionView reloadData];
+            if (self->_lHCategoryList.count%2==0) {
+                 self->_heightLayoutConstraint.constant = self->_lHCategoryList.count/2*101+1;
+            } else {
+                 self->_heightLayoutConstraint.constant = self->_lHCategoryList.count/2*101+101+1;
+            }
+           
+
+        } failure:^(id msg) {
+            
+        }];
+    }];
+}
+
+// 当前开奖信息
+- (void)getLotteryNumberList {
+    
+    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
+    [CMNetwork lotteryNumberWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        [self.contentScrollView.mj_header endRefreshing];
+        [CMResult processWithResult:model success:^{
+            NSLog(@"model= %@",model.data);
+            self.lhModel = (UGLHlotteryNumberModel *)model.data;
+            self.lhModel.numSxArrary = [self->_lhModel.numSx componentsSeparatedByString:@","];
+            self.lhModel.numbersArrary = [self->_lhModel.numbers componentsSeparatedByString:@","];
+            self.lhModel.numColorArrary = [self->_lhModel.numColor componentsSeparatedByString:@","];
+            [self.lotteryCollectionView reloadData];
+            
+            NSString *nper = [self.lhModel.issue  substringFromIndex:4];
+            self.lotteryTitleLabel.text = [NSString stringWithFormat:@"第%@期开奖结果",nper];
+            [CMLabelCommon setRichNumberWithLabel:self.lotteryTitleLabel Color:[UIColor redColor] FontSize:17.0];
+            NSArray *endTimeArray = [self->_lhModel.endtime componentsSeparatedByString:@" "];
+            self.timeLabel.text = [endTimeArray objectAtIndex:0];
+            long long startLongLong = [CMTimeCommon timeSwitchTimestamp:self.lhModel.serverTime andFormatter:@"YYYY-MM-dd hh:mm:ss"];
+            long long finishLongLong = [CMTimeCommon timeSwitchTimestamp:self.lhModel.endtime andFormatter:@"YYYY-MM-dd hh:mm:ss"];
+            [self startLongLongStartStamp:startLongLong*1000 longlongFinishStamp:finishLongLong*1000];
+        } failure:^(id msg) {
+            
+        }];
+    }];
+}
+
+///此方法用两个时间戳做参数进行倒计时
+-(void)startLongLongStartStamp:(long long)strtLL longlongFinishStamp:(long long)finishLL{
+    __weak __typeof(self) weakSelf= self;
+    [_countDownForLabel countDownWithStratTimeStamp:strtLL finishTimeStamp:finishLL completeBlock:^(NSInteger day, NSInteger hour, NSInteger minute, NSInteger second) {
+
+        [weakSelf refreshUIHour:hour minute:minute second:second];
+    }];
+}
+
+-(void)refreshUIHour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second{
+
+    NSString *hourStr = @"";
+    NSString *minuStr = @"";
+    NSString *secondStr = @"";
+    if (hour<10&&hour) {
+        hourStr = [NSString stringWithFormat:@"0%ld",(long)hour];
+    }else{
+        hourStr = [NSString stringWithFormat:@"%ld",(long)hour];
+    }
+    if (minute<10) {
+        minuStr = [NSString stringWithFormat:@"0%ld",(long)minute];
+    }else{
+        minuStr = [NSString stringWithFormat:@"%ld",(long)minute];
+    }
+    if (second<10) {
+        secondStr = [NSString stringWithFormat:@"0%ld",(long)second];
+    }else{
+        secondStr = [NSString stringWithFormat:@"%ld",(long)second];
+    }
+    
+    self.countdownLabel.text = [NSString stringWithFormat:@"%@:%@:%@",hourStr,minuStr,secondStr];
+}
 - (void)showPlatformNoticeView {
     if (self.notiveView == nil) {
         

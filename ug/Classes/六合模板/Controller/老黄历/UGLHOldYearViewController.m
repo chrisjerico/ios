@@ -36,7 +36,7 @@
     
     [self imgVButtonInteractionEnabled];
     NSString *dataStr = [CMTimeCommon currentDateString];
-    NSLog(@"dataStr= %@",dataStr);
+//    NSLog(@"dataStr= %@",dataStr);
     [self getlhlDetail:dataStr];
 
 }
@@ -132,11 +132,11 @@
     
 }
 - (IBAction)leftClicked:(id)sender {
-    NSLog(@"leftClicked");
+//    NSLog(@"leftClicked");
     [self getlhlDetail:[CMTimeCommon lastDayStr:currentSelDataStr format:@"YYYYMMdd"]];
 }
 - (IBAction)rightClicked:(id)sender {
-    NSLog(@"rightClicked");
+//    NSLog(@"rightClicked");
     [self getlhlDetail:[CMTimeCommon nextDayStr:currentSelDataStr format:@"YYYYMMdd"]];
 }
 
@@ -148,7 +148,7 @@
     } else {
         monthStr = [NSString stringWithFormat:@"%zd",month];
     }
-    NSLog(@"monthStr = %@",monthStr);
+//    NSLog(@"monthStr = %@",monthStr);
     
     NSString *dayStr  = @"";
     if (day < 10) {
@@ -156,10 +156,10 @@
     } else {
         dayStr = [NSString stringWithFormat:@"%zd",day];
     }
-    NSLog(@"dayStr = %@",dayStr);
+//    NSLog(@"dayStr = %@",dayStr);
     
     NSString *dataStr = [NSString stringWithFormat:@"%zd%@%@", year, monthStr, dayStr];
-    NSLog(@"dataStr = %@",dataStr);
+//    NSLog(@"dataStr = %@",dataStr);
     [self getlhlDetail:dataStr];
 }
 

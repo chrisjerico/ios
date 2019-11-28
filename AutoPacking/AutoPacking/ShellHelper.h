@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "SiteModel.h"
 
-#define ProjectDir ([NSUserName() isEqualToString:@"fish"] ? @"/Users/fish/archive" : @"/Users/ug/fhcpIOSapp")
+#define ProjectDir ([NSUserName() isEqualToString:@"fish"] ? @"/Users/fish/archive" : @"/Users/ug/pack")
 
 
 NS_ASSUME_NONNULL_BEGIN

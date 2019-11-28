@@ -214,7 +214,7 @@ static NSMutableArray <SiteModel *> *__sites = nil;
             [SiteModel site    :@"c197"     :@"越狱包"     :@"太阳城官⽹"     :@"io.dcloud.UNI15020C7"     :@"https://tycgw3.com"],
             [SiteModel site    :@"c198"     :@"越狱包"     :@"太阳城集团"     :@""     :@"https://2909tycjt.com/"],
             [SiteModel site    :@"h003a"     :@"越狱包"     :@"澳⻔威尼斯⼈"     :@""     :@""],
-            [SiteModel site    :@"c008"     :@"越狱"     :@""     :@""     :@"https://888123app.com"],
+            [SiteModel site    :@"c008"     :@"越狱包"     :@""     :@""     :@"https://888123app.com"],
             
             
             [SiteModel site    :@"test10"    :@"内测包"     :@"测试包"   :@""        :@"http://test10.6yc.com"],
@@ -224,6 +224,7 @@ static NSMutableArray <SiteModel *> *__sites = nil;
             [SiteModel site    :@"朗朗"  :@"内测包"     :@"测试包"   :@""        :@"http://test20.6yc.com"],
             [SiteModel site    :@"小东"  :@"内测包"     :@"测试包"   :@""        :@"http://test29f.fhptcdn.com"],
             [SiteModel site    :@"t032"      :@"内测包"     :@"测试包"   :@""        :@"http://t005f.fhptcdn.com"],
+            [SiteModel site    :@"test19"      :@"内测包"     :@"测试包"   :@""        :@"http://test19.6yc.com"],
         ];
     });
     return __dataArray;

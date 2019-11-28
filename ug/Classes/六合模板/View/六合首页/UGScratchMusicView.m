@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIView *scratchView;
 @property (weak, nonatomic) IBOutlet UIButton *showButton;
 
+
 @end
 
 @implementation UGScratchMusicView
@@ -56,4 +57,6 @@
     [self.ottoScratchView removeFromSuperview];
     [self.answer2View setHidden:NO];
 }
+
+
 @end

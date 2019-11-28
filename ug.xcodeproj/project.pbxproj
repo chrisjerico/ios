@@ -425,12 +425,12 @@
 		D43B4896238C011600BB7960 /* UGLHMYDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D43B4895238C011600BB7960 /* UGLHMYDynamicViewController.m */; };
 		D43B48A0238C055F00BB7960 /* LSStretchableTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D43B489C238C055F00BB7960 /* LSStretchableTableHeaderView.m */; };
 		D43B48A1238C055F00BB7960 /* UITableView+LSEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = D43B489D238C055F00BB7960 /* UITableView+LSEmpty.m */; };
-
-		D43B48B9238D4DBC00BB7960 /* SiteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D43B48B7238D4DBC00BB7960 /* SiteModel.m */; };
-
 		D43B48A9238D0B8200BB7960 /* CMNetwork+LH.m in Sources */ = {isa = PBXBuildFile; fileRef = D43B48A6238D0B8200BB7960 /* CMNetwork+LH.m */; };
 		D43B48B1238D41DA00BB7960 /* UIButton+touch.m in Sources */ = {isa = PBXBuildFile; fileRef = D43B48AF238D41D900BB7960 /* UIButton+touch.m */; };
-
+		D43B48B9238D4DBC00BB7960 /* SiteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D43B48B7238D4DBC00BB7960 /* SiteModel.m */; };
+		D43B48BD238D5B0700BB7960 /* UGLHCategoryListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D43B48BC238D5B0700BB7960 /* UGLHCategoryListModel.m */; };
+		D4520A2E238FA86100B69E97 /* UGLHlotteryNumberModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4520A2D238FA86100B69E97 /* UGLHlotteryNumberModel.m */; };
+		D4520A31238FBA9D00B69E97 /* CMLabelCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = D4520A30238FBA9D00B69E97 /* CMLabelCommon.m */; };
 		D4527D1822828C27000EC1C2 /* UGPlatformBalanceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4527D1622828C27000EC1C2 /* UGPlatformBalanceTableViewCell.m */; };
 		D4527D1922828C27000EC1C2 /* UGPlatformBalanceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4527D1722828C27000EC1C2 /* UGPlatformBalanceTableViewCell.xib */; };
 		D4527D1C2282FBD8000EC1C2 /* UGBalanceConversionRecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4527D1B2282FBD8000EC1C2 /* UGBalanceConversionRecordController.m */; };
@@ -1443,14 +1443,18 @@
 		D43B489D238C055F00BB7960 /* UITableView+LSEmpty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+LSEmpty.m"; sourceTree = "<group>"; };
 		D43B489E238C055F00BB7960 /* LSStretchableTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSStretchableTableHeaderView.h; sourceTree = "<group>"; };
 		D43B489F238C055F00BB7960 /* UITableView+LSEmpty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+LSEmpty.h"; sourceTree = "<group>"; };
-
-		D43B48B7238D4DBC00BB7960 /* SiteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SiteModel.m; path = AutoPacking/AutoPacking/SiteModel.m; sourceTree = SOURCE_ROOT; };
-		D43B48B8238D4DBC00BB7960 /* SiteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SiteModel.h; path = AutoPacking/AutoPacking/SiteModel.h; sourceTree = SOURCE_ROOT; };
 		D43B48A6238D0B8200BB7960 /* CMNetwork+LH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CMNetwork+LH.m"; sourceTree = "<group>"; };
 		D43B48A8238D0B8200BB7960 /* CMNetwork+LH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CMNetwork+LH.h"; sourceTree = "<group>"; };
 		D43B48AE238D41D900BB7960 /* UIButton+touch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+touch.h"; sourceTree = "<group>"; };
 		D43B48AF238D41D900BB7960 /* UIButton+touch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+touch.m"; sourceTree = "<group>"; };
-
+		D43B48B7238D4DBC00BB7960 /* SiteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SiteModel.m; path = AutoPacking/AutoPacking/SiteModel.m; sourceTree = SOURCE_ROOT; };
+		D43B48B8238D4DBC00BB7960 /* SiteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SiteModel.h; path = AutoPacking/AutoPacking/SiteModel.h; sourceTree = SOURCE_ROOT; };
+		D43B48BB238D5B0700BB7960 /* UGLHCategoryListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLHCategoryListModel.h; sourceTree = "<group>"; };
+		D43B48BC238D5B0700BB7960 /* UGLHCategoryListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLHCategoryListModel.m; sourceTree = "<group>"; };
+		D4520A2C238FA86100B69E97 /* UGLHlotteryNumberModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLHlotteryNumberModel.h; sourceTree = "<group>"; };
+		D4520A2D238FA86100B69E97 /* UGLHlotteryNumberModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLHlotteryNumberModel.m; sourceTree = "<group>"; };
+		D4520A2F238FBA9D00B69E97 /* CMLabelCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMLabelCommon.h; sourceTree = "<group>"; };
+		D4520A30238FBA9D00B69E97 /* CMLabelCommon.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CMLabelCommon.m; sourceTree = "<group>"; };
 		D4527D1522828C27000EC1C2 /* UGPlatformBalanceTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGPlatformBalanceTableViewCell.h; sourceTree = "<group>"; };
 		D4527D1622828C27000EC1C2 /* UGPlatformBalanceTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGPlatformBalanceTableViewCell.m; sourceTree = "<group>"; };
 		D4527D1722828C27000EC1C2 /* UGPlatformBalanceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGPlatformBalanceTableViewCell.xib; sourceTree = "<group>"; };
@@ -1995,7 +1999,6 @@
 		CF0279D4235849DB00C3D923 /* 首页 */ = {
 			isa = PBXGroup;
 			children = (
-				D4CF975C2365801B0096BC92 /* 六合页面 */,
 				CF07900F2359F711007C09D8 /* 资料弹框 */,
 				D40C6E4123505D9700651983 /* 定制导航栏 */,
 				CF0279D22358487C00C3D923 /* 游戏列表 */,
@@ -3889,6 +3892,10 @@
 			children = (
 				D43348AA23880A550056EB7D /* UGLHLhlModel.h */,
 				D43348AB23880A550056EB7D /* UGLHLhlModel.m */,
+				D43B48BB238D5B0700BB7960 /* UGLHCategoryListModel.h */,
+				D43B48BC238D5B0700BB7960 /* UGLHCategoryListModel.m */,
+				D4520A2C238FA86100B69E97 /* UGLHlotteryNumberModel.h */,
+				D4520A2D238FA86100B69E97 /* UGLHlotteryNumberModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3896,6 +3903,7 @@
 		D43348A72387D38A0056EB7D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D4CF975D236580E70096BC92 /* 六合首页 */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4001,6 +4009,8 @@
 				D405B323227D839A00F8C586 /* CMCommon.m */,
 				D4AE42FA2359FB5C00EC7E8E /* CMTimeCommon.h */,
 				D4AE42FB2359FB5C00EC7E8E /* CMTimeCommon.m */,
+				D4520A2F238FBA9D00B69E97 /* CMLabelCommon.h */,
+				D4520A30238FBA9D00B69E97 /* CMLabelCommon.m */,
 			);
 			path = CMCommon;
 			sourceTree = "<group>";
@@ -4527,14 +4537,6 @@
 				D4C1E9D42370531800BD120A /* UGBMUnderMenuView.xib */,
 			);
 			path = "下边栏";
-			sourceTree = "<group>";
-		};
-		D4CF975C2365801B0096BC92 /* 六合页面 */ = {
-			isa = PBXGroup;
-			children = (
-				D4CF975D236580E70096BC92 /* 六合首页 */,
-			);
-			path = "六合页面";
 			sourceTree = "<group>";
 		};
 		D4CF975D236580E70096BC92 /* 六合首页 */ = {
@@ -5118,6 +5120,7 @@
 				D4185E45231D2E1B008DB5F2 /* MOFSAddressPickerView.m in Sources */,
 				D4DE268E229BCB960072A4A2 /* WMMenuHead.m in Sources */,
 				D4AE64102295871D00DD265A /* NSBundle+MJRefresh.m in Sources */,
+				D4520A2E238FA86100B69E97 /* UGLHlotteryNumberModel.m in Sources */,
 				D40A3C1322C63633009CEB8E /* UGLotteryGameCollectionViewCell.m in Sources */,
 				D4C1656E2344C3C0005A0F12 /* UGMineSkinCollectionViewCell.m in Sources */,
 				D4AE64192295871D00DD265A /* MJRefreshStateHeader.m in Sources */,
@@ -5272,6 +5275,7 @@
 				D4185E44231D2E1B008DB5F2 /* AddressModel.m in Sources */,
 				D41AEA6E22E5D44F003E28C3 /* UGLotteryHistoryModel.m in Sources */,
 				D405B244227973F200F8C586 /* NSString+ST.m in Sources */,
+				D4520A31238FBA9D00B69E97 /* CMLabelCommon.m in Sources */,
 				D4781A1E2368211C004FBB97 /* UGChessViewController.m in Sources */,
 				D4AE64162295871D00DD265A /* MJRefreshAutoGifFooter.m in Sources */,
 				D4AE64122295871D00DD265A /* MJRefreshBackGifFooter.m in Sources */,
@@ -5321,6 +5325,7 @@
 				D4252822232102CA007DE522 /* UGSignInHeaderView.m in Sources */,
 				D4145A9022B52C8000D8165F /* UGGD11X5LotteryController.m in Sources */,
 				CFD3BF212347196600FCDA6D /* HUDHelper.m in Sources */,
+				D43B48BD238D5B0700BB7960 /* UGLHCategoryListModel.m in Sources */,
 				D405B1F9227972C900F8C586 /* JSONModelClassProperty.m in Sources */,
 				D41EDF802317AD95005798CC /* UGBalanceTransferLogsModel.m in Sources */,
 				D481AB472331F1300099685B /* UGMosaicGoldTableViewCell.m in Sources */,

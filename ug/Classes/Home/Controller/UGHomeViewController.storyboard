@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -129,7 +129,7 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                                 <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="开奖结果"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="开奖结果Label"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gWg-lE-My5">
@@ -190,40 +190,46 @@
                                                                 </connections>
                                                             </switch>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="zeS-hM-HiN">
-                                                                <rect key="frame" x="31" y="116" width="352" height="26"/>
+                                                                <rect key="frame" x="18" y="116" width="378" height="26"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="giY-dp-Grb">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="176" height="26"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="189" height="26"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="下期开奖日期:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rAb-qq-f11">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="88" height="26"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="94.5" height="26"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2019-10-29" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xsN-Nz-0u1">
-                                                                                <rect key="frame" x="88" y="0.0" width="88" height="26"/>
+                                                                                <rect key="frame" x="94.5" y="0.0" width="94.5" height="26"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                                 <color key="textColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <nil key="highlightedColor"/>
+                                                                                <userDefinedRuntimeAttributes>
+                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="下期开奖日期Label"/>
+                                                                                </userDefinedRuntimeAttributes>
                                                                             </label>
                                                                         </subviews>
                                                                         <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     </stackView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="X0V-Yb-oi4">
-                                                                        <rect key="frame" x="176" y="0.0" width="176" height="26"/>
+                                                                        <rect key="frame" x="189" y="0.0" width="189" height="26"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="直播倒计时：" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffQ-JP-gNc">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="88" height="26"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="94.5" height="26"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="52:30:50" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RVR-ie-KBF">
-                                                                                <rect key="frame" x="88" y="0.0" width="88" height="26"/>
+                                                                                <rect key="frame" x="94.5" y="0.0" width="94.5" height="26"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                                 <color key="textColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <nil key="highlightedColor"/>
+                                                                                <userDefinedRuntimeAttributes>
+                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="倒计时Label"/>
+                                                                                </userDefinedRuntimeAttributes>
                                                                             </label>
                                                                         </subviews>
                                                                     </stackView>
@@ -262,8 +268,8 @@
                                                             <constraint firstItem="BuM-AS-dMn" firstAttribute="top" secondItem="fkl-T2-F9z" secondAttribute="top" constant="3" id="WAt-ND-0V3"/>
                                                             <constraint firstItem="eqz-dJ-Isq" firstAttribute="top" secondItem="fkl-T2-F9z" secondAttribute="top" id="ajz-y7-kdn"/>
                                                             <constraint firstItem="D3S-17-6Nf" firstAttribute="top" secondItem="fkl-T2-F9z" secondAttribute="top" constant="2" id="bxq-UO-7xZ"/>
-                                                            <constraint firstItem="zeS-hM-HiN" firstAttribute="leading" secondItem="fkl-T2-F9z" secondAttribute="leading" constant="31" id="fko-dQ-Ukk"/>
-                                                            <constraint firstAttribute="trailing" secondItem="zeS-hM-HiN" secondAttribute="trailing" constant="31" id="lCx-Uh-VqJ"/>
+                                                            <constraint firstItem="zeS-hM-HiN" firstAttribute="leading" secondItem="fkl-T2-F9z" secondAttribute="leading" constant="18" id="fko-dQ-Ukk"/>
+                                                            <constraint firstAttribute="trailing" secondItem="zeS-hM-HiN" secondAttribute="trailing" constant="18" id="lCx-Uh-VqJ"/>
                                                             <constraint firstItem="gWg-lE-My5" firstAttribute="top" secondItem="fkl-T2-F9z" secondAttribute="top" constant="2" id="n0H-tN-dO5"/>
                                                             <constraint firstItem="5hz-n1-Cwv" firstAttribute="leading" secondItem="gfi-47-PVj" secondAttribute="trailing" constant="8" id="o0A-RU-UUJ"/>
                                                             <constraint firstItem="lVj-YX-COk" firstAttribute="leading" secondItem="fkl-T2-F9z" secondAttribute="leading" constant="10" id="oew-gV-ysh"/>
@@ -297,6 +303,10 @@
                                                                         </collectionViewCellContentView>
                                                                     </collectionViewCell>
                                                                 </cells>
+                                                                <connections>
+                                                                    <outlet property="dataSource" destination="Qlk-11-xZ9" id="ZTG-1q-Er8"/>
+                                                                    <outlet property="delegate" destination="Qlk-11-xZ9" id="3bJ-PQ-uzF"/>
+                                                                </connections>
                                                             </collectionView>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -767,6 +777,8 @@
                         <outlet property="headerView" destination="zY5-d1-uIg" id="GXp-0X-5t0"/>
                         <outlet property="heightLayoutConstraint" destination="pX9-oq-xNE" id="zZh-og-YMp"/>
                         <outlet property="leftwardMarqueeView" destination="fSS-lB-1r2" id="u7Y-XH-UTU"/>
+                        <outlet property="liuheForumContentView" destination="qz7-G5-OUZ" id="ua1-5o-WbM"/>
+                        <outlet property="liuheResultContentView" destination="fkl-T2-F9z" id="K0q-Mt-Ggd"/>
                         <outlet property="lotteryCollectionView" destination="d41-PF-3Ff" id="luD-CR-cHL"/>
                         <outlet property="lotteryTitleLabel" destination="D3S-17-6Nf" id="Uc1-94-Jl0"/>
                         <outlet property="lotteryUISwitch" destination="5hz-n1-Cwv" id="gzl-rE-uf7"/>
