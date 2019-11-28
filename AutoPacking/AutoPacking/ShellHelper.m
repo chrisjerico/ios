@@ -41,8 +41,10 @@
     [df setDateFormat:@"yyyyMMdd_HHmm"];
     
     for (SiteModel *sm in sites) {
-        sm.retryCnt = 5;
+        sm.retryCnt = 3;
     }
+    NSString *dirPath = [NSString stringWithFormat:@"/Library/WebServer/Documents/ipa_%@", [df stringFromDate:[NSDate date]]];
+    NSMutableString *errSiteIds = @"".mutableCopy;
     
     __block SiteModel *__sm = nil;
     void (^startPacking)(void) = nil;
@@ -52,13 +54,17 @@
             [sites removeObject:__sm];
         }
         
-        NSString *dirPath = [NSString stringWithFormat:@"/Library/WebServer/Documents/ipa_%@", [df stringFromDate:[NSDate date]]];
+        
         NSString *ipaPath = [NSString stringWithFormat:@"%@/ug.ipa", ProjectDir];
         NSString *xcarchivePath = [NSString stringWithFormat:@"%@/ug.xcarchive", ProjectDir];
         
         if (!__sm) {
             [NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[dirPath]];
-            NSLog(@"所有站点已打包完毕，退出打包程序！");
+            if (errSiteIds.length) {
+                NSLog(@"所有站点已打包完毕，其中 %@ 站点打包失败，退出打包程序！", errSiteIds);
+            } else {
+                NSLog(@"所有站点已打包完毕，退出打包程序！");
+            }
             if (completion) {
                 completion();
             }
@@ -86,6 +92,7 @@
                     NSLog(@"%@ 打包成功", __sm.siteId);
                     __sm = nil;
                 } else {
+                    [errSiteIds appendFormat:@"%@,", __sm.siteId];
                     NSLog(@"%@ 打包失败", __sm.siteId);
                     if (!__sm.retryCnt--) {
                         __sm = nil;

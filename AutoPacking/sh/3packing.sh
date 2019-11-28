@@ -201,7 +201,7 @@ if [[ $__IS_WORKSPACE_OPTION -eq 1 ]]; then
     CFBundleVersion=1 \
     -destination generic/platform=ios \
     -allowProvisioningUpdates \
-#    -quiet \
+    -quiet \
 #    > /dev/null
     
     #CODE_SIGN_IDENTITY="${__CODE_SIGN_DISTRIBUTION}"
