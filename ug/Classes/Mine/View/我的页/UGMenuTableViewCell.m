@@ -40,13 +40,10 @@
     }
 }
 
-- (void)setUnreadMsg:(NSString *)unreadMsg {
+- (void)setUnreadMsg:(NSInteger)unreadMsg {
     _unreadMsg = unreadMsg;
-    if (unreadMsg.integerValue == 0) {
-        self.numLabel.hidden = YES;
-    }else {
-        self.numLabel.text = unreadMsg;
-    }
+    self.numLabel.hidden = unreadMsg;
+    self.numLabel.text = @(unreadMsg).stringValue;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

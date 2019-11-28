@@ -93,10 +93,11 @@
                     __sm = nil;
                 } else {
                     [errSiteIds appendFormat:@"%@,", __sm.siteId];
-                    NSLog(@"%@ 打包失败", __sm.siteId);
                     if (!__sm.retryCnt--) {
                         __sm = nil;
-                        NSLog(@"再试一次打包");
+                        NSLog(@"%@ 打包失败", __sm.siteId);
+                    } else {
+                        NSLog(@"%@ 再试一次打包", __sm.siteId);
                     }
                 }
                 [ShellHelper pullCode:^{

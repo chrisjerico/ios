@@ -47,7 +47,7 @@
 @interface UGBMMemberCenterViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 {
      UGBMHeaderView *headView;                /**<   导航头 */
-     NSString *unreadMsg;
+     NSInteger unreadMsg;
 }
 @property (weak, nonatomic) IBOutlet UICollectionView *myCollectionView;
 @property (weak, nonatomic) IBOutlet UILabel *userMoneyLabel;    /**<  显示余额 */
@@ -172,13 +172,7 @@
         NSDictionary *dic = [self.menuNameArray objectAtIndex:indexPath.row];
         [cell setMenuName: [dic objectForKey:@"title"]];
         cell.imageView.image = [dic objectForKey:@"imgName"];
-        if ([[dic objectForKey:@"title"] isEqualToString:@"站内信"]) {
-            if (![CMCommon stringIsNull:unreadMsg])
-                [cell setBadgeNum:[unreadMsg intValue]];
-        }
-        else{
-            [cell setBadgeNum:0];
-        }
+        [cell setBadgeNum:[[dic objectForKey:@"title"] isEqualToString:@"站内信"] ? unreadMsg : 0];
         [cell setBackgroundColor: [UIColor clearColor]];
         return cell;
 }
