@@ -177,7 +177,7 @@ MJCodingImplementation
     
     // 显示错误信息HUD
     if (!_noShowErrorHUD && _error.domain.length)
-        [HUDHelper showMsg:_error.domain];
+        [SVProgressHUD showErrorWithStatus:_error.domain];
     
     _successBlock = nil;
     _failureBlock = nil;

@@ -10,4 +10,8 @@
 
 @implementation UGLHGalleryModel
 
++ (NSDictionary *)mj_replacedKeyFromPropertyName {
+    return @{@"id":@"gid"};
+}
+
 @end

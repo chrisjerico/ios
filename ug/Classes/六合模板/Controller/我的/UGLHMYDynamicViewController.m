@@ -9,7 +9,7 @@
 #import "UGLHMYDynamicViewController.h"
 #import "UGLHPostModel.h"
 @interface UGLHMYDynamicViewController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource>
-@property (weak, nonatomic) IBOutlet UITableView *myTable;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property(strong,nonatomic)NSMutableArray *postListArray;/**<   帖子列表数组" */
 
@@ -24,40 +24,27 @@
     // Do any additional setup after loading the view.
     self.title = @"我的动态";
     _postListArray = [NSMutableArray new];
-    [self getPostList];
-}
-
-//------------六合------------------------------------------------------
-// 我的历史帖子
-- (void)getPostList {
-    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
-                             @"cateId":@"1",
-                             
-    };
-    [CMNetwork historyContentWithParams:params completion:^(CMResult<id> *model, NSError *err) {
-        [SVProgressHUD showWithStatus:nil];
-        [CMResult processWithResult:model success:^{
-            [SVProgressHUD showWithStatus:nil];
-            NSLog(@"model= %@",model.data);
-            //            NSArray *modelArr = (NSArray *)model.data;         //数组转模型数组
-            
-            
-            //            if (modelArr.count) {
-            //                for (int i = 0 ;i<modelArr.count;i++) {
-            //                    UGLHCategoryListModel *obj = [modelArr objectAtIndex:i];
-            //
-            //                    [self->_lHCategoryList addObject:obj];
-            //                    NSLog(@"obj= %@",obj);
-            //                }
-            //            }
-            //数组转模型数组
-            
-            [self->_myTable reloadData];
-            
-        } failure:^(id msg) {
-            [SVProgressHUD showErrorWithStatus:msg];
+    
+    
+    {
+        [_tableView setupHeaderRefreshRequest:^CCSessionModel *(UITableView *tv) {
+            return [NetworkManager1 lhdoc_historyContent:@"1" page:1];
+        } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
+            NSArray *array = sm.responseObject[@"list"];
+            for (NSDictionary *dict in array)
+                [tv.dataArray addObject:[UGLHPostModel mj_objectWithKeyValues:dict]];
+            return array;
         }];
-    }];
+        [_tableView setupFooterRefreshRequest:^CCSessionModel *(UITableView *tv) {
+            return [NetworkManager1 lhdoc_historyContent:@"1" page:tv.pageIndex];
+        } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
+            NSArray *array = sm.responseObject[@"list"];
+            for (NSDictionary *dict in array)
+                [tv.dataArray addObject:[UGLHPostModel mj_objectWithKeyValues:dict]];
+            return array;
+        }];
+        [_tableView.mj_header beginRefreshing];
+    }
 }
 
 
@@ -76,17 +63,17 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UGLHPostInfoModel *model = (UGLHPostInfoModel *) [_postListArray objectAtIndex:indexPath.row];
+    UGLHPostModel *model = (UGLHPostModel *) [_postListArray objectAtIndex:indexPath.row];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     FastSubViewCode(cell);
     [subImageView(@"headImg") sd_setImageWithURL:[NSURL URLWithString:model.headImg] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
     subLabel(@"nickname").text = model.nickname;
     subLabel(@"createTime").text = model.createTime;
-    subLabel(@"点赞数Label").text = model.likeNum;
+    subLabel(@"点赞数Label").text = @(model.likeNum).stringValue;
     subLabel(@"标题Label").text = model.title;
     subLabel(@"内容Label").text = model.content;
-    [subButton(@"点赞Btn") setTitle:model.likeNum forState:(UIControlStateNormal)];
-    [subButton(@"阅读Btn") setTitle:model.viewNum forState:(UIControlStateNormal)];
+    [subButton(@"点赞Btn") setTitle:@(model.likeNum).stringValue forState:(UIControlStateNormal)];
+    [subButton(@"阅读Btn") setTitle:@(model.viewNum).stringValue forState:(UIControlStateNormal)];
     [subButton(@"点赞Btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
         NSLog(@"点赞Btn ,id = %@",model.cid);
     }];

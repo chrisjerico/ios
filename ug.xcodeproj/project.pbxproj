@@ -32,6 +32,12 @@
 		CF724E54236D6E5E0099947A /* UGSkinManagers.m in Sources */ = {isa = PBXBuildFile; fileRef = CF724E52236D6E5E0099947A /* UGSkinManagers.m */; };
 		CF724E61236EAF2B0099947A /* BlackTemplate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF724E60236EAF2B0099947A /* BlackTemplate.storyboard */; };
 		CF724E64236EB0250099947A /* CCNetworkRequests1+UGBlackTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = CF724E63236EB0250099947A /* CCNetworkRequests1+UGBlackTemplate.m */; };
+		CF775F7A239033F9005B3534 /* UGPostCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = CF775F79239033F9005B3534 /* UGPostCell1.m */; };
+		CF775F7E23903FC2005B3534 /* UILabel+YBAttributeTextTapAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CF775F7D23903FC1005B3534 /* UILabel+YBAttributeTextTapAction.m */; };
+		CF775F8D2390426E005B3534 /* MediaViewer.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF775F852390426E005B3534 /* MediaViewer.xib */; };
+		CF775F8E2390426E005B3534 /* Image_loading_failed.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CF775F862390426E005B3534 /* Image_loading_failed.jpeg */; };
+		CF775F8F2390426E005B3534 /* black_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = CF775F872390426E005B3534 /* black_bg.png */; };
+		CF775F902390426E005B3534 /* MediaViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = CF775F892390426E005B3534 /* MediaViewer.m */; };
 		CF84BE282362E32D0058F055 /* CCNetworkRequests1+UGLiuHe.m in Sources */ = {isa = PBXBuildFile; fileRef = CF84BE272362E32D0058F055 /* CCNetworkRequests1+UGLiuHe.m */; };
 		CF84BE2B236416C20058F055 /* UGLHC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF84BE2A236416C20058F055 /* UGLHC.storyboard */; };
 		CF88653C2390254E00B41049 /* UGLHGalleryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF88653B2390254E00B41049 /* UGLHGalleryModel.m */; };
@@ -733,6 +739,15 @@
 		CF724E62236EB0250099947A /* CCNetworkRequests1+UGBlackTemplate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CCNetworkRequests1+UGBlackTemplate.h"; sourceTree = "<group>"; };
 		CF724E63236EB0250099947A /* CCNetworkRequests1+UGBlackTemplate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CCNetworkRequests1+UGBlackTemplate.m"; sourceTree = "<group>"; };
 		CF73AE5C238C5C6A007EF904 /* AutoPacking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AutoPacking.xcodeproj; path = AutoPacking/AutoPacking.xcodeproj; sourceTree = "<group>"; };
+		CF775F78239033F9005B3534 /* UGPostCell1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGPostCell1.h; sourceTree = "<group>"; };
+		CF775F79239033F9005B3534 /* UGPostCell1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGPostCell1.m; sourceTree = "<group>"; };
+		CF775F7C23903FC1005B3534 /* UILabel+YBAttributeTextTapAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+YBAttributeTextTapAction.h"; sourceTree = "<group>"; };
+		CF775F7D23903FC1005B3534 /* UILabel+YBAttributeTextTapAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+YBAttributeTextTapAction.m"; sourceTree = "<group>"; };
+		CF775F822390426E005B3534 /* MediaViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaViewer.h; sourceTree = "<group>"; };
+		CF775F852390426E005B3534 /* MediaViewer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MediaViewer.xib; sourceTree = "<group>"; };
+		CF775F862390426E005B3534 /* Image_loading_failed.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Image_loading_failed.jpeg; sourceTree = "<group>"; };
+		CF775F872390426E005B3534 /* black_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = black_bg.png; sourceTree = "<group>"; };
+		CF775F892390426E005B3534 /* MediaViewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaViewer.m; sourceTree = "<group>"; };
 		CF84BE262362E32D0058F055 /* CCNetworkRequests1+UGLiuHe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CCNetworkRequests1+UGLiuHe.h"; sourceTree = "<group>"; };
 		CF84BE272362E32D0058F055 /* CCNetworkRequests1+UGLiuHe.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CCNetworkRequests1+UGLiuHe.m"; sourceTree = "<group>"; };
 		CF84BE2A236416C20058F055 /* UGLHC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UGLHC.storyboard; sourceTree = "<group>"; };
@@ -2823,6 +2838,36 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		CF775F74239033C6005B3534 /* 帖子 */ = {
+			isa = PBXGroup;
+			children = (
+				CF775F78239033F9005B3534 /* UGPostCell1.h */,
+				CF775F79239033F9005B3534 /* UGPostCell1.m */,
+			);
+			path = "帖子";
+			sourceTree = "<group>";
+		};
+		CF775F7B23903FC1005B3534 /* UILabel+YBAttributeTextTapAction */ = {
+			isa = PBXGroup;
+			children = (
+				CF775F7C23903FC1005B3534 /* UILabel+YBAttributeTextTapAction.h */,
+				CF775F7D23903FC1005B3534 /* UILabel+YBAttributeTextTapAction.m */,
+			);
+			path = "UILabel+YBAttributeTextTapAction";
+			sourceTree = "<group>";
+		};
+		CF775F7F2390426E005B3534 /* MediaViewer */ = {
+			isa = PBXGroup;
+			children = (
+				CF775F822390426E005B3534 /* MediaViewer.h */,
+				CF775F892390426E005B3534 /* MediaViewer.m */,
+				CF775F852390426E005B3534 /* MediaViewer.xib */,
+				CF775F862390426E005B3534 /* Image_loading_failed.jpeg */,
+				CF775F872390426E005B3534 /* black_bg.png */,
+			);
+			path = MediaViewer;
+			sourceTree = "<group>";
+		};
 		CF84BE29236416A20058F055 /* 六合页面 */ = {
 			isa = PBXGroup;
 			children = (
@@ -2849,6 +2894,7 @@
 		CFD3BE962347137E00FCDA6D /* FishUtility */ = {
 			isa = PBXGroup;
 			children = (
+				CF775F7F2390426E005B3534 /* MediaViewer */,
 				CF5C5BF32383E7F4001CFAB1 /* Aspects */,
 				CF48BF67235590EB00DFF4BC /* SlideSegmentView */,
 				CFD3BF4423473D0500FCDA6D /* LogHelper */,
@@ -3330,6 +3376,7 @@
 		D405B22D227973C500F8C586 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				CF775F7B23903FC1005B3534 /* UILabel+YBAttributeTextTapAction */,
 				CFD3BE962347137E00FCDA6D /* FishUtility */,
 				D4145A7522B3BC1900D8165F /* CMNetwork */,
 				D4A1E905232BC3AC0045F5B4 /* CMCommon */,
@@ -3928,6 +3975,7 @@
 		D43348A72387D38A0056EB7D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CF775F74239033C6005B3534 /* 帖子 */,
 				D4CF975D236580E70096BC92 /* 六合首页 */,
 			);
 			path = View;
@@ -4855,6 +4903,7 @@
 				D4145A9222B52D0600D8165F /* UGGD11X5LotteryController.storyboard in Resources */,
 				D4DE2685229BCB960072A4A2 /* icon_arrow@2x.png in Resources */,
 				D41C5EBF2369D76D007AF77D /* UGOnlineWithdrawalsView.xib in Resources */,
+				CF775F8D2390426E005B3534 /* MediaViewer.xib in Resources */,
 				D40D58C6228A9A230025963A /* UGBetDetailTableViewCell.xib in Resources */,
 				D41246B32285B5CB006881E2 /* UGMissionTableViewCell.xib in Resources */,
 				D48224EB22A0FDD000F7DE72 /* UGPlatformNoticeCell.xib in Resources */,
@@ -4886,6 +4935,7 @@
 				D4090F63228D3E0E00D6DA43 /* UGAvaterSelectView.xib in Resources */,
 				D405B3862281620000F8C586 /* UGMessageTableViewCell.xib in Resources */,
 				D4090F68228D4F7200D6DA43 /* UGAvaterCollectionViewCell.xib in Resources */,
+				CF775F8F2390426E005B3534 /* black_bg.png in Resources */,
 				D4145A8322B50AC700D8165F /* UGGameListCollectionViewCell.xib in Resources */,
 				D49A36CB22A2CF6A000057D2 /* UGPCDDLotteryController.storyboard in Resources */,
 				D48224E322A0F3F500F7DE72 /* UGPlatformNoticeView.xib in Resources */,
@@ -4915,6 +4965,7 @@
 				D4704ECC22B7647F00528DC7 /* UGPK10SubResultCollectionViewCell.xib in Resources */,
 				D4D8DF89228714A300446BAF /* UGLotteryResultCollectionViewCell.xib in Resources */,
 				D49DE7A62366CD5900683AFE /* UGScratchMusicView.xib in Resources */,
+				CF775F8E2390426E005B3534 /* Image_loading_failed.jpeg in Resources */,
 				D4A02B57232257D5004D5894 /* UGSignInHistoryView.xib in Resources */,
 				D4A02B5C23227B7D004D5894 /* UGSingInHistoryTableViewCell.xib in Resources */,
 				D4D8DF7C2286F7F600446BAF /* UGTimeLotteryBetCollectionViewCell.xib in Resources */,
@@ -5180,6 +5231,7 @@
 				D45F98C622E34DAB00194139 /* UGMineViewController.m in Sources */,
 				D4A02B5B23227B7D004D5894 /* UGSingInHistoryTableViewCell.m in Sources */,
 				CF84BE282362E32D0058F055 /* CCNetworkRequests1+UGLiuHe.m in Sources */,
+				CF775F7A239033F9005B3534 /* UGPostCell1.m in Sources */,
 				D409C55B22AB86D90042A0DD /* UGFeedBackController.m in Sources */,
 				CFD3BEF52347137F00FCDA6D /* NSNull+Safe.m in Sources */,
 				D4D8DF802287065F00446BAF /* UGTimeLotteryBetHeaderView.m in Sources */,
@@ -5247,6 +5299,7 @@
 				D41246A122854518006881E2 /* UGPromotionsController.m in Sources */,
 				CFD3BF0E2347137F00FCDA6D /* NSMutableAttributedString+Utils.m in Sources */,
 				D4EDC93C2343A1F600BA4C4D /* UGTableViewCell.m in Sources */,
+				CF775F902390426E005B3534 /* MediaViewer.m in Sources */,
 				D4DE269A229BDBC80072A4A2 /* SGSegmentedControl.m in Sources */,
 				CFD3BF072347137F00FCDA6D /* UIAlertController+Utils.m in Sources */,
 				D4D8DF7B2286F7F600446BAF /* UGTimeLotteryBetCollectionViewCell.m in Sources */,
@@ -5316,6 +5369,7 @@
 				CFD3BF0D2347137F00FCDA6D /* NSArray+Utils.m in Sources */,
 				D424DDDC22E72E940009E2E6 /* UGSystemConfigModel.m in Sources */,
 				D49F41AB2326132C00A381AD /* UGPormotionUserInfoView.m in Sources */,
+				CF775F7E23903FC2005B3534 /* UILabel+YBAttributeTextTapAction.m in Sources */,
 				D49D359E22C79E7900318D73 /* UGNoticePopView.m in Sources */,
 				D4D422522326469C006E680B /* UGwithdrawStatModel.m in Sources */,
 				D41F260D2318EFE4004FB9C6 /* UGChanglongBetRecrodCell.m in Sources */,

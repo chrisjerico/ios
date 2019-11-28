@@ -59,7 +59,7 @@
         return [NSError errorWithDomain:error.userInfo[@"NSLocalizedDescription"] ? : error.domain code:sObj.error.code userInfo:sObj.error.userInfo];
     }
     
-    // 非P咖服务器则返nil
+    // 非主服务器则返nil
     if (![sObj.urlString hasPrefix:APP.Host])
         return nil;
     
@@ -76,14 +76,7 @@
     if (code == -10002) {
         
     } else if (code != 0) {
-        NSString *domain = ({
-            if ([responseObject[@"data"] isKindOfClass:[NSString class]] && [responseObject[@"data"] length])
-                domain = responseObject[@"data"];
-             else
-                domain = responseObject[@"message"];
-            domain;
-        });
-        return [NSError errorWithDomain:domain code:[responseObject[@"code"] integerValue] userInfo:nil];
+        return [NSError errorWithDomain:responseObject[@"msg"] code:[responseObject[@"code"] integerValue] userInfo:nil];
     }
 
     return nil;

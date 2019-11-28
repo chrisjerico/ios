@@ -139,7 +139,7 @@
         }];
         return cell;
     } else {
-        UGLHPostInfoModel *model = (UGLHPostInfoModel *) [_favContentListArray objectAtIndex:indexPath.row];
+        UGLHPostModel *model = (UGLHPostModel *) [_favContentListArray objectAtIndex:indexPath.row];
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell2" forIndexPath:indexPath];
         FastSubViewCode(cell);
         subLabel(@"标题Label").text = model.title;

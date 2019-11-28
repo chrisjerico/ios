@@ -12,6 +12,17 @@
 
 @implementation NSAttributedString (Utils)
 
++ (void)load {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [NSAttributedString jr_swizzleMethod:@selector(initWithString:attributes:) withMethod:@selector(cc_safe_initWithString:attributes:) error:nil];
+    });
+}
+
+- (instancetype)cc_safe_initWithString:(NSString *)str attributes:(NSDictionary<NSAttributedStringKey,id> *)attrs {
+    return str.length ? [self cc_safe_initWithString:str attributes:attrs] : nil;
+}
+
 - (NSAttributedString *)substringWithSize:(CGSize)size {
     CGFloat h = [self boundingRectWithSize:CGSizeMake(size.width, MAXFLOAT)
                                    options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading

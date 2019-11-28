@@ -10,6 +10,7 @@
 
 @interface UGPostListVC ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 
 @end
 
@@ -18,13 +19,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    __weakSelf_(__self);
+    NSString *(^sortString)(void) = ^NSString *{
+        if (__self.segmentedControl.selectedSegmentIndex == 1) {
+            return @"hot";  // 热门（精华贴）
+        } else if (__self.segmentedControl.selectedSegmentIndex == 2) {
+            return @"new";  // 最新
+        }
+        return nil; // 综合
+    };
     [_tableView setupHeaderRefreshRequest:^CCSessionModel *(UITableView *tv) {
-        return [NetworkManager1 lhdoc_contentList:@"forum" uid:nil sort:nil page:1];
+        return [NetworkManager1 lhdoc_contentList:__self.clm.alias uid:nil sort:sortString() page:1];
     } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
         return nil;
     }];
-    [_tableView setupHeaderRefreshRequest:^CCSessionModel *(UITableView *tv) {
-        return [NetworkManager1 lhdoc_contentList:@"forum" uid:nil sort:nil page:tv.pageIndex];
+    [_tableView setupFooterRefreshRequest:^CCSessionModel *(UITableView *tv) {
+        return [NetworkManager1 lhdoc_contentList:__self.clm.alias uid:nil sort:sortString() page:tv.pageIndex];
     } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
         return nil;
     }];

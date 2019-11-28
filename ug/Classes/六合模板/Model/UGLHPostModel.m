@@ -10,4 +10,13 @@
 
 @implementation UGLHPostModel
 
++ (NSDictionary *)mj_replacedKeyFromPropertyName {
+    return @{@"id":@"cid"};
+}
+
+- (void)setContentPic:(NSString *)contentPic {
+    _contentPic = contentPic;
+    _photos = [contentPic componentsSeparatedByString:@","];
+}
+
 @end
