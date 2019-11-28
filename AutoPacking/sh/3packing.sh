@@ -200,8 +200,8 @@ if [[ $__IS_WORKSPACE_OPTION -eq 1 ]]; then
     -archivePath ${__EXPORT_ARCHIVE_PATH} \
     CFBundleVersion=1 \
     -destination generic/platform=ios \
-    -quiet \
-    > /dev/null
+#    -quiet \
+#    > /dev/null
     
     #CODE_SIGN_IDENTITY="${__CODE_SIGN_DISTRIBUTION}"
   fi

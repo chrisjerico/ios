@@ -92,7 +92,9 @@
                         NSLog(@"再试一次打包");
                     }
                 }
-                __next();
+                [ShellHelper pullCode:^{
+                    __next();
+                }];
             };
             
             dispatch_sync(dispatch_get_global_queue(0, 0), ^{
@@ -106,7 +108,9 @@
         });
     };
     
-    startPacking();
+    [ShellHelper pullCode:^{
+        startPacking();
+    }];
 }
 
 + (void)upload:(void (^)(void))completion {
