@@ -83,8 +83,8 @@
                     [[NSFileManager defaultManager] createDirectoryAtPath:[NSString stringWithFormat:@"%@/%@", dirPath, __sm.type] withIntermediateDirectories:true attributes:nil error:nil];
                     [[NSFileManager defaultManager] moveItemAtPath:ipaPath toPath:outputPath1 error:nil];
                     [[NSFileManager defaultManager] moveItemAtPath:xcarchivePath toPath:outputPath2 error:nil];
-                    __sm = nil;
                     NSLog(@"%@ 打包成功", __sm.siteId);
+                    __sm = nil;
                 } else {
                     NSLog(@"%@ 打包失败", __sm.siteId);
                     if (!__sm.retryCnt--) {

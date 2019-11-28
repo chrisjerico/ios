@@ -200,6 +200,7 @@ if [[ $__IS_WORKSPACE_OPTION -eq 1 ]]; then
     -archivePath ${__EXPORT_ARCHIVE_PATH} \
     CFBundleVersion=1 \
     -destination generic/platform=ios \
+    -allowProvisioningUpdates \
 #    -quiet \
 #    > /dev/null
     
