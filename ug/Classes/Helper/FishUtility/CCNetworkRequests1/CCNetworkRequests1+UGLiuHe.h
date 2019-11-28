@@ -12,68 +12,47 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CCNetworkRequests1 (UGLiuHe)
 
-// 获取六合图库列表
-- (CCSessionModel *)lh_getLhcdocPic:(BOOL)collected page:(NSInteger)page;
+// 栏目列表
+- (CCSessionModel *)lhcdoc_categoryList;
 
-// 获取期数列表（六合图库）
-- (CCSessionModel *)lh_getSecondaryPicPeriods:(NSString *)typeId;
+// 当前开奖信息
+- (CCSessionModel *)lhdoc_lotteryNumber;
 
-// 收藏/取消收藏图库
-- (CCSessionModel *)lh_odFavoritesPic:(BOOL)fav rid:(NSString *)rid;
+// 帖子列表
+- (CCSessionModel *)lhdoc_contentList:(NSString *)alias uid:(NSString *_Nullable)uid sort:(NSString *_Nullable)sort  page:(NSInteger)page;
 
-// 获取期数列表（幽默猜测、跑狗玄机、四不像）
-- (CCSessionModel *)lh_getLhcNoPeriods:(NSInteger)type;
+// 获取老黄历详情
+- (CCSessionModel *)lhdoc_lhlDetail:(NSDate *)date;
 
-// 获取投票结果（幽默猜测、跑狗玄机、四不像）
-- (CCSessionModel *)lh_getVote:(NSString *)rid;
+// 获取帖子的期数列表
+- (CCSessionModel *)lhdoc_lhcNoList:(NSString *)type type2:(NSString *_Nullable)type2;
 
-// 投票（幽默猜测、跑狗玄机、四不像）
-- (CCSessionModel *)lh_doVote:(NSString *)rid animalFlag:(NSInteger)animalFlag;
+// 六合图库列表接口
+- (CCSessionModel *)lhdoc_tkList:(BOOL)showFav;
 
-// 获取高手论坛列表（综合、精华、最新）
-- (CCSessionModel *)lh_forum:(NSInteger)sort page:(NSInteger)page;
+// 获取帖子详情
+- (CCSessionModel *)lhdoc_contentDetail:(NSString *)cid;
 
-// 获取极品专贴列表（综合、精华、最新）
-- (CCSessionModel *)lh_gourmet:(NSInteger)sort page:(NSInteger)page;
+// 获取评论列表
+- (CCSessionModel *)lhdoc_contentReplyList:(NSString *)cid replyPid:(NSString *_Nullable)replyPId page:(NSInteger)page;
 
-// 获取每期资料列表
-- (CCSessionModel *)lh_mystery:(NSInteger)page;
+// 发帖
+- (CCSessionModel *)lhcdoc_postContent:(NSString *)alias title:(NSString *)title content:(NSString *)content images:(NSArray <UIImage *>*_Nullable)images price:(double)price;
 
-// 获取公式规律列表
-- (CCSessionModel *)lh_rule:(NSInteger)page;
+// 发表评论
+- (CCSessionModel *)lhdoc_postContentReply:(NSString *)cid rid:(NSString *_Nullable)rid content:(NSString *)content;
 
-// 搜索帖子（高手论坛、极品专贴）
-- (CCSessionModel *)lh_searchPost:(NSInteger)type content:(NSString *)content;
+// 给帖子投票
+- (CCSessionModel *)lhdoc_vote:(NSString *)cid animalId:(NSString *)animalId;
 
-// 获取我发布的帖子（高手论坛、极品专贴）
-- (CCSessionModel *)lh_getHistoryPost:(NSInteger)type page:(NSInteger)page;
+// 我的历史帖子
+- (CCSessionModel *)lhdoc_historyContent:(NSString *)cateId page:(NSInteger)page;
 
-// 发布帖子（高手论坛、极品专贴）
-- (CCSessionModel *)lh_doPost:(NSInteger)type title:(NSString *)title content:(NSString *)content images:(NSArray<UIImage *> *)images;
+// 关注用户列表
+- (CCSessionModel *)lhdoc_followList:(NSString *_Nullable)uid;
 
-// 获取帖子详情（高手论坛、极品专贴、每期资料、公式规律）
-- (CCSessionModel *)lh_getContentInfo:(NSString *)rid;
-
-// 获取回复列表（高手论坛、极品专贴、每期资料、公式规律、六合图库、幽默猜测、跑狗玄机、四不像）
-- (CCSessionModel *)lh_getContentReply:(NSString *)rid;
-
-// 回复帖子（高手论坛、极品专贴、每期资料、公式规律、六合图库、幽默猜测、跑狗玄机、四不像）
-- (CCSessionModel *)lh_replypost:(NSString *)rid content:(NSString *)content;
-
-// 点赞/取消点赞帖子（高手论坛、极品专贴、每期资料、公式规律、六合图库、幽默猜测、跑狗玄机、四不像）
-- (CCSessionModel *)lh_likePost:(BOOL)like rid:(NSString *)rid;
-
-// 收藏/取消收藏帖子（高手论坛、极品专贴、每期资料、公式规律、六合图库、幽默猜测、跑狗玄机、四不像）
-- (CCSessionModel *)lh_odFavoritesR:(BOOL)fav rid:(NSString *)rid;
-
-// 关注/取消关注用户
-- (CCSessionModel *)lh_followPoster:(BOOL)follow uid:(NSString *)uid;
-
-//==========================我的============================================
-
-//==========================老黄历============================================
-// 老黄历
-- (CCSessionModel *)lh_getLhlList:(NSString *)date;
+// 关注帖子列表
+- (CCSessionModel *)lhdoc_favContentList:(NSString *_Nullable)uid page:(NSInteger)page;
 
 @end
 

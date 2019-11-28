@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol UGLHlotteryNumberModel <NSObject>
 
 @end
+
+// 
 @interface UGLHlotteryNumberModel : UGModel
 @property (copy, nonatomic) NSString *gameId;/**<   " */
 @property (copy, nonatomic) NSString *numSx;/**<   生肖，逗号分割" */

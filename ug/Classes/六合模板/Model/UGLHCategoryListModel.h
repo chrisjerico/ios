@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+// 《栏目列表》
+// c=lhcdoc&a=categoryList
 @interface UGLHCategoryListModel : UGModel
 @property (copy, nonatomic) NSString *icon;/**<   展示图" */
 @property (copy, nonatomic) NSString *alias;/**<   栏目别名" */

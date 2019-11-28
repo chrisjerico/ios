@@ -9,6 +9,7 @@
 #import "UGPostListVC.h"
 
 @interface UGPostListVC ()
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -16,7 +17,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    [_tableView setupHeaderRefreshRequest:^CCSessionModel *(UITableView *tv) {
+        return [NetworkManager1 lhdoc_contentList:@"forum" uid:nil sort:nil page:1];
+    } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
+        return nil;
+    }];
+    [_tableView setupHeaderRefreshRequest:^CCSessionModel *(UITableView *tv) {
+        return [NetworkManager1 lhdoc_contentList:@"forum" uid:nil sort:nil page:tv.pageIndex];
+    } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
+        return nil;
+    }];
+    [_tableView.mj_header beginRefreshing];
 }
 
 #pragma mark - Table view data source

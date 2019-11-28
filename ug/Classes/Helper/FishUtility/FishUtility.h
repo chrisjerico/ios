@@ -57,6 +57,7 @@
 
     // Network
     #import "CCNetworkRequests1.h"
+    #import "CCNetworkRequests1+UGLiuHe.h"
 
     // LogVC
     #import "LogVC.h"

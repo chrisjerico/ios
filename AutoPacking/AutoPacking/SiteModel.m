@@ -110,7 +110,7 @@ static NSMutableArray <SiteModel *> *__sites = nil;
 
             [SiteModel site    :@"c018"     :@"企业包"     :@"2044彩票"     :@"io.dcloud.UNI55DB3CB"     :@"https://031122.com"],
             [SiteModel site    :@"c018a"     :@"企业包"     :@"今⽇彩票"     :@"io.fhpt.H53DDB5F6"     :@""],
-            [SiteModel site    :@"c018b"     :@"企业包"     :@"彩聊"     :@"问Link"     :@""],
+            [SiteModel site    :@"c018b"     :@"企业包"     :@"彩聊"     :@""     :@""],
             [SiteModel site    :@"c021"     :@"企业包"     :@"幸运彩票"     :@"io.fhpt.H5A730C2F"     :@""],
             [SiteModel site    :@"c028"     :@"企业包"     :@"鳳凰彩票"     :@"io.fhpt.H5DBF1426"     :@""],
             [SiteModel site    :@"c053"     :@"企业包"     :@"彩53"     :@"io.fhpt.H563009C8"     :@"https://988c53.com"],
@@ -122,7 +122,7 @@ static NSMutableArray <SiteModel *> *__sites = nil;
             [SiteModel site    :@"c076"     :@"企业包"     :@"彩98"     :@"io.fhpt.H59A95B9B"     :@""],
             [SiteModel site    :@"c080"     :@"企业包"     :@"007彩票"     :@"io.fhpt.H5C82F72A"     :@""],
             [SiteModel site    :@"c085"     :@"企业包"     :@"彩壹万"     :@"io.fhpt.H53F348DC"     :@"https://xn--10app-308h91u.com"],
-            [SiteModel site    :@"c085a"     :@"企业包"     :@"彩壹万"     :@"问Link"     :@"https://c10000ll.com"],
+            [SiteModel site    :@"c085a"     :@"企业包"     :@"彩壹万"     :@""     :@"https://c10000ll.com"],
             [SiteModel site    :@"c117"     :@"企业包"     :@"50.CC彩票⽹"     :@"io.fhpt.H5AAB211E"     :@""],
             [SiteModel site    :@"c125"     :@"企业包"     :@"财神彩票"     :@"io.fhpt.H52CD2820"     :@""],
             [SiteModel site    :@"c131"     :@"企业包"     :@"5000万娱乐城"     :@"io.fhpt.H51B87207"     :@""],

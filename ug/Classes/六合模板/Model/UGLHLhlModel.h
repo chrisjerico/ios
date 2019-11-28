@@ -17,6 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 @interface UGLHLhlInfoModel : UGModel<UGLHLhlInfoModel>
+
+// 《获取老黄历详情》
+// c=lhcdoc&a=lhlDetail
 @property (copy, nonatomic) NSString *ganZhi;/**<   癸亥    天干地支" */
 @property (copy, nonatomic) NSString *jiShenYiQu;/**<   王日 续世 宝光    吉神宜趋" */
 @property (copy, nonatomic) NSString *yi;/**<   祭祀 沐浴 馀事勿取    宜" */

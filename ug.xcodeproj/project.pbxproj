@@ -34,6 +34,9 @@
 		CF724E64236EB0250099947A /* CCNetworkRequests1+UGBlackTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = CF724E63236EB0250099947A /* CCNetworkRequests1+UGBlackTemplate.m */; };
 		CF84BE282362E32D0058F055 /* CCNetworkRequests1+UGLiuHe.m in Sources */ = {isa = PBXBuildFile; fileRef = CF84BE272362E32D0058F055 /* CCNetworkRequests1+UGLiuHe.m */; };
 		CF84BE2B236416C20058F055 /* UGLHC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF84BE2A236416C20058F055 /* UGLHC.storyboard */; };
+		CF88653C2390254E00B41049 /* UGLHGalleryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF88653B2390254E00B41049 /* UGLHGalleryModel.m */; };
+		CF88653F2390268600B41049 /* UGLHAdModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF88653E2390268600B41049 /* UGLHAdModel.m */; };
+		CF8865422390271900B41049 /* UGLHPostCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8865412390271900B41049 /* UGLHPostCommentModel.m */; };
 		CFCADE43237BEB0900680F62 /* 客服AlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFCADE42237BEB0900680F62 /* 客服AlertView.xib */; };
 		CFCADE45237D281C00680F62 /* cplts_看图王.gif in Resources */ = {isa = PBXBuildFile; fileRef = CFCADE44237D281C00680F62 /* cplts_看图王.gif */; };
 		CFD3BEEF2347137F00FCDA6D /* category.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BE9A2347137E00FCDA6D /* category.m */; };
@@ -733,6 +736,12 @@
 		CF84BE262362E32D0058F055 /* CCNetworkRequests1+UGLiuHe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CCNetworkRequests1+UGLiuHe.h"; sourceTree = "<group>"; };
 		CF84BE272362E32D0058F055 /* CCNetworkRequests1+UGLiuHe.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CCNetworkRequests1+UGLiuHe.m"; sourceTree = "<group>"; };
 		CF84BE2A236416C20058F055 /* UGLHC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UGLHC.storyboard; sourceTree = "<group>"; };
+		CF88653A2390254E00B41049 /* UGLHGalleryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLHGalleryModel.h; sourceTree = "<group>"; };
+		CF88653B2390254E00B41049 /* UGLHGalleryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLHGalleryModel.m; sourceTree = "<group>"; };
+		CF88653D2390268600B41049 /* UGLHAdModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLHAdModel.h; sourceTree = "<group>"; };
+		CF88653E2390268600B41049 /* UGLHAdModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLHAdModel.m; sourceTree = "<group>"; };
+		CF8865402390271900B41049 /* UGLHPostCommentModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLHPostCommentModel.h; sourceTree = "<group>"; };
+		CF8865412390271900B41049 /* UGLHPostCommentModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLHPostCommentModel.m; sourceTree = "<group>"; };
 		CFCADE42237BEB0900680F62 /* 客服AlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "客服AlertView.xib"; path = "ug/Classes/Main/Controller/客服AlertView.xib"; sourceTree = SOURCE_ROOT; };
 		CFCADE44237D281C00680F62 /* cplts_看图王.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "cplts_看图王.gif"; sourceTree = "<group>"; };
 		CFD3BE972347137E00FCDA6D /* FishUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishUtility.h; sourceTree = "<group>"; };
@@ -3906,6 +3915,12 @@
 				D4520A35238FEDCD00B69E97 /* UGLHFocusUserModel.m */,
 				D4520A38238FEE4D00B69E97 /* UGLHPostModel.h */,
 				D4520A39238FEE4D00B69E97 /* UGLHPostModel.m */,
+				CF8865402390271900B41049 /* UGLHPostCommentModel.h */,
+				CF8865412390271900B41049 /* UGLHPostCommentModel.m */,
+				CF88653A2390254E00B41049 /* UGLHGalleryModel.h */,
+				CF88653B2390254E00B41049 /* UGLHGalleryModel.m */,
+				CF88653D2390268600B41049 /* UGLHAdModel.h */,
+				CF88653E2390268600B41049 /* UGLHAdModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5205,6 +5220,7 @@
 				D49F41B3232638D100A381AD /* UGdepositStatModel.m in Sources */,
 				CFD3BF16234718F200FCDA6D /* UITableView+Refresh.m in Sources */,
 				D4781A152368209E004FBB97 /* UGLHMyAttentionViewController.m in Sources */,
+				CF8865422390271900B41049 /* UGLHPostCommentModel.m in Sources */,
 				D42528192320EB01007DE522 /* UGSigInCodeViewController.m in Sources */,
 				D4091B56236961C70056BAEE /* UGfinancialViewViewController.m in Sources */,
 				D41246B62285C64C006881E2 /* UGUserInfoViewController.m in Sources */,
@@ -5409,6 +5425,7 @@
 				D4DE2683229BCB960072A4A2 /* WMIconSegmentControl.m in Sources */,
 				D41C3DFA228E877E00BF6436 /* UGIntegralConvertRecordController.m in Sources */,
 				D405B1F6227972C900F8C586 /* JSONModel.m in Sources */,
+				CF88653C2390254E00B41049 /* UGLHGalleryModel.m in Sources */,
 				D407B0482366A69800B4DEF4 /* UGLHGalleryVC.m in Sources */,
 				D405AFF322783DCC00F8C586 /* MASCompositeConstraint.m in Sources */,
 				D4C1E9CF237040B300BD120A /* UGBMMemberCenterViewController.m in Sources */,
@@ -5448,6 +5465,7 @@
 				D41AEA6B22E58D9E003E28C3 /* UGAvatarModel.m in Sources */,
 				D422A582229E7AE90068D0AD /* UGYubaoIncomeTableViewCell.m in Sources */,
 				CF724E64236EB0250099947A /* CCNetworkRequests1+UGBlackTemplate.m in Sources */,
+				CF88653F2390268600B41049 /* UGLHAdModel.m in Sources */,
 				D405AFF822783DCC00F8C586 /* MASConstraint.m in Sources */,
 				D4091B742369B7BE0056BAEE /* UGfinancialView.m in Sources */,
 				D42A06B122CA212E005488F8 /* UGHomeViewController.m in Sources */,

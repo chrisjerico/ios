@@ -828,7 +828,7 @@ BOOL isOk = NO;
     NSString *imagerStr = [user.curLevelGrade lowercaseString];
     NSLog(@"imagerStr = %@",imagerStr);
            unreadMsg = user.unreadMsg;
-    NSLog(@"unreadMsg = %@",unreadMsg);
+    NSLog(@"unreadMsg = %d", (int)unreadMsg);
 
       self.secondVipLabel.text = user.nextLevelGrade;
     
