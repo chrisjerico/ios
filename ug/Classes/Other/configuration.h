@@ -249,6 +249,11 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 
 #define lotteryNumberUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=lhcdoc&a=lotteryNumber"]
 
+#define historyContentUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=lhcdoc&a=historyContent"]
+
+#define followListUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=lhcdoc&a=followList"]
+
+#define favContentListUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=lhcdoc&a=favContentList"]
 #if DEBUG
 
 //#define NSLog(...) NSLog(__VA_ARGS__)

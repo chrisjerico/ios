@@ -54,4 +54,57 @@
     
     CMMETHOD_END;
 }
+
+//我的历史帖子
+//请求参数：
+//cateId：栏目ID
+//page：分页页码，非必填
+//rows：分页条数，非必填
+//token：用户TOKEN
++ (void)historyContentWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    
+    [self.manager requestInMainThreadWithMethod:[historyContentUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:CMResultClassMake(nil)
+                                           post:NO
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
+
+//关注用户列表
+//请求参数：
+//uid：选填，为空时，查询当前登录用户的关注列表；否则查询指定用户的
+//token：用户TOKEN
++ (void)followListWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    
+    [self.manager requestInMainThreadWithMethod:[followListUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:CMResultClassMake(nil)
+                                           post:NO
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
+
+//关注帖子列表
+//请求参数：
+//page：分页页码，非必填
+//rows：分页条数，非必填
+//uid：选填，为空时，查询当前登录用户的；否则查询指定用户的
+//token：用户TOKEN
++ (void)favContentListWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    [self.manager requestInMainThreadWithMethod:[favContentListUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:CMResultClassMake(nil)
+                                           post:NO
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
 @end

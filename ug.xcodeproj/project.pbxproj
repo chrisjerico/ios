@@ -431,6 +431,8 @@
 		D43B48BD238D5B0700BB7960 /* UGLHCategoryListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D43B48BC238D5B0700BB7960 /* UGLHCategoryListModel.m */; };
 		D4520A2E238FA86100B69E97 /* UGLHlotteryNumberModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4520A2D238FA86100B69E97 /* UGLHlotteryNumberModel.m */; };
 		D4520A31238FBA9D00B69E97 /* CMLabelCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = D4520A30238FBA9D00B69E97 /* CMLabelCommon.m */; };
+		D4520A36238FEDCD00B69E97 /* UGLHFocusUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4520A35238FEDCD00B69E97 /* UGLHFocusUserModel.m */; };
+		D4520A3A238FEE4D00B69E97 /* UGLHPostModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4520A39238FEE4D00B69E97 /* UGLHPostModel.m */; };
 		D4527D1822828C27000EC1C2 /* UGPlatformBalanceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4527D1622828C27000EC1C2 /* UGPlatformBalanceTableViewCell.m */; };
 		D4527D1922828C27000EC1C2 /* UGPlatformBalanceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4527D1722828C27000EC1C2 /* UGPlatformBalanceTableViewCell.xib */; };
 		D4527D1C2282FBD8000EC1C2 /* UGBalanceConversionRecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4527D1B2282FBD8000EC1C2 /* UGBalanceConversionRecordController.m */; };
@@ -1455,6 +1457,10 @@
 		D4520A2D238FA86100B69E97 /* UGLHlotteryNumberModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLHlotteryNumberModel.m; sourceTree = "<group>"; };
 		D4520A2F238FBA9D00B69E97 /* CMLabelCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMLabelCommon.h; sourceTree = "<group>"; };
 		D4520A30238FBA9D00B69E97 /* CMLabelCommon.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CMLabelCommon.m; sourceTree = "<group>"; };
+		D4520A34238FEDCD00B69E97 /* UGLHFocusUserModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLHFocusUserModel.h; sourceTree = "<group>"; };
+		D4520A35238FEDCD00B69E97 /* UGLHFocusUserModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLHFocusUserModel.m; sourceTree = "<group>"; };
+		D4520A38238FEE4D00B69E97 /* UGLHPostModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLHPostModel.h; sourceTree = "<group>"; };
+		D4520A39238FEE4D00B69E97 /* UGLHPostModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLHPostModel.m; sourceTree = "<group>"; };
 		D4527D1522828C27000EC1C2 /* UGPlatformBalanceTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGPlatformBalanceTableViewCell.h; sourceTree = "<group>"; };
 		D4527D1622828C27000EC1C2 /* UGPlatformBalanceTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGPlatformBalanceTableViewCell.m; sourceTree = "<group>"; };
 		D4527D1722828C27000EC1C2 /* UGPlatformBalanceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGPlatformBalanceTableViewCell.xib; sourceTree = "<group>"; };
@@ -3896,6 +3902,10 @@
 				D43B48BC238D5B0700BB7960 /* UGLHCategoryListModel.m */,
 				D4520A2C238FA86100B69E97 /* UGLHlotteryNumberModel.h */,
 				D4520A2D238FA86100B69E97 /* UGLHlotteryNumberModel.m */,
+				D4520A34238FEDCD00B69E97 /* UGLHFocusUserModel.h */,
+				D4520A35238FEDCD00B69E97 /* UGLHFocusUserModel.m */,
+				D4520A38238FEE4D00B69E97 /* UGLHPostModel.h */,
+				D4520A39238FEE4D00B69E97 /* UGLHPostModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5244,6 +5254,7 @@
 				D4FD7B29236E92DD00D171AC /* LeeTagView.m in Sources */,
 				D48C5DEF2377CBF5006454E6 /* UGBMLotteryHomeViewController.m in Sources */,
 				033177AF2338E026000D7663 /* UGBetResultView.m in Sources */,
+				D4520A36238FEDCD00B69E97 /* UGLHFocusUserModel.m in Sources */,
 				D419DF35233664E6009636F0 /* UGChatViewController.m in Sources */,
 				D4145A7B22B3C0F900D8165F /* UGPlatformGameModel.m in Sources */,
 				D405B337227DABD200F8C586 /* UGModel.m in Sources */,
@@ -5358,6 +5369,7 @@
 				D41C3E12228EF13D00BF6436 /* UGFastThreeOneCollectionViewCell.m in Sources */,
 				D4AE42FC2359FB5C00EC7E8E /* CMTimeCommon.m in Sources */,
 				D4C93B4122D8759400608B67 /* UGFeedbackDetailCell.m in Sources */,
+				D4520A3A238FEE4D00B69E97 /* UGLHPostModel.m in Sources */,
 				D41FF93223332E5600FE3F70 /* NullSafe.m in Sources */,
 				D4145A8222B50AC700D8165F /* UGGameListCollectionViewCell.m in Sources */,
 				D4E2876D22B666EB0002B2BF /* UGFC3DLotteryController.m in Sources */,

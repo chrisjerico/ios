@@ -46,7 +46,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 @interface UGLHLhlModel : UGModel <UGLHLhlModel>
-@property (strong, nonatomic) UGLHLhlInfoModel *info;;/**<   癸亥" */
+@property (strong, nonatomic) UGLHLhlInfoModel *info;/**<   " */
 @property (copy, nonatomic) NSString *cid;/**<   " */
 @property (copy, nonatomic) NSString *date;/**<   " */
 @end

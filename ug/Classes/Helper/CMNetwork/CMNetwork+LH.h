@@ -22,6 +22,15 @@ NS_ASSUME_NONNULL_BEGIN
 //当前开奖信息
 + (void)lotteryNumberWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 
+//我的历史帖子
++ (void)historyContentWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+//关注用户列表
++ (void)followListWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+//关注帖子列表
++ (void)favContentListWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
 @end
 
 NS_ASSUME_NONNULL_END
