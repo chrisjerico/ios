@@ -46,7 +46,7 @@ static NSMutableArray <SiteModel *> *__sites = nil;
             if (!sm.host.length) {
                 [errs addObject:[NSString stringWithFormat:@"接口域名未配置, %@", sm.siteId]];
             }
-            if (![[NSFileManager defaultManager] fileExistsAtPath:[NSString stringWithFormat:@"%@/打包文件/各站点AppIcon（拷贝出来使用）/%@", projectDir, sm.siteId]]) {
+            if (![[NSFileManager defaultManager] fileExistsAtPath:[NSString stringWithFormat:@"%@/AutoPacking/打包文件/各站点AppIcon（拷贝出来使用）/%@", projectDir, sm.siteId]]) {
                 [errs addObject:[NSString stringWithFormat:@"app图标未配置, %@", sm.siteId]];
             }
             [__sites addObject:sm];
@@ -183,7 +183,7 @@ static NSMutableArray <SiteModel *> *__sites = nil;
             [SiteModel site    :@"c091"     :@"越狱包"     :@"凤凰彩票"     :@"io.dcloud.UNI0393664"     :@"https://83f9.com"],
             [SiteModel site    :@"c092"     :@"越狱包"     :@"2013彩票"     :@"io.dcloud.UNI5F385F1"     :@"https://4681kkk.com"],
             [SiteModel site    :@"c106"     :@"越狱包"     :@"58彩票"     :@""     :@""],
-            [SiteModel site    :@"c108"     :@"越狱包"     :@"葡京娱乐场"     :@""     :@"https://361865.com"],
+            [SiteModel site    :@"c108"     :@"越狱包"     :@"葡京娱乐场"     :@"io.dcloud.UNIFC108"     :@"https://361865.com"],
             [SiteModel site    :@"c112"     :@"越狱包"     :@"太阳城集团"     :@""     :@""],
             [SiteModel site    :@"c115"     :@"越狱包"     :@"中彩⽹"     :@""     :@""],
             [SiteModel site    :@"c116"     :@"越狱包"     :@"1353彩世界"     :@"io.dcloud.UNI1FE3C4D"     :@"https://13532007.com/https://88677.cc"],

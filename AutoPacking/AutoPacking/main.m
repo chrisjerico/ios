@@ -18,7 +18,7 @@ int main(int argc, const char * argv[]) {
         NSString *ids = @(argv[1]);
 #endif
         
-        [SiteModel checkSiteInfo:ids :AutoPackingDir];
+        [SiteModel checkSiteInfo:ids :ProjectDir];
         
         [ShellHelper pullCode:^{
             [ShellHelper packing:[SiteModel sites:ids] completion:^{

@@ -9,10 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "SiteModel.h"
 
-#define ProjectDir @"/Users/fish/Documents/Code/GitRepository/dev"
-#define AutoPackingDir @"/Users/fish/Documents/Code/GitRepository/dev/AutoPacking"
-#define ShellDir @"/Users/fish/Documents/Code/GitRepository/dev/AutoPacking/sh"
-#define BuildDir @"/Users/fish/Documents/Code/GitRepository/dev/build"
+#define ProjectDir ([NSUserName() isEqualToString:@"fish"] ? @"/Users/fish/archive" : @"/Users/ug/fhcpIOSapp")
 
 
 NS_ASSUME_NONNULL_BEGIN

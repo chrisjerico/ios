@@ -7,10 +7,15 @@
 //
 
 #import "ShellHelper.h"
+#import "AFNetworking.h"
+
+#define ShellDir [NSString stringWithFormat:@"%@/AutoPacking/sh", ProjectDir]
+
 
 @implementation ShellHelper
 
 + (void)pullCode:(void (^)(void))completion {
+    
     NSTask *task = [[NSTask alloc] init];
     task.launchPath = [NSString stringWithFormat:@"%@/1pull.sh", ShellDir];
 #ifdef DEBUG
@@ -105,6 +110,42 @@
 }
 
 + (void)upload:(void (^)(void))completion {
+    if (completion) {
+        completion();
+    }
+    return;
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+
+    NSURL *URL = [NSURL URLWithString:@"http://httpbin.org/get"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+
+    NSLog(@"333");
+    static NSURLSessionDataTask *dataTask = nil;
+    dataTask = [manager downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull downloadProgress) {
+        NSLog(@"downloadProgress = %@", downloadProgress);
+    } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
+        NSLog(@"targetPath = %@", targetPath);
+        NSLog(@"response = %@", response);
+        
+        return [NSURL URLWithString:@"/Library/WebServer/Documents/ipa.html"];;
+    } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
+        NSLog(@"下载完成");
+    }];
+    [dataTask resume];
+    
+    
+    // 登录
+    
+    // 创建APP
+    
+    // 上传ipa
+    
+    // 上传plist文件
+    
+    // 修改app信息
+    
+    
     if (completion) {
         completion();
     }
