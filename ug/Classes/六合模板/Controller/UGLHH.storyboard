@@ -836,7 +836,6 @@
                                                                                     <rect key="frame" x="0.0" y="0.0" width="82" height="60"/>
                                                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES"/>
                                                                                     <connections>
-                                                                                        <action selector="focusOnAction:" destination="HBZ-Lr-PGc" eventType="touchUpInside" id="dMP-Ga-3qX"/>
                                                                                         <segue destination="ITY-uR-MhI" kind="push" id="yQg-oy-AEp"/>
                                                                                     </connections>
                                                                                 </button>
@@ -887,7 +886,6 @@
                                                                                     <rect key="frame" x="93" y="0.0" width="82" height="60"/>
                                                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES"/>
                                                                                     <connections>
-                                                                                        <action selector="dynamicAction:" destination="HBZ-Lr-PGc" eventType="touchUpInside" id="jAV-le-aAQ"/>
                                                                                         <segue destination="jxv-or-dD2" kind="push" id="ARo-6x-2FF"/>
                                                                                     </connections>
                                                                                 </button>
@@ -946,7 +944,6 @@
                                                                             <rect key="frame" x="28" y="0.0" width="82" height="60"/>
                                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES"/>
                                                                             <connections>
-                                                                                <action selector="fansAction:" destination="HBZ-Lr-PGc" eventType="touchUpInside" id="u5L-Vb-wGN"/>
                                                                                 <segue destination="J8h-cz-dLu" kind="push" id="EhB-Vs-Xm5"/>
                                                                             </connections>
                                                                         </button>

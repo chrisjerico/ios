@@ -18,7 +18,13 @@
 @property (weak, nonatomic) IBOutlet UIView *scratchView;
 @property (weak, nonatomic) IBOutlet UIButton *showButton;
 
+@property (weak, nonatomic) IBOutlet UIImageView *iconImgV;
+@property (weak, nonatomic) IBOutlet UILabel *upTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *drowTitleLabel;
 
+@property (weak, nonatomic) IBOutlet UIImageView *icon2ImgV;
+@property (weak, nonatomic) IBOutlet UILabel *upTitle2Label;
+@property (weak, nonatomic) IBOutlet UILabel *drowTitle2Label;
 @end
 
 @implementation UGScratchMusicView
@@ -27,9 +33,15 @@
     return _LoadView_from_nib_(@"UGScratchMusicView");
 }
 
--(instancetype)initView{
+-(instancetype)initViewWithImgStr:(NSString *)imgStr upTitle:(NSString *)upTitle downTitle:(NSString *)downTitle{
     if (self = [super init]) {
         self = [self UGScratchMusicView];
+        [self.iconImgV setImage:[UIImage imageNamed:imgStr]];
+        self.upTitleLabel.text = upTitle;
+        self.drowTitleLabel.text = downTitle;
+        [self.icon2ImgV setImage:[UIImage imageNamed:imgStr]];
+        self.upTitle2Label.text = upTitle;
+        self.drowTitle2Label.text = downTitle;
         [self scratchViewInit];
     }
     return self;

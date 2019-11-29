@@ -37,10 +37,11 @@
 // 关注用户列表
 - (void)getFollowList {
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
+    NSLog(@"[UGUserModel currentUser].sessid= %@",[UGUserModel currentUser].sessid);
     [CMNetwork followListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [SVProgressHUD showWithStatus:nil];
         [CMResult processWithResult:model success:^{
-            [SVProgressHUD showWithStatus:nil];
+            [SVProgressHUD dismiss];
             NSLog(@"model= %@",model.data);
             //            NSArray *modelArr = (NSArray *)model.data;         //数组转模型数组
             
@@ -68,7 +69,7 @@
     [CMNetwork favContentListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [SVProgressHUD showWithStatus:nil];
         [CMResult processWithResult:model success:^{
-            [SVProgressHUD showWithStatus:nil];
+           [SVProgressHUD dismiss];
             NSLog(@"model= %@",model.data);
             //            NSArray *modelArr = (NSArray *)model.data;         //数组转模型数组
             

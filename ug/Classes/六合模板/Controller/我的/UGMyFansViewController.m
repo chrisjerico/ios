@@ -66,7 +66,7 @@
 //    [CMNetwork followListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
 //        [SVProgressHUD showWithStatus:nil];
 //        [CMResult processWithResult:model success:^{
-//            [SVProgressHUD showWithStatus:nil];
+            [SVProgressHUD dismiss];
 //            NSLog(@"model= %@",model.data);
 //            //            NSArray *modelArr = (NSArray *)model.data;         //数组转模型数组
 //

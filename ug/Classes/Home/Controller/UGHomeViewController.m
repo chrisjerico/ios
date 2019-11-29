@@ -547,15 +547,12 @@
             subLabel(@"加").hidden = NO;
             subLabel(@"球下字").hidden = YES;
             subButton(@"刮刮乐").hidden = NO;
-             [subButton(@"刮刮乐") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+            [subButton(@"刮刮乐") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
                 NSLog(@"---");
-                 NSString *imgStr = [self->_lhModel.numColorArrary objectAtIndex:indexPath.row-1];
-                 NSString *titileStr = [self->_lhModel.numbersArrary objectAtIndex:indexPath.row-1];
-                 NSString *titile2Str = [self->_lhModel.numSxArrary objectAtIndex:indexPath.row-1];
-                 UGScratchMusicView *inviteView = [[UGScratchMusicView alloc] initView];
-                 [inviteView.iconImgV setImage:[UIImage imageNamed:imgStr]];
-                 inviteView.titleLabel.text = titileStr;
-                 inviteView.title2Label.text = titile2Str;
+                NSString *imgStr = [NSString stringWithFormat:@"icon_%@",[self->_lhModel.numColorArrary objectAtIndex:indexPath.row-1]];
+                NSString *titileStr = [self->_lhModel.numbersArrary objectAtIndex:indexPath.row-1];
+                NSString *titile2Str = [self->_lhModel.numSxArrary objectAtIndex:indexPath.row-1];
+                UGScratchMusicView *inviteView = [[UGScratchMusicView alloc] initViewWithImgStr:imgStr upTitle:titileStr downTitle:titile2Str];
                 [SGBrowserView showMoveView:inviteView];
             }];
         }
