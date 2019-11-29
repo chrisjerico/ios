@@ -628,6 +628,7 @@
             }
             else if([model.alias isEqualToString:@"yellowCale"]) {
                 NSLog(@"老黃历");
+                [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLHOldYearViewController") animated:true];
             }
             else if([model.alias isEqualToString:@"qmjc"]) {
                 NSLog(@"全民竞猜");
