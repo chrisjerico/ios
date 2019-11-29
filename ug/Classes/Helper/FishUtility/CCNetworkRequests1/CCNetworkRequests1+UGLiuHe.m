@@ -124,12 +124,39 @@
 
 // 关注帖子列表
 - (CCSessionModel *)lhdoc_favContentList:(NSString *_Nullable)uid page:(NSInteger)page {
-    return [self req:@"wjapp/api.php?c=lhcdoc&a=favContentList"
+    return [self req:@"wjapp/api.php?c=lhcdoc&a=fansList"
                     :@{@"uid":uid,// 选填，为空时，查询当前登录用户的；否则查询指定用户的
                        @"page":@(page),    // 分页页码，非必填
                        @"rows":@(1),   // 分页条数，非必填
                     }
                     :false];
 }
+
+// 粉丝列表
+- (CCSessionModel *)lhdoc_fansList:(NSString *_Nullable)uid alias:(NSString *_Nullable)alias{
+    return [self req:@"wjapp/api.php?c=lhcdoc&a=contentFansList"
+                    :@{@"uid":uid,// 选填，为空时，查询当前登录用户的；否则查询指定用户的
+                       @"alias":alias,    // 栏目别名，值为空时查询所有栏目的
+                    }
+                    :false];
+}
+
+// 购买帖子
+- (CCSessionModel *)lhcdoc_buyContent:(NSString *)cid  {
+    return [self req:@"wjapp/api.php?c=lhcdoc&a=buyContent"
+    :@{@"cid":cid,    // 帖子ID，必填
+    }
+    :true];
+}
+
+// 打赏帖子
+- (CCSessionModel *)lhcdoc_tipContent:(NSString *)cid amount:(double)amount  {
+    return [self req:@"wjapp/api.php?c=lhcdoc&a=buyContent"
+    :@{@"cid":cid,    // 帖子ID，必填
+       @"amount":_FloatString4(amount),   // 必填，打赏金额
+    }
+    :true];
+}
+
 
 @end

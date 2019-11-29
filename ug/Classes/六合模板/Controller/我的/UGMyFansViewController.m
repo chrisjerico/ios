@@ -5,7 +5,7 @@
 //  Created by ug on 2019/10/29.
 //  Copyright © 2019 ug. All rights reserved.
 //  六合我的粉丝
-
+#import "UGLHPostModel.h"
 #import "UGMyFansViewController.h"
 
 @interface UGMyFansViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -26,8 +26,7 @@
     self.title = @"我的粉丝";
     _fansListArray = [NSMutableArray new];
     _tiezfansListArray = [NSMutableArray new];
-    [self.mySegment setSelectedSegmentIndex:0];
-    [self getFansList];
+    [_tableView setRowHeight:70.0];
 }
 
 //------------六合------------------------------------------------------

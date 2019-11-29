@@ -54,6 +54,15 @@ NS_ASSUME_NONNULL_BEGIN
 // 关注帖子列表
 - (CCSessionModel *)lhdoc_favContentList:(NSString *_Nullable)uid page:(NSInteger)page;
 
+// 粉丝列表
+- (CCSessionModel *)lhdoc_fansList:(NSString *_Nullable)uid alias:(NSString *_Nullable)alias;
+
+// 购买帖子
+- (CCSessionModel *)lhcdoc_buyContent:(NSString *)cid ;
+
+// 打赏帖子
+- (CCSessionModel *)lhcdoc_tipContent:(NSString *)cid amount:(double)amount;
+
 @end
 
 NS_ASSUME_NONNULL_END

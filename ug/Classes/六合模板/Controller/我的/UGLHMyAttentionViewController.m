@@ -56,7 +56,7 @@
             if (__self.mySegment.selectedSegmentIndex) {
                 for (NSDictionary *dict in array)
                     [self->_tiezListArray addObject:[UGLHPostModel mj_objectWithKeyValues:dict]];
-            } 
+            }
             return array;
         }];
         [_tableView.mj_header beginRefreshing];
