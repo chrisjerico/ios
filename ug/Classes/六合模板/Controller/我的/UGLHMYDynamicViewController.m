@@ -35,40 +35,6 @@
             for (NSDictionary *dict in array)
                 [tv.dataArray addObject:[UGLHPostModel mj_objectWithKeyValues:dict]];
             return array;
-
-//    [self getPostList];
-//}
-//
-////------------六合------------------------------------------------------
-// 我的历史帖子
-//- (void)getPostList {
-//    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
-//                             @"cateId":@"1",
-//
-//    };
-//    [CMNetwork historyContentWithParams:params completion:^(CMResult<id> *model, NSError *err) {
-//        [SVProgressHUD showWithStatus:nil];
-//        [CMResult processWithResult:model success:^{
-//           [SVProgressHUD dismiss];
-//            NSLog(@"model= %@",model.data);
-//            //            NSArray *modelArr = (NSArray *)model.data;         //数组转模型数组
-//
-//
-//            //            if (modelArr.count) {
-//            //                for (int i = 0 ;i<modelArr.count;i++) {
-//            //                    UGLHCategoryListModel *obj = [modelArr objectAtIndex:i];
-//            //
-//            //                    [self->_lHCategoryList addObject:obj];
-//            //                    NSLog(@"obj= %@",obj);
-//            //                }
-//            //            }
-//            //数组转模型数组
-//
-//            [self->_myTable reloadData];
-//
-//        } failure:^(id msg) {
-//            [SVProgressHUD showErrorWithStatus:msg];
-
         }];
         [_tableView setupFooterRefreshRequest:^CCSessionModel *(UITableView *tv) {
             return [NetworkManager1 lhdoc_historyContent:@"1" page:tv.pageIndex];
