@@ -58,13 +58,15 @@
         [_tableView setupFooterRefreshRequest:^CCSessionModel *(UITableView *tv) {
             return __self.mySegment.selectedSegmentIndex ? [NetworkManager1 lhdoc_favContentList:nil page:tv.pageIndex] : nil;
         } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
-            NSArray *array = sm.responseObject[@"data"][@"list"];
+            NSArray *array ;
             NSLog(@"array = %@",array);
             if (__self.mySegment.selectedSegmentIndex) {
+                array = sm.responseObject[@"data"];
                 for (NSDictionary *dict in array)
                     [self->_tiezListArray addObject:[UGLHPostModel mj_objectWithKeyValues:dict]];
             }
             else{
+                array = sm.responseObject[@"data"][@"list"];
                 for (NSDictionary *dict in array)
                          [self->_zhuangjialistArray addObject:[UGLHFocusUserModel mj_objectWithKeyValues:dict]];
             }
