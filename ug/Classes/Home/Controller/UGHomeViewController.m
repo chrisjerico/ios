@@ -39,7 +39,8 @@
 #import "UGPromotionsController.h"
 #import "UGAgentViewController.h"   // 申请代理
 #import "UGMissionCenterViewController.h"   // 任务中心
-
+#import "UGLotteryHomeController.h"  // 彩票大厅
+#import "UGYYLotterySecondHomeViewController.h" //展示购彩，真人大厅
 //测试--黑色模板
 #import "UGfinancialViewViewController.h"
 
@@ -79,6 +80,8 @@
 #import "UGPlatformGameModel.h"
 #import "UGLHCategoryListModel.h"
 #import "UGLHlotteryNumberModel.h"
+#import "UGYYPlatformGames.h"
+
 // Tools
 #import "UIImageView+WebCache.h"
 #import "CMCommon.h"
@@ -89,6 +92,7 @@
 #import "CMLabelCommon.h"
 #import "CMTimeCommon.h"
 #import "CountDown.h"
+#import "Global.h"
 
 @interface UGHomeViewController ()<SDCycleScrollViewDelegate,UUMarqueeViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,WSLWaterFlowLayoutDelegate>
 
@@ -402,6 +406,7 @@
         if ([Skin1.skitType isEqualToString:@"六合资料"]) {
             [__self getCategoryList];     //栏目列表
             [__self getLotteryNumberList];//当前开奖信息
+            [__self getPlatformGamesWithParams];//购彩大厅信息
         }
       
         
@@ -597,83 +602,81 @@
     if ([collectionView.tagString isEqualToString:@"六合内容"]) {
           UGLHCategoryListModel *model = [self.lHCategoryList objectAtIndex:indexPath.row];
         if ([CMCommon stringIsNull:model.link]) {
+
             
-            switch ([model.cid intValue]) {
-                case 1:
-                    NSLog(@"高手论坛");
-                    break;
-                case 2:
-                    NSLog(@"极品专贴");
-                    break;
-                case 3:
-                    NSLog(@"每期资料");
-                    break;
-                case 4:
-                    NSLog(@"公式规律");
-                    break;
-                case 5:
-                    NSLog(@"六合图库");
-                    break;
-                case 6:
-                    NSLog(@"幽默猜测");
-                    break;
-                case 7:
-                    NSLog(@"跑狗玄机");
-                    break;
-                case 8:
-                    NSLog(@"四不像");
-                    break;
-                case 9:
-                {
-                    NSLog(@"老黃历");
-                    [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLHOldYearViewController") animated:true];
-                }
-                    
-                    break;
-                case 16:
-                    NSLog(@"全民竞猜");
-                    break;
-                case 17:
-                {
-                    NSLog(@"任务中心");
-                    // 任务中心
-                    [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController") animated:false];
-                }
-                 
-                    break;
-                case 18:
-                {
-                    NSLog(@"长龙助手");
-                    [NavController1 pushViewController:[UGChangLongController new] animated:YES];
-                }
-                    break;
-                case 19:
-                    NSLog(@"在线客服");
-                {
-                    SLWebViewController *webViewVC = [[SLWebViewController alloc] init];
-                    webViewVC.urlStr = SysConf.zxkfUrl;
-                    [self.navigationController pushViewController:webViewVC animated:YES];
-                }
-                    break;
-                case 28:
-                    NSLog(@"全民竞猜");
-                    break;
-                case 29:
-                    NSLog(@"任务中心");
-                    break;
-                case 30:
-                    NSLog(@"长龙助手_为您分享大数据");
-                    break;
-                case 31:
-                    NSLog(@"在线客服");
-                    break;
-                case 32:
-                    NSLog(@"APP下载");
-                    break;
-           
-                    
-                default:
-                    break;
+            if ([model.alias isEqualToString:@"forum"]) {//高手论坛
+                NSLog(@"高手论坛");
+            }
+            else if([model.alias isEqualToString:@"gourmet"]) {
+                NSLog(@"极品专贴");
+            }
+            else if([model.alias isEqualToString:@"mystery"]) {
+                NSLog(@"每期资料");
+            }
+            else if([model.alias isEqualToString:@"rule"]) {
+                NSLog(@"公式规律");
+            }
+            else if([model.alias isEqualToString:@"humorGuess"]) {
+                NSLog(@"幽默猜测");
+            }
+            else if([model.alias isEqualToString:@"rundog"]) {
+                NSLog(@"跑狗玄机");
+            }
+            else if([model.alias isEqualToString:@"yellowCale"]) {
+                NSLog(@"老黃历");
+            }
+            else if([model.alias isEqualToString:@"qmjc"]) {
+                NSLog(@"全民竞猜");
+            }
+            else if([model.alias isEqualToString:@"rwzx"]) {
+                NSLog(@"任务中心");
+                [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController") animated:false];
+            }
+            else if([model.alias isEqualToString:@"clzs"]) {
+                NSLog(@"长龙助手");
+                [NavController1 pushViewController:[UGChangLongController new] animated:YES];
+            }
+            else if([model.alias isEqualToString:@"zxkf"]) {
+                NSLog(@"在线客服");
+                SLWebViewController *webViewVC = [[SLWebViewController alloc] init];
+                webViewVC.urlStr = SysConf.zxkfUrl;
+                [self.navigationController pushViewController:webViewVC animated:YES];
+            }
+            else if([model.alias isEqualToString:@"appdl"]) {
+                NSLog(@"APP下载");
+            }
+            else if([model.alias isEqualToString:@"cxzs"]) {
+                NSLog(@"查询助手");
+            }
+            else if([model.alias isEqualToString:@"lxb"]) {
+                NSLog(@"利息宝");
+                [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGYubaoViewController")  animated:YES];
+            }
+            else if([model.alias isEqualToString:@"qpdz"]) {
+                NSLog(@"棋牌电子");
+                UGYYLotterySecondHomeViewController *vc = [[UGYYLotterySecondHomeViewController alloc] init];
+                vc.title = @"棋牌电子";
+                vc.dataArray = ({
+                    NSMutableArray<UGYYGames *> *array = @[].mutableCopy;
+                    [array addObjectsFromArray:[[Global getInstanse].lotterydataArray objectWithValue:@"game" keyPath:@"category"].games];
+                    [array addObjectsFromArray:[[Global getInstanse].lotterydataArray objectWithValue:@"card" keyPath:@"category"].games];
+                    array.copy;
+                });
+                [NavController1 pushViewController:vc animated:YES];
+            }
+            else if([model.alias isEqualToString:@"cpdt"]) {
+                NSLog(@"彩票大厅");
+                UGLotteryHomeController*vc = [[UGLotteryHomeController alloc] init];
+                [NavController1 pushViewController:vc animated:YES];
+            }
+            else if([model.alias isEqualToString:@"zrsx"]) {
+                NSLog(@"真人视讯");
+                UGYYLotterySecondHomeViewController *vc = [[UGYYLotterySecondHomeViewController alloc] init];
+                vc.title = @"真人视讯";
+                vc.dataArray = ({
+                    [[Global getInstanse].lotterydataArray objectWithValue:@"real" keyPath:@"category"].games;
+                });
+                [NavController1 pushViewController:vc animated:YES];
             }
             
         } else {
@@ -1026,6 +1029,17 @@
         }];
     }];
 }
+
+- (void)getPlatformGamesWithParams {
+    [CMNetwork getPlatformGamesWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+           [Global getInstanse].lotterydataArray  = model.data;
+            NSLog(@"[Global getInstanse].lotterydataArray = %@",[Global getInstanse].lotterydataArray);
+        } failure:^(id msg) {
+        }];
+    }];
+}
+
 
 ///此方法用两个时间戳做参数进行倒计时
 -(void)startLongLongStartStamp:(long long)strtLL longlongFinishStamp:(long long)finishLL{

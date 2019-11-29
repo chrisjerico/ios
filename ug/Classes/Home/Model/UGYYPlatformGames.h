@@ -40,6 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , copy) NSArray<UGYYGames *>  * games;         /**<   游戏列表 */
 @property (nonatomic , copy) NSString              * category;      /**<   分类标识 */
 @property (nonatomic , copy) NSString              * categoryName;  /**<   分类名称 */
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -11,6 +11,7 @@
 #import "UGYYPlatformGames.h"
 #import "UGYYLotterySecondHomeViewController.h"
 #import "UGLotteryHomeController.h"
+#import "Global.h"
 
 @interface UGYYLotteryHomeViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -118,6 +119,9 @@
         vc.title = [NSString stringWithFormat:@"%@系列",listModel.categoryName];
         vc.dataArray = [UGYYGames arrayOfModelsFromDictionaries:listModel.games error:nil];
         [self.navigationController pushViewController:vc animated:YES];
+        
+        NSLog(@"listModel.categoryName= %@",listModel.categoryName);
+        NSLog(@"listModel.games= %@",listModel.games);
     }
     else if ([@"sport" isEqualToString:listModel.category]) {//体育
         UGYYLotterySecondHomeViewController *vc = [[UGYYLotterySecondHomeViewController alloc] init];
@@ -130,6 +134,8 @@
         UGYYLotterySecondHomeViewController *vc = [[UGYYLotterySecondHomeViewController alloc] init];
         vc.title = [NSString stringWithFormat:@"%@系列",listModel.categoryName];
         vc.dataArray = [UGYYGames arrayOfModelsFromDictionaries:listModel.games error:nil];
+        NSLog(@"listModel.categoryName= %@",listModel.categoryName);
+        NSLog(@"listModel.games= %@",listModel.games);
         [self.navigationController pushViewController:vc animated:YES];
     }
     
@@ -143,7 +149,8 @@
     [CMNetwork getPlatformGamesWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [self.collectionView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
-            self.dataArray = model.data;
+            
+           [Global getInstanse].lotterydataArray = self.dataArray = model.data;
             [self.collectionView reloadData];
         } failure:^(id msg) {
         }];

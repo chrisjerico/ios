@@ -452,7 +452,10 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
         NSDictionary* json = [NSJSONSerialization JSONObjectWithData:responseObject
                                                              options:0
                                                                error:nil];
-       NSLog(@"%@: json = %@",method,json);
+#ifdef DEBUG
+        NSLog(@"%@: json = %@",method,json);
+#endif
+
         NSError *error;
         CMResult* result;
         if (json) {

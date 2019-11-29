@@ -566,6 +566,7 @@
 		D4BBFC01232A797600147C4A /* TGWebProgressLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BBFBFE232A797600147C4A /* TGWebProgressLayer.m */; };
 		D4BBFC04232A801700147C4A /* UGFundsTransferView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BBFC03232A801700147C4A /* UGFundsTransferView.m */; };
 		D4BBFC06232A80A800147C4A /* UGFundsTransferView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4BBFC05232A80A800147C4A /* UGFundsTransferView.xib */; };
+		D4C0A12723913A6C00B39358 /* Global.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C0A12623913A6C00B39358 /* Global.m */; };
 		D4C165692344B1AB005A0F12 /* UGMineSkinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C165672344B1AB005A0F12 /* UGMineSkinViewController.m */; };
 		D4C1656A2344B1AB005A0F12 /* UGMineSkinViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4C165682344B1AB005A0F12 /* UGMineSkinViewController.xib */; };
 		D4C1656E2344C3C0005A0F12 /* UGMineSkinCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C1656C2344C3C0005A0F12 /* UGMineSkinCollectionViewCell.m */; };
@@ -1705,6 +1706,8 @@
 		D4BBFC02232A801700147C4A /* UGFundsTransferView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGFundsTransferView.h; sourceTree = "<group>"; };
 		D4BBFC03232A801700147C4A /* UGFundsTransferView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGFundsTransferView.m; sourceTree = "<group>"; };
 		D4BBFC05232A80A800147C4A /* UGFundsTransferView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGFundsTransferView.xib; sourceTree = "<group>"; };
+		D4C0A12523913A6C00B39358 /* Global.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Global.h; sourceTree = "<group>"; };
+		D4C0A12623913A6C00B39358 /* Global.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Global.m; sourceTree = "<group>"; };
 		D4C165662344B1AB005A0F12 /* UGMineSkinViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGMineSkinViewController.h; sourceTree = "<group>"; };
 		D4C165672344B1AB005A0F12 /* UGMineSkinViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGMineSkinViewController.m; sourceTree = "<group>"; };
 		D4C165682344B1AB005A0F12 /* UGMineSkinViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGMineSkinViewController.xib; sourceTree = "<group>"; };
@@ -4559,6 +4562,8 @@
 				D405AFCE2278240A00F8C586 /* UGPCH.pch */,
 				D405B344227DB22100F8C586 /* UGNotificationEvent.h */,
 				D405B345227DB22100F8C586 /* UGNotificationEvent.m */,
+				D4C0A12523913A6C00B39358 /* Global.h */,
+				D4C0A12623913A6C00B39358 /* Global.m */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -5325,6 +5330,7 @@
 				CF3B0E372349CDA50035AF50 /* UGCalenderAlertView.m in Sources */,
 				D405B1FA227972C900F8C586 /* JSONHTTPClient.m in Sources */,
 				D45A94C2233B9F070089E86C /* UGGoogleAuthenticationThirdViewController.m in Sources */,
+				D4C0A12723913A6C00B39358 /* Global.m in Sources */,
 				D4111427230A8FFE00A4EE67 /* UGAPPVersionModel.m in Sources */,
 				D41E0EE0228D88BC00D6C42A /* UGMissionLevelTableViewCell.m in Sources */,
 				D405B2EE227C166900F8C586 /* HMSegmentedControl.m in Sources */,
