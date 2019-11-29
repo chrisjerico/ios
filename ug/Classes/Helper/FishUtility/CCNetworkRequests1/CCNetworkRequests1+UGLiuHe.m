@@ -133,7 +133,15 @@
 }
 
 // 粉丝列表
-- (CCSessionModel *)lhdoc_fansList:(NSString *_Nullable)uid alias:(NSString *_Nullable)alias{
+- (CCSessionModel *)lhdoc_fansList:(NSString *_Nullable)uid{
+    return [self req:@"wjapp/api.php?c=lhcdoc&a=fansList"
+                    :@{@"uid":uid,// 选填，为空时，查询当前登录用户的；否则查询指定用户的
+                    }
+                    :false];
+}
+
+// 帖子粉丝列表
+- (CCSessionModel *)lhdoc_contentFansList:(NSString *_Nullable)uid alias:(NSString *_Nullable)alias{
     return [self req:@"wjapp/api.php?c=lhcdoc&a=contentFansList"
                     :@{@"uid":uid,// 选填，为空时，查询当前登录用户的；否则查询指定用户的
                        @"alias":alias,    // 栏目别名，值为空时查询所有栏目的

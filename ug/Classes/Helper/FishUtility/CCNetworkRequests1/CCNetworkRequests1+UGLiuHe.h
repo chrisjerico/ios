@@ -55,7 +55,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (CCSessionModel *)lhdoc_favContentList:(NSString *_Nullable)uid page:(NSInteger)page;
 
 // 粉丝列表
-- (CCSessionModel *)lhdoc_fansList:(NSString *_Nullable)uid alias:(NSString *_Nullable)alias;
+- (CCSessionModel *)lhdoc_fansList:(NSString *_Nullable)uid;
+
+// 帖子粉丝列表
+- (CCSessionModel *)lhdoc_contentFansList:(NSString *_Nullable)uid alias:(NSString *_Nullable)alias;
 
 // 购买帖子
 - (CCSessionModel *)lhcdoc_buyContent:(NSString *)cid ;
