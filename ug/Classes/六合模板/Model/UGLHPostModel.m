@@ -14,9 +14,4 @@
     return @{@"id":@"cid"};
 }
 
-- (void)setContentPic:(NSString *)contentPic {
-    _contentPic = contentPic;
-    _photos = [contentPic componentsSeparatedByString:@","];
-}
-
 @end

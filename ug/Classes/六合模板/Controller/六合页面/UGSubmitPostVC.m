@@ -18,7 +18,7 @@
 
 
 #define TextViewMinHeight 120
-#define FontSize 20
+#define FontSize 17
 #define PhotoItemHeight _CalWidth(100)
 #define MaxPhotoCnt 9
 
@@ -60,6 +60,10 @@
     } error:nil];
     
     _collectionView.superview.hidden = !_photos.count;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     [_textField becomeFirstResponder];
 }
 
@@ -92,7 +96,7 @@
         NSInteger columnCount = 3;
         NSInteger lineCount = count/columnCount + !!(count%columnCount);
         __self.collectionView.cc_constraints.height.constant = (PhotoItemHeight + 5) * lineCount;
-        __self.collectionView.cc_constraints.width.constant = (PhotoItemHeight + 5) * columnCount - 5;
+        __self.collectionView.cc_constraints.width.constant = (PhotoItemHeight + 5) * columnCount;
         [__self.collectionView reloadData];
     }
     
@@ -191,60 +195,6 @@
 }
 
 
-#pragma mark - Thumbnail Generation
-
-- (void)generateThumbnailsWithVideoPath:(NSString *)videoPath num:(NSInteger)num completion:(void (^)(NSArray <UIImage *>*frames))completion {
-    if (num < 2)
-        num = 2;
-    
-    AVAsset *asset = [AVAsset assetWithURL:[NSURL fileURLWithPath:videoPath]];
-    AVAssetImageGenerator *imageGenerator = [AVAssetImageGenerator assetImageGeneratorWithAsset:asset];
-    
-    NSUInteger degress = asset.getDegress;
-    if (degress == 270 || degress == 180) {
-        imageGenerator.appliesPreferredTrackTransform = YES;
-    }
-    
-    // Generate the @2x equivalent
-    //self.imageGenerator.maximumSize = CGSizeMake(200.0f, 0.0f);             // 2
-    
-    CMTime duration = asset.duration;
-    NSMutableArray *times = [NSMutableArray array];
-    CMTimeValue increment = duration.value / (num - 1);
-    CMTimeValue currentValue = 0;
-    while (currentValue <= duration.value) {
-        CMTime time = CMTimeMake(currentValue, duration.timescale);
-        [times addObject:[NSValue valueWithCMTime:time]];
-        currentValue += increment;
-    }
-    
-    __block NSUInteger imageCount = times.count;
-    __block NSMutableArray *frames = [NSMutableArray array];
-    
-    [imageGenerator generateCGImagesAsynchronouslyForTimes:times completionHandler:^(CMTime requestedTime,
-                                                                                     CGImageRef imageRef,
-                                                                                     CMTime actualTime,
-                                                                                     AVAssetImageGeneratorResult result,
-                                                                                     NSError *error) {
-        
-        if (result == AVAssetImageGeneratorSucceeded) {
-//            CMTime time = actualTime;
-            [frames addObject:[UIImage imageWithCGImage:imageRef]];
-        } else {
-            NSLog(@"Error: %@", [error localizedDescription]);
-        }
-        
-        // If the decremented image count is at 0, we're all done.
-        if (--imageCount == 0) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (completion)
-                completion(frames);
-            });
-        }
-    }];
-}
-
-
 #pragma mark - IBAction
 
 // 添加图片
@@ -272,10 +222,6 @@
         [HUDHelper showMsg:@"内容不能为空！"];
         return;
     }
-    if (_textView.text.length > 150) {
-        [HUDHelper showMsg:@"你输入的内容过长，不能超过150字符" duration:2];
-        return ;
-    }
     
     LoadingView *lv = [HUDHelper showLoadingViewWithSuperview:self.view];
     lv.userInteractionEnabled = true;
@@ -284,7 +230,8 @@
     lv.duration = 3600;
 
     __weakSelf_(__self);
-    [NetworkManager1 lhcdoc_postContent:_clm.alias title:_textField.text content:_textView.text images:nil price:0].completionBlock = ^(CCSessionModel *sm) {
+    FastSubViewCode(self.view);
+    [NetworkManager1 lhcdoc_postContent:_clm.alias title:_textField.text content:_textView.text images:nil price:subTextField(@"收费TextField").text.doubleValue].completionBlock = ^(CCSessionModel *sm) {
         [HUDHelper hideLoadingView];
         if (!sm.error) {
             NSLog(@"发布动态成功");
@@ -342,7 +289,7 @@
     CGFloat h = [textView.attributedText boundingRectWithSize:CGSizeMake(textView.contentSize.width - 10, MAXFLOAT)
                                                       options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
                                                       context:nil].size.height;
-    h += 20;
+    h += 40;
     textView.cc_constraints.height.constant = MAX(h, TextViewMinHeight);
 }
 
@@ -365,6 +312,7 @@
         }
     } else {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"图片Cell" forIndexPath:indexPath];
+        FastSubViewCode(cell);
         UIImageView *imgView = [cell viewWithTagString:@"ImageView"];
         imgView.image = _photos[indexPath.row];
         
@@ -378,7 +326,7 @@
         }];
         
         UIButton *btn2 = [cell viewWithTagString:@"点击事件Button"];
-        [btn1 removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+        [btn2 removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
         [btn2 addBlockForControlEvents:UIControlEventTouchUpInside block:^(id sender) {
             NSInteger index = [__self.collectionView indexPathForCell:__cell].row;
             
@@ -393,7 +341,7 @@
             vpView.frame = APP.Bounds;
             vpView.models = models;
             vpView.index = index;
-            [NavController1.topView addSubview:vpView];
+            [TabBarController1.view addSubview:vpView];
             
             // 设置入场动画、退场动画
             {

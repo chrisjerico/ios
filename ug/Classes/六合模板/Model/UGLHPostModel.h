@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *headImg;      /**<   头像 */
 @property (nonatomic, copy) NSString *title;        /**<   帖子标题 */
 @property (nonatomic, copy) NSString *content;      /**<   帖子详情 */
-@property (nonatomic, copy) NSString *contentPic;   /**<   帖子图片 */
+@property (nonatomic, copy) NSArray <NSString *>*contentPic;   /**<   帖子图片 */
 @property (nonatomic, copy) NSString *periods;    /**<   期数 */
 @property (nonatomic, copy) NSString *createTime;   /**<   创建时间 */
 @property (nonatomic, assign) BOOL enable;       /**<    是否可用 */
@@ -116,7 +116,6 @@ NS_ASSUME_NONNULL_BEGIN
 // 自定义参数
 @property (nonatomic, assign) CGFloat width;
 @property (nonatomic, assign) CGFloat height;
-@property (nonatomic, readonly) NSArray <NSString *> *photos;
 @property (nonatomic, assign) BOOL isShowAll;           /**<    是否显示全文 */
 @property (nonatomic, assign) BOOL showAllButtonHidden; /**<    是否显示‘全文按钮’ */
 @end

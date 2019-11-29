@@ -45,7 +45,6 @@
         [_collectionView layoutIfNeeded];
         
         self.index = _index;
-        [self scrollViewDidEndDecelerating:_collectionView];
         [APP.Window endEditing:true];
     }
 }
