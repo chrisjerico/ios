@@ -12,7 +12,7 @@
 #import "UGLHPostModel.h"
 
 @interface UGLHMyAttentionViewController ()<UITableViewDelegate,UITableViewDataSource>
-@property (weak, nonatomic) IBOutlet UITableView *myTable;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *mySegment;
 
 @property(strong,nonatomic)NSMutableArray *followListArray;/**<   关注用户列表数组" */
@@ -29,94 +29,36 @@
     self.title = @"我的关注";
     _followListArray = [NSMutableArray new];
     _favContentListArray = [NSMutableArray new];
-    [self.mySegment setSelectedSegmentIndex:0];
-    [self getFollowList];
-}
-
-//------------六合------------------------------------------------------
-// 关注用户列表
-- (void)getFollowList {
-    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
-    NSLog(@"[UGUserModel currentUser].sessid= %@",[UGUserModel currentUser].sessid);
-    [CMNetwork followListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
-        [SVProgressHUD showWithStatus:nil];
-        [CMResult processWithResult:model success:^{
-            [SVProgressHUD dismiss];
-            NSLog(@"model= %@",model.data);
-            //            NSArray *modelArr = (NSArray *)model.data;         //数组转模型数组
-            
-            
-            //            if (modelArr.count) {
-            //                for (int i = 0 ;i<modelArr.count;i++) {
-            //                    UGLHCategoryListModel *obj = [modelArr objectAtIndex:i];
-            //
-            //                    [self->_lHCategoryList addObject:obj];
-            //                    NSLog(@"obj= %@",obj);
-            //                }
-            //            }
-            //数组转模型数组
-            
-            [self->_myTable reloadData];
-            
-        } failure:^(id msg) {
-            [SVProgressHUD showErrorWithStatus:msg];
+    
+    {
+        __weakSelf_(__self);
+        [_tableView setupHeaderRefreshRequest:^CCSessionModel *(UITableView *tv) {
+            return __self.mySegment.selectedSegmentIndex ? [NetworkManager1 lhdoc_favContentList:nil page:1] : [NetworkManager1 lhdoc_followList:nil];
+        } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
+            NSArray *array = sm.responseObject[@"list"];
+            for (NSDictionary *dict in array)
+                [tv.dataArray addObject:[UGLHPostModel mj_objectWithKeyValues:dict]];
+            return array;
         }];
-    }];
-}
-// 关注帖子列表
-- (void)getfavContentList {
-    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
-    [CMNetwork favContentListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
-        [SVProgressHUD showWithStatus:nil];
-        [CMResult processWithResult:model success:^{
-           [SVProgressHUD dismiss];
-            NSLog(@"model= %@",model.data);
-            //            NSArray *modelArr = (NSArray *)model.data;         //数组转模型数组
-            
-            
-            //            if (modelArr.count) {
-            //                for (int i = 0 ;i<modelArr.count;i++) {
-            //                    UGLHCategoryListModel *obj = [modelArr objectAtIndex:i];
-            //
-            //                    [self->_lHCategoryList addObject:obj];
-            //                    NSLog(@"obj= %@",obj);
-            //                }
-            //            }
-            //数组转模型数组
-            
-            [self->_myTable reloadData];
-            
-        } failure:^(id msg) {
-            [SVProgressHUD showErrorWithStatus:msg];
+        [_tableView setupFooterRefreshRequest:^CCSessionModel *(UITableView *tv) {
+            return __self.mySegment.selectedSegmentIndex ? [NetworkManager1 lhdoc_favContentList:nil page:tv.pageIndex] : nil;
+        } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
+            NSArray *array = sm.responseObject[@"list"];
+            for (NSDictionary *dict in array)
+                [tv.dataArray addObject:[UGLHPostModel mj_objectWithKeyValues:dict]];
+            return array;
         }];
-    }];
-}
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-- (IBAction)SegmentValueChanged:(id)sender {
-    UISegmentedControl *segment = (UISegmentedControl *)sender;
-    if (segment.selectedSegmentIndex == 0) {
-        //专家
-        [self getFollowList];
-    } else {
-        //帖子
-        [self getfavContentList];
+        [_tableView.mj_header beginRefreshing];
     }
+}
+
+- (IBAction)SegmentValueChanged:(UISegmentedControl *)sender {
+    [_tableView.mj_header beginRefreshing];
+    _tableView.mj_footer.state = sender.selectedSegmentIndex ? MJRefreshStateIdle : MJRefreshStateNoMoreData;
 }
 
 
 #pragma mark tableview datasource
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (_mySegment.selectedSegmentIndex == 0) {
@@ -124,11 +66,9 @@
     } else {
         return _favContentListArray.count;
     }
-    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     if (_mySegment.selectedSegmentIndex == 0) {
         UGLHFocusUserModel *model = (UGLHFocusUserModel *) [_followListArray objectAtIndex:indexPath.row];
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell1" forIndexPath:indexPath];
@@ -149,24 +89,15 @@
         }];
         return cell;
     }
-    
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 0.001;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 0.001;
-}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (_mySegment.selectedSegmentIndex == 0) {
- 
-      } else {
-
-      }
-  
+        
+    } else {
+        
+    }
 }
 
 @end
