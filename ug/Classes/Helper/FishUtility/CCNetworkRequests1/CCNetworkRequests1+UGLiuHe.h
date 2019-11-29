@@ -49,13 +49,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (CCSessionModel *)lhdoc_historyContent:(NSString *)cateId page:(NSInteger)page;
 
 // 关注用户列表
-- (CCSessionModel *)lhdoc_followList:(NSString *_Nullable)uid;
+- (CCSessionModel *)lhdoc_followList:(NSString *_Nullable)uid page:(NSInteger)page;
 
 // 关注帖子列表
 - (CCSessionModel *)lhdoc_favContentList:(NSString *_Nullable)uid page:(NSInteger)page;
 
 // 粉丝列表
-- (CCSessionModel *)lhdoc_fansList:(NSString *_Nullable)uid;
+- (CCSessionModel *)lhdoc_fansList:(NSString *_Nullable)uid page:(NSInteger)page ;
 
 // 帖子粉丝列表
 - (CCSessionModel *)lhdoc_contentFansList:(NSString *_Nullable)uid alias:(NSString *_Nullable)alias;

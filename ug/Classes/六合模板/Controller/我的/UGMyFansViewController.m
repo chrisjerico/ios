@@ -31,14 +31,29 @@
     {
         __weakSelf_(__self);
         [_tableView setupHeaderRefreshRequest:^CCSessionModel *(UITableView *tv) {
-            return __self.mySegment.selectedSegmentIndex ? [NetworkManager1 lhdoc_contentFansList:nil alias:nil] : [NetworkManager1 lhdoc_fansList:nil];
+            return __self.mySegment.selectedSegmentIndex ? [NetworkManager1 lhdoc_contentFansList:nil alias:nil] : [NetworkManager1 lhdoc_fansList:nil page:1];
         } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
-            NSArray *array = sm.responseObject[@"data"];
+            NSArray *array;
             if (__self.mySegment.selectedSegmentIndex) {
+                array = sm.responseObject[@"data"][@"list"];
+//                NSLog(@"array = %@",array);
                 [self->_tiezfansListArray removeAllObjects];
                 for (NSDictionary *dict in array)
                     [self->_tiezfansListArray addObject:[UGLHPostModel mj_objectWithKeyValues:dict]];
             } else {
+                array = sm.responseObject[@"data"][@"list"];
+                [self->_fansListArray removeAllObjects];
+                for (NSDictionary *dict in array)
+                    [self->_fansListArray addObject:[UGLHPostModel mj_objectWithKeyValues:dict]];
+            }
+            return array;
+        }];
+        [_tableView setupFooterRefreshRequest:^CCSessionModel *(UITableView *tv) {
+            return __self.mySegment.selectedSegmentIndex ? nil: [NetworkManager1 lhdoc_fansList:nil page:tv.pageIndex];
+        } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
+            NSArray *array;
+            if (__self.mySegment.selectedSegmentIndex==0) {
+                array = sm.responseObject[@"data"][@"list"];
                 [self->_fansListArray removeAllObjects];
                 for (NSDictionary *dict in array)
                     [self->_fansListArray addObject:[UGLHPostModel mj_objectWithKeyValues:dict]];

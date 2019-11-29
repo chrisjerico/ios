@@ -35,27 +35,38 @@
     {
         __weakSelf_(__self);
         [_tableView setupHeaderRefreshRequest:^CCSessionModel *(UITableView *tv) {
-            return __self.mySegment.selectedSegmentIndex ? [NetworkManager1 lhdoc_favContentList:nil page:1] : [NetworkManager1 lhdoc_followList:nil];
+            return __self.mySegment.selectedSegmentIndex ? [NetworkManager1 lhdoc_favContentList:nil page:1] : [NetworkManager1 lhdoc_followList:nil page:1];
         } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
-            NSArray *array = sm.responseObject[@"data"];
-            if (__self.mySegment.selectedSegmentIndex) {
+
+            NSArray *array;
+            if (__self.mySegment.selectedSegmentIndex) {//帖
+                array = sm.responseObject[@"data"];
+                NSLog(@"array = %@",array);
                 [self->_tiezListArray removeAllObjects];
                 for (NSDictionary *dict in array)
                     [self->_tiezListArray addObject:[UGLHPostModel mj_objectWithKeyValues:dict]];
             } else {
+                array = sm.responseObject[@"data"][@"list"];
+                NSLog(@"array = %@",array);
                 [self->_zhuangjialistArray removeAllObjects];
                 for (NSDictionary *dict in array)
                     [self->_zhuangjialistArray addObject:[UGLHFocusUserModel mj_objectWithKeyValues:dict]];
             }
+         
             return array;
         }];
         [_tableView setupFooterRefreshRequest:^CCSessionModel *(UITableView *tv) {
             return __self.mySegment.selectedSegmentIndex ? [NetworkManager1 lhdoc_favContentList:nil page:tv.pageIndex] : nil;
         } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
-            NSArray *array = sm.responseObject[@"data"];
+            NSArray *array = sm.responseObject[@"data"][@"list"];
+            NSLog(@"array = %@",array);
             if (__self.mySegment.selectedSegmentIndex) {
                 for (NSDictionary *dict in array)
                     [self->_tiezListArray addObject:[UGLHPostModel mj_objectWithKeyValues:dict]];
+            }
+            else{
+                for (NSDictionary *dict in array)
+                         [self->_zhuangjialistArray addObject:[UGLHFocusUserModel mj_objectWithKeyValues:dict]];
             }
             return array;
         }];

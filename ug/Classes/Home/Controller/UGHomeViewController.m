@@ -523,14 +523,7 @@
         NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"hot_01" ofType:@"gif"];
         NSData *imageData = [NSData dataWithContentsOfFile:imagePath];
         UIImage *image = [UIImage sd_animatedGIFWithData:imageData];
-        
         [model.isHot isEqualToString:@"1"] ? [subImageView(@"动图ImgV") setImage:image] : [subImageView(@"动图ImgV") setImage:nil];
-//        if ([model.isHot isEqualToString:@"1"]) {
-//             subImageView(@"动图ImgV").image =image;
-//        }
-//        else {
-//             subImageView(@"动图ImgV").image = nil;
-//        }
         [cell setBackgroundColor: [UIColor whiteColor]];
         return cell;
     } else {
