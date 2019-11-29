@@ -10,10 +10,14 @@
 
 #import "UGLHFocusUserModel.h"
 #import "UGLHPostModel.h"
+#import "UGLHFocusUserModel.h"
 
 @interface UGLHMyAttentionViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *mySegment;
+
+@property(strong,nonatomic)NSMutableArray *zhuangjialistArray;/**<   关注专家列表数组" */
+@property(strong,nonatomic)NSMutableArray *tiezListArray;/**<   关注帖子列表数组" */
 @end
 
 @implementation UGLHMyAttentionViewController
@@ -24,23 +28,35 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"我的关注";
+    _zhuangjialistArray = [NSMutableArray new];
+    _tiezListArray = [NSMutableArray new];
+    [_tableView setRowHeight:70.0];
     
     {
         __weakSelf_(__self);
         [_tableView setupHeaderRefreshRequest:^CCSessionModel *(UITableView *tv) {
             return __self.mySegment.selectedSegmentIndex ? [NetworkManager1 lhdoc_favContentList:nil page:1] : [NetworkManager1 lhdoc_followList:nil];
         } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
-            NSArray *array = sm.responseObject[@"data"][@"list"];
-            for (NSDictionary *dict in array)
-                [tv.dataArray addObject:[UGLHPostModel mj_objectWithKeyValues:dict]];
+            NSArray *array = sm.responseObject[@"data"];
+            if (__self.mySegment.selectedSegmentIndex) {
+                [self->_tiezListArray removeAllObjects];
+                for (NSDictionary *dict in array)
+                    [self->_tiezListArray addObject:[UGLHPostModel mj_objectWithKeyValues:dict]];
+            } else {
+                [self->_zhuangjialistArray removeAllObjects];
+                for (NSDictionary *dict in array)
+                    [self->_zhuangjialistArray addObject:[UGLHFocusUserModel mj_objectWithKeyValues:dict]];
+            }
             return array;
         }];
         [_tableView setupFooterRefreshRequest:^CCSessionModel *(UITableView *tv) {
             return __self.mySegment.selectedSegmentIndex ? [NetworkManager1 lhdoc_favContentList:nil page:tv.pageIndex] : nil;
         } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
-            NSArray *array = sm.responseObject[@"data"][@"list"];
-            for (NSDictionary *dict in array)
-                [tv.dataArray addObject:[UGLHPostModel mj_objectWithKeyValues:dict]];
+            NSArray *array = sm.responseObject[@"data"];
+            if (__self.mySegment.selectedSegmentIndex) {
+                for (NSDictionary *dict in array)
+                    [self->_tiezListArray addObject:[UGLHPostModel mj_objectWithKeyValues:dict]];
+            } 
             return array;
         }];
         [_tableView.mj_header beginRefreshing];
@@ -57,12 +73,17 @@
 #pragma mark tableview datasource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return tableView.dataArray.count;
+    if (_mySegment.selectedSegmentIndex == 0) {
+        return _zhuangjialistArray.count;
+    } else {
+        return _tiezListArray.count;
+    }
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (_mySegment.selectedSegmentIndex == 0) {
-        UGLHFocusUserModel *model = tableView.dataArray[indexPath.row];
+        UGLHFocusUserModel *model = _zhuangjialistArray[indexPath.row];
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell1" forIndexPath:indexPath];
         FastSubViewCode(cell);
         subLabel(@"标题Label").text = model.nickname;
@@ -72,10 +93,10 @@
         }];
         return cell;
     } else {
-        UGLHPostModel *model = tableView.dataArray[indexPath.row];
+        UGLHPostModel *model = _tiezListArray[indexPath.row];
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell2" forIndexPath:indexPath];
         FastSubViewCode(cell);
-        subLabel(@"标题Label").text = model.title;
+        subLabel(@"帖子标题Label").text = model.title;
         [subButton(@"取消帖子Btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
             NSLog(@"取消帖子Btn ,id = %@",model.cid);
         }];

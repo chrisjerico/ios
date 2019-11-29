@@ -127,7 +127,7 @@
     return [self req:@"wjapp/api.php?c=lhcdoc&a=favContentList"
                     :@{@"uid":uid,// 选填，为空时，查询当前登录用户的；否则查询指定用户的
                        @"page":@(page),    // 分页页码，非必填
-                       @"rows":@(APP.PageCount),   // 分页条数，非必填
+                       @"rows":@(1),   // 分页条数，非必填
                     }
                     :false];
 }
