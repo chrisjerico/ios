@@ -41,7 +41,7 @@
         textH;
     });
     CGFloat collectionViewH = [UGPostCell1 collectionViewSizeWithModel:pm].height;
-    CGFloat h = 93 + textH + 8 + collectionViewH + 64;
+    CGFloat h = 125 + textH + 10 + collectionViewH + 70;
     return h;
 }
 
@@ -117,7 +117,7 @@
     _collectionView.dataSource = self;
 }
 
-- (void)setpm:(UGLHPostModel *)pm {
+- (void)setPm:(UGLHPostModel *)pm {
     _pm = pm;
     FastSubViewCode(self);
     __weakSelf_(__self);
@@ -125,11 +125,12 @@
     // 动态信息
     {
         [subImageView(@"头像ImageView") sd_setImageWithURL:[NSURL URLWithString:pm.headImg]];
+        subImageView(@"精品ImageView").hidden = !pm.isHot;
         subLabel(@"昵称Label").text = pm.nickname;
         subLabel(@"时间Label").text = pm.createTime;
         subLabel(@"标题Label").text = pm.title;
-        UILabel *titleLb = subLabel(@"内容Label");
-        [titleLb updateAttributedText:^(NSMutableAttributedString *attributedText) {
+        UILabel *contentLabel = subLabel(@"内容Label");
+        [contentLabel updateAttributedText:^(NSMutableAttributedString *attributedText) {
             attributedText.string = pm.content;
             if (!pm.isShowAll) {
                 CGSize size = CGSizeMake(APP.Width-11-12, FourLineHeight);
@@ -144,8 +145,8 @@
             }
             attributedText.lineSpacing = 6;
         }];
-        [titleLb yb_removeAttributeTapActions];
-        [subLabel(@"动态标题Label") yb_addAttributeTapActionWithStrings:@[@"收起\b", @"全文\b"] tapClicked:^(UILabel *label, NSString *string, NSRange range, NSInteger index) {
+        [contentLabel yb_removeAttributeTapActions];
+        [contentLabel yb_addAttributeTapActionWithStrings:@[@"收起\b", @"全文\b"] tapClicked:^(UILabel *label, NSString *string, NSRange range, NSInteger index) {
             pm.isShowAll = !pm.isShowAll;
             if (__self.didShowAllBtnClick)
                 __self.didShowAllBtnClick(pm);

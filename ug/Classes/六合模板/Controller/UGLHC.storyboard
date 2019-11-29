@@ -173,22 +173,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tEu-ke-MYz">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tEu-ke-MYz">
                                 <rect key="frame" x="0.0" y="60" width="414" height="748"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="UGPostCell1" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="SsN-GL-eJK" customClass="UGPostCell1">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="384.5"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="392"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SsN-GL-eJK" id="N9k-oR-H3i">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="384.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="392"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2go-5n-Oj9" customClass="IBView">
-                                                    <rect key="frame" x="10" y="10" width="394" height="364.5"/>
+                                                    <rect key="frame" x="10" y="10" width="394" height="372"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="zww-U8-73A">
-                                                            <rect key="frame" x="15" y="15" width="364" height="291.5"/>
+                                                            <rect key="frame" x="15" y="15" width="364" height="299"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DE9-d8-Xh0">
                                                                     <rect key="frame" x="0.0" y="0.0" width="364" height="55"/>
@@ -240,21 +240,25 @@
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ODD-lH-yMY">
                                                                     <rect key="frame" x="0.0" y="65" width="364" height="26"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="114" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LUz-P3-qRf">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="20.5" height="26"/>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="114" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LUz-P3-qRf" customClass="IBLabel">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="23" height="26"/>
                                                                             <color key="backgroundColor" red="0.29803921570000003" green="0.58823529409999997" blue="0.92549019610000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>
                                                                             <userDefinedRuntimeAttributes>
                                                                                 <userDefinedRuntimeAttribute type="point" keyPath="内边距">
-                                                                                    <point key="value" x="13" y="0.0"/>
+                                                                                    <point key="value" x="12" y="0.0"/>
                                                                                 </userDefinedRuntimeAttribute>
                                                                                 <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="期数Label"/>
+                                                                                <userDefinedRuntimeAttribute type="number" keyPath="圆角偏移量">
+                                                                                    <real key="value" value="3"/>
+                                                                                </userDefinedRuntimeAttribute>
+                                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
                                                                             </userDefinedRuntimeAttributes>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="114期天上掉馅饼了！" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sfg-iz-Ndo">
-                                                                            <rect key="frame" x="34.5" y="3" width="167" height="20.5"/>
+                                                                            <rect key="frame" x="37" y="3" width="167" height="20.5"/>
                                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -263,7 +267,7 @@
                                                                             </userDefinedRuntimeAttributes>
                                                                         </label>
                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jing" translatesAutoresizingMaskIntoConstraints="NO" id="joq-od-VnT">
-                                                                            <rect key="frame" x="201.5" y="-1" width="23.5" height="28"/>
+                                                                            <rect key="frame" x="204" y="-1" width="23.5" height="28"/>
                                                                             <userDefinedRuntimeAttributes>
                                                                                 <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="精品ImageView"/>
                                                                             </userDefinedRuntimeAttributes>
@@ -303,7 +307,7 @@
                                                                     </constraints>
                                                                 </view>
                                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="VA0-Fr-LZe">
-                                                                    <rect key="frame" x="0.0" y="131.5" width="364" height="160"/>
+                                                                    <rect key="frame" x="0.0" y="131.5" width="364" height="167.5"/>
                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                                     <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="QuW-wq-hmB">
                                                                         <size key="itemSize" width="106" height="100"/>
@@ -344,7 +348,7 @@
                                                             </subviews>
                                                         </stackView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SH5-RW-CAO" customClass="IBView">
-                                                            <rect key="frame" x="-2" y="316.5" width="398" height="50"/>
+                                                            <rect key="frame" x="-2" y="324" width="398" height="50"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ReT-8v-fCT">
                                                                     <rect key="frame" x="0.0" y="0.0" width="398" height="50"/>
@@ -389,6 +393,9 @@
                                                                             <userDefinedRuntimeAttributes>
                                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="imgFitOrFill" value="YES"/>
                                                                                 <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="评论Button"/>
+                                                                                <userDefinedRuntimeAttribute type="number" keyPath="imgScaling">
+                                                                                    <real key="value" value="0.5"/>
+                                                                                </userDefinedRuntimeAttribute>
                                                                             </userDefinedRuntimeAttributes>
                                                                             <connections>
                                                                                 <action selector="onReplyBtnClick:" destination="SsN-GL-eJK" eventType="touchUpInside" id="Tlv-t0-8i5"/>
@@ -431,7 +438,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                            <real key="value" value="1"/>
+                                                            <real key="value" value="0.5"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                             <color key="value" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -439,7 +446,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
-                                            <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="2go-5n-Oj9" firstAttribute="centerX" secondItem="N9k-oR-H3i" secondAttribute="centerX" id="DMe-DI-NQt"/>
                                                 <constraint firstItem="2go-5n-Oj9" firstAttribute="top" secondItem="N9k-oR-H3i" secondAttribute="top" constant="10" id="WBy-Y6-56e"/>
@@ -447,6 +454,7 @@
                                                 <constraint firstItem="2go-5n-Oj9" firstAttribute="leading" secondItem="N9k-oR-H3i" secondAttribute="leading" constant="10" id="sM9-JX-RiM"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.96886801877928552" green="0.96418749694943384" blue="0.97354854060913709" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <connections>
                                             <outlet property="collectionView" destination="VA0-Fr-LZe" id="xKu-oz-ECk"/>
                                         </connections>
@@ -470,6 +478,9 @@
                                             <segment title="精华帖"/>
                                             <segment title="最新"/>
                                         </segments>
+                                        <connections>
+                                            <action selector="onSegmentedControlValueChanged:" destination="vPh-Fl-aJc" eventType="valueChanged" id="eXu-SZ-fUa"/>
+                                        </connections>
                                     </segmentedControl>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>

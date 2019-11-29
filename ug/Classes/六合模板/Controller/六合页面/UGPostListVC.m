@@ -7,6 +7,9 @@
 //
 
 #import "UGPostListVC.h"
+#import "UGPostDetailVC.h"
+
+#import "UGPostCell1.h"
 
 @interface UGPostListVC ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -19,44 +22,100 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    __weakSelf_(__self);
-    NSString *(^sortString)(void) = ^NSString *{
-        if (__self.segmentedControl.selectedSegmentIndex == 1) {
-            return @"hot";  // 热门（精华贴）
-        } else if (__self.segmentedControl.selectedSegmentIndex == 2) {
-            return @"new";  // 最新
-        }
-        return nil; // 综合
-    };
-    [_tableView setupHeaderRefreshRequest:^CCSessionModel *(UITableView *tv) {
-        return [NetworkManager1 lhdoc_contentList:__self.clm.alias uid:nil sort:sortString() page:1];
-    } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
-        return nil;
-    }];
-    [_tableView setupFooterRefreshRequest:^CCSessionModel *(UITableView *tv) {
-        return [NetworkManager1 lhdoc_contentList:__self.clm.alias uid:nil sort:sortString() page:tv.pageIndex];
-    } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
-        return nil;
-    }];
+    
+    {
+        __weakSelf_(__self);
+        NSString *(^sortString)(void) = ^NSString *{
+            if (__self.segmentedControl.selectedSegmentIndex == 1) {
+                return @"hot";  // 热门（精华贴）
+            } else if (__self.segmentedControl.selectedSegmentIndex == 2) {
+                return @"new";  // 最新
+            }
+            return nil; // 综合
+        };
+        [_tableView setupHeaderRefreshRequest:^CCSessionModel *(UITableView *tv) {
+            return [NetworkManager1 lhdoc_contentList:__self.clm.alias uid:nil sort:sortString() page:1];
+        } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
+            NSArray *array = sm.responseObject[@"data"][@"list"];
+            for (NSDictionary *dict in array)
+                [tv.dataArray addObject:[UGLHPostModel mj_objectWithKeyValues:dict]];
+            return array;
+        }];
+        [_tableView setupFooterRefreshRequest:^CCSessionModel *(UITableView *tv) {
+            return [NetworkManager1 lhdoc_contentList:__self.clm.alias uid:nil sort:sortString() page:tv.pageIndex];
+        } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
+            NSArray *array = sm.responseObject[@"data"][@"list"];
+            for (NSDictionary *dict in array)
+                [tv.dataArray addObject:[UGLHPostModel mj_objectWithKeyValues:dict]];
+            return array;
+        }];
+        [_tableView.mj_header beginRefreshing];
+    }
+}
+
+- (IBAction)onSegmentedControlValueChanged:(UISegmentedControl *)sender {
     [_tableView.mj_header beginRefreshing];
 }
 
+
 #pragma mark - Table view data source
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [UGPostCell1 heightWithModel:tableView.dataArray[indexPath.row]];
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return tableView.dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    UGPostCell1 *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    cell.pm = tableView.dataArray[indexPath.row];
+    __weak_Obj_(cell, __cell);
+    __weak_Obj_(tableView, __tableView);
+    __weakSelf_(__self);
+    
+    // 全文/收起
+    cell.didShowAllBtnClick = ^(UGLHPostModel *pm) {
+        CGFloat offsetY = -[__cell convertRect:__cell.bounds toView:tableView.superview].origin.y;
+        if (offsetY > 0)
+            offsetY = 0;
+        for (int i=0; i<indexPath.row; i++) {
+            offsetY += [__self tableView:__tableView heightForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+        }
+        [__tableView reloadData];
+        __tableView.contentOffset = CGPointMake(0, offsetY);
+    };
+    
+    // 去评论
+    cell.didCommentBtnClick = ^(UGLHPostModel *pm) {
+        UGPostDetailVC *vc = _LoadVC_from_storyboard_(@"UGPostDetailVC");
+        vc.pm = pm;
+        vc.willComment = true;
+        vc.didCommentOrLike = ^(UGLHPostModel *pm) {
+            [__tableView reloadRowAtIndexPath:indexPath withRowAnimation:UITableViewRowAnimationNone];
+        };
+        vc.didDelete = ^{
+            [__tableView.dataArray removeObject:pm];
+            [__tableView deleteRowAtIndexPath:indexPath withRowAnimation:UITableViewRowAnimationNone];
+        };
+        [NavController1 pushViewController:vc animated:true];
+    };
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    UGPromoteModel *model = tableView.dataArray[indexPath.row];
-//    UGPromoteDetailController *detailVC = [[UGPromoteDetailController alloc] init];
-//    detailVC.item = model;
-//    [self.navigationController pushViewController:detailVC animated:YES];
+    UGPostDetailVC *vc = _LoadVC_from_storyboard_(@"UGPostDetailVC");
+    vc.pm = tableView.dataArray[indexPath.row];
+    __weak_Obj_(vc, __vc);
+    vc.didCommentOrLike = ^(UGLHPostModel *pm) {
+        [tableView reloadRowAtIndexPath:indexPath withRowAnimation:UITableViewRowAnimationNone];
+    };
+    vc.didDelete = ^{
+        [tableView.dataArray removeObject:__vc.pm];
+        [tableView deleteRowAtIndexPath:indexPath withRowAnimation:UITableViewRowAnimationNone];
+    };
+    [NavController1 pushViewController:vc animated:true];
 }
 
 @end

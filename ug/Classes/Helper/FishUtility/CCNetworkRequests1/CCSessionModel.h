@@ -37,7 +37,7 @@
 
 @property (nonatomic) NSError *error;                         /**<    错误信息 */
 @property (nonatomic) id responseObject;                      /**<    返回的数据 */
-@property (nonatomic) NSURLResponse *response;                /**<    描述响应（响应头、响应体） */
+@property (nonatomic) NSHTTPURLResponse *response;            /**<    描述响应（响应头、响应体） */
 @property (nonatomic) NSTimeInterval duration;                /**<    请求响应时长(ms) */
 
 + (NSString *)printURLString:(NSString *)URLString params:(NSDictionary *)params;           /**<    拼接URL */

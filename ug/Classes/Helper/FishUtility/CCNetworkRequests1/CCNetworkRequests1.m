@@ -31,10 +31,10 @@
 - (void)requestCompletionAndWillCallBlock:(CCSessionModel *)sm {
     // 执行 请求完成后的通用操作
     // ...
-    //    NSLog(@"url = %@", sObj.urlString);
-    //    NSLog(@"params = %@", sObj.params);
-    //    NSLog(@"error = %@", sObj.error);
-    //    NSLog(@"response = %@", sObj.responseObject);
+    //    NSLog(@"url = %@", sm.urlString);
+    //    NSLog(@"params = %@", sm.params);
+    //    NSLog(@"error = %@", sm.error);
+    //    NSLog(@"response = %@", sm.responseObject);
     
     if (sm.error) {
         if ([sm.responseObject[@"data"] isKindOfClass:[NSString class]]) {
@@ -46,39 +46,52 @@
 }
 #pragma mark 生成错误信息
 // 把 “HTTP请求成功，但服务器返回操作失败” 的情况生成错误信息NSError
-- (NSError *)validationError:(CCSessionModel *)sObj {
+- (NSError *)validationError:(CCSessionModel *)sm {
     // 请求失败
-    if (sObj.error) {
-        NSLog(@"❌ 请求 URLString：%@ 失败！发送参数：%@\n 参数的 JSON 字符串为：%@\n ERROR 的系统信息为：\n%@\n", sObj.urlString, sObj.params, sObj.params.mj_JSONString, sObj.error);
-        if ([sObj.error.domain isEqualToString:@"NSURLErrorDomain"])
-            return [NSError errorWithDomain:@"当前网络连接异常，请检查一下你的网络设置。" code:sObj.error.code userInfo:sObj.error.userInfo];
-        if ([sObj.error.domain containsString:@".error."])
-            return [NSError errorWithDomain:@"服务器连接异常，请你在“我的-使用帮助-联系客服”中与我们联系。" code:sObj.error.code userInfo:sObj.error.userInfo];
-        return [NSError errorWithDomain:@"当前网络连接异常，请检查一下你的网络设置。" code:sObj.error.code userInfo:sObj.error.userInfo];
-        NSError *error = sObj.error.userInfo[@"NSUnderlyingError"] ? : sObj.error;
-        return [NSError errorWithDomain:error.userInfo[@"NSLocalizedDescription"] ? : error.domain code:sObj.error.code userInfo:sObj.error.userInfo];
+    if (sm.error) {
+        if (sm.response.statusCode == 401) {
+            [SVProgressHUD dismiss];
+            SANotificationEventPost(UGNotificationloginTimeout, nil);
+            sm.noShowErrorHUD = true;
+        }
+        if (sm.response.statusCode == 402) {
+            [SVProgressHUD dismiss];
+            [CMNetwork userLogoutWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:nil];
+            UGUserModel.currentUser = nil;
+            SANotificationEventPost(UGNotificationUserLogout, nil);
+            sm.noShowErrorHUD = true;
+        }
+        if (sm.response.statusCode == 403 || sm.response.statusCode == 404) {
+            return [NSError errorWithDomain:sm.error.userInfo[@"com.alamofire.serialization.response.error.data"] code:sm.response.statusCode userInfo:sm.error.userInfo];
+        }
+        
+        NSLog(@"❌ 请求 URLString：%@ 失败！发送参数：%@\n 参数的 JSON 字符串为：%@\n ERROR 的系统信息为：\n%@\n", sm.urlString, sm.params, sm.params.mj_JSONString, sm.error);
+        if ([sm.error.domain isEqualToString:@"NSURLErrorDomain"])
+            return [NSError errorWithDomain:@"当前网络连接异常，请检查一下你的网络设置。" code:sm.error.code userInfo:sm.error.userInfo];
+        if ([sm.error.domain containsString:@".error."])
+            return [NSError errorWithDomain:@"服务器连接异常，请你在“我的-使用帮助-联系客服”中与我们联系。" code:sm.error.code userInfo:sm.error.userInfo];
+        return [NSError errorWithDomain:@"当前网络连接异常，请检查一下你的网络设置。" code:sm.error.code userInfo:sm.error.userInfo];
+        NSError *error = sm.error.userInfo[@"NSUnderlyingError"] ? : sm.error;
+        return [NSError errorWithDomain:error.userInfo[@"NSLocalizedDescription"] ? : error.domain code:sm.error.code userInfo:sm.error.userInfo];
     }
     
     // 非主服务器则返nil
-    if (![sObj.urlString hasPrefix:APP.Host])
+    if (![sm.urlString containsString:APP.Host.lastPathComponent])
         return nil;
     
-    id responseObject = sObj.responseObject;
+    id responseObject = sm.responseObject;
 
     // 返回数据格式错误
     if (![responseObject isKindOfClass:[NSDictionary class]]) {
-         NSLog(@"❌ 请求 URLString：%@ 失败！发送参数：%@\n 参数的 JSON 字符串为：%@\n 返回参数为：%@\n ⭕️ responseObject 不是 NSDictionary 类。", sObj.urlString, sObj.params, sObj.params.mj_JSONString, responseObject);
+         NSLog(@"❌ 请求 URLString：%@ 失败！发送参数：%@\n 参数的 JSON 字符串为：%@\n 返回参数为：%@\n ⭕️ responseObject 不是 NSDictionary 类。", sm.urlString, sm.params, sm.params.mj_JSONString, responseObject);
         return [NSError errorWithDomain:@"数据格式错误。" code:-1 userInfo:nil];
     }
     
     // 业务逻辑错误 code!=false
-    NSInteger code = [responseObject[@"code"] intValue];
-    if (code == -10002) {
-        
-    } else if (code != 0) {
-        return [NSError errorWithDomain:responseObject[@"msg"] code:[responseObject[@"code"] integerValue] userInfo:nil];
+    int code = [responseObject[@"code"] intValue];
+    if (code != 0) {
+        return [NSError errorWithDomain:responseObject[@"msg"] ? : _NSString(@"请求失败 %d", code) code:code userInfo:nil];
     }
-
     return nil;
 }
 
@@ -87,7 +100,7 @@
     return [@{@"appVersion"     :APP.Version,
               @"phoneType"      :@0,    // 0为iOS，1安卓
 //              @"timeStamp"      :@((long long int)([[NSDate date] millisecondIntervalSince1970])),
-//              @"token"          :UserI.token,
+              @"token"          :UserI.sessid,
               } mutableCopy];
 }
 
