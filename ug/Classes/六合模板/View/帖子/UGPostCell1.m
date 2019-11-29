@@ -113,6 +113,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
 }
@@ -126,6 +127,7 @@
     {
         [subImageView(@"头像ImageView") sd_setImageWithURL:[NSURL URLWithString:pm.headImg]];
         subImageView(@"精品ImageView").hidden = !pm.isHot;
+        subLabel(@"期数Label").text = pm.periods;
         subLabel(@"昵称Label").text = pm.nickname;
         subLabel(@"时间Label").text = pm.createTime;
         subLabel(@"标题Label").text = pm.title;

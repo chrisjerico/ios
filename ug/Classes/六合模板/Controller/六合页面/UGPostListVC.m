@@ -10,6 +10,7 @@
 #import "UGPostDetailVC.h"
 
 #import "UGPostCell1.h"
+#import "STBarButtonItem.h"
 
 @interface UGPostListVC ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -22,6 +23,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+    {
+        self.title = _clm.name;
+        self.navigationItem.rightBarButtonItems = @[
+            [STBarButtonItem barButtonItemWithImageName:@"search" block:^(UIButton *sender) {
+                
+            }],
+            [STBarButtonItem barButtonItemWithImageName:@"yijian" block:^(UIButton *sender) {
+                [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGSubmitPostVC") animated:true];
+            }],
+        ];
+    }
     
     {
         __weakSelf_(__self);

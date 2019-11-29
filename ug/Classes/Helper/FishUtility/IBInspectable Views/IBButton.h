@@ -35,5 +35,5 @@
 
 @interface UIButton (IBInspectableUtils)
 @property (nonatomic) IBInspectable BOOL imgFitOrFill;
-@property (nonatomic) IBInspectable CGFloat imgScaling;
+@property (nonatomic) IBInspectable CGSize imgSize;
 @end

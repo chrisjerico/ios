@@ -28,6 +28,7 @@ pod 'MJExtension'       # 字典转数据模型库
 pod 'FSCalendar'        # 日历控件
 pod 'SDWebImage'        # 异步图片加载+缓存
 pod 'SDWebImage/GIF'    # 异步图片加载+缓存（GIF）
+pod 'TZImagePickerController' # 相册浏览器
 
 
 pod 'JPush', '3.2.2-noidfa'

@@ -91,6 +91,8 @@
 		CFD3BF4923473D0500FCDA6D /* LogVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BF4723473D0500FCDA6D /* LogVC.m */; };
 		CFD3BF4E23473D5900FCDA6D /* TextFieldAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFD3BF4B23473D5900FCDA6D /* TextFieldAlertView.xib */; };
 		CFD3BF4F23473D5900FCDA6D /* TextFieldAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BF4D23473D5900FCDA6D /* TextFieldAlertView.m */; };
+		CFEA5C1C2390FB9000C922D2 /* LHPostCommentDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEA5C1B2390FB9000C922D2 /* LHPostCommentDetailVC.m */; };
+		CFEA5C222391084200C922D2 /* AVAsset+Degress.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEA5C1F2391084200C922D2 /* AVAsset+Degress.m */; };
 		CFFAB5882372F01C009593AF /* UGPlatformTitleBlackCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFAB5862372F01C009593AF /* UGPlatformTitleBlackCell.m */; };
 		CFFAB5892372F01C009593AF /* UGPlatformTitleBlackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFFAB5872372F01C009593AF /* UGPlatformTitleBlackCell.xib */; };
 		CFFAB58B237315C2009593AF /* event.gif in Resources */ = {isa = PBXBuildFile; fileRef = CFFAB58A237315C2009593AF /* event.gif */; };
@@ -850,6 +852,10 @@
 		CFD3BF4B23473D5900FCDA6D /* TextFieldAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextFieldAlertView.xib; sourceTree = "<group>"; };
 		CFD3BF4C23473D5900FCDA6D /* TextFieldAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldAlertView.h; sourceTree = "<group>"; };
 		CFD3BF4D23473D5900FCDA6D /* TextFieldAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldAlertView.m; sourceTree = "<group>"; };
+		CFEA5C1A2390FB9000C922D2 /* LHPostCommentDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LHPostCommentDetailVC.h; sourceTree = "<group>"; };
+		CFEA5C1B2390FB9000C922D2 /* LHPostCommentDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LHPostCommentDetailVC.m; sourceTree = "<group>"; };
+		CFEA5C1F2391084200C922D2 /* AVAsset+Degress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVAsset+Degress.m"; sourceTree = "<group>"; };
+		CFEA5C212391084200C922D2 /* AVAsset+Degress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AVAsset+Degress.h"; sourceTree = "<group>"; };
 		CFFAB5852372F01C009593AF /* UGPlatformTitleBlackCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGPlatformTitleBlackCell.h; sourceTree = "<group>"; };
 		CFFAB5862372F01C009593AF /* UGPlatformTitleBlackCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGPlatformTitleBlackCell.m; sourceTree = "<group>"; };
 		CFFAB5872372F01C009593AF /* UGPlatformTitleBlackCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGPlatformTitleBlackCell.xib; sourceTree = "<group>"; };
@@ -2877,6 +2883,8 @@
 				D407B0422366A69800B4DEF4 /* UGLHGalleryVC.m */,
 				D407B0382366A69700B4DEF4 /* UGPostDetailVC.h */,
 				D407B0402366A69800B4DEF4 /* UGPostDetailVC.m */,
+				CFEA5C1A2390FB9000C922D2 /* LHPostCommentDetailVC.h */,
+				CFEA5C1B2390FB9000C922D2 /* LHPostCommentDetailVC.m */,
 				D407B03E2366A69800B4DEF4 /* UGPostListVC.h */,
 				D407B03D2366A69800B4DEF4 /* UGPostListVC.m */,
 				D407B0392366A69700B4DEF4 /* UGSearchPostVC.h */,
@@ -2955,6 +2963,8 @@
 				CFD3BEB42347137E00FCDA6D /* KVO */,
 				CFD3BEC02347137E00FCDA6D /* UIView+Frame.h */,
 				CFD3BEB92347137E00FCDA6D /* UIView+Frame.m */,
+				CFEA5C212391084200C922D2 /* AVAsset+Degress.h */,
+				CFEA5C1F2391084200C922D2 /* AVAsset+Degress.m */,
 				CFD3BEBB2347137E00FCDA6D /* UIResponder+InterfaceOrientation.h */,
 				CFD3BEBE2347137E00FCDA6D /* UIResponder+InterfaceOrientation.m */,
 				CFD3BEBA2347137E00FCDA6D /* NSObject+XWAdd.h */,
@@ -5139,6 +5149,7 @@
 				CFD3BF122347137F00FCDA6D /* UIViewController+Log.m in Sources */,
 				D405B321227D816500F8C586 /* CMNetwork.m in Sources */,
 				D48224EA22A0FDD000F7DE72 /* UGPlatformNoticeCell.m in Sources */,
+				CFEA5C1C2390FB9000C922D2 /* LHPostCommentDetailVC.m in Sources */,
 				CFD3BF002347137F00FCDA6D /* UIView+Utils.m in Sources */,
 				D422FE64232532C00063EA4E /* UGPromotion2rowTableViewCell.m in Sources */,
 				D409B1542296E0020053DA33 /* UGMarkSixLotteryBetItem0Cell.m in Sources */,
@@ -5500,6 +5511,7 @@
 				D41FF9352333309700FE3F70 /* UGActivityGoldView.m in Sources */,
 				D405B3852281620000F8C586 /* UGMessageTableViewCell.m in Sources */,
 				D41E0EEB228D98C100D6C42A /* UGIntegralConvertController.m in Sources */,
+				CFEA5C222391084200C922D2 /* AVAsset+Degress.m in Sources */,
 				D4145A9A22B61AA800D8165F /* UGBJKL8LotteryController.m in Sources */,
 				D41F26112318F459004FB9C6 /* UGChanglongBetRecordController.m in Sources */,
 				D4781A1B236820FD004FBB97 /* UGStuffViewController.m in Sources */,

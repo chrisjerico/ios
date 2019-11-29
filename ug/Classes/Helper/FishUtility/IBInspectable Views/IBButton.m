@@ -75,7 +75,6 @@
 @implementation UIButton (IBInspectableUtils)
 
 _CCRuntimeGetterDoubleValue(BOOL, imgFitOrFill)
-_CCRuntimeGetterDoubleValue(CGFloat, imgScaling)
 
 - (void)setImgFitOrFill:(BOOL)imgFitOrFill {
     objc_setAssociatedObject(self, @selector(imgFitOrFill), @(imgFitOrFill), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
@@ -85,12 +84,42 @@ _CCRuntimeGetterDoubleValue(CGFloat, imgScaling)
     }];
 }
 
-- (void)setImgScaling:(CGFloat)imgScaling {
-    objc_setAssociatedObject(self, @selector(imgScaling), @(imgScaling), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    [self.imageView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(self.imageView.image.width * imgScaling);
-        make.height.mas_equalTo(self.imageView.image.height * imgScaling);
-        make.center.equalTo(self);
-    }];
+- (CGSize)imgSize {
+    return [objc_getAssociatedObject(self, @selector(imgSize)) CGSizeValue];
 }
+
+- (void)setImgSize:(CGSize)imgSize {
+    objc_setAssociatedObject(self, @selector(imgSize), @(imgSize), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    if (OBJOnceToken(self)) {
+        self.cc_userInfo[@"orImageDict"] = @{}.mutableCopy;
+        [self cc_hookSelector:@selector(setImage:forState:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo>  _Nonnull ai) {
+            UIImage *img = ai.arguments.firstObject;
+            if (!img.cc_userInfo[@"scaleImage"]) {
+                UIButton *btn = ai.instance;
+                btn.imgSize = btn.imgSize;
+            }
+        } error:nil];
+    }
+    for (NSNumber *state in @[@(UIControlStateNormal), @(UIControlStateHighlighted), @(UIControlStateDisabled), @(UIControlStateSelected)]) {
+        UIImage *orImage = [self imageForState:state.intValue];
+        if (orImage.cc_userInfo[@"isScaleImage"]) {
+            orImage = self.cc_userInfo[@"orImageDict"][state];
+        } else {
+            self.cc_userInfo[@"orImageDict"][state] = orImage;
+        }
+        if (!orImage) {
+            continue;
+        }
+        if (!imgSize.width) {
+            imgSize = CGSizeMake(imgSize.height/orImage.height * orImage.width, imgSize.height);
+        }
+        if (!imgSize.height) {
+            imgSize = CGSizeMake(imgSize.width, imgSize.width/orImage.width * orImage.height);
+        }
+        UIImage *scaleImage = [orImage imageWithSize:imgSize];
+        scaleImage.cc_userInfo[@"scaleImage"] = @true;
+        [self setImage:scaleImage forState:UIControlStateNormal];
+    }
+}
+
 @end

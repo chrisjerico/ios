@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UGPostListVC : UIViewController
 
-@property (nonatomic, strong) UGLHCategoryListModel *clm;
+@property (nonatomic, strong) UGLHCategoryListModel *clm;   /**<   六合栏目Model */
 @end
 
 NS_ASSUME_NONNULL_END

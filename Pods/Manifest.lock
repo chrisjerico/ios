@@ -24,6 +24,7 @@ PODS:
   - SGQRCode (3.0.1)
   - STPickerView (2.4)
   - Toast (4.0.0)
+  - TZImagePickerController (3.2.7)
   - YYCache (1.0.4)
   - YYCategories (1.0.4):
     - YYCategories/no-arc (= 1.0.4)
@@ -54,6 +55,7 @@ DEPENDENCIES:
   - SGQRCode (~> 3.0.1)
   - STPickerView (= 2.4)
   - Toast (~> 4.0.0)
+  - TZImagePickerController
   - YYCategories
   - YYWebImage
 
@@ -78,6 +80,7 @@ SPEC REPOS:
     - SGQRCode
     - STPickerView
     - Toast
+    - TZImagePickerController
     - YYCache
     - YYCategories
     - YYImage
@@ -103,11 +106,12 @@ SPEC CHECKSUMS:
   SGQRCode: bf02d60e18d6660a9d75ff1c8b9b467f064f054e
   STPickerView: d0e234f230f45bd720a6739d0ae9fbddf038958b
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
+  TZImagePickerController: 821b81f83594a736e831a018f2a2ce31822ddf0b
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   YYCategories: 6bcd4314c6661a561410dce4a793379ebd306abd
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
 
-PODFILE CHECKSUM: 77804cab6c245bce0c006e5da9c8cc8fe6e49149
+PODFILE CHECKSUM: 741f91e81f0be90fb8e2751aa4414243f2c1653e
 
 COCOAPODS: 1.8.4

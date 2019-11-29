@@ -66,6 +66,9 @@
                                                             <constraint firstAttribute="height" constant="60" id="wXe-Lc-PHw"/>
                                                         </constraints>
                                                         <state key="normal" title="相册"/>
+                                                        <connections>
+                                                            <action selector="onPhotoItemBtnClick:" destination="XHY-g2-N2F" eventType="touchUpInside" id="Ve0-6u-tQx"/>
+                                                        </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请输入内容..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GJ6-BL-hnh">
                                                         <rect key="frame" x="30" y="14" width="101" height="20.5"/>
@@ -102,6 +105,9 @@
                                                             </userDefinedRuntimeAttribute>
                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="onSubmitBtnClick:" destination="XHY-g2-N2F" eventType="touchUpInside" id="OEZ-vG-5VS"/>
+                                                        </connections>
                                                     </button>
                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MoI-lo-EX1">
                                                         <rect key="frame" x="60" y="55" width="294.5" height="14.5"/>
@@ -158,6 +164,8 @@
                         <viewLayoutGuide key="safeArea" id="EFU-f7-zgN"/>
                     </view>
                     <connections>
+                        <outlet property="textField" destination="5rF-bb-rm0" id="B1G-QO-A97"/>
+                        <outlet property="textView" destination="Wyr-25-aqw" id="MWp-Xq-jLL"/>
                         <segue destination="vPh-Fl-aJc" kind="push" id="ZFa-lr-F2w"/>
                     </connections>
                 </viewController>
@@ -174,7 +182,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tEu-ke-MYz">
-                                <rect key="frame" x="0.0" y="60" width="414" height="748"/>
+                                <rect key="frame" x="0.0" y="60" width="414" height="782"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="UGPostCell1" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="SsN-GL-eJK" customClass="UGPostCell1">
@@ -240,15 +248,15 @@
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ODD-lH-yMY">
                                                                     <rect key="frame" x="0.0" y="65" width="364" height="26"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="114" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LUz-P3-qRf" customClass="IBLabel">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="23" height="26"/>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="114114" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LUz-P3-qRf" customClass="IBLabel">
+                                                                            <rect key="frame" x="0.0" y="3" width="46" height="20"/>
                                                                             <color key="backgroundColor" red="0.29803921570000003" green="0.58823529409999997" blue="0.92549019610000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>
                                                                             <userDefinedRuntimeAttributes>
                                                                                 <userDefinedRuntimeAttribute type="point" keyPath="内边距">
-                                                                                    <point key="value" x="12" y="0.0"/>
+                                                                                    <point key="value" x="7" y="0.0"/>
                                                                                 </userDefinedRuntimeAttribute>
                                                                                 <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="期数Label"/>
                                                                                 <userDefinedRuntimeAttribute type="number" keyPath="圆角偏移量">
@@ -258,7 +266,7 @@
                                                                             </userDefinedRuntimeAttributes>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="114期天上掉馅饼了！" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sfg-iz-Ndo">
-                                                                            <rect key="frame" x="37" y="3" width="167" height="20.5"/>
+                                                                            <rect key="frame" x="59" y="3" width="167" height="20.5"/>
                                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -267,7 +275,7 @@
                                                                             </userDefinedRuntimeAttributes>
                                                                         </label>
                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jing" translatesAutoresizingMaskIntoConstraints="NO" id="joq-od-VnT">
-                                                                            <rect key="frame" x="204" y="-1" width="23.5" height="28"/>
+                                                                            <rect key="frame" x="231" y="-1" width="23.5" height="28"/>
                                                                             <userDefinedRuntimeAttributes>
                                                                                 <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="精品ImageView"/>
                                                                             </userDefinedRuntimeAttributes>
@@ -277,11 +285,11 @@
                                                                     <constraints>
                                                                         <constraint firstItem="joq-od-VnT" firstAttribute="centerY" secondItem="ODD-lH-yMY" secondAttribute="centerY" id="8jI-Xn-raS"/>
                                                                         <constraint firstAttribute="height" constant="26" id="F3j-xD-o7f"/>
-                                                                        <constraint firstItem="joq-od-VnT" firstAttribute="leading" secondItem="sfg-iz-Ndo" secondAttribute="trailing" id="U08-TZ-BXG"/>
-                                                                        <constraint firstItem="sfg-iz-Ndo" firstAttribute="leading" secondItem="LUz-P3-qRf" secondAttribute="trailing" constant="14" id="cCd-Pu-JQR"/>
+                                                                        <constraint firstItem="joq-od-VnT" firstAttribute="leading" secondItem="sfg-iz-Ndo" secondAttribute="trailing" constant="5" id="U08-TZ-BXG"/>
+                                                                        <constraint firstItem="sfg-iz-Ndo" firstAttribute="leading" secondItem="LUz-P3-qRf" secondAttribute="trailing" constant="13" id="cCd-Pu-JQR"/>
                                                                         <constraint firstItem="LUz-P3-qRf" firstAttribute="centerY" secondItem="ODD-lH-yMY" secondAttribute="centerY" id="ceW-es-cbR"/>
                                                                         <constraint firstItem="LUz-P3-qRf" firstAttribute="leading" secondItem="ODD-lH-yMY" secondAttribute="leading" id="eca-j0-3Zd"/>
-                                                                        <constraint firstItem="LUz-P3-qRf" firstAttribute="top" secondItem="ODD-lH-yMY" secondAttribute="top" id="pKD-Oh-Wmi"/>
+                                                                        <constraint firstItem="LUz-P3-qRf" firstAttribute="top" secondItem="ODD-lH-yMY" secondAttribute="top" constant="3" id="pKD-Oh-Wmi"/>
                                                                         <constraint firstItem="sfg-iz-Ndo" firstAttribute="centerY" secondItem="ODD-lH-yMY" secondAttribute="centerY" id="rUS-LL-FR7"/>
                                                                     </constraints>
                                                                 </view>
@@ -364,6 +372,12 @@
                                                                                     <real key="value" value="12"/>
                                                                                 </userDefinedRuntimeAttribute>
                                                                                 <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="点赞Button"/>
+                                                                                <userDefinedRuntimeAttribute type="number" keyPath="imgScaling">
+                                                                                    <real key="value" value="0.59999999999999998"/>
+                                                                                </userDefinedRuntimeAttribute>
+                                                                                <userDefinedRuntimeAttribute type="size" keyPath="imgSize">
+                                                                                    <size key="value" width="0.0" height="20"/>
+                                                                                </userDefinedRuntimeAttribute>
                                                                             </userDefinedRuntimeAttributes>
                                                                             <connections>
                                                                                 <action selector="onLikeBtnClick:" destination="SsN-GL-eJK" eventType="touchUpInside" id="hl5-su-FfK"/>
@@ -385,16 +399,24 @@
                                                                                     <real key="value" value="13"/>
                                                                                 </userDefinedRuntimeAttribute>
                                                                                 <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="浏览Button"/>
+                                                                                <userDefinedRuntimeAttribute type="number" keyPath="imgScaling">
+                                                                                    <real key="value" value="0.59999999999999998"/>
+                                                                                </userDefinedRuntimeAttribute>
+                                                                                <userDefinedRuntimeAttribute type="size" keyPath="imgSize">
+                                                                                    <size key="value" width="0.0" height="16"/>
+                                                                                </userDefinedRuntimeAttribute>
                                                                             </userDefinedRuntimeAttributes>
                                                                         </button>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aVT-5K-gEp">
                                                                             <rect key="frame" x="265.5" y="0.0" width="132.5" height="50"/>
                                                                             <state key="normal" image="replay"/>
                                                                             <userDefinedRuntimeAttributes>
-                                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="imgFitOrFill" value="YES"/>
                                                                                 <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="评论Button"/>
                                                                                 <userDefinedRuntimeAttribute type="number" keyPath="imgScaling">
-                                                                                    <real key="value" value="0.5"/>
+                                                                                    <real key="value" value="0.90000000000000002"/>
+                                                                                </userDefinedRuntimeAttribute>
+                                                                                <userDefinedRuntimeAttribute type="size" keyPath="imgSize">
+                                                                                    <size key="value" width="0.0" height="20"/>
                                                                                 </userDefinedRuntimeAttribute>
                                                                             </userDefinedRuntimeAttributes>
                                                                             <connections>
@@ -497,8 +519,8 @@
                             <constraint firstItem="tEu-ke-MYz" firstAttribute="leading" secondItem="brT-ai-Mlo" secondAttribute="leading" id="5lU-n0-qC8"/>
                             <constraint firstItem="tEu-ke-MYz" firstAttribute="top" secondItem="EON-kN-UPx" secondAttribute="bottom" id="6pq-6W-SGY"/>
                             <constraint firstItem="brT-ai-Mlo" firstAttribute="trailing" secondItem="tEu-ke-MYz" secondAttribute="trailing" id="8GE-ZM-Rb9"/>
+                            <constraint firstAttribute="bottom" secondItem="tEu-ke-MYz" secondAttribute="bottom" id="MyK-Yc-GGg"/>
                             <constraint firstItem="EON-kN-UPx" firstAttribute="top" secondItem="brT-ai-Mlo" secondAttribute="top" id="bNd-Ws-4Qn"/>
-                            <constraint firstItem="brT-ai-Mlo" firstAttribute="bottom" secondItem="tEu-ke-MYz" secondAttribute="bottom" id="bj2-ab-6Hm"/>
                             <constraint firstItem="brT-ai-Mlo" firstAttribute="trailing" secondItem="EON-kN-UPx" secondAttribute="trailing" id="cjw-bi-MZJ"/>
                             <constraint firstItem="EON-kN-UPx" firstAttribute="leading" secondItem="brT-ai-Mlo" secondAttribute="leading" id="t4r-gl-A94"/>
                         </constraints>
@@ -809,10 +831,10 @@
                                         <rect key="frame" x="0.0" y="1062" width="414" height="50"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yhj" translatesAutoresizingMaskIntoConstraints="NO" id="WTN-jt-45s">
-                                                <rect key="frame" x="10" y="7" width="36" height="36"/>
+                                                <rect key="frame" x="10" y="-11" width="72" height="72"/>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="edj-og-VtS" customClass="IBButton">
-                                                <rect key="frame" x="56" y="7.5" width="168" height="35"/>
+                                                <rect key="frame" x="92" y="7.5" width="132" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="cU8-9d-a5L"/>
                                                 </constraints>
@@ -928,20 +950,20 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="fkv-1z-QJ9">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="50.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fkv-1z-QJ9" id="zXi-LM-fuv">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="50.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="114期:一肖中特诗：西北独扫前人军" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3pe-SS-Aim">
-                                                    <rect key="frame" x="20" y="15" width="344" height="20"/>
+                                                    <rect key="frame" x="20" y="15" width="344" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jiantouyou" translatesAutoresizingMaskIntoConstraints="NO" id="UQW-ub-f8b">
-                                                    <rect key="frame" x="384" y="15" width="20" height="20"/>
+                                                    <rect key="frame" x="384" y="15.5" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="FeU-dS-SnC"/>
                                                         <constraint firstAttribute="width" secondItem="UQW-ub-f8b" secondAttribute="height" multiplier="1:1" id="MpL-0b-Js9"/>
