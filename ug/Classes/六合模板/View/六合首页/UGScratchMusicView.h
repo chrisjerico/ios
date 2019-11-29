@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UGScratchMusicView : UIView
 
--(instancetype)initViewWithImgStr:(NSString *)imgStr upTitle:(NSString *)upTitle downTitle:(NSString *)downTitle;
+-(instancetype)initViewWithImgStr:(NSString *)imgStr upTitle:(NSString *)upTitle downTitle:(NSString *)downTitle  bgColor:(NSString *)bgColorStr;
 @end
 
 NS_ASSUME_NONNULL_END

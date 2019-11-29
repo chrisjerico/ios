@@ -33,7 +33,7 @@
     return _LoadView_from_nib_(@"UGScratchMusicView");
 }
 
--(instancetype)initViewWithImgStr:(NSString *)imgStr upTitle:(NSString *)upTitle downTitle:(NSString *)downTitle{
+-(instancetype)initViewWithImgStr:(NSString *)imgStr upTitle:(NSString *)upTitle downTitle:(NSString *)downTitle  bgColor:(NSString *)bgColorStr{
     if (self = [super init]) {
         self = [self UGScratchMusicView];
         [self.iconImgV setImage:[UIImage imageNamed:imgStr]];
@@ -42,6 +42,18 @@
         [self.icon2ImgV setImage:[UIImage imageNamed:imgStr]];
         self.upTitle2Label.text = upTitle;
         self.drowTitle2Label.text = downTitle;
+        UIColor *bgColor;
+        if ([bgColorStr isEqualToString:@"green"]) {
+            bgColor = [UIColor greenColor];
+        }
+        else if([bgColorStr isEqualToString:@"red"]){
+            bgColor = [UIColor greenColor];
+        }
+        else if([bgColorStr isEqualToString:@"blue"]){
+            bgColor = [UIColor blueColor];
+        }
+        [self.answer2View setBackgroundColor:bgColor];
+        [self.answerView setBackgroundColor:bgColor]; 
         [self scratchViewInit];
     }
     return self;

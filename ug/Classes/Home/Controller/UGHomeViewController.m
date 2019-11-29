@@ -552,7 +552,7 @@
                 NSString *imgStr = [NSString stringWithFormat:@"icon_%@",[self->_lhModel.numColorArrary objectAtIndex:indexPath.row-1]];
                 NSString *titileStr = [self->_lhModel.numbersArrary objectAtIndex:indexPath.row-1];
                 NSString *titile2Str = [self->_lhModel.numSxArrary objectAtIndex:indexPath.row-1];
-                UGScratchMusicView *inviteView = [[UGScratchMusicView alloc] initViewWithImgStr:imgStr upTitle:titileStr downTitle:titile2Str];
+                UGScratchMusicView *inviteView = [[UGScratchMusicView alloc] initViewWithImgStr:imgStr upTitle:titileStr downTitle:titile2Str bgColor:[self->_lhModel.numColorArrary objectAtIndex:indexPath.row-1]];
                 [SGBrowserView showMoveView:inviteView];
             }];
         }

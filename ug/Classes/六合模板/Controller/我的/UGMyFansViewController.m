@@ -9,7 +9,7 @@
 #import "UGMyFansViewController.h"
 
 @interface UGMyFansViewController ()<UITableViewDelegate,UITableViewDataSource>
-@property (weak, nonatomic) IBOutlet UITableView *myTable;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *mySegment;
 
 @property(strong,nonatomic)NSMutableArray *fansListArray;/**<   我的粉丝列表数组" */
@@ -52,7 +52,7 @@
 //            //            }
 //            //数组转模型数组
 //
-//            [self->_myTable reloadData];
+//            [self->_tableView reloadData];
 //
 //        } failure:^(id msg) {
 //            [SVProgressHUD showErrorWithStatus:msg];
@@ -81,7 +81,7 @@
 //            //            }
 //            //数组转模型数组
 //
-//            [self->_myTable reloadData];
+//            [self->_tableView reloadData];
 //
 //        } failure:^(id msg) {
 //            [SVProgressHUD showErrorWithStatus:msg];
