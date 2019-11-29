@@ -109,8 +109,6 @@ static NSMutableArray <SiteModel *> *__sites = nil;
 
 
             [SiteModel site    :@"c018"     :@"企业包"     :@"2044彩票"     :@"io.dcloud.UNI55DB3CB"     :@"https://031122.com"],
-            [SiteModel site    :@"c018a"     :@"企业包"     :@"今⽇彩票"     :@"io.fhpt.H53DDB5F6"     :@""],
-            [SiteModel site    :@"c018b"     :@"企业包"     :@"彩聊"     :@""     :@""],
             [SiteModel site    :@"c021"     :@"企业包"     :@"幸运彩票"     :@"io.fhpt.H5A730C2F"     :@""],
             [SiteModel site    :@"c028"     :@"企业包"     :@"鳳凰彩票"     :@"io.fhpt.H5DBF1426"     :@""],
             [SiteModel site    :@"c053"     :@"企业包"     :@"彩53"     :@"io.fhpt.H563009C8"     :@"https://988c53.com"],
@@ -157,7 +155,8 @@ static NSMutableArray <SiteModel *> *__sites = nil;
             [SiteModel site    :@"c225"     :@"企业包"     :@"51彩票"     :@"io.fhpt.H50A96411"     :@""],
 
 
-
+            [SiteModel site    :@"c018a"    :@"越狱包"     :@"今⽇彩票"        :@""     :@""],
+            [SiteModel site    :@"c018b"    :@"越狱包"     :@"彩聊"          :@""     :@""],
             [SiteModel site    :@"b001"     :@"越狱包"     :@"优选彩票"     :@"io.fhpt.H5BC63A97"     :@""],
             [SiteModel site    :@"c006"     :@"越狱包"     :@"⾦沙娱乐场"     :@"io.fhpt.H560B7EC1"     :@"https://xn--app-v85fh28j.com"],
             [SiteModel site    :@"c011"     :@"越狱包"     :@"华夏彩票"     :@"io.fhpt.H599FF71F"     :@"https://www.hx627.com"],
