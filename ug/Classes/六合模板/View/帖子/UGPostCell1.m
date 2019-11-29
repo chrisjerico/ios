@@ -16,7 +16,6 @@
 
 @interface UGPostCell1 ()<UICollectionViewDelegate, UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-
 @end
 
 
@@ -46,7 +45,7 @@
 }
 
 + (CGSize)collectionViewSizeWithModel:(UGLHPostModel *)pm {
-    NSInteger count = pm.photos.count;
+    NSInteger count = pm.contentPic.count;
     if (count == 0)
         return CGSizeZero;
     
@@ -84,7 +83,7 @@
 }
 
 + (CGSize)itemSizeWithModel:(UGLHPostModel *)pm {
-    NSInteger photoCnt = pm.photos.count;
+    NSInteger photoCnt = pm.contentPic.count;
     if (photoCnt == 0)
         return CGSizeZero;
     
@@ -116,6 +115,7 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
+
 }
 
 - (void)setPm:(UGLHPostModel *)pm {
@@ -155,7 +155,7 @@
         }];
     }
     
-    // 转发、评论、点赞
+    // 点赞、浏览、评论
     {
         [subButton(@"评论Button") setTitle:@(pm.replyCount).stringValue forState:UIControlStateNormal];
         [subButton(@"浏览Button") setTitle:@(pm.viewNum).stringValue forState:UIControlStateNormal];
@@ -164,13 +164,15 @@
         subButton(@"点赞Button").selected = pm.isLike;
     }
     
-    // 图片、视频、音频
+    // 图片
     {
         CGFloat collectionViewW = [UGPostCell1 collectionViewSizeWithModel:pm].width;
         CGFloat collectionViewH = [UGPostCell1 collectionViewSizeWithModel:pm].height;
-        _collectionView.hidden = !pm || !pm.photos.count;
-        _collectionView.cc_constraints.width.constant = collectionViewW;
-        _collectionView.cc_constraints.height.constant = collectionViewH;
+        _collectionView.hidden = !pm || !pm.contentPic.count;
+//        _collectionViewWidthConstraint.constant = collectionViewW + 4
+        _collectionView.cc_constraints.width.constant = collectionViewW + 4;
+        _collectionView.cc_constraints.height.constant = collectionViewH + 4;
+        ((UICollectionViewFlowLayout *)_collectionView.collectionViewLayout).itemSize = [UGPostCell1 itemSizeWithModel:_pm];
         [_collectionView reloadData];
     }
 }
@@ -259,17 +261,17 @@
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return MIN(_pm.photos.count, 9);
+    return MIN(_pm.contentPic.count, 9);
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-    [(UIImageView *)[cell viewWithTagString:@"图片ImageView"] sd_setImageWithURL:[NSURL URLWithString:_pm.photos[indexPath.item]]];
+    [(UIImageView *)[cell viewWithTagString:@"图片ImageView"] sd_setImageWithURL:[NSURL URLWithString:_pm.contentPic[indexPath.item]]];
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    UIImageView *imgView = [[collectionView cellForItemAtIndexPath:indexPath] viewWithTagString:@"ImageView"];
+    UIImageView *imgView = [[collectionView cellForItemAtIndexPath:indexPath] viewWithTagString:@"图片ImageView"];
     UGLHPostModel *pm = _pm;
     
     void (^showMediaViewer)(NSArray <MediaModel *>*) = ^(NSArray *models) {
@@ -277,7 +279,7 @@
         vpView.frame = APP.Bounds;
         vpView.models = models;
         vpView.index = indexPath.item;
-        [NavController1.topView addSubview:vpView];
+        [TabBarController1.view addSubview:vpView];
         
         {
             // 入场动画
@@ -287,7 +289,7 @@
             // 退场动画
             vpView.exitAnimationsBlock = ^CGRect (MediaViewer *mv) {
                 UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:mv.index inSection:0]];
-                UIImageView *imgV = [cell viewWithTagString:@"ImageView"];
+                UIImageView *imgV = [cell viewWithTagString:@"图片ImageView"];
                 return [imgV convertRect:imgV.bounds toView:APP.Window];
             };
         }
@@ -296,7 +298,7 @@
     // 初始化 MediaModel
     showMediaViewer(({
         NSMutableArray <MediaModel *>*models = @[].mutableCopy;
-        for (NSString *pic in pm.photos) {
+        for (NSString *pic in pm.contentPic) {
             MediaModel *mm = [MediaModel new];
             mm.imgUrl = [NSURL URLWithString:pic];
             [models addObject:mm];

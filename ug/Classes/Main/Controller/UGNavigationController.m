@@ -41,12 +41,7 @@
 
 @implementation UGNavigationController
 
-static UGNavigationController *__navController = nil;
 static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
-
-+ (instancetype)shared {
-    return __navController;
-}
 
 + (NSMutableArray<GameModel *> *)browsingHistoryArray {
     return __browsingHistoryArray;
@@ -63,7 +58,6 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    __navController = self;
     
     //去除导航栏下方的横线
     [self.navigationBar setBackgroundImage:[UIImage new] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
@@ -104,9 +98,9 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
 }
 
 - (UIView *)topView {
-    return __navController.viewControllers.lastObject.view;
+    return NavController1.viewControllers.lastObject.view;
 }
-- (UIViewController *)firstVC{
+- (UIViewController *)firstVC {
     return NavController1.viewControllers.firstObject;
 }
 
