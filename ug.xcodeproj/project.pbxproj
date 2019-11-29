@@ -567,6 +567,7 @@
 		D4BBFC04232A801700147C4A /* UGFundsTransferView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BBFC03232A801700147C4A /* UGFundsTransferView.m */; };
 		D4BBFC06232A80A800147C4A /* UGFundsTransferView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4BBFC05232A80A800147C4A /* UGFundsTransferView.xib */; };
 		D4C0A12723913A6C00B39358 /* Global.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C0A12623913A6C00B39358 /* Global.m */; };
+		D4C0A12F239156FB00B39358 /* hot_01.gif in Resources */ = {isa = PBXBuildFile; fileRef = D4C0A12D239156FB00B39358 /* hot_01.gif */; };
 		D4C165692344B1AB005A0F12 /* UGMineSkinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C165672344B1AB005A0F12 /* UGMineSkinViewController.m */; };
 		D4C1656A2344B1AB005A0F12 /* UGMineSkinViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4C165682344B1AB005A0F12 /* UGMineSkinViewController.xib */; };
 		D4C1656E2344C3C0005A0F12 /* UGMineSkinCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C1656C2344C3C0005A0F12 /* UGMineSkinCollectionViewCell.m */; };
@@ -1708,6 +1709,7 @@
 		D4BBFC05232A80A800147C4A /* UGFundsTransferView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGFundsTransferView.xib; sourceTree = "<group>"; };
 		D4C0A12523913A6C00B39358 /* Global.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Global.h; sourceTree = "<group>"; };
 		D4C0A12623913A6C00B39358 /* Global.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Global.m; sourceTree = "<group>"; };
+		D4C0A12D239156FB00B39358 /* hot_01.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = hot_01.gif; sourceTree = "<group>"; };
 		D4C165662344B1AB005A0F12 /* UGMineSkinViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGMineSkinViewController.h; sourceTree = "<group>"; };
 		D4C165672344B1AB005A0F12 /* UGMineSkinViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGMineSkinViewController.m; sourceTree = "<group>"; };
 		D4C165682344B1AB005A0F12 /* UGMineSkinViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGMineSkinViewController.xib; sourceTree = "<group>"; };
@@ -3906,6 +3908,7 @@
 			children = (
 				D4B75E15227802600007047C /* Assets.xcassets */,
 				D40FA8BE229910EE003E596F /* yuebaoMone.gif */,
+				D4C0A12D239156FB00B39358 /* hot_01.gif */,
 				CFFAB58A237315C2009593AF /* event.gif */,
 				CFFAB58C23755569009593AF /* lxb.gif */,
 				CFCADE44237D281C00680F62 /* cplts_看图王.gif */,
@@ -4945,6 +4948,7 @@
 				D41E0EE1228D88BC00D6C42A /* UGMissionLevelTableViewCell.xib in Resources */,
 				D4252824232103AA007DE522 /* UGSignInHeaderView.xib in Resources */,
 				D405B30F227C614800F8C586 /* UGFundDetailsCell.xib in Resources */,
+				D4C0A12F239156FB00B39358 /* hot_01.gif in Resources */,
 				D4C165792344CAB6005A0F12 /* UGSkinSeconCollectionHeadView.xib in Resources */,
 				D4EE8F882341DD4A006FA0E2 /* UGhomeRecommendCollectionViewCell.xib in Resources */,
 				D4090F63228D3E0E00D6DA43 /* UGAvaterSelectView.xib in Resources */,

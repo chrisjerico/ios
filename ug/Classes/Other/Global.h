@@ -7,7 +7,7 @@
 //  用于放全局的对象
 
 #import <Foundation/Foundation.h>
-
+#import "UGYYPlatformGames.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Global : NSObject
