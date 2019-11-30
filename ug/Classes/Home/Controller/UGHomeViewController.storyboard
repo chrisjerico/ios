@@ -132,17 +132,23 @@
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="开奖结果Label"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gWg-lE-My5">
-                                                                <rect key="frame" x="98" y="2" width="46" height="34"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lVj-YX-COk">
+                                                                <rect key="frame" x="10" y="2" width="103" height="25"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="46" id="2if-kR-CsN"/>
-                                                                    <constraint firstAttribute="height" constant="34" id="85A-AC-zZi"/>
+                                                                    <constraint firstAttribute="height" constant="25" id="4nY-1i-YYm"/>
+                                                                    <constraint firstAttribute="width" constant="103" id="mdQ-bV-OoV"/>
                                                                 </constraints>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <state key="normal" title="历史记录&gt;">
+                                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                </state>
                                                                 <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="声音按钮"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="历史按钮"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
-                                                                    <action selector="voiceAction:" destination="Qlk-11-xZ9" eventType="touchUpInside" id="2iS-qn-km4"/>
+                                                                    <action selector="historyAcion:" destination="Qlk-11-xZ9" eventType="touchUpInside" id="7IQ-ZB-zO0"/>
                                                                 </connections>
                                                             </button>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_sound01" translatesAutoresizingMaskIntoConstraints="NO" id="BuM-AS-dMn">
@@ -152,22 +158,22 @@
                                                                     <constraint firstAttribute="width" constant="20" id="vxP-kL-nxB"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lVj-YX-COk">
-                                                                <rect key="frame" x="10" y="2" width="103" height="25"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gWg-lE-My5">
+                                                                <rect key="frame" x="101" y="2" width="60" height="34"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="25" id="4nY-1i-YYm"/>
-                                                                    <constraint firstAttribute="width" constant="103" id="mdQ-bV-OoV"/>
+                                                                    <constraint firstAttribute="width" constant="60" id="2if-kR-CsN"/>
+                                                                    <constraint firstAttribute="height" constant="34" id="85A-AC-zZi"/>
                                                                 </constraints>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <state key="normal" title="历史记录&gt;">
-                                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <state key="normal">
+                                                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </state>
                                                                 <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="历史按钮"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="声音按钮"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
-                                                                    <action selector="historyAcion:" destination="Qlk-11-xZ9" eventType="touchUpInside" id="7IQ-ZB-zO0"/>
+                                                                    <action selector="voiceAction:" destination="Qlk-11-xZ9" eventType="touchUpInside" id="QjP-UY-amh"/>
                                                                 </connections>
                                                             </button>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="咪" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gfi-47-PVj">
@@ -189,6 +195,24 @@
                                                                     <action selector="loteryValueChange:" destination="Qlk-11-xZ9" eventType="valueChanged" id="JrJ-Lm-mPs"/>
                                                                 </connections>
                                                             </switch>
+                                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="d41-PF-3Ff">
+                                                                <rect key="frame" x="20" y="38" width="374" height="78"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="WuQ-p2-Zcl">
+                                                                    <size key="itemSize" width="0.0" height="0.0"/>
+                                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                                </collectionViewFlowLayout>
+                                                                <cells/>
+                                                            </collectionView>
+                                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="准备开奖中∙∙∙" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m8R-rd-rSU">
+                                                                <rect key="frame" x="20" y="38" width="374" height="78"/>
+                                                                <color key="backgroundColor" red="0.96079081300000002" green="0.96077281240000001" blue="0.96078497169999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                                                <color key="textColor" red="0.92265206580000003" green="0.3034083843" blue="0.23918381329999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="zeS-hM-HiN">
                                                                 <rect key="frame" x="18" y="116" width="378" height="26"/>
                                                                 <subviews>
@@ -239,36 +263,28 @@
                                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="26" id="vE3-Rs-YSV"/>
                                                                 </constraints>
                                                             </stackView>
-                                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="d41-PF-3Ff">
-                                                                <rect key="frame" x="20" y="38" width="374" height="78"/>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="WuQ-p2-Zcl">
-                                                                    <size key="itemSize" width="0.0" height="0.0"/>
-                                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                                </collectionViewFlowLayout>
-                                                                <cells/>
-                                                            </collectionView>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="zeS-hM-HiN" firstAttribute="top" secondItem="d41-PF-3Ff" secondAttribute="bottom" id="0bA-1p-q4v"/>
-                                                            <constraint firstItem="D3S-17-6Nf" firstAttribute="leading" secondItem="gWg-lE-My5" secondAttribute="trailing" constant="1" id="2Fq-BU-yL7"/>
+                                                            <constraint firstItem="gWg-lE-My5" firstAttribute="leading" secondItem="BuM-AS-dMn" secondAttribute="leading" constant="-20" id="2jr-5v-5XW"/>
                                                             <constraint firstItem="D3S-17-6Nf" firstAttribute="centerX" secondItem="fkl-T2-F9z" secondAttribute="centerX" id="2vA-F7-mMh"/>
                                                             <constraint firstItem="d41-PF-3Ff" firstAttribute="leading" secondItem="fkl-T2-F9z" secondAttribute="leading" constant="20" id="4nV-UU-bEM"/>
                                                             <constraint firstItem="d41-PF-3Ff" firstAttribute="top" secondItem="gWg-lE-My5" secondAttribute="bottom" constant="2" id="5nX-36-4ZV"/>
                                                             <constraint firstItem="D3S-17-6Nf" firstAttribute="leading" secondItem="BuM-AS-dMn" secondAttribute="trailing" constant="4" id="7XC-Wq-HAO"/>
                                                             <constraint firstAttribute="trailing" secondItem="eqz-dJ-Isq" secondAttribute="trailing" constant="10" id="9fB-iP-9pb"/>
                                                             <constraint firstAttribute="trailing" secondItem="5hz-n1-Cwv" secondAttribute="trailing" constant="30" id="Ed5-gl-ecL"/>
+                                                            <constraint firstItem="m8R-rd-rSU" firstAttribute="bottom" secondItem="d41-PF-3Ff" secondAttribute="bottom" id="IjD-n1-yB6"/>
                                                             <constraint firstAttribute="trailing" secondItem="d41-PF-3Ff" secondAttribute="trailing" constant="20" id="KcV-ea-tmw"/>
                                                             <constraint firstItem="d41-PF-3Ff" firstAttribute="centerY" secondItem="eqz-dJ-Isq" secondAttribute="centerY" id="O4w-jy-ONT"/>
                                                             <constraint firstItem="lVj-YX-COk" firstAttribute="top" secondItem="fkl-T2-F9z" secondAttribute="top" constant="2" id="Rju-02-d5c"/>
                                                             <constraint firstItem="eqz-dJ-Isq" firstAttribute="leading" secondItem="fkl-T2-F9z" secondAttribute="leading" constant="10" id="USh-Wi-7Er"/>
                                                             <constraint firstItem="BuM-AS-dMn" firstAttribute="top" secondItem="fkl-T2-F9z" secondAttribute="top" constant="3" id="WAt-ND-0V3"/>
+                                                            <constraint firstItem="m8R-rd-rSU" firstAttribute="trailing" secondItem="d41-PF-3Ff" secondAttribute="trailing" id="ZIa-MV-SJa"/>
                                                             <constraint firstItem="eqz-dJ-Isq" firstAttribute="top" secondItem="fkl-T2-F9z" secondAttribute="top" id="ajz-y7-kdn"/>
                                                             <constraint firstItem="D3S-17-6Nf" firstAttribute="top" secondItem="fkl-T2-F9z" secondAttribute="top" constant="2" id="bxq-UO-7xZ"/>
                                                             <constraint firstItem="zeS-hM-HiN" firstAttribute="leading" secondItem="fkl-T2-F9z" secondAttribute="leading" constant="18" id="fko-dQ-Ukk"/>
+                                                            <constraint firstItem="m8R-rd-rSU" firstAttribute="top" secondItem="d41-PF-3Ff" secondAttribute="top" id="hbM-BU-CDp"/>
                                                             <constraint firstAttribute="trailing" secondItem="zeS-hM-HiN" secondAttribute="trailing" constant="18" id="lCx-Uh-VqJ"/>
                                                             <constraint firstItem="gWg-lE-My5" firstAttribute="top" secondItem="fkl-T2-F9z" secondAttribute="top" constant="2" id="n0H-tN-dO5"/>
                                                             <constraint firstItem="5hz-n1-Cwv" firstAttribute="leading" secondItem="gfi-47-PVj" secondAttribute="trailing" constant="8" id="o0A-RU-UUJ"/>
@@ -276,6 +292,7 @@
                                                             <constraint firstItem="gfi-47-PVj" firstAttribute="top" secondItem="fkl-T2-F9z" secondAttribute="top" constant="2" id="tjV-Hu-Vcn"/>
                                                             <constraint firstItem="5hz-n1-Cwv" firstAttribute="top" secondItem="fkl-T2-F9z" secondAttribute="top" constant="1" id="ujN-Zs-6JN"/>
                                                             <constraint firstAttribute="bottom" secondItem="eqz-dJ-Isq" secondAttribute="bottom" constant="10" id="wNj-L4-fP8"/>
+                                                            <constraint firstItem="m8R-rd-rSU" firstAttribute="leading" secondItem="d41-PF-3Ff" secondAttribute="leading" id="zL7-M7-hmr"/>
                                                         </constraints>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="开奖结果"/>
@@ -776,12 +793,14 @@
                         <outlet property="gameViewHeight" destination="h0I-VV-udc" id="8a4-eU-Jwg"/>
                         <outlet property="headerView" destination="zY5-d1-uIg" id="GXp-0X-5t0"/>
                         <outlet property="heightLayoutConstraint" destination="pX9-oq-xNE" id="zZh-og-YMp"/>
+                        <outlet property="hormImgV" destination="BuM-AS-dMn" id="Iam-x8-Ufr"/>
                         <outlet property="leftwardMarqueeView" destination="fSS-lB-1r2" id="u7Y-XH-UTU"/>
                         <outlet property="liuheForumContentView" destination="qz7-G5-OUZ" id="ua1-5o-WbM"/>
                         <outlet property="liuheResultContentView" destination="fkl-T2-F9z" id="K0q-Mt-Ggd"/>
                         <outlet property="lotteryCollectionView" destination="d41-PF-3Ff" id="luD-CR-cHL"/>
                         <outlet property="lotteryTitleLabel" destination="D3S-17-6Nf" id="Uc1-94-Jl0"/>
                         <outlet property="lotteryUISwitch" destination="5hz-n1-Cwv" id="gzl-rE-uf7"/>
+                        <outlet property="lottyLabel" destination="m8R-rd-rSU" id="GOD-QS-tKO"/>
                         <outlet property="promotionView" destination="7oT-DH-Tz9" id="r07-f1-ldk"/>
                         <outlet property="promotionsStackView" destination="xgj-Ln-Ukx" id="HAh-7F-6YB"/>
                         <outlet property="rankLabel" destination="7pj-to-Bil" id="gE2-Al-CqK"/>

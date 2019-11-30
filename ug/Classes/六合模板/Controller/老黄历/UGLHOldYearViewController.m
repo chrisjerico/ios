@@ -36,35 +36,35 @@
     
     [self imgVButtonInteractionEnabled];
     NSString *dataStr = [CMTimeCommon currentDateString];
-//    NSLog(@"dataStr= %@",dataStr);
+    //    NSLog(@"dataStr= %@",dataStr);
     [self getlhlDetail:dataStr];
-
+    
 }
 #pragma mark ---------------- 网络请求
 // 老黄历
 - (void)getlhlDetail:(NSString *)dataStr{
-
+    
     currentSelDataStr = dataStr;
     [SVProgressHUD showWithStatus:nil];
     [self imgVButtonInteractionNoEnabled];
-//    NSLog(@"currentSelDataStr= %@",currentSelDataStr);
+    //    NSLog(@"currentSelDataStr= %@",currentSelDataStr);
     NSDictionary *params = @{@"date":dataStr};
     [CMNetwork lhlDetailWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             UGLHLhlModel *obj =   ((UGLHLhlModel*)model.data);
-//               NSLog(@"obj = %@",obj);
+            //               NSLog(@"obj = %@",obj);
             dispatch_async(dispatch_get_main_queue(), ^{
                 [SVProgressHUD dismiss];
                 [self imgVButtonInteractionEnabled];
                 if (obj) {
-                      [self setLHLDate:obj];
+                    [self setLHLDate:obj];
                 }
             });
             
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
             [self imgVButtonInteractionEnabled];
-  
+            
         }];
     }];
 }

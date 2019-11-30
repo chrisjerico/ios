@@ -446,6 +446,7 @@
 		D43B48B1238D41DA00BB7960 /* UIButton+touch.m in Sources */ = {isa = PBXBuildFile; fileRef = D43B48AF238D41D900BB7960 /* UIButton+touch.m */; };
 		D43B48B9238D4DBC00BB7960 /* SiteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D43B48B7238D4DBC00BB7960 /* SiteModel.m */; };
 		D43B48BD238D5B0700BB7960 /* UGLHCategoryListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D43B48BC238D5B0700BB7960 /* UGLHCategoryListModel.m */; };
+		D44B49A32392675100475EBE /* CMAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D44B49A22392675100475EBE /* CMAudioPlayer.m */; };
 		D4520A2E238FA86100B69E97 /* UGLHlotteryNumberModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4520A2D238FA86100B69E97 /* UGLHlotteryNumberModel.m */; };
 		D4520A31238FBA9D00B69E97 /* CMLabelCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = D4520A30238FBA9D00B69E97 /* CMLabelCommon.m */; };
 		D4520A36238FEDCD00B69E97 /* UGLHFocusUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4520A35238FEDCD00B69E97 /* UGLHFocusUserModel.m */; };
@@ -1500,6 +1501,8 @@
 		D43B48B8238D4DBC00BB7960 /* SiteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SiteModel.h; path = AutoPacking/AutoPacking/SiteModel.h; sourceTree = SOURCE_ROOT; };
 		D43B48BB238D5B0700BB7960 /* UGLHCategoryListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLHCategoryListModel.h; sourceTree = "<group>"; };
 		D43B48BC238D5B0700BB7960 /* UGLHCategoryListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLHCategoryListModel.m; sourceTree = "<group>"; };
+		D44B49A12392675100475EBE /* CMAudioPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMAudioPlayer.h; sourceTree = "<group>"; };
+		D44B49A22392675100475EBE /* CMAudioPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CMAudioPlayer.m; sourceTree = "<group>"; };
 		D4520A2C238FA86100B69E97 /* UGLHlotteryNumberModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLHlotteryNumberModel.h; sourceTree = "<group>"; };
 		D4520A2D238FA86100B69E97 /* UGLHlotteryNumberModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLHlotteryNumberModel.m; sourceTree = "<group>"; };
 		D4520A2F238FBA9D00B69E97 /* CMLabelCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMLabelCommon.h; sourceTree = "<group>"; };
@@ -4132,6 +4135,8 @@
 				D4AE42FB2359FB5C00EC7E8E /* CMTimeCommon.m */,
 				D4520A2F238FBA9D00B69E97 /* CMLabelCommon.h */,
 				D4520A30238FBA9D00B69E97 /* CMLabelCommon.m */,
+				D44B49A12392675100475EBE /* CMAudioPlayer.h */,
+				D44B49A22392675100475EBE /* CMAudioPlayer.m */,
 			);
 			path = CMCommon;
 			sourceTree = "<group>";
@@ -5245,6 +5250,7 @@
 				D405B30A227C60A500F8C586 /* UGFundDetailsTableViewController.m in Sources */,
 				D405B307227C3A1900F8C586 /* UGRechargeRecordTableViewController.m in Sources */,
 				D41C3E09228EA09000BF6436 /* UGBetRecordTableViewController.m in Sources */,
+				D44B49A32392675100475EBE /* CMAudioPlayer.m in Sources */,
 				D4F50A512339E67600E0811D /* UGAgentViewController.m in Sources */,
 				D422FE6E232559BF0063EA4E /* UGBetListModel.m in Sources */,
 				D4D4225B232656D2006E680B /* UGrealBetStatModel.m in Sources */,

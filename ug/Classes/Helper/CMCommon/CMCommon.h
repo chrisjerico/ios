@@ -163,4 +163,16 @@
  *
  */
 + (void )textFieldSetPlaceholderLabelColor:(UIColor *)color TextField:(UITextField *)txtF;
+
+/**
+ *  ios 自带//语音播报 默认
+ *
+ utterance.pitchMultiplier= 0.8;//设置语调
+ utterance.volume = 1.0f;//设置音量（0.0--1.0）
+ utterance.rate = 0.5f;//设置语速
+ *
+ */
++ (void )speakUtteranceWithString:(NSString *)string;
+
+
 @end

@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (copy, nonatomic) NSString *numSx;/**<   生肖，逗号分割" */
 @property (copy, nonatomic) NSString *serverTime;/**<   服务器时间" */
 @property (copy, nonatomic) NSString *numbers;/**<   开奖号码，逗号分割" */
-@property (assign, nonatomic) int isFinish;/**< " */
+@property (assign, nonatomic) int isFinish;/**< "  1  开奖结束，0 还在继续*/
 @property (copy, nonatomic) NSString *lotteryTime;/**<  开奖时间" */
 @property (copy, nonatomic) NSString *endtime;/**<   " */
 @property (copy, nonatomic) NSString *numColor;/**<  波色，逗号分割" */
@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (copy, nonatomic) NSArray *numSxArrary;/**<   生肖， */
 @property (copy, nonatomic) NSArray *numColorArrary;/**<  颜色*/
 @property (copy, nonatomic) NSArray *numbersArrary;/**<   开奖号码" */
-
+@property (nonatomic) BOOL isOpen;          /**<  六合界面swich开关*/
 @end
 
 NS_ASSUME_NONNULL_END

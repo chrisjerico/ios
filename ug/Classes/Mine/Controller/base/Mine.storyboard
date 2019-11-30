@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="f64-1B-mMS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="f64-1B-mMS">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -348,7 +348,6 @@
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <action selector="pwdTextSwitch:" destination="vK4-I7-tMd" eventType="touchUpInside" id="8No-Zu-hbK"/>
-                                            <action selector="pwdTextSwitch:" destination="blf-Ei-b2L" eventType="touchUpInside" id="MqL-db-eye"/>
                                         </connections>
                                     </button>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="biyan" translatesAutoresizingMaskIntoConstraints="NO" id="SMf-R3-JQi">
@@ -660,7 +659,7 @@
                                                             <action selector="pwdTextSwitch:" destination="blf-Ei-b2L" eventType="touchUpInside" id="17Y-VB-VcT"/>
                                                         </connections>
                                                     </button>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="mi" translatesAutoresizingMaskIntoConstraints="NO" id="XWd-GP-9IA">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="biyan" translatesAutoresizingMaskIntoConstraints="NO" id="XWd-GP-9IA">
                                                         <rect key="frame" x="349" y="12" width="20" height="20"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
                                                     </imageView>
@@ -1813,7 +1812,6 @@
         <image name="imgVcode" width="100" height="100"/>
         <image name="jiantou1" width="16" height="16"/>
         <image name="lvzhuan" width="50" height="50"/>
-        <image name="mi" width="16" height="16"/>
         <image name="mima" width="24" height="24"/>
         <image name="missionhall" width="75" height="19.5"/>
         <image name="qq" width="24" height="24"/>
