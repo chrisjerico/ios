@@ -13,6 +13,8 @@
 
 @interface UGScratchMusicView ()<OttoScratchViewDelegate>
 @property (nonatomic,strong) OttoScratchView * ottoScratchView;
+@property (weak, nonatomic) IBOutlet UIView *oc2View;
+@property (weak, nonatomic) IBOutlet UIView *ocView;
 @property (weak, nonatomic) IBOutlet UIView *answerView;
 @property (weak, nonatomic) IBOutlet UIView *answer2View;
 @property (weak, nonatomic) IBOutlet UIView *scratchView;
@@ -47,7 +49,7 @@
             bgColor = [UIColor greenColor];
         }
         else if([bgColorStr isEqualToString:@"red"]){
-            bgColor = [UIColor greenColor];
+            bgColor = [UIColor redColor];
         }
         else if([bgColorStr isEqualToString:@"blue"]){
             bgColor = [UIColor blueColor];
@@ -62,12 +64,12 @@
 - (void)scratchViewInit{
     [self.ottoScratchView removeFromSuperview];
     [self.answer2View setHidden:YES];
-    self.ottoScratchView = [[OttoScratchView alloc] initWithFrame:CGRectMake(0, 0, self.scratchView.frame.size.width, self.scratchView.frame.size.height)];
+    self.ottoScratchView = [[OttoScratchView alloc] initWithFrame:CGRectMake(0, 0, self.oc2View.frame.size.width, self.oc2View.frame.size.height)];
     self.ottoScratchView.delegate = self;
     self.ottoScratchView.scratchLineWidth = 14;
     self.ottoScratchView.passCount = 9;
-    [self.ottoScratchView addSubview:self.answerView];
-    [self.scratchView insertSubview:self.ottoScratchView belowSubview:self.showButton];
+    [self.ottoScratchView addSubview:self.ocView];
+    [self.oc2View insertSubview:self.ottoScratchView belowSubview:self.showButton];
     [self.showButton setHidden:YES];
     // 一行代码为 view 添加手势事件
     [self addGestureTapEventHandle:^(id sender, UITapGestureRecognizer *gestureRecognizer) {

@@ -1090,8 +1090,8 @@
             [self.lotteryCollectionView reloadData];
             
 #ifdef DEBUG
-            [self testKaiJiang];
-            return ;
+//            [self testKaiJiang];
+//            return ;
 #endif
             
             NSString *nper = [self.lhModel.issue  substringFromIndex:4];
