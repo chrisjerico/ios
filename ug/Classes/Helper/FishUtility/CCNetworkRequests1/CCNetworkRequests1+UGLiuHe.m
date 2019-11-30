@@ -23,13 +23,13 @@
 // 帖子列表
 - (CCSessionModel *)lhdoc_contentList:(NSString *)alias uid:(NSString *)uid sort:(NSString *)sort page:(NSInteger)page {
     return [self req:@"wjapp/api.php?c=lhcdoc&a=contentList"
-    :@{@"alias":alias,    // 栏目别名，必填
-        @"uid":uid,    // 选填，作者ID
-        @"sort":sort,    // 排序 非必填； new 最新，hot 热门
-        @"page":@(page),    // 分页页码，非必填
-        @"rows":@(APP.PageCount),   // 分页条数，非必填
-    }
-    :false];
+                    :@{@"alias":alias,    // 栏目别名，必填
+                       @"uid":uid,    // 选填，作者ID
+                       @"sort":sort,    // 排序 非必填； new 最新，hot 热门
+                       @"page":@(page),    // 分页页码，非必填
+                       @"rows":@(APP.PageCount),   // 分页条数，非必填
+                    }
+                    :false];
 }
 
 // 获取老黄历详情
@@ -76,13 +76,13 @@
 // 发贴
 - (CCSessionModel *)lhcdoc_postContent:(NSString *)alias title:(NSString *)title content:(NSString *)content images:(NSArray <UIImage *>*)images price:(double)price {
     return [self req:@"wjapp/api.php?c=lhcdoc&a=postContent"
-    :@{@"alias":alias,    // 栏目别名，必填
-        @"title":title,    // 必填，帖子标题
-        @"content":content,    // 必填，帖子内容
-        @"images":images,    // 非必填，图片，base64之后的图片信息
-        @"price":_FloatString4(price),   // 非必填，帖子价格
-    }
-    :true];
+                    :@{@"alias":alias,    // 栏目别名，必填
+                       @"title":title,    // 必填，帖子标题
+                       @"content":content,    // 必填，帖子内容
+                       @"images":images,    // 非必填，图片，base64之后的图片信息
+                       @"price":_FloatString4(price),   // 非必填，帖子价格
+                    }
+                    :true];
 }
 
 // 发表评论
@@ -177,6 +177,49 @@
                        @"content":content,   // 检索内容
                        @"page":@(page),    // 分页页码，非必填
                        @"rows":@(APP.PageCount),   // 分页条数，非必填
+                    }
+                    :false];
+}
+
+// 获取用户信息
+- (CCSessionModel *)lhcdoc_getUserInfo:(NSString *)uid {
+    return [self req:@"wjapp/api.php?c=lhcdoc&a=getUserInfo"
+                    :@{@"uid":uid}  // 用户ID
+                    :true];
+}
+
+// 申请VIP认证
+- (CCSessionModel *)lhcdoc_applyVip:(NSString *)uid {
+    return [self req:@"wjapp/api.php?c=lhcdoc&a=applyVip"
+                    :@{@"uid":uid}  // 用户ID
+                    :true];
+}
+
+// 点赞内容或帖子
+- (CCSessionModel *)lhcdoc_likePost:(NSString *)rid type:(NSInteger)type likeFlag:(BOOL)likeFlag {
+    return [self req:@"wjapp/api.php?c=lhcdoc&a=likePost"
+                    :@{@"rid":rid,  // 帖子或内容ID
+                       @"type":@(type), //  1 点赞内容 2 点赞帖子
+                       @"likeFlag":@((int)likeFlag),// 点赞标记 1 点赞 0 取消点赞
+                    }
+                    :false];
+}
+
+// 收藏资料
+- (CCSessionModel *)lhcdoc_doFavorites:(NSString *)rid type:(NSInteger)type favFlag:(BOOL)favFlag {
+    return [self req:@"wjapp/api.php?c=lhcdoc&a=doFavorites"
+                    :@{@"id":rid,   // 分类ID或帖子ID
+                       @"type":@(type), //  1 收藏分类 2 收藏帖子
+                       @"favFlag":@((int)favFlag),// 收藏标记 1 收藏 0 取消收藏
+                    }
+                    :false];
+}
+
+// 关注或取消关注楼主
+- (CCSessionModel *)lhcdoc_followPoster:(NSString *)posterUid followFlag:(BOOL)followFlag {
+    return [self req:@"wjapp/api.php?c=lhcdoc&a=followPoster"
+                    :@{@"posterUid":posterUid,
+                       @"followFlag":@((int)followFlag),
                     }
                     :false];
 }

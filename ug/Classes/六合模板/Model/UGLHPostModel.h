@@ -72,6 +72,7 @@ NS_ASSUME_NONNULL_BEGIN
 //@property (nonatomic, assign) BOOL hasPay;     /**<   是否已支付 1是 0否 */
 //@property (nonatomic, assign) BOOL isHot;      /**<   是否热门 1是 0否 */
 @property (nonatomic, assign) BOOL isFav;        /**<   是否收藏 1是 0否 */
+@property (nonatomic, assign) BOOL isBigFav;     /**<   图库是否收藏 1是 0否 */
 @property (nonatomic, assign) BOOL isFollow;     /**<   是否关注 1是 0否 */
 @property (nonatomic, assign) BOOL isLhcdoVip;   /**<   作者是否V认证 1是 0否 */
 //@property (nonatomic, copy) NSString *createTime; /**<   文章创建时间 */

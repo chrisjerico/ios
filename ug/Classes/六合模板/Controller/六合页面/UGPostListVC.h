@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UGPostListVC : UIViewController
 
 @property (nonatomic, strong) UGLHCategoryListModel *clm;   /**<   六合栏目Model */
+@property (nonatomic, assign) NSInteger isHistory;
 @end
 
 NS_ASSUME_NONNULL_END

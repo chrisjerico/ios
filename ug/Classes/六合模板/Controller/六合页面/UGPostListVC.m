@@ -25,8 +25,11 @@
     [super viewDidLoad];
     
     __weakSelf_(__self);
-    // 导航条
-    {
+    // 顶部UI
+    if (_isHistory) {
+        self.title = @"历史记录";
+        _segmentedControl.superview.hidden = true;
+    } else {
         self.title = _clm.name;
         self.navigationItem.rightBarButtonItems = @[
             [STBarButtonItem barButtonItemWithImageName:@"search" block:^(UIButton *sender) {
@@ -51,7 +54,11 @@
             return nil; // 综合
         };
         [_tableView setupHeaderRefreshRequest:^CCSessionModel *(UITableView *tv) {
-            return [NetworkManager1 lhdoc_contentList:__self.clm.alias uid:nil sort:sortString() page:1];
+            if (__self.isHistory) {
+                return [NetworkManager1 lhdoc_historyContent:__self.clm.cid page:1];
+            } else {
+                return [NetworkManager1 lhdoc_contentList:__self.clm.alias uid:nil sort:sortString() page:1];
+            }
         } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
             NSArray *array = sm.responseObject[@"data"][@"list"];
             for (NSDictionary *dict in array)
@@ -59,14 +66,18 @@
             return array;
         }];
         [_tableView setupFooterRefreshRequest:^CCSessionModel *(UITableView *tv) {
-            return [NetworkManager1 lhdoc_contentList:__self.clm.alias uid:nil sort:sortString() page:tv.pageIndex];
+            if (__self.isHistory) {
+                return [NetworkManager1 lhdoc_historyContent:__self.clm.cid page:tv.pageIndex];
+            } else {
+                return [NetworkManager1 lhdoc_contentList:__self.clm.alias uid:nil sort:sortString() page:tv.pageIndex];
+            }
         } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
             NSArray *array = sm.responseObject[@"data"][@"list"];
             for (NSDictionary *dict in array)
                 [tv.dataArray addObject:[UGLHPostModel mj_objectWithKeyValues:dict]];
             return array;
         }];
-        [_tableView.mj_header beginRefreshing];
+        [_tableView.mj_footer beginRefreshing];
     }
 }
 

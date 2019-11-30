@@ -45,8 +45,20 @@
     // 六合图库的收藏按钮
     if (_gm.gid) {
         self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithTitle:@"收藏" block:^(UIButton *sender) {
-            
+            if (!UGLoginIsAuthorized()) {
+                SANotificationEventPost(UGNotificationShowLoginView, nil);
+                return;
+            }
+            BOOL fav = !__self.contentVC.pm.isBigFav;
+            __weakSelf_(__self);
+            [NetworkManager1 lhcdoc_doFavorites:__self.gm.gid type:1 favFlag:fav].successBlock = ^(id responseObject) {
+                __self.contentVC.pm.isBigFav = fav;
+                sender.selected = fav;
+                [sender setTitle:fav ? @"取消收藏" : @"收藏" forState:UIControlStateNormal];
+                sender.width = 60;
+            };
         }];
+        self.navigationItem.rightBarButtonItem.customView.alpha = 0;
     }
     
     // 下划线
@@ -87,6 +99,16 @@
     [_contentVC.view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_collectionView.mas_bottom).offset(1);
         make.left.right.bottom.equalTo(self.view);
+    }];
+    
+    // 图库更新收藏状态
+    __weakSelf_(__self);
+    [_contentVC xw_addObserverBlockForKeyPath:@"pm" block:^(UGPostDetailVC *obj, UGLHPostModel *oldVal, UGLHPostModel *newVal) {
+        UIButton *btn = __self.navigationItem.rightBarButtonItem.customView;
+        btn.selected = newVal.isBigFav;
+        [btn setTitle:newVal.isBigFav ? @"取消收藏" : @"收藏" forState:UIControlStateNormal];
+        btn.width = 60;
+        btn.alpha = 1;
     }];
 }
 

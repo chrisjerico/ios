@@ -127,6 +127,7 @@
     {
         [subImageView(@"头像ImageView") sd_setImageWithURL:[NSURL URLWithString:pm.headImg]];
         subImageView(@"精品ImageView").hidden = !pm.isHot;
+        subImageView(@"置顶ImageView").hidden = !pm.isTop;
         subLabel(@"期数Label").text = pm.periods;
         subLabel(@"昵称Label").text = pm.nickname;
         subLabel(@"时间Label").text = pm.createTime;
@@ -232,26 +233,25 @@
     }
     __weakSelf_(__self);
     BOOL like = !sender.selected;
-    
-//    [NetworkManager1 isLikeAction:_pm.actionId like:like].completionBlock = ^(ZJSessionModel *sObj) {
-//        UGLHPostModel *pm = __self.pm;
-//        BOOL ok = false;
-//        if (!sObj.error) {
-//            pm.likeCnt += like ? 1 : -1;
-//            pm.isLiked = like;
-//            ok = true;
-//        } else if (sObj.error.code == -2) { // 已点赞
-//            sObj.noShowErrorHUD = true;
-//            pm.isLiked = like;
-//            ok = true;
-//        }
-//        if (ok) {
-//            FastSubViewCode(__self);
-//            subLabel(@"点赞数Label").text = @(pm.likeCnt).stringValue;
-//            subLabel(@"点赞数Label").textColor = pm.isLiked ? APP.ThemeColor1 : APP.TextColor3;
-//            subButton(@"点赞Button").selected = pm.isLiked;
-//        }
-//    };
+    [NetworkManager1 lhcdoc_likePost:_pm.cid type:2 likeFlag:like].completionBlock = ^(CCSessionModel *sObj) {
+        UGLHPostModel *pm = __self.pm;
+        BOOL ok = false;
+        if (!sObj.error) {
+            pm.likeNum += like ? 1 : -1;
+            pm.isLike = like;
+            ok = true;
+        } else if (sObj.error.code == -2) { // 已点赞
+            sObj.noShowErrorHUD = true;
+            pm.isLike = like;
+            ok = true;
+        }
+        if (ok) {
+            FastSubViewCode(__self);
+            subLabel(@"点赞数Label").text = @(pm.likeNum).stringValue;
+            subLabel(@"点赞数Label").textColor = pm.isLike ? Skin1.navBarBgColor : Skin1.textColor2;
+            subButton(@"点赞Button").selected = pm.isLike;
+        }
+    };
 }
 
 // 点击评论

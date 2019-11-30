@@ -7,13 +7,16 @@
 //
 
 #import "UGSubmitPostVC.h"
-#import "STBarButtonItem.h"
+#import "UGPostListVC.h"
 
+// View
+#import "STBarButtonItem.h"
+#import "MediaViewer.h"
+
+// Tools
 #import <MobileCoreServices/MobileCoreServices.h>   //
 #import "TZImagePickerController.h"                 // 访问系统相册
 #import "TZImageManager.h"
-#import "MediaViewer.h"
-
 #import "AVAsset+Degress.h"
 
 
@@ -40,14 +43,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"发帖";
+    __weakSelf_(__self);
     self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithTitle:@"历史帖子" block:^(UIButton *sender) {
-        
+        UGPostListVC *vc = _LoadVC_from_storyboard_(@"UGPostListVC");
+        vc.clm = __self.clm;
+        vc.isHistory = true;
+        [NavController1 pushViewController:vc animated:true];
     }];
     
     _photos = @[].mutableCopy;
     
     // 监听文本长度
-    __weakSelf_(__self);
     [self xw_addNotificationForName:UITextViewTextDidChangeNotification block:^(NSNotification * _Nonnull noti) {
         __self.textLengthLabel.text = _NSString(@"%td/150", __self.textView.text.length);
         __self.textLengthLabel.textColor = __self.textView.text.length > 150 ? APP.AuxiliaryColor2 : APP.TextColor3;

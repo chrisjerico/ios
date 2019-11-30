@@ -69,6 +69,22 @@ NS_ASSUME_NONNULL_BEGIN
 // 搜索帖子
 - (CCSessionModel *)lhcdoc_searchContent:(NSString *)alias content:(NSString *)content page:(NSInteger)page;
 
+// 获取用户信息
+- (CCSessionModel *)lhcdoc_getUserInfo:(NSString *)uid;
+
+// 申请VIP认证
+- (CCSessionModel *)lhcdoc_applyVip:(NSString *)uid;
+
+// 点赞内容或帖子
+- (CCSessionModel *)lhcdoc_likePost:(NSString *)rid type:(NSInteger)type likeFlag:(BOOL)likeFlag;
+
+// 收藏资料
+- (CCSessionModel *)lhcdoc_doFavorites:(NSString *)rid type:(NSInteger)type favFlag:(BOOL)favFlag;
+
+// 关注或取消关注楼主
+- (CCSessionModel *)lhcdoc_followPoster:(NSString *)posterUid followFlag:(BOOL)followFlag;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -86,6 +86,17 @@
         subButton(@"关注Button").selected = _pm.isFollow;
     }
     
+    // BottomView
+    {
+        FastSubViewCode(_bottomBarView);
+        subLabel(@"点赞数Label").text = @(pm.likeNum).stringValue;
+        subLabel(@"点赞数Label").hidden = !pm.likeNum;
+        subLabel(@"评论数Label").text = @(pm.replyCount).stringValue;
+        subLabel(@"评论数Label").hidden = !pm.replyCount;
+        subButton(@"点赞Button").selected = pm.isLike;
+        subButton(@"收藏Button").selected = pm.isFav;
+    }
+    
     // TableHeaderView
     {
         FastSubViewCode(_tableView.tableHeaderView);
@@ -145,8 +156,24 @@
 
 #pragma mark - IBAction
 
+// 打赏
+- (IBAction)onRewardBtnClick:(UIButton *)sender {
+    
+}
+
 // 关注
 - (IBAction)onFollowBtnClick:(UIButton *)sender {
+    if (!UGLoginIsAuthorized()) {
+        SANotificationEventPost(UGNotificationShowLoginView, nil);
+        return;
+    }
+    BOOL follow = !sender.selected;
+    __weakSelf_(__self);
+    [NetworkManager1 lhcdoc_followPoster:_pm.uid followFlag:follow].successBlock = ^(id responseObject) {
+        __self.pm.isFollow = follow;
+        sender.selected = follow;
+        [sender setTitle:follow ? @"已关注" : @"关注楼主" forState:UIControlStateNormal];
+    };
 }
 
 // 点赞
@@ -155,27 +182,22 @@
         SANotificationEventPost(UGNotificationShowLoginView, nil);
         return;
     }
-    UIButton *bottomLikeBtn = [sender.superview viewWithTagString:@"点赞图标Button"];
-    UILabel *bottomLikeLabel = [sender.superview viewWithTagString:@"点赞Label"];
+    UIButton *bottomLikeBtn = sender;
+    UILabel *bottomLikeLabel = [sender.superview viewWithTagString:@"点赞数Label"];
     BOOL like = !bottomLikeBtn.selected;
     
-//    __weakSelf_(__self);
-//    [NetworkManager1 isLikeAction:__self.pm.actionId like:like].successBlock = ^(id responseObject) {
-//        __self.pm.isLike = like;
-//        __self.pm.likeNum += like ? 1 : -1;
-//        bottomLikeBtn.selected = like;
-//        bottomLikeLabel.text = like ? @"已点赞" : @"点赞";
-//        bottomLikeLabel.textColor = like ? APP.ThemeColor1 : APP.BlackColor;
-//        [__self.ssv2.titleBar reloadData];
-//
-//        if (__self.didCommentOrLike)
-//            __self.didCommentOrLike(__self.pm);
-//
-//        __self.tableView2.willClearDataArray = true;
-//        [__self.tableView2.mj_footer beginRefreshing];
-//
-//        [__self.ssv2.titleBar reloadData];
-//    };
+    __weakSelf_(__self);
+    [NetworkManager1 lhcdoc_likePost:_pm.cid type:2 likeFlag:like].successBlock = ^(id responseObject) {
+        __self.pm.isLike = like;
+        __self.pm.likeNum += like ? 1 : -1;
+        bottomLikeBtn.selected = like;
+        bottomLikeLabel.hidden = !__self.pm.likeNum;
+        bottomLikeLabel.text = @(__self.pm.likeNum).stringValue;
+        bottomLikeLabel.textColor = like ? Skin1.navBarBgColor : Skin1.textColor2;
+
+        if (__self.didCommentOrLike)
+            __self.didCommentOrLike(__self.pm);
+    };
 }
 
 // 评论
@@ -201,8 +223,18 @@
 //    };
 }
 
-// 喜欢
+// 收藏
 - (IBAction)onFavBtnClick:(UIButton *)sender {
+    if (!UGLoginIsAuthorized()) {
+        SANotificationEventPost(UGNotificationShowLoginView, nil);
+        return;
+    }
+    BOOL fav = !sender.selected;
+    __weakSelf_(__self);
+    [NetworkManager1 lhcdoc_doFavorites:_pm.cid type:2 favFlag:fav].successBlock = ^(id responseObject) {
+        __self.pm.isFav = fav;
+        sender.selected = fav;
+    };
 }
 
 
@@ -239,20 +271,20 @@
                 return ;
             }
             BOOL like = !subButton(@"点赞图标Button").selected;
-//            [NetworkManager1 isLikeActionComment:pcm.commentId like:like].completionBlock = ^(CCSessionModel *sm) {
-//                if (!sm.error) {
-//                    pcm.likeNum += like ? 1 : -1;
-//                    pcm.isLike = like;
-//                    subButton(@"点赞图标Button").selected = like;
-//                    subLabel(@"点赞次数Label").text = @(pcm.likeNum).stringValue;
-//                    subLabel(@"点赞次数Label").textColor = like ? APP.ThemeColor1 : APP.TextColor3;
-//                } else if (sm.error.code == -2) { // 已点赞
-//                    sm.noShowErrorHUD = true;
-//                    pcm.isLike = like;
-//                    subButton(@"点赞图标Button").selected = like;
-//                    subLabel(@"点赞次数Label").textColor = like ? APP.ThemeColor1 : APP.TextColor3;
-//                }
-//            };
+            [NetworkManager1 lhcdoc_likePost:pcm.pid type:1 likeFlag:like].completionBlock = ^(CCSessionModel *sm) {
+                if (!sm.error) {
+                    pcm.likeNum += like ? 1 : -1;
+                    pcm.isLike = like;
+                    subButton(@"点赞图标Button").selected = like;
+                    subLabel(@"点赞次数Label").text = @(pcm.likeNum).stringValue;
+                    subLabel(@"点赞次数Label").textColor = like ? Skin1.navBarBgColor : Skin1.textColor2;
+                } else if (sm.error.code == -2) { // 已点赞
+                    sm.noShowErrorHUD = true;
+                    pcm.isLike = like;
+                    subButton(@"点赞图标Button").selected = like;
+                    subLabel(@"点赞次数Label").textColor = like ? Skin1.navBarBgColor : Skin1.textColor2;
+                }
+            };
         }];
         [subButton(@"回复评论Button") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
         [subButton(@"回复评论Button") addBlockForControlEvents:UIControlEventTouchUpInside block:^(id sender) {

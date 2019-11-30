@@ -83,24 +83,24 @@
     UGLHPostCommentModel *pcm = _pcm;
     FastSubViewCode(_tableView.tableHeaderView);
     BOOL like = !subButton(@"点赞图标Button").selected;
-//    [NetworkManager1 isLikeActionComment:pcm.commentId like:like].completionBlock = ^(ZJSessionModel *sm) {
-//        if (!sm.error) {
-//            pcm.likeCnt += like ? 1 : -1;
-//            pcm.isLiked = like;
-//            subButton(@"点赞图标Button").selected = like;
-//            subLabel(@"点赞次数Label").text = @(pcm.likeCnt).stringValue;
-//            subLabel(@"点赞次数Label").textColor = like ? APP.ThemeColor1 : APP.TextColor3;
-//            if (__self.didLike)
-//                __self.didLike(pcm);
-//        } else if (sm.error.code == -2) { // 已点赞
-//            sm.noShowErrorHUD = true;
-//            pcm.isLiked = like;
-//            subButton(@"点赞图标Button").selected = like;
-//            subLabel(@"点赞次数Label").textColor = like ? APP.ThemeColor1 : APP.TextColor3;
-//            if (__self.didLike)
-//                __self.didLike(pcm);
-//        }
-//    };
+    [NetworkManager1 lhcdoc_likePost:pcm.pid type:1 likeFlag:like].completionBlock = ^(CCSessionModel *sm) {
+        if (!sm.error) {
+            pcm.likeNum += like ? 1 : -1;
+            pcm.isLike = like;
+            subButton(@"点赞图标Button").selected = like;
+            subLabel(@"点赞次数Label").text = @(pcm.likeNum).stringValue;
+            subLabel(@"点赞次数Label").textColor = like ? Skin1.navBarBgColor : Skin1.textColor2;
+            if (__self.didLike)
+                __self.didLike(pcm);
+        } else if (sm.error.code == -2) { // 已点赞
+            sm.noShowErrorHUD = true;
+            pcm.isLike = like;
+            subButton(@"点赞图标Button").selected = like;
+            subLabel(@"点赞次数Label").textColor = like ? Skin1.navBarBgColor : Skin1.textColor2;
+            if (__self.didLike)
+                __self.didLike(pcm);
+        }
+    };
 }
 
 // 切换为回复评论模式
