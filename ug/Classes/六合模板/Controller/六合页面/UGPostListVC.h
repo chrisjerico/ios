@@ -11,6 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+// 帖子列表（高手论坛、极品专帖）
 @interface UGPostListVC : UIViewController
 
 @property (nonatomic, strong) UGLHCategoryListModel *clm;   /**<   六合栏目Model */

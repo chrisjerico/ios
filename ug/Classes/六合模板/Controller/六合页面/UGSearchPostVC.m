@@ -23,6 +23,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+    FastSubViewCode(self.view);
+    subView(@"搜索Button").backgroundColor = Skin1.navBarBgColor;
+    
+    
     // TableView
     {
         __weakSelf_(__self);

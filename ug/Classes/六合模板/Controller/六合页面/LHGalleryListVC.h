@@ -1,5 +1,5 @@
 //
-//  UGLHGalleryVC.h
+//  LHGalleryListVC.h
 //  ug
 //
 //  Created by fish on 2019/10/27.
@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UGLHCategoryListModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGLHGalleryVC : UIViewController
+// 六合图库
+@interface LHGalleryListVC : UIViewController
 
+@property (nonatomic, strong) UGLHCategoryListModel *clm;
 @end
 
 NS_ASSUME_NONNULL_END

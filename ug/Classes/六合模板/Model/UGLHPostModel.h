@@ -10,6 +10,22 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+// 帖子广告Model
+@interface LHPostAdModel : NSObject
+@property (nonatomic, copy) NSString *aid;           /**<   广告ID */
+@property (nonatomic, copy) NSString *addTime;      /**<   添加时间 */
+@property (nonatomic, copy) NSString *cid;          /**<   帖子ID */
+@property (nonatomic, copy) NSString *pic;          /**<   图片 */
+@property (nonatomic, copy) NSString *isShow;       /**<   是否显示 */
+@property (nonatomic, copy) NSString *position;     /**<   位置 */
+@property (nonatomic, copy) NSString *targetType;   /**<   目标类型 */
+@property (nonatomic, copy) NSString *link;         /**<   跳转链接 */
+@end
+
+
+
+
+// 帖子Model
 @interface UGLHPostModel : NSObject
 
 // 《帖子列表》
@@ -46,10 +62,10 @@ NS_ASSUME_NONNULL_BEGIN
 //@property (nonatomic, copy) NSString *content;    /**<   帖子内容 */
 //@property (nonatomic, copy) NSString *contentPic; /**<   帖子图片内容 */
 //@property (nonatomic, copy) NSString *periods;    /**<   期数 */
-@property (nonatomic, copy) NSString *topAdPc;      /**<   pc端顶部广告 */
-@property (nonatomic, copy) NSString *bottomAdPc;   /**<   pc端底部广告 */
-@property (nonatomic, copy) NSString *topAdWap;     /**<   手机端顶部广告 */
-@property (nonatomic, copy) NSString *bottomAdWap;  /**<   手机端底部广告 */
+@property (nonatomic, copy) LHPostAdModel *topAdPc;      /**<   pc端顶部广告 */
+@property (nonatomic, copy) LHPostAdModel *bottomAdPc;   /**<   pc端底部广告 */
+@property (nonatomic, copy) LHPostAdModel *topAdWap;     /**<   手机端顶部广告 */
+@property (nonatomic, copy) LHPostAdModel *bottomAdWap;  /**<   手机端底部广告 */
 @property (nonatomic, copy) NSString *vote;         /**<   如果不是投票类型的帖子时，为null； 否则为数组 */
 //@property (nonatomic, assign) double price;      /**<   帖子价格 */
 //@property (nonatomic, assign) BOOL isLike;     /**<   是否已点赞 1是 0否 */

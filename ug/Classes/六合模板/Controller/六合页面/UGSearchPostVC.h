@@ -11,6 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+// 搜索帖子
 @interface UGSearchPostVC : UIViewController
 
 @property (nonatomic, strong) UGLHCategoryListModel *clm;   /**<   六合栏目Model */

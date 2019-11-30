@@ -34,6 +34,9 @@
     self.title = @"帖子详情";
     
     __weakSelf_(__self);
+    
+    _topView.hidden = !_pm.nickname.length;
+    
     // 自适应高度
     {
         [__self.tableView.tableHeaderView.subviews.firstObject xw_addObserverBlockForKeyPath:@"contentSize" block:^(id  _Nonnull obj, id  _Nonnull oldVal, id  _Nonnull newVal) {
@@ -46,7 +49,7 @@
     }
     
     LoadingStateView *lsv = [LoadingStateView showWithSuperview:self.view state:ZJLoadingStateLoading];
-    lsv.offsetY = NavController1.navigationBar.by;
+    lsv.offsetY = !_topView.hidden ? NavController1.navigationBar.by : 0;
     lsv.didRefreshBtnClick = ^{
         // 获取帖子详情
         [NetworkManager1 lhdoc_contentDetail:__self.pm.cid].completionBlock = ^(CCSessionModel *sm) {
@@ -54,6 +57,7 @@
                 [LoadingStateView showWithSuperview:__self.view state:ZJLoadingStateFail];
             } else {
                 [LoadingStateView showWithSuperview:__self.view state:ZJLoadingStateSucc];
+                __self.pm = [UGLHPostModel mj_objectWithKeyValues:sm.responseObject[@"data"]];
                 [__self setupSSV];
             }
         };
@@ -78,15 +82,17 @@
         [subImageView(@"头像ImageView") sd_setImageWithURL:[NSURL URLWithString:pm.headImg]];
         subLabel(@"昵称Label").text = pm.nickname;
         subLabel(@"时间Label").text = pm.createTime;
+        subButton(@"关注Button").backgroundColor = Skin1.navBarBgColor;
+        subButton(@"关注Button").selected = _pm.isFollow;
     }
     
     // TableHeaderView
     {
         FastSubViewCode(_tableView.tableHeaderView);
-        subImageView(@"顶部广告ImageView").hidden = !pm.topAdWap.length;
-        subImageView(@"底部广告ImageView").hidden = !pm.bottomAdWap.length;
-        [subImageView(@"顶部广告ImageView") sd_setImageWithURL:[NSURL URLWithString:pm.topAdWap]];
-        [subImageView(@"底部广告ImageView") sd_setImageWithURL:[NSURL URLWithString:pm.bottomAdWap]];
+        subImageView(@"顶部广告ImageView").hidden = !pm.topAdWap.isShow;
+        subImageView(@"底部广告ImageView").hidden = !pm.bottomAdWap.isShow;
+        [subImageView(@"顶部广告ImageView") sd_setImageWithURL:[NSURL URLWithString:pm.topAdWap.pic]];
+        [subImageView(@"底部广告ImageView") sd_setImageWithURL:[NSURL URLWithString:pm.bottomAdWap.pic]];
         subLabel(@"标题Label").text = pm.title;
         subLabel(@"内容Label").text = pm.content;
         subLabel(@"时间Label").text = _NSString(@"最后更新时间：%@", pm.createTime);
@@ -95,7 +101,7 @@
 //        subLabel(@"").text = pm.;
     }
     
-    // 评论
+    // TableView评论列表
     {
         UITableView *tv = _tableView;
         tv.noDataTipsLabel.text = @"还没有人评论此帖子";

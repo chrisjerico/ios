@@ -11,6 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+// 帖子评论详情
 @interface LHPostCommentDetailVC : UIViewController
 
 @property (nonatomic, strong) UGLHPostCommentModel *pcm;    /**<   评论Model */

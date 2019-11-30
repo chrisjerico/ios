@@ -41,6 +41,12 @@
 #import "UGMissionCenterViewController.h"   // 任务中心
 #import "UGLotteryHomeController.h"  // 彩票大厅
 #import "UGYYLotterySecondHomeViewController.h" //展示购彩，真人大厅
+#import "UGPostListVC.h"    // 六合帖子列表
+#import "UGDocumentListVC.h"// 六合期数列表
+#import "LHGalleryListVC.h"   // 六合图库
+#import "LHJournalDetailVC.h"   // 期刊详情
+
+
 //测试--黑色模板
 #import "UGfinancialViewViewController.h"
 
@@ -606,25 +612,53 @@
     if ([collectionView.tagString isEqualToString:@"六合内容"]) {
           UGLHCategoryListModel *model = [self.lHCategoryList objectAtIndex:indexPath.row];
         if ([CMCommon stringIsNull:model.link]) {
-
-            
-            if ([model.alias isEqualToString:@"forum"]) {//高手论坛
+            if ([model.alias isEqualToString:@"forum"]) {
+                UGPostListVC *vc = _LoadVC_from_storyboard_(@"UGPostListVC");
+                vc.clm = model;
+                [NavController1 pushViewController:vc animated:true];
                 NSLog(@"高手论坛");
             }
             else if([model.alias isEqualToString:@"gourmet"]) {
+                UGPostListVC *vc = _LoadVC_from_storyboard_(@"UGPostListVC");
+                vc.clm = model;
+                [NavController1 pushViewController:vc animated:true];
                 NSLog(@"极品专贴");
             }
             else if([model.alias isEqualToString:@"mystery"]) {
+                UGDocumentListVC *vc = _LoadVC_from_storyboard_(@"UGDocumentListVC");
+                vc.clm = model;
+                [NavController1 pushViewController:vc animated:true];
                 NSLog(@"每期资料");
             }
             else if([model.alias isEqualToString:@"rule"]) {
+                UGDocumentListVC *vc = _LoadVC_from_storyboard_(@"UGDocumentListVC");
+                vc.clm = model;
+                [NavController1 pushViewController:vc animated:true];
                 NSLog(@"公式规律");
             }
+            else if([model.alias isEqualToString:@"sixpic"]) {
+                LHGalleryListVC *vc = _LoadVC_from_storyboard_(@"LHGalleryListVC");
+                vc.clm = model;
+                [NavController1 pushViewController:vc animated:true];
+                NSLog(@"六合图库");
+            }
             else if([model.alias isEqualToString:@"humorGuess"]) {
+                LHJournalDetailVC *vc = _LoadVC_from_storyboard_(@"LHJournalDetailVC");
+                vc.clm = model;
+                [NavController1 pushViewController:vc animated:true];
                 NSLog(@"幽默猜测");
             }
             else if([model.alias isEqualToString:@"rundog"]) {
+                LHJournalDetailVC *vc = _LoadVC_from_storyboard_(@"LHJournalDetailVC");
+                vc.clm = model;
+                [NavController1 pushViewController:vc animated:true];
                 NSLog(@"跑狗玄机");
+            }
+            else if([model.alias isEqualToString:@"fourUnlike"]) {
+                LHJournalDetailVC *vc = _LoadVC_from_storyboard_(@"LHJournalDetailVC");
+                vc.clm = model;
+                [NavController1 pushViewController:vc animated:true];
+                NSLog(@"四不像");
             }
             else if([model.alias isEqualToString:@"yellowCale"]) {
                 NSLog(@"老黃历");

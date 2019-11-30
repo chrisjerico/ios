@@ -11,6 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+// 帖子详情
 @interface UGPostDetailVC : UIViewController
 
 @property (nonatomic, strong) UGLHPostModel *pm;

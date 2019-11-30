@@ -8,10 +8,26 @@
 
 #import "UGLHPostModel.h"
 
+@implementation LHPostAdModel
++ (NSDictionary *)mj_replacedKeyFromPropertyName {
+    return @{@"aid":@"id"};
+}
+@end
+
+
+
+@interface UGLHPostModel ()
+@property (nonatomic, copy) NSString *tempId;
+@end
+
 @implementation UGLHPostModel
 
-- (void)setId:(NSString *)cid {
-    _cid = cid;
++ (NSDictionary *)mj_replacedKeyFromPropertyName {
+    return @{@"tempId":@"id"};
+}
+
+- (void)setTempId:(NSString *)tempId {
+    _cid = tempId;
 }
 
 @end
