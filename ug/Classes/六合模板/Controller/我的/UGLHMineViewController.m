@@ -510,7 +510,7 @@
     if (config.zxkfUrl.length > 0) {
         webViewVC.urlStr = config.zxkfUrl;
     } else {
-        //            [SVProgressHUD showErrorWithStatus:@"链接未配置"];
+        [SVProgressHUD showErrorWithStatus:@"链接未配置"];
         return;
     }
     [self.navigationController pushViewController:webViewVC animated:YES];

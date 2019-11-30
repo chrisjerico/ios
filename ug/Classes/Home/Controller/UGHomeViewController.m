@@ -462,7 +462,7 @@
     self.contentCollectionView.delegate = self;
     self.contentCollectionView.tagString= @"六合内容";
     [self.contentCollectionView registerNib:[UINib nibWithNibName:@"UGLHHomeContentCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"cell"];
-    [CMCommon setBorderWithView:self.contentCollectionView top:YES left:YES bottom:YES right:YES borderColor:RGBA(221, 221, 221, 1) borderWidth:1];
+    [CMCommon setBorderWithView:self.contentCollectionView top:YES left:YES bottom:NO right:YES borderColor:RGBA(221, 221, 221, 1) borderWidth:1];
     [self.contentCollectionView setCollectionViewLayout:_flow];
 //六合开奖
     self.lotteryCollectionView.backgroundColor = [UIColor whiteColor];

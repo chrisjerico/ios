@@ -49,7 +49,7 @@
             number = [obj.numbersArrary objectAtIndex:(obj.numbersArrary.count-1)];
         }
         if (obj.numSxArrary.count==7) {
-            if (obj.isOpen) {
+            if (!obj.isOpen) {
                 text = [NSString stringWithFormat:@"特码,%@号。%@波,生肖:%@",number,color,sx];
             } else {
                 text = @"特码已开出,请前去刮一刮";
@@ -61,8 +61,8 @@
         
         AVSpeechUtterance *utterance = [AVSpeechUtterance speechUtteranceWithString:text];
         utterance.pitchMultiplier= 0.8;//设置语调
-        utterance.volume = 1.0f;//设置音量（0.0--1.0）
-        utterance.rate = 0.5f;//设置语速
+//        utterance.volume = 1.0f;//设置音量（0.0--1.0）
+//        utterance.rate = 0.6f;//设置语速
         //中式发音
         AVSpeechSynthesisVoice *voice = [AVSpeechSynthesisVoice voiceWithLanguage:@"zh-CN"];
         utterance.voice = voice;
