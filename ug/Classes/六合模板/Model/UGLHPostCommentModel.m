@@ -11,7 +11,7 @@
 @implementation UGLHPostCommentModel
 
 + (NSDictionary *)mj_replacedKeyFromPropertyName {
-    return @{@"id":@"pid"};
+    return @{@"pid":@"id"};
 }
 
 @end

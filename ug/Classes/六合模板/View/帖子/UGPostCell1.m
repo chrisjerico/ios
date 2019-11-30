@@ -160,7 +160,6 @@
         [subButton(@"评论Button") setTitle:@(pm.replyCount).stringValue forState:UIControlStateNormal];
         [subButton(@"浏览Button") setTitle:@(pm.viewNum).stringValue forState:UIControlStateNormal];
         [subButton(@"点赞Button") setTitle:@(pm.likeNum).stringValue forState:UIControlStateNormal];
-        [subButton(@"点赞Button") setTitleColor:pm.isLike ? APP.ThemeColor1 : APP.TextColor3 forState:UIControlStateNormal];
         subButton(@"点赞Button").selected = pm.isLike;
     }
     
@@ -169,7 +168,6 @@
         CGFloat collectionViewW = [UGPostCell1 collectionViewSizeWithModel:pm].width;
         CGFloat collectionViewH = [UGPostCell1 collectionViewSizeWithModel:pm].height;
         _collectionView.hidden = !pm || !pm.contentPic.count;
-//        _collectionViewWidthConstraint.constant = collectionViewW + 4
         _collectionView.cc_constraints.width.constant = collectionViewW + 4;
         _collectionView.cc_constraints.height.constant = collectionViewH + 4;
         ((UICollectionViewFlowLayout *)_collectionView.collectionViewLayout).itemSize = [UGPostCell1 itemSizeWithModel:_pm];

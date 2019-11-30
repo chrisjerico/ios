@@ -118,7 +118,7 @@ _CCRuntimeGetterDoubleValue(BOOL, imgFitOrFill)
         }
         UIImage *scaleImage = [orImage imageWithSize:imgSize];
         scaleImage.cc_userInfo[@"scaleImage"] = @true;
-        [self setImage:scaleImage forState:UIControlStateNormal];
+        [self setImage:scaleImage forState:state.intValue];
     }
 }
 

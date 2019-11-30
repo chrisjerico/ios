@@ -219,10 +219,9 @@ static NSMutableArray <SiteModel *> *__sites = nil;
             [SiteModel site    :@"test10"    :@"内测包"     :@"测试包"   :@""        :@"http://test10.6yc.com"],
             [SiteModel site    :@"c083"      :@"内测包"     :@"测试包"   :@""        :@"http://t111f.fhptcdn.com"],
             [SiteModel site    :@"test100"   :@"内测包"     :@"测试包"   :@""        :@"http://test100f.fhptcdn.com"],
-            [SiteModel site    :@"老虎"  :@"内测包"     :@"测试包"   :@""        :@"http://t005f.fhptcdn.com"],
-            [SiteModel site    :@"朗朗"  :@"内测包"     :@"测试包"   :@""        :@"http://test20.6yc.com"],
-            [SiteModel site    :@"小东"  :@"内测包"     :@"测试包"   :@""        :@"http://test29f.fhptcdn.com"],
-            [SiteModel site    :@"t032"      :@"内测包"     :@"测试包"   :@""        :@"http://t005f.fhptcdn.com"],
+            [SiteModel site    :@"t032(老虎)"  :@"内测包"     :@"测试包"   :@""        :@"http://t005f.fhptcdn.com"],
+            [SiteModel site    :@"test20(朗朗)"  :@"内测包"     :@"测试包"   :@""        :@"http://test20.6yc.com"],
+            [SiteModel site    :@"test29(小东)"  :@"内测包"     :@"测试包"   :@""        :@"http://test29f.fhptcdn.com"],
             [SiteModel site    :@"test19"      :@"内测包"     :@"测试包"   :@""        :@"http://test19.6yc.com"],
         ];
     });

@@ -11,7 +11,7 @@
 @implementation UGLHPostModel
 
 + (NSDictionary *)mj_replacedKeyFromPropertyName {
-    return @{@"id":@"cid"};
+    return @{@"cid":@"id"};
 }
 
 @end

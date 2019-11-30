@@ -17,6 +17,7 @@
         [NSArray jr_swizzleClassMethod:@selector(arrayWithObjects:count:) withClassMethod:@selector(ccSafe_arrayWithObjects:count:) error:nil];
         [NSClassFromString(@"__NSPlaceholderArray") jr_swizzleMethod:@selector(initWithObjects:count:) withMethod:@selector(ccSafe_initWithObjects:count:) error:nil];
         [NSClassFromString(@"__NSArray0") jr_swizzleMethod:@selector(objectAtIndex:) withMethod:@selector(ccSafe_objectAtIndex:) error:nil];
+        [NSClassFromString(@"__NSArrayM") jr_swizzleMethod:@selector(objectAtIndex:) withMethod:@selector(ccSafe_objectAtIndex:) error:nil];
     });
 }
 

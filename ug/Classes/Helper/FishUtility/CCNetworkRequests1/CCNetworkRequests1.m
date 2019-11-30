@@ -98,8 +98,6 @@
 #pragma mark - —— 公共参数
 - (NSDictionary *)publicParams {
     return [@{@"appVersion"     :APP.Version,
-              @"phoneType"      :@0,    // 0为iOS，1安卓
-//              @"timeStamp"      :@((long long int)([[NSDate date] millisecondIntervalSince1970])),
               @"token"          :UserI.sessid,
               } mutableCopy];
 }
@@ -147,6 +145,10 @@
     
     // 发起请求
     {
+        if (checkSign) {
+            params = [CMNetwork encryptionCheckSign:params];
+            params[@"checkSign"] = @"1";
+        }
         static AFHTTPSessionManager *m = nil;
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
@@ -161,7 +163,7 @@
     }
     
 #ifdef DEBUG
-//    [LogVC addRequestModel:sm];
+    [LogVC addRequestModel:sm];
 #endif
     return sm;
 }

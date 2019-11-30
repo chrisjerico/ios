@@ -11,7 +11,7 @@
 @implementation UGLHGalleryModel
 
 + (NSDictionary *)mj_replacedKeyFromPropertyName {
-    return @{@"id":@"gid"};
+    return @{@"gid":@"id"};
 }
 
 @end
