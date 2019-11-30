@@ -7,7 +7,8 @@
 //
 
 #import "UGPostListVC.h"
-#import "UGPostDetailVC.h"
+#import "UGPostDetailVC.h"  // 帖子详情
+#import "UGSearchPostVC.h"  // 搜索帖子
 
 #import "UGPostCell1.h"
 #import "STBarButtonItem.h"
@@ -23,12 +24,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+    __weakSelf_(__self);
+    // 导航条
     {
         self.title = _clm.name;
         self.navigationItem.rightBarButtonItems = @[
             [STBarButtonItem barButtonItemWithImageName:@"search" block:^(UIButton *sender) {
-                
+                UGSearchPostVC *vc = _LoadVC_from_storyboard_(@"UGSearchPostVC");
+                vc.clm = __self.clm;
+                [NavController1 pushViewController:vc animated:true];
             }],
             [STBarButtonItem barButtonItemWithImageName:@"yijian" block:^(UIButton *sender) {
                 [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGSubmitPostVC") animated:true];
@@ -36,8 +40,8 @@
         ];
     }
     
+    // TableView
     {
-        __weakSelf_(__self);
         NSString *(^sortString)(void) = ^NSString *{
             if (__self.segmentedControl.selectedSegmentIndex == 1) {
                 return @"hot";  // 热门（精华贴）
@@ -67,7 +71,14 @@
 }
 
 - (IBAction)onSegmentedControlValueChanged:(UISegmentedControl *)sender {
-    [_tableView.mj_header beginRefreshing];
+    if (_tableView.mj_header.state == MJRefreshStateRefreshing) {
+        _tableView.willClearDataArray = true;
+        if (_tableView.mj_header.refreshingBlock) {
+            _tableView.mj_header.refreshingBlock();
+        }
+    } else {
+        [_tableView.mj_header beginRefreshing];
+    }
 }
 
 

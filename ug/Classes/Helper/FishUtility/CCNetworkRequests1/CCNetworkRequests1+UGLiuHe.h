@@ -66,6 +66,9 @@ NS_ASSUME_NONNULL_BEGIN
 // 打赏帖子
 - (CCSessionModel *)lhcdoc_tipContent:(NSString *)cid amount:(double)amount;
 
+// 搜索帖子
+- (CCSessionModel *)lhcdoc_searchContent:(NSString *)alias content:(NSString *)content page:(NSInteger)page;
+
 @end
 
 NS_ASSUME_NONNULL_END

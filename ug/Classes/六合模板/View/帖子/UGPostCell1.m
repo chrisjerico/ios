@@ -37,7 +37,7 @@
         if (!pm.isShowAll) {
             textH = MIN(textH, FourLineHeight);
         }
-        textH;
+        textH + 20;
     });
     CGFloat collectionViewH = [UGPostCell1 collectionViewSizeWithModel:pm].height;
     CGFloat h = 125 + textH + 10 + collectionViewH + 70;
@@ -145,7 +145,12 @@
                 NSAttributedString *isShowAll = [[NSMutableAttributedString alloc] initWithString:@"收起\b" attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16], NSForegroundColorAttributeName:APP.ThemeColor1}];
                 [attributedText insertAttributedString:isShowAll atIndex:attributedText.length];
             }
-            attributedText.lineSpacing = 6;
+            
+            NSMutableParagraphStyle *ps = [NSMutableParagraphStyle new];
+            ps.lineSpacing = 6;
+            ps.lineBreakMode = NSLineBreakByCharWrapping;
+            ps.alignment = NSTextAlignmentCenter;
+            [attributedText addAttribute:NSParagraphStyleAttributeName value:ps range:NSMakeRange(0, attributedText.string.length)];
         }];
         [contentLabel yb_removeAttributeTapActions];
         [contentLabel yb_addAttributeTapActionWithStrings:@[@"收起\b", @"全文\b"] tapClicked:^(UILabel *label, NSString *string, NSRange range, NSInteger index) {

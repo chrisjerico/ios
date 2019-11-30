@@ -35,7 +35,7 @@
                     string.lineSpacing = 4;
                     [string boundingRectWithSize:CGSizeMake(APP.Width-10-40-11-11, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil].size.height;
                 });
-                40 + textH + 39;
+                10 + 40 + textH + 39;
             });
 
             FastSubViewCode(tv.tableHeaderView);

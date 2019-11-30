@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UGLHCategoryListModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UGSearchPostVC : UIViewController
 
+@property (nonatomic, strong) UGLHCategoryListModel *clm;   /**<   六合栏目Model */
 @end
 
 NS_ASSUME_NONNULL_END

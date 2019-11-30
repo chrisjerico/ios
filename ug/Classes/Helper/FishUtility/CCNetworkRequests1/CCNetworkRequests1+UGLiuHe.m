@@ -156,19 +156,29 @@
 // 购买帖子
 - (CCSessionModel *)lhcdoc_buyContent:(NSString *)cid  {
     return [self req:@"wjapp/api.php?c=lhcdoc&a=buyContent"
-    :@{@"cid":cid,    // 帖子ID，必填
-    }
-    :true];
+                    :@{@"cid":cid,    // 帖子ID，必填
+                    }
+                    :true];
 }
 
 // 打赏帖子
 - (CCSessionModel *)lhcdoc_tipContent:(NSString *)cid amount:(double)amount  {
     return [self req:@"wjapp/api.php?c=lhcdoc&a=buyContent"
-    :@{@"cid":cid,    // 帖子ID，必填
-       @"amount":_FloatString4(amount),   // 必填，打赏金额
-    }
-    :true];
+                    :@{@"cid":cid,    // 帖子ID，必填
+                       @"amount":_FloatString4(amount),   // 必填，打赏金额
+                    }
+                    :true];
 }
 
+// 搜索帖子
+- (CCSessionModel *)lhcdoc_searchContent:(NSString *)alias content:(NSString *)content page:(NSInteger)page {
+    return [self req:@"wjapp/api.php?c=lhcdoc&a=searchContent"
+                    :@{@"alias":alias,    // 栏目别名
+                       @"content":content,   // 检索内容
+                       @"page":@(page),    // 分页页码，非必填
+                       @"rows":@(APP.PageCount),   // 分页条数，非必填
+                    }
+                    :false];
+}
 
 @end

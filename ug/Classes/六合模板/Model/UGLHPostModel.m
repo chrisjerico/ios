@@ -10,8 +10,8 @@
 
 @implementation UGLHPostModel
 
-+ (NSDictionary *)mj_replacedKeyFromPropertyName {
-    return @{@"cid":@"id"};
+- (void)setId:(NSString *)cid {
+    _cid = cid;
 }
 
 @end
