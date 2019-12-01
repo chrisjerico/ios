@@ -10,8 +10,9 @@
 #import "UGPostDetailVC.h"  // 帖子详情
 #import "UGSearchPostVC.h"  // 搜索帖子
 
-#import "UGPostCell1.h"
+#import "UGPostCell1.h"     // 帖子Cell
 #import "STBarButtonItem.h"
+#import "LHPostPayView.h"   // 购买帖子弹框
 
 @interface UGPostListVC ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -92,6 +93,40 @@
     }
 }
 
+- (void)goToPostDetailVC:(NSIndexPath *)indexPath willComment:(BOOL)willComment {
+    UGLHPostModel *pm = _tableView.dataArray[indexPath.row];
+    
+    __weakSelf_(__self);
+    void (^push)(void) = ^{
+        UGPostDetailVC *vc = _LoadVC_from_storyboard_(@"UGPostDetailVC");
+        vc.pm = pm;
+        vc.willComment = willComment;
+        vc.didCommentOrLike = ^(UGLHPostModel *pm) {
+            [__self.tableView reloadRowAtIndexPath:indexPath withRowAnimation:UITableViewRowAnimationNone];
+        };
+        [NavController1 pushViewController:vc animated:true];
+    };
+    
+    if (!pm.hasPay && pm.price > 0.000001) {
+        LHPostPayView *ppv = _LoadView_from_nib_(@"LHPostPayView");
+        ppv.pm = pm;
+        ppv.didConfirmBtnClick = ^(LHPostPayView * _Nonnull ppv) {
+            [NetworkManager1 lhcdoc_buyContent:pm.cid].completionBlock = ^(CCSessionModel *sm) {
+                if (!sm.error) {
+                    [ppv hide:nil];
+                    UIAlertController *ac = [AlertHelper showAlertView:@"支付成功" msg:nil btnTitles:@[@"确定"]];
+                    [ac setActionAtTitle:@"确定" handler:^(UIAlertAction *aa) {
+                        push();
+                    }];
+                }
+            };
+        };
+        [ppv show];
+    } else {
+        push();
+    }
+}
+
 
 #pragma mark - Table view data source
 
@@ -124,33 +159,13 @@
     
     // 去评论
     cell.didCommentBtnClick = ^(UGLHPostModel *pm) {
-        UGPostDetailVC *vc = _LoadVC_from_storyboard_(@"UGPostDetailVC");
-        vc.pm = pm;
-        vc.willComment = true;
-        vc.didCommentOrLike = ^(UGLHPostModel *pm) {
-            [__tableView reloadRowAtIndexPath:indexPath withRowAnimation:UITableViewRowAnimationNone];
-        };
-        vc.didDelete = ^{
-            [__tableView.dataArray removeObject:pm];
-            [__tableView deleteRowAtIndexPath:indexPath withRowAnimation:UITableViewRowAnimationNone];
-        };
-        [NavController1 pushViewController:vc animated:true];
+        [__self goToPostDetailVC:indexPath willComment:true];
     };
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    UGPostDetailVC *vc = _LoadVC_from_storyboard_(@"UGPostDetailVC");
-    vc.pm = tableView.dataArray[indexPath.row];
-    __weak_Obj_(vc, __vc);
-    vc.didCommentOrLike = ^(UGLHPostModel *pm) {
-        [tableView reloadRowAtIndexPath:indexPath withRowAnimation:UITableViewRowAnimationNone];
-    };
-    vc.didDelete = ^{
-        [tableView.dataArray removeObject:__vc.pm];
-        [tableView deleteRowAtIndexPath:indexPath withRowAnimation:UITableViewRowAnimationNone];
-    };
-    [NavController1 pushViewController:vc animated:true];
+    [self goToPostDetailVC:indexPath willComment:false];
 }
 
 @end

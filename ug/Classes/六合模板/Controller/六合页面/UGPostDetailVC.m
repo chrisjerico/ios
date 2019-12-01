@@ -9,9 +9,12 @@
 #import "UGPostDetailVC.h"
 #import "LHPostCommentDetailVC.h"// 评论详情
 
-#import "MediaViewer.h"
-#import "UGPostCell1.h"
-#import "LoadingStateView.h"
+// View
+#import "MediaViewer.h"             // 图片浏览器
+#import "LoadingStateView.h"        // 加载中view
+#import "LHPostRewardView.h"        // 打赏弹框
+#import "LHPostCommentInputView.h"  // 评论弹框
+#import "LHPostVoteView.h"          // 投票弹框
 
 @interface UGPostDetailVC ()
 @property (weak, nonatomic) IBOutlet UICollectionView *photoCollectionView;/**<   图片列表 */
@@ -102,14 +105,29 @@
         FastSubViewCode(_tableView.tableHeaderView);
         subImageView(@"顶部广告ImageView").hidden = !pm.topAdWap.isShow;
         subImageView(@"底部广告ImageView").hidden = !pm.bottomAdWap.isShow;
-        [subImageView(@"顶部广告ImageView") sd_setImageWithURL:[NSURL URLWithString:pm.topAdWap.pic]];
-        [subImageView(@"底部广告ImageView") sd_setImageWithURL:[NSURL URLWithString:pm.bottomAdWap.pic]];
+        [subImageView(@"顶部广告ImageView") sd_setImageWithURL:[NSURL URLWithString:pm.topAdWap.pic] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+            if (image) {
+                subImageView(@"顶部广告ImageView").cc_constraints.height.constant = (APP.Width-40)/image.width * image.height;
+            }
+        }];
+        [subImageView(@"底部广告ImageView") sd_setImageWithURL:[NSURL URLWithString:pm.bottomAdWap.pic] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+            if (image) {
+                subImageView(@"底部广告ImageView").cc_constraints.height.constant = (APP.Width-40)/image.width * image.height;
+            }
+        }];
         subLabel(@"标题Label").text = pm.title;
         subLabel(@"内容Label").text = pm.content;
         subLabel(@"时间Label").text = _NSString(@"最后更新时间：%@", pm.createTime);
-//        _animalCollectionView.hidden = pm.
-//        subLabel(@"").text = pm.;
-//        subLabel(@"").text = pm.;
+        
+        _animalCollectionView.superview.hidden = true;
+        if (pm.vote.count) {
+            CGFloat h = 20;
+            _animalCollectionView.superview.hidden = false;
+            _animalCollectionView.cc_constraints.height.constant = (h+5) * (pm.vote.count/2 + pm.vote.count%2);
+            ((UICollectionViewFlowLayout *)_animalCollectionView.collectionViewLayout).itemSize = CGSizeMake((APP.Width-45)/2-5, h);
+            _animalCollectionView.collectionViewLayout = _animalCollectionView.collectionViewLayout;
+            [_animalCollectionView reloadData];
+        }
     }
     
     // TableView评论列表
@@ -158,7 +176,16 @@
 
 // 打赏
 - (IBAction)onRewardBtnClick:(UIButton *)sender {
-    
+    LHPostRewardView *prv = _LoadView_from_nib_(@"LHPostRewardView");
+    prv.pm = _pm;
+    __weakSelf_(__self);
+    prv.didConfirmBtnClick = ^(LHPostRewardView * _Nonnull prv, double price) {
+        [NetworkManager1 lhcdoc_tipContent:__self.pm.cid amount:price].successBlock = ^(id responseObject) {
+            [prv hide:nil];
+            [SVProgressHUD showSuccessWithStatus:@"打赏成功！"];
+        };
+    };
+    [prv show];
 }
 
 // 关注
@@ -174,6 +201,39 @@
         sender.selected = follow;
         [sender setTitle:follow ? @"已关注" : @"关注楼主" forState:UIControlStateNormal];
     };
+}
+
+// 投票
+- (IBAction)onVoteBtnClick:(UIButton *)sender {
+    LHPostVoteView *pvv = _LoadView_from_nib_(@"LHPostVoteView");
+    pvv.pm = _pm;
+    __weakSelf_(__self);
+    pvv.didConfirmBtnClick = ^(LHPostVoteView * _Nonnull pvv, LHVoteModel * _Nonnull vm) {
+        vm.num += 1;
+        CGFloat totalNum = 0;
+        for (LHVoteModel *vm in __self.pm.vote) {
+            totalNum += vm.num;
+        }
+        for (LHVoteModel *vm in __self.pm.vote) {
+            vm.percent = vm.num/totalNum * 100;
+        }
+        [__self.animalCollectionView reloadData];
+        [pvv hide:nil];
+        return ;
+        [NetworkManager1 lhdoc_vote:pvv.pm.cid animalId:vm.animalFlag].successBlock = ^(id responseObject) {
+            vm.num += 1;
+            CGFloat totalNum = 0;
+            for (LHVoteModel *vm in __self.pm.vote) {
+                totalNum += vm.num;
+            }
+            for (LHVoteModel *vm in __self.pm.vote) {
+                vm.percent = vm.num/totalNum * 100;
+            }
+            [__self.animalCollectionView reloadData];
+            [pvv hide:nil];
+        };
+    };
+    [pvv show];
 }
 
 // 点赞
@@ -194,7 +254,7 @@
         bottomLikeLabel.hidden = !__self.pm.likeNum;
         bottomLikeLabel.text = @(__self.pm.likeNum).stringValue;
         bottomLikeLabel.textColor = like ? Skin1.navBarBgColor : Skin1.textColor2;
-
+        
         if (__self.didCommentOrLike)
             __self.didCommentOrLike(__self.pm);
     };
@@ -207,20 +267,21 @@
         return;
     }
     
-//    __weakSelf_(__self);
-//    [LHPostCommentInputView show1:_pm].didComment = ^(NSString * _Nonnull text) {
-//        __self.tableView1.willClearDataArray = true;
-//        if (__self.tableView1.mj_footer.refreshingBlock) {
-//            __self.tableView1.mj_footer.refreshingBlock();
-//        }
-//        __self.pm.commentCnt += 1;
-//
-//        [__self.ssv2.titleBar reloadData];
-//        if (__self.didCommentOrLike)
-//            __self.didCommentOrLike(__self.pm);
-//
-//        [__self.ssv2.titleBar reloadData];
-//    };
+    __weakSelf_(__self);
+    [LHPostCommentInputView show1:_pm].didComment = ^(NSString * _Nonnull text) {
+        __self.tableView.willClearDataArray = true;
+        if (__self.tableView.mj_footer.refreshingBlock) {
+            __self.tableView.mj_footer.refreshingBlock();
+        }
+        __self.pm.replyCount += 1;
+        
+        FastSubViewCode(__self.bottomBarView);
+        subLabel(@"评论数Label").text = @(__self.pm.replyCount).stringValue;
+        subLabel(@"评论数Label").hidden = !__self.pm.replyCount;
+        
+        if (__self.didCommentOrLike)
+            __self.didCommentOrLike(__self.pm);
+    };
 }
 
 // 收藏
@@ -248,7 +309,6 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     FastSubViewCode(cell);
     UGLHPostCommentModel *pcm = tableView.dataArray[indexPath.row];
-    __weakSelf_(__self);
     
     // RefreshUI
     {
@@ -303,7 +363,7 @@
     if (collectionView == _photoCollectionView) {
         return _pm.contentPic.count;
     }
-    return 0;
+    return _pm.vote.count;
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -324,10 +384,20 @@
         }
         return cell;
     }
-    return nil;
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+    LHVoteModel *vm = _pm.vote[indexPath.item];
+    FastSubViewCode(cell);
+    subLabel(@"生肖Label").text = vm.animal;
+    subLabel(@"票数Label1").text = _NSString(@"%d票（%.2f%%）", (int)vm.num, vm.percent/100.0);
+    subLabel(@"票数Label2").text = _NSString(@"%d票（%.2f%%）", (int)vm.num, vm.percent/100.0);
+    subLabel(@"进度条View").cc_constraints.right.constant = (cell.width-30) * (1-vm.percent/100.0);
+    return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (collectionView != _photoCollectionView) {
+        return;
+    }
     UIImageView *imgView = [[collectionView cellForItemAtIndexPath:indexPath] viewWithTagString:@"图片ImageView"];
     UGLHPostModel *pm = _pm;
     

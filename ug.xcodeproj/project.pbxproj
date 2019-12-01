@@ -20,6 +20,8 @@
 		0399E6FB233B9D34001E0A7F /* UGDocumentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0399E6FA233B9D34001E0A7F /* UGDocumentVC.m */; };
 		03B26072234B422E00206652 /* UGLaunchPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B26071234B422E00206652 /* UGLaunchPageVC.m */; };
 		A0C64CB6AEB0CF1B2031BBB8 /* Pods_ug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6486EFF4C273BEA0AE8994DD /* Pods_ug.framework */; };
+		CF0A1D612393E25000F62010 /* LHPostVoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF0A1D602393E25000F62010 /* LHPostVoteView.m */; };
+		CF0A1D642393E25B00F62010 /* LHPostVoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF0A1D632393E25B00F62010 /* LHPostVoteView.xib */; };
 		CF35E9152391824400E73935 /* LoadingStateView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF35E9112391824400E73935 /* LoadingStateView.m */; };
 		CF35E9162391824400E73935 /* network_setting.html in Resources */ = {isa = PBXBuildFile; fileRef = CF35E9122391824400E73935 /* network_setting.html */; };
 		CF35E9172391824400E73935 /* LoadingStateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF35E9132391824400E73935 /* LoadingStateView.xib */; };
@@ -99,6 +101,10 @@
 		CFD3BF4F23473D5900FCDA6D /* TextFieldAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BF4D23473D5900FCDA6D /* TextFieldAlertView.m */; };
 		CFEA5C1C2390FB9000C922D2 /* LHPostCommentDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEA5C1B2390FB9000C922D2 /* LHPostCommentDetailVC.m */; };
 		CFEA5C222391084200C922D2 /* AVAsset+Degress.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEA5C1F2391084200C922D2 /* AVAsset+Degress.m */; };
+		CFF6F7D223937E1800DEDEB9 /* LHPostPayView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF6F7D123937E1800DEDEB9 /* LHPostPayView.m */; };
+		CFF6F7D523937E2200DEDEB9 /* LHPostPayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFF6F7D423937E2200DEDEB9 /* LHPostPayView.xib */; };
+		CFF6F7D8239399C000DEDEB9 /* LHPostRewardView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF6F7D7239399C000DEDEB9 /* LHPostRewardView.m */; };
+		CFF6F7DA239399CA00DEDEB9 /* LHPostRewardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFF6F7D9239399CA00DEDEB9 /* LHPostRewardView.xib */; };
 		CFFAB5882372F01C009593AF /* UGPlatformTitleBlackCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFAB5862372F01C009593AF /* UGPlatformTitleBlackCell.m */; };
 		CFFAB5892372F01C009593AF /* UGPlatformTitleBlackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFFAB5872372F01C009593AF /* UGPlatformTitleBlackCell.xib */; };
 		CFFAB58B237315C2009593AF /* event.gif in Resources */ = {isa = PBXBuildFile; fileRef = CFFAB58A237315C2009593AF /* event.gif */; };
@@ -730,6 +736,9 @@
 		03D4C80C234F4DEC0028B48F /* ug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ug.entitlements; sourceTree = "<group>"; };
 		443C93C1135A8C900E47477A /* Pods-ug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ug.release.xcconfig"; path = "Target Support Files/Pods-ug/Pods-ug.release.xcconfig"; sourceTree = "<group>"; };
 		6486EFF4C273BEA0AE8994DD /* Pods_ug.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ug.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF0A1D5F2393E25000F62010 /* LHPostVoteView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LHPostVoteView.h; sourceTree = "<group>"; };
+		CF0A1D602393E25000F62010 /* LHPostVoteView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LHPostVoteView.m; sourceTree = "<group>"; };
+		CF0A1D632393E25B00F62010 /* LHPostVoteView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LHPostVoteView.xib; sourceTree = "<group>"; };
 		CF35E9102391824400E73935 /* LoadingStateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingStateView.h; sourceTree = "<group>"; };
 		CF35E9112391824400E73935 /* LoadingStateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingStateView.m; sourceTree = "<group>"; };
 		CF35E9122391824400E73935 /* network_setting.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = network_setting.html; sourceTree = "<group>"; };
@@ -874,6 +883,12 @@
 		CFEA5C1B2390FB9000C922D2 /* LHPostCommentDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LHPostCommentDetailVC.m; sourceTree = "<group>"; };
 		CFEA5C1F2391084200C922D2 /* AVAsset+Degress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVAsset+Degress.m"; sourceTree = "<group>"; };
 		CFEA5C212391084200C922D2 /* AVAsset+Degress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AVAsset+Degress.h"; sourceTree = "<group>"; };
+		CFF6F7D023937E1800DEDEB9 /* LHPostPayView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LHPostPayView.h; sourceTree = "<group>"; };
+		CFF6F7D123937E1800DEDEB9 /* LHPostPayView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LHPostPayView.m; sourceTree = "<group>"; };
+		CFF6F7D423937E2200DEDEB9 /* LHPostPayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LHPostPayView.xib; sourceTree = "<group>"; };
+		CFF6F7D6239399C000DEDEB9 /* LHPostRewardView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LHPostRewardView.h; sourceTree = "<group>"; };
+		CFF6F7D7239399C000DEDEB9 /* LHPostRewardView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LHPostRewardView.m; sourceTree = "<group>"; };
+		CFF6F7D9239399CA00DEDEB9 /* LHPostRewardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LHPostRewardView.xib; sourceTree = "<group>"; };
 		CFFAB5852372F01C009593AF /* UGPlatformTitleBlackCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGPlatformTitleBlackCell.h; sourceTree = "<group>"; };
 		CFFAB5862372F01C009593AF /* UGPlatformTitleBlackCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGPlatformTitleBlackCell.m; sourceTree = "<group>"; };
 		CFFAB5872372F01C009593AF /* UGPlatformTitleBlackCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGPlatformTitleBlackCell.xib; sourceTree = "<group>"; };
@@ -2886,6 +2901,15 @@
 				CF35E91A23922F1500E73935 /* LHPostCommentInputView.xib */,
 				CF775F78239033F9005B3534 /* UGPostCell1.h */,
 				CF775F79239033F9005B3534 /* UGPostCell1.m */,
+				CFF6F7D023937E1800DEDEB9 /* LHPostPayView.h */,
+				CFF6F7D123937E1800DEDEB9 /* LHPostPayView.m */,
+				CFF6F7D423937E2200DEDEB9 /* LHPostPayView.xib */,
+				CF0A1D5F2393E25000F62010 /* LHPostVoteView.h */,
+				CF0A1D602393E25000F62010 /* LHPostVoteView.m */,
+				CF0A1D632393E25B00F62010 /* LHPostVoteView.xib */,
+				CFF6F7D6239399C000DEDEB9 /* LHPostRewardView.h */,
+				CFF6F7D7239399C000DEDEB9 /* LHPostRewardView.m */,
+				CFF6F7D9239399CA00DEDEB9 /* LHPostRewardView.xib */,
 			);
 			path = "帖子";
 			sourceTree = "<group>";
@@ -5006,6 +5030,7 @@
 				D405B2FF227C310600F8C586 /* UGWithdrawalViewController.storyboard in Resources */,
 				D4A36638233E311E00F6D770 /* UGYYRightMenuView.xib in Resources */,
 				D422D67822D997AA008E7065 /* UGSafety.storyboard in Resources */,
+				CFF6F7DA239399CA00DEDEB9 /* LHPostRewardView.xib in Resources */,
 				D4145A9C22B61C6A00D8165F /* UGBJKL8LotteryController.storyboard in Resources */,
 				D49F41AD2326149B00A381AD /* UGPormotionUserInfoView.xib in Resources */,
 				D4185E3F231D2E1B008DB5F2 /* province_data.xml in Resources */,
@@ -5095,7 +5120,9 @@
 				D422FE60232522C20063EA4E /* UGPromotion5rowButtonTableViewCell.xib in Resources */,
 				D422FE65232532C00063EA4E /* UGPromotion2rowTableViewCell.xib in Resources */,
 				D4C1656A2344B1AB005A0F12 /* UGMineSkinViewController.xib in Resources */,
+				CFF6F7D523937E2200DEDEB9 /* LHPostPayView.xib in Resources */,
 				D49A36C122A29CCB000057D2 /* UGLotteryRulesView.xib in Resources */,
+				CF0A1D642393E25B00F62010 /* LHPostVoteView.xib in Resources */,
 				D41E0EED228D991600D6C42A /* UGIntegralConvertController.storyboard in Resources */,
 				CF35E9162391824400E73935 /* network_setting.html in Resources */,
 				D41A57792306924D00C26023 /* UGBackToastView.xib in Resources */,
@@ -5187,6 +5214,7 @@
 				D4EDC9392343A1E300BA4C4D /* UGTableViewController.m in Sources */,
 				D40DE98822F335E300974BAF /* TAAnimatedDotView.m in Sources */,
 				D4B8A30E2365C88500B79B3E /* UGLHHomeContentCollectionViewCell.m in Sources */,
+				CF0A1D612393E25000F62010 /* LHPostVoteView.m in Sources */,
 				D4AE64112295871D00DD265A /* UIView+MJExtension.m in Sources */,
 				D4C165782344CAB6005A0F12 /* UGSkinSeconCollectionHeadView.m in Sources */,
 				D405B2502279740A00F8C586 /* NSSet+HYBUnicodeReadable.m in Sources */,
@@ -5510,6 +5538,7 @@
 				D41246AE2285B599006881E2 /* UGMissionListController.m in Sources */,
 				D4FB62E52355FF7F008EACB2 /* UGYUbaoTitleView.m in Sources */,
 				CFD3BEF92347137F00FCDA6D /* NSMutableArray+KVO.m in Sources */,
+				CFF6F7D223937E1800DEDEB9 /* LHPostPayView.m in Sources */,
 				D4C93B4422D8C02000608B67 /* UGLoginAddressModel.m in Sources */,
 				CF724E54236D6E5E0099947A /* UGSkinManagers.m in Sources */,
 				D43B48B1238D41DA00BB7960 /* UIButton+touch.m in Sources */,
@@ -5652,6 +5681,7 @@
 				D49A36C922A2CF57000057D2 /* UGPCDDLotteryController.m in Sources */,
 				D4D4224F23264340006E680B /* UGdepositListModel.m in Sources */,
 				D405B2CA227ADA4E00F8C586 /* UGGameTypeColletionViewCell.m in Sources */,
+				CFF6F7D8239399C000DEDEB9 /* LHPostRewardView.m in Sources */,
 				D411D3962292E1780072603B /* UGChanglongaideModel.m in Sources */,
 				D405B2F2227C17CE00F8C586 /* UGFundsViewController.m in Sources */,
 				D41FF93F2333A76B00FE3F70 /* UGapplyWinLogDetail.m in Sources */,

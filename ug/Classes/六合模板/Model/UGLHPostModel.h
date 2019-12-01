@@ -23,6 +23,21 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
+// 帖子投票Model（生肖）
+@interface LHVoteModel : NSObject
+@property (nonatomic, copy) NSString *animalFlag;   /**<   生肖ID */
+@property (nonatomic, copy) NSString *animal;       /**<   标题 */
+@property (nonatomic, assign) NSInteger num;        /**<   票数 */
+@property (nonatomic, assign) NSInteger percent;    /**<   百分比 */
+
+// 自定义参数
+@property (nonatomic, assign) BOOL selected;
+@end
+
+
+
+
+
 
 
 // 帖子Model
@@ -66,7 +81,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) LHPostAdModel *bottomAdPc;   /**<   pc端底部广告 */
 @property (nonatomic, copy) LHPostAdModel *topAdWap;     /**<   手机端顶部广告 */
 @property (nonatomic, copy) LHPostAdModel *bottomAdWap;  /**<   手机端底部广告 */
-@property (nonatomic, copy) NSString *vote;         /**<   如果不是投票类型的帖子时，为null； 否则为数组 */
+@property (nonatomic, copy) NSArray <LHVoteModel *>*vote;         /**<   如果不是投票类型的帖子时，为null； 否则为数组 */
 //@property (nonatomic, assign) double price;      /**<   帖子价格 */
 //@property (nonatomic, assign) BOOL isLike;     /**<   是否已点赞 1是 0否 */
 //@property (nonatomic, assign) BOOL hasPay;     /**<   是否已支付 1是 0否 */

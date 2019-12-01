@@ -18,7 +18,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL willComment;
 
 @property (nonatomic) void (^didCommentOrLike)(UGLHPostModel *pm);
-@property (nonatomic) void (^didDelete)(void);
 @end
 
 NS_ASSUME_NONNULL_END

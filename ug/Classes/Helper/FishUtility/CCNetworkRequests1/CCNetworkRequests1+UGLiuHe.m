@@ -92,7 +92,7 @@
                        @"rid":rid,//非必填，评论ID，当回复评论时必填
                        @"content":content,//评论内容
                     }
-                    :false];
+                    :true];
 }
 
 // 给帖子投票
@@ -101,7 +101,7 @@
                     :@{@"cid":cid,// 帖子ID
                        @"animalId":animalId,// 生肖ID
                     }
-                    :false];
+                    :true];
 }
 
 // 我的历史帖子
@@ -163,7 +163,7 @@
 
 // 打赏帖子
 - (CCSessionModel *)lhcdoc_tipContent:(NSString *)cid amount:(double)amount  {
-    return [self req:@"wjapp/api.php?c=lhcdoc&a=buyContent"
+    return [self req:@"wjapp/api.php?c=lhcdoc&a=tipContent"
                     :@{@"cid":cid,    // 帖子ID，必填
                        @"amount":_FloatString4(amount),   // 必填，打赏金额
                     }
@@ -185,7 +185,7 @@
 - (CCSessionModel *)lhcdoc_getUserInfo:(NSString *)uid {
     return [self req:@"wjapp/api.php?c=lhcdoc&a=getUserInfo"
                     :@{@"uid":uid}  // 用户ID
-                    :true];
+                    :false];
 }
 
 // 申请VIP认证

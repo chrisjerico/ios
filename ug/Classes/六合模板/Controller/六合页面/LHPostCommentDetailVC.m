@@ -92,13 +92,6 @@
             subLabel(@"点赞次数Label").textColor = like ? Skin1.navBarBgColor : Skin1.textColor2;
             if (__self.didLike)
                 __self.didLike(pcm);
-        } else if (sm.error.code == -2) { // 已点赞
-            sm.noShowErrorHUD = true;
-            pcm.isLike = like;
-            subButton(@"点赞图标Button").selected = like;
-            subLabel(@"点赞次数Label").textColor = like ? Skin1.navBarBgColor : Skin1.textColor2;
-            if (__self.didLike)
-                __self.didLike(pcm);
         }
     };
 }

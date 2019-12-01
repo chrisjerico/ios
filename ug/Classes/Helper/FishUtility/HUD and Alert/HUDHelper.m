@@ -40,8 +40,6 @@
 #pragma mark - 请先选择一个PPT开始播放
 
 + (void)showPlayerTips {
-    NSLog(@"请先选择一个PPT开始播放");
-    
     CGFloat waitSecs = 2;              // 消息展示时间
     CGFloat animationDuration = 0.5;     // 动画时间
     

@@ -39,12 +39,12 @@
 - (void)show {
     self.alpha = 0;
     self.frame = APP.Window.bounds;
-    [NavController1.topView addSubview:self];
+    [TabBarController1.view addSubview:self];
     _alertView.transform = CGAffineTransformMakeScale(1.5, 1.5);
     
     [UIView animateWithDuration:0.25 animations:^{
         self.alpha = 1;
-        _alertView.transform = CGAffineTransformIdentity;
+        self.alertView.transform = CGAffineTransformIdentity;
     }];
     [_textField becomeFirstResponder];
 }
@@ -57,7 +57,7 @@
     
     [UIView animateWithDuration:0.25 animations:^{
         self.alpha = 1;
-        _alertView.transform = CGAffineTransformIdentity;
+        self.alertView.transform = CGAffineTransformIdentity;
     }];
     [_textField becomeFirstResponder];
 }

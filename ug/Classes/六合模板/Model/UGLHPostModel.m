@@ -15,6 +15,10 @@
 @end
 
 
+@implementation LHVoteModel
+@end
+
+
 
 @interface UGLHPostModel ()
 @property (nonatomic, copy) NSString *tempId;
@@ -25,9 +29,18 @@
 + (NSDictionary *)mj_replacedKeyFromPropertyName {
     return @{@"tempId":@"id"};
 }
++ (NSDictionary *)mj_objectClassInArray {
+    return @{@"vote":@"LHVoteModel"};
+}
 
 - (void)setTempId:(NSString *)tempId {
     _cid = tempId;
 }
+
+// 这4个方法不写MJExtension无法正常赋值
+- (void)setTopAdPc:(LHPostAdModel *)topAdPc { _topAdPc = topAdPc;}
+- (void)setBottomAdPc:(LHPostAdModel *)bottomAdPc { _bottomAdPc = bottomAdPc; }
+- (void)setTopAdWap:(LHPostAdModel *)topAdWap { _topAdWap = topAdWap;}
+- (void)setBottomAdWap:(LHPostAdModel *)bottomAdWap { _bottomAdWap = bottomAdWap; }
 
 @end

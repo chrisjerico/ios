@@ -50,6 +50,7 @@
                     aciv.didComment(text);
                 aciv.textView.text = @"";
                 [aciv.textView resignFirstResponder];
+                [AlertHelper showAlertView:@"回复成功，待管理员审核后显示" msg:nil btnTitles:@[@"确定"]];
             }
         };
     };
@@ -77,6 +78,7 @@
                     aciv.didComment(text);
                 aciv.textView.text = @"";
                 [aciv.textView resignFirstResponder];
+                [AlertHelper showAlertView:@"回复成功，待管理员审核后显示" msg:nil btnTitles:@[@"确定"]];
             }
         };
     };
@@ -120,7 +122,7 @@
 
 - (void)show {
     self.frame = APP.Bounds;
-    [NavController1.topView addSubview:self];
+    [TabBarController1.view addSubview:self];
 }
 
 
