@@ -1539,11 +1539,11 @@
                     __self.lotteryTitleLabel.text = [NSString stringWithFormat:@"第%@期开奖结果",nper];
                     
                     [CMLabelCommon setRichNumberWithLabel:__self.lotteryTitleLabel Color:[UIColor redColor] FontSize:17.0];
-                    
+#ifdef DEBUG
                     if (__count < 7) {
                         model.isFinish = 0;
                     }
-                    
+#endif
                     if (model.isFinish == 1) {
                         NSArray *endTimeArray = [__self.lhModel.endtime componentsSeparatedByString:@" "];
                         __self.timeLabel.text = [endTimeArray objectAtIndex:0];
