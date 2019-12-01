@@ -36,7 +36,7 @@
     CMMETHOD_END;
 }
 
-//查询各平台游戏列表
+//查询彩票大厅
 + (void)getPlatformGamesWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock {
     
     CMMETHOD_BEGIN;
