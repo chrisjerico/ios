@@ -1111,8 +1111,8 @@
             NSArray *endTimeArray = [self->_lhModel.endtime componentsSeparatedByString:@" "];
             self.timeLabel.text = [endTimeArray objectAtIndex:0];
 
-            long long startLongLong = [CMTimeCommon timeSwitchTimestamp:self.lhModel.serverTime andFormatter:@"YYYY-MM-dd hh:mm:ss"];
-            long long finishLongLong = [CMTimeCommon timeSwitchTimestamp:self.lhModel.endtime andFormatter:@"YYYY-MM-dd hh:mm:ss"];
+            long long startLongLong = [CMTimeCommon timeSwitchTimestamp:self.lhModel.serverTime andFormatter:@"YYYY-MM-dd HH:mm:ss"];
+            long long finishLongLong = [CMTimeCommon timeSwitchTimestamp:self.lhModel.endtime andFormatter:@"YYYY-MM-dd HH:mm:ss"];
             [self startLongLongStartStamp:startLongLong*1000 longlongFinishStamp:finishLongLong*1000];
 
         } failure:^(id msg) {
@@ -1551,15 +1551,15 @@
                     
                     [CMLabelCommon setRichNumberWithLabel:__self.lotteryTitleLabel Color:[UIColor redColor] FontSize:17.0];
 #ifdef DEBUG
-                    if (__count < 7) {
-                        model.isFinish = 0;
-                    }
+//                    if (__count < 7) {
+//                        model.isFinish = 0;
+//                    }
 #endif
                     if (model.isFinish == 1) {
                         NSArray *endTimeArray = [__self.lhModel.endtime componentsSeparatedByString:@" "];
                         __self.timeLabel.text = [endTimeArray objectAtIndex:0];
-                        long long startLongLong = [CMTimeCommon timeSwitchTimestamp:self.lhModel.serverTime andFormatter:@"YYYY-MM-dd hh:mm:ss"];
-                        long long finishLongLong = [CMTimeCommon timeSwitchTimestamp:self.lhModel.endtime andFormatter:@"YYYY-MM-dd hh:mm:ss"];
+                        long long startLongLong = [CMTimeCommon timeSwitchTimestamp:self.lhModel.serverTime andFormatter:@"YYYY-MM-dd HH:mm:ss"];
+                        long long finishLongLong = [CMTimeCommon timeSwitchTimestamp:self.lhModel.endtime andFormatter:@"YYYY-MM-dd HH:mm:ss"];
                         [__self startLongLongStartStamp:startLongLong*1000 longlongFinishStamp:finishLongLong*1000];
                         
                         __count = 0;
@@ -1598,8 +1598,8 @@
         
         NSDate *pastDate= [currentDate dateByAddingTimeInterval:3]; // 半小时前是-1800   1小时后是3600   1小时前是-3600
         NSString *pastTimeString = [dateFormatter stringFromDate:pastDate];
-        long long startLongLong = [CMTimeCommon timeSwitchTimestamp:timeString andFormatter:@"YYYY-MM-dd hh:mm:ss"];
-        long long finishLongLong = [CMTimeCommon timeSwitchTimestamp:pastTimeString andFormatter:@"YYYY-MM-dd hh:mm:ss"];
+        long long startLongLong = [CMTimeCommon timeSwitchTimestamp:timeString andFormatter:@"YYYY-MM-dd HH:mm:ss"];
+        long long finishLongLong = [CMTimeCommon timeSwitchTimestamp:pastTimeString andFormatter:@"YYYY-MM-dd HH:mm:ss"];
         [self startLongLongStartStamp:startLongLong*1000 longlongFinishStamp:finishLongLong*1000];
         
     }
