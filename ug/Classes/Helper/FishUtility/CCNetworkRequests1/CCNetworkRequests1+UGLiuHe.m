@@ -218,8 +218,8 @@
 // 关注或取消关注楼主
 - (CCSessionModel *)lhcdoc_followPoster:(NSString *)posterUid followFlag:(BOOL)followFlag {
     return [self req:@"wjapp/api.php?c=lhcdoc&a=followPoster"
-                    :@{@"posterUid":posterUid,
-                       @"followFlag":@((int)followFlag),
+                    :@{@"posterUid":posterUid,//posterUid：被关注会员ID
+                       @"followFlag":@((int)followFlag),//followFlag：关注标记 1 关注 0 取消关注
                     }
                     :false];
 }

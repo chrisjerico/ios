@@ -88,6 +88,7 @@
 #import "UGLHlotteryNumberModel.h"
 #import "UGYYPlatformGames.h"
 
+
 // Tools
 #import "UIImageView+WebCache.h"
 #import "CMCommon.h"
@@ -708,19 +709,29 @@
                 [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGYubaoViewController")  animated:YES];
             }
             else if([model.alias isEqualToString:@"qpdz"]) {
+//            else if([model.alias isEqualToString:@"n7WKQ4GI"]) {
                 NSLog(@"棋牌电子");
-                NSLog(@"[Global getInstanse].lotterydataArray = %@",[Global getInstanse].lotterydataArray);
-                NSLog(@"game= %@",[[Global getInstanse].lotterydataArray objectWithValue:@"game" keyPath:@"category"]);
-                NSLog(@"games= %@",[[Global getInstanse].lotterydataArray objectWithValue:@"game" keyPath:@"category"].games);
                 if ([CMCommon arryIsNull:[Global getInstanse].lotterydataArray]) {
                     return;
                 }
                 UGYYLotterySecondHomeViewController *vc = [[UGYYLotterySecondHomeViewController alloc] init];
                 vc.title = @"棋牌电子";
                 vc.dataArray = ({
+//                    [array addObjectsFromArray:[[Global getInstanse].lotterydataArray objectWithValue:@"game" keyPath:@"category"].games];
+//                    [array addObjectsFromArray:[[Global getInstanse].lotterydataArray objectWithValue:@"card" keyPath:@"category"].games];
                     NSMutableArray<UGYYGames *> *array = @[].mutableCopy;
-                    [array addObjectsFromArray:[[Global getInstanse].lotterydataArray objectWithValue:@"game" keyPath:@"category"].games];
-                    [array addObjectsFromArray:[[Global getInstanse].lotterydataArray objectWithValue:@"card" keyPath:@"category"].games];
+                    NSDictionary *game = (NSDictionary *)[[Global getInstanse].lotterydataArray objectWithValue:@"game" keyPath:@"category"];
+                    NSArray *games = [game objectForKey:@"games"];
+//                    NSLog(@"ob= %@",[UGYYGames arrayOfModelsFromDictionaries:games error:nil]);
+                    [array addObjectsFromArray:[UGYYGames arrayOfModelsFromDictionaries:games error:nil]];
+                    
+                    {
+                        NSDictionary *card = (NSDictionary *)[[Global getInstanse].lotterydataArray objectWithValue:@"card" keyPath:@"category"];
+                        NSArray *games = [card objectForKey:@"games"];
+//                        NSLog(@"ob= %@",[UGYYGames arrayOfModelsFromDictionaries:games error:nil]);
+                        [array addObjectsFromArray:[UGYYGames arrayOfModelsFromDictionaries:games error:nil]];
+                    }
+
                     array.copy;
                 });
                 [NavController1 pushViewController:vc animated:YES];
@@ -731,18 +742,19 @@
                 [NavController1 pushViewController:vc animated:YES];
             }
             else if([model.alias isEqualToString:@"zrsx"]) {
+//            else if([model.alias isEqualToString:@"n7WKQ4GI"]) {
                 NSLog(@"真人视讯");
-                NSLog(@"[Global getInstanse].lotterydataArray = %@",[Global getInstanse].lotterydataArray);
-                NSLog(@"real= %@",[[Global getInstanse].lotterydataArray objectWithValue:@"real" keyPath:@"category"]);
-                NSLog(@"games= %@",[[Global getInstanse].lotterydataArray objectWithValue:@"real" keyPath:@"category"].games);
-                
                 if ([CMCommon arryIsNull:[Global getInstanse].lotterydataArray]) {
                     return;
                 }
                 UGYYLotterySecondHomeViewController *vc = [[UGYYLotterySecondHomeViewController alloc] init];
                 vc.title = @"真人视讯";
                 vc.dataArray = ({
-                    [[Global getInstanse].lotterydataArray objectWithValue:@"real" keyPath:@"category"].games;
+                    //                    [[Global getInstanse].lotterydataArray objectWithValue:@"real" keyPath:@"category"].games;
+                    NSDictionary *real = (NSDictionary *)[[Global getInstanse].lotterydataArray objectWithValue:@"real" keyPath:@"category"];
+                    NSArray *games = [real objectForKey:@"games"];
+//                    NSLog(@"ob= %@",[UGYYGames arrayOfModelsFromDictionaries:games error:nil]);
+                    [UGYYGames arrayOfModelsFromDictionaries:games error:nil];
                 });
                 [NavController1 pushViewController:vc animated:YES];
             }
@@ -758,7 +770,6 @@
     }
 }
 
-#pragma mark ---------------- 六合方法
 
 - (void)getUserInfo {
 	if (!UGLoginIsAuthorized()) {
@@ -1031,7 +1042,7 @@
     }];
 }
 
-//------------六合------------------------------------------------------
+#pragma mark ------------六合------------------------------------------------------
 // 栏目列表
 - (void)getCategoryList {
     [CMNetwork categoryListWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
@@ -1113,7 +1124,7 @@
 - (void)getPlatformGamesWithParams {
     [CMNetwork getPlatformGamesWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
-           [Global getInstanse].lotterydataArray  = model.data;
+            [Global getInstanse].lotterydataArray = model.data ;
             NSLog(@"[Global getInstanse].lotterydataArray = %@",[Global getInstanse].lotterydataArray);
         } failure:^(id msg) {
         }];

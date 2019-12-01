@@ -103,6 +103,9 @@
         [subImageView(@"图片ImageView") sd_setImageWithURL:[NSURL URLWithString:model.headImg] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
         [subButton(@"取消专家Btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
             NSLog(@"取消专家Btn ,id = %@",model.posterUid);
+            __weakSelf_(__self);
+              [NetworkManager1 lhcdoc_followPoster:model.posterUid followFlag:NO].successBlock = ^(id responseObject) {[__self.tableView.mj_header beginRefreshing];
+              };
         }];
         return cell;
     } else {
