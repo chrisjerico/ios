@@ -10,7 +10,7 @@
                <key>kind</key>
                <string>software-package</string>
                <key>url</key>
-               <string><![CDATA[https://app.wdheco.cn/ipa/c011/c011.ipa]]></string>
+               <string><![CDATA[https://app.wdheco.cn/ipa/c011/c011_1575096516.ipa]]></string>
              </dict>
              <dict>
                <key>kind</key>
@@ -32,7 +32,7 @@
            <key>metadata</key>
            <dict>
              <key>bundle-identifier</key>
-             <string>io.dcloud.UNIAC0117987897</string>
+             <string>io.dcloud.UNIAC0117987897c</string>
              <key>bundle-version</key>
              <string><![CDATA[1.1.0]]></string>
              <key>kind</key>

@@ -10,7 +10,7 @@
                <key>kind</key>
                <string>software-package</string>
                <key>url</key>
-               <string><![CDATA[https://app.wdheco.cn/ipa/ttttt/ttttt_1575270377.ipa]]></string>
+               <string><![CDATA[https://app.wdheco.cn/ipa/c091hy/c091hy_1575096754.ipa]]></string>
              </dict>
              <dict>
                <key>kind</key>
@@ -18,7 +18,7 @@
                <key>needs-shine</key>
                <integer>0</integer>
                <key>url</key>
-               <string><![CDATA[https://app.wdheco.cn/img/ttttt/ttttt.png]]></string>
+               <string><![CDATA[https://app.wdheco.cn/img/c091hy/c091hy.png]]></string>
              </dict>
              <dict>
                <key>kind</key>
@@ -26,19 +26,19 @@
                <key>needs-shine</key>
                <true/>
                <key>url</key>
-               <string><![CDATA[https://app.wdheco.cn/img/ttttt/ttttt.png]]></string>
+               <string><![CDATA[https://app.wdheco.cn/img/c091hy/c091hy.png]]></string>
              </dict>
            </array>
            <key>metadata</key>
            <dict>
              <key>bundle-identifier</key>
-             <string>com.uggame.qpccc1</string>
+             <string>io.fhpt.H529081C92341a1234</string>
              <key>bundle-version</key>
              <string><![CDATA[1.0.0]]></string>
              <key>kind</key>
              <string>software</string>
              <key>title</key>
-             <string><![CDATA[UG豪华测试]]></string>
+             <string><![CDATA[凤凰彩票]]></string>
            </dict>
         </dict>
       </array>
