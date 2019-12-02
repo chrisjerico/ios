@@ -59,53 +59,40 @@
     [self setTipStr:item.tip];
     
     NSMutableDictionary *imgDict = @{
-        @"alihb_online"         :@"zfb_icon",       // 支付宝扫码支付成功率100%
-        @"alipay_online"        :@"zfb_icon",       // 支付宝转账银行卡
-        @"alipay_transfer"      :@"zfb_icon",
-        @"zhifubao_transfer"    :@"zfb_icon",
-        @"zfbzyhk_transfer"     :@"zfb_icon",       // 支付宝转银行卡
+        @"wechat_online"            :@"wechat_online",  // 微信在线支付
+        @"wechat_transfer"          :@"wechat_online",  // 微信转账
+        @"wxsm_transfer"            :@"wechat_online",  // 微信扫码
+        @"wechat_alipay_transfer"   :@"wechat_online",  // 微信支付宝转账
         
-        @"wechat_alipay_transfer":@"wx_zfb",        // 微信,支付宝转账[成功率100%]
+        @"alipay_online"            :@"zfb_icon",       // 支付宝在线支付
+        @"alihb_online"             :@"zfb_icon",       // 支付宝红包支付
+        @"zhifubao_transfer"        :@"zfb_icon",       // 支付宝扫码
+        @"alipay_transfer"          :@"zfb_icon",       // 支付宝转账
+        @"zfbzyhk_transfer"         :@"zfb_icon",       // 支付宝转银行卡
         
-        @"wechat_online"        :@"wechat_online",  // 微信支付等你付
-        @"wxsm_transfer"        :@"wechat_online",  // 微信扫码
-        @"wechat_transfer"      :@"wechat_online",  // 微信转账[成功率100%]
-        @"xnb_online"           :@"wechat_online",
-        @"dk_online"            :@"wechat_online",
+        @"bank_transfer"            :@"transfer",       // 银行转账
+        @"yinlian_online"           :@"bank_online",    // 银联钱包在线支付
+        @"bank_online"              :@"quick_online",   // 网银在线支（用银联图标，还是快捷支付图标？）
+        @"quick_online"             :@"quick_online",   // 快捷支付
         
-        @"qqpay_transfer"       :@"qq_online",      // QQ钱包转账
-        @"qq_online"            :@"qq_online",      // QQ钱包在线支付
+        @"jingdong_online"          :@"jd",             // 京东钱包在线支付
+        @"jdzz_transfer"            :@"jd",             // 京东钱包转账
         
-        @"bank_online"          :@"quick_online",   // 网银
-        @"yinlian_online"       :@"bank_online",    // 银联钱包在线支
-        @"tenpay_online"        :@"cft_icon",       // 财付通
-        @"bank_transfer"        :@"transfer",       // 银行转账[成功率100%]
+        @"tenpay_online"            :@"yunshanfu",      // 云闪付在线支付
+        @"yunshanfu_transfer"       :@"yunshanfu",      // 云闪付
         
+        @"qq_online"                :@"qq_online",      // QQ钱包在线支付
+        @"qqpay_transfer"           :@"qq_online",      // QQ钱包转账
         
-        @"quick_online"         :@"quick_online",   // 快捷支付[成功率100%]
-        @"yunshanfu_transfer"   :@"yunshanfu",      // 云闪付[成功率100%]
+        @"baidu_online"             :@"baidu",          // 百度钱包在线支付
+        @"tenpay_transfer"          :@"cft_icon",       // 财付通转账
+        @"xnb_online"               :@"xnb_icon",       // 虚拟币
+        @"dk_online"                :@"xnb_icon",       // 点卡支付
+        @"ddhb_transfer"            :@"dingding",       // 钉钉红包
+        @"dshb_transfer"            :@"duosan",         // 多闪红包
+        @"xlsm_transfer"            :@"xlsm",           // 闲聊扫码
         
-        @"tenpay_transfer"      :@"cft_icon",       // 财付通转账
-        @"jingdong_online"      :@"jd",             // 京东钱包在线支付
-        @"jdzz_transfer"        :@"jd",             // 京东钱包转账
-        @"ddhb_transfer"        :@"dingding",       // 钉钉红包
-        @"dshb_transfer"        :@"duosan",         // 多闪红包
-        @"xlsm_transfer"        :@"xlsm",           // 闲聊扫码
-        @"baidu_online"         :@"baidu",          // 百度钱包在线支付
     }.mutableCopy;
-    
-    if ([APP.SiteId isEqualToString:@"test10"]) {
-        imgDict[@"tenpay_online"] = @"bank_online";    // 银联
-    }
-    if ([APP.SiteId isEqualToString:@"c083"]) {
-        imgDict[@"tenpay_online"] = @"cft_icon";    // 财付通
-    }
-    if ([APP.SiteId isEqualToString:@"c085"]) {
-        imgDict[@"tenpay_online"] = @"cft_icon";    // 财付通
-    }
-    if ([APP.SiteId isEqualToString:@"a002"]) {
-        imgDict[@"tenpay_online"] = @"yunshanfu";    // 云闪付在线支付
-    }
     
     [self setHeaderImageStr:imgDict[item.pid]];
 }

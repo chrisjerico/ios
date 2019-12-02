@@ -7,13 +7,13 @@
 //
 
 #import "UGBetRecordTableViewController.h"
-#import "UGBetRecordTableViewCell.h"
 #import "UGBetRecordDetailViewController.h"
 #import "UGBetRecordViewController.h"
 #import "UGBetRecorddHeaderView.h"
 #import "UGBetsRecordListModel.h"
 #import "UGLotteryRecordCell.h"
 #import "CountDown.h"
+
 @interface UGBetRecordTableViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;

@@ -348,8 +348,6 @@
 		D41C3DFA228E877E00BF6436 /* UGIntegralConvertRecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = D41C3DF9228E877E00BF6436 /* UGIntegralConvertRecordController.m */; };
 		D41C3DFC228E882200BF6436 /* UGIntegralConvertRecordController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D41C3DFB228E882200BF6436 /* UGIntegralConvertRecordController.storyboard */; };
 		D41C3E00228E914A00BF6436 /* UGIntegarlConvertRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D41C3DFE228E914A00BF6436 /* UGIntegarlConvertRecordCell.m */; };
-		D41C3E05228E9D8900BF6436 /* UGBetRecordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D41C3E03228E9D8900BF6436 /* UGBetRecordTableViewCell.m */; };
-		D41C3E06228E9D8900BF6436 /* UGBetRecordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D41C3E04228E9D8900BF6436 /* UGBetRecordTableViewCell.xib */; };
 		D41C3E09228EA09000BF6436 /* UGBetRecordTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D41C3E08228EA09000BF6436 /* UGBetRecordTableViewController.m */; };
 		D41C3E0C228ED03900BF6436 /* UGBetRecordDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D41C3E0B228ED03900BF6436 /* UGBetRecordDetailViewController.m */; };
 		D41C3E0E228ED0EE00BF6436 /* UGBetRecordDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D41C3E0D228ED0EE00BF6436 /* UGBetRecordDetailViewController.storyboard */; };
@@ -1344,9 +1342,6 @@
 		D41C3DFB228E882200BF6436 /* UGIntegralConvertRecordController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UGIntegralConvertRecordController.storyboard; sourceTree = "<group>"; };
 		D41C3DFD228E914A00BF6436 /* UGIntegarlConvertRecordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGIntegarlConvertRecordCell.h; sourceTree = "<group>"; };
 		D41C3DFE228E914A00BF6436 /* UGIntegarlConvertRecordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGIntegarlConvertRecordCell.m; sourceTree = "<group>"; };
-		D41C3E02228E9D8900BF6436 /* UGBetRecordTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGBetRecordTableViewCell.h; sourceTree = "<group>"; };
-		D41C3E03228E9D8900BF6436 /* UGBetRecordTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGBetRecordTableViewCell.m; sourceTree = "<group>"; };
-		D41C3E04228E9D8900BF6436 /* UGBetRecordTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGBetRecordTableViewCell.xib; sourceTree = "<group>"; };
 		D41C3E07228EA09000BF6436 /* UGBetRecordTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGBetRecordTableViewController.h; sourceTree = "<group>"; };
 		D41C3E08228EA09000BF6436 /* UGBetRecordTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGBetRecordTableViewController.m; sourceTree = "<group>"; };
 		D41C3E0A228ED03900BF6436 /* UGBetRecordDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGBetRecordDetailViewController.h; sourceTree = "<group>"; };
@@ -2658,9 +2653,6 @@
 				D405B368228007D900F8C586 /* UGRecordFilterCollectionViewCell.h */,
 				D405B369228007D900F8C586 /* UGRecordFilterCollectionViewCell.m */,
 				D405B36A228007D900F8C586 /* UGRecordFilterCollectionViewCell.xib */,
-				D41C3E02228E9D8900BF6436 /* UGBetRecordTableViewCell.h */,
-				D41C3E03228E9D8900BF6436 /* UGBetRecordTableViewCell.m */,
-				D41C3E04228E9D8900BF6436 /* UGBetRecordTableViewCell.xib */,
 				D4E8A40D22A0323300EFE171 /* UGBetRecorddHeaderView.h */,
 				D4E8A40E22A0323300EFE171 /* UGBetRecorddHeaderView.m */,
 				D4E8A41022A0326C00EFE171 /* UGBetRecorddHeaderView.xib */,
@@ -5090,7 +5082,6 @@
 				D41246B82285C65D006881E2 /* UGUserInfoViewController.storyboard in Resources */,
 				D409C55D22AB87480042A0DD /* UGFeedBackController.storyboard in Resources */,
 				D4091B52236950000056BAEE /* UGBMHeaderView.xib in Resources */,
-				D41C3E06228E9D8900BF6436 /* UGBetRecordTableViewCell.xib in Resources */,
 				D4DCDBD52328D1AC00CF4CEE /* UGDepositDetailsTableViewCell.xib in Resources */,
 				D416BB2922CE35C100BA0450 /* UGSegmentCollectionViewCell.xib in Resources */,
 				D43348A82387D38A0056EB7D /* LHTemplate.storyboard in Resources */,
@@ -5666,7 +5657,6 @@
 				CFD3BF4F23473D5900FCDA6D /* TextFieldAlertView.m in Sources */,
 				D4DE2690229BCB960072A4A2 /* WMDropDownView.m in Sources */,
 				D405B318227D726000F8C586 /* UGLoginViewController.m in Sources */,
-				D41C3E05228E9D8900BF6436 /* UGBetRecordTableViewCell.m in Sources */,
 				D4DCDBD02328B5B400CF4CEE /* YLEdgeLabel.m in Sources */,
 				D405AFF122783DCC00F8C586 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				D417712F229D786000727B70 /* UGMissionTitleCollectionView.m in Sources */,
