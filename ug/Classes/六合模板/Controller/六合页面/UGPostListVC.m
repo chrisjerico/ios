@@ -9,6 +9,7 @@
 #import "UGPostListVC.h"
 #import "UGPostDetailVC.h"  // 帖子详情
 #import "UGSearchPostVC.h"  // 搜索帖子
+#import "UGSubmitPostVC.h"  // 发帖
 
 #import "UGPostCell1.h"     // 帖子Cell
 #import "STBarButtonItem.h"
@@ -27,8 +28,7 @@
     
     __weakSelf_(__self);
     // 顶部UI
-    if (_isHistory) {
-        self.title = @"历史记录";
+    if (_request) {
         _segmentedControl.superview.hidden = true;
     } else {
         self.title = _clm.name;
@@ -39,7 +39,9 @@
                 [NavController1 pushViewController:vc animated:true];
             }],
             [STBarButtonItem barButtonItemWithImageName:@"yijian" block:^(UIButton *sender) {
-                [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGSubmitPostVC") animated:true];
+                UGSubmitPostVC *vc = _LoadVC_from_storyboard_(@"UGSubmitPostVC");
+                vc.clm = __self.clm;
+                [NavController1 pushViewController:vc animated:true];
             }],
         ];
     }
@@ -55,8 +57,12 @@
             return nil; // 综合
         };
         [_tableView setupHeaderRefreshRequest:^CCSessionModel *(UITableView *tv) {
-            if (__self.isHistory) {
-                return [NetworkManager1 lhdoc_historyContent:__self.clm.cid page:1];
+            if (__self.request) {
+                CCSessionModel *sm = __self.request(1);
+                if (!sm) {
+                    [__self.tableView.mj_header endRefreshing];
+                }
+                return sm;
             } else {
                 return [NetworkManager1 lhdoc_contentList:__self.clm.alias uid:nil sort:sortString() page:1];
             }
@@ -67,8 +73,12 @@
             return array;
         }];
         [_tableView setupFooterRefreshRequest:^CCSessionModel *(UITableView *tv) {
-            if (__self.isHistory) {
-                return [NetworkManager1 lhdoc_historyContent:__self.clm.cid page:tv.pageIndex];
+            if (__self.request) {
+                CCSessionModel *sm = __self.request(tv.pageIndex);
+                if (!sm) {
+                    [__self.tableView.mj_header endRefreshing];
+                }
+                return sm;
             } else {
                 return [NetworkManager1 lhdoc_contentList:__self.clm.alias uid:nil sort:sortString() page:tv.pageIndex];
             }
@@ -83,6 +93,11 @@
 }
 
 - (IBAction)onSegmentedControlValueChanged:(UISegmentedControl *)sender {
+    [self refreshData];
+}
+
+// 重新拉取第一页的数据
+- (void)refreshData {
     if (_tableView.mj_header.state == MJRefreshStateRefreshing) {
         _tableView.willClearDataArray = true;
         if (_tableView.mj_header.refreshingBlock) {

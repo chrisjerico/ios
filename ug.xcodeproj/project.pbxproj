@@ -22,6 +22,8 @@
 		A0C64CB6AEB0CF1B2031BBB8 /* Pods_ug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6486EFF4C273BEA0AE8994DD /* Pods_ug.framework */; };
 		CF0A1D612393E25000F62010 /* LHPostVoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF0A1D602393E25000F62010 /* LHPostVoteView.m */; };
 		CF0A1D642393E25B00F62010 /* LHPostVoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF0A1D632393E25B00F62010 /* LHPostVoteView.xib */; };
+		CF0A1D692393FBB700F62010 /* LHUserInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CF0A1D682393FBB600F62010 /* LHUserInfoVC.m */; };
+		CF0A1D6D2394CBA200F62010 /* LHUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF0A1D6C2394CBA200F62010 /* LHUserModel.m */; };
 		CF35E9152391824400E73935 /* LoadingStateView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF35E9112391824400E73935 /* LoadingStateView.m */; };
 		CF35E9162391824400E73935 /* network_setting.html in Resources */ = {isa = PBXBuildFile; fileRef = CF35E9122391824400E73935 /* network_setting.html */; };
 		CF35E9172391824400E73935 /* LoadingStateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF35E9132391824400E73935 /* LoadingStateView.xib */; };
@@ -739,6 +741,10 @@
 		CF0A1D5F2393E25000F62010 /* LHPostVoteView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LHPostVoteView.h; sourceTree = "<group>"; };
 		CF0A1D602393E25000F62010 /* LHPostVoteView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LHPostVoteView.m; sourceTree = "<group>"; };
 		CF0A1D632393E25B00F62010 /* LHPostVoteView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LHPostVoteView.xib; sourceTree = "<group>"; };
+		CF0A1D672393FBB600F62010 /* LHUserInfoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LHUserInfoVC.h; sourceTree = "<group>"; };
+		CF0A1D682393FBB600F62010 /* LHUserInfoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LHUserInfoVC.m; sourceTree = "<group>"; };
+		CF0A1D6B2394CBA200F62010 /* LHUserModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LHUserModel.h; sourceTree = "<group>"; };
+		CF0A1D6C2394CBA200F62010 /* LHUserModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LHUserModel.m; sourceTree = "<group>"; };
 		CF35E9102391824400E73935 /* LoadingStateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingStateView.h; sourceTree = "<group>"; };
 		CF35E9112391824400E73935 /* LoadingStateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingStateView.m; sourceTree = "<group>"; };
 		CF35E9122391824400E73935 /* network_setting.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = network_setting.html; sourceTree = "<group>"; };
@@ -2946,6 +2952,8 @@
 				CF35E928239292D300E73935 /* LHJournalDetailVC.m */,
 				D407B0382366A69700B4DEF4 /* UGPostDetailVC.h */,
 				D407B0402366A69800B4DEF4 /* UGPostDetailVC.m */,
+				CF0A1D672393FBB600F62010 /* LHUserInfoVC.h */,
+				CF0A1D682393FBB600F62010 /* LHUserInfoVC.m */,
 				CFEA5C1A2390FB9000C922D2 /* LHPostCommentDetailVC.h */,
 				CFEA5C1B2390FB9000C922D2 /* LHPostCommentDetailVC.m */,
 				D407B03E2366A69800B4DEF4 /* UGPostListVC.h */,
@@ -4043,6 +4051,8 @@
 				CF88653B2390254E00B41049 /* UGLHGalleryModel.m */,
 				CF88653D2390268600B41049 /* UGLHAdModel.h */,
 				CF88653E2390268600B41049 /* UGLHAdModel.m */,
+				CF0A1D6B2394CBA200F62010 /* LHUserModel.h */,
+				CF0A1D6C2394CBA200F62010 /* LHUserModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5184,6 +5194,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF0A1D6D2394CBA200F62010 /* LHUserModel.m in Sources */,
 				D405B24F2279740A00F8C586 /* NSDictionary+HYBUnicodeReadable.m in Sources */,
 				CFD3BF0A2347137F00FCDA6D /* NSDate+Millisecond.m in Sources */,
 				D4C1657C2344CF1C005A0F12 /* UGMineSkinModel.m in Sources */,
@@ -5364,6 +5375,7 @@
 				CF8865422390271900B41049 /* UGLHPostCommentModel.m in Sources */,
 				D42528192320EB01007DE522 /* UGSigInCodeViewController.m in Sources */,
 				D4091B56236961C70056BAEE /* UGfinancialViewViewController.m in Sources */,
+				CF0A1D692393FBB700F62010 /* LHUserInfoVC.m in Sources */,
 				D41246B62285C64C006881E2 /* UGUserInfoViewController.m in Sources */,
 				D4DE2699229BDBC80072A4A2 /* UIView+SGExtension.m in Sources */,
 				D43B48A0238C055F00BB7960 /* LSStretchableTableHeaderView.m in Sources */,

@@ -8,6 +8,7 @@
 
 #import "UGPostDetailVC.h"
 #import "LHPostCommentDetailVC.h"// 评论详情
+#import "LHUserInfoVC.h"
 
 // View
 #import "MediaViewer.h"             // 图片浏览器
@@ -15,6 +16,7 @@
 #import "LHPostRewardView.h"        // 打赏弹框
 #import "LHPostCommentInputView.h"  // 评论弹框
 #import "LHPostVoteView.h"          // 投票弹框
+
 
 @interface UGPostDetailVC ()
 @property (weak, nonatomic) IBOutlet UICollectionView *photoCollectionView;/**<   图片列表 */
@@ -82,11 +84,12 @@
     // TopView
     {
         FastSubViewCode(_topView);
-        [subImageView(@"头像ImageView") sd_setImageWithURL:[NSURL URLWithString:pm.headImg]];
+        [subButton(@"头像Button") sd_setImageWithURL:[NSURL URLWithString:pm.headImg] forState:UIControlStateNormal];
         subLabel(@"昵称Label").text = pm.nickname;
         subLabel(@"时间Label").text = pm.createTime;
         subButton(@"关注Button").backgroundColor = Skin1.navBarBgColor;
         subButton(@"关注Button").selected = _pm.isFollow;
+        [subButton(@"关注Button") setTitle:_pm.isFollow ? @"已关注" : @"关注楼主" forState:UIControlStateNormal];
     }
     
     // BottomView
@@ -173,6 +176,18 @@
 
 
 #pragma mark - IBAction
+
+// 点击头像
+- (IBAction)onAvatarBtnClick:(UIButton *)sender {
+    FastSubViewCode(_topView);
+    LHUserInfoVC *vc = _LoadVC_from_storyboard_(@"LHUserInfoVC");
+    vc.uid = _pm.uid;
+    vc.didFollow = ^(BOOL follow) {
+        subButton(@"关注Button").selected = follow;
+        [subButton(@"关注Button") setTitle:follow ? @"已关注" : @"关注楼主" forState:UIControlStateNormal];
+    };
+    [NavController1 pushViewController:vc animated:true];
+}
 
 // 打赏
 - (IBAction)onRewardBtnClick:(UIButton *)sender {

@@ -1,18 +1,19 @@
 //
-//  UGLHMyAttentionViewController.h
+//  LHUserInfoVC.h
 //  ug
 //
-//  Created by ug on 2019/10/29.
+//  Created by fish on 2019/12/1.
 //  Copyright © 2019 ug. All rights reserved.
-//  六合我的关注
+//
 
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGLHMyAttentionViewController : UIViewController
+@interface LHUserInfoVC : UIViewController
 
 @property (nonatomic, copy) NSString *uid;
+@property (nonatomic, copy) void (^didFollow)(BOOL follow);
 @end
 
 NS_ASSUME_NONNULL_END

@@ -474,7 +474,7 @@
         <!--我的粉丝-->
         <scene sceneID="qnr-rN-FaG">
             <objects>
-                <viewController title="我的粉丝" id="J8h-cz-dLu" customClass="UGMyFansViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UGMyFansViewController" title="我的粉丝" id="J8h-cz-dLu" customClass="UGMyFansViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kL1-Eh-yfy">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -20,10 +20,10 @@
 #import "AVAsset+Degress.h"
 
 
-#define TextViewMinHeight 120
+#define TextViewMinHeight 170
 #define FontSize 17
 #define PhotoItemHeight _CalWidth(100)
-#define MaxPhotoCnt 9
+#define MaxPhotoCnt 3
 
 @interface UGSubmitPostVC ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,TZImagePickerControllerDelegate>
 
@@ -46,8 +46,10 @@
     __weakSelf_(__self);
     self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithTitle:@"历史帖子" block:^(UIButton *sender) {
         UGPostListVC *vc = _LoadVC_from_storyboard_(@"UGPostListVC");
-        vc.clm = __self.clm;
-        vc.isHistory = true;
+        vc.title = @"历史记录";
+        vc.request = ^CCSessionModel * _Nonnull(NSInteger page) {
+            return [NetworkManager1 lhdoc_historyContent:__self.clm.cid page:page];
+        };
         [NavController1 pushViewController:vc animated:true];
     }];
     
@@ -237,14 +239,13 @@
 
     __weakSelf_(__self);
     FastSubViewCode(self.view);
-    [NetworkManager1 lhcdoc_postContent:_clm.alias title:_textField.text content:_textView.text images:nil price:subTextField(@"收费TextField").text.doubleValue].completionBlock = ^(CCSessionModel *sm) {
+    [NetworkManager1 lhcdoc_postContent:_clm.alias title:_textField.text content:_textView.text images:_photos price:subTextField(@"收费TextField").text.doubleValue].completionBlock = ^(CCSessionModel *sm) {
         [HUDHelper hideLoadingView];
         if (!sm.error) {
-            NSLog(@"发布动态成功");
-            [HUDHelper showMsg:@"发布成功！"];
             [__self.navigationController popViewControllerAnimated:true];
             if (__self.didSubmitAction)
                 __self.didSubmitAction();
+            [AlertHelper showAlertView:sm.responseObject[@"msg"] msg:nil btnTitles:@[@"确定"]];
         }
     };
 }
@@ -275,14 +276,14 @@
 #pragma mark - UITextViewDelegate
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-    if (![text isEqualToString:@""]) { // 非删除时
-        // 文本长度限制
-        NSString *resultString = [textView.text stringByReplacingCharactersInRange:range withString:text];
-        if (resultString.length >= textView.text.length && resultString.length > 150) {
-            [HUDHelper showMsg:@"不得超过150字符"];
-            return false;
-        }
-    }
+//    if (![text isEqualToString:@""]) { // 非删除时
+//        // 文本长度限制
+//        NSString *resultString = [textView.text stringByReplacingCharactersInRange:range withString:text];
+//        if (resultString.length >= textView.text.length && resultString.length > 150) {
+//            [HUDHelper showMsg:@"不得超过150字符"];
+//            return false;
+//        }
+//    }
     
     // 使用户输入文字始终是黑色
     textView.typingAttributes = @{NSForegroundColorAttributeName:[UIColor blackColor], NSFontAttributeName:[UIFont systemFontOfSize:FontSize]};

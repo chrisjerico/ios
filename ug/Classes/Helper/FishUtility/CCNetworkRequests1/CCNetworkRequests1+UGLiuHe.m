@@ -75,11 +75,15 @@
 
 // 发贴
 - (CCSessionModel *)lhcdoc_postContent:(NSString *)alias title:(NSString *)title content:(NSString *)content images:(NSArray <UIImage *>*)images price:(double)price {
+    NSMutableArray *base64Images = images.count ? @[].mutableCopy : nil;
+    for (UIImage *image in images) {
+        [base64Images addObject:_NSString(@"data:image/png;base64,%@", [UIImagePNGRepresentation(image) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength])];
+    }
     return [self req:@"wjapp/api.php?c=lhcdoc&a=postContent"
                     :@{@"alias":alias,    // 栏目别名，必填
                        @"title":title,    // 必填，帖子标题
                        @"content":content,    // 必填，帖子内容
-                       @"images":images,    // 非必填，图片，base64之后的图片信息
+                       @"images":base64Images,    // 非必填，图片，base64之后的图片信息
                        @"price":_FloatString4(price),   // 非必填，帖子价格
                     }
                     :true];

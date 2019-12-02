@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UGMyFansViewController : UIViewController
 
+@property (nonatomic, copy) NSString *uid;
 @end
 
 NS_ASSUME_NONNULL_END

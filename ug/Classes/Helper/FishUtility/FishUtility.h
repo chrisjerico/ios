@@ -47,6 +47,7 @@
     #import "NSArray+Utils.h"
     #import "UIResponder+EventRouter.h"
     #import "category.h"
+    #import "LoadingStateView.h"
 
     // HUD
     #import "HUDHelper.h"
