@@ -20,6 +20,10 @@ int main(int argc, const char * argv[]) {
         
         
         [ShellHelper pullCode:^{
+            if (![[NSFileManager defaultManager] fileExistsAtPath:[NSString stringWithFormat:@"%@/PullSuccess.txt", ProjectDir]]) {
+                @throw [NSException exceptionWithName:@"git 拉取代码失败，请手动更新代码" reason:@"" userInfo:nil];
+            }
+            
             [SiteModel checkSiteInfo:ids :ProjectDir];
             
             [ShellHelper packing:[SiteModel sites:ids] completion:^{

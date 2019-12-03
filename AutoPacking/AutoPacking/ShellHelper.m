@@ -43,7 +43,9 @@
     for (SiteModel *sm in sites) {
         sm.retryCnt = 3;
     }
-    NSString *dirPath = [NSString stringWithFormat:@"/Library/WebServer/Documents/ipa_%@", [df stringFromDate:[NSDate date]]];
+    NSString *commitId = [NSString stringWithContentsOfFile:[NSString stringWithFormat:@"%@/CommitId.txt", ProjectDir] encoding:NSUTF8StringEncoding error:nil];
+    commitId = [commitId stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    NSString *dirPath = [NSString stringWithFormat:@"/Library/WebServer/Documents/ipa_%@", commitId ? : [df stringFromDate:[NSDate date]]];
     NSMutableString *errSiteIds = @"".mutableCopy;
     
     __block SiteModel *__sm = nil;
@@ -77,9 +79,10 @@
             [ts terminate];
             NSLog(@"%@ 站点信息配置完成，开始打包", __sm.siteId);
             
+            BOOL isEnterprise = [__sm.type isEqualToString:@"企业包"] || [__sm.type isEqualToString:@"内测包"];
             NSTask *task = [[NSTask alloc] init];
             task.launchPath = [NSString stringWithFormat:@"%@/3packing.sh", ShellDir];
-            task.arguments = @[[__sm.type isEqualToString:@"企业包"] ? @"1" : @"2", ProjectDir, ];
+            task.arguments = @[isEnterprise ? @"1" : @"2", ProjectDir, ];
             task.terminationHandler = ^(NSTask *ts) {
                 [ts terminate];
                 
