@@ -1525,7 +1525,7 @@
     __weakSelf_(__self);
 //    __block NSTimer *__timer = nil;
     __block int __count = 0;
-    _timer = [NSTimer scheduledTimerWithInterval:8 repeats:true block:^(NSTimer *timer) {
+    _timer = [NSTimer scheduledTimerWithInterval:6 repeats:true block:^(NSTimer *timer) {
         CCSessionModel * sessionModel = [NetworkManager1 lhdoc_lotteryNumber];
         sessionModel.completionBlock = ^(CCSessionModel *sm) {
             NSNumber *cn = (NSNumber *)sm.responseObject[@"code"];
