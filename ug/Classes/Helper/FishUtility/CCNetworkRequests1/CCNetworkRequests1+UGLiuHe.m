@@ -109,9 +109,9 @@
 }
 
 // 我的历史帖子
-- (CCSessionModel *)lhdoc_historyContent:(NSString *)cateId page:(NSInteger)page {
+- (CCSessionModel *)lhdoc_historyContent:(NSString *_Nullable)cateId page:(NSInteger)page {
     return [self req:@"wjapp/api.php?c=lhcdoc&a=historyContent"
-                    :@{@"cateId":cateId,// 栏目ID
+                    :@{@"cateId":cateId,// 非必填 ，栏目ID； 值为空时查询所有栏目的帖子
                        @"page":@(page),    // 分页页码，非必填
                        @"rows":@(APP.PageCount),   // 分页条数，非必填
                     }

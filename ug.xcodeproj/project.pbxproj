@@ -445,7 +445,6 @@
 		D43348A92387D38A0056EB7D /* UGLHOldYearViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D43348A42387D38A0056EB7D /* UGLHOldYearViewController.m */; };
 		D43348AC23880A550056EB7D /* UGLHLhlModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D43348AB23880A550056EB7D /* UGLHLhlModel.m */; };
 		D434C7F02373D4BA00920832 /* UIView+yyCornerRadius.m in Sources */ = {isa = PBXBuildFile; fileRef = D434C7EF2373D4BA00920832 /* UIView+yyCornerRadius.m */; };
-		D43B4896238C011600BB7960 /* UGLHMYDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D43B4895238C011600BB7960 /* UGLHMYDynamicViewController.m */; };
 		D43B48A0238C055F00BB7960 /* LSStretchableTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D43B489C238C055F00BB7960 /* LSStretchableTableHeaderView.m */; };
 		D43B48A1238C055F00BB7960 /* UITableView+LSEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = D43B489D238C055F00BB7960 /* UITableView+LSEmpty.m */; };
 		D43B48A9238D0B8200BB7960 /* CMNetwork+LH.m in Sources */ = {isa = PBXBuildFile; fileRef = D43B48A6238D0B8200BB7960 /* CMNetwork+LH.m */; };
@@ -1503,8 +1502,6 @@
 		D43348AB23880A550056EB7D /* UGLHLhlModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLHLhlModel.m; sourceTree = "<group>"; };
 		D434C7EE2373D4BA00920832 /* UIView+yyCornerRadius.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+yyCornerRadius.h"; sourceTree = "<group>"; };
 		D434C7EF2373D4BA00920832 /* UIView+yyCornerRadius.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+yyCornerRadius.m"; sourceTree = "<group>"; };
-		D43B4894238C011600BB7960 /* UGLHMYDynamicViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLHMYDynamicViewController.h; sourceTree = "<group>"; };
-		D43B4895238C011600BB7960 /* UGLHMYDynamicViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLHMYDynamicViewController.m; sourceTree = "<group>"; };
 		D43B489C238C055F00BB7960 /* LSStretchableTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSStretchableTableHeaderView.m; sourceTree = "<group>"; };
 		D43B489D238C055F00BB7960 /* UITableView+LSEmpty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+LSEmpty.m"; sourceTree = "<group>"; };
 		D43B489E238C055F00BB7960 /* LSStretchableTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSStretchableTableHeaderView.h; sourceTree = "<group>"; };
@@ -4009,8 +4006,6 @@
 				D4781A142368209E004FBB97 /* UGLHMyAttentionViewController.m */,
 				D4781A16236820EA004FBB97 /* UGMyFansViewController.h */,
 				D4781A17236820EA004FBB97 /* UGMyFansViewController.m */,
-				D43B4894238C011600BB7960 /* UGLHMYDynamicViewController.h */,
-				D43B4895238C011600BB7960 /* UGLHMYDynamicViewController.m */,
 			);
 			path = "我的";
 			sourceTree = "<group>";
@@ -5611,7 +5606,6 @@
 				CFD3BEFD2347137F00FCDA6D /* UIResponder+InterfaceOrientation.m in Sources */,
 				D42620F82339027400BC2E83 /* UGagentApplyInfo.m in Sources */,
 				D420A78723157C460089C0C5 /* UGFundLogsModel.m in Sources */,
-				D43B4896238C011600BB7960 /* UGLHMYDynamicViewController.m in Sources */,
 				D41AEA6B22E58D9E003E28C3 /* UGAvatarModel.m in Sources */,
 				D422A582229E7AE90068D0AD /* UGYubaoIncomeTableViewCell.m in Sources */,
 				CF724E64236EB0250099947A /* CCNetworkRequests1+UGBlackTemplate.m in Sources */,

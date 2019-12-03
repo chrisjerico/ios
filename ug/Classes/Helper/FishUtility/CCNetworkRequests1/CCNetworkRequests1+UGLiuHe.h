@@ -46,7 +46,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (CCSessionModel *)lhdoc_vote:(NSString *)cid animalId:(NSString *)animalId;
 
 // 我的历史帖子
-- (CCSessionModel *)lhdoc_historyContent:(NSString *)cateId page:(NSInteger)page;
+- (CCSessionModel *)lhdoc_historyContent:(NSString *_Nullable)cateId page:(NSInteger)page;
 
 // 关注用户列表
 - (CCSessionModel *)lhdoc_followList:(NSString *_Nullable)uid page:(NSInteger)page;
