@@ -115,6 +115,9 @@
         subLabel(@"帖子标题Label").text = model.title;
         [subButton(@"取消帖子Btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
             NSLog(@"取消帖子Btn ,id = %@",model.cid);
+            __weakSelf_(__self);
+              [NetworkManager1 lhcdoc_doFavorites:model.cid type:2 favFlag:NO].successBlock = ^(id responseObject) {[__self.tableView.mj_header beginRefreshing];
+              };
         }];
         return cell;
     }
