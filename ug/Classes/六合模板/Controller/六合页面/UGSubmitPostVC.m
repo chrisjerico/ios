@@ -273,14 +273,12 @@
     }
     
     NSMutableString *text = _textView.text.mutableCopy;
-    NSInteger len = _textView.attributedText.length;
-    if (text.length < len) {
-        for (int i=0; i<len; i++) {
-            NSRange r = NSMakeRange(0, len);
-            NSDictionary *dict = [_textView.attributedText attributesAtIndex:i effectiveRange:&r];
-            if (dict[@"表情文本"]) {
-                [text insertString:dict[@"表情文本"] atIndex:i];
-            }
+    NSRange r = NSMakeRange(0, _textView.attributedText.length);
+    NSInteger idx = r.length;
+    while (idx--) {
+        NSDictionary *dict = [_textView.attributedText attributesAtIndex:idx effectiveRange:&r];
+        if (dict[@"表情文本"]) {
+            [text insertString:dict[@"表情文本"] atIndex:idx];
         }
     }
     
