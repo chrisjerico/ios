@@ -93,19 +93,19 @@ static NSMutableArray <SiteModel *> *__sites = nil;
     dispatch_once(&onceToken, ^{
         __sites = @[].mutableCopy;
         __dataArray = @[
-            [SiteModel site    :@"a002"     :@"超级签名"     :@"49彩票集团"     :@""     :@"https://5049uuu.com"],          // https://dev.app2.xin/index | 13265529007 | qaz123
-            [SiteModel site    :@"a002a"     :@"超级签名"     :@"49彩票集团"     :@""     :@""],          // https://dev.app2.xin/index | 13265529007 | qaz123
-            [SiteModel site    :@"a002b"     :@"超级签名"     :@"49彩票集团"     :@""     :@""],          // https://dev.app2.xin/index | 13265529007 | qaz123
-            [SiteModel site    :@"a002c"     :@"超级签名"     :@"49彩票集团"     :@""     :@""],          // https://dev.app2.xin/index | 13265529007 | qaz123
-            [SiteModel site    :@"a002d"     :@"超级签名"     :@"49彩票集团"     :@""     :@""],          // https://dev.app2.xin/index | 13265529007 | qaz123
-            [SiteModel site    :@"a002e"     :@"超级签名"     :@"49彩票集团"     :@""     :@""],          // https://dev.app2.xin/index | 13265529007 | qaz123
-            [SiteModel site    :@"c001"     :@"超级签名"     :@"彩47"     :@""     :@"https://47c47webappqp.org"],          // https://dev.app2.xin/index | 15697023521 | aa135246
-            [SiteModel site    :@"c005"     :@"超级签名"     :@"乐盈彩票"     :@""     :@""],          // https://dev.app2.xin/index | 13545990831 | dz990990
-            [SiteModel site    :@"c105"     :@"超级签名"     :@"澳⻔彩票"     :@""     :@""],          // https://dev.app2.xin/index | 15542484889 | aa168168
-            [SiteModel site    :@"c114"     :@"超级签名"     :@"彩43"     :@""     :@""],          // https://dev.app2.xin/index | 19859553001 | wenxiang123123
-            [SiteModel site    :@"c190"     :@"超级签名"     :@"22333彩世界"     :@""     :@""],          // https://dev.app2.xin/index
+            [SiteModel site    :@"a002"     :@"超级签名"     :@"49彩票集团"     :@"com.UGGame.cp"     :@"https://5049uuu.com"],          // https://dev.app2.xin/index | 13265529007 | qaz123
+            [SiteModel site    :@"a002a"     :@"超级签名"     :@"49彩票集团"    :@"io.fhpt.H52A8B80A"     :@""],          // https://dev.app2.xin/index | 13265529007 | qaz123
+            [SiteModel site    :@"a002b"     :@"超级签名"     :@"49彩票集团"    :@"io.fhpt.H53D2C0A9"     :@""],          // https://dev.app2.xin/index | 13265529007 | qaz123
+            [SiteModel site    :@"a002c"     :@"超级签名"     :@"49彩票集团"    :@"io.fhpt.H5069C7C0"     :@""],          // https://dev.app2.xin/index | 13265529007 | qaz123
+            [SiteModel site    :@"a002d"     :@"超级签名"     :@"49彩票集团"    :@"io.fhpt.H5E99F6BB"     :@""],          // https://dev.app2.xin/index | 13265529007 | qaz123
+            [SiteModel site    :@"a002e"     :@"超级签名"     :@"49彩票集团"    :@"io.fhpt.H5B2F70A9"     :@""],          // https://dev.app2.xin/index | 13265529007 | qaz123
+            [SiteModel site    :@"c001"     :@"超级签名"     :@"彩47"          :@"io.fhpt.H5BAECCD9"     :@"https://47c47webappqp.org"],          // https://dev.app2.xin/index | 15697023521 | aa135246
+            [SiteModel site    :@"c005"     :@"超级签名"     :@"乐盈彩票"       :@"io.fhpt.H5AD6EE3E"     :@""],          // https://dev.app2.xin/index | 13545990831 | dz990990
+            [SiteModel site    :@"c105"     :@"超级签名"     :@"澳⻔彩票"       :@""     :@""],          // https://dev.app2.xin/index | 15542484889 | aa168168
+            [SiteModel site    :@"c114"     :@"超级签名"     :@"彩43"          :@""     :@""],          // https://dev.app2.xin/index | 19859553001 | wenxiang123123
+            [SiteModel site    :@"c190"     :@"超级签名"     :@"22333彩世界"    :@""     :@""],          // https://dev.app2.xin/index |  |
             [SiteModel site    :@"h002"     :@"超级签名"     :@"⾹港赛⻢会"     :@""     :@""],          // https://dev.app2.xin/index | 15827947817 | dz990990
-            [SiteModel site    :@"c201"     :@"超级签名"     :@"大咖彩票"     :@""     :@""],          //
+            [SiteModel site    :@"c201"     :@"超级签名"     :@"大咖彩票"       :@""     :@"https://dkcpapp.com"],          //https://dev.app2.xin/index | 18675958156 |
 
 
             [SiteModel site    :@"c018"     :@"企业包"     :@"2044彩票"     :@"io.fhpt.H51E9BFB6"     :@"https://031122.com"],
