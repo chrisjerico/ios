@@ -8,8 +8,9 @@
 
 #import "UGPostCell1.h"
 #import "MediaViewer.h"
+#import "YYAnimatedImageView.h"
+#import "YYText.h"
 
-#define FourLineHeight 98
 #define ActionPhotoWidth _CalWidth(82)
 #define ActionPhotoMaxWidth _CalWidth(170)
 #define ActionPhotoMinWidth _CalWidth(50)
@@ -26,17 +27,10 @@
 + (CGFloat)heightWithModel:(UGLHPostModel *)pm {
     CGFloat textH = ({
         NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:pm.content ? : @"" attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16]}];
-        if (!pm.showAllButtonHidden && pm.isShowAll) {
-            [string insertAttributedString:[[NSAttributedString alloc] initWithString:@"收起\b" attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16]}] atIndex:string.length];
-        }
         string.lineSpacing = 6;
-        
         textH = [string boundingRectWithSize:CGSizeMake(APP.Width-11-12, MAXFLOAT)
                                      options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
                                      context:nil].size.height;
-        if (!pm.isShowAll) {
-            textH = MIN(textH, FourLineHeight);
-        }
         textH + 20;
     });
     CGFloat collectionViewH = [UGPostCell1 collectionViewSizeWithModel:pm].height;
@@ -121,7 +115,6 @@
 - (void)setPm:(UGLHPostModel *)pm {
     _pm = pm;
     FastSubViewCode(self);
-    __weakSelf_(__self);
     
     // 动态信息
     {
@@ -133,32 +126,25 @@
         subLabel(@"时间Label").text = pm.createTime;
         subLabel(@"标题Label").text = pm.title;
         UILabel *contentLabel = subLabel(@"内容Label");
-        [contentLabel updateAttributedText:^(NSMutableAttributedString *attributedText) {
-            attributedText.string = pm.content;
-            if (!pm.isShowAll) {
-                CGSize size = CGSizeMake(APP.Width-11-12, FourLineHeight);
-                if (pm.showAllButtonHidden) {
-                    [attributedText setAttributedString:[attributedText substringWithSize:size]];
-                } else {
-                    [attributedText setAttributedString:[UGPostCell1 substringWithSize:size actionTitle:attributedText]];
+        contentLabel.attributedText = ({
+            UIFont *font = [UIFont systemFontOfSize:16];
+            NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithString:pm.content attributes:@{NSFontAttributeName:font,NSForegroundColorAttributeName:APP.TextColor1}];
+            for (YYImage *image in UGLHPostModel.allEmoji) {
+                NSString *key = [UGLHPostModel keyWithImage:image];
+                if ([pm.content containsString:key]) {
+                    YYAnimatedImageView *imageView = [[YYAnimatedImageView alloc] initWithImage:image];
+                    NSAttributedString *attachText = [NSAttributedString yy_attachmentStringWithContent:imageView contentMode:UIViewContentModeCenter attachmentSize:imageView.size alignToFont:font alignment:YYTextVerticalAlignmentCenter];
+                    [mas replaceOccurrencesOfString:[UGLHPostModel keyWithImage:image] withAttributedString:attachText];
                 }
-            } else if (!pm.showAllButtonHidden) {
-                NSAttributedString *isShowAll = [[NSMutableAttributedString alloc] initWithString:@"收起\b" attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16], NSForegroundColorAttributeName:APP.ThemeColor1}];
-                [attributedText insertAttributedString:isShowAll atIndex:attributedText.length];
             }
-            
             NSMutableParagraphStyle *ps = [NSMutableParagraphStyle new];
             ps.lineSpacing = 6;
             ps.lineBreakMode = NSLineBreakByCharWrapping;
             ps.alignment = NSTextAlignmentCenter;
-            [attributedText addAttribute:NSParagraphStyleAttributeName value:ps range:NSMakeRange(0, attributedText.string.length)];
-        }];
-        [contentLabel yb_removeAttributeTapActions];
-        [contentLabel yb_addAttributeTapActionWithStrings:@[@"收起\b", @"全文\b"] tapClicked:^(UILabel *label, NSString *string, NSRange range, NSInteger index) {
-            pm.isShowAll = !pm.isShowAll;
-            if (__self.didShowAllBtnClick)
-                __self.didShowAllBtnClick(pm);
-        }];
+            [mas addAttribute:NSParagraphStyleAttributeName value:ps range:NSMakeRange(0, mas.string.length)];
+            mas;
+        });
+        contentLabel.cc_constraints.height.constant =  [YYTextLayout layoutWithContainerSize:CGSizeMake(APP.Width-50, MAXFLOAT) text:contentLabel.attributedText].textBoundingSize.height;
     }
     
     // 点赞、浏览、评论
@@ -179,47 +165,6 @@
         ((UICollectionViewFlowLayout *)_collectionView.collectionViewLayout).itemSize = [UGPostCell1 itemSizeWithModel:_pm];
         [_collectionView reloadData];
     }
-}
-
-+ (NSAttributedString *)substringWithSize:(CGSize)size actionTitle:(NSMutableAttributedString *)actionTitle {
-    NSAttributedString *isShowAll = [[NSAttributedString alloc] initWithString:@"...全文\b" attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16], NSForegroundColorAttributeName:APP.ThemeColor1}];
-    actionTitle = [actionTitle mutableCopy];
-    
-    CGFloat h = [actionTitle boundingRectWithSize:CGSizeMake(size.width, MAXFLOAT)
-                                          options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
-                                          context:nil].size.height;
-    if (h <= size.height)
-        return [actionTitle copy];
-    
-    NSInteger len = (actionTitle.length + isShowAll.length)/2;
-    NSInteger correct = 2;
-    NSAttributedString *string = nil;
-    NSMutableAttributedString *temp = [[actionTitle attributedSubstringFromRange:NSMakeRange(0, len)] mutableCopy];
-    [temp replaceCharactersInRange:NSMakeRange(temp.length-isShowAll.length, isShowAll.length) withAttributedString:isShowAll];
-    while (true) {
-        h = [temp boundingRectWithSize:CGSizeMake(size.width, MAXFLOAT)
-                               options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
-                               context:nil].size.height;
-        if (h <= size.height)
-            string = temp;
-        
-        len /= 2;
-        if (!len) {
-            if (correct--)
-                len = 1;
-            else
-                return string;
-        }
-        
-        CGFloat i = temp.length + (h > size.height ? -len : len);
-        if (i > actionTitle.length) {
-            temp = [actionTitle mutableCopy];
-        } else {
-            temp = [[actionTitle attributedSubstringFromRange:NSMakeRange(0, i)] mutableCopy];
-        }
-        [temp replaceCharactersInRange:NSMakeRange(temp.length-isShowAll.length, isShowAll.length) withAttributedString:isShowAll];
-    }
-    return nil;
 }
 
 
@@ -313,6 +258,5 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     return [UGPostCell1 itemSizeWithModel:_pm];
 }
-
 
 @end

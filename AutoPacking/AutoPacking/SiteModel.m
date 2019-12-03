@@ -105,7 +105,7 @@ static NSMutableArray <SiteModel *> *__sites = nil;
             [SiteModel site    :@"c114"     :@"超级签名"     :@"彩43"          :@""     :@""],          // https://dev.app2.xin/index | 19859553001 | wenxiang123123
             [SiteModel site    :@"c190"     :@"超级签名"     :@"22333彩世界"    :@""     :@""],          // https://dev.app2.xin/index |  |
             [SiteModel site    :@"h002"     :@"超级签名"     :@"⾹港赛⻢会"     :@""     :@""],          // https://dev.app2.xin/index | 15827947817 | dz990990
-            [SiteModel site    :@"c201"     :@"超级签名"     :@"大咖彩票"       :@""     :@"https://dkcpapp.com"],          //https://dev.app2.xin/index | 18675958156 |
+            [SiteModel site    :@"c201"     :@"超级签名"     :@"大咖彩票"       :@""     :@"https://dkcpapp.com"],          //https://dev.app2.xin/index | 18675958156 | dk789789
 
 
             [SiteModel site    :@"c018"     :@"企业包"     :@"2044彩票"     :@"io.fhpt.H51E9BFB6"     :@"https://031122.com"],

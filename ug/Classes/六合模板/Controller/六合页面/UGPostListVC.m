@@ -145,9 +145,9 @@
 
 #pragma mark - Table view data source
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [UGPostCell1 heightWithModel:tableView.dataArray[indexPath.row]];
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    return [UGPostCell1 heightWithModel:tableView.dataArray[indexPath.row]];
+//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return tableView.dataArray.count;
@@ -156,23 +156,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UGPostCell1 *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     cell.pm = tableView.dataArray[indexPath.row];
-    __weak_Obj_(cell, __cell);
-    __weak_Obj_(tableView, __tableView);
-    __weakSelf_(__self);
-    
-    // 全文/收起
-    cell.didShowAllBtnClick = ^(UGLHPostModel *pm) {
-        CGFloat offsetY = -[__cell convertRect:__cell.bounds toView:tableView.superview].origin.y;
-        if (offsetY > 0)
-            offsetY = 0;
-        for (int i=0; i<indexPath.row; i++) {
-            offsetY += [__self tableView:__tableView heightForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
-        }
-        [__tableView reloadData];
-        __tableView.contentOffset = CGPointMake(0, offsetY);
-    };
-    
     // 去评论
+    __weakSelf_(__self);
     cell.didCommentBtnClick = ^(UGLHPostModel *pm) {
         [__self goToPostDetailVC:indexPath willComment:true];
     };

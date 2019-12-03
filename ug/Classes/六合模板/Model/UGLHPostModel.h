@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "YYWebImage.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -148,8 +149,10 @@ NS_ASSUME_NONNULL_BEGIN
 // 自定义参数
 @property (nonatomic, assign) CGFloat width;
 @property (nonatomic, assign) CGFloat height;
-@property (nonatomic, assign) BOOL isShowAll;           /**<    是否显示全文 */
-@property (nonatomic, assign) BOOL showAllButtonHidden; /**<    是否显示‘全文按钮’ */
+
++ (NSString *)keyWithImage:(__kindof UIImage *)image;
++ (YYImage *)imageWithKey:(NSString *)key;
++ (NSArray <YYImage *>*)allEmoji;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -17,6 +17,11 @@
 #import "LHPostCommentInputView.h"  // 评论弹框
 #import "LHPostVoteView.h"          // 投票弹框
 
+// Tools
+#import "YYText.h"
+
+#define ContentWidth (APP.Width-40)
+
 
 @interface UGPostDetailVC ()
 @property (weak, nonatomic) IBOutlet UICollectionView *photoCollectionView;/**<   图片列表 */
@@ -110,17 +115,37 @@
         subImageView(@"底部广告ImageView").hidden = !pm.bottomAdWap.isShow;
         [subImageView(@"顶部广告ImageView") sd_setImageWithURL:[NSURL URLWithString:pm.topAdWap.pic] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
             if (image) {
-                subImageView(@"顶部广告ImageView").cc_constraints.height.constant = (APP.Width-40)/image.width * image.height;
+                subImageView(@"顶部广告ImageView").cc_constraints.height.constant = ContentWidth/image.width * image.height;
             }
         }];
         [subImageView(@"底部广告ImageView") sd_setImageWithURL:[NSURL URLWithString:pm.bottomAdWap.pic] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
             if (image) {
-                subImageView(@"底部广告ImageView").cc_constraints.height.constant = (APP.Width-40)/image.width * image.height;
+                subImageView(@"底部广告ImageView").cc_constraints.height.constant = ContentWidth/image.width * image.height;
             }
         }];
         subLabel(@"标题Label").text = pm.title;
-        subLabel(@"内容Label").text = pm.content;
         subLabel(@"时间Label").text = _NSString(@"最后更新时间：%@", pm.createTime);
+        UILabel *contentLabel = subLabel(@"内容Label");
+        contentLabel.attributedText = ({
+            UIFont *font = [UIFont systemFontOfSize:16];
+            NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithData:[pm.content dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType,} documentAttributes:nil error:nil];
+            [mas addAttributes:@{NSFontAttributeName:font,NSForegroundColorAttributeName:APP.TextColor1} range:NSMakeRange(0, mas.length)];
+            for (YYImage *image in UGLHPostModel.allEmoji) {
+                NSString *key = [UGLHPostModel keyWithImage:image];
+                if ([pm.content containsString:key]) {
+                    YYAnimatedImageView *imageView = [[YYAnimatedImageView alloc] initWithImage:image];
+                    NSAttributedString *attachText = [NSAttributedString yy_attachmentStringWithContent:imageView contentMode:UIViewContentModeCenter attachmentSize:imageView.size alignToFont:font alignment:YYTextVerticalAlignmentCenter];
+                    [mas replaceOccurrencesOfString:[UGLHPostModel keyWithImage:image] withAttributedString:attachText];
+                }
+            }
+            NSMutableParagraphStyle *ps = [NSMutableParagraphStyle new];
+            ps.lineSpacing = 6;
+            ps.lineBreakMode = NSLineBreakByCharWrapping;
+            ps.alignment = NSTextAlignmentCenter;
+            [mas addAttribute:NSParagraphStyleAttributeName value:ps range:NSMakeRange(0, mas.string.length)];
+            mas;
+        });
+        contentLabel.cc_constraints.height.constant =  [YYTextLayout layoutWithContainerSize:CGSizeMake(ContentWidth, MAXFLOAT) text:contentLabel.attributedText].textBoundingSize.height;
         
         _animalCollectionView.superview.hidden = true;
         if (pm.vote.count) {
@@ -385,7 +410,7 @@
     if (collectionView == _photoCollectionView) {
         UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
         UIImageView *imgView = [cell viewWithTagString:@"图片ImageView"];
-        CGFloat collectionViewW = APP.Width-40;
+        CGFloat collectionViewW = ContentWidth;
         imgView.cc_constraints.width.constant = collectionViewW;
         NSURL *url = [NSURL URLWithString:_pm.contentPic[indexPath.item]];
         UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:url]];

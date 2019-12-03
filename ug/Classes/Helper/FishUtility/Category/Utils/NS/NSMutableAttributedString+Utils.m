@@ -65,17 +65,17 @@ _CCRuntimeGetterDoubleValue(NSLineBreakMode, lineBreakMode)
 
 - (void)setFont:(UIFont *)font {
     objc_setAssociatedObject(self, @selector(font), font, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    [self addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, self.string.length)];
+    [self addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, self.length)];
 }
 
 - (void)setColor:(UIColor *)color {
     objc_setAssociatedObject(self, @selector(color), color, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    [self addAttribute:NSForegroundColorAttributeName value:color range:NSMakeRange(0, self.string.length)];
+    [self addAttribute:NSForegroundColorAttributeName value:color range:NSMakeRange(0, self.length)];
 }
 
 - (void)setKern:(CGFloat)kern {
     objc_setAssociatedObject(self, @selector(kern), @(kern), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    [self addAttribute:NSKernAttributeName value:@(kern) range:NSMakeRange(0, self.string.length)];
+    [self addAttribute:NSKernAttributeName value:@(kern) range:NSMakeRange(0, self.length)];
 }
 
 - (void)setLineSpacing:(CGFloat)lineSpacing {
@@ -83,27 +83,50 @@ _CCRuntimeGetterDoubleValue(NSLineBreakMode, lineBreakMode)
     NSMutableParagraphStyle *ps = [NSMutableParagraphStyle new];
     ps.lineSpacing = lineSpacing;
     ps.lineBreakMode = NSLineBreakByCharWrapping;
-    [self addAttribute:NSParagraphStyleAttributeName value:ps range:NSMakeRange(0, self.string.length)];
+    [self addAttribute:NSParagraphStyleAttributeName value:ps range:NSMakeRange(0, self.length)];
 }
 
 - (void)replaceOccurrencesOfString:(NSString *)target withString:(NSString *)replacement {
-    NSRange r = [self.string rangeOfString:target];
-    if (r.length)
-        [self replaceCharactersInRange:NSMakeRange(r.location, r.length) withString:replacement ? : @""];
+    NSRange range = NSMakeRange(0, self.length);
+    NSRange r;
+    while ((r = [self.string rangeOfString:target options:NSLiteralSearch range:range]).length) {
+        [self replaceCharactersInRange:r withString:replacement ? : @""];
+        range.location = r.location + r.length;
+        range.length = self.length - range.location;
+    }
 }
+
+- (void)replaceOccurrencesOfString:(NSString *)target withAttributedString:(NSAttributedString *)replacement {
+    NSRange range = NSMakeRange(0, self.length);
+    NSRange r;
+    while ((r = [self.string rangeOfString:target options:NSLiteralSearch range:range]).length) {
+        [self replaceCharactersInRange:r withAttributedString:replacement ? : [NSAttributedString new]];
+        range.location = r.location + replacement.length;
+        range.length = self.length - range.location;
+    }
+}
+
 - (void)setString:(NSString *)aString {
-    [self replaceCharactersInRange:NSMakeRange(0, self.string.length) withString:aString ? : @""];
+    [self replaceCharactersInRange:NSMakeRange(0, self.length) withString:aString ? : @""];
 }
 
 - (void)addAttributes:(NSDictionary<NSAttributedStringKey, id> *)attrs withString:(NSString *)string {
-    NSRange r = [self.string rangeOfString:string];
-    if (r.length)
+    NSRange range = NSMakeRange(0, self.length);
+    NSRange r;
+    while ((r = [self.string rangeOfString:string options:NSLiteralSearch range:range]).length) {
         [self addAttributes:attrs range:r];
+        range.location = r.location + r.length;
+        range.length = self.length - range.location;
+    }
 }
 - (void)setAttributes:(NSDictionary<NSAttributedStringKey, id> *)attrs withString:(NSString *)string {
-    NSRange r = [self.string rangeOfString:string];
-    if (r.length)
+    NSRange range = NSMakeRange(0, self.length);
+    NSRange r;
+    while ((r = [self.string rangeOfString:string options:NSLiteralSearch range:range]).length) {
         [self replaceCharactersInRange:r withAttributedString:[[NSAttributedString alloc] initWithString:string attributes:attrs]];
+        range.location = r.location + r.length;
+        range.length = self.length - range.location;
+    }
 }
 
 @end

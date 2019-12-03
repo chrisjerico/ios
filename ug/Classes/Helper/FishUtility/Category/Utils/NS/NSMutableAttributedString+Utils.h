@@ -16,8 +16,6 @@
 
 @interface NSMutableAttributedString (Utils)
 
-@property (nonatomic, copy) NSString *string1;
-
 @property (nonatomic) UIFont *font;         /**<    字体 */
 @property (nonatomic) UIColor *color;       /**<    颜色 */
 
@@ -25,6 +23,7 @@
 @property (nonatomic) CGFloat lineSpacing;  /**<    行间距 */
 
 - (void)replaceOccurrencesOfString:(NSString *)target withString:(NSString *)replacement;
+- (void)replaceOccurrencesOfString:(NSString *)target withAttributedString:(NSAttributedString *)replacement;
 - (void)setString:(NSString *)aString;
 
 - (void)addAttributes:(NSDictionary<NSAttributedStringKey, id> *)attrs withString:(NSString *)string;

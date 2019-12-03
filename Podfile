@@ -29,7 +29,7 @@ pod 'FSCalendar'        # 日历控件
 pod 'SDWebImage'        # 异步图片加载+缓存
 pod 'SDWebImage/GIF'    # 异步图片加载+缓存（GIF）
 pod 'TZImagePickerController' # 相册浏览器
-
+pod 'YYText'            # YY大神的富文本框架
 
 pod 'JPush', '3.2.2-noidfa'
 
