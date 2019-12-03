@@ -203,7 +203,7 @@
 - (CCSessionModel *)lhcdoc_likePost:(NSString *)rid type:(NSInteger)type likeFlag:(BOOL)likeFlag {
     return [self req:@"wjapp/api.php?c=lhcdoc&a=likePost"
                     :@{@"rid":rid,  // 帖子或内容ID
-                       @"type":@(type), //  1 点赞内容 2 点赞帖子
+                       @"type":@(type), // 1 点赞帖子 2 点赞评论
                        @"likeFlag":@((int)likeFlag),// 点赞标记 1 点赞 0 取消点赞
                     }
                     :false];

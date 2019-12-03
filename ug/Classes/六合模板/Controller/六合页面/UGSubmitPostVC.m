@@ -275,9 +275,9 @@
     NSMutableString *text = _textView.text.mutableCopy;
     NSRange r = NSMakeRange(0, _textView.attributedText.length);
     NSInteger idx = r.length;
-    while (idx--) {
+    while (idx-- > 0) {
         NSDictionary *dict = [_textView.attributedText attributesAtIndex:idx effectiveRange:&r];
-        if (dict[@"表情文本"]) {
+        if (dict[@"YYTextAttachment"] && dict[@"表情文本"]) {
             [text insertString:dict[@"表情文本"] atIndex:idx];
         }
     }

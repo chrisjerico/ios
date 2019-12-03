@@ -83,7 +83,7 @@
     UGLHPostCommentModel *pcm = _pcm;
     FastSubViewCode(_tableView.tableHeaderView);
     BOOL like = !subButton(@"点赞图标Button").selected;
-    [NetworkManager1 lhcdoc_likePost:pcm.pid type:1 likeFlag:like].completionBlock = ^(CCSessionModel *sm) {
+    [NetworkManager1 lhcdoc_likePost:pcm.pid type:2 likeFlag:like].completionBlock = ^(CCSessionModel *sm) {
         if (!sm.error) {
             pcm.likeNum += like ? 1 : -1;
             pcm.isLike = like;

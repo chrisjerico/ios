@@ -133,9 +133,15 @@
             for (YYImage *image in UGLHPostModel.allEmoji) {
                 NSString *key = [UGLHPostModel keyWithImage:image];
                 if ([pm.content containsString:key]) {
-                    YYAnimatedImageView *imageView = [[YYAnimatedImageView alloc] initWithImage:image];
-                    NSAttributedString *attachText = [NSAttributedString yy_attachmentStringWithContent:imageView contentMode:UIViewContentModeCenter attachmentSize:imageView.size alignToFont:font alignment:YYTextVerticalAlignmentCenter];
-                    [mas replaceOccurrencesOfString:[UGLHPostModel keyWithImage:image] withAttributedString:attachText];
+                    NSRange range = NSMakeRange(0, mas.length);
+                    NSRange r;
+                    while ((r = [mas.string rangeOfString:key options:NSLiteralSearch range:range]).length) {
+                        YYAnimatedImageView *imageView = [[YYAnimatedImageView alloc] initWithImage:image];
+                        NSAttributedString *attachText = [NSAttributedString yy_attachmentStringWithContent:imageView contentMode:UIViewContentModeCenter attachmentSize:imageView.size alignToFont:font alignment:YYTextVerticalAlignmentCenter];
+                        [mas replaceCharactersInRange:r withAttributedString:attachText];
+                        range.location = r.location + attachText.length;
+                        range.length = mas.length - range.location;
+                    }
                 }
             }
             NSMutableParagraphStyle *ps = [NSMutableParagraphStyle new];
@@ -287,7 +293,7 @@
     BOOL like = !bottomLikeBtn.selected;
     
     __weakSelf_(__self);
-    [NetworkManager1 lhcdoc_likePost:_pm.cid type:2 likeFlag:like].successBlock = ^(id responseObject) {
+    [NetworkManager1 lhcdoc_likePost:_pm.cid type:1 likeFlag:like].successBlock = ^(id responseObject) {
         __self.pm.isLike = like;
         __self.pm.likeNum += like ? 1 : -1;
         bottomLikeBtn.selected = like;
@@ -371,7 +377,7 @@
                 return ;
             }
             BOOL like = !subButton(@"点赞图标Button").selected;
-            [NetworkManager1 lhcdoc_likePost:pcm.pid type:1 likeFlag:like].completionBlock = ^(CCSessionModel *sm) {
+            [NetworkManager1 lhcdoc_likePost:pcm.pid type:2 likeFlag:like].completionBlock = ^(CCSessionModel *sm) {
                 if (!sm.error) {
                     pcm.likeNum += like ? 1 : -1;
                     pcm.isLike = like;

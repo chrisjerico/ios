@@ -132,9 +132,15 @@
             for (YYImage *image in UGLHPostModel.allEmoji) {
                 NSString *key = [UGLHPostModel keyWithImage:image];
                 if ([pm.content containsString:key]) {
-                    YYAnimatedImageView *imageView = [[YYAnimatedImageView alloc] initWithImage:image];
-                    NSAttributedString *attachText = [NSAttributedString yy_attachmentStringWithContent:imageView contentMode:UIViewContentModeCenter attachmentSize:imageView.size alignToFont:font alignment:YYTextVerticalAlignmentCenter];
-                    [mas replaceOccurrencesOfString:[UGLHPostModel keyWithImage:image] withAttributedString:attachText];
+                    NSRange range = NSMakeRange(0, mas.length);
+                    NSRange r;
+                    while ((r = [mas.string rangeOfString:key options:NSLiteralSearch range:range]).length) {
+                        YYAnimatedImageView *imageView = [[YYAnimatedImageView alloc] initWithImage:image];
+                        NSAttributedString *attachText = [NSAttributedString yy_attachmentStringWithContent:imageView contentMode:UIViewContentModeCenter attachmentSize:imageView.size alignToFont:font alignment:YYTextVerticalAlignmentCenter];
+                        [mas replaceCharactersInRange:r withAttributedString:attachText];
+                        range.location = r.location + attachText.length;
+                        range.length = mas.length - range.location;
+                    }
                 }
             }
             NSMutableParagraphStyle *ps = [NSMutableParagraphStyle new];
@@ -178,7 +184,7 @@
     }
     __weakSelf_(__self);
     BOOL like = !sender.selected;
-    [NetworkManager1 lhcdoc_likePost:_pm.cid type:2 likeFlag:like].completionBlock = ^(CCSessionModel *sObj) {
+    [NetworkManager1 lhcdoc_likePost:_pm.cid type:1 likeFlag:like].completionBlock = ^(CCSessionModel *sObj) {
         UGLHPostModel *pm = __self.pm;
         BOOL ok = false;
         if (!sObj.error) {
