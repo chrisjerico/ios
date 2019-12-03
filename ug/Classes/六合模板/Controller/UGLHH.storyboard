@@ -20,7 +20,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="XXa-FV-Wax">
-                                        <rect key="frame" x="30" y="14.5" width="354" height="32"/>
+                                        <rect key="frame" x="30" y="9.5" width="354" height="42"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="41" id="o5Q-r0-py5"/>
+                                        </constraints>
                                         <segments>
                                             <segment title="关注专家"/>
                                             <segment title="关注帖子"/>
@@ -195,7 +198,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="w9D-zE-ibD">
-                                        <rect key="frame" x="30" y="14.5" width="354" height="32"/>
+                                        <rect key="frame" x="30" y="9.5" width="354" height="42"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="41" id="cIZ-7J-Qhs"/>
+                                        </constraints>
                                         <segments>
                                             <segment title="我的粉丝"/>
                                             <segment title="帖子粉丝"/>
