@@ -216,13 +216,13 @@ static NSMutableArray <SiteModel *> *__sites = nil;
             [SiteModel site    :@"c008"     :@"越狱包"     :@""     :@""     :@"https://888123app.com"],
             
             
-            [SiteModel site    :@"test10"    :@"内测包"     :@"测试包"   :@""        :@"http://test10.6yc.com"],
-            [SiteModel site    :@"c083"      :@"内测包"     :@"测试包"   :@""        :@"http://t111f.fhptcdn.com"],
-            [SiteModel site    :@"test100"   :@"内测包"     :@"测试包"   :@""        :@"http://test100f.fhptcdn.com"],
-            [SiteModel site    :@"t032(老虎)"  :@"内测包"     :@"测试包"   :@""        :@"http://t005f.fhptcdn.com"],
-            [SiteModel site    :@"test20(朗朗)"  :@"内测包"     :@"测试包"   :@""        :@"http://test20.6yc.com"],
-            [SiteModel site    :@"test29(小东)"  :@"内测包"     :@"测试包"   :@""        :@"http://test29f.fhptcdn.com"],
-            [SiteModel site    :@"test19"      :@"内测包"     :@"测试包"   :@""        :@"http://test19.6yc.com"],
+            [SiteModel site    :@"test10"    :@"内测包"     :@"test10"   :@"com.UGGame.cp"        :@"http://test10.6yc.com"],
+            [SiteModel site    :@"c083"      :@"内测包"     :@"c083测试"   :@"com.UGGame.cp"        :@"http://t111f.fhptcdn.com"],
+            [SiteModel site    :@"test100"   :@"内测包"     :@"test100"   :@"com.UGGame.cp"        :@"http://test100f.fhptcdn.com"],
+            [SiteModel site    :@"t032"  :@"内测包"     :@"t032"   :@"com.UGGame.cp"        :@"http://t005f.fhptcdn.com"],     // (老虎)
+            [SiteModel site    :@"test20"  :@"内测包"     :@"test20"   :@"com.UGGame.cp"        :@"http://test20.6yc.com"],    // (朗朗)
+            [SiteModel site    :@"test29"  :@"内测包"     :@"test29"   :@"com.UGGame.cp"        :@"http://test29f.fhptcdn.com"],// (小东)
+            [SiteModel site    :@"test19"      :@"内测包"     :@"test19"   :@"com.UGGame.cp"        :@"http://test19.6yc.com"],
         ];
     });
     return __dataArray;
