@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UILabel+YBAttributeTextTapAction.h"
 
 #import "UGLHPostModel.h"
 
@@ -17,7 +16,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) UGLHPostModel *pm;
 
-@property (nonatomic) void (^didShowAllBtnClick)(UGLHPostModel *pm);  /**<    点击全文 */
 @property (nonatomic) void (^didCommentBtnClick)(UGLHPostModel *pm);  /**<    点击评论 */
 
 + (CGFloat)heightWithModel:(UGLHPostModel *)pm;

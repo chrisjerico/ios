@@ -37,6 +37,30 @@
     _cid = tempId;
 }
 
++ (NSString *)keyWithImage:(__kindof UIImage *)image {
+    return _NSString(@"[em_%d]", (int)[self.allEmoji indexOfObject:image] + 1);
+}
+
++ (YYImage *)imageWithKey:(NSString *)key {
+    NSInteger idx = [[key stringByReplacingOccurrencesOfString:@"[em_" withString:@""] stringByReplacingOccurrencesOfString:@"]" withString:@""].integerValue;
+    return self.allEmoji[idx];
+}
+
++ (NSArray <YYImage *>*)allEmoji {
+    static NSMutableArray *_allEmoji = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _allEmoji = @[].mutableCopy;
+        NSInteger gifCnt = 172;
+        for (int i=1; i<=gifCnt; i++) {
+            YYImage *image = [YYImage imageWithData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForScaledResource:@(i).stringValue ofType:@"gif"]] scale:1.1];
+            image.preloadAllAnimatedImageFrames = YES;
+            [_allEmoji addObject:image];
+        }
+    });
+    return _allEmoji;
+}
+
 // 这4个方法不写MJExtension无法正常赋值
 - (void)setTopAdPc:(LHPostAdModel *)topAdPc { _topAdPc = topAdPc;}
 - (void)setBottomAdPc:(LHPostAdModel *)bottomAdPc { _bottomAdPc = bottomAdPc; }

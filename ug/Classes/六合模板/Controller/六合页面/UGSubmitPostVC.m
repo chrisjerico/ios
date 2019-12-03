@@ -13,26 +13,56 @@
 #import "STBarButtonItem.h"
 #import "MediaViewer.h"
 
+// Model
+#import "UGLHPostModel.h"
+
 // Tools
 #import <MobileCoreServices/MobileCoreServices.h>   //
 #import "TZImagePickerController.h"                 // 访问系统相册
 #import "TZImageManager.h"
 #import "AVAsset+Degress.h"
+#import "YYText.h"
+#import "YYAnimatedImageView.h"
 
-
-#define TextViewMinHeight 170
+#define TextViewMinHeight 250
 #define FontSize 17
 #define PhotoItemHeight _CalWidth(100)
 #define MaxPhotoCnt 3
 
-@interface UGSubmitPostVC ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,TZImagePickerControllerDelegate>
 
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView; /**<    动态图片CollectionView */
+
+@interface YYTextView (Utils)
+@end
+
+@implementation YYTextView (Utils)
+- (void)addSubview:(UIView *)view {
+    [super addSubview:view];
+    Class Cls_selectionView = NSClassFromString(@"UITextSelectionView");
+    Class Cls_selectionGrabberDot = NSClassFromString(@"UISelectionGrabberDot");
+    if ([view isKindOfClass:[Cls_selectionGrabberDot class]]) {
+        view.layer.contents = [UIView new];
+    }
+    if ([view isKindOfClass:[Cls_selectionView class]]) {
+        view.hidden = YES;
+    }
+}
+@end
+
+
+
+
+
+@interface UGSubmitPostVC ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,TZImagePickerControllerDelegate, YYTextViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UICollectionView *photoCollectionView; /**<    帖子图片CollectionView */
+@property (weak, nonatomic) IBOutlet UICollectionView *gifCollectionView;   /**<    git图CollectionView */
 
 @property (weak, nonatomic) IBOutlet UITextField *textField;
-@property (weak, nonatomic) IBOutlet UITextView *textView;                  /**<    文本CollectionView */
 @property (weak, nonatomic) IBOutlet UILabel *placeholderLabel;             /**<    文本占位符Label */
 @property (weak, nonatomic) IBOutlet UILabel *textLengthLabel;              /**<    文本长度Label */
+
+@property (nonatomic, strong) YYTextView *textView;                  /**<    YYTextView */
+@property (nonatomic, strong) NSMutableString *content;
 
 @property (nonatomic) NSMutableArray <UIImage *>*photos;    /**<    动态图片 */
 
@@ -61,13 +91,25 @@
         __self.textLengthLabel.textColor = __self.textView.text.length > 150 ? APP.AuxiliaryColor2 : APP.TextColor3;
     }];
     
-    // 禁用TextView编辑菜单
-    [_textView aspect_hookSelector:@selector(canPerformAction:withSender:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> aInfo) {
-        BOOL ret = false;
-        [aInfo.originalInvocation setReturnValue:&ret];
-    } error:nil];
     
-    _collectionView.superview.hidden = !_photos.count;
+    
+    _photoCollectionView.superview.hidden = !_photos.count;
+    ((UIImageView *)[self.view viewWithTagString:@"表情ImageView"]).image = UGLHPostModel.allEmoji.firstObject;
+    
+    {
+        _content = @"".mutableCopy;
+        _textView = [[YYTextView alloc] initWithFrame:CGRectMake(28, 6, APP.Width-56, 250)];
+        _textView.font = [UIFont systemFontOfSize:17];
+        _textView.delegate = self;
+        [_gifCollectionView.superview insertSubview:_textView atIndex:0];
+        
+        
+        // 禁用TextView编辑菜单
+        [_textView aspect_hookSelector:@selector(canPerformAction:withSender:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> aInfo) {
+            BOOL ret = false;
+            [aInfo.originalInvocation setReturnValue:&ret];
+        } error:nil];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -79,19 +121,13 @@
     [super viewDidLayoutSubviews];
     if (OBJOnceToken(self)) {
         // textView
-        self.textView.cc_constraints.height.constant = TextViewMinHeight;
+        self.gifCollectionView.cc_constraints.height.constant = TextViewMinHeight;
         
-        // collectionView
+        // photoCollectionView
         {
-            ((UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout).itemSize = CGSizeMake(PhotoItemHeight, PhotoItemHeight);
+            ((UICollectionViewFlowLayout *)self.photoCollectionView.collectionViewLayout).itemSize = CGSizeMake(PhotoItemHeight, PhotoItemHeight);
             [self refreshUI];
         }
-        
-        __weakSelf_(__self);
-        // 点击背景隐藏键盘⌨️
-        [self.view addGestureRecognizer:[UITapGestureRecognizer gestureRecognizer:^(__kindof UIGestureRecognizer *gr) {
-            [__self.textView resignFirstResponder];
-        }]];
     }
 }
 
@@ -103,16 +139,16 @@
         NSInteger count = MIN(__self.photos.count + 1, MaxPhotoCnt);
         NSInteger columnCount = 3;
         NSInteger lineCount = count/columnCount + !!(count%columnCount);
-        __self.collectionView.cc_constraints.height.constant = (PhotoItemHeight + 5) * lineCount;
-        __self.collectionView.cc_constraints.width.constant = (PhotoItemHeight + 5) * columnCount;
-        [__self.collectionView reloadData];
+        __self.photoCollectionView.cc_constraints.height.constant = (PhotoItemHeight + 5) * lineCount;
+        __self.photoCollectionView.cc_constraints.width.constant = (PhotoItemHeight + 5) * columnCount;
+        [__self.photoCollectionView reloadData];
     }
     
     // BottomBarItems
     {
         FastSubViewCode(self.view);
         subButton(@"照片Button").enabled = _photos.count < MaxPhotoCnt;
-        _collectionView.superview.hidden = !_photos.count;
+        _photoCollectionView.superview.hidden = !_photos.count;
     }
 }
 
@@ -205,6 +241,11 @@
 
 #pragma mark - IBAction
 
+// 表情
+- (IBAction)onGifBtnClick:(UIButton *)sender {
+    _gifCollectionView.hidden = !_gifCollectionView.hidden;
+}
+
 // 添加图片
 - (IBAction)onPhotoItemBtnClick:(UIButton *)sender {
     __weakSelf_(__self);
@@ -231,6 +272,18 @@
         return;
     }
     
+    NSMutableString *text = _textView.text.mutableCopy;
+    NSInteger len = _textView.attributedText.length;
+    if (text.length < len) {
+        for (int i=0; i<len; i++) {
+            NSRange r = NSMakeRange(0, len);
+            NSDictionary *dict = [_textView.attributedText attributesAtIndex:i effectiveRange:&r];
+            if (dict[@"表情文本"]) {
+                [text insertString:dict[@"表情文本"] atIndex:i];
+            }
+        }
+    }
+    
     LoadingView *lv = [HUDHelper showLoadingViewWithSuperview:self.view];
     lv.userInteractionEnabled = true;
     lv.y = NavController1.navigationBar.by;
@@ -239,7 +292,7 @@
 
     __weakSelf_(__self);
     FastSubViewCode(self.view);
-    [NetworkManager1 lhcdoc_postContent:_clm.alias title:_textField.text content:_textView.text images:_photos price:subTextField(@"收费TextField").text.doubleValue].completionBlock = ^(CCSessionModel *sm) {
+    [NetworkManager1 lhcdoc_postContent:_clm.alias title:_textField.text content:text images:_photos price:subTextField(@"收费TextField").text.doubleValue].completionBlock = ^(CCSessionModel *sm) {
         [HUDHelper hideLoadingView];
         if (!sm.error) {
             [__self.navigationController popViewControllerAnimated:true];
@@ -297,19 +350,44 @@
                                                       options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
                                                       context:nil].size.height;
     h += 40;
-    textView.cc_constraints.height.constant = MAX(h, TextViewMinHeight);
+    h = MAX(h, TextViewMinHeight);
+    _textView.height = h;
+    _gifCollectionView.cc_constraints.height.constant = h;
 }
 
 
 #pragma mark - UITableView Delegate
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return _photos.count < MaxPhotoCnt ? _photos.count + 1 : MaxPhotoCnt;
+    if (collectionView == _gifCollectionView) {
+        return UGLHPostModel.allEmoji.count;
+    } else {
+        return _photos.count < MaxPhotoCnt ? _photos.count + 1 : MaxPhotoCnt;
+    }
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = nil;
     __weakSelf_(__self);
+    if (collectionView == _gifCollectionView) {
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+        FastSubViewCode(cell);
+        UIImage *image = subImageView(@"ImageView").image = UGLHPostModel.allEmoji[indexPath.item];
+        [subButton(@"GifButton") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+        [subButton(@"GifButton") addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
+            __self.textView.attributedText = ({
+                NSMutableAttributedString *text = __self.textView.attributedText.mutableCopy;
+                UIFont *font = [UIFont systemFontOfSize:17];
+                YYAnimatedImageView *imageView = [[YYAnimatedImageView alloc] initWithImage:image];
+                NSMutableAttributedString *attachText = [NSMutableAttributedString yy_attachmentStringWithContent:imageView contentMode:UIViewContentModeCenter attachmentSize:imageView.size alignToFont:font alignment:YYTextVerticalAlignmentCenter];
+                [attachText addAttributes:@{@"表情文本":[UGLHPostModel keyWithImage:image]} range:NSMakeRange(0, 1)];
+                [text insertAttributedString:attachText atIndex:__self.textView.selectedRange.location];
+                text;
+            });
+            __self.gifCollectionView.hidden = true;
+        }];
+        return cell;
+    }
     
     if (indexPath.row == _photos.count) {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"加号Cell" forIndexPath:indexPath];
@@ -327,7 +405,7 @@
         __weak_Obj_(cell, __cell);
         [btn1 removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
         [btn1 addBlockForControlEvents:UIControlEventTouchUpInside block:^(id sender) {
-            NSInteger index = [__self.collectionView indexPathForCell:__cell].row;
+            NSInteger index = [__self.photoCollectionView indexPathForCell:__cell].row;
             [__self.photos removeObjectAtIndex:index];
             [__self refreshUI];
         }];
@@ -335,7 +413,7 @@
         UIButton *btn2 = [cell viewWithTagString:@"点击事件Button"];
         [btn2 removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
         [btn2 addBlockForControlEvents:UIControlEventTouchUpInside block:^(id sender) {
-            NSInteger index = [__self.collectionView indexPathForCell:__cell].row;
+            NSInteger index = [__self.photoCollectionView indexPathForCell:__cell].row;
             
             NSMutableArray *models = [NSMutableArray array];
             for (UIImage *img in __self.photos) {
@@ -358,7 +436,7 @@
                 
                 // 退场动画
                 vpView.exitAnimationsBlock = ^CGRect (MediaViewer *mv) {
-                    UICollectionViewCell *cell = [__self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:mv.index inSection:0]];
+                    UICollectionViewCell *cell = [__self.photoCollectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:mv.index inSection:0]];
                     UIImageView *imgV = [cell viewWithTagString:@"ImageView"];
                     return [imgV convertRect:imgV.bounds toView:APP.Window];
                 };
@@ -372,7 +450,7 @@
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if (scrollView.isTracking || scrollView.isDragging)
+    if (scrollView != _textView && (scrollView.isTracking || scrollView.isDragging))
         [_textView resignFirstResponder];
 }
 
