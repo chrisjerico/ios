@@ -116,9 +116,7 @@
         });
     };
     
-    [ShellHelper pullCode:^{
-        startPacking();
-    }];
+    startPacking();
 }
 
 + (void)upload:(void (^)(void))completion {

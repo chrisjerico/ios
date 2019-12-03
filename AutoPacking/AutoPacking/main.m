@@ -13,19 +13,21 @@ int main(int argc, const char * argv[]) {
     @autoreleasepool {
         
 #ifdef DEBUG
-        NSString *ids = @"c085,c175,c194,c153";
+        NSString *ids = @"test19";
 #else
         NSString *ids = @(argv[1]);
 #endif
         
-        [SiteModel checkSiteInfo:ids :ProjectDir];
         
-        [ShellHelper packing:[SiteModel sites:ids] completion:^{
-            [ShellHelper upload:^{
-                exit(0);
+        [ShellHelper pullCode:^{
+            [SiteModel checkSiteInfo:ids :ProjectDir];
+            
+            [ShellHelper packing:[SiteModel sites:ids] completion:^{
+                [ShellHelper upload:^{
+                    exit(0);
+                }];
             }];
         }];
-        
         while (1) {}
     }
     return 0;
