@@ -84,6 +84,28 @@ NS_ASSUME_NONNULL_BEGIN
 备注信息 :
 ******************************************************************************/
 + (NSString *)nextDayStr:(NSString *)dateStr format:(NSString *)formatStr;
+
+/******************************************************************************
+函数名称 : dateForStr ： format
+函数描述 :
+   //时间格式的字符串转date
+
+输入参数 : NSString *dateStr  时间字符串   formatStr 时间格式
+返回参数 : NSDate
+备注信息 :
+******************************************************************************/
++ (NSDate *)dateForStr:(NSString *)dateStr format:(NSString *)formatStr;
+
+/******************************************************************************
+函数名称 : strForDate;
+函数描述 :
+   //date转字符串
+
+输入参数 : NSDate *date  时间   formatStr 时间格式
+返回参数 : NSString
+备注信息 :
+******************************************************************************/
++ (NSString *)strForDate:(NSDate *)date format:(NSString *)formatStr;
 @end
 
 NS_ASSUME_NONNULL_END

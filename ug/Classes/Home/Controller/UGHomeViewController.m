@@ -1110,11 +1110,15 @@
             [CMLabelCommon setRichNumberWithLabel:self.lotteryTitleLabel Color:[UIColor redColor] FontSize:17.0];
             NSArray *endTimeArray = [self->_lhModel.endtime componentsSeparatedByString:@" "];
             self.timeLabel.text = [endTimeArray objectAtIndex:0];
-
-            long long startLongLong = [CMTimeCommon timeSwitchTimestamp:self.lhModel.serverTime andFormatter:@"YYYY-MM-dd HH:mm:ss"];
-            long long finishLongLong = [CMTimeCommon timeSwitchTimestamp:self.lhModel.endtime andFormatter:@"YYYY-MM-dd HH:mm:ss"];
-            [self startLongLongStartStamp:startLongLong*1000 longlongFinishStamp:finishLongLong*1000];
-
+            
+            NSLog(@"self.lhModel.serverTime = %@",self.lhModel.serverTime);
+            NSLog(@"self.lhModel.endtime = %@",self.lhModel.endtime);
+//            long long startLongLong = [CMTimeCommon timeSwitchTimestamp:self.lhModel.serverTime andFormatter:@"YYYY-MM-dd HH:mm:ss"];
+//            long long finishLongLong = [CMTimeCommon timeSwitchTimestamp:self.lhModel.endtime andFormatter:@"YYYY-MM-dd HH:mm:ss"];
+//            [self startLongLongStartStamp:startLongLong*1000 longlongFinishStamp:finishLongLong*1000];
+            NSDate *startDate = [CMTimeCommon dateForStr:self.lhModel.serverTime format:@"YYYY-MM-dd HH:mm:ss"];
+            NSDate *finishDate = [CMTimeCommon dateForStr:self.lhModel.endtime format:@"YYYY-MM-dd HH:mm:ss"];
+            [self startDate:startDate finishDate:finishDate];
         } failure:^(id msg) {
             
         }];
@@ -1137,19 +1141,33 @@
     __weak __typeof(self) weakSelf= self;
     [_countDownForLabel countDownWithStratTimeStamp:strtLL finishTimeStamp:finishLL completeBlock:^(NSInteger day, NSInteger hour, NSInteger minute, NSInteger second) {
 
-        [weakSelf refreshUIHour:hour minute:minute second:second];
+         [weakSelf refreshUIDay:day hour:hour minute:minute second:second];
     }];
 }
 
--(void)refreshUIHour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second{
+///此方法用两个时间做参数进行倒计时
+-(void)startDate:(NSDate *)startDate finishDate:(NSDate *)finishDate{
+    __weak __typeof(self) weakSelf= self;
+    [_countDownForLabel countDownWithStratDate:startDate finishDate:finishDate  completeBlock:^(NSInteger day, NSInteger hour, NSInteger minute, NSInteger second) {
+
+        [weakSelf refreshUIDay:day hour:hour minute:minute second:second];
+    }];
+}
+
+-(void)refreshUIDay:(NSInteger)day hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second{
 
     NSString *hourStr = @"";
     NSString *minuStr = @"";
     NSString *secondStr = @"";
-    if (hour<10) {
-        hourStr = [NSString stringWithFormat:@"0%ld",(long)hour];
+    if (day==0) {
+        if (hour<10) {
+            hourStr = [NSString stringWithFormat:@"0%ld",(long)hour];
+        }else{
+            hourStr = [NSString stringWithFormat:@"%ld",(long)hour];
+        }
     }else{
-        hourStr = [NSString stringWithFormat:@"%ld",(long)hour];
+            hour = hour + 24*day;
+            hourStr = [NSString stringWithFormat:@"%ld",(long)hour];
     }
     if (minute<10) {
         minuStr = [NSString stringWithFormat:@"0%ld",(long)minute];
@@ -1482,7 +1500,9 @@
     [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGPromotionsController")  animated:YES];
 }
 - (IBAction)historyAcion:(id)sender {
-
+    UGLotteryRecordController *recordVC = _LoadVC_from_storyboard_(@"UGLotteryRecordController");
+    recordVC.gameId = self.lhModel.gameId;
+    [NavController1 pushViewController:recordVC animated:true];
     
 }
 - (IBAction)voiceAction:(UIButton*)sender {

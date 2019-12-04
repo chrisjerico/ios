@@ -153,7 +153,8 @@ static NSMutableArray <SiteModel *> *__sites = nil;
             [SiteModel site    :@"c185"     :@"企业包"     :@"太阳城集团"     :@"io.fhpt.H50BFF911"     :@""],
             [SiteModel site    :@"c189"     :@"企业包"     :@"地球⼈"     :@"io.fhpt.H53C0C63D"     :@""],
             [SiteModel site    :@"c225"     :@"企业包"     :@"51彩票"     :@"io.fhpt.H50A96411"     :@""],
-
+            [SiteModel site    :@"c002"     :@"企业包"     :@"永利彩世界"     :@"io.fhpt.YSAC002"     :@"https://154977.com"], // io.dcloud.UNIE955DDC（新增的第三方改签由于频繁掉签已弃用）
+            
 
             [SiteModel site    :@"c018a"    :@"越狱包"     :@"今⽇彩票"        :@"io.fhpt.H53DDB5F6"     :@""],
             [SiteModel site    :@"c018b"    :@"越狱包"     :@"彩聊"          :@"io.fhpt.H504390D9"     :@""],
@@ -199,7 +200,6 @@ static NSMutableArray <SiteModel *> *__sites = nil;
             [SiteModel site    :@"c200"     :@"越狱包"     :@"1995澳门彩票"     :@"io.fhpt.H5830E440"     :@"https://20191995.com"],
             [SiteModel site    :@"c601"     :@"越狱包"     :@"六合宝典"     :@"io.fhpt.H5D5F880F"     :@""],
             [SiteModel site    :@"h003"     :@"越狱包"     :@"华为彩票"     :@"io.fhpt.H591E28D0"     :@""],
-            [SiteModel site    :@"c002"     :@"越狱包"     :@"永利彩世界"     :@"io.dcloud.UNIE955DDC"     :@"https://154977.com"],
             [SiteModel site    :@"c089"     :@"越狱包"     :@"彩89"     :@""     :@""],
             [SiteModel site    :@"c171"     :@"越狱包"     :@"CC彩票-默认"     :@""     :@""],
             [SiteModel site    :@"c171"     :@"越狱包"     :@"CC彩票"     :@""     :@""],

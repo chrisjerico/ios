@@ -237,6 +237,41 @@
     return lastStrDate;
 }
 
+/******************************************************************************
+函数名称 : dateForStr ： format
+函数描述 :
+   //时间格式的字符串转date
 
+输入参数 : NSString *dateStr  时间字符串   formatStr 时间格式
+返回参数 : NSDate
+备注信息 :
+******************************************************************************/
++ (NSDate *)dateForStr:(NSString *)dateStr format:(NSString *)formatStr {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//    [dateFormatter setLocale:[[NSLocale alloc]initWithLocaleIdentifier:@"zh_CN"] ];
+    [dateFormatter setDateFormat:formatStr];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];//解决8小时时间差问题
+
+    NSDate *date = [dateFormatter dateFromString:dateStr];
+    return date;
+}
+
+/******************************************************************************
+函数名称 : strForDate;
+函数描述 :
+   //date转字符串
+
+输入参数 : NSDate *date  时间   formatStr 时间格式
+返回参数 : NSString
+备注信息 :
+******************************************************************************/
++ (NSString *)strForDate:(NSDate *)date format:(NSString *)formatStr {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//    [dateFormatter setLocale:[[NSLocale alloc]initWithLocaleIdentifier:@"zh_CN"] ];
+    [dateFormatter setDateFormat:formatStr];
+
+    NSString *strDate = [dateFormatter stringFromDate:date];
+    return strDate;
+}
 
 @end
