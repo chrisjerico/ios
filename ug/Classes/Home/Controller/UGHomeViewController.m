@@ -700,6 +700,7 @@
             }
             else if([model.alias isEqualToString:@"appdl"]) {
                 NSLog(@"APP下载");
+                [[UGAppVersionManager shareInstance] updateVersionApi:true];
             }
             else if([model.alias isEqualToString:@"cxzs"]) {
                 NSLog(@"查询助手");
