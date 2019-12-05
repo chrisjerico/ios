@@ -45,7 +45,8 @@
     }
     NSString *commitId = [NSString stringWithContentsOfFile:[NSString stringWithFormat:@"%@/CommitId.txt", ProjectDir] encoding:NSUTF8StringEncoding error:nil];
     commitId = [commitId stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-    NSString *dirPath = [NSString stringWithFormat:@"/Library/WebServer/Documents/ipa_%@", commitId ? : [df stringFromDate:[NSDate date]]];
+//    NSString *dirPath = [NSString stringWithFormat:@"/Library/WebServer/Documents/ipa_%@", commitId ? : [df stringFromDate:[NSDate date]]];
+    NSString *dirPath = [NSString stringWithFormat:@"%@%@",IpaDir, commitId ? : [df stringFromDate:[NSDate date]]];
     NSMutableString *errSiteIds = @"".mutableCopy;
     
     __block SiteModel *__sm = nil;

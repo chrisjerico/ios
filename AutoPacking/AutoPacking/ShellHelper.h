@@ -10,7 +10,7 @@
 #import "SiteModel.h"
 
 #define ProjectDir ([NSUserName() isEqualToString:@"fish"] ? @"/Users/fish/archive" : @"/Users/ug/pack")
-
+#define IpaDir ([NSUserName() isEqualToString:@"fish"] ? @"/Users/fish/archive" : @"/Library/WebServer/Documents/ipa_")
 
 NS_ASSUME_NONNULL_BEGIN
 
