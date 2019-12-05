@@ -77,6 +77,7 @@
         ppv.didConfirmBtnClick = ^(LHPostPayView * _Nonnull ppv) {
             [NetworkManager1 lhcdoc_buyContent:pm.cid].completionBlock = ^(CCSessionModel *sm) {
                 if (!sm.error) {
+                    pm.hasPay = true;
                     [ppv hide:nil];
                     UIAlertController *ac = [AlertHelper showAlertView:@"支付成功" msg:nil btnTitles:@[@"确定"]];
                     [ac setActionAtTitle:@"确定" handler:^(UIAlertAction *aa) {

@@ -17,6 +17,7 @@
 
 @interface UGPostListVC ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIButton *submitBtn;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 
 @end
@@ -30,6 +31,7 @@
     // 顶部UI
     if (_request) {
         _segmentedControl.superview.hidden = true;
+        _submitBtn.hidden = true;
     } else {
         self.title = _clm.name;
         self.navigationItem.rightBarButtonItems = @[
@@ -39,11 +41,14 @@
                 [NavController1 pushViewController:vc animated:true];
             }],
             [STBarButtonItem barButtonItemWithImageName:@"yijian" block:^(UIButton *sender) {
-                UGSubmitPostVC *vc = _LoadVC_from_storyboard_(@"UGSubmitPostVC");
-                vc.clm = __self.clm;
-                [NavController1 pushViewController:vc animated:true];
+                [__self onSubmitBtnClick:nil];
             }],
         ];
+        
+        _submitBtn.layer.shadowColor = UIColorHex(7B6EF3).CGColor;
+        _submitBtn.layer.shadowOffset = CGSizeMake(0, 1);
+        _submitBtn.layer.shadowRadius = 3;
+        _submitBtn.layer.shadowOpacity = 1;
     }
     
     // TableView
@@ -96,6 +101,12 @@
     [self refreshData];
 }
 
+- (IBAction)onSubmitBtnClick:(UIButton *)sender {
+    UGSubmitPostVC *vc = _LoadVC_from_storyboard_(@"UGSubmitPostVC");
+    vc.clm = _clm;
+    [NavController1 pushViewController:vc animated:true];
+}
+
 // 重新拉取第一页的数据
 - (void)refreshData {
     if (_tableView.mj_header.state == MJRefreshStateRefreshing) {
@@ -128,6 +139,7 @@
         ppv.didConfirmBtnClick = ^(LHPostPayView * _Nonnull ppv) {
             [NetworkManager1 lhcdoc_buyContent:pm.cid].completionBlock = ^(CCSessionModel *sm) {
                 if (!sm.error) {
+                    pm.hasPay = true;
                     [ppv hide:nil];
                     UIAlertController *ac = [AlertHelper showAlertView:@"支付成功" msg:nil btnTitles:@[@"确定"]];
                     [ac setActionAtTitle:@"确定" handler:^(UIAlertAction *aa) {

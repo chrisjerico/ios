@@ -242,7 +242,7 @@
 #pragma mark - IBAction
 
 // 表情
-- (IBAction)onGifBtnClick:(UIButton *)sender {
+- (IBAction)onGifBtnClick:(id)sender {
     _gifCollectionView.hidden = !_gifCollectionView.hidden;
 }
 
@@ -281,6 +281,7 @@
             [text insertString:dict[@"表情文本"] atIndex:idx];
         }
     }
+    text = [text stringByReplacingOccurrencesOfString:@"￼" withString:@""].mutableCopy; // 别删，看起来是个空串实际上是一个Xcode识别不出来的字符，使用YYText添加表情就会有这个字符，这里替换掉否则h5会显示这个字符出来
     
     LoadingView *lv = [HUDHelper showLoadingViewWithSuperview:self.view];
     lv.userInteractionEnabled = true;

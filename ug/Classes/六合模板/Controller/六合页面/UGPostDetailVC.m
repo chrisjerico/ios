@@ -19,6 +19,7 @@
 
 // Tools
 #import "YYText.h"
+#import <SafariServices/SafariServices.h>
 
 #define ContentWidth (APP.Width-40)
 
@@ -111,18 +112,25 @@
     // TableHeaderView
     {
         FastSubViewCode(_tableView.tableHeaderView);
-        subImageView(@"顶部广告ImageView").hidden = !pm.topAdWap.isShow;
-        subImageView(@"底部广告ImageView").hidden = !pm.bottomAdWap.isShow;
-        [subImageView(@"顶部广告ImageView") sd_setImageWithURL:[NSURL URLWithString:pm.topAdWap.pic] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-            if (image) {
-                subImageView(@"顶部广告ImageView").cc_constraints.height.constant = ContentWidth/image.width * image.height;
-            }
-        }];
-        [subImageView(@"底部广告ImageView") sd_setImageWithURL:[NSURL URLWithString:pm.bottomAdWap.pic] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-            if (image) {
-                subImageView(@"底部广告ImageView").cc_constraints.height.constant = ContentWidth/image.width * image.height;
-            }
-        }];
+        void (^setupAdButton)(NSString *, LHPostAdModel *) = ^(NSString *tagString, LHPostAdModel *ad) {
+            subButton(tagString).hidden = !ad.isShow;
+            [subButton(tagString) addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
+                if (ad.link.length) {
+                    SFSafariViewController *sf = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:ad.link]];
+                    sf.允许未登录访问 = true;
+                    sf.允许游客访问 = true;
+                    [NavController1 presentViewController:sf animated:YES completion:nil];
+                }
+            }];
+            [subButton(tagString) sd_setImageWithURL:[NSURL URLWithString:ad.pic] forState:UIControlStateNormal completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                if (image) {
+                    subButton(tagString).cc_constraints.height.constant = ContentWidth/image.width * image.height;
+                }
+            }];
+        };
+        setupAdButton(@"顶部广告Button", pm.topAdWap);
+        setupAdButton(@"底部广告Button", pm.bottomAdWap);
+        
         subLabel(@"标题Label").text = pm.title;
         subLabel(@"时间Label").text = _NSString(@"最后更新时间：%@", pm.createTime);
         UILabel *contentLabel = subLabel(@"内容Label");
@@ -255,17 +263,6 @@
     pvv.pm = _pm;
     __weakSelf_(__self);
     pvv.didConfirmBtnClick = ^(LHPostVoteView * _Nonnull pvv, LHVoteModel * _Nonnull vm) {
-        vm.num += 1;
-        CGFloat totalNum = 0;
-        for (LHVoteModel *vm in __self.pm.vote) {
-            totalNum += vm.num;
-        }
-        for (LHVoteModel *vm in __self.pm.vote) {
-            vm.percent = vm.num/totalNum * 100;
-        }
-        [__self.animalCollectionView reloadData];
-        [pvv hide:nil];
-        return ;
         [NetworkManager1 lhdoc_vote:pvv.pm.cid animalId:vm.animalFlag].successBlock = ^(id responseObject) {
             vm.num += 1;
             CGFloat totalNum = 0;
@@ -312,22 +309,7 @@
         SANotificationEventPost(UGNotificationShowLoginView, nil);
         return;
     }
-    
-    __weakSelf_(__self);
-    [LHPostCommentInputView show1:_pm].didComment = ^(NSString * _Nonnull text) {
-        __self.tableView.willClearDataArray = true;
-        if (__self.tableView.mj_footer.refreshingBlock) {
-            __self.tableView.mj_footer.refreshingBlock();
-        }
-        __self.pm.replyCount += 1;
-        
-        FastSubViewCode(__self.bottomBarView);
-        subLabel(@"评论数Label").text = @(__self.pm.replyCount).stringValue;
-        subLabel(@"评论数Label").hidden = !__self.pm.replyCount;
-        
-        if (__self.didCommentOrLike)
-            __self.didCommentOrLike(__self.pm);
-    };
+    [LHPostCommentInputView show1:_pm];
 }
 
 // 收藏
@@ -365,7 +347,7 @@
         subLabel(@"点赞次数Label").textColor = pcm.isLike ? Skin1.navBarBgColor : APP.TextColor3;
         subLabel(@"评论内容Label").text = pcm.content;
         subLabel(@"评论时间Label").text = pcm.actionTime;
-        [subButton(@"回复评论Button") setTitle:_NSString(@"%d 回复", (int)pcm.replyCount) forState:UIControlStateNormal];
+        [subButton(@"回复评论Button") setTitle:_NSString(@"%@回复", (pcm.replyCount ? [NSString stringWithFormat:@"%@ ", @(pcm.replyCount)] : @"")) forState:UIControlStateNormal];
     }
     
     // Action
@@ -425,7 +407,9 @@
             [imgView sd_setImageWithURL:url];   // 由于要支持gif动图，还是用sd加载
         } else {
             [imgView sd_setImageWithURL:url completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-                imgView.cc_constraints.height.constant = collectionViewW/image.width * image.height;
+                if (image) {
+                    imgView.cc_constraints.height.constant = collectionViewW/image.width * image.height;
+                }
             }];
         }
         return cell;
