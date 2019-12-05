@@ -168,6 +168,9 @@
             [subLabel(@"红点Label") setHidden:NO];
             subLabel(@"红点Label").text = @([UGUserModel currentUser].unreadMsg).stringValue;
         }
+        else{
+            [subLabel(@"红点Label") setHidden:YES];
+        }
     } else {
         [subLabel(@"红点Label") setHidden:YES];
     }
