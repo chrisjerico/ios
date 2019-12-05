@@ -86,9 +86,9 @@
     if (state == 0 || state == 1) {
         // 未提交、审核中
         FastSubViewCode(_sv1);
-        subTextField(@"QQTextField").text = _item.qq;
-        subTextField(@"联系电话TextField").text = _item.mobile;
-        subTextView(@"内容TextView").text = _item.applyReason;
+        subTextField(@"QQTextField").text = state == 0 ? @"" : _item.qq;
+        subTextField(@"联系电话TextField").text = state == 0 ? @"" : _item.mobile;
+        subTextView(@"内容TextView").text = state == 0 ? @"" : _item.applyReason;
         subTextField(@"QQTextField").userInteractionEnabled = state == 0;
         subTextField(@"联系电话TextField").userInteractionEnabled = state == 0;
         subTextView(@"内容TextView").userInteractionEnabled = state == 0;

@@ -19,6 +19,9 @@
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.14999999999999999" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qb" translatesAutoresizingMaskIntoConstraints="NO" id="2cC-yU-0zP">
                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="2cC-yU-0zP" secondAttribute="height" id="PUL-cM-LUT"/>
+                        </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="单" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="py4-UL-eaI">
                         <rect key="frame" x="0.5" y="0.5" width="49" height="49"/>
@@ -34,7 +37,6 @@
             </view>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="2cC-yU-0zP" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="N4T-T9-pLM"/>
                 <constraint firstItem="2cC-yU-0zP" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Sys-Pt-cBI"/>
                 <constraint firstItem="2cC-yU-0zP" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="cDJ-DL-okA"/>
                 <constraint firstItem="py4-UL-eaI" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="dza-O2-Rcq"/>

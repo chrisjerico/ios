@@ -166,11 +166,9 @@ static NSString *lotteryOneCellId = @"UGFastThreeOneCollectionViewCell";
          return CGSizeMake(((AvailableWidth - 2) / 6), ((AvailableWidth - 5) / 10));
     } else if ([@"jsk3" isEqualToString:self.item.gameType]) {
         if (indexPath.section == 0) {
-//            return CGSizeMake(((AvailableWidth - 2) / 6), ((AvailableWidth - 5) / 6));
-              return CGSizeMake(((AvailableWidth - 2) / 3), ((AvailableWidth - 5) / 6));
+            return CGSizeMake(((AvailableWidth - 2) / 6), ((AvailableWidth - 5) / 8.5));
         } else {
-//            return CGSizeMake(((AvailableWidth - 2) / 7), ((AvailableWidth - 5) / 7));
-              return CGSizeMake(((AvailableWidth - 2) / 3), ((AvailableWidth - 5) / 7));
+            return CGSizeMake(((AvailableWidth - 2) / 6), ((AvailableWidth - 5) / 9));
         }
     } else {
         CGFloat w = AvailableWidth / 10;

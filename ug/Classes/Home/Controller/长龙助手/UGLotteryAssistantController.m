@@ -68,7 +68,7 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
     
     
     [self getChanglong];
-   
+    
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [weakSelf getChanglong];
     }];
@@ -91,7 +91,7 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
             __self.betButtonBottomConstraint.constant = 0;
             [__self.view layoutIfNeeded];
         }];
-
+        
         [self xw_addNotificationForName:UIKeyboardWillHideNotification block:^(NSNotification * _Nonnull noti) {
             __self.bottomView.cc_constraints.bottom.constant = 0;
             __self.betButtonBottomConstraint.constant = [NavController1.viewControllers.firstObject isKindOfClass:[UGChangLongController class]] ? 0 : APP.BottomSafeHeight;
@@ -151,7 +151,6 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
     
 }
 - (IBAction)betClick:(id)sender {
-   
     NSInteger count = 0;
     for (UGChanglongaideModel *aideModel in self.dataArray) {
         for (UGBetItemModel *bet in aideModel.betList) {
@@ -171,26 +170,26 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
     }
     NSString *amount = @"";
     // 判断是否有小数点
-   if ([self.amountLabel.text containsString:@"."]) {
-       NSArray *amountArray = [self.amountLabel.text componentsSeparatedByString:@"."];
-       NSString *a1 = [amountArray objectAtIndex:0];
-       NSString *a2 = [amountArray objectAtIndex:1];
-       if (a2.length==1) {
-          amount = [NSString stringWithFormat:@"%@.%@0",a1,a2];
-       } else if(a2.length==2){
-           amount = self.amountLabel.text ;
-       }
-       else{
-           [self.navigationController.view makeToast:@"金额格式有误"
-                                            duration:1.5
-                                            position:CSToastPositionCenter];
-           return ;
-       }
-       
-
-   }else{
-       amount =[NSString stringWithFormat:@"%@.00",self.amountLabel.text];
-   }
+    if ([self.amountLabel.text containsString:@"."]) {
+        NSArray *amountArray = [self.amountLabel.text componentsSeparatedByString:@"."];
+        NSString *a1 = [amountArray objectAtIndex:0];
+        NSString *a2 = [amountArray objectAtIndex:1];
+        if (a2.length==1) {
+            amount = [NSString stringWithFormat:@"%@.%@0",a1,a2];
+        } else if(a2.length==2){
+            amount = self.amountLabel.text ;
+        }
+        else {
+            [self.navigationController.view makeToast:@"金额格式有误"
+                                             duration:1.5
+                                             position:CSToastPositionCenter];
+            return ;
+        }
+        
+        
+    } else {
+        amount =[NSString stringWithFormat:@"%@.00",self.amountLabel.text];
+    }
     
     
     if ([CMCommon arryIsNull:self.dataArray]) {
@@ -205,7 +204,7 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
     for (UGChanglongaideModel *aideModel in self.dataArray) {
         for (UGBetItemModel *bet in aideModel.betList) {
             if (bet.select) {
-//                bet.select = NO;
+                //                bet.select = NO;
                 betItem = bet;
                 betModel = aideModel;
             }
@@ -216,21 +215,21 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
     }
     
     NSDictionary *dict = @{
-                           @"token":[UGUserModel currentUser].sessid,
-                           @"gameId":betModel.gameId,
-                           @"betIssue":betModel.issue,
-                           @"totalNum":@"1",
-                           @"totalMoney":amount,
-                           @"endTime":[betModel.closeTime timeStrToTimeInterval],
-                           @"tag":@"1"
-                           };
+        @"token":[UGUserModel currentUser].sessid,
+        @"gameId":betModel.gameId,
+        @"betIssue":betModel.issue,
+        @"totalNum":@"1",
+        @"totalMoney":amount,
+        @"endTime":[betModel.closeTime timeStrToTimeInterval],
+        @"tag":@"1"
+    };
     
     NSMutableDictionary *mutDict = [[NSMutableDictionary alloc] initWithDictionary:dict];
     NSString *playId = @"betBean[0][playId]";
     NSString *money = @"betBean[0][money]";
     NSString *odds = @"betBean[0][betInfo]";
     NSString *rebate = @"betBean[0][playIds]";
-
+    
     [mutDict setValue:betItem.playId forKey:playId];
     [mutDict setValue:amount forKey:money];
     [mutDict setObject:@"" forKey:odds];
@@ -250,7 +249,7 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
             [SVProgressHUD showErrorWithStatus:msg];
         }];
     }];
-   
+    
 }
 
 
@@ -272,7 +271,6 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
     cell.tag = indexPath.row;
     WeakSelf
     cell.betItemSelectBlock = ^(NSInteger index) {
-       
         UGBetItemModel *item = model.betList[index];
         item.select = !item.select;
         
@@ -284,7 +282,6 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
                 }
             }
         }
-        
         
         [weakSelf.tableView reloadData];
         if (item.select) {
@@ -299,7 +296,7 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
             weakSelf.betDetailLabel.text = [NSString stringWithFormat:@"%@，%@，%@ 奖金:%.4f",weakSelf.selAideModel.title,weakSelf.selAideModel.playCateName,weakSelf.selBetItem.playName,total];
             [weakSelf updateBetDetailLabelTextColor];
             
-        }else {
+        } else {
             weakSelf.betDetailView.hidden = YES;
             weakSelf.selAideModel = nil;
             [weakSelf updateSelectLabelWithCount:0];
@@ -307,17 +304,6 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
         
     };
     return cell;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 0.001f;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 0.001f;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 }
 
 - (void)updateSelectLabelWithCount:(NSInteger )count {
@@ -337,91 +323,6 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
 #pragma mark - textfield delegate
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    
-    if (textField == self.amountLabel) {
-        /*
-           * 不能输入.0-9以外的字符。
-           * 设置输入框输入的内容格式
-           * 只能有一个小数点
-           * 小数点后最多能输入两位
-           * 如果第一位是.则前面加上0.
-           * 如果第一位是0则后面必须输入点，否则不能输入。
-           */
-            // 判断是否有小数点
-          if ([textField.text containsString:@"."]) {
-              self.isHaveDian = YES;
-          }else{
-              self.isHaveDian = NO;
-          }
-          
-          if (string.length > 0) {
-              
-              //当前输入的字符
-              unichar single = [string characterAtIndex:0];
-
-          
-              // 不能输入.0-9以外的字符
-              if (!((single >= '0' && single <= '9') || single == '.'))
-              {
-                  [self.navigationController.view makeToast:@"您的输入格式不正确"
-                                                                   duration:1.0
-                                                                   position:CSToastPositionCenter];
-                  return NO;
-              }
-          
-              // 只能有一个小数点
-              if (self.isHaveDian && single == '.') {
-                  [self.navigationController.view makeToast:@"最多只能输入一个小数点"
-                                                                                    duration:1.0
-                                                                                    position:CSToastPositionCenter];
-                  return NO;
-              }
-              
-              // 如果第一位是.则前面加上0.
-              if ((textField.text.length == 0) && (single == '.')) {
-                  textField.text = @"0";
-              }
-              
-              // 如果第一位是0则后面必须输入点，否则不能输入。
-              if ([textField.text hasPrefix:@"0"]) {
-                  if (textField.text.length > 1) {
-                      NSString *secondStr = [textField.text substringWithRange:NSMakeRange(1, 1)];
-                      if (![secondStr isEqualToString:@"."]) {
-                          [self.navigationController.view makeToast:@"第二个字符需要是小数点"
-                                                                                                            duration:1.0
-                                                                                                            position:CSToastPositionCenter];
-                          return NO;
-                      }
-                  }else{
-                      if (![string isEqualToString:@"."]) {
-                          [self.navigationController.view makeToast:@"第二个字符需要是小数点"
-                                                                                                                                    duration:1.0
-                                                                                                                                    position:CSToastPositionCenter];
-                          return NO;
-                      }
-                  }
-              }
-              
-              // 小数点后最多能输入两位
-              if (self.isHaveDian) {
-                  NSRange ran = [textField.text rangeOfString:@"."];
-                  // 由于range.location是NSUInteger类型的，所以这里不能通过(range.location - ran.location)>2来判断
-                  if (range.location > ran.location) {
-                      if ([textField.text pathExtension].length > 1) {
-                          [self.navigationController.view makeToast:@"小数点后最多有两位小数"
-                          duration:1.0
-                          position:CSToastPositionCenter];
-                          return NO;
-                      }
-                  }
-              }
-        
-          }
-
-          return YES;
-    }
-    
-    
     if ([string isEqualToString:@"\n"]) {
         [self.amountLabel resignFirstResponder];
         return NO;
@@ -430,13 +331,12 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
         return YES;
     }
     NSString *amount = [textField.text stringByReplacingCharactersInRange:range withString:string];
-    if (amount.length) {
+    if (_selBetItem && _selAideModel && amount.length) {
         self.betDetailView.hidden = NO;
         float total = amount.floatValue * self.selBetItem.odds.floatValue;
         self.betDetailLabel.text = [NSString stringWithFormat:@"%@，%@，%@ 奖金:%.4f",self.selAideModel.title,self.selAideModel.playCateName,self.selBetItem.playName,total];
         [self updateBetDetailLabelTextColor];
-    }else {
-        
+    } else {
         self.betDetailView.hidden = YES;
     }
     return YES;
@@ -445,7 +345,7 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
 - (NSMutableArray<UGChanglongaideModel *> *)dataArray {
     if (_dataArray == nil) {
         _dataArray = [NSMutableArray array];
-
+        
     }
     return _dataArray;
 }

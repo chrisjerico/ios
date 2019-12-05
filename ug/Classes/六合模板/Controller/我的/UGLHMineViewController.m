@@ -216,7 +216,7 @@
        else if ([title isEqualToString:@"额度转换"]) {
            [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGBalanceConversionController")  animated:YES];
        }
-       else if ([title isEqualToString:@"申请代理"] || [title isEqualToString:@"推荐收益"]) {
+       else if ([title isEqualToString:@"代理申请"] || [title isEqualToString:@"推荐收益"]) {
            if (UserI.isTest) {
                [self.navigationController pushViewController:[UGPromotionIncomeController new] animated:YES];
            } else {
