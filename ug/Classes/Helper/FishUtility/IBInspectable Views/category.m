@@ -84,7 +84,7 @@ _CCRuntimeGetterDoubleValue(CGFloat, lineSpacing1)
 @implementation UITextField (IBInspectableUtils)
 _CCRuntimeProperty_Assign(NSUInteger, 限制长度, set限制长度)
 _CCRuntimeProperty_Assign(BOOL, 仅数字, set仅数字)
-_CCRuntimeProperty_Assign(BOOL, 仅数字含小数, set仅数字含小数)
+_CCRuntimeProperty_Assign(NSUInteger, 仅数字含小数, set仅数字含小数)
 _CCRuntimeProperty_Assign(BOOL, 仅数字加字母, set仅数字加字母)
 _CCRuntimeProperty_Assign(BOOL, 仅可见的ASCII, set仅可见的ASCII)
 _CCRuntimeProperty_Copy(NSString *, 额外允许的字符, set额外允许的字符)
@@ -120,16 +120,19 @@ _CCRuntimeProperty_Copy(NSString *, 额外允许的字符, set额外允许的字
             [aInfo.originalInvocation invoke];
             // 过滤文本
             UITextField *tf = aInfo.arguments.firstObject;
+            NSRange range = [aInfo.arguments[1] rangeValue];
             NSString *text = aInfo.arguments[2];
             
             for (NSString *c in tf.额外允许的字符) {
                 text = [text stringByReplacingOccurrencesOfString:c withString:@""];
             }
+            text = [tf.text stringByReplacingCharactersInRange:range withString:text];
+            
             BOOL ret = true;
             if (tf.仅数字)
                 ret &= [text isMatch:RX(@"^[0-9]*$")];
             else if (tf.仅数字含小数)
-                ret &= [text isMatch:RX(_NSString(@"^[0-9]*%@$", [tf.text componentsSeparatedByString:@"."].count < 2 ? @"[.]?[0-9]*" : @""))];
+                ret &= [text isMatch:RX(_NSString(@"^[0-9]*[.]?[0-9]{0,%d}$", (int)tf.仅数字含小数))];
             else if (tf.仅数字加字母)
                 ret &= [text isMatch:RX(@"^[0-9A-Za-z]*$")];
             else if (tf.仅可见的ASCII)
@@ -147,7 +150,7 @@ _CCRuntimeProperty_Copy(NSString *, 额外允许的字符, set额外允许的字
 @implementation UITextView (IBInspectableUtils)
 _CCRuntimeProperty_Assign(NSUInteger, 限制长度, set限制长度)
 _CCRuntimeProperty_Assign(BOOL, 仅数字, set仅数字)
-_CCRuntimeProperty_Assign(BOOL, 仅数字含小数, set仅数字含小数)
+_CCRuntimeProperty_Assign(NSUInteger, 仅数字含小数, set仅数字含小数)
 _CCRuntimeProperty_Assign(BOOL, 仅数字加字母, set仅数字加字母)
 _CCRuntimeProperty_Assign(BOOL, 仅可见的ASCII, set仅可见的ASCII)
 _CCRuntimeProperty_Copy(NSString *, 额外允许的字符, set额外允许的字符)
@@ -185,16 +188,19 @@ _CCRuntimeGetterDoubleValue(BOOL, 内容紧贴边框)
             
             // 过滤文本
             UITextView *tf = aInfo.arguments.firstObject;
+            NSRange range = [aInfo.arguments[1] rangeValue];
             NSString *text = aInfo.arguments[2];
             
             for (NSString *c in tf.额外允许的字符) {
                 text = [text stringByReplacingOccurrencesOfString:c withString:@""];
             }
+            text = [tf.text stringByReplacingCharactersInRange:range withString:text];
+            
             BOOL ret = true;
             if (tf.仅数字)
                 ret &= [text isMatch:RX(@"^[0-9]*$")];
             else if (tf.仅数字含小数)
-                ret &= [text isMatch:RX(_NSString(@"^[0-9]*%@$", [tf.text componentsSeparatedByString:@"."].count < 2 ? @"[.]?[0-9]*" : @""))];
+                ret &= [text isMatch:RX(_NSString(@"^[0-9]*[.]?[0-9]{0,%d}$", (int)tf.仅数字含小数))];
             else if (tf.仅数字加字母)
                 ret &= [text isMatch:RX(@"^[0-9A-Za-z]*$")];
             else if (tf.仅可见的ASCII)
