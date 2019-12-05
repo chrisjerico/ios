@@ -88,6 +88,10 @@
     //模板
     FastSubViewCode(self.userInfoView)
     [self.userInfoView setBackgroundColor: Skin1.navBarBgColor];
+    //将图层的边框设置为圆脚 
+    self.userInfoView.layer.cornerRadius = 15; 
+    self.userInfoView.layer.masksToBounds = YES;
+    
     subImageView(@"头像ImgV").layer.cornerRadius = 70 / 2 ;
     subImageView(@"头像ImgV").layer.masksToBounds = YES;
     subImageView(@"头像ImgV").userInteractionEnabled = YES;
@@ -294,7 +298,8 @@
     subLabel(@"用户等级Label").text = user.curLevelGrade;
     subLabel(@"小等级Label").text = user.curLevelGrade;
     subLabel(@"大等级Label").text = user.nextLevelGrade;
-    subLabel(@"成长值Label").text = _NSString(@"成长值（%@-%@）", _FloatString4(user.taskRewardTotal.doubleValue), _FloatString4(user.nextLevelInt.doubleValue));
+    
+    subLabel(@"成长值Label").text = _NSString(@"距离下一级还差%@分", _FloatString4(user.nextLevelInt.doubleValue - user.taskRewardTotal.doubleValue));
    
     if (![CMCommon stringIsNull:user.taskRewardTitle]) {
         self.moneyNameLabel.text = user.taskRewardTitle;

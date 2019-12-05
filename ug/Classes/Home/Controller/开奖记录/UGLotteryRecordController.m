@@ -117,7 +117,7 @@ static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
             }
             [self getLotteryHistory];
         };
-        if ([CMCommon arryIsNull:_lotteryGamesArray] || [CMCommon stringIsNull:_gameId]) {
+        if ([CMCommon arryIsNull:_lotteryGamesArray]) {
             // 获取彩票大厅数据
             [CMNetwork getAllNextIssueWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
                 [CMResult processWithResult:model success:^{
@@ -125,13 +125,18 @@ static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
                     
                     UGAllNextIssueListModel *model = self.lotteryGamesArray.firstObject;
                     UGNextIssueModel *game = model.list.firstObject;
-                    __self.gameId = game.gameId;
+                    if ([CMCommon stringIsNull:__self.gameId]) {
+                        __self.gameId = game.gameId;
+                    }
+
                     setupData();
                     
                 } failure:^(id msg) {
                     [SVProgressHUD dismiss];
                 }];
             }];
+
+            
         } else {
             setupData();
         }

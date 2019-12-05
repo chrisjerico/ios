@@ -46,7 +46,7 @@
         self.drowTitle2Label.text = downTitle;
         UIColor *bgColor;
         if ([bgColorStr isEqualToString:@"green"]) {
-            bgColor = [UIColor greenColor];
+            bgColor = RGBA(196, 234, 160, 1);
         }
         else if([bgColorStr isEqualToString:@"red"]){
             bgColor = [UIColor redColor];
