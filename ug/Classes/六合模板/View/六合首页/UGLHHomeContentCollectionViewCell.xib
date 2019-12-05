@@ -53,7 +53,7 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NJx-da-J2q">
-                        <rect key="frame" x="5" y="0.0" width="35" height="35"/>
+                        <rect key="frame" x="50" y="0.0" width="35" height="35"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="35" id="3aK-D8-F11"/>
                             <constraint firstAttribute="height" constant="35" id="jwW-I9-5Ea"/>
@@ -75,7 +75,7 @@
                 <constraint firstItem="B8i-s9-diJ" firstAttribute="top" secondItem="Pr9-bm-2vR" secondAttribute="bottom" constant="8" id="rV3-F6-049"/>
                 <constraint firstItem="B8i-s9-diJ" firstAttribute="leading" secondItem="zar-7X-t6V" secondAttribute="trailing" constant="14" id="sDz-HA-kyu"/>
                 <constraint firstItem="zar-7X-t6V" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="vQ8-cj-Rfu"/>
-                <constraint firstItem="NJx-da-J2q" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="waE-pk-k6R"/>
+                <constraint firstItem="NJx-da-J2q" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="50" id="waE-pk-k6R"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
             <point key="canvasLocation" x="137.68115942028987" y="152.67857142857142"/>
