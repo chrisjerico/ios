@@ -155,9 +155,9 @@
     
     // 点赞、浏览、评论
     {
-        [subButton(@"评论Button") setTitle:@(pm.replyCount).stringValue forState:UIControlStateNormal];
-        [subButton(@"浏览Button") setTitle:@(pm.viewNum).stringValue forState:UIControlStateNormal];
-        [subButton(@"点赞Button") setTitle:@(pm.likeNum).stringValue forState:UIControlStateNormal];
+        [subButton(@"评论Button") setTitle:pm.replyCount ? @(pm.replyCount).stringValue : @"" forState:UIControlStateNormal];
+        [subButton(@"浏览Button") setTitle:pm.viewNum ? @(pm.viewNum).stringValue : @"" forState:UIControlStateNormal];
+        [subButton(@"点赞Button") setTitle:pm.likeNum ? @(pm.likeNum).stringValue : @"" forState:UIControlStateNormal];
         subButton(@"点赞Button").selected = pm.isLike;
     }
     
@@ -198,8 +198,8 @@
         }
         if (ok) {
             FastSubViewCode(__self);
-            subLabel(@"点赞数Label").text = @(pm.likeNum).stringValue;
-            subLabel(@"点赞数Label").textColor = pm.isLike ? Skin1.navBarBgColor : Skin1.textColor2;
+            [subButton(@"点赞Button") setTitle:pm.likeNum ? @(pm.likeNum).stringValue : @"" forState:UIControlStateNormal];
+//            [subButton(@"点赞Button") setTitleColor:pm.isLike ? Skin1.navBarBgColor : Skin1.textColor2 forState:UIControlStateNormal];
             subButton(@"点赞Button").selected = pm.isLike;
         }
     };

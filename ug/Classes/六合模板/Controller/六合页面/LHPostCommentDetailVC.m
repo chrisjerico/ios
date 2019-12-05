@@ -98,15 +98,7 @@
 
 // 切换为回复评论模式
 - (IBAction)onHeaderViewBtnClick:(UIButton *)sender {
-    __weakSelf_(__self);
-    [LHPostCommentInputView show2:_pcm].didComment = ^(NSString * _Nonnull text) {
-        __self.tableView.willClearDataArray = true;
-        if (__self.tableView.mj_footer.refreshingBlock)
-            __self.tableView.mj_footer.refreshingBlock();
-        __self.pcm.replyCount += 1;
-        if (__self.didReply)
-            __self.didReply(__self.pcm);
-    };
+    [LHPostCommentInputView show2:_pcm];
 }
 
 
