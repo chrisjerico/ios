@@ -72,9 +72,9 @@
         entity;
     }) delegate:self];
     
-#ifndef DEBUG
+//#ifndef DEBUG
     [self initBugly];
-#endif
+//#endif
     [self userAgent];
 #ifdef DEBUG
 	[LogVC enableLogVC];

@@ -25,7 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (copy, nonatomic) NSString *endtime;/**<   " */
 @property (copy, nonatomic) NSString *numColor;/**<  波色，逗号分割" */
 @property (copy, nonatomic) NSString *issue;/**<   期数" */
-@property (nonatomic) BOOL autoBL;          /**<   是否是自动开奖， false手动开奖, true 自动开奖*/
+//@property (nonatomic) BOOL autoBL;          /**<   是否是自动开奖， false手动开奖, true 自动开奖*/
+@property (assign, nonatomic) int autoBL;/**< "  1  自动开奖*，0 动开奖*/
 
 @property (copy, nonatomic) NSArray *numSxArrary;/**<   生肖， */
 @property (copy, nonatomic) NSArray *numColorArrary;/**<  颜色*/

@@ -1112,7 +1112,7 @@
             [CMLabelCommon setRichNumberWithLabel:self.lotteryTitleLabel Color:[UIColor redColor] FontSize:17.0];
             NSArray *endTimeArray = [self->_lhModel.endtime componentsSeparatedByString:@" "];
             self.timeLabel.text = [endTimeArray objectAtIndex:0];
-            
+
             NSLog(@"self.lhModel.serverTime = %@",self.lhModel.serverTime);
             NSLog(@"self.lhModel.endtime = %@",self.lhModel.endtime);
 //            long long startLongLong = [CMTimeCommon timeSwitchTimestamp:self.lhModel.serverTime andFormatter:@"YYYY-MM-dd HH:mm:ss"];
@@ -1536,7 +1536,7 @@
     //定时器==》开奖接口  每3秒，==》得到数据，报语音
     //isFinish ==>如何判断结束
     
-    [_contentCollectionView setHidden:YES];
+//    [_lotteryCollectionView setHidden:YES];
     [_lottyLabel setHidden:NO];
     _timeLabel.text = @"开奖中";
     [_timeLabel setTextColor:[UIColor blackColor]];
@@ -1546,6 +1546,7 @@
     
     __weakSelf_(__self);
 //    __block NSTimer *__timer = nil;
+    __block UGLHlotteryNumberModel *__lastLHModel = nil;
     __block int __count = 0;
     _timer = [NSTimer scheduledTimerWithInterval:6 repeats:true block:^(NSTimer *timer) {
         CCSessionModel * sessionModel = [NetworkManager1 lhdoc_lotteryNumber];
@@ -1562,10 +1563,16 @@
                 model.numColorArrary = [model.numColor componentsSeparatedByString:@","];
                 model.isOpen = __self.lotteryUISwitch.isOn;
                 __self.lhModel = model;
-                
+                if (!model) {
+                    return ;
+                }
+                NSLog(@"auto= %d",model.autoBL);
+                if (model.autoBL) {
+                    return ;
+                }
                 dispatch_async(dispatch_get_main_queue(), ^{
                     // 需要在主线程执行的代码
-                    [__self.contentCollectionView setHidden:NO];
+                    
                     [__self.lottyLabel setHidden:YES];
                     [__self.lotteryCollectionView reloadData];
                     NSString *nper = [__self.lhModel.issue  substringFromIndex:4];
@@ -1589,10 +1596,27 @@
                         __self.timer = nil;
                     }
                     else {
+                        if (__lastLHModel) {
+                            if (__lastLHModel.numSxArrary.count == model.numSxArrary.count ) {
+                                return ;
+                            }
+                            else{
+                                [__self.player playLH:model ];
+                                __lastLHModel = model;
+                                __count ++;
+                                NSLog(@"__count = %d",__count);
+                            }
+//                            if ((__lastLHModel.numSxArrary.count + 1) == model.numSxArrary.count) {
 
-                        [__self.player playLH:model ];
-                        __count ++;
-                        NSLog(@"__count = %d",__count);
+//                            }
+                        }
+                        else{
+                            [__self.player playLH:model ];
+                            __lastLHModel = model;
+                            __count ++;
+                            NSLog(@"__count = %d",__count);
+                        }
+
                     }
                     
                 });

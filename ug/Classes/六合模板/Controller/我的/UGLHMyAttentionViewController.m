@@ -28,6 +28,9 @@
     [_tableView setRowHeight:70.0];
     
     {
+        if (self.selectIndex) {
+            [self.mySegment setSelectedSegmentIndex:self.selectIndex];
+        }
         __weakSelf_(__self);
         [_tableView setupHeaderRefreshRequest:^CCSessionModel *(UITableView *tv) {
             return __self.mySegment.selectedSegmentIndex ? [NetworkManager1 lhdoc_favContentList:nil page:1] : [NetworkManager1 lhdoc_followList:nil page:1];

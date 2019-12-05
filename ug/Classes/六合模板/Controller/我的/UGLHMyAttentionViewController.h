@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UGLHMyAttentionViewController : UIViewController
 
 @property (nonatomic, copy) NSString *uid;
+@property (nonatomic) int selectIndex;
 @end
 
 NS_ASSUME_NONNULL_END

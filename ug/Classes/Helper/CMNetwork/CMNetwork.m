@@ -119,7 +119,7 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
     }(JSON, JSON[@"data"]);
     
     // 提交数据
-    result->_error = err;
+    [result setValue:err forKey:@"_error"];
     *error = err;
     
     return result;

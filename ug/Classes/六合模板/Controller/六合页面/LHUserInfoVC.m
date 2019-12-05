@@ -116,6 +116,7 @@
 - (IBAction)onFavPostListBtnClick:(UIButton *)sender {
     UGLHMyAttentionViewController *vc = _LoadVC_from_storyboard_(@"UGLHMyAttentionViewController");
     vc.uid = _uid;
+    vc.selectIndex = 1;
     [NavController1 pushViewController:vc animated:true];
 }
 

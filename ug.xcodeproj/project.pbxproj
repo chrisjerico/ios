@@ -624,6 +624,8 @@
 		D43B48B9238D4DBC00BB7960 /* SiteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D43B48B7238D4DBC00BB7960 /* SiteModel.m */; };
 		D43B48BD238D5B0700BB7960 /* UGLHCategoryListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D43B48BC238D5B0700BB7960 /* UGLHCategoryListModel.m */; };
 		D44B49A32392675100475EBE /* CMAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D44B49A22392675100475EBE /* CMAudioPlayer.m */; };
+		D44CF2C32398DC86007DCD93 /* UINavigationController+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = D44CF2C22398DC86007DCD93 /* UINavigationController+Extension.m */; };
+		D44CF2E62398F45C007DCD93 /* NSError+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = D44CF2E52398F45C007DCD93 /* NSError+Safe.m */; };
 		D4520A2E238FA86100B69E97 /* UGLHlotteryNumberModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4520A2D238FA86100B69E97 /* UGLHlotteryNumberModel.m */; };
 		D4520A31238FBA9D00B69E97 /* CMLabelCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = D4520A30238FBA9D00B69E97 /* CMLabelCommon.m */; };
 		D4520A36238FEDCD00B69E97 /* UGLHFocusUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4520A35238FEDCD00B69E97 /* UGLHFocusUserModel.m */; };
@@ -1860,6 +1862,10 @@
 		D43B48BC238D5B0700BB7960 /* UGLHCategoryListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLHCategoryListModel.m; sourceTree = "<group>"; };
 		D44B49A12392675100475EBE /* CMAudioPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMAudioPlayer.h; sourceTree = "<group>"; };
 		D44B49A22392675100475EBE /* CMAudioPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CMAudioPlayer.m; sourceTree = "<group>"; };
+		D44CF2C12398DC86007DCD93 /* UINavigationController+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Extension.h"; sourceTree = "<group>"; };
+		D44CF2C22398DC86007DCD93 /* UINavigationController+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+Extension.m"; sourceTree = "<group>"; };
+		D44CF2E42398F45C007DCD93 /* NSError+Safe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSError+Safe.h"; sourceTree = "<group>"; };
+		D44CF2E52398F45C007DCD93 /* NSError+Safe.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSError+Safe.m"; sourceTree = "<group>"; };
 		D4520A2C238FA86100B69E97 /* UGLHlotteryNumberModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLHlotteryNumberModel.h; sourceTree = "<group>"; };
 		D4520A2D238FA86100B69E97 /* UGLHlotteryNumberModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLHlotteryNumberModel.m; sourceTree = "<group>"; };
 		D4520A2F238FBA9D00B69E97 /* CMLabelCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMLabelCommon.h; sourceTree = "<group>"; };
@@ -3565,6 +3571,8 @@
 				CFD3BEAB2347137E00FCDA6D /* NSNumber+Safe.h */,
 				CFD3BEB12347137E00FCDA6D /* NSNull+Safe.h */,
 				CFD3BEAD2347137E00FCDA6D /* NSNull+Safe.m */,
+				D44CF2E42398F45C007DCD93 /* NSError+Safe.h */,
+				D44CF2E52398F45C007DCD93 /* NSError+Safe.m */,
 				CFD3BEAE2347137E00FCDA6D /* NSString+Safe.h */,
 				CFD3BEAF2347137E00FCDA6D /* NSDictionary+NilSafe.h */,
 				CFD3BEB02347137E00FCDA6D /* NSNumber+Safe.m */,
@@ -3973,6 +3981,7 @@
 				CFD3BE962347137E00FCDA6D /* FishUtility */,
 				D4145A7522B3BC1900D8165F /* CMNetwork */,
 				D4A1E905232BC3AC0045F5B4 /* CMCommon */,
+				D44CF2BF2398DC63007DCD93 /* 获得当前导航控制器 */,
 				D4FD7B1E236E92DC00D171AC /* LeeTagView */,
 				D4091B57236966E10056BAEE /* SYY单选按钮组 */,
 				D434C7ED2373D45E00920832 /* view圆角 */,
@@ -4604,6 +4613,15 @@
 				D43B48AF238D41D900BB7960 /* UIButton+touch.m */,
 			);
 			path = "hookButtton间隔点击";
+			sourceTree = "<group>";
+		};
+		D44CF2BF2398DC63007DCD93 /* 获得当前导航控制器 */ = {
+			isa = PBXGroup;
+			children = (
+				D44CF2C12398DC86007DCD93 /* UINavigationController+Extension.h */,
+				D44CF2C22398DC86007DCD93 /* UINavigationController+Extension.m */,
+			);
+			path = "获得当前导航控制器";
 			sourceTree = "<group>";
 		};
 		D4527D1E22830603000EC1C2 /* 推荐收益 */ = {
@@ -6244,6 +6262,7 @@
 				CFFAB5882372F01C009593AF /* UGPlatformTitleBlackCell.m in Sources */,
 				D405B3812281442B00F8C586 /* SLWebViewController.m in Sources */,
 				0322AD68234342DB00E9857E /* UGDocumentView.m in Sources */,
+				D44CF2C32398DC86007DCD93 /* UINavigationController+Extension.m in Sources */,
 				D4BBFC00232A797600147C4A /* NSTimer+addition.m in Sources */,
 				D409B14E2296826D0053DA33 /* UGHKLHCLotteryController.m in Sources */,
 				D405AFF222783DCC00F8C586 /* ViewController+MASAdditions.m in Sources */,
@@ -6295,6 +6314,7 @@
 				D405AFF422783DCC00F8C586 /* MASConstraintMaker.m in Sources */,
 				CFD3BF4923473D0500FCDA6D /* LogVC.m in Sources */,
 				D405B346227DB22100F8C586 /* UGNotificationEvent.m in Sources */,
+				D44CF2E62398F45C007DCD93 /* NSError+Safe.m in Sources */,
 				D405B367227DE67600F8C586 /* CMNetwork+Hall.m in Sources */,
 				CF5C5BEA23831669001CFAB1 /* NSObject+AspectsHelper.m in Sources */,
 				D494C7042366D567001C310F /* OttoScratchView.m in Sources */,

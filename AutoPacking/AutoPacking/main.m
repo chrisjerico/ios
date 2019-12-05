@@ -13,7 +13,7 @@ int main(int argc, const char * argv[]) {
     @autoreleasepool {
         
 #ifdef DEBUG
-        NSString *ids = @"c184";
+        NSString *ids = @"c053";
 #else
         NSString *ids = @(argv[1]);
 #endif
