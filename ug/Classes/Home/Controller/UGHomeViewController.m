@@ -1023,6 +1023,7 @@
                 UGPromoteModel *pm = listModel.list[i++];
                 FastSubViewCode(v);
                 subLabel(@"优惠活动Label").text = pm.title;
+                subLabel(@"优惠活动Label").hidden = !pm.title.length;
                 [subImageView(@"优惠活动ImageView") sd_setImageWithURL:[NSURL URLWithString:pm.pic] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
                     if (image) {
                         subImageView(@"优惠活动ImageView").cc_constraints.height.constant = image.height/image.width * (APP.Width - 48);

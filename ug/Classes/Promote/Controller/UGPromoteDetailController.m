@@ -143,6 +143,7 @@
     if (!_myWebView) {
         _myWebView = [[UIWebView alloc]init];
         _myWebView.delegate = self;
+        _myWebView.backgroundColor = Skin1.textColor4;
 //        [_myWebView setOpaque:NO];
     }
     return _myWebView;
