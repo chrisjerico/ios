@@ -679,8 +679,17 @@ static UGSkinManagers *__initSkin1 = nil;
             sm.skitString               = @"石榴红";
             sm.bgColor                  = color(@"F5F5F5");
             sm.navBarBgColor            = color(@"CC022C");
-            sm.tabBarBgColor            = color(@"CC022C");
-            sm.tabNoSelectColor         = color(@"FFFFFF");
+            NSLog(@"APP.SiteId =%@ ",APP.SiteId);
+            
+            if ([APP.SiteId isEqualToString:@"c054"]) {
+                sm.tabBarBgColor            = color(@"F6F6F6");
+                sm.tabNoSelectColor         = color(@"717176");
+            } else {
+                sm.tabBarBgColor            = color(@"CC022C");
+                sm.tabNoSelectColor         = color(@"FFFFFF");
+            }
+
+
             sm.tabSelectedColor         = color(@"F1B709");
             sm.progressBgColor          = color(@"FEC434,FE8A23");
             sm.homeContentColor         = color(@"FFFFFF");
@@ -780,7 +789,7 @@ static UGSkinManagers *__initSkin1 = nil;
     
     NSString *skitType = dict[SysConf.mobileTemplateCategory];
     #if DEBUG
-          skitType =  @"新年红";
+          skitType =  @"石榴红";
 //          skitType = @"六合资料";
 //              skitType = @"黑色模板";
     #endif

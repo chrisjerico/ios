@@ -374,12 +374,20 @@
         }
         [SVProgressHUD showWithStatus:@"正在注册..."];
         NSLog(@"参数：%@ ",mutDict);
+        __weakSelf_(__self);
         [CMNetwork registerWithParams:mutDict completion:^(CMResult<id> *model, NSError *err) {
             [CMResult processWithResult:model success:^{
 
                 [SVProgressHUD showSuccessWithStatus:model.msg];
                 [self.view endEditing:YES];
                 UGUserModel *user = model.data;
+                
+                NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+                [userDefault setBool:YES forKey:@"isRememberPsd"];
+                [userDefault setObject:__self.userNameTextF.text forKey:@"userName"];
+                [userDefault setObject:__self.passwordTextF.text forKey:@"userPsw"];
+                [userDefault synchronize];
+                
                 if (user.autoLogin) {
                     
                     [self login];
