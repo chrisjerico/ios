@@ -108,7 +108,7 @@ static NSMutableArray <SiteModel *> *__sites = nil;
             [SiteModel site    :@"c114"     :@"超级签名"     :@"彩43"          :@""     :@""],          // https://dev.app2.xin/index | 19859553001 | wenxiang123123
             [SiteModel site    :@"c190"     :@"超级签名"     :@"22333彩世界"    :@""     :@""],          // https://dev.app2.xin/index |  |
             [SiteModel site    :@"h002"     :@"超级签名"     :@"⾹港赛⻢会"     :@""     :@""],          // https://dev.app2.xin/index | 15827947817 | dz990990
-            [SiteModel site    :@"c201"     :@"超级签名"     :@"大咖彩票"       :@"io.fhpt.YSFC201"     :@"https://dkcpapp.com"],          //https://dev.app2.xin/index | 18675958156 | dk789789
+            [SiteModel site    :@"c201"     :@"超级签名"     :@"大咖彩票"       :@"io.fhpt.YSFC201"     :@"https://dkcp520.com"],          //https://dev.app2.xin/index | 18675958156 | dk789789
 
 
             [SiteModel site    :@"c018"     :@"企业包"     :@"2044彩票"     :@"io.fhpt.H51E9BFB6"     :@"https://031122.com"],
@@ -172,7 +172,6 @@ static NSMutableArray <SiteModel *> *__sites = nil;
             [SiteModel site    :@"c092"     :@"苹果开发服务群"     :@"2013彩票"     :@"io.fhpt.H57B34489"     :@"https://4681kkk.com"],
             [SiteModel site    :@"c115"     :@"苹果开发服务群"     :@"中彩⽹"     :@"io.fhpt.H59BD7AE3"     :@""],
             [SiteModel site    :@"c116"     :@"苹果开发服务群"     :@"1353彩世界"     :@"io.fhpt.H50A85511"     :@"https://13532007.com/https://88677.cc"],
-            [SiteModel site    :@"c120"     :@"苹果开发服务群"     :@"新葡京彩票"     :@"io.fhpt.H591E28D0"     :@"https://asafew435yrtgre.net"],
             [SiteModel site    :@"c126"     :@"苹果开发服务群"     :@"758彩票"     :@"io.fhpt.H5FD4D963"     :@""],
             [SiteModel site    :@"c129"     :@"苹果开发服务群"     :@"万豪彩票"     :@"io.fhpt.H58AE4F87"     :@"https://7803000.com"],
             [SiteModel site    :@"c601"     :@"苹果开发服务群"     :@"六合宝典"     :@"io.fhpt.H5D5F880F"     :@""],
@@ -201,6 +200,7 @@ static NSMutableArray <SiteModel *> *__sites = nil;
             [SiteModel site    :@"c193"     :@"郴州快签"     :@"新葡京彩票"     :@"io.fhpt.H54C32CA8"     :@"https://4906app.app"],
             [SiteModel site    :@"c200"     :@"郴州快签"     :@"1995澳门彩票"     :@"io.fhpt.H5830E440"     :@"https://20191995.com"],
             [SiteModel site    :@"c202"     :@"郴州快签"     :@""     :@""     :@"https://895911.com"],
+            [SiteModel site    :@"c120"     :@"郴州快签"     :@"新葡京彩票"     :@"io.fhpt.H591E28D0"     :@"https://asafew435yrtgre.net"],
             
             
             [SiteModel site    :@"c018a"    :@"未确定签名方式"     :@"今⽇彩票"        :@"io.fhpt.H53DDB5F6"     :@""],
