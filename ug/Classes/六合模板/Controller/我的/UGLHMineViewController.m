@@ -144,7 +144,7 @@
         }];
         if (menus.count > 0) {
             // 后台配置的页面
-            [self resetUpTabCellData:[menus valuesWithKeyPath:@"name"]];
+            [self resetUpTabCellData:menus];
         }
     }
     SANotificationEventSubscribe(UGNotificationGetSystemConfigComplete, self, ^(typeof (self) self, id obj) {
@@ -153,7 +153,7 @@
         }];
         if (menus.count > 0) {
             // 后台配置的页面
-            [self resetUpTabCellData:[menus valuesWithKeyPath:@"name"]];
+            [self resetUpTabCellData:menus];
         }
     });
     
@@ -193,14 +193,13 @@
 /**
  *  添加tabCell 数据
  */
-- (void)resetUpTabCellData:(NSArray<NSString *> *)paths {
+- (void)resetUpTabCellData:(NSArray<UGUserCenter *> *)paths {
     self.menuNameArray = [NSMutableArray array];
     self.imageNameArray = [NSMutableArray array];
     UGUserModel *user = [UGUserModel currentUser];
     NSLog(@"isAgent= %d",user.isAgent);
     
-    for (NSString *path in paths) {
-        UGUserCenter *gm = [_gms objectWithValue:path keyPath:@"name"];
+    for (UGUserCenter *gm in paths) {
         
         if (user.isAgent) {
             if ([gm.name isEqualToString:@"代理申请"]) {
@@ -212,7 +211,12 @@
             }
         }
         [self.menuNameArray addObject:gm.name];
-        [self.imageNameArray addObject:gm.logo];
+        if ([CMCommon stringIsNull:gm.logo]) {
+            UGUserCenter *obj  =  [_gms objectWithValue:gm.name keyPath:@"name"];
+            [self.imageNameArray addObject:obj.logo];
+        } else {
+            [self.imageNameArray addObject:gm.logo];
+        }
         
         if (!user.hasActLottery) {
             if ([gm.name isEqualToString:@"活动彩金"]) {
@@ -223,7 +227,7 @@
     }
     
     [self.myTabView reloadData];
-
+    
 }
 
 
@@ -243,7 +247,15 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     FastSubViewCode(cell);
     subLabel(@"标题Label").text = self.menuNameArray[indexPath.row];
-    [subImageView(@"图片ImageView") setImage:[UIImage imageNamed:self.imageNameArray[indexPath.row]]];
+
+    
+    //字条串开始包含有某字符串
+    if ([self.imageNameArray[indexPath.row] hasPrefix:@"http"]) {
+        [subImageView(@"图片ImageView") sd_setImageWithURL:[NSURL URLWithString:self.imageNameArray[indexPath.row]]];
+    }
+    else{
+        [subImageView(@"图片ImageView") setImage:[UIImage imageNamed:self.imageNameArray[indexPath.row]]];
+    }
     if ([subLabel(@"标题Label").text isEqualToString:@"站内信"]) {
         if ([UGUserModel currentUser].unreadMsg) {
             [subLabel(@"红点Label") setHidden:NO];

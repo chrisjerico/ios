@@ -230,7 +230,7 @@
          }];
          if (menus.count > 0) {
              // 后台配置的页面
-             [self resetUpTabCellData:[menus valuesWithKeyPath:@"name"]];
+             [self resetUpTabCellData:menus];
          }
      }
      SANotificationEventSubscribe(UGNotificationGetSystemConfigComplete, self, ^(typeof (self) self, id obj) {
@@ -239,7 +239,7 @@
          }];
          if (menus.count > 0) {
              // 后台配置的页面
-             [self resetUpTabCellData:[menus valuesWithKeyPath:@"name"]];
+             [self resetUpTabCellData:menus];
          }
      });
 
@@ -445,14 +445,13 @@ BOOL isOk = NO;
 /**
  *  添加tabCell 数据
  */
-- (void)resetUpTabCellData:(NSArray<NSString *> *)paths {
+- (void)resetUpTabCellData:(NSArray<UGUserCenter *> *)paths {
     self.menuNameArray = [NSMutableArray array];
-
+    
     UGUserModel *user = [UGUserModel currentUser];
     NSLog(@"isAgent= %d",user.isAgent);
     
-    for (NSString *path in paths) {
-        UGUserCenter *gm = [_gms objectWithValue:path keyPath:@"name"];
+    for (UGUserCenter *gm in paths) {
         
         if (user.isAgent) {
             if ([gm.name isEqualToString:@"代理申请"]) {
@@ -463,9 +462,13 @@ BOOL isOk = NO;
                 [gm setName:@"代理申请"];
             }
         }
-        [self.menuNameArray addObject:@{@"title" : gm.name , @"imgName" : [self retureRandomThemeColorImage:gm.logo] }];
+        if ([CMCommon stringIsNull:gm.logo]) {
+            UGUserCenter *obj  =  [_gms objectWithValue:gm.name keyPath:@"name"];
+            [self.menuNameArray addObject:@{@"title" : gm.name , @"imgName" : [self retureRandomThemeColorImage:obj.logo]  }];
+        } else {
+            [self.menuNameArray addObject:@{@"title" : gm.name , @"imgName" : gm.logo }];
+        }
 
-        
         if (!user.hasActLottery) {
             if ([gm.name isEqualToString:@"活动彩金"]) {
                 [self.menuNameArray removeObject:[self.menuNameArray objectWithValue:@"活动彩金" keyPath:@"title"]];
@@ -663,7 +666,15 @@ BOOL isOk = NO;
         UGMineSkinCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UGMineSkinCollectionViewCell" forIndexPath:indexPath];
         NSDictionary *dic = self.menuSecondNameArray[indexPath.section].dataArray[indexPath.row];
         cell.menuName = dic[@"title"];
-        cell.imageView.image = dic[@"imgName"];
+        
+        //字条串开始包含有某字符串
+        if ([dic[@"imgName"] isKindOfClass:UIImage.class] ) {
+            cell.imageView.image = dic[@"imgName"];
+        }
+        else{
+            [cell.imageView sd_setImageWithURL:[NSURL URLWithString:dic[@"imgName"]]];
+        }
+
         [cell setBadgeNum:[dic[@"title"] isEqualToString:@"站内信"] ? unreadMsg : 0];
         [cell setBackgroundColor: [UIColor clearColor]];
         cell.layer.borderWidth = 0.5;
@@ -674,7 +685,13 @@ BOOL isOk = NO;
         UGMineMenuCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UGMineMenuCollectionViewCell" forIndexPath:indexPath];
         NSDictionary *dic = self.menuNameArray[indexPath.row];
         cell.menuName = dic[@"title"];
-        cell.imageView.image = dic[@"imgName"];
+        //字条串开始包含有某字符串
+        if ([dic[@"imgName"] isKindOfClass:UIImage.class] ) {
+            cell.imageView.image = dic[@"imgName"];
+        }
+        else{
+            [cell.imageView sd_setImageWithURL:[NSURL URLWithString:dic[@"imgName"]]];
+        }
         [cell setBadgeNum:[dic[@"title"] isEqualToString:@"站内信"] ? unreadMsg : 0];
         [cell setBackgroundColor: [UIColor clearColor]];
         cell.layer.borderWidth = 0.5;
