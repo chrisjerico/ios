@@ -106,46 +106,15 @@
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     
     UGYYPlatformGames *listModel = self.dataArray[indexPath.row];
-    
     if ([@"lottery" isEqualToString:listModel.category]) {//彩票
-        UGLotteryHomeController*vc = [[UGLotteryHomeController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-    else if ([@"game" isEqualToString:listModel.category] ) {//电子
-        UGYYLotterySecondHomeViewController *vc = [[UGYYLotterySecondHomeViewController alloc] init];
-        vc.title = [NSString stringWithFormat:@"%@系列",listModel.categoryName];
-         vc.dataArray = [UGYYGames arrayOfModelsFromDictionaries:listModel.games error:nil];
-        [self.navigationController pushViewController:vc animated:YES];
-        
-    }
-    else if ([@"fish" isEqualToString:listModel.category]) {//捕鱼
-        UGYYLotterySecondHomeViewController *vc = [[UGYYLotterySecondHomeViewController alloc] init];
-        vc.title = [NSString stringWithFormat:@"%@系列",listModel.categoryName];
-        vc.dataArray = [UGYYGames arrayOfModelsFromDictionaries:listModel.games error:nil];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-    else if ([@"card" isEqualToString:listModel.category]) {//棋牌
-        
-        UGYYLotterySecondHomeViewController *vc = [[UGYYLotterySecondHomeViewController alloc] init];
-        vc.title = [NSString stringWithFormat:@"%@系列",listModel.categoryName];
-        vc.dataArray = [UGYYGames arrayOfModelsFromDictionaries:listModel.games error:nil];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-    else if ([@"sport" isEqualToString:listModel.category]) {//体育
-        UGYYLotterySecondHomeViewController *vc = [[UGYYLotterySecondHomeViewController alloc] init];
-        vc.title = [NSString stringWithFormat:@"%@系列",listModel.categoryName];
-        vc.dataArray = [UGYYGames arrayOfModelsFromDictionaries:listModel.games error:nil];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-    else if ([@"real" isEqualToString:listModel.category]) {//真人
-        
-        UGYYLotterySecondHomeViewController *vc = [[UGYYLotterySecondHomeViewController alloc] init];
-        vc.title = [NSString stringWithFormat:@"%@系列",listModel.categoryName];
-        vc.dataArray = [UGYYGames arrayOfModelsFromDictionaries:listModel.games error:nil];
-        [self.navigationController pushViewController:vc animated:YES];
+        [NavController1 pushViewController:[UGLotteryHomeController new] animated:YES];
+        return;
     }
     
-    NSLog(@"listModel.category = %@",listModel.category);
+    UGYYLotterySecondHomeViewController *vc = [[UGYYLotterySecondHomeViewController alloc] init];
+    vc.title = _NSString(@"%@系列", listModel.categoryName);
+    vc.dataArray = [UGYYGames arrayOfModelsFromDictionaries:listModel.games error:nil];
+    [NavController1 pushViewController:vc animated:YES];
 }
 
 

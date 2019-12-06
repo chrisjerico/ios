@@ -47,20 +47,27 @@ static LogVC *_logVC = nil;
     _logVC.view.by = 0;
     
     // 添加手势
-    [superview addGestureRecognizer:({
-        UISwipeGestureRecognizer *swipe = [UISwipeGestureRecognizer gestureRecognizer:^(UISwipeGestureRecognizer *sender) {
-            [NavController1.topView endEditing:true];
-            [superview addSubview:_logVC.view];
-            [_logVC.currentSiteIdButton setTitle:APP.SiteId forState:UIControlStateNormal];
-            
-            [UIView animateWithDuration:0.25 animations:^{
-                _logVC.view.center = CGPointMake(superview.width/2, superview.height/2);
-            } completion:^(BOOL finished) {
-                [_logVC.reqTableView reloadData];
-            }];
+    void (^block)(UISwipeGestureRecognizer *) = ^(UISwipeGestureRecognizer *sender) {
+        [NavController1.topView endEditing:true];
+        [superview addSubview:_logVC.view];
+        [_logVC.currentSiteIdButton setTitle:APP.SiteId forState:UIControlStateNormal];
+        
+        [UIView animateWithDuration:0.25 animations:^{
+            _logVC.view.center = CGPointMake(superview.width/2, superview.height/2);
+        } completion:^(BOOL finished) {
+            [_logVC.reqTableView reloadData];
         }];
+    };
+    [superview addGestureRecognizer:({
+        UISwipeGestureRecognizer *swipe = [UISwipeGestureRecognizer gestureRecognizer:block];
         swipe.numberOfTouchesRequired = 2;
         swipe.direction = UISwipeGestureRecognizerDirectionDown;
+        swipe;
+    })];
+    [superview addGestureRecognizer:({
+        UISwipeGestureRecognizer *swipe = [UISwipeGestureRecognizer gestureRecognizer:block];
+        swipe.numberOfTouchesRequired = 2;
+        swipe.direction = UISwipeGestureRecognizerDirectionRight;
         swipe;
     })];
 }

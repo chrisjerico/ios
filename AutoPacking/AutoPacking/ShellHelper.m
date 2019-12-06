@@ -45,9 +45,8 @@
     }
     NSString *commitId = [NSString stringWithContentsOfFile:[NSString stringWithFormat:@"%@/CommitId.txt", ProjectDir] encoding:NSUTF8StringEncoding error:nil];
     commitId = [commitId stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-//    NSString *dirPath = [NSString stringWithFormat:@"/Library/WebServer/Documents/ipa_%@", commitId ? : [df stringFromDate:[NSDate date]]];
-    NSString *dirPath = [NSString stringWithFormat:@"%@%@",IpaDir, commitId ? : [df stringFromDate:[NSDate date]]];
-    NSMutableString *errSiteIds = @"".mutableCopy;
+    NSString *dirPath = [NSString stringWithFormat:@"%@/ipa_%@", ExportDir, commitId ? : [df stringFromDate:[NSDate date]]];
+    NSMutableDictionary *errSiteIds = @{}.mutableCopy;
     
     __block SiteModel *__sm = nil;
     void (^startPacking)(void) = nil;
@@ -63,8 +62,8 @@
         
         if (!__sm) {
             [NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[dirPath]];
-            if (errSiteIds.length) {
-                NSLog(@"所有站点已打包完毕，其中 %@ 站点打包失败，退出打包程序！", errSiteIds);
+            if (errSiteIds.count) {
+                NSLog(@"所有站点已打包完毕，其中 %@ 站点打包失败，退出打包程序！", [errSiteIds.allKeys componentsJoinedByString:@","]);
             } else {
                 NSLog(@"所有站点已打包完毕，退出打包程序！");
             }
@@ -83,7 +82,7 @@
             BOOL isEnterprise = [__sm.type isEqualToString:@"企业包"] || [__sm.type isEqualToString:@"内测包"];
             NSTask *task = [[NSTask alloc] init];
             task.launchPath = [NSString stringWithFormat:@"%@/3packing.sh", ShellDir];
-            task.arguments = @[isEnterprise ? @"1" : @"2", ProjectDir, ];
+            task.arguments = @[isEnterprise ? @"2" : @"1", ProjectDir, ];
             task.terminationHandler = ^(NSTask *ts) {
                 [ts terminate];
                 
@@ -96,7 +95,7 @@
                     NSLog(@"%@ 打包成功", __sm.siteId);
                     __sm = nil;
                 } else {
-                    [errSiteIds appendFormat:@"%@,", __sm.siteId];
+                    errSiteIds[__sm.siteId] = @true;
                     if (!__sm.retryCnt--) {
                         __sm = nil;
                         NSLog(@"%@ 打包失败", __sm.siteId);
