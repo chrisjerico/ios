@@ -125,6 +125,8 @@
         [UGUserCenter menu:@"利息宝"                     :@"LH_syb3"],
         [UGUserCenter menu:@"额度转换"                   :@"LH_menu-transfer"],
         [UGUserCenter menu:@"推荐收益"                    :@"LH_task"],
+        [UGUserCenter menu:@"收益推荐"                    :@"LH_task"],
+        [UGUserCenter menu:@"长龙助手"                    :@"changlong"],
         [UGUserCenter menu:@"安全中心"                    :@"LH_menu-password"],
         [UGUserCenter menu:@"站内信"                    :@"LH_menu-notice"],
         [UGUserCenter menu:@"彩票注单记录"                  :@"LH_menu-rule"],

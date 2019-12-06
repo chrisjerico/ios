@@ -210,6 +210,8 @@
         [UGUserCenter menu:@"利息宝"                     :@"lixibao"],
         [UGUserCenter menu:@"额度转换"                   :@"change"],
         [UGUserCenter menu:@"推荐收益"                    :@"shouyi1sel"],
+        [UGUserCenter menu:@"收益推荐"                    :@"shouyi1sel"],
+        [UGUserCenter menu:@"长龙助手"                    :@"changlong"],
         [UGUserCenter menu:@"安全中心"                    :@"ziyuan"],
         [UGUserCenter menu:@"站内信"                    :@"zhanneixin"],
         [UGUserCenter menu:@"彩票注单记录"                  :@"zdgl"],
