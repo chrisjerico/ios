@@ -12,6 +12,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 #define SysConf [UGSystemConfigModel currentConfig]
 
+@protocol UGUserCenter <NSObject>
+
+@end
+@interface UGUserCenter :UGModel<UGUserCenter>
+@property (nonatomic, copy) NSString *code; /**<   排序  */
+@property (nonatomic, copy) NSString *logo; /**<   图标 */
+@property (nonatomic, copy) NSString *name; /**<   标题 */
+@property (nonatomic) NSInteger sort;       /**<   排序 */
++ (instancetype)menu:(NSString *)name :(NSString *)logo ;
+@end
+
 @protocol UGmobileMenu <NSObject>
 
 @end
@@ -85,6 +96,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *chatMinFollowAmount;    /**<   聊天室跟注最小金额*/
 
 @property (nonatomic, copy) NSString *easyRememberDomain;    /**<   黑色模板易记的网址*/
+
+@property (nonatomic, copy) NSArray<UGUserCenter *> *userCenter;
 + (instancetype)currentConfig;
 
 + (void)setCurrentConfig:(UGSystemConfigModel *)config;

@@ -182,7 +182,10 @@ static NSMutableArray <SiteModel *> *__sites = nil;
             [SiteModel site    :@"c192"     :@"苹果开发服务群"     :@"凤凰之家"     :@"io.fhpt.H56438C9F"     :@""],
             [SiteModel site    :@"c194"     :@"苹果开发服务群"     :@"好彩国际"     :@"io.dcloud.UNI42C6822"     :@"https://hc16324app95712gj5168168app.com"],
             [SiteModel site    :@"c184"     :@"苹果开发服务群"     :@"凤凰彩票"     :@"io.fhpt.H5A6D1720"     :@"https://0fhcp.cn"],
-            [SiteModel site    :@"c049"     :@"苹果开发服务群"     :@"新世纪Ⅱ"     :@"io.dcloud.UNIFC049"     :@"https://93922app.com"],
+
+            [SiteModel site    :@"c048"     :@"苹果开发服务群"     :@"凤凰彩票"     :@"io.fhpt.H5F00A9FA"     :@"https://dsjf43-43-f14-345-36-g54t-gfh54.com"],
+            [SiteModel site    :@"c049"     :@"郴州快签"     :@"新世纪Ⅱ"     :@"io.dcloud.UNIFC049"     :@"https://93922app.com"],
+
             
             
             [SiteModel site    :@"c048"     :@"郴州快签"     :@"凤凰彩票"     :@"io.fhpt.H5F00A9FA"     :@"https://dsjf43-43-f14-345-36-g54t-gfh54.com"],
@@ -197,6 +200,7 @@ static NSMutableArray <SiteModel *> *__sites = nil;
             [SiteModel site    :@"c132"     :@"郴州快签"     :@"彩霸王"     :@"io.fhpt.H504F0A93"     :@""],
             [SiteModel site    :@"c193"     :@"郴州快签"     :@"新葡京彩票"     :@"io.fhpt.H54C32CA8"     :@"https://4906app.app"],
             [SiteModel site    :@"c200"     :@"郴州快签"     :@"1995澳门彩票"     :@"io.fhpt.H5830E440"     :@"https://20191995.com"],
+            [SiteModel site    :@"c202"     :@"郴州快签"     :@""     :@""     :@"https://895911.com"],
             
             
             [SiteModel site    :@"c018a"    :@"未确定签名方式"     :@"今⽇彩票"        :@"io.fhpt.H53DDB5F6"     :@""],

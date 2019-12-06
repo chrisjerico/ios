@@ -49,8 +49,11 @@
 
 
 
-@property (nonatomic, strong) NSArray <NSString *> *menuNameArray; /**<   表title  */
-@property (nonatomic, strong) NSArray <NSString *> *imageNameArray;/**<   表img  */
+@property (nonatomic, strong) NSMutableArray <NSString *> *menuNameArray; /**<   表title  */
+@property (nonatomic, strong) NSMutableArray <NSString *> *imageNameArray;/**<   表img  */
+
+
+@property (nonatomic, copy) NSArray<UGUserCenter *> *gms; /**<   行数据 */
 
 @end
 
@@ -113,7 +116,46 @@
     
     self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithImageName:@"gengduo" target:self action:@selector(rightBarBtnClick)];
     
-    [self tableCelldataSource];
+    
+    _gms = @[
+        [UGUserCenter menu:@"存款"                     :@"LH_menu-cz"],
+        [UGUserCenter menu:@"取款"                      :@"LH_menu-qk"],
+        [UGUserCenter menu:@"在线客服"                    :@"LH_menu-message"],
+        [UGUserCenter menu:@"银行卡管理"                   :@"LH_menu-account"],
+        [UGUserCenter menu:@"利息宝"                     :@"LH_syb3"],
+        [UGUserCenter menu:@"额度转换"                   :@"LH_menu-transfer"],
+        [UGUserCenter menu:@"推荐收益"                    :@"LH_task"],
+        [UGUserCenter menu:@"安全中心"                    :@"LH_menu-password"],
+        [UGUserCenter menu:@"站内信"                    :@"LH_menu-notice"],
+        [UGUserCenter menu:@"彩票注单记录"                  :@"LH_menu-rule"],
+        [UGUserCenter menu:@"其他注单记录"                  :@"LH_menu-rule"],
+        [UGUserCenter menu:@"个人信息"                        :@"LH_task"],
+        [UGUserCenter menu:@"建议反馈"                    :@"LH_menu-feedback"],
+        [UGUserCenter menu:@"活动彩金"                    :@"LH_money"],
+        [UGUserCenter menu:@"代理申请"                   :@"LH_task"],
+
+    ];
+    
+    {
+        NSArray<UGmobileMenu *> *menus = [[UGUserCenter arrayOfModelsFromDictionaries:SysConf.userCenter error:nil] sortedArrayUsingComparator:^NSComparisonResult(UGUserCenter *obj1, UGUserCenter *obj2) {
+            return obj1.sort > obj2.sort;
+        }];
+        if (menus.count > 0) {
+            // 后台配置的页面
+            [self resetUpTabCellData:[menus valuesWithKeyPath:@"name"]];
+        }
+    }
+    SANotificationEventSubscribe(UGNotificationGetSystemConfigComplete, self, ^(typeof (self) self, id obj) {
+        NSArray<UGmobileMenu *> *menus = [[UGUserCenter arrayOfModelsFromDictionaries:SysConf.userCenter error:nil] sortedArrayUsingComparator:^NSComparisonResult(UGUserCenter *obj1, UGUserCenter *obj2) {
+            return obj1.sort > obj2.sort;
+        }];
+        if (menus.count > 0) {
+            // 后台配置的页面
+            [self resetUpTabCellData:[menus valuesWithKeyPath:@"name"]];
+        }
+    });
+    
+//    [self tableCelldataSource];
     [self.myTabView registerNib:[UINib nibWithNibName:@"UGMenuTableViewCell" bundle:nil] forCellReuseIdentifier:@"UGMenuTableViewCell"];
     [self.myTabView reloadData];
     
@@ -132,19 +174,56 @@
 
 }
 #pragma mark table datasource
-- (void)tableCelldataSource {
+//- (void)tableCelldataSource {
+//
+//    self.menuNameArray = [NSMutableArray array];
+//    UGUserModel *user = [UGUserModel currentUser];
+//    NSLog(@"isAgent= %d",user.isAgent);
+//    if (user.isAgent) {
+//        self.menuNameArray = @[@"存款",@"取款",@"在线客服",@"银行卡管理",@"利息宝",@"额度转换",@"推荐收益",@"安全中心",@"站内信",@"彩票注单记录",@"其他注单记录",@"个人信息",@"建议反馈",@"活动彩金"];
+//        self.imageNameArray = @[@"LH_menu-cz",@"LH_menu-qk",@"LH_menu-message",@"LH_menu-account",@"LH_syb3",@"LH_menu-transfer",@"LH_task",@"LH_menu-password",@"LH_menu-notice",@"LH_menu-rule",@"LH_menu-rule",@"LH_task",@"LH_menu-feedback",@"LH_money"];
+//    } else {
+//        self.menuNameArray = @[@"存款",@"取款",@"在线客服",@"银行卡管理",@"利息宝",@"额度转换",@"代理申请",@"安全中心",@"站内信",@"彩票注单记录",@"其他注单记录",@"个人信息",@"建议反馈",@"活动彩金"];
+//        self.imageNameArray = @[@"LH_menu-cz",@"LH_menu-qk",@"LH_menu-message",@"LH_menu-account",@"LH_syb3",@"LH_menu-transfer",@"LH_task",@"LH_menu-password",@"LH_menu-notice",@"LH_menu-rule",@"LH_menu-rule",@"LH_task",@"LH_menu-feedback",@"LH_money"];
+//    }
+//}
 
+/**
+ *  添加tabCell 数据
+ */
+- (void)resetUpTabCellData:(NSArray<NSString *> *)paths {
     self.menuNameArray = [NSMutableArray array];
+    self.imageNameArray = [NSMutableArray array];
     UGUserModel *user = [UGUserModel currentUser];
     NSLog(@"isAgent= %d",user.isAgent);
-    if (user.isAgent) {
-        self.menuNameArray = @[@"存款",@"取款",@"在线客服",@"银行卡管理",@"利息宝",@"额度转换",@"推荐收益",@"安全中心",@"站内信",@"彩票注单记录",@"其他注单记录",@"个人信息",@"建议反馈",@"活动彩金"];
-        self.imageNameArray = @[@"LH_menu-cz",@"LH_menu-qk",@"LH_menu-message",@"LH_menu-account",@"LH_syb3",@"LH_menu-transfer",@"LH_task",@"LH_menu-password",@"LH_menu-notice",@"LH_menu-rule",@"LH_menu-rule",@"LH_task",@"LH_menu-feedback",@"LH_money"];
-    } else {
-        self.menuNameArray = @[@"存款",@"取款",@"在线客服",@"银行卡管理",@"利息宝",@"额度转换",@"代理申请",@"安全中心",@"站内信",@"彩票注单记录",@"其他注单记录",@"个人信息",@"建议反馈",@"活动彩金"];
-        self.imageNameArray = @[@"LH_menu-cz",@"LH_menu-qk",@"LH_menu-message",@"LH_menu-account",@"LH_syb3",@"LH_menu-transfer",@"LH_task",@"LH_menu-password",@"LH_menu-notice",@"LH_menu-rule",@"LH_menu-rule",@"LH_task",@"LH_menu-feedback",@"LH_money"];
+    
+    for (NSString *path in paths) {
+        UGUserCenter *gm = [_gms objectWithValue:path keyPath:@"name"];
+        
+        if (user.isAgent) {
+            if ([gm.name isEqualToString:@"代理申请"]) {
+                [gm setName:@"推荐收益"];
+            }
+        } else {
+            if ([gm.name isEqualToString:@"推荐收益"]) {
+                [gm setName:@"代理申请"];
+            }
+        }
+        [self.menuNameArray addObject:gm.name];
+        [self.imageNameArray addObject:gm.logo];
+        
+        if (!user.hasActLottery) {
+            if ([gm.name isEqualToString:@"活动彩金"]) {
+                [self.menuNameArray removeObject:gm.name];
+                [self.imageNameArray removeObject:gm.logo];
+            }
+        }
     }
+    
+    [self.myTabView reloadData];
+
 }
+
 
 
 #pragma mark tableview datasource
@@ -333,8 +412,8 @@
             
             [self getSystemConfig];
             //初始化数据
-            [self tableCelldataSource];
-            [self.myTabView reloadData];
+//            [self tableCelldataSource];
+//            [self.myTabView reloadData];
         } failure:^(id msg) {
             [self stopAnimation];
         }];

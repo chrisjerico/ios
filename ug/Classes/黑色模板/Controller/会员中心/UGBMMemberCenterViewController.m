@@ -57,6 +57,8 @@
 
 @property (nonatomic, strong)UGBMUnderMenuView *underMenu;
 
+@property (nonatomic, copy) NSArray<UGUserCenter *> *gms; /**<   行数据 */
+
 @end
 
 @implementation UGBMMemberCenterViewController
@@ -118,6 +120,45 @@
 
     //初始化
     [self initCollectionView];
+    _gms = @[
+        [UGUserCenter menu:@"存款"                     :@"chongzhi"],
+        [UGUserCenter menu:@"取款"                      :@"chongzhi"],
+        [UGUserCenter menu:@"在线客服"                    :@"zaixiankefu"],
+        [UGUserCenter menu:@"银行卡管理"                   :@"yinhangqia"],
+        [UGUserCenter menu:@"利息宝"                     :@"lixibao"],
+        [UGUserCenter menu:@"额度转换"                   :@"change"],
+        [UGUserCenter menu:@"推荐收益"                    :@"shouyi1sel"],
+        [UGUserCenter menu:@"安全中心"                    :@"ziyuan"],
+        [UGUserCenter menu:@"站内信"                    :@"zhanneixin"],
+        [UGUserCenter menu:@"彩票注单记录"                  :@"zdgl"],
+        [UGUserCenter menu:@"其他注单记录"                  :@"zdgl"],
+        [UGUserCenter menu:@"个人信息"                        :@"gerenzhongxinxuanzhong"],
+        [UGUserCenter menu:@"建议反馈"                    :@"yijian"],
+        [UGUserCenter menu:@"活动彩金"                    :@"zdgl"],
+        [UGUserCenter menu:@"代理申请"                   :@"shouyi1sel"],
+        [UGUserCenter menu:@"任务中心"                   :@"BMrenwu"],
+
+    ];
+    
+    {
+           NSArray<UGmobileMenu *> *menus = [[UGUserCenter arrayOfModelsFromDictionaries:SysConf.userCenter error:nil] sortedArrayUsingComparator:^NSComparisonResult(UGUserCenter *obj1, UGUserCenter *obj2) {
+               return obj1.sort > obj2.sort;
+           }];
+           if (menus.count > 0) {
+               // 后台配置的页面
+               [self resetUpTabCellData:[menus valuesWithKeyPath:@"name"]];
+           }
+       }
+       SANotificationEventSubscribe(UGNotificationGetSystemConfigComplete, self, ^(typeof (self) self, id obj) {
+           NSArray<UGmobileMenu *> *menus = [[UGUserCenter arrayOfModelsFromDictionaries:SysConf.userCenter error:nil] sortedArrayUsingComparator:^NSComparisonResult(UGUserCenter *obj1, UGUserCenter *obj2) {
+               return obj1.sort > obj2.sort;
+           }];
+           if (menus.count > 0) {
+               // 后台配置的页面
+               [self resetUpTabCellData:[menus valuesWithKeyPath:@"name"]];
+           }
+       });
+
     
     
 //    if (self.tabBarController.tabBar.isHidden) {
@@ -150,8 +191,8 @@
         [self.myCollectionView registerNib:[UINib nibWithNibName:@"UGMineSkinCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UGMineSkinCollectionViewCell"];
     [self.myCollectionView setShowsHorizontalScrollIndicator:NO];
     
-    //初始化数据
-    [self getDateSource];
+//    //初始化数据
+//    [self getDateSource];
 }
 
 #pragma mark UICollectionView datasource
@@ -301,67 +342,103 @@
     return afterImage;
 }
 
-- (void)skinFirstdataSource {
+//- (void)skinFirstdataSource {
+//
+//    self.menuNameArray = [NSMutableArray array];
+//    UGUserModel *user = [UGUserModel currentUser];
+//    NSLog(@"isAgent= %d",user.isAgent);
+//
+//    if (user.isAgent) {
+//        [self.menuNameArray addObject:@{@"title" : @"存款" , @"imgName" : [self retureWhiteColorImage:@"chongzhi"] }];
+//        [self.menuNameArray addObject:@{@"title" : @"取款" , @"imgName" :  [self retureWhiteColorImage:@"tixian"]}];
+//        [self.menuNameArray addObject:@{@"title" : @"利息宝" , @"imgName" : [self retureWhiteColorImage:@"lixibao"]}];
+//
+//        [self.menuNameArray addObject:@{@"title" : @"在线客服" , @"imgName" : [self retureWhiteColorImage:@"zaixiankefu"]}];
+//        [self.menuNameArray addObject:@{@"title" : @"银行卡管理" , @"imgName" : [self retureWhiteColorImage:@"yinhangqia"]}];
+//        [self.menuNameArray addObject:@{@"title" : @"彩票注单记录" , @"imgName" :[self retureWhiteColorImage:@"zdgl"]}];
+//
+//         [self.menuNameArray addObject:@{@"title" : @"其他注单记录" , @"imgName" :[self retureWhiteColorImage:@"zdgl"]}];
+//         [self.menuNameArray addObject:@{@"title" : @"额度转换" , @"imgName" : [self retureWhiteColorImage:@"change"]}];
+//         [self.menuNameArray addObject:@{@"title" : @"长龙助手" , @"imgName" : [self retureWhiteColorImage:@"changlong"]}];
+//
+//        [self.menuNameArray addObject:@{@"title" : @"推荐收益" , @"imgName" : [self retureWhiteColorImage:@"shouyi1sel"]}];
+//        [self.menuNameArray addObject:@{@"title" : @"安全中心" , @"imgName" : [self retureWhiteColorImage:@"ziyuan"]}];
+//        [self.menuNameArray addObject:@{@"title" : @"站内信" , @"imgName" :[self retureWhiteColorImage:@"zhanneixin"]}];
+//
+//        [self.menuNameArray addObject:@{@"title" : @"个人信息" , @"imgName" : [self retureWhiteColorImage:@"gerenzhongxinxuanzhong"]}];
+//        [self.menuNameArray addObject:@{@"title" : @"建议反馈" , @"imgName" :[self retureWhiteColorImage:@"yijian"]}];
+//
+//        if (user.hasActLottery) {
+//            [self.menuNameArray addObject:@{@"title" : @"活动彩金" , @"imgName" : [self retureWhiteColorImage:@"zdgl"]}];
+//        }
+//        [self.menuNameArray addObject:@{@"title" : @"任务中心" , @"imgName" :[self retureWhiteColorImage:@"BMrenwu"]}];
+//
+//    } else {
+//        [self.menuNameArray addObject:@{@"title" : @"存款" , @"imgName" : [self retureWhiteColorImage:@"chongzhi"] }];
+//        [self.menuNameArray addObject:@{@"title" : @"取款" , @"imgName" :  [self retureWhiteColorImage:@"tixian"]}];
+//        [self.menuNameArray addObject:@{@"title" : @"利息宝" , @"imgName" : [self retureWhiteColorImage:@"lixibao"]}];
+//
+//        [self.menuNameArray addObject:@{@"title" : @"在线客服" , @"imgName" : [self retureWhiteColorImage:@"zaixiankefu"]}];
+//        [self.menuNameArray addObject:@{@"title" : @"银行卡管理" , @"imgName" : [self retureWhiteColorImage:@"yinhangqia"]}];
+//        [self.menuNameArray addObject:@{@"title" : @"彩票注单记录" , @"imgName" :[self retureWhiteColorImage:@"zdgl"]}];
+//
+//        [self.menuNameArray addObject:@{@"title" : @"其他注单记录" , @"imgName" :[self retureWhiteColorImage:@"zdgl"]}];
+//        [self.menuNameArray addObject:@{@"title" : @"额度转换" , @"imgName" : [self retureWhiteColorImage:@"change"]}];
+//        [self.menuNameArray addObject:@{@"title" : @"长龙助手" , @"imgName" : [self retureWhiteColorImage:@"changlong"]}];
+//
+//        [self.menuNameArray addObject:@{@"title" : @"申请代理" , @"imgName" : [self retureWhiteColorImage:@"shouyi1sel"]}];
+//        [self.menuNameArray addObject:@{@"title" : @"安全中心" , @"imgName" : [self retureWhiteColorImage:@"ziyuan"]}];
+//        [self.menuNameArray addObject:@{@"title" : @"站内信" , @"imgName" :[self retureWhiteColorImage:@"zhanneixin"]}];
+//
+//        [self.menuNameArray addObject:@{@"title" : @"个人信息" , @"imgName" : [self retureWhiteColorImage:@"gerenzhongxinxuanzhong"]}];
+//        [self.menuNameArray addObject:@{@"title" : @"建议反馈" , @"imgName" :[self retureWhiteColorImage:@"yijian"]}];
+//        if (user.hasActLottery) {
+//            [self.menuNameArray addObject:@{@"title" : @"活动彩金" , @"imgName" : [self retureWhiteColorImage:@"zdgl"]}];
+//        }
+//        [self.menuNameArray addObject:@{@"title" : @"任务中心" , @"imgName" :[self retureWhiteColorImage:@"BMrenwu"]}];
+//    }
+//}
 
+//- (void)getDateSource{
+//    [self skinFirstdataSource];
+//    [self.myCollectionView reloadData];
+//}
+
+/**
+ *  添加tabCell 数据
+ */
+- (void)resetUpTabCellData:(NSArray<NSString *> *)paths {
     self.menuNameArray = [NSMutableArray array];
     UGUserModel *user = [UGUserModel currentUser];
     NSLog(@"isAgent= %d",user.isAgent);
     
-    if (user.isAgent) {
-        [self.menuNameArray addObject:@{@"title" : @"存款" , @"imgName" : [self retureWhiteColorImage:@"chongzhi"] }];
-        [self.menuNameArray addObject:@{@"title" : @"取款" , @"imgName" :  [self retureWhiteColorImage:@"tixian"]}];
-        [self.menuNameArray addObject:@{@"title" : @"利息宝" , @"imgName" : [self retureWhiteColorImage:@"lixibao"]}];
+    for (NSString *path in paths) {
+        UGUserCenter *gm = [_gms objectWithValue:path keyPath:@"name"];
         
-        [self.menuNameArray addObject:@{@"title" : @"在线客服" , @"imgName" : [self retureWhiteColorImage:@"zaixiankefu"]}];
-        [self.menuNameArray addObject:@{@"title" : @"银行卡管理" , @"imgName" : [self retureWhiteColorImage:@"yinhangqia"]}];
-        [self.menuNameArray addObject:@{@"title" : @"彩票注单记录" , @"imgName" :[self retureWhiteColorImage:@"zdgl"]}];
-        
-         [self.menuNameArray addObject:@{@"title" : @"其他注单记录" , @"imgName" :[self retureWhiteColorImage:@"zdgl"]}];
-         [self.menuNameArray addObject:@{@"title" : @"额度转换" , @"imgName" : [self retureWhiteColorImage:@"change"]}];
-         [self.menuNameArray addObject:@{@"title" : @"长龙助手" , @"imgName" : [self retureWhiteColorImage:@"changlong"]}];
-        
-        [self.menuNameArray addObject:@{@"title" : @"推荐收益" , @"imgName" : [self retureWhiteColorImage:@"shouyi1sel"]}];
-        [self.menuNameArray addObject:@{@"title" : @"安全中心" , @"imgName" : [self retureWhiteColorImage:@"ziyuan"]}];
-        [self.menuNameArray addObject:@{@"title" : @"站内信" , @"imgName" :[self retureWhiteColorImage:@"zhanneixin"]}];
-     
-        [self.menuNameArray addObject:@{@"title" : @"个人信息" , @"imgName" : [self retureWhiteColorImage:@"gerenzhongxinxuanzhong"]}];
-        [self.menuNameArray addObject:@{@"title" : @"建议反馈" , @"imgName" :[self retureWhiteColorImage:@"yijian"]}];
-        
-        if (user.hasActLottery) {
-            [self.menuNameArray addObject:@{@"title" : @"活动彩金" , @"imgName" : [self retureWhiteColorImage:@"zdgl"]}];
+        if (user.isAgent) {
+            if ([gm.name isEqualToString:@"代理申请"]) {
+                [gm setName:@"推荐收益"];
+            }
+        } else {
+            if ([gm.name isEqualToString:@"推荐收益"]) {
+                [gm setName:@"代理申请"];
+            }
         }
-        [self.menuNameArray addObject:@{@"title" : @"任务中心" , @"imgName" :[self retureWhiteColorImage:@"BMrenwu"]}];
         
-    } else {
-        [self.menuNameArray addObject:@{@"title" : @"存款" , @"imgName" : [self retureWhiteColorImage:@"chongzhi"] }];
-        [self.menuNameArray addObject:@{@"title" : @"取款" , @"imgName" :  [self retureWhiteColorImage:@"tixian"]}];
-        [self.menuNameArray addObject:@{@"title" : @"利息宝" , @"imgName" : [self retureWhiteColorImage:@"lixibao"]}];
         
-        [self.menuNameArray addObject:@{@"title" : @"在线客服" , @"imgName" : [self retureWhiteColorImage:@"zaixiankefu"]}];
-        [self.menuNameArray addObject:@{@"title" : @"银行卡管理" , @"imgName" : [self retureWhiteColorImage:@"yinhangqia"]}];
-        [self.menuNameArray addObject:@{@"title" : @"彩票注单记录" , @"imgName" :[self retureWhiteColorImage:@"zdgl"]}];
+        [self.menuNameArray addObject:@{@"title" : gm.name , @"imgName" : [self retureWhiteColorImage:gm.logo] }];
 
-        [self.menuNameArray addObject:@{@"title" : @"其他注单记录" , @"imgName" :[self retureWhiteColorImage:@"zdgl"]}];
-        [self.menuNameArray addObject:@{@"title" : @"额度转换" , @"imgName" : [self retureWhiteColorImage:@"change"]}];
-        [self.menuNameArray addObject:@{@"title" : @"长龙助手" , @"imgName" : [self retureWhiteColorImage:@"changlong"]}];
-        
-        [self.menuNameArray addObject:@{@"title" : @"申请代理" , @"imgName" : [self retureWhiteColorImage:@"shouyi1sel"]}];
-        [self.menuNameArray addObject:@{@"title" : @"安全中心" , @"imgName" : [self retureWhiteColorImage:@"ziyuan"]}];
-        [self.menuNameArray addObject:@{@"title" : @"站内信" , @"imgName" :[self retureWhiteColorImage:@"zhanneixin"]}];
-        
-        [self.menuNameArray addObject:@{@"title" : @"个人信息" , @"imgName" : [self retureWhiteColorImage:@"gerenzhongxinxuanzhong"]}];
-        [self.menuNameArray addObject:@{@"title" : @"建议反馈" , @"imgName" :[self retureWhiteColorImage:@"yijian"]}];
-        if (user.hasActLottery) {
-            [self.menuNameArray addObject:@{@"title" : @"活动彩金" , @"imgName" : [self retureWhiteColorImage:@"zdgl"]}];
+        if (!user.hasActLottery) {
+            if ([gm.name isEqualToString:@"活动彩金"]) {
+                [self.menuNameArray removeObject:[self.menuNameArray objectWithValue:@"活动彩金" keyPath:@"title"]];
+            }
         }
-        [self.menuNameArray addObject:@{@"title" : @"任务中心" , @"imgName" :[self retureWhiteColorImage:@"BMrenwu"]}];
     }
+    
+     [self.myCollectionView reloadData];
+
 }
 
-- (void)getDateSource{
-    [self skinFirstdataSource];
-    [self.myCollectionView reloadData];
-}
 #pragma mark - UIS
 - (void)setupUserInfo:(BOOL)flag  {
     UGUserModel *user = [UGUserModel currentUser];
@@ -383,14 +460,26 @@
             UGUserModel.currentUser = user;
             [self setupUserInfo:YES];
             [self stopAnimation];
-            //初始化数据
-            [self getDateSource];
+            [self getSystemConfig];
         } failure:^(id msg) {
             [self stopAnimation];
         }];
     }];
 }
 
+- (void)getSystemConfig {
+    
+    [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            UGSystemConfigModel *config = model.data;
+            UGSystemConfigModel.currentConfig = config;
+            NSLog(@"签到==%@",[UGSystemConfigModel  currentConfig].checkinSwitch);
+            SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
+        } failure:^(id msg) {
+            [SVProgressHUD dismiss];
+        }];
+    }];
+}
 #pragma mark - 其他方法
 // 刷新余额
 - (IBAction)refreshBalance:(id)sender {

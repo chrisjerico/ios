@@ -9,8 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "SiteModel.h"
 
+
 #define ProjectDir ([NSUserName() isEqualToString:@"fish"] ? @"/Users/fish/archive" : @"/Users/ug/pack")    // 导出目录
 #define ExportDir @"/Library/WebServer/Documents"   // 项目目录
+
 
 NS_ASSUME_NONNULL_BEGIN
 

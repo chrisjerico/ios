@@ -780,8 +780,9 @@ static UGSkinManagers *__initSkin1 = nil;
     
     NSString *skitType = dict[SysConf.mobileTemplateCategory];
     #if DEBUG
-//          skitType =  @"1";p
-          skitType = @"六合资料";
+          skitType =  @"新年红";
+//          skitType = @"六合资料";
+//              skitType = @"黑色模板";
     #endif
     return [UGSkinManagers allSkin][skitType];
 }

@@ -13,6 +13,22 @@
 
 UGSystemConfigModel *currentConfig = nil;
 
+@implementation UGUserCenter
+
++ (instancetype)menu:(NSString *)name :(NSString *)logo {
+    UGUserCenter *gm = [UGUserCenter new];
+    gm.name = name;
+    gm.logo = logo;
+    return gm;
+}
+
+
+-(NSInteger)sort{
+    return [self.code integerValue];
+}
+
+@end
+
 @implementation UGmobileMenu
 + (instancetype)menu:(NSString *)path :(NSString *)name :(NSString *)icon :(NSString *)selectedIcon :(Class)cls {
     UGmobileMenu *gm = [UGmobileMenu new];
