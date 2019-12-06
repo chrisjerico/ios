@@ -181,6 +181,10 @@ static NSMutableArray <SiteModel *> *__sites = nil;
             [SiteModel site    :@"c139"     :@"苹果开发服务群"     :@"68中彩⽹"     :@"io.fhpt.H536040A9"     :@""],
             [SiteModel site    :@"c186"     :@"苹果开发服务群"     :@"好彩⽹"     :@"io.fhpt.H5B2B56F7"     :@""],
             [SiteModel site    :@"c192"     :@"苹果开发服务群"     :@"凤凰之家"     :@"io.fhpt.H56438C9F"     :@""],
+            [SiteModel site    :@"c194"     :@"苹果开发服务群"     :@"好彩国际"     :@"io.dcloud.UNI42C6822"     :@"https://hc16324app95712gj5168168app.com"],
+            [SiteModel site    :@"c184"     :@"苹果开发服务群"     :@"凤凰彩票"     :@"io.fhpt.H5A6D1720"     :@"https://0fhcp.cn"],
+            [SiteModel site    :@"c048"     :@"苹果开发服务群"     :@"凤凰彩票"     :@"io.fhpt.H5F00A9FA"     :@"https://dsjf43-43-f14-345-36-g54t-gfh54.com"],
+            [SiteModel site    :@"c049"     :@"苹果开发服务群"     :@"新世纪Ⅱ"     :@"io.dcloud.UNIFC049"     :@"https://93922app.com"],
             
             
             [SiteModel site    :@"c011"     :@"郴州快签"     :@"华夏彩票"     :@"io.fhpt.H599FF71F"     :@"https://www.hx627.com"],
@@ -200,8 +204,6 @@ static NSMutableArray <SiteModel *> *__sites = nil;
             [SiteModel site    :@"b001"     :@"未确定签名方式"     :@"优选彩票"     :@"io.fhpt.H5BC63A97"     :@""],
             [SiteModel site    :@"c006"     :@"未确定签名方式"     :@"⾦沙娱乐场"     :@"io.fhpt.H560B7EC1"     :@"https://xn--app-v85fh28j.com"],
             [SiteModel site    :@"c036"     :@"未确定签名方式"     :@"幸运彩票"     :@"io.fhpt.H5570A960"     :@""],
-            [SiteModel site    :@"c048"     :@"未确定签名方式"     :@"凤凰彩票"     :@"io.fhpt.H5F00A9FA"     :@"https://dsjf43-43-f14-345-36-g54t-gfh54.com"],
-            [SiteModel site    :@"c049"     :@"未确定签名方式"     :@"新世纪Ⅱ"     :@"io.dcloud.UNIFC049"     :@"https://93922app.com"],
             [SiteModel site    :@"c070"     :@"未确定签名方式"     :@"K8娱乐城"     :@"io.fhpt.H55ED7A0B"     :@""],
             [SiteModel site    :@"c106"     :@"未确定签名方式"     :@"58彩票"     :@"io.fhpt.H5580AADE"     :@""],
             [SiteModel site    :@"c112"     :@"未确定签名方式"     :@"太阳城集团"     :@"io.fhpt.H5E0A94E1"     :@""],
@@ -213,8 +215,6 @@ static NSMutableArray <SiteModel *> *__sites = nil;
             [SiteModel site    :@"c171c"    :@"未确定签名方式"     :@"CC彩票"     :@""     :@""],
             [SiteModel site    :@"c171d"    :@"未确定签名方式"     :@"CC彩票"     :@""     :@""],
             [SiteModel site    :@"c171e"    :@"未确定签名方式"     :@"CC彩票-默认包"     :@""     :@""],
-            [SiteModel site    :@"c184"     :@"未确定签名方式"     :@"凤凰彩票"     :@"io.fhpt.H5A6D1720"     :@"https://0fhcp.cn"],
-            [SiteModel site    :@"c194"     :@"未确定签名方式"     :@"好彩国际"     :@"io.dcloud.UNI42C6822"     :@"https://hc16324app95712gj5168168app.com"],
             [SiteModel site    :@"c197"     :@"未确定签名方式"     :@"太阳城官⽹"     :@"io.fhpt.H52622B1F"     :@"https://tycgw3.com"],
             [SiteModel site    :@"c198"     :@"未确定签名方式"     :@"太阳城集团"     :@"io.fhpt.H53E43223"     :@"https://2909tycjt.com/"],
             [SiteModel site    :@"h003a"    :@"未确定签名方式"     :@"澳⻔威尼斯⼈"     :@"io.fhpt.H554013D2"     :@""],

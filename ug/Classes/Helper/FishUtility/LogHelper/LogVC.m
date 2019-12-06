@@ -14,6 +14,7 @@
 
 #import "AFHTTPSessionManager.h"
 #import "NSMutableArray+KVO.h"
+#import <SafariServices/SafariServices.h>
 
 @interface LogVC ()<NSMutableArrayDidChangeDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *reqTableView;     /**<    请求TableView */
@@ -164,54 +165,33 @@ static LogVC *_logVC = nil;
     }
 }
 
-// 六合
+// 下载APP
 - (IBAction)onLHBtnClick:(UIButton *)sender {
-
-//    [[UGSkinManagers randomSkin] useSkin];
-//    return;
-    
-
-    UIAlertController *ac = [AlertHelper showActionSheet:nil msg:nil btnTitles:@[@"高手论坛", @"极品专贴", @"我的动态",
-                                                                                 @"每期资料", @"公式规律", @"六合图库",
-                                                                                 @"幽默猜测", @"跑狗玄机", @"四不像",
-                                                                                 @"老黄历", @"我的", @"我的粉丝",
-                                                                                                ] cancel:@"取消"];
-    [ac setActionAtTitle:@"高手论坛" handler:^(UIAlertAction *aa) {
-        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGPostListVC") animated:true];
-    }];
-    [ac setActionAtTitle:@"极品专贴" handler:^(UIAlertAction *aa) {
-        
-    }];
-    [ac setActionAtTitle:@"我的动态" handler:^(UIAlertAction *aa) {
-        
-    }];
-    [ac setActionAtTitle:@"每期资料" handler:^(UIAlertAction *aa) {
-        
-    }];
-    [ac setActionAtTitle:@"公式规律" handler:^(UIAlertAction *aa) {
-        
-    }];
-    [ac setActionAtTitle:@"六合图库" handler:^(UIAlertAction *aa) {
-        
-    }];
-    [ac setActionAtTitle:@"幽默猜测" handler:^(UIAlertAction *aa) {
-        
-    }];
-    [ac setActionAtTitle:@"跑狗玄机" handler:^(UIAlertAction *aa) {
-        
-    }];
-    [ac setActionAtTitle:@"四不像" handler:^(UIAlertAction *aa) {
-        
-    }];
-    [ac setActionAtTitle:@"老黄历" handler:^(UIAlertAction *aa) {
-        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLHOldYearViewController") animated:true];
-    }];
-    [ac setActionAtTitle:@"我的" handler:^(UIAlertAction *aa) {
-        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLHMineViewController") animated:true];
-    }];
-    [ac setActionAtTitle:@"我的粉丝" handler:^(UIAlertAction *aa) {
-        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMyFansViewController") animated:true];
-    }];
+    // 文本弹框
+    TextFieldAlertView *tfav = _LoadView_from_nib_(@"TextFieldAlertView");
+    tfav.title = @"下载链接中的id";
+    tfav.didConfirmBtnClick = ^(TextFieldAlertView *__weak tfav, NSString *text) {
+        text = [text stringByReplacingOccurrencesOfString:@" " withString:@""];
+        if (!text.isInteger) {
+            [HUDHelper showMsg:@"id必须为数字"];
+            return ;
+        }
+        UIAlertController *ac = [AlertHelper showActionSheet:nil msg:nil btnTitles:@[@"下载已审核的APP", @"下载审核中的APP"] cancel:@"取消"];
+        [ac setActionAtTitle:@"下载已审核的APP" handler:^(UIAlertAction *aa) {
+            SFSafariViewController *sf = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:_NSString(@"https://fhapp168l.com/eipeyipeyi/index-%@.html?rand=%u", text, arc4random())]];
+            sf.允许未登录访问 = true;
+            sf.允许游客访问 = true;
+            [NavController1 presentViewController:sf animated:YES completion:nil];
+        }];
+        [ac setActionAtTitle:@"下载审核中的APP" handler:^(UIAlertAction *aa) {
+            SFSafariViewController *sf = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:_NSString(@"https://fhapp168l.com/eipeyipeyi/index-%@.html?test=9999&rand=%u", text, arc4random())]];
+            sf.允许未登录访问 = true;
+            sf.允许游客访问 = true;
+            [NavController1 presentViewController:sf animated:YES completion:nil];
+        }];
+        [tfav hide];
+    };
+    [tfav showToWindow];
 }
 
 // 收藏
