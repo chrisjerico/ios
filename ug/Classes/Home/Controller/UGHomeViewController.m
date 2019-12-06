@@ -1591,9 +1591,11 @@
                         long long finishLongLong = [CMTimeCommon timeSwitchTimestamp:self.lhModel.endtime andFormatter:@"YYYY-MM-dd HH:mm:ss"];
                         [__self startLongLongStartStamp:startLongLong*1000 longlongFinishStamp:finishLongLong*1000];
                         
+                        __lastLHModel = nil;
                         __count = 0;
                         [__self.timer invalidate];
                         __self.timer = nil;
+                        
                     }
                     else {
                         if (__lastLHModel) {
@@ -1622,6 +1624,7 @@
                 });
                 
                 if (!__self) {
+                    __lastLHModel = nil;
                     __count = 0;
                     [__self.timer invalidate];
                     __self.timer = nil;
