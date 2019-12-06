@@ -7,6 +7,8 @@
 //
 
 #import "UGLHMyAttentionViewController.h"
+#import "LHUserInfoVC.h"
+#import "UGPostDetailVC.h"
 
 #import "UGLHFocusUserModel.h"
 #import "UGLHPostModel.h"
@@ -120,9 +122,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (_mySegment.selectedSegmentIndex == 0) {
-        
+        LHUserInfoVC *vc = _LoadVC_from_storyboard_(@"LHUserInfoVC");
+        vc.uid = ((UGLHFocusUserModel *)tableView.dataArray[indexPath.row]).posterUid;
+        [NavController1 pushViewController:vc animated:true];
     } else {
-        
+        UGPostDetailVC *vc = _LoadVC_from_storyboard_(@"UGPostDetailVC");
+        vc.pm = tableView.dataArray[indexPath.row];
+        [NavController1 pushViewController:vc animated:true];
     }
 }
 

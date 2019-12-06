@@ -392,6 +392,10 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             if (UserI.isTest) {
                 [NavController1 pushViewController:[UGPromotionIncomeController new] animated:YES];
             } else {
+                if (!UGLoginIsAuthorized()) {
+                    SANotificationEventPost(UGNotificationShowLoginView, nil);
+                    return true;
+                }
                 [SVProgressHUD showWithStatus:nil];
                 [CMNetwork teamAgentApplyInfoWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:^(CMResult<id> *model, NSError *err) {
                     [CMResult processWithResult:model success:^{
