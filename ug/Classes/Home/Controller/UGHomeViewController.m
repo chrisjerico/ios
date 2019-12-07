@@ -70,7 +70,7 @@
 #import "UGBMHeaderView.h"
 
 // 六合View
-#import "UGLHLotteryCollectionViewCell.h"
+//#import "UGLHLotteryCollectionViewCell.h"
 #import "UGLHHomeContentCollectionViewCell.h"
 #import "UGScratchMusicView.h"
 
@@ -472,7 +472,7 @@
     self.lotteryCollectionView.delegate = self;
     self.lotteryCollectionView.tagString= @"六合开奖";
 //    [self.lotteryCollectionView registerNib:[UINib nibWithNibName:@"UGLHLotteryCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UGLHLotteryCollectionViewCell"];
-    [self.lotteryCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
+//    [self.lotteryCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
     [self.lotteryCollectionView setBounces:NO];
     [self.lotteryCollectionView setScrollEnabled:NO];
     
@@ -552,16 +552,16 @@
         [cell setBackgroundColor: [UIColor whiteColor]];
         return cell;
     } else {
-      UGLHLotteryCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-        if (OBJOnceToken(cell)) {
-            UGLHLotteryCollectionViewCell *c = _LoadView_from_nib_(@"UGLHLotteryCollectionViewCell");
-            c.tagString = @"cell";
-            [cell addSubview:c];
-            [c mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.edges.equalTo(cell);
-            }];
-        }
-        cell = [cell viewWithTagString:@"cell"];
+      UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+//        if (OBJOnceToken(cell)) {
+//            UGLHLotteryCollectionViewCell *c = _LoadView_from_nib_(@"UGLHLotteryCollectionViewCell");
+//            c.tagString = @"cell";
+//            [cell addSubview:c];
+//            [c mas_makeConstraints:^(MASConstraintMaker *make) {
+//                make.edges.equalTo(cell);
+//            }];
+//        }
+//        cell = [cell viewWithTagString:@"cell"];
         
     //        NSDictionary *dic = [self.menuNameArray objectAtIndex:indexPath.row];
        

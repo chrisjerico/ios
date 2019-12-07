@@ -204,7 +204,88 @@
                                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                                 </collectionViewFlowLayout>
-                                                                <cells/>
+                                                                <cells>
+                                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="k1v-gk-gpc">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="40" height="70"/>
+                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="TqD-19-0SL">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="40" height="70"/>
+                                                                            <autoresizingMask key="autoresizingMask"/>
+                                                                            <subviews>
+                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_blue" translatesAutoresizingMaskIntoConstraints="NO" id="4Ut-pJ-Px8">
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="height" constant="40" id="2au-gx-nOI"/>
+                                                                                        <constraint firstAttribute="width" constant="40" id="oxR-d7-LHj"/>
+                                                                                    </constraints>
+                                                                                    <userDefinedRuntimeAttributes>
+                                                                                        <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="球图"/>
+                                                                                    </userDefinedRuntimeAttributes>
+                                                                                </imageView>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="猪" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wcE-x6-VaB">
+                                                                                    <rect key="frame" x="11.5" y="42" width="17.5" height="21"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="height" constant="21" id="YJt-9v-PUs"/>
+                                                                                    </constraints>
+                                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                                    <nil key="textColor"/>
+                                                                                    <nil key="highlightedColor"/>
+                                                                                    <userDefinedRuntimeAttributes>
+                                                                                        <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="球下字"/>
+                                                                                    </userDefinedRuntimeAttributes>
+                                                                                </label>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="48" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XbX-yz-ZNv">
+                                                                                    <rect key="frame" x="7" y="9" width="19" height="18"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="height" constant="18" id="P5T-AK-Q4G"/>
+                                                                                    </constraints>
+                                                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                                    <nil key="textColor"/>
+                                                                                    <nil key="highlightedColor"/>
+                                                                                    <userDefinedRuntimeAttributes>
+                                                                                        <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="球内字"/>
+                                                                                    </userDefinedRuntimeAttributes>
+                                                                                </label>
+                                                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IGl-SD-RV6">
+                                                                                    <rect key="frame" x="14.5" y="8" width="11" height="21"/>
+                                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                                    <nil key="textColor"/>
+                                                                                    <nil key="highlightedColor"/>
+                                                                                    <userDefinedRuntimeAttributes>
+                                                                                        <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="加"/>
+                                                                                    </userDefinedRuntimeAttributes>
+                                                                                </label>
+                                                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d8m-6f-jdC">
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="40" height="57"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="height" constant="57" id="UMQ-Cz-osr"/>
+                                                                                        <constraint firstAttribute="width" constant="46" id="jWp-I9-uTd"/>
+                                                                                    </constraints>
+                                                                                    <state key="normal" backgroundImage="guaguale"/>
+                                                                                    <userDefinedRuntimeAttributes>
+                                                                                        <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="刮刮乐"/>
+                                                                                    </userDefinedRuntimeAttributes>
+                                                                                </button>
+                                                                            </subviews>
+                                                                            <constraints>
+                                                                                <constraint firstItem="4Ut-pJ-Px8" firstAttribute="top" secondItem="TqD-19-0SL" secondAttribute="top" id="2Yf-XX-0QK"/>
+                                                                                <constraint firstItem="XbX-yz-ZNv" firstAttribute="leading" secondItem="TqD-19-0SL" secondAttribute="leading" constant="7" id="3Ma-WH-1f1"/>
+                                                                                <constraint firstItem="d8m-6f-jdC" firstAttribute="leading" secondItem="TqD-19-0SL" secondAttribute="leading" id="5Kz-VF-n9L"/>
+                                                                                <constraint firstItem="wcE-x6-VaB" firstAttribute="top" secondItem="4Ut-pJ-Px8" secondAttribute="bottom" constant="2" id="5bo-1j-8hL"/>
+                                                                                <constraint firstItem="d8m-6f-jdC" firstAttribute="top" secondItem="TqD-19-0SL" secondAttribute="top" id="Bmr-58-pNi"/>
+                                                                                <constraint firstItem="4Ut-pJ-Px8" firstAttribute="leading" secondItem="TqD-19-0SL" secondAttribute="leading" id="Fsc-TS-Zx7"/>
+                                                                                <constraint firstItem="wcE-x6-VaB" firstAttribute="centerX" secondItem="TqD-19-0SL" secondAttribute="centerX" id="LFr-sR-tR7"/>
+                                                                                <constraint firstItem="IGl-SD-RV6" firstAttribute="top" secondItem="TqD-19-0SL" secondAttribute="top" constant="8" id="LON-vB-zZx"/>
+                                                                                <constraint firstItem="XbX-yz-ZNv" firstAttribute="top" secondItem="TqD-19-0SL" secondAttribute="top" constant="9" id="ZsP-ak-AtL"/>
+                                                                                <constraint firstAttribute="trailing" secondItem="4Ut-pJ-Px8" secondAttribute="trailing" id="dTd-ej-7at"/>
+                                                                                <constraint firstAttribute="trailing" secondItem="d8m-6f-jdC" secondAttribute="trailing" id="kWv-7S-p8J"/>
+                                                                                <constraint firstItem="IGl-SD-RV6" firstAttribute="centerX" secondItem="TqD-19-0SL" secondAttribute="centerX" id="pwL-qy-BV3"/>
+                                                                                <constraint firstItem="wcE-x6-VaB" firstAttribute="top" secondItem="IGl-SD-RV6" secondAttribute="bottom" constant="13" id="sAB-Jl-0aI"/>
+                                                                            </constraints>
+                                                                        </collectionViewCellContentView>
+                                                                        <size key="customSize" width="40" height="70"/>
+                                                                    </collectionViewCell>
+                                                                </cells>
                                                             </collectionView>
                                                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="准备开奖中∙∙∙" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m8R-rd-rSU">
                                                                 <rect key="frame" x="20" y="34" width="374" height="86"/>
@@ -823,6 +904,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="guaguale" width="125" height="200"/>
+        <image name="icon_blue" width="83" height="83"/>
         <image name="icon_border" width="710" height="277"/>
         <image name="icon_sound01" width="34" height="34"/>
         <image name="notice" width="24" height="24"/>

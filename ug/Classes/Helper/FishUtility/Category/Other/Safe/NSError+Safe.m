@@ -18,7 +18,7 @@
 }
 
 - (instancetype)cc_initWithDomain:(NSErrorDomain)domain code:(NSInteger)code userInfo:(NSDictionary<NSErrorUserInfoKey,id> *)dict {
-    NSLog(@"cc_initWithDomain");
+//    NSLog(@"cc_initWithDomain");
     if (!domain) {
         return nil;
     }
