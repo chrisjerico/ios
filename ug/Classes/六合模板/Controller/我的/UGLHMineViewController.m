@@ -133,13 +133,13 @@
         [UGUserCenter menu:@"其他注单记录"                  :@"LH_menu-rule"],
         [UGUserCenter menu:@"个人信息"                        :@"LH_task"],
         [UGUserCenter menu:@"建议反馈"                    :@"LH_menu-feedback"],
-        [UGUserCenter menu:@"活动彩金"                    :@"LH_money"],
         [UGUserCenter menu:@"代理申请"                   :@"LH_task"],
-
+        [UGUserCenter menu:@"活动彩金"                    :@"LH_money"],
+        [UGUserCenter menu:@"任务中心"                    :@"LH_menu-edzh"],
     ];
     
     {
-        NSArray<UGmobileMenu *> *menus = [[UGUserCenter arrayOfModelsFromDictionaries:SysConf.userCenter error:nil] sortedArrayUsingComparator:^NSComparisonResult(UGUserCenter *obj1, UGUserCenter *obj2) {
+        NSArray<UGUserCenter *> *menus = [[UGUserCenter arrayOfModelsFromDictionaries:SysConf.userCenter error:nil] sortedArrayUsingComparator:^NSComparisonResult(UGUserCenter *obj1, UGUserCenter *obj2) {
             return obj1.sort > obj2.sort;
         }];
         if (menus.count > 0) {
@@ -148,7 +148,7 @@
         }
     }
     SANotificationEventSubscribe(UGNotificationGetSystemConfigComplete, self, ^(typeof (self) self, id obj) {
-        NSArray<UGmobileMenu *> *menus = [[UGUserCenter arrayOfModelsFromDictionaries:SysConf.userCenter error:nil] sortedArrayUsingComparator:^NSComparisonResult(UGUserCenter *obj1, UGUserCenter *obj2) {
+        NSArray<UGUserCenter *> *menus = [[UGUserCenter arrayOfModelsFromDictionaries:SysConf.userCenter error:nil] sortedArrayUsingComparator:^NSComparisonResult(UGUserCenter *obj1, UGUserCenter *obj2) {
             return obj1.sort > obj2.sort;
         }];
         if (menus.count > 0) {
@@ -221,7 +221,12 @@
         if (!user.hasActLottery) {
             if ([gm.name isEqualToString:@"活动彩金"]) {
                 [self.menuNameArray removeObject:gm.name];
-                [self.imageNameArray removeObject:gm.logo];
+                if ([CMCommon stringIsNull:gm.logo]) {
+                    UGUserCenter *obj  =  [_gms objectWithValue:gm.name keyPath:@"name"];
+                    [self.imageNameArray removeObject:obj.logo];
+                } else {
+                    [self.imageNameArray removeObject:gm.logo];
+                }
             }
         }
     }
