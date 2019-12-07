@@ -45,8 +45,8 @@
     return gm;
 }
 
-- (NSString *)logo { return _logo.length ? _logo : _icon; }
-- (NSString *)icon { return _logo.length ? _logo : _icon; }
+- (NSString *)logo { return _icon.length ? _icon : _logo; }
+- (NSString *)icon { return _icon.length ? _icon : _logo; }
 - (NSString *)hotIcon  { return _hotIcon.length ? _hotIcon : _hot_icon; }
 - (NSString *)hot_icon { return _hotIcon.length ? _hotIcon : _hot_icon; }
 
