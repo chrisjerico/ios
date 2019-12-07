@@ -195,7 +195,7 @@ static NSMutableArray <SiteModel *> *__sites = nil;
             [SiteModel site    :@"c047"     :@"郴州快签"     :@"新2彩票"     :@"io.fhpt.H539296B3"     :@"https://x22xxx.com"],
             [SiteModel site    :@"c052"     :@"郴州快签"     :@"天天彩票"     :@"io.fhpt.H5ED6D043"     :@""],
             [SiteModel site    :@"c054"     :@"郴州快签"     :@"⾹港国际"     :@"io.fhpt.H5CBD9DE0"     :@"https://666mv.cc"],
-            [SiteModel site    :@"c108"     :@"郴州快签"     :@"葡京娱乐场"     :@"io.fhpt.H53779C0A"     :@"https://361865.com"],
+            [SiteModel site    :@"c108"     :@"郴州快签"     :@"葡京娱乐场"     :@"io.fhpt.H53779C0A"     :@"https://823653.com"],
             [SiteModel site    :@"c132"     :@"郴州快签"     :@"彩霸王"     :@"io.fhpt.H504F0A93"     :@""],
             [SiteModel site    :@"c193"     :@"郴州快签"     :@"新葡京彩票"     :@"io.fhpt.H54C32CA8"     :@"https://4906app.app"],
             [SiteModel site    :@"c200"     :@"郴州快签"     :@"1995澳门彩票"     :@"io.fhpt.H5830E440"     :@"https://20191995.com"],
