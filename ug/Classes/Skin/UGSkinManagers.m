@@ -672,6 +672,238 @@ static UGSkinManagers *__initSkin1 = nil;
             sm.textColor4               = color(@"FFFFFF");
             sm;
         }),
+        //六合资料
+        @"六合资料0":({
+            UGSkinManagers *sm = [UGSkinManagers new];
+            sm.skitType                 = @"六合资料";
+            sm.skitString               = @"六合资料 0默认风格";
+            sm.bgColor                  = color(@"FFFFFF");
+            sm.navBarBgColor            = color(@"ff566d");
+            sm.tabBarBgColor            = color(@"FFFFFF");
+            sm.tabNoSelectColor         = color(@"525252");
+            sm.tabSelectedColor         = color(@"010101");
+            sm.progressBgColor          = color(@"d80000,fb5959");
+            sm.homeContentColor         = color(@"FFFFFF");
+            sm.homeContentSubColor      = color(@"D3D3D3");
+            sm.cellBgColor              = color(@"FFFFFF");
+            sm.CLBgColor                = color(@"E6E6E6");
+            sm.menuHeadViewColor        = color(@"ff566d,ffbac3");
+            sm.textColor1               = color(@"111111");
+            sm.textColor2               = color(@"555555");
+            sm.textColor3               = color(@"C1C1C1");
+            sm.textColor4               = color(@"FFFFFF");
+            sm;
+        }),
+        @"六合资料1":({
+            UGSkinManagers *sm = [UGSkinManagers new];
+            sm.skitType                 = @"六合资料";
+            sm.skitString               = @"六合资料 1蓝色";
+            sm.bgColor                  = color(@"FFFFFF");
+            sm.navBarBgColor            = color(@"58baf7");
+            sm.tabBarBgColor            = color(@"FFFFFF");
+            sm.tabNoSelectColor         = color(@"525252");
+            sm.tabSelectedColor         = color(@"010101");
+            sm.progressBgColor          = color(@"d80000,fb5959");
+            sm.homeContentColor         = color(@"FFFFFF");
+            sm.homeContentSubColor      = color(@"D3D3D3");
+            sm.cellBgColor              = color(@"FFFFFF");
+            sm.CLBgColor                = color(@"E6E6E6");
+            sm.menuHeadViewColor        = color(@"58baf7,a8d6f3");
+            sm.textColor1               = color(@"111111");
+            sm.textColor2               = color(@"555555");
+            sm.textColor3               = color(@"C1C1C1");
+            sm.textColor4               = color(@"FFFFFF");
+            sm;
+        }),
+        @"六合资料2":({
+            UGSkinManagers *sm = [UGSkinManagers new];
+            sm.skitType                 = @"六合资料";
+            sm.skitString               = @"六合资料 2渐变";
+            sm.bgColor                  = color(@"FFFFFF");
+            sm.navBarBgColor            = color(@"b36cff,87d8d1");
+            sm.tabNoSelectColor         = color(@"525252");
+            sm.tabSelectedColor         = color(@"010101");
+            sm.tabSelectedColor         = color(@"3D80E7");
+            sm.progressBgColor          = color(@"d80000,fb5959");
+            sm.homeContentColor         = color(@"FFFFFF");
+            sm.homeContentSubColor      = color(@"D3D3D3");
+            sm.cellBgColor              = color(@"FFFFFF");
+            sm.CLBgColor                = color(@"E6E6E6");
+            sm.menuHeadViewColor        = color(@"b36cff,87d8d1");
+            sm.textColor1               = color(@"111111");
+            sm.textColor2               = color(@"555555");
+            sm.textColor3               = color(@"C1C1C1");
+            sm.textColor4               = color(@"FFFFFF");
+            sm;
+        }),
+        @"六合资料3":({
+            UGSkinManagers *sm = [UGSkinManagers new];
+            sm.skitType                 = @"六合资料";
+            sm.skitString               = @"六合资料 3大红";
+            sm.bgColor                  = color(@"FFFFFF");
+            sm.navBarBgColor            = color(@"fd0202");
+            sm.tabBarBgColor            = color(@"FFFFFF");
+            sm.tabNoSelectColor         = color(@"525252");
+            sm.tabSelectedColor         = color(@"010101");
+            sm.progressBgColor          = color(@"d80000,fb5959");
+            sm.homeContentColor         = color(@"FFFFFF");
+            sm.homeContentSubColor      = color(@"D3D3D3");
+            sm.cellBgColor              = color(@"FFFFFF");
+            sm.CLBgColor                = color(@"E6E6E6");
+            sm.menuHeadViewColor        = color(@"fd0202,f34a4a");
+            sm.textColor1               = color(@"111111");
+            sm.textColor2               = color(@"555555");
+            sm.textColor3               = color(@"C1C1C1");
+            sm.textColor4               = color(@"FFFFFF");
+            sm;
+        }),
+        @"六合资料4":({
+            UGSkinManagers *sm = [UGSkinManagers new];
+            sm.skitType                 = @"六合资料";
+            sm.skitString               = @"六合资料 4粉红";
+            sm.bgColor                  = color(@"FFFFFF");
+            sm.navBarBgColor            = color(@"fa7dc5");
+            sm.tabBarBgColor            = color(@"FFFFFF");
+            sm.tabNoSelectColor         = color(@"525252");
+            sm.tabSelectedColor         = color(@"010101");
+            sm.progressBgColor          = color(@"d80000,fb5959");
+            sm.homeContentColor         = color(@"FFFFFF");
+            sm.homeContentSubColor      = color(@"D3D3D3");
+            sm.cellBgColor              = color(@"FFFFFF");
+            sm.CLBgColor                = color(@"E6E6E6");
+            sm.menuHeadViewColor        = color(@"fa7dc5,f5c3e0");
+            sm.textColor1               = color(@"111111");
+            sm.textColor2               = color(@"555555");
+            sm.textColor3               = color(@"C1C1C1");
+            sm.textColor4               = color(@"FFFFFF");
+            sm;
+        }),
+        @"六合资料5":({
+            UGSkinManagers *sm = [UGSkinManagers new];
+            sm.skitType                 = @"六合资料";
+            sm.skitString               = @"六合资料 5橙色";
+            sm.bgColor                  = color(@"FFFFFF");
+            sm.navBarBgColor            = color(@"ffa811db");
+            sm.tabBarBgColor            = color(@"FFFFFF");
+            sm.tabNoSelectColor         = color(@"525252");
+            sm.tabSelectedColor         = color(@"010101");
+            sm.progressBgColor          = color(@"d80000,fb5959");
+            sm.homeContentColor         = color(@"FFFFFF");
+            sm.homeContentSubColor      = color(@"D3D3D3");
+            sm.cellBgColor              = color(@"FFFFFF");
+            sm.CLBgColor                = color(@"E6E6E6");
+            sm.menuHeadViewColor        = color(@"ffa811db,f1cb8bdb");
+            sm.textColor1               = color(@"111111");
+            sm.textColor2               = color(@"555555");
+            sm.textColor3               = color(@"C1C1C1");
+            sm.textColor4               = color(@"FFFFFF");
+            sm;
+        }),
+        @"六合资料6":({
+            UGSkinManagers *sm = [UGSkinManagers new];
+            sm.skitType                 = @"六合资料";
+            sm.skitString               = @"六合资料 6深绿";
+            sm.bgColor                  = color(@"FFFFFF");
+            sm.navBarBgColor            = color(@"85b903");
+            sm.tabBarBgColor            = color(@"FFFFFF");
+            sm.tabNoSelectColor         = color(@"525252");
+            sm.tabSelectedColor         = color(@"010101");
+            sm.progressBgColor          = color(@"d80000,fb5959");
+            sm.homeContentColor         = color(@"FFFFFF");
+            sm.homeContentSubColor      = color(@"D3D3D3");
+            sm.cellBgColor              = color(@"FFFFFF");
+            sm.CLBgColor                = color(@"E6E6E6");
+            sm.menuHeadViewColor        = color(@"85b903,9fb568");
+            sm.textColor1               = color(@"111111");
+            sm.textColor2               = color(@"555555");
+            sm.textColor3               = color(@"C1C1C1");
+            sm.textColor4               = color(@"FFFFFF");
+            sm;
+        }),
+        @"六合资料7":({
+            UGSkinManagers *sm = [UGSkinManagers new];
+            sm.skitType                 = @"六合资料";
+            sm.skitString               = @"六合资料 7水绿";
+            sm.bgColor                  = color(@"FFFFFF");
+            sm.navBarBgColor            = color(@"8BC34A");
+            sm.tabBarBgColor            = color(@"FFFFFF");
+            sm.tabNoSelectColor         = color(@"525252");
+            sm.tabSelectedColor         = color(@"010101");
+            sm.progressBgColor          = color(@"d80000,fb5959");
+            sm.homeContentColor         = color(@"FFFFFF");
+            sm.homeContentSubColor      = color(@"D3D3D3");
+            sm.cellBgColor              = color(@"FFFFFF");
+            sm.CLBgColor                = color(@"E6E6E6");
+            sm.menuHeadViewColor        = color(@"8BC34A,a9c18e");
+            sm.textColor1               = color(@"111111");
+            sm.textColor2               = color(@"555555");
+            sm.textColor3               = color(@"C1C1C1");
+            sm.textColor4               = color(@"FFFFFF");
+            sm;
+        }),
+        @"六合资料8":({
+            UGSkinManagers *sm = [UGSkinManagers new];
+            sm.skitType                 = @"六合资料";
+            sm.skitString               = @"六合资料 8淡青";
+            sm.bgColor                  = color(@"FFFFFF");
+            sm.navBarBgColor            = color(@"48bdb1");
+            sm.tabBarBgColor            = color(@"FFFFFF");
+            sm.tabNoSelectColor         = color(@"525252");
+            sm.tabSelectedColor         = color(@"010101");
+            sm.progressBgColor          = color(@"d80000,fb5959");
+            sm.homeContentColor         = color(@"FFFFFF");
+            sm.homeContentSubColor      = color(@"D3D3D3");
+            sm.cellBgColor              = color(@"FFFFFF");
+            sm.CLBgColor                = color(@"E6E6E6");
+            sm.menuHeadViewColor        = color(@"48bdb1,7ab9b3");
+            sm.textColor1               = color(@"111111");
+            sm.textColor2               = color(@"555555");
+            sm.textColor3               = color(@"C1C1C1");
+            sm.textColor4               = color(@"FFFFFF");
+            sm;
+        }),
+        @"六合资料9":({
+            UGSkinManagers *sm = [UGSkinManagers new];
+            sm.skitType                 = @"六合资料";
+            sm.skitString               = @"六合资料 9紫色";
+            sm.bgColor                  = color(@"FFFFFF");
+            sm.navBarBgColor            = color(@"ac77e6");
+            sm.tabBarBgColor            = color(@"FFFFFF");
+            sm.tabNoSelectColor         = color(@"525252");
+            sm.tabSelectedColor         = color(@"010101");
+            sm.progressBgColor          = color(@"d80000,fb5959");
+            sm.homeContentColor         = color(@"FFFFFF");
+            sm.homeContentSubColor      = color(@"D3D3D3");
+            sm.cellBgColor              = color(@"FFFFFF");
+            sm.CLBgColor                = color(@"E6E6E6");
+            sm.menuHeadViewColor        = color(@"ac77e6,d7c0f1");
+            sm.textColor1               = color(@"111111");
+            sm.textColor2               = color(@"555555");
+            sm.textColor3               = color(@"C1C1C1");
+            sm.textColor4               = color(@"FFFFFF");
+            sm;
+        }),
+        @"六合资料10":({
+            UGSkinManagers *sm = [UGSkinManagers new];
+            sm.skitType                 = @"六合资料";
+            sm.skitString               = @"六合资料 10深蓝";
+            sm.bgColor                  = color(@"FFFFFF");
+            sm.navBarBgColor            = color(@"3862AA");
+            sm.tabBarBgColor            = color(@"FFFFFF");
+            sm.tabNoSelectColor         = color(@"525252");
+            sm.tabSelectedColor         = color(@"010101");
+            sm.progressBgColor          = color(@"d80000,fb5959");
+            sm.homeContentColor         = color(@"FFFFFF");
+            sm.homeContentSubColor      = color(@"D3D3D3");
+            sm.cellBgColor              = color(@"FFFFFF");
+            sm.CLBgColor                = color(@"E6E6E6");
+            sm.menuHeadViewColor        = color(@"3862AA,7887a2");
+            sm.textColor1               = color(@"111111");
+            sm.textColor2               = color(@"555555");
+            sm.textColor3               = color(@"C1C1C1");
+            sm.textColor4               = color(@"FFFFFF");
+            sm;
+        }),
         //石榴红
         @"石榴红":({
             UGSkinManagers *sm = [UGSkinManagers new];
@@ -725,28 +957,8 @@ static UGSkinManagers *__initSkin1 = nil;
             sm.textColor4               = color(@"FFFFFF");
             sm;
         }),
-        //六合资料
-        @"六合资料":({
-            UGSkinManagers *sm = [UGSkinManagers new];
-            sm.skitType                 = @"六合资料";
-            sm.skitString               = @"六合资料";
-            sm.bgColor                  = color(@"7F9493,5389B3");
-            sm.navBarBgColor            = color(@"609AC5");
-            sm.tabBarBgColor            = color(@"C1CBC9");
-            sm.tabNoSelectColor         = color(@"717176");
-            sm.tabSelectedColor         = color(@"3D80E7");
-            sm.progressBgColor          = color(@"d80000,fb5959");
-            sm.homeContentColor         = color(@"b2cde0");
-            sm.homeContentSubColor      = color(@"D3D3D3");
-            sm.cellBgColor              = color(@"C1CBC9");
-            sm.CLBgColor                = color(@"E6E6E6");
-            sm.menuHeadViewColor        = color(@"5f9bc6,fb5959");
-            sm.textColor1               = color(@"111111");
-            sm.textColor2               = color(@"555555");
-            sm.textColor3               = color(@"C1C1C1");
-            sm.textColor4               = color(@"FFFFFF");
-            sm;
-        }),
+
+        
         //黑色模板
         @"黑色模板":({
             UGSkinManagers *sm = [UGSkinManagers new];
@@ -783,13 +995,13 @@ static UGSkinManagers *__initSkin1 = nil;
     NSDictionary *dict = @{@"0":SysConf.mobileTemplateBackground,
                            @"2":@"新年红",
                            @"3":@"石榴红",
-                           @"4":@"六合资料",
+                           @"4":[NSString stringWithFormat:@"六合资料%@",SysConf.mobileTemplateLhcStyle],
                            @"5":@"黑色模板",
     };
     
     NSString *skitType = dict[SysConf.mobileTemplateCategory];
     #if DEBUG
-          skitType =  @"石榴红";
+          skitType =  @"新年红";
 //          skitType = @"六合资料";
 //              skitType = @"黑色模板";
     #endif
@@ -852,7 +1064,7 @@ static UGSkinManagers *__initSkin1 = nil;
 
 + (UGSkinManagers *)randomSkin {
     static NSInteger __i = 0;
-    NSArray *keys = @[@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11", @"12", @"13", @"14", @"15", @"16", @"17", @"18", @"19", @"新年红", @"石榴红", @"六合资料", @"黑色模板", ];
+    NSArray *keys = @[@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11", @"12", @"13", @"14", @"15", @"16", @"17", @"18", @"19", @"六合资料0",@"六合资料1",@"六合资料2",@"六合资料3",@"六合资料4",@"六合资料5",@"六合资料6",@"六合资料7",@"六合资料8",@"六合资料9",@"六合资料10",@"新年红", @"石榴红",  @"黑色模板", ];
     return [UGSkinManagers allSkin][keys[++__i%keys.count]];
 }
 

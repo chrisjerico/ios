@@ -205,6 +205,7 @@
         NSDictionary *dict = @{@"六合资料":@[_bannerBgView, _rollingView, _liuheResultContentView, _liuheForumContentView, _promotionView, _bottomView],
                                @"黑色模板":@[_bannerBgView, _gameTypeView.superview, _rankingView, _bottomView],
         };
+        
         NSArray *views = dict[Skin1.skitType];
         if (views.count) {
             [_contentStackView addArrangedSubviews:views];
@@ -470,7 +471,8 @@
     self.lotteryCollectionView.dataSource = self;
     self.lotteryCollectionView.delegate = self;
     self.lotteryCollectionView.tagString= @"六合开奖";
-    [self.lotteryCollectionView registerNib:[UINib nibWithNibName:@"UGLHLotteryCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"cell"];
+//    [self.lotteryCollectionView registerNib:[UINib nibWithNibName:@"UGLHLotteryCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UGLHLotteryCollectionViewCell"];
+    [self.lotteryCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
     [self.lotteryCollectionView setBounces:NO];
     [self.lotteryCollectionView setScrollEnabled:NO];
     
@@ -551,6 +553,16 @@
         return cell;
     } else {
       UGLHLotteryCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+        if (OBJOnceToken(cell)) {
+            UGLHLotteryCollectionViewCell *c = _LoadView_from_nib_(@"UGLHLotteryCollectionViewCell");
+            c.tagString = @"cell";
+            [cell addSubview:c];
+            [c mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(cell);
+            }];
+        }
+        cell = [cell viewWithTagString:@"cell"];
+        
     //        NSDictionary *dic = [self.menuNameArray objectAtIndex:indexPath.row];
        
         FastSubViewCode(cell);
@@ -1047,6 +1059,8 @@
 #pragma mark ------------六合------------------------------------------------------
 // 栏目列表
 - (void)getCategoryList {
+    
+    
     [CMNetwork categoryListWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [self.contentScrollView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
@@ -1054,6 +1068,10 @@
             NSLog(@"model= %@",model.data);
             NSArray *modelArr = (NSArray *)model.data;         //数组转模型数组
 
+            if (modelArr.count==0) {
+                 self.heightLayoutConstraint.constant = 0.0;
+                return ;
+            }
                    
             if (modelArr.count) {
                 for (int i = 0 ;i<modelArr.count;i++) {

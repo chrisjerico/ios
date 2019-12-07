@@ -455,10 +455,10 @@ BOOL isOk = NO;
         
         if (user.isAgent) {
             if ([gm.name isEqualToString:@"代理申请"]) {
-                [gm setName:@"推荐收益"];
+                [gm setName:@"收益推荐"];
             }
         } else {
-            if ([gm.name isEqualToString:@"推荐收益"]) {
+            if ([gm.name isEqualToString:@"收益推荐"]) {
                 [gm setName:@"代理申请"];
             }
         }
@@ -478,31 +478,156 @@ BOOL isOk = NO;
     
     //=============//新年红=======================================================================
     [self skinSeconddataSource];
+//    NSMutableArray *menuName2Array = [NSMutableArray array];
+//    for (UGUserCenter *gm in paths) {
+//        
+//        if (user.isAgent) {
+//            if ([gm.name isEqualToString:@"代理申请"]) {
+//                [gm setName:@"收益推荐"];
+//            }
+//        } else {
+//            if ([gm.name isEqualToString:@"收益推荐"]) {
+//                [gm setName:@"代理申请"];
+//            }
+//        }
+//        if ([CMCommon stringIsNull:gm.logo]) {
+//            UGUserCenter *obj  =  [_gms objectWithValue:gm.name keyPath:@"name"];
+//            [menuName2Array addObject:@{@"title" : gm.name , @"imgName" : [self retureRandomThemeColorImage:obj.logo]  }];
+//        } else {
+//            [menuName2Array addObject:@{@"title" : gm.name , @"imgName" : gm.logo }];
+//        }
+//        
+//        if (!user.hasActLottery) {
+//            if ([gm.name isEqualToString:@"活动彩金"]) {
+//                [menuName2Array removeObject:[self.menuNameArray objectWithValue:@"活动彩金" keyPath:@"title"]];
+//            }
+//        }
+//    }
+//    
+//    NSMutableArray *dataArrayOne = [NSMutableArray array];
+//    NSMutableArray *dataArrayTwo = [NSMutableArray array];
+//    NSMutableArray *dataArrayThree = [NSMutableArray array];
+//    NSMutableArray *dataArray4 = [NSMutableArray array];
+//    for (NSDictionary *gm in menuName2Array) {
+//        if ([[gm objectForKey:@"title"] isEqualToString:@"收益推荐"]) {
+//            [dataArrayOne addObject:gm];
+//        }
+//        if ([[gm objectForKey:@"title"] isEqualToString:@"代理申请"]) {
+//            [dataArrayOne addObject:gm];
+//        }
+//        if ([[gm objectForKey:@"title"] isEqualToString:@"活动彩金"]) {
+//            [dataArrayOne addObject:gm];
+//        }
+//        if ([[gm objectForKey:@"title"] isEqualToString:@"利息宝"]) {
+//            [dataArrayOne addObject:gm];
+//        }
+//        if ([[gm objectForKey:@"title"] isEqualToString:@"在线客服"]) {
+//            [dataArrayOne addObject:gm];
+//        }
+//       // ===========================================================
+//         if ([[gm objectForKey:@"title"] isEqualToString:@"彩票注单记录"]) {
+//             [dataArrayTwo addObject:gm];
+//         }
+//         if ([[gm objectForKey:@"title"] isEqualToString:@"其他注单记录"]) {
+//             [dataArrayTwo addObject:gm];
+//         }
+//
+//        // ===========================================================
+//        if ([[gm objectForKey:@"title"] isEqualToString:@"银行卡管理"]) {
+//            [dataArrayThree addObject:gm];
+//        }
+//        if ([[gm objectForKey:@"title"] isEqualToString:@"安全中心"]) {
+//            [dataArrayThree addObject:gm];
+//        }
+//        if ([[gm objectForKey:@"title"] isEqualToString:@"个人信息"]) {
+//            [dataArrayThree addObject:gm];
+//        }
+//        // ===========================================================
+//        if ([[gm objectForKey:@"title"] isEqualToString:@"长龙助手"]) {
+//            [dataArray4 addObject:gm];
+//        }
+//        if ([[gm objectForKey:@"title"] isEqualToString:@"站内信"]) {
+//            [dataArray4 addObject:gm];
+//        }
+//        if ([[gm objectForKey:@"title"] isEqualToString:@"建议反馈"]) {
+//            [dataArray4 addObject:gm];
+//        }
+//         
+//    }
+//    
+//            UGMineSkinModel *dic1 = [UGMineSkinModel new];
+//            [dic1 setName:@"我的"];
+//            [dic1 setDataArray:dataArrayOne];
+//            [self.menuSecondNameArray addObject:dic1];
+//    
+//            UGMineSkinModel *dic2 = [UGMineSkinModel new];
+//            [dic2 setName:@"注单详情"];
+//            [dic2 setDataArray:dataArrayTwo];
+//            [self.menuSecondNameArray addObject:dic2];
+//    
+//            UGMineSkinModel *dic3 = [UGMineSkinModel new];
+//            [dic3 setName:@"设置"];
+//            [dic3 setDataArray:dataArrayThree];
+//            [self.menuSecondNameArray addObject:dic3];
+//    
+//            UGMineSkinModel *dic4 = [UGMineSkinModel new];
+//            [dic4 setName:@"网站资料"];
+//            [dic4 setDataArray:dataArray4];
+//            [self.menuSecondNameArray addObject:dic4];
+    
+    
 //     self.menuSecondNameArray = [NSMutableArray array];
 //
 //        {//==============1
 //            NSMutableArray *dataArrayOne = [NSMutableArray array];
 //            if (user.isAgent) {
-//                UGUserCenter *gm = [paths objectWithValue:@"推荐收益" keyPath:@"title"];
-//                [dataArrayOne addObject:@{@"title" : gm.name , @"imgName" : [self retureRandomThemeColorImage:gm.logo] }];
+////                NSLog(@"[paths valuesWithKeyPath:@name] = %@",[paths valuesWithKeyPath:@"name"]);
+//                UGUserCenter *gm = [paths  objectWithValue:@"收益推荐" keyPath:@"title"];
+//                if ([CMCommon stringIsNull:gm.logo]) {
+//                    UGUserCenter *obj  =  [_gms objectWithValue:gm.name keyPath:@"name"];
+//                    [dataArrayOne addObject:@{@"title" : gm.name , @"imgName" : [self retureRandomThemeColorImage:obj.logo] }];
+//                } else {
+//                    [dataArrayOne addObject:@{@"title" : gm.name , @"imgName" : gm.logo }];
+//                }
+//
 //
 //            } else {
-//                UGUserCenter *gm = [paths objectWithValue:@"代理申请" keyPath:@"title"];
-//                [dataArrayOne addObject:@{@"title" : gm.name , @"imgName" : [self retureRandomThemeColorImage:gm.logo] }];
-//            }
-//            {
-//                if (user.hasActLottery) {
-//                    UGUserCenter *gm = [paths objectWithValue:@"活动彩金" keyPath:@"title"];
-//                    [dataArrayOne addObject:@{@"title" : gm.name , @"imgName" : [self retureRandomThemeColorImage:gm.logo] }];
+//                UGUserCenter *gm = [paths objectWithValue:@"代理申请" keyPath:@"name"];
+//                if ([CMCommon stringIsNull:gm.logo]) {
+//                    UGUserCenter *obj  =  [_gms objectWithValue:gm.name keyPath:@"name"];
+//                    [dataArrayOne addObject:@{@"title" : gm.name , @"imgName" : [self retureRandomThemeColorImage:obj.logo] }];
+//                } else {
+//                    [dataArrayOne addObject:@{@"title" : gm.name , @"imgName" : gm.logo }];
 //                }
 //            }
 //            {
-//                UGUserCenter *gm = [paths objectWithValue:@"利息宝" keyPath:@"title"];
-//                [dataArrayOne addObject:@{@"title" : gm.name , @"imgName" : [self retureRandomThemeColorImage:gm.logo] }];
+//                if (user.hasActLottery) {
+//                    UGUserCenter *gm = [paths objectWithValue:@"活动彩金" keyPath:@"name"];
+//                    if ([CMCommon stringIsNull:gm.logo]) {
+//                        UGUserCenter *obj  =  [_gms objectWithValue:gm.name keyPath:@"name"];
+//                        [dataArrayOne addObject:@{@"title" : gm.name , @"imgName" : [self retureRandomThemeColorImage:obj.logo] }];
+//                    } else {
+//                        [dataArrayOne addObject:@{@"title" : gm.name , @"imgName" : gm.logo }];
+//                    }
+//                }
 //            }
 //            {
-//                UGUserCenter *gm = [self.menuNameArray objectWithValue:@"在线客服" keyPath:@"title"];
-//                [dataArrayOne addObject:@{@"title" : gm.name , @"imgName" : [self retureRandomThemeColorImage:gm.logo] }];
+//                UGUserCenter *gm = [paths objectWithValue:@"利息宝" keyPath:@"name"];
+//                if ([CMCommon stringIsNull:gm.logo]) {
+//                    UGUserCenter *obj  =  [_gms objectWithValue:gm.name keyPath:@"name"];
+//                    [dataArrayOne addObject:@{@"title" : gm.name , @"imgName" : [self retureRandomThemeColorImage:obj.logo] }];
+//                } else {
+//                    [dataArrayOne addObject:@{@"title" : gm.name , @"imgName" : gm.logo }];
+//                }
+//            }
+//            {
+//                UGUserCenter *gm = [self.menuNameArray objectWithValue:@"在线客服" keyPath:@"name"];
+//                if ([CMCommon stringIsNull:gm.logo]) {
+//                    UGUserCenter *obj  =  [_gms objectWithValue:gm.name keyPath:@"name"];
+//                    [dataArrayOne addObject:@{@"title" : gm.name , @"imgName" : [self retureRandomThemeColorImage:obj.logo] }];
+//                } else {
+//                    [dataArrayOne addObject:@{@"title" : gm.name , @"imgName" : gm.logo }];
+//                }
 //            }
 //
 //            UGMineSkinModel *dic1 = [UGMineSkinModel new];
@@ -514,12 +639,22 @@ BOOL isOk = NO;
 //        {
 //            NSMutableArray *dataArrayOne = [NSMutableArray array];
 //            {
-//                UGUserCenter *gm = [self.menuNameArray objectWithValue:@"彩票注单记录" keyPath:@"title"];
-//                [dataArrayOne addObject:@{@"title" : gm.name , @"imgName" : [self retureRandomThemeColorImage:gm.logo] }];
+//                UGUserCenter *gm = [self.menuNameArray objectWithValue:@"彩票注单记录" keyPath:@"name"];
+//                if ([CMCommon stringIsNull:gm.logo]) {
+//                    UGUserCenter *obj  =  [_gms objectWithValue:gm.name keyPath:@"name"];
+//                    [dataArrayOne addObject:@{@"title" : gm.name , @"imgName" : [self retureRandomThemeColorImage:obj.logo] }];
+//                } else {
+//                    [dataArrayOne addObject:@{@"title" : gm.name , @"imgName" : gm.logo }];
+//                }
 //            }
 //            {
-//                UGUserCenter *gm = [self.menuNameArray objectWithValue:@"其他注单记录" keyPath:@"title"];
-//                [dataArrayOne addObject:@{@"title" : gm.name , @"imgName" : [self retureRandomThemeColorImage:gm.logo] }];
+//                UGUserCenter *gm = [self.menuNameArray objectWithValue:@"其他注单记录" keyPath:@"name"];
+//                if ([CMCommon stringIsNull:gm.logo]) {
+//                    UGUserCenter *obj  =  [_gms objectWithValue:gm.name keyPath:@"name"];
+//                    [dataArrayOne addObject:@{@"title" : gm.name , @"imgName" : [self retureRandomThemeColorImage:obj.logo] }];
+//                } else {
+//                    [dataArrayOne addObject:@{@"title" : gm.name , @"imgName" : gm.logo }];
+//                }
 //            }
 //
 //            UGMineSkinModel *dic1 = [UGMineSkinModel new];
@@ -532,16 +667,31 @@ BOOL isOk = NO;
 //        {
 //            NSMutableArray *dataArrayOne = [NSMutableArray array];
 //            {
-//                UGUserCenter *gm = [self.menuNameArray objectWithValue:@"银行卡管理" keyPath:@"title"];
-//                [dataArrayOne addObject:@{@"title" : gm.name , @"imgName" : [self retureRandomThemeColorImage:gm.logo] }];
+//                UGUserCenter *gm = [self.menuNameArray objectWithValue:@"银行卡管理" keyPath:@"name"];
+//                if ([CMCommon stringIsNull:gm.logo]) {
+//                    UGUserCenter *obj  =  [_gms objectWithValue:gm.name keyPath:@"name"];
+//                    [dataArrayOne addObject:@{@"title" : gm.name , @"imgName" : [self retureRandomThemeColorImage:obj.logo] }];
+//                } else {
+//                    [dataArrayOne addObject:@{@"title" : gm.name , @"imgName" : gm.logo }];
+//                }
 //            }
 //            {
-//                UGUserCenter *gm = [self.menuNameArray objectWithValue:@"安全中心" keyPath:@"title"];
-//                [dataArrayOne addObject:@{@"title" : gm.name , @"imgName" : [self retureRandomThemeColorImage:gm.logo] }];
+//                UGUserCenter *gm = [self.menuNameArray objectWithValue:@"安全中心" keyPath:@"name"];
+//                if ([CMCommon stringIsNull:gm.logo]) {
+//                    UGUserCenter *obj  =  [_gms objectWithValue:gm.name keyPath:@"name"];
+//                    [dataArrayOne addObject:@{@"title" : gm.name , @"imgName" : [self retureRandomThemeColorImage:obj.logo] }];
+//                } else {
+//                    [dataArrayOne addObject:@{@"title" : gm.name , @"imgName" : gm.logo }];
+//                }
 //            }
 //            {
-//                UGUserCenter *gm = [self.menuNameArray objectWithValue:@"个人信息" keyPath:@"title"];
-//                [dataArrayOne addObject:@{@"title" : gm.name , @"imgName" : [self retureRandomThemeColorImage:gm.logo] }];
+//                UGUserCenter *gm = [self.menuNameArray objectWithValue:@"个人信息" keyPath:@"name"];
+//                if ([CMCommon stringIsNull:gm.logo]) {
+//                    UGUserCenter *obj  =  [_gms objectWithValue:gm.name keyPath:@"name"];
+//                    [dataArrayOne addObject:@{@"title" : gm.name , @"imgName" : [self retureRandomThemeColorImage:obj.logo] }];
+//                } else {
+//                    [dataArrayOne addObject:@{@"title" : gm.name , @"imgName" : gm.logo }];
+//                }
 //            }
 //
 //            UGMineSkinModel *dic1 = [UGMineSkinModel new];
@@ -554,16 +704,31 @@ BOOL isOk = NO;
 //        {
 //            NSMutableArray *dataArrayOne = [NSMutableArray array];
 //            {
-//                UGUserCenter *gm = [self.menuNameArray objectWithValue:@"长龙助手" keyPath:@"title"];
-//                [dataArrayOne addObject:@{@"title" : gm.name , @"imgName" : [self retureRandomThemeColorImage:gm.logo] }];
+//                UGUserCenter *gm = [self.menuNameArray objectWithValue:@"长龙助手" keyPath:@"name"];
+//                if ([CMCommon stringIsNull:gm.logo]) {
+//                    UGUserCenter *obj  =  [_gms objectWithValue:gm.name keyPath:@"name"];
+//                    [dataArrayOne addObject:@{@"title" : gm.name , @"imgName" : [self retureRandomThemeColorImage:obj.logo] }];
+//                } else {
+//                    [dataArrayOne addObject:@{@"title" : gm.name , @"imgName" : gm.logo }];
+//                }
 //            }
 //            {
-//                UGUserCenter *gm = [self.menuNameArray objectWithValue:@"站内信" keyPath:@"title"];
-//                [dataArrayOne addObject:@{@"title" : gm.name , @"imgName" : [self retureRandomThemeColorImage:gm.logo] }];
+//                UGUserCenter *gm = [self.menuNameArray objectWithValue:@"站内信" keyPath:@"name"];
+//                if ([CMCommon stringIsNull:gm.logo]) {
+//                    UGUserCenter *obj  =  [_gms objectWithValue:gm.name keyPath:@"name"];
+//                    [dataArrayOne addObject:@{@"title" : gm.name , @"imgName" : [self retureRandomThemeColorImage:obj.logo] }];
+//                } else {
+//                    [dataArrayOne addObject:@{@"title" : gm.name , @"imgName" : gm.logo }];
+//                }
 //            }
 //            {
-//                UGUserCenter *gm = [self.menuNameArray objectWithValue:@"站内信" keyPath:@"title"];
-//                [dataArrayOne addObject:@{@"title" : gm.name , @"imgName" : [self retureRandomThemeColorImage:gm.logo] }];
+//                UGUserCenter *gm = [self.menuNameArray objectWithValue:@"建议反馈" keyPath:@"name"];
+//                if ([CMCommon stringIsNull:gm.logo]) {
+//                    UGUserCenter *obj  =  [_gms objectWithValue:gm.name keyPath:@"name"];
+//                    [dataArrayOne addObject:@{@"title" : gm.name , @"imgName" : [self retureRandomThemeColorImage:obj.logo] }];
+//                } else {
+//                    [dataArrayOne addObject:@{@"title" : gm.name , @"imgName" : gm.logo }];
+//                }
 //            }
 //
 //            UGMineSkinModel *dic1 = [UGMineSkinModel new];
@@ -578,6 +743,7 @@ BOOL isOk = NO;
     [self.myCollectionView reloadData];
 
 }
+
 
 
 - (void)initCollectionView {
