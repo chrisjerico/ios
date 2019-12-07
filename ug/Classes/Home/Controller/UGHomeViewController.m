@@ -1118,7 +1118,11 @@
             self.lhModel.numbersArrary = [self->_lhModel.numbers componentsSeparatedByString:@","];
             self.lhModel.numColorArrary = [self->_lhModel.numColor componentsSeparatedByString:@","];
             NSLog(@"count = %lu",(unsigned long)self->_lhModel.numbersArrary.count);
-            [self.lotteryCollectionView reloadData];
+            
+            if (self.lhModel.numbersArrary.count) {
+                [self.lotteryCollectionView reloadData];
+            }
+
             
 #ifdef DEBUG
 //            [self testKaiJiang];
