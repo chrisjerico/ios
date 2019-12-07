@@ -210,10 +210,12 @@ static UGTabbarController *_tabBarVC = nil;
         [TabBarController1.tabBar setBackgroundImage:[UIImage imageWithColor:Skin1.tabBarBgColor]];
         [[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:Skin1.tabBarBgColor]];
         [[UINavigationBar appearance] setBackgroundImage:[UIImage imageWithColor:Skin1.navBarBgColor] forBarMetrics:UIBarMetricsDefault];
-        
+
         for (UGNavigationController *nav in TabBarController1.viewControllers) {
             [nav.navigationBar setBackgroundImage:[UIImage imageWithColor:Skin1.navBarBgColor] forBarMetrics:UIBarMetricsDefault];
         }
+        
+//         [[UINavigationBar appearance] setBackgroundImage:[UIImage gradientImageWithBounds:CGRectMake(0, 0, UGScreenW ,k_Height_NavBar) andColors:@[[UIColor colorWithHexString:@"87d8d1"],[UIColor colorWithHexString:@"b36cff"]] andGradientType:GradientDirectionLeftToRight] forBarMetrics:UIBarMetricsDefault];
     };
     if (OBJOnceToken(self)) {
         [self xw_addNotificationForName:UGNotificationWithSkinSuccess block:block1];
