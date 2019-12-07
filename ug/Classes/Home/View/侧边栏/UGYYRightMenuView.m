@@ -59,7 +59,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
 
 -(void)initTitleAndImgs{
 
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
        [self titleArrayAndimageNameArrayInit];
         
         NSArray *arrayTmp = @[@"提现", @"充值"];
@@ -220,7 +220,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
 
 -(IBAction)showMMemberCenterView{
     NSLog(@"tap");
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
        [self hiddenSelf];
        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGBMMemberCenterViewController") animated:YES];
     }
@@ -351,7 +351,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
 }
 
 - (void)show {
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
         [self.rechargeView setBackgroundColor:Skin1.textColor1];
         [self.withdrawlView setBackgroundColor:Skin1.textColor1];
         self.rechargeView.layer.borderColor = Skin1.menuHeadViewColor.CGColor;

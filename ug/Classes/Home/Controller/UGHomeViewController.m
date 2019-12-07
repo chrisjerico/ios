@@ -233,7 +233,7 @@
     }
     
     // 黑色模板的UI调整
-    BOOL isBlack = [Skin1.skitType isEqualToString:@"黑色模板"];
+    BOOL isBlack = Skin1.isBlack;
     _rollingView.backgroundColor = isBlack ? Skin1.bgColor : Skin1.navBarBgColor;
     _rankingView.backgroundColor = isBlack ? Skin1.bgColor : Skin1.navBarBgColor;
     _gameTypeView.cc_constraints.top.constant = isBlack ? 0 : 10;
@@ -967,7 +967,7 @@
 					self.rankLabel.text = @"投注排行榜";
 				}
                 self.rankingView.hidden = !config.rankingListSwitch;
-                self.bottomView.backgroundColor = [Skin1.skitType isEqualToString:@"黑色模板"] || !config.rankingListSwitch ? [UIColor clearColor] : Skin1.navBarBgColor;
+                self.bottomView.backgroundColor = Skin1.isBlack || !config.rankingListSwitch ? [UIColor clearColor] : Skin1.navBarBgColor;
                 self.rankLabel.textColor = Skin1.textColor1;
                 [self.view layoutIfNeeded];
 				[self.upwardMultiMarqueeView reloadData];

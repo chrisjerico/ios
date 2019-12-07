@@ -43,7 +43,7 @@
         _okBtn.layer.cornerRadius = 5;
         
         FastSubViewCode(self)
-        if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+        if (Skin1.isBlack) {
             [self setBackgroundColor: Skin1.bgColor];
             [self.titleLabel setTextColor:[UIColor whiteColor]];
             [subLabel(@"账号状态lable") setTextColor:[UIColor whiteColor]];

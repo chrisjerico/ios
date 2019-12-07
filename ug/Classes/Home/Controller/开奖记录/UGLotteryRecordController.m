@@ -58,7 +58,7 @@ static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
         }
     }
     FastSubViewCode(self.view)
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
         self.view.backgroundColor = Skin1.bgColor;
         [_gameNameLabel setTextColor:Skin1.textColor1];
         [_dateLabel setTextColor:Skin1.textColor1];

@@ -35,7 +35,7 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
     if (OBJOnceToken(self)) {
         // _titleView
         {
-            BOOL isBlack = [Skin1.skitType isEqualToString:@"黑色模板"];
+            BOOL isBlack = Skin1.isBlack;
             _titleView = [[UGPlatformTitleCollectionView alloc] initWithFrame:CGRectZero];
             _titleView.backgroundColor = [UIColor clearColor];
             _titleView.platformTitleSelectBlock = ^(NSInteger selectIndex) {

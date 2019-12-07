@@ -56,7 +56,7 @@
     [_cellBgView setBackgroundColor:Skin1.textColor4];
     [_onlineServiceLabel setTextColor:Skin1.textColor1];
     [_onLineServiceInfoLabel setTextColor:Skin1.textColor1];
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
         [_onlineImgV setImage:[UIImage imageNamed:@"BMrate-up"]];
     } else {
         [_onlineImgV setImage:[UIImage imageNamed:@"jiantou2"]];
@@ -65,7 +65,7 @@
     [_cell2BgView setBackgroundColor:Skin1.textColor4];
     [_adviceLabel setTextColor:Skin1.textColor1];
     [_adviceInfoLabel setTextColor:Skin1.textColor1];
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
         [_adviceImgV setImage:[UIImage imageNamed:@"BMrate-up"]];
     } else {
         [_adviceImgV setImage:[UIImage imageNamed:@"jiantou2"]];
@@ -74,7 +74,7 @@
     [_cell3BgView setBackgroundColor:Skin1.textColor4];
     [_complaintsLabel setTextColor:Skin1.textColor1];
     [_complaintsInfoLabel setTextColor:Skin1.textColor1];
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
         [_complaintsImgV setImage:[UIImage imageNamed:@"BMrate-up"]];
     } else {
         [_complaintsImgV setImage:[UIImage imageNamed:@"jiantou2"]];
@@ -83,7 +83,7 @@
     [_cell4BgView setBackgroundColor:Skin1.textColor4];
     [_feedbackLabel setTextColor:Skin1.textColor1];
     [_feedbackInfoLabel setTextColor:Skin1.textColor1];
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
         [_feedbackImgV setImage:[UIImage imageNamed:@"BMrate-up"]];
     } else {
         [_feedbackImgV setImage:[UIImage imageNamed:@"jiantou2"]];

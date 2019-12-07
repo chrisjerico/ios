@@ -35,7 +35,7 @@ static NSString *convertRecordCellid = @"UGIntegarlConvertRecordCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     FastSubViewCode(self.view)
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
          self.view.backgroundColor = Skin1.bgColor;
          [subLabel(@"账变类型label") setTextColor:Skin1.textColor1];
          [subLabel(@"积分账变label") setTextColor:Skin1.textColor1];

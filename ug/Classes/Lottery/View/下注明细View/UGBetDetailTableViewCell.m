@@ -21,7 +21,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
 	
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
         [self.oddsLabel setTextColor:[UIColor whiteColor]];
     } else {
         [self.oddsLabel setTextColor:[UIColor blackColor]];

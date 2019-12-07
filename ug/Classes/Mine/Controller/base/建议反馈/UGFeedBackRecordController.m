@@ -72,7 +72,7 @@ static int size = 20;
     [self.ktypeLabel setTextColor:Skin1.textColor1];
     [self.kstateLabel setTextColor:Skin1.textColor1];
     [self.kConternLabel setTextColor:Skin1.textColor1];
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
         _dateArrow.image =  [UIImage imageNamed:@"baijiantou"];
         _stateArrow.image =  [UIImage imageNamed:@"baijiantou"];
         _typeArrow.image =  [UIImage imageNamed:@"baijiantou"];

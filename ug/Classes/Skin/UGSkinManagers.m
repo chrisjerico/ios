@@ -1032,6 +1032,10 @@ static UGSkinManagers *__initSkin1 = nil;
     [[NSNotificationCenter defaultCenter] postNotificationName:UGNotificationWithSkinSuccess object:nil];
 }
 
+- (BOOL)isBlack {
+    return [_skitType isEqualToString:@"黑色模板"];
+}
+
 + (UIColor *)randomThemeColor {
     #define UIColorTheme1 UGRGBColor(239, 83, 98) // Grapefruit
     #define UIColorTheme2 UGRGBColor(254, 109, 75) // Bittersweet

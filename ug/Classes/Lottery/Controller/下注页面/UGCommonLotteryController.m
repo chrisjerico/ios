@@ -33,6 +33,13 @@
     {
         // 背景色
         self.view.backgroundColor = Skin1.textColor4;
+        if (!APP.betBgIsWhite) {
+            [self.view insertSubview:({
+                UIView *bgView = [[UIView alloc] initWithFrame:APP.Bounds];
+                bgView.backgroundColor = [Skin1.skitString containsString:@"六合"] ? Skin1.navBarBgColor : Skin1.bgColor;
+                bgView;
+            }) atIndex:0];
+        }
         
         // 左侧玩法栏背景色
         self.tableView.backgroundColor = [UIColor clearColor];
@@ -42,9 +49,9 @@
         [subView(@"上背景View") setBackgroundColor:[UIColor clearColor]];
         [subView(@"中间View") setBackgroundColor:[UIColor clearColor]];
         subLabel(@"线label").hidden = true;
-        self.nextIssueLabel.textColor = Skin1.textColor1;
-        self.closeTimeLabel.textColor = Skin1.textColor1;
-        self.openTimeLabel.textColor = Skin1.textColor1;
+        self.nextIssueLabel.textColor = APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor];
+        self.closeTimeLabel.textColor = APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor];
+        self.openTimeLabel.textColor = APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor];
         
         // 底部栏背景色
         [self.bottomView setBackgroundColor:Skin1.bgColor];
@@ -54,8 +61,8 @@
             bgView;
         }) atIndex:0];
         
-        [subLabel(@"期数label") setTextColor:Skin1.textColor1];
-        [subLabel(@"聊天室label") setTextColor:Skin1.textColor1];
+        [subLabel(@"期数label") setTextColor:APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor]];
+        [subLabel(@"聊天室label") setTextColor:APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor]];
     }
 }
 

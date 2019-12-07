@@ -101,7 +101,7 @@
     UIView* view = self;
     view.hidden = NO;
     
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
         [self setBackgroundColor:Skin1.bgColor];
         [self.titleLabel setTextColor:[UIColor whiteColor]];
         [self.contentTextView setTextColor:[UIColor whiteColor]];

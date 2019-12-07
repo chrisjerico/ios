@@ -23,16 +23,16 @@
     self.bottomLine.hidden = YES;
     self.leftPoint.layer.cornerRadius = self.leftPoint.width / 2;
     self.leftPoint.layer.masksToBounds = YES;
-    self.bottomLine.backgroundColor = [Skin1.skitType isEqualToString:@"黑色模板"] ? Skin1.textColor2 : Skin1.navBarBgColor;
+    self.bottomLine.backgroundColor = Skin1.isBlack ? Skin1.textColor2 : (APP.betBgIsWhite ? Skin1.navBarBgColor : [UIColor whiteColor]);
 }
 
 - (void)setItem:(UGGameplayModel *)item {
     _item = item;
     self.titleLabel.text = item.name;
     if (item.select) {
-        self.leftPoint.backgroundColor = Skin1.navBarBgColor;
+        self.leftPoint.backgroundColor = APP.betBgIsWhite ? Skin1.navBarBgColor : [UIColor whiteColor];
     } else {
-        self.leftPoint.backgroundColor = UGRGBColor(195, 195, 196);
+        self.leftPoint.backgroundColor = APP.betBgIsWhite ? UGRGBColor(195, 195, 196) : APP.TextColor1;
     }
 }
 
@@ -48,14 +48,20 @@
     self.titleLabel.font = selected ? [UIFont boldSystemFontOfSize:15] : [UIFont systemFontOfSize:14];
     self.layer.borderWidth = selected;
     
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
         self.titleLabel.textColor = selected ? [UIColor whiteColor] : RGBA(159, 166, 173, 1);
         self.leftPoint.backgroundColor = selected ? [UIColor whiteColor] : Skin1.navBarBgColor;
         self.layer.borderColor = [UIColor whiteColor].CGColor;
     } else {
-        self.titleLabel.textColor = selected ? Skin1.navBarBgColor : Skin1.textColor1;
-        self.leftPoint.backgroundColor = selected ? Skin1.navBarBgColor : UGRGBColor(195, 195, 196);
-        self.layer.borderColor = Skin1.navBarBgColor.CGColor;
+        if (APP.betBgIsWhite) {
+            self.titleLabel.textColor = selected ? Skin1.navBarBgColor : Skin1.textColor1;
+            self.leftPoint.backgroundColor = selected ? Skin1.navBarBgColor : UGRGBColor(195, 195, 196);
+            self.layer.borderColor = Skin1.navBarBgColor.CGColor;
+        } else {
+            self.titleLabel.textColor = selected ? [UIColor whiteColor] : Skin1.textColor1;
+            self.leftPoint.backgroundColor = selected ? [UIColor whiteColor] : UGRGBColor(195, 195, 196);
+            self.layer.borderColor = [UIColor whiteColor].CGColor;
+        }
     }
 }
 

@@ -23,7 +23,7 @@
         self.layer.cornerRadius = 10;
         self.layer.masksToBounds = YES;
         self.contentTextV.editable = NO;
-        if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+        if (Skin1.isBlack) {
              self.backgroundColor = Skin1.bgColor;
             _titleLabel.textColor = Skin1.textColor1;
         } else {

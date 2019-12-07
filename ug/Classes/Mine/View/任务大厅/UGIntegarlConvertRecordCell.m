@@ -23,7 +23,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
         [self setBackgroundColor: Skin1.bgColor];
         [self.typeLabel setTextColor:Skin1.textColor1];
         [self.integralLabel setTextColor:Skin1.textColor1];

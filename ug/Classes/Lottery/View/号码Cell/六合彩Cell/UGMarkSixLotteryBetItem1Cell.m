@@ -62,7 +62,7 @@
     _item = item;
     self.layer.borderWidth = item.select ? 1 : 0.5;
     
-    if ([APP.SiteId isEqualToString:@"c194"]) {
+    if (APP.betOddsIsRed) {
         self.leftTitleLabel.attributedText = ({
             NSString *odds = [item.odds removeFloatAllZero];
             NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithString:_NSString(@"%@ %@", item.name, [odds isEqualToString:@"0"] ? @"" : odds) attributes:@{NSForegroundColorAttributeName:Skin1.textColor1}];
@@ -72,21 +72,29 @@
     } else {
         self.leftTitleLabel.text = _NSString(@"%@ %@",item.name, [item.odds removeFloatAllZero]);
     }
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
         self.backgroundColor = item.select ? Skin1.homeContentSubColor : UIColorHex(101010);
         self.layer.borderColor = (item.select ? [UIColor whiteColor] : Skin1.textColor3).CGColor;
         
-        if (![APP.SiteId isEqualToString:@"c194"]) {
+        if (!APP.betOddsIsRed) {
             self.leftTitleLabel.textColor = Skin1.textColor2;
             self.leftTitleLabel.highlightedTextColor = [UIColor whiteColor];
             self.leftTitleLabel.highlighted = item.select;
         }
     } else {
         self.backgroundColor = item.select ? [Skin1.homeContentSubColor colorWithAlphaComponent:0.2] : [UIColor clearColor];
-        self.layer.borderColor = (item.select ? Skin1.navBarBgColor : APP.LineColor).CGColor;
+        if (APP.betBgIsWhite) {
+            self.layer.borderColor = (item.select ? Skin1.navBarBgColor : APP.LineColor).CGColor;
+        } else {
+            self.layer.borderColor = (item.select ? [UIColor whiteColor] : [[UIColor whiteColor] colorWithAlphaComponent:0.3]).CGColor;
+        }
         
-        if (![APP.SiteId isEqualToString:@"c194"]) {
-            self.leftTitleLabel.textColor = Skin1.textColor1;
+        if (!APP.betOddsIsRed) {
+            if (APP.betBgIsWhite) {
+                self.leftTitleLabel.textColor = Skin1.textColor1;
+            } else {
+                self.leftTitleLabel.textColor = item.select ? [UIColor whiteColor] : Skin1.textColor1;
+            }
         }
     }
     [self setupNums:item];

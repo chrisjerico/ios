@@ -56,7 +56,7 @@ static NSString *convertCellid = @"UGConvertCollectionViewCell";
    [self.view setBackgroundColor: [UIColor whiteColor]];
     
     FastSubViewCode(self.view)
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
           [self.view setBackgroundColor:Skin1.bgColor];
           [subLabel(@"余额label") setTextColor:[UIColor lightGrayColor]];
           [subLabel(@"利息宝余额label") setTextColor:[UIColor lightGrayColor]];

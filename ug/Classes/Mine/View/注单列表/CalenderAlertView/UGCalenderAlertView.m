@@ -38,7 +38,7 @@
 //        [_calendar selectDate:[NSDate date] scrollToDate:true];
         [self addSubview:_calendar];
         
-        if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+        if (Skin1.isBlack) {
             _calendar.backgroundColor = Skin1.bgColor;
             _calendar.appearance.selectionColor = Skin1.navBarBgColor;
             _calendar.appearance.titleDefaultColor = [UIColor whiteColor];

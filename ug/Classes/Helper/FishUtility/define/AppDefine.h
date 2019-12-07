@@ -24,6 +24,8 @@
 @property (nonatomic) NSInteger PageCount;              /**<    TableView每页显示多少条数据 */
 @property (nonatomic) NSUInteger PhotoMaxLength;        /**<    图片上传允许的最大大小 */
 
+@property (nonatomic) BOOL betOddsIsRed;    /**<   下注页面赔率显示为红色 */
+@property (nonatomic) BOOL betBgIsWhite;    /**<   下注页面背景白色 */
 
 
 + (instancetype)shared;

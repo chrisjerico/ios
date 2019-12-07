@@ -69,7 +69,7 @@
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
         // body.style默认字体色
         [webView stringByEvaluatingJavaScriptFromString:@"document.body.style.color='#DDD'"];
         // body.style背景色

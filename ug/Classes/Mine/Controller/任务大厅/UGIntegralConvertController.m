@@ -62,7 +62,7 @@ static NSString *integralCellid = @"UGConvertCollectionViewCell";
     self.inputTextF.delegate = self;
     [self initCollectionView];
     
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
         self.view.backgroundColor = Skin1.bgColor;
         [self.titleLabel setTextColor:Skin1.textColor1];
         [self.submitButton setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
@@ -248,7 +248,7 @@ static NSString *integralCellid = @"UGConvertCollectionViewCell";
             UGSystemConfigModel.currentConfig = config;
             
            
-            if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+            if (Skin1.isBlack) {
                 if ([config.isIntToMoney isEqualToString:@"0"]) {
                     [self.submitButton setEnabled:NO];
                     self.submitButton.alpha = 0.4;

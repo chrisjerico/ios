@@ -38,7 +38,7 @@ static NSString *lotteryOneCellId = @"UGFastThreeOneCollectionViewCell";
 - (void)awakeFromNib {
     [super awakeFromNib];
     [self initcollectionView];
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
         [_issueLabel setTextColor:Skin1.textColor1];
     } else {
         [_issueLabel setTextColor:[UIColor blackColor]];

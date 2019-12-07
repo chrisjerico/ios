@@ -180,7 +180,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 
                 if (!UserI.isTest && SysConf.chatFollowSwitch && (amountfloat >= webAmountfloat)) {
                     
-                    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+                    if (Skin1.isBlack) {
                         [LEEAlert alert].config
                         .LeeAddTitle(^(UILabel *label) {
                             label.text = @"分享注单";
@@ -732,7 +732,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 
 - (void)show {
     FastSubViewCode(self)
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
         [self setBackgroundColor:Skin1.bgColor];
         [self.tableView setBackgroundColor:Skin1.bgColor];
         [self.titleLabel setTextColor:[UIColor whiteColor]];

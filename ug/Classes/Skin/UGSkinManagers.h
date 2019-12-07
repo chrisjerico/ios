@@ -39,7 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIColor *textColor4;              /**<    反差字体 白色 */
 
 - (void)useSkin;    /**<   应用此皮肤 */
-
+- (BOOL)isBlack;    /**<   是否是黑色模板 */
 
 
 + (UGSkinManagers *)randomSkin; /**<   测试换肤功能时使用 */

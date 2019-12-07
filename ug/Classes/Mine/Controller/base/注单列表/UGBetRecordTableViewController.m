@@ -224,7 +224,7 @@ static NSString *betRecordCellid = @"UGLotteryRecordCell";
     UGLotteryRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:betRecordCellid forIndexPath:indexPath];
     UGBetsRecordModel *model = self.dataArray[indexPath.row];
     cell.item = model;
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
         cell.backgroundColor = indexPath.row%2 ? Skin1.textColor4 : Skin1.bgColor;
     } else {
         cell.backgroundColor = indexPath.row%2 ? Skin1.textColor4 : APP.BackgroundColor;

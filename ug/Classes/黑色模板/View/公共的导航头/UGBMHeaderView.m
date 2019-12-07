@@ -81,11 +81,11 @@
             subLabel(@"网址").text = SysConf.easyRememberDomain;
         }];
         [self getNoticeList];   // 公告列表
-        if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+        if (Skin1.isBlack) {
             [self.leftwardMarqueeView start];
         }
         [self xw_addNotificationForName:UGNotificationWithSkinSuccess block:^(NSNotification * _Nonnull noti) {
-            if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+            if (Skin1.isBlack) {
                 [__self.leftwardMarqueeView start];
             } else {
                 [__self.leftwardMarqueeView pause];

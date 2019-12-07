@@ -198,7 +198,7 @@ static UGTabbarController *_tabBarVC = nil;
             for (UIView *v in sv.arrangedSubviews) {
                 v.hidden = !([sv.arrangedSubviews indexOfObject:v] < TabBarController1.tabBar.items.count);
             }
-            BOOL black = [Skin1.skitType isEqualToString:@"黑色模板"];
+            BOOL black = Skin1.isBlack;
             sv.hidden = !black;
             [TabBarController1 setTabbarHeight:black ? 53 : 50];
         }];
@@ -284,7 +284,7 @@ static UGTabbarController *_tabBarVC = nil;
         UGmobileMenu *gm = [_gms objectWithValue:path keyPath:@"path"];
         
         // 判断优惠活动展示在首页还是内页（c001显示在内页）
-        if (gm.cls == [UGPromotionsController class] && SysConf.m_promote_pos && ![APP.SiteId isEqualToString:@"c001"] && ![Skin1.skitType isEqualToString:@"黑色模板"])
+        if (gm.cls == [UGPromotionsController class] && SysConf.m_promote_pos && ![APP.SiteId isEqualToString:@"c001"] && !Skin1.isBlack)
             continue;
         
         // 已存在的控制器不需要重新初始化
@@ -342,7 +342,7 @@ static UGTabbarController *_tabBarVC = nil;
                push(@"我的", _LoadVC_from_storyboard_(@"UGLHMineViewController"));
                return false;
            }
-           else if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+           else if (Skin1.isBlack) {
                push(@"我的", _LoadVC_from_storyboard_(@"UGBMMemberCenterViewController"));
                return false;
            }
@@ -358,19 +358,19 @@ static UGTabbarController *_tabBarVC = nil;
               ||[vc isKindOfClass:[UGBMLotteryHomeViewController class]] || [vc isKindOfClass:[UGYYLotteryHomeViewController class]])) {
 
         
-        if (([vc isKindOfClass:[UGBMpreferentialViewController class]] && ![Skin1.skitType isEqualToString:@"黑色模板"])){
+        if (([vc isKindOfClass:[UGBMpreferentialViewController class]] && !Skin1.isBlack)){
             push(@"优惠活动", _LoadVC_from_storyboard_(@"UGPromotionsController"));
                        return false;
         }
-        if (([vc isKindOfClass:[UGPromotionsController class]] && [Skin1.skitType isEqualToString:@"黑色模板"])){
+        if (([vc isKindOfClass:[UGPromotionsController class]] && Skin1.isBlack)){
             push(@"优惠活动", _LoadVC_from_storyboard_(@"UGBMpreferentialViewController"));
             return false;
         }
-        if (([vc isKindOfClass:[UGBMLotteryHomeViewController class]] && ![Skin1.skitType isEqualToString:@"黑色模板"])){
+        if (([vc isKindOfClass:[UGBMLotteryHomeViewController class]] && !Skin1.isBlack)){
             push(@"彩票大厅", [UGYYLotteryHomeViewController new]);
             return false;
         }
-        if (([vc isKindOfClass:[UGYYLotteryHomeViewController class]] && [Skin1.skitType isEqualToString:@"黑色模板"])){
+        if (([vc isKindOfClass:[UGYYLotteryHomeViewController class]] && Skin1.isBlack)){
             push(@"彩票大厅", _LoadVC_from_storyboard_(@"UGBMLotteryHomeViewController"));
             return false;
         }

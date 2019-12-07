@@ -161,7 +161,7 @@
     if ([titleStr isEqualToString:@"常用登录地" ]) {
 
         
-        if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+        if (Skin1.isBlack) {
             [LEEAlert alert].config
             .LeeAddTitle(^(UILabel *label) {
                 label.text = @"⚠️为了您的账号安全，现在可以绑定常用登录地";

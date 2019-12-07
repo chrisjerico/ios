@@ -99,30 +99,6 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
-//    FastSubViewCode(self.view);
-//    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
-//        self.view.backgroundColor =  Skin1.bgColor;
-//        [subView(@"上背景View") setBackgroundColor:Skin1.bgColor];
-//        [subLabel(@"期数label") setTextColor:Skin1.textColor1];
-//        [subLabel(@"聊天室label") setTextColor:Skin1.textColor1];
-//        [subLabel(@"线label") setBackgroundColor:Skin1.textColor1];
-//        [subView(@"中间view") setBackgroundColor:Skin1.bgColor];
-//        [_nextIssueLabel setTextColor:Skin1.textColor1];
-//        [_closeTimeLabel setTextColor:Skin1.textColor1];
-//        [_openTimeLabel setTextColor:Skin1.textColor1];
-//        [subLabel(@"中间线label") setBackgroundColor:Skin1.textColor1];
-//        
-//    } else {
-//        self.view.backgroundColor =  [UIColor whiteColor];
-//        [subView(@"上背景View") setBackgroundColor: [UIColor whiteColor]];
-//        [subLabel(@"期数label") setTextColor: [UIColor blackColor]];
-//        [subLabel(@"聊天室label") setTextColor:[UIColor blackColor]];
-//        [subLabel(@"线label") setBackgroundColor:[UIColor lightGrayColor]];
-//        [_nextIssueLabel setTextColor:[UIColor blackColor]];
-//        [_closeTimeLabel setTextColor:[UIColor blackColor]];
-//        [_openTimeLabel setTextColor:[UIColor blackColor]];
-//        [subLabel(@"中间线label") setBackgroundColor:[UIColor lightGrayColor]];
-//    }
 	self.chipButton.layer.cornerRadius = 5;
 	self.chipButton.layer.masksToBounds = YES;
 	self.betButton.layer.cornerRadius = 5;
@@ -692,7 +668,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 					
 					type = model.list[self.segmentIndex];
 					UGBetModel *bet = type.list.firstObject;
-                    if ([APP.SiteId isEqualToString:@"c194"]) {
+                    if (APP.betOddsIsRed) {
                         headerView.titleLabel.attributedText = ({
                             NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithString:_NSString(@"赔率：%@", [bet.odds removeFloatAllZero]) attributes:@{NSForegroundColorAttributeName:Skin1.textColor1}];
                             [mas addAttributes:@{NSForegroundColorAttributeName:APP.AuxiliaryColor2} withString:[bet.odds removeFloatAllZero]];
@@ -716,7 +692,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 						type = model.list[2];
 					}
 					UGGameBetModel *bet = type.list.firstObject;
-                    if ([APP.SiteId isEqualToString:@"c194"]) {
+                    if (APP.betOddsIsRed) {
                         headerView.titleLabel.attributedText = ({
                             NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithString:_NSString(@"赔率：%@", [bet.odds removeFloatAllZero]) attributes:@{NSForegroundColorAttributeName:Skin1.textColor1}];
                             [mas addAttributes:@{NSForegroundColorAttributeName:APP.AuxiliaryColor2} withString:[bet.odds removeFloatAllZero]];
@@ -1195,7 +1171,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 
 - (void)updateSelectLabelWithCount:(NSInteger)count {
 	self.selectLabel.text = [NSString stringWithFormat:@"已选中 %ld 注",count];
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
         NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.selectLabel.text];
         [abStr addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(3, self.selectLabel.text.length - 4)];
         self.selectLabel.attributedText = abStr;
@@ -1244,22 +1220,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 }
 
 //这个方法是有用的不要删除
-- (void)updateOpenLabel {
-//    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
-//           if (self.openTimeLabel.text.length) {
-//               NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.openTimeLabel.text];
-//               [abStr addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(3, self.openTimeLabel.text.length - 3)];
-//               self.openTimeLabel.attributedText = abStr;
-//           }
-//    } else {
-//           if (self.openTimeLabel.text.length) {
-//               NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.openTimeLabel.text];
-//               [abStr addAttribute:NSForegroundColorAttributeName value:Skin1.navBarBgColor range:NSMakeRange(3, self.openTimeLabel.text.length - 3)];
-//               self.openTimeLabel.attributedText = abStr;
-//           }
-//    }
-
-}
+- (void)updateOpenLabel {}
 
 //刷新余额动画
 -(void)startAnimation
@@ -1383,7 +1344,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 		_tableView.estimatedSectionFooterHeight = 0;
 		_tableView.rowHeight = 40;
 		_tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
-//        if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+//        if (Skin1.isBlack) {
 //            [_tableView setBackgroundColor:[UIColor clearColor]];
 //        } else {
 //            [_tableView setBackgroundColor:[UIColor whiteColor]];

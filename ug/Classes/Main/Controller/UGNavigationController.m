@@ -154,28 +154,28 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             ||[viewController isKindOfClass:[UGBMLotteryHomeViewController class]] || [viewController isKindOfClass:[UGYYLotteryHomeViewController class]]) {
             //黑色模板的登录 注册+不是黑色模板
             //登录 注册+是黑色模板
-            if (([viewController isKindOfClass:[UGBMRegisterViewController class]] && ![Skin1.skitType isEqualToString:@"黑色模板"])){
+            if (([viewController isKindOfClass:[UGBMRegisterViewController class]] && !Skin1.isBlack)){
                 viewController =  _LoadVC_from_storyboard_(@"UGRegisterViewController");
             }
-            if (([viewController isKindOfClass:[UGRegisterViewController class]] && [Skin1.skitType isEqualToString:@"黑色模板"])){
+            if (([viewController isKindOfClass:[UGRegisterViewController class]] && Skin1.isBlack)){
                 viewController = _LoadVC_from_storyboard_(@"UGBMRegisterViewController");
             }
-            if (([viewController isKindOfClass:[UGBMLoginViewController class]] && ![Skin1.skitType isEqualToString:@"黑色模板"])){
+            if (([viewController isKindOfClass:[UGBMLoginViewController class]] && !Skin1.isBlack)){
                 viewController = _LoadVC_from_storyboard_(@"UGLoginViewController");
             }
-            if (([viewController isKindOfClass:[UGLoginViewController class]] && [Skin1.skitType isEqualToString:@"黑色模板"])){
+            if (([viewController isKindOfClass:[UGLoginViewController class]] && Skin1.isBlack)){
                 viewController = _LoadVC_from_storyboard_(@"UGBMLoginViewController");
             }
-            if (([viewController isKindOfClass:[UGBMpreferentialViewController class]] && ![Skin1.skitType isEqualToString:@"黑色模板"])){
+            if (([viewController isKindOfClass:[UGBMpreferentialViewController class]] && !Skin1.isBlack)){
                 viewController = _LoadVC_from_storyboard_(@"UGPromotionsController");
             }
-            if (([viewController isKindOfClass:[UGPromotionsController class]] && [Skin1.skitType isEqualToString:@"黑色模板"])){
+            if (([viewController isKindOfClass:[UGPromotionsController class]] && Skin1.isBlack)){
                 viewController = _LoadVC_from_storyboard_(@"UGBMpreferentialViewController");
             }
-            if (([viewController isKindOfClass:[UGBMLotteryHomeViewController class]] && ![Skin1.skitType isEqualToString:@"黑色模板"])){
+            if (([viewController isKindOfClass:[UGBMLotteryHomeViewController class]] && !Skin1.isBlack)){
                   viewController =  [UGYYLotteryHomeViewController new];
             }
-            if (([viewController isKindOfClass:[UGYYLotteryHomeViewController class]] && [Skin1.skitType isEqualToString:@"黑色模板"])){
+            if (([viewController isKindOfClass:[UGYYLotteryHomeViewController class]] && Skin1.isBlack)){
                 viewController =  _LoadVC_from_storyboard_(@"UGBMLotteryHomeViewController");
             }
            

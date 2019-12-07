@@ -142,6 +142,14 @@
 - (CGFloat)Width                    { return _Window.bounds.size.width; }
 - (CGFloat)Height                   { return _Window.bounds.size.height; }
 
+- (BOOL)betOddsIsRed {
+    return [@"c194,c005" containsString:_SiteId];
+}
+
+- (BOOL)betBgIsWhite {
+    return ![@"c175" containsString:_SiteId] || [@"新年红,石榴红" containsString:Skin1.skitType];
+}
+
 
 #pragma mark - Setup
 

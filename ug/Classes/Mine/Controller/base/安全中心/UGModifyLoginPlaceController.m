@@ -68,7 +68,7 @@ static NSString *addressCellId = @"UGAddressCollectionViewCell";
     [_provinceLabel setTextColor:Skin1.textColor1];
     [_cityLabel setTextColor:Skin1.textColor1];
     
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
         _countryArrow.image =  [UIImage imageNamed:@"baijiantou"];
         _provinceArrow.image =  [UIImage imageNamed:@"baijiantou"];
         _cityArrow.image =  [UIImage imageNamed:@"baijiantou"];

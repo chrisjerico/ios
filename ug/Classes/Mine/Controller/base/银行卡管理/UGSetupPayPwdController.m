@@ -35,7 +35,7 @@
     self.submitButton.layer.masksToBounds = YES;
     [self.submitButton setBackgroundColor:Skin1.navBarBgColor];
     FastSubViewCode(self.view)
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
         [self.view setBackgroundColor:Skin1.bgColor];
         [subLabel(@"标题label") setTextColor:[UIColor whiteColor]];
         [subLabel(@"登录密码label") setTextColor:[UIColor whiteColor]];

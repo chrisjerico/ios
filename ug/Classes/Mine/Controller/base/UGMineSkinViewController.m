@@ -294,7 +294,7 @@ BOOL isOk = NO;
 
 
 - (UIImage *)retureRandomThemeColorImage:(NSString *)imageName {
-    UIColor *tintColor = [Skin1.skitType isEqualToString:@"黑色模板"] ? [UIColor whiteColor] : [UGSkinManagers randomThemeColor];
+    UIColor *tintColor = Skin1.isBlack ? [UIColor whiteColor] : [UGSkinManagers randomThemeColor];
     return [[UIImage imageNamed:imageName] qmui_imageWithTintColor:tintColor];
 }
 //- (void)skinFirstdataSource {
@@ -861,7 +861,7 @@ BOOL isOk = NO;
         [cell setBadgeNum:[dic[@"title"] isEqualToString:@"站内信"] ? unreadMsg : 0];
         [cell setBackgroundColor: [UIColor clearColor]];
         cell.layer.borderWidth = 0.5;
-        cell.layer.borderColor = [Skin1.skitType isEqualToString:@"黑色模板"] ? [UIColor clearColor].CGColor : [[[UIColor whiteColor] colorWithAlphaComponent:0.9] CGColor];
+        cell.layer.borderColor = Skin1.isBlack ? [UIColor clearColor].CGColor : [[[UIColor whiteColor] colorWithAlphaComponent:0.9] CGColor];
         return cell;
     }
     return nil;

@@ -72,7 +72,7 @@
                              model1.state,
                              model1.adminComment];
             
-            if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+            if (Skin1.isBlack) {
                 [LEEAlert alert].config
                 .LeeAddTitle(^(UILabel *label) {
                     label.textColor = [UIColor whiteColor];

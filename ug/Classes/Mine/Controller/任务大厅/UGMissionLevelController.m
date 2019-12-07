@@ -27,7 +27,7 @@ static NSString *levelCellid = @"UGMissionLevelTableViewCell";
     
     [self getLevelsData];
     
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
         [self.view setBackgroundColor:Skin1.bgColor];
     } else {
         [self.view setBackgroundColor:[UIColor whiteColor]];
@@ -76,7 +76,7 @@ static NSString *levelCellid = @"UGMissionLevelTableViewCell";
 
     headerView.item = model;
     
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
         [headerView setSectionBgColor:Skin1.bgColor levelsSectionStr:@"等级"];
     } else {
         [headerView setSectionBgColor:[UIColor whiteColor] levelsSectionStr:@"等级"];

@@ -29,7 +29,7 @@
     [super awakeFromNib];
     self.goButton.layer.cornerRadius = 3;
     self.goButton.layer.masksToBounds = YES;
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
         [self setBackgroundColor: Skin1.bgColor];
         [_titleLabel setTextColor:Skin1.textColor1];
         [_overTimeLabel setTextColor:Skin1.textColor1];

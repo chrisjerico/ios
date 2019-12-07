@@ -23,7 +23,7 @@
     self.layer.borderWidth = 0.7;
 
     
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
         [self.contentView setBackgroundColor:Skin1.navBarBgColor];
         [_titleLabel setTextColor:[UIColor whiteColor]];
         self.layer.borderColor = Skin1.navBarBgColor.CGColor;
@@ -46,7 +46,7 @@
 }
 
 - (void)setSelected:(BOOL)selected {
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
         if (selected) {
             self.layer.borderColor = [UIColor whiteColor].CGColor;
             self.layer.borderWidth = 1;

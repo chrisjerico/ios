@@ -25,7 +25,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        _isBlack = [Skin1.skitType isEqualToString:@"黑色模板"];
+        _isBlack = Skin1.isBlack;
         UICollectionViewFlowLayout *layout = ({
             layout = [[UICollectionViewFlowLayout alloc] init];
             layout.minimumInteritemSpacing = 0;
@@ -77,7 +77,7 @@
             [__self.collectionView.collectionViewLayout invalidateLayout];
         });
         [self xw_addNotificationForName:UGNotificationWithSkinSuccess block:^(NSNotification * _Nonnull noti) {
-            __self.isBlack = [Skin1.skitType isEqualToString:@"黑色模板"];
+            __self.isBlack = Skin1.isBlack;
             [__self mas_updateConstraints:^(MASConstraintMaker *make) {
                 if (__self.isBlack) {
                     make.top.left.right.equalTo(self).offset(0);

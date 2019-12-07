@@ -485,7 +485,7 @@ UITableViewDataSource
 }
 
 - (void)show {
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
         _textColor = [UIColor whiteColor];
         _contentColor = Skin1.bgColor;
         _contentView.backgroundColor = Skin1.bgColor;

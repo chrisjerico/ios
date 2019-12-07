@@ -24,7 +24,7 @@
 
     [self setBackgroundColor: Skin1.textColor1];
     [_addressLabel setTextColor:Skin1.textColor4];
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
         [_btn setImage:[UIImage imageNamed:@"BMcha"] forState:(UIControlStateNormal)];
     } else {
         [_btn setImage:[UIImage imageNamed:@"guanbi"] forState:(UIControlStateNormal)];

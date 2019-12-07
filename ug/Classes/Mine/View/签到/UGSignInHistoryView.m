@@ -39,7 +39,7 @@
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         self.layer.cornerRadius = 5;
 
-        if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+        if (Skin1.isBlack) {
             [self setBackgroundColor: Skin1.bgColor];
         } else {
             [self setBackgroundColor:[UIColor whiteColor]];
@@ -130,7 +130,7 @@
     maskView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
     maskView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
     
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
         [_title1Label setTextColor:[UIColor whiteColor]];
     } else {
         [_title1Label setTextColor:[UIColor blackColor]];

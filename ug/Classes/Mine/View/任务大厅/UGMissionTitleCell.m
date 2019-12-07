@@ -18,7 +18,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
         [self.contentView setBackgroundColor:Skin1.bgColor];
         [self.titleLabel setTextColor:Skin1.textColor1];
     } else {
@@ -40,7 +40,7 @@
 }
 
 - (void)setSelected:(BOOL)selected {
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
         if (selected) {
             self.layer.borderColor = [UIColor whiteColor].CGColor;
             self.layer.borderWidth = 1;

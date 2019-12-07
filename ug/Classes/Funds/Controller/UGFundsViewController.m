@@ -36,7 +36,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"资金管理";
-    self.fd_prefersNavigationBarHidden = [Skin1.skitType isEqualToString:@"黑色模板"];
+    self.fd_prefersNavigationBarHidden = Skin1.isBlack;
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         [self skin];
     });
@@ -44,7 +44,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
         [self.navigationController setNavigationBarHidden:YES];//强制隐藏NavBar
         [headView.leftwardMarqueeView start];
         [self.view setBackgroundColor:Skin1.navBarBgColor];
@@ -88,7 +88,7 @@
 
     
     self.itemArray = @[@"存款",@"取款",@"存款记录",@"取款记录",@"资金明细"];
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
          [self creatView];
          self.slideSwitchView = [[XYYSegmentControl alloc] initWithFrame:CGRectMake(0 , headView.frame.size.height+headView.frame.origin.y, self.view.width, self.view.height) channelName:self.itemArray source:self];
         [self.view addSubview:self.slideSwitchView];

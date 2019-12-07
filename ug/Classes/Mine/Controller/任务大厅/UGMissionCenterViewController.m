@@ -114,7 +114,7 @@ static NSString *__title = nil;
     self.waveView.waveHeight = 10;
     [self.waveView startWaveAnimation];
     
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
         [_waveUImageV setHidden:YES];
         self.view.backgroundColor = Skin1.bgColor;
     } else {

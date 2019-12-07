@@ -252,7 +252,7 @@
                     [view addSubview:imgView];
                     self.arrowImageView = imgView;
                     
-                    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+                    if (Skin1.isBlack) {
                         imgView.image = [UIImage imageNamed:@"baijiantou"];
                     } else {
                         imgView.image = [UIImage imageNamed:@"jiantou1"];

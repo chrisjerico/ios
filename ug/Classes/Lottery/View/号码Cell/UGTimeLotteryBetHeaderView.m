@@ -16,7 +16,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
          self.titleLabel.textColor = [UIColor whiteColor];
     } else {
          self.titleLabel.textColor = Skin1.textColor1;
@@ -26,7 +26,7 @@
 - (void)setLeftTitle:(BOOL)leftTitle {
     _leftTitle = leftTitle;
     if (leftTitle) {
-        if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+        if (Skin1.isBlack) {
              self.titleLabel.textColor = [UIColor whiteColor];
         } else {
              self.titleLabel.textColor = Skin1.textColor1;
@@ -36,7 +36,7 @@
             make.left.mas_equalTo(self.left).offset(15);
         }];
     }else {
-        if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+        if (Skin1.isBlack) {
              self.titleLabel.textColor = [UIColor whiteColor];
         } else {
              self.titleLabel.textColor = Skin1.textColor2;

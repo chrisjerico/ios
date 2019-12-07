@@ -29,11 +29,11 @@
     self.oddsLabel.text = [item.odds removeFloatAllZero];
     self.layer.borderWidth = item.select ? 1 : 0.5;
     
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
         self.backgroundColor = item.select ? Skin1.homeContentSubColor : UIColorHex(101010);
         self.layer.borderColor = (item.select ? [UIColor whiteColor] : Skin1.textColor3).CGColor;
         
-        if ([APP.SiteId isEqualToString:@"c194"]) {
+        if (APP.betOddsIsRed) {
             self.oddsLabel.textColor = APP.AuxiliaryColor2;
         } else {
             self.oddsLabel.textColor = Skin1.textColor2;
@@ -42,12 +42,20 @@
         }
     } else {
         self.backgroundColor = item.select ? [Skin1.homeContentSubColor colorWithAlphaComponent:0.2] : [UIColor clearColor];
-        self.layer.borderColor = (item.select ? Skin1.navBarBgColor : APP.LineColor).CGColor;
+        if (APP.betBgIsWhite) {
+            self.layer.borderColor = (item.select ? Skin1.navBarBgColor : APP.LineColor).CGColor;
+        } else {
+            self.layer.borderColor = (item.select ? [UIColor whiteColor] : [[UIColor whiteColor] colorWithAlphaComponent:0.3]).CGColor;
+        }
         
-        if ([APP.SiteId isEqualToString:@"c194"]) {
+        if (APP.betOddsIsRed) {
             self.oddsLabel.textColor = APP.AuxiliaryColor2;
         } else {
-            self.oddsLabel.textColor = APP.TextColor1;
+            if (APP.betBgIsWhite) {
+                self.oddsLabel.textColor = APP.TextColor1;
+            } else {
+                self.oddsLabel.textColor = item.select ? [UIColor whiteColor] : APP.TextColor1;
+            }
         }
     }
 }

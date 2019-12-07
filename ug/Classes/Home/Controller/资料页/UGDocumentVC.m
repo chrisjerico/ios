@@ -60,7 +60,7 @@
         make.bottom.equalTo(self.view).offset(-APP.BottomSafeHeight);
 	}];
     
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
         self.view.backgroundColor = Skin1.bgColor;
         [_tableView setBackgroundColor:Skin1.bgColor];
 
@@ -176,7 +176,7 @@
 	accessLabel.textColor = [UIColor blueColor];
 	cell.accessoryView = accessLabel;
     
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
         [cell setBackgroundColor:Skin1.bgColor];
         cell.textLabel.textColor = [UIColor whiteColor];
     } else {
@@ -204,7 +204,7 @@
 //				[self presentViewController:vc animated:true completion:nil];
 				[UGDocumentView showWith:documentDetailModel];
 			} else if (user.isTest){
-                if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+                if (Skin1.isBlack) {
                    [LEEAlert alert].config
                    .LeeAddTitle(^(UILabel *label) {
                        label.text = @"温馨提示";
@@ -235,7 +235,7 @@
 				
 			} else if (!documentDetailModel.hasPay) {
 
-                if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+                if (Skin1.isBlack) {
                     [LEEAlert alert].config
                     .LeeAddTitle(^(UILabel *label) {
                         label.text = @"温馨提示";
@@ -468,7 +468,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 			make.height.equalTo(@0.5);
 		}];
 		
-        if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+        if (Skin1.isBlack) {
             bgView.backgroundColor = Skin1.bgColor;
             [self.currentIssueLabel setTextColor:[UIColor whiteColor]];
             [self.nextIssueLabel setTextColor:[UIColor whiteColor]];
@@ -606,7 +606,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 	self.openTimeLabel.text = [NSString stringWithFormat:@"开奖：%@",timeStr];
 	NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.openTimeLabel.text];
 
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
         [abStr addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(3, self.openTimeLabel.text.length - 3)];
     } else {
         [abStr addAttribute:NSForegroundColorAttributeName value:Skin1.navBarBgColor range:NSMakeRange(3, self.openTimeLabel.text.length - 3)];

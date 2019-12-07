@@ -22,7 +22,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.backgroundColor = [Skin1.skitType isEqualToString:@"黑色模板"] ? Skin1.bgColor : Skin1.homeContentColor;
+    self.backgroundColor = Skin1.isBlack ? Skin1.bgColor : Skin1.homeContentColor;
     self.layer.cornerRadius = 10;
     self.layer.masksToBounds = YES;
     self.nameLabel.textColor = Skin1.textColor1;
@@ -67,7 +67,7 @@
     }];
     
     FastSubViewCode(self);
-    BOOL isBlack = [Skin1.skitType isEqualToString:@"黑色模板"];
+    BOOL isBlack = Skin1.isBlack;
     _hotImageView.hidden = isBlack || !item.tipFlag;
     subImageView(@"活动ImageView").hidden = !(isBlack && item.tipFlag==2);
     subButton(@"热Button").superview.hidden = !(isBlack && item.tipFlag==1);

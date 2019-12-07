@@ -21,7 +21,7 @@
     _titleLabel.layer.cornerRadius = 3;
     _titleLabel.layer.masksToBounds = true;
     
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
          [self  setBackgroundColor:Skin1.bgColor];
          [_titleLabel setTextColor:[UIColor blackColor]];
     } else {

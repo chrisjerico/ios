@@ -63,7 +63,7 @@
         }];
         [_webView setOpaque:NO];
         
-        if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+        if (Skin1.isBlack) {
             [self setBackgroundColor:Skin1.bgColor];
             [subLabel(@"标题Label") setTextColor:[UIColor whiteColor]];
             [subLabel(@"活动说明Label") setTextColor:[UIColor whiteColor]];

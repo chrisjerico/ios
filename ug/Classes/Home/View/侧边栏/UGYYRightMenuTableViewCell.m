@@ -41,7 +41,7 @@
 
     UIImage *image = [UIImage imageNamed:imageName];
     UIImage *afterImage;
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
         afterImage = [image qmui_imageWithTintColor:Skin1.textColor1];
     } else {
         afterImage = [image qmui_imageWithTintColor:Skin1.navBarBgColor];

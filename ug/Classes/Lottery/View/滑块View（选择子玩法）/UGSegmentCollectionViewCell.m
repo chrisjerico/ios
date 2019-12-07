@@ -29,7 +29,7 @@
 }
 
 -(void)selectTextColor:(BOOL)selected{
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
         self.titleLabel.textColor = selected ? [UIColor whiteColor] : RGBA(159, 166, 173, 1);
     } else {
         self.titleLabel.textColor = selected ? Skin1.navBarBgColor : [UIColor blackColor];

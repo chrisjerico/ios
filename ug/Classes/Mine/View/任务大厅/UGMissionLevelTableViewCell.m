@@ -23,7 +23,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
         [self.levelsLabel setTextColor: Skin1.textColor1];
         [self setBackgroundColor: Skin1.bgColor];
         [self.levelTitleLabel setTextColor: Skin1.textColor1];

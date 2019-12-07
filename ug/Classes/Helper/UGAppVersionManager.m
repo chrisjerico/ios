@@ -69,7 +69,7 @@ static NSInteger versionNumber = 102;
         void (^updateApp)(void) = ^{
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:__self.versionModle.downloadUrl]];
         };
-        if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+        if (Skin1.isBlack) {
             UIColor *blueColor = [UIColor colorWithRed:90/255.0f green:154/255.0f blue:239/255.0f alpha:1.0f];
             if (isForce) {
                  [LEEAlert alert].config
@@ -137,7 +137,7 @@ static NSInteger versionNumber = 102;
         }
     } else if (flag) {
      
-        if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+        if (Skin1.isBlack) {
           UIColor *blueColor = [UIColor colorWithRed:90/255.0f green:154/255.0f blue:239/255.0f alpha:1.0f];
           [LEEAlert alert].config
            .LeeAddTitle(^(UILabel *label) {

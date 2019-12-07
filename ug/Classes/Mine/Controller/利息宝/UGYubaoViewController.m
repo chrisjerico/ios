@@ -57,7 +57,7 @@
     self.waveBotomView.backgroundColor =  Skin1.navBarBgColor;
     self.waveView.realWaveColor =  Skin1.navBarBgColor;
     FastSubViewCode(self.view)
-    if ([Skin1.skitType isEqualToString:@"黑色模板"]) {
+    if (Skin1.isBlack) {
         [self.view setBackgroundColor:Skin1.bgColor];
         [subLabel(@"本周收益label") setTextColor:[UIColor whiteColor]];
         [subLabel(@"本月收益label") setTextColor:[UIColor whiteColor]];
