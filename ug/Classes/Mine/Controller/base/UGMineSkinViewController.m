@@ -263,7 +263,7 @@ BOOL isOk = NO;
         UGMineSkinModel *msm = [UGMineSkinModel new];
         msm.name = @"我的";
         msm.dataArray = @[].mutableCopy;
-        for (NSNumber *uciType in @[@(UCI_推荐收益), @(UCI_活动彩金), @(UCI_利息宝), @(UCI_在线客服), @(UCI_活动彩金), @(UCI_利息宝), @(UCI_在线客服)]) {
+        for (NSNumber *uciType in @[@(UCI_推荐收益), @(UCI_活动彩金), @(UCI_利息宝), @(UCI_在线客服), @(UCI_全民竞猜), @(UCI_开奖走势)]) {
             [msm.dataArray addObject:[_menuNameArray objectWithValue:uciType keyPath:@"code"]];
         }
         msm;
@@ -272,7 +272,7 @@ BOOL isOk = NO;
         UGMineSkinModel *msm = [UGMineSkinModel new];
         msm.name = @"注单详情";
         msm.dataArray = @[].mutableCopy;
-        for (NSNumber *uciType in @[@(UCI_推荐收益), @(UCI_彩票注单记录), @(UCI_其他注单记录),]) {
+        for (NSNumber *uciType in @[@(UCI_彩票注单记录), @(UCI_其他注单记录),]) {
             [msm.dataArray addObject:[_menuNameArray objectWithValue:uciType keyPath:@"code"]];
         }
         msm;
@@ -281,7 +281,7 @@ BOOL isOk = NO;
         UGMineSkinModel *msm = [UGMineSkinModel new];
         msm.name = @"设置";
         msm.dataArray = @[].mutableCopy;
-        for (NSNumber *uciType in @[@(UCI_推荐收益), @(UCI_银行卡管理), @(UCI_安全中心), @(UCI_个人信息),]) {
+        for (NSNumber *uciType in @[@(UCI_银行卡管理), @(UCI_安全中心), @(UCI_个人信息),]) {
             [msm.dataArray addObject:[_menuNameArray objectWithValue:uciType keyPath:@"code"]];
         }
         msm;
