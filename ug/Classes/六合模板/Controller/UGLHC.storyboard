@@ -1024,7 +1024,7 @@
                                                                                 <subviews>
                                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Ovf-t5-YJE" customClass="FLAnimatedImageView">
                                                                                         <rect key="frame" x="0.0" y="13" width="128" height="96"/>
-                                                                                        <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="height" constant="96" id="FUq-f4-VFm"/>
                                                                                             <constraint firstAttribute="width" constant="128" id="M5z-CC-DaM"/>
@@ -1041,6 +1041,7 @@
                                                                                     <constraint firstAttribute="bottom" secondItem="Ovf-t5-YJE" secondAttribute="bottom" id="f00-gX-ZiC"/>
                                                                                 </constraints>
                                                                             </collectionViewCellContentView>
+                                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         </collectionViewCell>
                                                                     </cells>
                                                                     <connections>
@@ -1991,20 +1992,20 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="LZg-3N-ATB">
-                                    <rect key="frame" x="0.0" y="106.5" width="414" height="0.5"/>
+                                    <rect key="frame" x="0.0" y="106" width="414" height="0.5"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="fkv-1z-QJ9">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="50.5"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fkv-1z-QJ9" id="zXi-LM-fuv">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="50.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="114期:一肖中特诗：西北独扫前人军" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3pe-SS-Aim">
-                                                    <rect key="frame" x="20" y="15" width="344" height="20.5"/>
+                                                    <rect key="frame" x="20" y="15" width="344" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -2013,7 +2014,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jiantouyou" translatesAutoresizingMaskIntoConstraints="NO" id="UQW-ub-f8b">
-                                                    <rect key="frame" x="384" y="15.5" width="20" height="20"/>
+                                                    <rect key="frame" x="384" y="15" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="FeU-dS-SnC"/>
                                                         <constraint firstAttribute="width" secondItem="UQW-ub-f8b" secondAttribute="height" multiplier="1:1" id="MpL-0b-Js9"/>
@@ -2720,11 +2721,24 @@
                                                         <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="期数Label"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
+                                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gNq-14-abu">
+                                                    <rect key="frame" x="0.0" y="48" width="48" height="2"/>
+                                                    <color key="backgroundColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="2" id="PNZ-cO-Oho"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="下滑线View"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="G7d-Gq-j7d" firstAttribute="top" secondItem="8sS-nr-vtB" secondAttribute="top" id="Mpe-Gu-bxX"/>
+                                                <constraint firstAttribute="trailing" secondItem="gNq-14-abu" secondAttribute="trailing" id="UYK-u9-84K"/>
                                                 <constraint firstAttribute="trailing" secondItem="G7d-Gq-j7d" secondAttribute="trailing" id="Z4f-fE-7lJ"/>
+                                                <constraint firstItem="gNq-14-abu" firstAttribute="leading" secondItem="8sS-nr-vtB" secondAttribute="leading" id="dhb-hP-YTe"/>
                                                 <constraint firstAttribute="bottom" secondItem="G7d-Gq-j7d" secondAttribute="bottom" id="mn4-mK-aL1"/>
+                                                <constraint firstAttribute="bottom" secondItem="gNq-14-abu" secondAttribute="bottom" id="uPh-mT-xiR"/>
                                                 <constraint firstItem="G7d-Gq-j7d" firstAttribute="leading" secondItem="8sS-nr-vtB" secondAttribute="leading" id="wzr-Op-p8J"/>
                                             </constraints>
                                         </collectionViewCellContentView>

@@ -19,7 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title  = @"代理申请";
+    self.title  = @"申请代理";
     self.extendedLayoutIncludesOpaqueBars = YES;
     
     

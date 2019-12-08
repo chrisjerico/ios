@@ -31,7 +31,6 @@
 @interface LHJournalDetailVC ()<UICollectionViewDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;  /**<   期数列表 */
 @property (nonatomic, strong) NSMutableArray <LHJournalModel *>*dataArray;  /**<   期数列表数据 */
-@property (nonatomic, strong) UIView *lineView;  /**<   当前期数下划线 */
 @property (nonatomic, strong) UGPostDetailVC *contentVC;
 @end
 
@@ -59,13 +58,6 @@
             };
         }];
         self.navigationItem.rightBarButtonItem.customView.alpha = 0;
-    }
-    
-    // 下划线
-    {
-        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(10, 48, 80, 2)];
-        line.backgroundColor = Skin1.navBarBgColor;
-        [_collectionView addSubview:_lineView = line];
     }
     
     // 获取期数列表
@@ -121,11 +113,13 @@
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+    FastSubViewCode(cell);
     LHJournalModel *jm = _dataArray[indexPath.item];
-    UILabel *lb = [cell viewWithTagString:@"期数Label"];
-    lb.text = _NSString(@"%@期", jm.lhcNo);
-    lb.textColor = jm.selected ? Skin1.navBarBgColor : Skin1.textColor2;
-    lb.font = jm.selected ? [UIFont boldSystemFontOfSize:20] : [UIFont systemFontOfSize:20];
+    subLabel(@"期数Label").text = _NSString(@"%@期", jm.lhcNo);
+    subLabel(@"期数Label").textColor = jm.selected ? Skin1.navBarBgColor : Skin1.textColor2;
+    subLabel(@"期数Label").font = jm.selected ? [UIFont boldSystemFontOfSize:20] : [UIFont systemFontOfSize:20];
+    subView(@"下滑线View").hidden = !jm.selected;
+    subView(@"下滑线View").backgroundColor = Skin1.navBarBgColor;
     return cell;
 }
 
@@ -134,7 +128,6 @@
         jm.selected = false;
     }
     _dataArray[indexPath.item].selected = true;
-    _lineView.centerX = [collectionView cellForItemAtIndexPath:indexPath].centerX;
     [self reloadContentViewController:indexPath.item];
     [collectionView reloadData];
 }

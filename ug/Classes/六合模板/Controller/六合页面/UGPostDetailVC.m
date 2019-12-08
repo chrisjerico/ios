@@ -54,7 +54,7 @@
             __self.tableView.tableHeaderView.height = [newVal CGSizeValue].height;
         }];
         [_photoCollectionView xw_addObserverBlockForKeyPath:@"contentSize" block:^(id  _Nonnull obj, id  _Nonnull oldVal, id  _Nonnull newVal) {
-            ((UIScrollView *)obj).cc_constraints.height.constant = [newVal CGSizeValue].height + 4;
+            ((UIScrollView *)obj).cc_constraints.height.constant = MAX([newVal CGSizeValue].height + 4, 20);
             [__self.tableView reloadData];
         }];
     }
@@ -67,9 +67,9 @@
             if (sm.error) {
                 [LoadingStateView showWithSuperview:__self.view state:ZJLoadingStateFail];
             } else {
-                [LoadingStateView showWithSuperview:__self.view state:ZJLoadingStateSucc];
                 __self.pm = [UGLHPostModel mj_objectWithKeyValues:sm.responseObject[@"data"]];
                 [__self setupSSV];
+                [LoadingStateView showWithSuperview:__self.view state:ZJLoadingStateSucc];
             }
         };
     };
@@ -161,6 +161,8 @@
         });
         contentLabel.cc_constraints.height.constant =  [YYTextLayout layoutWithContainerSize:CGSizeMake(ContentWidth, MAXFLOAT) text:contentLabel.attributedText].textBoundingSize.height;
         
+        _photoCollectionView.hidden = !pm.contentPic.count;
+        [_photoCollectionView reloadData];
         _animalCollectionView.superview.hidden = true;
         if (pm.vote.count) {
             CGFloat h = 20;
@@ -403,12 +405,16 @@
         NSURL *url = [NSURL URLWithString:_pm.contentPic[indexPath.item]];
         UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:url]];
         if (image) {
+            imgView.hidden = false;
             imgView.cc_constraints.height.constant = collectionViewW/image.width * image.height;
             [imgView sd_setImageWithURL:url];   // 由于要支持gif动图，还是用sd加载
         } else {
+            __weakSelf_(__self);
+            imgView.hidden = true;
             [imgView sd_setImageWithURL:url completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
                 if (image) {
                     imgView.cc_constraints.height.constant = collectionViewW/image.width * image.height;
+                    [__self.photoCollectionView reloadItemsAtIndexPaths:@[indexPath]];
                 }
             }];
         }

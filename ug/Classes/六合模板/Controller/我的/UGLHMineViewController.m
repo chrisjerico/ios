@@ -125,7 +125,7 @@
         [UGUserCenter menu:@"利息宝"                     :@"LH_syb3"],
         [UGUserCenter menu:@"额度转换"                   :@"LH_menu-transfer"],
         [UGUserCenter menu:@"推荐收益"                    :@"LH_task"],
-        [UGUserCenter menu:@"收益推荐"                    :@"LH_task"],
+        [UGUserCenter menu:@"推荐收益"                    :@"LH_task"],
         [UGUserCenter menu:@"长龙助手"                    :@"changlong"],
         [UGUserCenter menu:@"安全中心"                    :@"LH_menu-password"],
         [UGUserCenter menu:@"站内信"                    :@"LH_menu-notice"],
@@ -133,7 +133,7 @@
         [UGUserCenter menu:@"其他注单记录"                  :@"LH_menu-rule"],
         [UGUserCenter menu:@"个人信息"                        :@"LH_task"],
         [UGUserCenter menu:@"建议反馈"                    :@"LH_menu-feedback"],
-        [UGUserCenter menu:@"代理申请"                   :@"LH_task"],
+        [UGUserCenter menu:@"申请代理"                   :@"LH_task"],
         [UGUserCenter menu:@"活动彩金"                    :@"LH_money"],
         [UGUserCenter menu:@"任务中心"                    :@"LH_menu-edzh"],
     ];
@@ -185,7 +185,7 @@
 //        self.menuNameArray = @[@"存款",@"取款",@"在线客服",@"银行卡管理",@"利息宝",@"额度转换",@"推荐收益",@"安全中心",@"站内信",@"彩票注单记录",@"其他注单记录",@"个人信息",@"建议反馈",@"活动彩金"];
 //        self.imageNameArray = @[@"LH_menu-cz",@"LH_menu-qk",@"LH_menu-message",@"LH_menu-account",@"LH_syb3",@"LH_menu-transfer",@"LH_task",@"LH_menu-password",@"LH_menu-notice",@"LH_menu-rule",@"LH_menu-rule",@"LH_task",@"LH_menu-feedback",@"LH_money"];
 //    } else {
-//        self.menuNameArray = @[@"存款",@"取款",@"在线客服",@"银行卡管理",@"利息宝",@"额度转换",@"代理申请",@"安全中心",@"站内信",@"彩票注单记录",@"其他注单记录",@"个人信息",@"建议反馈",@"活动彩金"];
+//        self.menuNameArray = @[@"存款",@"取款",@"在线客服",@"银行卡管理",@"利息宝",@"额度转换",@"申请代理",@"安全中心",@"站内信",@"彩票注单记录",@"其他注单记录",@"个人信息",@"建议反馈",@"活动彩金"];
 //        self.imageNameArray = @[@"LH_menu-cz",@"LH_menu-qk",@"LH_menu-message",@"LH_menu-account",@"LH_syb3",@"LH_menu-transfer",@"LH_task",@"LH_menu-password",@"LH_menu-notice",@"LH_menu-rule",@"LH_menu-rule",@"LH_task",@"LH_menu-feedback",@"LH_money"];
 //    }
 //}
@@ -202,12 +202,12 @@
     for (UGUserCenter *gm in paths) {
         
         if (user.isAgent) {
-            if ([gm.name isEqualToString:@"代理申请"]) {
+            if ([gm.name isEqualToString:@"申请代理"]) {
                 [gm setName:@"推荐收益"];
             }
         } else {
             if ([gm.name isEqualToString:@"推荐收益"]) {
-                [gm setName:@"代理申请"];
+                [gm setName:@"申请代理"];
             }
         }
         [self.menuNameArray addObject:gm.name];
@@ -321,7 +321,7 @@
        else if ([title isEqualToString:@"额度转换"]) {
            [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGBalanceConversionController")  animated:YES];
        }
-       else if ([title isEqualToString:@"代理申请"] || [title isEqualToString:@"推荐收益"]) {
+       else if ([title isEqualToString:@"申请代理"] || [title isEqualToString:@"推荐收益"]) {
            if (UserI.isTest) {
                [self.navigationController pushViewController:[UGPromotionIncomeController new] animated:YES];
            } else {
@@ -371,6 +371,9 @@
        }
        else if ([title isEqualToString:@"长龙助手"]) {
            [self.navigationController pushViewController:[UGChangLongController new] animated:YES];
+       }
+       else if ([title isEqualToString:@"任务中心"]) {
+           [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController") animated:true];
        }
 }
 

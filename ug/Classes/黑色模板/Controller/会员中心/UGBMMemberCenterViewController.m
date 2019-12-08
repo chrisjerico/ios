@@ -128,7 +128,7 @@
         [UGUserCenter menu:@"利息宝"                     :@"lixibao"],
         [UGUserCenter menu:@"额度转换"                   :@"change"],
         [UGUserCenter menu:@"推荐收益"                    :@"shouyi1sel"],
-        [UGUserCenter menu:@"收益推荐"                    :@"shouyi1sel"],
+        [UGUserCenter menu:@"推荐收益"                    :@"shouyi1sel"],
         [UGUserCenter menu:@"安全中心"                    :@"ziyuan"],
         [UGUserCenter menu:@"站内信"                    :@"zhanneixin"],
         [UGUserCenter menu:@"彩票注单记录"                  :@"zdgl"],
@@ -136,7 +136,7 @@
         [UGUserCenter menu:@"个人信息"                        :@"gerenzhongxinxuanzhong"],
         [UGUserCenter menu:@"建议反馈"                    :@"yijian"],
         [UGUserCenter menu:@"活动彩金"                    :@"zdgl"],
-        [UGUserCenter menu:@"代理申请"                   :@"shouyi1sel"],
+        [UGUserCenter menu:@"申请代理"                   :@"shouyi1sel"],
         [UGUserCenter menu:@"任务中心"                   :@"BMrenwu"],
         [UGUserCenter menu:@"长龙助手"                    :@"changlong"],
 
@@ -423,12 +423,12 @@
     for (UGUserCenter *gm in paths) {
         
         if (user.isAgent) {
-            if ([gm.name isEqualToString:@"代理申请"]) {
+            if ([gm.name isEqualToString:@"申请代理"]) {
                 [gm setName:@"推荐收益"];
             }
         } else {
             if ([gm.name isEqualToString:@"推荐收益"]) {
-                [gm setName:@"代理申请"];
+                [gm setName:@"申请代理"];
             }
         }
         if ([CMCommon stringIsNull:gm.logo]) {

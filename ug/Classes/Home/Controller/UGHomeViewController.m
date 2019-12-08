@@ -698,7 +698,7 @@
             }
             else if([model.alias isEqualToString:@"rwzx"]) {
                 NSLog(@"任务中心");
-                [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController") animated:false];
+                [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController") animated:true];
             }
             else if([model.alias isEqualToString:@"clzs"]) {
                 NSLog(@"长龙助手");

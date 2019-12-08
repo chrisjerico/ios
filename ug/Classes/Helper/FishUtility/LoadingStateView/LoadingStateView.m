@@ -44,7 +44,11 @@
     _loadingLabel.hidden = state != ZJLoadingStateLoading;
     _loadFailView.hidden = state != ZJLoadingStateFail;
     _tipsLabel.hidden = state != ZJLoadingStateTips;
-    self.hidden = state == ZJLoadingStateSucc;
+    [UIView animateWithDuration:0.1 animations:^{
+        self.alpha = state != ZJLoadingStateSucc;
+    } completion:^(BOOL finished) {
+        self.hidden = state == ZJLoadingStateSucc;
+    }];
 }
 
 - (IBAction)onRefreshBtnClick:(UIButton *)sender {
