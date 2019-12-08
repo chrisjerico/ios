@@ -109,7 +109,7 @@ static NSMutableArray <SiteModel *> *__sites = nil;
             [SiteModel site    :@"c190"     :@"超级签名"     :@"22333彩世界"    :@""     :@""],          // https://dev.app2.xin/index |  |
             [SiteModel site    :@"h002"     :@"超级签名"     :@"⾹港赛⻢会"     :@""     :@""],          // https://dev.app2.xin/index | 15827947817 | dz990990
             [SiteModel site    :@"c201"     :@"超级签名"     :@"大咖彩票"       :@"io.fhpt.YSFC201"     :@"https://dkcp520.com"],          //https://dev.app2.xin/index | 18675958156 | dk789789
-
+            [SiteModel site    :@"c048"     :@"超级签名"     :@"凤凰国际"     :@"io.fhpt.H5F00A9FA"     :@"https://dsjf43-43-f14-345-36-g54t-gfh54.com"],
 
             [SiteModel site    :@"c018"     :@"企业包"     :@"2044彩票"     :@"io.fhpt.H51E9BFB6"     :@"https://204421.com"],
             [SiteModel site    :@"c021"     :@"企业包"     :@"幸运彩票"     :@"io.fhpt.H5A730C2F"     :@""],
@@ -166,7 +166,6 @@ static NSMutableArray <SiteModel *> *__sites = nil;
             [SiteModel site    :@"c073"     :@"苹果开发服务群"     :@"彩73"     :@"io.fhpt.H5AECD773"     :@"https://c73hbs.com/"],
             [SiteModel site    :@"c077"     :@"苹果开发服务群"     :@"彩95"     :@"io.fhpt.H5167664E"     :@""],
             [SiteModel site    :@"c078"     :@"苹果开发服务群"     :@"彩333"     :@"io.fhpt.H5E99DB2C"     :@""],
-            [SiteModel site    :@"c084"     :@"苹果开发服务群"     :@"新2彩票"     :@"io.fhpt.H599DB7B9"     :@"https://papghawshugposwaughwsoohu.com"],
             [SiteModel site    :@"c087"     :@"苹果开发服务群"     :@"易购"     :@"io.fhpt.H59A5D767"     :@""],
             [SiteModel site    :@"c090"     :@"苹果开发服务群"     :@"⾦沙彩票"     :@"io.fhpt.H5D6E1F0A"     :@""],
             [SiteModel site    :@"c092"     :@"苹果开发服务群"     :@"2013彩票"     :@"io.fhpt.H57B34489"     :@"https://4681kkk.com"],
@@ -182,12 +181,9 @@ static NSMutableArray <SiteModel *> *__sites = nil;
             [SiteModel site    :@"c194"     :@"苹果开发服务群"     :@"好彩国际"     :@"io.dcloud.UNI42C6822"     :@"https://hc16324app95712gj5168168app.com"],
             [SiteModel site    :@"c184"     :@"苹果开发服务群"     :@"凤凰彩票"     :@"io.fhpt.H5A6D1720"     :@"https://0fhcp.cn"],
 
-            [SiteModel site    :@"c048"     :@"苹果开发服务群"     :@"凤凰彩票"     :@"io.fhpt.H5F00A9FA"     :@"https://dsjf43-43-f14-345-36-g54t-gfh54.com"],
+            
+            [SiteModel site    :@"c084"     :@"郴州快签"     :@"新2彩票"     :@"io.fhpt.H599DB7B9"     :@"https://papghawshugposwaughwsoohu.com"],
             [SiteModel site    :@"c049"     :@"郴州快签"     :@"新世纪Ⅱ"     :@"io.dcloud.UNIFC049"     :@"https://93922app.com"],
-
-            
-            
-            [SiteModel site    :@"c048"     :@"郴州快签"     :@"凤凰彩票"     :@"io.fhpt.H5F00A9FA"     :@"https://dsjf43-43-f14-345-36-g54t-gfh54.com"],
             [SiteModel site    :@"c091"     :@"郴州快签"     :@"凤凰彩票"     :@"io.fhpt.H5691A751"     :@"https://83f9.com"],
             [SiteModel site    :@"c011"     :@"郴州快签"     :@"华夏彩票"     :@"io.fhpt.H599FF71F"     :@"https://www.hx627.com"], // 已上线
             [SiteModel site    :@"c015"     :@"郴州快签"     :@"奖多多"     :@"io.fhpt.H52FC720A"     :@""],

@@ -10,17 +10,43 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+
+typedef NS_ENUM(NSInteger, UserCenterItemType) {
+    UCI_存款       = 1,
+    UCI_取款       = 2,
+    UCI_银行卡管理   = 3,
+    UCI_利息宝      = 4,
+    UCI_推荐收益    = 5,
+    UCI_彩票注单记录 = 6,
+    UCI_其他注单记录 = 7,
+    UCI_额度转换    = 8,
+    UCI_站内信      = 9,
+    UCI_安全中心    = 10,
+    UCI_任务中心    = 11,
+    UCI_个人信息    = 12,
+    UCI_建议反馈    = 13,
+    UCI_在线客服    = 14,
+    UCI_活动彩金    = 15,
+    UCI_长龙助手    = 16,
+    UCI_全民竞猜    = 17,
+    UCI_开奖走势    = 18,
+};
+
+
+
 #define SysConf [UGSystemConfigModel currentConfig]
 
-@protocol UGUserCenter <NSObject>
+@protocol UGUserCenterItem <NSObject>
 
 @end
-@interface UGUserCenter :UGModel<UGUserCenter>
-@property (nonatomic, copy) NSString *code; /**<   排序  */
+@interface UGUserCenterItem :UGModel<UGUserCenterItem>
+@property (nonatomic, assign) UserCenterItemType code; /**<   id */
 @property (nonatomic, copy) NSString *logo; /**<   图标 */
 @property (nonatomic, copy) NSString *name; /**<   标题 */
-@property (nonatomic) NSInteger sort;       /**<   排序 */
-+ (instancetype)menu:(NSString *)name :(NSString *)logo ;
+@property (nonatomic, readonly) NSString *lhImgName;
+@property (nonatomic, readonly) NSString *bmImgName;
+@property (nonatomic, readonly) NSString *defaultImgName;
++ (NSArray <UGUserCenterItem *>*)allItems;
 @end
 
 @protocol UGmobileMenu <NSObject>
@@ -98,7 +124,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) NSString *easyRememberDomain;    /**<   黑色模板易记的网址*/
 
-@property (nonatomic, copy) NSArray<UGUserCenter *> *userCenter;
+@property (nonatomic, copy) NSArray<UGUserCenterItem *> *userCenter;
 + (instancetype)currentConfig;
 
 + (void)setCurrentConfig:(UGSystemConfigModel *)config;

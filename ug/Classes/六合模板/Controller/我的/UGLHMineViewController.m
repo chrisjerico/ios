@@ -30,7 +30,7 @@
 #import "WavesView.h"
 #import "UGAvaterSelectView.h"
 @interface UGLHMineViewController ()<UITableViewDelegate,UITableViewDataSource>
-@property (weak, nonatomic) IBOutlet UITableView *myTabView;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *userInfoView;
 @property (weak, nonatomic) IBOutlet UIImageView *avaterImageView;/**<   头像*/
 @property (weak, nonatomic) IBOutlet UIButton *refreshFirstButton;/**<   刷新按钮*/
@@ -48,12 +48,7 @@
 @property (nonatomic, strong) WavesView *waveView;            /**<   波浪 */
 
 
-
-@property (nonatomic, strong) NSMutableArray <NSString *> *menuNameArray; /**<   表title  */
-@property (nonatomic, strong) NSMutableArray <NSString *> *imageNameArray;/**<   表img  */
-
-
-@property (nonatomic, copy) NSArray<UGUserCenter *> *gms; /**<   行数据 */
+@property (nonatomic, copy) NSArray<UGUserCenterItem *> *gms; /**<   行数据 */
 
 @end
 
@@ -92,7 +87,7 @@
     FastSubViewCode(self.userInfoView)
     [self.userInfoView setBackgroundColor: Skin1.navBarBgColor];
     //将图层的边框设置为圆脚 
-    self.userInfoView.layer.cornerRadius = 15; 
+    self.userInfoView.layer.cornerRadius = 15;
     self.userInfoView.layer.masksToBounds = YES;
     
     subImageView(@"头像ImgV").layer.cornerRadius = 70 / 2 ;
@@ -116,268 +111,60 @@
     
     self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithImageName:@"gengduo" target:self action:@selector(rightBarBtnClick)];
     
-    
-    _gms = @[
-        [UGUserCenter menu:@"存款"                     :@"LH_menu-cz"],
-        [UGUserCenter menu:@"取款"                      :@"LH_menu-qk"],
-        [UGUserCenter menu:@"在线客服"                    :@"LH_menu-message"],
-        [UGUserCenter menu:@"银行卡管理"                   :@"LH_menu-account"],
-        [UGUserCenter menu:@"利息宝"                     :@"LH_syb3"],
-        [UGUserCenter menu:@"额度转换"                   :@"LH_menu-transfer"],
-        [UGUserCenter menu:@"推荐收益"                    :@"LH_task"],
-        [UGUserCenter menu:@"推荐收益"                    :@"LH_task"],
-        [UGUserCenter menu:@"长龙助手"                    :@"changlong"],
-        [UGUserCenter menu:@"安全中心"                    :@"LH_menu-password"],
-        [UGUserCenter menu:@"站内信"                    :@"LH_menu-notice"],
-        [UGUserCenter menu:@"彩票注单记录"                  :@"LH_menu-rule"],
-        [UGUserCenter menu:@"其他注单记录"                  :@"LH_menu-rule"],
-        [UGUserCenter menu:@"个人信息"                        :@"LH_task"],
-        [UGUserCenter menu:@"建议反馈"                    :@"LH_menu-feedback"],
-        [UGUserCenter menu:@"申请代理"                   :@"LH_task"],
-        [UGUserCenter menu:@"活动彩金"                    :@"LH_money"],
-        [UGUserCenter menu:@"任务中心"                    :@"LH_menu-edzh"],
-    ];
-    
-    {
-        NSArray<UGUserCenter *> *menus = [[UGUserCenter arrayOfModelsFromDictionaries:SysConf.userCenter error:nil] sortedArrayUsingComparator:^NSComparisonResult(UGUserCenter *obj1, UGUserCenter *obj2) {
-            return obj1.sort > obj2.sort;
-        }];
-        if (menus.count > 0) {
-            // 后台配置的页面
-            [self resetUpTabCellData:menus];
-        }
-    }
+    __weakSelf_(__self);
+    [__self.tableView.dataArray setArray:SysConf.userCenter];
+    [__self.tableView reloadData];
     SANotificationEventSubscribe(UGNotificationGetSystemConfigComplete, self, ^(typeof (self) self, id obj) {
-        NSArray<UGUserCenter *> *menus = [[UGUserCenter arrayOfModelsFromDictionaries:SysConf.userCenter error:nil] sortedArrayUsingComparator:^NSComparisonResult(UGUserCenter *obj1, UGUserCenter *obj2) {
-            return obj1.sort > obj2.sort;
-        }];
-        if (menus.count > 0) {
-            // 后台配置的页面
-            [self resetUpTabCellData:menus];
-        }
+        [__self.tableView.dataArray setArray:SysConf.userCenter];
+        [__self.tableView reloadData];
     });
     
 //    [self tableCelldataSource];
-    [self.myTabView registerNib:[UINib nibWithNibName:@"UGMenuTableViewCell" bundle:nil] forCellReuseIdentifier:@"UGMenuTableViewCell"];
-    [self.myTabView reloadData];
+    [self.tableView registerNib:[UINib nibWithNibName:@"UGMenuTableViewCell" bundle:nil] forCellReuseIdentifier:@"UGMenuTableViewCell"];
+    [self.tableView reloadData];
     
     SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
         [self getSystemConfig];
         [self.refreshFirstButton.layer removeAllAnimations];
         [self setupUserInfo:NO];
-        [self.myTabView reloadData];
+        [self.tableView reloadData];
     });
     SANotificationEventSubscribe(UGNotificationUserAvatarChanged, self, ^(typeof (self) self, id obj) {
         [subImageView(@"头像ImgV") sd_setImageWithURL:[NSURL URLWithString:[UGUserModel currentUser].avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
     });
     
     [self getUserInfo];
-    [self.myTabView reloadData];
+    [self.tableView reloadData];
 
 }
-#pragma mark table datasource
-//- (void)tableCelldataSource {
-//
-//    self.menuNameArray = [NSMutableArray array];
-//    UGUserModel *user = [UGUserModel currentUser];
-//    NSLog(@"isAgent= %d",user.isAgent);
-//    if (user.isAgent) {
-//        self.menuNameArray = @[@"存款",@"取款",@"在线客服",@"银行卡管理",@"利息宝",@"额度转换",@"推荐收益",@"安全中心",@"站内信",@"彩票注单记录",@"其他注单记录",@"个人信息",@"建议反馈",@"活动彩金"];
-//        self.imageNameArray = @[@"LH_menu-cz",@"LH_menu-qk",@"LH_menu-message",@"LH_menu-account",@"LH_syb3",@"LH_menu-transfer",@"LH_task",@"LH_menu-password",@"LH_menu-notice",@"LH_menu-rule",@"LH_menu-rule",@"LH_task",@"LH_menu-feedback",@"LH_money"];
-//    } else {
-//        self.menuNameArray = @[@"存款",@"取款",@"在线客服",@"银行卡管理",@"利息宝",@"额度转换",@"申请代理",@"安全中心",@"站内信",@"彩票注单记录",@"其他注单记录",@"个人信息",@"建议反馈",@"活动彩金"];
-//        self.imageNameArray = @[@"LH_menu-cz",@"LH_menu-qk",@"LH_menu-message",@"LH_menu-account",@"LH_syb3",@"LH_menu-transfer",@"LH_task",@"LH_menu-password",@"LH_menu-notice",@"LH_menu-rule",@"LH_menu-rule",@"LH_task",@"LH_menu-feedback",@"LH_money"];
-//    }
-//}
-
-/**
- *  添加tabCell 数据
- */
-- (void)resetUpTabCellData:(NSArray<UGUserCenter *> *)paths {
-    self.menuNameArray = [NSMutableArray array];
-    self.imageNameArray = [NSMutableArray array];
-    UGUserModel *user = [UGUserModel currentUser];
-    NSLog(@"isAgent= %d",user.isAgent);
-    
-    for (UGUserCenter *gm in paths) {
-        
-        if (user.isAgent) {
-            if ([gm.name isEqualToString:@"申请代理"]) {
-                [gm setName:@"推荐收益"];
-            }
-        } else {
-            if ([gm.name isEqualToString:@"推荐收益"]) {
-                [gm setName:@"申请代理"];
-            }
-        }
-        [self.menuNameArray addObject:gm.name];
-        if ([CMCommon stringIsNull:gm.logo]) {
-            UGUserCenter *obj  =  [_gms objectWithValue:gm.name keyPath:@"name"];
-            [self.imageNameArray addObject:obj.logo];
-        } else {
-            [self.imageNameArray addObject:gm.logo];
-        }
-        
-        if (!user.hasActLottery) {
-            if ([gm.name isEqualToString:@"活动彩金"]) {
-                [self.menuNameArray removeObject:gm.name];
-                if ([CMCommon stringIsNull:gm.logo]) {
-                    UGUserCenter *obj  =  [_gms objectWithValue:gm.name keyPath:@"name"];
-                    [self.imageNameArray removeObject:obj.logo];
-                } else {
-                    [self.imageNameArray removeObject:gm.logo];
-                }
-            }
-        }
-    }
-    
-    [self.myTabView reloadData];
-    
-}
-
 
 
 #pragma mark tableview datasource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.menuNameArray.count;
-    
+    return tableView.dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     FastSubViewCode(cell);
-    subLabel(@"标题Label").text = self.menuNameArray[indexPath.row];
-
-    
-    //字条串开始包含有某字符串
-    if ([self.imageNameArray[indexPath.row] hasPrefix:@"http"]) {
-        [subImageView(@"图片ImageView") sd_setImageWithURL:[NSURL URLWithString:self.imageNameArray[indexPath.row]]];
-    }
-    else{
-        [subImageView(@"图片ImageView") setImage:[UIImage imageNamed:self.imageNameArray[indexPath.row]]];
-    }
-    if ([subLabel(@"标题Label").text isEqualToString:@"站内信"]) {
-        if ([UGUserModel currentUser].unreadMsg) {
-            [subLabel(@"红点Label") setHidden:NO];
-            subLabel(@"红点Label").text = @([UGUserModel currentUser].unreadMsg).stringValue;
-        }
-        else{
-            [subLabel(@"红点Label") setHidden:YES];
-        }
-    } else {
-        [subLabel(@"红点Label") setHidden:YES];
-    }
+    UGUserCenterItem *uci = tableView.dataArray[indexPath.row];
+    subLabel(@"标题Label").text = uci.name;
+    [subImageView(@"图片ImageView") sd_setImageWithURL:[NSURL URLWithString:uci.logo] placeholderImage:[UIImage imageNamed:uci.lhImgName]];
+    subLabel(@"红点Label").text = @([UGUserModel currentUser].unreadMsg).stringValue;
+    subLabel(@"红点Label").hidden = !(uci.code==UCI_站内信 && [UGUserModel currentUser].unreadMsg);
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 0.001;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 0.001;
-}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    NSString *title = self.menuNameArray[indexPath.row];
-    if ([title isEqualToString:@"存款"]) {
-           UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
-           fundsVC.selectIndex = 0;
-           [self.navigationController pushViewController:fundsVC animated:YES];
-       }
-       else if ([title isEqualToString:@"取款"]) {
-           UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
-           fundsVC.selectIndex = 1;
-           [self.navigationController pushViewController:fundsVC animated:YES];
-       }
-       else if ([title isEqualToString:@"在线客服"]) {
-           SLWebViewController *webViewVC = [[SLWebViewController alloc] init];
-           webViewVC.urlStr = SysConf.zxkfUrl;
-           [self.navigationController pushViewController:webViewVC animated:YES];
-       }
-       else if ([title isEqualToString:@"银行卡管理"]) {
-           [self.navigationController pushViewController:({
-               UIViewController *vc = nil;
-               UGUserModel *user = [UGUserModel currentUser];
-               if (user.hasBankCard) {
-                   vc = _LoadVC_from_storyboard_(@"UGBankCardInfoController");
-               } else if (user.hasFundPwd) {
-                   vc = _LoadVC_from_storyboard_(@"UGBindCardViewController");
-               } else {
-                   vc = _LoadVC_from_storyboard_(@"UGSetupPayPwdController");
-               }
-               vc;
-           }) animated:YES];
-       }
-       else if ([title isEqualToString:@"利息宝"]) {
-           [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGYubaoViewController")  animated:YES];
-       }
-       else if ([title isEqualToString:@"额度转换"]) {
-           [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGBalanceConversionController")  animated:YES];
-       }
-       else if ([title isEqualToString:@"申请代理"] || [title isEqualToString:@"推荐收益"]) {
-           if (UserI.isTest) {
-               [self.navigationController pushViewController:[UGPromotionIncomeController new] animated:YES];
-           } else {
-               [SVProgressHUD showWithStatus:nil];
-               [CMNetwork teamAgentApplyInfoWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:^(CMResult<id> *model, NSError *err) {
-                   [CMResult processWithResult:model success:^{
-                       [SVProgressHUD dismiss];
-                       UGagentApplyInfo *obj  = (UGagentApplyInfo *)model.data;
-                       int intStatus = obj.reviewStatus.intValue;
-                       
-                       //0 未提交  1 待审核  2 审核通过 3 审核拒绝
-                       if (intStatus == 2) {
-                           [self.navigationController pushViewController:[UGPromotionIncomeController new] animated:YES];
-                       } else {
-                           if (![SysConf.agent_m_apply isEqualToString:@"1"]) {
-                               [HUDHelper showMsg:@"在线注册代理已关闭"];
-                               return ;
-                           }
-                           UGAgentViewController *vc = [[UGAgentViewController alloc] init];
-                           vc.item = obj;
-                           [NavController1 pushViewController:vc animated:YES];
-                       }
-                   } failure:^(id msg) {
-                       [SVProgressHUD showErrorWithStatus:msg];
-                   }];
-               }];
-           }
-       }
-       else if ([title isEqualToString:@"安全中心"]) {
-           [self.navigationController pushViewController:[UGSecurityCenterViewController new] animated:YES];
-       } else if ([title isEqualToString:@"站内信"]) {
-           [self.navigationController pushViewController:[[UGMailBoxTableViewController alloc] initWithStyle:UITableViewStyleGrouped] animated:YES];
-       } else if([title isEqualToString:@"彩票注单记录"]) {
-           [self.navigationController pushViewController:[UGBetRecordViewController new] animated:YES];
-       } else if ([title isEqualToString:@"其他注单记录"]) {
-           UGRealBetRecordViewController *betRecordVC = _LoadVC_from_storyboard_(@"UGRealBetRecordViewController");
-           betRecordVC.gameType = @"real";
-           [self.navigationController pushViewController:betRecordVC animated:YES];
-       } else if ([title isEqualToString:@"个人信息"]) {
-           [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGUserInfoViewController") animated:YES];
-       }
-       else if ([title isEqualToString:@"建议反馈"]) {
-           [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGFeedBackController") animated:YES];
-       }
-       else if ([title isEqualToString:@"活动彩金"]) {
-           [self.navigationController pushViewController:[UGMosaicGoldViewController new] animated:YES];
-       }
-       else if ([title isEqualToString:@"长龙助手"]) {
-           [self.navigationController pushViewController:[UGChangLongController new] animated:YES];
-       }
-       else if ([title isEqualToString:@"任务中心"]) {
-           [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController") animated:true];
-       }
+    UGUserCenterItem *uci = tableView.dataArray[indexPath.row];
+    [NavController1 pushVCWithUserCenterItemType:uci.code];
 }
 
+
 #pragma mark - UIS
+
 - (void)setupUserInfo:(BOOL)flag  {
    
     UGUserModel *user = [UGUserModel currentUser];
@@ -418,6 +205,8 @@
     double progress = user.taskRewardTotal.doubleValue/user.nextLevelInt.doubleValue;
     self.progressLayer.path = [self progressPathWithProgress:progress].CGPath;
 }
+
+
 #pragma mark -- 网络请求
 
 - (void)getUserInfo {
@@ -435,7 +224,7 @@
             [self getSystemConfig];
             //初始化数据
 //            [self tableCelldataSource];
-//            [self.myTabView reloadData];
+//            [self.tableView reloadData];
         } failure:^(id msg) {
             [self stopAnimation];
         }];
@@ -568,6 +357,7 @@
 }
 
 
+#pragma mark - IBAction
 
 - (IBAction)dynamicAction:(id)sender {
     NSLog(@"我的动态");

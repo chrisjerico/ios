@@ -39,7 +39,7 @@
         @"card":@"qp",      // 棋牌系列
         @"sport":@"ty",     // 体育系列
         @"real":@"zr",      // 真人系列
-        @"esport":@"dz",    // 电竞系列
+        @"esport":@"dj",    // 电竞系列
     };
     [self.imgView setImage:[UIImage imageNamed:dict[item.category]]];
 }

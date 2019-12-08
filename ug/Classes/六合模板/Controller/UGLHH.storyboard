@@ -1200,10 +1200,10 @@
                         <outlet property="avaterImageView" destination="S6O-R6-JRh" id="Nzc-5e-6tS"/>
                         <outlet property="moenyNumberLabel" destination="Btq-mB-5Lt" id="Rwq-Cr-GsU"/>
                         <outlet property="moneyNameLabel" destination="IBl-Ej-xnM" id="6Y4-yd-q3z"/>
-                        <outlet property="myTabView" destination="7st-Gm-LQU" id="ewX-Vo-rSr"/>
                         <outlet property="progressView" destination="AB4-lO-jgz" id="Q0R-8V-wtM"/>
                         <outlet property="refreshFirstButton" destination="oPT-gP-OMM" id="Un4-NG-8yY"/>
                         <outlet property="signButton" destination="bSx-k6-RwK" id="It4-gF-iWv"/>
+                        <outlet property="tableView" destination="7st-Gm-LQU" id="epx-X9-JNx"/>
                         <outlet property="taskButton" destination="0vI-zC-jaM" id="GVV-3F-s2R"/>
                         <outlet property="userInfoView" destination="Qab-1m-Lyr" id="gvW-fR-FxO"/>
                         <outlet property="waveBgView" destination="6J2-qn-gnG" id="ZTr-yi-FMt"/>

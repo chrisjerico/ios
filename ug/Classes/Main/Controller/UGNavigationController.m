@@ -30,6 +30,10 @@
 #import "UGYYLotteryHomeViewController.h"        // 购彩大厅
 #import "UGMailBoxTableViewController.h"         // 站内信
 #import "UGSigInCodeViewController.h"            // 每日签到
+#import "SLWebViewController.h"
+#import "UGSecurityCenterViewController.h"  // 安全中心
+#import "UGRealBetRecordViewController.h"   // 其他注单记录
+#import "UGMosaicGoldViewController.h"    // 活动彩金
 
 // Tools
 #import "UGAppVersionManager.h"
@@ -520,6 +524,131 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         }
     }
     return true;
+}
+
+- (BOOL)pushVCWithUserCenterItemType:(UserCenterItemType)uciType {
+    switch (uciType) {
+        case UCI_在线客服: {
+            SLWebViewController *webViewVC = [[SLWebViewController alloc] init];
+            webViewVC.urlStr = SysConf.zxkfUrl;
+            [NavController1 pushViewController:webViewVC animated:YES];
+            return true;
+        }
+        case UCI_额度转换: {
+            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGBalanceConversionController")  animated:YES];
+            return true;
+        }
+        case UCI_开奖走势: {
+            [HUDHelper showMsg:@"敬请期待"];
+            return true;
+        }
+        case UCI_全民竞猜: {
+            [HUDHelper showMsg:@"敬请期待"];
+            return true;
+        }
+        case UCI_存款: {
+            UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
+            fundsVC.selectIndex = 0;
+            [NavController1 pushViewController:fundsVC animated:YES];
+            return true;
+        }
+        case UCI_取款: {
+            UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
+            fundsVC.selectIndex = 1;
+            [NavController1 pushViewController:fundsVC animated:YES];
+            return true;
+        }
+        case UCI_银行卡管理: {
+            [NavController1 pushViewController:({
+                UIViewController *vc = nil;
+                UGUserModel *user = [UGUserModel currentUser];
+                if (user.hasBankCard) {
+                    vc = _LoadVC_from_storyboard_(@"UGBankCardInfoController");
+                } else if (user.hasFundPwd) {
+                    vc = _LoadVC_from_storyboard_(@"UGBindCardViewController");
+                } else {
+                    vc = _LoadVC_from_storyboard_(@"UGSetupPayPwdController");
+                }
+                vc;
+            }) animated:YES];
+            return true;
+        }
+        case UCI_利息宝: {
+            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGYubaoViewController")  animated:YES];
+            return true;
+        }
+        case UCI_推荐收益: {
+            if (UserI.isTest) {
+                [NavController1 pushViewController:[UGPromotionIncomeController new] animated:YES];
+            } else {
+                [SVProgressHUD showWithStatus:nil];
+                [CMNetwork teamAgentApplyInfoWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:^(CMResult<id> *model, NSError *err) {
+                    [CMResult processWithResult:model success:^{
+                        [SVProgressHUD dismiss];
+                        UGagentApplyInfo *obj  = (UGagentApplyInfo *)model.data;
+                        int intStatus = obj.reviewStatus.intValue;
+                        
+                        //0 未提交  1 待审核  2 审核通过 3 审核拒绝
+                        if (intStatus == 2) {
+                            [NavController1 pushViewController:[UGPromotionIncomeController new] animated:YES];
+                        } else {
+                            if (![SysConf.agent_m_apply isEqualToString:@"1"]) {
+                                [HUDHelper showMsg:@"在线注册代理已关闭"];
+                                return ;
+                            }
+                            UGAgentViewController *vc = [[UGAgentViewController alloc] init];
+                            vc.item = obj;
+                            [NavController1 pushViewController:vc animated:YES];
+                        }
+                    } failure:^(id msg) {
+                        [SVProgressHUD showErrorWithStatus:msg];
+                    }];
+                }];
+            }
+            return true;
+        }
+        case UCI_安全中心: {
+            [NavController1 pushViewController:[UGSecurityCenterViewController new] animated:YES];
+            return true;
+        }
+        case UCI_站内信: {
+            [NavController1 pushViewController:[[UGMailBoxTableViewController alloc] initWithStyle:UITableViewStyleGrouped] animated:YES];
+            return true;
+        }
+        case UCI_彩票注单记录: {
+            [NavController1 pushViewController:[UGBetRecordViewController new] animated:YES];
+            return true;
+        }
+        case UCI_其他注单记录: {
+            UGRealBetRecordViewController *betRecordVC = _LoadVC_from_storyboard_(@"UGRealBetRecordViewController");
+            betRecordVC.gameType = @"real";
+            [NavController1 pushViewController:betRecordVC animated:YES];
+            return true;
+        }
+        case UCI_个人信息: {
+            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGUserInfoViewController") animated:YES];
+            return true;
+        }
+        case UCI_建议反馈: {
+            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGFeedBackController") animated:YES];
+            return true;
+        }
+        case UCI_活动彩金: {
+            [NavController1 pushViewController:[UGMosaicGoldViewController new] animated:YES];
+            return true;
+        }
+        case UCI_长龙助手: {
+            [NavController1 pushViewController:[UGChangLongController new] animated:YES];
+            return true;
+        }
+        case UCI_任务中心: {
+            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController")  animated:YES];
+            return true;
+        }
+            
+        default:
+            return false;
+    }
 }
 
 @end
