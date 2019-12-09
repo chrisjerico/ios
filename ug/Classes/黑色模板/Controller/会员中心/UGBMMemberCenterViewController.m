@@ -181,16 +181,10 @@
 //每个cell的具体内容
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UGMineMenuCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UGMineMenuCollectionViewCell" forIndexPath:indexPath];
-    NSDictionary *dic = [self.menuNameArray objectAtIndex:indexPath.row];
-    [cell setMenuName: [dic objectForKey:@"title"]];
-    //字条串开始包含有某字符串
-    if ([dic[@"imgName"] isKindOfClass:UIImage.class] ) {
-        cell.imageView.image = dic[@"imgName"];
-    }
-    else{
-        [cell.imageView sd_setImageWithURL:[NSURL URLWithString:dic[@"imgName"]]];
-    }
-    [cell setBadgeNum:[[dic objectForKey:@"title"] isEqualToString:@"站内信"] ? unreadMsg : 0];
+    UGUserCenterItem *uci = self.menuNameArray[indexPath.row];
+    cell.menuName = uci.name;
+    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:uci.logo] placeholderImage:[UIImage imageNamed:uci.lhImgName]];
+    cell.badgeNum = uci.code==UCI_站内信 ? [UGUserModel currentUser].unreadMsg : 0;
     [cell setBackgroundColor: [UIColor clearColor]];
     return cell;
 }

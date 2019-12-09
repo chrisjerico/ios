@@ -125,6 +125,8 @@
         subLabel(@"昵称Label").text = pm.nickname;
         subLabel(@"时间Label").text = pm.createTime;
         subLabel(@"标题Label").text = pm.title;
+   
+        pm.isLhcdocVip?[subLabel(@"ImgV大V") setHidden:NO]:[subLabel(@"ImgV大V") setHidden:YES];
         UILabel *contentLabel = subLabel(@"内容Label");
         contentLabel.attributedText = ({
             UIFont *font = [UIFont systemFontOfSize:16];

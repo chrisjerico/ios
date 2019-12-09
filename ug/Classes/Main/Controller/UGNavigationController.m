@@ -197,7 +197,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
                 }
                 viewController =  _LoadVC_from_storyboard_(@"UGLHMineViewController");
             }
-            if (Skin1.isBlack){
+            else if (Skin1.isBlack){
                 UIViewController *vc = [NavController1.viewControllers objectWithValue:UGBMMemberCenterViewController.class keyPath:@"class"];
                 if (vc) {
                     [NavController1 popToViewController:vc animated:false];
