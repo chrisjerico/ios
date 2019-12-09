@@ -327,6 +327,7 @@ static NSString *__title = nil;
        if (vc) {
            [NavController1 popToViewController:vc animated:false];
        } else {
+
            [self.navigationController pushViewController:[UGMineSkinViewController new] animated:YES];
        }
 //    if ([self.navigationController.viewControllers.lastObject isEqual:self]) {

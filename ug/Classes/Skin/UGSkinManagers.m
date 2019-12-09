@@ -1036,6 +1036,10 @@ static UGSkinManagers *__initSkin1 = nil;
     return [_skitType isEqualToString:@"黑色模板"];
 }
 
+- (BOOL)isLH {
+    return [_skitType containsString:@"六合资料"];
+}
+
 + (UIColor *)randomThemeColor {
     #define UIColorTheme1 UGRGBColor(239, 83, 98) // Grapefruit
     #define UIColorTheme2 UGRGBColor(254, 109, 75) // Bittersweet

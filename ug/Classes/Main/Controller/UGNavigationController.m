@@ -34,7 +34,8 @@
 #import "UGSecurityCenterViewController.h"  // 安全中心
 #import "UGRealBetRecordViewController.h"   // 其他注单记录
 #import "UGMosaicGoldViewController.h"    // 活动彩金
-
+#import "UGLHMineViewController.h"    // 六合 我的
+#import "UGMineSkinViewController.h"    //  我的
 // Tools
 #import "UGAppVersionManager.h"
 
@@ -184,6 +185,21 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             }
            
         }
+        
+        if ([viewController isKindOfClass:[UGLHMineViewController class]] || [viewController isKindOfClass:[UGBMMemberCenterViewController class]]
+            ||[viewController isKindOfClass:[UGMineSkinViewController class]] ) {
+
+            if (Skin1.isLH){
+                viewController =  _LoadVC_from_storyboard_(@"UGLHMineViewController");
+            }
+            if (Skin1.isBlack){
+                viewController = _LoadVC_from_storyboard_(@"UGBMMemberCenterViewController");
+            }
+            else if (!Skin1.isLH && !Skin1.isBlack){
+                viewController = _LoadVC_from_storyboard_(@"UGMineSkinViewController");
+            }
+        }
+   
     }
     NSLog(@"NavController1= %@",NavController1);
     NSLog(@"NavController1.viewControllers= %@",NavController1.viewControllers);
