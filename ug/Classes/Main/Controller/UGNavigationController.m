@@ -188,18 +188,33 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         
         if ([viewController isKindOfClass:[UGLHMineViewController class]] || [viewController isKindOfClass:[UGBMMemberCenterViewController class]]
             ||[viewController isKindOfClass:[UGMineSkinViewController class]] ) {
-
+            
             if (Skin1.isLH){
+                UIViewController *vc = [NavController1.viewControllers objectWithValue:UGLHMineViewController.class keyPath:@"class"];
+                if (vc) {
+                    [NavController1 popToViewController:vc animated:false];
+                    return;
+                }
                 viewController =  _LoadVC_from_storyboard_(@"UGLHMineViewController");
             }
             if (Skin1.isBlack){
+                UIViewController *vc = [NavController1.viewControllers objectWithValue:UGBMMemberCenterViewController.class keyPath:@"class"];
+                if (vc) {
+                    [NavController1 popToViewController:vc animated:false];
+                    return;
+                }
                 viewController = _LoadVC_from_storyboard_(@"UGBMMemberCenterViewController");
             }
             else if (!Skin1.isLH && !Skin1.isBlack){
+                UIViewController *vc = [NavController1.viewControllers objectWithValue:UGMineSkinViewController.class keyPath:@"class"];
+                if (vc) {
+                    [NavController1 popToViewController:vc animated:false];
+                    return;
+                }
                 viewController = _LoadVC_from_storyboard_(@"UGMineSkinViewController");
             }
         }
-   
+        
     }
     NSLog(@"NavController1= %@",NavController1);
     NSLog(@"NavController1.viewControllers= %@",NavController1.viewControllers);
@@ -212,12 +227,14 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         UIViewController *vc = [NavController1.viewControllers objectWithValue:UGBMLoginViewController.class keyPath:@"class"];
         if (vc) {
             [NavController1 popToViewController:vc animated:false];
+            return;
         }
     }
     else if ([NavController1.lastVC isKindOfClass:UGLoginViewController.class]&&[viewController isKindOfClass:[UGLoginViewController class]]) {
         UIViewController *vc = [NavController1.viewControllers objectWithValue:UGLoginViewController.class keyPath:@"class"];
         if (vc) {
             [NavController1 popToViewController:vc animated:false];
+            return;
         }
     }
     else {
