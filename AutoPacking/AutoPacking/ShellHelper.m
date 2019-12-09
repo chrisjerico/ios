@@ -79,7 +79,7 @@
             [ts terminate];
             NSLog(@"%@ 站点信息配置完成，开始打包", __sm.siteId);
             
-            BOOL isEnterprise = [__sm.type isEqualToString:@"企业包"] || [__sm.type isEqualToString:@"内测包"];
+            BOOL isEnterprise = [@"企业包,内测包" containsString:__sm.type];
             NSTask *task = [[NSTask alloc] init];
             task.launchPath = [NSString stringWithFormat:@"%@/3packing.sh", ShellDir];
             task.arguments = @[isEnterprise ? @"2" : @"1", ProjectDir, ];

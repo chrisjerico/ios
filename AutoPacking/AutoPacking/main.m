@@ -13,7 +13,7 @@ int main(int argc, const char * argv[]) {
     @autoreleasepool {
         
 #ifdef DEBUG
-        NSString *ids = @"c108";
+        NSString *ids = @"c073,c091,c202,c002";
 #else
         NSString *ids = @(argv[1]);
 #endif
@@ -27,6 +27,9 @@ int main(int argc, const char * argv[]) {
             [SiteModel checkSiteInfo:ids :ProjectDir];
             
             [ShellHelper packing:[SiteModel sites:ids] completion:^{
+                
+                
+                
                 [ShellHelper upload:^{
                     exit(0);
                 }];

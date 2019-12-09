@@ -50,6 +50,27 @@
 - (BOOL)允许未登录访问 { return true; }
 - (BOOL)允许游客访问 { return true; }
 
+-(void)viewWillAppear:(BOOL)animated{
+//    [self viewWillAppear:animated];
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    
+    //检查记住密码标记，如果为YES，那么就读取用户名和密码并为TextField赋值
+    ///并将图标背景设置为记住状态，如果为NO，那么设置背景为未记住状态
+    if([userDefault boolForKey:@"isRememberPsd"])
+    {
+        [userDefault setBool:YES forKey:@"isRememberPsd"];
+         self.gouImageView.image = [UIImage imageNamed:@"dagou"];
+         self.userNameTextF.text = [userDefault stringForKey:@"userName" ];
+         self.passwordTextF.text = [userDefault stringForKey:@"userPsw" ];
+       
+    }
+    else if(![userDefault boolForKey:@"isRememberPsd"])
+    {
+         [userDefault setBool:NO forKey:@"isRememberPsd"];
+         self.gouImageView.image = [UIImage imageNamed:@"dagou_off"];
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.fd_interactivePopDisabled = true;
