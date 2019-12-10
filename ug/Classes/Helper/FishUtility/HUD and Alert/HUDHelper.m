@@ -73,8 +73,10 @@
 
 #pragma mark - Show MsgView
 
-+ (MsgView *)showMsg:(NSString *)msg {
-    return [self showMsg:msg duration:2.0];
++ (MsgView *)showMsg:(NSString *)format, ... {
+    va_list list;
+    va_start(list, format);
+    return [self showMsg:[[NSString alloc] initWithFormat:format arguments:list] duration:2.0];
 }
 
 + (MsgView *)showMsg:(NSString *)msg duration:(CGFloat)dur {

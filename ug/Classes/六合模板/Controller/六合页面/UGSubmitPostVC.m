@@ -65,7 +65,8 @@
 @property (nonatomic, strong) NSMutableString *content;
 
 @property (nonatomic) NSMutableArray <UIImage *>*photos;    /**<    动态图片 */
-
+@property (nonatomic, assign) double priceMax;  /**<   最大价格 */
+@property (nonatomic, assign) double priceMin;  /**<   最小价格 */
 @end
 
 @implementation UGSubmitPostVC
@@ -84,6 +85,9 @@
     }];
     
     _photos = @[].mutableCopy;
+    LHPriceModel *pm = [SysConf.lhcPriceList objectWithValue:_clm.alias keyPath:@"alias"];
+    _priceMax = MAX(pm.priceMax, 0);
+    _priceMin = MAX(pm.priceMin, 0);
     
     // 监听文本长度
     [self xw_addNotificationForName:UITextViewTextDidChangeNotification block:^(NSNotification * _Nonnull noti) {
@@ -91,18 +95,22 @@
         __self.textLengthLabel.textColor = __self.textView.text.length > 150 ? APP.AuxiliaryColor2 : APP.TextColor3;
     }];
     
-    
-    
+    FastSubViewCode(self.view);
+//    subTextField(@"收费TextField").placeholder = _FloatString2(_priceMin);
+    subTextField(@"收费TextField").superview.hidden = [_FloatString2(_priceMax) isEqualToString:@"0"];
+    subImageView(@"表情ImageView").image = UGLHPostModel.allEmoji.firstObject;
     _photoCollectionView.superview.hidden = !_photos.count;
-    ((UIImageView *)[self.view viewWithTagString:@"表情ImageView"]).image = UGLHPostModel.allEmoji.firstObject;
     
     {
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            [[IQKeyboardManager sharedManager] registerTextFieldViewClass:[YYTextView class] didBeginEditingNotificationName:YYTextViewTextDidBeginEditingNotification didEndEditingNotificationName:YYTextViewTextDidEndEditingNotification];
+        });
         _content = @"".mutableCopy;
         _textView = [[YYTextView alloc] initWithFrame:CGRectMake(28, 6, APP.Width-56, 250)];
         _textView.font = [UIFont systemFontOfSize:17];
         _textView.delegate = self;
         [_gifCollectionView.superview insertSubview:_textView atIndex:0];
-        
         
         // 禁用TextView编辑菜单
         [_textView aspect_hookSelector:@selector(canPerformAction:withSender:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> aInfo) {
@@ -241,9 +249,13 @@
 
 #pragma mark - IBAction
 
-// 表情
+// 显示/隐藏表情
 - (IBAction)onGifBtnClick:(id)sender {
     _gifCollectionView.hidden = !_gifCollectionView.hidden;
+}
+// 隐藏表情
+- (IBAction)onHideGifBtnClick:(id)sender {
+    _gifCollectionView.hidden = true;
 }
 
 // 添加图片
@@ -258,7 +270,7 @@
     }];
 }
 
-// 发布动态
+// 发贴
 - (IBAction)onSubmitBtnClick:(UIButton *)sender {
     [_textField resignFirstResponder];
     [_textView resignFirstResponder];
@@ -269,6 +281,15 @@
     }
     if (![[_textView.text stringByReplacingOccurrencesOfString:@" " withString:@""] stringByReplacingOccurrencesOfString:@"\n" withString:@""].length) {
         [HUDHelper showMsg:@"内容不能为空！"];
+        return;
+    }
+    FastSubViewCode(self.view);
+    double price = subTextField(@"收费TextField").text.doubleValue;
+    if (price < _priceMin) {
+        [HUDHelper showMsg:@"收费不能低于%@", _FloatString2(_priceMin)];
+        return;
+    } else if (price > _priceMax) {
+        [HUDHelper showMsg:@"收费不能高于%@", _FloatString2(_priceMax)];
         return;
     }
     
@@ -290,7 +311,6 @@
     lv.duration = 3600;
 
     __weakSelf_(__self);
-    FastSubViewCode(self.view);
     [NetworkManager1 lhcdoc_postContent:_clm.alias title:_textField.text content:text images:_photos price:subTextField(@"收费TextField").text.doubleValue].completionBlock = ^(CCSessionModel *sm) {
         [HUDHelper hideLoadingView];
         if (!sm.error) {

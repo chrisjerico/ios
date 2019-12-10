@@ -36,18 +36,27 @@ typedef NS_ENUM(NSInteger, UserCenterItemType) {
 
 #define SysConf [UGSystemConfigModel currentConfig]
 
-@protocol UGUserCenterItem <NSObject>
-
-@end
-@interface UGUserCenterItem :UGModel<UGUserCenterItem>
+// 我的页功能按钮Model
+@interface UGUserCenterItem :UGModel
 @property (nonatomic, assign) UserCenterItemType code; /**<   id */
 @property (nonatomic, copy) NSString *logo; /**<   图标 */
 @property (nonatomic, copy) NSString *name; /**<   标题 */
-@property (nonatomic, readonly) NSString *lhImgName;
-@property (nonatomic, readonly) NSString *bmImgName;
-@property (nonatomic, readonly) NSString *defaultImgName;
+@property (nonatomic, readonly) NSString *lhImgName;    /**<   六合模版使用的本地图标 */
+@property (nonatomic, readonly) NSString *bmImgName;    /**<   黑色模板使用的本地图标 */
+@property (nonatomic, readonly) NSString *defaultImgName;   /**<   正常情况使用的本地图标 */
 + (NSArray <UGUserCenterItem *>*)allItems;
 @end
+
+
+// 六合帖子价格范围Model
+@interface LHPriceModel : UGModel
+@property (nonatomic, copy) NSString *pid;
+@property (nonatomic, copy) NSString *alias;
+@property (nonatomic) double priceMax;
+@property (nonatomic) double priceMin;
+@end
+
+
 
 @protocol UGmobileMenu <NSObject>
 
@@ -123,6 +132,8 @@ typedef NS_ENUM(NSInteger, UserCenterItemType) {
 @property (nonatomic, copy) NSString *chatMinFollowAmount;    /**<   聊天室跟注最小金额*/
 
 @property (nonatomic, copy) NSString *easyRememberDomain;    /**<   黑色模板易记的网址*/
+
+@property (nonatomic, copy) NSArray <LHPriceModel *>*lhcPriceList;    /**<   六合发帖价格范围 */
 
 @property (nonatomic, copy) NSArray<UGUserCenterItem *> *userCenter;
 @property (nonatomic) BOOL lhcdocMiCard;                /**<   六合彩开奖咪牌(默认状态)开关 */

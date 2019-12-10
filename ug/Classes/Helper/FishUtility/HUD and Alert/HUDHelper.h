@@ -18,7 +18,7 @@
 + (void)showPlayerTips;
 
 // ——— Msg
-+ (MsgView *)showMsg:(NSString *)msg;
++ (MsgView *)showMsg:(NSString *)format, ...;
 + (MsgView *)showMsg:(NSString *)msg duration:(CGFloat)dur;
 + (MsgView *)showMsg:(NSString *)msg duration:(CGFloat)dur superview:(UIView *)superview;
 + (void)hideMsg;

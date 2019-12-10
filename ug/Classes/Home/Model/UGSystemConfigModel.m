@@ -12,9 +12,11 @@
 
 UGSystemConfigModel *currentConfig = nil;
 
+@implementation LHPriceModel
+@end
+
+
 @implementation UGUserCenterItem
-
-
 
 + (NSArray <UGUserCenterItem *>*)allItems {
     static NSArray *_items = nil;
@@ -186,6 +188,16 @@ MJExtensionCodingImplementation
             _userCenter = [UGUserCenterItem arrayOfModelsFromDictionaries:userCenter error:nil];
         } else {
             _userCenter = userCenter;
+        }
+    }
+}
+
+- (void)setLhcPriceList:(NSArray<LHPriceModel *> *)lhcPriceList {
+    if ([lhcPriceList isKindOfClass:[NSArray class]]) {
+        if ([lhcPriceList.firstObject isKindOfClass:NSDictionary.class]) {
+            _lhcPriceList = [LHPriceModel mj_objectArrayWithKeyValuesArray:lhcPriceList];
+        } else {
+            _lhcPriceList = lhcPriceList;
         }
     }
 }

@@ -22,7 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.title = _clm.name;
     
     // TableView
     UGLHCategoryListModel *clm = _clm;

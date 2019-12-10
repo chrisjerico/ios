@@ -10,7 +10,7 @@
                <key>kind</key>
                <string>software-package</string>
                <key>url</key>
-               <string><![CDATA[https://app.wdheco.cn/ipa/c165hy/c165hy_1575818991.ipa]]></string>
+               <string><![CDATA[https://app.wdheco.cn/ipa/c202hy/c202hy_1575819471.ipa]]></string>
              </dict>
              <dict>
                <key>kind</key>
@@ -18,7 +18,7 @@
                <key>needs-shine</key>
                <integer>0</integer>
                <key>url</key>
-               <string><![CDATA[https://app.wdheco.cn/img/c165hy/c165hy.png]]></string>
+               <string><![CDATA[https://app.wdheco.cn/img/c202hy/c202hy.png]]></string>
              </dict>
              <dict>
                <key>kind</key>
@@ -26,19 +26,19 @@
                <key>needs-shine</key>
                <true/>
                <key>url</key>
-               <string><![CDATA[https://app.wdheco.cn/img/c165hy/c165hy.png]]></string>
+               <string><![CDATA[https://app.wdheco.cn/img/c202hy/c202hy.png]]></string>
              </dict>
            </array>
            <key>metadata</key>
            <dict>
              <key>bundle-identifier</key>
-             <string>io.fhpt.H57D82AEF</string>
+             <string>io.fhpt.YSAC202</string>
              <key>bundle-version</key>
-             <string><![CDATA[1.1.0]]></string>
+             <string><![CDATA[1.0.0]]></string>
              <key>kind</key>
              <string>software</string>
              <key>title</key>
-             <string><![CDATA[天天彩票]]></string>
+             <string><![CDATA[大发彩票]]></string>
            </dict>
         </dict>
       </array>

@@ -45,8 +45,7 @@
     self.title = @"帖子详情";
     
     __weakSelf_(__self);
-    
-    _topView.hidden = !_pm.nickname.length;
+    _topView.hidden = true;
     
     // 自适应高度
     {
@@ -96,6 +95,7 @@
         subButton(@"关注Button").backgroundColor = Skin1.navBarBgColor;
         subButton(@"关注Button").selected = _pm.isFollow;
         [subButton(@"关注Button") setTitle:_pm.isFollow ? @"已关注" : @"关注楼主" forState:UIControlStateNormal];
+        _topView.hidden = ![@"forum,gourmet" containsString:pm.alias];
     }
     
     // BottomView
@@ -116,10 +116,14 @@
             subButton(tagString).hidden = !ad.isShow;
             [subButton(tagString) addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
                 if (ad.link.length) {
-                    SFSafariViewController *sf = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:ad.link]];
-                    sf.允许未登录访问 = true;
-                    sf.允许游客访问 = true;
-                    [NavController1 presentViewController:sf animated:YES completion:nil];
+                    if (ad.targetType == 2) {
+                        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:ad.link]];
+                    } else {
+                        SFSafariViewController *sf = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:ad.link]];
+                        sf.允许未登录访问 = true;
+                        sf.允许游客访问 = true;
+                        [NavController1 presentViewController:sf animated:YES completion:nil];
+                    }
                 }
             }];
             [subButton(tagString) sd_setImageWithURL:[NSURL URLWithString:ad.pic] forState:UIControlStateNormal completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
@@ -130,9 +134,10 @@
         };
         setupAdButton(@"顶部广告Button", pm.topAdWap);
         setupAdButton(@"底部广告Button", pm.bottomAdWap);
-        
         subLabel(@"标题Label").text = pm.title;
+        subLabel(@"标题Label").hidden = [@"mystery,rule,sixpic,humorGuess,rundog,fourUnlike" containsString:pm.alias];
         subLabel(@"时间Label").text = _NSString(@"最后更新时间：%@", pm.createTime);
+        subLabel(@"时间Label").hidden = [@"mystery,rule" containsString:pm.alias];
         UILabel *contentLabel = subLabel(@"内容Label");
         contentLabel.attributedText = ({
             UIFont *font = [UIFont systemFontOfSize:16];
@@ -160,6 +165,7 @@
             mas;
         });
         contentLabel.cc_constraints.height.constant =  [YYTextLayout layoutWithContainerSize:CGSizeMake(ContentWidth, MAXFLOAT) text:contentLabel.attributedText].textBoundingSize.height;
+        contentLabel.hidden = [@"sixpic,rundog,fourUnlike" containsString:pm.alias];
         
         _photoCollectionView.hidden = !pm.contentPic.count;
         [_photoCollectionView reloadData];

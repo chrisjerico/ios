@@ -17,10 +17,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *addTime;      /**<   添加时间 */
 @property (nonatomic, copy) NSString *cid;          /**<   帖子ID */
 @property (nonatomic, copy) NSString *pic;          /**<   图片 */
-@property (nonatomic, copy) NSString *isShow;       /**<   是否显示 */
 @property (nonatomic, copy) NSString *position;     /**<   位置 */
-@property (nonatomic, copy) NSString *targetType;   /**<   目标类型 */
 @property (nonatomic, copy) NSString *link;         /**<   跳转链接 */
+@property (nonatomic, assign) BOOL isShow;       /**<   是否显示 */
+@property (nonatomic, assign) NSInteger targetType;   /**<   跳转方式：1本窗口 2 新窗口 */
 @end
 
 
@@ -78,6 +78,7 @@ NS_ASSUME_NONNULL_BEGIN
 //@property (nonatomic, copy) NSString *content;    /**<   帖子内容 */
 //@property (nonatomic, copy) NSString *contentPic; /**<   帖子图片内容 */
 //@property (nonatomic, copy) NSString *periods;    /**<   期数 */
+//@property (nonatomic, copy) NSString *alias;      /**<   帖子所属栏目的别名 */
 @property (nonatomic, copy) LHPostAdModel *topAdPc;      /**<   pc端顶部广告 */
 @property (nonatomic, copy) LHPostAdModel *bottomAdPc;   /**<   pc端底部广告 */
 @property (nonatomic, copy) LHPostAdModel *topAdWap;     /**<   手机端顶部广告 */

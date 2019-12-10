@@ -641,147 +641,68 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     if ([collectionView.tagString isEqualToString:@"六合内容"]) {
-          UGLHCategoryListModel *model = [self.lHCategoryList objectAtIndex:indexPath.row];
-        if ([CMCommon stringIsNull:model.link]) {
-            if ([model.alias isEqualToString:@"forum"]) {
-                UGPostListVC *vc = _LoadVC_from_storyboard_(@"UGPostListVC");
-                vc.clm = model;
-                [NavController1 pushViewController:vc animated:true];
-                NSLog(@"高手论坛");
-            }
-            else if([model.alias isEqualToString:@"gourmet"]) {
-                UGPostListVC *vc = _LoadVC_from_storyboard_(@"UGPostListVC");
-                vc.clm = model;
-                [NavController1 pushViewController:vc animated:true];
-                NSLog(@"极品专贴");
-            }
-            else if([model.alias isEqualToString:@"mystery"]) {
-                UGDocumentListVC *vc = _LoadVC_from_storyboard_(@"UGDocumentListVC");
-                vc.clm = model;
-                [NavController1 pushViewController:vc animated:true];
-                NSLog(@"每期资料");
-            }
-            else if([model.alias isEqualToString:@"rule"]) {
-                UGDocumentListVC *vc = _LoadVC_from_storyboard_(@"UGDocumentListVC");
-                vc.clm = model;
-                [NavController1 pushViewController:vc animated:true];
-                NSLog(@"公式规律");
-            }
-            else if([model.alias isEqualToString:@"sixpic"]) {
-                LHGalleryListVC *vc = _LoadVC_from_storyboard_(@"LHGalleryListVC");
-                vc.clm = model;
-                [NavController1 pushViewController:vc animated:true];
-                NSLog(@"六合图库");
-            }
-            else if([model.alias isEqualToString:@"humorGuess"]) {
-                LHJournalDetailVC *vc = _LoadVC_from_storyboard_(@"LHJournalDetailVC");
-                vc.clm = model;
-                [NavController1 pushViewController:vc animated:true];
-                NSLog(@"幽默猜测");
-            }
-            else if([model.alias isEqualToString:@"rundog"]) {
-                LHJournalDetailVC *vc = _LoadVC_from_storyboard_(@"LHJournalDetailVC");
-                vc.clm = model;
-                [NavController1 pushViewController:vc animated:true];
-                NSLog(@"跑狗玄机");
-            }
-            else if([model.alias isEqualToString:@"fourUnlike"]) {
-                LHJournalDetailVC *vc = _LoadVC_from_storyboard_(@"LHJournalDetailVC");
-                vc.clm = model;
-                [NavController1 pushViewController:vc animated:true];
-                NSLog(@"四不像");
-            }
-            else if([model.alias isEqualToString:@"yellowCale"]) {
-                NSLog(@"老黃历");
-                [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLHOldYearViewController") animated:true];
-            }
-            else if([model.alias isEqualToString:@"qmjc"]) {
-                NSLog(@"全民竞猜");
-            }
-            else if([model.alias isEqualToString:@"rwzx"]) {
-                NSLog(@"任务中心");
-                [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController") animated:true];
-            }
-            else if([model.alias isEqualToString:@"clzs"]) {
-                NSLog(@"长龙助手");
-                [NavController1 pushViewController:[UGChangLongController new] animated:YES];
-            }
-            else if([model.alias isEqualToString:@"zxkf"]) {
-                NSLog(@"在线客服");
-                SLWebViewController *webViewVC = [[SLWebViewController alloc] init];
-                webViewVC.urlStr = SysConf.zxkfUrl;
-                [self.navigationController pushViewController:webViewVC animated:YES];
-            }
-            else if([model.alias isEqualToString:@"appdl"]) {
-                NSLog(@"APP下载");
-                [[UGAppVersionManager shareInstance] updateVersionApi:true];
-            }
-            else if([model.alias isEqualToString:@"cxzs"]) {
-                NSLog(@"查询助手");
-            }
-            else if([model.alias isEqualToString:@"lxb"]) {
-                NSLog(@"利息宝");
-                [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGYubaoViewController")  animated:YES];
-            }
-            else if([model.alias isEqualToString:@"qpdz"]) {
-//            else if([model.alias isEqualToString:@"n7WKQ4GI"]) {
-                NSLog(@"棋牌电子");
-                if ([CMCommon arryIsNull:[Global getInstanse].lotterydataArray]) {
-                    return;
-                }
-                UGYYLotterySecondHomeViewController *vc = [[UGYYLotterySecondHomeViewController alloc] init];
-                vc.title = @"棋牌电子";
-                vc.dataArray = ({
-//                    [array addObjectsFromArray:[[Global getInstanse].lotterydataArray objectWithValue:@"game" keyPath:@"category"].games];
-//                    [array addObjectsFromArray:[[Global getInstanse].lotterydataArray objectWithValue:@"card" keyPath:@"category"].games];
-                    NSMutableArray<UGYYGames *> *array = @[].mutableCopy;
-                    NSDictionary *game = (NSDictionary *)[[Global getInstanse].lotterydataArray objectWithValue:@"game" keyPath:@"category"];
-                    NSArray *games = [game objectForKey:@"games"];
-//                    NSLog(@"ob= %@",[UGYYGames arrayOfModelsFromDictionaries:games error:nil]);
-                    [array addObjectsFromArray:[UGYYGames arrayOfModelsFromDictionaries:games error:nil]];
-                    
-                    {
-                        NSDictionary *card = (NSDictionary *)[[Global getInstanse].lotterydataArray objectWithValue:@"card" keyPath:@"category"];
-                        NSArray *games = [card objectForKey:@"games"];
-//                        NSLog(@"ob= %@",[UGYYGames arrayOfModelsFromDictionaries:games error:nil]);
-                        [array addObjectsFromArray:[UGYYGames arrayOfModelsFromDictionaries:games error:nil]];
-                    }
-
-                    array.copy;
-                });
-                [NavController1 pushViewController:vc animated:YES];
-            }
-            else if([model.alias isEqualToString:@"cpdt"]) {
-                NSLog(@"彩票大厅");
-                UGLotteryHomeController*vc = [[UGLotteryHomeController alloc] init];
-                [NavController1 pushViewController:vc animated:YES];
-            }
-            else if([model.alias isEqualToString:@"zrsx"]) {
-//            else if([model.alias isEqualToString:@"n7WKQ4GI"]) {
-                NSLog(@"真人视讯");
-                if ([CMCommon arryIsNull:[Global getInstanse].lotterydataArray]) {
-                    return;
-                }
-                UGYYLotterySecondHomeViewController *vc = [[UGYYLotterySecondHomeViewController alloc] init];
-                vc.title = @"真人视讯";
-                vc.dataArray = ({
-                    //                    [[Global getInstanse].lotterydataArray objectWithValue:@"real" keyPath:@"category"].games;
-                    NSDictionary *real = (NSDictionary *)[[Global getInstanse].lotterydataArray objectWithValue:@"real" keyPath:@"category"];
-                    NSArray *games = [real objectForKey:@"games"];
-//                    NSLog(@"ob= %@",[UGYYGames arrayOfModelsFromDictionaries:games error:nil]);
-                    [UGYYGames arrayOfModelsFromDictionaries:games error:nil];
-                });
-                [NavController1 pushViewController:vc animated:YES];
-            }
-            
-        } else {
-            TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
-            webViewVC.url = model.link;
-            webViewVC.webTitle = model.name;
-            [NavController1 pushViewController:webViewVC animated:YES];
+        UGLHCategoryListModel *model = [self.lHCategoryList objectAtIndex:indexPath.row];
+        if ([model.alias isEqualToString:@"forum"]) {
+            UGPostListVC *vc = _LoadVC_from_storyboard_(@"UGPostListVC");
+            vc.clm = model;
+            [NavController1 pushViewController:vc animated:true];
+            NSLog(@"高手论坛");
         }
-    } else {
-        
+        else if([model.alias isEqualToString:@"gourmet"]) {
+            UGPostListVC *vc = _LoadVC_from_storyboard_(@"UGPostListVC");
+            vc.clm = model;
+            [NavController1 pushViewController:vc animated:true];
+            NSLog(@"极品专贴");
+        }
+        else if([model.alias isEqualToString:@"mystery"]) {
+            UGDocumentListVC *vc = _LoadVC_from_storyboard_(@"UGDocumentListVC");
+            vc.clm = model;
+            [NavController1 pushViewController:vc animated:true];
+            NSLog(@"每期资料");
+        }
+        else if([model.alias isEqualToString:@"rule"]) {
+            UGDocumentListVC *vc = _LoadVC_from_storyboard_(@"UGDocumentListVC");
+            vc.clm = model;
+            [NavController1 pushViewController:vc animated:true];
+            NSLog(@"公式规律");
+        }
+        else if([model.alias isEqualToString:@"sixpic"]) {
+            LHGalleryListVC *vc = _LoadVC_from_storyboard_(@"LHGalleryListVC");
+            vc.clm = model;
+            [NavController1 pushViewController:vc animated:true];
+            NSLog(@"六合图库");
+        }
+        else if([model.alias isEqualToString:@"humorGuess"]) {
+            LHJournalDetailVC *vc = _LoadVC_from_storyboard_(@"LHJournalDetailVC");
+            vc.clm = model;
+            [NavController1 pushViewController:vc animated:true];
+            NSLog(@"幽默猜测");
+        }
+        else if([model.alias isEqualToString:@"rundog"]) {
+            LHJournalDetailVC *vc = _LoadVC_from_storyboard_(@"LHJournalDetailVC");
+            vc.clm = model;
+            [NavController1 pushViewController:vc animated:true];
+            NSLog(@"跑狗玄机");
+        }
+        else if([model.alias isEqualToString:@"fourUnlike"]) {
+            LHJournalDetailVC *vc = _LoadVC_from_storyboard_(@"LHJournalDetailVC");
+            vc.clm = model;
+            [NavController1 pushViewController:vc animated:true];
+            NSLog(@"四不像");
+        }
+        else if([model.alias isEqualToString:@"yellowCale"]) {
+            NSLog(@"老黃历");
+            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLHOldYearViewController") animated:true];
+        }
+        else {
+            BOOL ret = [NavController1 pushViewControllerWithLinkCategory:7 linkPosition:model.appLinkCode];
+            if (!ret && model.link.length) {
+                TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
+                webViewVC.url = model.link;
+                webViewVC.webTitle = model.name;
+                [NavController1 pushViewController:webViewVC animated:YES];
+            }
+        }
     }
 }
 

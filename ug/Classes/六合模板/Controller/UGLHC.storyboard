@@ -110,6 +110,14 @@
                                                             <outlet property="delegate" destination="XHY-g2-N2F" id="0fG-n5-lVT"/>
                                                         </connections>
                                                     </collectionView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="doJ-ZI-VEI">
+                                                        <rect key="frame" x="0.0" y="250" width="294" height="60"/>
+                                                        <gestureRecognizers/>
+                                                        <connections>
+                                                            <action selector="onHideGifBtnClick:" destination="XHY-g2-N2F" eventType="touchUpInside" id="o7h-J7-lkq"/>
+                                                            <outletCollection property="gestureRecognizers" destination="AnI-tH-5vC" appends="YES" id="Ocf-u7-56H"/>
+                                                        </connections>
+                                                    </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I7Z-6Z-zIw">
                                                         <rect key="frame" x="294" y="250" width="60" height="60"/>
                                                         <gestureRecognizers/>
@@ -149,12 +157,16 @@
                                                 <constraints>
                                                     <constraint firstItem="Yxv-CU-inK" firstAttribute="centerY" secondItem="I7Z-6Z-zIw" secondAttribute="centerY" id="8LG-et-Nna"/>
                                                     <constraint firstItem="Yxv-CU-inK" firstAttribute="centerX" secondItem="I7Z-6Z-zIw" secondAttribute="centerX" id="CjJ-fd-QYa"/>
+                                                    <constraint firstItem="doJ-ZI-VEI" firstAttribute="top" secondItem="lxe-eA-dX1" secondAttribute="bottom" id="Hjn-SJ-BuV"/>
                                                     <constraint firstItem="GJ6-BL-hnh" firstAttribute="top" secondItem="a2q-8h-jB1" secondAttribute="top" constant="12" id="Hot-e9-0B1"/>
                                                     <constraint firstItem="Msi-CD-d3d" firstAttribute="leading" secondItem="I7Z-6Z-zIw" secondAttribute="trailing" id="K4A-6i-sod"/>
                                                     <constraint firstItem="lxe-eA-dX1" firstAttribute="top" secondItem="a2q-8h-jB1" secondAttribute="top" id="OwJ-cs-dXp"/>
                                                     <constraint firstItem="I7Z-6Z-zIw" firstAttribute="centerY" secondItem="Msi-CD-d3d" secondAttribute="centerY" id="Qc2-GM-Joq"/>
                                                     <constraint firstAttribute="bottom" secondItem="Msi-CD-d3d" secondAttribute="bottom" id="T7J-yl-DJA"/>
+                                                    <constraint firstAttribute="bottom" secondItem="doJ-ZI-VEI" secondAttribute="bottom" id="Wmc-f9-wcB"/>
+                                                    <constraint firstItem="I7Z-6Z-zIw" firstAttribute="leading" secondItem="doJ-ZI-VEI" secondAttribute="trailing" id="caM-AW-7Dx"/>
                                                     <constraint firstItem="lxe-eA-dX1" firstAttribute="leading" secondItem="a2q-8h-jB1" secondAttribute="leading" id="ftF-u2-ToQ"/>
+                                                    <constraint firstItem="doJ-ZI-VEI" firstAttribute="leading" secondItem="a2q-8h-jB1" secondAttribute="leading" id="ipx-6m-40s"/>
                                                     <constraint firstItem="Msi-CD-d3d" firstAttribute="trailing" secondItem="lxe-eA-dX1" secondAttribute="trailing" constant="-10" id="lYR-M8-Ksv"/>
                                                     <constraint firstItem="I7Z-6Z-zIw" firstAttribute="height" secondItem="Msi-CD-d3d" secondAttribute="height" id="sOf-6y-Nbt"/>
                                                     <constraint firstItem="Msi-CD-d3d" firstAttribute="top" secondItem="lxe-eA-dX1" secondAttribute="bottom" id="sl0-Ai-qGx"/>
@@ -393,6 +405,11 @@
                 <tapGestureRecognizer id="EMN-nW-Nhr">
                     <connections>
                         <action selector="onGifBtnClick:" destination="XHY-g2-N2F" id="fTA-86-QgW"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="AnI-tH-5vC">
+                    <connections>
+                        <action selector="onHideGifBtnClick:" destination="XHY-g2-N2F" id="jz3-y8-cSN"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -2004,20 +2021,20 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="LZg-3N-ATB">
-                                    <rect key="frame" x="0.0" y="106" width="414" height="0.5"/>
+                                    <rect key="frame" x="0.0" y="106.5" width="414" height="0.5"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="fkv-1z-QJ9">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="50.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fkv-1z-QJ9" id="zXi-LM-fuv">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="50.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="114期:一肖中特诗：西北独扫前人军" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3pe-SS-Aim">
-                                                    <rect key="frame" x="20" y="15" width="344" height="20"/>
+                                                    <rect key="frame" x="20" y="15" width="344" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -2026,7 +2043,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jiantouyou" translatesAutoresizingMaskIntoConstraints="NO" id="UQW-ub-f8b">
-                                                    <rect key="frame" x="384" y="15" width="20" height="20"/>
+                                                    <rect key="frame" x="384" y="15.5" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="FeU-dS-SnC"/>
                                                         <constraint firstAttribute="width" secondItem="UQW-ub-f8b" secondAttribute="height" multiplier="1:1" id="MpL-0b-Js9"/>
