@@ -177,7 +177,7 @@ static NSMutableArray <SiteModel *> *__sites = nil;
             [SiteModel site    :@"h003"     :@"苹果开发服务群"     :@"华为彩票"     :@"io.fhpt.H591E28D0"     :@""],
             [SiteModel site    :@"c139"     :@"苹果开发服务群"     :@"68中彩⽹"     :@"io.fhpt.H536040A9"     :@""],
             [SiteModel site    :@"c186"     :@"苹果开发服务群"     :@"好彩⽹"     :@"io.fhpt.H5B2B56F7"     :@""],
-            [SiteModel site    :@"c192"     :@"苹果开发服务群"     :@"凤凰之家"     :@"io.fhpt.H56438C9F"     :@""],
+            [SiteModel site    :@"c192"     :@"苹果开发服务群"     :@"凤凰之家"     :@"io.fhpt.H56438C9F"     :@"https://103079.com"],
             [SiteModel site    :@"c194"     :@"苹果开发服务群"     :@"好彩国际"     :@"io.dcloud.UNI42C6822"     :@"https://hc16324app95712gj5168168app.com"],
             [SiteModel site    :@"c184"     :@"苹果开发服务群"     :@"凤凰彩票"     :@"io.fhpt.H5A6D1720"     :@"https://0fhcp.cn"],
 

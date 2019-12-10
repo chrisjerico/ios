@@ -1231,11 +1231,11 @@
 #pragma mark - SDCycleScrollViewDelegate
 
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
-#ifdef DEBUG
-    [[UGSkinManagers randomSkin] useSkin];
-    [HUDHelper showMsg:[UGSkinManagers currentSkin].skitString];
-    return;
-#endif
+//#ifdef DEBUG
+//    [[UGSkinManagers randomSkin] useSkin];
+//    [HUDHelper showMsg:[UGSkinManagers currentSkin].skitString];
+//    return;
+//#endif
     
 	UGBannerCellModel *banner = self.bannerArray[index];
     BOOL ret = [NavController1 pushViewControllerWithLinkCategory:banner.linkCategory linkPosition:banner.linkPosition];
@@ -1246,9 +1246,14 @@
         }
         // 去外部链接
         if ([banner.url stringByReplacingOccurrencesOfString:@" " withString:@""].length) {
-            SLWebViewController *webVC = [[SLWebViewController alloc] init];
-            webVC.urlStr = banner.url;
-            [self.navigationController pushViewController:webVC animated:YES];
+            NSLog(@"url = %@",banner.url );
+//            if ([banner.url hasPrefix:@"http"]) {
+            if ([banner.url isURL]) {
+                SLWebViewController *webVC = [[SLWebViewController alloc] init];
+                webVC.urlStr = banner.url;
+                [self.navigationController pushViewController:webVC animated:YES];
+            }
+            
         }
     }
 }
