@@ -39,6 +39,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _dataArray = @[].mutableCopy;
+    self.title = _clm.name;
     
     __weakSelf_(__self);
     // 六合图库的收藏按钮

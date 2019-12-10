@@ -113,7 +113,7 @@
     {
         FastSubViewCode(_tableView.tableHeaderView);
         void (^setupAdButton)(NSString *, LHPostAdModel *) = ^(NSString *tagString, LHPostAdModel *ad) {
-            subButton(tagString).hidden = !ad.isShow;
+            subButton(tagString).hidden = [@"sixpic,humorGuess,rundog,fourUnlike" containsString:pm.alias] || !ad.isShow;
             [subButton(tagString) addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
                 if (ad.link.length) {
                     if (ad.targetType == 2) {
@@ -183,7 +183,23 @@
     // TableView评论列表
     {
         UITableView *tv = _tableView;
-        tv.noDataTipsLabel.text = @"还没有人评论此帖子";
+        {
+            tv.noDataTipsLabel.text = @"";
+            tv.noDataTipsLabel.height = 270;
+            [tv.noDataTipsLabel addSubview:({
+                UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pl"]];
+                imgView.center = CGPointMake(APP.Width/2, 140);
+                imgView;
+            })];
+            [tv.noDataTipsLabel addSubview:({
+                UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(0, 250, APP.Width, 20)];
+                lb.textAlignment = NSTextAlignmentCenter;
+                lb.font = [UIFont systemFontOfSize:14];
+                lb.textColor = APP.TextColor2;
+                lb.text = @"还没有评论，你的机会来了";
+                lb;
+            })];
+        }
         [tv setupHeaderRefreshRequest:^CCSessionModel *(UITableView *tv) {
             return [NetworkManager1 lhdoc_contentReplyList:pm.cid replyPid:nil page:1];
         } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
@@ -417,10 +433,15 @@
         } else {
             __weakSelf_(__self);
             imgView.hidden = true;
-            [imgView sd_setImageWithURL:url completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+            image = [UIImage imageNamed:@"err"];
+            imgView.cc_constraints.height.constant = collectionViewW/image.width * image.height;
+            __weak_Obj_(imgView, __imgView);
+            [imgView sd_setImageWithURL:url placeholderImage:image completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
                 if (image) {
-                    imgView.cc_constraints.height.constant = collectionViewW/image.width * image.height;
+                    __imgView.cc_constraints.height.constant = collectionViewW/image.width * image.height;
                     [__self.photoCollectionView reloadItemsAtIndexPaths:@[indexPath]];
+                } else {
+                    __imgView.hidden = false;
                 }
             }];
         }

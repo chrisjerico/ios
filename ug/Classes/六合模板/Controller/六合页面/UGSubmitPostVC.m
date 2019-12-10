@@ -285,12 +285,14 @@
     }
     FastSubViewCode(self.view);
     double price = subTextField(@"收费TextField").text.doubleValue;
-    if (price < _priceMin) {
-        [HUDHelper showMsg:@"收费不能低于%@", _FloatString2(_priceMin)];
-        return;
-    } else if (price > _priceMax) {
-        [HUDHelper showMsg:@"收费不能高于%@", _FloatString2(_priceMax)];
-        return;
+    if (price > 0.001) {
+        if (price < _priceMin) {
+            [HUDHelper showMsg:@"收费不能低于%@", _FloatString2(_priceMin)];
+            return;
+        } else if (price > _priceMax) {
+            [HUDHelper showMsg:@"收费不能高于%@", _FloatString2(_priceMax)];
+            return;
+        }
     }
     
     NSMutableString *text = _textView.text.mutableCopy;
@@ -311,7 +313,7 @@
     lv.duration = 3600;
 
     __weakSelf_(__self);
-    [NetworkManager1 lhcdoc_postContent:_clm.alias title:_textField.text content:text images:_photos price:subTextField(@"收费TextField").text.doubleValue].completionBlock = ^(CCSessionModel *sm) {
+    [NetworkManager1 lhcdoc_postContent:_clm.alias title:_textField.text content:text images:_photos price:price].completionBlock = ^(CCSessionModel *sm) {
         [HUDHelper hideLoadingView];
         if (!sm.error) {
             [__self.navigationController popViewControllerAnimated:true];
