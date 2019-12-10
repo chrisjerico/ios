@@ -2529,7 +2529,7 @@
                                                 </constraints>
                                                 <segments>
                                                     <segment title="高手论坛"/>
-                                                    <segment title="极品专贴"/>
+                                                    <segment title="极品华贴"/>
                                                 </segments>
                                                 <connections>
                                                     <action selector="onSegmentedControlValueChanged:" destination="Xkx-QE-GVq" eventType="valueChanged" id="jWm-dY-kYo"/>

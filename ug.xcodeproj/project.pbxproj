@@ -275,6 +275,7 @@
 		CFD3BF4F23473D5900FCDA6D /* TextFieldAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BF4D23473D5900FCDA6D /* TextFieldAlertView.m */; };
 		CFEA5C1C2390FB9000C922D2 /* LHPostCommentDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEA5C1B2390FB9000C922D2 /* LHPostCommentDetailVC.m */; };
 		CFEA5C222391084200C922D2 /* AVAsset+Degress.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEA5C1F2391084200C922D2 /* AVAsset+Degress.m */; };
+		CFF1254D239FD5290000B731 /* 点击查看更多.gif in Resources */ = {isa = PBXBuildFile; fileRef = CFF1254C239FD5290000B731 /* 点击查看更多.gif */; };
 		CFF6F7D223937E1800DEDEB9 /* LHPostPayView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF6F7D123937E1800DEDEB9 /* LHPostPayView.m */; };
 		CFF6F7D523937E2200DEDEB9 /* LHPostPayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFF6F7D423937E2200DEDEB9 /* LHPostPayView.xib */; };
 		CFF6F7D8239399C000DEDEB9 /* LHPostRewardView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF6F7D7239399C000DEDEB9 /* LHPostRewardView.m */; };
@@ -1232,6 +1233,7 @@
 		CFEA5C1B2390FB9000C922D2 /* LHPostCommentDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LHPostCommentDetailVC.m; sourceTree = "<group>"; };
 		CFEA5C1F2391084200C922D2 /* AVAsset+Degress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVAsset+Degress.m"; sourceTree = "<group>"; };
 		CFEA5C212391084200C922D2 /* AVAsset+Degress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AVAsset+Degress.h"; sourceTree = "<group>"; };
+		CFF1254C239FD5290000B731 /* 点击查看更多.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "点击查看更多.gif"; sourceTree = "<group>"; };
 		CFF6F7D023937E1800DEDEB9 /* LHPostPayView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LHPostPayView.h; sourceTree = "<group>"; };
 		CFF6F7D123937E1800DEDEB9 /* LHPostPayView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LHPostPayView.m; sourceTree = "<group>"; };
 		CFF6F7D423937E2200DEDEB9 /* LHPostPayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LHPostPayView.xib; sourceTree = "<group>"; };
@@ -4499,6 +4501,7 @@
 				D40FA8BE229910EE003E596F /* yuebaoMone.gif */,
 				D4C0A12D239156FB00B39358 /* hot_01.gif */,
 				CFFAB58A237315C2009593AF /* event.gif */,
+				CFF1254C239FD5290000B731 /* 点击查看更多.gif */,
 				CFFAB58C23755569009593AF /* lxb.gif */,
 				CFCADE44237D281C00680F62 /* cplts_看图王.gif */,
 				D4B75E17227802600007047C /* LaunchScreen.storyboard */,
@@ -5463,6 +5466,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = D4B75E002278025E0007047C;
 			productRefGroup = D4B75E0A2278025E0007047C /* Products */;
@@ -5535,6 +5539,7 @@
 				CF4758A3239636D200966536 /* 31.gif in Resources */,
 				CF4758CD239636D200966536 /* 87.gif in Resources */,
 				CF475887239636D200966536 /* 109.gif in Resources */,
+				CFF1254D239FD5290000B731 /* 点击查看更多.gif in Resources */,
 				CF4758B5239636D200966536 /* 55.gif in Resources */,
 				D4D8DF6A228693ED00446BAF /* UGLotteryAssistantController.storyboard in Resources */,
 				D41C3E1D228EF72600BF6436 /* UGJSK3LotteryController.storyboard in Resources */,
@@ -6429,6 +6434,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -6488,6 +6494,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

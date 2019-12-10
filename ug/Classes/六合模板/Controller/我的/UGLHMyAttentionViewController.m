@@ -35,7 +35,7 @@
         }
         __weakSelf_(__self);
         [_tableView setupHeaderRefreshRequest:^CCSessionModel *(UITableView *tv) {
-            return __self.mySegment.selectedSegmentIndex ? [NetworkManager1 lhdoc_favContentList:nil page:1] : [NetworkManager1 lhdoc_followList:nil page:1];
+            return __self.mySegment.selectedSegmentIndex ? [NetworkManager1 lhdoc_favContentList:__self.uid page:1] : [NetworkManager1 lhdoc_followList:__self.uid page:1];
         } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
             if (__self.mySegment.selectedSegmentIndex) {//帖
                 NSArray *array = sm.responseObject[@"data"];
@@ -52,7 +52,7 @@
             }
         }];
         [_tableView setupFooterRefreshRequest:^CCSessionModel *(UITableView *tv) {
-            return __self.mySegment.selectedSegmentIndex ? [NetworkManager1 lhdoc_favContentList:nil page:tv.pageIndex] : [NetworkManager1 lhdoc_followList:nil page:tv.pageIndex];
+            return __self.mySegment.selectedSegmentIndex ? [NetworkManager1 lhdoc_favContentList:__self.uid page:tv.pageIndex] : [NetworkManager1 lhdoc_followList:__self.uid page:tv.pageIndex];
         } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
             if (__self.mySegment.selectedSegmentIndex) {//帖
                 NSArray *array = sm.responseObject[@"data"];

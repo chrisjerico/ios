@@ -31,7 +31,7 @@
     {
         __weakSelf_(__self);
         [_tableView setupHeaderRefreshRequest:^CCSessionModel *(UITableView *tv) {
-            return __self.mySegment.selectedSegmentIndex ? [NetworkManager1 lhdoc_contentFansList:nil alias:nil] : [NetworkManager1 lhdoc_fansList:nil page:1];
+            return __self.mySegment.selectedSegmentIndex ? [NetworkManager1 lhdoc_contentFansList:__self.uid alias:nil] : [NetworkManager1 lhdoc_fansList:__self.uid page:1];
         } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
             NSArray *array;
             if (__self.mySegment.selectedSegmentIndex) {

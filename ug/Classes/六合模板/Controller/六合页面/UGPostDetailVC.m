@@ -114,6 +114,7 @@
         FastSubViewCode(_tableView.tableHeaderView);
         void (^setupAdButton)(NSString *, LHPostAdModel *) = ^(NSString *tagString, LHPostAdModel *ad) {
             subButton(tagString).hidden = [@"sixpic,humorGuess,rundog,fourUnlike" containsString:pm.alias] || !ad.isShow;
+            [subButton(tagString) removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
             [subButton(tagString) addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
                 if (ad.link.length) {
                     if (ad.targetType == 2) {
@@ -141,8 +142,8 @@
         UILabel *contentLabel = subLabel(@"内容Label");
         contentLabel.attributedText = ({
             UIFont *font = [UIFont systemFontOfSize:16];
-            NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithData:[pm.content dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType,} documentAttributes:nil error:nil];
-            [mas addAttributes:@{NSFontAttributeName:font,NSForegroundColorAttributeName:APP.TextColor1} range:NSMakeRange(0, mas.length)];
+            NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithData:[pm.content dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,} documentAttributes:nil error:nil];
+            [mas addAttributes:@{NSFontAttributeName:font} range:NSMakeRange(0, mas.length)];
             for (YYImage *image in UGLHPostModel.allEmoji) {
                 NSString *key = [UGLHPostModel keyWithImage:image];
                 if ([pm.content containsString:key]) {

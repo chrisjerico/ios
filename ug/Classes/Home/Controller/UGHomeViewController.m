@@ -202,7 +202,7 @@
             }
             [v removeFromSuperview];
         }
-        NSDictionary *dict = @{@"六合资料":@[_bannerBgView, _rollingView, _liuheResultContentView, _liuheForumContentView, _promotionView, _bottomView],
+        NSDictionary *dict = @{@"六合资料":@[_bannerBgView, _rollingView, _liuheResultContentView, _liuheForumContentView, _promotionView, _rankingView, _bottomView],
                                @"黑色模板":@[_bannerBgView, _gameTypeView.superview, _rankingView, _bottomView],
         };
         
@@ -422,6 +422,7 @@
 		[__self getCheckinListData];  // 红包数据
 		[__self systemOnlineCount];   // 在线人数
         [__self getPromoteList];      // 优惠活动
+        [__self getRankList];         // 投注排行榜/中奖排行榜
         
         if ([Skin1.skitType isEqualToString:@"六合资料"]) {
             [__self getCategoryList];     //栏目列表
@@ -790,7 +791,6 @@
             
             if (![Skin1.skitType isEqualToString:@"六合资料"]) {//六合资料
                  [self getCustomGameList];   // 自定义游戏列表
-                 [self getRankList];         // 中奖列表
                  [self getAllNextIssueData]; // 彩票大厅数据
             }
             

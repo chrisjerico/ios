@@ -123,14 +123,21 @@
         subImageView(@"置顶ImageView").hidden = !pm.isTop;
         subLabel(@"期数Label").text = pm.periods;
         subLabel(@"昵称Label").text = pm.nickname;
-        subLabel(@"时间Label").text = pm.createTime;
+        subLabel(@"时间Label").text = ({
+            NSString *str = pm.createTime;
+            NSDate *date = [pm.createTime dateWithFormat:@"yyyy-MM-dd HH:mm:ss"];
+            if ([date daysEarlierThan:[NSDate date]] < 4) {
+                str = [date timeAgoSinceNow];
+            }
+            str;
+        });
         subLabel(@"标题Label").text = pm.title;
    
         pm.isLhcdocVip?[subLabel(@"ImgV大V") setHidden:NO]:[subLabel(@"ImgV大V") setHidden:YES];
         UILabel *contentLabel = subLabel(@"内容Label");
         contentLabel.attributedText = ({
             UIFont *font = [UIFont systemFontOfSize:16];
-            NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithString:pm.content attributes:@{NSFontAttributeName:font,NSForegroundColorAttributeName:APP.TextColor1}];
+            NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithString:pm.content attributes:@{NSFontAttributeName:font}];
             for (YYImage *image in UGLHPostModel.allEmoji) {
                 NSString *key = [UGLHPostModel keyWithImage:image];
                 if ([pm.content containsString:key]) {
