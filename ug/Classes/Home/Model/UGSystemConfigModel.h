@@ -125,6 +125,7 @@ typedef NS_ENUM(NSInteger, UserCenterItemType) {
 @property (nonatomic, copy) NSString *easyRememberDomain;    /**<   黑色模板易记的网址*/
 
 @property (nonatomic, copy) NSArray<UGUserCenterItem *> *userCenter;
+@property (nonatomic) BOOL lhcdocMiCard;                /**<   六合彩开奖咪牌(默认状态)开关 */
 + (instancetype)currentConfig;
 
 + (void)setCurrentConfig:(UGSystemConfigModel *)config;

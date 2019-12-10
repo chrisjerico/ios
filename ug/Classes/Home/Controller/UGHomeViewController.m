@@ -160,7 +160,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *countdownLabel;                           /**<  开奖的倒计时显示*/
 @property (weak, nonatomic) IBOutlet UICollectionView *contentCollectionView;           /**<  论坛，专帖XXX显示*/
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *heightLayoutConstraint;        /**<  contentCollectionView 的约束高*/
-@property (weak, nonatomic) IBOutlet UISwitch *lotteryUISwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *lotteryUISwitch;                         /**<   六合switch*/
 @property (weak, nonatomic) IBOutlet UIView *liuheForumContentView;                     /**<   六合板块View*/
 @property (weak, nonatomic) IBOutlet UIView *liuheResultContentView;                    /**<   六合开奖View*/
 @property (weak, nonatomic) IBOutlet UIImageView *hormImgV;                             /**<  喇叭图片*/
@@ -328,6 +328,8 @@
         {//六合
             if ([Skin1.skitType isEqualToString:@"六合资料"]) {
                 _hormIsOpen = YES;
+                [_lotteryUISwitch setOn:SysConf.lhcdocMiCard] ;
+                
                 _countDownForLabel = [[CountDown alloc] init];
                 _lHCategoryList = [NSMutableArray<UGLHCategoryListModel *> new];
                 _player = [[CMAudioPlayer alloc] init];
@@ -870,6 +872,8 @@
                  [self getRankList];         // 中奖列表
                  [self getAllNextIssueData]; // 彩票大厅数据
             }
+            
+            [self.lotteryUISwitch setOn:SysConf.lhcdocMiCard] ;
             NSString *title =[NSString stringWithFormat:@"COPYRIGHT © %@ RESERVED",config.webName];
             [self.bottomLabel setText:title];
 			[self.titleView setImgName:config.mobile_logo];
