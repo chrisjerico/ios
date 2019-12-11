@@ -161,7 +161,7 @@ static NSString *menuTabelViewCellid = @"UGMenuTableViewCell";
     [self.progressView.layer addSublayer:self.progressLayer];
     self.progressView.layer.cornerRadius = self.progressView.height / 2;
     self.progressView.layer.masksToBounds = YES;
-    self.progressView.backgroundColor = Skin1.bgColor;
+    self.progressView.backgroundColor = UGRGBColor(213, 224, 237);
     
    
     

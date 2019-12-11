@@ -548,10 +548,10 @@
         [subLabel(@"标题Label") setText:model.name];
         [subLabel(@"详细Label") setText:model.desc];
         
-        NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"hot_01" ofType:@"gif"];
-        NSData *imageData = [NSData dataWithContentsOfFile:imagePath];
-        UIImage *image = [UIImage sd_animatedGIFWithData:imageData];
-        [model.isHot isEqualToString:@"1"] ? [subImageView(@"动图ImgV") setImage:image] : [subImageView(@"动图ImgV") setImage:nil];
+//        NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"hot_01" ofType:@"gif"];
+//        NSData *imageData = [NSData dataWithContentsOfFile:imagePath];
+//        UIImage *image = [UIImage sd_animatedGIFWithData:imageData];
+        [model.isHot isEqualToString:@"1"] ? [subButton(@"hotButton") setHidden:NO] : [subButton(@"hotButton") setHidden:YES];
         [cell setBackgroundColor: [UIColor whiteColor]];
         return cell;
     } else {

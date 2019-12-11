@@ -103,7 +103,7 @@ static NSString *__title = nil;
     self.progressLayer.path = [self progressPathWithProgress:0.3].CGPath;
     self.progressView.layer.cornerRadius = self.progressView.height / 2;
     self.progressView.layer.masksToBounds = YES;
-    self.progressView.backgroundColor = Skin1.bgColor;
+    self.progressView.backgroundColor = UGRGBColor(213, 224, 237);
     
     self.waveView = [[WavesView alloc] initWithFrame:self.waveBgView.bounds];
     [self.waveBgView addSubview:self.waveView];
@@ -193,7 +193,7 @@ static NSString *__title = nil;
     if (!_progressLayer) {
         _progressLayer = [self defaultLayer];
         _progressLayer.lineWidth = self.progressView.height;
-        _progressLayer.strokeColor = UGRGBColor(95, 190, 249).CGColor;
+        _progressLayer.strokeColor = Skin1.progressBgColor.CGColor;
     }
     return _progressLayer;
 }

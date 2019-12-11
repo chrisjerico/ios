@@ -49,10 +49,10 @@
             bgColor = RGBA(196, 234, 160, 1);
         }
         else if([bgColorStr isEqualToString:@"red"]){
-            bgColor = [UIColor redColor];
+            bgColor = RGBA(230, 53, 127, 1);
         }
         else if([bgColorStr isEqualToString:@"blue"]){
-            bgColor = [UIColor blueColor];
+            bgColor = RGBA(117, 240, 243, 1);
         }
         [self.answer2View setBackgroundColor:bgColor];
         [self.answerView setBackgroundColor:bgColor]; 

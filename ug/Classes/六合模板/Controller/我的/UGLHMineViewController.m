@@ -99,7 +99,7 @@
     [self.progressView.layer addSublayer:self.progressLayer];
     self.progressView.layer.cornerRadius = self.progressView.height / 2;
     self.progressView.layer.masksToBounds = YES;
-    self.progressView.backgroundColor = Skin1.bgColor;
+    self.progressView.backgroundColor = UGRGBColor(213, 224, 237);
     
     self.waveView = [[WavesView alloc] initWithFrame:self.waveBgView.bounds];
     [self.waveBgView addSubview:self.waveView];
