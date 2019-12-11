@@ -9,10 +9,13 @@
 #import "UGLHMyAttentionViewController.h"
 #import "LHUserInfoVC.h"
 #import "UGPostDetailVC.h"
+#import "LHJournalDetailVC.h"
 
 #import "UGLHFocusUserModel.h"
 #import "UGLHPostModel.h"
 #import "UGLHFocusUserModel.h"
+
+#import "LHPostPayView.h"
 
 @interface UGLHMyAttentionViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -126,9 +129,51 @@
         vc.uid = ((UGLHFocusUserModel *)tableView.dataArray[indexPath.row]).posterUid;
         [NavController1 pushViewController:vc animated:true];
     } else {
-        UGPostDetailVC *vc = _LoadVC_from_storyboard_(@"UGPostDetailVC");
-        vc.pm = tableView.dataArray[indexPath.row];
-        [NavController1 pushViewController:vc animated:true];
+        UGLHPostModel *pm = tableView.dataArray[indexPath.row];
+        
+        if ([@"sixpic,humorGuess,rundog,fourUnlike" containsString:pm.alias]) {
+            // 去期刊详情页
+            LHJournalDetailVC *vc = _LoadVC_from_storyboard_(@"LHJournalDetailVC");
+            vc.clm = ({
+                UGLHCategoryListModel *clm = [UGLHCategoryListModel new];
+                clm.cid = pm.type;
+                clm;
+            });
+            vc.gm = ({
+                UGLHGalleryModel *gm = [UGLHGalleryModel new];
+                gm.gid = pm.type2;
+                gm;
+            });
+            vc.pid = pm.cid;
+            [NavController1 pushViewController:vc animated:true];
+        } else {
+            // 去帖子详情页
+            void (^push)(void) = ^{
+                UGPostDetailVC *vc = _LoadVC_from_storyboard_(@"UGPostDetailVC");
+                vc.pm = pm;
+                [NavController1 pushViewController:vc animated:true];
+            };
+            
+            if (!pm.hasPay && pm.price > 0.000001) {
+                LHPostPayView *ppv = _LoadView_from_nib_(@"LHPostPayView");
+                ppv.pm = pm;
+                ppv.didConfirmBtnClick = ^(LHPostPayView * _Nonnull ppv) {
+                    [NetworkManager1 lhcdoc_buyContent:pm.cid].completionBlock = ^(CCSessionModel *sm) {
+                        if (!sm.error) {
+                            pm.hasPay = true;
+                            [ppv hide:nil];
+                            UIAlertController *ac = [AlertHelper showAlertView:@"支付成功" msg:nil btnTitles:@[@"确定"]];
+                            [ac setActionAtTitle:@"确定" handler:^(UIAlertAction *aa) {
+                                push();
+                            }];
+                        }
+                    };
+                };
+                [ppv show];
+            } else {
+                push();
+            }
+        }
     }
 }
 

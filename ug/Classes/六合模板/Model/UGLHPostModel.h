@@ -144,6 +144,8 @@ NS_ASSUME_NONNULL_BEGIN
 //@property (nonatomic, assign) NSInteger likeNum;    /**<   点赞数 */
 //@property (nonatomic, assign) NSInteger viewNum;    /**<   阅读数 */
 //@property (nonatomic, assign) NSInteger replyCount; /**<   回复数 */
+@property (nonatomic, copy) NSString *type;     /**<   栏目ID */
+@property (nonatomic, copy) NSString *type2;    /**<   资料ID */
 
 
 // ————————————————————————————

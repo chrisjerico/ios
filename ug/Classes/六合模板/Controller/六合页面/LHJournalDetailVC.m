@@ -12,7 +12,7 @@
 #import "STBarButtonItem.h"
 
 @interface LHJournalModel : NSObject
-@property (nonatomic, copy) NSString *lhcNo;    /**<   期数 */
+@property (nonatomic, copy) NSString *lhcNo;    /**<   期数名 */
 @property (nonatomic, copy) NSString *jid;      /**<   期数ID */
 // 自定义参数
 @property (nonatomic, assign) BOOL selected;
@@ -64,13 +64,26 @@
     // 获取期数列表
     [NetworkManager1 lhdoc_lhcNoList:_clm.cid type2:_gm.gid].completionBlock = ^(CCSessionModel *sm) {
         if (!sm.error) {
-            for (NSDictionary *dict in sm.responseObject[@"data"]) {
+            NSArray *array = sm.responseObject[@"data"];
+            if ([array isKindOfClass:[NSDictionary class]]) {
+                __self.title = sm.responseObject[@"data"][@"title"] ? : __self.title;
+                array = sm.responseObject[@"data"][@"list"];
+            }
+            for (NSDictionary *dict in array) {
                 [__self.dataArray addObject:[LHJournalModel mj_objectWithKeyValues:dict]];
             }
+            __self.collectionView.collectionViewLayout = ({
+                UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
+                layout.sectionInset = UIEdgeInsetsMake(0, 15, 0, 15);
+                layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+                layout;
+            });
             [__self.collectionView reloadData];
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [__self collectionView:__self.collectionView didSelectItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+                NSIndexPath *ip = [NSIndexPath indexPathForItem:[__self.dataArray indexOfValue:__self.pid keyPath:@"jid"] inSection:0];
+                [__self collectionView:__self.collectionView didSelectItemAtIndexPath:ip];
+                [__self.collectionView scrollToItemAtIndexPath:ip atScrollPosition:UICollectionViewScrollPositionNone animated:false];
             });
         }
     };
@@ -131,6 +144,11 @@
     _dataArray[indexPath.item].selected = true;
     [self reloadContentViewController:indexPath.item];
     [collectionView reloadData];
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    LHJournalModel *jm = _dataArray[indexPath.item];
+    return CGSizeMake([_NSString(@"%@期", jm.lhcNo) widthForFont:[UIFont systemFontOfSize:20]] + 15, 50);
 }
 
 @end
