@@ -30,7 +30,9 @@
         NSString *sx; /**<   生肖*/
         NSString *color; /**<   颜色 */
         NSString *number; /**<   开奖号码" */
-        if (obj.numSxArrary.count) {
+        NSLog(@"obj.numSxArrary= %@",obj.numSxArrary);
+        NSLog(@"obj.numbersArrary= %@",obj.numbersArrary);
+        if (obj.numSxArrary.count&&(obj.numSxArrary.count-1 >0) ){
             sx = [obj.numSxArrary objectAtIndex:(obj.numSxArrary.count-1)];
         }
         if (obj.numColorArrary.count) {
@@ -45,7 +47,7 @@
                 color = @"蓝色";
             }
         }
-        if (obj.numbersArrary.count) {
+        if (obj.numbersArrary.count&&(obj.numbersArrary.count-1 >0)) {
             number = [obj.numbersArrary objectAtIndex:(obj.numbersArrary.count-1)];
         }
         if (obj.numSxArrary.count==7) {

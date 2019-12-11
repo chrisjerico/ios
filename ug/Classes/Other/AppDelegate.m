@@ -32,7 +32,7 @@
 #import "UGSystemConfigModel.h"
 
 #ifdef DEBUG
-//#import "CMTimeCommon.h"
+
 #endif
 #import "AppDelegate+HgBugly.h"
 
@@ -79,12 +79,6 @@
 #ifdef DEBUG
 	[LogVC enableLogVC];
 
-    
-//    [CMTimeCommon getNowTimestamp];
-    
-//     [CMTimeCommon timeSwitchTimestamp:@"2019-10-18 21:59:30" andFormatter:@"YYYY-MM-dd HH:mm:ss"];
-    
-//     [CMTimeCommon timestampSwitchTime:1571319000 andFormatter:@"YYYY-MM-dd hh:mm:ss"];
 #endif
 	
 	return YES;

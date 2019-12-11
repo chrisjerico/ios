@@ -174,5 +174,17 @@
  */
 + (void )speakUtteranceWithString:(NSString *)string;
 
+/**
+*  ios 判断两个数组中的NSString元素是否相同，但不判断顺序
+*
+*
+*/
++ (BOOL)array:(NSArray *)array1 isEqualTo:(NSArray *)array2 ;
 
+/**
+*  ios 判断两个数组中的NSString元素是否相同，同时也判断顺序
+*
+*
+*/
++ (BOOL)array:(NSArray *)array1 isOrderEqualTo:(NSArray *)array2 ;
 @end

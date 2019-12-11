@@ -137,6 +137,7 @@ typedef NS_ENUM(NSInteger, UserCenterItemType) {
 
 @property (nonatomic, copy) NSArray<UGUserCenterItem *> *userCenter;
 @property (nonatomic) BOOL lhcdocMiCard;                /**<   六合彩开奖咪牌(默认状态)开关 */
+@property (nonatomic, copy) NSString * lhcdocLotteryStr;/**<   六合彩预备开奖文字*/
 + (instancetype)currentConfig;
 
 + (void)setCurrentConfig:(UGSystemConfigModel *)config;

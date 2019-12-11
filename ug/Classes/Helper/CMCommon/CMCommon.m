@@ -667,6 +667,68 @@ return NO;
     [synth speakUtterance:utterance];
 }
 
+/**
+*  ios 判断两个数组中的NSString 元素是否相同，但不判断顺序
+*
+*
+*/
++ (BOOL)array:(NSArray *)array1 isEqualTo:(NSArray *)array2 {
+    if (array1.count != array2.count) {
+        return NO;
+    }
+    for (NSString *str in array1) {
+        if (![array2 containsObject:str]) {
+            return NO;
+        }
+    }
+    return YES;
+    
+}
 
+/**
+*  ios 判断两个数组中的NSString 元素是否相同，同时也判断顺序
+*
+*
+*/
++ (BOOL)array:(NSArray *)array1 isOrderEqualTo:(NSArray *)array2 {
+
+    bool bol = false;
+    //创建俩新的数组
+    NSMutableArray *oldArr = [NSMutableArray arrayWithArray:array1];
+    NSMutableArray *newArr = [NSMutableArray arrayWithArray:array2];
+     
+    [oldArr sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+           //        将数组中的对象升序排列
+           return NSOrderedAscending;
+    }];
+    
+    [newArr sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+           //        将数组中的对象升序排列
+           return NSOrderedAscending;
+    }];
+
+    if (newArr.count == oldArr.count) {
+        
+        bol = true;
+        for (int16_t i = 0; i < oldArr.count; i++) {
+            
+            id c1 = [oldArr objectAtIndex:i];
+            id newc = [newArr objectAtIndex:i];
+            
+            if (![newc isEqualToString:c1]) {
+                bol = false;
+                break;
+            }
+        }
+    }
+     
+    if (bol) {
+        NSLog(@"两个数组的内容相同！");
+    }
+    else {
+        NSLog(@"两个数组的内容不相同！");
+    }
+    return bol;
+}
 
 @end

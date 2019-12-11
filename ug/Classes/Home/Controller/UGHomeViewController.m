@@ -1044,11 +1044,21 @@
             self.lhModel.numColorArrary = [self->_lhModel.numColor componentsSeparatedByString:@","];
             NSLog(@"count = %lu",(unsigned long)self->_lhModel.numbersArrary.count);
             
-            if (self.lhModel.numbersArrary.count) {
-                [self.lotteryCollectionView reloadData];
+            
+            NSLog(@"lotteryStr = %@",self.lhModel.lotteryStr);
+            
+            if ([CMCommon stringIsNull:self.lhModel.lotteryStr]) {
+                if (self.lhModel.numbersArrary.count) {
+                    [self.lottyLabel setHidden:YES];
+                    [self.lotteryCollectionView reloadData];
+                }
+            }
+            else{
+                self.lottyLabel.text = self.lhModel.lotteryStr;
+                [self.lottyLabel setHidden:NO];
+                
             }
 
-            
 #ifdef DEBUG
 //            [self testKaiJiang];
 //            return ;
@@ -1132,6 +1142,7 @@
     self.countdownLabel.text = [NSString stringWithFormat:@"%@:%@:%@",hourStr,minuStr,secondStr];
     
     if ([self.countdownLabel.text  isEqualToString:@"00:00:00"]) {
+        
         [self lotterTimeAction ];
     }
 }
@@ -1483,12 +1494,10 @@
 
 //倒计时结束时触发
 -(void)lotterTimeAction{
-    //    [CMCommon speakUtteranceWithString:@"得奖号码：22，23，36，41，29，44，02"];
-    //六合==》准备开奖中。。。，下期开奖日期：开奖中   直播倒计时：开奖中
-    //定时器==》开奖接口  每3秒，==》得到数据，报语音
-    //isFinish ==>如何判断结束
+    [self.timer invalidate];
+    self.timer = nil;
     
-//    [_lotteryCollectionView setHidden:YES];
+    
     [_lottyLabel setHidden:NO];
     _timeLabel.text = @"开奖中";
     [_timeLabel setTextColor:[UIColor blackColor]];
@@ -1514,6 +1523,7 @@
                 model.numbersArrary = [model.numbers componentsSeparatedByString:@","];
                 model.numColorArrary = [model.numColor componentsSeparatedByString:@","];
                 model.isOpen = __self.lotteryUISwitch.isOn;
+                NSLog(@"model = %@",model);
                 __self.lhModel = model;
                 if (!model) {
                     return ;
@@ -1527,8 +1537,11 @@
                     
                     [__self.lottyLabel setHidden:YES];
                     [__self.lotteryCollectionView reloadData];
-                    NSString *nper = [__self.lhModel.issue  substringFromIndex:4];
-                    __self.lotteryTitleLabel.text = [NSString stringWithFormat:@"第%@期开奖结果",nper];
+                    if (__self.lhModel.issue.length>4) {
+                        NSString *nper = [__self.lhModel.issue  substringFromIndex:4];
+                        __self.lotteryTitleLabel.text = [NSString stringWithFormat:@"第%@期开奖结果",nper];
+                    }
+ 
                     
                     [CMLabelCommon setRichNumberWithLabel:__self.lotteryTitleLabel Color:[UIColor redColor] FontSize:17.0];
 #ifdef DEBUG
@@ -1543,15 +1556,19 @@
                         long long finishLongLong = [CMTimeCommon timeSwitchTimestamp:self.lhModel.endtime andFormatter:@"YYYY-MM-dd HH:mm:ss"];
                         [__self startLongLongStartStamp:startLongLong*1000 longlongFinishStamp:finishLongLong*1000];
                         
+                        __self.lhModel = nil;
                         __lastLHModel = nil;
                         __count = 0;
                         [__self.timer invalidate];
                         __self.timer = nil;
-                        
+                
+                        [__self getLotteryNumberList ];
+
                     }
-                    else {
+                    else
+                    {
                         if (__lastLHModel) {
-                            if (__lastLHModel.numSxArrary.count == model.numSxArrary.count ) {
+                            if ([CMCommon array:__lastLHModel.numbersArrary isOrderEqualTo:__self.lhModel.numbersArrary] ) {
                                 return ;
                             }
                             else{
@@ -1560,9 +1577,6 @@
                                 __count ++;
                                 NSLog(@"__count = %d",__count);
                             }
-//                            if ((__lastLHModel.numSxArrary.count + 1) == model.numSxArrary.count) {
-
-//                            }
                         }
                         else{
                             [__self.player playLH:model ];
