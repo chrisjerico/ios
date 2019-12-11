@@ -259,18 +259,16 @@ static UGTabbarController *_tabBarVC = nil;
 }
 
 - (void)setTabbarHeight:(CGFloat)height {
-    static CGFloat __height = 50;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         [UITabBar cc_hookSelector:@selector(sizeThatFits:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> ai) {
             CGSize size = CGSizeZero;
-            [ai.originalInvocation getReturnValue:&size];
-            size.height = __height;
             [ai.originalInvocation invoke];
+            [ai.originalInvocation getReturnValue:&size];
+            size.height = 50 + APP.BottomSafeHeight;
             [ai.originalInvocation setReturnValue:&size];
         } error:nil];
     });
-    __height = height + APP.BottomSafeHeight;
     [self.view layoutSubviews];
     [self.selectedViewController.view layoutSubviews];
 }

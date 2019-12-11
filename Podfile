@@ -19,7 +19,7 @@ pod 'STPickerView', '2.4' # 一个多功能的选择器,有城市选择，日期
 
 
 # fish新增
-pod 'JRSwizzle'         # 方法交换库
+#pod 'JRSwizzle'         # 方法交换库
 #pod 'Aspects'           # 监听函数回调到Block
 pod 'RegExCategories'   # 正则表达式库
 pod 'YYCategories'      # Category 类型工具库（YYKit 组件之一）

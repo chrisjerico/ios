@@ -225,6 +225,7 @@
 		CF88653C2390254E00B41049 /* UGLHGalleryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF88653B2390254E00B41049 /* UGLHGalleryModel.m */; };
 		CF88653F2390268600B41049 /* UGLHAdModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF88653E2390268600B41049 /* UGLHAdModel.m */; };
 		CF8865422390271900B41049 /* UGLHPostCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8865412390271900B41049 /* UGLHPostCommentModel.m */; };
+		CF96367223A01AA200B1D8E6 /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = CF96367123A01AA100B1D8E6 /* JRSwizzle.m */; };
 		CFCADE43237BEB0900680F62 /* 客服AlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFCADE42237BEB0900680F62 /* 客服AlertView.xib */; };
 		CFCADE45237D281C00680F62 /* cplts_看图王.gif in Resources */ = {isa = PBXBuildFile; fileRef = CFCADE44237D281C00680F62 /* cplts_看图王.gif */; };
 		CFD3BEEF2347137F00FCDA6D /* category.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD3BE9A2347137E00FCDA6D /* category.m */; };
@@ -1136,6 +1137,8 @@
 		CF88653E2390268600B41049 /* UGLHAdModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLHAdModel.m; sourceTree = "<group>"; };
 		CF8865402390271900B41049 /* UGLHPostCommentModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLHPostCommentModel.h; sourceTree = "<group>"; };
 		CF8865412390271900B41049 /* UGLHPostCommentModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLHPostCommentModel.m; sourceTree = "<group>"; };
+		CF96366F23A01AA100B1D8E6 /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSwizzle.h; sourceTree = "<group>"; };
+		CF96367123A01AA100B1D8E6 /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSwizzle.m; sourceTree = "<group>"; };
 		CFCADE42237BEB0900680F62 /* 客服AlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "客服AlertView.xib"; path = "ug/Classes/Main/Controller/客服AlertView.xib"; sourceTree = SOURCE_ROOT; };
 		CFCADE44237D281C00680F62 /* cplts_看图王.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "cplts_看图王.gif"; sourceTree = "<group>"; };
 		CFD3BE972347137E00FCDA6D /* FishUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishUtility.h; sourceTree = "<group>"; };
@@ -3493,6 +3496,7 @@
 		CFD3BE962347137E00FCDA6D /* FishUtility */ = {
 			isa = PBXGroup;
 			children = (
+				CFDB110923A0BF9D0040DE2B /* JRSwizzle */,
 				CF35E90F2391824400E73935 /* LoadingStateView */,
 				CF775F7F2390426E005B3534 /* MediaViewer */,
 				CF5C5BF32383E7F4001CFAB1 /* Aspects */,
@@ -3733,6 +3737,15 @@
 				CFD3BF4D23473D5900FCDA6D /* TextFieldAlertView.m */,
 			);
 			path = TextFieldAlertView;
+			sourceTree = "<group>";
+		};
+		CFDB110923A0BF9D0040DE2B /* JRSwizzle */ = {
+			isa = PBXGroup;
+			children = (
+				CF96366F23A01AA100B1D8E6 /* JRSwizzle.h */,
+				CF96367123A01AA100B1D8E6 /* JRSwizzle.m */,
+			);
+			path = JRSwizzle;
 			sourceTree = "<group>";
 		};
 		D4000C0E232E2CCB000705B1 /* AppDelegate+ */ = {
@@ -6288,6 +6301,7 @@
 				D422A585229E80EE0068D0AD /* UGYubaoConversionRecordController.m in Sources */,
 				D4DE2683229BCB960072A4A2 /* WMIconSegmentControl.m in Sources */,
 				D41C3DFA228E877E00BF6436 /* UGIntegralConvertRecordController.m in Sources */,
+				CF96367223A01AA200B1D8E6 /* JRSwizzle.m in Sources */,
 				D405B1F6227972C900F8C586 /* JSONModel.m in Sources */,
 				CF88653C2390254E00B41049 /* UGLHGalleryModel.m in Sources */,
 				D407B0482366A69800B4DEF4 /* LHGalleryListVC.m in Sources */,

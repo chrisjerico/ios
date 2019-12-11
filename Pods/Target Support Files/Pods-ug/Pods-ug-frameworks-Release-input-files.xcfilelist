@@ -6,7 +6,6 @@ ${BUILT_PRODUCTS_DIR}/DateTools/DateTools.framework
 ${BUILT_PRODUCTS_DIR}/FLAnimatedImage/FLAnimatedImage.framework
 ${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework
 ${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework
-${BUILT_PRODUCTS_DIR}/JRSwizzle/JRSwizzle.framework
 ${BUILT_PRODUCTS_DIR}/LEEAlert/LEEAlert.framework
 ${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework
 ${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework
