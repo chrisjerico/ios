@@ -506,6 +506,13 @@
                                                             <constraint firstAttribute="width" constant="26" id="nb2-bf-Z0X"/>
                                                         </constraints>
                                                     </imageView>
+                                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LHv1" translatesAutoresizingMaskIntoConstraints="NO" id="vRh-ly-YBT">
+                                                        <rect key="frame" x="74" y="55" width="20" height="20"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="20" id="BFy-nh-Hia"/>
+                                                            <constraint firstAttribute="height" constant="20" id="zaT-gs-F3B"/>
+                                                        </constraints>
+                                                    </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.28788453339999998" green="0.58269137140000005" blue="0.92549556489999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
@@ -515,6 +522,7 @@
                                                     <constraint firstItem="TAJ-b5-bm7" firstAttribute="leading" secondItem="AB4-lO-jgz" secondAttribute="trailing" constant="8" id="AE7-IQ-SGG"/>
                                                     <constraint firstItem="TAJ-b5-bm7" firstAttribute="centerY" secondItem="AB4-lO-jgz" secondAttribute="centerY" id="Acf-jP-eMJ"/>
                                                     <constraint firstItem="S6O-R6-JRh" firstAttribute="leading" secondItem="Qab-1m-Lyr" secondAttribute="leading" constant="15" id="Awd-Jh-NvS"/>
+                                                    <constraint firstItem="vRh-ly-YBT" firstAttribute="leading" secondItem="Qab-1m-Lyr" secondAttribute="leading" constant="74" id="Axa-Q0-SFO"/>
                                                     <constraint firstItem="fBD-cf-YNJ" firstAttribute="centerY" secondItem="AB4-lO-jgz" secondAttribute="centerY" id="BHP-zc-Mug"/>
                                                     <constraint firstItem="gUx-fN-GKJ" firstAttribute="top" secondItem="pve-9d-Xmi" secondAttribute="bottom" constant="1" id="BUy-yh-g1d"/>
                                                     <constraint firstItem="Grj-fU-ZGr" firstAttribute="centerY" secondItem="ueC-VZ-a0e" secondAttribute="centerY" id="Do1-26-lcX"/>
@@ -522,6 +530,7 @@
                                                     <constraint firstItem="fna-a6-tB1" firstAttribute="leading" secondItem="ueC-VZ-a0e" secondAttribute="leading" id="Gpb-Fb-HUB"/>
                                                     <constraint firstItem="TAJ-b5-bm7" firstAttribute="trailing" secondItem="Btq-mB-5Lt" secondAttribute="trailing" id="HjH-Gi-WZu"/>
                                                     <constraint firstItem="gUx-fN-GKJ" firstAttribute="leading" secondItem="Qab-1m-Lyr" secondAttribute="leading" constant="40" id="Iad-kG-bq5"/>
+                                                    <constraint firstItem="vRh-ly-YBT" firstAttribute="top" secondItem="Qab-1m-Lyr" secondAttribute="top" constant="55" id="LId-gi-SQJ"/>
                                                     <constraint firstItem="ueC-VZ-a0e" firstAttribute="top" secondItem="Qab-1m-Lyr" secondAttribute="top" constant="11" id="LRM-0h-FGe"/>
                                                     <constraint firstItem="AB4-lO-jgz" firstAttribute="leading" secondItem="Q9L-L3-Ta8" secondAttribute="trailing" constant="8" id="MGA-CD-Ous"/>
                                                     <constraint firstAttribute="trailing" secondItem="0vI-zC-jaM" secondAttribute="trailing" constant="8" id="PJK-Xc-yCt"/>
@@ -1198,6 +1207,7 @@
                     </view>
                     <connections>
                         <outlet property="avaterImageView" destination="S6O-R6-JRh" id="Nzc-5e-6tS"/>
+                        <outlet property="imgBV" destination="vRh-ly-YBT" id="exO-Kn-jXy"/>
                         <outlet property="moenyNumberLabel" destination="Btq-mB-5Lt" id="Rwq-Cr-GsU"/>
                         <outlet property="moneyNameLabel" destination="IBl-Ej-xnM" id="6Y4-yd-q3z"/>
                         <outlet property="progressView" destination="AB4-lO-jgz" id="Q0R-8V-wtM"/>
@@ -1227,6 +1237,7 @@
         <image name="LH_menu-qk" width="100" height="100"/>
         <image name="LH_menu-record" width="100" height="100"/>
         <image name="LH_syb3" width="150" height="150"/>
+        <image name="LHv1" width="100" height="100"/>
         <image name="baibolang" width="187.5" height="24"/>
         <image name="dailysign" width="75" height="19.5"/>
         <image name="huangzhuan" width="50" height="50"/>

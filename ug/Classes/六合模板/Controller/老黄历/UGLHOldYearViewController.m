@@ -59,6 +59,9 @@
                 if (obj) {
                     [self setLHLDate:obj];
                 }
+                else{
+                   [self setLHLNillDate];
+                }
             });
             
         } failure:^(id msg) {
@@ -69,6 +72,30 @@
     }];
 }
 
+-(void)setLHLNillDate {
+    FastSubViewCode(self.view)
+    subLabel(@"月份中文label").text = @"";
+    subLabel(@"月份英文label").text = @"";
+    subLabel(@"年份label").text = @"";
+    subLabel(@"数字label").text = @"";
+    subLabel(@"中label").text = @"";
+    subLabel(@"星期label").text = @"";
+    subLabel(@"日期label").text = @"";
+    subLabel(@"宜详细label").text = @"";
+    subLabel(@"吉神宜趋详细label").text = @"";
+    subLabel(@"六合吉数详细label").text = @"";
+    subLabel(@"凶煞宜忌详细label").text = @"";
+    subLabel(@"忌详细label").text = @"";
+    subLabel(@"时辰吉凶详细label").text = @"";
+    subLabel(@"冲煞详细label").text = @"";
+    subLabel(@"天干地支详细label").text = @"";
+    subLabel(@"喜神详细label").text = @"";
+    subLabel(@"福神详细label").text = @"";
+    subLabel(@"财神详细label").text = @"";
+    subLabel(@"白忌详细label").text = @"";
+    subLabel(@"日五行详细label").text = @"";
+   
+}
 
 
 -(void)setLHLDate :(UGLHLhlModel *)obj{
@@ -93,9 +120,7 @@
     subLabel(@"财神详细label").text = [NSString stringWithFormat:@"%@",obj.info.caiShen];
     subLabel(@"白忌详细label").text = [NSString stringWithFormat:@"%@",obj.info.baiJi];
     subLabel(@"日五行详细label").text = [NSString stringWithFormat:@"%@",obj.info.riWuXing];
-    
-
-    
+   
 }
 #pragma mark ---------------- 其他方法
 

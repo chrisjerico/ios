@@ -29,6 +29,8 @@
 #import "UGYYRightMenuView.h"
 #import "WavesView.h"
 #import "UGAvaterSelectView.h"
+//-----------model
+#import "LHUserModel.h"
 @interface UGLHMineViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *userInfoView;
@@ -47,6 +49,7 @@
 @property (weak, nonatomic) IBOutlet UIView *waveBottomView;  /**<   波浪下View */
 @property (nonatomic, strong) WavesView *waveView;            /**<   波浪 */
 
+@property (weak, nonatomic) IBOutlet UIImageView *imgBV;      /**<   大V图片*/
 
 @property (nonatomic, copy) NSArray<UGUserCenterItem *> *gms; /**<   行数据 */
 
@@ -209,6 +212,17 @@
 
 #pragma mark -- 网络请求
 
+- (void)getLHUserInfo :(NSString *)uid {
+    [NetworkManager1 lhcdoc_getUserInfo:uid].completionBlock = ^(CCSessionModel *sm) {
+        if (sm.error) {
+
+        } else {
+            LHUserModel*user = [LHUserModel mj_objectWithKeyValues:sm.responseObject[@"data"]];
+            user.isLhcdocVip ? [self.imgBV setHidden:NO]:[self.imgBV setHidden:YES];
+        }
+    };
+}
+
 - (void)getUserInfo {
     [self startAnimation];
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
@@ -220,7 +234,7 @@
             user.token = oldUser.token;
             UGUserModel.currentUser = user;
             NSLog(@"签到==%d",[UGUserModel currentUser].checkinSwitch);
-            
+            [self getLHUserInfo:user.userId];
             [self getSystemConfig];
             //初始化数据
 //            [self tableCelldataSource];

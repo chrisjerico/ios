@@ -337,16 +337,27 @@ static UGTabbarController *_tabBarVC = nil;
                  || [vc isKindOfClass:[UGLHMineViewController class]])) {
 
            if ([Skin1.skitType isEqualToString:@"六合资料"]) {
-               push(@"我的", _LoadVC_from_storyboard_(@"UGLHMineViewController"));
-               return false;
+               if ([vc isKindOfClass:[UGLHMineViewController class]]) {
+               } else {
+                    push(@"我的", _LoadVC_from_storyboard_(@"UGLHMineViewController"));
+                    return false;
+               }
+  
            }
            else if (Skin1.isBlack) {
-               push(@"我的", _LoadVC_from_storyboard_(@"UGBMMemberCenterViewController"));
-               return false;
+               if ([vc isKindOfClass:[UGBMMemberCenterViewController class]]) {
+               } else {
+                    push(@"我的", _LoadVC_from_storyboard_(@"UGBMMemberCenterViewController"));
+                    return false;
+               }
            }
            else{
-               push(@"我的", [UGMineSkinViewController new]);
-                          return false;
+               if ([vc isKindOfClass:[UGMineSkinViewController class]]) {
+               } else {
+                   push(@"我的", [UGMineSkinViewController new]);
+                   return false;
+               }
+
            }
            
     }
