@@ -795,6 +795,9 @@
             }
             
             [self.lotteryUISwitch setOn:SysConf.lhcdocMiCard] ;
+            
+//            [[UGSkinManagers skinWithSysConf] useSkin];
+            
             NSString *title =[NSString stringWithFormat:@"COPYRIGHT © %@ RESERVED",config.webName];
             [self.bottomLabel setText:title];
 			[self.titleView setImgName:config.mobile_logo];
@@ -1037,6 +1040,7 @@
     [CMNetwork lotteryNumberWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [self.contentScrollView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
+            self.lhModel = nil;
             NSLog(@"model= %@",model.data);
             self.lhModel = (UGLHlotteryNumberModel *)model.data;
             self.lhModel.numSxArrary = [self->_lhModel.numSx componentsSeparatedByString:@","];
@@ -1070,14 +1074,16 @@
             NSArray *endTimeArray = [self->_lhModel.endtime componentsSeparatedByString:@" "];
             self.timeLabel.text = [endTimeArray objectAtIndex:0];
 
+//            2019-12-11 20:12:10.391510+0800 ug[619:84778] self.lhModel.serverTime = 2019-12-12 21:30:18
+//            2019-12-11 20:12:10.391551+0800 ug[619:84778] self.lhModel.endtime = 2019-12-12 21:30:00
             NSLog(@"self.lhModel.serverTime = %@",self.lhModel.serverTime);
             NSLog(@"self.lhModel.endtime = %@",self.lhModel.endtime);
-//            long long startLongLong = [CMTimeCommon timeSwitchTimestamp:self.lhModel.serverTime andFormatter:@"YYYY-MM-dd HH:mm:ss"];
-//            long long finishLongLong = [CMTimeCommon timeSwitchTimestamp:self.lhModel.endtime andFormatter:@"YYYY-MM-dd HH:mm:ss"];
-//            [self startLongLongStartStamp:startLongLong*1000 longlongFinishStamp:finishLongLong*1000];
-            NSDate *startDate = [CMTimeCommon dateForStr:self.lhModel.serverTime format:@"YYYY-MM-dd HH:mm:ss"];
-            NSDate *finishDate = [CMTimeCommon dateForStr:self.lhModel.endtime format:@"YYYY-MM-dd HH:mm:ss"];
-            [self startDate:startDate finishDate:finishDate];
+            long long startLongLong = [CMTimeCommon timeSwitchTimestamp:self.lhModel.serverTime andFormatter:@"YYYY-MM-dd HH:mm:ss"];
+            long long finishLongLong = [CMTimeCommon timeSwitchTimestamp:self.lhModel.endtime andFormatter:@"YYYY-MM-dd HH:mm:ss"];
+            [self startLongLongStartStamp:startLongLong*1000 longlongFinishStamp:finishLongLong*1000];
+//            NSDate *startDate = [CMTimeCommon dateForStr:self.lhModel.serverTime format:@"YYYY-MM-dd HH:mm:ss"];
+//            NSDate *finishDate = [CMTimeCommon dateForStr:self.lhModel.endtime format:@"YYYY-MM-dd HH:mm:ss"];
+//            [self startDate:startDate finishDate:finishDate];
         } failure:^(id msg) {
             
         }];
@@ -1506,7 +1512,6 @@
     [self setLhModel:nil];
     
     __weakSelf_(__self);
-//    __block NSTimer *__timer = nil;
     __block UGLHlotteryNumberModel *__lastLHModel = nil;
     __block int __count = 0;
     _timer = [NSTimer scheduledTimerWithInterval:6 repeats:true block:^(NSTimer *timer) {
@@ -1517,6 +1522,7 @@
                 NSLog(@"model= %@",sm.responseObject[@"code"]);
                 NSLog(@"获取开奖信息成功");
                 NSLog(@"model= %@",sm.responseObject[@"data"]);
+                __self.lhModel = nil;
                 
                 UGLHlotteryNumberModel *model = (UGLHlotteryNumberModel *)[UGLHlotteryNumberModel mj_objectWithKeyValues:sm.responseObject[@"data"]];
                 model.numSxArrary = [model.numSx componentsSeparatedByString:@","];
@@ -1548,6 +1554,9 @@
 //                    if (__count < 7) {
 //                        model.isFinish = 0;
 //                    }
+//                    else{
+//                        model.isFinish = 1;
+//                    }
 #endif
                     if (model.isFinish == 1) {
                         NSArray *endTimeArray = [__self.lhModel.endtime componentsSeparatedByString:@" "];
@@ -1556,7 +1565,7 @@
                         long long finishLongLong = [CMTimeCommon timeSwitchTimestamp:self.lhModel.endtime andFormatter:@"YYYY-MM-dd HH:mm:ss"];
                         [__self startLongLongStartStamp:startLongLong*1000 longlongFinishStamp:finishLongLong*1000];
                         
-                        __self.lhModel = nil;
+      
                         __lastLHModel = nil;
                         __count = 0;
                         [__self.timer invalidate];
@@ -1571,7 +1580,9 @@
                             if ([CMCommon array:__lastLHModel.numbersArrary isOrderEqualTo:__self.lhModel.numbersArrary] ) {
                                 return ;
                             }
-                            else{
+                            else
+                            {
+                                model.count = __count;
                                 [__self.player playLH:model ];
                                 __lastLHModel = model;
                                 __count ++;

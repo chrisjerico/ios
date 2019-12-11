@@ -33,6 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (copy, nonatomic) NSArray *numbersArrary;/**<   开奖号码" */
 @property (nonatomic) BOOL isOpen;          /**<  六合界面swich开关*/
 @property (copy, nonatomic) NSString *lotteryStr;/**<   自定义开奖信息 */
+@property (nonatomic) int count;          /**< 测试用*/
 @end
 
 NS_ASSUME_NONNULL_END
