@@ -73,6 +73,16 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
     } else {
         [self titleArrayAndimageNameArrayInit];
     }
+    
+    if ([APP.SiteId isEqualToString:@"c049"]) {
+        NSArray *arrayTmp = @[@"在线客服"];
+        // NSMakeRange(1, 2)：1表示要插入的位置，2表示插入数组的个数
+        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(4, 1)];
+        [_titleArray insertObjects:arrayTmp atIndexes:indexSet];
+        
+        NSArray *arrayImg = @[@"jd_message"];
+        [_imageNameArray insertObjects:arrayImg atIndexes:indexSet];
+    }
      
     
     
@@ -481,6 +491,13 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
    }
    else if ([title isEqualToString:@"换肤"]) {
        [NavController1 pushViewController:[UGSkinViewController new] animated:true];
+   }
+   else if ([title isEqualToString:@"在线客服"]) {
+       // 在线客服
+       TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
+       webViewVC.url = SysConf.zxkfUrl;
+       webViewVC.webTitle = @"在线客服";
+       [NavController1 pushViewController:webViewVC animated:YES];
    }
 
 }

@@ -68,6 +68,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *pwd2ImageView;
 @property (weak, nonatomic) IBOutlet UIButton *goHomeButton;
 @property (weak, nonatomic) IBOutlet UIButton *goLoginButton;
+@property (weak, nonatomic) IBOutlet UIButton *btn_c49goHome;
+
+
 @property (weak, nonatomic) IBOutlet UISegmentedControl *mySegmentCV;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *mySegmentHightConstraint;
 
@@ -76,6 +79,21 @@
 
 
 @implementation UGRegisterViewController
+
+-(void)viewWillAppear:(BOOL)animated{
+//    [self viewWillAppear:animated];
+    
+    if ([APP.SiteId isEqualToString:@"c049"]) {
+        [self.goHomeButton setTitle:@"在线客服" forState:(UIControlStateNormal)];
+        [self.btn_c49goHome setHidden:NO];
+        
+    } else {
+        [self.goHomeButton setTitle:@"回到首页" forState:(UIControlStateNormal)];
+        [self.btn_c49goHome setHidden:YES];
+    }
+
+   
+}
 
 - (void)skin {
     [self.registerButton setBackgroundColor:Skin1.navBarBgColor];
@@ -107,6 +125,10 @@
     self.goHomeButton.layer.cornerRadius = 5;
     self.goHomeButton.layer.masksToBounds = YES;
     [self.goHomeButton setTitleColor:Skin1.navBarBgColor forState:UIControlStateNormal];
+    
+    self.btn_c49goHome.layer.cornerRadius = 5;
+    self.btn_c49goHome.layer.masksToBounds = YES;
+    [self.btn_c49goHome setTitleColor:Skin1.navBarBgColor forState:UIControlStateNormal];
     
     self.goLoginButton.layer.cornerRadius = 5;
     self.goLoginButton.layer.masksToBounds = YES;
@@ -441,6 +463,19 @@
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
+- (IBAction)c49goHomeAction:(id)sender {
+    
+    if ([APP.SiteId isEqualToString:@"c049"]) {
+        //在线客服
+        TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
+        webViewVC.url = SysConf.zxkfUrl;
+        webViewVC.webTitle = @"在线客服";
+        [NavController1 pushViewController:webViewVC animated:YES];
+    } else {
+        //去首页
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+}
 - (IBAction)myValueChanged:(id)sender {
     UISegmentedControl *sc = (UISegmentedControl*)sender;
     if (sc.selectedSegmentIndex == 0) {
@@ -566,25 +601,25 @@
     
     [self.goLoginButton setHidden:NO];
     [self.goHomeButton setHidden:NO];
-    [self.goLoginButton  mas_remakeConstraints:^(MASConstraintMaker *make)
-     {
-         make.left.equalTo(self.registerButton.mas_left);
-         make.right.equalTo(self.registerButton.mas_right);
-         make.width.equalTo(self.registerButton.mas_width);
-         make.height.equalTo(self.registerButton.mas_height);
-         make.top.equalTo(self.registerButton.mas_bottom).offset(15);
-         
-     }];
-    
-    [self.goHomeButton  mas_remakeConstraints:^(MASConstraintMaker *make)
-     {
-         make.left.equalTo(self.registerButton.mas_left);
-         make.right.equalTo(self.registerButton.mas_right);
-         make.width.equalTo(self.registerButton.mas_width);
-         make.height.equalTo(self.registerButton.mas_height);
-         make.top.equalTo(self.goLoginButton.mas_bottom).offset(15);
-         
-     }];
+//    [self.goLoginButton  mas_remakeConstraints:^(MASConstraintMaker *make)
+//     {
+//         make.left.equalTo(self.registerButton.mas_left);
+//         make.right.equalTo(self.registerButton.mas_right);
+//         make.width.equalTo(self.registerButton.mas_width);
+//         make.height.equalTo(self.registerButton.mas_height);
+//         make.top.equalTo(self.registerButton.mas_bottom).offset(15);
+//
+//     }];
+//
+//    [self.goHomeButton  mas_remakeConstraints:^(MASConstraintMaker *make)
+//     {
+//         make.left.equalTo(self.registerButton.mas_left);
+//         make.right.equalTo(self.registerButton.mas_right);
+//         make.width.equalTo(self.registerButton.mas_width);
+//         make.height.equalTo(self.registerButton.mas_height);
+//         make.top.equalTo(self.goLoginButton.mas_bottom).offset(15);
+//
+//     }];
     
 
 //    self.myScrollView.contentSize = CGSizeMake(UGScreenW, CGRectGetMaxY(self.goHomeButton.frame)+self.goHomeButton.frame.size.height +100);

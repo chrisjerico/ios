@@ -432,7 +432,7 @@
                                     <color key="titleColor" red="0.2839455307" green="0.57867711779999997" blue="0.92549556489999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <connections>
-                                    <action selector="goHomeAction:" destination="vK4-I7-tMd" eventType="touchUpInside" id="YGD-iz-cZp"/>
+                                    <action selector="c49goHomeAction:" destination="vK4-I7-tMd" eventType="touchUpInside" id="sOL-rp-jft"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GLL-Jv-TqH">
@@ -481,6 +481,21 @@
                                     <constraint firstItem="zda-BF-qbI" firstAttribute="top" secondItem="GLL-Jv-TqH" secondAttribute="top" constant="7" id="o4l-HE-ace"/>
                                 </constraints>
                             </view>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kqH-ME-iqS">
+                                <rect key="frame" x="30" y="641" width="354" height="44"/>
+                                <color key="backgroundColor" red="0.91758114099999999" green="0.92137300970000002" blue="0.93725579979999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Tk8-lF-G0q"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="s9l-tL-gad"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="回到首页">
+                                    <color key="titleColor" red="0.2839455307" green="0.57867711779999997" blue="0.92549556489999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="goHomeAction:" destination="vK4-I7-tMd" eventType="touchUpInside" id="8NY-eU-eeo"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -497,11 +512,14 @@
                             <constraint firstItem="eUW-zx-4IJ" firstAttribute="top" secondItem="hWO-Dr-42x" secondAttribute="bottom" constant="35" id="SCk-k1-83h"/>
                             <constraint firstItem="o6u-NQ-ZsE" firstAttribute="top" secondItem="g6J-3t-Zwi" secondAttribute="bottom" constant="14" id="WUn-Ub-ddF"/>
                             <constraint firstItem="GLL-Jv-TqH" firstAttribute="leading" secondItem="gls-VK-Ube" secondAttribute="leading" constant="15" id="X6U-Ql-t04"/>
+                            <constraint firstItem="kqH-ME-iqS" firstAttribute="trailing" secondItem="vUG-yA-w3W" secondAttribute="trailing" id="ZWp-AR-geV"/>
                             <constraint firstItem="i1O-Uf-OGZ" firstAttribute="top" secondItem="gls-VK-Ube" secondAttribute="top" constant="60" id="Znh-ph-EIT"/>
                             <constraint firstItem="i1O-Uf-OGZ" firstAttribute="leading" secondItem="gls-VK-Ube" secondAttribute="leading" constant="20" id="aAF-Bs-w41"/>
                             <constraint firstItem="vUG-yA-w3W" firstAttribute="top" secondItem="o6u-NQ-ZsE" secondAttribute="bottom" constant="14" id="aKw-cF-8fl"/>
                             <constraint firstItem="eUW-zx-4IJ" firstAttribute="centerX" secondItem="lHM-nm-U2I" secondAttribute="centerX" id="cXe-gP-o81"/>
+                            <constraint firstItem="kqH-ME-iqS" firstAttribute="leading" secondItem="vUG-yA-w3W" secondAttribute="leading" id="cqb-Qb-yPM"/>
                             <constraint firstItem="hWO-Dr-42x" firstAttribute="top" secondItem="GLL-Jv-TqH" secondAttribute="bottom" constant="1" id="czG-Zu-scz"/>
+                            <constraint firstItem="kqH-ME-iqS" firstAttribute="top" secondItem="vUG-yA-w3W" secondAttribute="bottom" constant="14" id="d82-5m-QFn"/>
                             <constraint firstItem="gls-VK-Ube" firstAttribute="trailing" secondItem="g6J-3t-Zwi" secondAttribute="trailing" constant="30" id="fZf-FO-Ih3"/>
                             <constraint firstItem="o6u-NQ-ZsE" firstAttribute="leading" secondItem="gls-VK-Ube" secondAttribute="leading" constant="30" id="lFk-Qe-zy8"/>
                             <constraint firstItem="ZP9-qT-hIg" firstAttribute="leading" secondItem="i1O-Uf-OGZ" secondAttribute="leading" id="mDr-kZ-gL2"/>
@@ -513,6 +531,7 @@
                         <viewLayoutGuide key="safeArea" id="gls-VK-Ube"/>
                     </view>
                     <connections>
+                        <outlet property="btn_c49goHome" destination="kqH-ME-iqS" id="2lH-CQ-VpB"/>
                         <outlet property="goHomeButton" destination="vUG-yA-w3W" id="hvj-Kc-sUt"/>
                         <outlet property="gouButton" destination="m2W-jk-aph" id="0Fk-TX-cQW"/>
                         <outlet property="gouImageView" destination="zda-BF-qbI" id="7D9-Ve-qLL"/>
@@ -535,14 +554,14 @@
             <objects>
                 <viewController storyboardIdentifier="UGRegisterViewController" id="blf-Ei-b2L" customClass="UGRegisterViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="he4-LA-LLa">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="1500"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PzT-tK-eCK">
-                                <rect key="frame" x="0.0" y="94" width="414" height="768"/>
+                                <rect key="frame" x="0.0" y="94" width="414" height="1372"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bzD-qo-3Cd">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="784"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1380"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dm8-aM-Nvq">
                                                 <rect key="frame" x="20" y="10" width="374" height="50"/>
@@ -1098,22 +1117,26 @@
                                                     <action selector="registerClick:" destination="blf-Ei-b2L" eventType="touchUpInside" id="OIr-r7-74q"/>
                                                 </connections>
                                             </button>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0iL-pK-9eb">
-                                                <rect key="frame" x="30" y="477" width="354" height="44"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0iL-pK-9eb">
+                                                <rect key="frame" x="30" y="856" width="354" height="44"/>
                                                 <color key="backgroundColor" red="0.91758114099502563" green="0.92137300968170166" blue="0.93725579977035522" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="tan-7W-k5z"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <state key="normal" title="回到首页">
                                                     <color key="titleColor" red="0.2839455307" green="0.57867711779999997" blue="0.92549556489999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="goHomeAction:" destination="blf-Ei-b2L" eventType="touchUpInside" id="mqh-4I-v2X"/>
+                                                    <action selector="c49goHomeAction:" destination="blf-Ei-b2L" eventType="touchUpInside" id="vwD-Pp-ObW"/>
                                                 </connections>
                                             </button>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GFK-I5-qgq">
-                                                <rect key="frame" x="30" y="370" width="354" height="44"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GFK-I5-qgq">
+                                                <rect key="frame" x="30" y="798" width="354" height="44"/>
                                                 <color key="backgroundColor" red="0.91758114099502563" green="0.92137300968170166" blue="0.93725579977035522" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="16P-ew-kpM"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <state key="normal" title="返回登录">
                                                     <color key="titleColor" red="0.2839455307" green="0.57867711779999997" blue="0.92549556489999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -1122,9 +1145,25 @@
                                                     <action selector="showLogin:" destination="blf-Ei-b2L" eventType="touchUpInside" id="fOw-fg-NkL"/>
                                                 </connections>
                                             </button>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kLL-w7-OVs">
+                                                <rect key="frame" x="30" y="914" width="354" height="44"/>
+                                                <color key="backgroundColor" red="0.91758114099999999" green="0.92137300970000002" blue="0.93725579979999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="Sd1-yR-o8W"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="xfM-eP-wNB"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <state key="normal" title="回到首页">
+                                                    <color key="titleColor" red="0.2839455307" green="0.57867711779999997" blue="0.92549556489999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="goHomeAction:" destination="blf-Ei-b2L" eventType="touchUpInside" id="Stt-DD-x5G"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="GFK-I5-qgq" firstAttribute="top" secondItem="Eti-fw-WHI" secondAttribute="bottom" constant="14" id="0fI-sI-LdP"/>
                                             <constraint firstItem="YMa-JL-elm" firstAttribute="top" secondItem="wtp-GR-ftU" secondAttribute="bottom" id="36O-db-VuM"/>
                                             <constraint firstItem="F3p-Is-Pcq" firstAttribute="trailing" secondItem="dm8-aM-Nvq" secondAttribute="trailing" id="3Ue-qi-lvL"/>
                                             <constraint firstItem="kut-c3-7KU" firstAttribute="top" secondItem="E9a-uS-86B" secondAttribute="bottom" id="56H-67-Nqg"/>
@@ -1137,7 +1176,9 @@
                                             <constraint firstItem="gIK-1G-U5f" firstAttribute="top" secondItem="YMa-JL-elm" secondAttribute="bottom" id="DBB-3E-Cmy"/>
                                             <constraint firstItem="EcV-TS-nSB" firstAttribute="top" secondItem="kut-c3-7KU" secondAttribute="bottom" id="DD4-JH-TNr"/>
                                             <constraint firstItem="gIK-1G-U5f" firstAttribute="leading" secondItem="dm8-aM-Nvq" secondAttribute="leading" id="EcL-n1-mkn"/>
+                                            <constraint firstAttribute="trailing" secondItem="GFK-I5-qgq" secondAttribute="trailing" constant="30" id="EnP-xO-G31"/>
                                             <constraint firstItem="E9a-uS-86B" firstAttribute="top" secondItem="gIK-1G-U5f" secondAttribute="bottom" id="Fei-La-qfA"/>
+                                            <constraint firstAttribute="trailing" secondItem="kLL-w7-OVs" secondAttribute="trailing" constant="30" id="Fx7-ji-Cvi"/>
                                             <constraint firstItem="VwL-DU-luh" firstAttribute="trailing" secondItem="dm8-aM-Nvq" secondAttribute="trailing" id="IEw-EM-sGW"/>
                                             <constraint firstItem="kut-c3-7KU" firstAttribute="leading" secondItem="dm8-aM-Nvq" secondAttribute="leading" id="KkU-Ra-2AK"/>
                                             <constraint firstItem="VwL-DU-luh" firstAttribute="leading" secondItem="dm8-aM-Nvq" secondAttribute="leading" id="LUe-kG-lWj"/>
@@ -1145,21 +1186,27 @@
                                             <constraint firstItem="DiX-QX-Z6i" firstAttribute="trailing" secondItem="dm8-aM-Nvq" secondAttribute="trailing" id="PRe-rJ-Isa"/>
                                             <constraint firstItem="gIK-1G-U5f" firstAttribute="trailing" secondItem="dm8-aM-Nvq" secondAttribute="trailing" id="Q0a-x5-JVq"/>
                                             <constraint firstItem="Vqm-Fg-y5e" firstAttribute="leading" secondItem="dm8-aM-Nvq" secondAttribute="leading" id="StI-xg-CaU"/>
+                                            <constraint firstItem="0iL-pK-9eb" firstAttribute="leading" secondItem="bzD-qo-3Cd" secondAttribute="leading" constant="30" id="T9y-0o-SCc"/>
                                             <constraint firstItem="YMa-JL-elm" firstAttribute="leading" secondItem="dm8-aM-Nvq" secondAttribute="leading" id="U7M-Yr-Y2w"/>
                                             <constraint firstItem="Eti-fw-WHI" firstAttribute="top" secondItem="Vqm-Fg-y5e" secondAttribute="bottom" constant="10" id="Uhg-2t-VCl"/>
                                             <constraint firstItem="YMa-JL-elm" firstAttribute="trailing" secondItem="dm8-aM-Nvq" secondAttribute="trailing" id="VJk-pP-6vC"/>
                                             <constraint firstItem="wtp-GR-ftU" firstAttribute="leading" secondItem="dm8-aM-Nvq" secondAttribute="leading" id="X48-6L-EGP"/>
+                                            <constraint firstItem="GFK-I5-qgq" firstAttribute="leading" secondItem="bzD-qo-3Cd" secondAttribute="leading" constant="30" id="X87-dx-AVA"/>
                                             <constraint firstItem="wtp-GR-ftU" firstAttribute="trailing" secondItem="dm8-aM-Nvq" secondAttribute="trailing" id="XeF-ek-5lF"/>
                                             <constraint firstItem="F3p-Is-Pcq" firstAttribute="leading" secondItem="dm8-aM-Nvq" secondAttribute="leading" id="ZZe-jN-GEy"/>
+                                            <constraint firstAttribute="trailing" secondItem="0iL-pK-9eb" secondAttribute="trailing" constant="30" id="Zbf-D0-mF9"/>
                                             <constraint firstItem="E9a-uS-86B" firstAttribute="leading" secondItem="gIK-1G-U5f" secondAttribute="leading" id="cV0-1L-q4d"/>
                                             <constraint firstItem="Vqm-Fg-y5e" firstAttribute="top" secondItem="G6e-aH-9Zt" secondAttribute="bottom" id="dbS-Pc-BPD"/>
+                                            <constraint firstItem="kLL-w7-OVs" firstAttribute="leading" secondItem="bzD-qo-3Cd" secondAttribute="leading" constant="30" id="dtx-r3-nl1"/>
                                             <constraint firstItem="VwL-DU-luh" firstAttribute="top" secondItem="F3p-Is-Pcq" secondAttribute="bottom" id="esI-za-bP7"/>
                                             <constraint firstItem="dm8-aM-Nvq" firstAttribute="top" secondItem="bzD-qo-3Cd" secondAttribute="top" constant="10" id="g6I-Sm-4Yd"/>
                                             <constraint firstItem="09s-xF-Lfa" firstAttribute="trailing" secondItem="dm8-aM-Nvq" secondAttribute="trailing" id="g6w-2r-OBm"/>
                                             <constraint firstAttribute="trailing" secondItem="Eti-fw-WHI" secondAttribute="trailing" constant="30" id="gbj-Xl-EVf"/>
-                                            <constraint firstAttribute="height" constant="784" id="gzd-9L-BZi"/>
+                                            <constraint firstAttribute="height" constant="1380" id="gzd-9L-BZi"/>
                                             <constraint firstItem="G6e-aH-9Zt" firstAttribute="trailing" secondItem="dm8-aM-Nvq" secondAttribute="trailing" id="jhf-u1-IeM"/>
                                             <constraint firstAttribute="trailing" secondItem="dm8-aM-Nvq" secondAttribute="trailing" constant="20" id="k4W-8y-Abg"/>
+                                            <constraint firstItem="0iL-pK-9eb" firstAttribute="top" secondItem="GFK-I5-qgq" secondAttribute="bottom" constant="14" id="kEU-Df-bYw"/>
+                                            <constraint firstItem="kLL-w7-OVs" firstAttribute="top" secondItem="0iL-pK-9eb" secondAttribute="bottom" constant="14" id="kO0-Zt-5Zh"/>
                                             <constraint firstItem="dm8-aM-Nvq" firstAttribute="leading" secondItem="bzD-qo-3Cd" secondAttribute="leading" constant="20" id="kTg-i8-aVo"/>
                                             <constraint firstItem="DiX-QX-Z6i" firstAttribute="top" secondItem="09s-xF-Lfa" secondAttribute="bottom" id="ljg-P9-cF4"/>
                                             <constraint firstItem="09s-xF-Lfa" firstAttribute="leading" secondItem="dm8-aM-Nvq" secondAttribute="leading" id="oen-l1-51R"/>
@@ -1206,8 +1253,11 @@
                         <viewLayoutGuide key="safeArea" id="JnB-N7-Fcp"/>
                     </view>
                     <navigationItem key="navigationItem" id="47U-AO-Jqj"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="414" height="1500"/>
                     <connections>
                         <outlet property="QQTextF" destination="Cu6-Z8-XBS" id="tLJ-JO-jQD"/>
+                        <outlet property="btn_c49goHome" destination="kLL-w7-OVs" id="EnQ-5O-ydx"/>
                         <outlet property="checkPasswordTextF" destination="gzt-wB-lP0" id="JH6-jw-kk5"/>
                         <outlet property="emailTextF" destination="Zs4-uO-t0j" id="pc4-9j-eSY"/>
                         <outlet property="emailView" destination="DiX-QX-Z6i" id="fm1-bK-2G4"/>

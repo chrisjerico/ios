@@ -25,7 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (weak, nonatomic) IBOutlet UIButton *rigesterButton;
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
-@property (weak, nonatomic) IBOutlet UIButton *goHomeButton;
+
 @property (weak, nonatomic) IBOutlet UIView *webBgView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *webBgViewHeightConstraint;
 @property (weak, nonatomic) IBOutlet UIImageView *gouImageView;
@@ -35,6 +35,8 @@
 @property (nonatomic, strong) UGImgVcodeModel *imgVcodeModel;
 @property (nonatomic, assign) NSInteger errorTimes;
 
+@property (weak, nonatomic) IBOutlet UIButton *goHomeButton;
+@property (weak, nonatomic) IBOutlet UIButton *btn_c49goHome;
 @property (weak, nonatomic) IBOutlet UIImageView *pwdImgeView;
 @end
 
@@ -52,6 +54,16 @@
 
 -(void)viewWillAppear:(BOOL)animated{
 //    [self viewWillAppear:animated];
+    
+    if ([APP.SiteId isEqualToString:@"c049"]) {
+        [self.goHomeButton setTitle:@"在线客服" forState:(UIControlStateNormal)];
+        [self.btn_c49goHome setHidden:NO];
+        
+    } else {
+        [self.goHomeButton setTitle:@"回到首页" forState:(UIControlStateNormal)];
+        [self.btn_c49goHome setHidden:YES];
+    }
+    
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     
     //检查记住密码标记，如果为YES，那么就读取用户名和密码并为TextField赋值
@@ -94,6 +106,10 @@
     self.goHomeButton.layer.cornerRadius = 5;
     self.goHomeButton.layer.masksToBounds = YES;
     [self.goHomeButton setTitleColor:Skin1.navBarBgColor forState:UIControlStateNormal];
+    
+    self.btn_c49goHome.layer.cornerRadius = 5;
+    self.btn_c49goHome.layer.masksToBounds = YES;
+    [self.btn_c49goHome setTitleColor:Skin1.navBarBgColor forState:UIControlStateNormal];
     
     self.userNameTextF.delegate = self;
     self.passwordTextF.delegate = self;
@@ -303,6 +319,20 @@
 - (IBAction)goHomeAction:(id)sender {
     
     [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+- (IBAction)c49goHomeAction:(id)sender {
+    
+    if ([APP.SiteId isEqualToString:@"c049"]) {
+        //在线客服
+        TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
+        webViewVC.url = SysConf.zxkfUrl;
+        webViewVC.webTitle = @"在线客服";
+        [NavController1 pushViewController:webViewVC animated:YES];
+    } else {
+        //去首页
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
 }
 
 - (IBAction)recoredBtnClick:(id)sender {
