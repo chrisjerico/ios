@@ -1031,12 +1031,10 @@
 }
 
 
-
+//int countkkk  = 0;
 // 当前开奖信息
 - (void)getLotteryNumberList {
-    
 
-    
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
     [CMNetwork lotteryNumberWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [self.contentScrollView.mj_header endRefreshing];
@@ -1075,16 +1073,18 @@
             NSArray *endTimeArray = [self->_lhModel.endtime componentsSeparatedByString:@" "];
             self.timeLabel.text = [endTimeArray objectAtIndex:0];
 
-//            2019-12-11 20:12:10.391510+0800 ug[619:84778] self.lhModel.serverTime = 2019-12-12 21:30:18
-//            2019-12-11 20:12:10.391551+0800 ug[619:84778] self.lhModel.endtime = 2019-12-12 21:30:00
+//            if (countkkk%2) {
+//                self.lhModel.endtime = @"2019-12-12 21:55:00";
+//            }
+//            else{
+//                self.lhModel.endtime = @"2019-12-14 21:30:00";
+//            }
             NSLog(@"self.lhModel.serverTime = %@",self.lhModel.serverTime);
             NSLog(@"self.lhModel.endtime = %@",self.lhModel.endtime);
             long long startLongLong = [CMTimeCommon timeSwitchTimestamp:self.lhModel.serverTime andFormatter:@"YYYY-MM-dd HH:mm:ss"];
             long long finishLongLong = [CMTimeCommon timeSwitchTimestamp:self.lhModel.endtime andFormatter:@"YYYY-MM-dd HH:mm:ss"];
             [self startLongLongStartStamp:startLongLong*1000 longlongFinishStamp:finishLongLong*1000];
-//            NSDate *startDate = [CMTimeCommon dateForStr:self.lhModel.serverTime format:@"YYYY-MM-dd HH:mm:ss"];
-//            NSDate *finishDate = [CMTimeCommon dateForStr:self.lhModel.endtime format:@"YYYY-MM-dd HH:mm:ss"];
-//            [self startDate:startDate finishDate:finishDate];
+//            countkkk ++;
         } failure:^(id msg) {
             
         }];
@@ -1105,6 +1105,11 @@
 ///此方法用两个时间戳做参数进行倒计时
 -(void)startLongLongStartStamp:(long long)strtLL longlongFinishStamp:(long long)finishLL{
     __weak __typeof(self) weakSelf= self;
+    
+    if (_countDownForLabel) {
+        [_countDownForLabel destoryTimer];
+    }
+    
     [_countDownForLabel countDownWithStratTimeStamp:strtLL finishTimeStamp:finishLL completeBlock:^(NSInteger day, NSInteger hour, NSInteger minute, NSInteger second) {
 
          [weakSelf refreshUIDay:day hour:hour minute:minute second:second];
@@ -1114,6 +1119,9 @@
 ///此方法用两个时间做参数进行倒计时
 -(void)startDate:(NSDate *)startDate finishDate:(NSDate *)finishDate{
     __weak __typeof(self) weakSelf= self;
+    if (_countDownForLabel) {
+        [_countDownForLabel destoryTimer];
+    }
     [_countDownForLabel countDownWithStratDate:startDate finishDate:finishDate  completeBlock:^(NSInteger day, NSInteger hour, NSInteger minute, NSInteger second) {
 
         [weakSelf refreshUIDay:day hour:hour minute:minute second:second];

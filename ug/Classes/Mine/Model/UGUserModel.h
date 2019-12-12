@@ -84,6 +84,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSString *todayWinAmount;
 @property (nonatomic, strong) NSString *unsettleAmount;
+
+@property (nonatomic, assign) BOOL isLhcdocVip;         /**<   是否是六合文档的VIP */
 + (instancetype)currentUser;
 
 + (void)setCurrentUser:(UGUserModel *)user;

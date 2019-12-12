@@ -1002,7 +1002,7 @@ static UGSkinManagers *__initSkin1 = nil;
     NSString *skitType = dict[SysConf.mobileTemplateCategory];
     #if DEBUG
     NSLog(@"============================skitType=%@",skitType);
-//          skitType =  @"六合资料0";
+          skitType =  @"六合资料0";
 //          skitType = @"六合资料";
 //              skitType = @"黑色模板";
     #endif

@@ -254,6 +254,8 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 #define followListUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=lhcdoc&a=followList"]
 
 #define favContentListUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=lhcdoc&a=favContentList"]
+
+#define lhcdocgetUserInfoUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=lhcdoc&a=getUserInfo"]
 #if DEBUG
 
 //#define NSLog(...) NSLog(__VA_ARGS__)

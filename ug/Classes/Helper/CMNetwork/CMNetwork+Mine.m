@@ -32,7 +32,7 @@
 #import "UGapplyWinLogDetail.h"
 #import "UGagentApplyInfo.h"
 #import "UGgaCaptchaModel.h"
-
+#import "LHUserModel.h"
 
 @implementation CMNetwork (Mine)
 
@@ -1023,6 +1023,19 @@
     [self.manager requestInMainThreadWithMethod:[secureGaCaptchaUrl stringToRestfulUrlWithFlag:RESTFUL]
                                          params:params
                                           model:CMResultClassMake(UGgaCaptchaModel.class)
+                                           post:NO
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
+
+//六合用户数据
++ (void)lhcdocgetUserInfoWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    [self.manager requestInMainThreadWithMethod:[lhcdocgetUserInfoUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:CMResultClassMake(LHUserModel.class)
                                            post:NO
                                      completion:completionBlock];
     

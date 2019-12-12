@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LHUserModel : NSObject
+@interface LHUserModel : UGModel
 @property (nonatomic, copy) NSString *nickname;         /**<   昵称 */
 @property (nonatomic, copy) NSString *face;             /**<   头像 */
 @property (nonatomic, copy) NSString *levelName;        /**<   vip级别 */

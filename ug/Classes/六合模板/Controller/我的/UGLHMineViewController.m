@@ -213,14 +213,44 @@
 #pragma mark -- 网络请求
 
 - (void)getLHUserInfo :(NSString *)uid {
-    return;
-    // 这个网络请求导致必现闪退，排查不到原因，只能先注释掉
-    [NetworkManager1 lhcdoc_getUserInfo:uid].completionBlock = ^(CCSessionModel *sm) {
-        if (!sm.error) {
-            LHUserModel*user = [LHUserModel mj_objectWithKeyValues:sm.responseObject[@"data"]];
-            user.isLhcdocVip ? [self.imgBV setHidden:NO]:[self.imgBV setHidden:YES];
-        }
-    };
+//    return;
+//    // 这个网络请求导致必现闪退，排查不到原因，只能先注释掉
+//    [SVProgressHUD showWithStatus:nil];
+//    [NetworkManager1 lhcdoc_getUserInfo:uid].completionBlock = ^(CCSessionModel *sm) {
+//        NSLog(@"sm.responseObject[@data]= %@",sm.responseObject[@"data"]);
+//        [SVProgressHUD dismiss];
+//        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+//            // UI更新代码
+//            if (!sm.error) {
+//                NSLog(@"sm.responseObject[@data]= %@",sm.responseObject[@"data"]);
+//                LHUserModel*user = [LHUserModel mj_objectWithKeyValues:sm.responseObject[@"data"]];
+//                user.isLhcdocVip ? [self.imgBV setHidden:NO]:[self.imgBV setHidden:YES];
+//            }
+//            
+//            
+//        }];
+//        
+//    };
+    
+    
+    NSDictionary *params = @{@"uid":uid};
+    [CMNetwork lhcdocgetUserInfoWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            LHUserModel*user = model.data;
+            
+            if (user) {
+                UGUserModel *oldUser = [UGUserModel currentUser];
+                oldUser.isLhcdocVip = user.isLhcdocVip;
+                
+                UGUserModel.currentUser = oldUser;
+                NSLog(@"是否是六合文档的VIP==%d",user.isLhcdocVip);
+                user.isLhcdocVip ? [self.imgBV setHidden:NO]:[self.imgBV setHidden:YES];
+            }
+            
+        } failure:^(id msg) {
+//            [self stopAnimation];
+        }];
+    }];
 }
 
 - (void)getUserInfo {
