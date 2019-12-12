@@ -19,7 +19,6 @@
 #import "UGBetRecordViewController.h"
 #import "UGGameListViewController.h"
 #import "UGDocumentVC.h"
-#import <SafariServices/SafariServices.h>
 #import "UGBMRegisterViewController.h"           // 黑色模板注册
 #import "UGBMLoginViewController.h"              // 黑色模板登录
 #import "UGLoginViewController.h"                // 模板登录
@@ -270,14 +269,9 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     if (!ret) {
         // 去外部链接
         if (model.url.length) {
-            NSURL *url = [NSURL URLWithString:model.url];
-            if (url.scheme == nil) {
-                url = [NSURL URLWithString:_NSString(@"http://%@", model.url)];
-            }
-            SFSafariViewController *sf = [[SFSafariViewController alloc] initWithURL:url];
-            sf.允许未登录访问 = true;
-            sf.允许游客访问 = true;
-            [NavController1 presentViewController:sf animated:YES completion:nil];
+            SLWebViewController *vc = [SLWebViewController new];
+            vc.urlStr = model.url;
+            [NavController1 pushViewController:vc animated:true];
             return true;
         }
     } else {
@@ -566,7 +560,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
 - (BOOL)pushVCWithUserCenterItemType:(UserCenterItemType)uciType {
     switch (uciType) {
         case UCI_在线客服: {
-            SLWebViewController *webViewVC = [[SLWebViewController alloc] init];
+            SLWebViewController *webViewVC = [SLWebViewController new];
             webViewVC.urlStr = SysConf.zxkfUrl;
             [NavController1 pushViewController:webViewVC animated:YES];
             return true;

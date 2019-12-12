@@ -7,12 +7,12 @@
 //
 
 #import "UGPromoteDetailController.h"
+#import "SLWebViewController.h"
 
 #import "UGPromoteModel.h"
 
 #import "FLAnimatedImageView.h"
 
-#import <SafariServices/SafariServices.h>
 
 @interface UGPromoteDetailController ()<UIWebViewDelegate>
 @property (strong, nonatomic) UILabel *titleLabel;
@@ -47,10 +47,9 @@
         [imgView sd_setImageWithURL:[[NSBundle mainBundle] URLForResource:@"点击查看更多" withExtension:@"gif"]];
         __weakSelf_(__self);
         [imgView addGestureTapEventHandle:^(id sender, UITapGestureRecognizer *gestureRecognizer) {
-            SFSafariViewController *sf = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:__self.item.linkUrl]];
-            sf.允许未登录访问 = true;
-            sf.允许游客访问 = true;
-            [NavController1 presentViewController:sf animated:YES completion:nil];
+            SLWebViewController *vc = [SLWebViewController new];
+            vc.urlStr = __self.item.linkUrl;
+            [NavController1 pushViewController:vc animated:true];
         }];
         [self.view addSubview:imgView];
         [imgView mas_makeConstraints:^(MASConstraintMaker *make) {

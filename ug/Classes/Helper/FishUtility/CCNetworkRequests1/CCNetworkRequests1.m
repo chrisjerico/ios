@@ -83,7 +83,7 @@
 
     // 返回数据格式错误
     if (![responseObject isKindOfClass:[NSDictionary class]]) {
-         NSLog(@"❌ 请求 URLString：%@ 失败！发送参数：%@\n 参数的 JSON 字符串为：%@\n 返回参数为：%@\n ⭕️ responseObject 不是 NSDictionary 类。", sm.urlString, sm.params, sm.params.mj_JSONString, responseObject);
+        NSLog(@"❌ 请求 URLString：%@ 失败！发送参数：%@\n 参数的 JSON 字符串为：%@\n 返回参数为：%@\n ⭕️ responseObject 不是 NSDictionary 类。", sm.urlString, sm.params, sm.params.mj_JSONString, responseObject);
         return [NSError errorWithDomain:@"数据格式错误。" code:-1 userInfo:nil];
     }
     
@@ -126,6 +126,11 @@
         temp;
     });
     
+    if (checkSign) {
+        urlString = [urlString containsString:@"?"] ? [urlString stringByAppendingFormat:@"&checkSign=1"] : [urlString stringByAppendingFormat:@"?checkSign=1"];
+        params = [CMNetwork encryptionCheckSign:params];
+        params[@"checkSign"] = @"1";
+    }
     CCSessionModel *sm = [CCSessionModel new];
     sm.urlString = urlString;
     sm.params = params;
@@ -145,10 +150,6 @@
     
     // 发起请求
     {
-        if (checkSign) {
-            params = [CMNetwork encryptionCheckSign:params];
-            params[@"checkSign"] = @"1";
-        }
         static AFHTTPSessionManager *m = nil;
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
@@ -158,7 +159,6 @@
         m.responseSerializer = [AFJSONResponseSerializer serializer];
         m.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", nil];
         NSMutableURLRequest *req = [m.requestSerializer requestWithMethod:isPOST ? @"POST":@"GET" URLString:urlString parameters:params error:nil];
-//        [req addValue:UserI.token forHTTPHeaderField:@"ACCESS_TOKEN"];
         [[sm dataTask:m request:req] resume];
     }
     

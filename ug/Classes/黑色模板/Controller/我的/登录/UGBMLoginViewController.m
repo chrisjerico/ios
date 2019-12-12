@@ -95,9 +95,9 @@
     }];
     
     [subButton(@"忘记密码按钮") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-        SLWebViewController *webViewVC = [[SLWebViewController alloc] init];
-        webViewVC.urlStr = SysConf.zxkfUrl;
-        [NavController1 pushViewController:webViewVC animated:YES];
+        SLWebViewController *vc = [SLWebViewController new];
+        vc.urlStr = SysConf.zxkfUrl;
+        [NavController1 pushViewController:vc animated:YES];
     }];
     
     [subButton(@"眼睛按钮") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
