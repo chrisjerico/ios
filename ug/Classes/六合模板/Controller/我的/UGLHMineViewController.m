@@ -213,10 +213,10 @@
 #pragma mark -- 网络请求
 
 - (void)getLHUserInfo :(NSString *)uid {
+    return;
+    // 这个网络请求导致必现闪退，排查不到原因，只能先注释掉
     [NetworkManager1 lhcdoc_getUserInfo:uid].completionBlock = ^(CCSessionModel *sm) {
-        if (sm.error) {
-
-        } else {
+        if (!sm.error) {
             LHUserModel*user = [LHUserModel mj_objectWithKeyValues:sm.responseObject[@"data"]];
             user.isLhcdocVip ? [self.imgBV setHidden:NO]:[self.imgBV setHidden:YES];
         }

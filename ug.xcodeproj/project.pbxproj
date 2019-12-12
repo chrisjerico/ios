@@ -1232,6 +1232,7 @@
 		CFD3BF4B23473D5900FCDA6D /* TextFieldAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextFieldAlertView.xib; sourceTree = "<group>"; };
 		CFD3BF4C23473D5900FCDA6D /* TextFieldAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldAlertView.h; sourceTree = "<group>"; };
 		CFD3BF4D23473D5900FCDA6D /* TextFieldAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldAlertView.m; sourceTree = "<group>"; };
+		CFDB112723A25FE60040DE2B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		CFEA5C1A2390FB9000C922D2 /* LHPostCommentDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LHPostCommentDetailVC.h; sourceTree = "<group>"; };
 		CFEA5C1B2390FB9000C922D2 /* LHPostCommentDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LHPostCommentDetailVC.m; sourceTree = "<group>"; };
 		CFEA5C1F2391084200C922D2 /* AVAsset+Degress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVAsset+Degress.m"; sourceTree = "<group>"; };
@@ -6437,6 +6438,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				D4B75E18227802600007047C /* Base */,
+				CFDB112723A25FE60040DE2B /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -6578,7 +6580,7 @@
 				);
 				MARKETING_VERSION = 1.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = io.fhpt.H5B2B56F7;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xinshiji2.yuansheng1;
 				PRODUCT_NAME = ug;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -6604,7 +6606,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = io.fhpt.H5B2B56F7;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xinshiji2.yuansheng1;
 				PRODUCT_NAME = ug;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
