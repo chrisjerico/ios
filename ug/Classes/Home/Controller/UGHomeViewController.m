@@ -153,6 +153,8 @@
 
 //-------------------------------------------
 //六合
+@property (weak, nonatomic) IBOutlet UIView *liuheResultContentView;                    /**<   六合开奖View*/
+
 @property (weak, nonatomic) IBOutlet UILabel *lotteryTitleLabel;                        /**<   XX期开奖结果*/
 @property (weak, nonatomic) IBOutlet UILabel *remarkLabel;                               /**<   咪*/
 @property (weak, nonatomic) IBOutlet UICollectionView *lotteryCollectionView;           /**<  开奖的显示*/
@@ -162,7 +164,6 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *heightLayoutConstraint;        /**<  contentCollectionView 的约束高*/
 @property (weak, nonatomic) IBOutlet UISwitch *lotteryUISwitch;                         /**<   六合switch*/
 @property (weak, nonatomic) IBOutlet UIView *liuheForumContentView;                     /**<   六合板块View*/
-@property (weak, nonatomic) IBOutlet UIView *liuheResultContentView;                    /**<   六合开奖View*/
 @property (weak, nonatomic) IBOutlet UIImageView *hormImgV;                             /**<  喇叭图片*/
 @property (weak, nonatomic) IBOutlet UILabel *lottyLabel;                               /**<  开奖提示文字*/
 
