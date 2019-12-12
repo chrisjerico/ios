@@ -9,6 +9,7 @@
 #import "UGPostDetailVC.h"
 #import "LHPostCommentDetailVC.h"// 评论详情
 #import "LHUserInfoVC.h"
+#import "SLWebViewController.h"
 
 // View
 #import "MediaViewer.h"             // 图片浏览器
@@ -19,7 +20,6 @@
 
 // Tools
 #import "YYText.h"
-#import <SafariServices/SafariServices.h>
 
 #define ContentWidth (APP.Width-40)
 
@@ -120,10 +120,9 @@
                     if (ad.targetType == 2) {
                         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:ad.link]];
                     } else {
-                        SFSafariViewController *sf = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:ad.link]];
-                        sf.允许未登录访问 = true;
-                        sf.允许游客访问 = true;
-                        [NavController1 presentViewController:sf animated:YES completion:nil];
+                        SLWebViewController *vc = [SLWebViewController new];
+                        vc.urlStr = ad.link;
+                        [self.navigationController pushViewController:vc animated:YES];
                     }
                 }
             }];

@@ -226,9 +226,14 @@
 
 - (void)setUrlStr:(NSString *)urlStr {
     _urlStr = urlStr;
+    NSURL *url = [NSURL URLWithString:urlStr];
+    if (url.scheme == nil) {
+        url = [NSURL URLWithString:_NSString(@"http://%@", urlStr)];
+    }
+    
     [self setCookie];
     
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     if (UGLoginIsAuthorized()) {
         
         UGUserModel *user = [UGUserModel currentUser];
