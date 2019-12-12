@@ -27,6 +27,7 @@
 - (void)setNameStr:(NSString *)nameStr {
     _nameStr = nameStr;
     self.nameLabel.text = nameStr;
+
     self.nameLabel.attributedText = ({
         NSMutableAttributedString *mas = [[NSAttributedString alloc] initWithData:[nameStr dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil].mutableCopy;
         // 替换文字颜色
@@ -40,8 +41,12 @@
                 [mas addAttributes:dict range:NSMakeRange(i, 1)];
             }
         }
+        
+        NSLog(@"string = %@",mas.string);
+        
         mas;
     });
+    
 }
 
 - (void)setTipStr:(NSString *)tipStr {

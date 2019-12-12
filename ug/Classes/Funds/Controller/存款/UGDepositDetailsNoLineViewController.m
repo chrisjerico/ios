@@ -65,7 +65,8 @@
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
         lastPath = indexPath;
 
-        self.title = item.name;
+        NSMutableAttributedString *mas = [[NSAttributedString alloc] initWithData:[self.item.name dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil].mutableCopy;
+        self.title = mas.string;
         [self setUIData:_selectChannelModel];
     }
     
