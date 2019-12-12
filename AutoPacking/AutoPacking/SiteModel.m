@@ -159,7 +159,7 @@ static NSMutableArray <SiteModel *> *__sites = nil;
             [SiteModel site    :@"c002"     :@"企业包"     :@"永利彩世界"     :@"io.fhpt.YSAC002"     :@"https://154977.com"], // io.dcloud.UNIE955DDC（新增的第三方改签由于频繁掉签已弃用）
             [SiteModel site    :@"c091"     :@"企业包"     :@"凤凰彩票"     :@"io.fhpt.H5691A751"     :@"https://83f9.com"],
             [SiteModel site    :@"c084"     :@"企业包"     :@"新2彩票"     :@"io.fhpt.H599DB7B9"     :@"https://papghawshugposwaughwsoohu.com"],
-            [SiteModel site    :@"c049"     :@"企业包"     :@"新世纪Ⅱ"     :@"io.dcloud.UNIFC049"     :@"https://93922app.com"],
+            [SiteModel site    :@"c049"     :@"企业包"     :@"新世纪Ⅱ"     :@"com.xinshiji2.yuansheng"     :@"https://93922app.com"],
             [SiteModel site    :@"c011"     :@"企业包"     :@"华夏彩票"     :@"io.fhpt.H599FF71F"     :@"https://www.hx627.com"], // 已上架
             
             
@@ -237,6 +237,7 @@ static NSMutableArray <SiteModel *> *__sites = nil;
             [SiteModel site    :@"test20"    :@"内测包"     :@"test20"   :@"com.UGGame.cp"        :@"http://test20.6yc.com"],    // (朗朗)
             [SiteModel site    :@"test29"    :@"内测包"     :@"test29"   :@"com.UGGame.cp"        :@"http://test29f.fhptcdn.com"],// (小东)
             [SiteModel site    :@"test19"    :@"内测包"     :@"test19"   :@"com.UGGame.cp"        :@"http://test19.6yc.com"],
+            [SiteModel site    :@"test31"    :@"内测包"     :@"test31"   :@"com.UGGame.cp"        :@"http://test31.6yc.com"],
         ];
     });
     return __dataArray;

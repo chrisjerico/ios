@@ -65,7 +65,8 @@
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
     
     // 极光推送
-    [JPUSHService setupWithOption:launchOptions appKey:@"21d1b87f65b557d2946af463" channel:@"develop" apsForProduction:false advertisingIdentifier:nil];
+    NSString *appKey = [APP.SiteId isEqualToString:@"c049"] ? @"9060fd1c2b3885efa32296f2" : @"21d1b87f65b557d2946af463";
+    [JPUSHService setupWithOption:launchOptions appKey:appKey channel:@"develop" apsForProduction:false advertisingIdentifier:nil];
     [JPUSHService registerForRemoteNotificationConfig:({
         JPUSHRegisterEntity *entity = [[JPUSHRegisterEntity alloc] init];
         entity.types = JPAuthorizationOptionAlert | JPAuthorizationOptionBadge | JPAuthorizationOptionSound | JPAuthorizationOptionProvidesAppNotificationSettings;

@@ -137,7 +137,8 @@
         UILabel *contentLabel = subLabel(@"内容Label");
         contentLabel.attributedText = ({
             UIFont *font = [UIFont systemFontOfSize:16];
-            NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithString:pm.content attributes:@{NSFontAttributeName:font}];
+            NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithData:[pm.content dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,} documentAttributes:nil error:nil];
+            [mas addAttributes:@{NSFontAttributeName:font} range:NSMakeRange(0, mas.length)];
             for (YYImage *image in UGLHPostModel.allEmoji) {
                 NSString *key = [UGLHPostModel keyWithImage:image];
                 if ([pm.content containsString:key]) {
