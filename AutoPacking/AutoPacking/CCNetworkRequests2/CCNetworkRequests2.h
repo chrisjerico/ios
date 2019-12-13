@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (CCSessionModel *)getInfo:(NSString *)_id;
 
 // 修改APP信息
-- (CCSessionModel *)editInfo:(SiteModel *)site plistUrl:(NSString *)plistUrl;
+- (CCSessionModel *)editInfo:(SiteModel *)site plistPath:(NSString *)plistPath;
 
 @end
 

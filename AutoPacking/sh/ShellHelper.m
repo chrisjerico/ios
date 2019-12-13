@@ -61,7 +61,8 @@
 // rsa加密
 + (void)encrypt:(NSString *)string completion:(void (^)(NSString *ret))completion {
     NSTask *task = [[NSTask alloc] init];
-    task.launchPath = [NSString stringWithFormat:@"%@/0encrypt.sh", Path.shellDir];
+    
+    task.launchPath = [[NSBundle mainBundle] pathForResource:@"0encrypt" ofType:@"sh"];
     task.arguments = @[string, Path.shellDir,];
     task.terminationHandler = ^(NSTask *ts) {
         [ts terminate];
@@ -79,7 +80,7 @@
 
 + (void)clean:(NSString *)path completion:(void (^)(void))completion {
     NSTask *task = [[NSTask alloc] init];
-    task.launchPath = [NSString stringWithFormat:@"%@/6clean.sh", Path.shellDir];
+    task.launchPath = [[NSBundle mainBundle] pathForResource:@"6clean" ofType:@"sh"];
     task.arguments = @[path,];
     task.terminationHandler = ^(NSTask *ts) {
         [ts terminate];
@@ -98,7 +99,7 @@
 // 拉取最新代码
 + (void)pullCode:(NSString *)path completion:(void (^)(void))completion {
     NSTask *task = [[NSTask alloc] init];
-    task.launchPath = [NSString stringWithFormat:@"%@/1pull.sh", Path.shellDir];
+    task.launchPath = [[NSBundle mainBundle] pathForResource:@"1pull" ofType:@"sh"];
     task.arguments = @[path,];
     task.terminationHandler = ^(NSTask *ts) {
         [ts terminate];
@@ -120,7 +121,7 @@
         title = @"发包";
     }
     NSTask *task = [[NSTask alloc] init];
-    task.launchPath = [NSString stringWithFormat:@"%@/5push.sh", Path.shellDir];
+    task.launchPath = [[NSBundle mainBundle] pathForResource:@"5push" ofType:@"sh"];
     task.arguments = @[title, path,];
     task.terminationHandler = ^(NSTask *ts) {
         [ts terminate];
@@ -160,7 +161,7 @@
             }
         }
         if (!__sm) {
-            [NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[Path.exportDir]];
+//            [NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[Path.exportDir]];
             if (okSites.count < _sites.count) {
                 NSMutableArray *errs = [_sites mutableCopy];
                 [errs removeObjectsInArray:okSites];
@@ -175,7 +176,7 @@
         }
         
         NSTask *task = [[NSTask alloc] init];
-        task.launchPath = [NSString stringWithFormat:@"%@/2setup.sh", Path.shellDir];;
+        task.launchPath = [[NSBundle mainBundle] pathForResource:@"2setup" ofType:@"sh"];;
         task.arguments = @[__sm.siteId, __sm.appName, __sm.appId, Path.projectDir, ];
         task.terminationHandler = ^(NSTask *ts) {
             [ts terminate];
@@ -183,7 +184,7 @@
             
             BOOL isEnterprise = [@"企业包,内测包" containsString:__sm.type];
             NSTask *task = [[NSTask alloc] init];
-            task.launchPath = [NSString stringWithFormat:@"%@/3packing.sh", Path.shellDir];
+            task.launchPath = [[NSBundle mainBundle] pathForResource:@"3packing" ofType:@"sh"];
             task.arguments = @[isEnterprise ? @"2" : @"1", Path.projectDir, ];
             task.terminationHandler = ^(NSTask *ts) {
                 [ts terminate];
@@ -230,7 +231,7 @@
     NSString *logoUrl = _NSString(@"https://app.wdheco.cn/img/%@/%@.png", sm.uploadNum, sm.uploadNum);
     
     NSTask *task = [[NSTask alloc] init];
-    task.launchPath = [NSString stringWithFormat:@"%@/4plist.sh", Path.shellDir];
+    task.launchPath = [[NSBundle mainBundle] pathForResource:@"4plist" ofType:@"sh"];
     task.arguments = @[ipaUrl, logoUrl, sm.appId, sm.appName, Path.shellDir,];
     task.terminationHandler = ^(NSTask *ts) {
         [ts terminate];

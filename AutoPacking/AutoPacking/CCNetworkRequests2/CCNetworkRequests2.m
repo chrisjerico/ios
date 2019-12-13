@@ -8,33 +8,8 @@
 
 #import "CCNetworkRequests2.h"
 #import "AFNetworking.h"
-#import "CommonCrypto/CommonDigest.h"
-#import "ShellHelper.h"
 
 #define HOST @"http://appadmin.fhptcdn.com"
-
-
-@interface NSString (MD5)
-@property (readonly, nonatomic, copy) NSString *md5;    /**<   获取MD5 */
-@end
-@implementation NSString (MD5)
-
-- (NSString *)md5 {
-    const char *cStr = [self UTF8String];
-    unsigned char result[CC_MD5_DIGEST_LENGTH];
-    CC_MD5(cStr, (uint32_t)strlen(cStr), result);
-    
-    return [[NSString stringWithFormat:@"%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X",
-             result[0], result[1], result[2], result[3],
-             result[4], result[5], result[6], result[7],
-             result[8], result[9], result[10], result[11],
-             result[12], result[13], result[14], result[15]
-             ] lowercaseString];
-}
-
-@end
-
-
 
 
 @interface CCNetworkRequests2 ()<CCRequestDelegate>
@@ -46,25 +21,10 @@
 + (instancetype)sharedManager {
     static id obj = nil;
     static dispatch_once_t onceToken;
-    
     dispatch_once(&onceToken, ^{
         obj = [[self alloc] init];
     });
     return obj;
-}
-
-// 参数加密
-- (NSString *)signWithParams:(NSDictionary *)params {
-    if (!params.count) {
-        return nil;
-    }
-    NSString *json = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:params options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
-    NSString *md5 = json.md5;
-    NSString *sign = nil;
-    //    NSString *sign = [RSAObjC encrypt:md5 PublicKey:RSAPublicKey];
-    
-    //    sign = [[sign dataUsingEncoding:NSUTF8StringEncoding] base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
-    return sign;
 }
 
 
@@ -91,18 +51,6 @@
 - (NSError *)validationError:(CCSessionModel *)sm {
     // 请求失败
     if (sm.error) {
-        //        if (sm.response.statusCode == 401) {
-        //            [SVProgressHUD dismiss];
-        //            SANotificationEventPost(UGNotificationloginTimeout, nil);
-        //            sm.noShowErrorHUD = true;
-        //        }
-        //        if (sm.response.statusCode == 402) {
-        //            [SVProgressHUD dismiss];
-        //            [CMNetwork userLogoutWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:nil];
-        //            UGUserModel.currentUser = nil;
-        //            SANotificationEventPost(UGNotificationUserLogout, nil);
-        //            sm.noShowErrorHUD = true;
-        //        }
         if (sm.response.statusCode == 403 || sm.response.statusCode == 404) {
             return [NSError errorWithDomain:sm.error.userInfo[@"com.alamofire.serialization.response.error.data"] code:sm.response.statusCode userInfo:sm.error.userInfo];
         }
@@ -235,12 +183,12 @@
 }
 
 // 修改APP信息
-- (CCSessionModel *)editInfo:(SiteModel *)site plistUrl:(NSString *)plistUrl {
+- (CCSessionModel *)editInfo:(SiteModel *)site plistPath:(NSString *)plistPath {
     return [self req:@"api.php"
                     :@{@"m":@"edit_app",
                        @"app_id":site.uploadId, // 站点在上传后台的ID
                        @"site_url":site.siteUrl,// 站点链接
-                       @"ios_plist":plistUrl,   // plist地址
+                       @"ios_plist":plistPath,   // plist地址
                     }
                     :true];
 }
