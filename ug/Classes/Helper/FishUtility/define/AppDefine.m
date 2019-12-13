@@ -115,7 +115,7 @@
 #ifdef DEBUG
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
         if (!_SiteId.length) {
-            _SiteId = @"c049";
+            _SiteId = @"test19";
         }
 #endif
         _Host = [_allSites objectWithValue:_SiteId.lowercaseString keyPath:@"siteId"].host;

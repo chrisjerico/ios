@@ -1515,9 +1515,9 @@
     
     [_lottyLabel setHidden:NO];
     _timeLabel.text = @"开奖中";
-    [_timeLabel setTextColor:[UIColor blackColor]];
+//    [_timeLabel setTextColor:[UIColor blackColor]];
     _countdownLabel.text = @"开奖中";
-    [_countdownLabel setTextColor:[UIColor blackColor]];
+//    [_countdownLabel setTextColor:[UIColor blackColor]];
     [self setLhModel:nil];
     
     __weakSelf_(__self);
