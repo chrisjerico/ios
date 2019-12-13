@@ -55,10 +55,12 @@
                 __self.contentVC.pm.isBigFav = fav;
                 sender.selected = fav;
                 [sender setTitle:fav ? @"取消收藏" : @"收藏" forState:UIControlStateNormal];
-                sender.width = 60;
+                sender.width = 80;
             };
         }];
-        self.navigationItem.rightBarButtonItem.customView.alpha = 0;
+        UIButton *btn = self.navigationItem.rightBarButtonItem.customView;
+        btn.alpha = 0;
+        btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     }
     
     // 获取期数列表

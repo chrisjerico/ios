@@ -201,10 +201,6 @@
             pm.likeNum += like ? 1 : -1;
             pm.isLike = like;
             ok = true;
-        } else if (sObj.error.code == -2) { // 已点赞
-            sObj.noShowErrorHUD = true;
-            pm.isLike = like;
-            ok = true;
         }
         if (ok) {
             FastSubViewCode(__self);

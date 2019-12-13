@@ -54,7 +54,10 @@
         }];
         [_photoCollectionView xw_addObserverBlockForKeyPath:@"contentSize" block:^(id  _Nonnull obj, id  _Nonnull oldVal, id  _Nonnull newVal) {
             ((UIScrollView *)obj).cc_constraints.height.constant = MAX([newVal CGSizeValue].height + 4, 20);
-            [__self.tableView reloadData];
+            [__self.view layoutSubviews];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [__self.tableView reloadData];
+            });
         }];
     }
     
@@ -367,7 +370,7 @@
         [subButton(@"头像Button") sd_setImageWithURL:[NSURL URLWithString:pcm.headImg] forState:UIControlStateNormal];
         [subButton(@"昵称Button") setTitle:pcm.nickname forState:UIControlStateNormal];
         subButton(@"点赞图标Button").selected = pcm.isLike;
-        subLabel(@"点赞次数Label").text = @(pcm.likeNum).stringValue;
+        subLabel(@"点赞次数Label").text = pcm.likeNum ? @(pcm.likeNum).stringValue : @"";
         subLabel(@"点赞次数Label").textColor = pcm.isLike ? Skin1.navBarBgColor : APP.TextColor3;
         subLabel(@"评论内容Label").text = pcm.content;
         subLabel(@"评论时间Label").text = pcm.actionTime;
@@ -388,12 +391,7 @@
                     pcm.likeNum += like ? 1 : -1;
                     pcm.isLike = like;
                     subButton(@"点赞图标Button").selected = like;
-                    subLabel(@"点赞次数Label").text = @(pcm.likeNum).stringValue;
-                    subLabel(@"点赞次数Label").textColor = like ? Skin1.navBarBgColor : Skin1.textColor2;
-                } else if (sm.error.code == -2) { // 已点赞
-                    sm.noShowErrorHUD = true;
-                    pcm.isLike = like;
-                    subButton(@"点赞图标Button").selected = like;
+                    subLabel(@"点赞次数Label").text = pcm.likeNum ? @(pcm.likeNum).stringValue : @"";
                     subLabel(@"点赞次数Label").textColor = like ? Skin1.navBarBgColor : Skin1.textColor2;
                 }
             };

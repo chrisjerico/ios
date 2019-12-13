@@ -28,9 +28,8 @@
     UGLHCategoryListModel *clm = _clm;
     {
         UITableView *tv = _tableView;
-        tv.noDataTipsLabel.text = @"还没有人评论此帖子";
-        [tv setupHeaderRefreshRequest:^CCSessionModel *(UITableView *tv) {
-            return [NetworkManager1 lhdoc_contentList:clm.alias uid:nil sort:nil page:1];
+        [tv setupFooterRefreshRequest:^CCSessionModel *(UITableView *tv) {
+            return [NetworkManager1 lhdoc_contentList:clm.alias uid:nil sort:nil page:tv.pageIndex];
         } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
             NSArray *array = sm.responseObject[@"data"][@"list"];
             for (NSDictionary *dict in array) {
@@ -38,7 +37,7 @@
             }
             return array;
         }];
-        [tv.mj_header beginRefreshing];
+        [tv.mj_footer beginRefreshing];
     }
 }
 
