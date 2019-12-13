@@ -17,23 +17,7 @@
     
     NSString *ids = @"test10";
     
-    
-    if (![[NSUserDefaults standardUserDefaults] stringForKey:@"loginsessid"].length) {
-        [NetworkManager1 login].completionBlock = ^(CCSessionModel *sm) {
-            if (!sm.error) {
-                NSLog(@"登录成功，%@", sm.responseObject);
-                [[NSUserDefaults standardUserDefaults] setObject:sm.responseObject[@"data"][@"loginsessid"] forKey:@"loginsessid"];
-                [[NSUserDefaults standardUserDefaults] setObject:sm.responseObject[@"data"][@"logintoken"] forKey:@"logintoken"];
-                [[NSUserDefaults standardUserDefaults] synchronize];
-                
-                [__self startPacking:ids];
-            } else {
-                NSLog(@"登录失败，%@", sm.error);
-            }
-        };
-    } else {
-        [__self startPacking:ids];
-    }
+    [__self startPacking:ids];
 }
 
 - (void)startPacking:(NSString *)ids {
@@ -49,11 +33,23 @@
         NSArray *sms = [SiteModel sites:ids];
         [ShellHelper packing:sms completion:^(NSArray<SiteModel *> *okSites) {
             
-            // 批量上传
-            [__self upload:okSites completion:^(NSArray<SiteModel *> *okSites) {
-                NSLog(@"退出打包程序");
-                exit(0);
-            }];
+            // 登录
+            [NetworkManager1 login].completionBlock = ^(CCSessionModel *sm) {
+                if (!sm.error) {
+                    NSLog(@"登录成功，%@", sm.responseObject);
+                    [[NSUserDefaults standardUserDefaults] setObject:sm.responseObject[@"data"][@"loginsessid"] forKey:@"loginsessid"];
+                    [[NSUserDefaults standardUserDefaults] setObject:sm.responseObject[@"data"][@"logintoken"] forKey:@"logintoken"];
+                    [[NSUserDefaults standardUserDefaults] synchronize];
+                    
+                    // 批量上传
+                    [__self upload:okSites completion:^(NSArray<SiteModel *> *okSites) {
+                        NSLog(@"退出打包程序");
+                        exit(0);
+                    }];
+                } else {
+                    NSLog(@"登录失败，%@", sm.error);
+                }
+            };
         }];
     }];
 }
@@ -70,6 +66,14 @@
         if (!__sm) {
             __sm = sites.firstObject;
             [sites removeObject:__sm];
+            
+//            if ([[NSFileManager defaultManager] fileExistsAtPath:__sm.plistPath]) {
+//                NSLog(@"已上传过 %@.ipa，无需再次上传", __sm.siteId);
+//                [okSites addObject:__sm];
+//                __sm = nil;
+//                __next();
+//                return;
+//            }
         }
         if (!__sm) {
 //            [NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[dirPath]];
@@ -84,9 +88,14 @@
             return ;
         }
         
+        __block int __progress = 0;
         CCSessionModel *sm = [NetworkManager1 uploadWithId:__sm.uploadId sid:__sm.uploadNum file:__sm.ipaPath];
         sm.progressBlock = ^(NSProgress *progress) {
-            NSLog(@"%@ ipa文件上传进度：%@", __sm.siteId, progress);
+            int p = progress.completedUnitCount/(double)progress.totalUnitCount * 100;
+            if (p != __progress) {
+                __progress = p;
+                NSLog(@"%@ ipa文件上传进度：0.%02d", __sm.siteId, __progress);
+            }
         };
         sm.completionBlock = ^(CCSessionModel *sm) {
             if (!sm.error) {
@@ -119,7 +128,7 @@
                     };
                 }];
             } else {
-                NSLog(@"%@ ipa文件上传失败", __sm.siteId);
+                NSLog(@"%@ ipa文件上传失败，%@", __sm.siteId, sm.error);
                 __sm = nil;
                 __next();
             }

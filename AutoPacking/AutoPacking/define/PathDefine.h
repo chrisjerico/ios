@@ -13,18 +13,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PathDefine : NSObject
 
-@property (nonatomic, readonly) NSString *username;
+@property (nonatomic, readonly) NSString *username;         /**<   当前电脑的用户名 */
 
-@property (nonatomic, readonly) NSString *projectDir;
-@property (nonatomic, readonly) NSString *exportDir;
-@property (nonatomic, readonly) NSString *shellDir;
-@property (nonatomic, readonly) NSString *log;
+@property (nonatomic, readonly) NSString *projectDir;       /**<   打包项目目录 */
+@property (nonatomic, readonly) NSString *exportDir;        /**<   导出目录 */
+@property (nonatomic, readonly) NSString *shellDir;         /**<   脚本目录 */
+@property (nonatomic, readonly) NSString *log;              /**<   日志 */
 
-@property (nonatomic, readonly) NSString *tempPlist;
-@property (nonatomic, readonly) NSString *tempIpa;
-@property (nonatomic, readonly) NSString *tempXcarchive;
-@property (nonatomic, readonly) NSString *tempCiphertext;
-@property (nonatomic, readonly) NSString *tempCommitId;
+@property (nonatomic, readonly) NSString *tempPlist;        /**<   （临时）plist */
+@property (nonatomic, readonly) NSString *tempIpa;          /**<   （临时）ipa */
+@property (nonatomic, readonly) NSString *tempXcarchive;    /**<   （临时）Xcode归档包 */
+@property (nonatomic, readonly) NSString *tempCiphertext;   /**<   （临时）rsa加密文本 */
+@property (nonatomic, readonly) NSString *tempCommitId;     /**<   （临时）最后一次提交的ID */
 
 + (instancetype)shared;
 @end

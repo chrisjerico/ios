@@ -238,8 +238,8 @@
 - (CCSessionModel *)editInfo:(NSString *)_id ipaUrl:(NSString *)ipaUrl plistUrl:(NSString *)plistUrl {
     return [self req:@"api.php"
                     :@{@"m":@"edit_app",
-                       @"ios_pack":ipaUrl,// ipa地址
-                       @"":plistUrl,   // plist地址
+                       @"ios_pack":ipaUrl,      // ipa地址
+                       @"ios_plist":plistUrl,   // plist地址
                     }
                     :true];
 }

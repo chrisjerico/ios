@@ -37,16 +37,21 @@
             if (![[NSFileManager defaultManager] fileExistsAtPath:[NSString stringWithFormat:@"%@/AutoPacking/打包文件/各站点AppIcon（拷贝出来使用）/%@", Path.projectDir, sm.siteId]]) {
                 [errs addObject:[NSString stringWithFormat:@"app图标未配置, %@", sm.siteId]];
             }
+            if (![[NSFileManager defaultManager] fileExistsAtPath:Path.tempPlist]) {
+                [errs addObject:_NSString(@"找不到plist模板，请在此路径放置一个plist模板：%@", Path.tempPlist)];
+            }
         } else {
             [errs addObject:[NSString stringWithFormat:@"没有此站点，请检查是否拼写错误, %@", siteId]];
         }
     }
     
-    NSLog(@"-——————————检查站点配置———————————");
+    NSLog(@"\n\n");
+    NSLog(@"-——————————检查站点配置———————————\n\n");
     for (NSString *err in errs) {
         NSLog(@"%@", err);
     }
     if (errs.count) {
+        NSLog(@"\n\n");
         @throw [NSException exceptionWithName:@"缺少已上配置，请配置完成后再打包" reason:@"" userInfo:nil];
         return ;
     }
@@ -130,11 +135,21 @@
         if (!__sm) {
             __sm = sites.firstObject;
             [sites removeObject:__sm];
+            
+            if ([[NSFileManager defaultManager] fileExistsAtPath:__sm.xcarchivePath]) {
+                NSLog(@"已存在 %@ 安装包，无需再次打包", __sm.siteId);
+                [okSites addObject:__sm];
+                __sm = nil;
+                __next();
+                return;
+            }
         }
         if (!__sm) {
             [NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[dirPath]];
             if (okSites.count < _sites.count) {
-                NSLog(@"所有站点已打包完毕，其中 %@ 站点打包失败！", [[okSites valueForKey:@"siteId"] componentsJoinedByString:@","]);
+                NSMutableArray *errs = [_sites mutableCopy];
+                [errs removeObjectsInArray:okSites];
+                NSLog(@"所有站点已打包完毕，其中 %@ 站点打包失败！", [[errs valueForKey:@"siteId"] componentsJoinedByString:@","]);
             } else {
                 NSLog(@"所有站点已打包完毕！");
             }

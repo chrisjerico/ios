@@ -165,7 +165,7 @@
                     site(@"c136",        @"c136hy",        @"",       @"io.fhpt.H5F60C8D2",         @"企业包",     @"⻓诚彩票",              @""),
                     
                     
-                    site(@"test10",      @"test10hy",      @"",        @"com.UGGame.cp",      @"内测包",     @"test10",        @"http://test10.6yc.com"),
+                    site(@"test10",      @"88",            @"125",        @"com.UGGame.cp",      @"内测包",     @"test10",        @"http://test10.6yc.com"),
                     site(@"c083",        @"c083hy",        @"",        @"com.UGGame.cp",       @"内测包",     @"c083测试",       @"http://t111f.fhptcdn.com"),
                     site(@"test100",     @"test100hy",     @"",         @"com.UGGame.cp",     @"内测包",     @"test100",        @"http://test100f.fhptcdn.com"),
                     site(@"t032",        @"t032hy",        @"",         @"com.UGGame.cp",     @"内测包",     @"t032",           @"http://t005f.fhptcdn.com"),     // (老虎)

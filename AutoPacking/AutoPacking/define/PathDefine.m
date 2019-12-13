@@ -26,10 +26,10 @@
     if (self) {
         _username = [NSUserName() isEqualToString:@"fish"] ? @"fish" : @"andrew";
         
-        _projectDir = [NSUserName() isEqualToString:@"fish"] ? @"/Users/自动打包/pack" : @"/Users/ug/pack";
+        _projectDir = [NSUserName() isEqualToString:@"fish"] ? @"/Users/fish/自动打包/pack" : @"/Users/ug/pack";
         _exportDir = @"/Library/WebServer/Documents/ipa";
         _shellDir = [_projectDir stringByAppendingPathComponent:@"AutoPacking/sh"];
-        _log = @"/Users/自动打包/log/PackingLog.txt";
+        _log = @"/Users/fish/自动打包/log/PackingLog.txt";
         
         _tempIpa        = [_projectDir stringByAppendingPathComponent:@"ug.ipa"];
         _tempXcarchive  = [_projectDir stringByAppendingPathComponent:@"ug.xcarchive"];
