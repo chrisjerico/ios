@@ -31,6 +31,7 @@
     // 按屏幕比例缩放（因为等比例约束太复杂，所以直接缩放得了）
     CGFloat scale = APP.Width/414;
     _contentView.transform = CGAffineTransformMakeScale(scale, scale);
+//    _contentView.cc_constraints.bottom.constant = APP.BottomSafeHeight;
     
     self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithImageName:@"riqi" target:self action:@selector(rightBarButtonItemClick)];
     
