@@ -7,66 +7,126 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CF2F687C238D4B090030E26D /* ShellHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2F687B238D4B080030E26D /* ShellHelper.m */; };
-		CF73AE56238C5C6A007EF904 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CF73AE55238C5C6A007EF904 /* main.m */; };
-		CF73AE64238C5CDC007EF904 /* SiteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF73AE62238C5CDC007EF904 /* SiteModel.m */; };
-		CFD7A780238D816C00D833EB /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD7A777238D816C00D833EB /* AFURLResponseSerialization.m */; };
-		CFD7A781238D816C00D833EB /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD7A778238D816C00D833EB /* AFHTTPSessionManager.m */; };
-		CFD7A782238D816C00D833EB /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD7A77A238D816C00D833EB /* AFURLSessionManager.m */; };
-		CFD7A783238D816C00D833EB /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD7A77B238D816C00D833EB /* AFURLRequestSerialization.m */; };
-		CFD7A784238D816C00D833EB /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD7A77D238D816C00D833EB /* AFNetworkReachabilityManager.m */; };
-		CFD7A785238D816C00D833EB /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD7A77E238D816C00D833EB /* AFSecurityPolicy.m */; };
+		CF5D3D6B2396B8CE00CC3D6B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5D3D6A2396B8CE00CC3D6B /* AppDelegate.m */; };
+		CF5D3D6E2396B8CE00CC3D6B /* AutoPackingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5D3D6D2396B8CE00CC3D6B /* AutoPackingVC.m */; };
+		CF5D3D702396B8D000CC3D6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF5D3D6F2396B8D000CC3D6B /* Assets.xcassets */; };
+		CF5D3D732396B8D000CC3D6B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF5D3D712396B8D000CC3D6B /* Main.storyboard */; };
+		CF5D3D762396B8D000CC3D6B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5D3D752396B8D000CC3D6B /* main.m */; };
+		CF5D3DA22396BC4600CC3D6B /* 3packing.sh in Resources */ = {isa = PBXBuildFile; fileRef = CF5D3D9F2396BC4600CC3D6B /* 3packing.sh */; };
+		CF5D3DA32396BC4600CC3D6B /* 1pull.sh in Resources */ = {isa = PBXBuildFile; fileRef = CF5D3DA02396BC4600CC3D6B /* 1pull.sh */; };
+		CF5D3DA42396BC4600CC3D6B /* 2setup.sh in Resources */ = {isa = PBXBuildFile; fileRef = CF5D3DA12396BC4600CC3D6B /* 2setup.sh */; };
+		CF5D3DAA2396BC9500CC3D6B /* ShellHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5D3DA82396BC9400CC3D6B /* ShellHelper.m */; };
+		CF5D3E192397819C00CC3D6B /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5D3E102397819C00CC3D6B /* AFURLResponseSerialization.m */; };
+		CF5D3E1A2397819C00CC3D6B /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5D3E112397819C00CC3D6B /* AFHTTPSessionManager.m */; };
+		CF5D3E1B2397819C00CC3D6B /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5D3E132397819C00CC3D6B /* AFURLSessionManager.m */; };
+		CF5D3E1C2397819C00CC3D6B /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5D3E142397819C00CC3D6B /* AFURLRequestSerialization.m */; };
+		CF5D3E1D2397819C00CC3D6B /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5D3E162397819C00CC3D6B /* AFNetworkReachabilityManager.m */; };
+		CF5D3E1E2397819C00CC3D6B /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5D3E172397819C00CC3D6B /* AFSecurityPolicy.m */; };
+		CF5D3E2A239781AC00CC3D6B /* CCSessionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5D3E25239781AC00CC3D6B /* CCSessionModel.m */; };
+		CF5D3E42239781B700CC3D6B /* MJPropertyType.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5D3E30239781B700CC3D6B /* MJPropertyType.m */; };
+		CF5D3E43239781B800CC3D6B /* NSObject+MJKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5D3E33239781B700CC3D6B /* NSObject+MJKeyValue.m */; };
+		CF5D3E44239781B800CC3D6B /* MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5D3E34239781B700CC3D6B /* MJProperty.m */; };
+		CF5D3E45239781B800CC3D6B /* NSObject+MJCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5D3E36239781B700CC3D6B /* NSObject+MJCoding.m */; };
+		CF5D3E46239781B800CC3D6B /* MJExtensionConst.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5D3E38239781B700CC3D6B /* MJExtensionConst.m */; };
+		CF5D3E47239781B800CC3D6B /* NSObject+MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5D3E39239781B700CC3D6B /* NSObject+MJProperty.m */; };
+		CF5D3E48239781B800CC3D6B /* NSObject+MJClass.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5D3E3B239781B700CC3D6B /* NSObject+MJClass.m */; };
+		CF5D3E49239781B800CC3D6B /* NSString+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5D3E3C239781B700CC3D6B /* NSString+MJExtension.m */; };
+		CF5D3E4A239781B800CC3D6B /* MJPropertyKey.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5D3E3D239781B700CC3D6B /* MJPropertyKey.m */; };
+		CF5D3E4B239781B800CC3D6B /* MJFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5D3E41239781B700CC3D6B /* MJFoundation.m */; };
+		CF5D3E512397863400CC3D6B /* 打包文件 in Resources */ = {isa = PBXBuildFile; fileRef = CF5D3E502397863400CC3D6B /* 打包文件 */; };
+		CF5D3E5523978C0F00CC3D6B /* CCNetworkRequests2.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5D3E5423978C0F00CC3D6B /* CCNetworkRequests2.m */; };
+		CF5D3E612397929E00CC3D6B /* NSDictionary+NilSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5D3E572397929E00CC3D6B /* NSDictionary+NilSafe.m */; };
+		CF5D3E622397929E00CC3D6B /* NSString+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5D3E582397929E00CC3D6B /* NSString+Safe.m */; };
+		CF5D3E632397929E00CC3D6B /* NSNull+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5D3E5B2397929E00CC3D6B /* NSNull+Safe.m */; };
+		CF5D3E642397929E00CC3D6B /* NSNumber+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5D3E5E2397929E00CC3D6B /* NSNumber+Safe.m */; };
+		CF5D3E652397929E00CC3D6B /* NSArray+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5D3E602397929E00CC3D6B /* NSArray+Safe.m */; };
+		CF5D3E892397D9D800CC3D6B /* 0encrypt.sh in Resources */ = {isa = PBXBuildFile; fileRef = CF5D3E882397D9D800CC3D6B /* 0encrypt.sh */; };
+		CFDB111623A14D160040DE2B /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDB111523A14D160040DE2B /* JRSwizzle.m */; };
+		CFDB111D23A15C450040DE2B /* PathDefine.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDB111C23A15C450040DE2B /* PathDefine.m */; };
+		CFDB112223A160550040DE2B /* 4plist.sh in Resources */ = {isa = PBXBuildFile; fileRef = CFDB112123A160550040DE2B /* 4plist.sh */; };
+		CFDB112C23A3AE6F0040DE2B /* 5pull.sh in Resources */ = {isa = PBXBuildFile; fileRef = CFDB112B23A3AE6F0040DE2B /* 5pull.sh */; };
+		CFDB113B23A3B62F0040DE2B /* SiteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDB113923A3B62F0040DE2B /* SiteModel.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		CF73AE50238C5C6A007EF904 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		CF2F687A238D4B080030E26D /* ShellHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShellHelper.h; sourceTree = "<group>"; };
-		CF2F687B238D4B080030E26D /* ShellHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShellHelper.m; sourceTree = "<group>"; };
-		CF2F6885238D4EAF0030E26D /* 3packing.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = 3packing.sh; sourceTree = "<group>"; };
-		CF2F6886238D4EAF0030E26D /* 1pull.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = 1pull.sh; sourceTree = "<group>"; };
-		CF2F6887238D4EAF0030E26D /* 2setup.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = 2setup.sh; sourceTree = "<group>"; };
-		CF73AE52238C5C6A007EF904 /* AutoPacking */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AutoPacking; sourceTree = BUILT_PRODUCTS_DIR; };
-		CF73AE55238C5C6A007EF904 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		CF73AE62238C5CDC007EF904 /* SiteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SiteModel.m; sourceTree = "<group>"; };
-		CF73AE63238C5CDC007EF904 /* SiteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SiteModel.h; sourceTree = "<group>"; };
-		CF73AE67238C5D7E007EF904 /* 打包文件 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "打包文件"; sourceTree = SOURCE_ROOT; };
-		CFD7A760238D7FB900D833EB /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		CFD7A762238D7FFD00D833EB /* libsystem_networkextension.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsystem_networkextension.tbd; path = usr/lib/system/libsystem_networkextension.tbd; sourceTree = SDKROOT; };
-		CFD7A763238D7FFD00D833EB /* libnetwork.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libnetwork.tbd; path = usr/lib/libnetwork.tbd; sourceTree = SDKROOT; };
-		CFD7A764238D7FFD00D833EB /* NetworkingDriverKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkingDriverKit.framework; path = System/Library/Frameworks/NetworkingDriverKit.framework; sourceTree = SDKROOT; };
-		CFD7A765238D7FFD00D833EB /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
-		CFD7A766238D7FFD00D833EB /* libnetworkextension.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libnetworkextension.tbd; path = usr/lib/libnetworkextension.tbd; sourceTree = SDKROOT; };
-		CFD7A767238D7FFD00D833EB /* libswiftNetwork.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libswiftNetwork.tbd; path = usr/lib/swift/libswiftNetwork.tbd; sourceTree = SDKROOT; };
-		CFD7A768238D7FFD00D833EB /* Network.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Network.framework; path = System/Library/Frameworks/Network.framework; sourceTree = SDKROOT; };
-		CFD7A769238D7FFD00D833EB /* liblog_network.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = liblog_network.tbd; path = usr/lib/log/liblog_network.tbd; sourceTree = SDKROOT; };
-		CFD7A773238D816C00D833EB /* AFSecurityPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFSecurityPolicy.h; sourceTree = "<group>"; };
-		CFD7A774238D816C00D833EB /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
-		CFD7A775238D816C00D833EB /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
-		CFD7A776238D816C00D833EB /* AFURLRequestSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLRequestSerialization.h; sourceTree = "<group>"; };
-		CFD7A777238D816C00D833EB /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
-		CFD7A778238D816C00D833EB /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
-		CFD7A779238D816C00D833EB /* AFURLResponseSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLResponseSerialization.h; sourceTree = "<group>"; };
-		CFD7A77A238D816C00D833EB /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
-		CFD7A77B238D816C00D833EB /* AFURLRequestSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLRequestSerialization.m; sourceTree = "<group>"; };
-		CFD7A77C238D816C00D833EB /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
-		CFD7A77D238D816C00D833EB /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
-		CFD7A77E238D816C00D833EB /* AFSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFSecurityPolicy.m; sourceTree = "<group>"; };
-		CFD7A77F238D816C00D833EB /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
+		CF5D3D662396B8CE00CC3D6B /* AutoPacking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutoPacking.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF5D3D692396B8CE00CC3D6B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		CF5D3D6A2396B8CE00CC3D6B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		CF5D3D6C2396B8CE00CC3D6B /* AutoPackingVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutoPackingVC.h; sourceTree = "<group>"; };
+		CF5D3D6D2396B8CE00CC3D6B /* AutoPackingVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutoPackingVC.m; sourceTree = "<group>"; };
+		CF5D3D6F2396B8D000CC3D6B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CF5D3D722396B8D000CC3D6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CF5D3D742396B8D000CC3D6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CF5D3D752396B8D000CC3D6B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CF5D3D772396B8D000CC3D6B /* AutoPacking.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AutoPacking.entitlements; sourceTree = "<group>"; };
+		CF5D3D9F2396BC4600CC3D6B /* 3packing.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = 3packing.sh; sourceTree = "<group>"; };
+		CF5D3DA02396BC4600CC3D6B /* 1pull.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = 1pull.sh; sourceTree = "<group>"; };
+		CF5D3DA12396BC4600CC3D6B /* 2setup.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = 2setup.sh; sourceTree = "<group>"; };
+		CF5D3DA62396BC9300CC3D6B /* ShellHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShellHelper.h; sourceTree = "<group>"; };
+		CF5D3DA82396BC9400CC3D6B /* ShellHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShellHelper.m; sourceTree = "<group>"; };
+		CF5D3DF92397809C00CC3D6B /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = SOURCE_ROOT; };
+		CF5D3E0C2397819C00CC3D6B /* AFSecurityPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFSecurityPolicy.h; sourceTree = "<group>"; };
+		CF5D3E0D2397819C00CC3D6B /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
+		CF5D3E0E2397819C00CC3D6B /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
+		CF5D3E0F2397819C00CC3D6B /* AFURLRequestSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLRequestSerialization.h; sourceTree = "<group>"; };
+		CF5D3E102397819C00CC3D6B /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
+		CF5D3E112397819C00CC3D6B /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
+		CF5D3E122397819C00CC3D6B /* AFURLResponseSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLResponseSerialization.h; sourceTree = "<group>"; };
+		CF5D3E132397819C00CC3D6B /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
+		CF5D3E142397819C00CC3D6B /* AFURLRequestSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLRequestSerialization.m; sourceTree = "<group>"; };
+		CF5D3E152397819C00CC3D6B /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
+		CF5D3E162397819C00CC3D6B /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
+		CF5D3E172397819C00CC3D6B /* AFSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFSecurityPolicy.m; sourceTree = "<group>"; };
+		CF5D3E182397819C00CC3D6B /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
+		CF5D3E20239781AC00CC3D6B /* CCSessionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSessionModel.h; sourceTree = "<group>"; };
+		CF5D3E25239781AC00CC3D6B /* CCSessionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCSessionModel.m; sourceTree = "<group>"; };
+		CF5D3E2D239781B700CC3D6B /* MJPropertyKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPropertyKey.h; sourceTree = "<group>"; };
+		CF5D3E2E239781B700CC3D6B /* NSObject+MJClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJClass.h"; sourceTree = "<group>"; };
+		CF5D3E2F239781B700CC3D6B /* NSString+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MJExtension.h"; sourceTree = "<group>"; };
+		CF5D3E30239781B700CC3D6B /* MJPropertyType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPropertyType.m; sourceTree = "<group>"; };
+		CF5D3E31239781B700CC3D6B /* NSObject+MJProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJProperty.h"; sourceTree = "<group>"; };
+		CF5D3E32239781B700CC3D6B /* MJExtensionConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJExtensionConst.h; sourceTree = "<group>"; };
+		CF5D3E33239781B700CC3D6B /* NSObject+MJKeyValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJKeyValue.m"; sourceTree = "<group>"; };
+		CF5D3E34239781B700CC3D6B /* MJProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJProperty.m; sourceTree = "<group>"; };
+		CF5D3E35239781B700CC3D6B /* MJFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJFoundation.h; sourceTree = "<group>"; };
+		CF5D3E36239781B700CC3D6B /* NSObject+MJCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJCoding.m"; sourceTree = "<group>"; };
+		CF5D3E37239781B700CC3D6B /* MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJExtension.h; sourceTree = "<group>"; };
+		CF5D3E38239781B700CC3D6B /* MJExtensionConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJExtensionConst.m; sourceTree = "<group>"; };
+		CF5D3E39239781B700CC3D6B /* NSObject+MJProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJProperty.m"; sourceTree = "<group>"; };
+		CF5D3E3A239781B700CC3D6B /* MJPropertyType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPropertyType.h; sourceTree = "<group>"; };
+		CF5D3E3B239781B700CC3D6B /* NSObject+MJClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJClass.m"; sourceTree = "<group>"; };
+		CF5D3E3C239781B700CC3D6B /* NSString+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MJExtension.m"; sourceTree = "<group>"; };
+		CF5D3E3D239781B700CC3D6B /* MJPropertyKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPropertyKey.m; sourceTree = "<group>"; };
+		CF5D3E3E239781B700CC3D6B /* MJProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJProperty.h; sourceTree = "<group>"; };
+		CF5D3E3F239781B700CC3D6B /* NSObject+MJKeyValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJKeyValue.h"; sourceTree = "<group>"; };
+		CF5D3E40239781B700CC3D6B /* NSObject+MJCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJCoding.h"; sourceTree = "<group>"; };
+		CF5D3E41239781B700CC3D6B /* MJFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJFoundation.m; sourceTree = "<group>"; };
+		CF5D3E502397863400CC3D6B /* 打包文件 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "打包文件"; sourceTree = "<group>"; };
+		CF5D3E5323978C0F00CC3D6B /* CCNetworkRequests2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCNetworkRequests2.h; sourceTree = "<group>"; };
+		CF5D3E5423978C0F00CC3D6B /* CCNetworkRequests2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCNetworkRequests2.m; sourceTree = "<group>"; };
+		CF5D3E572397929E00CC3D6B /* NSDictionary+NilSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+NilSafe.m"; sourceTree = "<group>"; };
+		CF5D3E582397929E00CC3D6B /* NSString+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Safe.m"; sourceTree = "<group>"; };
+		CF5D3E592397929E00CC3D6B /* NSNumber+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+Safe.h"; sourceTree = "<group>"; };
+		CF5D3E5A2397929E00CC3D6B /* NSArray+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Safe.h"; sourceTree = "<group>"; };
+		CF5D3E5B2397929E00CC3D6B /* NSNull+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNull+Safe.m"; sourceTree = "<group>"; };
+		CF5D3E5C2397929E00CC3D6B /* NSString+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Safe.h"; sourceTree = "<group>"; };
+		CF5D3E5D2397929E00CC3D6B /* NSDictionary+NilSafe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+NilSafe.h"; sourceTree = "<group>"; };
+		CF5D3E5E2397929E00CC3D6B /* NSNumber+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+Safe.m"; sourceTree = "<group>"; };
+		CF5D3E5F2397929E00CC3D6B /* NSNull+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNull+Safe.h"; sourceTree = "<group>"; };
+		CF5D3E602397929E00CC3D6B /* NSArray+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Safe.m"; sourceTree = "<group>"; };
+		CF5D3E882397D9D800CC3D6B /* 0encrypt.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = 0encrypt.sh; sourceTree = "<group>"; };
+		CFDB111423A14D160040DE2B /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JRSwizzle.h; path = ../../ug/Classes/Helper/FishUtility/JRSwizzle/JRSwizzle.h; sourceTree = "<group>"; };
+		CFDB111523A14D160040DE2B /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JRSwizzle.m; path = ../../ug/Classes/Helper/FishUtility/JRSwizzle/JRSwizzle.m; sourceTree = "<group>"; };
+		CFDB111B23A15C450040DE2B /* PathDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PathDefine.h; sourceTree = "<group>"; };
+		CFDB111C23A15C450040DE2B /* PathDefine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PathDefine.m; sourceTree = "<group>"; };
+		CFDB112123A160550040DE2B /* 4plist.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = 4plist.sh; sourceTree = "<group>"; };
+		CFDB112B23A3AE6F0040DE2B /* 5pull.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = 5pull.sh; sourceTree = "<group>"; };
+		CFDB113923A3B62F0040DE2B /* SiteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SiteModel.m; path = ../../../ug/Classes/Other/SiteModel.m; sourceTree = "<group>"; };
+		CFDB113A23A3B62F0040DE2B /* SiteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SiteModel.h; path = ../../../ug/Classes/Other/SiteModel.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		CF73AE4F238C5C6A007EF904 /* Frameworks */ = {
+		CF5D3D632396B8CE00CC3D6B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -76,95 +136,189 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		CF2F6884238D4EAF0030E26D /* sh */ = {
+		CF5D3D5D2396B8CE00CC3D6B = {
 			isa = PBXGroup;
 			children = (
-				CF2F6886238D4EAF0030E26D /* 1pull.sh */,
-				CF2F6887238D4EAF0030E26D /* 2setup.sh */,
-				CF2F6885238D4EAF0030E26D /* 3packing.sh */,
-			);
-			path = sh;
-			sourceTree = SOURCE_ROOT;
-		};
-		CF73AE49238C5C6A007EF904 = {
-			isa = PBXGroup;
-			children = (
-				CF73AE54238C5C6A007EF904 /* AutoPacking */,
-				CF73AE53238C5C6A007EF904 /* Products */,
-				CFD7A75F238D7FB900D833EB /* Frameworks */,
+				CF5D3E502397863400CC3D6B /* 打包文件 */,
+				CF5D3D682396B8CE00CC3D6B /* AutoPacking */,
+				CF5D3D672396B8CE00CC3D6B /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		CF73AE53238C5C6A007EF904 /* Products */ = {
+		CF5D3D672396B8CE00CC3D6B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CF73AE52238C5C6A007EF904 /* AutoPacking */,
+				CF5D3D662396B8CE00CC3D6B /* AutoPacking.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CF73AE54238C5C6A007EF904 /* AutoPacking */ = {
+		CF5D3D682396B8CE00CC3D6B /* AutoPacking */ = {
 			isa = PBXGroup;
 			children = (
-				CFD7A772238D816C00D833EB /* AFNetworking */,
-				CF2F6884238D4EAF0030E26D /* sh */,
-				CF73AE67238C5D7E007EF904 /* 打包文件 */,
-				CF73AE63238C5CDC007EF904 /* SiteModel.h */,
-				CF73AE62238C5CDC007EF904 /* SiteModel.m */,
-				CF2F687A238D4B080030E26D /* ShellHelper.h */,
-				CF2F687B238D4B080030E26D /* ShellHelper.m */,
-				CF73AE55238C5C6A007EF904 /* main.m */,
+				CF5D3DFA2397813D00CC3D6B /* 引用主项目的文件（别改会影响主项目） */,
+				CF5D3E5223978BEC00CC3D6B /* CCNetworkRequests2 */,
+				CF5D3D9E2396BC4600CC3D6B /* sh */,
+				CFDB111A23A15C060040DE2B /* define */,
+				CF5D3D692396B8CE00CC3D6B /* AppDelegate.h */,
+				CF5D3D6A2396B8CE00CC3D6B /* AppDelegate.m */,
+				CF5D3D6C2396B8CE00CC3D6B /* AutoPackingVC.h */,
+				CF5D3D6D2396B8CE00CC3D6B /* AutoPackingVC.m */,
+				CF5D3D6F2396B8D000CC3D6B /* Assets.xcassets */,
+				CF5D3D712396B8D000CC3D6B /* Main.storyboard */,
+				CF5D3D742396B8D000CC3D6B /* Info.plist */,
+				CF5D3D752396B8D000CC3D6B /* main.m */,
+				CF5D3DF92397809C00CC3D6B /* PrefixHeader.pch */,
+				CF5D3D772396B8D000CC3D6B /* AutoPacking.entitlements */,
 			);
 			path = AutoPacking;
 			sourceTree = "<group>";
 		};
-		CFD7A75F238D7FB900D833EB /* Frameworks */ = {
+		CF5D3D9E2396BC4600CC3D6B /* sh */ = {
 			isa = PBXGroup;
 			children = (
-				CFD7A769238D7FFD00D833EB /* liblog_network.tbd */,
-				CFD7A763238D7FFD00D833EB /* libnetwork.tbd */,
-				CFD7A766238D7FFD00D833EB /* libnetworkextension.tbd */,
-				CFD7A767238D7FFD00D833EB /* libswiftNetwork.tbd */,
-				CFD7A762238D7FFD00D833EB /* libsystem_networkextension.tbd */,
-				CFD7A768238D7FFD00D833EB /* Network.framework */,
-				CFD7A765238D7FFD00D833EB /* NetworkExtension.framework */,
-				CFD7A764238D7FFD00D833EB /* NetworkingDriverKit.framework */,
-				CFD7A760238D7FB900D833EB /* CFNetwork.framework */,
+				CF5D3DA62396BC9300CC3D6B /* ShellHelper.h */,
+				CF5D3DA82396BC9400CC3D6B /* ShellHelper.m */,
+				CF5D3E882397D9D800CC3D6B /* 0encrypt.sh */,
+				CF5D3DA02396BC4600CC3D6B /* 1pull.sh */,
+				CF5D3DA12396BC4600CC3D6B /* 2setup.sh */,
+				CF5D3D9F2396BC4600CC3D6B /* 3packing.sh */,
+				CFDB112123A160550040DE2B /* 4plist.sh */,
+				CFDB112B23A3AE6F0040DE2B /* 5pull.sh */,
 			);
-			name = Frameworks;
+			path = sh;
+			sourceTree = SOURCE_ROOT;
+		};
+		CF5D3DFA2397813D00CC3D6B /* 引用主项目的文件（别改会影响主项目） */ = {
+			isa = PBXGroup;
+			children = (
+				CF5D3E66239792B300CC3D6B /* JRSwizzle */,
+				CF5D3E562397929E00CC3D6B /* Safe */,
+				CF5D3E2C239781B700CC3D6B /* MJExtension */,
+				CF5D3E1F239781AC00CC3D6B /* CCNetworkRequests1 */,
+				CF5D3E0B2397819C00CC3D6B /* AFNetworking */,
+			);
+			path = "引用主项目的文件（别改会影响主项目）";
 			sourceTree = "<group>";
 		};
-		CFD7A772238D816C00D833EB /* AFNetworking */ = {
+		CF5D3E0B2397819C00CC3D6B /* AFNetworking */ = {
 			isa = PBXGroup;
 			children = (
-				CFD7A773238D816C00D833EB /* AFSecurityPolicy.h */,
-				CFD7A774238D816C00D833EB /* AFNetworkReachabilityManager.h */,
-				CFD7A775238D816C00D833EB /* AFURLSessionManager.h */,
-				CFD7A776238D816C00D833EB /* AFURLRequestSerialization.h */,
-				CFD7A777238D816C00D833EB /* AFURLResponseSerialization.m */,
-				CFD7A778238D816C00D833EB /* AFHTTPSessionManager.m */,
-				CFD7A779238D816C00D833EB /* AFURLResponseSerialization.h */,
-				CFD7A77A238D816C00D833EB /* AFURLSessionManager.m */,
-				CFD7A77B238D816C00D833EB /* AFURLRequestSerialization.m */,
-				CFD7A77C238D816C00D833EB /* AFNetworking.h */,
-				CFD7A77D238D816C00D833EB /* AFNetworkReachabilityManager.m */,
-				CFD7A77E238D816C00D833EB /* AFSecurityPolicy.m */,
-				CFD7A77F238D816C00D833EB /* AFHTTPSessionManager.h */,
+				CF5D3E0C2397819C00CC3D6B /* AFSecurityPolicy.h */,
+				CF5D3E0D2397819C00CC3D6B /* AFNetworkReachabilityManager.h */,
+				CF5D3E0E2397819C00CC3D6B /* AFURLSessionManager.h */,
+				CF5D3E0F2397819C00CC3D6B /* AFURLRequestSerialization.h */,
+				CF5D3E102397819C00CC3D6B /* AFURLResponseSerialization.m */,
+				CF5D3E112397819C00CC3D6B /* AFHTTPSessionManager.m */,
+				CF5D3E122397819C00CC3D6B /* AFURLResponseSerialization.h */,
+				CF5D3E132397819C00CC3D6B /* AFURLSessionManager.m */,
+				CF5D3E142397819C00CC3D6B /* AFURLRequestSerialization.m */,
+				CF5D3E152397819C00CC3D6B /* AFNetworking.h */,
+				CF5D3E162397819C00CC3D6B /* AFNetworkReachabilityManager.m */,
+				CF5D3E172397819C00CC3D6B /* AFSecurityPolicy.m */,
+				CF5D3E182397819C00CC3D6B /* AFHTTPSessionManager.h */,
 			);
 			name = AFNetworking;
-			path = ../../ug/Classes/Frameworks/AFNetworking;
+			path = ../../../ug/Classes/Frameworks/AFNetworking;
+			sourceTree = "<group>";
+		};
+		CF5D3E1F239781AC00CC3D6B /* CCNetworkRequests1 */ = {
+			isa = PBXGroup;
+			children = (
+				CF5D3E20239781AC00CC3D6B /* CCSessionModel.h */,
+				CF5D3E25239781AC00CC3D6B /* CCSessionModel.m */,
+			);
+			name = CCNetworkRequests1;
+			path = ../../../ug/Classes/Helper/FishUtility/CCNetworkRequests1;
+			sourceTree = "<group>";
+		};
+		CF5D3E2C239781B700CC3D6B /* MJExtension */ = {
+			isa = PBXGroup;
+			children = (
+				CF5D3E2D239781B700CC3D6B /* MJPropertyKey.h */,
+				CF5D3E2E239781B700CC3D6B /* NSObject+MJClass.h */,
+				CF5D3E2F239781B700CC3D6B /* NSString+MJExtension.h */,
+				CF5D3E30239781B700CC3D6B /* MJPropertyType.m */,
+				CF5D3E31239781B700CC3D6B /* NSObject+MJProperty.h */,
+				CF5D3E32239781B700CC3D6B /* MJExtensionConst.h */,
+				CF5D3E33239781B700CC3D6B /* NSObject+MJKeyValue.m */,
+				CF5D3E34239781B700CC3D6B /* MJProperty.m */,
+				CF5D3E35239781B700CC3D6B /* MJFoundation.h */,
+				CF5D3E36239781B700CC3D6B /* NSObject+MJCoding.m */,
+				CF5D3E37239781B700CC3D6B /* MJExtension.h */,
+				CF5D3E38239781B700CC3D6B /* MJExtensionConst.m */,
+				CF5D3E39239781B700CC3D6B /* NSObject+MJProperty.m */,
+				CF5D3E3A239781B700CC3D6B /* MJPropertyType.h */,
+				CF5D3E3B239781B700CC3D6B /* NSObject+MJClass.m */,
+				CF5D3E3C239781B700CC3D6B /* NSString+MJExtension.m */,
+				CF5D3E3D239781B700CC3D6B /* MJPropertyKey.m */,
+				CF5D3E3E239781B700CC3D6B /* MJProperty.h */,
+				CF5D3E3F239781B700CC3D6B /* NSObject+MJKeyValue.h */,
+				CF5D3E40239781B700CC3D6B /* NSObject+MJCoding.h */,
+				CF5D3E41239781B700CC3D6B /* MJFoundation.m */,
+			);
+			name = MJExtension;
+			path = ../../../Pods/MJExtension/MJExtension;
+			sourceTree = "<group>";
+		};
+		CF5D3E5223978BEC00CC3D6B /* CCNetworkRequests2 */ = {
+			isa = PBXGroup;
+			children = (
+				CF5D3E5323978C0F00CC3D6B /* CCNetworkRequests2.h */,
+				CF5D3E5423978C0F00CC3D6B /* CCNetworkRequests2.m */,
+			);
+			path = CCNetworkRequests2;
+			sourceTree = "<group>";
+		};
+		CF5D3E562397929E00CC3D6B /* Safe */ = {
+			isa = PBXGroup;
+			children = (
+				CF5D3E572397929E00CC3D6B /* NSDictionary+NilSafe.m */,
+				CF5D3E582397929E00CC3D6B /* NSString+Safe.m */,
+				CF5D3E592397929E00CC3D6B /* NSNumber+Safe.h */,
+				CF5D3E5A2397929E00CC3D6B /* NSArray+Safe.h */,
+				CF5D3E5B2397929E00CC3D6B /* NSNull+Safe.m */,
+				CF5D3E5C2397929E00CC3D6B /* NSString+Safe.h */,
+				CF5D3E5D2397929E00CC3D6B /* NSDictionary+NilSafe.h */,
+				CF5D3E5E2397929E00CC3D6B /* NSNumber+Safe.m */,
+				CF5D3E5F2397929E00CC3D6B /* NSNull+Safe.h */,
+				CF5D3E602397929E00CC3D6B /* NSArray+Safe.m */,
+			);
+			name = Safe;
+			path = ../../../ug/Classes/Helper/FishUtility/Category/Other/Safe;
+			sourceTree = "<group>";
+		};
+		CF5D3E66239792B300CC3D6B /* JRSwizzle */ = {
+			isa = PBXGroup;
+			children = (
+				CFDB111423A14D160040DE2B /* JRSwizzle.h */,
+				CFDB111523A14D160040DE2B /* JRSwizzle.m */,
+			);
+			name = JRSwizzle;
+			path = ../../../Pods/JRSwizzle;
+			sourceTree = "<group>";
+		};
+		CFDB111A23A15C060040DE2B /* define */ = {
+			isa = PBXGroup;
+			children = (
+				CFDB113A23A3B62F0040DE2B /* SiteModel.h */,
+				CFDB113923A3B62F0040DE2B /* SiteModel.m */,
+				CFDB111B23A15C450040DE2B /* PathDefine.h */,
+				CFDB111C23A15C450040DE2B /* PathDefine.m */,
+			);
+			path = define;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CF73AE51238C5C6A007EF904 /* AutoPacking */ = {
+		CF5D3D652396B8CE00CC3D6B /* AutoPacking */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CF73AE59238C5C6A007EF904 /* Build configuration list for PBXNativeTarget "AutoPacking" */;
+			buildConfigurationList = CF5D3D7A2396B8D000CC3D6B /* Build configuration list for PBXNativeTarget "AutoPacking" */;
 			buildPhases = (
-				CF73AE4E238C5C6A007EF904 /* Sources */,
-				CF73AE4F238C5C6A007EF904 /* Frameworks */,
-				CF73AE50238C5C6A007EF904 /* CopyFiles */,
+				CF5D3D622396B8CE00CC3D6B /* Sources */,
+				CF5D3D632396B8CE00CC3D6B /* Frameworks */,
+				CF5D3D642396B8CE00CC3D6B /* Resources */,
 			);
 			buildRules = (
 			);
@@ -172,24 +326,24 @@
 			);
 			name = AutoPacking;
 			productName = AutoPacking;
-			productReference = CF73AE52238C5C6A007EF904 /* AutoPacking */;
-			productType = "com.apple.product-type.tool";
+			productReference = CF5D3D662396B8CE00CC3D6B /* AutoPacking.app */;
+			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		CF73AE4A238C5C6A007EF904 /* Project object */ = {
+		CF5D3D5E2396B8CE00CC3D6B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1120;
+				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = fish;
 				TargetAttributes = {
-					CF73AE51238C5C6A007EF904 = {
+					CF5D3D652396B8CE00CC3D6B = {
 						CreatedOnToolsVersion = 11.2.1;
 					};
 				};
 			};
-			buildConfigurationList = CF73AE4D238C5C6A007EF904 /* Build configuration list for PBXProject "AutoPacking" */;
+			buildConfigurationList = CF5D3D612396B8CE00CC3D6B /* Build configuration list for PBXProject "AutoPacking" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -197,37 +351,88 @@
 				en,
 				Base,
 			);
-			mainGroup = CF73AE49238C5C6A007EF904;
-			productRefGroup = CF73AE53238C5C6A007EF904 /* Products */;
+			mainGroup = CF5D3D5D2396B8CE00CC3D6B;
+			productRefGroup = CF5D3D672396B8CE00CC3D6B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CF73AE51238C5C6A007EF904 /* AutoPacking */,
+				CF5D3D652396B8CE00CC3D6B /* AutoPacking */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		CF5D3D642396B8CE00CC3D6B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF5D3D702396B8D000CC3D6B /* Assets.xcassets in Resources */,
+				CF5D3E892397D9D800CC3D6B /* 0encrypt.sh in Resources */,
+				CFDB112223A160550040DE2B /* 4plist.sh in Resources */,
+				CFDB112C23A3AE6F0040DE2B /* 5pull.sh in Resources */,
+				CF5D3D732396B8D000CC3D6B /* Main.storyboard in Resources */,
+				CF5D3DA42396BC4600CC3D6B /* 2setup.sh in Resources */,
+				CF5D3DA22396BC4600CC3D6B /* 3packing.sh in Resources */,
+				CF5D3DA32396BC4600CC3D6B /* 1pull.sh in Resources */,
+				CF5D3E512397863400CC3D6B /* 打包文件 in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
-		CF73AE4E238C5C6A007EF904 /* Sources */ = {
+		CF5D3D622396B8CE00CC3D6B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF73AE64238C5CDC007EF904 /* SiteModel.m in Sources */,
-				CFD7A785238D816C00D833EB /* AFSecurityPolicy.m in Sources */,
-				CF2F687C238D4B090030E26D /* ShellHelper.m in Sources */,
-				CFD7A781238D816C00D833EB /* AFHTTPSessionManager.m in Sources */,
-				CFD7A782238D816C00D833EB /* AFURLSessionManager.m in Sources */,
-				CFD7A780238D816C00D833EB /* AFURLResponseSerialization.m in Sources */,
-				CFD7A783238D816C00D833EB /* AFURLRequestSerialization.m in Sources */,
-				CFD7A784238D816C00D833EB /* AFNetworkReachabilityManager.m in Sources */,
-				CF73AE56238C5C6A007EF904 /* main.m in Sources */,
+				CF5D3E45239781B800CC3D6B /* NSObject+MJCoding.m in Sources */,
+				CFDB113B23A3B62F0040DE2B /* SiteModel.m in Sources */,
+				CF5D3E1C2397819C00CC3D6B /* AFURLRequestSerialization.m in Sources */,
+				CF5D3D6E2396B8CE00CC3D6B /* AutoPackingVC.m in Sources */,
+				CF5D3E632397929E00CC3D6B /* NSNull+Safe.m in Sources */,
+				CF5D3E42239781B700CC3D6B /* MJPropertyType.m in Sources */,
+				CF5D3E622397929E00CC3D6B /* NSString+Safe.m in Sources */,
+				CF5D3E1A2397819C00CC3D6B /* AFHTTPSessionManager.m in Sources */,
+				CF5D3D762396B8D000CC3D6B /* main.m in Sources */,
+				CF5D3E44239781B800CC3D6B /* MJProperty.m in Sources */,
+				CF5D3E48239781B800CC3D6B /* NSObject+MJClass.m in Sources */,
+				CFDB111D23A15C450040DE2B /* PathDefine.m in Sources */,
+				CF5D3E1B2397819C00CC3D6B /* AFURLSessionManager.m in Sources */,
+				CF5D3E46239781B800CC3D6B /* MJExtensionConst.m in Sources */,
+				CF5D3E47239781B800CC3D6B /* NSObject+MJProperty.m in Sources */,
+				CF5D3E43239781B800CC3D6B /* NSObject+MJKeyValue.m in Sources */,
+				CF5D3E4B239781B800CC3D6B /* MJFoundation.m in Sources */,
+				CF5D3E5523978C0F00CC3D6B /* CCNetworkRequests2.m in Sources */,
+				CF5D3E2A239781AC00CC3D6B /* CCSessionModel.m in Sources */,
+				CF5D3E642397929E00CC3D6B /* NSNumber+Safe.m in Sources */,
+				CF5D3E49239781B800CC3D6B /* NSString+MJExtension.m in Sources */,
+				CF5D3E1D2397819C00CC3D6B /* AFNetworkReachabilityManager.m in Sources */,
+				CF5D3E612397929E00CC3D6B /* NSDictionary+NilSafe.m in Sources */,
+				CF5D3DAA2396BC9500CC3D6B /* ShellHelper.m in Sources */,
+				CFDB111623A14D160040DE2B /* JRSwizzle.m in Sources */,
+				CF5D3E652397929E00CC3D6B /* NSArray+Safe.m in Sources */,
+				CF5D3E192397819C00CC3D6B /* AFURLResponseSerialization.m in Sources */,
+				CF5D3E1E2397819C00CC3D6B /* AFSecurityPolicy.m in Sources */,
+				CF5D3E4A239781B800CC3D6B /* MJPropertyKey.m in Sources */,
+				CF5D3D6B2396B8CE00CC3D6B /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXVariantGroup section */
+		CF5D3D712396B8D000CC3D6B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CF5D3D722396B8D000CC3D6B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
-		CF73AE57238C5C6A007EF904 /* Debug */ = {
+		CF5D3D782396B8D000CC3D6B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -285,7 +490,7 @@
 			};
 			name = Debug;
 		};
-		CF73AE58238C5C6A007EF904 /* Release */ = {
+		CF5D3D792396B8D000CC3D6B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -336,46 +541,72 @@
 			};
 			name = Release;
 		};
-		CF73AE5A238C5C6A007EF904 /* Debug */ = {
+		CF5D3D7B2396B8D000CC3D6B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = AutoPacking/AutoPacking.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PREFIX_HEADER = PrefixHeader.pch;
+				INFOPLIST_FILE = AutoPacking/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.AutoPacking;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INCLUDE_PATHS = "";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
-		CF73AE5B238C5C6A007EF904 /* Release */ = {
+		CF5D3D7C2396B8D000CC3D6B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = AutoPacking/AutoPacking.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PREFIX_HEADER = PrefixHeader.pch;
+				INFOPLIST_FILE = AutoPacking/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.AutoPacking;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INCLUDE_PATHS = "";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CF73AE4D238C5C6A007EF904 /* Build configuration list for PBXProject "AutoPacking" */ = {
+		CF5D3D612396B8CE00CC3D6B /* Build configuration list for PBXProject "AutoPacking" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CF73AE57238C5C6A007EF904 /* Debug */,
-				CF73AE58238C5C6A007EF904 /* Release */,
+				CF5D3D782396B8D000CC3D6B /* Debug */,
+				CF5D3D792396B8D000CC3D6B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CF73AE59238C5C6A007EF904 /* Build configuration list for PBXNativeTarget "AutoPacking" */ = {
+		CF5D3D7A2396B8D000CC3D6B /* Build configuration list for PBXNativeTarget "AutoPacking" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CF73AE5A238C5C6A007EF904 /* Debug */,
-				CF73AE5B238C5C6A007EF904 /* Release */,
+				CF5D3D7B2396B8D000CC3D6B /* Debug */,
+				CF5D3D7C2396B8D000CC3D6B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = CF73AE4A238C5C6A007EF904 /* Project object */;
+	rootObject = CF5D3D5E2396B8CE00CC3D6B /* Project object */;
 }

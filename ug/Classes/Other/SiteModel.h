@@ -18,13 +18,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *appName;/**<   app名 */
 @property (nonatomic, strong) NSString *appId;  /**<   bundleId */
 @property (nonatomic, strong) NSString *host;   /**<   接口域名 */
+@property (nonatomic, strong) NSString *uploadId;   /**<   上传ID */
+@property (nonatomic, strong) NSString *uploadNum;  /**<   上传编号 */
 
 @property (nonatomic, assign) NSInteger retryCnt;
 
-+ (NSArray *)allSites;
-+ (NSArray *)sites:(NSString *)siteIds;
-+ (void)checkSiteInfo:(NSString *)siteIds :(NSString *)projectDir; /**<   检查站点配置 */
-+ (instancetype)nextSite;
++ (NSArray <SiteModel *>*)allSites;
++ (NSArray <SiteModel *>*)sites:(NSString *)siteIds;
++ (instancetype)modelWithId:(NSString *)siteId;
 @end
 
 NS_ASSUME_NONNULL_END

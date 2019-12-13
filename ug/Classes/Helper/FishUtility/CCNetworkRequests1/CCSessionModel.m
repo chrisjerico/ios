@@ -150,7 +150,11 @@ MJCodingImplementation
     // 请求失败，且不为超时，则忽略此次报错，并重新发起一次请求
     if (_reconnectCnt--) {
         if (_error && _error.code != -1001 && [_task isKindOfClass:[NSURLSessionDataTask class]]) {
-            [[self dataTask:_afsm request:_task.originalRequest] resume];
+            if (self.params[@"上传文件"]) {
+                [[self uploadTask:_afsm request:_task.originalRequest files:nil] resume];
+            } else {
+                [[self dataTask:_afsm request:_task.originalRequest] resume];
+            }
             return;
         }
     }
@@ -176,8 +180,12 @@ MJCodingImplementation
         _completionBlock(self);
     
     // 显示错误信息HUD
-    if (!_noShowErrorHUD && _error.domain.length)
+#ifdef APP_VERSION
+    if (!_noShowErrorHUD && _error.domain.length) {
         [SVProgressHUD showErrorWithStatus:_error.domain];
+    }
+#endif
+    
     
     _successBlock = nil;
     _failureBlock = nil;
