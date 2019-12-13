@@ -8,6 +8,7 @@
 
 #import "PathDefine.h"
 #import "SiteModel.h"
+#import "cc_runtime_property.h"
 
 
 @implementation PathDefine
@@ -29,7 +30,7 @@
         _projectDir = [NSUserName() isEqualToString:@"fish"] ? @"/Users/fish/自动打包/pack" : @"/Users/ug/pack";
         _exportDir = @"/Library/WebServer/Documents/ipa";
         _shellDir = [_projectDir stringByAppendingPathComponent:@"AutoPacking/sh"];
-        _log = @"/Users/fish/自动打包/log/PackingLog.txt";
+        _logPath = @"/Users/fish/自动打包/log/PackingLog.txt";
         
         _tempIpa        = [_projectDir stringByAppendingPathComponent:@"ug.ipa"];
         _tempXcarchive  = [_projectDir stringByAppendingPathComponent:@"ug.xcarchive"];
@@ -48,7 +49,11 @@
 
 @implementation SiteModel (Helper)
 
-- (NSString *)ipaPath       { return _NSString(@"%@/%@/%@/%@.ipa",         Path.exportDir, [NSString stringWithContentsOfFile:Path.tempCommitId encoding:NSUTF8StringEncoding error:nil], self.type, self.siteId); }
-- (NSString *)plistPath     { return _NSString(@"%@/%@/%@/%@.plist",       Path.exportDir, [NSString stringWithContentsOfFile:Path.tempCommitId encoding:NSUTF8StringEncoding error:nil], self.type, self.siteId); }
-- (NSString *)xcarchivePath { return _NSString(@"%@/%@/%@/%@.xcarchive",   Path.exportDir, [NSString stringWithContentsOfFile:Path.tempCommitId encoding:NSUTF8StringEncoding error:nil], self.type, self.siteId); }
+_CCRuntimeProperty_Copy(NSString *, siteUrl, setSiteUrl)
+
+- (NSString *)ipaPath       { return _NSString(@"%@/%@/%@/%@.ipa",         Path.exportDir, Path.commitId, self.type, self.siteId); }
+- (NSString *)plistPath     { return _NSString(@"%@/%@/%@/%@.plist",       Path.exportDir, Path.commitId, self.type, self.siteId); }
+- (NSString *)xcarchivePath { return _NSString(@"%@/%@/%@/%@.xcarchive",   Path.exportDir, Path.commitId, self.type, self.siteId); }
+- (NSString *)logPath       { return _NSString(@"%@/%@/%@/%@.txt",         Path.exportDir, Path.commitId, self.type, self.siteId); }
+
 @end

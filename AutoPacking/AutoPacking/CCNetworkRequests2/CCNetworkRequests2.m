@@ -235,10 +235,11 @@
 }
 
 // 修改APP信息
-- (CCSessionModel *)editInfo:(NSString *)_id ipaUrl:(NSString *)ipaUrl plistUrl:(NSString *)plistUrl {
+- (CCSessionModel *)editInfo:(SiteModel *)site plistUrl:(NSString *)plistUrl {
     return [self req:@"api.php"
                     :@{@"m":@"edit_app",
-                       @"ios_pack":ipaUrl,      // ipa地址
+                       @"app_id":site.uploadId, // 站点在上传后台的ID
+                       @"site_url":site.siteUrl,// 站点链接
                        @"ios_plist":plistUrl,   // plist地址
                     }
                     :true];

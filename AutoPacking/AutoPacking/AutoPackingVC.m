@@ -17,14 +17,9 @@
     
     NSString *ids = @"test10";
     
-    [__self startPacking:ids];
-}
-
-- (void)startPacking:(NSString *)ids {
-    __weakSelf_(__self);
-    
     // 拉取最新代码
     [ShellHelper pullCode:Path.projectDir completion:^{
+        Path.commitId = [[NSString stringWithContentsOfFile:Path.tempCommitId encoding:NSUTF8StringEncoding error:nil] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
         
         // 检查配置
         [ShellHelper checkSiteInfo:ids];
@@ -54,31 +49,59 @@
     }];
 }
 
-
 - (void)upload:(NSArray <SiteModel *>*)_sites completion:(void (^)(NSArray <SiteModel *>*okSites))completion {
     NSMutableArray *sites = _sites.mutableCopy;
     NSMutableArray *okSites = @[].mutableCopy;
-    
-    __block SiteModel *__sm = nil;
     __weakSelf_(__self);
-    void (^startUploading)(void) = nil;
-    void (^__block __next)(void) = startUploading = ^{
+    __block SiteModel *__sm = nil;
+    
+    void (^__block __next)(void) = nil;
+    void (^uploadPlist)(void) = ^{
+        [NetworkManager1 uploadWithId:__sm.uploadId sid:__sm.uploadNum file:__sm.plistPath].completionBlock = ^(CCSessionModel *sm) {
+            if (!sm.error) {
+                NSLog(@"%@ plist文件上传成功", __sm.siteId);
+                NSString *plistUrl = [@"https://app.wdheco.cn" stringByAppendingPathComponent:sm.responseObject[@"data"][@"url"]];
+                [__self saveString:plistUrl toFile:__sm.logPath];
+                
+                [NetworkManager1 getInfo:__sm.uploadId].completionBlock = ^(CCSessionModel *sm) {
+                    __sm.siteUrl = sm.responseObject[@"data"][@"site_url"];
+                    [NetworkManager1 editInfo:__sm plistUrl:plistUrl].completionBlock = ^(CCSessionModel *sm) {
+                        if (!sm.error) {
+                            NSLog(@"%@ 提交审核成功", __sm.siteId);
+                            [okSites addObject:__sm];
+                            [__self saveLog:__sm];
+                        } else {
+                            NSLog(@"%@ 提交审核失败", __sm.siteId);
+                        }
+                        __sm = nil;
+                        __next();
+                    };
+                };
+            } else {
+                NSLog(@"%@ plist文件上传失败", __sm.siteId);
+                __sm = nil;
+                __next();
+            }
+        };
+    };
+    
+    void (^startUploading)(void) = ^{
         if (!__sm) {
             __sm = sites.firstObject;
             [sites removeObject:__sm];
             
-//            if ([[NSFileManager defaultManager] fileExistsAtPath:__sm.plistPath]) {
-//                NSLog(@"已上传过 %@.ipa，无需再次上传", __sm.siteId);
-//                [okSites addObject:__sm];
-//                __sm = nil;
-//                __next();
-//                return;
-//            }
+            if ([[NSFileManager defaultManager] fileExistsAtPath:__sm.plistPath]) {
+                NSLog(@"已上传过 %@.ipa，无需再次上传", __sm.siteId);
+                uploadPlist();
+                return;
+            }
         }
         if (!__sm) {
 //            [NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[dirPath]];
             if (okSites.count < _sites.count) {
-                NSLog(@"所有站点已上传完毕，其中 %@ 站点上传失败！", [[okSites valueForKey:@"siteId"] componentsJoinedByString:@","]);
+                NSMutableArray *errs = [_sites mutableCopy];
+                [errs removeObjectsInArray:okSites];
+                NSLog(@"所有站点已上传完毕，其中 %@ 站点上传失败！", [[errs valueForKey:@"siteId"] componentsJoinedByString:@","]);
             } else {
                 NSLog(@"所有站点都已成功上传！");
             }
@@ -101,31 +124,12 @@
             if (!sm.error) {
                 NSLog(@"%@ ipa文件上传成功", __sm.siteId);
                 NSString *ipaUrl = [@"https://app.wdheco.cn" stringByAppendingPathComponent:sm.responseObject[@"data"][@"url"]];
+                [__self saveString:ipaUrl toFile:__sm.logPath];
                 
                 [ShellHelper setupPlist:__sm ipaUrl:ipaUrl completion:^{
                     [[NSFileManager defaultManager] removeItemAtPath:__sm.plistPath error:nil];
                     [[NSFileManager defaultManager] copyItemAtPath:Path.tempPlist toPath:__sm.plistPath error:nil];
-                    [NetworkManager1 uploadWithId:__sm.uploadId sid:__sm.uploadNum file:Path.tempPlist].completionBlock = ^(CCSessionModel *sm) {
-                        if (!sm.error) {
-                            NSLog(@"%@ plist文件上传成功", __sm.siteId);
-                            NSString *plistUrl = [@"https://app.wdheco.cn" stringByAppendingPathComponent:sm.responseObject[@"data"][@"url"]];
-                            [NetworkManager1 editInfo:__sm.uploadId ipaUrl:ipaUrl plistUrl:plistUrl].completionBlock = ^(CCSessionModel *sm) {
-                                if (!sm.error) {
-                                    NSLog(@"%@ 提交审核成功", __sm.siteId);
-                                    [okSites addObject:__sm];
-                                    [__self saveLog:__sm];
-                                } else {
-                                    NSLog(@"%@ 提交审核失败", __sm.siteId);
-                                }
-                                __sm = nil;
-                                __next();
-                            };
-                        } else {
-                            NSLog(@"%@ plist文件上传失败", __sm.siteId);
-                            __sm = nil;
-                            __next();
-                        }
-                    };
+                    uploadPlist();
                 }];
             } else {
                 NSLog(@"%@ ipa文件上传失败，%@", __sm.siteId, sm.error);
@@ -134,28 +138,40 @@
             }
         };
     };
+    __next = startUploading;
     
     startUploading();
 }
 
+// 保存发包日志
 - (void)saveLog:(SiteModel *)sm {
-    [ShellHelper pullCode:Path.log.stringByDeletingLastPathComponent completion:^{
+    [ShellHelper pullCode:Path.logPath.stringByDeletingLastPathComponent completion:^{
         
         NSDateFormatter *df = [NSDateFormatter new];
         [df setDateFormat:@"yyyy年MM月dd日 HH:mm"];
         
         NSString *downloadPath = _NSString(@"https://baidujump.app/eipeyipeyi/jump-%@.html  (%@原生iOS 已上传请测试审核)", sm.uploadId, sm.siteId);
-        NSString *log = _NSString(@"%@ 上传到“%@“ （%@）  |  %@  |  %@\n", sm.siteId, sm.uploadNum, Path.username, [df stringFromDate:[NSDate date]], downloadPath);
+        NSString *log = _NSString(@"%@ 上传到“%@“ （%@）  |  %@\n%@\n", sm.siteId, sm.uploadNum, Path.username, [df stringFromDate:[NSDate date]], downloadPath);
+        [self saveString:log toFile:Path.logPath];
         
-        // 写入文件末尾
-        if(![[NSFileManager defaultManager] fileExistsAtPath:Path.log]) {
-            [@"——————————————\n    发包日志\n——————————————\n\n" writeToFile:Path.log atomically:true encoding:NSUTF8StringEncoding error:nil];
-        }
-        NSFileHandle *fileHandle = [NSFileHandle fileHandleForUpdatingAtPath:Path.log];
-        [fileHandle seekToEndOfFile];
-        [fileHandle writeData:[log dataUsingEncoding:NSUTF8StringEncoding]];
-        [fileHandle closeFile];
+        [ShellHelper pushCode:Path.logPath.stringByDeletingLastPathComponent title:_NSString(@"%@ 发包", sm.siteId) completion:^{
+            NSLog(@"发包日志提交成功");
+        }];
     }];
+}
+
+// 写入字符串到文件末尾
+- (void)saveString:(NSString *)string toFile:(NSString *)filePath {
+    string = [@"\n" stringByAppendingString:string];
+    
+    // 写入文件末尾
+    if(![[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        [@"——————————————\n    发包日志\n——————————————\n\n" writeToFile:filePath atomically:true encoding:NSUTF8StringEncoding error:nil];
+    }
+    NSFileHandle *fileHandle = [NSFileHandle fileHandleForUpdatingAtPath:filePath];
+    [fileHandle seekToEndOfFile];
+    [fileHandle writeData:[string dataUsingEncoding:NSUTF8StringEncoding]];
+    [fileHandle closeFile];
 }
 
 @end

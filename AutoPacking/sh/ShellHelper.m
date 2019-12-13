@@ -77,6 +77,24 @@
     });
 }
 
++ (void)clean:(NSString *)path completion:(void (^)(void))completion {
+    NSTask *task = [[NSTask alloc] init];
+    task.launchPath = [NSString stringWithFormat:@"%@/6clean.sh", Path.shellDir];
+    task.arguments = @[path,];
+    task.terminationHandler = ^(NSTask *ts) {
+        [ts terminate];
+        NSLog(@"清空完毕.");
+        if (completion) {
+            completion();
+        }
+    };
+    dispatch_sync(dispatch_get_global_queue(0, 0), ^{
+        NSLog(@"清空所有改动...");
+        [task launch];
+        [task waitUntilExit];
+    });
+}
+
 // 拉取最新代码
 + (void)pullCode:(NSString *)path completion:(void (^)(void))completion {
     NSTask *task = [[NSTask alloc] init];
@@ -97,10 +115,13 @@
 }
 
 // 提交代码
-+ (void)pushCode:(NSString *)path completion:(void (^)(void))completion {
++ (void)pushCode:(NSString *)path title:(NSString *)title completion:(void (^)(void))completion {
+    if (!title.length) {
+        title = @"发包";
+    }
     NSTask *task = [[NSTask alloc] init];
     task.launchPath = [NSString stringWithFormat:@"%@/5push.sh", Path.shellDir];
-    task.arguments = @[path,];
+    task.arguments = @[title, path,];
     task.terminationHandler = ^(NSTask *ts) {
         [ts terminate];
         NSLog(@"提交完毕");
@@ -118,16 +139,10 @@
 // 批量打包
 + (void)packing:(NSArray<SiteModel *> *)_sites completion:(nonnull void (^)(NSArray<SiteModel *> * _Nonnull))completion {
     NSMutableArray *sites = _sites.mutableCopy;
-    NSDateFormatter *df = [NSDateFormatter new];
-    [df setDateFormat:@"yyyyMMdd_HHmm"];
-    
+    NSMutableArray *okSites = @[].mutableCopy;
     for (SiteModel *sm in sites) {
         sm.retryCnt = 3;
-    }
-    NSString *commitId = [NSString stringWithContentsOfFile:Path.tempCommitId encoding:NSUTF8StringEncoding error:nil];
-    commitId = [commitId stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-    NSString *dirPath = [NSString stringWithFormat:@"%@/ipa_%@", Path.exportDir, commitId ? : [df stringFromDate:[NSDate date]]];
-    NSMutableArray *okSites = @[].mutableCopy;
+    };
     
     __block SiteModel *__sm = nil;
     void (^startPacking)(void) = nil;
@@ -145,7 +160,7 @@
             }
         }
         if (!__sm) {
-            [NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[dirPath]];
+            [NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[Path.exportDir]];
             if (okSites.count < _sites.count) {
                 NSMutableArray *errs = [_sites mutableCopy];
                 [errs removeObjectsInArray:okSites];
@@ -179,6 +194,7 @@
                     [[NSFileManager defaultManager] removeItemAtPath:__sm.xcarchivePath error:nil];
                     [[NSFileManager defaultManager] moveItemAtPath:Path.tempIpa toPath:__sm.ipaPath error:nil];
                     [[NSFileManager defaultManager] moveItemAtPath:Path.tempXcarchive toPath:__sm.xcarchivePath error:nil];
+                    [[NSFileManager defaultManager] moveItemAtPath:_NSString(@"%@/PullSuccess.txt", Path.projectDir) toPath:_NSString(@"%@/%@/log.txt", Path.exportDir, Path.commitId) error:nil];
                     NSLog(@"%@ 打包成功", __sm.siteId);
                     [okSites addObject:__sm];
                     __sm = nil;
@@ -190,7 +206,7 @@
                         NSLog(@"%@ 打包失败，再试一次", __sm.siteId);
                     }
                 }
-                [ShellHelper pullCode:Path.projectDir completion:^{
+                [ShellHelper clean:Path.projectDir completion:^{
                     __next();
                 }];
             };

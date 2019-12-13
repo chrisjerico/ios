@@ -10,6 +10,7 @@
 #import "CCSessionModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
+@class SiteModel;
 
 #define NetworkManager1 [CCNetworkRequests2 sharedManager]
 
@@ -28,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (CCSessionModel *)getInfo:(NSString *)_id;
 
 // 修改APP信息
-- (CCSessionModel *)editInfo:(NSString *)_id ipaUrl:(NSString *)ipaUrl plistUrl:(NSString *)plistUrl;
+- (CCSessionModel *)editInfo:(SiteModel *)site plistUrl:(NSString *)plistUrl;
 
 @end
 

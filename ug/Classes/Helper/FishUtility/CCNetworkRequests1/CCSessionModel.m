@@ -148,7 +148,7 @@ MJCodingImplementation
 
 - (void)callback {
     // 请求失败，且不为超时，则忽略此次报错，并重新发起一次请求
-    if (_reconnectCnt--) {
+    if (_reconnectCnt-- > 0) {
         if (_error && _error.code != -1001 && [_task isKindOfClass:[NSURLSessionDataTask class]]) {
             if (self.params[@"上传文件"]) {
                 [[self uploadTask:_afsm request:_task.originalRequest files:nil] resume];

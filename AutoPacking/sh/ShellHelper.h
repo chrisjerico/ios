@@ -20,11 +20,14 @@ NS_ASSUME_NONNULL_BEGIN
 // rsa加密
 + (void)encrypt:(NSString *)string completion:(void (^)(NSString *ret))completion;
 
+// 清空所有改动
++ (void)clean:(NSString *)path completion:(void (^)(void))completion;
+
 // 拉取最新代码
 + (void)pullCode:(NSString *)path completion:(void (^)(void))completion;
 
 // 提交代码
-+ (void)pushCode:(NSString *)path completion:(void (^)(void))completion;
++ (void)pushCode:(NSString *)path title:(NSString *)title completion:(void (^)(void))completion;
 
 // 批量打包
 + (void)packing:(NSArray <SiteModel *> *)sites completion:(void (^)(NSArray <SiteModel *>*okSites))completion;

@@ -14,11 +14,12 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PathDefine : NSObject
 
 @property (nonatomic, readonly) NSString *username;         /**<   当前电脑的用户名 */
+@property (nonatomic, copy) NSString *commitId;             /**<   此次打包的 git 提交ID */
 
 @property (nonatomic, readonly) NSString *projectDir;       /**<   打包项目目录 */
 @property (nonatomic, readonly) NSString *exportDir;        /**<   导出目录 */
 @property (nonatomic, readonly) NSString *shellDir;         /**<   脚本目录 */
-@property (nonatomic, readonly) NSString *log;              /**<   日志 */
+@property (nonatomic, readonly) NSString *logPath;          /**<   日志 */
 
 @property (nonatomic, readonly) NSString *tempPlist;        /**<   （临时）plist */
 @property (nonatomic, readonly) NSString *tempIpa;          /**<   （临时）ipa */
@@ -37,6 +38,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) NSString *ipaPath;
 @property (nonatomic, readonly) NSString *plistPath;
 @property (nonatomic, readonly) NSString *xcarchivePath;
+@property (nonatomic, readonly) NSString *logPath;
+
+@property (nonatomic, copy) NSString *siteUrl;
+
 @end
 
 
