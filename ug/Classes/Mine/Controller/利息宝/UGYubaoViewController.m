@@ -52,8 +52,6 @@
 
 - (void)skin {
     
-    [_yyBgView setBackgroundColor:Skin1.bgColor];
-    
     self.waveBotomView.backgroundColor =  Skin1.navBarBgColor;
     self.waveView.realWaveColor =  Skin1.navBarBgColor;
     FastSubViewCode(self.view)
@@ -90,9 +88,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    self.fd_prefersNavigationBarHidden = YES;
-    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-        [self skin];
-    });
     [self skin];
     self.navigationItem.title = @"利息宝";
     self.waveView = [[WavesView alloc] initWithFrame:self.waveBgView.bounds];
@@ -110,13 +105,11 @@
     self.animatedImageView.animatedImage = bgAnimateImage;
     self.animatedImageView.hidden = YES;
     
-    NSString *skitType = Skin1.skitType;
-    if ([skitType isEqualToString:@"新年红"] || [skitType isEqualToString:@"石榴红"]) {
+    if ([@"新年红,石榴红,六合资料" containsString:Skin1.skitType]) {
         [_yyBgView setBackgroundColor:Skin1.navBarBgColor];
         self.waveBotomView.backgroundColor =  Skin1.navBarBgColor;
         self.waveView.realWaveColor =  Skin1.navBarBgColor;
-    }
-    else  {
+    } else {
          [_yyBgView setBackgroundColor:Skin1.bgColor];
         self.waveBotomView.backgroundColor =  Skin1.bgColor;
         self.waveView.realWaveColor =  Skin1.bgColor;

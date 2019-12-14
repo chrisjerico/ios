@@ -19,6 +19,9 @@
 
 @implementation LHGalleryListVC
 
+- (BOOL)允许游客访问 { return true; }
+- (BOOL)允许未登录访问 { return true; }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     

@@ -1179,7 +1179,7 @@
 
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
 #ifdef DEBUG
-    [[UGSkinManagers randomSkin] useSkin];
+    [[UGSkinManagers next] useSkin];
     [HUDHelper showMsg:[UGSkinManagers currentSkin].skitString];
     return;
 #endif

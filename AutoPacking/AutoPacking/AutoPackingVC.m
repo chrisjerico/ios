@@ -25,6 +25,7 @@
     // 拉取最新代码
     [ShellHelper pullCode:Path.projectDir completion:^{
         Path.commitId = [[NSString stringWithContentsOfFile:Path.tempCommitId encoding:NSUTF8StringEncoding error:nil] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+        Path.gitLog = [[[NSString stringWithContentsOfFile:Path.tempLog encoding:NSUTF8StringEncoding error:nil] stringByReplacingOccurrencesOfString:@"\n" withString:@""] componentsSeparatedByString:@"(1):      "].lastObject;
         
         // 检查配置
         [ShellHelper checkSiteInfo:ids];
@@ -195,11 +196,11 @@
         [df setDateFormat:@"yyyy年MM月dd日 HH:mm"];
         
         NSString *downloadPath = _NSString(@"https://baidujump.app/eipeyipeyi/jump-%@.html  (%@原生iOS 已上传请测试审核)", sm.uploadId, sm.siteId);
-        NSString *log = _NSString(@"%@（%@）%@  |  %@", downloadPath, Path.username, [df stringFromDate:[NSDate date]], Path.commitId);
+        NSString *log = _NSString(@"%@\t\t（%@）%@  |  %@，%@", downloadPath, Path.username, [df stringFromDate:[NSDate date]], Path.commitId, Path.gitLog);
         [self saveString:log toFile:Path.logPath];
         
         // 提交发包日志到git
-        [ShellHelper pushCode:Path.logPath.stringByDeletingLastPathComponent title:_NSString(@"%@ 发包", sm.siteId) completion:^{
+        [ShellHelper pushCode:Path.logPath.stringByDeletingLastPathComponent title:_NSString(@"%@ 发包，%@", sm.siteId, Path.gitLog) completion:^{
             NSLog(@"发包日志提交成功");
             if (completion) {
                 completion(true);

@@ -783,7 +783,7 @@ static UGSkinManagers *__initSkin1 = nil;
             sm.skitType                 = @"六合资料";
             sm.skitString               = @"六合资料 5橙色";
             sm.bgColor                  = color(@"FFFFFF");
-            sm.navBarBgColor            = color(@"ffa811db");
+            sm.navBarBgColor            = color(@"ffa811");
             sm.tabBarBgColor            = color(@"FFFFFF");
             sm.tabNoSelectColor         = color(@"525252");
             sm.tabSelectedColor         = color(@"010101");
@@ -792,7 +792,7 @@ static UGSkinManagers *__initSkin1 = nil;
             sm.homeContentSubColor      = color(@"D3D3D3");
             sm.cellBgColor              = color(@"FFFFFF");
             sm.CLBgColor                = color(@"E6E6E6");
-            sm.menuHeadViewColor        = color(@"ffa811db,f1cb8bdb");
+            sm.menuHeadViewColor        = color(@"ffa811,f1cb8b");
             sm.textColor1               = color(@"111111");
             sm.textColor2               = color(@"555555");
             sm.textColor3               = color(@"C1C1C1");
@@ -1003,7 +1003,7 @@ static UGSkinManagers *__initSkin1 = nil;
     #if DEBUG
     NSLog(@"============================skitType=%@",skitType);
 //              skitType =  @"1";
-          skitType =  @"六合资料0";
+//          skitType =  @"六合资料0";
 //              skitType = @"黑色模板";
     #endif
     return [UGSkinManagers allSkin][skitType];
@@ -1071,10 +1071,15 @@ static UGSkinManagers *__initSkin1 = nil;
     return themeColors[arc4random() % themeColors.count];
 }
 
-+ (UGSkinManagers *)randomSkin {
-    static NSInteger __i = 0;
++ (UGSkinManagers *)next {
     NSArray *keys = @[@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11", @"12", @"13", @"14", @"15", @"16", @"17", @"18", @"19", @"六合资料0",@"六合资料1",@"六合资料2",@"六合资料3",@"六合资料4",@"六合资料5",@"六合资料6",@"六合资料7",@"六合资料8",@"六合资料9",@"六合资料10",@"新年红", @"石榴红",  @"黑色模板", ];
-    return [UGSkinManagers allSkin][keys[++__i%keys.count]];
+    NSInteger i = [keys indexOfObject:[[UGSkinManagers allSkin] allKeysForObject:Skin1].firstObject] + keys.count;
+    return [UGSkinManagers allSkin][keys[++i%keys.count]];
+}
++ (UGSkinManagers *)last {
+    NSArray *keys = @[@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11", @"12", @"13", @"14", @"15", @"16", @"17", @"18", @"19", @"六合资料0",@"六合资料1",@"六合资料2",@"六合资料3",@"六合资料4",@"六合资料5",@"六合资料6",@"六合资料7",@"六合资料8",@"六合资料9",@"六合资料10",@"新年红", @"石榴红",  @"黑色模板", ];
+    NSInteger i = [keys indexOfObject:[[UGSkinManagers allSkin] allKeysForObject:Skin1].firstObject] + keys.count;
+    return [UGSkinManagers allSkin][keys[--i%keys.count]];
 }
 
 @end

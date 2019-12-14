@@ -43,7 +43,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)isLH;       /**<   是否是六合资料 */
 
 
-+ (UGSkinManagers *)randomSkin; /**<   测试换肤功能时使用 */
++ (UGSkinManagers *)next; /**<   测试换肤功能时使用 */
++ (UGSkinManagers *)last;
 @end
 
 NS_ASSUME_NONNULL_END

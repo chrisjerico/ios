@@ -133,8 +133,9 @@
         });
         subLabel(@"标题Label").text = pm.title;
    
-        pm.isLhcdocVip?[subLabel(@"ImgV大V") setHidden:NO]:[subLabel(@"ImgV大V") setHidden:YES];
+        subLabel(@"ImgV大V").hidden = !pm.isLhcdocVip;
         UILabel *contentLabel = subLabel(@"内容Label");
+        contentLabel.numberOfLines = 3;
         contentLabel.attributedText = ({
             UIFont *font = [UIFont systemFontOfSize:16];
             NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithData:[pm.content dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,} documentAttributes:nil error:nil];

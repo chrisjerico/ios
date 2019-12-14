@@ -61,11 +61,23 @@ static LogVC *_logVC = nil;
     [superview addGestureRecognizer:({
         UISwipeGestureRecognizer *swipe = [UISwipeGestureRecognizer gestureRecognizer:block];
         swipe.numberOfTouchesRequired = 2;
-        swipe.direction = UISwipeGestureRecognizerDirectionDown;
+        swipe.direction = UISwipeGestureRecognizerDirectionDown|UISwipeGestureRecognizerDirectionUp;
         swipe;
     })];
     [superview addGestureRecognizer:({
-        UISwipeGestureRecognizer *swipe = [UISwipeGestureRecognizer gestureRecognizer:block];
+        UISwipeGestureRecognizer *swipe = [UISwipeGestureRecognizer gestureRecognizer:^(__kindof UISwipeGestureRecognizer *gr) {
+            [[UGSkinManagers last] useSkin];
+            [HUDHelper showMsg:[UGSkinManagers currentSkin].skitString];
+        }];
+        swipe.numberOfTouchesRequired = 2;
+        swipe.direction = UISwipeGestureRecognizerDirectionLeft;
+        swipe;
+    })];
+    [superview addGestureRecognizer:({
+        UISwipeGestureRecognizer *swipe = [UISwipeGestureRecognizer gestureRecognizer:^(__kindof UISwipeGestureRecognizer *gr) {
+            [[UGSkinManagers next] useSkin];
+            [HUDHelper showMsg:[UGSkinManagers currentSkin].skitString];
+        }];
         swipe.numberOfTouchesRequired = 2;
         swipe.direction = UISwipeGestureRecognizerDirectionRight;
         swipe;

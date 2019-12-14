@@ -24,6 +24,9 @@
 
 @implementation UGPostListVC
 
+- (BOOL)允许游客访问 { return true; }
+- (BOOL)允许未登录访问 { return true; }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -134,6 +137,10 @@
     };
     
     if (!pm.hasPay && pm.price > 0.000001) {
+        if (!UGLoginIsAuthorized()) {
+            SANotificationEventPost(UGNotificationShowLoginView, nil);
+            return;
+        }
         LHPostPayView *ppv = _LoadView_from_nib_(@"LHPostPayView");
         ppv.pm = pm;
         ppv.didConfirmBtnClick = ^(LHPostPayView * _Nonnull ppv) {

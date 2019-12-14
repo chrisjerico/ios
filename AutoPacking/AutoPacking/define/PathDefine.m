@@ -34,9 +34,10 @@
         
         _tempIpa        = [_projectDir stringByAppendingPathComponent:@"ug.ipa"];
         _tempXcarchive  = [_projectDir stringByAppendingPathComponent:@"ug.xcarchive"];
-        _tempCommitId   = [_projectDir stringByAppendingPathComponent:@"CommitId.txt"];
         _tempPlist      = [_shellDir stringByAppendingPathComponent:@"a.plist"];
         _tempCiphertext = [_shellDir stringByAppendingPathComponent:@"Ciphertext.txt"];
+        _tempCommitId   = [_projectDir stringByAppendingPathComponent:@"CommitId.txt"];
+        _tempLog        = [_projectDir stringByAppendingPathComponent:@"ShortLog.txt"];
     }
     return self;
 }

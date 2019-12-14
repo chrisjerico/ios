@@ -38,6 +38,9 @@
 
 @implementation UGPostDetailVC
 
+- (BOOL)允许游客访问   { return [@"mystery,rule,sixpic,humorGuess,rundog,fourUnlike" containsString:_pm.alias]; }
+- (BOOL)允许未登录访问 { return [@"mystery,rule,sixpic,humorGuess,rundog,fourUnlike" containsString:_pm.alias]; }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     _textBuffer = [@{} mutableCopy];
@@ -257,6 +260,10 @@
 
 // 打赏
 - (IBAction)onRewardBtnClick:(UIButton *)sender {
+    if (!UGLoginIsAuthorized()) {
+        SANotificationEventPost(UGNotificationShowLoginView, nil);
+        return;
+    }
     LHPostRewardView *prv = _LoadView_from_nib_(@"LHPostRewardView");
     prv.pm = _pm;
     __weakSelf_(__self);
@@ -286,6 +293,10 @@
 
 // 投票
 - (IBAction)onVoteBtnClick:(UIButton *)sender {
+    if (!UGLoginIsAuthorized()) {
+        SANotificationEventPost(UGNotificationShowLoginView, nil);
+        return;
+    }
     LHPostVoteView *pvv = _LoadView_from_nib_(@"LHPostVoteView");
     pvv.pm = _pm;
     __weakSelf_(__self);
