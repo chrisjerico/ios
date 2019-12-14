@@ -72,7 +72,7 @@
             if (!sm.error) {
                 NSLog(@"%@ plist文件上传成功", __sm.siteId);
                 NSString *plistPath = sm.responseObject[@"data"][@"url"];
-                NSString *plistUrl = _NSString(@"https://app.wdheco.cn/%@", plistPath);
+                NSString *plistUrl = _NSString(@"https://app.wdheco.cn%@", plistPath);
                 [__self saveString:plistUrl toFile:__sm.logPath];
                 
                 [NetworkManager1 getInfo:__sm.uploadId].completionBlock = ^(CCSessionModel *sm) {
@@ -139,7 +139,7 @@
         sm.completionBlock = ^(CCSessionModel *sm) {
             if (!sm.error) {
                 NSLog(@"%@ ipa文件上传成功", __sm.siteId);
-                NSString *ipaUrl = _NSString(@"https://app.wdheco.cn/%@", sm.responseObject[@"data"][@"url"]);
+                NSString *ipaUrl = _NSString(@"https://app.wdheco.cn%@", sm.responseObject[@"data"][@"url"]);
                 if (![ipaUrl containsString:@".ipa"]) {
                     NSLog(@"%@ ipa文件上传错误❌，%@", __sm.siteId, sm.error);
                     __sm = nil;
@@ -172,7 +172,7 @@
         [df setDateFormat:@"yyyy年MM月dd日 HH:mm"];
         
         NSString *downloadPath = _NSString(@"https://baidujump.app/eipeyipeyi/jump-%@.html  (%@原生iOS 已上传请测试审核)", sm.uploadId, sm.siteId);
-        NSString *log = _NSString(@"%@（%@）%@  |  %@\n", downloadPath, Path.username, [df stringFromDate:[NSDate date]], Path.commitId);
+        NSString *log = _NSString(@"%@（%@）%@  |  %@", downloadPath, Path.username, [df stringFromDate:[NSDate date]], Path.commitId);
         [self saveString:log toFile:Path.logPath];
         
         [ShellHelper pushCode:Path.logPath.stringByDeletingLastPathComponent title:_NSString(@"%@ 发包", sm.siteId) completion:^{

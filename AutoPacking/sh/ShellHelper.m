@@ -28,11 +28,11 @@
             if (!sm.host.length) {
                 [errs addObject:[NSString stringWithFormat:@"接口域名未配置, %@", sm.siteId]];
             }
-            if (!sm.uploadId.length) {
-                [errs addObject:[NSString stringWithFormat:@"上传ID未配置, %@", sm.siteId]];
-            }
             if (!sm.uploadNum.length) {
                 [errs addObject:[NSString stringWithFormat:@"上传编号未配置, %@", sm.siteId]];
+            }
+            if (!sm.uploadId.length) {
+                [errs addObject:[NSString stringWithFormat:@"上传ID未配置, %@", sm.siteId]];
             }
             if (![[NSFileManager defaultManager] fileExistsAtPath:[NSString stringWithFormat:@"%@/AutoPacking/打包文件/各站点AppIcon（拷贝出来使用）/%@", Path.projectDir, sm.siteId]]) {
                 [errs addObject:[NSString stringWithFormat:@"app图标未配置, %@", sm.siteId]];
