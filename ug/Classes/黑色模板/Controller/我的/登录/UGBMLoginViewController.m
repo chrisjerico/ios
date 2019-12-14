@@ -394,13 +394,15 @@
 - (void)webView:(WKWebView *)webView didFailNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error {
 
 }
-
-- (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential *__nullable credential))completionHandler {
-    
-    completionHandler(NSURLSessionAuthChallengePerformDefaultHandling, nil);
+- (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential * _Nullable credential))completionHandler {
+    if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
+        NSURLCredential *card = [[NSURLCredential alloc]initWithTrust:challenge.protectionSpace.serverTrust];
+        completionHandler(NSURLSessionAuthChallengeUseCredential,card);
+    } else {
+        completionHandler(NSURLSessionAuthChallengePerformDefaultHandling, nil);
+    }
     [_webView evaluateJavaScript:@"document.body.style.backgroundColor=\"#171717\"" completionHandler:nil];
 }
-
 - (void)webViewWebContentProcessDidTerminate:(WKWebView *)webView {
     
     

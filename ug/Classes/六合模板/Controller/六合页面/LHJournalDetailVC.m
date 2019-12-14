@@ -43,7 +43,7 @@
     
     __weakSelf_(__self);
     // 六合图库的收藏按钮
-    if (_gm.gid) {
+    if (_gm.gid.intValue) {
         self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithTitle:@"收藏" block:^(UIButton *sender) {
             if (!UGLoginIsAuthorized()) {
                 SANotificationEventPost(UGNotificationShowLoginView, nil);

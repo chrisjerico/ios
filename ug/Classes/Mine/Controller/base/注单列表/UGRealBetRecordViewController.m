@@ -243,10 +243,14 @@ static NSString *realBetRecordCellId = @"UGRealBetRecordCell";
     model4.gameName = @"捕鱼注单";
     model4.gameType = @"fish";
     
+    Model *model5 = [Model new];
+    model5.gameName = @"电竞注单";
+    model5.gameType = @"esport";
+    
     //自行创建实例方法
     MOFSPickerView *p = [MOFSPickerView new];
     p.attributes = @{NSFontAttributeName : [UIFont systemFontOfSize:16], NSForegroundColorAttributeName : [UIColor blackColor]};
-    [p showMOFSPickerViewWithCustomDataArray:@[model0, model1, model2, model3, model4] keyMapper:@"gameName" commitBlock:^(id model) {
+    [p showMOFSPickerViewWithCustomDataArray:@[model0, model1, model2, model3, model4, model5] keyMapper:@"gameName" commitBlock:^(id model) {
         Model *item = (Model *)model;
         if (![self.gameType isEqualToString:item.gameType]) {
             self.gameType = item.gameType;

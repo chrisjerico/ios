@@ -223,6 +223,7 @@
 		CF775F8E2390426E005B3534 /* Image_loading_failed.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CF775F862390426E005B3534 /* Image_loading_failed.jpeg */; };
 		CF775F8F2390426E005B3534 /* black_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = CF775F872390426E005B3534 /* black_bg.png */; };
 		CF775F902390426E005B3534 /* MediaViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = CF775F892390426E005B3534 /* MediaViewer.m */; };
+		CF7EA97E23A4D25400C29252 /* SDWebImageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CF7EA97D23A4D25400C29252 /* SDWebImageHelper.m */; };
 		CF84BE2B236416C20058F055 /* UGLHC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF84BE2A236416C20058F055 /* UGLHC.storyboard */; };
 		CF88653C2390254E00B41049 /* UGLHGalleryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF88653B2390254E00B41049 /* UGLHGalleryModel.m */; };
 		CF88653F2390268600B41049 /* UGLHAdModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF88653E2390268600B41049 /* UGLHAdModel.m */; };
@@ -1134,6 +1135,8 @@
 		CF775F862390426E005B3534 /* Image_loading_failed.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Image_loading_failed.jpeg; sourceTree = "<group>"; };
 		CF775F872390426E005B3534 /* black_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = black_bg.png; sourceTree = "<group>"; };
 		CF775F892390426E005B3534 /* MediaViewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaViewer.m; sourceTree = "<group>"; };
+		CF7EA97C23A4D25400C29252 /* SDWebImageHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDWebImageHelper.h; sourceTree = "<group>"; };
+		CF7EA97D23A4D25400C29252 /* SDWebImageHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDWebImageHelper.m; sourceTree = "<group>"; };
 		CF84BE2A236416C20058F055 /* UGLHC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UGLHC.storyboard; sourceTree = "<group>"; };
 		CF88653A2390254E00B41049 /* UGLHGalleryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLHGalleryModel.h; sourceTree = "<group>"; };
 		CF88653B2390254E00B41049 /* UGLHGalleryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLHGalleryModel.m; sourceTree = "<group>"; };
@@ -3480,6 +3483,15 @@
 			path = MediaViewer;
 			sourceTree = "<group>";
 		};
+		CF7EA97723A4D1D200C29252 /* SDWebImage+AllowInvalidSSL */ = {
+			isa = PBXGroup;
+			children = (
+				CF7EA97C23A4D25400C29252 /* SDWebImageHelper.h */,
+				CF7EA97D23A4D25400C29252 /* SDWebImageHelper.m */,
+			);
+			path = "SDWebImage+AllowInvalidSSL";
+			sourceTree = "<group>";
+		};
 		CF84BE29236416A20058F055 /* 六合页面 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3512,6 +3524,7 @@
 		CFD3BE962347137E00FCDA6D /* FishUtility */ = {
 			isa = PBXGroup;
 			children = (
+				CF7EA97723A4D1D200C29252 /* SDWebImage+AllowInvalidSSL */,
 				CFDB110923A0BF9D0040DE2B /* JRSwizzle */,
 				CF35E90F2391824400E73935 /* LoadingStateView */,
 				CF775F7F2390426E005B3534 /* MediaViewer */,
@@ -6112,6 +6125,7 @@
 				D41C3E00228E914A00BF6436 /* UGIntegarlConvertRecordCell.m in Sources */,
 				D49649B22324E3FA00BA8872 /* UGinviteInfoModel.m in Sources */,
 				D4B75E1C227802600007047C /* main.m in Sources */,
+				CF7EA97E23A4D25400C29252 /* SDWebImageHelper.m in Sources */,
 				D4AE63DC2295734700DD265A /* UGMessageModel.m in Sources */,
 				D4F63F94228FD3B000EC93AA /* UGFastThreeFourCollectionViewCell.m in Sources */,
 				D425282723210760007DE522 /* UGSignInScrHeaderView.m in Sources */,

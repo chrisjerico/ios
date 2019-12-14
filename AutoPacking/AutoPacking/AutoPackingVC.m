@@ -13,10 +13,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    __weakSelf_(__self);
-    
     NSString *ids = @"test10";
+    BOOL willUpload = true; // 打包后是否上传审核
     
+    [self startPackingWithIds:ids willUpload:willUpload];
+}
+
+// 批量打包
+- (void)startPackingWithIds:(NSString *)ids willUpload:(BOOL)willUpload {
+    __weakSelf_(__self);
     // 拉取最新代码
     [ShellHelper pullCode:Path.projectDir completion:^{
         Path.commitId = [[NSString stringWithContentsOfFile:Path.tempCommitId encoding:NSUTF8StringEncoding error:nil] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
@@ -25,16 +30,26 @@
         [ShellHelper checkSiteInfo:ids];
         
         // 批量打包
-        NSArray *sms = [SiteModel sites:ids];
-        [ShellHelper packing:sms completion:^(NSArray<SiteModel *> *okSites) {
+        [ShellHelper packing:[SiteModel sites:ids] completion:^(NSArray<SiteModel *> *okSites) {
+            if (!okSites.count) {
+                NSLog(@"没有一个打包成功的。");
+                exit(0);
+            }
+            if (!willUpload) {
+                [NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[okSites.firstObject.ipaPath.stringByDeletingLastPathComponent.stringByDeletingLastPathComponent]];
+                NSLog(@"只打包不上传，退出打包程序");
+                exit(0);
+            }
             okSites = ({
                 NSMutableArray *temp = okSites.mutableCopy;
                 for (SiteModel *sm in okSites) {
                     if (![@"企业包,内测包" containsString:sm.type]) {
                         [temp removeObject:sm];
-                        // 弹出不能自动上传的包，手动处理
-                        [NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[sm.ipaPath.stringByDeletingLastPathComponent]];
                     }
+                }
+                if (temp.count < okSites.count) {
+                    // 弹出不能自动上传的包，手动处理
+                    [NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[okSites.firstObject.ipaPath.stringByDeletingLastPathComponent.stringByDeletingLastPathComponent]];
                 }
                 temp.copy;
             });
@@ -60,6 +75,7 @@
     }];
 }
 
+// 批量上传审核
 - (void)upload:(NSArray <SiteModel *>*)_sites completion:(void (^)(NSArray <SiteModel *>*okSites))completion {
     NSMutableArray *sites = _sites.mutableCopy;
     NSMutableArray *okSites = @[].mutableCopy;
@@ -67,6 +83,7 @@
     __block SiteModel *__sm = nil;
     
     void (^__block __next)(void) = nil;
+    // 上传plist文件，并提交审核
     void (^uploadPlist)(void) = ^{
         [NetworkManager1 uploadWithId:__sm.uploadId sid:__sm.uploadNum file:__sm.plistPath].completionBlock = ^(CCSessionModel *sm) {
             if (!sm.error) {
@@ -75,6 +92,7 @@
                 NSString *plistUrl = _NSString(@"https://app.wdheco.cn%@", plistPath);
                 [__self saveString:plistUrl toFile:__sm.logPath];
                 
+                // 提交审核
                 [NetworkManager1 getInfo:__sm.uploadId].completionBlock = ^(CCSessionModel *sm) {
                     __sm.siteUrl = sm.responseObject[@"data"][@"site_url"];
                     [NetworkManager1 editInfo:__sm plistPath:plistPath].completionBlock = ^(CCSessionModel *sm) {
@@ -101,6 +119,7 @@
         };
     };
     
+    // 上传ipa包
     void (^startUploading)(void) = ^{
         if (!__sm) {
             __sm = sites.firstObject;
@@ -114,6 +133,7 @@
         }
         if (!__sm) {
             [NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[@"-a", @"/Applications/Xcode.app", Path.logPath]];
+            
             if (okSites.count < _sites.count) {
                 NSMutableArray *errs = [_sites mutableCopy];
                 [errs removeObjectsInArray:okSites];
@@ -127,6 +147,7 @@
             return ;
         }
         
+        // 上传ipa包
         __block int __progress = 0;
         CCSessionModel *sm = [NetworkManager1 uploadWithId:__sm.uploadId sid:__sm.uploadNum file:__sm.ipaPath];
         sm.progressBlock = ^(NSProgress *progress) {
@@ -147,6 +168,7 @@
                 }
                 [__self saveString:ipaUrl toFile:__sm.logPath];
                 
+                // 配置plist文件
                 [ShellHelper setupPlist:__sm ipaUrl:ipaUrl completion:^{
                     [[NSFileManager defaultManager] removeItemAtPath:__sm.plistPath error:nil];
                     [[NSFileManager defaultManager] copyItemAtPath:Path.tempPlist toPath:__sm.plistPath error:nil];
@@ -166,6 +188,7 @@
 
 // 保存发包日志
 - (void)saveLog:(SiteModel *)sm completion:(void (^)(BOOL ok))completion {
+    // 从git拉取最新的发包日志
     [ShellHelper pullCode:Path.logPath.stringByDeletingLastPathComponent completion:^{
         
         NSDateFormatter *df = [NSDateFormatter new];
@@ -175,6 +198,7 @@
         NSString *log = _NSString(@"%@（%@）%@  |  %@", downloadPath, Path.username, [df stringFromDate:[NSDate date]], Path.commitId);
         [self saveString:log toFile:Path.logPath];
         
+        // 提交发包日志到git
         [ShellHelper pushCode:Path.logPath.stringByDeletingLastPathComponent title:_NSString(@"%@ 发包", sm.siteId) completion:^{
             NSLog(@"发包日志提交成功");
             if (completion) {

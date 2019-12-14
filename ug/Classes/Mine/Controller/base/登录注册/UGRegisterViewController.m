@@ -730,11 +730,14 @@
     decisionHandler(WKNavigationResponsePolicyAllow);
 }
 
-- (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential *__nullable credential))completionHandler {
-    
-    completionHandler(NSURLSessionAuthChallengePerformDefaultHandling, nil);
+- (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential * _Nullable credential))completionHandler {
+    if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
+        NSURLCredential *card = [[NSURLCredential alloc]initWithTrust:challenge.protectionSpace.serverTrust];
+        completionHandler(NSURLSessionAuthChallengeUseCredential,card);
+    } else {
+        completionHandler(NSURLSessionAuthChallengePerformDefaultHandling, nil);
+    }
 }
-
 //- (WKWebView *)webView {
 //    if (_webView == nil) {
 //        WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];

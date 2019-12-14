@@ -9,7 +9,7 @@
 #import "UGGameNavigationView.h"
 #import "YYWebImage.h"
 
-#define OneLineCnt 5    // 一行显示多少个Cell
+#define OneLineCnt ([@"c001" containsString:APP.SiteId] ? 4 : 5)    // 一行显示多少个Cell
 
 @interface UGGameNavigationView()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
@@ -24,7 +24,6 @@
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
-	
 	UICollectionViewFlowLayout *layout = ({
 		layout = [[UICollectionViewFlowLayout alloc] init];
 		layout.scrollDirection = UICollectionViewScrollDirectionVertical;
