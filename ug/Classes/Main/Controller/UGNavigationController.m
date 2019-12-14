@@ -347,17 +347,19 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
 }
 
 - (BOOL)pushViewControllerWithLinkCategory:(NSInteger)linkCategory linkPosition:(NSInteger)linkPosition {
+    if (!linkCategory || !linkPosition) {
+        return false;
+    }
     // 去游戏页面
+    if (linkCategory == 1) {
+        // 去彩票下注页
+        return [NavController1 pushViewControllerWithNextIssueModel:[UGNextIssueModel modelWithGameId:@(linkPosition).stringValue]];
+    }
     switch (linkCategory) {
         case 1: {
-            // 去彩票下注页
-            return [NavController1 pushViewControllerWithNextIssueModel:[UGNextIssueModel modelWithGameId:@(linkPosition).stringValue]];
+            
         }
-        case 2:
-        case 3:
-        case 4:
-        case 5:
-        case 6: {
+        case 8: {
             // 去第三方游戏页面
             if (!UGLoginIsAuthorized()) {
                 [[NSNotificationCenter defaultCenter] postNotificationName:UGNotificationShowLoginView object:nil];
