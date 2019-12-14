@@ -7,7 +7,10 @@
 //
 
 #import "UGLaunchPageVC.h"
+
 #import "FLAnimatedImageView.h"
+
+#import <SafariServices/SafariServices.h>
 
 @interface LaunchPageModel : UGModel
 @property (nonatomic) NSString *pic;
@@ -24,6 +27,7 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+    [self initNetwork];
 	self.view.backgroundColor = UIColor.whiteColor;
     
     // 下载新的启动图
@@ -110,6 +114,12 @@
             APP.Window.rootViewController = [[UGTabbarController alloc] init];
         });
     });
+}
+
+- (void)initNetwork {
+    // 这段话是为了加载<SafariServices/SafariServices.h>库，不然打包后会无法联网（DEBUG可以是因为LogVC里面加载了）
+    SFSafariViewController *sf = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:@"https://www.baidu.com"]];
+    sf.view.backgroundColor = APP.BackgroundColor;
 }
 
 @end
