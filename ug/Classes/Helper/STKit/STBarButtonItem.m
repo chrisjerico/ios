@@ -27,11 +27,26 @@
 
 + (STBarButtonItem *)barButtonItemWithImageName:(NSString *)imageName target:(id)target action:(SEL)action
 {
-    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
-    [button setImage:[[UIImage imageNamed:imageName] qmui_imageWithTintColor:[UIColor whiteColor]] forState:UIControlStateNormal];
-    button.imgSize = CGSizeMake(0, 24);
+//    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
+//    [button setImage:[[UIImage imageNamed:imageName] qmui_imageWithTintColor:[UIColor whiteColor]] forState:UIControlStateNormal];
+//    button.imgSize = CGSizeMake(0, 24);
+//    [button sizeToFit];
+//    [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+//    STBarButtonItem *barButtonItem = [[STBarButtonItem alloc]initWithCustomView:button];
+//    return barButtonItem;
+    
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 22)];
+    [button setImage:[UIImage imageNamed:imageName]
+            forState:UIControlStateNormal];
+    [button setTitle:@""
+            forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor whiteColor]
+                 forState:UIControlStateNormal];
     [button sizeToFit];
-    [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    [button.titleLabel setFont:[UIFont systemFontOfSize:17]];
+    [button addTarget:target
+               action:action
+     forControlEvents:UIControlEventTouchUpInside];
     STBarButtonItem *barButtonItem = [[STBarButtonItem alloc]initWithCustomView:button];
     return barButtonItem;
 }

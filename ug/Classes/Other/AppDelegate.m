@@ -68,7 +68,9 @@
     NSDictionary *dict = @{@"c049":@"ccb82fc32e80809ae7655a47",
                            @"c008":@"cd266717f2634d6cc6b35ccc",
     };
-    NSString *appKey = dict[APP.SiteId] ? : @"21d1b87f65b557d2946af463";
+    NSLog(@"APP.SiteId = %@",APP.SiteId);
+    NSLog(@"dict[APP.SiteId] = %@",dict[APP.SiteId]);
+    NSString *appKey = dict[APP.SiteId] ? dict[APP.SiteId] : @"21d1b87f65b557d2946af463";
     [JPUSHService setupWithOption:launchOptions appKey:appKey channel:@"develop" apsForProduction:false advertisingIdentifier:nil];
     [JPUSHService registerForRemoteNotificationConfig:({
         JPUSHRegisterEntity *entity = [[JPUSHRegisterEntity alloc] init];

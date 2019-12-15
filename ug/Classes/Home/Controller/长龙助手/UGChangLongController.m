@@ -43,7 +43,7 @@
         UGUserModel *user = [UGUserModel currentUser];
         STBarButtonItem *item0 = [STBarButtonItem barButtonItemLeftWithImageName:@"shuaxin" title:[user.balance removeFloatAllZero] target:self action:@selector(refreshBalance)];
         self.rightItem1 = item0;
-        STBarButtonItem *item1 = [STBarButtonItem barButtonItemWithImageName:@"baiguize" target:self action:@selector(showRightMenueView)];
+        STBarButtonItem *item1 = [STBarButtonItem barButtonItemWithImageName:@"gengduo" target:self action:@selector(showRightMenueView)];
         self.navigationItem.rightBarButtonItems = @[item1,item0];
         
     });
@@ -66,7 +66,7 @@
     self.itemArray = @[@"最新长龙", @"我的投注"];
     STBarButtonItem *item0 = [STBarButtonItem barButtonItemLeftWithImageName:@"shuaxin" title:[user.balance removeFloatAllZero] target:self action:@selector(refreshBalance)];
     self.rightItem1 = item0;
-    STBarButtonItem *item1 = [STBarButtonItem barButtonItemWithImageName:@"baiguize" target:self action:@selector(showRightMenueView)];
+    STBarButtonItem *item1 = [STBarButtonItem barButtonItemWithImageName:@"gengduo" target:self action:@selector(showRightMenueView)];
     self.navigationItem.rightBarButtonItems = @[item1,item0];
     
 //    self.slideSwitchView = [[XYYSegmentControl alloc] initWithFrame:CGRectMake(0 , 0, self.view.width, self.view.height) channelName:self.itemArray source:self];
