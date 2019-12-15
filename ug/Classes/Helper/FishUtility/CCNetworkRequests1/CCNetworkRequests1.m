@@ -97,7 +97,8 @@
 
 #pragma mark - —— 公共参数
 - (NSDictionary *)publicParams {
-    return [@{@"appVersion"     :APP.Version,
+    return [@{
+//              @"appVersion"     :APP.Version,
               @"token"          :UserI.sessid,
               } mutableCopy];
 }
@@ -168,4 +169,11 @@
     return sm;
 }
 
+// 获得六合请求是否成功
+-(BOOL)requestCode:(id )responseObject{
+    NSDictionary *responeDic = (NSDictionary *)responseObject;
+    NSNumber *codeNumber = (NSNumber *)[responeDic objectForKey:@"code"];
+    int code = [codeNumber intValue];
+    return  code == 0 ? YES:NO;
+}
 @end

@@ -185,6 +185,12 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+-(void)viewDidDisappear:(BOOL)animated{
+    
+    [_timer invalidate];
+    _timer = nil;
+}
+
 - (void)skin {
     
 //    return;

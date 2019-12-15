@@ -2077,7 +2077,7 @@
 		D4B6E6ED22D3325A0006B03F /* UGHomeTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGHomeTitleView.h; sourceTree = "<group>"; };
 		D4B6E6EE22D3325A0006B03F /* UGHomeTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGHomeTitleView.m; sourceTree = "<group>"; };
 		D4B6E6F022D332720006B03F /* UGHomeTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGHomeTitleView.xib; sourceTree = "<group>"; };
-		D4B75E092278025E0007047C /* 888彩票.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "888彩票.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4B75E092278025E0007047C /* test19.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = test19.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4B75E0C2278025E0007047C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D4B75E15227802600007047C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4B75E18227802600007047C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -3423,13 +3423,13 @@
 			isa = PBXGroup;
 			children = (
 				CF5D3DBF23977F2800CC3D6B /* CCSessionModel.h */,
-				CF5D3DC023977F2800CC3D6B /* CCNetworkRequests1+UGBlackTemplate.h */,
+				CF5D3DC423977F2800CC3D6B /* CCSessionModel.m */,
 				CF5D3DC123977F2800CC3D6B /* CCNetworkRequests1.h */,
+				CF5D3DC623977F2800CC3D6B /* CCNetworkRequests1.m */,
+				CF5D3DC523977F2800CC3D6B /* CCNetworkRequests1+UGLiuHe.h */,
 				CF5D3DC223977F2800CC3D6B /* CCNetworkRequests1+UGLiuHe.m */,
 				CF5D3DC323977F2800CC3D6B /* CCNetworkRequests1+UGBlackTemplate.m */,
-				CF5D3DC423977F2800CC3D6B /* CCSessionModel.m */,
-				CF5D3DC523977F2800CC3D6B /* CCNetworkRequests1+UGLiuHe.h */,
-				CF5D3DC623977F2800CC3D6B /* CCNetworkRequests1.m */,
+				CF5D3DC023977F2800CC3D6B /* CCNetworkRequests1+UGBlackTemplate.h */,
 			);
 			path = CCNetworkRequests1;
 			sourceTree = "<group>";
@@ -4857,7 +4857,7 @@
 		D4B75E0A2278025E0007047C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D4B75E092278025E0007047C /* 888彩票.app */,
+				D4B75E092278025E0007047C /* test19.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -5465,7 +5465,7 @@
 			);
 			name = ug;
 			productName = ug;
-			productReference = D4B75E092278025E0007047C /* 888彩票.app */;
+			productReference = D4B75E092278025E0007047C /* test19.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -6594,8 +6594,8 @@
 				);
 				MARKETING_VERSION = 1.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = io.fhpt.YSFC008;
-				PRODUCT_NAME = "888彩票";
+				PRODUCT_BUNDLE_IDENTIFIER = com.UGGame.cp;
+				PRODUCT_NAME = test19;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -6620,8 +6620,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = io.fhpt.YSFC008;
-				PRODUCT_NAME = "888彩票";
+				PRODUCT_BUNDLE_IDENTIFIER = com.UGGame.cp;
+				PRODUCT_NAME = test19;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};

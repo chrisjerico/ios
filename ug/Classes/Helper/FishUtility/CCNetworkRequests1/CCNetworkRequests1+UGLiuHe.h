@@ -84,7 +84,8 @@ NS_ASSUME_NONNULL_BEGIN
 // 关注或取消关注楼主
 - (CCSessionModel *)lhcdoc_followPoster:(NSString *)posterUid followFlag:(BOOL)followFlag;
 
-
+// 设置昵称
+- (CCSessionModel *)lhcdoc_setNickname:(NSString *)nickname ;
 @end
 
 NS_ASSUME_NONNULL_END

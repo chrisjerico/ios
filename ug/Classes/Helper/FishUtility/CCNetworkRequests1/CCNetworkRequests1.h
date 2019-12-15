@@ -19,4 +19,6 @@
 
 - (CCSessionModel *)req:(NSString *)pathComponent :(NSDictionary *)params :(BOOL)isPOST;
 
+// 获得六合请求是否成功
+-(BOOL)requestCode:(id )responseObject;
 @end

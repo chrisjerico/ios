@@ -52,7 +52,7 @@
 
 
 
-@interface UGSubmitPostVC ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,TZImagePickerControllerDelegate, YYTextViewDelegate>
+@interface UGSubmitPostVC ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,TZImagePickerControllerDelegate, YYTextViewDelegate,UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *photoCollectionView; /**<    帖子图片CollectionView */
 @property (weak, nonatomic) IBOutlet UICollectionView *gifCollectionView;   /**<    git图CollectionView */
@@ -60,6 +60,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet UILabel *placeholderLabel;             /**<    文本占位符Label */
 @property (weak, nonatomic) IBOutlet UILabel *textLengthLabel;              /**<    文本长度Label */
+
 
 @property (nonatomic, strong) YYTextView *textView;                  /**<    YYTextView */
 @property (nonatomic, strong) NSMutableString *content;
@@ -97,6 +98,7 @@
     
     FastSubViewCode(self.view);
 //    subTextField(@"收费TextField").placeholder = _FloatString2(_priceMin);
+    [subButton(@"发帖Btn") setBackgroundColor:Skin1.navBarBgColor];
     subTextField(@"收费TextField").superview.hidden = [_FloatString2(_priceMax) isEqualToString:@"0"];
     subImageView(@"表情ImageView").image = UGLHPostModel.allEmoji.firstObject;
     _photoCollectionView.superview.hidden = !_photos.count;
@@ -316,15 +318,131 @@
     [NetworkManager1 lhcdoc_postContent:_clm.alias title:_textField.text content:text images:_photos price:price].completionBlock = ^(CCSessionModel *sm) {
         [HUDHelper hideLoadingView];
         if (!sm.error) {
+            
             [__self.navigationController popViewControllerAnimated:true];
             if (__self.didSubmitAction)
                 __self.didSubmitAction();
             [AlertHelper showAlertView:sm.responseObject[@"msg"] msg:nil btnTitles:@[@"确定"]];
         }
+        else{
+            NSDictionary *responeDic = (NSDictionary *) sm.responseObject;
+            NSDictionary *extra = [responeDic objectForKey:@"extra"];
+//            NSLog(@"extra = %@",extra);
+            NSNumber *hasNickname = (NSNumber *) [extra objectForKey:@"hasNickname"];
+//            NSLog(@"hasNickname = %@",hasNickname);
+            BOOL ishas = [hasNickname boolValue];
+//            NSLog(@"ishas= %d",ishas);
+            if (!ishas) {
+                // 使用一个变量接收自定义的输入框对象 以便于在其他位置调用
+             __block UITextField *tf = nil;
+                [LEEAlert alert].config
+                .LeeTitle(@"论坛昵称")
+                .LeeContent(@"为了保护您的隐私，请绑定论坛昵称")
+                .LeeAddTextField(^(UITextField *textField) {
+                    textField.placeholder = @"请输入昵称：1-8个汉字";
+                    textField.textColor = [UIColor darkGrayColor];
+                    textField.delegate = self;
+                    tf = textField; //赋值
+
+                })
+
+                .LeeCancelAction(@"取消", nil) // 点击事件的Block如果不需要可以传nil
+                .LeeDestructiveAction(@"好的", ^{
+                    NSLog(@"tf.text = %@",tf.text);
+                    NSString *nickName = tf.text;
+                    if (!nickName.length) {
+                        return ;
+                    }
+                    [NetworkManager1 lhcdoc_setNickname:nickName ].successBlock = ^(id responseObject) {
+                        NSLog(@"responseObject = %@",responseObject);
+                        if ([NetworkManager1 requestCode:responseObject ] ) {
+                            [NetworkManager1 lhcdoc_postContent:__self.clm.alias title:__self.textField.text content:text images:__self.photos price:price].completionBlock = ^(CCSessionModel *sm) {
+                                NSLog(@"responseObject = %@",responseObject);
+                                if (!sm.error) {
+                                    [__self.navigationController popViewControllerAnimated:true];
+                                    if (__self.didSubmitAction)
+                                        __self.didSubmitAction();
+                                    [AlertHelper showAlertView:sm.responseObject[@"msg"] msg:nil btnTitles:@[@"确定"]];
+                                }
+                            };
+                            
+                        }
+                    };
+                    
+                })
+                .leeShouldActionClickClose(^(NSInteger index){
+                    // 是否可以关闭回调, 当即将关闭时会被调用 根据返回值决定是否执行关闭处理
+                    // 这里演示了与输入框非空校验结合的例子
+                    BOOL result = ![tf.text isEqualToString:@""];
+                    result = index == 1 ? result : YES;
+                    return result;
+                })
+                .LeeShow();
+            }
+        }
     };
 }
 
+/**
+ *  textField的代理方法，监听textField的文字改变
+ *  textField.text是当前输入字符之前的textField中的text
+ *
+ *  @param textField textField
+ *  @param range     当前光标的位置
+ *  @param string    当前输入的字符
+ *
+ *  @return 是否允许改变
+ */
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
 
+    if (string.length > 0) {
+        
+        //当前输入的字符
+        NSLog(@"single = %@",string);
+    
+        if (!([string isChinese]))
+        {
+            [self.navigationController.view makeToast:@"格式不对"
+                                                                         duration:1.0
+                                                                         position:CSToastPositionCenter];
+            return NO;
+        }
+    
+        NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+        NSInteger length = newString.length;//
+         NSLog(@"%@------长度: %ld",newString,length);
+
+         if (length > 8)
+         {
+             return NO;
+         }
+      
+  
+    }
+
+
+    return YES;
+}
+
+//-(NSUInteger)textLength: (NSString *) text{
+//
+//  NSUInteger asciiLength = 0;
+//
+//    for (NSUInteger i = 0; i < text.length; i++) {
+//
+//
+//      unichar uc = [text characterAtIndex: i];
+//
+//          //设置汉字和字母的比例  如何限制4个字符或12个字母 就是1:3  如果限制是6个汉字或12个字符 就是 1:2  一次类推
+//      asciiLength += isascii(uc) ? 1 : 3;
+//  }
+//
+//  NSUInteger unicodeLength = asciiLength;
+//
+//  return unicodeLength;
+//
+//}
 #pragma mark - UIImagePickerControllerDelegate
 
 //适用获取所有媒体资源，只需判断资源类型

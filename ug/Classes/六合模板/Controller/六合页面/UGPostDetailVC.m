@@ -57,6 +57,7 @@
         }];
         [_photoCollectionView xw_addObserverBlockForKeyPath:@"contentSize" block:^(id  _Nonnull obj, id  _Nonnull oldVal, id  _Nonnull newVal) {
             ((UIScrollView *)obj).cc_constraints.height.constant = MAX([newVal CGSizeValue].height + 4, 20);
+            NSLog(@"[newVal CGSizeValue].height = %f",[newVal CGSizeValue].height);
             [__self.view layoutSubviews];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [__self.tableView reloadData];
@@ -439,11 +440,13 @@
             imgView.hidden = false;
             imgView.cc_constraints.height.constant = collectionViewW/image.width * image.height;
             [imgView sd_setImageWithURL:url];   // 由于要支持gif动图，还是用sd加载
+            NSLog(@"1111111111===========================================");
         } else {
             __weakSelf_(__self);
             imgView.hidden = true;
             image = [UIImage imageNamed:@"err"];
             imgView.cc_constraints.height.constant = collectionViewW/image.width * image.height;
+            NSLog(@"2222222222===========================================");
             __weak_Obj_(imgView, __imgView);
             [imgView sd_setImageWithURL:url placeholderImage:image completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
                 if (image) {
@@ -452,6 +455,7 @@
                 } else {
                     __imgView.hidden = false;
                 }
+                NSLog(@"33333333333===========================================");
             }];
         }
         return cell;

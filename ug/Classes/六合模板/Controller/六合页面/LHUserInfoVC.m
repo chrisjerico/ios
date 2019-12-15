@@ -11,12 +11,14 @@
 #import "UGLHMyAttentionViewController.h"   // 我的关注
 #import "UGMyFansViewController.h"      // 我的粉丝
 
+#import "UIImage+YYgradientImage.h"
 #import "LHUserModel.h"
 
 @interface LHUserInfoVC ()
 @property (weak, nonatomic) IBOutlet UIView *headView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property (nonatomic, strong) UGPostListVC *listVC;
+@property (weak, nonatomic) IBOutlet UIImageView *imgbg;
 
 @property (nonatomic, strong) LHUserModel *user;
 
@@ -42,6 +44,9 @@
             }
         };
     };
+    UIImage *image = [UIImage imageNamed:@"bc"];
+    [self.imgbg setImage:[image qmui_imageWithTintColor :Skin1.navBarBgColor]];
+    
     lsv.didRefreshBtnClick();
 }
 

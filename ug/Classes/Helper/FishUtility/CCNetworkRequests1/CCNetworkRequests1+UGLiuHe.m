@@ -228,4 +228,12 @@
                     :false];
 }
 
+// 设置昵称
+- (CCSessionModel *)lhcdoc_setNickname:(NSString *)nickname {
+    return [self req:@"wjapp/api.php?c=lhcdoc&a=setNickname"
+                    :@{@"nickname":nickname,//昵称
+                    }
+                    :true];
+}
+
 @end
