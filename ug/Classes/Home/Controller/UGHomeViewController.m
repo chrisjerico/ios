@@ -209,7 +209,7 @@
             }
             [v removeFromSuperview];
         }
-        NSDictionary *dict = @{@"六合资料":@[_bannerBgView, _rollingView, _liuheResultContentView, _liuheForumContentView, _promotionView, _rankingView, _bottomView],
+        NSDictionary *dict = @{@"六合资料":@[_rollingView, _liuheResultContentView, _liuheForumContentView, _promotionView, _bottomView],
                                @"黑色模板":@[_bannerBgView, _gameTypeView.superview, _rankingView, _bottomView],
         };
         

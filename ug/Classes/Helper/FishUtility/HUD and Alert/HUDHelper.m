@@ -91,7 +91,7 @@
     
     MsgView *v = [MsgView msgView:msg];
     if (!superview) 
-        superview = APP.Window;
+        superview = [UIApplication sharedApplication].keyWindow;
     [superview addSubview:v];
     
     // 展示消息

@@ -327,11 +327,8 @@
         else{
             NSDictionary *responeDic = (NSDictionary *) sm.responseObject;
             NSDictionary *extra = [responeDic objectForKey:@"extra"];
-//            NSLog(@"extra = %@",extra);
             NSNumber *hasNickname = (NSNumber *) [extra objectForKey:@"hasNickname"];
-//            NSLog(@"hasNickname = %@",hasNickname);
             BOOL ishas = [hasNickname boolValue];
-//            NSLog(@"ishas= %d",ishas);
             if (!ishas) {
                 // 使用一个变量接收自定义的输入框对象 以便于在其他位置调用
              __block UITextField *tf = nil;
@@ -341,32 +338,29 @@
                 .LeeAddTextField(^(UITextField *textField) {
                     textField.placeholder = @"请输入昵称：1-8个汉字";
                     textField.textColor = [UIColor darkGrayColor];
-                    textField.delegate = self;
+                    textField.限制长度 = 8;
                     tf = textField; //赋值
-
                 })
 
                 .LeeCancelAction(@"取消", nil) // 点击事件的Block如果不需要可以传nil
                 .LeeDestructiveAction(@"好的", ^{
-                    NSLog(@"tf.text = %@",tf.text);
-                    NSString *nickName = tf.text;
-                    if (!nickName.length) {
+                    if (!tf.text) {
                         return ;
                     }
-                    [NetworkManager1 lhcdoc_setNickname:nickName ].successBlock = ^(id responseObject) {
-                        NSLog(@"responseObject = %@",responseObject);
-                        if ([NetworkManager1 requestCode:responseObject ] ) {
-                            [NetworkManager1 lhcdoc_postContent:__self.clm.alias title:__self.textField.text content:text images:__self.photos price:price].completionBlock = ^(CCSessionModel *sm) {
-                                NSLog(@"responseObject = %@",responseObject);
-                                if (!sm.error) {
-                                    [__self.navigationController popViewControllerAnimated:true];
-                                    if (__self.didSubmitAction)
-                                        __self.didSubmitAction();
-                                    [AlertHelper showAlertView:sm.responseObject[@"msg"] msg:nil btnTitles:@[@"确定"]];
-                                }
-                            };
-                            
-                        }
+                    if (!tf.text.isChinese) {
+                        [HUDHelper showMsg:@"请输入汉字昵称"];
+                        return;
+                    }
+                    [NetworkManager1 lhcdoc_setNickname:tf.text].successBlock = ^(id responseObject) {
+                        [NetworkManager1 lhcdoc_postContent:__self.clm.alias title:__self.textField.text content:text images:__self.photos price:price].completionBlock = ^(CCSessionModel *sm) {
+                            NSLog(@"responseObject = %@",responseObject);
+                            if (!sm.error) {
+                                [__self.navigationController popViewControllerAnimated:true];
+                                if (__self.didSubmitAction)
+                                    __self.didSubmitAction();
+                                [AlertHelper showAlertView:sm.responseObject[@"msg"] msg:nil btnTitles:@[@"确定"]];
+                            }
+                        };
                     };
                     
                 })
@@ -383,66 +377,7 @@
     };
 }
 
-/**
- *  textField的代理方法，监听textField的文字改变
- *  textField.text是当前输入字符之前的textField中的text
- *
- *  @param textField textField
- *  @param range     当前光标的位置
- *  @param string    当前输入的字符
- *
- *  @return 是否允许改变
- */
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
 
-    if (string.length > 0) {
-        
-        //当前输入的字符
-        NSLog(@"single = %@",string);
-    
-        if (!([string isChinese]))
-        {
-            [self.navigationController.view makeToast:@"格式不对"
-                                                                         duration:1.0
-                                                                         position:CSToastPositionCenter];
-            return NO;
-        }
-    
-        NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
-        NSInteger length = newString.length;//
-         NSLog(@"%@------长度: %ld",newString,length);
-
-         if (length > 8)
-         {
-             return NO;
-         }
-      
-  
-    }
-
-
-    return YES;
-}
-
-//-(NSUInteger)textLength: (NSString *) text{
-//
-//  NSUInteger asciiLength = 0;
-//
-//    for (NSUInteger i = 0; i < text.length; i++) {
-//
-//
-//      unichar uc = [text characterAtIndex: i];
-//
-//          //设置汉字和字母的比例  如何限制4个字符或12个字母 就是1:3  如果限制是6个汉字或12个字符 就是 1:2  一次类推
-//      asciiLength += isascii(uc) ? 1 : 3;
-//  }
-//
-//  NSUInteger unicodeLength = asciiLength;
-//
-//  return unicodeLength;
-//
-//}
 #pragma mark - UIImagePickerControllerDelegate
 
 //适用获取所有媒体资源，只需判断资源类型

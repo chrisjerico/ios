@@ -163,6 +163,7 @@
             site(@"c008",        @"c008hy",     @"217",     @"io.fhpt.YSFC008",         @"https://888123app.com",                       @"企业包",     @"888彩票"),
             site(@"c130",        @"",           @"",        @"io.fhpt.H5A94011E",       @"",                                            @"企业包",     @"必发彩票"),
             site(@"c136",        @"",           @"",        @"io.fhpt.H5F60C8D2",       @"",                                            @"企业包",     @"⻓诚彩票"),
+            site(@"l001",        @"l001hy",     @"218",     @"io.fhpt.YSFL001",         @"https://4988wap.com",                         @"企业包",     @"六合宝典"),
             
             
             site(@"test10",      @"88",         @"125",     @"com.UGGame.cp",           @"http://test10.6yc.com",                       @"内测包",     @"test10"),

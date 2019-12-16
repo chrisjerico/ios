@@ -161,7 +161,7 @@
             [mas addAttribute:NSParagraphStyleAttributeName value:ps range:NSMakeRange(0, mas.string.length)];
             mas;
         });
-        contentLabel.cc_constraints.height.constant =  [YYTextLayout layoutWithContainerSize:CGSizeMake(APP.Width-50, MAXFLOAT) text:contentLabel.attributedText].textBoundingSize.height;
+        contentLabel.cc_constraints.height.constant =  MIN([YYTextLayout layoutWithContainerSize:CGSizeMake(APP.Width-50, MAXFLOAT) text:contentLabel.attributedText].textBoundingSize.height, 80);
     }
     
     // 点赞、浏览、评论
