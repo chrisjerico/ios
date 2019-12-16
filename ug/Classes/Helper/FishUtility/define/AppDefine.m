@@ -8,7 +8,7 @@
 
 #import "AppDefine.h"
 
-#define __SiteID__ @"test19"
+#define __SiteID__ @"c008"
 
 
 @interface UIStoryboard ()

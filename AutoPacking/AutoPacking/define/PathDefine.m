@@ -30,7 +30,7 @@
         _projectDir = [NSUserName() isEqualToString:@"fish"] ? @"/Users/fish/自动打包/pack" : @"/Users/ug/pack";
         _exportDir = @"/Library/WebServer/Documents/ipa";
         _shellDir = [_projectDir stringByAppendingPathComponent:@"AutoPacking/sh"];
-        _logPath = @"/Users/fish/自动打包/log/PackingLog.txt";
+        _logPath = [NSUserName() isEqualToString:@"fish"] ? @"/Users/fish/自动打包/log/PackingLog.txt" : @"/Users/ug/log/PackingLog.txt";
         
         _tempIpa        = [_projectDir stringByAppendingPathComponent:@"ug.ipa"];
         _tempXcarchive  = [_projectDir stringByAppendingPathComponent:@"ug.xcarchive"];

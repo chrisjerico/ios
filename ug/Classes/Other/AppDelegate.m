@@ -67,11 +67,20 @@
     // 极光推送
     NSDictionary *dict = @{@"c049":@"ccb82fc32e80809ae7655a47",
                            @"c008":@"cd266717f2634d6cc6b35ccc",
+                           @"c084":@"865d65d06153a662e03a57d4",
     };
     NSLog(@"APP.SiteId = %@",APP.SiteId);
     NSLog(@"dict[APP.SiteId] = %@",dict[APP.SiteId]);
     NSString *appKey = dict[APP.SiteId] ? dict[APP.SiteId] : @"21d1b87f65b557d2946af463";
-    [JPUSHService setupWithOption:launchOptions appKey:appKey channel:@"develop" apsForProduction:false advertisingIdentifier:nil];
+    
+#ifdef DEBUG
+   
+    [JPUSHService setupWithOption:launchOptions appKey:appKey channel:@"develop" apsForProduction:0 advertisingIdentifier:nil];
+#else
+    [JPUSHService setupWithOption:launchOptions appKey:appKey channel:@"dis" apsForProduction:1 advertisingIdentifier:nil];
+#endif
+    
+    
     [JPUSHService registerForRemoteNotificationConfig:({
         JPUSHRegisterEntity *entity = [[JPUSHRegisterEntity alloc] init];
         entity.types = JPAuthorizationOptionAlert | JPAuthorizationOptionBadge | JPAuthorizationOptionSound | JPAuthorizationOptionProvidesAppNotificationSettings;

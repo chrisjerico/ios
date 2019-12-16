@@ -13,12 +13,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSString *ids = @"test10";
+    NSString *ids = @"c084";
     BOOL willUpload = true; // 打包后是否上传审核
     
     [self startPackingWithIds:ids willUpload:willUpload];
 }
-
 // 批量打包
 - (void)startPackingWithIds:(NSString *)ids willUpload:(BOOL)willUpload {
     __weakSelf_(__self);
