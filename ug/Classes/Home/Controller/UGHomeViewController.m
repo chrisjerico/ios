@@ -186,9 +186,14 @@
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
-    
-    [_timer invalidate];
-    _timer = nil;
+    if (_timer) {
+        [_timer setFireDate:[NSDatedistantFuture]];
+    }
+}
+-(void)viewWillAppear:(BOOL)animated:(BOOL)animated{
+    if (_timer) {
+        [_timer setFireDate:[NSDatedate]];
+    }
 }
 
 - (void)skin {

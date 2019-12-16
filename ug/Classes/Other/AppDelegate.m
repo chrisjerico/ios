@@ -68,6 +68,7 @@
     NSDictionary *dict = @{@"c049":@"ccb82fc32e80809ae7655a47",
                            @"c008":@"cd266717f2634d6cc6b35ccc",
                            @"c084":@"865d65d06153a662e03a57d4",
+                           @"c008":@"cd266717f2634d6cc6b35ccc",
     };
     NSLog(@"APP.SiteId = %@",APP.SiteId);
     NSLog(@"dict[APP.SiteId] = %@",dict[APP.SiteId]);
