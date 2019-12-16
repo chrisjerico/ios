@@ -59,7 +59,7 @@
     https://docs.jiguang.cn/jpush/client/iOS/ios_cer_guide/
     1：相同的bunldid，p12
     2:AppDelegate 加极光的appKey
-    3：打包，运行测试
+    3：打包，运行测试，先测开发环境，再测生产环境
     4:用抓包软件看看url
     
 
