@@ -626,6 +626,17 @@
 		D43B48A9238D0B8200BB7960 /* CMNetwork+LH.m in Sources */ = {isa = PBXBuildFile; fileRef = D43B48A6238D0B8200BB7960 /* CMNetwork+LH.m */; };
 		D43B48B1238D41DA00BB7960 /* UIButton+touch.m in Sources */ = {isa = PBXBuildFile; fileRef = D43B48AF238D41D900BB7960 /* UIButton+touch.m */; };
 		D43B48BD238D5B0700BB7960 /* UGLHCategoryListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D43B48BC238D5B0700BB7960 /* UGLHCategoryListModel.m */; };
+		D4463AB223A773AF008EF03D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4463AB123A773AF008EF03D /* CFNetwork.framework */; };
+		D4463AB423A773B9008EF03D /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4463AB323A773B9008EF03D /* CoreFoundation.framework */; };
+		D4463AB623A773C5008EF03D /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4463AB523A773C4008EF03D /* CoreTelephony.framework */; };
+		D4463AB823A773CD008EF03D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4463AB723A773CD008EF03D /* SystemConfiguration.framework */; };
+		D4463ABA23A773D5008EF03D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4463AB923A773D5008EF03D /* CoreGraphics.framework */; };
+		D4463ABC23A773DF008EF03D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4463ABB23A773DF008EF03D /* Foundation.framework */; };
+		D4463ABE23A773E7008EF03D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4463ABD23A773E7008EF03D /* UIKit.framework */; };
+		D4463AC023A773EF008EF03D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4463ABF23A773EF008EF03D /* Security.framework */; };
+		D4463AC223A773F9008EF03D /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D4463AC123A773F9008EF03D /* libz.tbd */; };
+		D4463AC423A77404008EF03D /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4463AC323A77404008EF03D /* UserNotifications.framework */; };
+		D4463AC623A7740E008EF03D /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D4463AC523A7740E008EF03D /* libresolv.tbd */; };
 		D44B49A32392675100475EBE /* CMAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D44B49A22392675100475EBE /* CMAudioPlayer.m */; };
 		D44CF2C32398DC86007DCD93 /* UINavigationController+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = D44CF2C22398DC86007DCD93 /* UINavigationController+Extension.m */; };
 		D44CF2E62398F45C007DCD93 /* NSError+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = D44CF2E52398F45C007DCD93 /* NSError+Safe.m */; };
@@ -1869,6 +1880,17 @@
 		D43B48AF238D41D900BB7960 /* UIButton+touch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+touch.m"; sourceTree = "<group>"; };
 		D43B48BB238D5B0700BB7960 /* UGLHCategoryListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLHCategoryListModel.h; sourceTree = "<group>"; };
 		D43B48BC238D5B0700BB7960 /* UGLHCategoryListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLHCategoryListModel.m; sourceTree = "<group>"; };
+		D4463AB123A773AF008EF03D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		D4463AB323A773B9008EF03D /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		D4463AB523A773C4008EF03D /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		D4463AB723A773CD008EF03D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		D4463AB923A773D5008EF03D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D4463ABB23A773DF008EF03D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D4463ABD23A773E7008EF03D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		D4463ABF23A773EF008EF03D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		D4463AC123A773F9008EF03D /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		D4463AC323A77404008EF03D /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		D4463AC523A7740E008EF03D /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 		D44B49A12392675100475EBE /* CMAudioPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMAudioPlayer.h; sourceTree = "<group>"; };
 		D44B49A22392675100475EBE /* CMAudioPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CMAudioPlayer.m; sourceTree = "<group>"; };
 		D44CF2C12398DC86007DCD93 /* UINavigationController+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Extension.h"; sourceTree = "<group>"; };
@@ -2077,7 +2099,7 @@
 		D4B6E6ED22D3325A0006B03F /* UGHomeTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGHomeTitleView.h; sourceTree = "<group>"; };
 		D4B6E6EE22D3325A0006B03F /* UGHomeTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGHomeTitleView.m; sourceTree = "<group>"; };
 		D4B6E6F022D332720006B03F /* UGHomeTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGHomeTitleView.xib; sourceTree = "<group>"; };
-		D4B75E092278025E0007047C /* test19.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = test19.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4B75E092278025E0007047C /* testC084.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testC084.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4B75E0C2278025E0007047C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D4B75E15227802600007047C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4B75E18227802600007047C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -2299,6 +2321,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4463AC623A7740E008EF03D /* libresolv.tbd in Frameworks */,
+				D4463AC423A77404008EF03D /* UserNotifications.framework in Frameworks */,
+				D4463AC223A773F9008EF03D /* libz.tbd in Frameworks */,
+				D4463AC023A773EF008EF03D /* Security.framework in Frameworks */,
+				D4463ABE23A773E7008EF03D /* UIKit.framework in Frameworks */,
+				D4463ABC23A773DF008EF03D /* Foundation.framework in Frameworks */,
+				D4463ABA23A773D5008EF03D /* CoreGraphics.framework in Frameworks */,
+				D4463AB823A773CD008EF03D /* SystemConfiguration.framework in Frameworks */,
+				D4463AB623A773C5008EF03D /* CoreTelephony.framework in Frameworks */,
+				D4463AB423A773B9008EF03D /* CoreFoundation.framework in Frameworks */,
+				D4463AB223A773AF008EF03D /* CFNetwork.framework in Frameworks */,
 				A0C64CB6AEB0CF1B2031BBB8 /* Pods_ug.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2318,6 +2351,17 @@
 		2E2BF98637033623A296F5F9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D4463AC523A7740E008EF03D /* libresolv.tbd */,
+				D4463AC323A77404008EF03D /* UserNotifications.framework */,
+				D4463AC123A773F9008EF03D /* libz.tbd */,
+				D4463ABF23A773EF008EF03D /* Security.framework */,
+				D4463ABD23A773E7008EF03D /* UIKit.framework */,
+				D4463ABB23A773DF008EF03D /* Foundation.framework */,
+				D4463AB923A773D5008EF03D /* CoreGraphics.framework */,
+				D4463AB723A773CD008EF03D /* SystemConfiguration.framework */,
+				D4463AB523A773C4008EF03D /* CoreTelephony.framework */,
+				D4463AB323A773B9008EF03D /* CoreFoundation.framework */,
+				D4463AB123A773AF008EF03D /* CFNetwork.framework */,
 				6486EFF4C273BEA0AE8994DD /* Pods_ug.framework */,
 			);
 			name = Frameworks;
@@ -4857,7 +4901,7 @@
 		D4B75E0A2278025E0007047C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D4B75E092278025E0007047C /* test19.app */,
+				D4B75E092278025E0007047C /* testC084.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -5465,7 +5509,7 @@
 			);
 			name = ug;
 			productName = ug;
-			productReference = D4B75E092278025E0007047C /* test19.app */;
+			productReference = D4B75E092278025E0007047C /* testC084.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -6594,8 +6638,8 @@
 				);
 				MARKETING_VERSION = 1.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.UGGame.cp;
-				PRODUCT_NAME = test19;
+				PRODUCT_BUNDLE_IDENTIFIER = io.fhpt.H599DB7B9;
+				PRODUCT_NAME = testC084;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -6620,8 +6664,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.UGGame.cp;
-				PRODUCT_NAME = test19;
+				PRODUCT_BUNDLE_IDENTIFIER = io.fhpt.H599DB7B9;
+				PRODUCT_NAME = testC084;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
