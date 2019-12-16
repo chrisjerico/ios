@@ -37,12 +37,15 @@
             if (![[NSFileManager defaultManager] fileExistsAtPath:[NSString stringWithFormat:@"%@/AutoPacking/打包文件/各站点AppIcon（拷贝出来使用）/%@", Path.projectDir, sm.siteId]]) {
                 [errs addObject:[NSString stringWithFormat:@"app图标未配置, %@", sm.siteId]];
             }
-            if (![[NSFileManager defaultManager] fileExistsAtPath:Path.tempPlist]) {
-                [errs addObject:_NSString(@"找不到plist模板，请在此路径放置一个plist模板：%@", Path.tempPlist)];
-            }
         } else {
             [errs addObject:[NSString stringWithFormat:@"没有此站点，请检查是否拼写错误, %@", siteId]];
         }
+    }
+    if (![[NSFileManager defaultManager] fileExistsAtPath:Path.tempPlist]) {
+        [errs addObject:_NSString(@"找不到plist模板，请在此路径放置一个plist模板：%@", Path.tempPlist)];
+    }
+    if (![[NSString stringWithContentsOfFile:_NSString(@"%@/ug/Classes/Other/configuration.h", Path.projectDir) encoding:NSUTF8StringEncoding error:nil] containsString:@"#define checkSign 1"]) {
+        [errs addObject:@"未开启参数加密，请到 configuration.h 文件开启参数加密"];
     }
     
     NSLog(@"\n\n");

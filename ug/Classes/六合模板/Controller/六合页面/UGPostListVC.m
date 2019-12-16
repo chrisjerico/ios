@@ -137,13 +137,14 @@
     };
     
     if (!pm.hasPay && pm.price > 0.000001) {
-        if (!UGLoginIsAuthorized()) {
-            SANotificationEventPost(UGNotificationShowLoginView, nil);
-            return;
-        }
         LHPostPayView *ppv = _LoadView_from_nib_(@"LHPostPayView");
         ppv.pm = pm;
         ppv.didConfirmBtnClick = ^(LHPostPayView * _Nonnull ppv) {
+            if (!UGLoginIsAuthorized()) {
+                [ppv hide:nil];
+                SANotificationEventPost(UGNotificationShowLoginView, nil);
+                return;
+            }
             [NetworkManager1 lhcdoc_buyContent:pm.cid].completionBlock = ^(CCSessionModel *sm) {
                 if (!sm.error) {
                     pm.hasPay = true;

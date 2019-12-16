@@ -24,7 +24,7 @@
 #define ContentWidth (APP.Width-40)
 
 
-@interface UGPostDetailVC ()
+@interface UGPostDetailVC ()<UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UICollectionView *photoCollectionView;/**<   图片列表 */
 @property (weak, nonatomic) IBOutlet UICollectionView *animalCollectionView;/**<   生肖列表（可投票） */
 @property (weak, nonatomic) IBOutlet UITableView *tableView;    /**<    评论TableView */
@@ -38,8 +38,8 @@
 
 @implementation UGPostDetailVC
 
-- (BOOL)允许游客访问   { return [@"mystery,rule,sixpic,humorGuess,rundog,fourUnlike" containsString:_pm.alias]; }
-- (BOOL)允许未登录访问 { return [@"mystery,rule,sixpic,humorGuess,rundog,fourUnlike" containsString:_pm.alias]; }
+- (BOOL)允许游客访问   { return true; }
+- (BOOL)允许未登录访问 { return true; }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -57,7 +57,6 @@
         }];
         [_photoCollectionView xw_addObserverBlockForKeyPath:@"contentSize" block:^(id  _Nonnull obj, id  _Nonnull oldVal, id  _Nonnull newVal) {
             ((UIScrollView *)obj).cc_constraints.height.constant = MAX([newVal CGSizeValue].height + 4, 20);
-            NSLog(@"[newVal CGSizeValue].height = %f",[newVal CGSizeValue].height);
             [__self.view layoutSubviews];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [__self.tableView reloadData];
@@ -432,30 +431,21 @@
     if (collectionView == _photoCollectionView) {
         UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
         UIImageView *imgView = [cell viewWithTagString:@"图片ImageView"];
-        CGFloat collectionViewW = ContentWidth;
-        imgView.cc_constraints.width.constant = collectionViewW;
         NSURL *url = [NSURL URLWithString:_pm.contentPic[indexPath.item]];
         UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:url]];
         if (image) {
             imgView.hidden = false;
-            imgView.cc_constraints.height.constant = collectionViewW/image.width * image.height;
             [imgView sd_setImageWithURL:url];   // 由于要支持gif动图，还是用sd加载
-            NSLog(@"1111111111===========================================");
         } else {
             __weakSelf_(__self);
             imgView.hidden = true;
-            image = [UIImage imageNamed:@"err"];
-            imgView.cc_constraints.height.constant = collectionViewW/image.width * image.height;
-            NSLog(@"2222222222===========================================");
             __weak_Obj_(imgView, __imgView);
-            [imgView sd_setImageWithURL:url placeholderImage:image completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+            [imgView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"err"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
                 if (image) {
-                    __imgView.cc_constraints.height.constant = collectionViewW/image.width * image.height;
                     [__self.photoCollectionView reloadItemsAtIndexPaths:@[indexPath]];
                 } else {
                     __imgView.hidden = false;
                 }
-                NSLog(@"33333333333===========================================");
             }];
         }
         return cell;
@@ -508,6 +498,18 @@
         }
         models;
     }));
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (collectionView == _photoCollectionView) {
+        UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:_pm.contentPic[indexPath.item]]]];
+        if (!image) {
+            image = [UIImage imageNamed:@"err"];
+        }
+        return CGSizeMake(ContentWidth, (NSInteger)(ContentWidth/image.width * image.height));
+    } else {
+        return CGSizeMake((ContentWidth-6)/2, 20);
+    }
 }
 
 @end

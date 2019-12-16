@@ -350,44 +350,35 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     if (!linkCategory || !linkPosition) {
         return false;
     }
-    // 去游戏页面
+    
     if (linkCategory == 1) {
         // 去彩票下注页
         return [NavController1 pushViewControllerWithNextIssueModel:[UGNextIssueModel modelWithGameId:@(linkPosition).stringValue]];
     }
-    switch (linkCategory) {
-        case 1: {
-            
-        }
-        case 8: {
-            // 去第三方游戏页面
-            if (!UGLoginIsAuthorized()) {
-                [[NSNotificationCenter defaultCenter] postNotificationName:UGNotificationShowLoginView object:nil];
-                return true;
-            }
-            NSDictionary *params = @{@"token":UserI.sessid, @"id":@(linkPosition).stringValue};
-            [SVProgressHUD showWithStatus:nil];
-            [CMNetwork getGotoGameUrlWithParams:params completion:^(CMResult<id> *model, NSError *err) {
-                [CMResult processWithResult:model success:^{
-                    [SVProgressHUD dismiss];
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        QDWebViewController *qdwebVC = [[QDWebViewController alloc] init];
-                        NSLog(@"网络链接：model.data = %@", model.data);
-                        qdwebVC.urlString = [CMNetwork encryptionCheckSignForURL:model.data];
-                        qdwebVC.enterGame = YES;
-                        [NavController1 pushViewController:qdwebVC animated:YES];
-                    });
-                } failure:^(id msg) {
-                    [SVProgressHUD showErrorWithStatus:msg];
-                }];
-            }];
-            return true;
-        }
-        default:;
-    }
     
     if (linkCategory != 7) {
-        return false;
+        // 去第三方游戏页面
+        if (!UGLoginIsAuthorized()) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:UGNotificationShowLoginView object:nil];
+            return true;
+        }
+        NSDictionary *params = @{@"token":UserI.sessid, @"id":@(linkPosition).stringValue};
+        [SVProgressHUD showWithStatus:nil];
+        [CMNetwork getGotoGameUrlWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+            [CMResult processWithResult:model success:^{
+                [SVProgressHUD dismiss];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    QDWebViewController *qdwebVC = [[QDWebViewController alloc] init];
+                    NSLog(@"网络链接：model.data = %@", model.data);
+                    qdwebVC.urlString = [CMNetwork encryptionCheckSignForURL:model.data];
+                    qdwebVC.enterGame = YES;
+                    [NavController1 pushViewController:qdwebVC animated:YES];
+                });
+            } failure:^(id msg) {
+                [SVProgressHUD showErrorWithStatus:msg];
+            }];
+        }];
+        return true;
     }
     
     // 去功能页面

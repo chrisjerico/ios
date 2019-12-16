@@ -303,7 +303,7 @@
             [imgView sd_setImageWithURL:mm.imgUrl completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
                 thumbImgView.hidden = true;
                 if (error) {
-                    imgView.image = [UIImage imageNamed:@"Image_loading_failed.jpeg"];
+                    imgView.image = [UIImage imageNamed:@"err"];
                 }
             }];
         }

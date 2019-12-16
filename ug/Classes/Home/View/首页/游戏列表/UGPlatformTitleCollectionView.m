@@ -13,6 +13,8 @@
 
 #import "UGPlatformGameModel.h"
 
+#define CollectionViewW (APP.Width-16)
+
 @interface UGPlatformTitleCollectionView ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic) BOOL isBlack;
@@ -30,13 +32,13 @@
             layout = [[UICollectionViewFlowLayout alloc] init];
             layout.minimumInteritemSpacing = 0;
             layout.minimumLineSpacing = 0;
-            layout.sectionInset = _isBlack ? UIEdgeInsetsZero : UIEdgeInsetsMake(0, 8, 0, 8);
+            layout.sectionInset = _isBlack ? UIEdgeInsetsZero : UIEdgeInsetsMake(0, 2, 0, 2);
             layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
             layout;
         });
         
         UICollectionView *collectionView = ({
-            collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, APP.Width, 55) collectionViewLayout:layout];
+            collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, CollectionViewW, 55) collectionViewLayout:layout];
             collectionView.backgroundColor = _isBlack ? Skin1.bgColor : Skin1.homeContentColor;
             collectionView.dataSource = self;
             collectionView.delegate = self;
@@ -144,8 +146,19 @@
     if (_isBlack) {
         return CGSizeMake(92, 140);
     }
+    CGFloat space = ({
+        space = 20;
+        CGFloat totalW = 0;
+        for (GameCategoryModel *gcm in _gameTypeArray) {
+            totalW += [gcm.name widthForFont:[UIFont systemFontOfSize:18]] + space;
+        }
+        if (totalW < CollectionViewW-4) {
+            space += (CollectionViewW-4 - totalW)/_gameTypeArray.count;
+        }
+        space;
+    });
     GameCategoryModel *gcm = _gameTypeArray[indexPath.row];
-    CGFloat w = [gcm.name widthForFont:[UIFont systemFontOfSize:18]] + 18;
+    CGFloat w = [gcm.name widthForFont:[UIFont systemFontOfSize:18]] + space;
     return CGSizeMake(w, 55);
 }
 
