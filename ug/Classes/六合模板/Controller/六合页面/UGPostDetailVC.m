@@ -141,37 +141,37 @@
         setupAdButton(@"顶部广告Button", pm.topAdWap);
         setupAdButton(@"底部广告Button", pm.bottomAdWap);
         subLabel(@"标题Label").text = pm.title;
-        subLabel(@"标题Label").hidden = [@"mystery,rule,sixpic,humorGuess,rundog,fourUnlike" containsString:pm.alias];
+        subLabel(@"标题Label").hidden = [@"mystery,rule,sixpic,humorGuess,rundog,fourUnlike,sxbm,tjym,ptyx" containsString:pm.alias];
         subLabel(@"时间Label").text = _NSString(@"最后更新时间：%@", pm.createTime);
         subLabel(@"时间Label").hidden = [@"mystery,rule" containsString:pm.alias];
-        UILabel *contentLabel = subLabel(@"内容Label");
-        contentLabel.attributedText = ({
-            UIFont *font = [UIFont systemFontOfSize:16];
-            NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithData:[pm.content dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,} documentAttributes:nil error:nil];
-            [mas addAttributes:@{NSFontAttributeName:font} range:NSMakeRange(0, mas.length)];
-            for (YYImage *image in UGLHPostModel.allEmoji) {
-                NSString *key = [UGLHPostModel keyWithImage:image];
-                if ([pm.content containsString:key]) {
-                    NSRange range = NSMakeRange(0, mas.length);
-                    NSRange r;
-                    while ((r = [mas.string rangeOfString:key options:NSLiteralSearch range:range]).length) {
-                        YYAnimatedImageView *imageView = [[YYAnimatedImageView alloc] initWithImage:image];
-                        NSAttributedString *attachText = [NSAttributedString yy_attachmentStringWithContent:imageView contentMode:UIViewContentModeCenter attachmentSize:imageView.size alignToFont:font alignment:YYTextVerticalAlignmentCenter];
-                        [mas replaceCharactersInRange:r withAttributedString:attachText];
-                        range.location = r.location + attachText.length;
-                        range.length = mas.length - range.location;
-                    }
-                }
+        
+        UIView *cView = subView(@"内容View");
+        WKWebView *wv = [cView viewWithTagString:@"内容WebView"];
+        if (!wv) {
+            wv = [WKWebView new];
+            wv.clipsToBounds = false;
+            wv.tagString = @"内容WebView";
+            wv.scrollView.bounces = false;
+            [subView(@"内容View") addSubview:wv];
+            [wv mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.center.equalTo(cView);
+                make.width.mas_equalTo(APP.Width-30);
+                make.top.equalTo(cView);
+            }];
+            [wv xw_addObserverBlockForKeyPath:@"scrollView.contentSize" block:^(id  _Nonnull obj, id  _Nonnull oldVal, id  _Nonnull newVal) {
+                cView.cc_constraints.height.constant = [newVal CGSizeValue].height;
+            }];
+        }
+        NSString *content = pm.content;
+        for (NSString *s1 in [pm.content componentsSeparatedByString:@"[em_"]) {
+            NSString *gifName = [s1 componentsSeparatedByString:@"]"].firstObject;
+            if (gifName.isInteger) {
+                content = [content stringByReplacingOccurrencesOfString:_NSString(@"[em_%@]", gifName) withString:_NSString(@"<img src=\"http://admintest10.6yc.com/images/arclist/%@.gif\"/>", gifName)];
             }
-            NSMutableParagraphStyle *ps = [NSMutableParagraphStyle new];
-            ps.lineSpacing = 6;
-            ps.lineBreakMode = NSLineBreakByCharWrapping;
-            ps.alignment = NSTextAlignmentCenter;
-            [mas addAttribute:NSParagraphStyleAttributeName value:ps range:NSMakeRange(0, mas.string.length)];
-            mas;
-        });
-        contentLabel.cc_constraints.height.constant =  [YYTextLayout layoutWithContainerSize:CGSizeMake(ContentWidth, MAXFLOAT) text:contentLabel.attributedText].textBoundingSize.height;
-        contentLabel.hidden = [@"sixpic,rundog,fourUnlike" containsString:pm.alias];
+        }
+        NSString *head = _NSString(@"<head><meta name='viewport' content='initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'><style>img{width:auto !important;max-width:%f;height:auto}</style><style>body{width:%.f;word-break: break-all;word-wrap: break-word;vertical-align: middle;overflow: hidden;}</style></head>", APP.Width-40, APP.Width-40);
+        [wv loadHTMLString:[head stringByAppendingString:content] baseURL:nil];
+        wv.hidden = [@"sixpic,rundog,fourUnlike" containsString:pm.alias];
         
         _photoCollectionView.hidden = !pm.contentPic.count;
         [_photoCollectionView reloadData];

@@ -45,6 +45,7 @@
 #import "UGDocumentListVC.h"// 六合期数列表
 #import "LHGalleryListVC.h"   // 六合图库
 #import "LHJournalDetailVC.h"   // 期刊详情
+#import "UGPostDetailVC.h"      // 帖子详情
 
 
 //测试--黑色模板
@@ -319,9 +320,11 @@
         });
         // 获取系统配置成功
         SANotificationEventSubscribe(UGNotificationGetSystemConfigComplete, self, ^(typeof (self) self, id obj) {
-//            NSLog(@"SysConf.m_promote_pos = %d",SysConf.m_promote_pos);
-//            [__self.promotionsStackView superviewWithTagString:@"优惠活动ContentView"].hidden = !SysConf.m_promote_pos;
-            __self.promotionView.hidden = !SysConf.m_promote_pos;
+            NSInteger cnt = 0;
+            for (UIView *v in __self.promotionsStackView.arrangedSubviews) {
+                cnt += !v.hidden;
+            }
+            __self.promotionView.hidden = !SysConf.m_promote_pos || !cnt;
         });
     }
     
@@ -706,6 +709,33 @@
             NSLog(@"老黃历");
             [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLHOldYearViewController") animated:true];
         }
+        else if([model.alias isEqualToString:@"sxbm"]) {
+            NSLog(@"四肖八码");
+            UGPostDetailVC *vc = _LoadVC_from_storyboard_(@"UGPostDetailVC");
+            vc.pm = [UGLHPostModel new];
+            vc.pm.cid = @"899";
+            [NavController1 pushViewController:vc animated:true];
+        }
+        else if([model.alias isEqualToString:@"tjym"]) {
+            NSLog(@"六合宝典");
+            UGPostDetailVC *vc = _LoadVC_from_storyboard_(@"UGPostDetailVC");
+            vc.pm = [UGLHPostModel new];
+            vc.pm.cid = @"907";
+            [NavController1 pushViewController:vc animated:true];
+        }
+        else if([model.alias isEqualToString:@"ptyx"]) {
+            NSLog(@"平特一肖");
+            UGPostDetailVC *vc = _LoadVC_from_storyboard_(@"UGPostDetailVC");
+            vc.pm = [UGLHPostModel new];
+            vc.pm.cid = @"2469";
+            [NavController1 pushViewController:vc animated:true];
+        }
+        else if([model.alias isEqualToString:@"CvB3zABB"]) {
+            LHJournalDetailVC *vc = _LoadVC_from_storyboard_(@"LHJournalDetailVC");
+            vc.clm = model;
+            [NavController1 pushViewController:vc animated:true];
+            NSLog(@"香港挂牌");
+        }
         else {
             BOOL ret = [NavController1 pushViewControllerWithLinkCategory:7 linkPosition:model.appLinkCode];
             if (!ret && model.link.length) {
@@ -971,6 +1001,10 @@
             UGPromoteListModel *listModel = model.data;
             int i=0;
             for (UIView *v in __self.promotionsStackView.arrangedSubviews) {
+                if (listModel.list.count <= i) {
+                    v.hidden = true;
+                    continue;
+                }
                 UGPromoteModel *pm = listModel.list[i++];
                 FastSubViewCode(v);
                 subLabel(@"优惠活动Label").text = pm.title;
@@ -991,6 +1025,7 @@
                     }
                 }];
             }
+            __self.promotionView.hidden = !SysConf.m_promote_pos || !listModel.list.count;
         } failure:nil];
     }];
 }
