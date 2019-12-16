@@ -185,16 +185,7 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
--(void)viewDidDisappear:(BOOL)animated{
-    if (_timer) {
-        [_timer setFireDate:[NSDatedistantFuture]];
-    }
-}
--(void)viewWillAppear:(BOOL)animated:(BOOL)animated{
-    if (_timer) {
-        [_timer setFireDate:[NSDatedate]];
-    }
-}
+
 
 - (void)skin {
     
@@ -259,6 +250,26 @@
 
 - (BOOL)允许未登录访问 { return true; }
 - (BOOL)允许游客访问 { return true; }
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.leftwardMarqueeView start];
+    [self.upwardMultiMarqueeView start];
+    
+    self.titleView.imgName = SysConf.mobile_logo;
+    if (_timer) {
+        [_timer setFireDate:[NSDate date]];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.leftwardMarqueeView pause];//fixbug  发热  掉电快
+    [self.upwardMultiMarqueeView pause];//fixbug  发热  掉电快
+    if (_timer) {
+        [_timer setFireDate:[NSDate distantFuture]];
+    }
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -453,19 +464,7 @@
 	return NO;
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-	[super viewWillAppear:animated];
-    [self.leftwardMarqueeView start];
-    [self.upwardMultiMarqueeView start];
-    
-    self.titleView.imgName = SysConf.mobile_logo;
-}
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-	[self.leftwardMarqueeView pause];//fixbug  发热  掉电快
-	[self.upwardMultiMarqueeView pause];//fixbug  发热  掉电快
-}
 #pragma mark - 六合方法
 - (void)initLHCollectionView {
 //六合内容

@@ -25,7 +25,11 @@
 @end
 
 @implementation LHUserInfoVC
-
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    UIImage *image = [UIImage imageNamed:@"bc"];
+    [self.imgbg setImage:[image qmui_imageWithTintColor :Skin1.navBarBgColor]];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
