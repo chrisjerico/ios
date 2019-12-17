@@ -329,9 +329,11 @@
             NSDictionary *extra = [responeDic objectForKey:@"extra"];
             NSNumber *hasNickname = (NSNumber *) [extra objectForKey:@"hasNickname"];
             BOOL ishas = [hasNickname boolValue];
-            if (!ishas) {
+            if (hasNickname && !ishas) {
+                sm.noShowErrorHUD = true;
+                
                 // 使用一个变量接收自定义的输入框对象 以便于在其他位置调用
-             __block UITextField *tf = nil;
+                __block UITextField *tf = nil;
                 [LEEAlert alert].config
                 .LeeTitle(@"论坛昵称")
                 .LeeContent(@"为了保护您的隐私，请绑定论坛昵称")
@@ -348,7 +350,7 @@
                         return ;
                     }
                     if (!tf.text.isChinese) {
-                        [HUDHelper showMsg:@"请输入汉字昵称"];
+                        [HUDHelper showMsg:@"请输入纯汉字昵称"];
                         return;
                     }
                     [NetworkManager1 lhcdoc_setNickname:tf.text].successBlock = ^(id responseObject) {

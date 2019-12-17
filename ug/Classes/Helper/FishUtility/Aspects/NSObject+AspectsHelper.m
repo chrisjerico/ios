@@ -76,6 +76,13 @@ static NSMutableArray *__hms = nil;
                 [obj performSelectorWithArgs:HookSEL(cls, NSStringFromSelector(sel)), color];
             } error:nil];
         }
+        {
+            Class cls = [UIButton class];
+            SEL sel = @selector(setImage:forState:);
+            [cls jr_swizzleMethod:sel withBlock:^(id obj, UIImage *image, UIControlState state) {
+                [obj performSelectorWithArgs:HookSEL(cls, NSStringFromSelector(sel)), image, state];
+            } error:nil];
+        }
         
         __dict = @{}.mutableCopy;
     });
@@ -94,7 +101,7 @@ static NSMutableArray *__hms = nil;
                 NSLog(@"%@", err);
                 NSLog(@"需交换的类：%@，函数名：%@", supCls, selector);
                 NSLog(@"————————————————————————");
-#ifndef DEBUG
+#ifdef DEBUG
                 @throw [NSException exceptionWithName:err reason:err userInfo:nil];
 #endif
             }

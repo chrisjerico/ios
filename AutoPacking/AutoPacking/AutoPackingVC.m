@@ -154,7 +154,7 @@
             int p = progress.completedUnitCount/(double)progress.totalUnitCount * 100;
             if (p != __progress) {
                 __progress = p;
-                NSLog(@"%@ ipa文件上传进度：0.%02d", __sm.siteId, __progress);
+                NSLog(@"%@ ipa文件上传进度：%.2f", __sm.siteId, (double)__progress);
             }
         };
         sm.completionBlock = ^(CCSessionModel *sm) {

@@ -54,13 +54,10 @@
     {
         [__self.tableView.tableHeaderView.subviews.firstObject xw_addObserverBlockForKeyPath:@"contentSize" block:^(id  _Nonnull obj, id  _Nonnull oldVal, id  _Nonnull newVal) {
             __self.tableView.tableHeaderView.height = [newVal CGSizeValue].height;
+            [__self.tableView reloadData];
         }];
         [_photoCollectionView xw_addObserverBlockForKeyPath:@"contentSize" block:^(id  _Nonnull obj, id  _Nonnull oldVal, id  _Nonnull newVal) {
             ((UIScrollView *)obj).cc_constraints.height.constant = MAX([newVal CGSizeValue].height + 4, 20);
-            [__self.view layoutSubviews];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [__self.tableView reloadData];
-            });
         }];
     }
     
@@ -152,6 +149,7 @@
             wv.clipsToBounds = false;
             wv.tagString = @"内容WebView";
             wv.scrollView.bounces = false;
+            wv.UIDelegate = self;
             [subView(@"内容View") addSubview:wv];
             [wv mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.center.equalTo(cView);
@@ -171,7 +169,7 @@
         }
         NSString *head = _NSString(@"<head><meta name='viewport' content='initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'><style>img{width:auto !important;max-width:%f;height:auto}</style><style>body{width:%.f;word-break: break-all;word-wrap: break-word;vertical-align: middle;overflow: hidden;}</style></head>", APP.Width-40, APP.Width-40);
         [wv loadHTMLString:[head stringByAppendingString:content] baseURL:nil];
-        wv.hidden = [@"sixpic,rundog,fourUnlike" containsString:pm.alias];
+        wv.superview.hidden = [@"sixpic" containsString:pm.alias];
         
         _photoCollectionView.hidden = !pm.contentPic.count;
         [_photoCollectionView reloadData];
@@ -431,6 +429,7 @@
     if (collectionView == _photoCollectionView) {
         UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
         UIImageView *imgView = [cell viewWithTagString:@"图片ImageView"];
+        imgView.frame = cell.bounds;
         NSURL *url = [NSURL URLWithString:_pm.contentPic[indexPath.item]];
         UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:url]];
         if (image) {
@@ -450,12 +449,14 @@
         }
         return cell;
     }
+    
+    // 投票
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     LHVoteModel *vm = _pm.vote[indexPath.item];
     FastSubViewCode(cell);
     subLabel(@"生肖Label").text = vm.animal;
-    subLabel(@"票数Label1").text = _NSString(@"%d票（%.2f%%）", (int)vm.num, vm.percent/100.0);
-    subLabel(@"票数Label2").text = _NSString(@"%d票（%.2f%%）", (int)vm.num, vm.percent/100.0);
+    subLabel(@"票数Label1").text = _NSString(@"%d票（%d%%）", (int)vm.num, (int)vm.percent);
+    subLabel(@"票数Label2").text = _NSString(@"%d票（%d%%）", (int)vm.num, (int)vm.percent);
     subLabel(@"进度条View").cc_constraints.right.constant = (cell.width-30) * (1-vm.percent/100.0);
     return cell;
 }
@@ -510,6 +511,18 @@
     } else {
         return CGSizeMake((ContentWidth-6)/2, 20);
     }
+}
+
+
+#pragma mark - WKUIDelegate
+
+- (WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures {
+    if (!navigationAction.targetFrame.isMainFrame) {
+        SLWebViewController *vc = [SLWebViewController new];
+        vc.urlStr = navigationAction.request.URL.absoluteString;
+        [NavController1 pushViewController:vc animated:true];
+    }
+    return nil;
 }
 
 @end

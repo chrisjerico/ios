@@ -1507,19 +1507,10 @@
     [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGPromotionsController") animated:YES];
 }
 - (IBAction)goPCVC:(id)sender {
-    BOOL isLogin = UGLoginIsAuthorized();
-    if (isLogin) {
-       
-        TGWebViewController *qdwebVC = [[TGWebViewController alloc] init];
-        qdwebVC.url = pcUrl;
-        qdwebVC.webTitle = UGSystemConfigModel.currentConfig.webName;
-        [self.navigationController pushViewController:qdwebVC  animated:YES];
-        
-        NSLog(@"pcUrl = %@",pcUrl);
-    }
-    else {
-         SANotificationEventPost(UGNotificationShowLoginView, nil);
-    }
+    TGWebViewController *qdwebVC = [[TGWebViewController alloc] init];
+    qdwebVC.url = pcUrl;
+    qdwebVC.webTitle = UGSystemConfigModel.currentConfig.webName;
+    [NavController1 pushViewController:qdwebVC animated:YES];
 }
 - (IBAction)goYOUHUIVC:(id)sender {
     [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGPromotionsController")  animated:YES];

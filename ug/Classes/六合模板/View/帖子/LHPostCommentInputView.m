@@ -51,6 +51,43 @@
                 aciv.textView.text = @"";
                 [aciv.textView resignFirstResponder];
                 [AlertHelper showAlertView:@"回复成功，待管理员审核后显示" msg:nil btnTitles:@[@"确定"]];
+            } else {
+                NSNumber *hasNickname = sm.responseObject[@"extra"][@"hasNickname"];
+                if (hasNickname && !hasNickname.boolValue) {
+                    sm.noShowErrorHUD = true;
+                    
+                    __block UITextField *__tf = nil;
+                    [LEEAlert alert].config
+                    .LeeTitle(@"论坛昵称")
+                    .LeeContent(@"为了保护您的隐私，请绑定论坛昵称")
+                    .LeeAddTextField(^(UITextField *textField) {
+                        textField.placeholder = @"请输入昵称：1-8个汉字";
+                        textField.textColor = [UIColor darkGrayColor];
+                        textField.限制长度 = 8;
+                        __tf = textField;
+                    })
+                    .LeeCancelAction(@"取消", nil) // 点击事件的Block如果不需要可以传nil
+                    .LeeDestructiveAction(@"好的", ^{
+                        if (!__tf.text) {
+                            return ;
+                        }
+                        if (!__tf.text.isChinese) {
+                            [HUDHelper showMsg:@"请输入纯汉字昵称"];
+                            return;
+                        }
+                        [NetworkManager1 lhcdoc_setNickname:__tf.text].successBlock = ^(id responseObject) {
+                            aciv.onSend(text, willFlow);
+                        };
+                    })
+                    .leeShouldActionClickClose(^(NSInteger index){
+                        // 是否可以关闭回调, 当即将关闭时会被调用 根据返回值决定是否执行关闭处理
+                        // 这里演示了与输入框非空校验结合的例子
+                        BOOL result = ![__tf.text isEqualToString:@""];
+                        result = index == 1 ? result : YES;
+                        return result;
+                    })
+                    .LeeShow();
+                }
             }
         };
     };
@@ -79,6 +116,43 @@
                 aciv.textView.text = @"";
                 [aciv.textView resignFirstResponder];
                 [AlertHelper showAlertView:sm.responseObject[@"msg"] msg:nil btnTitles:@[@"确定"]];
+            } else {
+                NSNumber *hasNickname = sm.responseObject[@"extra"][@"hasNickname"];
+                if (hasNickname && !hasNickname.boolValue) {
+                    sm.noShowErrorHUD = true;
+                    
+                    __block UITextField *__tf = nil;
+                    [LEEAlert alert].config
+                    .LeeTitle(@"论坛昵称")
+                    .LeeContent(@"为了保护您的隐私，请绑定论坛昵称")
+                    .LeeAddTextField(^(UITextField *textField) {
+                        textField.placeholder = @"请输入昵称：1-8个汉字";
+                        textField.textColor = [UIColor darkGrayColor];
+                        textField.限制长度 = 8;
+                        __tf = textField;
+                    })
+                    .LeeCancelAction(@"取消", nil) // 点击事件的Block如果不需要可以传nil
+                    .LeeDestructiveAction(@"好的", ^{
+                        if (!__tf.text) {
+                            return ;
+                        }
+                        if (!__tf.text.isChinese) {
+                            [HUDHelper showMsg:@"请输入纯汉字昵称"];
+                            return;
+                        }
+                        [NetworkManager1 lhcdoc_setNickname:__tf.text].successBlock = ^(id responseObject) {
+                            aciv.onSend(text, willFlow);
+                        };
+                    })
+                    .leeShouldActionClickClose(^(NSInteger index){
+                        // 是否可以关闭回调, 当即将关闭时会被调用 根据返回值决定是否执行关闭处理
+                        // 这里演示了与输入框非空校验结合的例子
+                        BOOL result = ![__tf.text isEqualToString:@""];
+                        result = index == 1 ? result : YES;
+                        return result;
+                    })
+                    .LeeShow();
+                }
             }
         };
     };

@@ -138,6 +138,18 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    [collectionView setContentOffset:({
+        CGFloat x = 2;
+        for (int i=0; i<indexPath.item; i++) {
+            x += [self collectionView:collectionView layout:collectionView.collectionViewLayout sizeForItemAtIndexPath:[NSIndexPath indexPathForItem:i inSection:0]].width;
+        }
+        CGFloat w = [self collectionView:collectionView layout:collectionView.collectionViewLayout sizeForItemAtIndexPath:indexPath].width;;
+        x = x - collectionView.width/2 + w/2;
+        x = MAX(x, 0);
+        x = MIN(x, collectionView.contentSize.width - collectionView.width);
+        CGPointMake(x, 0);
+    }) animated:true];
+    
     if (self.platformTitleSelectBlock)
         self.platformTitleSelectBlock(_selectIndex = indexPath.row);
 }
