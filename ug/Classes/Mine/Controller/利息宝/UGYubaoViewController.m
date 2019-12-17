@@ -82,9 +82,22 @@
         [_totalProfitLabel setTextColor:[UIColor blackColor]];
         [subImageView(@"浪图UIImagV") setHidden:NO];
     }
+    
+    [self setYYBgViewBgColor];
  
 }
 
+-(void)setYYBgViewBgColor{
+    if ([@"新年红,石榴红,六合资料" containsString:Skin1.skitType]) {
+        [_yyBgView setBackgroundColor:Skin1.navBarBgColor];
+        self.waveBotomView.backgroundColor =  Skin1.navBarBgColor;
+        self.waveView.realWaveColor =  Skin1.navBarBgColor;
+    } else {
+         [_yyBgView setBackgroundColor:Skin1.bgColor];
+        self.waveBotomView.backgroundColor =  Skin1.bgColor;
+        self.waveView.realWaveColor =  Skin1.bgColor;
+    }
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    self.fd_prefersNavigationBarHidden = YES;
@@ -105,15 +118,7 @@
     self.animatedImageView.animatedImage = bgAnimateImage;
     self.animatedImageView.hidden = YES;
     
-    if ([@"新年红,石榴红,六合资料" containsString:Skin1.skitType]) {
-        [_yyBgView setBackgroundColor:Skin1.navBarBgColor];
-        self.waveBotomView.backgroundColor =  Skin1.navBarBgColor;
-        self.waveView.realWaveColor =  Skin1.navBarBgColor;
-    } else {
-         [_yyBgView setBackgroundColor:Skin1.bgColor];
-        self.waveBotomView.backgroundColor =  Skin1.bgColor;
-        self.waveView.realWaveColor =  Skin1.bgColor;
-    }
+    [self setYYBgViewBgColor];
    
     
     UGYUbaoTitleView *titleView = [[UGYUbaoTitleView alloc] initWithFrame:CGRectMake(0, 0, UGScreenW, 50)];
@@ -154,7 +159,7 @@
         weakSelf.titleView.progressView.progress = progress;
         
     }];
-    
+    [self setYYBgViewBgColor];
     [self getYuebaoInfo];
 }
 

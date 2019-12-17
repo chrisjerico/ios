@@ -52,8 +52,7 @@ static NSString *convertCellid = @"UGConvertCollectionViewCell";
 //    UIImage *image = [UIImage imageNamed:@"bgyubao1"];
 //    UIImage *afterImage = [image qmui_imageWithBlendColor: Skin1.navBarBgColor];
 //    self.bgView.image = afterImage;
-   [_yyBgView setBackgroundColor:Skin1.bgColor];
-   [self.view setBackgroundColor: [UIColor whiteColor]];
+
     
     FastSubViewCode(self.view)
     if (Skin1.isBlack) {
@@ -85,9 +84,28 @@ static NSString *convertCellid = @"UGConvertCollectionViewCell";
           [_turnOutButton setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
           [subImageView(@"浪图UIImagV") setHidden:NO];
       }
+      [self setYyBgViewBgColor];
       [CMCommon textFieldSetPlaceholderLabelColor:Skin1.textColor3 TextField:_inputTextF];
 }
 
+-(void)setYyBgViewBgColor{
+    NSString *skitType = Skin1.skitType;
+    if ([skitType isEqualToString:@"新年红"] || [skitType isEqualToString:@"石榴红"]|| [skitType isEqualToString:@"六合资料"]) {
+        [_yyBgView setBackgroundColor:Skin1.navBarBgColor];
+        self.waveBotomView.backgroundColor =  Skin1.navBarBgColor;
+        self.waveView.realWaveColor =  Skin1.navBarBgColor;
+    }
+    else  {
+         [_yyBgView setBackgroundColor:Skin1.bgColor];
+        self.waveBotomView.backgroundColor =  Skin1.bgColor;
+        self.waveView.realWaveColor =  Skin1.bgColor;
+    }
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self setYyBgViewBgColor];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -116,17 +134,7 @@ static NSString *convertCellid = @"UGConvertCollectionViewCell";
     [self.waveView startWaveAnimation];
     
     
-    NSString *skitType = Skin1.skitType;
-    if ([skitType isEqualToString:@"新年红"] || [skitType isEqualToString:@"石榴红"]) {
-        [_yyBgView setBackgroundColor:Skin1.navBarBgColor];
-        self.waveBotomView.backgroundColor =  Skin1.navBarBgColor;
-        self.waveView.realWaveColor =  Skin1.navBarBgColor;
-    }
-    else  {
-         [_yyBgView setBackgroundColor:Skin1.bgColor];
-        self.waveBotomView.backgroundColor =  Skin1.bgColor;
-        self.waveView.realWaveColor =  Skin1.bgColor;
-    }
+    [self setYyBgViewBgColor];
 
     
     self.transferType = @"in";
