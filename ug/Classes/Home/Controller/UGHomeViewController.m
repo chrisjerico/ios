@@ -713,6 +713,7 @@
             NSLog(@"四肖八码");
             UGPostDetailVC *vc = _LoadVC_from_storyboard_(@"UGPostDetailVC");
             vc.pm = [UGLHPostModel new];
+            vc.title = model.name;
             vc.pm.cid = @"899";
             [NavController1 pushViewController:vc animated:true];
         }
@@ -721,6 +722,7 @@
             UGPostDetailVC *vc = _LoadVC_from_storyboard_(@"UGPostDetailVC");
             vc.pm = [UGLHPostModel new];
             vc.pm.cid = @"907";
+            vc.title = model.name;
             [NavController1 pushViewController:vc animated:true];
         }
         else if([model.alias isEqualToString:@"ptyx"]) {
@@ -728,6 +730,7 @@
             UGPostDetailVC *vc = _LoadVC_from_storyboard_(@"UGPostDetailVC");
             vc.pm = [UGLHPostModel new];
             vc.pm.cid = @"2469";
+            vc.title = model.name;
             [NavController1 pushViewController:vc animated:true];
         }
         else if([model.alias isEqualToString:@"CvB3zABB"]) {

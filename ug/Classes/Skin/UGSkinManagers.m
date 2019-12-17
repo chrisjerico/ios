@@ -232,9 +232,14 @@ static UGSkinManagers *__initSkin1 = nil;
                 [colors addObject:[UIColor colorWithHexString:hs]];
             }
             if (colors.count > 1) {
-                return [UIColor colorWithPatternImage:[UIImage gradientImageWithBounds:APP.Bounds andColors:colors andGradientType:GradientDirectionLeftToRight]];
+                UIColor *c = [UIColor colorWithPatternImage:[UIImage gradientImageWithBounds:APP.Bounds andColors:colors andGradientType:GradientDirectionLeftToRight]];
+                c.cc_userInfo[@"color"] = [hexString componentsSeparatedByString:@","].firstObject;
+                c.cc_userInfo[@"endColor"] = [hexString componentsSeparatedByString:@","].lastObject;
+                return c;
             } else {
-                return colors.firstObject;
+                UIColor *c = colors.firstObject;
+                c.cc_userInfo[@"color"] = hexString;
+                return c;
             }
         };
         
@@ -244,8 +249,10 @@ static UGSkinManagers *__initSkin1 = nil;
                 NSString *setterName = _NSString(@"set%@%@:", colorName[0].uppercaseString, [colorName substringFromIndex:1]);
                 [UGSkinManagers cc_hookSelector:NSSelectorFromString(setterName) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> ai) {
                     UIColor *c = ai.arguments.firstObject;
+                    NSDictionary *cc_userInfo = c.cc_userInfo;
                     c = [c colorWithAlphaComponent:SkinAlpha];
                     c.cc_userInfo[@"colorName"] = colorName;
+                    [c.cc_userInfo addEntriesFromDictionary:cc_userInfo];
                     [ai.originalInvocation setArgument:&c atIndex:2];
                     [ai.originalInvocation invoke];
                 } error:nil];

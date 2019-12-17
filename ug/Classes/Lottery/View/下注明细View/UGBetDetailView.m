@@ -192,13 +192,9 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
                         })
                         .LeeAction(@"取消", nil)
                         .LeeAction(@"分享", ^{//跳到聊天界面，把分享数据传过去
-                            NSString *jsonStr = [self shareBettingData];
-                            NSString *url = _NSString(@"%@%@%@&color=%@&back=hide&loginsessid=%@&logintoken=%@&tag=3&from=app", APP.Host, @"/dist/index.html#/home?roomId=0&roomName=", SysConf.chatRoomName, Skin1.navBarBgColor.hexString, [UGUserModel currentUser].sessid, [UGUserModel currentUser].token);
-                            NSLog(@"url = %@",url);
-                            UGChatViewController *chatVC = [[UGChatViewController alloc] init];
-                            chatVC.jsonStr = jsonStr;
-                            [chatVC setUrl:url];
-                            [NavController1 pushViewController:chatVC animated:YES];
+                            UGChatViewController *vc = [[UGChatViewController alloc] init];
+                            vc.shareBetJson = [self shareBettingData];
+                            [NavController1 pushViewController:vc animated:YES];
                         })
                         .LeeHeaderColor(Skin1.bgColor)
                         .LeeShow();
@@ -209,13 +205,9 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
                             .LeeContent(@"是否分享到聊天室")
                             .LeeAction(@"取消", nil)
                             .LeeAction(@"分享", ^{//跳到聊天界面，把分享数据传过去
-                                NSString *jsonStr = [self shareBettingData];
-                                NSString *url = _NSString(@"%@%@%@&color=%@&back=hide&loginsessid=%@&logintoken=%@&tag=3&from=app", APP.Host, @"/dist/index.html#/home?roomId=0&roomName=", SysConf.chatRoomName, Skin1.navBarBgColor.hexString, [UGUserModel currentUser].sessid, [UGUserModel currentUser].token);
-                                NSLog(@"url = %@",url);
-                                UGChatViewController *chatVC = [[UGChatViewController alloc] init];
-                                chatVC.jsonStr = jsonStr;
-                                [chatVC setUrl:url];
-                                [NavController1 pushViewController:chatVC animated:YES];
+                                UGChatViewController *vc = [[UGChatViewController alloc] init];
+                                vc.shareBetJson = [self shareBettingData];
+                                [NavController1 pushViewController:vc animated:YES];
                              })
 
                             .LeeShow();

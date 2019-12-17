@@ -152,6 +152,42 @@
 }
 
 
+#pragma mark - H5 url
+
+- (NSString *)chatShareUrl {
+    NSString *url = _NSString(@"%@/dist/index.html#/home", _Host);
+    return [url stringByAppendingURLParams:@{
+        // 公共参数
+        @"from":@"app",
+        @"color":Skin1.navBarBgColor.cc_userInfo[@"color"],
+        @"endColor":Skin1.navBarBgColor.cc_userInfo[@"endColor"],
+        @"back":@"hide",
+        @"loginsessid":[UGUserModel currentUser].sessid,
+        @"logintoken":[UGUserModel currentUser].token,
+        // 定制参数
+        @"roomId":@"0",
+        @"roomName":SysConf.chatRoomName,
+        @"tag":@"3",
+    }];
+}
+
+- (NSString *)chatHomeUrl {
+    NSString *url = _NSString(@"%@/dist/#/home", _Host);
+    return [url stringByAppendingURLParams:@{
+        @"from":@"app",
+        @"color":Skin1.navBarBgColor.cc_userInfo[@"color"],
+        @"endColor":Skin1.navBarBgColor.cc_userInfo[@"endColor"],
+        @"back":@"hide",
+        @"loginsessid":[UGUserModel currentUser].sessid,
+        @"logintoken":[UGUserModel currentUser].token,
+    }];
+}
+
+- (NSString *)chatGameUrl:(NSString *)gameId {
+    return [self.chatHomeUrl stringByAppendingURLParams:@{@"roomId":gameId}];
+}
+
+
 #pragma mark - Setup
 
 - (void)setupSystem {

@@ -45,7 +45,7 @@
     [super viewDidLoad];
     _textBuffer = [@{} mutableCopy];
     self.view.clipsToBounds = true;
-    self.title = @"帖子详情";
+    self.title = self.title.mutableCopy;    // 让导航条的标题显示出来
     
     __weakSelf_(__self);
     _topView.hidden = true;
@@ -258,10 +258,8 @@
 
 // 打赏
 - (IBAction)onRewardBtnClick:(UIButton *)sender {
-    if (!UGLoginIsAuthorized()) {
-        SANotificationEventPost(UGNotificationShowLoginView, nil);
-        return;
-    }
+    CheckLogin(false, false,);
+    
     LHPostRewardView *prv = _LoadView_from_nib_(@"LHPostRewardView");
     prv.pm = _pm;
     __weakSelf_(__self);
@@ -276,10 +274,8 @@
 
 // 关注
 - (IBAction)onFollowBtnClick:(UIButton *)sender {
-    if (!UGLoginIsAuthorized()) {
-        SANotificationEventPost(UGNotificationShowLoginView, nil);
-        return;
-    }
+    CheckLogin(false, false,);
+    
     BOOL follow = !sender.selected;
     __weakSelf_(__self);
     [NetworkManager1 lhcdoc_followPoster:_pm.uid followFlag:follow].successBlock = ^(id responseObject) {
@@ -291,10 +287,8 @@
 
 // 投票
 - (IBAction)onVoteBtnClick:(UIButton *)sender {
-    if (!UGLoginIsAuthorized()) {
-        SANotificationEventPost(UGNotificationShowLoginView, nil);
-        return;
-    }
+    CheckLogin(false, false,);
+    
     LHPostVoteView *pvv = _LoadView_from_nib_(@"LHPostVoteView");
     pvv.pm = _pm;
     __weakSelf_(__self);
@@ -317,10 +311,8 @@
 
 // 点赞
 - (IBAction)onLikeBtnClick:(UIButton *)sender {
-    if (!UGLoginIsAuthorized()) {
-        SANotificationEventPost(UGNotificationShowLoginView, nil);
-        return;
-    }
+    CheckLogin(false, false,);
+    
     UIButton *bottomLikeBtn = sender;
     UILabel *bottomLikeLabel = [sender.superview viewWithTagString:@"点赞数Label"];
     BOOL like = !bottomLikeBtn.selected;
@@ -341,19 +333,15 @@
 
 // 评论
 - (IBAction)onCommentBtnClick:(UIButton *)sender {
-    if (!UGLoginIsAuthorized()) {
-        SANotificationEventPost(UGNotificationShowLoginView, nil);
-        return;
-    }
+    CheckLogin(false, false,);
+    
     [LHPostCommentInputView show1:_pm];
 }
 
 // 收藏
 - (IBAction)onFavBtnClick:(UIButton *)sender {
-    if (!UGLoginIsAuthorized()) {
-        SANotificationEventPost(UGNotificationShowLoginView, nil);
-        return;
-    }
+    CheckLogin(false, false,);
+    
     BOOL fav = !sender.selected;
     __weakSelf_(__self);
     [NetworkManager1 lhcdoc_doFavorites:_pm.cid type:2 favFlag:fav].successBlock = ^(id responseObject) {
@@ -390,10 +378,8 @@
     {
         [subButton(@"点赞事件Button") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
         [subButton(@"点赞事件Button") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-            if (!UGLoginIsAuthorized()) {
-                SANotificationEventPost(UGNotificationShowLoginView, nil);
-                return ;
-            }
+            CheckLogin(false, false,);
+            
             BOOL like = !subButton(@"点赞图标Button").selected;
             [NetworkManager1 lhcdoc_likePost:pcm.pid type:2 likeFlag:like].completionBlock = ^(CCSessionModel *sm) {
                 if (!sm.error) {

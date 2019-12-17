@@ -76,7 +76,9 @@
                             return;
                         }
                         [NetworkManager1 lhcdoc_setNickname:__tf.text].successBlock = ^(id responseObject) {
-                            aciv.onSend(text, willFlow);
+                            if (aciv.onSend) {
+                                aciv.onSend(text, willFlow);
+                            }
                         };
                     })
                     .leeShouldActionClickClose(^(NSInteger index){
@@ -141,7 +143,9 @@
                             return;
                         }
                         [NetworkManager1 lhcdoc_setNickname:__tf.text].successBlock = ^(id responseObject) {
-                            aciv.onSend(text, willFlow);
+                            if (aciv.onSend) {
+                                aciv.onSend(text, willFlow);
+                            }
                         };
                     })
                     .leeShouldActionClickClose(^(NSInteger index){

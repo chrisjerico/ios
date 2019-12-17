@@ -47,12 +47,28 @@
 #pragma mark 生成错误信息
 // 把 “HTTP请求成功，但服务器返回操作失败” 的情况生成错误信息NSError
 - (NSError *)validationError:(CCSessionModel *)sm {
+    
+    if ([sm.urlString containsString:APP.Host.lastPathComponent] && sm.responseObject) {
+        id responseObject = sm.responseObject;
+        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+            // 业务逻辑错误 code!=false
+            int code = [responseObject[@"code"] intValue];
+            if (code != 0) {
+                return [NSError errorWithDomain:responseObject[@"msg"] ? : _NSString(@"请求失败 %d", code) code:code userInfo:nil];
+            }
+        } else {
+            // 返回数据格式错误
+            return [NSError errorWithDomain:@"数据格式错误。" code:-1 userInfo:nil];
+        }
+    }
+    
     // 请求失败
     if (sm.error) {
         if (sm.response.statusCode == 401) {
             [SVProgressHUD dismiss];
             SANotificationEventPost(UGNotificationloginTimeout, nil);
             sm.noShowErrorHUD = true;
+            return [NSError errorWithDomain:@"您的账号已经登录超时，请重新登录。" code:sm.error.code userInfo:sm.error.userInfo];
         }
         if (sm.response.statusCode == 402) {
             [SVProgressHUD dismiss];
@@ -60,37 +76,13 @@
             UGUserModel.currentUser = nil;
             SANotificationEventPost(UGNotificationUserLogout, nil);
             sm.noShowErrorHUD = true;
+            return [NSError errorWithDomain:@"登录已过期" code:sm.error.code userInfo:sm.error.userInfo];
         }
+        
         if (sm.response.statusCode == 403 || sm.response.statusCode == 404) {
             return [NSError errorWithDomain:sm.error.userInfo[@"com.alamofire.serialization.response.error.data"] code:sm.response.statusCode userInfo:sm.error.userInfo];
         }
-        
-        NSLog(@"❌ 请求 URLString：%@ 失败！发送参数：%@\n 参数的 JSON 字符串为：%@\n ERROR 的系统信息为：\n%@\n", sm.urlString, sm.params, sm.params.mj_JSONString, sm.error);
-        if ([sm.error.domain isEqualToString:@"NSURLErrorDomain"])
-            return [NSError errorWithDomain:@"当前网络连接异常，请检查一下你的网络设置。" code:sm.error.code userInfo:sm.error.userInfo];
-        if ([sm.error.domain containsString:@".error."])
-            return [NSError errorWithDomain:@"服务器连接异常，请你在“我的-使用帮助-联系客服”中与我们联系。" code:sm.error.code userInfo:sm.error.userInfo];
         return [NSError errorWithDomain:@"当前网络连接异常，请检查一下你的网络设置。" code:sm.error.code userInfo:sm.error.userInfo];
-        NSError *error = sm.error.userInfo[@"NSUnderlyingError"] ? : sm.error;
-        return [NSError errorWithDomain:error.userInfo[@"NSLocalizedDescription"] ? : error.domain code:sm.error.code userInfo:sm.error.userInfo];
-    }
-    
-    // 非主服务器则返nil
-    if (![sm.urlString containsString:APP.Host.lastPathComponent])
-        return nil;
-    
-    id responseObject = sm.responseObject;
-
-    // 返回数据格式错误
-    if (![responseObject isKindOfClass:[NSDictionary class]]) {
-        NSLog(@"❌ 请求 URLString：%@ 失败！发送参数：%@\n 参数的 JSON 字符串为：%@\n 返回参数为：%@\n ⭕️ responseObject 不是 NSDictionary 类。", sm.urlString, sm.params, sm.params.mj_JSONString, responseObject);
-        return [NSError errorWithDomain:@"数据格式错误。" code:-1 userInfo:nil];
-    }
-    
-    // 业务逻辑错误 code!=false
-    int code = [responseObject[@"code"] intValue];
-    if (code != 0) {
-        return [NSError errorWithDomain:responseObject[@"msg"] ? : _NSString(@"请求失败 %d", code) code:code userInfo:nil];
     }
     return nil;
 }
@@ -127,11 +119,7 @@
         temp;
     });
     
-    if (checkSign) {
-        urlString = [urlString containsString:@"?"] ? [urlString stringByAppendingFormat:@"&checkSign=1"] : [urlString stringByAppendingFormat:@"?checkSign=1"];
-        params = [CMNetwork encryptionCheckSign:params];
-        params[@"checkSign"] = @"1";
-    }
+    
     CCSessionModel *sm = [CCSessionModel new];
     sm.urlString = urlString;
     sm.params = params;
@@ -139,15 +127,11 @@
     sm.delegate = self;
     sm.reconnectCnt = 1;
     
-#ifdef DEBUG
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        if (sm.successBlock)
-//            sm.successBlock(@{});
-//        if (sm.completionBlock)
-//            sm.completionBlock(sm);
-//    });
-//    return sm;
-#endif
+    if (checkSign) {
+        urlString = [urlString containsString:@"?"] ? [urlString stringByAppendingFormat:@"&checkSign=1"] : [urlString stringByAppendingFormat:@"?checkSign=1"];
+        params = [CMNetwork encryptionCheckSign:params];
+        params[@"checkSign"] = @"1";
+    }
     
     // 发起请求
     {

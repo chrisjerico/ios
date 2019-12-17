@@ -70,7 +70,7 @@
 - (NSDate *)dateWithFormat:(NSString *)format;                  /**<    获取日期 */
 - (UIImage *)qrCodeWithWidth:(CGFloat)w;                        /**<    获取二维码图片 */
 - (UIImage *)qrCodeWithWidth:(CGFloat)w color:(UIColor *)color; /**<    获取二维码图片 */
-- (NSString *)stringByAppendingURLParams:(NSDictionary *)dict;
+- (NSString *)stringByAppendingURLParams:(NSDictionary *)dict;  /**<    拼接url参数 */
 - (NSString *)substringWithSize:(CGSize)size font:(UIFont *)font;   /**<    按照显示框大小裁剪字符串 */
 
 - (NSString *)objectAtIndexedSubscript:(NSUInteger)idx NS_AVAILABLE(10_8, 6_0);

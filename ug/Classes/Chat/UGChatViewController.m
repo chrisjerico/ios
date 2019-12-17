@@ -18,49 +18,43 @@
 @implementation UGChatViewController
 
 - (void)skin {
-     if([self.url containsString:@"logintoken"]) {
-         self.url = ({
-             NSString *url = _NSString(@"%@%@%@&loginsessid=%@&color=%@&back=hide&from=app", APP.Host, newChatRoomUrl, [UGUserModel currentUser].token, [UGUserModel currentUser].sessid, Skin1.navBarBgColor.hexString);
-             if (_gameId.length)
-                 url = [url stringByAppendingFormat:@"&roomId=%@", self.gameId];
-             url;
-         });
-     } else {
-        self.url = _NSString(@"%@%@%@&color=%@&back=hide&from=app", APP.Host, chatRoomUrl,SysConf.chatRoomName,Skin1.navBarBgColor.hexString);
-     }
+    
 }
 
 - (BOOL)允许游客访问 { return true; }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-        [self skin];
-    });
-    
-    if ([CMCommon stringIsNull:self.url]) {
-        NSLog(@"url = %@",self.url);
-        self.url = ({
-               NSString *url = _NSString(@"%@%@%@&loginsessid=%@&color=%@&back=hide&from=app", APP.Host, newChatRoomUrl, [UGUserModel currentUser].token, [UGUserModel currentUser].sessid, Skin1.navBarBgColor.hexString);
-               if (_gameId.length)
-                   url = [url stringByAppendingFormat:@"&roomId=%@", self.gameId];
-            
-            NSLog(@"viewDidLoad url = %@",url);
-               url;
-           });
-    }
-    
     self.title = @"聊天室";
-    
     self.fd_prefersNavigationBarHidden = YES;
     
+    // WebView.frame
     [self setWebViewFrame:CGRectMake(0, 0, UGScreenW, ({
         CGFloat h = APP.Height;
         if ([NavController1.viewControllers.firstObject isKindOfClass:[UGChatViewController class]])
             h -= APP.Height - TabBarController1.tabBar.y;
         h;
     }))];
+    
+    // 设置URL
+    __weakSelf_(__self);
+    {
+        void (^setupUrl)(void) = ^{
+            [__self.tgWebView stopLoading];
+            if (__self.shareBetJson.length) {
+                __self.url = APP.chatShareUrl;
+            } else if (__self.gameId.length) {
+                __self.url = [APP chatGameUrl:__self.gameId];
+            } else {
+                __self.url = APP.chatHomeUrl;
+            }
+            [__self.tgWebView reloadFromOrigin];
+        };
+        SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
+            setupUrl();
+        });
+        setupUrl();
+    }
     
     // 返回按钮
     {
@@ -78,14 +72,14 @@
     }
     
     // 每秒判断一下 window.canShare 参数为YES才进行分享
-    if (_jsonStr.length) {
+    if (_shareBetJson.length) {
         __weakSelf_(__self);
         __block NSTimer *__timer = nil;
         __timer = [NSTimer scheduledTimerWithInterval:1 repeats:true block:^(NSTimer *timer) {
             [__self.tgWebView evaluateJavaScript:@"window.canShare" completionHandler:^(id obj, NSError *error) {
                 NSLog(@"是否可以分享：%d", [obj boolValue]);
                 if ([obj isKindOfClass:[NSNumber class]] && [obj boolValue]) {
-                    [__self.tgWebView evaluateJavaScript:__self.jsonStr completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+                    [__self.tgWebView evaluateJavaScript:__self.shareBetJson completionHandler:^(id _Nullable result, NSError * _Nullable error) {
                         NSLog(@"分享结果：%@----%@", result, error);
                     }];
                     [__timer invalidate];
@@ -109,19 +103,19 @@
     _statusBarBgView.backgroundColor = Skin1.navBarBgColor;
     [self.view addSubview:_statusBarBgView];
     
-    if ([self.title isEqualToString:@"聊天室"] && !_jsonStr.length) {
+    if ([self.title isEqualToString:@"聊天室"] && !_shareBetJson.length) {
         if (OBJOnceToken(UserI)) {
             [self.tgWebView stopLoading];
-            self.url = _NSString(@"%@%@%@&loginsessid=%@&color=%@&back=hide&from=app", APP.Host, newChatRoomUrl, [UGUserModel currentUser].token, [UGUserModel currentUser].sessid, Skin1.navBarBgColor.hexString);
+            self.url = APP.chatHomeUrl;
             [self.tgWebView reloadFromOrigin];
         }
     }
 }
 
-- (void)setJsonStr:(NSString *)jsonStr {
-    _jsonStr = jsonStr;
-    NSLog(@"_jsonStr = %@",_jsonStr);
-    if (![CMCommon stringIsNull:_jsonStr]){
+- (void)setShareBetJson:(NSString *)shareBetJson {
+    _shareBetJson = shareBetJson;
+    NSLog(@"shareBetJson = %@", shareBetJson);
+    if (![CMCommon stringIsNull:shareBetJson]){
         [self.view addSubview:_closeBtn];
     }
 }

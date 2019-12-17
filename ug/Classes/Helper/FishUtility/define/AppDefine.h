@@ -21,6 +21,7 @@
 @property (nonatomic, readonly) NSString *SiteId;       /**<   当前站点ID */
 @property (nonatomic, readonly) NSArray <SiteModel *> *allSites;  /**<   所有站点 */
 
+
 @property (nonatomic) NSInteger PageCount;              /**<    TableView每页显示多少条数据 */
 @property (nonatomic) NSUInteger PhotoMaxLength;        /**<    图片上传允许的最大大小 */
 
@@ -30,6 +31,19 @@
 
 + (instancetype)shared;
 @end
+
+
+
+#pragma mark - H5 url
+// ——————————————————————————
+@interface AppDefine ()
+
+@property (nonatomic, readonly) NSString *chatShareUrl; /**<   分享注单到聊天室URL */
+@property (nonatomic, readonly) NSString *chatHomeUrl;  /**<   聊天室大厅URL */
+- (NSString *)chatGameUrl:(NSString *)gameId;           /**<   聊天室-游戏房间 */
+@end
+
+
 
 
 
