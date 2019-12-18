@@ -239,12 +239,17 @@
     }
     // l001站点定制需求
     if ([APP.SiteId containsString:@"l001"]) {
-        self.bottomTitle.text = @"💻电脑版";
-        [self.preferentialBtn setHidden:YES];
+        if (Skin1.isLH) {
+            self.bottomTitle.text = @"💻电脑版";
+            [self.preferentialBtn setHidden:YES];
+        } else {
+            self.bottomTitle.text = @"💻电脑版 🎁优惠活动";
+            [self.preferentialBtn setHidden:NO];
+        }
     }
     else{
-       self.bottomTitle.text = @"💻电脑版 🎁优惠活动";
-       [self.preferentialBtn setHidden:NO];
+        self.bottomTitle.text = @"💻电脑版 🎁优惠活动";
+        [self.preferentialBtn setHidden:NO];
     }
     
     
