@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Qlk-11-xZ9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Qlk-11-xZ9">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -399,7 +399,7 @@
                                                         <subviews>
                                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="uPM-oZ-8sL">
                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="h8Q-5U-3Qi">
                                                                     <size key="itemSize" width="50" height="50"/>
                                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -422,7 +422,7 @@
                                                                 </connections>
                                                             </collectionView>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="bottom" secondItem="uPM-oZ-8sL" secondAttribute="bottom" id="GVe-xf-amP"/>
                                                             <constraint firstAttribute="trailing" secondItem="uPM-oZ-8sL" secondAttribute="trailing" id="I98-c9-G2F"/>
@@ -884,6 +884,7 @@
                     <connections>
                         <outlet property="bannerBgView" destination="net-c8-MAp" id="SVn-VV-nOV"/>
                         <outlet property="bottomLabel" destination="bF5-Qk-pg4" id="9gR-5K-PS0"/>
+                        <outlet property="bottomTitle" destination="Vq9-5e-sW1" id="G5L-9f-JvT"/>
                         <outlet property="bottomView" destination="M2E-aZ-PrH" id="0uG-uN-G9G"/>
                         <outlet property="contentCollectionView" destination="uPM-oZ-8sL" id="vbP-W2-2WI"/>
                         <outlet property="contentScrollView" destination="aKo-Go-xPf" id="Zsv-7O-rfw"/>
@@ -903,6 +904,7 @@
                         <outlet property="lotteryTitleLabel" destination="D3S-17-6Nf" id="Uc1-94-Jl0"/>
                         <outlet property="lotteryUISwitch" destination="5hz-n1-Cwv" id="gzl-rE-uf7"/>
                         <outlet property="lottyLabel" destination="m8R-rd-rSU" id="GOD-QS-tKO"/>
+                        <outlet property="preferentialBtn" destination="Xda-dM-ANV" id="i6d-Wa-Fdb"/>
                         <outlet property="promotionView" destination="7oT-DH-Tz9" id="r07-f1-ldk"/>
                         <outlet property="promotionsStackView" destination="xgj-Ln-Ukx" id="HAh-7F-6YB"/>
                         <outlet property="rankLabel" destination="7pj-to-Bil" id="gE2-Al-CqK"/>

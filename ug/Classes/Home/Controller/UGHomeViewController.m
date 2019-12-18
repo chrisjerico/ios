@@ -148,7 +148,9 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *bottomLabel;  /**<   底部商标Label */
 @property (weak, nonatomic) IBOutlet UIView *bottomView;    /**<   底部商标ContentView */
-
+    
+@property (weak, nonatomic) IBOutlet UILabel *bottomTitle;  /**<   底部内容文字 */
+@property (weak, nonatomic) IBOutlet UIButton *preferentialBtn;/**<   底部优惠按钮 */
 
 
 
@@ -235,6 +237,16 @@
             }
         }
     }
+    // l001站点定制需求
+    if ([APP.SiteId containsString:@"l001"]) {
+        self.bottomTitle.text = @"💻电脑版";
+        [self.preferentialBtn setHidden:YES];
+    }
+    else{
+       self.bottomTitle.text = @"💻电脑版 🎁优惠活动";
+       [self.preferentialBtn setHidden:NO];
+    }
+    
     
     // 黑色模板的UI调整
     BOOL isBlack = Skin1.isBlack;
@@ -476,7 +488,8 @@
     _flow.delegate = self;
     _flow.flowLayoutStyle = WSLWaterFlowVerticalEqualHeight;
     
-    self.contentCollectionView.backgroundColor = RGBA(221, 221, 221, 1);
+//    self.contentCollectionView.backgroundColor = RGBA(221, 221, 221, 1);
+      self.contentCollectionView.backgroundColor = [UIColor whiteColor];
     self.contentCollectionView.dataSource = self;
     self.contentCollectionView.delegate = self;
     self.contentCollectionView.tagString= @"六合内容";
@@ -515,11 +528,11 @@
 //}
 /** 列间距*/
 -(CGFloat)columnMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
-    return 1;
+    return 0;
 }
 /** 行间距*/
 -(CGFloat)rowMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
-    return 1;
+    return 0;
 }
 /** 边缘之间的间距*/
 -(UIEdgeInsets)edgeInsetInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
@@ -567,6 +580,8 @@
 //        UIImage *image = [UIImage sd_animatedGIFWithData:imageData];
         [model.isHot isEqualToString:@"1"] ? [subButton(@"hotButton") setHidden:NO] : [subButton(@"hotButton") setHidden:YES];
         [cell setBackgroundColor: [UIColor whiteColor]];
+        cell.layer.borderWidth = 1;
+        cell.layer.borderColor = [RGBA(221, 221, 221, 1) CGColor];
         return cell;
     } else {
       UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
@@ -636,7 +651,7 @@
         CGSize size = {40, 70};
         return size;
     } else {
-        float itemW = (UGScreenW-1)/ 2.0;
+        float itemW = (UGScreenW)/ 2.0;
         CGSize size = {itemW, 100};
         return size;
     }
@@ -647,7 +662,7 @@
 }
 //行间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    return 1.0;
+    return 0.0;
 }
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
     return 0.0;
