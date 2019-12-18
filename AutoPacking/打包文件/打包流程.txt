@@ -55,12 +55,18 @@
     QQ：157731282：kwmo059185
     凤凰平台】内部交流群（菲）
     
+    极光测试账号
+    vns2222222@gmail.com
+    QAZqaz123
+    
     极光推送设置：
     https://docs.jiguang.cn/jpush/client/iOS/ios_cer_guide/
     1：相同的bunldid，p12
     2:AppDelegate 加极光的appKey
     3：打包，运行测试，先测开发环境，再测生产环境
     4:用抓包软件看看url
+    
+    
     
     
     
