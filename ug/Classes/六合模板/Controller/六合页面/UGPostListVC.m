@@ -56,6 +56,24 @@
     
     // TableView
     {
+        UITableView *tv = _tableView;
+        {
+            tv.noDataTipsLabel.text = @"";
+            tv.noDataTipsLabel.height = 270;
+            [tv.noDataTipsLabel addSubview:({
+                UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pl"]];
+                imgView.center = CGPointMake(APP.Width/2, 140);
+                imgView;
+            })];
+            [tv.noDataTipsLabel addSubview:({
+                UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(0, 250, APP.Width, 20)];
+                lb.textAlignment = NSTextAlignmentCenter;
+                lb.font = [UIFont systemFontOfSize:14];
+                lb.textColor = APP.TextColor2;
+                lb.text = @"暂无数据！";
+                lb;
+            })];
+        }
         NSString *(^sortString)(void) = ^NSString *{
             if (__self.segmentedControl.selectedSegmentIndex == 1) {
                 return @"hot";  // 热门（精华贴）
@@ -64,11 +82,14 @@
             }
             return nil; // 综合
         };
-        [_tableView setupHeaderRefreshRequest:^CCSessionModel *(UITableView *tv) {
+        [tv setupHeaderRefreshRequest:^CCSessionModel *(UITableView *tv) {
             if (__self.request) {
                 CCSessionModel *sm = __self.request(1);
                 if (!sm) {
-                    [__self.tableView.mj_header endRefreshing];
+                    [tv.mj_header endRefreshing];
+                    tv.tableFooterView = tv.noDataTipsLabel;
+                    tv.mj_footer.state = MJRefreshStateNoMoreData;
+                    [(MJRefreshAutoNormalFooter *)tv.mj_footer setTitle:@"" forState:MJRefreshStateNoMoreData];
                 }
                 return sm;
             } else {
@@ -80,11 +101,13 @@
                 [tv.dataArray addObject:[UGLHPostModel mj_objectWithKeyValues:dict]];
             return array;
         }];
-        [_tableView setupFooterRefreshRequest:^CCSessionModel *(UITableView *tv) {
+        [tv setupFooterRefreshRequest:^CCSessionModel *(UITableView *tv) {
             if (__self.request) {
                 CCSessionModel *sm = __self.request(tv.pageIndex);
                 if (!sm) {
-                    [__self.tableView.mj_header endRefreshing];
+                    tv.tableFooterView = tv.noDataTipsLabel;
+                    tv.mj_footer.state = MJRefreshStateNoMoreData;
+                    [(MJRefreshAutoNormalFooter *)tv.mj_footer setTitle:@"" forState:MJRefreshStateNoMoreData];
                 }
                 return sm;
             } else {
@@ -96,7 +119,7 @@
                 [tv.dataArray addObject:[UGLHPostModel mj_objectWithKeyValues:dict]];
             return array;
         }];
-        [_tableView.mj_footer beginRefreshing];
+        [tv.mj_footer beginRefreshing];
     }
 }
 

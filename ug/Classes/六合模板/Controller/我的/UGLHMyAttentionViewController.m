@@ -32,46 +32,64 @@
     self.title = @"我的关注";
     [_tableView setRowHeight:70.0];
     
-    {
+    UITableView *tv = _tableView;
+    if (UserI.isTest) {
+        tv.noDataTipsLabel.text = @"";
+        tv.noDataTipsLabel.height = 270;
+        [tv.noDataTipsLabel addSubview:({
+            UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pl"]];
+            imgView.center = CGPointMake(APP.Width/2, 140);
+            imgView;
+        })];
+        [tv.noDataTipsLabel addSubview:({
+            UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(0, 250, APP.Width, 20)];
+            lb.textAlignment = NSTextAlignmentCenter;
+            lb.font = [UIFont systemFontOfSize:14];
+            lb.textColor = APP.TextColor2;
+            lb.text = @"暂无数据！";
+            lb;
+        })];
+        tv.tableFooterView = _tableView.noDataTipsLabel;
+    } else {
         if (self.selectIndex) {
             [self.mySegment setSelectedSegmentIndex:self.selectIndex];
         }
         __weakSelf_(__self);
-        [_tableView setupHeaderRefreshRequest:^CCSessionModel *(UITableView *tv) {
+        [tv setupHeaderRefreshRequest:^CCSessionModel *(UITableView *tv) {
             return __self.mySegment.selectedSegmentIndex ? [NetworkManager1 lhdoc_favContentList:__self.uid page:1] : [NetworkManager1 lhdoc_followList:__self.uid page:1];
         } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
             if (__self.mySegment.selectedSegmentIndex) {//帖
                 NSArray *array = sm.responseObject[@"data"];
                 for (NSDictionary *dict in array) {
-                    [__self.tableView.dataArray addObject:[UGLHPostModel mj_objectWithKeyValues:dict]];
+                    [tv.dataArray addObject:[UGLHPostModel mj_objectWithKeyValues:dict]];
                 }
                 return array;
             } else {
                 NSArray *array = sm.responseObject[@"data"][@"list"];
                 for (NSDictionary *dict in array) {
-                    [__self.tableView.dataArray addObject:[UGLHFocusUserModel mj_objectWithKeyValues:dict]];
+                    [tv.dataArray addObject:[UGLHFocusUserModel mj_objectWithKeyValues:dict]];
                 }
                 return array;
             }
         }];
-        [_tableView setupFooterRefreshRequest:^CCSessionModel *(UITableView *tv) {
+        [tv setupFooterRefreshRequest:^CCSessionModel *(UITableView *tv) {
             return __self.mySegment.selectedSegmentIndex ? [NetworkManager1 lhdoc_favContentList:__self.uid page:tv.pageIndex] : [NetworkManager1 lhdoc_followList:__self.uid page:tv.pageIndex];
         } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
             if (__self.mySegment.selectedSegmentIndex) {//帖
                 NSArray *array = sm.responseObject[@"data"];
                 for (NSDictionary *dict in array) {
-                    [__self.tableView.dataArray addObject:[UGLHPostModel mj_objectWithKeyValues:dict]];
+                    [tv.dataArray addObject:[UGLHPostModel mj_objectWithKeyValues:dict]];
                 }
                 return array;
             } else {
                 NSArray *array = sm.responseObject[@"data"][@"list"];
                 for (NSDictionary *dict in array) {
-                    [__self.tableView.dataArray addObject:[UGLHFocusUserModel mj_objectWithKeyValues:dict]];
+                    [tv.dataArray addObject:[UGLHFocusUserModel mj_objectWithKeyValues:dict]];
                 }
                 return array;
             }
         }];
-        [_tableView.mj_footer beginRefreshing];
+        [tv.mj_footer beginRefreshing];
     }
 }
 
