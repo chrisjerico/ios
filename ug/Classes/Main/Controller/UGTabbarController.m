@@ -10,7 +10,7 @@
 #import "UGLotteryHomeController.h"         // 彩票大厅
 #import "UGFundsViewController.h"           // 资金管理
 #import "UGHomeViewController.h"            // 首页
-#import "UGYYLotteryHomeViewController.h"   // 彩票大厅
+#import "UGYYLotteryHomeViewController.h"   // 购彩大厅
 #import "UGMineSkinViewController.h"        // 我的
 #import "UGPromotionsController.h"          // 优惠活动
 #import "UGChangLongController.h"           // 长龙助手
@@ -50,7 +50,7 @@ _CCRuntimeProperty_Assign(BOOL, 允许游客访问, set允许游客访问)
 
 @interface UGTabbarController ()<UITabBarControllerDelegate>
 
-@property (nonatomic, copy) NSArray<UGmobileMenu *> *gms;
+@property (nonatomic, copy) NSArray<UGMobileMenu *> *mms;
 @end
 
 @implementation UGTabbarController
@@ -112,26 +112,6 @@ static UGTabbarController *_tabBarVC = nil;
 - (void)viewDidLoad {
     [super viewDidLoad];
     _tabBarVC = self;
-    _gms = @[
-        [UGmobileMenu menu:@"/home"            :@"首页" :@"shouye" :@"shouyesel"         :[UGHomeViewController class]],
-        [UGmobileMenu menu:@"/changLong"       :@"长龙助手" :@"changlong" :@"changlong"    :[UGChangLongController class]],
-        [UGmobileMenu menu:@"/lotteryList"     :@"彩票大厅" :@"dating" :@"datongsel"       :[UGYYLotteryHomeViewController class]],
-        [UGmobileMenu menu:@"/activity"        :@"优惠活动" :@"youhui1" :@"youhui1sel"     :[UGPromotionsController class]],
-        [UGmobileMenu menu:@"/chatRoomList"    :@"聊天室" :@"liaotian" :@"liaotiansel"    :[UGChatViewController class]],
-        [UGmobileMenu menu:@"/lotteryRecord"   :@"开奖记录" :@"zdgl" :@"zdgl"              :[UGLotteryRecordController class]],
-        [UGmobileMenu menu:@"/user"            :@"我的" :@"wode" :@"wodesel"             :[UGMineSkinViewController class]],
-        [UGmobileMenu menu:@"/user2"            :@"我的" :@"wode" :@"wodesel"             :[UGBMMemberCenterViewController class]],
-        [UGmobileMenu menu:@"/task"            :@"任务中心" :@"renwu" :@"renwusel"         :[UGMissionCenterViewController class]],
-        [UGmobileMenu menu:@"/securityCenter"  :@"安全中心" :@"ziyuan" :@"ziyuan"          :[UGSecurityCenterViewController class]],
-        [UGmobileMenu menu:@"/funds"           :@"资金管理" :@"jinlingyingcaiwangtubiao" :@"jinlingyingcaiwangtubiaosel" :[UGFundsViewController class]],
-        [UGmobileMenu menu:@"/message"         :@"站内信" :@"zhanneixin" :@"zhanneixin"   :[UGMailBoxTableViewController class]],
-        [UGmobileMenu menu:@"/conversion"      :@"额度转换" :@"change" :@"change"          :[UGBalanceConversionController class]],
-        [UGmobileMenu menu:@"/banks"           :@"银行卡" :@"yinhangqia" :@"yinhangqia"   :[UGBindCardViewController class]],
-        [UGmobileMenu menu:@"/yuebao"          :@"利息宝" :@"lixibao" :@"lixibao"         :[UGYubaoViewController class]],
-        [UGmobileMenu menu:@"/Sign"            :@"签到" :@"qiandao" :@"qiandaosel"       :[UGSigInCodeViewController class]],
-        [UGmobileMenu menu:@"/referrer"        :@"推荐收益" :@"shouyi1" :@"shouyi1sel"     :[UGPromotionIncomeController class]],
-        [UGmobileMenu menu:@"/暂无"             :@"申请代理" :@"shouyi1" :@"shouyi1sel"     :[UGAgentViewController class]],
-    ];
     
     self.delegate = self;
     
@@ -139,27 +119,30 @@ static UGTabbarController *_tabBarVC = nil;
     [[UGSkinManagers skinWithSysConf] useSkin];
     
     {
-        NSArray<UGmobileMenu *> *menus = [[UGmobileMenu arrayOfModelsFromDictionaries:SysConf.mobileMenu error:nil] sortedArrayUsingComparator:^NSComparisonResult(UGmobileMenu *obj1, UGmobileMenu *obj2) {
+        NSArray<UGMobileMenu *> *menus = [[UGMobileMenu arrayOfModelsFromDictionaries:SysConf.mobileMenu error:nil] sortedArrayUsingComparator:^NSComparisonResult(UGMobileMenu *obj1, UGMobileMenu *obj2) {
             return obj1.sort > obj2.sort;
         }];
         if (menus.count > 3) {
             // 后台配置的页面
-            [self resetUpChildViewController:[menus valuesWithKeyPath:@"path"]];
+            [self resetUpChildViewController:menus];
         } else {
             // 默认加载的页面
-            [self resetUpChildViewController:@[@"/home", @"/lotteryList", @"/chatRoomList", @"/activity", @"/user", ]];
+            NSMutableArray *temp = @[].mutableCopy;
+            for (UGMobileMenu *mm in UGMobileMenu.allMenus) {
+                if ([@"/home,/lotteryList,/chatRoomList,/activity,/user" containsString:mm.path]) {
+                    [temp addObject:mm];
+                }
+            }
+            [self resetUpChildViewController:temp];
         }
     }
     
     SANotificationEventSubscribe(UGNotificationGetSystemConfigComplete, self, ^(typeof (self) self, id obj) {
         if (OBJOnceToken(TabBarController1)) {
-            NSArray<UGmobileMenu *> *menus = [[UGmobileMenu arrayOfModelsFromDictionaries:SysConf.mobileMenu error:nil] sortedArrayUsingComparator:^NSComparisonResult(UGmobileMenu *obj1, UGmobileMenu *obj2) {
+            NSArray<UGMobileMenu *> *menus = [[UGMobileMenu arrayOfModelsFromDictionaries:SysConf.mobileMenu error:nil] sortedArrayUsingComparator:^NSComparisonResult(UGMobileMenu *obj1, UGMobileMenu *obj2) {
                 return obj1.sort > obj2.sort;
             }];
-            if (menus.count > 3) {
-                [TabBarController1 resetUpChildViewController:[menus valuesWithKeyPath:@"path"]];
-            }
-            
+            [TabBarController1 resetUpChildViewController:menus];
             [[UGSkinManagers skinWithSysConf] useSkin];
         }
     });
@@ -186,6 +169,7 @@ static UGTabbarController *_tabBarVC = nil;
                 v.hidden = true;
                 [sv addArrangedSubview:v];
             }
+            sv.hidden = true;
             sv.userInteractionEnabled = false;
             [TabBarController1.tabBar addSubview:sv];
         }
@@ -275,20 +259,24 @@ static UGTabbarController *_tabBarVC = nil;
 /**
  *  添加子控制器
  */
-- (void)resetUpChildViewController:(NSArray<NSString *> *)paths {
-    NSMutableArray *vcs = [NSMutableArray new];
-    for (NSString *path in paths) {
-        UGmobileMenu *gm = [_gms objectWithValue:path keyPath:@"path"];
+- (void)resetUpChildViewController:(NSArray<UGMobileMenu *> *)menus {
+    NSMutableArray <UIViewController *>*vcs = [NSMutableArray new];
+    NSMutableArray *mms = @[].mutableCopy;
+    for (UGMobileMenu *mm in menus) {
+        if (![[UGMobileMenu allMenus] objectWithValue:mm.path keyPath:@"path"]) {
+            continue;
+        }
         
         // 判断优惠活动展示在首页还是内页（c001显示在内页）
-        if (gm.cls == [UGPromotionsController class] && SysConf.m_promote_pos && ![APP.SiteId isEqualToString:@"c001"] && !Skin1.isBlack)
+        if (mm.cls == [UGPromotionsController class] && SysConf.m_promote_pos && ![APP.SiteId isEqualToString:@"c001"] && !Skin1.isBlack)
             continue;
         
         // 已存在的控制器不需要重新初始化
         BOOL existed = false;
         for (UINavigationController *nav in self.viewControllers) {
-            if ([nav.viewControllers.firstObject isKindOfClass:gm.cls]) {
+            if ([nav.viewControllers.firstObject isKindOfClass:mm.cls]) {
                 [vcs addObject:nav];
+                [mms addObject:mm];
                 existed = true;
                 break;
             }
@@ -296,19 +284,28 @@ static UGTabbarController *_tabBarVC = nil;
         if (existed)
             continue;
         
-        // 初始化新的控制器
-        UIViewController *vc = _LoadVC_from_storyboard_(NSStringFromClass(gm.cls));
-        if (!vc)
-            vc = [gm.cls new];
-        vc.tabBarItem.title = gm.name;
-        vc.tabBarItem.image = [UIImage imageNamed:gm.icon];
-        vc.tabBarItem.selectedImage = [[UIImage imageNamed:gm.selectedIcon] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        // 初始化控制器
+        // （这里加载了一个假的控制器，在 tabBarController:shouldSelectViewController: 函数才会加载真正的控制器）
+        UIViewController *vc = [UIViewController new];
+        vc.tabBarItem.title = mm.name;
+        vc.tabBarItem.image = [UIImage imageNamed:mm.defaultImgName];
+        vc.tabBarItem.selectedImage = [[UIImage imageNamed:mm.defaultImgName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        [[SDWebImageManager sharedManager] diskImageExistsForURL:[NSURL URLWithString:mm.icon] completion:^(BOOL isInCache) {
+            if (isInCache) {
+                UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:mm.icon]]];
+                vc.tabBarItem.image = image;
+                vc.tabBarItem.selectedImage = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            }
+        }];
         UGNavigationController *nav = [[UGNavigationController alloc] initWithRootViewController:vc];
         [vcs addObject:nav];
+        [mms addObject:mm];
     }
     if (vcs.count > 2) {
         self.viewControllers = vcs;
+        self.mms = mms;
         [self setTabbarStyle];
+        [self tabBarController:self shouldSelectViewController:vcs.firstObject];
     }
 }
 
@@ -316,114 +313,32 @@ static UGTabbarController *_tabBarVC = nil;
 #pragma mark - UITabBarControllerDelegate
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
+    UGMobileMenu *mm = _mms[[tabBarController.viewControllers indexOfObject:viewController]];
     
+    // 由 UGMobileMenu控制显示的ViewController
     UIViewController *vc = ((UINavigationController *)viewController).viewControllers.firstObject;
-
-    __weakSelf_(__self);
-    void (^push)(NSString *, UIViewController *) = ^(NSString *name, UIViewController *vc) {
-        // 初始化控制器
-        UGmobileMenu *gm = [__self.gms objectWithValue:name keyPath:@"name"];
-        vc.tabBarItem.title = gm.name;
-        vc.tabBarItem.image = [UIImage imageNamed:gm.icon];
-        vc.tabBarItem.selectedImage = [[UIImage imageNamed:gm.selectedIcon] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        ((UINavigationController *)viewController).viewControllers = @[vc];
-        tabBarController.selectedViewController = viewController;
-    };
-    //如果是黑色模板或者其他模板：我的 和 黑色模板的我的 进行判断
     
-    if (UGLoginIsAuthorized()
-             && ([vc isKindOfClass:[UGMineSkinViewController class]] || [vc isKindOfClass:[UGBMMemberCenterViewController class]]
-                 || [vc isKindOfClass:[UGLHMineViewController class]])) {
-
-           if ([Skin1.skitType isEqualToString:@"六合资料"]) {
-               if ([vc isKindOfClass:[UGLHMineViewController class]]) {
-               } else {
-                    push(@"我的", _LoadVC_from_storyboard_(@"UGLHMineViewController"));
-                    return false;
-               }
-  
-           }
-           else if (Skin1.isBlack) {
-               if ([vc isKindOfClass:[UGBMMemberCenterViewController class]]) {
-               } else {
-                    push(@"我的", _LoadVC_from_storyboard_(@"UGBMMemberCenterViewController"));
-                    return false;
-               }
-           }
-           else{
-               if ([vc isKindOfClass:[UGMineSkinViewController class]]) {
-               } else {
-                   push(@"我的", [UGMineSkinViewController new]);
-                   return false;
-               }
-
-           }
-           
-    }
-    
-    if (UGLoginIsAuthorized()
-          && ([vc isKindOfClass:[UGBMpreferentialViewController class]] || [vc isKindOfClass:[UGPromotionsController class]]
-              ||[vc isKindOfClass:[UGBMLotteryHomeViewController class]] || [vc isKindOfClass:[UGYYLotteryHomeViewController class]])) {
-
-        
-        if (([vc isKindOfClass:[UGBMpreferentialViewController class]] && !Skin1.isBlack)){
-            push(@"优惠活动", _LoadVC_from_storyboard_(@"UGPromotionsController"));
-                       return false;
-        }
-        if (([vc isKindOfClass:[UGPromotionsController class]] && Skin1.isBlack)){
-            push(@"优惠活动", _LoadVC_from_storyboard_(@"UGBMpreferentialViewController"));
-            return false;
-        }
-        if (([vc isKindOfClass:[UGBMLotteryHomeViewController class]] && !Skin1.isBlack)){
-            push(@"彩票大厅", [UGYYLotteryHomeViewController new]);
-            return false;
-        }
-        if (([vc isKindOfClass:[UGYYLotteryHomeViewController class]] && Skin1.isBlack)){
-            push(@"彩票大厅", _LoadVC_from_storyboard_(@"UGBMLotteryHomeViewController"));
-            return false;
-        }
-    }
-    
-    if (UGLoginIsAuthorized()
-        && ([vc isKindOfClass:[UGPromotionIncomeController class]] || [vc isKindOfClass:[UGAgentViewController class]])) {
-        // 试玩账号直接去推荐收益
-        if (UserI.isTest) {
-            push(@"推荐收益", [UGPromotionIncomeController new]);
-            return false;
-        }
-        
-        // 去推荐收益前判断如果用户不是代理，应该去申请代理页面
-        // 去申请代理前判断如果用户是代理，应该去推荐收益页面
-        if (([vc isKindOfClass:[UGPromotionIncomeController class]] && !UserI.isAgent) ||
-            ([vc isKindOfClass:[UGAgentViewController class]] && UserI.isAgent)) {
-            
-            [SVProgressHUD showWithStatus:nil];
-            [CMNetwork teamAgentApplyInfoWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:^(CMResult<id> *model, NSError *err) {
-                [CMResult processWithResult:model success:^{
-                    [SVProgressHUD dismiss];
-                    UGagentApplyInfo *obj  = (UGagentApplyInfo *)model.data;
-                    int intStatus = obj.reviewStatus.intValue;
-
-                    //0 未提交  1 待审核  2 审核通过 3 审核拒绝
-                    if (intStatus == 2) {
-                        push(@"推荐收益", [UGPromotionIncomeController new]);
-                    } else {
-                        if (![SysConf.agent_m_apply isEqualToString:@"1"]) {
-                            [HUDHelper showMsg:@"在线注册代理已关闭"];
-                            return ;
-                        }
-                        push(@"申请代理", ({
-                            UGAgentViewController *vc = [UGAgentViewController new];
-                            vc.item = obj;
-                            vc;
-                        }));
-                    }
-                } failure:^(id msg) {
-                    [SVProgressHUD showErrorWithStatus:msg];
-                }];
+    // 控制器需要重新加载
+    if (vc.class != mm.cls) {
+        [mm createViewController:^(__kindof UIViewController * _Nonnull vc) {
+            if (![UGTabbarController canPushToViewController:vc]) {
+                return ;
+            }
+            vc.title = mm.name;
+            vc.tabBarItem.title = mm.name;
+            vc.tabBarItem.image = [UIImage imageNamed:mm.defaultImgName];
+            vc.tabBarItem.selectedImage = [[UIImage imageNamed:mm.defaultImgName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            [[SDWebImageManager sharedManager] diskImageExistsForURL:[NSURL URLWithString:mm.icon] completion:^(BOOL isInCache) {
+                if (isInCache) {
+                    UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:mm.icon]]];
+                    vc.tabBarItem.image = image;
+                    vc.tabBarItem.selectedImage = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+                }
             }];
-            return false;
-        }
+            ((UINavigationController *)viewController).viewControllers = @[vc];
+            tabBarController.selectedViewController = viewController;
+        }];
+        return false;
     }
     
     // push权限判断

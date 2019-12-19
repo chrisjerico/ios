@@ -112,6 +112,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.view layoutSubviews];
+    self.navigationController.navigationBarHidden = false;
     if (!self.menuSecondNameArray.count || !self.menuNameArray.count) {
         [self refreshBalance:nil];
     }

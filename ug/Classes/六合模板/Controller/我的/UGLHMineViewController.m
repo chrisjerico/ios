@@ -63,6 +63,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.waveView startWaveAnimation];
+    self.navigationController.navigationBarHidden = false;
     SANotificationEventPost(UGNotificationGetUserInfo, nil);
 }
 

@@ -32,6 +32,36 @@ typedef NS_ENUM(NSInteger, UserCenterItemType) {
     UCI_开奖走势    = 18,
 };
 
+typedef NS_ENUM(NSInteger, MobileMenuType) {
+    MM_首页 = 1,
+    
+    MM_长龙助手,
+    MM_购彩大厅_默认,
+    MM_购彩大厅_亮黑,
+    MM_开奖记录,
+    MM_真人视讯,
+    MM_棋牌电子,
+    
+    MM_我的_六合,
+    MM_我的_默认,
+    MM_我的_亮黑,
+    
+    MM_任务中心,
+    MM_签到,
+    MM_站内信,
+    MM_优惠活动_默认,
+    MM_优惠活动_亮黑,
+    MM_聊天室,
+    MM_推广收益,
+    MM_申请代理,
+    
+    MM_安全中心,
+    MM_资金管理,
+    MM_额度转换,
+    MM_银行卡,
+    MM_利息宝,
+};
+
 
 
 #define SysConf [UGSystemConfigModel currentConfig]
@@ -41,6 +71,7 @@ typedef NS_ENUM(NSInteger, UserCenterItemType) {
 @property (nonatomic, assign) UserCenterItemType code; /**<   id */
 @property (nonatomic, copy) NSString *logo; /**<   图标 */
 @property (nonatomic, copy) NSString *name; /**<   标题 */
+// 自定义参数
 @property (nonatomic, readonly) NSString *lhImgName;    /**<   六合模版使用的本地图标 */
 @property (nonatomic, readonly) NSString *bmImgName;    /**<   黑色模板使用的本地图标 */
 @property (nonatomic, readonly) NSString *defaultImgName;   /**<   正常情况使用的本地图标 */
@@ -58,19 +89,20 @@ typedef NS_ENUM(NSInteger, UserCenterItemType) {
 
 
 
-@protocol UGmobileMenu <NSObject>
+@protocol UGMobileMenu <NSObject>
 
 @end
-@interface UGmobileMenu :UGModel<UGmobileMenu>
+@interface UGMobileMenu :UGModel<UGMobileMenu>
 @property (nonatomic, copy) NSString *path; /**<   界面 */
 @property (nonatomic, copy) NSString *icon; /**<   图标 */
 @property (nonatomic, copy) NSString *name; /**<   标题 */
 @property (nonatomic) NSInteger sort;       /**<   排序 */
-
 // 自定义参数
-@property (nonatomic) Class cls;
-@property (nonatomic, copy) NSString *selectedIcon;
-+ (instancetype)menu:(NSString *)path :(NSString *)name :(NSString *)icon :(NSString *)selectedIcon :(Class)cls;
+@property (nonatomic, readonly) MobileMenuType type;        /**<   页面类型 */
+@property (nonatomic, readonly) NSString *defaultImgName;   /**<   本地图标 */
+@property (nonatomic, readonly) Class cls;
++ (NSArray <UGMobileMenu *>*)allMenus;
+- (void)createViewController:(void (^)(__kindof UIViewController *vc))completion;
 @end
 @protocol UGSystemConfigModel <NSObject>
 
@@ -106,7 +138,7 @@ typedef NS_ENUM(NSInteger, UserCenterItemType) {
 @property (nonatomic, copy) NSString *appPopupQqNum;        /**<   微信客服号 */
 @property (nonatomic, copy) NSString *appPopupQqImg;        /**<   微信客服二维码 */
 
-@property (nonatomic, copy) NSArray<UGmobileMenu *> *mobileMenu;
+@property (nonatomic, copy) NSArray<UGMobileMenu *> *mobileMenu;
 
 @property (nonatomic) NSInteger hide_reco;          /**<   代理人 */
 @property (nonatomic) NSInteger reg_name;           /**<   真实姓名 */

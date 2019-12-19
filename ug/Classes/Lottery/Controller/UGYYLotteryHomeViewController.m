@@ -32,7 +32,6 @@
     [super viewDidLoad];
     _dataArray = [NSMutableArray array];
     [self.view setBackgroundColor: Skin1.bgColor];
-    self.title = @"购彩大厅";
     
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         [self skin];
@@ -45,6 +44,11 @@
         [weakSelf getPlatformGamesWithParams];
     }];
     [self getPlatformGamesWithParams];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = false;
 }
 
 - (void)initCollectionView {

@@ -61,6 +61,7 @@
         collectionView.delegate = self;
         [collectionView registerNib:[UINib nibWithNibName:@"UGhomeRecommendCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UGhomeRecommendCollectionViewCell"];
         [collectionView setShowsHorizontalScrollIndicator:NO];
+        collectionView.contentInset = UIEdgeInsetsMake(0, 0, 100, 0);
         collectionView;
         
     });

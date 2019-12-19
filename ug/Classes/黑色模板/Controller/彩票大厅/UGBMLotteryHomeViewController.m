@@ -38,7 +38,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.title = @"彩票大厅";
+    self.navigationItem.title = @"购彩大厅";
     self.fd_prefersNavigationBarHidden = YES;
     [self.view setBackgroundColor: Skin1.bgColor];
     [self creatView];
