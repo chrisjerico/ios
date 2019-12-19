@@ -126,6 +126,7 @@ UGSystemConfigModel *currentConfig = nil;
             item(@"/lotteryRecord",     @"zdgl",                        UGLotteryRecordController.class,            MM_开奖记录,        @"开奖记录"),
             item(@"/zrsx",              @"real_video1",                 UGYYLotterySecondHomeViewController.class,  MM_真人视讯,        @"真人视讯"),
             item(@"/qpdz",              @"chess_electronic1",           UGYYLotterySecondHomeViewController.class,  MM_棋牌电子,        @"棋牌电子"),
+            item(@"/gameHall",          @"tab_caipiao",                 UGLotteryHomeController.class,              MM_游戏大厅,        @"游戏大厅"),
             item(@"/user",              @"wode",                        UGMineSkinViewController.class,             MM_我的_默认,       @"我的"),
             item(@"/task",              @"renwu",                       UGMissionCenterViewController.class,        MM_任务中心,        @"任务中心"),
             item(@"/Sign",              @"qiandao",                     UGSigInCodeViewController.class,            MM_签到,           @"签到"),

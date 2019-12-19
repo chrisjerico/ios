@@ -41,6 +41,7 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
     MM_开奖记录,
     MM_真人视讯,
     MM_棋牌电子,
+    MM_游戏大厅,
     
     MM_我的_六合,
     MM_我的_默认,
