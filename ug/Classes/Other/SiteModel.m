@@ -107,7 +107,7 @@
             site(@"c002",        @"c002hy",     @"173",     @"io.fhpt.YSAC002",         @"https://154977.com",                          @"企业包",     @"永利彩世界"), // io.dcloud.UNIE955DDC（新增的第三方改签由于频繁掉签已弃用）
             site(@"c091",        @"c091hy",     @"137",     @"io.fhpt.H5691A751",       @"https://83f9.com",                            @"企业包",     @"凤凰彩票"),
             site(@"c084",        @"c084hy",     @"136",     @"io.fhpt.H599DB7B9",       @"https://papghawshugposwaughwsoohu.com",       @"企业包",     @"新2彩票"),//极光 jiguangx2c@gmail.com Qwe741123
-            site(@"c049",        @"c049hy",     @"190",     @"com.xinshiji2.yuansheng", @"https://93922app.com",                        @"企业包",     @"新世纪Ⅱ"),
+            site(@"c049",        @"c049hy",     @"190",     @"com.xinshiji2.yuansheng1", @"https://93922app.com",                        @"企业包",     @"新世纪Ⅱ"),
             site(@"c011",        @"c011",       @"84",      @"io.fhpt.H599FF71F",       @"https://www.hx627.com",                       @"企业包",     @"华夏彩票"), // 已上架
             site(@"c012",        @"c012hy",     @"170",     @"io.fhpt.H5F0B8A01",       @"https://20180849.com",                        @"企业包",     @"8号彩票"),
             site(@"c022",        @"",           @"",        @"io.fhpt.H53EC1170",       @"",                                            @"企业包",     @"68彩票"),
@@ -166,7 +166,7 @@
             site(@"l001",        @"l001hy",     @"218",     @"io.fhpt.YSFL001",         @"http://4988wap.com",                         @"企业包",     @"六合宝典"),//激光账号，qazttcp@gmail.com 密码 ttcp2075ZXC
             site(@"c199",        @"c199hy",     @"220",     @"io.fhpt.YSAC199",         @"https://yhfhapp.com",                         @"企业包",     @"银河贵宾会"),
             
-            
+            site(@"test103",      @"",         @"",     @"com.UGGame.cp",           @"http://103.9.230.243",                       @"内测包",     @"test103"),
             site(@"test10",      @"88",         @"125",     @"com.UGGame.cp",           @"http://test10.6yc.com",                       @"内测包",     @"test10"),
             site(@"c083",        @"",           @"",        @"com.UGGame.cp",           @"http://t111f.fhptcdn.com",                    @"内测包",     @"c083测试"),
             site(@"test100",     @"",           @"",        @"com.UGGame.cp",           @"http://test100f.fhptcdn.com",                 @"内测包",     @"test100"),
@@ -175,6 +175,9 @@
             site(@"test29",      @"",           @"",        @"com.UGGame.cp",           @"http://test29f.fhptcdn.com",                  @"内测包",     @"test29"),// (小东)
             site(@"test19",      @"",           @"",        @"com.UGGame.cp",           @"http://test19.6yc.com",                       @"内测包",     @"test19"),
             site(@"test31",      @"",           @"",        @"com.UGGame.cp",           @"http://test31.6yc.com",                       @"内测包",     @"test31"),
+        
+                    // 站点编号 / 上传编号 / 上传ID / 签名方式 / APP名 / bundleID / 接口域名
+//            NSString *siteId, NSString *uploadNum, NSString *uploadId, NSString *appId, NSString *host, NSString *type, NSString *appName
         ];
     });
     return __dataArray;

@@ -691,6 +691,7 @@
 		D48224F722A10B5F00F7DE72 /* UGNoticeHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D48224F622A10B5F00F7DE72 /* UGNoticeHeaderView.xib */; };
 		D48224FA22A120E500F7DE72 /* UGPlatformNoticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D48224F922A120E500F7DE72 /* UGPlatformNoticeModel.m */; };
 		D48C5DEF2377CBF5006454E6 /* UGBMLotteryHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D48C5DEE2377CBF5006454E6 /* UGBMLotteryHomeViewController.m */; };
+		D490E7CC23ABA8EA0083D4D5 /* UGhomeAdsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D490E7CB23ABA8EA0083D4D5 /* UGhomeAdsModel.m */; };
 		D494C7042366D567001C310F /* OttoScratchView.m in Sources */ = {isa = PBXBuildFile; fileRef = D494C7032366D567001C310F /* OttoScratchView.m */; };
 		D49649B22324E3FA00BA8872 /* UGinviteInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D49649B12324E3FA00BA8872 /* UGinviteInfoModel.m */; };
 		D4997331234F16A7000ECBA3 /* UGgoBindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D499732F234F16A7000ECBA3 /* UGgoBindViewController.m */; };
@@ -1985,6 +1986,8 @@
 		D48224F922A120E500F7DE72 /* UGPlatformNoticeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGPlatformNoticeModel.m; sourceTree = "<group>"; };
 		D48C5DED2377CBF5006454E6 /* UGBMLotteryHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGBMLotteryHomeViewController.h; sourceTree = "<group>"; };
 		D48C5DEE2377CBF5006454E6 /* UGBMLotteryHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGBMLotteryHomeViewController.m; sourceTree = "<group>"; };
+		D490E7CA23ABA8EA0083D4D5 /* UGhomeAdsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGhomeAdsModel.h; sourceTree = "<group>"; };
+		D490E7CB23ABA8EA0083D4D5 /* UGhomeAdsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGhomeAdsModel.m; sourceTree = "<group>"; };
 		D494C7022366D567001C310F /* OttoScratchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OttoScratchView.h; sourceTree = "<group>"; };
 		D494C7032366D567001C310F /* OttoScratchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OttoScratchView.m; sourceTree = "<group>"; };
 		D49649B02324E3FA00BA8872 /* UGinviteInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGinviteInfoModel.h; sourceTree = "<group>"; };
@@ -4994,6 +4997,8 @@
 				D4A36629233DDDD200F6D770 /* UGonlineCount.m */,
 				D4EE8F812341D66B006FA0E2 /* UGYYPlatformGames.h */,
 				D4EE8F822341D66B006FA0E2 /* UGYYPlatformGames.m */,
+				D490E7CA23ABA8EA0083D4D5 /* UGhomeAdsModel.h */,
+				D490E7CB23ABA8EA0083D4D5 /* UGhomeAdsModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -6032,6 +6037,7 @@
 				CFD3BF112347137F00FCDA6D /* UIResponder+EventRouter.m in Sources */,
 				D422A58E229EBF7C0068D0AD /* WavesView.m in Sources */,
 				CFD3BEEF2347137F00FCDA6D /* category.m in Sources */,
+				D490E7CC23ABA8EA0083D4D5 /* UGhomeAdsModel.m in Sources */,
 				D417EFD32330AC090024F634 /* UGRedEnvelopeModel.m in Sources */,
 				D420A77B231505BB0089C0C5 /* UGYuebaoInfoModel.m in Sources */,
 				D405B324227D839B00F8C586 /* CMCommon.m in Sources */,

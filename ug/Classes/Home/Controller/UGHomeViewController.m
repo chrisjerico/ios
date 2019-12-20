@@ -88,7 +88,7 @@
 #import "UGLHCategoryListModel.h"
 #import "UGLHlotteryNumberModel.h"
 #import "UGYYPlatformGames.h"
-
+#import "UGhomeAdsModel.h"
 
 // Tools
 #import "UIImageView+WebCache.h"
@@ -152,8 +152,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *bottomTitle;  /**<   底部内容文字 */
 @property (weak, nonatomic) IBOutlet UIButton *preferentialBtn;/**<   底部优惠按钮 */
 
-
-
+@property (weak, nonatomic) IBOutlet UIView *homeAdsBigBgView;           /**<   首页广告图片大背景View */
+@property (nonatomic, strong) NSArray <UGhomeAdsModel *> *homeAdsArray;   /**<   首页广告图片 */
+@property (weak, nonatomic) IBOutlet UIView *homeAdsBgView;                  /**<   首页广告图片背景View */
+@property (nonatomic, strong) SDCycleScrollView *homeAdsView;                /**<   首页广告图片View */
 //-------------------------------------------
 //六合
 @property (weak, nonatomic) IBOutlet UIView *liuheResultContentView;                    /**<   六合开奖View*/
@@ -217,7 +219,7 @@
             [_contentStackView addArrangedSubviews:views];
         } else {
             // 默认展示内容
-            [_contentStackView addArrangedSubviews:@[_bannerBgView, _rollingView, _gameNavigationView.superview, _gameTypeView.superview, _promotionView, _rankingView, _bottomView]];
+            [_contentStackView addArrangedSubviews:@[_bannerBgView, _rollingView, _gameNavigationView.superview,_homeAdsBigBgView, _gameTypeView.superview, _promotionView, _rankingView, _bottomView]];
             
             // c134在导航栏下添加一张动图
             if ([APP.SiteId containsString:@"c134"]) {
@@ -466,6 +468,7 @@
 		[__self systemOnlineCount];   // 在线人数
         [__self getPromoteList];      // 优惠活动
         [__self getRankList];         // 投注排行榜/中奖排行榜
+        [__self gethomeAdsList];      //首页广告图片
         
         if ([Skin1.skitType isEqualToString:@"六合资料"]) {
             [__self getCategoryList];     //栏目列表
@@ -1052,6 +1055,39 @@
         } failure:nil];
     }];
 }
+//首页广告图片
+- (void)gethomeAdsList {
+    [SVProgressHUD showWithStatus: nil];
+    [CMNetwork systemhomeAdsWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+        [self.contentScrollView.mj_header endRefreshing];
+        [CMResult processWithResult:model success:^{
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // 需要在主线程执行的代码
+                [SVProgressHUD dismiss];
+                self.homeAdsArray = model.data;
+
+                NSMutableArray *mutArr = [NSMutableArray array];
+                if (self.homeAdsArray.count) {
+                    [self.homeAdsBgView setHidden:NO];
+                    for (UGhomeAdsModel *banner in self.homeAdsArray) {
+                        [mutArr addObject:banner.image];
+                    }
+                    NSLog(@"mutArr = %@",mutArr);
+                    self.homeAdsView.imageURLStringsGroup = mutArr.mutableCopy;
+//                    self.bannerView.autoScrollTimeInterval = ((UGBannerModel*)model.data).interval.floatValue;
+                }
+                else{
+                    [self.homeAdsBgView setHidden:YES];
+                }
+            });
+            
+        } failure:^(id msg) {
+            [SVProgressHUD showErrorWithStatus:msg];
+            [self.homeAdsBgView setHidden:YES];
+        }];
+    }];
+}
 
 #pragma mark ------------六合------------------------------------------------------
 // 栏目列表
@@ -1247,29 +1283,33 @@
 
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
 #ifdef DEBUG
-    [[UGSkinManagers next] useSkin];
-    [HUDHelper showMsg:[UGSkinManagers currentSkin].skitString];
-    return;
+//    [[UGSkinManagers next] useSkin];
+//    [HUDHelper showMsg:[UGSkinManagers currentSkin].skitString];
+//    return;
 #endif
     
-	UGBannerCellModel *banner = self.bannerArray[index];
-    BOOL ret = [NavController1 pushViewControllerWithLinkCategory:banner.linkCategory linkPosition:banner.linkPosition];
-    if (!ret) {
-        if ([banner.url containsString:@"mobile"]) {
-            // 若跳转地址包含mobile则不做跳转
-            return;
-        }
-        // 去外部链接
-        if ([banner.url stringByReplacingOccurrencesOfString:@" " withString:@""].length) {
-            NSLog(@"url = %@",banner.url );
-//            if ([banner.url hasPrefix:@"http"]) {
-            if ([banner.url isURL]) {
-                SLWebViewController *webVC = [[SLWebViewController alloc] init];
-                webVC.urlStr = banner.url;
-                [self.navigationController pushViewController:webVC animated:YES];
+    if ([cycleScrollView isEqual:self.bannerView]) {
+        UGBannerCellModel *banner = self.bannerArray[index];
+        BOOL ret = [NavController1 pushViewControllerWithLinkCategory:banner.linkCategory linkPosition:banner.linkPosition];
+        if (!ret) {
+            if ([banner.url containsString:@"mobile"]) {
+                // 若跳转地址包含mobile则不做跳转
+                return;
             }
-            
+            // 去外部链接
+            if ([banner.url stringByReplacingOccurrencesOfString:@" " withString:@""].length) {
+                NSLog(@"url = %@",banner.url );
+                //            if ([banner.url hasPrefix:@"http"]) {
+                if ([banner.url isURL]) {
+                    SLWebViewController *webVC = [[SLWebViewController alloc] init];
+                    webVC.urlStr = banner.url;
+                    [self.navigationController pushViewController:webVC animated:YES];
+                }
+            }
         }
+    } else {
+        UGhomeAdsModel *banner = self.homeAdsArray[index];
+        BOOL ret = [NavController1 pushViewControllerWithLinkCategory:[banner.linkCategory integerValue] linkPosition:[banner.linkPosition integerValue]];
     }
 }
 
@@ -1485,6 +1525,16 @@
     self.bannerView.pageDotColor = RGBA(210, 210, 210, 0.4);
 	[self.bannerBgView insertSubview:self.bannerView atIndex:0];
     
+    
+    self.homeAdsView =  [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, UGScreenW-20, 250/1000.0 * (APP.Width-20)) delegate:self placeholderImage:[UIImage imageNamed:@"placeholder"]];
+
+    self.homeAdsView.backgroundColor = [UIColor clearColor];
+    self.homeAdsView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
+    self.homeAdsView.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    self.homeAdsView.autoScrollTimeInterval = 3.0;
+    self.homeAdsView.delegate = self;
+    self.homeAdsView.pageDotColor = RGBA(210, 210, 210, 0.4);
+    [self.homeAdsBgView insertSubview:self.homeAdsView atIndex:0];
     
 	self.leftwardMarqueeView.direction = UUMarqueeViewDirectionLeftward;
 	self.leftwardMarqueeView.delegate = self;

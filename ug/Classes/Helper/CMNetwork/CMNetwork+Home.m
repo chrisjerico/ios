@@ -18,6 +18,7 @@
 #import "GameCategoryDataModel.h"
 #import "UGonlineCount.h"
 #import "UGYYPlatformGames.h"
+#import "UGhomeAdsModel.h"
 
 @implementation CMNetwork (Home)
 
@@ -204,6 +205,19 @@
     [self.manager requestInMainThreadWithMethod:[systemOnlineCountUrl stringToRestfulUrlWithFlag:RESTFUL]
                                          params:params
                                           model:CMResultClassMake(UGonlineCount.class)
+                                           post:NO
+                                     completion:completionBlock];
+    
+    CMMETHOD_END;
+}
+
+//首页广告图片 http://test100f.fhptcdn.com/wjapp/api.php?c=system&a=homeAds
++ (void)systemhomeAdsWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    
+    [self.manager requestInMainThreadWithMethod:[systemhomeAdsUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:CMResultArrayClassMake(UGhomeAdsModel.class)
                                            post:NO
                                      completion:completionBlock];
     
