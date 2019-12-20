@@ -43,7 +43,8 @@
 #import "UGYYLotterySecondHomeViewController.h" //展示购彩，真人大厅
 #import "UGPostListVC.h"    // 六合帖子列表
 #import "UGDocumentListVC.h"// 六合期数列表
-#import "LHGalleryListVC.h"   // 六合图库
+#import "LHGalleryListVC1.h"   // 六合图库（样式1）
+#import "LHGalleryListVC2.h"   // 六合图库（样式2）
 #import "LHJournalDetailVC.h"   // 期刊详情
 #import "UGPostDetailVC.h"      // 帖子详情
 
@@ -705,7 +706,7 @@
             NSLog(@"公式规律");
         }
         else if([model.alias isEqualToString:@"sixpic"]) {
-            LHGalleryListVC *vc = _LoadVC_from_storyboard_(@"LHGalleryListVC");
+            LHGalleryListVC2 *vc = _LoadVC_from_storyboard_(@"LHGalleryListVC2");
             vc.clm = model;
             [NavController1 pushViewController:vc animated:true];
             NSLog(@"六合图库");

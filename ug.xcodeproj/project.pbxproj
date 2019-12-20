@@ -24,6 +24,12 @@
 		CF0A1D642393E25B00F62010 /* LHPostVoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF0A1D632393E25B00F62010 /* LHPostVoteView.xib */; };
 		CF0A1D692393FBB700F62010 /* LHUserInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CF0A1D682393FBB600F62010 /* LHUserInfoVC.m */; };
 		CF0A1D6D2394CBA200F62010 /* LHUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF0A1D6C2394CBA200F62010 /* LHUserModel.m */; };
+		CF306ACB23ABACF90012FAEC /* LHGalleryListVC2.m in Sources */ = {isa = PBXBuildFile; fileRef = CF306ACA23ABACF90012FAEC /* LHGalleryListVC2.m */; };
+		CF306ACF23ABAE760012FAEC /* ChineseSortHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CF306ACE23ABAE760012FAEC /* ChineseSortHelper.m */; };
+		CF306AD423AC92510012FAEC /* IndexesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF306AD223AC92510012FAEC /* IndexesView.xib */; };
+		CF306AD523AC92510012FAEC /* IndexesView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF306AD323AC92510012FAEC /* IndexesView.m */; };
+		CF306AD723AC93050012FAEC /* water01.png in Resources */ = {isa = PBXBuildFile; fileRef = CF306AD623AC93050012FAEC /* water01.png */; };
+		CF306AD923AC93390012FAEC /* common_icon_search.png in Resources */ = {isa = PBXBuildFile; fileRef = CF306AD823AC93380012FAEC /* common_icon_search.png */; };
 		CF35E9152391824400E73935 /* LoadingStateView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF35E9112391824400E73935 /* LoadingStateView.m */; };
 		CF35E9162391824400E73935 /* network_setting.html in Resources */ = {isa = PBXBuildFile; fileRef = CF35E9122391824400E73935 /* network_setting.html */; };
 		CF35E9172391824400E73935 /* LoadingStateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF35E9132391824400E73935 /* LoadingStateView.xib */; };
@@ -400,7 +406,7 @@
 		D407B0452366A69800B4DEF4 /* UGPostListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D407B03D2366A69800B4DEF4 /* UGPostListVC.m */; };
 		D407B0462366A69800B4DEF4 /* UGPostDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D407B0402366A69800B4DEF4 /* UGPostDetailVC.m */; };
 		D407B0472366A69800B4DEF4 /* UGSubmitPostVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D407B0412366A69800B4DEF4 /* UGSubmitPostVC.m */; };
-		D407B0482366A69800B4DEF4 /* LHGalleryListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D407B0422366A69800B4DEF4 /* LHGalleryListVC.m */; };
+		D407B0482366A69800B4DEF4 /* LHGalleryListVC1.m in Sources */ = {isa = PBXBuildFile; fileRef = D407B0422366A69800B4DEF4 /* LHGalleryListVC1.m */; };
 		D4087DAF22951F15000C4CB0 /* CMNetwork+Mine.m in Sources */ = {isa = PBXBuildFile; fileRef = D4087DAE22951F15000C4CB0 /* CMNetwork+Mine.m */; };
 		D4087DB222952D4A000C4CB0 /* UGMissionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4087DB122952D4A000C4CB0 /* UGMissionModel.m */; };
 		D4087DB522956B02000C4CB0 /* UGMissionLevelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4087DB422956B02000C4CB0 /* UGMissionLevelModel.m */; };
@@ -931,6 +937,15 @@
 		CF0A1D682393FBB600F62010 /* LHUserInfoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LHUserInfoVC.m; sourceTree = "<group>"; };
 		CF0A1D6B2394CBA200F62010 /* LHUserModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LHUserModel.h; sourceTree = "<group>"; };
 		CF0A1D6C2394CBA200F62010 /* LHUserModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LHUserModel.m; sourceTree = "<group>"; };
+		CF306AC923ABACF90012FAEC /* LHGalleryListVC2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LHGalleryListVC2.h; sourceTree = "<group>"; };
+		CF306ACA23ABACF90012FAEC /* LHGalleryListVC2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LHGalleryListVC2.m; sourceTree = "<group>"; };
+		CF306ACD23ABAE760012FAEC /* ChineseSortHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChineseSortHelper.h; sourceTree = "<group>"; };
+		CF306ACE23ABAE760012FAEC /* ChineseSortHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChineseSortHelper.m; sourceTree = "<group>"; };
+		CF306AD123AC92510012FAEC /* IndexesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndexesView.h; sourceTree = "<group>"; };
+		CF306AD223AC92510012FAEC /* IndexesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IndexesView.xib; sourceTree = "<group>"; };
+		CF306AD323AC92510012FAEC /* IndexesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndexesView.m; sourceTree = "<group>"; };
+		CF306AD623AC93050012FAEC /* water01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = water01.png; sourceTree = "<group>"; };
+		CF306AD823AC93380012FAEC /* common_icon_search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = common_icon_search.png; sourceTree = "<group>"; };
 		CF35E9102391824400E73935 /* LoadingStateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingStateView.h; sourceTree = "<group>"; };
 		CF35E9112391824400E73935 /* LoadingStateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingStateView.m; sourceTree = "<group>"; };
 		CF35E9122391824400E73935 /* network_setting.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = network_setting.html; sourceTree = "<group>"; };
@@ -1489,10 +1504,10 @@
 		D407B03C2366A69800B4DEF4 /* UGDocumentListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGDocumentListVC.m; sourceTree = "<group>"; };
 		D407B03D2366A69800B4DEF4 /* UGPostListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGPostListVC.m; sourceTree = "<group>"; };
 		D407B03E2366A69800B4DEF4 /* UGPostListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGPostListVC.h; sourceTree = "<group>"; };
-		D407B03F2366A69800B4DEF4 /* LHGalleryListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHGalleryListVC.h; sourceTree = "<group>"; };
+		D407B03F2366A69800B4DEF4 /* LHGalleryListVC1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHGalleryListVC1.h; sourceTree = "<group>"; };
 		D407B0402366A69800B4DEF4 /* UGPostDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGPostDetailVC.m; sourceTree = "<group>"; };
 		D407B0412366A69800B4DEF4 /* UGSubmitPostVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGSubmitPostVC.m; sourceTree = "<group>"; };
-		D407B0422366A69800B4DEF4 /* LHGalleryListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHGalleryListVC.m; sourceTree = "<group>"; };
+		D407B0422366A69800B4DEF4 /* LHGalleryListVC1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHGalleryListVC1.m; sourceTree = "<group>"; };
 		D4087DAD22951F15000C4CB0 /* CMNetwork+Mine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CMNetwork+Mine.h"; sourceTree = "<group>"; };
 		D4087DAE22951F15000C4CB0 /* CMNetwork+Mine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CMNetwork+Mine.m"; sourceTree = "<group>"; };
 		D4087DB022952D4A000C4CB0 /* UGMissionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGMissionModel.h; sourceTree = "<group>"; };
@@ -2507,6 +2522,27 @@
 				0322AD67234342DB00E9857E /* UGDocumentView.m */,
 			);
 			path = "资料弹框";
+			sourceTree = "<group>";
+		};
+		CF306ACC23ABAE760012FAEC /* 中文排序 */ = {
+			isa = PBXGroup;
+			children = (
+				CF306ACD23ABAE760012FAEC /* ChineseSortHelper.h */,
+				CF306ACE23ABAE760012FAEC /* ChineseSortHelper.m */,
+			);
+			path = "中文排序";
+			sourceTree = "<group>";
+		};
+		CF306AD023AC92510012FAEC /* IndexesView */ = {
+			isa = PBXGroup;
+			children = (
+				CF306AD623AC93050012FAEC /* water01.png */,
+				CF306AD823AC93380012FAEC /* common_icon_search.png */,
+				CF306AD123AC92510012FAEC /* IndexesView.h */,
+				CF306AD323AC92510012FAEC /* IndexesView.m */,
+				CF306AD223AC92510012FAEC /* IndexesView.xib */,
+			);
+			path = IndexesView;
 			sourceTree = "<group>";
 		};
 		CF35E90F2391824400E73935 /* LoadingStateView */ = {
@@ -3544,8 +3580,10 @@
 			children = (
 				D407B0372366A69700B4DEF4 /* UGDocumentListVC.h */,
 				D407B03C2366A69800B4DEF4 /* UGDocumentListVC.m */,
-				D407B03F2366A69800B4DEF4 /* LHGalleryListVC.h */,
-				D407B0422366A69800B4DEF4 /* LHGalleryListVC.m */,
+				D407B03F2366A69800B4DEF4 /* LHGalleryListVC1.h */,
+				D407B0422366A69800B4DEF4 /* LHGalleryListVC1.m */,
+				CF306AC923ABACF90012FAEC /* LHGalleryListVC2.h */,
+				CF306ACA23ABACF90012FAEC /* LHGalleryListVC2.m */,
 				CF35E927239292D300E73935 /* LHJournalDetailVC.h */,
 				CF35E928239292D300E73935 /* LHJournalDetailVC.m */,
 				D407B0382366A69700B4DEF4 /* UGPostDetailVC.h */,
@@ -3571,6 +3609,8 @@
 		CFD3BE962347137E00FCDA6D /* FishUtility */ = {
 			isa = PBXGroup;
 			children = (
+				CF306AD023AC92510012FAEC /* IndexesView */,
+				CF306ACC23ABAE760012FAEC /* 中文排序 */,
 				CF7EA97723A4D1D200C29252 /* SDWebImage+AllowInvalidSSL */,
 				CFDB110923A0BF9D0040DE2B /* JRSwizzle */,
 				CF35E90F2391824400E73935 /* LoadingStateView */,
@@ -5595,6 +5635,7 @@
 				CF475906239636D200966536 /* 172.gif in Resources */,
 				CF47588E239636D200966536 /* 122.gif in Resources */,
 				D41F260E2318EFE4004FB9C6 /* UGChanglongBetRecrodCell.xib in Resources */,
+				CF306AD423AC92510012FAEC /* IndexesView.xib in Resources */,
 				CF4758C5239636D200966536 /* 54.gif in Resources */,
 				D40DE99122F42A3300974BAF /* UGLotteryAdPopView.xib in Resources */,
 				D41FF93C2333471F00FE3F70 /* UGContentMoneyCollectionViewCell.xib in Resources */,
@@ -5686,6 +5727,7 @@
 				D4090F63228D3E0E00D6DA43 /* UGAvaterSelectView.xib in Resources */,
 				CF475924239636D200966536 /* 104.gif in Resources */,
 				CF4758B1239636D200966536 /* 57.gif in Resources */,
+				CF306AD923AC93390012FAEC /* common_icon_search.png in Resources */,
 				CF47588D239636D200966536 /* 123.gif in Resources */,
 				D405B3862281620000F8C586 /* UGMessageTableViewCell.xib in Resources */,
 				D4090F68228D4F7200D6DA43 /* UGAvaterCollectionViewCell.xib in Resources */,
@@ -5853,6 +5895,7 @@
 				D4704EC722B7567B00528DC7 /* UGPK10NNLotteryController.storyboard in Resources */,
 				CF84BE2B236416C20058F055 /* UGLHC.storyboard in Resources */,
 				CF4758E4239636D200966536 /* 77.gif in Resources */,
+				CF306AD723AC93050012FAEC /* water01.png in Resources */,
 				D41FF937233330DB00FE3F70 /* UGActivityGoldView.xib in Resources */,
 				CF475918239636D200966536 /* 102.gif in Resources */,
 				CF475888239636D200966536 /* 34.gif in Resources */,
@@ -6052,6 +6095,7 @@
 				D405B39222817A7C00F8C586 /* UGModifyPayPwdController.m in Sources */,
 				D4FD7B28236E92DD00D171AC /* LeeTagItem.m in Sources */,
 				D4D8DF6D22869B2D00446BAF /* UGLotteryAssistantTableViewCell.m in Sources */,
+				CF306AD523AC92510012FAEC /* IndexesView.m in Sources */,
 				D4C1E9C5236EF26E00BD120A /* UGBMLoginViewController.m in Sources */,
 				D4C93B3B22D8560500608B67 /* UGFeedbackTableViewCell.m in Sources */,
 				0322AD6523432A4A00E9857E /* UGCommonLotteryController.m in Sources */,
@@ -6362,6 +6406,7 @@
 				CFD3BEF22347137F00FCDA6D /* IBView.m in Sources */,
 				D4704EDD22B7BCE900528DC7 /* GLEncryptManager.m in Sources */,
 				D43B48A9238D0B8200BB7960 /* CMNetwork+LH.m in Sources */,
+				CF306ACB23ABACF90012FAEC /* LHGalleryListVC2.m in Sources */,
 				D4D42264232686A5006E680B /* UGPormotionView.m in Sources */,
 				D4A02B5523225782004D5894 /* UGSignInHistoryView.m in Sources */,
 				D422A585229E80EE0068D0AD /* UGYubaoConversionRecordController.m in Sources */,
@@ -6370,7 +6415,7 @@
 				CF96367223A01AA200B1D8E6 /* JRSwizzle.m in Sources */,
 				D405B1F6227972C900F8C586 /* JSONModel.m in Sources */,
 				CF88653C2390254E00B41049 /* UGLHGalleryModel.m in Sources */,
-				D407B0482366A69800B4DEF4 /* LHGalleryListVC.m in Sources */,
+				D407B0482366A69800B4DEF4 /* LHGalleryListVC1.m in Sources */,
 				D405AFF322783DCC00F8C586 /* MASCompositeConstraint.m in Sources */,
 				D4C1E9CF237040B300BD120A /* UGBMMemberCenterViewController.m in Sources */,
 				D4261EC72323D6BC006E0A5D /* UGlevelsModel.m in Sources */,
@@ -6452,6 +6497,7 @@
 				D4DE2690229BCB960072A4A2 /* WMDropDownView.m in Sources */,
 				D405B318227D726000F8C586 /* UGLoginViewController.m in Sources */,
 				D4DCDBD02328B5B400CF4CEE /* YLEdgeLabel.m in Sources */,
+				CF306ACF23ABAE760012FAEC /* ChineseSortHelper.m in Sources */,
 				D405AFF122783DCC00F8C586 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				D417712F229D786000727B70 /* UGMissionTitleCollectionView.m in Sources */,
 				D40DE99A22F532ED00974BAF /* WKProxy.m in Sources */,

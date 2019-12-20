@@ -146,8 +146,8 @@ UGSystemConfigModel *currentConfig = nil;
 - (void)setPath:(NSString *)path {
     _path = path;
     UGMobileMenu *mm = [UGMobileMenu.allMenus objectWithValue:path keyPath:@"path"];
-    _type = mm.type;
-    _cls = mm.cls;
+    _type = [[mm valueForKey:@"_type"] intValue];
+    _cls = [mm valueForKey:@"_cls"];
     _defaultImgName = mm.defaultImgName;
 }
 - (MobileMenuType)type {
