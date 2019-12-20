@@ -8,7 +8,7 @@
 
 #import "AppDefine.h"
 
-#define __SiteID__ @"c199"
+#define __SiteID__ @"test103"
 
 
 @interface UIStoryboard ()
@@ -116,9 +116,11 @@
 #ifdef DEBUG
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
         if (!_SiteId.length) {
-            _SiteId = @"c049";
+            _SiteId = @"test103";
         }
+//        _SiteId = @"test103";
 #endif
+        NSLog(@"%@",[_allSites objectWithValue:_SiteId.lowercaseString keyPath:@"siteId"]);
         _Host = [_allSites objectWithValue:_SiteId.lowercaseString keyPath:@"siteId"].host;
         if (!_Host.length) {
             #ifdef DEBUG
