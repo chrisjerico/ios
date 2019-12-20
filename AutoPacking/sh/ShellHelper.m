@@ -106,7 +106,7 @@
     task.arguments = @[path,];
     task.terminationHandler = ^(NSTask *ts) {
         [ts terminate];
-        if (![[NSFileManager defaultManager] fileExistsAtPath:Path.tempCommitId]) {
+        if (![[NSFileManager defaultManager] fileExistsAtPath:_NSString(@"%@/CommitId.txt", path)]) {
             @throw [NSException exceptionWithName:@"拉取代码失败，请手动更新代码。" reason:@"" userInfo:nil];
             return ;
         }
