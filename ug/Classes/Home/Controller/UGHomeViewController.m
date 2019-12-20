@@ -1069,7 +1069,7 @@
 
                 NSMutableArray *mutArr = [NSMutableArray array];
                 if (self.homeAdsArray.count) {
-                    [self.homeAdsBgView setHidden:NO];
+                    [self.homeAdsBigBgView setHidden:NO];
                     for (UGhomeAdsModel *banner in self.homeAdsArray) {
                         [mutArr addObject:banner.image];
                     }
@@ -1078,13 +1078,13 @@
 //                    self.bannerView.autoScrollTimeInterval = ((UGBannerModel*)model.data).interval.floatValue;
                 }
                 else{
-                    [self.homeAdsBgView setHidden:YES];
+                    [self.homeAdsBigBgView setHidden:YES];
                 }
             });
             
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
-            [self.homeAdsBgView setHidden:YES];
+            [self.homeAdsBigBgView setHidden:YES];
         }];
     }];
 }
