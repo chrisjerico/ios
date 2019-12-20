@@ -741,15 +741,6 @@
             NSLog(@"香港挂牌");
         }
         else {
-            if (!model.contentId.length) {
-                NSDictionary *dict = @{@"sxbm":@"899",
-                                       @"tjym":@"907",
-                                       @"ptyx":@"2469",
-                };
-                if (dict[model.alias]) {
-                    model.contentId = dict[model.alias];
-                }
-            }
             if (model.contentId.length) {
                 // 获取帖子详情
                 [SVProgressHUD showWithStatus:nil];
