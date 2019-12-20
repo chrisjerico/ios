@@ -54,7 +54,7 @@
             site(@"c105",        @"",           @"",        @"",                        @"",                                            @"超级签名",    @"澳⻔彩票"),          // https://dev.app2.xin/index | 15542484889 | aa168168
             site(@"c114",        @"c114hy",     @"157",     @"",                        @"",                                            @"超级签名",    @"彩43"),          // https://dev.app2.xin/index | 19859553001 | wenxiang123123
             site(@"c190",        @"c190hy",     @"167",     @"io.fhpt.H5F40948F",       @"http://fhylofc190nyvqo.playslot8.com",                                            @"超级签名",    @"22333彩世界"),          // https://dev.app2.xin/index |  |
-            site(@"h002",        @"",           @"",        @"",                        @"",                                            @"超级签名",    @"⾹港赛⻢会"),          // https://dev.app2.xin/index | 15827947817 | dz990990
+            site(@"h002",        @"",           @"",        @"",                        @"",                                            @"企业包",    @"⾹港赛⻢会"),          // https://dev.app2.xin/index | 15827947817 | dz990990
             site(@"c201",        @"c201hy",     @"213",     @"io.fhpt.YSFC201",         @"https://dkcp520.com",                         @"超级签名",    @"大咖彩票"),          //https://dev.app2.xin/index | 18675958156 | dk789789
             site(@"c048",        @"c048hy",     @"133",     @"io.fhpt.H5F00A9FA",       @"https://dsjf43-43-f14-345-36-g54t-gfh54.com", @"超级签名",    @"凤凰国际"),
 
