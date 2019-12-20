@@ -122,11 +122,11 @@ UGSystemConfigModel *currentConfig = nil;
         _items =@[
             item(@"/home",              @"shouye",                      UGHomeViewController.class,                 MM_首页,           @"首页"),
             item(@"/changLong",         @"changlong",                   UGChangLongController.class,                MM_长龙助手,        @"长龙助手"),
-            item(@"/lotteryList",       @"dating",                      UGYYLotteryHomeViewController.class,        MM_购彩大厅_默认,    @"购彩大厅"),
+            item(@"/lotteryList",       @"gcdt",                        UGLotteryHomeController.class,              MM_购彩大厅_默认,    @"购彩大厅"),
             item(@"/lotteryRecord",     @"zdgl",                        UGLotteryRecordController.class,            MM_开奖记录,        @"开奖记录"),
             item(@"/zrsx",              @"real_video1",                 UGYYLotterySecondHomeViewController.class,  MM_真人视讯,        @"真人视讯"),
             item(@"/qpdz",              @"chess_electronic1",           UGYYLotterySecondHomeViewController.class,  MM_棋牌电子,        @"棋牌电子"),
-            item(@"/gameHall",          @"tab_caipiao",                 UGLotteryHomeController.class,              MM_游戏大厅,        @"游戏大厅"),
+            item(@"/gameHall",          @"dating",                      UGYYLotteryHomeViewController.class,        MM_游戏大厅,        @"游戏大厅"),
             item(@"/user",              @"wode",                        UGMineSkinViewController.class,             MM_我的_默认,       @"我的"),
             item(@"/task",              @"renwu",                       UGMissionCenterViewController.class,        MM_任务中心,        @"任务中心"),
             item(@"/Sign",              @"qiandao",                     UGSigInCodeViewController.class,            MM_签到,           @"签到"),
@@ -215,6 +215,11 @@ UGSystemConfigModel *currentConfig = nil;
             }];
         }];
     }
+    else if ([@"l001" containsString:APP.SiteId] && (self.type == MM_真人视讯 || self.type == MM_棋牌电子 || self.type == MM_购彩大厅_默认)) {
+        if (completion) {
+            completion(_LoadVC_from_storyboard_(@"LHStayTunedVC"));
+        }
+    }
     else if (self.type == MM_真人视讯 || self.type == MM_棋牌电子) {
         [SVProgressHUD showWithStatus:nil];
         [CMNetwork getPlatformGamesWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
@@ -244,7 +249,6 @@ UGSystemConfigModel *currentConfig = nil;
                 [SVProgressHUD showErrorWithStatus:msg];
             }];
         }];
-        
     } else {
         UIViewController *vc = _LoadVC_from_storyboard_(NSStringFromClass(self.cls));
         if (!vc) {
