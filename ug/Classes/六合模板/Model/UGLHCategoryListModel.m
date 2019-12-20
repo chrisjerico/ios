@@ -10,7 +10,12 @@
 
 @implementation UGLHCategoryListModel
 + (JSONKeyMapper *)keyMapper {
-    
     return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"cid"}];
+}
+
+- (void)setContentId:(NSString *)contentId {
+    if (![contentId isEqualToString:@"0"]) {
+        _contentId = contentId;
+    }
 }
 @end

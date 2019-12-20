@@ -886,6 +886,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="x16-rx-hT5"/>
                     </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="允许未登录访问" value="YES"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="允许游客访问" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OAo-NR-j4L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
