@@ -217,7 +217,10 @@ UGSystemConfigModel *currentConfig = nil;
     }
     else if ([@"l001" containsString:APP.SiteId] && (self.type == MM_真人视讯 || self.type == MM_棋牌电子 || self.type == MM_购彩大厅_默认)) {
         if (completion) {
-            completion(_LoadVC_from_storyboard_(@"LHStayTunedVC"));
+            UIViewController *vc = _LoadVC_from_storyboard_(@"LHStayTunedVC");
+            vc.允许游客访问 = true;
+            vc.允许未登录访问 = true;
+            completion(vc);
         }
     }
     else if (self.type == MM_真人视讯 || self.type == MM_棋牌电子) {
