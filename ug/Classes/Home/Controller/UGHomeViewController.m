@@ -784,9 +784,9 @@
                 return;
             }
             BOOL ret = [NavController1 pushViewControllerWithLinkCategory:7 linkPosition:model.appLinkCode];
-            if (!ret && model.link.length) {
+            if (!ret && model.appLink.length) {
                 TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
-                webViewVC.url = model.link;
+                webViewVC.url = model.appLink;
                 webViewVC.webTitle = model.name;
                 [NavController1 pushViewController:webViewVC animated:YES];
             }

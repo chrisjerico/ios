@@ -41,19 +41,19 @@
     self.title = self.webTitle;
 }
 
-- (void)setUrl:(NSString *)url {
+- (void)setUrl:(NSString *)urlStr {
+    _url = urlStr;
     if (!self.tgWebView) {
         self.tgWebView  = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
         self.tgWebView.navigationDelegate = self;
         [self.view addSubview:self.tgWebView];
     }
-    if (![url hasPrefix:@"http"] ) {
-        [self.navigationController.view makeToast:@"该url不包含http" duration:1.5 position:CSToastPositionCenter];
-        return;
+    NSURL *url = [NSURL URLWithString:urlStr];
+    if (url.scheme == nil) {
+        url = [NSURL URLWithString:_NSString(@"http://%@", urlStr)];
     }
-    _url = url;
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-     NSLog(@"self.url = %@",url);
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+     NSLog(@"self.url = %@", url);
     [self.tgWebView loadRequest:request];
 }
 
