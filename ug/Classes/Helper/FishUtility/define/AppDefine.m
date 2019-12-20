@@ -8,7 +8,7 @@
 
 #import "AppDefine.h"
 
-#define __SiteID__ @"test103"
+#define __SiteID__ @"l001"
 
 
 @interface UIStoryboard ()
@@ -116,7 +116,7 @@
 #ifdef DEBUG
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
         if (!_SiteId.length) {
-            _SiteId = @"test103";
+            _SiteId = @"l001";
         }
 //        _SiteId = @"test103";
 #endif
@@ -150,7 +150,7 @@
 }
 
 - (BOOL)betBgIsWhite {
-    return ![@"c175" containsString:_SiteId] || [@"新年红,石榴红" containsString:Skin1.skitType];
+    return ![@"c175,c085,c073" containsString:_SiteId] || [@"新年红,石榴红" containsString:Skin1.skitType];
 }
 
 

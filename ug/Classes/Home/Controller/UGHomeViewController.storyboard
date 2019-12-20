@@ -116,7 +116,7 @@
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L7L-nt-EpM">
                                                                 <rect key="frame" x="8" y="10" width="398" height="99.5"/>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="L7L-nt-EpM" secondAttribute="height" multiplier="100:25" id="7j6-Gb-jwZ"/>
                                                                 </constraints>
