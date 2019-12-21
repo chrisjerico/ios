@@ -73,19 +73,7 @@
 - (void)setImgName:(NSString *)imgName {
     _imgName = imgName;
     NSString *url = [CMCommon imgformat:imgName];
-    [_imgView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:nil];//m_logo
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:nil];
 }
-
-
-//- (void)WantToGoBackMianThread:(id)object{
-//    //需要在主线程执行的代码
-//    NSLog(@"object:%@",object);
-//    NSString *imgName = (NSString *)object;
-//
-//    imgName = @"https://cdn01.xuanjun.net/upload/t010/customise/images/m_logo.jpg?v=1569338948";
-//
-//    NSString *url = [imgName stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet  URLQueryAllowedCharacterSet]];
-//    [self.imgView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"m_logo"]];//m_logo
-//}
 
 @end

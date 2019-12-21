@@ -662,7 +662,6 @@
 		D45A94C2233B9F070089E86C /* UGGoogleAuthenticationThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D45A94C0233B9F070089E86C /* UGGoogleAuthenticationThirdViewController.m */; };
 		D45A94C3233B9F070089E86C /* UGGoogleAuthenticationThirdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D45A94C1233B9F070089E86C /* UGGoogleAuthenticationThirdViewController.xib */; };
 		D45BB76F2371507300291A77 /* UGBMBrowseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D45BB76E2371507300291A77 /* UGBMBrowseViewController.m */; };
-		D45F98C622E34DAB00194139 /* UGMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D45F98C522E34DAA00194139 /* UGMineViewController.m */; };
 		D463B4DC2283ECFB00EAC0F7 /* UGPromotionTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = D463B4DB2283ECFB00EAC0F7 /* UGPromotionTableController.m */; };
 		D463B4E92284732300EAC0F7 /* UGBindCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D463B4E82284732300EAC0F7 /* UGBindCardViewController.m */; };
 		D463B4EB2284736200EAC0F7 /* UGBindCardViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D463B4EA2284736200EAC0F7 /* UGBindCardViewController.storyboard */; };
@@ -1941,8 +1940,6 @@
 		D45A94C1233B9F070089E86C /* UGGoogleAuthenticationThirdViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGGoogleAuthenticationThirdViewController.xib; sourceTree = "<group>"; };
 		D45BB76D2371507300291A77 /* UGBMBrowseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGBMBrowseViewController.h; sourceTree = "<group>"; };
 		D45BB76E2371507300291A77 /* UGBMBrowseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGBMBrowseViewController.m; sourceTree = "<group>"; };
-		D45F98C422E34DAA00194139 /* UGMineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGMineViewController.h; sourceTree = "<group>"; };
-		D45F98C522E34DAA00194139 /* UGMineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGMineViewController.m; sourceTree = "<group>"; };
 		D463B4DA2283ECFB00EAC0F7 /* UGPromotionTableController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGPromotionTableController.h; sourceTree = "<group>"; };
 		D463B4DB2283ECFB00EAC0F7 /* UGPromotionTableController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGPromotionTableController.m; sourceTree = "<group>"; };
 		D463B4E72284732300EAC0F7 /* UGBindCardViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGBindCardViewController.h; sourceTree = "<group>"; };
@@ -4774,8 +4771,6 @@
 				D4C165662344B1AB005A0F12 /* UGMineSkinViewController.h */,
 				D4C165672344B1AB005A0F12 /* UGMineSkinViewController.m */,
 				D4C165682344B1AB005A0F12 /* UGMineSkinViewController.xib */,
-				D45F98C422E34DAA00194139 /* UGMineViewController.h */,
-				D45F98C522E34DAA00194139 /* UGMineViewController.m */,
 				D4DFBE7422E3545E002BAFB0 /* Mine.storyboard */,
 			);
 			path = base;
@@ -6154,7 +6149,6 @@
 				D40DE98522F335E300974BAF /* SDCollectionViewCell.m in Sources */,
 				D41A57782306924D00C26023 /* UGBackToastView.m in Sources */,
 				D405B1D5227972C100F8C586 /* AFHTTPSessionManager.m in Sources */,
-				D45F98C622E34DAB00194139 /* UGMineViewController.m in Sources */,
 				D4A02B5B23227B7D004D5894 /* UGSingInHistoryTableViewCell.m in Sources */,
 				CF775F7A239033F9005B3534 /* UGPostCell1.m in Sources */,
 				D409C55B22AB86D90042A0DD /* UGFeedBackController.m in Sources */,

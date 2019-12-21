@@ -48,12 +48,7 @@
 
 static NSString *convertCellid = @"UGConvertCollectionViewCell";
 @implementation UGYubaoConversionViewController
--(void)skin{
-//    UIImage *image = [UIImage imageNamed:@"bgyubao1"];
-//    UIImage *afterImage = [image qmui_imageWithBlendColor: Skin1.navBarBgColor];
-//    self.bgView.image = afterImage;
-
-    
+-(void)skin {
     FastSubViewCode(self.view)
     if (Skin1.isBlack) {
           [self.view setBackgroundColor:Skin1.bgColor];

@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "UGNavigationController.h"
-#import "UGMineViewController.h"
 #import "UGLotteryHomeController.h"
 #import "UGChatViewController.h"
 #import "UGAppVersionManager.h"
