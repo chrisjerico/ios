@@ -51,7 +51,10 @@
 // 六合图库列表接口
 - (CCSessionModel *)lhdoc_tkList:(BOOL)showFav {
     return [self req:@"wjapp/api.php?c=lhcdoc&a=tkList"
-                    :@{@"showFav":@(showFav),}  // 是否收藏 1是 0否
+                    :@{@"showFav":@(showFav),// 是否收藏 1是 0否
+                       @"page":@1,
+                       @"rows":@1000,
+                    }
                     :false];
 }
 

@@ -75,6 +75,7 @@
 //#import "UGLHLotteryCollectionViewCell.h"
 #import "UGLHHomeContentCollectionViewCell.h"
 #import "UGScratchMusicView.h"
+#import "LHPostPayView.h"
 
 // Model
 #import "UGBannerModel.h"
@@ -733,30 +734,6 @@
             NSLog(@"老黃历");
             [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLHOldYearViewController") animated:true];
         }
-        else if([model.alias isEqualToString:@"sxbm"]) {
-            NSLog(@"四肖八码");
-            UGPostDetailVC *vc = _LoadVC_from_storyboard_(@"UGPostDetailVC");
-            vc.pm = [UGLHPostModel new];
-            vc.title = model.name;
-            vc.pm.cid = @"899";
-            [NavController1 pushViewController:vc animated:true];
-        }
-        else if([model.alias isEqualToString:@"tjym"]) {
-            NSLog(@"六合宝典");
-            UGPostDetailVC *vc = _LoadVC_from_storyboard_(@"UGPostDetailVC");
-            vc.pm = [UGLHPostModel new];
-            vc.pm.cid = @"907";
-            vc.title = model.name;
-            [NavController1 pushViewController:vc animated:true];
-        }
-        else if([model.alias isEqualToString:@"ptyx"]) {
-            NSLog(@"平特一肖");
-            UGPostDetailVC *vc = _LoadVC_from_storyboard_(@"UGPostDetailVC");
-            vc.pm = [UGLHPostModel new];
-            vc.pm.cid = @"2469";
-            vc.title = model.name;
-            [NavController1 pushViewController:vc animated:true];
-        }
         else if([model.alias isEqualToString:@"CvB3zABB"]) {
             LHJournalDetailVC *vc = _LoadVC_from_storyboard_(@"LHJournalDetailVC");
             vc.clm = model;
@@ -764,10 +741,52 @@
             NSLog(@"香港挂牌");
         }
         else {
+            if (model.contentId.length) {
+                // 获取帖子详情
+                [SVProgressHUD showWithStatus:nil];
+                [NetworkManager1 lhdoc_contentDetail:model.contentId].completionBlock = ^(CCSessionModel *sm) {
+                    [SVProgressHUD dismiss];
+                    if (!sm.error) {
+                        UGLHPostModel *pm = [UGLHPostModel mj_objectWithKeyValues:sm.responseObject[@"data"]];
+                        
+                        void (^push)(void) = ^{
+                            UGPostDetailVC *vc = _LoadVC_from_storyboard_(@"UGPostDetailVC");
+                            vc.pm = pm;
+                            vc.title = model.name;
+                            [NavController1 pushViewController:vc animated:true];
+                        };
+                        if (!pm.hasPay && pm.price > 0.000001) {
+                            LHPostPayView *ppv = _LoadView_from_nib_(@"LHPostPayView");
+                            ppv.pm = pm;
+                            ppv.didConfirmBtnClick = ^(LHPostPayView * _Nonnull ppv) {
+                                if (!UGLoginIsAuthorized()) {
+                                    [ppv hide:nil];
+                                    SANotificationEventPost(UGNotificationShowLoginView, nil);
+                                    return;
+                                }
+                                [NetworkManager1 lhcdoc_buyContent:pm.cid].completionBlock = ^(CCSessionModel *sm) {
+                                    if (!sm.error) {
+                                        pm.hasPay = true;
+                                        [ppv hide:nil];
+                                        UIAlertController *ac = [AlertHelper showAlertView:@"支付成功" msg:nil btnTitles:@[@"确定"]];
+                                        [ac setActionAtTitle:@"确定" handler:^(UIAlertAction *aa) {
+                                            push();
+                                        }];
+                                    }
+                                };
+                            };
+                            [ppv show];
+                        } else {
+                            push();
+                        }
+                    }
+                };
+                return;
+            }
             BOOL ret = [NavController1 pushViewControllerWithLinkCategory:7 linkPosition:model.appLinkCode];
-            if (!ret && model.link.length) {
+            if (!ret && model.appLink.length) {
                 TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
-                webViewVC.url = model.link;
+                webViewVC.url = model.appLink;
                 webViewVC.webTitle = model.name;
                 [NavController1 pushViewController:webViewVC animated:YES];
             }

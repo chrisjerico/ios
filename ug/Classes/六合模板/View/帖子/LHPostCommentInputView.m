@@ -50,7 +50,7 @@
                     aciv.didComment(text);
                 aciv.textView.text = @"";
                 [aciv.textView resignFirstResponder];
-                [AlertHelper showAlertView:@"回复成功，待管理员审核后显示" msg:nil btnTitles:@[@"确定"]];
+                [AlertHelper showAlertView:sm.responseObject[@"msg"] msg:nil btnTitles:@[@"确定"]];
             } else {
                 NSNumber *hasNickname = sm.responseObject[@"extra"][@"hasNickname"];
                 if (hasNickname && !hasNickname.boolValue) {

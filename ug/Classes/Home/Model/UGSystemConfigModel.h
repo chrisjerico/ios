@@ -41,7 +41,7 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
     MM_开奖记录,
     MM_真人视讯,
     MM_棋牌电子,
-    MM_游戏大厅,
+    MM_彩票大厅,
     
     MM_我的_六合,
     MM_我的_默认,
@@ -98,6 +98,7 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 @property (nonatomic, copy) NSString *icon; /**<   图标 */
 @property (nonatomic, copy) NSString *name; /**<   标题 */
 @property (nonatomic) NSInteger sort;       /**<   排序 */
+@property (nonatomic) BOOL status;          /**<   1=显示建设中页面；0=正常显示 */
 // 自定义参数
 @property (nonatomic, readonly) MobileMenuType type;        /**<   页面类型 */
 @property (nonatomic, readonly) NSString *defaultImgName;   /**<   本地图标 */
