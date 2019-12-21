@@ -28,13 +28,7 @@
 
 @implementation UGPromotionsController
 
-- (BOOL)允许未登录访问 {
-    if ([APP.SiteId isEqualToString:@"c049"]||[APP.SiteId isEqualToString:@"c008"]) {
-            return false;
-    } else {
-            return true;
-    }
-}
+- (BOOL)允许未登录访问 { return ![@"c049,c008" containsString:APP.SiteId]; }
 - (BOOL)允许游客访问 { return true; }
 
 - (void)viewDidLoad {
