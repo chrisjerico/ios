@@ -400,10 +400,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         }
         case 4: {
             // 在线客服
-            TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
-            webViewVC.url = SysConf.zxkfUrl;
-            webViewVC.webTitle = @"在线客服";
-            [NavController1 pushViewController:webViewVC animated:YES];
+            [NavController1 pushVCWithUserCenterItemType:UCI_在线客服];
             break;
         }
         case 5: {

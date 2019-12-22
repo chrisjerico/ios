@@ -1003,7 +1003,7 @@
 		[CMResult processWithResult:model success:^{
             UGRedEnvelopeModel *rem = model.data;
             self.uGredEnvelopeView.item = rem;
-            self.uGredEnvelopeView.hidden = false;
+            self.uGredEnvelopeView.hidden = !rem;
 		} failure:^(id msg) {
             self.uGredEnvelopeView.hidden = true;
 			[SVProgressHUD dismiss];

@@ -287,6 +287,7 @@ static UGTabbarController *_tabBarVC = nil;
         // 初始化控制器
         // （这里加载了一个假的控制器，在 tabBarController:shouldSelectViewController: 函数才会加载真正的控制器）
         UIViewController *vc = [UIViewController new];
+        vc.view.backgroundColor = Skin1.bgColor;
         vc.tabBarItem.title = mm.name;
         vc.tabBarItem.image = [UIImage imageNamed:mm.defaultImgName];
         vc.tabBarItem.selectedImage = [[UIImage imageNamed:mm.defaultImgName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
@@ -306,6 +307,22 @@ static UGTabbarController *_tabBarVC = nil;
         self.mms = mms;
         [self setTabbarStyle];
         [self tabBarController:self shouldSelectViewController:vcs.firstObject];
+    }
+}
+
+- (void)setSelectedViewController:(__kindof UIViewController *)selectedViewController {
+    if ([self.viewControllers containsObject:selectedViewController]) {
+        if ([self tabBarController:self shouldSelectViewController:selectedViewController]) {
+            [super setSelectedViewController:selectedViewController];
+        }
+    }
+}
+
+- (void)setSelectedIndex:(NSUInteger)selectedIndex {
+    if (selectedIndex < self.viewControllers.count) {
+        if ([self tabBarController:self shouldSelectViewController:self.viewControllers[selectedIndex]]) {
+            [super setSelectedIndex:selectedIndex];
+        }
     }
 }
 

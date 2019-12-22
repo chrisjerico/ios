@@ -97,15 +97,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row == 0) {
-        
-        SLWebViewController *webViewVC = [[SLWebViewController alloc] init];
-        UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
-        if (config.zxkfUrl.length > 0) {
-            webViewVC.urlStr = config.zxkfUrl;
-			[self.navigationController pushViewController:webViewVC animated:YES];
-
-		}
-    
+        [NavController1 pushVCWithUserCenterItemType:UCI_在线客服];
     }else if (indexPath.row == 1) {
   
         UGWriteMessageViewController *writeVC = [self.storyboard instantiateViewControllerWithIdentifier:@"UGWriteMessageViewController"];

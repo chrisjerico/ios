@@ -20,6 +20,7 @@
 #import "UINavigationController+UGExtension.h"
 #import "UGSkinViewController.h"
 #import "UGAppVersionManager.h"
+#import "SLWebViewController.h"
 
 @interface UGYYRightMenuView ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
@@ -494,10 +495,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
    }
    else if ([title isEqualToString:@"在线客服"]) {
        // 在线客服
-       TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
-       webViewVC.url = SysConf.zxkfUrl;
-       webViewVC.webTitle = @"在线客服";
-       [NavController1 pushViewController:webViewVC animated:YES];
+       [NavController1 pushVCWithUserCenterItemType:UCI_在线客服];
    }
 
 }

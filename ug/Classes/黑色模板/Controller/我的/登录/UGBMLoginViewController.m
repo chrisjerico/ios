@@ -95,9 +95,7 @@
     }];
     
     [subButton(@"忘记密码按钮") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-        SLWebViewController *vc = [SLWebViewController new];
-        vc.urlStr = SysConf.zxkfUrl;
-        [NavController1 pushViewController:vc animated:YES];
+        [NavController1 pushVCWithUserCenterItemType:UCI_在线客服];
     }];
     
     [subButton(@"眼睛按钮") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {

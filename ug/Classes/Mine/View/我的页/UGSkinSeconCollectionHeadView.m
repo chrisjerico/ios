@@ -43,12 +43,7 @@
 
 // 在线客服
 - (IBAction)kehuaAction:(id)sender {
-    SLWebViewController *webViewVC = [[SLWebViewController alloc] init];
-    UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
-    if (config.zxkfUrl > 0) {
-        webViewVC.urlStr = config.zxkfUrl;
-		[NavController1 pushViewController:webViewVC animated:YES];
-    }
+    [NavController1 pushVCWithUserCenterItemType:UCI_在线客服];
 }
 
 @end

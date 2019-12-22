@@ -15,6 +15,7 @@
 #import "UGImgVcodeModel.h"
 #import "WKProxy.h"
 #import "RegExCategories.h"
+#import "SLWebViewController.h"
 
 @interface UGRegisterViewController ()<UITextFieldDelegate,UINavigationControllerDelegate,WKScriptMessageHandler,WKNavigationDelegate,WKUIDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *myScrollView;
@@ -467,10 +468,7 @@
     
     if ([APP.SiteId isEqualToString:@"c049"]) {
         //在线客服
-        TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
-        webViewVC.url = SysConf.zxkfUrl;
-        webViewVC.webTitle = @"在线客服";
-        [NavController1 pushViewController:webViewVC animated:YES];
+        [NavController1 pushVCWithUserCenterItemType:UCI_在线客服];
     } else {
         //去首页
         [self.navigationController popToRootViewControllerAnimated:YES];

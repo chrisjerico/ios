@@ -14,11 +14,11 @@ typedef void(^HomeTitleTryplayBlock)(void);
 typedef void(^HomeTitleLoginBlock)(void);
 typedef void(^HomeTitleRegisterBlock)(void);
 @interface UGHomeTitleView : UIView
-@property (nonatomic, copy) HomeTitleMoreBlock moreClickBlock;
-@property (nonatomic, copy) HomeTitleTryplayBlock tryPlayClickBlock;
-@property (nonatomic, copy) HomeTitleLoginBlock loginClickBlock;
-@property (nonatomic, copy) HomeTitleRegisterBlock registerClickBlock;
-@property (nonatomic, copy) void (^userNameTouchedBlock)(void);
+@property (nonatomic, copy) HomeTitleMoreBlock moreClickBlock;          /**<   更多 */
+@property (nonatomic, copy) HomeTitleTryplayBlock tryPlayClickBlock;    /**<   试玩 */
+@property (nonatomic, copy) HomeTitleLoginBlock loginClickBlock;        /**<   登录 */
+@property (nonatomic, copy) HomeTitleRegisterBlock registerClickBlock;  /**<   注册 */
+@property (nonatomic, copy) void (^userNameTouchedBlock)(void);         /**<   用户名 */
 @property (nonatomic, strong) NSString *userName;
 @property (nonatomic, assign) BOOL showLoginView;
 @property (nonatomic, strong) NSString *imgName;
