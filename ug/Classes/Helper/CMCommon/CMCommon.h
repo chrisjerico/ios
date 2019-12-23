@@ -187,4 +187,11 @@
 *
 */
 + (BOOL)array:(NSArray *)array1 isOrderEqualTo:(NSArray *)array2 ;
+
+/**
+*  ios是否是链接的判断方法
+*
+*
+*/
++(BOOL)hasLinkUrl:(NSString * )linkStr;
 @end

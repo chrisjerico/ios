@@ -731,4 +731,14 @@ return NO;
     return bol;
 }
 
+/**
+*  ios是否是链接的判断方法
+*
+*
+*/
++(BOOL)hasLinkUrl:(NSString * )linkStr{
+    NSString*emailRegex = @"((http[s]{0,1}|ftp)://[a-zA-Z0-9\\-.]+(?::(\\d+))?(?:(?:/[a-zA-Z0-9\\-._?,'+\\&%$=~*!():@\\\\]*)+)?)|(www.[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?)";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES  %@",emailRegex];
+    return [predicate evaluateWithObject:linkStr];
+}
 @end

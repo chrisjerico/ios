@@ -85,7 +85,32 @@
         completionHandler(NSURLSessionAuthChallengeUseCredential,card);
     }
 }
+//1、使用WKWebView的时候，点击链接不让其跳转到系统自带的Safar浏览器的设置方法：
+ - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
 
+    if (navigationAction.navigationType == WKNavigationTypeLinkActivated) {//跳转别的应用如系统浏览器
+        // 对于跨域，需要手动跳转
+        [[UIApplication sharedApplication] openURL:navigationAction.request.URL];
+        // 不允许web内跳转
+        decisionHandler(WKNavigationActionPolicyCancel);
+    } else {//应用的web内跳转
+        decisionHandler (WKNavigationActionPolicyAllow);
+    }
+    return ;//不添加会崩溃
+
+}
+
+//- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+//  WKNavigationActionPolicy actionPolicy = WKNavigationActionPolicyAllow;
+//
+//    NSString * urlStr = navigationAction.request.URL.absoluteString;
+//   BOOL  linkBool  =  [JCCommonTool isLinkAddressLinkValueTo:urlStr];//自己封装的验证是否是链接的方法
+//    if (linkBool == YES) {
+//  actionPolicy = WKNavigationActionPolicyCancel;
+//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];
+//    }
+//    decisionHandler(actionPolicy);
+//}
 #pragma mark - KVO
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {

@@ -327,6 +327,7 @@
     if ([APP.SiteId isEqualToString:@"c049"]) {
         //在线客服
         [NavController1 pushVCWithUserCenterItemType:UCI_在线客服];
+
     } else {
         //去首页
         [self.navigationController popToRootViewControllerAnimated:YES];

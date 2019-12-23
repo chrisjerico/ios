@@ -400,7 +400,9 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         }
         case 4: {
             // 在线客服
+
             [NavController1 pushVCWithUserCenterItemType:UCI_在线客服];
+
             break;
         }
         case 5: {
