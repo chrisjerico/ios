@@ -172,7 +172,8 @@
     FastSubViewCode(cell);
     UGLHGalleryModel *gm = [self isShowResult] ? _resultArray[indexPath.row] : _groups[indexPath.section].array[indexPath.row];
     subLabel(@"标题Label").text = gm.name;
-    subLabel(@"编号Label").text = gm.gid;
+//    subLabel(@"编号Label").text = gm.gid;
+    [subLabel(@"编号Label") setHidden:YES];
     return cell;
 }
 
