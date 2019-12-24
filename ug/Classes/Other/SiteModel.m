@@ -62,8 +62,7 @@
             site(@"c018",        @"c018hy",     @"174",     @"io.fhpt.H51E9BFB6",       @"https://204421.com",                          @"企业包",     @"2044彩票"),
             site(@"c021",        @"",           @"",        @"io.fhpt.H5A730C2F",       @"",                                            @"企业包",     @"幸运彩票"),
             site(@"c028",        @"",           @"",        @"io.fhpt.H5DBF1426",       @"",                                            @"企业包",     @"鳳凰彩票"),
-//            site(@"c053",        @"c053",       @"45",      @"io.fhpt.H563009C8",       @"https://988c53.com",                          @"企业包",     @"彩53"),  // 已上架  极光 账号：xuduoduo2018402@gmail.com 密码：Xusiling2018402.|之前是超级签名  https://dev.app2.xin/index  账号：14779887196  密码：Xusiling2018402
-            site(@"c053",      @"c053hy",    @"152",    @"io.fhpt.H563009C8",       @"https://988c53.com",                          @"企业包",     @"彩53"),  // 已上架  极光 账号：xuduoduo2018402@gmail.com 密码：Xusiling2018402.|之前是超级签名
+            site(@"c053",        @"c053hy",     @"152",     @"io.fhpt.H563009C8",       @"https://988c53.com",                          @"企业包",     @"彩53"),  // 极光 账号：xuduoduo2018402@gmail.com 密码：Xusiling2018402.| 封装是超级签名 https://dev.app2.xin/index  账号：14779887196  密码：Xusiling2018402
             site(@"c062",        @"c062hy",     @"153",     @"io.fhpt.H5AF9FDA4",       @"",                                            @"企业包",     @"六合彩票"),
             site(@"c067",        @"",           @"",        @"io.fhpt.H59B0EF77",       @"",                                            @"企业包",     @"乐盈彩票"),
             site(@"c068",        @"",           @"",        @"io.fhpt.H5E98EDD5",       @"",                                            @"企业包",     @"⾦牌⼿游"),
@@ -105,7 +104,7 @@
             site(@"c185",        @"",           @"",        @"io.fhpt.H50BFF911",       @"",                                            @"企业包",     @"太阳城集团"),
             site(@"c189",        @"",           @"",        @"io.fhpt.H53C0C63D",       @"",                                            @"企业包",     @"地球⼈"),
             site(@"c225",        @"",           @"",        @"io.fhpt.H50A96411",       @"",                                            @"企业包",     @"51彩票"),
-            site(@"c002",        @"c002hy",     @"173",     @"io.fhpt.YSAC002",         @"https://154977.com",                          @"企业包",     @"永利彩世界"), // io.dcloud.UNIE955DDC（新增的第三方改签由于频繁掉签已弃用）
+            site(@"c002",        @"c002hy",     @"173",     @"io.fhpt.YSAC002",         @"https://154977.com",                          @"企业包",     @"永利彩世界"),
             site(@"c091",        @"c091hy",     @"137",     @"io.fhpt.H5691A751",       @"https://83f9.com",                            @"企业包",     @"凤凰彩票"),
             site(@"c084",        @"c084hy",     @"136",     @"io.fhpt.H599DB7B9",       @"https://papghawshugposwaughwsoohu.com",       @"企业包",     @"新2彩票"),//极光 jiguangx2c@gmail.com Qwe741123
             site(@"c049",        @"c049hy",     @"190",     @"com.xinshiji2.yuansheng1", @"https://93922app.com",                        @"企业包",     @"新世纪Ⅱ"),
