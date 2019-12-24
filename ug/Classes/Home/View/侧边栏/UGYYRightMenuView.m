@@ -74,8 +74,8 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
     } else {
         [self titleArrayAndimageNameArrayInit];
     }
-    
-    if ([APP.SiteId isEqualToString:@"c049"]) {
+ 
+    if ([@"c008,c049" containsString:APP.SiteId]) {
         NSArray *arrayTmp = @[@"在线客服"];
         // NSMakeRange(1, 2)：1表示要插入的位置，2表示插入数组的个数
         NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(4, 1)];

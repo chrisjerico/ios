@@ -56,7 +56,7 @@
 -(void)viewWillAppear:(BOOL)animated{
 //    [self viewWillAppear:animated];
     
-    if ([APP.SiteId isEqualToString:@"c049"]) {
+    if ([@"c049,c008" containsString:APP.SiteId]) {
         [self.goHomeButton setTitle:@"在线客服" forState:(UIControlStateNormal)];
         [self.btn_c49goHome setHidden:NO];
         
@@ -324,7 +324,7 @@
 
 - (IBAction)c49goHomeAction:(id)sender {
     
-    if ([APP.SiteId isEqualToString:@"c049"]) {
+    if ([@"c049,c008" containsString:APP.SiteId]) {
         //在线客服
         [NavController1 pushVCWithUserCenterItemType:UCI_在线客服];
 
