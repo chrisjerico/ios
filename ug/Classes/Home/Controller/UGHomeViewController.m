@@ -522,7 +522,7 @@
 - (CGSize)waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
 
      float itemW = (UGScreenW-1)/ 2.0;
-     CGSize size = {itemW, 100};
+     CGSize size = {itemW, 80};
      return size;
        
    
@@ -662,7 +662,7 @@
         return size;
     } else {
         float itemW = (UGScreenW)/ 2.0;
-        CGSize size = {itemW, 100};
+        CGSize size = {itemW, 80};
         return size;
     }
 }
@@ -1142,9 +1142,9 @@
             // 需要在主线程执行的代码
             [self.contentCollectionView reloadData];
             if (self->_lHCategoryList.count%2==0) {
-                 self->_heightLayoutConstraint.constant = self->_lHCategoryList.count/2*101+1;
+                 self->_heightLayoutConstraint.constant = self->_lHCategoryList.count/2*80+1;
             } else {
-                 self->_heightLayoutConstraint.constant = self->_lHCategoryList.count/2*101+101+1;
+                 self->_heightLayoutConstraint.constant = self->_lHCategoryList.count/2*80+80+1;
             }
            
 
