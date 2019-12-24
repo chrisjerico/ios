@@ -242,18 +242,18 @@ static UGTabbarController *_tabBarVC = nil;
 
 - (void)setTabbarHeight:(CGFloat)height {
 #pragma mark - 模拟器调试要注释下面代码
-//    static dispatch_once_t onceToken;
-//    dispatch_once(&onceToken, ^{
-//        [UITabBar cc_hookSelector:@selector(sizeThatFits:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> ai) {
-//            CGSize size = CGSizeZero;
-//            [ai.originalInvocation invoke];
-//            [ai.originalInvocation getReturnValue:&size];
-//            size.height = 50 + APP.BottomSafeHeight;
-//            [ai.originalInvocation setReturnValue:&size];
-//        } error:nil];
-//    });
-//    [self.view layoutSubviews];
-//    [self.selectedViewController.view layoutSubviews];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [UITabBar cc_hookSelector:@selector(sizeThatFits:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> ai) {
+            CGSize size = CGSizeZero;
+            [ai.originalInvocation invoke];
+            [ai.originalInvocation getReturnValue:&size];
+            size.height = 50 + APP.BottomSafeHeight;
+            [ai.originalInvocation setReturnValue:&size];
+        } error:nil];
+    });
+    [self.view layoutSubviews];
+    [self.selectedViewController.view layoutSubviews];
 }
 
 /**
@@ -322,11 +322,13 @@ static UGTabbarController *_tabBarVC = nil;
 #pragma mark - UITabBarControllerDelegate
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
+    NSLog(@"viewController = %@",viewController);
+    NSLog(@"_mms = %@",_mms);
     UGMobileMenu *mm = _mms[[tabBarController.viewControllers indexOfObject:viewController]];
-    
+    NSLog(@"mm = %@",mm);
     // 由 UGMobileMenu控制显示的ViewController
     UIViewController *vc = ((UINavigationController *)viewController).viewControllers.firstObject;
-    
+    NSLog(@"vc = %@",vc);
     // 控制器需要重新加载
     if (vc.class != mm.cls) {
         [mm createViewController:^(__kindof UIViewController * _Nonnull vc) {

@@ -118,8 +118,8 @@
 			make.width.height.equalTo(@37);
 		}];
         
-        _iconImage.layer.cornerRadius = 20;
-        _iconImage.layer.masksToBounds = YES;
+//        _iconImage.layer.cornerRadius = 20;
+//        _iconImage.layer.masksToBounds = YES;
         [self addSubview:_hotImage];
         _hotImage.contentMode = UIViewContentModeScaleAspectFit;
         [_hotImage mas_makeConstraints:^(MASConstraintMaker *make) {
