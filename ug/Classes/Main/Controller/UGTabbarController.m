@@ -122,9 +122,17 @@ static UGTabbarController *_tabBarVC = nil;
         NSArray<UGMobileMenu *> *menus = [[UGMobileMenu arrayOfModelsFromDictionaries:SysConf.mobileMenu error:nil] sortedArrayUsingComparator:^NSComparisonResult(UGMobileMenu *obj1, UGMobileMenu *obj2) {
             return obj1.sort > obj2.sort;
         }];
-        if (menus.count > 3) {
+        NSArray<UGMobileMenu *> *smallmenus;
+        if (menus.count > 5) {
+            smallmenus =  [menus subarrayWithRange:NSMakeRange(0, 5)];
+        }
+        else{
+            smallmenus = menus;
+        }
+        NSLog(@"menus = %@",smallmenus);
+        if (smallmenus.count > 3) {
             // 后台配置的页面
-            [self resetUpChildViewController:menus];
+            [self resetUpChildViewController:smallmenus];
         } else {
             // 默认加载的页面
             NSMutableArray *temp = @[].mutableCopy;
@@ -142,7 +150,27 @@ static UGTabbarController *_tabBarVC = nil;
             NSArray<UGMobileMenu *> *menus = [[UGMobileMenu arrayOfModelsFromDictionaries:SysConf.mobileMenu error:nil] sortedArrayUsingComparator:^NSComparisonResult(UGMobileMenu *obj1, UGMobileMenu *obj2) {
                 return obj1.sort > obj2.sort;
             }];
-            [TabBarController1 resetUpChildViewController:menus];
+            NSArray<UGMobileMenu *> *smallmenus;
+            if (menus.count > 5) {
+                smallmenus =  [menus subarrayWithRange:NSMakeRange(0, 5)];
+            }
+            else{
+                smallmenus = menus;
+            }
+            NSLog(@"menus = %@",smallmenus);
+            if (smallmenus.count > 3) {
+                // 后台配置的页面
+                [TabBarController1 resetUpChildViewController:smallmenus];
+            } else {
+                // 默认加载的页面
+                NSMutableArray *temp = @[].mutableCopy;
+                for (UGMobileMenu *mm in UGMobileMenu.allMenus) {
+                    if ([@"/home,/lotteryList,/chatRoomList,/activity,/user" containsString:mm.path]) {
+                        [temp addObject:mm];
+                    }
+                }
+                [TabBarController1 resetUpChildViewController:temp];
+            }
             [[UGSkinManagers skinWithSysConf] useSkin];
         }
     });
