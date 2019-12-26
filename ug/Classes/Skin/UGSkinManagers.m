@@ -943,7 +943,7 @@ static UGSkinManagers *__initSkin1 = nil;
             sm;
         }),
         //新年红
-        @"新年红":({
+        @"新年红0":({
             UGSkinManagers *sm = [UGSkinManagers new];
             sm.skitType                 = @"新年红";
             sm.skitString               = @"新年红 0默认风格";
@@ -971,14 +971,14 @@ static UGSkinManagers *__initSkin1 = nil;
             sm.bgColor                  = color(@"48A9D8,5CC2EC");
             sm.navBarBgColor            = color(@"58B8E4");
             sm.tabBarBgColor            = color(@"8ED0EB");
-            sm.tabNoSelectColor         = color(@"FFFFFF");
-            sm.tabSelectedColor         = color(@"F1B709");
-            sm.progressBgColor          = color(@"FEC434,FE8A23");
-            sm.homeContentColor         = color(@"FFFFFF");
-            sm.homeContentSubColor      = color(@"F4C9CD");
-            sm.cellBgColor              = color(@"FFFFFF");
+            sm.tabNoSelectColor         = color(@"525252");
+            sm.tabSelectedColor         = color(@"010101");
+            sm.progressBgColor          = color(@"d80000,fb5959");
+            sm.homeContentColor         = color(@"a4ddf3");
+            sm.homeContentSubColor      = color(@"7CB5D8");
+            sm.cellBgColor              = color(@"BDDEEF");
             sm.CLBgColor                = color(@"E6E6E6");
-            sm.menuHeadViewColor        = color(@"e63534,f99695");
+            sm.menuHeadViewColor        = color(@"5f9bc6,fb5959");
             sm.textColor1               = color(@"111111");
             sm.textColor2               = color(@"555555");
             sm.textColor3               = color(@"C1C1C1");
@@ -1021,16 +1021,18 @@ static UGSkinManagers *__initSkin1 = nil;
 
 + (UGSkinManagers *)skinWithSysConf {
     NSDictionary *dict = @{@"0":SysConf.mobileTemplateBackground,
-                           @"2":@"新年红",
+                           @"2":[NSString stringWithFormat:@"新年红%@",SysConf.mobileTemplateStyle],
                            @"3":@"石榴红",
                            @"4":[NSString stringWithFormat:@"六合资料%@",SysConf.mobileTemplateLhcStyle],
                            @"5":@"黑色模板",
     };
+
+    NSLog(@"============================SysConf.mobileTemplateCategory=%@",SysConf.mobileTemplateStyle);
     
     NSString *skitType = dict[SysConf.mobileTemplateCategory];
     #if DEBUG
     NSLog(@"============================skitType=%@",skitType);
-//              skitType =  @"1";
+//              skitType =  @"新年红1";
 //          skitType =  @"六合资料0";
 //              skitType = @"黑色模板";
     #endif
@@ -1100,12 +1102,12 @@ static UGSkinManagers *__initSkin1 = nil;
 }
 
 + (UGSkinManagers *)next {
-    NSArray *keys = @[@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11", @"12", @"13", @"14", @"15", @"16", @"17", @"18", @"19", @"六合资料0",@"六合资料1",@"六合资料2",@"六合资料3",@"六合资料4",@"六合资料5",@"六合资料6",@"六合资料7",@"六合资料8",@"六合资料9",@"六合资料10",@"新年红", @"石榴红",  @"黑色模板", ];
+    NSArray *keys = @[@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11", @"12", @"13", @"14", @"15", @"16", @"17", @"18", @"19", @"六合资料0",@"六合资料1",@"六合资料2",@"六合资料3",@"六合资料4",@"六合资料5",@"六合资料6",@"六合资料7",@"六合资料8",@"六合资料9",@"六合资料10",@"新年红0", @"新年红1",@"石榴红",  @"黑色模板", ];
     NSInteger i = [keys indexOfObject:[[UGSkinManagers allSkin] allKeysForObject:Skin1].firstObject] + keys.count;
     return [UGSkinManagers allSkin][keys[++i%keys.count]];
 }
 + (UGSkinManagers *)last {
-    NSArray *keys = @[@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11", @"12", @"13", @"14", @"15", @"16", @"17", @"18", @"19", @"六合资料0",@"六合资料1",@"六合资料2",@"六合资料3",@"六合资料4",@"六合资料5",@"六合资料6",@"六合资料7",@"六合资料8",@"六合资料9",@"六合资料10",@"新年红", @"石榴红",  @"黑色模板", ];
+    NSArray *keys = @[@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11", @"12", @"13", @"14", @"15", @"16", @"17", @"18", @"19", @"六合资料0",@"六合资料1",@"六合资料2",@"六合资料3",@"六合资料4",@"六合资料5",@"六合资料6",@"六合资料7",@"六合资料8",@"六合资料9",@"六合资料10",@"新年红0", @"新年红1",@"石榴红",  @"黑色模板", ];
     NSInteger i = [keys indexOfObject:[[UGSkinManagers allSkin] allKeysForObject:Skin1].firstObject] + keys.count;
     return [UGSkinManagers allSkin][keys[--i%keys.count]];
 }

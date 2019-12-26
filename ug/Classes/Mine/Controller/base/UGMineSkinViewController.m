@@ -181,7 +181,7 @@
     //设置皮肤
     [self.view setBackgroundColor:Skin1.bgColor];
     [self.userInfoView setBackgroundColor: Skin1.navBarBgColor];
-    
+    [self.topupView setBackgroundColor:Skin1.bgColor];
     
     skitType = Skin1.skitType;
     

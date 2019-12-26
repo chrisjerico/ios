@@ -132,6 +132,7 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 @property (nonatomic, copy) NSString *mobileTemplateBackground;   /**<   配色方案 */
 @property (nonatomic, copy) NSString *mobileTemplateCategory;     /**<   模板号 */   
 @property (nonatomic, copy) NSString *mobileTemplateLhcStyle;     /**<   六合配色方案 */
+@property (nonatomic, copy) NSString *mobileTemplateStyle;     /**<   新年红配色方案 */
 @property (nonatomic, copy) NSString *webName;                    /**<   首页底部文字   网址名称*/
 @property (nonatomic, copy) NSString *serviceQQ1;                    /**<   QQ客服q1*/
 @property (nonatomic, copy) NSString *serviceQQ2;                    /**<   QQ客服q2*/
