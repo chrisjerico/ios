@@ -91,18 +91,24 @@
         _idxView = _LoadView_from_nib_(@"IndexesView");
         _idxView.didSelectedIndex = ^(NSInteger idx) {
             UITableView *tv = __self.tableView;
-            NSMutableArray <ChineseSortGroupModel *>*groups = __self.groups;
-            
+//            NSMutableArray <ChineseSortGroupModel *>*groups = __self.groups;
+//
+//            if (idx < 0) {
+//                tv.contentOffset = CGPointZero;
+//            } else if (idx < groups.count) {
+//                CGFloat y2 = tv.tableHeaderView.height;
+//                for (int i=0; i<idx; i++) {
+//                    y2 += SectionHeight;
+//                    y2 += groups[i].array.count * RowHeight;
+//                }
+//                y2 -= tv.contentInset.top;
+//                tv.contentOffset = CGPointMake(0, y2);
+//            }
             if (idx < 0) {
                 tv.contentOffset = CGPointZero;
-            } else if (idx < groups.count) {
-                CGFloat y2 = tv.tableHeaderView.height;
-                for (int i=0; i<idx; i++) {
-                    y2 += SectionHeight;
-                    y2 += groups[i].array.count * RowHeight;
-                }
-                y2 -= tv.contentInset.top;
-                tv.contentOffset = CGPointMake(0, y2);
+            } else {
+                NSIndexPath *ip= [NSIndexPath indexPathForRow:0 inSection:idx+1];
+                [tv selectRowAtIndexPath:ip animated:YES scrollPosition:UITableViewScrollPositionTop];
             }
         };
         _idxView.hidden = true;
