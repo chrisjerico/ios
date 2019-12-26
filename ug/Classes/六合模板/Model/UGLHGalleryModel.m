@@ -15,3 +15,11 @@
 }
 
 @end
+
+@implementation UGLHHotModel
+
++ (NSDictionary *)mj_replacedKeyFromPropertyName {
+    return @{@"gid":@"id"};
+}
+
+@end

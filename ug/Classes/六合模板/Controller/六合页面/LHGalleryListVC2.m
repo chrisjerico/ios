@@ -26,6 +26,8 @@
 
 @property (nonatomic, strong) NSMutableArray <ChineseSortGroupModel *>*groups;  /**<   按首字母分类后的图库列表 */
 @property (nonatomic, strong) NSMutableArray <UGLHGalleryModel *>*resultArray;  /**<   搜索结果 */
+
+@property (nonatomic, strong) NSMutableArray <UGLHHotModel *>*hotArray;  /**<   热门结果 */
 @end
 
 @implementation LHGalleryListVC2
@@ -38,6 +40,7 @@
     self.title = _clm.name;
     _groups = @[].mutableCopy;
     _resultArray = @[].mutableCopy;
+    _hotArray = @[].mutableCopy;
     
     // TableView
     __weakSelf_(__self);
@@ -49,6 +52,13 @@
         [tv setupHeaderRefreshRequest:^CCSessionModel *(UITableView *tv) {
             return [NetworkManager1 lhdoc_tkList:false];
         } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
+            
+            {
+                NSArray *array = sm.responseObject[@"data"][@"hot_list"];
+                for (NSDictionary *dict in array) {
+                    [__self.hotArray addObject:[UGLHHotModel mj_objectWithKeyValues:dict]];
+                }
+            }
             
             NSArray *array = sm.responseObject[@"data"][@"list"];
             for (NSDictionary *dict in array) {
@@ -131,56 +141,109 @@
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return [self isShowResult] ? 0 : SectionHeight;
+    if (section == 0) {
+         return  SectionHeight;
+    } else {
+         return [self isShowResult] ? 0 : SectionHeight;
+    }
+   
 }
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    if ([self isShowResult]) {
-        return nil;
+    if (section == 0) {
+        UIView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"header"];
+        UILabel *lb = [headerView viewWithTagString:@"label"];
+        if (!headerView) {
+            headerView = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:@"header"];
+            headerView.backgroundColor = APP.BackgroundColor;
+            [headerView addSubview:({
+                lb = [UILabel new];
+                lb.tagString = @"label";
+                lb.textColor = Skin1.navBarBgColor;
+                lb.backgroundColor = APP.BackgroundColor;
+                lb.font = [UIFont boldSystemFontOfSize:16];
+                lb.内边距 = CGPointMake(20, 0);
+                lb.frame = CGRectMake(0, 0, APP.Width, 25);
+                lb;
+            })];
+        }
+        lb.text = @"热门推荐";
+        return headerView;
+    } else {
+        if ([self isShowResult]) {
+            return nil;
+        }
+        UIView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"header"];
+        UILabel *lb = [headerView viewWithTagString:@"label"];
+        if (!headerView) {
+            headerView = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:@"header"];
+            headerView.backgroundColor = APP.BackgroundColor;
+            [headerView addSubview:({
+                lb = [UILabel new];
+                lb.tagString = @"label";
+                lb.textColor = Skin1.navBarBgColor;
+                lb.backgroundColor = APP.BackgroundColor;
+                lb.font = [UIFont boldSystemFontOfSize:16];
+                lb.内边距 = CGPointMake(20, 0);
+                lb.frame = CGRectMake(0, 0, APP.Width, 25);
+                lb;
+            })];
+        }
+        lb.text = _groups[section-1].key;
+        //        NSLog(@"idx = %ld, title = %@", section, _friendArray[section].key);
+        return headerView;
     }
-    UIView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"header"];
-    UILabel *lb = [headerView viewWithTagString:@"label"];
-    if (!headerView) {
-        headerView = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:@"header"];
-        headerView.backgroundColor = APP.BackgroundColor;
-        [headerView addSubview:({
-            lb = [UILabel new];
-            lb.tagString = @"label";
-            lb.textColor = Skin1.navBarBgColor;
-            lb.backgroundColor = APP.BackgroundColor;
-            lb.font = [UIFont boldSystemFontOfSize:16];
-            lb.内边距 = CGPointMake(20, 0);
-            lb.frame = CGRectMake(0, 0, APP.Width, 25);
-            lb;
-        })];
-    }
-    lb.text = _groups[section].key;
-//        NSLog(@"idx = %ld, title = %@", section, _friendArray[section].key);
-    return headerView;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [self isShowResult] ? : _groups.count;
+    
+    NSInteger count ;
+    if ([self isShowResult]) {
+        count = 1 ;
+    } else {
+        count = 1 + _groups.count;
+    }
+    return count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self isShowResult] ? _resultArray.count : _groups[section].array.count;
+    if (section == 0) {
+        return self.hotArray.count;
+    } else {
+        return [self isShowResult] ? _resultArray.count : _groups[section-1].array.count;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     FastSubViewCode(cell);
-    UGLHGalleryModel *gm = [self isShowResult] ? _resultArray[indexPath.row] : _groups[indexPath.section].array[indexPath.row];
-    subLabel(@"标题Label").text = gm.name;
-//    subLabel(@"编号Label").text = gm.gid;
-    [subLabel(@"编号Label") setHidden:YES];
+    
+    if (indexPath.section == 0) {
+        UGLHHotModel *gm = _hotArray[indexPath.row];
+        subLabel(@"标题Label").text = gm.name;
+        [subLabel(@"编号Label") setHidden:YES];
+    } else {
+        UGLHGalleryModel *gm = [self isShowResult] ? _resultArray[indexPath.row] : _groups[indexPath.section-1].array[indexPath.row];
+        subLabel(@"标题Label").text = gm.name;
+        //    subLabel(@"编号Label").text = gm.gid;
+        [subLabel(@"编号Label") setHidden:YES];
+    }
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     LHJournalDetailVC *vc = _LoadVC_from_storyboard_(@"LHJournalDetailVC");
-    vc.clm = _clm;
-    vc.gm = [self isShowResult] ? _resultArray[indexPath.row] : _groups[indexPath.section].array[indexPath.row];
+    
+    if (indexPath.section == 0) {
+        vc.clm = _clm;
+        UGLHHotModel *gm2 = _hotArray[indexPath.row];
+        UGLHGalleryModel *gm = [UGLHGalleryModel new];
+        gm.gid = gm2.gid;
+        vc.gm = gm;
+    } else {
+        vc.clm = _clm;
+        vc.gm = [self isShowResult] ? _resultArray[indexPath.row] : _groups[indexPath.section-1].array[indexPath.row];
+    }
     [NavController1 pushViewController:vc animated:true];
 }
 

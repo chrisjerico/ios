@@ -31,4 +31,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+
+@interface UGLHHotModel : NSObject
+@property (nonatomic, copy) NSString *gid;           /**<   图库ID */
+@property (nonatomic, copy) NSString *name;         /**<   名称 */
+@property (nonatomic, copy) NSString *alias;        /**<   别名 */
+@property (nonatomic, copy) NSString *desc;         /**<   简介 */
+@property (nonatomic, copy) NSString *priceMax;     /**<   收费帖子最大金额，为0则不是收费帖子 */
+@property (nonatomic, copy) NSString *priceMin;     /**<   收费帖子最小金额 */
+@property (nonatomic, copy) NSString *appLinkCode;      /**<  */
+@property (nonatomic, copy) NSString *appLink;      /**<   */
+@property (nonatomic, copy) NSString *content_id;      /**<    */
+@property (nonatomic, copy) NSString *cover;      /**<   */
+@property (nonatomic, assign) BOOL isUpdate;     /**<    */
+@property (nonatomic, assign) BOOL isBidFav;     /**<    */
+@end
+
 NS_ASSUME_NONNULL_END
