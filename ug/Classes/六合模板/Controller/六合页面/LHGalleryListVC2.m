@@ -54,6 +54,7 @@
         } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
             
             {
+                [__self.hotArray removeAllObjects];
                 NSArray *array = sm.responseObject[@"data"][@"hot_list"];
                 for (NSDictionary *dict in array) {
                     [__self.hotArray addObject:[UGLHHotModel mj_objectWithKeyValues:dict]];

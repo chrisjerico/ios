@@ -915,7 +915,7 @@ static UGSkinManagers *__initSkin1 = nil;
         @"石榴红":({
             UGSkinManagers *sm = [UGSkinManagers new];
             sm.skitType                 = @"石榴红";
-            sm.skitString               = @"石榴红";
+            sm.skitString               = @"石榴红 ";
             sm.bgColor                  = color(@"F5F5F5");
             sm.navBarBgColor            = color(@"CC022C");
             NSLog(@"APP.SiteId =%@ ",APP.SiteId);
@@ -946,10 +946,31 @@ static UGSkinManagers *__initSkin1 = nil;
         @"新年红":({
             UGSkinManagers *sm = [UGSkinManagers new];
             sm.skitType                 = @"新年红";
-            sm.skitString               = @"新年红";
+            sm.skitString               = @"新年红 0默认风格";
             sm.bgColor                  = color(@"F5F5F5");
             sm.navBarBgColor            = color(@"DE1C27");
             sm.tabBarBgColor            = color(@"DE1C27");
+            sm.tabNoSelectColor         = color(@"FFFFFF");
+            sm.tabSelectedColor         = color(@"F1B709");
+            sm.progressBgColor          = color(@"FEC434,FE8A23");
+            sm.homeContentColor         = color(@"FFFFFF");
+            sm.homeContentSubColor      = color(@"F4C9CD");
+            sm.cellBgColor              = color(@"FFFFFF");
+            sm.CLBgColor                = color(@"E6E6E6");
+            sm.menuHeadViewColor        = color(@"e63534,f99695");
+            sm.textColor1               = color(@"111111");
+            sm.textColor2               = color(@"555555");
+            sm.textColor3               = color(@"C1C1C1");
+            sm.textColor4               = color(@"FFFFFF");
+            sm;
+        }),
+        @"新年红1":({
+            UGSkinManagers *sm = [UGSkinManagers new];
+            sm.skitType                 = @"新年红";
+            sm.skitString               = @"新年红 1蓝色风格";
+            sm.bgColor                  = color(@"48A9D8,5CC2EC");
+            sm.navBarBgColor            = color(@"58B8E4");
+            sm.tabBarBgColor            = color(@"8ED0EB");
             sm.tabNoSelectColor         = color(@"FFFFFF");
             sm.tabSelectedColor         = color(@"F1B709");
             sm.progressBgColor          = color(@"FEC434,FE8A23");
