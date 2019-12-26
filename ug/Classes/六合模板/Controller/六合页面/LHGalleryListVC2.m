@@ -72,7 +72,7 @@
             if (__self.groups.count) {
                 __self.idxView.hidden = false;
                 __self.idxView.titles = [__self.groups valuesWithKeyPath:@"key"];
-                __self.idxView.cc_constraints.height.constant = __self.groups.count * 14 + 13;
+//                __self.idxView.cc_constraints.height.constant = __self.groups.count * 14 + 13;
             }
             tv.mj_footer = nil;
             return array;
@@ -117,7 +117,7 @@
             make.right.equalTo(self.view);
             make.centerY.equalTo(self.view);
             make.width.mas_equalTo(30);
-            make.height.mas_equalTo(380);
+            make.height.mas_equalTo(480);
         }];
     }
     
