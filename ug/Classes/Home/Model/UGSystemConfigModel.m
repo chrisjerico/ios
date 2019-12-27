@@ -290,6 +290,20 @@ MJExtensionCodingImplementation
 - (NSString *)serviceQQ2 {
     return _serviceQQ2.length ? _serviceQQ2 : _serviceQQ1;
 }
+- (NSMutableArray <NSString *>*)qqs {
+    NSMutableArray *qqArray = [NSMutableArray new];
+    if (![CMCommon stringIsNull:_appPopupQqNum]) {
+        [qqArray addObject:_appPopupQqNum];
+    }
+    if (![CMCommon stringIsNull:_serviceQQ1]) {
+        [qqArray addObject:_serviceQQ1];
+    }
+    if (![CMCommon stringIsNull:_serviceQQ2]) {
+        [qqArray addObject:_serviceQQ2];
+    }
+    return qqArray;
+}
+
 
 - (NSArray<UGUserCenterItem *> *)userCenter {
     if (!_userCenter) {

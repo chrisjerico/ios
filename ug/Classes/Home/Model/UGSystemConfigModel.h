@@ -178,6 +178,9 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 
 + (void)setCurrentConfig:(UGSystemConfigModel *)config;
 
+
+// 自定义参数
+@property (nonatomic, readonly) NSArray <NSString *>*qqs;
 @end
 
 NS_ASSUME_NONNULL_END
