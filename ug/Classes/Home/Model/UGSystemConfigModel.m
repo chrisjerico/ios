@@ -85,6 +85,7 @@ UGSystemConfigModel *currentConfig = nil;
             item(@"changlong",              @"changlong",           @"changlong",               UCI_长龙助手,      @"长龙助手"),
             item(@"menu-activity",          @"menu-activity",       @"menu-activity",           UCI_全民竞猜,      @"全民竞猜"),
             item(@"kj_trend",               @"kj_trend",            @"kj_trend",                UCI_开奖走势,      @"开奖走势"),
+            item(@"usrCenter_qq",           @"usrCenter_qq",        @"usrCenter_qq",            UCI_QQ客服,        @"QQ客服"),
         ];
     });
     return _items;

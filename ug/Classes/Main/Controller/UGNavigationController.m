@@ -668,6 +668,11 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController")  animated:YES];
             return true;
         }
+        case UCI_QQ客服: {
+//从系统配置中获得QQ号，==》弹窗 ==》点击调起QQ
+            
+            return true;
+        }
             
         default:
             return false;

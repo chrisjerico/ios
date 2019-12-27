@@ -30,6 +30,7 @@ typedef NS_ENUM(NSInteger, UserCenterItemType) {
     UCI_长龙助手    = 16,
     UCI_全民竞猜    = 17,
     UCI_开奖走势    = 18,
+    UCI_QQ客服    = 19,
 };
 
 typedef NS_ENUM(NSInteger, MobileMenuType) {
@@ -138,7 +139,7 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 @property (nonatomic, copy) NSString *serviceQQ2;                    /**<   QQ客服q2*/
 @property (nonatomic, copy) NSString *appPopupWechatNum;        /**<   微信客服号 */
 @property (nonatomic, copy) NSString *appPopupWechatImg;        /**<   微信客服二维码 */
-@property (nonatomic, copy) NSString *appPopupQqNum;        /**<   微信客服号 */
+@property (nonatomic, copy) NSString *appPopupQqNum;        /**<   QQ客服号 */
 @property (nonatomic, copy) NSString *appPopupQqImg;        /**<   微信客服二维码 */
 
 @property (nonatomic, copy) NSArray<UGMobileMenu *> *mobileMenu;
