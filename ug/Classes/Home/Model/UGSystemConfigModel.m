@@ -288,7 +288,7 @@ MJExtensionCodingImplementation
 }
 
 - (NSString *)serviceQQ2 {
-    return _serviceQQ1.length ? _serviceQQ1 : _serviceQQ2;
+    return _serviceQQ2.length ? _serviceQQ2 : _serviceQQ1;
 }
 
 - (NSArray<UGUserCenterItem *> *)userCenter {

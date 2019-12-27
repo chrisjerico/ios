@@ -189,9 +189,37 @@
 + (BOOL)array:(NSArray *)array1 isOrderEqualTo:(NSArray *)array2 ;
 
 /**
+*  ios 比较两个数组,并除去相同元素
+*
+*
+*/
++ (NSArray*)arrayfilter:(NSArray *)array1 array2:(NSArray *)array2 ;
+
+/**
+*  ios 数组,并除去相同元素    isOrder    有序  yes 无序 no
+*
+*
+*/
++ (NSArray*)killRepeatNoOrderly:(NSArray *)array Orderly:(BOOL)isOrder;
+/**
 *  ios是否是链接的判断方法
 *
 *
 */
 +(BOOL)hasLinkUrl:(NSString * )linkStr;
+/**
+*  ios调用QQ发起临时会话
+*由于qq区分个人qq和营销qq，故 chat_type 要正确配置。chat_type=crm 代表的是营销qq， chat_type=wpa 代表的是个人qq。
+chat_type=wpa 设置意味着个人qq，不能和陌生人发临时会话，除非是好友，或者有共同的群，
+chat_type=crm 设置意味着营销qq，可以和陌生人发起临时会话。
+*
+*/
++(void)goQQ:(NSString * )qqStr;
+
+/**
+*   简单，ios 提示
+*
+*
+*/
++(void)showTitle:(NSString * )str;
 @end

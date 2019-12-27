@@ -732,6 +732,37 @@ return NO;
 }
 
 /**
+*  ios 比较两个数组,并除去相同元素
+*
+*
+*/
++ (NSArray*)arrayfilter:(NSArray *)array1 array2:(NSArray *)array2 {
+    NSPredicate * filterPredicate = [NSPredicate predicateWithFormat:@"NOT (SELF IN %@)",array1];
+    NSArray * filter = [array2 filteredArrayUsingPredicate:filterPredicate];
+    NSLog(@"%@",filter);
+    return filter;
+}
+
+/**
+*  ios 数组,并除去相同元素    isOrder    有序  yes 无序 no
+*
+*
+*/
++ (NSArray*)killRepeatNoOrderly:(NSArray *)array Orderly:(BOOL)isOrder {
+    if (isOrder) {
+        NSOrderedSet *set = [NSOrderedSet orderedSetWithArray:array];
+        NSArray *resultArray = set.array;
+        NSLog(@"%@", resultArray);
+        return resultArray;
+    } else {
+        NSSet *set = [NSSet setWithArray:array];
+        NSArray *resultArray = [set allObjects];
+        NSLog(@"%@", resultArray);
+        return resultArray;
+    }
+}
+
+/**
 *  ios是否是链接的判断方法
 *
 *
@@ -741,4 +772,48 @@ return NO;
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES  %@",emailRegex];
     return [predicate evaluateWithObject:linkStr];
 }
+
+
+/**
+*  ios调用QQ发起临时会话
+*
+*
+*/
++(void)goQQ:(NSString * )qqStr{
+    NSURL *url = [NSURL URLWithString:@"mqq://"];
+    if ([[UIApplication sharedApplication] canOpenURL:url]) {
+        NSString *qq=[NSString stringWithFormat:@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web",qqStr];
+        NSURL *url = [NSURL URLWithString:qq];
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_10_0
+       i[[UIApplication sharedApplication] openURL:url options:@{UIApplicationOpenURLOptionsSourceApplicationKey:@YES} completionHandler:^(BOOL success) {}];
+#else
+        [[UIApplication sharedApplication] openURL:url];
+#endif
+    }else {
+        [LEEAlert alert].config
+        .LeeTitle(@"不能打开QQ,请确保QQ可用")
+        .LeeContent(@"")
+        .LeeAction(@"确认", ^{
+        })
+        .LeeShow(); // 设置完成后 别忘记调用Show来显示
+    }
+
+}
+
+/**
+*   简单，ios 提示
+*
+*
+*/
++(void)showTitle:(NSString * )str{
+    [LEEAlert alert].config
+    .LeeTitle(str)
+    .LeeContent(@"")
+    .LeeAction(@"确认", ^{
+    })
+    .LeeShow(); // 设置完成后 别忘记调用Show来显示
+
+}
+
+
 @end

@@ -669,8 +669,36 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             return true;
         }
         case UCI_QQ客服: {
-//从系统配置中获得QQ号，==》弹窗 ==》点击调起QQ
+            //从系统配置中获得QQ号，==》弹窗 ==》点击调起QQ
+            NSMutableArray *qqArray = [NSMutableArray new];
+            if (![CMCommon stringIsNull:SysConf.appPopupQqNum]) {
+                [qqArray addObject:SysConf.appPopupQqNum];
+            }
+            if (![CMCommon stringIsNull:SysConf.serviceQQ1]) {
+                [qqArray addObject:SysConf.serviceQQ1];
+            }
+            if (![CMCommon stringIsNull:SysConf.serviceQQ2]) {
+                [qqArray addObject:SysConf.serviceQQ2];
+            }
             
+            if ([CMCommon arryIsNull:qqArray]) {
+                [CMCommon showTitle:@"暂无QQ客服,敬请期待"];
+            }
+            NSMutableArray *titles = @[].mutableCopy;
+            for (int i = 0 ;i <qqArray.count ;i++) {
+                NSString *ss = [qqArray objectAtIndex:i];
+                [titles addObject:[NSString stringWithFormat:@"QQ客服%d: %@",i+1,ss]];
+            }
+            
+            UIAlertController *ac = [AlertHelper showAlertView:nil msg:@"请选择QQ客服" btnTitles:[titles arrayByAddingObject:@"取消"]];
+            for (int i = 0 ;i <qqArray.count ;i++) {
+                 NSString *ss = [qqArray objectAtIndex:i];
+                NSString *t = [NSString stringWithFormat:@"QQ客服%d: %@",i+1,ss];
+                [ac setActionAtTitle:t handler:^(UIAlertAction *aa) {
+                    NSLog(@"ss = %@",ss);
+                    [CMCommon goQQ:ss];
+                }];
+            }
             return true;
         }
             
