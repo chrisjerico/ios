@@ -50,9 +50,21 @@
                 if (temp.count < okSites.count) {
                     // 弹出不能自动上传的包，手动处理
                     [NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[okSites.firstObject.ipaPath.stringByDeletingLastPathComponent.stringByDeletingLastPathComponent]];
+                    NSMutableArray *ReSign = okSites.mutableCopy;
+                    [ReSign removeObjectsInArray:temp];
+                    NSLog(@"-------\n.");
+                    for (SiteModel *sm in ReSign) {
+                        NSLog(@"此ipa需要改签：%@（%@）", sm.siteId, sm.type);
+                    }
+                    NSLog(@"-------");
                 }
                 temp.copy;
             });
+            
+            if (!okSites.count) {
+                NSLog(@"无需上传，退出打包程序！");
+                exit(0);
+            }
             
             // 登录
             [NetworkManager1 login].completionBlock = ^(CCSessionModel *sm) {
