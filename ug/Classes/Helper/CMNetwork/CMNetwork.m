@@ -255,18 +255,31 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
                                 model:(CMResultClass)model
                                  post:(BOOL)isPost
                            completion:(CMNetworkBlock)completion {
+#ifdef DEBUG
+    CCSessionModel *sm = [CCSessionModel new];
+    sm.urlString = method;
+    sm.params = params;
+    sm.isPOST = isPost;
+#endif
+    __block id __block1 = nil;
+    __block id __block2 = __block1 = ^(CMResult<id> *model, NSError *err) {
+    #ifdef DEBUG
+            sm.responseObject = [__block2 cc_userInfo][@"responseObject"];
+            sm.error = [__block2 cc_userInfo][@"error"];
+            [LogVC addRequestModel:sm];
+    #endif
+            if (completion == nil) {
+                return ;
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(model, err);
+            });
+    };
     [self requestWithMethod:method
                      params:params
                       model:model
                        post:isPost
-                 completion:^(CMResult<id> *model, NSError *err) {
-                     if (completion == nil) {
-                         return ;
-                     }
-                      dispatch_async(dispatch_get_main_queue(), ^{
-                         completion(model, err);
-                     });
-                 }];
+                 completion:__block2];
 }
 /******************************************************************************
  函数名称 : encryptionCheckSignForURL;
@@ -439,7 +452,6 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
     [manager.securityPolicy setValidatesDomainName:NO];
 //    NSLog(@"header = %@",[manager.requestSerializer HTTPRequestHeaders]);
     
-    NSDate *startTime = [NSDate date];
     [manager GET:method parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
 
         if ([method containsString:@"imgCaptcha"]) {
@@ -461,22 +473,12 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
         if (json) {
             result  = [resultClass resultWithJSON:json dataClass:dataClass error:&error];
         }
-        
+#ifdef DEBUG
+        [completion cc_userInfo][@"responseObject"] = json;
+#endif
         if (completion != nil) {
             completion(result, error);
         }
-        
-#ifdef DEBUG
-        [LogVC addRequestModel:({
-            CCSessionModel *sm = [CCSessionModel new];
-            sm.urlString = method;
-            sm.params = params;
-            sm.isPOST = false;
-            sm.responseObject = json;
-            sm.duration = [[NSDate date] timeIntervalSinceDate:startTime] * 1000;
-            sm;
-        })];
-#endif
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
         NSHTTPURLResponse *errResponse = task.response;
@@ -501,22 +503,13 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
                 return;
             }
         }
+#ifdef DEBUG
+        [completion cc_userInfo][@"error"] = error;
+#endif
         CMResult* result  = [resultClass resultWithJSON:nil dataClass:dataClass error:&error];
         if (completion != nil) {
             completion(result, error);
         }
-        
-#ifdef DEBUG
-        [LogVC addRequestModel:({
-            CCSessionModel *sm = [CCSessionModel new];
-            sm.urlString = method;
-            sm.params = params;
-            sm.isPOST = false;
-            sm.error = error;
-            sm.duration = [[NSDate date] timeIntervalSinceDate:startTime] * 1000;
-            sm;
-        })];
-#endif
     }];
     
 }
@@ -549,7 +542,6 @@ completion:(CMNetworkBlock)completion {
     [manager.securityPolicy setValidatesDomainName:NO];
     
 //    NSLog(@"header = %@",[manager.requestSerializer HTTPRequestHeaders]);
-    NSDate *startTime = [NSDate date];
     [manager POST:method parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         // 序列化数据
@@ -563,21 +555,12 @@ completion:(CMNetworkBlock)completion {
         if (json) {
             result  = [resultClass resultWithJSON:json dataClass:dataClass error:&error];
         }
+#ifdef DEBUG
+        [completion cc_userInfo][@"responseObject"] = json;
+#endif
         if (completion != nil) {
             completion(result, error);
         }
-        
-#ifdef DEBUG
-        [LogVC addRequestModel:({
-            CCSessionModel *sm = [CCSessionModel new];
-            sm.urlString = method;
-            sm.params = params;
-            sm.isPOST = true;
-            sm.responseObject = json;
-            sm.duration = [[NSDate date] timeIntervalSinceDate:startTime] * 1000;
-            sm;
-        })];
-#endif
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSHTTPURLResponse *errResponse = task.response;
         if (errResponse.statusCode == 401) {
@@ -601,23 +584,13 @@ completion:(CMNetworkBlock)completion {
                 return;
             }
         }
-        
+#ifdef DEBUG
+        [completion cc_userInfo][@"error"] = error;
+#endif
         CMResult* result  = [resultClass resultWithJSON:nil dataClass:dataClass error:&error];
         if (completion != nil) {
             completion(result, error);
         }
-        
-#ifdef DEBUG
-        [LogVC addRequestModel:({
-            CCSessionModel *sm = [CCSessionModel new];
-            sm.urlString = method;
-            sm.params = params;
-            sm.isPOST = true;
-            sm.error = error;
-            sm.duration = [[NSDate date] timeIntervalSinceDate:startTime] * 1000;
-            sm;
-        })];
-#endif
     }];
     
    
