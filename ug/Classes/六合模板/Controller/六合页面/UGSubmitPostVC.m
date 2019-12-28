@@ -346,7 +346,7 @@
 
                 .LeeCancelAction(@"取消", nil) // 点击事件的Block如果不需要可以传nil
                 .LeeDestructiveAction(@"好的", ^{
-                    if (!tf.text) {
+                    if (!tf.text.length) {
                         return ;
                     }
                     if (!tf.text.isChinese) {
