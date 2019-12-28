@@ -125,13 +125,13 @@
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
-    
     CGFloat labelX = 5;
     CGFloat labelY = 15;
     CGFloat labelW = CGRectGetWidth(self.view.frame) - 2*labelX;
-    self.titleLabel.frame = CGRectMake(labelX, labelY, labelW, 0);
-    [self.titleLabel sizeToFit];
-    
+    if (![@"c001" containsString:APP.SiteId]) {
+        self.titleLabel.frame = CGRectMake(labelX, labelY, labelW, 0);
+        [self.titleLabel sizeToFit];
+    }
 //    self.contentTextView.frame = CGRectMake(labelX, CGRectGetMaxY(self.titleLabel.frame) + 8, labelW, UGScerrnH - CGRectGetMaxY(self.titleLabel.frame) - 60 );
     
     self.myWebView.frame = CGRectMake(labelX, CGRectGetMaxY(self.titleLabel.frame) + 8, labelW, UGScerrnH - CGRectGetMaxY(self.titleLabel.frame) - 60 );
