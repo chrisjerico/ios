@@ -613,13 +613,13 @@ static NSString *uuidKey =@"uuidKey";
  *  @return 是否含有中文，YES：有中文；NO：没有中文
  */
 + (BOOL)checkIsChinese:(NSString *)string{
-for (int i=0; i<string.length; i++) {
-    unichar ch = [string characterAtIndex:i];
-    if (0x4E00 <= ch  && ch <= 0x9FA5) {
-        return YES;
+    for (int i=0; i<string.length; i++) {
+        unichar ch = [string characterAtIndex:i];
+        if (0x4E00 <= ch  && ch <= 0x9FA5) {
+            return YES;
+        }
     }
-}
-return NO;
+    return NO;
 }
 
 /**
@@ -657,9 +657,9 @@ return NO;
  */
 + (void )speakUtteranceWithString:(NSString *)string{
     AVSpeechUtterance *utterance = [AVSpeechUtterance speechUtteranceWithString:string];
-    utterance.pitchMultiplier= 0.8;//设置语调
-    utterance.volume = 1.0f;//设置音量（0.0--1.0）
-    utterance.rate = 0.5f;//设置语速
+//    utterance.pitchMultiplier= 0.8;//设置语调
+//    utterance.volume = 1.0f;//设置音量（0.0--1.0）
+//    utterance.rate = 0.5f;//设置语速
     //中式发音
     AVSpeechSynthesisVoice *voice = [AVSpeechSynthesisVoice voiceWithLanguage:@"zh-CN"];
     utterance.voice = voice;
