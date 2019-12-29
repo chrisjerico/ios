@@ -53,10 +53,10 @@
             site(@"c005",        @"c005hy",     @"180",     @"io.fhpt.H5AD6EE3E",       @"",                                            @"超级签名",    @"乐盈彩票"),          // https://dev.app2.xin/index | 13545990831 | dz990990
             site(@"c105",        @"",           @"",        @"",                        @"",                                            @"超级签名",    @"澳⻔彩票"),          // https://dev.app2.xin/index | 15542484889 | aa168168
             site(@"c114",        @"c114hy",     @"157",     @"",                        @"",                                            @"超级签名",    @"彩43"),          // https://dev.app2.xin/index | 19859553001 | wenxiang123123
-            site(@"c190",        @"c190hy",     @"167",     @"io.fhpt.H5F40948F",       @"http://fhylofc190nyvqo.playslot8.com",                                            @"超级签名",    @"22333彩世界"),          // https://dev.app2.xin/index |  |
+            site(@"c190",        @"c190hy",     @"167",     @"io.fhpt.H5F40948F",       @"http://fhylofc190nyvqo.playslot8.com",                                            @"超级签名",    @"22333彩世界"),          // https://dev.app2.xin/index 账号：15559931943   密码：qwert12345
             site(@"h002",        @"",           @"",        @"",                        @"",                                            @"企业包",    @"⾹港赛⻢会"),          // https://dev.app2.xin/index | 15827947817 | dz990990
             site(@"c201",        @"c201hy",     @"213",     @"io.fhpt.YSFC201",         @"https://dkcp520.com",                         @"超级签名",    @"大咖彩票"),          //https://dev.app2.xin/index | 18675958156 | dk789789
-            site(@"c048",        @"c048hy",     @"133",     @"io.fhpt.H5F00A9FA",       @"https://dsjf43-43-f14-345-36-g54t-gfh54.com", @"超级签名",    @"凤凰国际"),
+            site(@"c048",        @"c048hy",     @"133",     @"io.fhpt.H5F00A9FA",       @"https://dsjf43-43-f14-345-36-g54t-gfh54.com", @"超级签名",    @"凤凰国际"),//用户15687374617  密码   qaz123123  超级苹果签
 
             
             site(@"c018",        @"c018hy",     @"174",     @"io.fhpt.H51E9BFB6",       @"https://www.2044234.com",                     @"企业包",     @"2044彩票"),
@@ -163,7 +163,7 @@
             site(@"c008",        @"c008hy",     @"217",     @"io.fhpt.YSFC008",         @"https://888123app.com",                       @"企业包",     @"888彩票"),//极光 bghguiyg@163.com qwe5794124A
             site(@"c130",        @"",           @"",        @"io.fhpt.H5A94011E",       @"",                                            @"企业包",     @"必发彩票"),
             site(@"c136",        @"",           @"",        @"io.fhpt.H5F60C8D2",       @"",                                            @"企业包",     @"⻓诚彩票"),
-            site(@"l001",        @"l001hy",     @"218",     @"io.fhpt.YSFL001",         @"https://4988wap.com",                         @"内测包",     @"六合宝典"),//激光账号，qazttcp@gmail.com 密码 ttcp2075ZXCs
+            site(@"l001",        @"l001hy",     @"218",     @"io.fhpt.YSFL001",         @"https://4988wap.com",                         @"超级签名",     @"六合宝典"),//激光账号，qazttcp@gmail.com 密码 ttcp2075ZXCs  ISO 超级签 18759487805    ZXC4988tianji
             site(@"c199",        @"c199hy",     @"220",     @"io.fhpt.YSAC199",         @"https://yhfhapp.com/",                         @"企业包",     @"银河贵宾会"),//https://9587zz.com
             
             site(@"test103",     @"test103",   @"222",     @"com.UGGame.cp",           @"http://103.9.230.243",                         @"内测包",     @"test103"),
