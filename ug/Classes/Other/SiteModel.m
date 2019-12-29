@@ -93,7 +93,7 @@
             site(@"c164",        @"",           @"",        @"io.fhpt.H57955107",       @"",                                            @"企业包",     @"⼴州彩票"),
             site(@"c165",        @"c165hy",     @"146",     @"io.fhpt.H57D82AEF",       @"https://1875006.com",                         @"企业包",     @"天天彩票"),
             site(@"c166",        @"c166hy",     @"161",     @"io.fhpt.H5B345FC4",       @"",                                            @"企业包",     @"88彩票"),
-            site(@"c169",        @"c169hy",     @"162",     @"io.fhpt.H529081C9",       @"",                                            @"企业包",     @"太阳城集团"),
+            site(@"c169",        @"c169hy",     @"162",     @"io.fhpt.H529081C9",       @"http://heixxqic169cqhmszw.playzone88.com",                                            @"企业包",     @"太阳城集团"),
             site(@"c172",        @"",           @"",        @"io.fhpt.H5534F908",       @"",                                            @"企业包",     @"凤凰彩票"),
             site(@"c173",        @"c173hy",     @"147",     @"io.fhpt.H50900911",       @"https://www.dfjt1.com",                       @"企业包",     @"东⽅集团"),
             site(@"c175",        @"c175",       @"38",      @"io.fhpt.H57F31D1D",       @"https://7053i.com",                           @"企业包",     @"太阳城集团"), // 已上架
@@ -163,7 +163,7 @@
             site(@"c008",        @"c008hy",     @"217",     @"io.fhpt.YSFC008",         @"https://888123app.com",                       @"企业包",     @"888彩票"),//极光 bghguiyg@163.com qwe5794124A
             site(@"c130",        @"",           @"",        @"io.fhpt.H5A94011E",       @"",                                            @"企业包",     @"必发彩票"),
             site(@"c136",        @"",           @"",        @"io.fhpt.H5F60C8D2",       @"",                                            @"企业包",     @"⻓诚彩票"),
-            site(@"l001",        @"l001hy",     @"218",     @"io.fhpt.YSFL001",         @"https://4988wap.com",                         @"企业包",     @"六合宝典"),//激光账号，qazttcp@gmail.com 密码 ttcp2075ZXCs
+            site(@"l001",        @"l001hy",     @"218",     @"io.fhpt.YSFL001",         @"https://4988wap.com",                         @"内测包",     @"六合宝典"),//激光账号，qazttcp@gmail.com 密码 ttcp2075ZXCs
             site(@"c199",        @"c199hy",     @"220",     @"io.fhpt.YSAC199",         @"https://yhfhapp.com/",                         @"企业包",     @"银河贵宾会"),//https://9587zz.com
             
             site(@"test103",     @"test103",   @"222",     @"com.UGGame.cp",           @"http://103.9.230.243",                         @"内测包",     @"test103"),

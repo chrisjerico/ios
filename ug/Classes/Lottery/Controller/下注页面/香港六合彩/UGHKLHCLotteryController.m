@@ -782,6 +782,13 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             headerView.titleLabel.text = @"";
         }
         
+        if (APP.betSizeIsBig) {
+            headerView.titleLabel.font = APP.cellBigFont;
+        } else {
+            headerView.titleLabel.font = APP.cellNormalFont;
+        }
+        
+        
         // 如果显示的是赔率，则把赔率标红
         headerView.titleLabel.textColor = Skin1.textColor1;
         if (APP.betOddsIsRed && [headerView.titleLabel.text containsString:@"赔率："]) {

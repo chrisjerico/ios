@@ -21,6 +21,12 @@
     self.nameLabel.layer.cornerRadius = self.nameLabel.height / 2;
     self.nameLabel.layer.masksToBounds = YES;
     self.nameLabel.backgroundColor = UGBlueColor;
+    if (APP.betSizeIsBig) {
+        self.nameLabel.font = APP.cellBigFont;
+    } else {
+        self.nameLabel.font = APP.cellNormalFont;
+    }
+    
 }
 
 - (void)setItem:(UGGameBetModel *)item {
@@ -29,6 +35,7 @@
     self.oddsLabel.text = [item.odds removeFloatAllZero];
     self.layer.borderWidth = item.select ? 1 : 0.5;
     
+
     if (Skin1.isBlack) {
         self.backgroundColor = item.select ? Skin1.homeContentSubColor : UIColorHex(101010);
         self.layer.borderColor = (item.select ? [UIColor whiteColor] : Skin1.textColor3).CGColor;

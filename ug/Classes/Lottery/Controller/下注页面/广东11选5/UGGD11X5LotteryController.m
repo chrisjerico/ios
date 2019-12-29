@@ -718,6 +718,12 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 			
 			headerView.titleLabel.text = @"";
 		}
+        
+        if (APP.betSizeIsBig) {
+            headerView.titleLabel.font = APP.cellBigFont;
+        } else {
+            headerView.titleLabel.font = APP.cellNormalFont;
+        }
 		return headerView;
 		
 	}

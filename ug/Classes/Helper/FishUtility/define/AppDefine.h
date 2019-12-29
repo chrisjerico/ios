@@ -27,8 +27,10 @@
 
 @property (nonatomic) BOOL betOddsIsRed;    /**<   下注页面赔率显示为红色 */
 @property (nonatomic) BOOL betBgIsWhite;    /**<   下注页面背景白色 */
-
-
+@property (nonatomic) BOOL betSizeIsBig;    /**<   下注页面Cell大字体 */
+@property (nonatomic,readonly) UIFont *cellBigFont;     /**<   下注页面Cell大字体  [UIFont boldSystemFontOfSize:17];*/
+@property (nonatomic,readonly) UIFont *cellNormalFont;    /**<   下注页面Cel正常l字体  [UIFont systemFontOfSize:14];*/
+@property (nonatomic) float cellNormalFontSize;              /**<    下注页面Cel正常l字体  14] */
 + (instancetype)shared;
 @end
 

@@ -8,7 +8,7 @@
 
 #import "AppDefine.h"
 
-#define __SiteID__ @"c083"
+#define __SiteID__ @"c169"
 
 
 @interface UIStoryboard ()
@@ -116,7 +116,7 @@
 #ifdef DEBUG
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
         if (!_SiteId.length) {
-            _SiteId = @"c083";
+            _SiteId = @"c169";
         }
 //        _SiteId = @"test103";
 #endif
@@ -144,6 +144,10 @@
 - (CGSize)Size                      { return _Window.bounds.size; }
 - (CGFloat)Width                    { return _Window.bounds.size.width; }
 - (CGFloat)Height                   { return _Window.bounds.size.height; }
+- (UIFont *)cellBigFont             { return [UIFont boldSystemFontOfSize:17]; }
+- (UIFont *)cellNormalFont             { return [UIFont systemFontOfSize:14]; }
+- (float )cellNormalFontSize             { return 14.0; }
+
 
 - (BOOL)betOddsIsRed {
     return [@"c194,c005" containsString:_SiteId];
@@ -154,11 +158,13 @@
     if ([Skin1.skitString isEqualToString:@"新年红 1蓝色风格"]) {
         return NO;
     } else {
-         return ![@"c175,c085,c073" containsString:_SiteId] || [@"新年红,石榴红" containsString:Skin1.skitType];
+         return ![@"c175,c085,c073,c169" containsString:_SiteId] || [@"新年红,石榴红" containsString:Skin1.skitType];
     }
-   
 }
 
+- (BOOL)betSizeIsBig {
+    return [@"c169" containsString:_SiteId];
+}
 
 #pragma mark - H5 url
 

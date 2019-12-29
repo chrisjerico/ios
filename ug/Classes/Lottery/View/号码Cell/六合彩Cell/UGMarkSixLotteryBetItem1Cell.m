@@ -9,6 +9,7 @@
 #import "UGMarkSixLotteryBetItem1Cell.h"
 #import "UGGameplayModel.h"
 #import "UGLotterySettingModel.h"
+#import "CMLabelCommon.h"
 
 @interface UGMarkSixLotteryBetItem1Cell ()
 @property (weak, nonatomic) IBOutlet UILabel *leftTitleLabel;
@@ -56,11 +57,20 @@
     [self.num2Label setTextColor:Skin1.textColor1];
     [self.num3Label setTextColor:Skin1.textColor1];
     [self.num4Label setTextColor:Skin1.textColor1];
+    
+    if (APP.betSizeIsBig) {
+        self.leftTitleLabel.font = APP.cellBigFont;
+//        [CMLabelCommon setRichNumberWithLabel:self.leftTitleLabel Color:self.leftTitleLabel.textColor FontSize:APP.cellNormalFontSize];
+    } else {
+        self.leftTitleLabel.font = APP.cellNormalFont;
+    }
 }
 
 - (void)setItem:(UGGameBetModel *)item {
     _item = item;
     self.layer.borderWidth = item.select ? 1 : 0.5;
+    
+
     
     if (APP.betOddsIsRed) {
         self.leftTitleLabel.attributedText = ({

@@ -8,7 +8,7 @@
 
 #import "UGTimeLotteryBetCollectionViewCell.h"
 #import "UGGameplayModel.h"
-
+#import "CMLabelCommon.h"
 @interface UGTimeLotteryBetCollectionViewCell ()
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -18,6 +18,13 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    
+    if (APP.betSizeIsBig) {
+        self.titleLabel.font = APP.cellBigFont;
+//        [CMLabelCommon setRichNumberWithLabel:self.titleLabel Color:self.titleLabel.textColor FontSize:APP.cellNormalFontSize];
+    } else {
+        self.titleLabel.font = APP.cellNormalFont;
+    }
 }
 
 - (void)setTitle:(NSString *)title {
@@ -27,6 +34,8 @@
 
 - (void)setItem:(UGGameBetModel *)item {
     _item = item;
+    
+    
     
     if (APP.betOddsIsRed) {
         self.titleLabel.attributedText = ({
