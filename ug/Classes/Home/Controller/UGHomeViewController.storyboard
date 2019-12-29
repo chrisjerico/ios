@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Qlk-11-xZ9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Qlk-11-xZ9">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -526,8 +526,21 @@
                                                                                     <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="qQ0-X4-i9e">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="366" height="130"/>
                                                                                         <subviews>
+                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Shr-Jj-tG6">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="366" height="30"/>
+                                                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                                <constraints>
+                                                                                                    <constraint firstAttribute="height" constant="30" id="rCh-eY-P58"/>
+                                                                                                </constraints>
+                                                                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                                <nil key="highlightedColor"/>
+                                                                                                <userDefinedRuntimeAttributes>
+                                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="优惠活动Label"/>
+                                                                                                </userDefinedRuntimeAttributes>
+                                                                                            </label>
                                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="i8a-TH-7Xr">
-                                                                                                <rect key="frame" x="0.0" y="0.0" width="366" height="100"/>
+                                                                                                <rect key="frame" x="0.0" y="30" width="366" height="100"/>
                                                                                                 <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                                                                                                 <constraints>
                                                                                                     <constraint firstAttribute="height" constant="100" id="HOR-e7-EkE"/>
@@ -536,20 +549,10 @@
                                                                                                     <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="优惠活动ImageView"/>
                                                                                                 </userDefinedRuntimeAttributes>
                                                                                             </imageView>
-                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Shr-Jj-tG6">
-                                                                                                <rect key="frame" x="0.0" y="100" width="366" height="30"/>
-                                                                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                                <constraints>
-                                                                                                    <constraint firstAttribute="height" constant="30" id="rCh-eY-P58"/>
-                                                                                                </constraints>
-                                                                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                                <nil key="highlightedColor"/>
-                                                                                                <userDefinedRuntimeAttributes>
-                                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="优惠活动Label"/>
-                                                                                                </userDefinedRuntimeAttributes>
-                                                                                            </label>
                                                                                         </subviews>
+                                                                                        <constraints>
+                                                                                            <constraint firstItem="Shr-Jj-tG6" firstAttribute="leading" secondItem="i8a-TH-7Xr" secondAttribute="leading" id="hp6-oM-e9V"/>
+                                                                                        </constraints>
                                                                                     </stackView>
                                                                                 </subviews>
                                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -576,8 +579,21 @@
                                                                                     <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ddl-FS-WBV">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="366" height="130"/>
                                                                                         <subviews>
+                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HUL-Dg-oLp">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="366" height="30"/>
+                                                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                                <constraints>
+                                                                                                    <constraint firstAttribute="height" constant="30" id="AZ1-4A-8E3"/>
+                                                                                                </constraints>
+                                                                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                                <nil key="highlightedColor"/>
+                                                                                                <userDefinedRuntimeAttributes>
+                                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="优惠活动Label"/>
+                                                                                                </userDefinedRuntimeAttributes>
+                                                                                            </label>
                                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="c2d-SS-9N5">
-                                                                                                <rect key="frame" x="0.0" y="0.0" width="366" height="100"/>
+                                                                                                <rect key="frame" x="0.0" y="30" width="366" height="100"/>
                                                                                                 <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                                                                                                 <constraints>
                                                                                                     <constraint firstAttribute="height" constant="100" id="Yx0-rX-N7B"/>
@@ -586,20 +602,10 @@
                                                                                                     <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="优惠活动ImageView"/>
                                                                                                 </userDefinedRuntimeAttributes>
                                                                                             </imageView>
-                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HUL-Dg-oLp">
-                                                                                                <rect key="frame" x="0.0" y="100" width="366" height="30"/>
-                                                                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                                <constraints>
-                                                                                                    <constraint firstAttribute="height" constant="30" id="AZ1-4A-8E3"/>
-                                                                                                </constraints>
-                                                                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                                <nil key="highlightedColor"/>
-                                                                                                <userDefinedRuntimeAttributes>
-                                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="优惠活动Label"/>
-                                                                                                </userDefinedRuntimeAttributes>
-                                                                                            </label>
                                                                                         </subviews>
+                                                                                        <constraints>
+                                                                                            <constraint firstItem="HUL-Dg-oLp" firstAttribute="leading" secondItem="c2d-SS-9N5" secondAttribute="leading" id="BDu-nN-79v"/>
+                                                                                        </constraints>
                                                                                     </stackView>
                                                                                 </subviews>
                                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -626,8 +632,21 @@
                                                                                     <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="oGV-Va-W0p">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="366" height="130"/>
                                                                                         <subviews>
+                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3sn-jU-YXu">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="366" height="30"/>
+                                                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                                <constraints>
+                                                                                                    <constraint firstAttribute="height" constant="30" id="zqL-bf-R07"/>
+                                                                                                </constraints>
+                                                                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                                <nil key="highlightedColor"/>
+                                                                                                <userDefinedRuntimeAttributes>
+                                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="优惠活动Label"/>
+                                                                                                </userDefinedRuntimeAttributes>
+                                                                                            </label>
                                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5bo-cl-wPx">
-                                                                                                <rect key="frame" x="0.0" y="0.0" width="366" height="100"/>
+                                                                                                <rect key="frame" x="0.0" y="30" width="366" height="100"/>
                                                                                                 <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                                                                                                 <constraints>
                                                                                                     <constraint firstAttribute="height" constant="100" id="MeR-Jx-rZa"/>
@@ -636,20 +655,10 @@
                                                                                                     <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="优惠活动ImageView"/>
                                                                                                 </userDefinedRuntimeAttributes>
                                                                                             </imageView>
-                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3sn-jU-YXu">
-                                                                                                <rect key="frame" x="0.0" y="100" width="366" height="30"/>
-                                                                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                                <constraints>
-                                                                                                    <constraint firstAttribute="height" constant="30" id="zqL-bf-R07"/>
-                                                                                                </constraints>
-                                                                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                                <nil key="highlightedColor"/>
-                                                                                                <userDefinedRuntimeAttributes>
-                                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="优惠活动Label"/>
-                                                                                                </userDefinedRuntimeAttributes>
-                                                                                            </label>
                                                                                         </subviews>
+                                                                                        <constraints>
+                                                                                            <constraint firstItem="3sn-jU-YXu" firstAttribute="leading" secondItem="5bo-cl-wPx" secondAttribute="leading" id="BfG-0N-1V3"/>
+                                                                                        </constraints>
                                                                                     </stackView>
                                                                                 </subviews>
                                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
