@@ -269,19 +269,20 @@ static UGTabbarController *_tabBarVC = nil;
 }
 
 - (void)setTabbarHeight:(CGFloat)height {
-#pragma mark - 模拟器调试要注释下面代码
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        [UITabBar cc_hookSelector:@selector(sizeThatFits:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> ai) {
-            CGSize size = CGSizeZero;
-            [ai.originalInvocation invoke];
-            [ai.originalInvocation getReturnValue:&size];
-            size.height = 50 + APP.BottomSafeHeight;
-            [ai.originalInvocation setReturnValue:&size];
-        } error:nil];
-    });
-    [self.view layoutSubviews];
-    [self.selectedViewController.view layoutSubviews];
+    if (@available(iOS 11.0, *) && ![UIDevice currentDevice].isSimulator) {
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            [UITabBar cc_hookSelector:@selector(sizeThatFits:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> ai) {
+                CGSize size = CGSizeZero;
+                [ai.originalInvocation invoke];
+                [ai.originalInvocation getReturnValue:&size];
+                size.height = 50 + APP.BottomSafeHeight;
+                [ai.originalInvocation setReturnValue:&size];
+            } error:nil];
+        });
+        [self.view layoutSubviews];
+        [self.selectedViewController.view layoutSubviews];
+    }
 }
 
 /**
