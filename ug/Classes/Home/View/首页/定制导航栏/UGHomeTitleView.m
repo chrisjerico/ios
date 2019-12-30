@@ -73,7 +73,12 @@
 - (void)setImgName:(NSString *)imgName {
     _imgName = imgName;
     NSString *url = [CMCommon imgformat:imgName];
-    [_imgView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:nil];
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:url] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        // 以下3句代码为了修复iOS10运行时，导航条frame变成{0,0,10000,10000}，导致图片遮住self.view的bug。
+        self.frame = CGRectMake(0, 0, APP.Width, 44);
+        self.imgView.superview.cc_constraints.width.constant = APP.Width;
+        [self layoutSubviews];
+    }];
 }
 
 @end
