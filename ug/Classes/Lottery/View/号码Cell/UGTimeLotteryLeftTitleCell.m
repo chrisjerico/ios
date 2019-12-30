@@ -46,7 +46,7 @@
     
     self.bottomLine.hidden = !selected;
     self.titleLabel.font = selected ? [UIFont boldSystemFontOfSize:15] : [UIFont systemFontOfSize:14];
-    self.layer.borderWidth = selected;
+    self.layer.borderWidth = selected * APP.borderWidthTimes;
     
     if (Skin1.isBlack) {
         self.titleLabel.textColor = selected ? [UIColor whiteColor] : RGBA(159, 166, 173, 1);

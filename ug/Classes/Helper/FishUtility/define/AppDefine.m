@@ -8,7 +8,7 @@
 
 #import "AppDefine.h"
 
-#define __SiteID__ @"c169"
+#define __SiteID__ @"a002"
 
 
 @interface UIStoryboard ()
@@ -116,7 +116,7 @@
 #ifdef DEBUG
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
         if (!_SiteId.length) {
-            _SiteId = @"c169";
+            _SiteId = @"a002";
         }
 //        _SiteId = @"test103";
 #endif
@@ -145,9 +145,16 @@
 - (CGFloat)Width                    { return _Window.bounds.size.width; }
 - (CGFloat)Height                   { return _Window.bounds.size.height; }
 - (UIFont *)cellBigFont             { return [UIFont boldSystemFontOfSize:17]; }
-- (UIFont *)cellNormalFont             { return [UIFont systemFontOfSize:14]; }
-- (float )cellNormalFontSize             { return 14.0; }
+- (UIFont *)cellNormalFont          { return [UIFont systemFontOfSize:14]; }
+- (float )cellNormalFontSize        { return 14.0; }
 
+- (float )borderWidthTimes          {
+    if ([@"a002" containsString:_SiteId]) {
+        return  2.0;
+    } else {
+        return 1;
+    }
+}
 
 - (BOOL)betOddsIsRed {
     return [@"c194,c005" containsString:_SiteId];

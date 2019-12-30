@@ -68,7 +68,7 @@
 
 - (void)setItem:(UGGameBetModel *)item {
     _item = item;
-    self.layer.borderWidth = item.select ? 1 : 0.5;
+    self.layer.borderWidth = item.select ? APP.borderWidthTimes * 1 : APP.borderWidthTimes *  0.5;
     
 
     

@@ -31,7 +31,7 @@
     self.imgView1.image = [UIImage imageNamed:[NSString stringWithFormat:@"shaizi%@",arr[1]]];
     self.imgView2.image = [UIImage imageNamed:[NSString stringWithFormat:@"shaizi%@",arr[2]]];
     
-    self.layer.borderWidth = item.select ? 1 : 0.5;
+    self.layer.borderWidth = item.select ? APP.borderWidthTimes *  1 : APP.borderWidthTimes *  0.5;
     
     if (Skin1.isBlack) {
         self.backgroundColor = item.select ? Skin1.homeContentSubColor : UIColorHex(101010);

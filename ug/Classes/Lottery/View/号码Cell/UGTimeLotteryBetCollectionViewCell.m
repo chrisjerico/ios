@@ -47,7 +47,7 @@
         self.titleLabel.text = _NSString(@"%@ %@",item.name, [item.odds removeFloatAllZero]);
     }
     
-    self.layer.borderWidth = item.select ? 1 : 0.5;
+    self.layer.borderWidth = item.select ? APP.borderWidthTimes * 1 : APP.borderWidthTimes *  0.5;
     
     if (Skin1.isBlack) {
         self.backgroundColor = item.select ? Skin1.homeContentSubColor : UIColorHex(101010);

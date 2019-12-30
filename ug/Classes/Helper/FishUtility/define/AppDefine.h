@@ -31,6 +31,7 @@
 @property (nonatomic,readonly) UIFont *cellBigFont;     /**<   下注页面Cell大字体  [UIFont boldSystemFontOfSize:17];*/
 @property (nonatomic,readonly) UIFont *cellNormalFont;    /**<   下注页面Cel正常l字体  [UIFont systemFontOfSize:14];*/
 @property (nonatomic) float cellNormalFontSize;              /**<    下注页面Cel正常l字体  14] */
+@property (nonatomic) float borderWidthTimes;              /**<    下注页面Cel边框宽的倍数 */
 + (instancetype)shared;
 @end
 

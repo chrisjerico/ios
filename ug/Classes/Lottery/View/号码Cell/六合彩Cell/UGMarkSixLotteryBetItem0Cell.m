@@ -30,7 +30,7 @@
     self.rightLabel.text = [item.odds removeFloatAllZero];
     self.rightLabel.hidden = [_rightLabel.text isEqualToString:@"0"];
     
-    self.layer.borderWidth = item.select ? 1 : 0.5;
+    self.layer.borderWidth = item.select ? APP.borderWidthTimes * 1 : APP.borderWidthTimes * 0.5;
     
     if (Skin1.isBlack) {
         self.leftLabel.textColor = Skin1.textColor1;
