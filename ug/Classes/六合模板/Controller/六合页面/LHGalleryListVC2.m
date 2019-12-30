@@ -90,6 +90,10 @@
     {
         _idxView = _LoadView_from_nib_(@"IndexesView");
         _idxView.didSelectedIndex = ^(NSInteger idx) {
+            if ([__self isShowResult]) {
+                return ;
+            }
+            
             UITableView *tv = __self.tableView;
 //            NSMutableArray <ChineseSortGroupModel *>*groups = __self.groups;
 //
@@ -107,8 +111,10 @@
             if (idx < 0) {
                 tv.contentOffset = CGPointZero;
             } else {
-                NSIndexPath *ip= [NSIndexPath indexPathForRow:0 inSection:idx+1];
-                [tv selectRowAtIndexPath:ip animated:YES scrollPosition:UITableViewScrollPositionTop];
+                if (![__self isShowResult]) {
+                    NSIndexPath *ip= [NSIndexPath indexPathForRow:0 inSection:idx+1];
+                    [tv selectRowAtIndexPath:ip animated:YES scrollPosition:UITableViewScrollPositionTop];
+                }
             }
         };
         _idxView.hidden = true;
