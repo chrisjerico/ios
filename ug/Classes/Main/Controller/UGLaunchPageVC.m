@@ -49,6 +49,7 @@
     __block CGFloat __waitSecs = maxSecs;
     {
         FLAnimatedImageView *imageView = [FLAnimatedImageView new];
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
         [self.view addSubview:imageView];
         [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self.view);
