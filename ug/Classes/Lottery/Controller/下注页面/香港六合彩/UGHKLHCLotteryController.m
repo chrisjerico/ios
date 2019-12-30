@@ -608,9 +608,9 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         } else if ([@"正特" isEqualToString:model.name]) {
             type = model.list[self.segmentIndex * 2 + indexPath.section];
         } else if ([@"特码" isEqualToString:model.name]) {
-            if (self.segmentIndex) {
+            if (self.segmentIndex) {//A
                 type = model.list[indexPath.section + 3];
-            } else {
+            } else {//B
                 type = model.list[indexPath.section];
             }
         } else {
@@ -819,9 +819,9 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         } else if ([@"正特" isEqualToString:model.name]) {
             type = model.list[self.segmentIndex * 2 + indexPath.section];
         } else if ([@"特码" isEqualToString:model.name]) {
-            if (self.segmentIndex) {
+            if (self.segmentIndex) {//A
                 type = model.list[indexPath.section + 3];
-            } else {
+            } else {//B
                 type = model.list[indexPath.section];
             }
         } else {

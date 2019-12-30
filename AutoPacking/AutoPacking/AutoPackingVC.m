@@ -13,8 +13,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSString *ids = @"c053hy";
-    BOOL willUpload = true; // 打包后是否上传审核
+    NSString *ids = @"l001,a002,c073,c120";
+    BOOL willUpload = 1; // 打包后是否上传审核
     
     [self startPackingWithIds:ids willUpload:willUpload];
 }
@@ -23,6 +23,8 @@
     __weakSelf_(__self);
     // 拉取最新代码
     [ShellHelper pullCode:Path.projectDir completion:^{
+        NSLog(@"Path.tempCommitId = %@",Path.tempCommitId);
+        NSLog(@"Path.tempLog = %@",Path.tempLog);
         Path.commitId = [[NSString stringWithContentsOfFile:Path.tempCommitId encoding:NSUTF8StringEncoding error:nil] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
         Path.gitLog = [[[NSString stringWithContentsOfFile:Path.tempLog encoding:NSUTF8StringEncoding error:nil] stringByReplacingOccurrencesOfString:@"\n" withString:@""] componentsSeparatedByString:@"(1):      "].lastObject;
         

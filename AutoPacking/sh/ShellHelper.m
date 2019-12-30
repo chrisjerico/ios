@@ -41,6 +41,7 @@
             [errs addObject:[NSString stringWithFormat:@"没有此站点，请检查是否拼写错误, %@", siteId]];
         }
     }
+    NSLog(@"Path.tempPlist= %@",Path.tempPlist);
     if (![[NSFileManager defaultManager] fileExistsAtPath:Path.tempPlist]) {
         [errs addObject:_NSString(@"找不到plist模板，请在此路径放置一个plist模板：%@", Path.tempPlist)];
     }
@@ -182,20 +183,24 @@
             return ;
         }
         
+        NSLog(@"Path.projectDir = %@",Path.projectDir);
         NSTask *task = [[NSTask alloc] init];
         task.launchPath = [[NSBundle mainBundle] pathForResource:@"2setup" ofType:@"sh"];;
         task.arguments = @[__sm.siteId, __sm.appName, __sm.appId, Path.projectDir, ];
         task.terminationHandler = ^(NSTask *ts) {
             [ts terminate];
             NSLog(@"%@ 站点信息配置完成，开始打包", __sm.siteId);
-            
+            NSLog(@"%@ ", __sm.type);
             BOOL isEnterprise = [@"企业包,内测包" containsString:__sm.type];
             NSTask *task = [[NSTask alloc] init];
             task.launchPath = [[NSBundle mainBundle] pathForResource:@"3packing" ofType:@"sh"];
             task.arguments = @[isEnterprise ? @"2" : @"1", Path.projectDir, ];
             task.terminationHandler = ^(NSTask *ts) {
                 [ts terminate];
-                
+                NSLog(@"Path.tempIpa = %@",Path.tempIpa);
+                NSLog(@"Path.tempXcarchive = %@",Path.tempXcarchive);
+                NSLog(@"__sm.ipaPath = %@",__sm.ipaPath);
+                NSLog(@"Path.exportDir = %@,Path.commitId= %@",Path.exportDir,Path.commitId);
                 if ([[NSFileManager defaultManager] fileExistsAtPath:Path.tempIpa]) {
                     [[NSFileManager defaultManager] createDirectoryAtPath:__sm.ipaPath.stringByDeletingLastPathComponent withIntermediateDirectories:true attributes:nil error:nil];
                     [[NSFileManager defaultManager] removeItemAtPath:__sm.ipaPath error:nil];
