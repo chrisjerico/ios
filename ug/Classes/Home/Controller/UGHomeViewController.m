@@ -472,11 +472,11 @@
         [__self getRankList];         // 投注排行榜/中奖排行榜
         [__self gethomeAdsList];      //首页广告图片
         
-        if ([Skin1.skitType isEqualToString:@"六合资料"]) {
+//        if ([Skin1.skitType isEqualToString:@"六合资料"]) {
             [__self getCategoryList];     //栏目列表
             [__self getLotteryNumberList];//当前开奖信息
             [__self getPlatformGamesWithParams];//购彩大厅信息
-        }
+//        }
       
         
 	}];
@@ -594,7 +594,7 @@
         cell.layer.borderColor = [RGBA(221, 221, 221, 1) CGColor];
         return cell;
     } else {
-      UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+      UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ballCell" forIndexPath:indexPath];
 //        if (OBJOnceToken(cell)) {
 //            UGLHLotteryCollectionViewCell *c = _LoadView_from_nib_(@"UGLHLotteryCollectionViewCell");
 //            c.tagString = @"cell";
@@ -1303,9 +1303,9 @@
 
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
 #ifdef DEBUG
-//    [[UGSkinManagers next] useSkin];
-//    [HUDHelper showMsg:[UGSkinManagers currentSkin].skitString];
-//    return;
+    [[UGSkinManagers next] useSkin];
+    [HUDHelper showMsg:[UGSkinManagers currentSkin].skitString];
+    return;
 #endif
     
     if ([cycleScrollView isEqual:self.bannerView]) {
