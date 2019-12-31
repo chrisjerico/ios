@@ -156,6 +156,10 @@
     }
 }
 
+- (BOOL)lotteryHallCustomImgS {
+    return [@"c190" containsString:_SiteId];
+}
+
 - (BOOL)betOddsIsRed {
     return [@"c194,c005" containsString:_SiteId];
 }

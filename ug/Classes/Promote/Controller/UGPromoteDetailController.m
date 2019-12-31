@@ -39,11 +39,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"活动详情";
+//    self.navigationItem.title = @"活动详情";
     self.view.backgroundColor = Skin1.textColor4;
     self.contentTextView.backgroundColor = [UIColor clearColor];
     self.titleLabel.textColor = Skin1.textColor1;
-    [self.view addSubview:self.titleLabel];
+//    [self.view addSubview:self.titleLabel];
 //    [self.view addSubview:self.contentTextView];
     [self.view addSubview:self.myWebView];
     [self.view addSubview:self.activity];
@@ -72,6 +72,7 @@
 - (void)setItem:(UGPromoteModel *)item {
     _item = item;
     self.titleLabel.text = self.item.title;
+    self.navigationItem.title = self.item.title;
     [self.activity startAnimating];
     NSString *str = [NSString stringWithFormat:@"<head><style>img{width:auto !important;max-width:%f;height:auto}</style></head>%@", UGScreenW - 10, self.item.content];
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
@@ -134,7 +135,8 @@
     }
 //    self.contentTextView.frame = CGRectMake(labelX, CGRectGetMaxY(self.titleLabel.frame) + 8, labelW, UGScerrnH - CGRectGetMaxY(self.titleLabel.frame) - 60 );
     
-    self.myWebView.frame = CGRectMake(labelX, CGRectGetMaxY(self.titleLabel.frame) + 8, labelW, UGScerrnH - CGRectGetMaxY(self.titleLabel.frame) - 60 );
+//    self.myWebView.frame = CGRectMake(labelX, CGRectGetMaxY(self.titleLabel.frame) + 8, labelW, UGScerrnH - CGRectGetMaxY(self.titleLabel.frame) - 60 );
+    self.myWebView.frame = CGRectMake(labelX, labelY, labelW, UGScerrnH - CGRectGetMaxY(self.titleLabel.frame) - 60 );
     self.activity.center = CGPointMake(UGScreenW / 2, UGScerrnH / 2 - 50);
     
 }

@@ -32,6 +32,7 @@
 @property (nonatomic,readonly) UIFont *cellNormalFont;    /**<   下注页面Cel正常l字体  [UIFont systemFontOfSize:14];*/
 @property (nonatomic) float cellNormalFontSize;              /**<    下注页面Cel正常l字体  14] */
 @property (nonatomic) float borderWidthTimes;              /**<    下注页面Cel边框宽的倍数 */
+@property (nonatomic) BOOL lotteryHallCustomImgS;    /**<   彩票大厅自定义图标 */
 + (instancetype)shared;
 @end
 
