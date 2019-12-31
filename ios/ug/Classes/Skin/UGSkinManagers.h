@@ -45,6 +45,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (UGSkinManagers *)next; /**<   测试换肤功能时使用 */
 + (UGSkinManagers *)last;
+
+
++ (UIColor *)jsftColor:(int)num;/**<   极速快艇的球颜色 */
 @end
 
 NS_ASSUME_NONNULL_END

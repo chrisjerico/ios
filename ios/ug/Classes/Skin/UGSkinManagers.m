@@ -1112,4 +1112,44 @@ static UGSkinManagers *__initSkin1 = nil;
     return [UGSkinManagers allSkin][keys[--i%keys.count]];
 }
 
++ (UIColor *)jsftColor:(int)num {
+    UIColor *color;
+    switch (num) {
+        case 1:
+            color = RGBA(230, 220, 73, 1);
+            break;
+        case 2:
+            color = RGBA(66, 143, 220, 1);
+            break;
+        case 3:
+            color = RGBA(75, 75, 75, 1);
+            break;
+        case 4:
+            color = RGBA(236, 125, 50, 1);
+            break;
+        case 5:
+            color = RGBA(114, 224, 223, 1);
+            break;
+        case 6:
+            color = RGBA(77, 61, 273, 1);
+            break;
+        case 7:
+            color = RGBA(191, 191, 191, 1);
+            break;
+        case 8:
+            color = RGBA(232, 64, 37, 1);
+            break;
+        case 9:
+            color = RGBA(103, 24, 11, 1);
+            break;
+        case 10:
+            color = RGBA(91, 188, 54, 1);
+            break;
+            
+        default:
+            break;
+    }
+    return color;
+}
+
 @end

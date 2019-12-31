@@ -76,6 +76,7 @@ static NSString *lotteryOneCellId = @"UGFastThreeOneCollectionViewCell";
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"self.item.gameType = %@",self.item.gameType);
     if (indexPath.section == 0) {
         if ([@"jsk3" isEqualToString:self.item.gameType]){
             UGFastThreeOneCollectionViewCell *oneCell = [collectionView dequeueReusableCellWithReuseIdentifier:lotteryOneCellId forIndexPath:indexPath];
@@ -105,7 +106,13 @@ static NSString *lotteryOneCellId = @"UGFastThreeOneCollectionViewCell";
         } else if ([@"pk10" isEqualToString:self.item.gameType] || [@"pk10nn" isEqualToString:self.item.gameType]) {
             cell.backgroundColor = [CMCommon getPreNumColor:self.numArray[indexPath.row]];
             cell.title = self.numArray[indexPath.row];
-        } else {
+        }
+        else if ([@"xyft" isEqualToString:self.item.gameType]) {
+            NSString *num =  self.numArray[indexPath.row];
+            cell.backgroundColor = [UGSkinManagers jsftColor:[num intValue]];
+            cell.title = self.numArray[indexPath.row];
+        }
+        else {
             cell.backgroundColor = Skin1.navBarBgColor;
             cell.title = self.numArray[indexPath.row];
         }
