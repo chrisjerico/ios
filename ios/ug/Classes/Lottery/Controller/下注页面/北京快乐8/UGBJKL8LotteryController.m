@@ -331,7 +331,10 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 - (void)ybPopupMenuDidSelectedAtIndex:(NSInteger)index ybPopupMenu:(YBPopupMenu *)ybPopupMenu {
     if (index >= 0 ) {
         if (index < self.chipArray.count - 1) {
-            self.amountTextF.text = self.chipArray[index];
+            float n1 = [CMCommon floatForNSString:self.amountTextF.text];
+            float n2 = [CMCommon floatForNSString:self.chipArray[index]];
+            float sum = n1 + n2;
+            self.amountTextF.text = [NSString stringWithFormat:@"%.2f",sum];
         }else {
             self.amountTextF.text = nil;
         }

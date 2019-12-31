@@ -829,4 +829,19 @@ static NSString *uuidKey =@"uuidKey";
     sf.允许游客访问 = true;
     [NavController1 presentViewController:sf animated:YES completion:nil];
 }
+
+/**
+*   给float类型的NSString 返回 float; 长度==0 返回0
+*
+*
+*/
++(float)floatForNSString:(NSString * )str{
+    float n = 0.0;
+    if (str.length) {
+        if ( str.isNumber) {
+             n = [str floatValue];
+        }
+    }
+    return n;
+}
 @end
