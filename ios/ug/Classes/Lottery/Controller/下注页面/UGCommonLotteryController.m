@@ -8,7 +8,7 @@
 
 #import "UGCommonLotteryController.h"
 #import "UGLotterySelectController.h"
-
+#import "UGChangLongController.h"
 // View
 #import "STBarButtonItem.h"
 
@@ -63,6 +63,23 @@
         
         [subLabel(@"期数label") setTextColor:APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor]];
         [subLabel(@"聊天室label") setTextColor:APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor]];
+        
+        [subButton(@"长龙btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+        [subButton(@"长龙btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+            [NavController1 pushViewController:[UGChangLongController new] animated:true];
+        }];
+        [subButton(@"直播btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+        [subButton(@"直播btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+            [CMCommon showToastTitle:@"开发中,敬请期待2222"];
+        }];
+        [subButton(@"开奖btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+        [subButton(@"开奖btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+            [CMCommon showToastTitle:@"开发中,敬请期待111"];
+        }];
+   
+        [subButton(@"长龙btn") setHidden:!APP.addIcons];
+        [subButton(@"直播btn") setHidden:!APP.addIcons];
+        [subButton(@"开奖btn") setHidden:!APP.addIcons];
     }
 }
 

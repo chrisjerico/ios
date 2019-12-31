@@ -646,7 +646,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     } else {
         self.bottomCloseView.hidden = YES;
     }
-    self.closeTimeLabel.text = [NSString stringWithFormat:@"封盘：%@",timeStr];
+    self.closeTimeLabel.text = [NSString stringWithFormat:@"封盘:%@",timeStr];
     [self updateCloseLabel];
 }
 
@@ -656,7 +656,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     if (timeStr == nil) {
         timeStr = @"获取下一期";
     }
-    self.openTimeLabel.text = [NSString stringWithFormat:@"开奖：%@",timeStr];
+    self.openTimeLabel.text = [NSString stringWithFormat:@"开奖:%@",timeStr];
     [self updateOpenLabel];
     
 }

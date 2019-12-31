@@ -33,6 +33,7 @@
 @property (nonatomic) float cellNormalFontSize;              /**<    下注页面Cel正常l字体  14] */
 @property (nonatomic) float borderWidthTimes;              /**<    下注页面Cel边框宽的倍数 */
 @property (nonatomic) BOOL lotteryHallCustomImgS;    /**<   彩票大厅自定义图标 */
+@property (nonatomic) BOOL addIcons;    /**<   投注页面开奖旁边添加 开奖直播 长龙助手 开奖网  */
 + (instancetype)shared;
 @end
 

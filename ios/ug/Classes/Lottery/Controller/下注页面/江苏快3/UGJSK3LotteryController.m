@@ -642,7 +642,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     }else {
         self.bottomCloseView.hidden = YES;
     }
-    self.closeTimeLabel.text = [NSString stringWithFormat:@"封盘：%@",timeStr];
+    self.closeTimeLabel.text = [NSString stringWithFormat:@"封盘:%@",timeStr];
     [self updateCloseLabel];
     
 }
@@ -655,7 +655,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     }else {
         
     }
-    self.openTimeLabel.text = [NSString stringWithFormat:@"开奖：%@",timeStr];
+    self.openTimeLabel.text = [NSString stringWithFormat:@"开奖:%@",timeStr];
     [self updateOpenLabel];
     
 }

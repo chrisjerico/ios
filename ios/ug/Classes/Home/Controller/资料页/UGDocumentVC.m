@@ -587,7 +587,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 	if (self.nextIssueModel.isSeal || timeStr == nil) {
 		timeStr = @"封盘中";
 	}
-	self.closeTimeLabel.text = [NSString stringWithFormat:@"封盘：%@",timeStr];
+	self.closeTimeLabel.text = [NSString stringWithFormat:@"封盘:%@",timeStr];
 	NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.closeTimeLabel.text];
 	[abStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(3, self.closeTimeLabel.text.length - 3)];
 	self.closeTimeLabel.attributedText = abStr;
@@ -603,7 +603,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 	} else {
 		
 	}
-	self.openTimeLabel.text = [NSString stringWithFormat:@"开奖：%@",timeStr];
+	self.openTimeLabel.text = [NSString stringWithFormat:@"开奖:%@",timeStr];
 	NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.openTimeLabel.text];
 
     if (Skin1.isBlack) {

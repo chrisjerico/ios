@@ -325,7 +325,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     } else {
         self.bottomCloseView.hidden = YES;
     }
-    self.closeTimeLabel.text = [NSString stringWithFormat:@"封盘：%@",timeStr];
+    self.closeTimeLabel.text = [NSString stringWithFormat:@"封盘:%@",timeStr];
     [self updateCloseLabel];
 }
 
@@ -337,7 +337,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     } else {
         
     }
-    self.openTimeLabel.text = [NSString stringWithFormat:@"开奖：%@",timeStr];
+    self.openTimeLabel.text = [NSString stringWithFormat:@"开奖:%@",timeStr];
     [self updateOpenLabel];
 }
 
@@ -1214,7 +1214,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         layout;
     });
     UICollectionView *collectionView = ({
-        collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(120 , 5, UGScreenW - 120 , 100) collectionViewLayout:layout];
+        collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(120 , 5, UGScreenW - 120 , 55) collectionViewLayout:layout];
         collectionView.backgroundColor = [UIColor clearColor];
         collectionView.dataSource = self;
         collectionView.delegate = self;

@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *title;          /**<   游戏名称 */
 @property (nonatomic, strong) NSString *name;           /**<   游戏标识 */
 @property (nonatomic, strong) NSString *serverTime;     /**<   服务器时间 */
-@property (nonatomic, assign) BOOL isSeal;              /**<   是否封盘：1=是，0=否 */
+@property (nonatomic, assign) BOOL isSeal;              /**<   是否封盘:1=是，0=否 */
 @property (nonatomic, assign) BOOL enable;              /**<   是否可用：1=是，0=否 */
 @property (nonatomic, assign) bool isInstant;           /**<   是否是即开彩：1=是，0=否 */
 @property (nonatomic, strong) NSString *customise;      /**<   是否自营彩：1=是，0=否 */
@@ -41,7 +41,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *preNumSx;       /**<   上期开奖结果 */
 @property (nonatomic, strong) NSArray *winningPlayers;  /**<   闲家输赢情况：当彩种是是pk10牛牛时有效 */
 @property (nonatomic, strong) NSString *preNumStringWin;
-@property (nonatomic, assign) BOOL preIsOpen;           /**<   上期是否开奖：1=是，0=否 */
+@property (nonatomic, assign) BOOL preIsOpen;           /**<   上期是否开奖:1=是，0=否 */
 @property (nonatomic, strong) NSString *dataNum;
 @property (nonatomic, strong) NSString *totalNum;
 

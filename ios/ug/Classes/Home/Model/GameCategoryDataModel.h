@@ -76,7 +76,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong)NSString * isDelete;
 @property(nonatomic, strong)NSString * isClose;
 @property(nonatomic) BOOL isInstant;    /**<   是否是即开彩：1=是，0=否 */
-@property(nonatomic) BOOL isSeal;       /**<   是否封盘：1=是，0=否 */
+@property(nonatomic) BOOL isSeal;       /**<   是否封盘:1=是，0=否 */
 @end
 
 

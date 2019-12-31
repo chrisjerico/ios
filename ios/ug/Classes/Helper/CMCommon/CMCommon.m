@@ -816,6 +816,20 @@ static NSString *uuidKey =@"uuidKey";
     .LeeShow(); // 设置完成后 别忘记调用Show来显示
 
 }
+
+/**
+*   简单，ios Toast提示
+*
+*
+*/
++(void)showToastTitle:(NSString * )str{
+    [NavController1.view makeToast:str
+    duration:1.5
+    position:CSToastPositionCenter];
+}
+
+
+
 /**
 *   系统web
 *

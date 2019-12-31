@@ -156,6 +156,13 @@
     }
 }
 
+
+
+
+- (BOOL)addIcons {
+    return [@"c190" containsString:_SiteId];
+}
+
 - (BOOL)lotteryHallCustomImgS {
     return [@"c190" containsString:_SiteId];
 }
