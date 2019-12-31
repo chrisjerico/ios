@@ -31,19 +31,17 @@
 - (void)setItem:(UGYYPlatformGames *)item {
     _item = item;
     self.nameLabel.text = [NSString stringWithFormat:@"%@系列", item.categoryName];
-    
-    [NSString stringWithFormat:@"cp_",APP.SiteId];
     NSDictionary *dict;
     if (APP.lotteryHallCustomImgS) {
       
         dict = @{
-              @"lottery":[NSString stringWithFormat:@"cp_",APP.SiteId],   // 彩票系列
-              @"game":[NSString stringWithFormat:@"dz_",APP.SiteId],      // 电子系列
-              @"fish":[NSString stringWithFormat:@"by_",APP.SiteId],      // 捕鱼系列
-              @"card":[NSString stringWithFormat:@"qp_",APP.SiteId],      // 棋牌系列
-              @"sport":[NSString stringWithFormat:@"ty_",APP.SiteId],     // 体育系列
-              @"real":[NSString stringWithFormat:@"zr_",APP.SiteId],      // 真人系列
-              @"esport":[NSString stringWithFormat:@"dj_",APP.SiteId],    // 电竞系列
+              @"lottery":[NSString stringWithFormat:@"cp_%@",APP.SiteId],   // 彩票系列
+              @"game":[NSString stringWithFormat:@"dz_%@",APP.SiteId],      // 电子系列
+              @"fish":[NSString stringWithFormat:@"by_%@",APP.SiteId],      // 捕鱼系列
+              @"card":[NSString stringWithFormat:@"qp_%@",APP.SiteId],      // 棋牌系列
+              @"sport":[NSString stringWithFormat:@"ty_%@",APP.SiteId],     // 体育系列
+              @"real":[NSString stringWithFormat:@"zr_%@",APP.SiteId],      // 真人系列
+              @"esport":[NSString stringWithFormat:@"dj_%@",APP.SiteId],    // 电竞系列
           };
     } else {
         dict = @{
