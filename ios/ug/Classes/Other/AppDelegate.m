@@ -94,7 +94,6 @@
     [self userAgent];
 #ifdef DEBUG
 	[LogVC enableLogVC];
-
 #endif
 	
 	return YES;

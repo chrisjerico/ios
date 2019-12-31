@@ -3,6 +3,8 @@
 
 #import "CMCommon.h"
 #import <objc/runtime.h>
+#import <SafariServices/SafariServices.h>
+
 @implementation CMCommon
 /******************************************************************************
  函数名称 : + (BOOL)verifyPhoneNum:(NSString *)numStr
@@ -814,6 +816,17 @@ static NSString *uuidKey =@"uuidKey";
     .LeeShow(); // 设置完成后 别忘记调用Show来显示
 
 }
-
-
+/**
+*   系统web
+*
+*
+*/
++(void)goUrl:(NSString *)url{
+    // 这段话是为了加载<SafariServices/SafariServices.h>库，不然打包后会无法联网（DEBUG可以是因为LogVC里面加载了）
+    SFSafariViewController *sf = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:url]];
+    sf.view.backgroundColor = APP.BackgroundColor;
+    sf.允许未登录访问 = true;
+    sf.允许游客访问 = true;
+    [NavController1 presentViewController:sf animated:YES completion:nil];
+}
 @end

@@ -869,6 +869,7 @@
 		D4EE8F97234222A8006FA0E2 /* UGSkinCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4EE8F95234222A8006FA0E2 /* UGSkinCollectionViewCell.m */; };
 		D4EE8F98234222A8006FA0E2 /* UGSkinCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4EE8F96234222A8006FA0E2 /* UGSkinCollectionViewCell.xib */; };
 		D4EE8FA523424E5F006FA0E2 /* UIImage+YYgradientImage.m in Sources */ = {isa = PBXBuildFile; fileRef = D4EE8FA423424E5F006FA0E2 /* UIImage+YYgradientImage.m */; };
+		D4EEB26C23BB582A00DEAF31 /* CMCommonHook.m in Sources */ = {isa = PBXBuildFile; fileRef = D4EEB26B23BB582A00DEAF31 /* CMCommonHook.m */; };
 		D4F0477622E9E22E008EBB56 /* UGLinkNumCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F0477422E9E22E008EBB56 /* UGLinkNumCollectionViewCell.m */; };
 		D4F0477722E9E22E008EBB56 /* UGLinkNumCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4F0477522E9E22E008EBB56 /* UGLinkNumCollectionViewCell.xib */; };
 		D4F50A512339E67600E0811D /* UGAgentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F50A4F2339E67600E0811D /* UGAgentViewController.m */; };
@@ -2296,6 +2297,8 @@
 		D4EE8F96234222A8006FA0E2 /* UGSkinCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGSkinCollectionViewCell.xib; sourceTree = "<group>"; };
 		D4EE8FA323424E5F006FA0E2 /* UIImage+YYgradientImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+YYgradientImage.h"; sourceTree = "<group>"; };
 		D4EE8FA423424E5F006FA0E2 /* UIImage+YYgradientImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+YYgradientImage.m"; sourceTree = "<group>"; };
+		D4EEB26A23BB582A00DEAF31 /* CMCommonHook.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMCommonHook.h; sourceTree = "<group>"; };
+		D4EEB26B23BB582A00DEAF31 /* CMCommonHook.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CMCommonHook.m; sourceTree = "<group>"; };
 		D4F0477322E9E22E008EBB56 /* UGLinkNumCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLinkNumCollectionViewCell.h; sourceTree = "<group>"; };
 		D4F0477422E9E22E008EBB56 /* UGLinkNumCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLinkNumCollectionViewCell.m; sourceTree = "<group>"; };
 		D4F0477522E9E22E008EBB56 /* UGLinkNumCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGLinkNumCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -4812,6 +4815,8 @@
 				D4520A30238FBA9D00B69E97 /* CMLabelCommon.m */,
 				D44B49A12392675100475EBE /* CMAudioPlayer.h */,
 				D44B49A22392675100475EBE /* CMAudioPlayer.m */,
+				D4EEB26A23BB582A00DEAF31 /* CMCommonHook.h */,
+				D4EEB26B23BB582A00DEAF31 /* CMCommonHook.m */,
 			);
 			path = CMCommon;
 			sourceTree = "<group>";
@@ -6224,6 +6229,7 @@
 				CFD3BF0E2347137F00FCDA6D /* NSMutableAttributedString+Utils.m in Sources */,
 				D4EDC93C2343A1F600BA4C4D /* UGTableViewCell.m in Sources */,
 				CF775F902390426E005B3534 /* MediaViewer.m in Sources */,
+				D4EEB26C23BB582A00DEAF31 /* CMCommonHook.m in Sources */,
 				D4DE269A229BDBC80072A4A2 /* SGSegmentedControl.m in Sources */,
 				CFD3BF072347137F00FCDA6D /* UIAlertController+Utils.m in Sources */,
 				D4D8DF7B2286F7F600446BAF /* UGTimeLotteryBetCollectionViewCell.m in Sources */,

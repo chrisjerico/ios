@@ -222,4 +222,10 @@ chat_type=crm 设置意味着营销qq，可以和陌生人发起临时会话。
 *
 */
 +(void)showTitle:(NSString * )str;
+/**
+*   系统web
+*
+*
+*/
++(void)goUrl:(NSString *)url;
 @end

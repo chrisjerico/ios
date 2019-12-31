@@ -76,8 +76,13 @@
     cell.backgroundColor = Skin1.cellBgColor;
     UGPromoteModel *pm = tableView.dataArray[indexPath.row];
     FastSubViewCode(cell);
+    if ([@"c190" containsString:APP.SiteId]) {
+        subView(@"StackView").cc_constraints.top.constant = pm.title.length ? 12 : 0;
+        subView(@"StackView").cc_constraints.bottom.constant = 0;
+    }
     subLabel(@"标题Label").textColor = Skin1.textColor1;
     subLabel(@"标题Label").text = pm.title;
+    subLabel(@"标题Label").hidden = !pm.title.length;
     __weakSelf_(__self);
     [subImageView(@"图片ImageView") sd_setImageWithURL:[NSURL URLWithString:pm.pic] placeholderImage:[UIImage imageNamed:@"placeholder"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         if (image) {
