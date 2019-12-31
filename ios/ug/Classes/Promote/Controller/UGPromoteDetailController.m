@@ -71,8 +71,13 @@
 
 - (void)setItem:(UGPromoteModel *)item {
     _item = item;
-    self.titleLabel.text = self.item.title;
-    self.navigationItem.title = self.item.title;
+//    self.titleLabel.text = self.item.title;
+    if ([CMCommon stringIsNull:self.item.title]) {
+        self.navigationItem.title = @"活动详情";
+    } else {
+        self.navigationItem.title = self.item.title;
+    }
+
     [self.activity startAnimating];
     NSString *str = [NSString stringWithFormat:@"<head><style>img{width:auto !important;max-width:%f;height:auto}</style></head>%@", UGScreenW - 10, self.item.content];
     dispatch_async(dispatch_get_global_queue(0, 0), ^{

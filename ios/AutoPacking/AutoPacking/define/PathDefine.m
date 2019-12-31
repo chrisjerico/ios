@@ -27,7 +27,7 @@
     if (self) {
         _username = [NSUserName() isEqualToString:@"fish"] ? @"fish" : @"andrew";
         
-        _projectDir = [NSUserName() isEqualToString:@"fish"] ? @"/Users/fish/自动打包/pack" : @"/Users/ug/pack";
+        _projectDir = [NSUserName() isEqualToString:@"fish"] ? @"/Users/fish/自动打包/pack/ios" : @"/Users/ug/pack/ios";
         _exportDir = @"/Library/WebServer/Documents/ipa";
         _shellDir = [_projectDir stringByAppendingPathComponent:@"AutoPacking/sh"];
         _logPath = [NSUserName() isEqualToString:@"fish"] ? @"/Users/fish/自动打包/log/PackingLog.txt" : @"/Users/ug/log/PackingLog.txt";
