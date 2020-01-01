@@ -33,5 +33,4 @@ done
 # 判断是否拉取成功
 if [ ! -f 'CommitId.txt' ]; then
     echo "拉取代码失败，请手动拉取代码！" > PullFail.txt
-    open PullFail.txt
 fi

@@ -11,6 +11,7 @@ ${BUILT_PRODUCTS_DIR}/FLAnimatedImage/FLAnimatedImage.framework
 ${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework
 ${BUILT_PRODUCTS_DIR}/Folly/folly.framework
 ${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework
+${BUILT_PRODUCTS_DIR}/JSPatch/JSPatch.framework
 ${BUILT_PRODUCTS_DIR}/JWT/JWT.framework
 ${BUILT_PRODUCTS_DIR}/LEEAlert/LEEAlert.framework
 ${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework

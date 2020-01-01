@@ -37,6 +37,12 @@ pod 'JPush', '3.2.2-noidfa'
 
 
 
+
+
+# jspatch
+pod 'JSPatch', :path => "../JSPatch/JSPatch.podspec"
+
+
 # rn
 pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
 pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"

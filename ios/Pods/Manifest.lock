@@ -35,6 +35,9 @@ PODS:
   - JCore (2.1.2)
   - JPush (3.2.2-noidfa):
     - JCore (< 3.0.0, >= 2.0.0)
+  - JSPatch (1.1.3):
+    - JSPatch/Core (= 1.1.3)
+  - JSPatch/Core (1.1.3)
   - JWT (3.0.0-beta.12):
     - Base64 (~> 1.1.2)
   - LEEAlert (1.3.1)
@@ -278,6 +281,7 @@ DEPENDENCIES:
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - IQKeyboardManager
   - JPush (= 3.2.2-noidfa)
+  - JSPatch (from `../JSPatch/JSPatch.podspec`)
   - LEEAlert
   - Masonry
   - MJExtension
@@ -360,6 +364,8 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/react-native/third-party-podspecs/Folly.podspec"
   glog:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
+  JSPatch:
+    :path: "../JSPatch/JSPatch.podspec"
   RCTRequired:
     :path: "../node_modules/react-native/Libraries/RCTRequired"
   RCTTypeSafety:
@@ -406,7 +412,7 @@ SPEC CHECKSUMS:
   Base64: cecfb41a004124895a7bcee567a89bae5a89d49b
   BAWKWebView: a45b5c77424a015c91c6684f03392d981932f909
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
-  CodePush: 58d8b6595f46057ca1f49c55fb6860ad7fd38ce3
+  CodePush: 67f488101c41e13e594e9c2714b95dd8bffa6cb4
   DateTools: 933ac9c490f21f92127cf690ccd8c397e0126caf
   DLPickerView: 993a7ace0bfecf6c47c83108291b687bc4f7a4df
   DoubleConversion: 5805e889d232975c086db112ece9ed034df7a0b2
@@ -419,6 +425,7 @@ SPEC CHECKSUMS:
   IQKeyboardManager: 700e5155d6a292383b54e8678aec769e14fc78fc
   JCore: 1a426120b510cdebfd67b82bfb9483238ee09413
   JPush: d7e9b68edde1e4061e8a61605049b1673cd89df2
+  JSPatch: a48f9378dc8419c6adb3f58f456e20b18dee7ec7
   JWT: 9b5c05abbcc1a0e69c3c91e1655b3387fc7e581d
   LEEAlert: baa001e81af6ca5d69fc5d6b06557131be706216
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
@@ -457,6 +464,6 @@ SPEC CHECKSUMS:
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
 
-PODFILE CHECKSUM: f554b02ad796dcabef0a6f74c46ac62bf37f33f3
+PODFILE CHECKSUM: 3ec099bef9119c532ab0d501f6e2bfdddf262ee6
 
 COCOAPODS: 1.8.4
