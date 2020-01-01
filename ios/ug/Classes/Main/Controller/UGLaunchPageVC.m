@@ -29,6 +29,7 @@
 	[super viewDidLoad];
     [self initNetwork];
 	self.view.backgroundColor = UIColor.whiteColor;
+    return;
     
     // 下载新的启动图
     [CMNetwork.manager requestWithMethod:[[NSString stringWithFormat:@"%@/wjapp/api.php?c=system&a=launchImages", APP.Host] stringToRestfulUrlWithFlag:RESTFUL] params:nil model:CMResultArrayClassMake(LaunchPageModel.class) post:NO completion:^(CMResult<id> *model, NSError *err) {
@@ -117,10 +118,22 @@
     });
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    SFSafariViewController *sf = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:@"www.baidu.com"]];
+    sf.view.backgroundColor = APP.BackgroundColor;
+    sf.允许未登录访问 = true;
+    sf.允许游客访问 = true;
+    [self presentViewController:sf animated:YES completion:nil];
+}
+
 - (void)initNetwork {
     // 这段话是为了加载<SafariServices/SafariServices.h>库，不然打包后会无法联网（DEBUG可以是因为LogVC里面加载了）
-    SFSafariViewController *sf = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:@"https://www.baidu.com"]];
+//    SFSafariViewController *sf = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:@"https://www.baidu.com"]];
+    SFSafariViewController *sf = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:@"www.baidu.com"]];
     sf.view.backgroundColor = APP.BackgroundColor;
+    sf.允许未登录访问 = true;
+    sf.允许游客访问 = true;
+    [self presentViewController:sf animated:YES completion:nil];
     
 }
 

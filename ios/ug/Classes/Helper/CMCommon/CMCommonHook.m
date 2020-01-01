@@ -15,37 +15,18 @@
 //- (NSInvocation *)originalInvocation;
 ///// 原方法调用的参数
 //- (NSArray *)arguments;
+
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [CMCommonHook hookSFSafari];
+        [SFSafariViewController cc_hookSelector:@selector(initWithURL:) withOptions:AspectPositionBefore usingBlock:^(id<AspectInfo> ai) {
+            NSURL *url = ai.arguments.firstObject;
+            if (url.scheme == nil) {
+                url = [NSURL URLWithString:_NSString(@"http://%@", url.absoluteString)];
+                [ai.originalInvocation setArgument:&url atIndex:2];
+            }
+        } error:nil];
     });
 }
 
-+(void)hookSFSafari{
-    [SFSafariViewController cc_hookSelector:@selector(initWithURL:) withOptions:AspectPositionBefore usingBlock:^(id<AspectInfo> ai) {
-        //            NSLog(@"ai = %@",ai);
-        //            NSLog(@"ai.arguments= %@",ai.arguments);
-        NSInvocation *invocation = ai.originalInvocation;
-        NSURL *url = [ai.arguments objectAtIndex:0];
-        NSString *urlStr = [url absoluteString];
-        //            NSLog(@"urlStr = %@",urlStr);
-        if (urlStr.length) {
-            if ([urlStr hasPrefix:@"http"]) {
-                //把参数给原来的方法；
-                NSURL *ul = [NSURL URLWithString:urlStr];
-                [invocation setArgument:&ul atIndex:2];
-                [invocation invoke];
-            }
-            else{
-                NSString *newUrlStr = [NSString stringWithFormat:@"http://%@",urlStr];
-                //把参数给原来的方法；
-                NSURL *ul = [NSURL URLWithString:newUrlStr];
-                [invocation setArgument:&ul atIndex:2];
-                [invocation invoke];
-            }
-        }
-        
-    } error:nil];
-}
 @end
