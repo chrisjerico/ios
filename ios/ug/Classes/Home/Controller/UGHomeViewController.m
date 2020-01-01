@@ -1489,7 +1489,7 @@
 }
 
 - (void)setupSubView {
-	UGHomeTitleView *titleView = [[UGHomeTitleView alloc] initWithFrame:CGRectMake(0, 0, UGScreenW, 50)];
+	UGHomeTitleView *titleView = [[UGHomeTitleView alloc] initWithFrame:CGRectMake(0, 0, UGScreenW, 44)];
 	self.navigationItem.titleView = titleView;
 	self.titleView = titleView;
 	WeakSelf

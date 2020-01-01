@@ -33,52 +33,68 @@
     return self;
 }
 
+- (void)setFrame:(CGRect)frame {
+    if (frame.size.width > APP.Width || frame.size.height > 50) {
+        frame = NavController1.navigationBar.bounds;
+    }
+    [super setFrame:frame];
+    
+    if (@available(iOS 11.0, *)) {} else {
+        [self.imgView.superview mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.mas_offset(APP.Width);
+        }];
+    }
+}
+
 - (void)setUserName:(NSString *)userName {
     _userName = userName;
     self.userNameLabel.text = userName;
 }
+
+- (void)setImgName:(NSString *)imgName {
+    _imgName = imgName;
+    NSString *url = [CMCommon imgformat:imgName];
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:url]];
+}
+
 - (void)setShowLoginView:(BOOL)showLoginView {
     _showLoginView = showLoginView;
     self.loginView.hidden = !showLoginView;
     self.moreView.hidden = showLoginView;
 }
+
+
+#pragma mark - IBAction
+
 - (IBAction)moreButtonClick:(id)sender {
     if (self.moreClickBlock) {
         self.moreClickBlock();
     }
 }
+
 - (IBAction)tryPlayClick:(id)sender {
     if (self.tryPlayClickBlock) {
         self.tryPlayClickBlock();
     }
-    
 }
+
 - (IBAction)loginClick:(id)sender {
     if (self.loginClickBlock) {
         self.loginClickBlock();
     }
 }
+
 - (IBAction)registerClick:(id)sender {
     if (self.registerClickBlock) {
         self.registerClickBlock();
     }
 }
 
-- (CGSize)intrinsicContentSize{
-    
-    return UILayoutFittingExpandedSize;
-    
-}
 
-- (void)setImgName:(NSString *)imgName {
-    _imgName = imgName;
-    NSString *url = [CMCommon imgformat:imgName];
-    [_imgView sd_setImageWithURL:[NSURL URLWithString:url] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-        // 以下3句代码为了修复iOS10运行时，导航条frame变成{0,0,10000,10000}，导致图片遮住self.view的bug。
-        self.frame = CGRectMake(0, 0, APP.Width, 44);
-        self.imgView.superview.cc_constraints.width.constant = APP.Width;
-        [self layoutSubviews];
-    }];
+#pragma mark - intrinsicContentSize
+
+- (CGSize)intrinsicContentSize {
+    return UILayoutFittingExpandedSize;
 }
 
 @end
