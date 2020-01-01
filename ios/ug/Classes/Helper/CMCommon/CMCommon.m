@@ -4,7 +4,7 @@
 #import "CMCommon.h"
 #import <objc/runtime.h>
 #import <SafariServices/SafariServices.h>
-
+#import "SLWebViewController.h"
 @implementation CMCommon
 /******************************************************************************
  函数名称 : + (BOOL)verifyPhoneNum:(NSString *)numStr
@@ -843,6 +843,34 @@ static NSString *uuidKey =@"uuidKey";
     sf.允许游客访问 = true;
     [NavController1 presentViewController:sf animated:YES completion:nil];
 }
+
+/**
+*   自定义web
+*
+*
+*/
++(void)goTGWebUrl:(NSString *)url title :(NSString *)title{
+    TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
+    webViewVC.允许未登录访问 = true;
+    webViewVC.允许游客访问 = true;
+    webViewVC.url = url;
+    if (title) {
+        webViewVC.webTitle = title;
+    }
+    [NavController1 pushViewController:webViewVC animated:YES];
+}
+
+/**
+*   自定义web
+*
+*
+*/
++(void)goSLWebUrl:(NSString *)url {
+    SLWebViewController *webViewVC = [SLWebViewController new];
+    webViewVC.urlStr = url;
+    [NavController1 pushViewController:webViewVC animated:YES];
+}
+
 
 /**
 *   给float类型的NSString 返回 float; 长度==0 返回0

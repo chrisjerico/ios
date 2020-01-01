@@ -70,16 +70,27 @@
         }];
         [subButton(@"直播btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
         [subButton(@"直播btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-            [CMCommon showToastTitle:@"开发中,敬请期待2222"];
+            NSString *url = [NSString stringWithFormat:@"%@%@&&gameType=%@",liveUrl,self.gameId,self.nextIssueModel.gameType];
+            [CMCommon goSLWebUrl:url];
+            
         }];
         [subButton(@"开奖btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
         [subButton(@"开奖btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-            [CMCommon showToastTitle:@"开发中,敬请期待111"];
+//            TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
+//            webViewVC.允许未登录访问 = true;
+//            webViewVC.允许游客访问 = true;
+//            webViewVC.url = _NSString(@"%@/Open_prize/index.php", APP.Host);
+//            webViewVC.webTitle = @"开奖网";
+//            [NavController1 pushViewController:webViewVC animated:YES];
+            [CMCommon goSLWebUrl:lotteryUrl];
+            
         }];
    
         [subButton(@"长龙btn") setHidden:!APP.addIcons];
         [subButton(@"直播btn") setHidden:!APP.addIcons];
         [subButton(@"开奖btn") setHidden:!APP.addIcons];
+        
+        
     }
 }
 

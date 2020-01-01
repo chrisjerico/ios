@@ -235,6 +235,19 @@ chat_type=crm 设置意味着营销qq，可以和陌生人发起临时会话。
 */
 +(void)goUrl:(NSString *)url;
 /**
+*   自定义web
+*
+*
+*/
++(void)goTGWebUrl:(NSString *)url title :(NSString *)title;
+
+/**
+*   自定义web
+*
+*
+*/
++(void)goSLWebUrl:(NSString *)url ;
+/**
 *   给float类型的NSString 返回 float; 长度==0 返回0
 *
 *

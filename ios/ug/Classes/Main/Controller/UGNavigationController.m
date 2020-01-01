@@ -299,6 +299,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     NSString *vcName = dict[model.gameType];
     if (vcName.length) {
         UGCommonLotteryController *vc = _LoadVC_from_storyboard_(vcName);
+//         UGCommonLotteryController *vc = _LoadVC_from_storyboard_(@"UGHKLHCLotteryController");
         if ([@[@"7", @"11", @"9"] containsObject:model.gameId]) {
             vc.shoulHideHeader = true;
         }

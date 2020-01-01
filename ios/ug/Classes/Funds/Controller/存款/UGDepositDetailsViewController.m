@@ -557,7 +557,8 @@
                     url = model.data;
                 }
                 url = [CMNetwork encryptionCheckSignForURL:url];
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+//                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+                [CMCommon goSLWebUrl:url];
    
             }
         } failure:^(id msg) {
