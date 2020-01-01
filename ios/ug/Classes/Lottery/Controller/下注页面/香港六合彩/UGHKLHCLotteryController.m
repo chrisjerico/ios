@@ -611,11 +611,19 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         } else if ([@"正特" isEqualToString:model.name]) {
             type = model.list[self.segmentIndex * 2 + indexPath.section];
         } else if ([@"特码" isEqualToString:model.name]) {
-            if (self.segmentIndex) {//A
-                type = model.list[indexPath.section + 3];
-            } else {//B
-                type = model.list[indexPath.section];
+          NSString *tl =  [self.tmTitleArray objectAtIndex:self.segmentIndex];
+            
+            if ([tl isEqualToString:@"特码B"]) {
+                    type = model.list[indexPath.section + 3];
+            } else {
+                   type = model.list[indexPath.section];
             }
+            
+//            if (self.segmentIndex) {//B
+//                type = model.list[indexPath.section + 3];
+//            } else {//B
+//                type = model.list[indexPath.section];
+//            }
         } else {
             type = model.list[indexPath.section];
         }
@@ -765,11 +773,21 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             } else if ([@"正特" isEqualToString:model.name]){
                 type = model.list[self.segmentIndex * 2 + indexPath.section];
             } else if ([@"特码" isEqualToString:model.name]) {
-                if (self.segmentIndex) {
-                    type = model.list[indexPath.section + 3];
-                } else {
-                    type = model.list[indexPath.section];
-                }
+                
+                NSString *tl =  [self.tmTitleArray objectAtIndex:self.segmentIndex];
+                  
+                  if ([tl isEqualToString:@"特码B"]) {
+                          type = model.list[indexPath.section + 3];
+                     
+                  } else {
+                         type = model.list[indexPath.section];
+                  }
+                 NSLog(@"type.alias = %@",type.alias);
+//                if (self.segmentIndex) {
+//                    type = model.list[indexPath.section + 3];
+//                } else {
+//                    type = model.list[indexPath.section];
+//                }
             } else {
                 type = model.list[indexPath.section];
             }
@@ -822,11 +840,18 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         } else if ([@"正特" isEqualToString:model.name]) {
             type = model.list[self.segmentIndex * 2 + indexPath.section];
         } else if ([@"特码" isEqualToString:model.name]) {
-            if (self.segmentIndex) {//A
-                type = model.list[indexPath.section + 3];
-            } else {//B
-                type = model.list[indexPath.section];
-            }
+            NSString *tl =  [self.tmTitleArray objectAtIndex:self.segmentIndex];
+    
+              if ([tl isEqualToString:@"特码B"]) {
+                      type = model.list[indexPath.section + 3];
+              } else {
+                     type = model.list[indexPath.section ];
+              }
+//            if (self.segmentIndex) {//B
+//                type = model.list[indexPath.section + 3];
+//            } else {//B
+//                type = model.list[indexPath.section];
+//            }
         } else {
             type = model.list[indexPath.section];
         }
@@ -1296,10 +1321,12 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                 UGGameplaySectionModel *type = model.list[i];
                 type.name = type.alias;
                 if (i == 0 || i == 3) {
-                    
+                    NSLog(@"type.alias = %@",type.alias);
                     [self.tmTitleArray addObject:type.alias];
                 }
-                
+            }
+            if (APP.isBA) {
+                self.tmTitleArray = [NSMutableArray arrayWithArray:[CMCommon arrrayReverse:self.tmTitleArray]];
             }
         }
         if ([@"正特" isEqualToString:model.name]) {
@@ -1474,7 +1501,10 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                 NSInteger cnt = 0;
                 
                 UGGameplayModel *gm = __self.gameDataArray[__self.typeIndexPath.row];
-                UGGameplaySectionModel *gsm = [gm.list objectWithValue:__self.segmentIndex ? @"特码B" : @"特码A" keyPath:@"name"];
+                NSLog(@"gm.list = %@",gm.list);
+                
+                NSString *tl =  [self.tmTitleArray objectAtIndex:self.segmentIndex];
+                UGGameplaySectionModel *gsm = [gm.list objectWithValue:tl keyPath:@"name"];
                 for (UGGameBetModel *gbm in gsm.list) {
                     if ([gbm.name isInteger] && (gbm.name.intValue-1)%12 == 12-1-i)
                         gbm.select = selected;
@@ -1496,8 +1526,8 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                 for (UIButton *btn in btns) {
                     btn.selected = true;
                 }
-                NSString *name = __self.segmentIndex ? @"特码B" : @"特码A";
-                UGGameplaySectionModel *gsm = [gm.list objectWithValue:name keyPath:@"name"];
+                NSString *tl =  [self.tmTitleArray objectAtIndex:self.segmentIndex];
+                UGGameplaySectionModel *gsm = [gm.list objectWithValue:tl keyPath:@"name"];
                 for (UGGameBetModel *gbm in gsm.list) {
                     if (!gbm.select) {
                         NSInteger idx = 12-1-(gbm.name.intValue-1)%12;

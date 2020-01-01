@@ -34,6 +34,7 @@
 @property (nonatomic) float borderWidthTimes;              /**<    下注页面Cel边框宽的倍数 */
 @property (nonatomic) BOOL lotteryHallCustomImgS;    /**<   彩票大厅自定义图标 */
 @property (nonatomic) BOOL addIcons;    /**<   投注页面开奖旁边添加 开奖直播 长龙助手 开奖网  */
+@property (nonatomic) BOOL isBA;    /**<   六合彩的特码A 和特码B 换一下位置 */
 + (instancetype)shared;
 @end
 

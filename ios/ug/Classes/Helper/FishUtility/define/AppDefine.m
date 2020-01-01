@@ -157,7 +157,9 @@
 }
 
 
-
+- (BOOL)isBA {
+    return [@"c001" containsString:_SiteId];
+}
 
 - (BOOL)addIcons {
     return [@"c190" containsString:_SiteId];

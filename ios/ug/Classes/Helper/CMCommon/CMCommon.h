@@ -201,6 +201,13 @@
 *
 */
 + (NSArray*)killRepeatNoOrderly:(NSArray *)array Orderly:(BOOL)isOrder;
+
+/**
+*  ios 数组,逆序
+*
+*
+*/
++ (NSArray*) arrrayReverse:(NSArray *)array ;
 /**
 *  ios是否是链接的判断方法
 *

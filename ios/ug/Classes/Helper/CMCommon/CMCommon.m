@@ -765,6 +765,16 @@ static NSString *uuidKey =@"uuidKey";
 }
 
 /**
+*  ios 数组,逆序
+*
+*
+*/
++ (NSArray*) arrrayReverse:(NSArray *)array  {
+    NSArray *strRevArray = [[array reverseObjectEnumerator] allObjects];
+    return strRevArray;
+}
+
+/**
 *  ios是否是链接的判断方法
 *
 *

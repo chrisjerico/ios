@@ -72,18 +72,10 @@
         [subButton(@"直播btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
             NSString *url = [NSString stringWithFormat:@"%@%@&&gameType=%@",liveUrl,self.gameId,self.nextIssueModel.gameType];
             [CMCommon goSLWebUrl:url];
-            
         }];
         [subButton(@"开奖btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
         [subButton(@"开奖btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-//            TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
-//            webViewVC.允许未登录访问 = true;
-//            webViewVC.允许游客访问 = true;
-//            webViewVC.url = _NSString(@"%@/Open_prize/index.php", APP.Host);
-//            webViewVC.webTitle = @"开奖网";
-//            [NavController1 pushViewController:webViewVC animated:YES];
             [CMCommon goSLWebUrl:lotteryUrl];
-            
         }];
    
         [subButton(@"长龙btn") setHidden:!APP.addIcons];
