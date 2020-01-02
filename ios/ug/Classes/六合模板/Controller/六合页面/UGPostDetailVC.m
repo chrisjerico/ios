@@ -24,7 +24,7 @@
 #define ContentWidth (APP.Width-40)
 
 
-@interface UGPostDetailVC ()<UICollectionViewDelegateFlowLayout>
+@interface UGPostDetailVC ()<UICollectionViewDelegateFlowLayout,WKUIDelegate, WKNavigationDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *photoCollectionView;/**<   图片列表 */
 @property (weak, nonatomic) IBOutlet UICollectionView *animalCollectionView;/**<   生肖列表（可投票） */
 @property (weak, nonatomic) IBOutlet UITableView *tableView;    /**<    评论TableView */
@@ -146,10 +146,12 @@
         WKWebView *wv = [cView viewWithTagString:@"内容WebView"];
         if (!wv) {
             wv = [WKWebView new];
+            wv.UIDelegate = self;
             wv.clipsToBounds = false;
             wv.tagString = @"内容WebView";
             wv.scrollView.bounces = false;
             wv.UIDelegate = self;
+            wv.navigationDelegate = self;
             [subView(@"内容View") addSubview:wv];
             [wv mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.center.equalTo(cView);
@@ -502,13 +504,38 @@
 
 #pragma mark - WKUIDelegate
 
-- (WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures {
-    if (!navigationAction.targetFrame.isMainFrame) {
+//- (WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures {
+//    if (!navigationAction.targetFrame.isMainFrame) {
+//        SLWebViewController *vc = [SLWebViewController new];
+//        vc.urlStr = navigationAction.request.URL.absoluteString;
+//        [NavController1 pushViewController:vc animated:true];
+//    }
+//    return nil;
+//}
+
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
+{
+    
+    //    1.拦截请求
+//    NSString *urlString = [navigationAction.request.URL absoluteString];
+    
+    if (navigationAction.navigationType == WKNavigationTypeLinkActivated) {
+        //跳转别的应用如系统浏览器
+        // 对于跨域，需要手动跳转
+//       [[UIApplication sharedApplication] openURL:navigationAction.request.URL];
         SLWebViewController *vc = [SLWebViewController new];
         vc.urlStr = navigationAction.request.URL.absoluteString;
         [NavController1 pushViewController:vc animated:true];
+        // 不允许web内跳转
+        decisionHandler(WKNavigationActionPolicyCancel);
+        
+    } else {
+        //应用的web内跳转
+        decisionHandler (WKNavigationActionPolicyAllow);
+        
     }
-    return nil;
+    return ;//不添加会崩溃
+    
 }
 
 @end
