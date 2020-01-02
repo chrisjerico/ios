@@ -12,7 +12,7 @@
 @interface UGPlatformTitleCollectionViewCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-
+@property (weak, nonatomic) IBOutlet UILabel *title2Label;
 @end
 @implementation UGPlatformTitleCollectionViewCell
 
@@ -20,11 +20,16 @@
     [super awakeFromNib];
     [self setBackgroundColor:Skin1.homeContentColor];
     _titleLabel.textColor = Skin1.textColor1;
+    _title2Label.textColor = Skin1.textColor1;
+    [_title2Label setHidden:!APP.isShowLogo];
+    [_imageView setHidden:!APP.isShowLogo];
+    [_titleLabel setHidden:APP.isShowLogo];
 }
 
 - (void)setItem:(GameCategoryModel *)item {
     _item = item;
     self.titleLabel.text = item.name;
+    self.title2Label.text = item.name;
     self.imageView.image = ({
         NSString *imgName = nil;
         if ([@"8" isEqualToString:item.iid]) {
@@ -58,8 +63,10 @@
 - (void)setSelected:(BOOL)selected {
     if (selected) {
         self.titleLabel.textColor = [UIColor redColor];
+        self.title2Label.textColor = [UIColor redColor];
     } else {
         self.titleLabel.textColor = Skin1.textColor1;
+        self.title2Label.textColor = Skin1.textColor1;
     }
 }
 

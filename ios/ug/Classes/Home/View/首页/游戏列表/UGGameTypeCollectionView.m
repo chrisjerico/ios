@@ -50,9 +50,9 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
                     make.height.equalTo(@140);
                 } else {
                     make.top.equalTo(self);
-                    make.left.equalTo(self).offset(5);
-                    make.right.equalTo(self).offset(-5);
-                    make.height.equalTo(@55);
+                    make.left.equalTo(self).offset(APP.isShowLogo ? 0 : 5);
+                    make.right.equalTo(self).offset(APP.isShowLogo ? 0 : -5);
+                    make.height.equalTo(APP.isShowLogo ? @80 : @55 );
                 }
             }];
         }

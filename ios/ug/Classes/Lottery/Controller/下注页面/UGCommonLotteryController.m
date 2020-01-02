@@ -81,6 +81,9 @@
         [subButton(@"长龙btn") setHidden:!APP.addIcons];
         [subButton(@"直播btn") setHidden:!APP.addIcons];
         [subButton(@"开奖btn") setHidden:!APP.addIcons];
+        [subButton(@"长龙btn") setBackgroundImage: [[UIImage imageNamed:@"xz_icon_cl"] qmui_imageWithTintColor:[UIColor whiteColor]] forState:(UIControlStateNormal)];
+        [subButton(@"直播btn") setBackgroundImage: [[UIImage imageNamed:@"xz_icon_zb"] qmui_imageWithTintColor:[UIColor whiteColor]] forState:(UIControlStateNormal)];
+        [subButton(@"开奖btn") setBackgroundImage: [[UIImage imageNamed:@"xz_icon_kj"] qmui_imageWithTintColor:[UIColor whiteColor]] forState:(UIControlStateNormal)];
         
         
     }

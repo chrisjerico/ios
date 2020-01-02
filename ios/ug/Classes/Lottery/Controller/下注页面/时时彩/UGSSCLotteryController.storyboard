@@ -224,7 +224,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="whc-di-IUj">
-                                        <rect key="frame" x="303" y="8" width="103" height="28"/>
+                                        <rect key="frame" x="316" y="8" width="90" height="28"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5kS-Xd-lxg">
                                                 <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
@@ -237,7 +237,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UQp-Ax-xy3">
-                                                <rect key="frame" x="37.5" y="0.0" width="28" height="28"/>
+                                                <rect key="frame" x="31" y="0.0" width="28" height="28"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="28" id="Mbv-sS-Wwv"/>
                                                 </constraints>
@@ -247,7 +247,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ndb-FX-1hi">
-                                                <rect key="frame" x="75" y="0.0" width="28" height="28"/>
+                                                <rect key="frame" x="62" y="0.0" width="28" height="28"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="28" id="fbP-zg-Yka"/>
                                                 </constraints>
@@ -258,6 +258,7 @@
                                             </button>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstAttribute="width" constant="90" id="8l6-Rj-7nN"/>
                                             <constraint firstAttribute="height" constant="28" id="DFG-Kb-UAh"/>
                                         </constraints>
                                     </stackView>
@@ -266,7 +267,6 @@
                                 <constraints>
                                     <constraint firstItem="hij-8H-g5a" firstAttribute="leading" secondItem="Iwq-Rg-bAY" secondAttribute="trailing" constant="5" id="0bB-IA-Nbb"/>
                                     <constraint firstItem="whc-di-IUj" firstAttribute="centerY" secondItem="hij-8H-g5a" secondAttribute="centerY" id="2Of-EB-91b"/>
-                                    <constraint firstItem="whc-di-IUj" firstAttribute="leading" secondItem="hij-8H-g5a" secondAttribute="trailing" constant="5" id="5ln-rJ-EvR"/>
                                     <constraint firstItem="hij-8H-g5a" firstAttribute="centerY" secondItem="liL-H7-uqq" secondAttribute="centerY" id="9fx-KC-6yS"/>
                                     <constraint firstItem="5La-oS-JpC" firstAttribute="leading" secondItem="liL-H7-uqq" secondAttribute="leading" id="9lf-ks-hlP"/>
                                     <constraint firstAttribute="bottom" secondItem="5La-oS-JpC" secondAttribute="bottom" id="C5k-0m-3tV"/>

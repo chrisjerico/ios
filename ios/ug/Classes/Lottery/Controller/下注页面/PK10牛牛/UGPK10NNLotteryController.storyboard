@@ -239,7 +239,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="UEp-uo-43N">
-                                        <rect key="frame" x="303" y="8" width="103" height="28"/>
+                                        <rect key="frame" x="316" y="8" width="90" height="28"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DHX-G5-n8L">
                                                 <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
@@ -252,7 +252,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="toA-0b-S8U">
-                                                <rect key="frame" x="37.5" y="0.0" width="28" height="28"/>
+                                                <rect key="frame" x="31" y="0.0" width="28" height="28"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="28" id="UIc-JF-PqC"/>
                                                 </constraints>
@@ -262,7 +262,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P0C-r3-4ZI">
-                                                <rect key="frame" x="75" y="0.0" width="28" height="28"/>
+                                                <rect key="frame" x="62" y="0.0" width="28" height="28"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="28" id="Gdy-Iq-WFV"/>
                                                 </constraints>
@@ -273,6 +273,7 @@
                                             </button>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstAttribute="width" constant="90" id="2eQ-wQ-Nfu"/>
                                             <constraint firstAttribute="height" constant="28" id="hUG-Yw-bJc"/>
                                         </constraints>
                                     </stackView>
@@ -290,7 +291,6 @@
                                     <constraint firstAttribute="trailing" secondItem="0NM-9N-Xft" secondAttribute="trailing" id="oGB-mW-0h0"/>
                                     <constraint firstItem="UXQ-hq-emt" firstAttribute="leading" secondItem="WuM-Vo-WRS" secondAttribute="trailing" constant="5" id="osU-Di-zXU"/>
                                     <constraint firstItem="UXQ-hq-emt" firstAttribute="centerY" secondItem="9VW-mD-5au" secondAttribute="centerY" id="r2L-MS-zUM"/>
-                                    <constraint firstItem="UEp-uo-43N" firstAttribute="leading" secondItem="Oz2-PC-9f3" secondAttribute="trailing" constant="5" id="ukg-BV-BBW"/>
                                     <constraint firstItem="UEp-uo-43N" firstAttribute="centerY" secondItem="Oz2-PC-9f3" secondAttribute="centerY" id="v2t-HF-PHc"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>

@@ -383,7 +383,7 @@ static UGSkinManagers *__initSkin1 = nil;
             sm.tabSelectedColor         = color(@"FFFFFF");
             sm.progressBgColor          = color(@"d80000,fb5959");
             sm.homeContentColor         = color(@"c1e1e6");
-            sm.homeContentSubColor      = color(@"C7F3E5");
+            sm.homeContentSubColor      = color(@"4361A3");
             sm.cellBgColor              = color(@"C5EAE7");
             sm.CLBgColor                = color(@"E6E6E6");
             sm.menuHeadViewColor        = color(@"4c91a9,85d2ec");
@@ -1033,7 +1033,7 @@ static UGSkinManagers *__initSkin1 = nil;
     #if DEBUG
     NSLog(@"============================skitType=%@",skitType);
 //              skitType =  @"新年红1";
-//          skitType =  @"六合资料0";
+          skitType =  @"六合资料0";
 //              skitType = @"黑色模板";
     #endif
     return [UGSkinManagers allSkin][skitType];

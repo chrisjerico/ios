@@ -237,7 +237,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="XDP-ap-T8N">
-                                        <rect key="frame" x="303" y="8" width="103" height="28"/>
+                                        <rect key="frame" x="316" y="8" width="90" height="28"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ync-Dz-l55">
                                                 <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
@@ -250,7 +250,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E0a-an-4mf">
-                                                <rect key="frame" x="37.5" y="0.0" width="28" height="28"/>
+                                                <rect key="frame" x="31" y="0.0" width="28" height="28"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="28" id="zbC-Pj-vna"/>
                                                 </constraints>
@@ -260,7 +260,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UYf-p3-2VK">
-                                                <rect key="frame" x="75" y="0.0" width="28" height="28"/>
+                                                <rect key="frame" x="62" y="0.0" width="28" height="28"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="28" id="2BA-tY-RnY"/>
                                                 </constraints>
@@ -271,6 +271,7 @@
                                             </button>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstAttribute="width" constant="90" id="Xyz-nh-jDB"/>
                                             <constraint firstAttribute="height" constant="28" id="pjn-jZ-qbj"/>
                                         </constraints>
                                     </stackView>
@@ -289,7 +290,6 @@
                                     <constraint firstAttribute="height" constant="44" id="bDU-de-xkH"/>
                                     <constraint firstItem="XDP-ap-T8N" firstAttribute="centerY" secondItem="dmT-Lb-fTn" secondAttribute="centerY" id="ioi-2U-uR5"/>
                                     <constraint firstItem="dDq-AY-Dma" firstAttribute="leading" secondItem="qrn-5W-DqT" secondAttribute="leading" id="juB-Xw-jMc"/>
-                                    <constraint firstItem="XDP-ap-T8N" firstAttribute="leading" secondItem="dmT-Lb-fTn" secondAttribute="trailing" constant="5" id="pNM-Ls-oEp"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="中间View"/>

@@ -239,7 +239,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="RUS-Qc-37r">
-                                        <rect key="frame" x="303" y="8" width="103" height="28"/>
+                                        <rect key="frame" x="316" y="8" width="90" height="28"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rm5-iL-Tmu">
                                                 <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
@@ -252,7 +252,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nty-pe-Tqt">
-                                                <rect key="frame" x="37.5" y="0.0" width="28" height="28"/>
+                                                <rect key="frame" x="31" y="0.0" width="28" height="28"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="28" id="TKM-U6-eZS"/>
                                                 </constraints>
@@ -262,7 +262,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KgV-cv-v8G">
-                                                <rect key="frame" x="75" y="0.0" width="28" height="28"/>
+                                                <rect key="frame" x="62" y="0.0" width="28" height="28"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="28" id="KiR-Hj-9Nc"/>
                                                 </constraints>
@@ -274,6 +274,7 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="28" id="Sav-HA-qsO"/>
+                                            <constraint firstAttribute="width" constant="90" id="odj-TK-ZhL"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
@@ -291,7 +292,6 @@
                                     <constraint firstItem="HNn-mo-kb5" firstAttribute="leading" secondItem="GlT-uh-YUq" secondAttribute="leading" constant="5" id="jbS-Bo-bs6"/>
                                     <constraint firstAttribute="trailing" secondItem="Iz5-wf-tiF" secondAttribute="trailing" id="t7E-nD-DWn"/>
                                     <constraint firstItem="d8a-tS-zlq" firstAttribute="leading" secondItem="HNn-mo-kb5" secondAttribute="trailing" constant="5" id="vve-IA-vQe"/>
-                                    <constraint firstItem="RUS-Qc-37r" firstAttribute="leading" secondItem="Rut-tI-nKO" secondAttribute="trailing" constant="5" id="xe6-Nw-Xbh"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="中间View"/>

@@ -156,6 +156,13 @@
     }
 }
 
+- (BOOL)isShowLogo {
+    if ([@"黑色模板" containsString:Skin1.skitType]) {
+        return NO;
+    } else {
+        return [@"c190" containsString:_SiteId];
+    }
+}
 
 - (BOOL)isBA {
     return [@"c001" containsString:_SiteId];

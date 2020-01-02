@@ -18,6 +18,8 @@
 @interface UGPlatformTitleCollectionView ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic) BOOL isBlack;
+@property (nonatomic,strong) UIButton *leftBtn;
+@property (nonatomic,strong) UIButton *rightBtn;
 @end
 
 
@@ -42,7 +44,7 @@
             collectionView.backgroundColor = _isBlack ? Skin1.bgColor : Skin1.homeContentColor;
             collectionView.dataSource = self;
             collectionView.delegate = self;
-            collectionView.layer.cornerRadius = _isBlack ? 0 : 10;
+            collectionView.layer.cornerRadius = (_isBlack||APP.isShowLogo) ? 0 : 10;
             collectionView.layer.masksToBounds = true;
             [collectionView registerNib:[UINib nibWithNibName:@"UGPlatformTitleCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"默认Cell"];
             [collectionView registerNib:[UINib nibWithNibName:@"UGPlatformTitleBlackCell" bundle:nil] forCellWithReuseIdentifier:@"黑色模板Cell"];
@@ -52,29 +54,108 @@
         
         self.collectionView = collectionView;
         [self addSubview:collectionView];
-        [collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self);
+        
+        _leftBtn = ({
+            UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+            button.frame = CGRectMake(100, 100, 30, 40);
+            // 按钮的正常状态
+//            [button setTitle:@"<<" forState:UIControlStateNormal];
+            [button setImage: [UIImage imageNamed:@"jiantouzuo"] forState:UIControlStateNormal];
+            // 设置按钮的背景色
+            button.backgroundColor = _isBlack ? Skin1.bgColor : Skin1.homeContentColor;
+            [button setTintColor:_isBlack ? Skin1.textColor1 : Skin1.textColor1];
+//            [button setTitleColor:_isBlack ? Skin1.textColor1 : Skin1.textColor1 forState:(UIControlStateNormal)];
+//            [button setTitleColor:_isBlack ? APP.ThemeColor3 : [UIColor redColor] forState:(UIControlStateHighlighted)];
+            button;
+        });
+//        Skin1.textColor1
+        _rightBtn = ({
+            UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+            button.frame = CGRectMake(100, 100, 30, 40);
+            //            [button setTitle:@"<<" forState:UIControlStateNormal];
+            [button setImage: [UIImage imageNamed:@"jiantouyou"] forState:UIControlStateNormal];
+            // 设置按钮的背景色
+            button.backgroundColor = _isBlack ? Skin1.bgColor : Skin1.homeContentColor;
+            [button setTintColor:_isBlack ? Skin1.textColor1 : Skin1.textColor1];
+            //            [button setTitleColor:_isBlack ? Skin1.textColor1 : Skin1.textColor1 forState:(UIControlStateNormal)];
+            //            [button setTitleColor:_isBlack ? APP.ThemeColor3 : [UIColor redColor] forState:(UIControlStateHighlighted)];
+            button;
+        });
+        __weakSelf_(__self);
+        [_leftBtn  removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+        [_leftBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+            [__self.collectionView setContentOffset:({
+                CGPoint offset = __self.collectionView.contentOffset;
+                offset.x -= __self.collectionView.width;
+                offset.x = MAX(offset.x, 0);
+                offset;
+            }) animated:true];
         }];
+        [_rightBtn  removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+        [_rightBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+            [__self.collectionView setContentOffset:({
+                CGPoint offset = __self.collectionView.contentOffset;
+                offset.x += __self.collectionView.width;
+                offset.x = MIN(offset.x, __self.collectionView.contentSize.width-__self.collectionView.width);
+                offset;
+            }) animated:true];
+        }];
+
+        [self addSubview:_leftBtn];
+        [self addSubview:_rightBtn];
+        
+        [_leftBtn setHidden:!APP.isShowLogo];
+        [_rightBtn setHidden:!APP.isShowLogo];
+        
+        [_leftBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.mas_left);
+            make.top.equalTo(self.mas_top);
+            make.width.mas_equalTo(30);
+            make.height.mas_equalTo(self.mas_height);
+        }];
+        
+        [_rightBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+             make.right.equalTo(self.mas_right);
+             make.top.equalTo(self.mas_top);
+             make.width.mas_equalTo(30);
+             make.height.mas_equalTo(self.mas_height);
+         }];
+        
+        [collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+         
+            make.top.equalTo(self.mas_top);
+            if (APP.isShowLogo) {
+                make.width.mas_equalTo(APP.Width-60);
+                make.left.equalTo(_leftBtn.mas_right);
+            } else {
+                make.width.mas_equalTo(APP.Width - 15);
+                make.left.equalTo(self.mas_left);
+            }
+            make.height.mas_equalTo(self.mas_height);
+        }];
+
+//        [collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.edges.equalTo(self);
+//        }];
         // 背景
         {
-            UIView *left = [UIView new];
-            left.backgroundColor = _isBlack ? Skin1.bgColor : Skin1.homeContentColor;
-            [self insertSubview:left atIndex:0];
-            [left mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.bottom.equalTo(self);
-                make.width.height.mas_equalTo(20);
-            }];
-            
-            UIView *rifht = [UIView new];
-            rifht.backgroundColor = _isBlack ? Skin1.bgColor : Skin1.homeContentColor;
-            [self insertSubview:rifht atIndex:0];
-            [rifht mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.right.top.equalTo(self);
-                make.width.height.mas_equalTo(20);
-            }];
+//            UIView *left = [UIView new];
+//            left.backgroundColor = _isBlack ? Skin1.bgColor : Skin1.homeContentColor;
+//            [self insertSubview:left atIndex:0];
+//            [left mas_makeConstraints:^(MASConstraintMaker *make) {
+//                make.left.bottom.equalTo(self);
+//                make.width.height.mas_equalTo(20);
+//            }];
+//
+//            UIView *rifht = [UIView new];
+//            rifht.backgroundColor = _isBlack ? Skin1.bgColor : Skin1.homeContentColor;
+//            [self insertSubview:rifht atIndex:0];
+//            [rifht mas_makeConstraints:^(MASConstraintMaker *make) {
+//                make.right.top.equalTo(self);
+//                make.width.height.mas_equalTo(20);
+//            }];
         }
         
-        __weakSelf_(__self);
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [__self.collectionView.collectionViewLayout invalidateLayout];
         });
@@ -86,12 +167,12 @@
                     make.height.equalTo(@140);
                 } else {
                     make.top.equalTo(self);
-                    make.left.equalTo(self).offset(5);
-                    make.right.equalTo(self).offset(-5);
+                    make.left.equalTo(self).offset(APP.isShowLogo ? 0 : 5);
+                    make.right.equalTo(self).offset( APP.isShowLogo ? 0 : -5);
                     make.height.equalTo(@55);
                 }
             }];
-            __self.collectionView.layer.cornerRadius = __self.isBlack ? 0 : 10;
+            __self.collectionView.layer.cornerRadius = (__self.isBlack||APP.isShowLogo) ? 0 : 10;
             [__self.collectionView.collectionViewLayout invalidateLayout];
             [__self.collectionView reloadData];
         }];
@@ -171,7 +252,8 @@
     });
     GameCategoryModel *gcm = _gameTypeArray[indexPath.row];
     CGFloat w = [gcm.name widthForFont:[UIFont systemFontOfSize:18]] + space;
-    return CGSizeMake(w, 55);
+    
+    return CGSizeMake(w, APP.isShowLogo ? 80 : 55);
 }
 
 @end
