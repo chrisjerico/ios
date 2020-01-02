@@ -13,8 +13,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSString *ids = @"c048";
-    BOOL willUpload = 1; // 打包后是否上传审核
+    NSString *ids = @"c190";
+    BOOL willUpload = 0; // 打包后是否上传审核
     
     [self startPackingWithIds:ids willUpload:willUpload];
 }
@@ -39,8 +39,14 @@
             }
             if (!willUpload) {
                 [NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[okSites.firstObject.ipaPath.stringByDeletingLastPathComponent.stringByDeletingLastPathComponent]];
-                NSLog(@"只打包不上传，退出打包程序");
-                exit(0);
+                
+                // 上传打包日志
+                [self saveLog:okSites uploaded:false completion:^(BOOL ok) {
+                    [NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[@"-a", @"/Applications/Xcode.app", Path.logPath]];
+                    NSLog(@"只打包不上传，退出打包程序");
+                    exit(0);
+                }];
+                return ;
             }
             okSites = ({
                 NSMutableArray *temp = okSites.mutableCopy;
@@ -59,14 +65,20 @@
                         NSLog(@"此ipa需要改签：%@（%@）", sm.siteId, sm.type);
                     }
                     NSLog(@"-------");
+                    // 上传打包日志
+                    [self saveLog:ReSign uploaded:false completion:^(BOOL ok) {
+                        if (!temp.count) {
+                            [NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[@"-a", @"/Applications/Xcode.app", Path.logPath]];
+                            NSLog(@"无需上传，退出打包程序！");
+                            exit(0);
+                        }
+                    }];
+                }
+                if (!temp.count) {
+                    return ;
                 }
                 temp.copy;
             });
-            
-            if (!okSites.count) {
-                NSLog(@"无需上传，退出打包程序！");
-                exit(0);
-            }
             
             // 登录
             [NetworkManager1 login].completionBlock = ^(CCSessionModel *sm) {
@@ -113,7 +125,7 @@
                         if (!sm.error) {
                             NSLog(@"%@ 提交审核成功", __sm.siteId);
                             [okSites addObject:__sm];
-                            [__self saveLog:__sm completion:^(BOOL ok) {
+                            [__self saveLog:@[__sm] uploaded:true completion:^(BOOL ok) {
                                 __sm = nil;
                                 __next();
                             }];
@@ -201,19 +213,25 @@
 }
 
 // 保存发包日志
-- (void)saveLog:(SiteModel *)sm completion:(void (^)(BOOL ok))completion {
+- (void)saveLog:(NSArray <SiteModel *>*)sms uploaded:(BOOL)uploaded completion:(void (^)(BOOL ok))completion {
     // 从git拉取最新的发包日志
     [ShellHelper pullCode:Path.logPath.stringByDeletingLastPathComponent completion:^{
         
         NSDateFormatter *df = [NSDateFormatter new];
         [df setDateFormat:@"yyyy年MM月dd日 HH:mm"];
         
-        NSString *downloadPath = _NSString(@"https://baidujump.app/eipeyipeyi/jump-%@.html  (%@原生iOS 已上传请测试审核)", sm.uploadId, sm.siteId);
-        NSString *log = _NSString(@"%@\t\t（%@）%@  |  %@，%@", downloadPath, Path.username, [df stringFromDate:[NSDate date]], Path.commitId, Path.gitLog);
-        [self saveString:log toFile:Path.logPath];
+        for (SiteModel *sm in sms) {
+            NSString *downloadPath = _NSString(@"https://baidujump.app/eipeyipeyi/jump-%@.html  (%@原生iOS 已上传请测试审核)", sm.uploadId, sm.siteId);
+            if (!uploaded) {
+                downloadPath = _NSString(@"【%@ %@】打包记录", sm.siteId, sm.type);
+            }
+            NSString *log = _NSString(@"%@\t\t（%@）%@  |  %@，%@", downloadPath, Path.username, [df stringFromDate:[NSDate date]], Path.commitId, Path.gitLog);
+            [self saveString:log toFile:Path.logPath];
+        }
         
         // 提交发包日志到git
-        [ShellHelper pushCode:Path.logPath.stringByDeletingLastPathComponent title:_NSString(@"%@ 发包，%@", sm.siteId, Path.gitLog) completion:^{
+        NSString *title = _NSString(@"%@ %@，%@", [(NSArray *)[sms valueForKey:@"siteId"] componentsJoinedByString:@","], uploaded ? @"【发包】" : @"【只打包】", Path.gitLog);
+        [ShellHelper pushCode:Path.logPath.stringByDeletingLastPathComponent title:title completion:^{
             NSLog(@"发包日志提交成功");
             if (completion) {
                 completion(true);
