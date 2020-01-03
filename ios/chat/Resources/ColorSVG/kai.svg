@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="90px" height="90px" viewBox="0 0 90 90" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 60.1 (88133) - https://sketch.com -->
+    <title>kai</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icon" transform="translate(-732.000000, -359.000000)">
+            <g id="kai" transform="translate(732.000000, 359.000000)">
+                <path d="M90,45.0004694 C90,69.8534367 69.8522877,90 44.9990612,90 C20.1477123,90 0,69.8534367 0,45.0004694 C0,20.1465633 20.1477123,0 44.9990612,0 C69.8522877,0 90,20.1465633 90,45.0004694" id="Fill-9" fill="#CB5541"></path>
+                <path d="M85,45.0004561 C85,67.0915674 67.0913631,85 44.9990877,85 C22.9086369,85 5,67.0915674 5,45.0004561 C5,22.9084326 22.9086369,5 44.9990877,5 C67.0913631,5 85,22.9084326 85,45.0004561" id="Fill-11" fill="#FFE974"></path>
+                <text id="開" font-family="PingFangSC-Semibold, PingFang SC" font-size="36" font-weight="500" line-spacing="36" fill="#2F3033">
+                    <tspan x="27" y="65">開</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

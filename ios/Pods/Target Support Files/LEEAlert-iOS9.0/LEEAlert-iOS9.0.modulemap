@@ -1,0 +1,6 @@
+framework module LEEAlert {
+  umbrella header "LEEAlert-iOS9.0-umbrella.h"
+
+  export *
+  module * { export * }
+}

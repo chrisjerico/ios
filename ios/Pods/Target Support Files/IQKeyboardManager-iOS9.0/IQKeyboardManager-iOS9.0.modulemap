@@ -1,0 +1,6 @@
+framework module IQKeyboardManager {
+  umbrella header "IQKeyboardManager-iOS9.0-umbrella.h"
+
+  export *
+  module * { export * }
+}

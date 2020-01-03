@@ -1,0 +1,6 @@
+framework module FLAnimatedImage {
+  umbrella header "FLAnimatedImage-iOS9.0-umbrella.h"
+
+  export *
+  module * { export * }
+}

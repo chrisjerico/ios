@@ -797,7 +797,7 @@ static NSString *uuidKey =@"uuidKey";
         NSString *qq=[NSString stringWithFormat:@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web",qqStr];
         NSURL *url = [NSURL URLWithString:qq];
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_10_0
-       i[[UIApplication sharedApplication] openURL:url options:@{UIApplicationOpenURLOptionsSourceApplicationKey:@YES} completionHandler:^(BOOL success) {}];
+       [[UIApplication sharedApplication] openURL:url options:@{UIApplicationOpenURLOptionsSourceApplicationKey:@YES} completionHandler:^(BOOL success) {}];
 #else
         [[UIApplication sharedApplication] openURL:url];
 #endif

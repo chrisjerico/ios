@@ -1,0 +1,6 @@
+framework module DLPickerView {
+  umbrella header "DLPickerView-iOS10.0-umbrella.h"
+
+  export *
+  module * { export * }
+}

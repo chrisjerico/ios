@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MomentsPublishVC" customModule="UGChat" customModuleProvider="target">
+            <connections>
+                <outlet property="collectionView" destination="Hiq-Mw-DkO" id="u7Q-ff-UA5"/>
+                <outlet property="collectionViewHeight" destination="zea-PF-PWb" id="nbt-2h-cik"/>
+                <outlet property="contenTextView" destination="8d9-bh-ZKy" id="iMy-Z3-eVe"/>
+                <outlet property="imageCollectionView" destination="Hiq-Mw-DkO" id="0QK-1e-0e8"/>
+                <outlet property="placeHolderLabel" destination="QcA-Mc-gxg" id="gPY-Pw-R6Y"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="8d9-bh-ZKy">
+                    <rect key="frame" x="24" y="105" width="366" height="33"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Hiq-Mw-DkO">
+                    <rect key="frame" x="24" y="146" width="366" height="200"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="200" id="zea-PF-PWb"/>
+                    </constraints>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="B2s-aV-HhX">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="这一刻的想法..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QcA-Mc-gxg">
+                    <rect key="frame" x="29" y="113" width="98" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.73725490196078436" green="0.75294117647058822" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Hiq-Mw-DkO" firstAttribute="top" secondItem="8d9-bh-ZKy" secondAttribute="bottom" constant="8" id="0WS-9M-xPs"/>
+                <constraint firstItem="QcA-Mc-gxg" firstAttribute="leading" secondItem="8d9-bh-ZKy" secondAttribute="leading" constant="5" id="CDS-QV-yYG"/>
+                <constraint firstItem="QcA-Mc-gxg" firstAttribute="top" secondItem="8d9-bh-ZKy" secondAttribute="top" constant="8" id="I1N-L5-EfR"/>
+                <constraint firstItem="8d9-bh-ZKy" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="17" id="IHe-cw-Ckf"/>
+                <constraint firstItem="Hiq-Mw-DkO" firstAttribute="leading" secondItem="8d9-bh-ZKy" secondAttribute="leading" id="Kxs-7Y-74N"/>
+                <constraint firstItem="8d9-bh-ZKy" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="T3g-7W-1jl"/>
+                <constraint firstItem="Hiq-Mw-DkO" firstAttribute="trailing" secondItem="8d9-bh-ZKy" secondAttribute="trailing" id="TEr-D5-inH"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="8d9-bh-ZKy" secondAttribute="trailing" constant="24" id="VJD-0Q-5NY"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="131.8840579710145" y="138.61607142857142"/>
+        </view>
+    </objects>
+</document>

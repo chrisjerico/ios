@@ -8,7 +8,7 @@
 
 #import "AppDefine.h"
 
-#define __SiteID__ @"l001"
+#define __SiteID__ @"test03"
 
 
 @interface UIStoryboard ()
@@ -116,7 +116,7 @@
 #ifdef DEBUG
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
         if (!_SiteId.length) {
-            _SiteId = @"l001";
+            _SiteId = @"test03";
         }
 //        _SiteId = @"test103";
 #endif
