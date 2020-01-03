@@ -87,7 +87,7 @@ pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Foll
 
 end
 target "chat" do
-	platform :ios, '10.0'
+	platform :ios, '9.0'
 
     use_frameworks!
     #消除第三方库警告

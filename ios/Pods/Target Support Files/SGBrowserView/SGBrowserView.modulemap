@@ -1,0 +1,6 @@
+framework module SGBrowserView {
+  umbrella header "SGBrowserView-umbrella.h"
+
+  export *
+  module * { export * }
+}
