@@ -172,12 +172,8 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/FLAnimatedImage-iOS9.0/FLAnimatedImage.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FSCalendar-iOS9.0/FSCalendar.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Folly/folly.framework"
-<<<<<<< HEAD
-  install_framework "${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/JSPatch/JSPatch.framework"
-=======
   install_framework "${BUILT_PRODUCTS_DIR}/IQKeyboardManager-iOS9.0/IQKeyboardManager.framework"
->>>>>>> mark
+  install_framework "${BUILT_PRODUCTS_DIR}/JSPatch/JSPatch.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/JWT/JWT.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/LEEAlert-iOS9.0/LEEAlert.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MJExtension-iOS9.0/MJExtension.framework"
@@ -227,12 +223,8 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/FLAnimatedImage-iOS9.0/FLAnimatedImage.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FSCalendar-iOS9.0/FSCalendar.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Folly/folly.framework"
-<<<<<<< HEAD
-  install_framework "${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/JSPatch/JSPatch.framework"
-=======
   install_framework "${BUILT_PRODUCTS_DIR}/IQKeyboardManager-iOS9.0/IQKeyboardManager.framework"
->>>>>>> mark
+  install_framework "${BUILT_PRODUCTS_DIR}/JSPatch/JSPatch.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/JWT/JWT.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/LEEAlert-iOS9.0/LEEAlert.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MJExtension-iOS9.0/MJExtension.framework"

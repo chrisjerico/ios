@@ -10,12 +10,8 @@ ${BUILT_PRODUCTS_DIR}/FBReactNativeSpec/FBReactNativeSpec.framework
 ${BUILT_PRODUCTS_DIR}/FLAnimatedImage-iOS9.0/FLAnimatedImage.framework
 ${BUILT_PRODUCTS_DIR}/FSCalendar-iOS9.0/FSCalendar.framework
 ${BUILT_PRODUCTS_DIR}/Folly/folly.framework
-<<<<<<< HEAD
-${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework
-${BUILT_PRODUCTS_DIR}/JSPatch/JSPatch.framework
-=======
 ${BUILT_PRODUCTS_DIR}/IQKeyboardManager-iOS9.0/IQKeyboardManager.framework
->>>>>>> mark
+${BUILT_PRODUCTS_DIR}/JSPatch/JSPatch.framework
 ${BUILT_PRODUCTS_DIR}/JWT/JWT.framework
 ${BUILT_PRODUCTS_DIR}/LEEAlert-iOS9.0/LEEAlert.framework
 ${BUILT_PRODUCTS_DIR}/MJExtension-iOS9.0/MJExtension.framework

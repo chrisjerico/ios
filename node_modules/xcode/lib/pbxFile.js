@@ -83,7 +83,7 @@ var FILETYPE_BY_EXTENSION = {
 
 
 function unquoted(text){
-    return text == null ? '' : text.replace (/(^")|("$)/g, '')
+    return text.replace (/(^")|("$)/g, '')
 }
 
 function detectType(filePath) {
@@ -98,12 +98,11 @@ function detectType(filePath) {
 }
 
 function defaultExtension(fileRef) {
-    var filetype = fileRef.lastKnownFileType && fileRef.lastKnownFileType != DEFAULT_FILETYPE ?
-        fileRef.lastKnownFileType : fileRef.explicitFileType;
+    var filetype = fileRef.lastKnownFileType || fileRef.explicitFileType;
 
     for(var extension in FILETYPE_BY_EXTENSION) {
         if(FILETYPE_BY_EXTENSION.hasOwnProperty(unquoted(extension)) ) {
-             if(FILETYPE_BY_EXTENSION[unquoted(extension)] === unquoted(filetype) )
+             if(FILETYPE_BY_EXTENSION[unquoted(extension)] === filetype )
                  return extension;
         }
     }
