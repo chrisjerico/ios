@@ -89,7 +89,7 @@
     // 索引
     {
         _idxView = _LoadView_from_nib_(@"IndexesView");
-        _idxView.didSelectedIndex = ^(NSInteger idx) {
+        _idxView.didSelectedIndex = ^(NSInteger idx, BOOL animated) {
             if ([__self isShowResult]) {
                 return ;
             }
@@ -98,7 +98,7 @@
                 tv.contentOffset = CGPointZero;
             } else {
                 if (![__self isShowResult]) {
-                    [tv scrollToRow:0 inSection:idx+1 atScrollPosition:UITableViewScrollPositionTop animated:false];
+                    [tv scrollToRow:0 inSection:idx+1 atScrollPosition:UITableViewScrollPositionTop animated:animated];
                 }
             }
         };
