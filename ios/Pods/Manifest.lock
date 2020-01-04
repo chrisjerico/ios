@@ -388,11 +388,9 @@ DEPENDENCIES:
   - SwiftGifOrigin (~> 1.7.0)
   - SwiftyJSON (~> 5.0.0)
   - Toast (~> 4.0.0)
-  - TZImagePickerController
   - TZImagePickerController (~> 3.2.8)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
   - YYCategories
-  - YYText
   - YYText (~> 1.0.7)
   - YYWebImage
 
@@ -521,7 +519,7 @@ SPEC CHECKSUMS:
   BAWKWebView: a45b5c77424a015c91c6684f03392d981932f909
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   CocoaLumberjack: 78b0c238666f4f58db069738ec176f4519557516
-  CodePush: 58d8b6595f46057ca1f49c55fb6860ad7fd38ce3
+  CodePush: 67f488101c41e13e594e9c2714b95dd8bffa6cb4
   CryptoSwift: 6b6e488df0598b3e9fa49254ed1a65e8c1b1e10b
   DateTools: 933ac9c490f21f92127cf690ccd8c397e0126caf
   DeviceKit: da103891aa928d89f64ea8dd8aca738c5f3d8ac0
@@ -600,6 +598,6 @@ SPEC CHECKSUMS:
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
 
-PODFILE CHECKSUM: 9424223fad31c2016b4a4ce104e2966f7391889a
+PODFILE CHECKSUM: ba4cf427104b970a581b0edb7aafb292604d059f
 
 COCOAPODS: 1.8.4

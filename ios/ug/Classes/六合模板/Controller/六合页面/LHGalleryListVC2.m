@@ -72,7 +72,7 @@
             if (__self.groups.count) {
                 __self.idxView.hidden = false;
                 __self.idxView.titles = [__self.groups valuesWithKeyPath:@"key"];
-//                __self.idxView.cc_constraints.height.constant = __self.groups.count * 14 + 13;
+                //                __self.idxView.cc_constraints.height.constant = __self.groups.count * 14 + 13;
             }
             tv.mj_footer = nil;
             return array;
@@ -89,31 +89,16 @@
     // 索引
     {
         _idxView = _LoadView_from_nib_(@"IndexesView");
-        _idxView.didSelectedIndex = ^(NSInteger idx) {
+        _idxView.didSelectedIndex = ^(NSInteger idx, BOOL animated) {
             if ([__self isShowResult]) {
                 return ;
             }
-            
             UITableView *tv = __self.tableView;
-//            NSMutableArray <ChineseSortGroupModel *>*groups = __self.groups;
-//
-//            if (idx < 0) {
-//                tv.contentOffset = CGPointZero;
-//            } else if (idx < groups.count) {
-//                CGFloat y2 = tv.tableHeaderView.height;
-//                for (int i=0; i<idx; i++) {
-//                    y2 += SectionHeight;
-//                    y2 += groups[i].array.count * RowHeight;
-//                }
-//                y2 -= tv.contentInset.top;
-//                tv.contentOffset = CGPointMake(0, y2);
-//            }
             if (idx < 0) {
                 tv.contentOffset = CGPointZero;
             } else {
                 if (![__self isShowResult]) {
-                    NSIndexPath *ip= [NSIndexPath indexPathForRow:0 inSection:idx+1];
-                    [tv selectRowAtIndexPath:ip animated:YES scrollPosition:UITableViewScrollPositionTop];
+                    [tv scrollToRow:0 inSection:idx+1 atScrollPosition:UITableViewScrollPositionTop animated:animated];
                 }
             }
         };
@@ -130,21 +115,18 @@
     // 搜索
     [self xw_addNotificationForName:UITextFieldTextDidChangeNotification block:^(NSNotification * _Nonnull noti) {
         NSString *text = __self.textField.text.stringByTrim;
-        if ([CMCommon stringIsNull:text]) {
-            return ;
-        }
+        __self.idxView.hidden = text.length;
         [__self.resultArray removeAllObjects];
-        for (UGLHGalleryModel *gm in __self.tableView.dataArray) {
-            //            if ([gm.name rangeOfString:text options:NSCaseInsensitiveSearch].length) {
-            if ([gm.name containsString:text]) {
-                [__self.resultArray addObject:gm];
+        if (text.length) {
+            for (UGLHGalleryModel *gm in __self.hotArray) {
+                if ([gm.name rangeOfString:text options:NSCaseInsensitiveSearch].length) {  // 不区分大小写
+                    [__self.resultArray addObject:gm];
+                }
             }
-        }
-        
-        for (UGLHGalleryModel *gm in __self.hotArray) {
-            NSLog(@"name = %@",gm.name);
-            if ([gm.name containsString:text]) {
-                [__self.resultArray addObject:gm];
+            for (UGLHGalleryModel *gm in __self.tableView.dataArray) {
+                if ([gm.name rangeOfString:text options:NSCaseInsensitiveSearch].length) {  // 不区分大小写
+                    [__self.resultArray addObject:gm];
+                }
             }
         }
         [__self.tableView reloadData];
@@ -227,75 +209,71 @@
     }
     
 }
-    
-    - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-        
-        NSInteger count ;
-        if ([self isShowResult]) {
-            count = 1 ;
-        } else {
-            count = 1 + _groups.count;
-        }
-        return count;
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    NSInteger count ;
+    if ([self isShowResult]) {
+        count = 1 ;
+    } else {
+        count = 1 + _groups.count;
     }
-    
-    - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-        
-        if ([self isShowResult]) {
-            return self.hotArray.count + _resultArray.count  ;
+    return count;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if ([self isShowResult]) {
+        return self.hotArray.count + _resultArray.count  ;
+    } else {
+        if (section == 0) {
+            return self.hotArray.count;
         } else {
-            if (section == 0) {
-                return self.hotArray.count;
-            } else {
-                return [self isShowResult] ? _resultArray.count : _groups[section-1].array.count;
-            }
+            return [self isShowResult] ? _resultArray.count : _groups[section-1].array.count;
         }
-        
-        
     }
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    FastSubViewCode(cell);
     
-    - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-        FastSubViewCode(cell);
-        
-        if ([self isShowResult]) {
-            UGLHGalleryModel *gm = _resultArray[indexPath.row];
+    if ([self isShowResult]) {
+        UGLHGalleryModel *gm = _resultArray[indexPath.row];
+        subLabel(@"标题Label").text = gm.name;
+        //    subLabel(@"编号Label").text = gm.gid;
+        [subLabel(@"编号Label") setHidden:YES];
+    } else {
+        if (indexPath.section == 0) {
+            UGLHGalleryModel *gm = _hotArray[indexPath.row];
+            subLabel(@"标题Label").text = gm.name;
+            [subLabel(@"编号Label") setHidden:YES];
+        } else {
+            UGLHGalleryModel *gm = [self isShowResult] ? _resultArray[indexPath.row] : _groups[indexPath.section-1].array[indexPath.row];
             subLabel(@"标题Label").text = gm.name;
             //    subLabel(@"编号Label").text = gm.gid;
             [subLabel(@"编号Label") setHidden:YES];
-        } else {
-            if (indexPath.section == 0) {
-                UGLHGalleryModel *gm = _hotArray[indexPath.row];
-                subLabel(@"标题Label").text = gm.name;
-                [subLabel(@"编号Label") setHidden:YES];
-            } else {
-                UGLHGalleryModel *gm = [self isShowResult] ? _resultArray[indexPath.row] : _groups[indexPath.section-1].array[indexPath.row];
-                subLabel(@"标题Label").text = gm.name;
-                //    subLabel(@"编号Label").text = gm.gid;
-                [subLabel(@"编号Label") setHidden:YES];
-            }
         }
-        return cell;
     }
-    
-    - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-        LHJournalDetailVC *vc = _LoadVC_from_storyboard_(@"LHJournalDetailVC");
-        if ([self isShowResult]) {
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    LHJournalDetailVC *vc = _LoadVC_from_storyboard_(@"LHJournalDetailVC");
+    if ([self isShowResult]) {
+        vc.clm = _clm;
+        UGLHGalleryModel *gm = _resultArray[indexPath.row];
+        vc.gm = gm;
+    } else {
+        if (indexPath.section == 0) {
             vc.clm = _clm;
-            UGLHGalleryModel *gm = _resultArray[indexPath.row];
+            UGLHGalleryModel *gm = _hotArray[indexPath.row];
             vc.gm = gm;
         } else {
-            if (indexPath.section == 0) {
-                vc.clm = _clm;
-                UGLHGalleryModel *gm = _hotArray[indexPath.row];
-                vc.gm = gm;
-            } else {
-                vc.clm = _clm;
-                vc.gm = [self isShowResult] ? _resultArray[indexPath.row] : _groups[indexPath.section-1].array[indexPath.row];
-            }
+            vc.clm = _clm;
+            vc.gm = [self isShowResult] ? _resultArray[indexPath.row] : _groups[indexPath.section-1].array[indexPath.row];
         }
-        
-        [NavController1 pushViewController:vc animated:true];
     }
     
-    @end
+    [NavController1 pushViewController:vc animated:true];
+}
+
+@end

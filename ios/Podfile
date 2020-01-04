@@ -1,7 +1,7 @@
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
 target "ug" do
-	platform :ios, '9.0'
+	platform :ios, '10.0'
 
     use_frameworks!
     #消除第三方库警告
@@ -36,8 +36,8 @@ pod 'MJExtension'       # 字典转数据模型库
 pod 'FSCalendar'        # 日历控件
 pod 'SDWebImage'        # 异步图片加载+缓存
 pod 'SDWebImage/GIF'    # 异步图片加载+缓存（GIF）
-pod 'TZImagePickerController' # 相册浏览器
-pod 'YYText'            # YY大神的富文本框架
+pod 'TZImagePickerController', '~> 3.2.8' # 相册浏览器
+pod 'YYText', '~> 1.0.7'# YY大神的富文本框架
 
 pod 'JPush', '3.2.2-noidfa'
 
@@ -87,7 +87,7 @@ pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Foll
 
 end
 target "chat" do
-	platform :ios, '9.0'
+	platform :ios, '10.0'
 
     use_frameworks!
     #消除第三方库警告

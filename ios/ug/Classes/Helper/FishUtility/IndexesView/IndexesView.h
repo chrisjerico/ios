@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface IndexesView : UIView
 
-@property (nonatomic) void (^didSelectedIndex)(NSInteger idx);
+@property (nonatomic) void (^didSelectedIndex)(NSInteger idx, BOOL animated);
 
 - (void)setTitles:(NSArray <NSString *>*)titles;
 - (void)hideSearchIcon;     /**<    隐藏搜索图标 */

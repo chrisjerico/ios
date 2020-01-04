@@ -66,7 +66,7 @@
     }
     
     if (_didSelectedIndex)
-        _didSelectedIndex(idx);
+        _didSelectedIndex(idx, [pan isKindOfClass:[UITapGestureRecognizer class]]);
 }
 
 @end
