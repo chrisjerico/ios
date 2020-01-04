@@ -1749,6 +1749,7 @@
 		CFCADE45237D281C00680F62 /* cplts_看图王.gif in Resources */ = {isa = PBXBuildFile; fileRef = CFCADE44237D281C00680F62 /* cplts_看图王.gif */; };
 		CFDB113823A3B1E10040DE2B /* SiteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDB113723A3B1E10040DE2B /* SiteModel.m */; };
 		CFE074D123C0BBBF0083EA7E /* LotteryBetAndChatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE074D023C0BBBF0083EA7E /* LotteryBetAndChatVC.m */; };
+		CFE074DD23C0E7840083EA7E /* UGNotDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE074DA23C0E7840083EA7E /* UGNotDetailViewController.m */; };
 		CFF1254D239FD5290000B731 /* 点击查看更多.gif in Resources */ = {isa = PBXBuildFile; fileRef = CFF1254C239FD5290000B731 /* 点击查看更多.gif */; };
 		CFFAB58B237315C2009593AF /* event.gif in Resources */ = {isa = PBXBuildFile; fileRef = CFFAB58A237315C2009593AF /* event.gif */; };
 		CFFAB58D23755569009593AF /* lxb.gif in Resources */ = {isa = PBXBuildFile; fileRef = CFFAB58C23755569009593AF /* lxb.gif */; };
@@ -3381,6 +3382,8 @@
 		CFDB113723A3B1E10040DE2B /* SiteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SiteModel.m; sourceTree = "<group>"; };
 		CFE074CF23C0BBBF0083EA7E /* LotteryBetAndChatVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LotteryBetAndChatVC.h; sourceTree = "<group>"; };
 		CFE074D023C0BBBF0083EA7E /* LotteryBetAndChatVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LotteryBetAndChatVC.m; sourceTree = "<group>"; };
+		CFE074DA23C0E7840083EA7E /* UGNotDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGNotDetailViewController.m; sourceTree = "<group>"; };
+		CFE074DB23C0E7840083EA7E /* UGNotDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGNotDetailViewController.h; sourceTree = "<group>"; };
 		CFF1254C239FD5290000B731 /* 点击查看更多.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "点击查看更多.gif"; sourceTree = "<group>"; };
 		CFFAB58A237315C2009593AF /* event.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = event.gif; sourceTree = "<group>"; };
 		CFFAB58C23755569009593AF /* lxb.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = lxb.gif; sourceTree = "<group>"; };
@@ -5905,6 +5908,7 @@
 		031E184323BE812600B0F813 /* 注单列表 */ = {
 			isa = PBXGroup;
 			children = (
+				CFE074D923C0E7840083EA7E /* 注单明细 */,
 				031E184B23BE812600B0F813 /* UGBetRecordViewController.h */,
 				031E184723BE812600B0F813 /* UGBetRecordViewController.m */,
 				031E184A23BE812600B0F813 /* UGRealBetRecordViewController.h */,
@@ -7019,6 +7023,15 @@
 				CF5D3D822396B8D700CC3D6B /* AutoPacking.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		CFE074D923C0E7840083EA7E /* 注单明细 */ = {
+			isa = PBXGroup;
+			children = (
+				CFE074DA23C0E7840083EA7E /* UGNotDetailViewController.m */,
+				CFE074DB23C0E7840083EA7E /* UGNotDetailViewController.h */,
+			);
+			path = "注单明细";
 			sourceTree = "<group>";
 		};
 		D4000C0E232E2CCB000705B1 /* AppDelegate+ */ = {
@@ -9059,6 +9072,7 @@
 				031E1D9223BE812B00B0F813 /* UGYubaoConversionViewController.m in Sources */,
 				031E1D5823BE812B00B0F813 /* UGMailBoxTableViewController.m in Sources */,
 				031E1DEE23BE812C00B0F813 /* UGIntegarlConvertRecordCell.m in Sources */,
+				CFE074DD23C0E7840083EA7E /* UGNotDetailViewController.m in Sources */,
 				031E1A2E23BE812700B0F813 /* CMNetwork+Home.m in Sources */,
 				031E1A6423BE812700B0F813 /* UIImage+ST.m in Sources */,
 				031E1D0023BE812A00B0F813 /* AFSecurityPolicy.m in Sources */,
