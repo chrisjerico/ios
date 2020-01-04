@@ -1573,6 +1573,15 @@
 		031EF5F223BE7B4E00B0F813 /* ConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EF52623BE7B4D00B0F813 /* ConversationCell.swift */; };
 		031EF5F323BE7B4E00B0F813 /* ConversationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EF52723BE7B4D00B0F813 /* ConversationModel.swift */; };
 		031EF5F423BE7B4E00B0F813 /* UGConversationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EF52823BE7B4D00B0F813 /* UGConversationVC.swift */; };
+		03A5D38423C0445B0055A998 /* JS_HomeGameCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A5D38223C0445B0055A998 /* JS_HomeGameCollectionCell.m */; };
+		03A5D38523C0445B0055A998 /* JS_HomeGameCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A5D38223C0445B0055A998 /* JS_HomeGameCollectionCell.m */; };
+		03A5D38623C0445B0055A998 /* JS_HomeGameCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03A5D38323C0445B0055A998 /* JS_HomeGameCollectionCell.xib */; };
+		03A5D38723C0445B0055A998 /* JS_HomeGameCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03A5D38323C0445B0055A998 /* JS_HomeGameCollectionCell.xib */; };
+		03A5D38B23C051DB0055A998 /* JS_HomeGameColletionCell_1.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A5D38923C051DB0055A998 /* JS_HomeGameColletionCell_1.m */; };
+		03A5D38D23C051DB0055A998 /* JS_HomeGameColletionCell_1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03A5D38A23C051DB0055A998 /* JS_HomeGameColletionCell_1.xib */; };
+		03E41B2C23C0903C004AB7C6 /* JS_HomePromoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E41B2B23C0903C004AB7C6 /* JS_HomePromoteView.m */; };
+		03E41B2F23C09055004AB7C6 /* JS_HomePromoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03E41B2E23C09055004AB7C6 /* JS_HomePromoteView.xib */; };
+		03E41B3223C09363004AB7C6 /* JS_HomePromoteContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E41B3123C09363004AB7C6 /* JS_HomePromoteContainerView.m */; };
 		A0C64CB6AEB0CF1B2031BBB8 /* Pods_ug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6486EFF4C273BEA0AE8994DD /* Pods_ug.framework */; };
 		CF475880239636D200966536 /* 21.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D4239636D100966536 /* 21.gif */; };
 		CF475881239636D200966536 /* 35.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D5239636D100966536 /* 35.gif */; };
@@ -3195,7 +3204,20 @@
 		031EF52623BE7B4D00B0F813 /* ConversationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationCell.swift; sourceTree = "<group>"; };
 		031EF52723BE7B4D00B0F813 /* ConversationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationModel.swift; sourceTree = "<group>"; };
 		031EF52823BE7B4D00B0F813 /* UGConversationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UGConversationVC.swift; sourceTree = "<group>"; };
+		03A5D37E23BFA2810055A998 /* ThemeApplyProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThemeApplyProtocol.h; sourceTree = "<group>"; };
+		03A5D38023BFB8040055A998 /* NavigationControllerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NavigationControllerProtocol.h; sourceTree = "<group>"; };
+		03A5D38123C0445B0055A998 /* JS_HomeGameCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JS_HomeGameCollectionCell.h; sourceTree = "<group>"; };
+		03A5D38223C0445B0055A998 /* JS_HomeGameCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JS_HomeGameCollectionCell.m; sourceTree = "<group>"; };
+		03A5D38323C0445B0055A998 /* JS_HomeGameCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JS_HomeGameCollectionCell.xib; sourceTree = "<group>"; };
+		03A5D38823C051DB0055A998 /* JS_HomeGameColletionCell_1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JS_HomeGameColletionCell_1.h; sourceTree = "<group>"; };
+		03A5D38923C051DB0055A998 /* JS_HomeGameColletionCell_1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JS_HomeGameColletionCell_1.m; sourceTree = "<group>"; };
+		03A5D38A23C051DB0055A998 /* JS_HomeGameColletionCell_1.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JS_HomeGameColletionCell_1.xib; sourceTree = "<group>"; };
 		03D4C80C234F4DEC0028B48F /* ug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ug.entitlements; sourceTree = "<group>"; };
+		03E41B2A23C0903C004AB7C6 /* JS_HomePromoteView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JS_HomePromoteView.h; sourceTree = "<group>"; };
+		03E41B2B23C0903C004AB7C6 /* JS_HomePromoteView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JS_HomePromoteView.m; sourceTree = "<group>"; };
+		03E41B2E23C09055004AB7C6 /* JS_HomePromoteView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JS_HomePromoteView.xib; sourceTree = "<group>"; };
+		03E41B3023C09363004AB7C6 /* JS_HomePromoteContainerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JS_HomePromoteContainerView.h; sourceTree = "<group>"; };
+		03E41B3123C09363004AB7C6 /* JS_HomePromoteContainerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JS_HomePromoteContainerView.m; sourceTree = "<group>"; };
 		09180447B2D6D470EA76AFD9 /* Pods-chat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chat.release.xcconfig"; path = "Target Support Files/Pods-chat/Pods-chat.release.xcconfig"; sourceTree = "<group>"; };
 		30193B1626262AA87797C0E9 /* Pods_chat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_chat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		443C93C1135A8C900E47477A /* Pods-ug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ug.release.xcconfig"; path = "Target Support Files/Pods-ug/Pods-ug.release.xcconfig"; sourceTree = "<group>"; };
@@ -3456,6 +3478,7 @@
 				031E13C223BE812300B0F813 /* UGSkinCollectionViewCell.xib */,
 				031E13C923BE812300B0F813 /* UIImage+YYgradientImage.h */,
 				031E13C523BE812300B0F813 /* UIImage+YYgradientImage.m */,
+				03A5D37E23BFA2810055A998 /* ThemeApplyProtocol.h */,
 			);
 			path = Skin;
 			sourceTree = "<group>";
@@ -4539,14 +4562,15 @@
 		031E15C823BE812400B0F813 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				031E15CB23BE812400B0F813 /* 开奖记录 */,
-				031E15CF23BE812400B0F813 /* UGGameListViewController.m */,
-				031E15D023BE812400B0F813 /* 资料页 */,
 				031E15D523BE812400B0F813 /* UGHomeViewController.h */,
+				031E15E223BE812400B0F813 /* UGHomeViewController.m */,
 				031E15D723BE812400B0F813 /* UGHomeViewController.storyboard */,
 				031E15D823BE812400B0F813 /* UGGameListViewController.h */,
+				031E15CF23BE812400B0F813 /* UGGameListViewController.m */,
+				03A5D37F23BFA4480055A998 /* 金沙主题 */,
+				031E15CB23BE812400B0F813 /* 开奖记录 */,
+				031E15D023BE812400B0F813 /* 资料页 */,
 				031E15D923BE812400B0F813 /* 长龙助手 */,
-				031E15E223BE812400B0F813 /* UGHomeViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -4554,9 +4578,9 @@
 		031E15CB23BE812400B0F813 /* 开奖记录 */ = {
 			isa = PBXGroup;
 			children = (
+				031E15CE23BE812400B0F813 /* UGLotteryRecordController.h */,
 				031E15CC23BE812400B0F813 /* UGLotteryRecordController.m */,
 				031E15CD23BE812400B0F813 /* UGLotteryRecordController.storyboard */,
-				031E15CE23BE812400B0F813 /* UGLotteryRecordController.h */,
 			);
 			path = "开奖记录";
 			sourceTree = "<group>";
@@ -4565,8 +4589,8 @@
 			isa = PBXGroup;
 			children = (
 				031E15D123BE812400B0F813 /* UGDocumentDetailVC.h */,
-				031E15D223BE812400B0F813 /* UGDocumentVC.h */,
 				031E15D323BE812400B0F813 /* UGDocumentDetailVC.m */,
+				031E15D223BE812400B0F813 /* UGDocumentVC.h */,
 				031E15D423BE812400B0F813 /* UGDocumentVC.m */,
 			);
 			path = "资料页";
@@ -4575,12 +4599,12 @@
 		031E15D923BE812400B0F813 /* 长龙助手 */ = {
 			isa = PBXGroup;
 			children = (
-				031E15DA23BE812400B0F813 /* UGChanglongBetRecordController.m */,
-				031E15DB23BE812400B0F813 /* UGLotteryAssistantController.m */,
-				031E15DC23BE812400B0F813 /* UGChangLongController.h */,
-				031E15DD23BE812400B0F813 /* UGLotteryAssistantController.storyboard */,
-				031E15DE23BE812400B0F813 /* UGLotteryAssistantController.h */,
 				031E15DF23BE812400B0F813 /* UGChanglongBetRecordController.h */,
+				031E15DA23BE812400B0F813 /* UGChanglongBetRecordController.m */,
+				031E15DE23BE812400B0F813 /* UGLotteryAssistantController.h */,
+				031E15DB23BE812400B0F813 /* UGLotteryAssistantController.m */,
+				031E15DD23BE812400B0F813 /* UGLotteryAssistantController.storyboard */,
+				031E15DC23BE812400B0F813 /* UGChangLongController.h */,
 				031E15E023BE812400B0F813 /* UGChangLongController.m */,
 			);
 			path = "长龙助手";
@@ -4638,17 +4662,17 @@
 		031E160723BE812400B0F813 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				031E164623BE812400B0F813 /* UGGameListCollectionViewCell.h */,
+				031E165723BE812400B0F813 /* UGGameListCollectionViewCell.m */,
+				031E164C23BE812400B0F813 /* UGGameListCollectionViewCell.xib */,
+				031E164B23BE812400B0F813 /* UGLotteryRecordTableViewCell.h */,
+				031E164523BE812400B0F813 /* UGLotteryRecordTableViewCell.m */,
+				031E164A23BE812400B0F813 /* UGLotteryRecordTableViewCell.xib */,
 				031E160823BE812400B0F813 /* 侧边栏 */,
 				031E160F23BE812400B0F813 /* 首页 */,
-				031E164523BE812400B0F813 /* UGLotteryRecordTableViewCell.m */,
-				031E164623BE812400B0F813 /* UGGameListCollectionViewCell.h */,
 				031E164723BE812400B0F813 /* 六合板块 */,
-				031E164A23BE812400B0F813 /* UGLotteryRecordTableViewCell.xib */,
-				031E164B23BE812400B0F813 /* UGLotteryRecordTableViewCell.h */,
-				031E164C23BE812400B0F813 /* UGGameListCollectionViewCell.xib */,
 				031E164D23BE812400B0F813 /* 彩种规则 */,
 				031E165123BE812400B0F813 /* 长龙助手 */,
-				031E165723BE812400B0F813 /* UGGameListCollectionViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4657,11 +4681,11 @@
 			isa = PBXGroup;
 			children = (
 				031E160923BE812400B0F813 /* UGYYRightMenuTableViewCell.h */,
-				031E160A23BE812400B0F813 /* UGYYRightMenuView.xib */,
+				031E160D23BE812400B0F813 /* UGYYRightMenuTableViewCell.m */,
 				031E160B23BE812400B0F813 /* UGYYRightMenuTableViewCell.xib */,
 				031E160C23BE812400B0F813 /* UGYYRightMenuView.h */,
-				031E160D23BE812400B0F813 /* UGYYRightMenuTableViewCell.m */,
 				031E160E23BE812400B0F813 /* UGYYRightMenuView.m */,
+				031E160A23BE812400B0F813 /* UGYYRightMenuView.xib */,
 			);
 			path = "侧边栏";
 			sourceTree = "<group>";
@@ -4684,12 +4708,12 @@
 		031E161023BE812400B0F813 /* 红包弹框 */ = {
 			isa = PBXGroup;
 			children = (
-				031E161123BE812400B0F813 /* UGredEnvelopeView.xib */,
 				031E161223BE812400B0F813 /* UGredActivityView.h */,
-				031E161323BE812400B0F813 /* UGredEnvelopeView.h */,
-				031E161423BE812400B0F813 /* UGredActivityView.xib */,
-				031E161523BE812400B0F813 /* UGredEnvelopeView.m */,
 				031E161623BE812400B0F813 /* UGredActivityView.m */,
+				031E161423BE812400B0F813 /* UGredActivityView.xib */,
+				031E161323BE812400B0F813 /* UGredEnvelopeView.h */,
+				031E161523BE812400B0F813 /* UGredEnvelopeView.m */,
+				031E161123BE812400B0F813 /* UGredEnvelopeView.xib */,
 			);
 			path = "红包弹框";
 			sourceTree = "<group>";
@@ -4726,23 +4750,23 @@
 		031E162223BE812400B0F813 /* 游戏列表 */ = {
 			isa = PBXGroup;
 			children = (
-				031E162323BE812400B0F813 /* UGPlatformTitleCollectionView.m */,
-				031E162423BE812400B0F813 /* UGGameSubCollectionView.m */,
-				031E162523BE812400B0F813 /* UGPlatformTitleCollectionViewCell.h */,
-				031E162623BE812400B0F813 /* UGPlatformCollectionView.m */,
 				031E162723BE812400B0F813 /* UGGameTypeCollectionView.h */,
-				031E162823BE812400B0F813 /* UGPlatformTitleBlackCell.m */,
-				031E162923BE812400B0F813 /* UGGameTypeColletionViewCell.h */,
-				031E162A23BE812400B0F813 /* UGPlatformTitleCollectionViewCell.xib */,
-				031E162B23BE812400B0F813 /* UGGameSubCollectionView.h */,
-				031E162C23BE812400B0F813 /* UGPlatformTitleCollectionView.h */,
-				031E162D23BE812400B0F813 /* UGPlatformTitleBlackCell.h */,
-				031E162E23BE812400B0F813 /* UGPlatformTitleBlackCell.xib */,
 				031E162F23BE812400B0F813 /* UGGameTypeCollectionView.m */,
+				031E162C23BE812400B0F813 /* UGPlatformTitleCollectionView.h */,
+				031E162323BE812400B0F813 /* UGPlatformTitleCollectionView.m */,
+				031E162523BE812400B0F813 /* UGPlatformTitleCollectionViewCell.h */,
 				031E163023BE812400B0F813 /* UGPlatformTitleCollectionViewCell.m */,
+				031E162A23BE812400B0F813 /* UGPlatformTitleCollectionViewCell.xib */,
 				031E163123BE812400B0F813 /* UGPlatformCollectionView.h */,
+				031E162623BE812400B0F813 /* UGPlatformCollectionView.m */,
+				031E162923BE812400B0F813 /* UGGameTypeColletionViewCell.h */,
 				031E163223BE812400B0F813 /* UGGameTypeColletionViewCell.m */,
 				031E163323BE812400B0F813 /* UGGameTypeColletionViewCell.xib */,
+				031E162D23BE812400B0F813 /* UGPlatformTitleBlackCell.h */,
+				031E162823BE812400B0F813 /* UGPlatformTitleBlackCell.m */,
+				031E162E23BE812400B0F813 /* UGPlatformTitleBlackCell.xib */,
+				031E162B23BE812400B0F813 /* UGGameSubCollectionView.h */,
+				031E162423BE812400B0F813 /* UGGameSubCollectionView.m */,
 			);
 			path = "游戏列表";
 			sourceTree = "<group>";
@@ -4971,11 +4995,11 @@
 			children = (
 				031E168823BE812400B0F813 /* 下注页面 */,
 				031E16BD23BE812400B0F813 /* UGLotteryHomeController.m */,
-				031E16BE23BE812400B0F813 /* UGYYLotterySecondHomeViewController.h */,
-				031E16BF23BE812400B0F813 /* UGYYLotteryHomeViewController.m */,
 				031E16C023BE812400B0F813 /* UGLotteryHomeController.h */,
+				031E16BE23BE812400B0F813 /* UGYYLotterySecondHomeViewController.h */,
 				031E16C123BE812400B0F813 /* UGYYLotterySecondHomeViewController.m */,
 				031E16C223BE812400B0F813 /* UGYYLotteryHomeViewController.h */,
+				031E16BF23BE812400B0F813 /* UGYYLotteryHomeViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -5268,14 +5292,14 @@
 			isa = PBXGroup;
 			children = (
 				031E171323BE812400B0F813 /* UGLotteryCollectionViewCell.h */,
-				031E171423BE812400B0F813 /* UGhomeRecommendCollectionViewCell.xib */,
-				031E171523BE812400B0F813 /* UGhomeRecommendCollectionViewCell.m */,
-				031E171623BE812400B0F813 /* UGLotteryGameCollectionViewCell.m */,
-				031E171723BE812400B0F813 /* UGLotteryGameCollectionViewCell.xib */,
-				031E171823BE812400B0F813 /* UGLotteryGameCollectionViewCell.h */,
-				031E171923BE812400B0F813 /* UGhomeRecommendCollectionViewCell.h */,
 				031E171A23BE812400B0F813 /* UGLotteryCollectionViewCell.m */,
 				031E171B23BE812400B0F813 /* UGLotteryCollectionViewCell.xib */,
+				031E171923BE812400B0F813 /* UGhomeRecommendCollectionViewCell.h */,
+				031E171523BE812400B0F813 /* UGhomeRecommendCollectionViewCell.m */,
+				031E171423BE812400B0F813 /* UGhomeRecommendCollectionViewCell.xib */,
+				031E171823BE812400B0F813 /* UGLotteryGameCollectionViewCell.h */,
+				031E171623BE812400B0F813 /* UGLotteryGameCollectionViewCell.m */,
+				031E171723BE812400B0F813 /* UGLotteryGameCollectionViewCell.xib */,
 			);
 			path = "彩种Cell";
 			sourceTree = "<group>";
@@ -5436,6 +5460,7 @@
 				031E176823BE812500B0F813 /* UGTabbarController.m */,
 				031E176923BE812500B0F813 /* UGNavigationController.h */,
 				031E176523BE812500B0F813 /* UGNavigationController.m */,
+				03A5D38023BFB8040055A998 /* NavigationControllerProtocol.h */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -5444,17 +5469,17 @@
 			isa = PBXGroup;
 			children = (
 				031E176B23BE812500B0F813 /* UGViewController.h */,
-				031E176C23BE812500B0F813 /* UGTableViewCell.m */,
-				031E176D23BE812500B0F813 /* UGCollectionViewController.m */,
-				031E176E23BE812500B0F813 /* UGTableViewController.m */,
-				031E176F23BE812500B0F813 /* UGView.h */,
-				031E177023BE812500B0F813 /* UGCollectionViewCell.m */,
-				031E177123BE812500B0F813 /* UGTableViewController.h */,
-				031E177223BE812500B0F813 /* UGCollectionViewController.h */,
-				031E177323BE812500B0F813 /* UGTableViewCell.h */,
 				031E177423BE812500B0F813 /* UGViewController.m */,
+				031E177323BE812500B0F813 /* UGTableViewCell.h */,
+				031E176C23BE812500B0F813 /* UGTableViewCell.m */,
+				031E177223BE812500B0F813 /* UGCollectionViewController.h */,
+				031E176D23BE812500B0F813 /* UGCollectionViewController.m */,
+				031E176F23BE812500B0F813 /* UGView.h */,
 				031E177523BE812500B0F813 /* UGView.m */,
 				031E177623BE812500B0F813 /* UGCollectionViewCell.h */,
+				031E177023BE812500B0F813 /* UGCollectionViewCell.m */,
+				031E177123BE812500B0F813 /* UGTableViewController.h */,
+				031E176E23BE812500B0F813 /* UGTableViewController.m */,
 			);
 			path = baseObject;
 			sourceTree = "<group>";
@@ -6585,6 +6610,7 @@
 		031EF4AF23BE7B4D00B0F813 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				031EF4FE23BE7B4D00B0F813 /* 登录注册 */,
 				031E1E9223BECF2900B0F813 /* Game */,
 				031EF4B423BE7B4D00B0F813 /* Moments */,
 				031EF4D523BE7B4D00B0F813 /* Chat */,
@@ -6737,18 +6763,17 @@
 		031EF4F723BE7B4D00B0F813 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
-				031EF4F823BE7B4D00B0F813 /* Controller */,
+				031EF50923BE7B4D00B0F813 /* MySetting.storyboard */,
+				031EF50A23BE7B4D00B0F813 /* MySettingVC.swift */,
+				031EF50B23BE7B4D00B0F813 /* MineTableController.swift */,
+				031EF50F23BE7B4D00B0F813 /* MineTableController.storyboard */,
+				031EF50C23BE7B4D00B0F813 /* MyWalletVC.swift */,
+				031EF50D23BE7B4D00B0F813 /* MyShareVC.swift */,
+				031EF50E23BE7B4D00B0F813 /* MyWalletHeader.xib */,
+				031EF51023BE7B4D00B0F813 /* MyWallet.storyboard */,
+				031EF51123BE7B4D00B0F813 /* MyShare.storyboard */,
 			);
 			path = Mine;
-			sourceTree = "<group>";
-		};
-		031EF4F823BE7B4D00B0F813 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				031EF4FE23BE7B4D00B0F813 /* 登录注册 */,
-				031EF50823BE7B4D00B0F813 /* base */,
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 		031EF4FE23BE7B4D00B0F813 /* 登录注册 */ = {
@@ -6758,22 +6783,6 @@
 				031EF50023BE7B4D00B0F813 /* LoginVC.xib */,
 			);
 			path = "登录注册";
-			sourceTree = "<group>";
-		};
-		031EF50823BE7B4D00B0F813 /* base */ = {
-			isa = PBXGroup;
-			children = (
-				031EF50923BE7B4D00B0F813 /* MySetting.storyboard */,
-				031EF50A23BE7B4D00B0F813 /* MySettingVC.swift */,
-				031EF50B23BE7B4D00B0F813 /* MineTableController.swift */,
-				031EF50C23BE7B4D00B0F813 /* MyWalletVC.swift */,
-				031EF50D23BE7B4D00B0F813 /* MyShareVC.swift */,
-				031EF50E23BE7B4D00B0F813 /* MyWalletHeader.xib */,
-				031EF50F23BE7B4D00B0F813 /* MineTableController.storyboard */,
-				031EF51023BE7B4D00B0F813 /* MyWallet.storyboard */,
-				031EF51123BE7B4D00B0F813 /* MyShare.storyboard */,
-			);
-			path = base;
 			sourceTree = "<group>";
 		};
 		031EF51F23BE7B4D00B0F813 /* Base */ = {
@@ -6796,6 +6805,24 @@
 				031EF52823BE7B4D00B0F813 /* UGConversationVC.swift */,
 			);
 			path = Conversation;
+			sourceTree = "<group>";
+		};
+		03A5D37F23BFA4480055A998 /* 金沙主题 */ = {
+			isa = PBXGroup;
+			children = (
+				03A5D38123C0445B0055A998 /* JS_HomeGameCollectionCell.h */,
+				03A5D38223C0445B0055A998 /* JS_HomeGameCollectionCell.m */,
+				03A5D38323C0445B0055A998 /* JS_HomeGameCollectionCell.xib */,
+				03A5D38823C051DB0055A998 /* JS_HomeGameColletionCell_1.h */,
+				03A5D38923C051DB0055A998 /* JS_HomeGameColletionCell_1.m */,
+				03A5D38A23C051DB0055A998 /* JS_HomeGameColletionCell_1.xib */,
+				03E41B2A23C0903C004AB7C6 /* JS_HomePromoteView.h */,
+				03E41B2B23C0903C004AB7C6 /* JS_HomePromoteView.m */,
+				03E41B2E23C09055004AB7C6 /* JS_HomePromoteView.xib */,
+				03E41B3023C09363004AB7C6 /* JS_HomePromoteContainerView.h */,
+				03E41B3123C09363004AB7C6 /* JS_HomePromoteContainerView.m */,
+			);
+			path = "金沙主题";
 			sourceTree = "<group>";
 		};
 		2AA8F6FD940D74819498256A /* Pods */ = {
@@ -7075,6 +7102,7 @@
 		D4B75E22227811D50007047C /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				031E13C123BE812300B0F813 /* Skin */,
 				031E176A23BE812500B0F813 /* baseObject */,
 				031E177723BE812500B0F813 /* Chat */,
 				031E177A23BE812500B0F813 /* Frameworks */,
@@ -7085,7 +7113,6 @@
 				031E176123BE812500B0F813 /* Main */,
 				031E17E623BE812600B0F813 /* Mine */,
 				031E17DC23BE812500B0F813 /* Promote */,
-				031E13C123BE812300B0F813 /* Skin */,
 				031E13CB23BE812300B0F813 /* 六合模板 */,
 				031E165823BE812400B0F813 /* 黑色模板 */,
 				D4B75E3B2278122B0007047C /* Other */,
@@ -7410,6 +7437,7 @@
 				031EF5CC23BE7B4E00B0F813 /* BetFollowView.xib in Resources */,
 				031E1B2323BE812800B0F813 /* UGLotteryAssistantController.storyboard in Resources */,
 				031E1E4D23BE812C00B0F813 /* UGMineSkinFirstCollectionHeadView.xib in Resources */,
+				03A5D38723C0445B0055A998 /* JS_HomeGameCollectionCell.xib in Resources */,
 				031E1D8F23BE812B00B0F813 /* Mine.storyboard in Resources */,
 				031EF59423BE7B4D00B0F813 /* faxian.svg in Resources */,
 				031E1B4F23BE812800B0F813 /* UGYYRightMenuTableViewCell.xib in Resources */,
@@ -7520,6 +7548,7 @@
 				CF47588E239636D200966536 /* 122.gif in Resources */,
 				031E1E5223BE812C00B0F813 /* UGMenuTableViewCell.xib in Resources */,
 				CF4758C5239636D200966536 /* 54.gif in Resources */,
+				03A5D38623C0445B0055A998 /* JS_HomeGameCollectionCell.xib in Resources */,
 				031E1E7823BE812C00B0F813 /* UGCalenderAlertView.xib in Resources */,
 				CF475889239636D200966536 /* 20.gif in Resources */,
 				CFFAB58B237315C2009593AF /* event.gif in Resources */,
@@ -7577,6 +7606,7 @@
 				031E1BE623BE812900B0F813 /* UGPK10NNLotteryController.storyboard in Resources */,
 				031E1D4823BE812B00B0F813 /* UGGoogleAuthenticationSecondViewController.xib in Resources */,
 				D4B75E19227802600007047C /* LaunchScreen.storyboard in Resources */,
+				03E41B2F23C09055004AB7C6 /* JS_HomePromoteView.xib in Resources */,
 				031E1BC823BE812900B0F813 /* UGFC3DLotteryController.storyboard in Resources */,
 				CF4758D1239636D200966536 /* 150.gif in Resources */,
 				CF475897239636D200966536 /* 133.gif in Resources */,
@@ -7735,6 +7765,7 @@
 				CF4758C8239636D200966536 /* 2.gif in Resources */,
 				031E1C5823BE812A00B0F813 /* UGBetDetailTableViewCell.xib in Resources */,
 				CF475892239636D200966536 /* 33.gif in Resources */,
+				03A5D38D23C051DB0055A998 /* JS_HomeGameColletionCell_1.xib in Resources */,
 				CF47590D239636D200966536 /* 28.gif in Resources */,
 				CF475893239636D200966536 /* 27.gif in Resources */,
 				CF475902239636D200966536 /* 66.gif in Resources */,
@@ -8168,6 +8199,7 @@
 				031EF55D23BE7B4D00B0F813 /* GCD.swift in Sources */,
 				031EF5CA23BE7B4E00B0F813 /* RedpacketGrabListVC.swift in Sources */,
 				031E1B6123BE812800B0F813 /* UGDocumentView.m in Sources */,
+				03A5D38523C0445B0055A998 /* JS_HomeGameCollectionCell.m in Sources */,
 				031E1D5323BE812B00B0F813 /* UGModifyPayPwdController.m in Sources */,
 				031E1AC723BE812800B0F813 /* WMTabControl.m in Sources */,
 				031E1C6F23BE812A00B0F813 /* UGFundsViewController.m in Sources */,
@@ -8603,6 +8635,7 @@
 				031E1A4823BE812700B0F813 /* NSArray+Log.m in Sources */,
 				031E1BC623BE812900B0F813 /* UGBMHeaderView.m in Sources */,
 				031E1BF623BE812900B0F813 /* UGGD11X5LotteryController.m in Sources */,
+				03A5D38423C0445B0055A998 /* JS_HomeGameCollectionCell.m in Sources */,
 				031E1E0223BE812C00B0F813 /* UGSingInHistoryTableViewCell.m in Sources */,
 				031E1D9C23BE812B00B0F813 /* UGImgVcodeModel.m in Sources */,
 				031E1CFC23BE812A00B0F813 /* AFURLRequestSerialization.m in Sources */,
@@ -8747,6 +8780,7 @@
 				031E1C4823BE812900B0F813 /* UGTimeLotteryLeftTitleCell.m in Sources */,
 				031E1ACA23BE812800B0F813 /* HMSegmentedControl.m in Sources */,
 				031E1B5823BE812800B0F813 /* UGredEnvelopeView.m in Sources */,
+				03A5D38B23C051DB0055A998 /* JS_HomeGameColletionCell_1.m in Sources */,
 				031E1C5C23BE812A00B0F813 /* UGhomeRecommendCollectionViewCell.m in Sources */,
 				031E19CE23BE812700B0F813 /* UIImage+Utils.m in Sources */,
 				031E1DF823BE812C00B0F813 /* UGMissionTableViewCell.m in Sources */,
@@ -8793,6 +8827,7 @@
 				031E1C2223BE812900B0F813 /* UGFastThreeOneCollectionViewCell.m in Sources */,
 				031E1A0223BE812700B0F813 /* SlideSegmentView1.m in Sources */,
 				031E19DC23BE812700B0F813 /* NSArray+Utils.m in Sources */,
+				03E41B2C23C0903C004AB7C6 /* JS_HomePromoteView.m in Sources */,
 				031E19B623BE812700B0F813 /* NSMutableDictionary+KVO.m in Sources */,
 				031E1AF423BE812800B0F813 /* UIButton+touch.m in Sources */,
 				031E1A6223BE812700B0F813 /* NSString+ST.m in Sources */,
@@ -8907,6 +8942,7 @@
 				031E1D6223BE812B00B0F813 /* UGBankCardInfoController.m in Sources */,
 				031E1CBE23BE812A00B0F813 /* UGViewController.m in Sources */,
 				031E1DB423BE812B00B0F813 /* UGgaCaptchaModel.m in Sources */,
+				03E41B3223C09363004AB7C6 /* JS_HomePromoteContainerView.m in Sources */,
 				031E1D7823BE812B00B0F813 /* UGFeedBackController.m in Sources */,
 				031E1E0423BE812C00B0F813 /* UGSignInScrHeaderView.m in Sources */,
 				031E1A3A23BE812700B0F813 /* SyyRadioButton.m in Sources */,

@@ -27,6 +27,7 @@ public final class Configuration: NSObject {
 		configKeyboard()
 		configAmap()
 		configPhotoBrowser()
+		LogVC.enable()
         RxImagePickerDelegateProxy.register { RxImagePickerDelegateProxy(imagePicker: $0) }
 		
 	}

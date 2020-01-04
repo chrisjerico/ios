@@ -104,6 +104,7 @@
 #import "CountDown.h"
 #import "Global.h"
 #import "CMAudioPlayer.h"
+#import "JS_HomePromoteContainerView.h"
 
 @interface UGHomeViewController ()<SDCycleScrollViewDelegate,UUMarqueeViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,WSLWaterFlowLayoutDelegate>
 
@@ -153,6 +154,7 @@
     
 @property (weak, nonatomic) IBOutlet UILabel *bottomTitle;  /**<   底部内容文字 */
 @property (weak, nonatomic) IBOutlet UIButton *preferentialBtn;/**<   底部优惠按钮 */
+@property (weak, nonatomic) IBOutlet JS_HomePromoteContainerView *homePromoteContainer;
 
 @property (weak, nonatomic) IBOutlet UIView *homeAdsBigBgView;           /**<   首页广告图片大背景View */
 @property (nonatomic, strong) NSArray <UGhomeAdsModel *> *homeAdsArray;   /**<   首页广告图片 */
@@ -192,7 +194,9 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-
+- (void)apply:(UGSkinManagers *)skin {
+	
+}
 
 - (void)skin {
     
@@ -214,6 +218,8 @@
         }
         NSDictionary *dict = @{@"六合资料":@[_rollingView, _liuheResultContentView, _liuheForumContentView, _promotionView, _bottomView],
                                @"黑色模板":@[_bannerBgView, _gameTypeView.superview, _rankingView, _bottomView],
+                               @"金沙主题":@[_bannerBgView, _rollingView, _homePromoteContainer, _gameTypeView.superview, _promotionView, _rankingView, _bottomView],
+
         };
         
         NSArray *views = dict[Skin1.skitType];
@@ -267,6 +273,9 @@
     if (NavController1.topViewController == self) {
         self.navigationController.navigationBarHidden = isBlack;
     }
+	if ([Skin1.skitType isEqualToString:@"金沙主题"]) {
+		_rollingView.backgroundColor = UIColor.whiteColor;
+	}
     [self.gameNavigationView reloadData];
 }
 
@@ -857,6 +866,7 @@
 					}
                     // 游戏列表
 					self.gameTypeView.gameTypeArray = self.gameCategorys = customGameModel.icons.mutableCopy;
+					[self.homePromoteContainer bind: self.gameCategorys[0].list];
 				});
 			}
 		} failure:^(id msg) {

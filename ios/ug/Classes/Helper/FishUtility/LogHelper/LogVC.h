@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CCSessionModel.h"
 
 // 当 DEBUG 或 APP_TEST 时，启用LogVC
 #ifdef DEBUG

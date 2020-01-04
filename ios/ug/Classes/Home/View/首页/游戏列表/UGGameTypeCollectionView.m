@@ -50,9 +50,16 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
                     make.height.equalTo(@140);
                 } else {
                     make.top.equalTo(self);
-                    make.left.equalTo(self).offset(APP.isShowLogo ? 0 : 5);
-                    make.right.equalTo(self).offset(APP.isShowLogo ? 0 : -5);
-                    make.height.equalTo(APP.isShowLogo ? @80 : @55 );
+					if ([@"金沙主题" containsString:Skin1.skitType]) {
+						make.left.equalTo([self superview]);
+						make.width.mas_equalTo(UGScreenW);
+						make.height.equalTo(@50);
+					} else {
+						make.left.equalTo(self).offset(APP.isShowLogo ? 0 : 5);
+						make.right.equalTo(self).offset(APP.isShowLogo ? 0 : -5);
+						make.height.equalTo(APP.isShowLogo ? @80 : @55 );
+					}
+                
                 }
             }];
         }
@@ -89,9 +96,11 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
         [pcv removeFromSuperview];
     
     // 添加 UGPlatformCollectionView到_contentStackView
+	NSInteger i = 0;
     for (GameCategoryModel *gcm in gameTypeArray) {
         UGPlatformCollectionView *pcv = [[UGPlatformCollectionView alloc] initWithFrame:CGRectZero];
         pcv.dataArray = gcm.list;
+		pcv.typeIndex = i;
         [pcv xw_addObserverBlockForKeyPath:@"contentSize" block:^(id  _Nonnull obj, id  _Nonnull oldVal, id  _Nonnull newVal) {
             [__self refreshHeight];
         }];
@@ -103,6 +112,7 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
         [pcv mas_makeConstraints:^(MASConstraintMaker *make) {
             make.width.equalTo(self);
         }];
+		i ++;
     }
 }
 

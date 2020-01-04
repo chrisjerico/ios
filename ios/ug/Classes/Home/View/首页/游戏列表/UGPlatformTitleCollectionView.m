@@ -35,6 +35,9 @@
             layout.minimumInteritemSpacing = 0;
             layout.minimumLineSpacing = 0;
             layout.sectionInset = _isBlack ? UIEdgeInsetsZero : UIEdgeInsetsMake(0, 2, 0, 2);
+			if ([Skin1.skitType isEqualToString:@"金沙主题"]) {
+				layout.sectionInset = UIEdgeInsetsZero;
+			}
             layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
             layout;
         });
@@ -44,7 +47,7 @@
             collectionView.backgroundColor = _isBlack ? Skin1.bgColor : Skin1.homeContentColor;
             collectionView.dataSource = self;
             collectionView.delegate = self;
-            collectionView.layer.cornerRadius = (_isBlack||APP.isShowLogo) ? 0 : 10;
+            collectionView.layer.cornerRadius = (_isBlack||APP.isShowLogo || [Skin1.skitType isEqualToString:@"金沙主题"]) ? 0 : 10;
             collectionView.layer.masksToBounds = true;
             [collectionView registerNib:[UINib nibWithNibName:@"UGPlatformTitleCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"默认Cell"];
             [collectionView registerNib:[UINib nibWithNibName:@"UGPlatformTitleBlackCell" bundle:nil] forCellWithReuseIdentifier:@"黑色模板Cell"];
@@ -134,6 +137,11 @@
             make.height.mas_equalTo(self.mas_height);
         }];
 
+		if ([Skin1.skitType isEqualToString:@"金沙主题"]) {
+			[collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+				make.edges.equalTo(self);
+			}];
+		}
 //        [collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
 //            make.edges.equalTo(self);
 //        }];

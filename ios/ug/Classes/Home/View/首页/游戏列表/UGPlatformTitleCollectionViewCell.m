@@ -24,6 +24,13 @@
     [_title2Label setHidden:!APP.isShowLogo];
     [_imageView setHidden:!APP.isShowLogo];
     [_titleLabel setHidden:APP.isShowLogo];
+	if ([Skin1.skitType isEqualToString:@"金沙主题"]) {
+		[_titleLabel setHidden:false];
+		[_title2Label setHidden:true];
+		[_imageView setHidden:true];
+		_titleLabel.textColor = [UIColor colorWithHex:0x111111];
+
+	}
 }
 
 - (void)setItem:(GameCategoryModel *)item {
@@ -68,6 +75,10 @@
         self.titleLabel.textColor = Skin1.textColor1;
         self.title2Label.textColor = Skin1.textColor1;
     }
+	
+	if ([Skin1.skitType isEqualToString:@"金沙主题"]) {
+		_titleLabel.textColor = selected ?  UIColor.redColor : [UIColor colorWithHex:0x111111];
+	}
 }
 
 @end

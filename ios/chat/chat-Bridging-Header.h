@@ -3,12 +3,13 @@
 //
 
 #import "UGViewController.h"
+#import "UGNavigationController.h"
 #import "UGTableViewController.h"
+#import "UGTabbarController.h"
 #import "UGUserModel.h"
 #import "UGNotificationEvent.h"
 #import "UGLoginViewController.h"
 #import "AppDefine.h"
-//#import "AppDelegate.h"
 #import "configuration.h"
 #import "AppDefine.h"
 #import "NSString+ST.h"
@@ -49,3 +50,4 @@
 #import "CMNetwork+Home.h"
 #import "CMNetwork+Mine.h"
 
+#import "LogVC.h"

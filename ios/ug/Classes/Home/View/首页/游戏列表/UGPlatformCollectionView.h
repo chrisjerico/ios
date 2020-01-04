@@ -12,6 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UGPlatformCollectionView : UICollectionView
+@property (nonatomic, assign)NSInteger typeIndex;
 @property (nonatomic, copy) void(^gameTypeSelectBlock)(NSInteger index);
 @property (nonatomic, copy) void(^gameItemSelectBlock)(GameModel *game);
 

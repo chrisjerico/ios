@@ -10,6 +10,10 @@
 #import "UGGameTypeColletionViewCell.h"
 #import "UGPlatformGameModel.h"
 #import "UGDocumentVC.h"
+#import "JS_HomeGameCollectionCell.h"
+#import "JS_HomeGameColletionCell_1.h"
+
+
 
 @interface UGPlatformCollectionView()<UICollectionViewDelegate, UICollectionViewDataSource>
 {
@@ -38,11 +42,20 @@ static NSString *const footerId = @"footerId";
 	self = [super initWithFrame:frame collectionViewLayout:layout];
 	if (self) {
         [self registerNib:[UINib nibWithNibName:@"UGGameTypeColletionViewCell" bundle:nil] forCellWithReuseIdentifier:gameCellid];
+        [self registerNib:[UINib nibWithNibName:@"JS_HomeGameCollectionCell" bundle:nil] forCellWithReuseIdentifier:@"JS_HomeGameCollectionCell"];
+        [self registerNib:[UINib nibWithNibName:@"JS_HomeGameColletionCell_1" bundle:nil] forCellWithReuseIdentifier:@"JS_HomeGameColletionCell_1"];
+
+
+		
 		[self registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerId];
 		[self registerClass:[CollectionFooter class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:footerId];
 		self.delegate = self;
 		self.dataSource = self;
-		self.backgroundColor = UIColor.clearColor;
+		if ([Skin1.skitType isEqualToString:@"金沙主题"]) {
+			self.backgroundColor = [UIColor colorWithHex:0xf2f2f2];
+		} else {
+			self.backgroundColor = UIColor.clearColor;
+		}
 	}
 	return self;
 }
@@ -61,13 +74,24 @@ static NSString *const footerId = @"footerId";
 	[self.sectionedDataArray removeAllObjects];
 	
 	NSMutableArray * tempArray = [NSMutableArray array];
-	for (int i=0; i<dataArray.count; i++) {
-		[tempArray addObject:dataArray[i]];
-		if (((i + 1) % 3 == 0) || (i == dataArray.count - 1)) {
-			[self.sectionedDataArray addObject: [tempArray mutableCopy]];
-			[tempArray removeAllObjects];
+	if ([Skin1.skitType isEqualToString:@"金沙主题"]) {
+		for (int i=0; i<dataArray.count; i++) {
+			[tempArray addObject:dataArray[i]];
+			if (((i + 1) % 4 == 0) || (i == dataArray.count - 1)) {
+				[self.sectionedDataArray addObject: [tempArray mutableCopy]];
+				[tempArray removeAllObjects];
+			}
+		}
+	} else {
+		for (int i=0; i<dataArray.count; i++) {
+			[tempArray addObject:dataArray[i]];
+			if (((i + 1) % 3 == 0) || (i == dataArray.count - 1)) {
+				[self.sectionedDataArray addObject: [tempArray mutableCopy]];
+				[tempArray removeAllObjects];
+			}
 		}
 	}
+	
 	
     [self.gameCollectionView reloadData];
 	
@@ -92,9 +116,21 @@ static NSString *const footerId = @"footerId";
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UGGameTypeColletionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:gameCellid forIndexPath:indexPath];
-    cell.item = ((NSArray *)self.sectionedDataArray[indexPath.section])[indexPath.row];
-    return cell;
+	if ([Skin1.skitType isEqualToString:@"金沙主题"] && self.typeIndex == 0) {
+		JS_HomeGameCollectionCell *cell =  [collectionView dequeueReusableCellWithReuseIdentifier:@"JS_HomeGameCollectionCell" forIndexPath:indexPath];
+		[cell bind:((NSArray *)self.sectionedDataArray[indexPath.section])[indexPath.row]];
+		return cell;
+	} else if ([Skin1.skitType isEqualToString:@"金沙主题"] && self.typeIndex != 0) {
+		JS_HomeGameColletionCell_1 *cell =  [collectionView dequeueReusableCellWithReuseIdentifier:@"JS_HomeGameColletionCell_1" forIndexPath:indexPath];
+		[cell bind:((NSArray *)self.sectionedDataArray[indexPath.section])[indexPath.row]];
+		return cell;
+	} else {
+		UGGameTypeColletionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:gameCellid forIndexPath:indexPath];
+		 cell.item = ((NSArray *)self.sectionedDataArray[indexPath.section])[indexPath.row];
+		 
+		 return cell;
+	}
+ 
 }
 
 
@@ -129,20 +165,43 @@ static NSString *const footerId = @"footerId";
 #pragma mark ---- UICollectionViewDelegateFlowLayout
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return CGSizeMake(UGScreenW/3-10, 110);
+	
+	if ([Skin1.skitType isEqualToString:@"金沙主题"] && self.typeIndex == 0) {
+		CGFloat itemW = (UGScreenW - 9)/4.0;
+		return CGSizeMake(itemW, 110);
+	} else if ([Skin1.skitType isEqualToString:@"金沙主题"] && self.typeIndex != 0) {
+		return CGSizeMake(UGScreenW, 80);
+	} else {
+		return CGSizeMake(UGScreenW/3-10, 110);
+
+	}
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-	return UIEdgeInsetsMake(6, 5, 0, 5);
+	if ([Skin1.skitType isEqualToString:@"金沙主题"]) {
+		return UIEdgeInsetsZero;
+	} else {
+		return UIEdgeInsetsMake(6, 5, 0, 5);
+
+	}
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-	return 0.f;
+	if ([Skin1.skitType isEqualToString:@"金沙主题"]) {
+		return 1.0;
+	} else {
+		return 0.f;
+
+	}
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
-	return 0.f;
-}
+	if ([Skin1.skitType isEqualToString:@"金沙主题"]) {
+		return 1.0;
+	} else {
+		return 0.f;
+
+	}}
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
 	return CGSizeMake(UGScreenW, 0);
@@ -152,6 +211,8 @@ static NSString *const footerId = @"footerId";
 	if (_selectedPath && _selectedPath.section == section) {
 		GameModel * model = self.sectionedDataArray[section][_selectedPath.item];
 		return (CGSize){UGScreenW,((model.subType.count - 1)/3 + 1) * 40};
+	} else if ([Skin1.skitType isEqualToString:@"金沙主题"]) {
+		return (CGSize){UGScreenW,1};
 	} else {
 		return (CGSize){UGScreenW,0};
 	}
