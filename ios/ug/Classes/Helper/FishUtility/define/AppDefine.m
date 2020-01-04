@@ -8,7 +8,7 @@
 
 #import "AppDefine.h"
 
-#define __SiteID__ @"test03"
+#define __SiteID__ @"l001"
 
 
 @interface UIStoryboard ()
@@ -73,6 +73,8 @@
                 sb(@"BlackTemplate"),
                 sb(@"BMMine"),
                 sb(@"LHTemplate"),
+                sb(@"LHTemplate"),
+                sb(@"UGYubaoViewController"),
                 ];
     });
     
@@ -116,7 +118,7 @@
 #ifdef DEBUG
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
         if (!_SiteId.length) {
-            _SiteId = @"test03";
+            _SiteId = @"l001";
         }
 //        _SiteId = @"test103";
 #endif
@@ -207,7 +209,7 @@
         @"logintoken":[UGUserModel currentUser].token,
         // 定制参数
         @"roomId":@"0",
-        @"roomName":SysConf.chatRoomName,
+        @"roomName":[CMCommon urlformat:SysConf.chatRoomName] ,
         @"tag":@"3",
     }];
 }

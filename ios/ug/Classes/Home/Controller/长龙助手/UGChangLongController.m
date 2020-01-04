@@ -13,7 +13,7 @@
 #import "STBarButtonItem.h"
 #import "UGLotteryRulesView.h"
 #import "UGChanglongBetRecordController.h"
-
+#import "UGBetDetailView.h"
 @interface UGChangLongController ()<XYYSegmentControlDelegate>
 @property (nonatomic, strong) XYYSegmentControl *slideSwitchView;
 @property (nonatomic, strong)  NSArray<NSString *> *itemArray;
@@ -69,19 +69,7 @@
     STBarButtonItem *item1 = [STBarButtonItem barButtonItemWithImageName:@"gengduo" target:self action:@selector(showRightMenueView)];
     self.navigationItem.rightBarButtonItems = @[item1,item0];
     
-//    self.slideSwitchView = [[XYYSegmentControl alloc] initWithFrame:CGRectMake(0 , 0, self.view.width, self.view.height) channelName:self.itemArray source:self];
-//    [self.slideSwitchView setUserInteractionEnabled:YES];
-//    self.slideSwitchView.segmentControlDelegate = self;
-//    //设置tab 颜色(可选)
-//    self.slideSwitchView.tabItemNormalColor = [UIColor grayColor];
-//    self.slideSwitchView.tabItemNormalFont = 13;
-//    //设置tab 被选中的颜色(可选)
-//    self.slideSwitchView.tabItemSelectedColor = Skin1.navBarBgColor;
-//    //设置tab 背景颜色(可选)
-//    self.slideSwitchView.tabItemNormalBackgroundColor = [UIColor whiteColor];
-//    //设置tab 被选中的标识的颜色(可选)
-//    self.slideSwitchView.tabItemSelectionIndicatorColor = Skin1.navBarBgColor;
-//    [self.view addSubview:self.slideSwitchView];
+
     self.slideSwitchView = [[XYYSegmentControl alloc] initWithFrame:CGRectMake(0 , 0, self.view.width, self.view.height) channelName:self.itemArray source:self];
     [self.slideSwitchView setUserInteractionEnabled:YES];
     self.slideSwitchView.segmentControlDelegate = self;

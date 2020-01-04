@@ -1094,7 +1094,6 @@
 		031E1D7E23BE812B00B0F813 /* UGBetRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E184723BE812600B0F813 /* UGBetRecordViewController.m */; };
 		031E1D7F23BE812B00B0F813 /* UGBetRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E184723BE812600B0F813 /* UGBetRecordViewController.m */; };
 		031E1D8023BE812B00B0F813 /* UGBetRecordDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E184823BE812600B0F813 /* UGBetRecordDetailViewController.m */; };
-		031E1D8123BE812B00B0F813 /* UGBetRecordDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E184823BE812600B0F813 /* UGBetRecordDetailViewController.m */; };
 		031E1D8223BE812B00B0F813 /* UGRealBetRecordViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 031E184923BE812600B0F813 /* UGRealBetRecordViewController.storyboard */; };
 		031E1D8323BE812B00B0F813 /* UGRealBetRecordViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 031E184923BE812600B0F813 /* UGRealBetRecordViewController.storyboard */; };
 		031E1D8423BE812B00B0F813 /* UGBetRecordTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E184C23BE812600B0F813 /* UGBetRecordTableViewController.m */; };
@@ -1772,6 +1771,8 @@
 		D4B75E1C227802600007047C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D4B75E1B227802600007047C /* main.m */; };
 		D4C0A12723913A6C00B39358 /* Global.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C0A12623913A6C00B39358 /* Global.m */; };
 		D4C0A12F239156FB00B39358 /* hot_01.gif in Resources */ = {isa = PBXBuildFile; fileRef = D4C0A12D239156FB00B39358 /* hot_01.gif */; };
+		D4E606AE23C0570E00DF218F /* UGNotDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E606AD23C0570E00DF218F /* UGNotDetailViewController.m */; };
+		D4E606AF23C05B7A00DF218F /* UGBetRecordDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E184823BE812600B0F813 /* UGBetRecordDetailViewController.m */; };
 		F5614FBC2C7545CF870A0AD2 /* Pods_chat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30193B1626262AA87797C0E9 /* Pods_chat.framework */; };
 /* End PBXBuildFile section */
 
@@ -3410,6 +3411,8 @@
 		D4C0A12523913A6C00B39358 /* Global.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Global.h; sourceTree = "<group>"; };
 		D4C0A12623913A6C00B39358 /* Global.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Global.m; sourceTree = "<group>"; };
 		D4C0A12D239156FB00B39358 /* hot_01.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = hot_01.gif; sourceTree = "<group>"; };
+		D4E606AC23C0570E00DF218F /* UGNotDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGNotDetailViewController.h; sourceTree = "<group>"; };
+		D4E606AD23C0570E00DF218F /* UGNotDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGNotDetailViewController.m; sourceTree = "<group>"; };
 		E98695D8DC0D2512B92A7C32 /* Pods-ug.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ug.debug.xcconfig"; path = "Target Support Files/Pods-ug/Pods-ug.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -3612,6 +3615,7 @@
 			children = (
 				031E142123BE812300B0F813 /* YBPopupMenu.h */,
 				031E142223BE812300B0F813 /* FishUtility */,
+				031E14E523BE812300B0F813 /* CMCommon */,
 				031E14BD23BE812300B0F813 /* UITableView无内容提示 */,
 				031E14C223BE812300B0F813 /* CMNetwork */,
 				031E14D123BE812300B0F813 /* SYY单选按钮组 */,
@@ -3620,7 +3624,6 @@
 				031E14D823BE812300B0F813 /* 获得当前导航控制器 */,
 				031E14DB23BE812300B0F813 /* UILabel+YBAttributeTextTapAction */,
 				031E14DE23BE812300B0F813 /* Category */,
-				031E14E523BE812300B0F813 /* CMCommon */,
 				031E14F023BE812300B0F813 /* YLEdgeLabel.h */,
 				031E14F123BE812300B0F813 /* CountDown */,
 				031E14F423BE812300B0F813 /* UUMarqueeView */,
@@ -4657,10 +4660,10 @@
 			isa = PBXGroup;
 			children = (
 				031E160923BE812400B0F813 /* UGYYRightMenuTableViewCell.h */,
-				031E160A23BE812400B0F813 /* UGYYRightMenuView.xib */,
-				031E160B23BE812400B0F813 /* UGYYRightMenuTableViewCell.xib */,
-				031E160C23BE812400B0F813 /* UGYYRightMenuView.h */,
 				031E160D23BE812400B0F813 /* UGYYRightMenuTableViewCell.m */,
+				031E160B23BE812400B0F813 /* UGYYRightMenuTableViewCell.xib */,
+				031E160A23BE812400B0F813 /* UGYYRightMenuView.xib */,
+				031E160C23BE812400B0F813 /* UGYYRightMenuView.h */,
 				031E160E23BE812400B0F813 /* UGYYRightMenuView.m */,
 			);
 			path = "侧边栏";
@@ -4986,19 +4989,19 @@
 				031E168923BE812400B0F813 /* 福彩3D */,
 				031E168D23BE812400B0F813 /* 幸运农场 */,
 				031E169123BE812400B0F813 /* 广东快乐10 */,
-				031E169523BE812400B0F813 /* UGLotterySelectController.h */,
 				031E169623BE812400B0F813 /* PC蛋蛋 */,
-				031E169A23BE812400B0F813 /* UGCommonLotteryController.m */,
 				031E169B23BE812400B0F813 /* 北京快乐8 */,
-				031E169F23BE812400B0F813 /* UGLotterySelectController.m */,
 				031E16A023BE812400B0F813 /* 香港六合彩 */,
 				031E16A423BE812400B0F813 /* PK10牛牛 */,
 				031E16A823BE812400B0F813 /* 时时彩 */,
 				031E16AC23BE812400B0F813 /* 江苏快3 */,
 				031E16B023BE812400B0F813 /* 七星彩 */,
 				031E16B423BE812400B0F813 /* 广东11选5 */,
-				031E16B823BE812400B0F813 /* UGCommonLotteryController.h */,
 				031E16B923BE812400B0F813 /* 北京PK10 */,
+				031E16B823BE812400B0F813 /* UGCommonLotteryController.h */,
+				031E169A23BE812400B0F813 /* UGCommonLotteryController.m */,
+				031E169523BE812400B0F813 /* UGLotterySelectController.h */,
+				031E169F23BE812400B0F813 /* UGLotterySelectController.m */,
 			);
 			path = "下注页面";
 			sourceTree = "<group>";
@@ -5057,8 +5060,8 @@
 			isa = PBXGroup;
 			children = (
 				031E16A123BE812400B0F813 /* UGHKLHCLotteryController.h */,
-				031E16A223BE812400B0F813 /* UGHKLHCLotteryController.storyboard */,
 				031E16A323BE812400B0F813 /* UGHKLHCLotteryController.m */,
+				031E16A223BE812400B0F813 /* UGHKLHCLotteryController.storyboard */,
 			);
 			path = "香港六合彩";
 			sourceTree = "<group>";
@@ -5253,12 +5256,12 @@
 			isa = PBXGroup;
 			children = (
 				031E170A23BE812400B0F813 /* UGBetResultView.h */,
-				031E170B23BE812400B0F813 /* UGBetDetailTableViewCell.h */,
-				031E170C23BE812400B0F813 /* UGBetDetailView.m */,
 				031E170D23BE812400B0F813 /* UGBetResultView.m */,
-				031E170E23BE812400B0F813 /* UGBetDetailView.xib */,
-				031E170F23BE812400B0F813 /* UGBetDetailTableViewCell.m */,
 				031E171023BE812400B0F813 /* UGBetDetailView.h */,
+				031E170C23BE812400B0F813 /* UGBetDetailView.m */,
+				031E170E23BE812400B0F813 /* UGBetDetailView.xib */,
+				031E170B23BE812400B0F813 /* UGBetDetailTableViewCell.h */,
+				031E170F23BE812400B0F813 /* UGBetDetailTableViewCell.m */,
 				031E171123BE812400B0F813 /* UGBetDetailTableViewCell.xib */,
 			);
 			path = "下注明细View";
@@ -5429,13 +5432,13 @@
 		031E176223BE812500B0F813 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				031E176323BE812500B0F813 /* UGLaunchPageVC.h */,
 				031E176423BE812500B0F813 /* 客服AlertView.xib */,
+				031E176723BE812500B0F813 /* UGLaunchPageVC.m */,
+				031E176323BE812500B0F813 /* UGLaunchPageVC.h */,
+				031E176923BE812500B0F813 /* UGNavigationController.h */,
 				031E176523BE812500B0F813 /* UGNavigationController.m */,
 				031E176623BE812500B0F813 /* UGTabbarController.h */,
-				031E176723BE812500B0F813 /* UGLaunchPageVC.m */,
 				031E176823BE812500B0F813 /* UGTabbarController.m */,
-				031E176923BE812500B0F813 /* UGNavigationController.h */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -5900,17 +5903,18 @@
 		031E184323BE812600B0F813 /* 注单列表 */ = {
 			isa = PBXGroup;
 			children = (
+				D4E606AB23C0568300DF218F /* 注单明细 */,
 				031E184423BE812600B0F813 /* UGBetRecordDetailViewController.storyboard */,
-				031E184523BE812600B0F813 /* UGRealBetRecordViewController.m */,
-				031E184623BE812600B0F813 /* UGBetRecordTableViewController.h */,
-				031E184723BE812600B0F813 /* UGBetRecordViewController.m */,
+				031E184E23BE812600B0F813 /* UGBetRecordDetailViewController.h */,
 				031E184823BE812600B0F813 /* UGBetRecordDetailViewController.m */,
 				031E184923BE812600B0F813 /* UGRealBetRecordViewController.storyboard */,
+				031E184523BE812600B0F813 /* UGRealBetRecordViewController.m */,
 				031E184A23BE812600B0F813 /* UGRealBetRecordViewController.h */,
-				031E184B23BE812600B0F813 /* UGBetRecordViewController.h */,
-				031E184C23BE812600B0F813 /* UGBetRecordTableViewController.m */,
 				031E184D23BE812600B0F813 /* UGBetRecordTableViewController.storyboard */,
-				031E184E23BE812600B0F813 /* UGBetRecordDetailViewController.h */,
+				031E184C23BE812600B0F813 /* UGBetRecordTableViewController.m */,
+				031E184623BE812600B0F813 /* UGBetRecordTableViewController.h */,
+				031E184B23BE812600B0F813 /* UGBetRecordViewController.h */,
+				031E184723BE812600B0F813 /* UGBetRecordViewController.m */,
 			);
 			path = "注单列表";
 			sourceTree = "<group>";
@@ -7112,6 +7116,15 @@
 				D4C0A12623913A6C00B39358 /* Global.m */,
 			);
 			path = Other;
+			sourceTree = "<group>";
+		};
+		D4E606AB23C0568300DF218F /* 注单明细 */ = {
+			isa = PBXGroup;
+			children = (
+				D4E606AC23C0570E00DF218F /* UGNotDetailViewController.h */,
+				D4E606AD23C0570E00DF218F /* UGNotDetailViewController.m */,
+			);
+			path = "注单明细";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -8491,7 +8504,6 @@
 				031EF5E123BE7B4E00B0F813 /* UGRoomListVC.swift in Sources */,
 				031E1A4B23BE812700B0F813 /* CMTimeCommon.m in Sources */,
 				031E1E0523BE812C00B0F813 /* UGSignInScrHeaderView.m in Sources */,
-				031E1D8123BE812B00B0F813 /* UGBetRecordDetailViewController.m in Sources */,
 				031E1CC123BE812A00B0F813 /* UGView.m in Sources */,
 				031E1D2F23BE812B00B0F813 /* UGSigInCodeViewController.m in Sources */,
 				031E1A4723BE812700B0F813 /* UIColor+CTop.m in Sources */,
@@ -8552,6 +8564,7 @@
 				031EF55E23BE7B4D00B0F813 /* MJRefresh+RX.swift in Sources */,
 				031E1CD923BE812A00B0F813 /* MJRefreshAutoGifFooter.m in Sources */,
 				031E1A0323BE812700B0F813 /* SlideSegmentView1.m in Sources */,
+				D4E606AF23C05B7A00DF218F /* UGBetRecordDetailViewController.m in Sources */,
 				031E195723BE812600B0F813 /* LHGalleryListVC1.m in Sources */,
 				031E1D0923BE812A00B0F813 /* JSONModel.m in Sources */,
 				031E1D6323BE812B00B0F813 /* UGBankCardInfoController.m in Sources */,
@@ -8875,6 +8888,7 @@
 				031E1C6E23BE812A00B0F813 /* UGFundsViewController.m in Sources */,
 				031E1A9823BE812700B0F813 /* MOFSPickerView.m in Sources */,
 				031E1A7423BE812700B0F813 /* UIView+yyCornerRadius.m in Sources */,
+				D4E606AE23C0570E00DF218F /* UGNotDetailViewController.m in Sources */,
 				031E1A8423BE812700B0F813 /* NSDictionary+HYBUnicodeReadable.m in Sources */,
 				031E1BB023BE812900B0F813 /* UGBMLotteryHomeViewController.m in Sources */,
 				031E1D8C23BE812B00B0F813 /* UGMineSkinViewController.m in Sources */,

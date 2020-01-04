@@ -48,6 +48,9 @@ NS_ASSUME_NONNULL_BEGIN
 // 增检查真人游戏是否存在余额未转出
 + (void)needToTransferOutWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 
+//彩票注单统计
++ (void)ticketlotteryStatisticsUrlWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock ;
+
 @end
 
 NS_ASSUME_NONNULL_END

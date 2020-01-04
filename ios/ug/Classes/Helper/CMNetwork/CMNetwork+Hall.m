@@ -150,11 +150,9 @@
     
     [self.manager requestInMainThreadWithMethod:[getLotteryHistoryUrl stringToRestfulUrlWithFlag:RESTFUL]
                                          params:params
-//<<<<<<< HEAD
-//                                          model:CMResultClassMake(UGLotteryHistoryModelList.class)
-//=======
+
                                           model:CMResultClassMake(UGLotteryHistoryListModel.class)
-//>>>>>>> dev_fish
+
                                            post:NO
                                      completion:completionBlock];
     
@@ -203,4 +201,20 @@
     completion:completionBlock];
 }
 
+
+//彩票注单统计
++ (void)ticketlotteryStatisticsUrlWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock {
+    CMMETHOD_BEGIN;
+    
+    [self.manager requestInMainThreadWithMethod:[ticketlotteryStatisticsUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:CMResultClassMake(UGBetsRecordListModel.class)
+                                           post:NO
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
+    
+   
 @end
