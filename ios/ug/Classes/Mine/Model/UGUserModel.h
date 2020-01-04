@@ -58,8 +58,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL showReal;
 @property (nonatomic, assign) BOOL testFlag;
 @property (nonatomic, assign) NSInteger type;
-@property (nonatomic, assign) NSString *usr;
-@property (nonatomic, assign) NSString *clientIp;
+@property (nonatomic, strong) NSString *usr;
+@property (nonatomic, strong) NSString *clientIp;
 
 
 
