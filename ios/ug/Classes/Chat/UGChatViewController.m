@@ -27,14 +27,9 @@
     [super viewDidLoad];
     self.title = @"聊天室";
     self.fd_prefersNavigationBarHidden = YES;
-    
-    // WebView.frame
-    [self setWebViewFrame:CGRectMake(0, 0, UGScreenW, ({
-        CGFloat h = APP.Height;
-        if ([NavController1.viewControllers.firstObject isKindOfClass:[UGChatViewController class]])
-            h -= APP.Height - TabBarController1.tabBar.y;
-        h;
-    }))];
+    if (self.navigationController.viewControllers.firstObject == self) {
+        self.navigationController.navigationBarHidden = true;
+    }
     
     // 设置URL
     __weakSelf_(__self);
@@ -110,6 +105,11 @@
             [self.tgWebView reloadFromOrigin];
         }
     }
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    self.tgWebView.scrollView.backgroundColor = Skin1.bgColor;
 }
 
 - (void)setShareBetJson:(NSString *)shareBetJson {

@@ -1748,6 +1748,7 @@
 		CF47592B239636D200966536 /* 38.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF47587F239636D100966536 /* 38.gif */; };
 		CFCADE45237D281C00680F62 /* cplts_看图王.gif in Resources */ = {isa = PBXBuildFile; fileRef = CFCADE44237D281C00680F62 /* cplts_看图王.gif */; };
 		CFDB113823A3B1E10040DE2B /* SiteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDB113723A3B1E10040DE2B /* SiteModel.m */; };
+		CFE074D123C0BBBF0083EA7E /* LotteryBetAndChatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE074D023C0BBBF0083EA7E /* LotteryBetAndChatVC.m */; };
 		CFF1254D239FD5290000B731 /* 点击查看更多.gif in Resources */ = {isa = PBXBuildFile; fileRef = CFF1254C239FD5290000B731 /* 点击查看更多.gif */; };
 		CFFAB58B237315C2009593AF /* event.gif in Resources */ = {isa = PBXBuildFile; fileRef = CFFAB58A237315C2009593AF /* event.gif */; };
 		CFFAB58D23755569009593AF /* lxb.gif in Resources */ = {isa = PBXBuildFile; fileRef = CFFAB58C23755569009593AF /* lxb.gif */; };
@@ -3378,6 +3379,8 @@
 		CFDB112723A25FE60040DE2B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		CFDB113623A3B1E00040DE2B /* SiteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SiteModel.h; sourceTree = "<group>"; };
 		CFDB113723A3B1E10040DE2B /* SiteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SiteModel.m; sourceTree = "<group>"; };
+		CFE074CF23C0BBBF0083EA7E /* LotteryBetAndChatVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LotteryBetAndChatVC.h; sourceTree = "<group>"; };
+		CFE074D023C0BBBF0083EA7E /* LotteryBetAndChatVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LotteryBetAndChatVC.m; sourceTree = "<group>"; };
 		CFF1254C239FD5290000B731 /* 点击查看更多.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "点击查看更多.gif"; sourceTree = "<group>"; };
 		CFFAB58A237315C2009593AF /* event.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = event.gif; sourceTree = "<group>"; };
 		CFFAB58C23755569009593AF /* lxb.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = lxb.gif; sourceTree = "<group>"; };
@@ -4997,6 +5000,8 @@
 				031E16B923BE812400B0F813 /* 北京PK10 */,
 				031E169523BE812400B0F813 /* UGLotterySelectController.h */,
 				031E169F23BE812400B0F813 /* UGLotterySelectController.m */,
+				CFE074CF23C0BBBF0083EA7E /* LotteryBetAndChatVC.h */,
+				CFE074D023C0BBBF0083EA7E /* LotteryBetAndChatVC.m */,
 				031E16B823BE812400B0F813 /* UGCommonLotteryController.h */,
 				031E169A23BE812400B0F813 /* UGCommonLotteryController.m */,
 			);
@@ -8764,6 +8769,7 @@
 				031E1DCC23BE812C00B0F813 /* UGCreditsLogModel.m in Sources */,
 				031E19BA23BE812700B0F813 /* UIView+Frame.m in Sources */,
 				031E1E2A23BE812C00B0F813 /* UGContentMoneyCollectionViewCell.m in Sources */,
+				CFE074D123C0BBBF0083EA7E /* LotteryBetAndChatVC.m in Sources */,
 				031E1A1E23BE812700B0F813 /* AlertHelper.m in Sources */,
 				031E196C23BE812600B0F813 /* UGLHAdModel.m in Sources */,
 				031E19D623BE812700B0F813 /* NSDate+Millisecond.m in Sources */,

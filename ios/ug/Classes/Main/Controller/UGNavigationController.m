@@ -35,6 +35,9 @@
 #import "UGMosaicGoldViewController.h"    // 活动彩金
 #import "UGLHMineViewController.h"    // 六合 我的
 #import "UGMineSkinViewController.h"    //  我的
+#import "LotteryBetAndChatVC.h"
+
+
 // Tools
 #import "UGAppVersionManager.h"
 
@@ -297,9 +300,35 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     };
     
     NSString *vcName = dict[model.gameType];
-    if (vcName.length) {
+    if (!vcName.length) {
+        return false;
+    }
+    
+    // 去（彩票下注+聊天室）集合页
+    {
+        LotteryBetAndChatVC *vc = [LotteryBetAndChatVC new];
+        vc.nim = model;
+        vc.hidesBottomBarWhenPushed = YES;
+        // Push
+        if ([UGTabbarController canPushToViewController:vc]) {
+            [NavController1 setViewControllers:({
+                NSMutableArray *vcs = NavController1.viewControllers.mutableCopy;
+                for (UIViewController *vc in NavController1.viewControllers) {
+                    if ([vc isKindOfClass:[UGCommonLotteryController class]] || [vc isKindOfClass:[LotteryBetAndChatVC class]]) {
+                        [vcs removeObject:vc];
+                    }
+                }
+                [vcs addObject:vc];
+                vcs;
+            }) animated:YES];
+        }
+        return true;
+    }
+    
+    // 去彩票下注页
+    {
         UGCommonLotteryController *vc = _LoadVC_from_storyboard_(vcName);
-//         UGCommonLotteryController *vc = _LoadVC_from_storyboard_(@"UGHKLHCLotteryController");
+        //         UGCommonLotteryController *vc = _LoadVC_from_storyboard_(@"UGHKLHCLotteryController");
         if ([@[@"7", @"11", @"9"] containsObject:model.gameId]) {
             vc.shoulHideHeader = true;
         }
@@ -310,25 +339,8 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         vc.gotoTabBlock = ^{
             TabBarController1.selectedIndex = 0;
         };
-        // 设置导航条返回按钮
-        {
-            UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-            [backButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            [backButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
-            [backButton setImage:[UIImage imageNamed:@"c_navi_back"] forState:UIControlStateNormal];
-            [backButton setImage:[UIImage imageNamed:@"c_navi_back"] forState:UIControlStateHighlighted];
-            [backButton sizeToFit];
-            [backButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-                [NavController1 popViewControllerAnimated:true];
-            }];
-            UIView *containView = [[UIView alloc] initWithFrame:backButton.bounds];
-            [containView addSubview:backButton];
-            UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:containView];
-            // 设置返回按钮
-            vc.navigationItem.leftBarButtonItem = item;
-            // 隐藏底部条
-            vc.hidesBottomBarWhenPushed = YES;
-        }
+        // 隐藏底部条
+        vc.hidesBottomBarWhenPushed = YES;
         // Push
         if ([UGTabbarController canPushToViewController:vc]) {
             [NavController1 setViewControllers:({
@@ -344,7 +356,6 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         }
         return true;
     }
-    return false;
 }
 
 - (BOOL)pushViewControllerWithLinkCategory:(NSInteger)linkCategory linkPosition:(NSInteger)linkPosition {

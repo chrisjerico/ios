@@ -47,6 +47,10 @@
         self.tgWebView  = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
         self.tgWebView.navigationDelegate = self;
         [self.view addSubview:self.tgWebView];
+        [self.tgWebView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.view).offset(self.parentViewController ? 0 : APP.StatusBarHeight);
+            make.left.right.bottom.equalTo(self.view);
+        }];
     }
     NSURL *url = [NSURL URLWithString:urlStr];
     if (url.scheme == nil) {
@@ -55,10 +59,6 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
      NSLog(@"self.url = %@", url);
     [self.tgWebView loadRequest:request];
-}
-
-- (void)setWebViewFrame:(CGRect)frame{
-    self.tgWebView.frame = frame;
 }
 
 

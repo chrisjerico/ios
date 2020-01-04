@@ -22,8 +22,6 @@
 /** 进度条颜色 */
 @property (nonatomic,strong) UIColor *progressColor;
 
-- (void)setWebViewFrame:(CGRect)frame;
-
 @end
 
 

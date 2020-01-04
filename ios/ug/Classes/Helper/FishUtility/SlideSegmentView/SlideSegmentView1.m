@@ -97,7 +97,7 @@
     __weakSelf_(__self);
     [cell setDidSelectedChange:^(UICollectionViewCell *cell, BOOL selected) {
         if (__self.didSelectItemAtIndexPath)
-            __self.didSelectItemAtIndexPath(cell, label, selected);
+            __self.didSelectItemAtIndexPath(cell, label, indexPath.item,  selected);
         
         else if (selected) {
             // 下划线的默认动画
@@ -123,10 +123,7 @@
 // ——————————————————————
 
 @interface SlideSegmentView1 ()<UIScrollViewDelegate>
-//@property (weak, nonatomic) IBOutlet UIScrollView *bigScrollView;
 @property (weak, nonatomic) IBOutlet UIStackView *bigStackView;
-//
-@property (nonatomic) NSMutableArray <UIScrollView *>*scrollViews;
 @end
 
 @implementation SlideSegmentView1
@@ -217,7 +214,7 @@
                 make.edges.equalTo(sv);
             }];
         }
-        sv.bounces = true;
+        sv.bounces = false;
         sv.alwaysBounceVertical = true;
         sv.alwaysBounceHorizontal = false;
         [_scrollViews addObject:sv];
@@ -228,7 +225,7 @@
     __weakSelf_(__self);
     _titleBar.numberOfItems = contentViews.count;
     _titleBar.didSelectItem = ^(NSInteger idx) {
-        [__self setSelectedIndex:idx animated:true];
+        [__self setSelectedIndex:idx animated:false];
     };
 }
 
