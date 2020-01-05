@@ -10,7 +10,6 @@
 #import "STBarButtonItem.h"
 
 @interface UGChatViewController ()
-@property (nonatomic) UIView *statusBarBgView;
 @property (nonatomic) UIButton *closeBtn;
 @end
 
@@ -92,11 +91,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    if (OBJOnceToken(self)) {
-        _statusBarBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APP.Width, APP.StatusBarHeight)];
-    }
-    _statusBarBgView.backgroundColor = Skin1.navBarBgColor;
-    [self.view addSubview:_statusBarBgView];
     
     if ([self.title isEqualToString:@"聊天室"] && !_shareBetJson.length) {
         if (OBJOnceToken(UserI)) {
