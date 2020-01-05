@@ -55,8 +55,6 @@
         });
     }
     
-    CGFloat vcHeight = APP.Height - NavController1.navigationBar.by - 40;
-    
     // 设置导航条返回按钮
     {
         UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -145,7 +143,7 @@
         for (UIView *v in ssv1.contentViews) {
             [v mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.width.mas_equalTo(ssv1.width);
-                make.height.mas_equalTo(ssv1.height-45);
+                make.height.mas_equalTo(APP.Height - NavController1.navigationBar.by - 40);
             }];
         }
         ssv1.titleBar.titleForItemAtIndex = ^NSString *(NSUInteger idx) {
@@ -166,12 +164,6 @@
         }];
         [self.view layoutIfNeeded];
         ssv1.selectedIndex = 0;
-        
-        for (UIView *v in ssv1.contentViews) {
-            [v mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.height.mas_equalTo(vcHeight);
-            }];
-        }
     }
 }
 
