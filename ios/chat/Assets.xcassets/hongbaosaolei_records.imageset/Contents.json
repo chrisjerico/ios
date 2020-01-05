@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "hongbao.png",
+      "filename" : "hongbaosaolei_records.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "hongbao@2x.png",
+      "filename" : "hongbaosaolei_records@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "hongbao@3x.png",
+      "filename" : "hongbaosaolei_records@3x.png",
       "scale" : "3x"
     }
   ],

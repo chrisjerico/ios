@@ -4,6 +4,7 @@
 
 #import "UGViewController.h"
 #import "UGNavigationController.h"
+#import "UINavigationController+Push.h"
 #import "UGTableViewController.h"
 #import "UGTabbarController.h"
 #import "UGUserModel.h"
@@ -41,6 +42,7 @@
 #import "UGSigInCodeViewController.h"		// 每日签到
 #import "UGYubaoViewController.h"			// 利息宝
 #import "UGFundDetailsTableViewController.h"  // 资金明细
+#import "UGNotDetailViewController.h"
 
 #import "UGSystemConfigModel.h"
 

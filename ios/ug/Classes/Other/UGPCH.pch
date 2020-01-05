@@ -15,6 +15,7 @@
 
 // 全局控制器
 #import "UGNavigationController.h"
+#import "UINavigationController+Push.h"
 #import "UGTabbarController.h"
 #import "UGTableViewController.h"
 #import "UGViewController.h"

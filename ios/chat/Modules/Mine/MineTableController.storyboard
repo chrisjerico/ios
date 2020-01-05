@@ -322,6 +322,7 @@
                             <outlet property="delegate" destination="d6M-Nx-Mzb" id="hGR-w0-O5E"/>
                         </connections>
                     </tableView>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="avatarImageView" destination="WGY-FQ-svp" id="Dg9-WH-smA"/>

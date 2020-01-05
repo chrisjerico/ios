@@ -11,13 +11,14 @@ import RxCocoa
 import RxSwift
 import NSObject_Rx
 
-public class BaseNav: UGNavigationController {
+public class BaseNav: UINavigationController {
 	let transparentControllers = [ConcernedMomentsVC.self]
 	
 	
 	public override func viewDidLoad() {
 		super.viewDidLoad()
 		navigationBar.shadowImage = UIImage()
+		navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black];
 	}
 	public override func pushViewController(_ viewController: UIViewController, animated: Bool) {
 		if viewControllers.count > 0 {

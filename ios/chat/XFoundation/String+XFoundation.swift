@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 /// 正则表达式
 ///
@@ -27,9 +28,38 @@ public enum Regex: String {
     }
 }
 
-public extension AppKit where Base == String {
+public extension AppKit where Base: NSString {
 	
+	func transformToPinyin() -> NSMutableString {
+		let stringRef = NSMutableString(string: base) as CFMutableString
+		// 转换为带音标的拼音
+		CFStringTransform(stringRef,nil, kCFStringTransformToLatin, false);
+		// 去掉音标
+		CFStringTransform(stringRef, nil, kCFStringTransformStripCombiningMarks, false);
+
+		return stringRef
+	}
+	func transformToPinyinWithoutBlank() -> NSString {
+		return (base.x.transformToPinyin() as String).replacingOccurrences(of: " ", with: "") as NSString
+	}
+	func allPinyinHead() -> NSString {
+		// 字符串转换为首字母大写
+		let pinyin = (base.x.transformToPinyin() as String).capitalized
+		var headPinyinStr = ""
+
+		// 获取所有大写字母
+		for ch in pinyin {
+			if ch <= "Z" && ch >= "A" {
+				headPinyinStr.append(ch)
+			}
+		}
+		return headPinyinStr as NSString
+	}
+	func firstPinyinHead() -> NSString {
 	
+		return (base.x.transformToPinyin() as String).first?.uppercased() as NSString? ?? ""
+	
+	}
 	
 }
 
