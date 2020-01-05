@@ -1573,6 +1573,7 @@
 		031EF5F223BE7B4E00B0F813 /* ConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EF52623BE7B4D00B0F813 /* ConversationCell.swift */; };
 		031EF5F323BE7B4E00B0F813 /* ConversationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EF52723BE7B4D00B0F813 /* ConversationModel.swift */; };
 		031EF5F423BE7B4E00B0F813 /* UGConversationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EF52823BE7B4D00B0F813 /* UGConversationVC.swift */; };
+		03E4228423C1E5B8004AB7C6 /* LotteryBetAndChatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE074D023C0BBBF0083EA7E /* LotteryBetAndChatVC.m */; };
 		A0C64CB6AEB0CF1B2031BBB8 /* Pods_ug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6486EFF4C273BEA0AE8994DD /* Pods_ug.framework */; };
 		CF475880239636D200966536 /* 21.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D4239636D100966536 /* 21.gif */; };
 		CF475881239636D200966536 /* 35.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D5239636D100966536 /* 35.gif */; };
@@ -8254,6 +8255,7 @@
 				031E1E5F23BE812C00B0F813 /* UGConvertCollectionViewCell.m in Sources */,
 				031E1B1F23BE812800B0F813 /* UGChanglongBetRecordController.m in Sources */,
 				031E1D1B23BE812B00B0F813 /* UGPromoteDetailController.m in Sources */,
+				03E4228423C1E5B8004AB7C6 /* LotteryBetAndChatVC.m in Sources */,
 				031E1A8723BE812700B0F813 /* NSSet+HYBUnicodeReadable.m in Sources */,
 				031EF54423BE7B4D00B0F813 /* UserModel+Mapable.swift in Sources */,
 				031EF5B923BE7B4D00B0F813 /* MomentsBetCell.swift in Sources */,
