@@ -73,6 +73,8 @@
                 sb(@"BlackTemplate"),
                 sb(@"BMMine"),
                 sb(@"LHTemplate"),
+                sb(@"LHTemplate"),
+                sb(@"UGYubaoViewController"),
                 ];
     });
     
@@ -207,7 +209,7 @@
         @"logintoken":[UGUserModel currentUser].token,
         // 定制参数
         @"roomId":@"0",
-        @"roomName":SysConf.chatRoomName,
+        @"roomName":[CMCommon urlformat:SysConf.chatRoomName] ,
         @"tag":@"3",
     }];
 }

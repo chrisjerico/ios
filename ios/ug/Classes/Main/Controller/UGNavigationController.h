@@ -14,10 +14,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-#define NavController1 ((UGNavigationController *)TabBarController1.selectedViewController)
+//#define NavController1 ((UGNavigationController *)TabBarController1.selectedViewController)
+#define NavController1 ([UGNavigationController current])
 
 @interface UGNavigationController : UINavigationController
-
++ (instancetype)current;
 - (UIView *)topView;
 - (UIViewController *)firstVC;
 - (UIViewController *)lastVC;

@@ -633,7 +633,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     
     UICollectionView *collectionView = ({
        
-        collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(110 , 5, UGScreenW - 130 , 55) collectionViewLayout:layout];
+        collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(110 , 5, UGScreenW - 130 , 60) collectionViewLayout:layout];
         collectionView.backgroundColor = [UIColor clearColor];
         collectionView.dataSource = self;
         collectionView.delegate = self;

@@ -14,8 +14,12 @@
 #import "UGChanglongaideModel.h"
 
 #import "CountDown.h"
-
+#import "UGbetModel.h"
+#import "CMTimeCommon.h"
 @interface UGLotteryAssistantController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
+{
+    
+}
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 @property (weak, nonatomic) IBOutlet UILabel *countLabel;
@@ -35,6 +39,12 @@
 @property (nonatomic, strong) NSMutableArray<UGChanglongaideModel *> *dataArray;
 
 @property (nonatomic, assign)BOOL isHaveDian;
+
+@property (nonatomic, strong) NSString *shareJsonStr;
+
+@property (nonatomic, strong) NSString *amount;
+
+@property (nonatomic, strong)   UGChanglongaideModel *betModel;
 
 @end
 
@@ -151,6 +161,7 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
     
 }
 - (IBAction)betClick:(id)sender {
+
     NSInteger count = 0;
     for (UGChanglongaideModel *aideModel in self.dataArray) {
         for (UGBetItemModel *bet in aideModel.betList) {
@@ -168,16 +179,16 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
         [SVProgressHUD showInfoWithStatus:@"请输入投注金额"];
         return;
     }
-    NSString *amount = @"";
+    self.amount = @"";
     // 判断是否有小数点
     if ([self.amountLabel.text containsString:@"."]) {
         NSArray *amountArray = [self.amountLabel.text componentsSeparatedByString:@"."];
         NSString *a1 = [amountArray objectAtIndex:0];
         NSString *a2 = [amountArray objectAtIndex:1];
         if (a2.length==1) {
-            amount = [NSString stringWithFormat:@"%@.%@0",a1,a2];
+            _amount = [NSString stringWithFormat:@"%@.%@0",a1,a2];
         } else if(a2.length==2){
-            amount = self.amountLabel.text ;
+            _amount = self.amountLabel.text ;
         }
         else {
             [self.navigationController.view makeToast:@"金额格式有误"
@@ -188,7 +199,7 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
         
         
     } else {
-        amount =[NSString stringWithFormat:@"%@.00",self.amountLabel.text];
+        _amount =[NSString stringWithFormat:@"%@.00",self.amountLabel.text];
     }
     
     
@@ -199,28 +210,36 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
         return ;
     }
     [self.amountLabel resignFirstResponder];
-    UGChanglongaideModel *betModel;
+  
+    
     UGBetItemModel *betItem;
     for (UGChanglongaideModel *aideModel in self.dataArray) {
+//        NSLog(@"%@",aideModel.toJSONString);
         for (UGBetItemModel *bet in aideModel.betList) {
             if (bet.select) {
                 //                bet.select = NO;
                 betItem = bet;
-                betModel = aideModel;
+                self.betModel = aideModel;
             }
         }
     }
+    
+//    NSLog(@"%@",betModel.toJSONString);
+
+    self.shareJsonStr = [self shareBettingData:self.betModel amount:self.amount];
+    
+
     if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
         return;
     }
     
     NSDictionary *dict = @{
         @"token":[UGUserModel currentUser].sessid,
-        @"gameId":betModel.gameId,
-        @"betIssue":betModel.issue,
+        @"gameId":self.betModel.gameId,
+        @"betIssue":self.betModel.issue,
         @"totalNum":@"1",
-        @"totalMoney":amount,
-        @"endTime":[betModel.closeTime timeStrToTimeInterval],
+        @"totalMoney":_amount,
+        @"endTime":[self.betModel.closeTime timeStrToTimeInterval],
         @"tag":@"1"
     };
     
@@ -231,20 +250,67 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
     NSString *rebate = @"betBean[0][playIds]";
     
     [mutDict setValue:betItem.playId forKey:playId];
-    [mutDict setValue:amount forKey:money];
+    [mutDict setValue:_amount forKey:money];
     [mutDict setObject:@"" forKey:odds];
     [mutDict setObject:@"" forKey:rebate];
+    
+    
+     NSLog(@"mutDict =  %@",mutDict);
     
     __weakSelf_(__self);
     [SVProgressHUD showWithStatus:nil];
     [CMNetwork userBetWithParams:mutDict completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             [SVProgressHUD showSuccessWithStatus:model.msg];
+            
+            float amountfloat = [__self.amount floatValue];
+            float webAmountfloat = [SysConf.chatMinFollowAmount floatValue];
+            
+            if (!UserI.isTest && SysConf.chatFollowSwitch && (amountfloat >= webAmountfloat)) {
+                
+                if (Skin1.isBlack) {
+                    [LEEAlert alert].config
+                    .LeeAddTitle(^(UILabel *label) {
+                        label.text = @"分享注单";
+                        label.textColor = [UIColor whiteColor];
+                    })
+                    .LeeAddContent(^(UILabel *label) {
+                        label.text = @"是否分享到聊天室";
+                        label.textColor = [UIColor whiteColor];
+                    })
+                    .LeeAction(@"取消", nil)
+                    .LeeAction(@"分享", ^{//跳到聊天界面，把分享数据传过去
+                        UGChatViewController *vc = [[UGChatViewController alloc] init];
+                        vc.shareBetJson = __self.shareJsonStr;
+                        [NavController1 pushViewController:vc animated:YES];
+                    })
+                    .LeeHeaderColor(Skin1.bgColor)
+                    .LeeShow();
+                } else {
+                    // ==> 弹出分享框
+                    [LEEAlert alert].config
+                    .LeeTitle(@"分享注单")
+                    .LeeContent(@"是否分享到聊天室")
+                    .LeeAction(@"取消", nil)
+                    .LeeAction(@"分享", ^{//跳到聊天界面，把分享数据传过去
+                        UGChatViewController *vc = [[UGChatViewController alloc] init];
+                        vc.shareBetJson = __self.shareJsonStr;
+                        [NavController1 pushViewController:vc animated:YES];
+                    })
+                    
+                    .LeeShow();
+                }
+                
+            } else {
+                [SVProgressHUD showSuccessWithStatus:model.msg];
+            }
+            
             SANotificationEventPost(UGNotificationGetUserInfo, nil);
             betItem.select = NO;
             __self.selBetItem = nil;
             [__self.tableView reloadData];
             [__self clearClick:nil];
+            
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
         }];
@@ -252,6 +318,83 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
     
 }
 
+-(NSString *)shareBettingData :(UGChanglongaideModel *)betModel  amount:(NSString *)amount{
+    
+    UGBetItemModel *betS ;
+    NSMutableArray *list = [NSMutableArray new];
+    for (UGBetItemModel *bet in betModel.betList) {
+        if (bet.select) {
+            betS = bet;
+            break;
+        }
+    }
+//    NSLog(@"betS = %@",betS);
+    NSString *name = [NSString stringWithFormat:@"%@_%@",betModel.playCateName,betS.playName];
+    {// 组装list
+        
+        UGbetListModel *betList = [UGbetListModel new];
+        [betList setBetMoney:amount];
+        [betList setIndex:@"0"];
+        [betList setOdds:betS.odds];
+        [betList setName:name];
+        NSDictionary* dict = [betList toDictionary];
+        [list addObject:dict];
+    }
+    
+    UGbetModel *betObj = [UGbetModel new];
+    {// 组装betParams
+        NSMutableArray<UGbetParamModel> *betParams = [NSMutableArray<UGbetParamModel> new];
+        UGbetParamModel *betList = [UGbetParamModel new];
+        [betList setMoney:amount];
+        [betList setName:name];
+        [betList setOdds:betS.odds];
+        [betList setPlayId:betS.playId];
+        [betParams addObject:betList];
+        [betObj setBetParams:betParams];
+    }
+    {// 组装playNameArray
+        NSMutableArray<UGplayNameModel> *playNameArray = [NSMutableArray<UGplayNameModel> new];
+        UGplayNameModel *betList = [UGplayNameModel new];
+        [betList setPlayName1:[NSString stringWithFormat:@"%@-%@",betModel.title,betModel.playCateName]];
+        [betList setPlayName2:betS.playName];
+        [playNameArray addObject:betList];
+        [betObj setPlayNameArray:playNameArray];
+    }
+    {//其他数据
+        
+        betObj.gameName = betModel.title;
+        betObj.gameId = betModel.gameId;
+        betObj.totalNums = @"1";
+        betObj.totalMoney = amount;
+        betObj.turnNum = betModel.issue;
+        NSInteger timeInt =  [CMTimeCommon timeSwitchTimestamp:betModel.closeTime andFormatter:@"YYYY-MM-dd HH:mm:ss"];
+//        NSLog(@"time = %ld",(long)timeInt);
+        betObj.ftime = [NSString stringWithFormat:@"%ld",(long)timeInt];
+        betObj.code = @"";
+        betObj.specialPlay = NO;
+    }
+    
+    //以字符串形式导出
+    NSString* paramsjsonString = [betObj toJSONString];
+    
+//    NSLog(@"paramsjsonString = %@",paramsjsonString);
+    
+    NSString *listjsonString;
+    {
+        NSError *error;
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:list options:NSJSONWritingPrettyPrinted error:&error];
+        listjsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        
+    }
+    
+//         NSLog(@"listjsonString = %@",listjsonString);
+    
+    NSString *jsonStr = [NSString stringWithFormat:@"shareBet(%@, %@)",listjsonString,paramsjsonString];
+    
+//         NSLog(@"jsonStr = %@",jsonStr);
+    
+    return jsonStr;
+}
 
 #pragma mark - UITableViewDataSource
 

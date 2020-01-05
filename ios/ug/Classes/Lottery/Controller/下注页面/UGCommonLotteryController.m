@@ -109,6 +109,24 @@
 - (void)getGameDatas {}
 
 - (void)setupTitleView {
+    // 设置返回按钮
+    {
+        UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [backButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [backButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
+        [backButton setImage:[UIImage imageNamed:@"c_navi_back"] forState:UIControlStateNormal];
+        [backButton setImage:[UIImage imageNamed:@"c_navi_back"] forState:UIControlStateHighlighted];
+        [backButton sizeToFit];
+        [backButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+            [NavController1 popViewControllerAnimated:true];
+        }];
+        UIView *containView = [[UIView alloc] initWithFrame:backButton.bounds];
+        [containView addSubview:backButton];
+        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:containView];
+        self.navigationItem.leftBarButtonItem = item;
+    }
+    
+    // 设置标题
     STBarButtonItem *item0 = [STBarButtonItem barButtonItemWithTitle:_NSString(@"%@ ▼", self.nextIssueModel.title ? : @"") target:self action:@selector(onTitleClick)];
     self.navigationItem.leftBarButtonItems = @[self.navigationItem.leftBarButtonItems.firstObject, item0];
     self.navigationItem.titleView = [UIView new];   // 隐藏标题

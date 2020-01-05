@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *closeTime;
 @property (nonatomic, strong) NSString *openTime;
 @property (nonatomic, strong) NSString *sort;
-@property (nonatomic, strong) NSString *title;
+@property (nonatomic, copy) NSString *title;
 
 @property (nonatomic, strong) NSArray<UGBetItemModel> *betList;
 

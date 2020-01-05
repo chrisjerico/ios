@@ -1582,6 +1582,7 @@
 		03E41B2C23C0903C004AB7C6 /* JS_HomePromoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E41B2B23C0903C004AB7C6 /* JS_HomePromoteView.m */; };
 		03E41B2F23C09055004AB7C6 /* JS_HomePromoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03E41B2E23C09055004AB7C6 /* JS_HomePromoteView.xib */; };
 		03E41B3223C09363004AB7C6 /* JS_HomePromoteContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E41B3123C09363004AB7C6 /* JS_HomePromoteContainerView.m */; };
+		03E4228423C1E5B8004AB7C6 /* LotteryBetAndChatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE074D023C0BBBF0083EA7E /* LotteryBetAndChatVC.m */; };
 		A0C64CB6AEB0CF1B2031BBB8 /* Pods_ug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6486EFF4C273BEA0AE8994DD /* Pods_ug.framework */; };
 		CF475880239636D200966536 /* 21.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D4239636D100966536 /* 21.gif */; };
 		CF475881239636D200966536 /* 35.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D5239636D100966536 /* 35.gif */; };
@@ -1757,6 +1758,8 @@
 		CF47592B239636D200966536 /* 38.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF47587F239636D100966536 /* 38.gif */; };
 		CFCADE45237D281C00680F62 /* cplts_看图王.gif in Resources */ = {isa = PBXBuildFile; fileRef = CFCADE44237D281C00680F62 /* cplts_看图王.gif */; };
 		CFDB113823A3B1E10040DE2B /* SiteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDB113723A3B1E10040DE2B /* SiteModel.m */; };
+		CFE074D123C0BBBF0083EA7E /* LotteryBetAndChatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE074D023C0BBBF0083EA7E /* LotteryBetAndChatVC.m */; };
+		CFE074DD23C0E7840083EA7E /* UGNotDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE074DA23C0E7840083EA7E /* UGNotDetailViewController.m */; };
 		CFF1254D239FD5290000B731 /* 点击查看更多.gif in Resources */ = {isa = PBXBuildFile; fileRef = CFF1254C239FD5290000B731 /* 点击查看更多.gif */; };
 		CFFAB58B237315C2009593AF /* event.gif in Resources */ = {isa = PBXBuildFile; fileRef = CFFAB58A237315C2009593AF /* event.gif */; };
 		CFFAB58D23755569009593AF /* lxb.gif in Resources */ = {isa = PBXBuildFile; fileRef = CFFAB58C23755569009593AF /* lxb.gif */; };
@@ -1779,6 +1782,7 @@
 		D4B75E16227802600007047C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4B75E15227802600007047C /* Assets.xcassets */; };
 		D4B75E19227802600007047C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B75E17227802600007047C /* LaunchScreen.storyboard */; };
 		D4B75E1C227802600007047C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D4B75E1B227802600007047C /* main.m */; };
+		D4BF9D1B23C1D0060047D89C /* UIColor+YYUI.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BF9D1A23C1D0060047D89C /* UIColor+YYUI.m */; };
 		D4C0A12723913A6C00B39358 /* Global.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C0A12623913A6C00B39358 /* Global.m */; };
 		D4C0A12F239156FB00B39358 /* hot_01.gif in Resources */ = {isa = PBXBuildFile; fileRef = D4C0A12D239156FB00B39358 /* hot_01.gif */; };
 		F5614FBC2C7545CF870A0AD2 /* Pods_chat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30193B1626262AA87797C0E9 /* Pods_chat.framework */; };
@@ -3400,6 +3404,10 @@
 		CFDB112723A25FE60040DE2B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		CFDB113623A3B1E00040DE2B /* SiteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SiteModel.h; sourceTree = "<group>"; };
 		CFDB113723A3B1E10040DE2B /* SiteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SiteModel.m; sourceTree = "<group>"; };
+		CFE074CF23C0BBBF0083EA7E /* LotteryBetAndChatVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LotteryBetAndChatVC.h; sourceTree = "<group>"; };
+		CFE074D023C0BBBF0083EA7E /* LotteryBetAndChatVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LotteryBetAndChatVC.m; sourceTree = "<group>"; };
+		CFE074DA23C0E7840083EA7E /* UGNotDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGNotDetailViewController.m; sourceTree = "<group>"; };
+		CFE074DB23C0E7840083EA7E /* UGNotDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGNotDetailViewController.h; sourceTree = "<group>"; };
 		CFF1254C239FD5290000B731 /* 点击查看更多.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "点击查看更多.gif"; sourceTree = "<group>"; };
 		CFFAB58A237315C2009593AF /* event.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = event.gif; sourceTree = "<group>"; };
 		CFFAB58C23755569009593AF /* lxb.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = lxb.gif; sourceTree = "<group>"; };
@@ -3429,6 +3437,8 @@
 		D4B75E18227802600007047C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D4B75E1A227802600007047C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4B75E1B227802600007047C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D4BF9D1923C1D0060047D89C /* UIColor+YYUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+YYUI.h"; sourceTree = "<group>"; };
+		D4BF9D1A23C1D0060047D89C /* UIColor+YYUI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+YYUI.m"; sourceTree = "<group>"; };
 		D4C0A12523913A6C00B39358 /* Global.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Global.h; sourceTree = "<group>"; };
 		D4C0A12623913A6C00B39358 /* Global.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Global.m; sourceTree = "<group>"; };
 		D4C0A12D239156FB00B39358 /* hot_01.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = hot_01.gif; sourceTree = "<group>"; };
@@ -3471,14 +3481,16 @@
 			children = (
 				031E13C423BE812300B0F813 /* UGSkinManagers.h */,
 				031E13C723BE812300B0F813 /* UGSkinManagers.m */,
-				031E13C323BE812300B0F813 /* UGSkinViewController.h */,
-				031E13C823BE812300B0F813 /* UGSkinViewController.m */,
+
+				031E13C923BE812300B0F813 /* UIImage+YYgradientImage.h */,
+				031E13C523BE812300B0F813 /* UIImage+YYgradientImage.m */,
 				031E13CA23BE812300B0F813 /* UGSkinCollectionViewCell.h */,
 				031E13C623BE812300B0F813 /* UGSkinCollectionViewCell.m */,
 				031E13C223BE812300B0F813 /* UGSkinCollectionViewCell.xib */,
-				031E13C923BE812300B0F813 /* UIImage+YYgradientImage.h */,
-				031E13C523BE812300B0F813 /* UIImage+YYgradientImage.m */,
-				03A5D37E23BFA2810055A998 /* ThemeApplyProtocol.h */,
+				031E13C323BE812300B0F813 /* UGSkinViewController.h */,
+				031E13C823BE812300B0F813 /* UGSkinViewController.m */,
+				D4BF9D1923C1D0060047D89C /* UIColor+YYUI.h */,
+				D4BF9D1A23C1D0060047D89C /* UIColor+YYUI.m */,
 			);
 			path = Skin;
 			sourceTree = "<group>";
@@ -3496,11 +3508,11 @@
 		031E13CC23BE812300B0F813 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				031E13D523BE812300B0F813 /* 六合页面 */,
+				031E13EF23BE812300B0F813 /* 老黄历 */,
 				031E13CD23BE812300B0F813 /* 我的 */,
 				031E13D423BE812300B0F813 /* UGLHC.storyboard */,
-				031E13D523BE812300B0F813 /* 六合页面 */,
 				031E13EE23BE812300B0F813 /* LHTemplate.storyboard */,
-				031E13EF23BE812300B0F813 /* 老黄历 */,
 				031E13F223BE812300B0F813 /* UGLHH.storyboard */,
 			);
 			path = Controller;
@@ -3509,12 +3521,12 @@
 		031E13CD23BE812300B0F813 /* 我的 */ = {
 			isa = PBXGroup;
 			children = (
-				031E13CE23BE812300B0F813 /* UGLHMineViewController.m */,
-				031E13CF23BE812300B0F813 /* UGLHMyAttentionViewController.m */,
-				031E13D023BE812300B0F813 /* UGMyFansViewController.m */,
 				031E13D123BE812300B0F813 /* UGLHMineViewController.h */,
-				031E13D223BE812300B0F813 /* UGMyFansViewController.h */,
+				031E13CE23BE812300B0F813 /* UGLHMineViewController.m */,
 				031E13D323BE812300B0F813 /* UGLHMyAttentionViewController.h */,
+				031E13CF23BE812300B0F813 /* UGLHMyAttentionViewController.m */,
+				031E13D223BE812300B0F813 /* UGMyFansViewController.h */,
+				031E13D023BE812300B0F813 /* UGMyFansViewController.m */,
 			);
 			path = "我的";
 			sourceTree = "<group>";
@@ -3522,30 +3534,30 @@
 		031E13D523BE812300B0F813 /* 六合页面 */ = {
 			isa = PBXGroup;
 			children = (
-				031E13D623BE812300B0F813 /* LHGalleryListVC2.m */,
-				031E13D723BE812300B0F813 /* LHJournalDetailVC.h */,
-				031E13D823BE812300B0F813 /* UGSearchPostVC.m */,
-				031E13D923BE812300B0F813 /* UGDocumentListVC.m */,
-				031E13DA23BE812300B0F813 /* UGPostDetailVC.m */,
-				031E13DB23BE812300B0F813 /* LHPostCommentDetailVC.h */,
-				031E13DC23BE812300B0F813 /* LHGalleryListVC1.m */,
-				031E13DD23BE812300B0F813 /* LHUserInfoVC.m */,
-				031E13DE23BE812300B0F813 /* UGSubmitPostVC.h */,
 				031E13DF23BE812300B0F813 /* UGPostListVC.h */,
-				031E13E023BE812300B0F813 /* UGStuffViewController.h */,
-				031E13E123BE812300B0F813 /* UGChessViewController.m */,
-				031E13E223BE812300B0F813 /* LHGalleryListVC2.h */,
-				031E13E323BE812300B0F813 /* LHPostCommentDetailVC.m */,
-				031E13E423BE812300B0F813 /* UGPostDetailVC.h */,
-				031E13E523BE812300B0F813 /* UGDocumentListVC.h */,
-				031E13E623BE812300B0F813 /* UGSearchPostVC.h */,
-				031E13E723BE812300B0F813 /* LHJournalDetailVC.m */,
-				031E13E823BE812300B0F813 /* LHUserInfoVC.h */,
-				031E13E923BE812300B0F813 /* LHGalleryListVC1.h */,
-				031E13EA23BE812300B0F813 /* UGChessViewController.h */,
-				031E13EB23BE812300B0F813 /* UGStuffViewController.m */,
 				031E13EC23BE812300B0F813 /* UGPostListVC.m */,
+				031E13DC23BE812300B0F813 /* LHGalleryListVC1.m */,
+				031E13E923BE812300B0F813 /* LHGalleryListVC1.h */,
+				031E13E223BE812300B0F813 /* LHGalleryListVC2.h */,
+				031E13D623BE812300B0F813 /* LHGalleryListVC2.m */,
+				031E13E623BE812300B0F813 /* UGSearchPostVC.h */,
+				031E13D823BE812300B0F813 /* UGSearchPostVC.m */,
+				031E13D723BE812300B0F813 /* LHJournalDetailVC.h */,
+				031E13E723BE812300B0F813 /* LHJournalDetailVC.m */,
+				031E13E523BE812300B0F813 /* UGDocumentListVC.h */,
+				031E13D923BE812300B0F813 /* UGDocumentListVC.m */,
+				031E13E423BE812300B0F813 /* UGPostDetailVC.h */,
+				031E13DA23BE812300B0F813 /* UGPostDetailVC.m */,
+				031E13E823BE812300B0F813 /* LHUserInfoVC.h */,
+				031E13DD23BE812300B0F813 /* LHUserInfoVC.m */,
+				031E13DB23BE812300B0F813 /* LHPostCommentDetailVC.h */,
+				031E13E323BE812300B0F813 /* LHPostCommentDetailVC.m */,
+				031E13DE23BE812300B0F813 /* UGSubmitPostVC.h */,
 				031E13ED23BE812300B0F813 /* UGSubmitPostVC.m */,
+				031E13E023BE812300B0F813 /* UGStuffViewController.h */,
+				031E13EB23BE812300B0F813 /* UGStuffViewController.m */,
+				031E13EA23BE812300B0F813 /* UGChessViewController.h */,
+				031E13E123BE812300B0F813 /* UGChessViewController.m */,
 			);
 			path = "六合页面";
 			sourceTree = "<group>";
@@ -3553,8 +3565,8 @@
 		031E13EF23BE812300B0F813 /* 老黄历 */ = {
 			isa = PBXGroup;
 			children = (
-				031E13F023BE812300B0F813 /* UGLHOldYearViewController.m */,
 				031E13F123BE812300B0F813 /* UGLHOldYearViewController.h */,
+				031E13F023BE812300B0F813 /* UGLHOldYearViewController.m */,
 			);
 			path = "老黄历";
 			sourceTree = "<group>";
@@ -3562,24 +3574,24 @@
 		031E13F323BE812300B0F813 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				031E140523BE812300B0F813 /* UGLHPostModel.h */,
+				031E13F923BE812300B0F813 /* UGLHPostModel.m */,
+				031E13FD23BE812300B0F813 /* UGLHAdModel.h */,
 				031E13F423BE812300B0F813 /* UGLHAdModel.m */,
+				031E13FA23BE812300B0F813 /* UGLHLhlModel.h */,
+				031E140423BE812300B0F813 /* UGLHLhlModel.m */,
+				031E140023BE812300B0F813 /* LHUserModel.h */,
+				031E13F723BE812300B0F813 /* LHUserModel.m */,
+				031E13FE23BE812300B0F813 /* UGLHGalleryModel.h */,
 				031E13F523BE812300B0F813 /* UGLHGalleryModel.m */,
 				031E13F623BE812300B0F813 /* UGLHFocusUserModel.h */,
-				031E13F723BE812300B0F813 /* LHUserModel.m */,
-				031E13F823BE812300B0F813 /* UGLHCategoryListModel.m */,
-				031E13F923BE812300B0F813 /* UGLHPostModel.m */,
-				031E13FA23BE812300B0F813 /* UGLHLhlModel.h */,
-				031E13FB23BE812300B0F813 /* UGLHlotteryNumberModel.h */,
-				031E13FC23BE812300B0F813 /* UGLHPostCommentModel.m */,
-				031E13FD23BE812300B0F813 /* UGLHAdModel.h */,
-				031E13FE23BE812300B0F813 /* UGLHGalleryModel.h */,
-				031E13FF23BE812300B0F813 /* UGLHCategoryListModel.h */,
-				031E140023BE812300B0F813 /* LHUserModel.h */,
 				031E140123BE812300B0F813 /* UGLHFocusUserModel.m */,
-				031E140223BE812300B0F813 /* UGLHPostCommentModel.h */,
+				031E13FF23BE812300B0F813 /* UGLHCategoryListModel.h */,
+				031E13F823BE812300B0F813 /* UGLHCategoryListModel.m */,
+				031E13FB23BE812300B0F813 /* UGLHlotteryNumberModel.h */,
 				031E140323BE812300B0F813 /* UGLHlotteryNumberModel.m */,
-				031E140423BE812300B0F813 /* UGLHLhlModel.m */,
-				031E140523BE812300B0F813 /* UGLHPostModel.h */,
+				031E13FC23BE812300B0F813 /* UGLHPostCommentModel.m */,
+				031E140223BE812300B0F813 /* UGLHPostCommentModel.h */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3597,14 +3609,14 @@
 			isa = PBXGroup;
 			children = (
 				031E140823BE812300B0F813 /* UGScratchMusicView.h */,
-				031E140923BE812300B0F813 /* UGLHLotteryCollectionViewCell.m */,
-				031E140A23BE812300B0F813 /* UGLHHomeContentCollectionViewCell.xib */,
-				031E140B23BE812300B0F813 /* UGLHHomeContentCollectionViewCell.h */,
 				031E140C23BE812300B0F813 /* UGScratchMusicView.m */,
-				031E140D23BE812300B0F813 /* UGLHLotteryCollectionViewCell.h */,
-				031E140E23BE812300B0F813 /* UGLHLotteryCollectionViewCell.xib */,
 				031E140F23BE812300B0F813 /* UGScratchMusicView.xib */,
+				031E140D23BE812300B0F813 /* UGLHLotteryCollectionViewCell.h */,
+				031E140923BE812300B0F813 /* UGLHLotteryCollectionViewCell.m */,
+				031E140E23BE812300B0F813 /* UGLHLotteryCollectionViewCell.xib */,
+				031E140B23BE812300B0F813 /* UGLHHomeContentCollectionViewCell.h */,
 				031E141023BE812300B0F813 /* UGLHHomeContentCollectionViewCell.m */,
+				031E140A23BE812300B0F813 /* UGLHHomeContentCollectionViewCell.xib */,
 			);
 			path = "六合首页";
 			sourceTree = "<group>";
@@ -3613,19 +3625,19 @@
 			isa = PBXGroup;
 			children = (
 				031E141223BE812300B0F813 /* UGPostCell1.h */,
-				031E141323BE812300B0F813 /* LHPostPayView.h */,
-				031E141423BE812300B0F813 /* LHPostVoteView.h */,
-				031E141523BE812300B0F813 /* LHPostCommentInputView.m */,
-				031E141623BE812300B0F813 /* LHPostRewardView.h */,
-				031E141723BE812300B0F813 /* LHPostPayView.m */,
-				031E141823BE812300B0F813 /* LHPostVoteView.xib */,
 				031E141923BE812300B0F813 /* UGPostCell1.m */,
-				031E141A23BE812300B0F813 /* LHPostCommentInputView.xib */,
-				031E141B23BE812300B0F813 /* LHPostVoteView.m */,
-				031E141C23BE812300B0F813 /* LHPostRewardView.xib */,
-				031E141D23BE812300B0F813 /* LHPostRewardView.m */,
-				031E141E23BE812300B0F813 /* LHPostCommentInputView.h */,
+				031E141323BE812300B0F813 /* LHPostPayView.h */,
+				031E141723BE812300B0F813 /* LHPostPayView.m */,
 				031E141F23BE812300B0F813 /* LHPostPayView.xib */,
+				031E141423BE812300B0F813 /* LHPostVoteView.h */,
+				031E141B23BE812300B0F813 /* LHPostVoteView.m */,
+				031E141823BE812300B0F813 /* LHPostVoteView.xib */,
+				031E141E23BE812300B0F813 /* LHPostCommentInputView.h */,
+				031E141523BE812300B0F813 /* LHPostCommentInputView.m */,
+				031E141A23BE812300B0F813 /* LHPostCommentInputView.xib */,
+				031E141623BE812300B0F813 /* LHPostRewardView.h */,
+				031E141D23BE812300B0F813 /* LHPostRewardView.m */,
+				031E141C23BE812300B0F813 /* LHPostRewardView.xib */,
 			);
 			path = "帖子";
 			sourceTree = "<group>";
@@ -3633,61 +3645,61 @@
 		031E142023BE812300B0F813 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				031E142123BE812300B0F813 /* YBPopupMenu.h */,
 				031E142223BE812300B0F813 /* FishUtility */,
-				031E14BD23BE812300B0F813 /* UITableView无内容提示 */,
-				031E14C223BE812300B0F813 /* CMNetwork */,
-				031E14D123BE812300B0F813 /* SYY单选按钮组 */,
-				031E14D423BE812300B0F813 /* 刮刮乐 */,
-				031E14D723BE812300B0F813 /* WKProxy.m */,
-				031E14D823BE812300B0F813 /* 获得当前导航控制器 */,
-				031E14DB23BE812300B0F813 /* UILabel+YBAttributeTextTapAction */,
-				031E14DE23BE812300B0F813 /* Category */,
 				031E14E523BE812300B0F813 /* CMCommon */,
-				031E14F023BE812300B0F813 /* YLEdgeLabel.h */,
-				031E14F123BE812300B0F813 /* CountDown */,
-				031E14F423BE812300B0F813 /* UUMarqueeView */,
-				031E14F723BE812300B0F813 /* 手势 */,
-				031E14FA23BE812300B0F813 /* OpenUDID.m */,
-				031E14FB23BE812300B0F813 /* STKit */,
-				031E150823BE812300B0F813 /* QDAlertView.h */,
-				031E150923BE812300B0F813 /* UGAppVersionManager.m */,
-				031E150A23BE812300B0F813 /* FDFullscreenPopGesture */,
-				031E150D23BE812300B0F813 /* WZLBadge */,
-				031E151C23BE812300B0F813 /* GLEncryptManager.h */,
-				031E151D23BE812300B0F813 /* view圆角 */,
-				031E152023BE812300B0F813 /* UGEncryptUtil.m */,
-				031E152123BE812300B0F813 /* SLWebView */,
-				031E152B23BE812300B0F813 /* SANotDataView.m */,
-				031E152C23BE812300B0F813 /* HYBUnicodeReadable */,
-				031E153323BE812300B0F813 /* SANotificationEvent.h */,
-				031E153423BE812300B0F813 /* ROP */,
-				031E153D23BE812300B0F813 /* MOFSPickerManager */,
-				031E154B23BE812300B0F813 /* ZZCircleProgress */,
-				031E155123BE812300B0F813 /* YBPopupMenu.m */,
+				031E14C223BE812300B0F813 /* CMNetwork */,
 				031E155223BE812300B0F813 /* segmentListControl */,
-				031E157223BE812300B0F813 /* YLEdgeLabel.m */,
 				031E157323BE812300B0F813 /* XYYSegmentControl */,
-				031E157823BE812300B0F813 /* CheckParameter.h */,
-				031E157923BE812300B0F813 /* WKProxy.h */,
 				031E157A23BE812300B0F813 /* TGWebController */,
 				031E158123BE812300B0F813 /* SRActionSheet */,
 				031E158423BE812300B0F813 /* WSLWaterFlowLayout */,
 				031E158723BE812300B0F813 /* SDCycleScrollView */,
 				031E159923BE812300B0F813 /* LeeTagView */,
 				031E15A223BE812300B0F813 /* NullSafe */,
-				031E15A423BE812400B0F813 /* UGAppVersionManager.h */,
 				031E15A523BE812400B0F813 /* WWWaveView */,
-				031E15A823BE812400B0F813 /* QDAlertView.m */,
-				031E15A923BE812400B0F813 /* OpenUDID.h */,
 				031E15AA23BE812400B0F813 /* hookButtton间隔点击 */,
-				031E15AD23BE812400B0F813 /* SANotificationEvent.m */,
-				031E15AE23BE812400B0F813 /* SANotDataView.h */,
-				031E15AF23BE812400B0F813 /* UGEncryptUtil.h */,
 				031E15B023BE812400B0F813 /* Extenslon */,
-				031E15B723BE812400B0F813 /* GLEncryptManager.m */,
 				031E15B823BE812400B0F813 /* XHDate */,
 				031E15C023BE812400B0F813 /* SGSegmentedControl */,
+				031E14D823BE812300B0F813 /* 获得当前导航控制器 */,
+				031E14DB23BE812300B0F813 /* UILabel+YBAttributeTextTapAction */,
+				031E14DE23BE812300B0F813 /* Category */,
+				031E14F123BE812300B0F813 /* CountDown */,
+				031E14F423BE812300B0F813 /* UUMarqueeView */,
+				031E14F723BE812300B0F813 /* 手势 */,
+				031E14FB23BE812300B0F813 /* STKit */,
+				031E150A23BE812300B0F813 /* FDFullscreenPopGesture */,
+				031E150D23BE812300B0F813 /* WZLBadge */,
+				031E151D23BE812300B0F813 /* view圆角 */,
+				031E152123BE812300B0F813 /* SLWebView */,
+				031E152C23BE812300B0F813 /* HYBUnicodeReadable */,
+				031E153423BE812300B0F813 /* ROP */,
+				031E153D23BE812300B0F813 /* MOFSPickerManager */,
+				031E154B23BE812300B0F813 /* ZZCircleProgress */,
+				031E14BD23BE812300B0F813 /* UITableView无内容提示 */,
+				031E14D123BE812300B0F813 /* SYY单选按钮组 */,
+				031E14D423BE812300B0F813 /* 刮刮乐 */,
+				031E157923BE812300B0F813 /* WKProxy.h */,
+				031E14D723BE812300B0F813 /* WKProxy.m */,
+				031E15A923BE812400B0F813 /* OpenUDID.h */,
+				031E14FA23BE812300B0F813 /* OpenUDID.m */,
+				031E150823BE812300B0F813 /* QDAlertView.h */,
+				031E15A823BE812400B0F813 /* QDAlertView.m */,
+				031E15AF23BE812400B0F813 /* UGEncryptUtil.h */,
+				031E152023BE812300B0F813 /* UGEncryptUtil.m */,
+				031E14F023BE812300B0F813 /* YLEdgeLabel.h */,
+				031E157223BE812300B0F813 /* YLEdgeLabel.m */,
+				031E15A423BE812400B0F813 /* UGAppVersionManager.h */,
+				031E150923BE812300B0F813 /* UGAppVersionManager.m */,
+				031E151C23BE812300B0F813 /* GLEncryptManager.h */,
+				031E15B723BE812400B0F813 /* GLEncryptManager.m */,
+				031E153323BE812300B0F813 /* SANotificationEvent.h */,
+				031E15AD23BE812400B0F813 /* SANotificationEvent.m */,
+				031E15AE23BE812400B0F813 /* SANotDataView.h */,
+				031E152B23BE812300B0F813 /* SANotDataView.m */,
+				031E155123BE812300B0F813 /* YBPopupMenu.m */,
+				031E142123BE812300B0F813 /* YBPopupMenu.h */,
+				031E157823BE812300B0F813 /* CheckParameter.h */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -3695,6 +3707,10 @@
 		031E142223BE812300B0F813 /* FishUtility */ = {
 			isa = PBXGroup;
 			children = (
+				031E149E23BE812300B0F813 /* LogHelper */,
+				031E14A623BE812300B0F813 /* Aspects */,
+				031E14AD23BE812300B0F813 /* HUD and Alert */,
+				031E14B423BE812300B0F813 /* CCNetworkRequests1 */,
 				031E142323BE812300B0F813 /* IBInspectable Views */,
 				031E142C23BE812300B0F813 /* SDWebImage+AllowInvalidSSL */,
 				031E142F23BE812300B0F813 /* JRSwizzle */,
@@ -3706,10 +3722,6 @@
 				031E149123BE812300B0F813 /* MediaViewer */,
 				031E149723BE812300B0F813 /* SlideSegmentView */,
 				031E149D23BE812300B0F813 /* FishUtility.h */,
-				031E149E23BE812300B0F813 /* LogHelper */,
-				031E14A623BE812300B0F813 /* Aspects */,
-				031E14AD23BE812300B0F813 /* HUD and Alert */,
-				031E14B423BE812300B0F813 /* CCNetworkRequests1 */,
 			);
 			path = FishUtility;
 			sourceTree = "<group>";
@@ -3718,13 +3730,13 @@
 			isa = PBXGroup;
 			children = (
 				031E142423BE812300B0F813 /* IBView.h */,
+				031E142A23BE812300B0F813 /* IBView.m */,
+				031E142923BE812300B0F813 /* category.h */,
 				031E142523BE812300B0F813 /* category.m */,
 				031E142623BE812300B0F813 /* IBButton.h */,
-				031E142723BE812300B0F813 /* IBTextField.m */,
 				031E142823BE812300B0F813 /* IBButton.m */,
-				031E142923BE812300B0F813 /* category.h */,
-				031E142A23BE812300B0F813 /* IBView.m */,
 				031E142B23BE812300B0F813 /* IBTextField.h */,
+				031E142723BE812300B0F813 /* IBTextField.m */,
 			);
 			path = "IBInspectable Views";
 			sourceTree = "<group>";
@@ -3750,12 +3762,12 @@
 		031E143223BE812300B0F813 /* define */ = {
 			isa = PBXGroup;
 			children = (
+				031E143823BE812300B0F813 /* AppDefine.h */,
 				031E143323BE812300B0F813 /* AppDefine.m */,
 				031E143423BE812300B0F813 /* define_default.h */,
-				031E143523BE812300B0F813 /* cc_objc_msgSend.h */,
 				031E143623BE812300B0F813 /* define_log.h */,
+				031E143523BE812300B0F813 /* cc_objc_msgSend.h */,
 				031E143723BE812300B0F813 /* cc_runtime_property.h */,
-				031E143823BE812300B0F813 /* AppDefine.h */,
 			);
 			path = define;
 			sourceTree = "<group>";
@@ -3775,16 +3787,16 @@
 		031E143A23BE812300B0F813 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				031E144923BE812300B0F813 /* KVO */,
 				031E143B23BE812300B0F813 /* Safe */,
 				031E144823BE812300B0F813 /* AVAsset+Degress.h */,
-				031E144923BE812300B0F813 /* KVO */,
+				031E145123BE812300B0F813 /* AVAsset+Degress.m */,
+				031E145423BE812300B0F813 /* UIView+Frame.h */,
 				031E144E23BE812300B0F813 /* UIView+Frame.m */,
 				031E144F23BE812300B0F813 /* NSObject+XWAdd.h */,
-				031E145023BE812300B0F813 /* UIResponder+InterfaceOrientation.h */,
-				031E145123BE812300B0F813 /* AVAsset+Degress.m */,
-				031E145223BE812300B0F813 /* UIResponder+InterfaceOrientation.m */,
 				031E145323BE812300B0F813 /* NSObject+XWAdd.m */,
-				031E145423BE812300B0F813 /* UIView+Frame.h */,
+				031E145023BE812300B0F813 /* UIResponder+InterfaceOrientation.h */,
+				031E145223BE812300B0F813 /* UIResponder+InterfaceOrientation.m */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -3792,17 +3804,17 @@
 		031E143B23BE812300B0F813 /* Safe */ = {
 			isa = PBXGroup;
 			children = (
+				031E144623BE812300B0F813 /* NSNull+Safe.h */,
+				031E144123BE812300B0F813 /* NSNull+Safe.m */,
+				031E144423BE812300B0F813 /* NSError+Safe.h */,
 				031E143C23BE812300B0F813 /* NSError+Safe.m */,
+				031E144323BE812300B0F813 /* NSDictionary+NilSafe.h */,
 				031E143D23BE812300B0F813 /* NSDictionary+NilSafe.m */,
+				031E144223BE812300B0F813 /* NSString+Safe.h */,
 				031E143E23BE812300B0F813 /* NSString+Safe.m */,
 				031E143F23BE812300B0F813 /* NSNumber+Safe.h */,
-				031E144023BE812300B0F813 /* NSArray+Safe.h */,
-				031E144123BE812300B0F813 /* NSNull+Safe.m */,
-				031E144223BE812300B0F813 /* NSString+Safe.h */,
-				031E144323BE812300B0F813 /* NSDictionary+NilSafe.h */,
-				031E144423BE812300B0F813 /* NSError+Safe.h */,
 				031E144523BE812300B0F813 /* NSNumber+Safe.m */,
-				031E144623BE812300B0F813 /* NSNull+Safe.h */,
+				031E144023BE812300B0F813 /* NSArray+Safe.h */,
 				031E144723BE812300B0F813 /* NSArray+Safe.m */,
 			);
 			path = Safe;
@@ -3811,9 +3823,9 @@
 		031E144923BE812300B0F813 /* KVO */ = {
 			isa = PBXGroup;
 			children = (
+				031E144C23BE812300B0F813 /* NSMutableDictionary+KVO.h */,
 				031E144A23BE812300B0F813 /* NSMutableDictionary+KVO.m */,
 				031E144B23BE812300B0F813 /* NSMutableArray+KVO.h */,
-				031E144C23BE812300B0F813 /* NSMutableDictionary+KVO.h */,
 				031E144D23BE812300B0F813 /* NSMutableArray+KVO.m */,
 			);
 			path = KVO;
@@ -3831,22 +3843,22 @@
 		031E145623BE812300B0F813 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				031E145723BE812300B0F813 /* UIGestureRecognizer+Utils.m */,
-				031E145823BE812300B0F813 /* UIView+Utils.m */,
-				031E145923BE812300B0F813 /* UIScrollView+Utils.m */,
-				031E145A23BE812300B0F813 /* UIImage+Utils.h */,
 				031E145B23BE812300B0F813 /* UIView+TagString.h */,
-				031E145C23BE812300B0F813 /* UICollectionViewCell+Utils.m */,
-				031E145D23BE812300B0F813 /* UIColor+Utils.m */,
-				031E145E23BE812300B0F813 /* UIAlertController+Utils.h */,
-				031E145F23BE812300B0F813 /* UIView+Utils.h */,
-				031E146023BE812300B0F813 /* UIGestureRecognizer+Utils.h */,
-				031E146123BE812300B0F813 /* UICollectionViewCell+Utils.h */,
 				031E146223BE812300B0F813 /* UIView+TagString.m */,
-				031E146323BE812300B0F813 /* UIImage+Utils.m */,
-				031E146423BE812300B0F813 /* UIScrollView+Utils.h */,
-				031E146523BE812300B0F813 /* UIAlertController+Utils.m */,
+				031E145F23BE812300B0F813 /* UIView+Utils.h */,
+				031E145823BE812300B0F813 /* UIView+Utils.m */,
 				031E146623BE812300B0F813 /* UIColor+Utils.h */,
+				031E145D23BE812300B0F813 /* UIColor+Utils.m */,
+				031E145A23BE812300B0F813 /* UIImage+Utils.h */,
+				031E146323BE812300B0F813 /* UIImage+Utils.m */,
+				031E146023BE812300B0F813 /* UIGestureRecognizer+Utils.h */,
+				031E145723BE812300B0F813 /* UIGestureRecognizer+Utils.m */,
+				031E146423BE812300B0F813 /* UIScrollView+Utils.h */,
+				031E145923BE812300B0F813 /* UIScrollView+Utils.m */,
+				031E146123BE812300B0F813 /* UICollectionViewCell+Utils.h */,
+				031E145C23BE812300B0F813 /* UICollectionViewCell+Utils.m */,
+				031E145E23BE812300B0F813 /* UIAlertController+Utils.h */,
+				031E146523BE812300B0F813 /* UIAlertController+Utils.m */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -3854,21 +3866,21 @@
 		031E146723BE812300B0F813 /* NS */ = {
 			isa = PBXGroup;
 			children = (
-				031E146823BE812300B0F813 /* NSObject+Utils.m */,
+				031E146D23BE812300B0F813 /* NSString+Utils */,
+				031E147523BE812300B0F813 /* NSTimer+Block.h */,
 				031E146923BE812300B0F813 /* NSTimer+Block.m */,
+				031E147723BE812300B0F813 /* NSArray+Utils.h */,
+				031E147123BE812300B0F813 /* NSArray+Utils.m */,
+				031E147323BE812300B0F813 /* NSObject+Utils.h */,
+				031E146823BE812300B0F813 /* NSObject+Utils.m */,
 				031E146A23BE812300B0F813 /* NSURL+Utils.h */,
+				031E147423BE812300B0F813 /* NSURL+Utils.m */,
+				031E147923BE812300B0F813 /* NSDate+Millisecond.h */,
 				031E146B23BE812300B0F813 /* NSDate+Millisecond.m */,
 				031E146C23BE812300B0F813 /* NSUserDefaults+Utils.h */,
-				031E146D23BE812300B0F813 /* NSString+Utils */,
-				031E147123BE812300B0F813 /* NSArray+Utils.m */,
-				031E147223BE812300B0F813 /* NSMutableAttributedString+Utils.m */,
-				031E147323BE812300B0F813 /* NSObject+Utils.h */,
-				031E147423BE812300B0F813 /* NSURL+Utils.m */,
-				031E147523BE812300B0F813 /* NSTimer+Block.h */,
-				031E147623BE812300B0F813 /* NSMutableAttributedString+Utils.h */,
-				031E147723BE812300B0F813 /* NSArray+Utils.h */,
 				031E147823BE812300B0F813 /* NSUserDefaults+Utils.m */,
-				031E147923BE812300B0F813 /* NSDate+Millisecond.h */,
+				031E147623BE812300B0F813 /* NSMutableAttributedString+Utils.h */,
+				031E147223BE812300B0F813 /* NSMutableAttributedString+Utils.m */,
 			);
 			path = NS;
 			sourceTree = "<group>";
@@ -3886,8 +3898,8 @@
 		031E147A23BE812300B0F813 /* EventRouter */ = {
 			isa = PBXGroup;
 			children = (
-				031E147B23BE812300B0F813 /* UIResponder+EventRouter.m */,
 				031E147C23BE812300B0F813 /* UIResponder+EventRouter.h */,
+				031E147B23BE812300B0F813 /* UIResponder+EventRouter.m */,
 			);
 			path = EventRouter;
 			sourceTree = "<group>";
@@ -3914,10 +3926,10 @@
 			isa = PBXGroup;
 			children = (
 				031E148423BE812300B0F813 /* IndexesView.h */,
+				031E148823BE812300B0F813 /* IndexesView.m */,
 				031E148523BE812300B0F813 /* IndexesView.xib */,
 				031E148623BE812300B0F813 /* water01.png */,
 				031E148723BE812300B0F813 /* common_icon_search.png */,
-				031E148823BE812300B0F813 /* IndexesView.m */,
 			);
 			path = IndexesView;
 			sourceTree = "<group>";
@@ -3927,8 +3939,8 @@
 			children = (
 				031E148A23BE812300B0F813 /* LoadingStateView.h */,
 				031E148B23BE812300B0F813 /* LoadingStateView.m */,
-				031E148C23BE812300B0F813 /* network_setting.html */,
 				031E148D23BE812300B0F813 /* LoadingStateView.xib */,
+				031E148C23BE812300B0F813 /* network_setting.html */,
 			);
 			path = LoadingStateView;
 			sourceTree = "<group>";
@@ -3946,10 +3958,10 @@
 			isa = PBXGroup;
 			children = (
 				031E149223BE812300B0F813 /* MediaViewer.h */,
+				031E149623BE812300B0F813 /* MediaViewer.m */,
 				031E149323BE812300B0F813 /* MediaViewer.xib */,
 				031E149423BE812300B0F813 /* Image_loading_failed.jpeg */,
 				031E149523BE812300B0F813 /* black_bg.png */,
-				031E149623BE812300B0F813 /* MediaViewer.m */,
 			);
 			path = MediaViewer;
 			sourceTree = "<group>";
@@ -3957,11 +3969,11 @@
 		031E149723BE812300B0F813 /* SlideSegmentView */ = {
 			isa = PBXGroup;
 			children = (
-				031E149823BE812300B0F813 /* SlideSegmentView1.m */,
-				031E149923BE812300B0F813 /* SlideSegmentView2.m */,
-				031E149A23BE812300B0F813 /* SlideSegmentView1.xib */,
-				031E149B23BE812300B0F813 /* SlideSegmentView1.h */,
 				031E149C23BE812300B0F813 /* SlideSegmentView2.h */,
+				031E149923BE812300B0F813 /* SlideSegmentView2.m */,
+				031E149B23BE812300B0F813 /* SlideSegmentView1.h */,
+				031E149823BE812300B0F813 /* SlideSegmentView1.m */,
+				031E149A23BE812300B0F813 /* SlideSegmentView1.xib */,
 			);
 			path = SlideSegmentView;
 			sourceTree = "<group>";
@@ -3969,10 +3981,10 @@
 		031E149E23BE812300B0F813 /* LogHelper */ = {
 			isa = PBXGroup;
 			children = (
-				031E149F23BE812300B0F813 /* Log.storyboard */,
 				031E14A023BE812300B0F813 /* TextFieldAlertView */,
 				031E14A423BE812300B0F813 /* LogVC.h */,
 				031E14A523BE812300B0F813 /* LogVC.m */,
+				031E149F23BE812300B0F813 /* Log.storyboard */,
 			);
 			path = LogHelper;
 			sourceTree = "<group>";
@@ -3980,9 +3992,9 @@
 		031E14A023BE812300B0F813 /* TextFieldAlertView */ = {
 			isa = PBXGroup;
 			children = (
-				031E14A123BE812300B0F813 /* TextFieldAlertView.xib */,
 				031E14A223BE812300B0F813 /* TextFieldAlertView.h */,
 				031E14A323BE812300B0F813 /* TextFieldAlertView.m */,
+				031E14A123BE812300B0F813 /* TextFieldAlertView.xib */,
 			);
 			path = TextFieldAlertView;
 			sourceTree = "<group>";
@@ -3991,11 +4003,11 @@
 			isa = PBXGroup;
 			children = (
 				031E14A723BE812300B0F813 /* LICENSE */,
+				031E14AB23BE812300B0F813 /* NSObject+AspectsHelper.h */,
 				031E14A823BE812300B0F813 /* NSObject+AspectsHelper.m */,
 				031E14A923BE812300B0F813 /* Aspects.h */,
-				031E14AA23BE812300B0F813 /* README.md */,
-				031E14AB23BE812300B0F813 /* NSObject+AspectsHelper.h */,
 				031E14AC23BE812300B0F813 /* Aspects.m */,
+				031E14AA23BE812300B0F813 /* README.md */,
 			);
 			path = Aspects;
 			sourceTree = "<group>";
@@ -4004,11 +4016,11 @@
 			isa = PBXGroup;
 			children = (
 				031E14AE23BE812300B0F813 /* loadingA.png */,
-				031E14AF23BE812300B0F813 /* AlertHelper.h */,
 				031E14B023BE812300B0F813 /* LoadingView1.xib */,
-				031E14B123BE812300B0F813 /* HUDHelper.m */,
-				031E14B223BE812300B0F813 /* AlertHelper.m */,
 				031E14B323BE812300B0F813 /* HUDHelper.h */,
+				031E14B123BE812300B0F813 /* HUDHelper.m */,
+				031E14AF23BE812300B0F813 /* AlertHelper.h */,
+				031E14B223BE812300B0F813 /* AlertHelper.m */,
 			);
 			path = "HUD and Alert";
 			sourceTree = "<group>";
@@ -4017,13 +4029,13 @@
 			isa = PBXGroup;
 			children = (
 				031E14B523BE812300B0F813 /* CCSessionModel.h */,
-				031E14B623BE812300B0F813 /* CCNetworkRequests1+UGBlackTemplate.h */,
-				031E14B723BE812300B0F813 /* CCNetworkRequests1.h */,
-				031E14B823BE812300B0F813 /* CCNetworkRequests1+UGLiuHe.m */,
-				031E14B923BE812300B0F813 /* CCNetworkRequests1+UGBlackTemplate.m */,
 				031E14BA23BE812300B0F813 /* CCSessionModel.m */,
-				031E14BB23BE812300B0F813 /* CCNetworkRequests1+UGLiuHe.h */,
+				031E14B723BE812300B0F813 /* CCNetworkRequests1.h */,
 				031E14BC23BE812300B0F813 /* CCNetworkRequests1.m */,
+				031E14B623BE812300B0F813 /* CCNetworkRequests1+UGBlackTemplate.h */,
+				031E14B923BE812300B0F813 /* CCNetworkRequests1+UGBlackTemplate.m */,
+				031E14BB23BE812300B0F813 /* CCNetworkRequests1+UGLiuHe.h */,
+				031E14B823BE812300B0F813 /* CCNetworkRequests1+UGLiuHe.m */,
 			);
 			path = CCNetworkRequests1;
 			sourceTree = "<group>";
@@ -4031,10 +4043,10 @@
 		031E14BD23BE812300B0F813 /* UITableView无内容提示 */ = {
 			isa = PBXGroup;
 			children = (
-				031E14BE23BE812300B0F813 /* LSStretchableTableHeaderView.m */,
-				031E14BF23BE812300B0F813 /* UITableView+LSEmpty.m */,
 				031E14C023BE812300B0F813 /* LSStretchableTableHeaderView.h */,
+				031E14BE23BE812300B0F813 /* LSStretchableTableHeaderView.m */,
 				031E14C123BE812300B0F813 /* UITableView+LSEmpty.h */,
+				031E14BF23BE812300B0F813 /* UITableView+LSEmpty.m */,
 			);
 			path = "UITableView无内容提示";
 			sourceTree = "<group>";
@@ -4043,19 +4055,19 @@
 			isa = PBXGroup;
 			children = (
 				031E14C323BE812300B0F813 /* CMNetwork.h */,
+				031E14CA23BE812300B0F813 /* CMNetwork.m */,
+				031E14CE23BE812300B0F813 /* CMNetwork+LH.h */,
 				031E14C423BE812300B0F813 /* CMNetwork+LH.m */,
 				031E14C523BE812300B0F813 /* CMNetworkStorage.h */,
-				031E14C623BE812300B0F813 /* CMNetwork+Hall.h */,
-				031E14C723BE812300B0F813 /* CMNetwork+Home.m */,
-				031E14C823BE812300B0F813 /* CMNetwork+Mine.m */,
-				031E14C923BE812300B0F813 /* CMNetwork+Document.m */,
-				031E14CA23BE812300B0F813 /* CMNetwork.m */,
-				031E14CB23BE812300B0F813 /* CMNetwork+Home.h */,
-				031E14CC23BE812300B0F813 /* CMNetwork+Hall.m */,
 				031E14CD23BE812300B0F813 /* CMNetworkStorage.m */,
-				031E14CE23BE812300B0F813 /* CMNetwork+LH.h */,
+				031E14C623BE812300B0F813 /* CMNetwork+Hall.h */,
+				031E14CC23BE812300B0F813 /* CMNetwork+Hall.m */,
+				031E14CB23BE812300B0F813 /* CMNetwork+Home.h */,
+				031E14C723BE812300B0F813 /* CMNetwork+Home.m */,
 				031E14CF23BE812300B0F813 /* CMNetwork+Mine.h */,
+				031E14C823BE812300B0F813 /* CMNetwork+Mine.m */,
 				031E14D023BE812300B0F813 /* CMNetwork+Document.h */,
+				031E14C923BE812300B0F813 /* CMNetwork+Document.m */,
 			);
 			path = CMNetwork;
 			sourceTree = "<group>";
@@ -4063,8 +4075,8 @@
 		031E14D123BE812300B0F813 /* SYY单选按钮组 */ = {
 			isa = PBXGroup;
 			children = (
-				031E14D223BE812300B0F813 /* SyyRadioButton.m */,
 				031E14D323BE812300B0F813 /* SyyRadioButton.h */,
+				031E14D223BE812300B0F813 /* SyyRadioButton.m */,
 			);
 			path = "SYY单选按钮组";
 			sourceTree = "<group>";
@@ -4081,8 +4093,8 @@
 		031E14D823BE812300B0F813 /* 获得当前导航控制器 */ = {
 			isa = PBXGroup;
 			children = (
-				031E14D923BE812300B0F813 /* UINavigationController+Extension.m */,
 				031E14DA23BE812300B0F813 /* UINavigationController+Extension.h */,
+				031E14D923BE812300B0F813 /* UINavigationController+Extension.m */,
 			);
 			path = "获得当前导航控制器";
 			sourceTree = "<group>";
@@ -4099,11 +4111,11 @@
 		031E14DE23BE812300B0F813 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				031E14E323BE812300B0F813 /* UIView+CTop.h */,
 				031E14DF23BE812300B0F813 /* UIView+CTop.m */,
 				031E14E023BE812300B0F813 /* UIColor+CTop.h */,
-				031E14E123BE812300B0F813 /* NSArray+Log.h */,
 				031E14E223BE812300B0F813 /* UIColor+CTop.m */,
-				031E14E323BE812300B0F813 /* UIView+CTop.h */,
+				031E14E123BE812300B0F813 /* NSArray+Log.h */,
 				031E14E423BE812300B0F813 /* NSArray+Log.m */,
 			);
 			path = Category;
@@ -4112,16 +4124,16 @@
 		031E14E523BE812300B0F813 /* CMCommon */ = {
 			isa = PBXGroup;
 			children = (
-				031E14E623BE812300B0F813 /* CMTimeCommon.m */,
 				031E14E723BE812300B0F813 /* CMCommonHook.h */,
+				031E14ED23BE812300B0F813 /* CMCommonHook.m */,
+				031E14EC23BE812300B0F813 /* CMCommon.h */,
 				031E14E823BE812300B0F813 /* CMCommon.m */,
 				031E14E923BE812300B0F813 /* CMAudioPlayer.h */,
-				031E14EA23BE812300B0F813 /* CMLabelCommon.h */,
-				031E14EB23BE812300B0F813 /* CMTimeCommon.h */,
-				031E14EC23BE812300B0F813 /* CMCommon.h */,
-				031E14ED23BE812300B0F813 /* CMCommonHook.m */,
-				031E14EE23BE812300B0F813 /* CMLabelCommon.m */,
 				031E14EF23BE812300B0F813 /* CMAudioPlayer.m */,
+				031E14EA23BE812300B0F813 /* CMLabelCommon.h */,
+				031E14EE23BE812300B0F813 /* CMLabelCommon.m */,
+				031E14EB23BE812300B0F813 /* CMTimeCommon.h */,
+				031E14E623BE812300B0F813 /* CMTimeCommon.m */,
 			);
 			path = CMCommon;
 			sourceTree = "<group>";
@@ -4156,18 +4168,18 @@
 		031E14FB23BE812300B0F813 /* STKit */ = {
 			isa = PBXGroup;
 			children = (
+				031E150323BE812300B0F813 /* STBarButtonItem.h */,
 				031E14FC23BE812300B0F813 /* STBarButtonItem.m */,
+				031E150223BE812300B0F813 /* STButton.h */,
 				031E14FD23BE812300B0F813 /* STButton.m */,
+				031E150423BE812300B0F813 /* UIColor+ST.h */,
 				031E14FE23BE812300B0F813 /* UIColor+ST.m */,
 				031E14FF23BE812300B0F813 /* UIImage+ST.h */,
+				031E150523BE812300B0F813 /* UIImage+ST.m */,
+				031E150723BE812300B0F813 /* NSString+ST.h */,
 				031E150023BE812300B0F813 /* NSString+ST.m */,
 				031E150123BE812300B0F813 /* UIView+ST.h */,
-				031E150223BE812300B0F813 /* STButton.h */,
-				031E150323BE812300B0F813 /* STBarButtonItem.h */,
-				031E150423BE812300B0F813 /* UIColor+ST.h */,
-				031E150523BE812300B0F813 /* UIImage+ST.m */,
 				031E150623BE812300B0F813 /* UIView+ST.m */,
-				031E150723BE812300B0F813 /* NSString+ST.h */,
 			);
 			path = STKit;
 			sourceTree = "<group>";
@@ -4184,11 +4196,11 @@
 		031E150D23BE812300B0F813 /* WZLBadge */ = {
 			isa = PBXGroup;
 			children = (
+				031E151723BE812300B0F813 /* Protocol */,
+				031E151923BE812300B0F813 /* View */,
 				031E150E23BE812300B0F813 /* CategorySupport */,
 				031E151123BE812300B0F813 /* BarItem */,
 				031E151623BE812300B0F813 /* WZLBadgeImport.h */,
-				031E151723BE812300B0F813 /* Protocol */,
-				031E151923BE812300B0F813 /* View */,
 			);
 			path = WZLBadge;
 			sourceTree = "<group>";
@@ -4196,8 +4208,8 @@
 		031E150E23BE812300B0F813 /* CategorySupport */ = {
 			isa = PBXGroup;
 			children = (
-				031E150F23BE812300B0F813 /* CAAnimation+WAnimation.m */,
 				031E151023BE812300B0F813 /* CAAnimation+WAnimation.h */,
+				031E150F23BE812300B0F813 /* CAAnimation+WAnimation.m */,
 			);
 			path = CategorySupport;
 			sourceTree = "<group>";
@@ -4206,8 +4218,8 @@
 			isa = PBXGroup;
 			children = (
 				031E151223BE812300B0F813 /* UIBarButtonItem+WZLBadge.h */,
-				031E151323BE812300B0F813 /* UITabBarItem+WZLBadge.h */,
 				031E151423BE812300B0F813 /* UIBarButtonItem+WZLBadge.m */,
+				031E151323BE812300B0F813 /* UITabBarItem+WZLBadge.h */,
 				031E151523BE812300B0F813 /* UITabBarItem+WZLBadge.m */,
 			);
 			path = BarItem;
@@ -4243,13 +4255,13 @@
 			isa = PBXGroup;
 			children = (
 				031E152223BE812300B0F813 /* UIWebView+DKProgress.h */,
+				031E152823BE812300B0F813 /* UIWebView+DKProgress.m */,
 				031E152323BE812300B0F813 /* DKProgressLayer.h */,
+				031E152723BE812300B0F813 /* DKProgressLayer.m */,
 				031E152423BE812300B0F813 /* SLPrefixHeader.pch */,
 				031E152523BE812300B0F813 /* QDWebViewController.h */,
-				031E152623BE812300B0F813 /* SLWebViewController.h */,
-				031E152723BE812300B0F813 /* DKProgressLayer.m */,
-				031E152823BE812300B0F813 /* UIWebView+DKProgress.m */,
 				031E152923BE812300B0F813 /* QDWebViewController.m */,
+				031E152623BE812300B0F813 /* SLWebViewController.h */,
 				031E152A23BE812300B0F813 /* SLWebViewController.m */,
 			);
 			path = SLWebView;
@@ -4258,12 +4270,12 @@
 		031E152C23BE812300B0F813 /* HYBUnicodeReadable */ = {
 			isa = PBXGroup;
 			children = (
-				031E152D23BE812300B0F813 /* NSArray+HYBUnicodeReadable.m */,
-				031E152E23BE812300B0F813 /* NSDictionary+HYBUnicodeReadable.m */,
-				031E152F23BE812300B0F813 /* NSSet+HYBUnicodeReadable.m */,
 				031E153023BE812300B0F813 /* NSArray+HYBUnicodeReadable.h */,
+				031E152D23BE812300B0F813 /* NSArray+HYBUnicodeReadable.m */,
 				031E153123BE812300B0F813 /* NSDictionary+HYBUnicodeReadable.h */,
+				031E152E23BE812300B0F813 /* NSDictionary+HYBUnicodeReadable.m */,
 				031E153223BE812300B0F813 /* NSSet+HYBUnicodeReadable.h */,
+				031E152F23BE812300B0F813 /* NSSet+HYBUnicodeReadable.m */,
 			);
 			path = HYBUnicodeReadable;
 			sourceTree = "<group>";
@@ -4271,14 +4283,14 @@
 		031E153423BE812300B0F813 /* ROP */ = {
 			isa = PBXGroup;
 			children = (
+				031E153923BE812300B0F813 /* SAROPSessionTask.h */,
 				031E153523BE812300B0F813 /* SAROPSessionTask.m */,
+				031E153B23BE812300B0F813 /* SAROPSessionStorage.h */,
 				031E153623BE812300B0F813 /* SAROPSessionStorage.m */,
 				031E153723BE812300B0F813 /* SAROPSession.h */,
-				031E153823BE812300B0F813 /* SAROPSessionConfiguration.m */,
-				031E153923BE812300B0F813 /* SAROPSessionTask.h */,
-				031E153A23BE812300B0F813 /* SAROPSessionConfiguration.h */,
-				031E153B23BE812300B0F813 /* SAROPSessionStorage.h */,
 				031E153C23BE812300B0F813 /* SAROPSession.m */,
+				031E153A23BE812300B0F813 /* SAROPSessionConfiguration.h */,
+				031E153823BE812300B0F813 /* SAROPSessionConfiguration.m */,
 			);
 			path = ROP;
 			sourceTree = "<group>";
@@ -4286,19 +4298,19 @@
 		031E153D23BE812300B0F813 /* MOFSPickerManager */ = {
 			isa = PBXGroup;
 			children = (
-				031E153E23BE812300B0F813 /* AddressModel.h */,
-				031E153F23BE812300B0F813 /* MOFSPickerView.h */,
-				031E154023BE812300B0F813 /* MOFSPickerManager.h */,
-				031E154123BE812300B0F813 /* province_data.xml */,
-				031E154223BE812300B0F813 /* MOFSDatePicker.m */,
-				031E154323BE812300B0F813 /* MOFSToolView.m */,
-				031E154423BE812300B0F813 /* MOFSAddressPickerView.h */,
-				031E154523BE812300B0F813 /* MOFSPickerManager.m */,
-				031E154623BE812300B0F813 /* MOFSPickerView.m */,
-				031E154723BE812300B0F813 /* AddressModel.m */,
 				031E154823BE812300B0F813 /* MOFSToolView.h */,
+				031E154323BE812300B0F813 /* MOFSToolView.m */,
 				031E154923BE812300B0F813 /* MOFSDatePicker.h */,
+				031E154223BE812300B0F813 /* MOFSDatePicker.m */,
+				031E153E23BE812300B0F813 /* AddressModel.h */,
+				031E154723BE812300B0F813 /* AddressModel.m */,
+				031E153F23BE812300B0F813 /* MOFSPickerView.h */,
+				031E154623BE812300B0F813 /* MOFSPickerView.m */,
+				031E154123BE812300B0F813 /* province_data.xml */,
+				031E154423BE812300B0F813 /* MOFSAddressPickerView.h */,
 				031E154A23BE812300B0F813 /* MOFSAddressPickerView.m */,
+				031E154023BE812300B0F813 /* MOFSPickerManager.h */,
+				031E154523BE812300B0F813 /* MOFSPickerManager.m */,
 			);
 			path = MOFSPickerManager;
 			sourceTree = "<group>";
@@ -4330,13 +4342,13 @@
 			isa = PBXGroup;
 			children = (
 				031E155423BE812300B0F813 /* WMIconSegmentControl.h */,
+				031E155823BE812300B0F813 /* WMIconSegmentControl.m */,
+				031E155A23BE812300B0F813 /* WMSegmentControl.h */,
 				031E155523BE812300B0F813 /* WMSegmentControl.m */,
 				031E155623BE812300B0F813 /* WMNavTabBar.h */,
-				031E155723BE812300B0F813 /* WMMaskSegmentControl.m */,
-				031E155823BE812300B0F813 /* WMIconSegmentControl.m */,
 				031E155923BE812300B0F813 /* WMNavTabBar.m */,
-				031E155A23BE812300B0F813 /* WMSegmentControl.h */,
 				031E155B23BE812300B0F813 /* WMMaskSegmentControl.h */,
+				031E155723BE812300B0F813 /* WMMaskSegmentControl.m */,
 			);
 			path = Segment;
 			sourceTree = "<group>";
@@ -4344,13 +4356,13 @@
 		031E155C23BE812300B0F813 /* image */ = {
 			isa = PBXGroup;
 			children = (
-				031E155D23BE812300B0F813 /* icon_arrow@2x.png */,
-				031E155E23BE812300B0F813 /* Shade_right@2x.png */,
 				031E155F23BE812300B0F813 /* icon_arrow_up@2x.png */,
-				031E156023BE812300B0F813 /* tag_list_s@2x.png */,
 				031E156123BE812300B0F813 /* icon_arrow_up@3x.png */,
+				031E155D23BE812300B0F813 /* icon_arrow@2x.png */,
 				031E156223BE812300B0F813 /* icon_arrow@3x.png */,
 				031E156323BE812300B0F813 /* Shade_left@2x.png */,
+				031E155E23BE812300B0F813 /* Shade_right@2x.png */,
+				031E156023BE812300B0F813 /* tag_list_s@2x.png */,
 			);
 			path = image;
 			sourceTree = "<group>";
@@ -4359,10 +4371,10 @@
 			isa = PBXGroup;
 			children = (
 				031E156523BE812300B0F813 /* WMMenuCell.h */,
-				031E156623BE812300B0F813 /* WMPickupList.m */,
-				031E156723BE812300B0F813 /* WMMenuHead.h */,
 				031E156823BE812300B0F813 /* WMMenuCell.m */,
 				031E156923BE812300B0F813 /* WMPickupList.h */,
+				031E156623BE812300B0F813 /* WMPickupList.m */,
+				031E156723BE812300B0F813 /* WMMenuHead.h */,
 				031E156A23BE812300B0F813 /* WMMenuHead.m */,
 			);
 			path = BottomList;
@@ -4371,11 +4383,11 @@
 		031E156B23BE812300B0F813 /* UpList */ = {
 			isa = PBXGroup;
 			children = (
+				031E156F23BE812300B0F813 /* WMDropDown2View.h */,
 				031E156C23BE812300B0F813 /* WMDropDown2View.m */,
 				031E156D23BE812300B0F813 /* WMDropDownView.h */,
-				031E156E23BE812300B0F813 /* WMTabControl.h */,
-				031E156F23BE812300B0F813 /* WMDropDown2View.h */,
 				031E157023BE812300B0F813 /* WMDropDownView.m */,
+				031E156E23BE812300B0F813 /* WMTabControl.h */,
 				031E157123BE812300B0F813 /* WMTabControl.m */,
 			);
 			path = UpList;
@@ -4385,8 +4397,8 @@
 			isa = PBXGroup;
 			children = (
 				031E157423BE812300B0F813 /* HMSegmentedControl.h */,
-				031E157523BE812300B0F813 /* XYYSegmentControl.h */,
 				031E157623BE812300B0F813 /* HMSegmentedControl.m */,
+				031E157523BE812300B0F813 /* XYYSegmentControl.h */,
 				031E157723BE812300B0F813 /* XYYSegmentControl.m */,
 			);
 			path = XYYSegmentControl;
@@ -4396,10 +4408,10 @@
 			isa = PBXGroup;
 			children = (
 				031E157B23BE812300B0F813 /* NSTimer+addition.h */,
-				031E157C23BE812300B0F813 /* TGWebViewController.h */,
-				031E157D23BE812300B0F813 /* TGWebProgressLayer.h */,
-				031E157E23BE812300B0F813 /* TGWebViewController.m */,
 				031E157F23BE812300B0F813 /* NSTimer+addition.m */,
+				031E157C23BE812300B0F813 /* TGWebViewController.h */,
+				031E157E23BE812300B0F813 /* TGWebViewController.m */,
+				031E157D23BE812300B0F813 /* TGWebProgressLayer.h */,
 				031E158023BE812300B0F813 /* TGWebProgressLayer.m */,
 			);
 			path = TGWebController;
@@ -4408,8 +4420,8 @@
 		031E158123BE812300B0F813 /* SRActionSheet */ = {
 			isa = PBXGroup;
 			children = (
-				031E158223BE812300B0F813 /* SRActionSheet.m */,
 				031E158323BE812300B0F813 /* SRActionSheet.h */,
+				031E158223BE812300B0F813 /* SRActionSheet.m */,
 			);
 			path = SRActionSheet;
 			sourceTree = "<group>";
@@ -4417,8 +4429,8 @@
 		031E158423BE812300B0F813 /* WSLWaterFlowLayout */ = {
 			isa = PBXGroup;
 			children = (
-				031E158523BE812300B0F813 /* WSLWaterFlowLayout.m */,
 				031E158623BE812300B0F813 /* WSLWaterFlowLayout.h */,
+				031E158523BE812300B0F813 /* WSLWaterFlowLayout.m */,
 			);
 			path = WSLWaterFlowLayout;
 			sourceTree = "<group>";
@@ -4426,15 +4438,15 @@
 		031E158723BE812300B0F813 /* SDCycleScrollView */ = {
 			isa = PBXGroup;
 			children = (
-				031E158823BE812300B0F813 /* UIView+SDExtension.h */,
-				031E158923BE812300B0F813 /* SDCycleScrollView.h */,
-				031E158A23BE812300B0F813 /* SDCollectionViewCell.h */,
-				031E158B23BE812300B0F813 /* CustomCollectionViewCell.m */,
-				031E158C23BE812300B0F813 /* SDCycleScrollView.m */,
-				031E158D23BE812300B0F813 /* UIView+SDExtension.m */,
-				031E158E23BE812300B0F813 /* SDCollectionViewCell.m */,
 				031E158F23BE812300B0F813 /* PageControl */,
+				031E158823BE812300B0F813 /* UIView+SDExtension.h */,
+				031E158D23BE812300B0F813 /* UIView+SDExtension.m */,
+				031E158923BE812300B0F813 /* SDCycleScrollView.h */,
+				031E158C23BE812300B0F813 /* SDCycleScrollView.m */,
+				031E158A23BE812300B0F813 /* SDCollectionViewCell.h */,
+				031E158E23BE812300B0F813 /* SDCollectionViewCell.m */,
 				031E159823BE812300B0F813 /* CustomCollectionViewCell.h */,
+				031E158B23BE812300B0F813 /* CustomCollectionViewCell.m */,
 			);
 			path = SDCycleScrollView;
 			sourceTree = "<group>";
@@ -4443,13 +4455,13 @@
 			isa = PBXGroup;
 			children = (
 				031E159023BE812300B0F813 /* TAAbstractDotView.h */,
-				031E159123BE812300B0F813 /* TADotView.m */,
-				031E159223BE812300B0F813 /* TAPageControl.m */,
-				031E159323BE812300B0F813 /* TAAnimatedDotView.m */,
 				031E159423BE812300B0F813 /* TAAbstractDotView.m */,
 				031E159523BE812300B0F813 /* TADotView.h */,
-				031E159623BE812300B0F813 /* TAAnimatedDotView.h */,
+				031E159123BE812300B0F813 /* TADotView.m */,
 				031E159723BE812300B0F813 /* TAPageControl.h */,
+				031E159223BE812300B0F813 /* TAPageControl.m */,
+				031E159623BE812300B0F813 /* TAAnimatedDotView.h */,
+				031E159323BE812300B0F813 /* TAAnimatedDotView.m */,
 			);
 			path = PageControl;
 			sourceTree = "<group>";
@@ -4475,10 +4487,10 @@
 		031E159D23BE812300B0F813 /* TagView */ = {
 			isa = PBXGroup;
 			children = (
-				031E159E23BE812300B0F813 /* LeeTagItem.m */,
-				031E159F23BE812300B0F813 /* LeeTagView.m */,
 				031E15A023BE812300B0F813 /* LeeTagItem.h */,
+				031E159E23BE812300B0F813 /* LeeTagItem.m */,
 				031E15A123BE812300B0F813 /* LeeTagView.h */,
+				031E159F23BE812300B0F813 /* LeeTagView.m */,
 			);
 			path = TagView;
 			sourceTree = "<group>";
@@ -4494,8 +4506,8 @@
 		031E15A523BE812400B0F813 /* WWWaveView */ = {
 			isa = PBXGroup;
 			children = (
-				031E15A623BE812400B0F813 /* WavesView.m */,
 				031E15A723BE812400B0F813 /* WavesView.h */,
+				031E15A623BE812400B0F813 /* WavesView.m */,
 			);
 			path = WWWaveView;
 			sourceTree = "<group>";
@@ -4513,10 +4525,10 @@
 			isa = PBXGroup;
 			children = (
 				031E15B123BE812400B0F813 /* UITextView+Extension.h */,
-				031E15B223BE812400B0F813 /* UINavigationController+UGExtension.h */,
-				031E15B323BE812400B0F813 /* UIView+Extension.h */,
 				031E15B423BE812400B0F813 /* UITextView+Extension.m */,
+				031E15B223BE812400B0F813 /* UINavigationController+UGExtension.h */,
 				031E15B523BE812400B0F813 /* UINavigationController+UGExtension.m */,
+				031E15B323BE812400B0F813 /* UIView+Extension.h */,
 				031E15B623BE812400B0F813 /* UIView+Extension.m */,
 			);
 			path = Extenslon;
@@ -4526,12 +4538,12 @@
 			isa = PBXGroup;
 			children = (
 				031E15B923BE812400B0F813 /* NSDateComponents+XHCategory.h */,
+				031E15BE23BE812400B0F813 /* NSDateComponents+XHCategory.m */,
+				031E15BD23BE812400B0F813 /* NSDate+XHCategory.h */,
 				031E15BA23BE812400B0F813 /* NSDate+XHCategory.m */,
 				031E15BB23BE812400B0F813 /* XHDate.h */,
-				031E15BC23BE812400B0F813 /* NSString+XHDateFormat.m */,
-				031E15BD23BE812400B0F813 /* NSDate+XHCategory.h */,
-				031E15BE23BE812400B0F813 /* NSDateComponents+XHCategory.m */,
 				031E15BF23BE812400B0F813 /* NSString+XHDateFormat.h */,
+				031E15BC23BE812400B0F813 /* NSString+XHDateFormat.m */,
 			);
 			path = XHDate;
 			sourceTree = "<group>";
@@ -4540,10 +4552,10 @@
 			isa = PBXGroup;
 			children = (
 				031E15C123BE812400B0F813 /* SGImageButton.h */,
-				031E15C223BE812400B0F813 /* SGSegmentedControl.h */,
-				031E15C323BE812400B0F813 /* UIView+SGExtension.m */,
-				031E15C423BE812400B0F813 /* SGSegmentedControl.m */,
 				031E15C523BE812400B0F813 /* SGImageButton.m */,
+				031E15C223BE812400B0F813 /* SGSegmentedControl.h */,
+				031E15C423BE812400B0F813 /* SGSegmentedControl.m */,
+				031E15C323BE812400B0F813 /* UIView+SGExtension.m */,
 				031E15C623BE812400B0F813 /* UIView+SGExtension.h */,
 			);
 			path = SGSegmentedControl;
@@ -4562,6 +4574,9 @@
 		031E15C823BE812400B0F813 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				031E15D023BE812400B0F813 /* 资料页 */,
+				031E15D923BE812400B0F813 /* 长龙助手 */,
+				031E15CB23BE812400B0F813 /* 开奖记录 */,
 				031E15D523BE812400B0F813 /* UGHomeViewController.h */,
 				031E15E223BE812400B0F813 /* UGHomeViewController.m */,
 				031E15D723BE812400B0F813 /* UGHomeViewController.storyboard */,
@@ -4606,6 +4621,9 @@
 				031E15DD23BE812400B0F813 /* UGLotteryAssistantController.storyboard */,
 				031E15DC23BE812400B0F813 /* UGChangLongController.h */,
 				031E15E023BE812400B0F813 /* UGChangLongController.m */,
+				031E15DE23BE812400B0F813 /* UGLotteryAssistantController.h */,
+				031E15DB23BE812400B0F813 /* UGLotteryAssistantController.m */,
+				031E15DD23BE812400B0F813 /* UGLotteryAssistantController.storyboard */,
 			);
 			path = "长龙助手";
 			sourceTree = "<group>";
@@ -4613,39 +4631,40 @@
 		031E15E323BE812400B0F813 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				031E15FF23BE812400B0F813 /* UGSystemConfigModel.h */,
-				031E15E923BE812400B0F813 /* UGSystemConfigModel.m */,
-				031E160523BE812400B0F813 /* UGhomeAdsModel.h */,
-				031E15F123BE812400B0F813 /* UGhomeAdsModel.m */,
-				031E15F323BE812400B0F813 /* UGLotteryHistoryModel.h */,
-				031E160323BE812400B0F813 /* UGLotteryHistoryModel.m */,
-				031E160423BE812400B0F813 /* UGPlatformNoticeModel.h */,
-				031E15F223BE812400B0F813 /* UGPlatformNoticeModel.m */,
-				031E160123BE812400B0F813 /* GameCategoryDataModel.h */,
-				031E15EE23BE812400B0F813 /* GameCategoryDataModel.m */,
-				031E15FC23BE812400B0F813 /* UGBannerModel.h */,
-				031E15EC23BE812400B0F813 /* UGBannerModel.m */,
-				031E15EA23BE812400B0F813 /* UGYYPlatformGames.h */,
-				031E15FE23BE812400B0F813 /* UGYYPlatformGames.m */,
-				031E160023BE812400B0F813 /* UGonlineCount.h */,
-				031E15EF23BE812400B0F813 /* UGonlineCount.m */,
+
+				031E15F523BE812400B0F813 /* 六合板块 */,
+				031E15E423BE812400B0F813 /* UGRankModel.h */,
+				031E15FA23BE812400B0F813 /* UGRankModel.m */,
 				031E15FB23BE812400B0F813 /* UGRedEnvelopeModel.h */,
 				031E15E523BE812400B0F813 /* UGRedEnvelopeModel.m */,
-				031E15EB23BE812400B0F813 /* UGAPPVersionModel.h */,
-				031E15FD23BE812400B0F813 /* UGAPPVersionModel.m */,
 				031E15F923BE812400B0F813 /* UGChanglongaideModel.h */,
 				031E15E623BE812400B0F813 /* UGChanglongaideModel.m */,
 				031E15ED23BE812400B0F813 /* UGChanglongBetRecordModel.h */,
 				031E160223BE812400B0F813 /* UGChanglongBetRecordModel.m */,
+				031E160523BE812400B0F813 /* UGhomeAdsModel.h */,
+				031E15F123BE812400B0F813 /* UGhomeAdsModel.m */,
+				031E15FC23BE812400B0F813 /* UGBannerModel.h */,
+				031E15EC23BE812400B0F813 /* UGBannerModel.m */,
+				031E15EB23BE812400B0F813 /* UGAPPVersionModel.h */,
+				031E15FD23BE812400B0F813 /* UGAPPVersionModel.m */,
+				031E160123BE812400B0F813 /* GameCategoryDataModel.h */,
+				031E15EE23BE812400B0F813 /* GameCategoryDataModel.m */,
+				031E15F323BE812400B0F813 /* UGLotteryHistoryModel.h */,
+				031E160323BE812400B0F813 /* UGLotteryHistoryModel.m */,
 				031E15F823BE812400B0F813 /* UGBetItemModel.h */,
 				031E15E723BE812400B0F813 /* UGBetItemModel.m */,
-				031E160623BE812400B0F813 /* UGPlatformGameModel.h */,
-				031E15F023BE812400B0F813 /* UGPlatformGameModel.m */,
-				031E15E423BE812400B0F813 /* UGRankModel.h */,
-				031E15FA23BE812400B0F813 /* UGRankModel.m */,
+				031E160423BE812400B0F813 /* UGPlatformNoticeModel.h */,
+				031E15F223BE812400B0F813 /* UGPlatformNoticeModel.m */,
+				031E15FF23BE812400B0F813 /* UGSystemConfigModel.h */,
+				031E15E923BE812400B0F813 /* UGSystemConfigModel.m */,
+				031E15EA23BE812400B0F813 /* UGYYPlatformGames.h */,
+				031E15FE23BE812400B0F813 /* UGYYPlatformGames.m */,
 				031E15F423BE812400B0F813 /* UGNoticeModel.h */,
 				031E15E823BE812400B0F813 /* UGNoticeModel.m */,
-				031E15F523BE812400B0F813 /* 六合板块 */,
+				031E160023BE812400B0F813 /* UGonlineCount.h */,
+				031E15EF23BE812400B0F813 /* UGonlineCount.m */,
+				031E160623BE812400B0F813 /* UGPlatformGameModel.h */,
+				031E15F023BE812400B0F813 /* UGPlatformGameModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4653,8 +4672,8 @@
 		031E15F523BE812400B0F813 /* 六合板块 */ = {
 			isa = PBXGroup;
 			children = (
-				031E15F623BE812400B0F813 /* UGPostModel.m */,
 				031E15F723BE812400B0F813 /* UGPostModel.h */,
+				031E15F623BE812400B0F813 /* UGPostModel.m */,
 			);
 			path = "六合板块";
 			sourceTree = "<group>";
@@ -4662,17 +4681,18 @@
 		031E160723BE812400B0F813 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				031E164623BE812400B0F813 /* UGGameListCollectionViewCell.h */,
-				031E165723BE812400B0F813 /* UGGameListCollectionViewCell.m */,
-				031E164C23BE812400B0F813 /* UGGameListCollectionViewCell.xib */,
-				031E164B23BE812400B0F813 /* UGLotteryRecordTableViewCell.h */,
-				031E164523BE812400B0F813 /* UGLotteryRecordTableViewCell.m */,
-				031E164A23BE812400B0F813 /* UGLotteryRecordTableViewCell.xib */,
-				031E160823BE812400B0F813 /* 侧边栏 */,
-				031E160F23BE812400B0F813 /* 首页 */,
+
 				031E164723BE812400B0F813 /* 六合板块 */,
 				031E164D23BE812400B0F813 /* 彩种规则 */,
 				031E165123BE812400B0F813 /* 长龙助手 */,
+				031E160823BE812400B0F813 /* 侧边栏 */,
+				031E160F23BE812400B0F813 /* 首页 */,
+				031E164B23BE812400B0F813 /* UGLotteryRecordTableViewCell.h */,
+				031E164523BE812400B0F813 /* UGLotteryRecordTableViewCell.m */,
+				031E164A23BE812400B0F813 /* UGLotteryRecordTableViewCell.xib */,
+				031E164623BE812400B0F813 /* UGGameListCollectionViewCell.h */,
+				031E165723BE812400B0F813 /* UGGameListCollectionViewCell.m */,
+				031E164C23BE812400B0F813 /* UGGameListCollectionViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4708,12 +4728,13 @@
 		031E161023BE812400B0F813 /* 红包弹框 */ = {
 			isa = PBXGroup;
 			children = (
-				031E161223BE812400B0F813 /* UGredActivityView.h */,
-				031E161623BE812400B0F813 /* UGredActivityView.m */,
-				031E161423BE812400B0F813 /* UGredActivityView.xib */,
+
 				031E161323BE812400B0F813 /* UGredEnvelopeView.h */,
 				031E161523BE812400B0F813 /* UGredEnvelopeView.m */,
 				031E161123BE812400B0F813 /* UGredEnvelopeView.xib */,
+				031E161223BE812400B0F813 /* UGredActivityView.h */,
+				031E161623BE812400B0F813 /* UGredActivityView.m */,
+				031E161423BE812400B0F813 /* UGredActivityView.xib */,
 			);
 			path = "红包弹框";
 			sourceTree = "<group>";
@@ -4721,9 +4742,9 @@
 		031E161723BE812400B0F813 /* H5的返回弹框 */ = {
 			isa = PBXGroup;
 			children = (
-				031E161823BE812400B0F813 /* UGBackToastView.xib */,
-				031E161923BE812400B0F813 /* UGBackToastView.m */,
 				031E161A23BE812400B0F813 /* UGBackToastView.h */,
+				031E161923BE812400B0F813 /* UGBackToastView.m */,
+				031E161823BE812400B0F813 /* UGBackToastView.xib */,
 			);
 			path = "H5的返回弹框";
 			sourceTree = "<group>";
@@ -4731,8 +4752,8 @@
 		031E161B23BE812400B0F813 /* 资料弹框 */ = {
 			isa = PBXGroup;
 			children = (
-				031E161C23BE812400B0F813 /* UGDocumentView.m */,
 				031E161D23BE812400B0F813 /* UGDocumentView.h */,
+				031E161C23BE812400B0F813 /* UGDocumentView.m */,
 			);
 			path = "资料弹框";
 			sourceTree = "<group>";
@@ -4740,9 +4761,9 @@
 		031E161E23BE812400B0F813 /* 定制导航栏 */ = {
 			isa = PBXGroup;
 			children = (
-				031E161F23BE812400B0F813 /* UGHomeTitleView.xib */,
 				031E162023BE812400B0F813 /* UGHomeTitleView.h */,
 				031E162123BE812400B0F813 /* UGHomeTitleView.m */,
+				031E161F23BE812400B0F813 /* UGHomeTitleView.xib */,
 			);
 			path = "定制导航栏";
 			sourceTree = "<group>";
@@ -4750,23 +4771,24 @@
 		031E162223BE812400B0F813 /* 游戏列表 */ = {
 			isa = PBXGroup;
 			children = (
-				031E162723BE812400B0F813 /* UGGameTypeCollectionView.h */,
-				031E162F23BE812400B0F813 /* UGGameTypeCollectionView.m */,
-				031E162C23BE812400B0F813 /* UGPlatformTitleCollectionView.h */,
-				031E162323BE812400B0F813 /* UGPlatformTitleCollectionView.m */,
-				031E162523BE812400B0F813 /* UGPlatformTitleCollectionViewCell.h */,
-				031E163023BE812400B0F813 /* UGPlatformTitleCollectionViewCell.m */,
-				031E162A23BE812400B0F813 /* UGPlatformTitleCollectionViewCell.xib */,
-				031E163123BE812400B0F813 /* UGPlatformCollectionView.h */,
-				031E162623BE812400B0F813 /* UGPlatformCollectionView.m */,
-				031E162923BE812400B0F813 /* UGGameTypeColletionViewCell.h */,
-				031E163223BE812400B0F813 /* UGGameTypeColletionViewCell.m */,
-				031E163323BE812400B0F813 /* UGGameTypeColletionViewCell.xib */,
+
 				031E162D23BE812400B0F813 /* UGPlatformTitleBlackCell.h */,
 				031E162823BE812400B0F813 /* UGPlatformTitleBlackCell.m */,
 				031E162E23BE812400B0F813 /* UGPlatformTitleBlackCell.xib */,
+				031E162523BE812400B0F813 /* UGPlatformTitleCollectionViewCell.h */,
+				031E163023BE812400B0F813 /* UGPlatformTitleCollectionViewCell.m */,
+				031E162A23BE812400B0F813 /* UGPlatformTitleCollectionViewCell.xib */,
+				031E162923BE812400B0F813 /* UGGameTypeColletionViewCell.h */,
+				031E163223BE812400B0F813 /* UGGameTypeColletionViewCell.m */,
+				031E163323BE812400B0F813 /* UGGameTypeColletionViewCell.xib */,
+				031E162C23BE812400B0F813 /* UGPlatformTitleCollectionView.h */,
+				031E162323BE812400B0F813 /* UGPlatformTitleCollectionView.m */,
 				031E162B23BE812400B0F813 /* UGGameSubCollectionView.h */,
 				031E162423BE812400B0F813 /* UGGameSubCollectionView.m */,
+				031E162723BE812400B0F813 /* UGGameTypeCollectionView.h */,
+				031E162F23BE812400B0F813 /* UGGameTypeCollectionView.m */,
+				031E163123BE812400B0F813 /* UGPlatformCollectionView.h */,
+				031E162623BE812400B0F813 /* UGPlatformCollectionView.m */,
 			);
 			path = "游戏列表";
 			sourceTree = "<group>";
@@ -4774,8 +4796,8 @@
 		031E163423BE812400B0F813 /* 导航View */ = {
 			isa = PBXGroup;
 			children = (
-				031E163523BE812400B0F813 /* UGGameNavigationView.m */,
 				031E163623BE812400B0F813 /* UGGameNavigationView.h */,
+				031E163523BE812400B0F813 /* UGGameNavigationView.m */,
 			);
 			path = "导航View";
 			sourceTree = "<group>";
@@ -4783,11 +4805,11 @@
 		031E163723BE812400B0F813 /* 公告列表 */ = {
 			isa = PBXGroup;
 			children = (
-				031E163823BE812400B0F813 /* UGPlatformNoticeView.m */,
-				031E163923BE812400B0F813 /* UGPlatformNoticeCell.m */,
 				031E163A23BE812400B0F813 /* UGPlatformNoticeView.h */,
+				031E163823BE812400B0F813 /* UGPlatformNoticeView.m */,
 				031E163B23BE812400B0F813 /* UGPlatformNoticeView.xib */,
 				031E163C23BE812400B0F813 /* UGPlatformNoticeCell.h */,
+				031E163923BE812400B0F813 /* UGPlatformNoticeCell.m */,
 				031E163D23BE812400B0F813 /* UGPlatformNoticeCell.xib */,
 			);
 			path = "公告列表";
@@ -4796,11 +4818,11 @@
 		031E163E23BE812400B0F813 /* 跑马灯公告 */ = {
 			isa = PBXGroup;
 			children = (
-				031E163F23BE812400B0F813 /* UGNoticeHeaderView.h */,
 				031E164023BE812400B0F813 /* UGNoticePopView.h */,
 				031E164123BE812400B0F813 /* UGNoticePopView.m */,
-				031E164223BE812400B0F813 /* UGNoticeHeaderView.m */,
 				031E164323BE812400B0F813 /* UGNoticePopView.xib */,
+				031E163F23BE812400B0F813 /* UGNoticeHeaderView.h */,
+				031E164223BE812400B0F813 /* UGNoticeHeaderView.m */,
 				031E164423BE812400B0F813 /* UGNoticeHeaderView.xib */,
 			);
 			path = "跑马灯公告";
@@ -4818,9 +4840,9 @@
 		031E164D23BE812400B0F813 /* 彩种规则 */ = {
 			isa = PBXGroup;
 			children = (
-				031E164E23BE812400B0F813 /* UGLotteryRulesView.xib */,
 				031E164F23BE812400B0F813 /* UGLotteryRulesView.h */,
 				031E165023BE812400B0F813 /* UGLotteryRulesView.m */,
+				031E164E23BE812400B0F813 /* UGLotteryRulesView.xib */,
 			);
 			path = "彩种规则";
 			sourceTree = "<group>";
@@ -4828,11 +4850,11 @@
 		031E165123BE812400B0F813 /* 长龙助手 */ = {
 			isa = PBXGroup;
 			children = (
-				031E165223BE812400B0F813 /* UGChanglongBetRecrodCell.m */,
-				031E165323BE812400B0F813 /* UGLotteryAssistantTableViewCell.m */,
-				031E165423BE812400B0F813 /* UGChanglongBetRecrodCell.xib */,
-				031E165523BE812400B0F813 /* UGChanglongBetRecrodCell.h */,
 				031E165623BE812400B0F813 /* UGLotteryAssistantTableViewCell.h */,
+				031E165323BE812400B0F813 /* UGLotteryAssistantTableViewCell.m */,
+				031E165523BE812400B0F813 /* UGChanglongBetRecrodCell.h */,
+				031E165223BE812400B0F813 /* UGChanglongBetRecrodCell.m */,
+				031E165423BE812400B0F813 /* UGChanglongBetRecrodCell.xib */,
 			);
 			path = "长龙助手";
 			sourceTree = "<group>";
@@ -4849,14 +4871,14 @@
 		031E165923BE812400B0F813 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				031E165A23BE812400B0F813 /* BMpreferential.storyboard */,
 				031E165B23BE812400B0F813 /* 我的 */,
 				031E166223BE812400B0F813 /* 优惠专区 */,
-				031E166523BE812400B0F813 /* BMMine.storyboard */,
 				031E166623BE812400B0F813 /* 财务中心 */,
 				031E166923BE812400B0F813 /* 会员中心 */,
 				031E166C23BE812400B0F813 /* 最近浏览 */,
 				031E166F23BE812400B0F813 /* 彩票大厅 */,
+				031E165A23BE812400B0F813 /* BMpreferential.storyboard */,
+				031E166523BE812400B0F813 /* BMMine.storyboard */,
 				031E167223BE812400B0F813 /* BlackTemplate.storyboard */,
 			);
 			path = Controller;
@@ -4901,8 +4923,8 @@
 		031E166623BE812400B0F813 /* 财务中心 */ = {
 			isa = PBXGroup;
 			children = (
-				031E166723BE812400B0F813 /* UGfinancialViewViewController.m */,
 				031E166823BE812400B0F813 /* UGfinancialViewViewController.h */,
+				031E166723BE812400B0F813 /* UGfinancialViewViewController.m */,
 			);
 			path = "财务中心";
 			sourceTree = "<group>";
@@ -4910,8 +4932,8 @@
 		031E166923BE812400B0F813 /* 会员中心 */ = {
 			isa = PBXGroup;
 			children = (
-				031E166A23BE812400B0F813 /* UGBMMemberCenterViewController.m */,
 				031E166B23BE812400B0F813 /* UGBMMemberCenterViewController.h */,
+				031E166A23BE812400B0F813 /* UGBMMemberCenterViewController.m */,
 			);
 			path = "会员中心";
 			sourceTree = "<group>";
@@ -4928,8 +4950,8 @@
 		031E166F23BE812400B0F813 /* 彩票大厅 */ = {
 			isa = PBXGroup;
 			children = (
-				031E167023BE812400B0F813 /* UGBMLotteryHomeViewController.m */,
 				031E167123BE812400B0F813 /* UGBMLotteryHomeViewController.h */,
+				031E167023BE812400B0F813 /* UGBMLotteryHomeViewController.m */,
 			);
 			path = "彩票大厅";
 			sourceTree = "<group>";
@@ -4947,9 +4969,9 @@
 		031E167423BE812400B0F813 /* 下边栏 */ = {
 			isa = PBXGroup;
 			children = (
-				031E167523BE812400B0F813 /* UGBMUnderMenuView.xib */,
-				031E167623BE812400B0F813 /* UGBMUnderMenuView.m */,
 				031E167723BE812400B0F813 /* UGBMUnderMenuView.h */,
+				031E167623BE812400B0F813 /* UGBMUnderMenuView.m */,
+				031E167523BE812400B0F813 /* UGBMUnderMenuView.xib */,
 			);
 			path = "下边栏";
 			sourceTree = "<group>";
@@ -4957,15 +4979,15 @@
 		031E167823BE812400B0F813 /* 财务中心 */ = {
 			isa = PBXGroup;
 			children = (
-				031E167923BE812400B0F813 /* UGBMfinancialCollectionViewCell.h */,
-				031E167A23BE812400B0F813 /* UGOnlineWithdrawalsView.h */,
 				031E167B23BE812400B0F813 /* UGfinancialView.h */,
-				031E167C23BE812400B0F813 /* UGOnlineWithdrawalsView.xib */,
-				031E167D23BE812400B0F813 /* UGfinancialView.xib */,
-				031E167E23BE812400B0F813 /* UGBMfinancialCollectionViewCell.m */,
 				031E167F23BE812400B0F813 /* UGfinancialView.m */,
-				031E168023BE812400B0F813 /* UGBMfinancialCollectionViewCell.xib */,
+				031E167D23BE812400B0F813 /* UGfinancialView.xib */,
+				031E167A23BE812400B0F813 /* UGOnlineWithdrawalsView.h */,
 				031E168123BE812400B0F813 /* UGOnlineWithdrawalsView.m */,
+				031E167C23BE812400B0F813 /* UGOnlineWithdrawalsView.xib */,
+				031E167923BE812400B0F813 /* UGBMfinancialCollectionViewCell.h */,
+				031E167E23BE812400B0F813 /* UGBMfinancialCollectionViewCell.m */,
+				031E168023BE812400B0F813 /* UGBMfinancialCollectionViewCell.xib */,
 			);
 			path = "财务中心";
 			sourceTree = "<group>";
@@ -4973,9 +4995,9 @@
 		031E168223BE812400B0F813 /* 公共的导航头 */ = {
 			isa = PBXGroup;
 			children = (
-				031E168323BE812400B0F813 /* UGBMHeaderView.xib */,
-				031E168423BE812400B0F813 /* UGBMHeaderView.m */,
 				031E168523BE812400B0F813 /* UGBMHeaderView.h */,
+				031E168423BE812400B0F813 /* UGBMHeaderView.m */,
+				031E168323BE812400B0F813 /* UGBMHeaderView.xib */,
 			);
 			path = "公共的导航头";
 			sourceTree = "<group>";
@@ -4994,12 +5016,13 @@
 			isa = PBXGroup;
 			children = (
 				031E168823BE812400B0F813 /* 下注页面 */,
-				031E16BD23BE812400B0F813 /* UGLotteryHomeController.m */,
 				031E16C023BE812400B0F813 /* UGLotteryHomeController.h */,
-				031E16BE23BE812400B0F813 /* UGYYLotterySecondHomeViewController.h */,
-				031E16C123BE812400B0F813 /* UGYYLotterySecondHomeViewController.m */,
+				031E16BD23BE812400B0F813 /* UGLotteryHomeController.m */,
+
 				031E16C223BE812400B0F813 /* UGYYLotteryHomeViewController.h */,
 				031E16BF23BE812400B0F813 /* UGYYLotteryHomeViewController.m */,
+				031E16BE23BE812400B0F813 /* UGYYLotterySecondHomeViewController.h */,
+				031E16C123BE812400B0F813 /* UGYYLotterySecondHomeViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -5010,19 +5033,21 @@
 				031E168923BE812400B0F813 /* 福彩3D */,
 				031E168D23BE812400B0F813 /* 幸运农场 */,
 				031E169123BE812400B0F813 /* 广东快乐10 */,
-				031E169523BE812400B0F813 /* UGLotterySelectController.h */,
 				031E169623BE812400B0F813 /* PC蛋蛋 */,
-				031E169A23BE812400B0F813 /* UGCommonLotteryController.m */,
 				031E169B23BE812400B0F813 /* 北京快乐8 */,
-				031E169F23BE812400B0F813 /* UGLotterySelectController.m */,
 				031E16A023BE812400B0F813 /* 香港六合彩 */,
 				031E16A423BE812400B0F813 /* PK10牛牛 */,
 				031E16A823BE812400B0F813 /* 时时彩 */,
 				031E16AC23BE812400B0F813 /* 江苏快3 */,
 				031E16B023BE812400B0F813 /* 七星彩 */,
 				031E16B423BE812400B0F813 /* 广东11选5 */,
-				031E16B823BE812400B0F813 /* UGCommonLotteryController.h */,
 				031E16B923BE812400B0F813 /* 北京PK10 */,
+				031E169523BE812400B0F813 /* UGLotterySelectController.h */,
+				031E169F23BE812400B0F813 /* UGLotterySelectController.m */,
+				CFE074CF23C0BBBF0083EA7E /* LotteryBetAndChatVC.h */,
+				CFE074D023C0BBBF0083EA7E /* LotteryBetAndChatVC.m */,
+				031E16B823BE812400B0F813 /* UGCommonLotteryController.h */,
+				031E169A23BE812400B0F813 /* UGCommonLotteryController.m */,
 			);
 			path = "下注页面";
 			sourceTree = "<group>";
@@ -5031,8 +5056,8 @@
 			isa = PBXGroup;
 			children = (
 				031E168A23BE812400B0F813 /* UGFC3DLotteryController.h */,
-				031E168B23BE812400B0F813 /* UGFC3DLotteryController.storyboard */,
 				031E168C23BE812400B0F813 /* UGFC3DLotteryController.m */,
+				031E168B23BE812400B0F813 /* UGFC3DLotteryController.storyboard */,
 			);
 			path = "福彩3D";
 			sourceTree = "<group>";
@@ -5040,9 +5065,9 @@
 		031E168D23BE812400B0F813 /* 幸运农场 */ = {
 			isa = PBXGroup;
 			children = (
+				031E169023BE812400B0F813 /* UGXYNCLotteryController.h */,
 				031E168E23BE812400B0F813 /* UGXYNCLotteryController.m */,
 				031E168F23BE812400B0F813 /* UGXYNCLotteryController.storyboard */,
-				031E169023BE812400B0F813 /* UGXYNCLotteryController.h */,
 			);
 			path = "幸运农场";
 			sourceTree = "<group>";
@@ -5050,9 +5075,9 @@
 		031E169123BE812400B0F813 /* 广东快乐10 */ = {
 			isa = PBXGroup;
 			children = (
+				031E169423BE812400B0F813 /* UGGDKL10LotteryController.h */,
 				031E169223BE812400B0F813 /* UGGDKL10LotteryController.m */,
 				031E169323BE812400B0F813 /* UGGDKL10LotteryController.storyboard */,
-				031E169423BE812400B0F813 /* UGGDKL10LotteryController.h */,
 			);
 			path = "广东快乐10";
 			sourceTree = "<group>";
@@ -5060,9 +5085,9 @@
 		031E169623BE812400B0F813 /* PC蛋蛋 */ = {
 			isa = PBXGroup;
 			children = (
-				031E169723BE812400B0F813 /* UGPCDDLotteryController.storyboard */,
 				031E169823BE812400B0F813 /* UGPCDDLotteryController.h */,
 				031E169923BE812400B0F813 /* UGPCDDLotteryController.m */,
+				031E169723BE812400B0F813 /* UGPCDDLotteryController.storyboard */,
 			);
 			path = "PC蛋蛋";
 			sourceTree = "<group>";
@@ -5070,9 +5095,9 @@
 		031E169B23BE812400B0F813 /* 北京快乐8 */ = {
 			isa = PBXGroup;
 			children = (
-				031E169C23BE812400B0F813 /* UGBJKL8LotteryController.storyboard */,
-				031E169D23BE812400B0F813 /* UGBJKL8LotteryController.m */,
 				031E169E23BE812400B0F813 /* UGBJKL8LotteryController.h */,
+				031E169D23BE812400B0F813 /* UGBJKL8LotteryController.m */,
+				031E169C23BE812400B0F813 /* UGBJKL8LotteryController.storyboard */,
 			);
 			path = "北京快乐8";
 			sourceTree = "<group>";
@@ -5081,8 +5106,8 @@
 			isa = PBXGroup;
 			children = (
 				031E16A123BE812400B0F813 /* UGHKLHCLotteryController.h */,
-				031E16A223BE812400B0F813 /* UGHKLHCLotteryController.storyboard */,
 				031E16A323BE812400B0F813 /* UGHKLHCLotteryController.m */,
+				031E16A223BE812400B0F813 /* UGHKLHCLotteryController.storyboard */,
 			);
 			path = "香港六合彩";
 			sourceTree = "<group>";
@@ -5100,9 +5125,9 @@
 		031E16A823BE812400B0F813 /* 时时彩 */ = {
 			isa = PBXGroup;
 			children = (
+				031E16AB23BE812400B0F813 /* UGSSCLotteryController.h */,
 				031E16A923BE812400B0F813 /* UGSSCLotteryController.m */,
 				031E16AA23BE812400B0F813 /* UGSSCLotteryController.storyboard */,
-				031E16AB23BE812400B0F813 /* UGSSCLotteryController.h */,
 			);
 			path = "时时彩";
 			sourceTree = "<group>";
@@ -5110,9 +5135,9 @@
 		031E16AC23BE812400B0F813 /* 江苏快3 */ = {
 			isa = PBXGroup;
 			children = (
+				031E16AF23BE812400B0F813 /* UGJSK3LotteryController.h */,
 				031E16AD23BE812400B0F813 /* UGJSK3LotteryController.m */,
 				031E16AE23BE812400B0F813 /* UGJSK3LotteryController.storyboard */,
-				031E16AF23BE812400B0F813 /* UGJSK3LotteryController.h */,
 			);
 			path = "江苏快3";
 			sourceTree = "<group>";
@@ -5121,8 +5146,8 @@
 			isa = PBXGroup;
 			children = (
 				031E16B123BE812400B0F813 /* UGQXCLotteryController.h */,
-				031E16B223BE812400B0F813 /* UGQXCLotteryController.storyboard */,
 				031E16B323BE812400B0F813 /* UGQXCLotteryController.m */,
+				031E16B223BE812400B0F813 /* UGQXCLotteryController.storyboard */,
 			);
 			path = "七星彩";
 			sourceTree = "<group>";
@@ -5130,9 +5155,9 @@
 		031E16B423BE812400B0F813 /* 广东11选5 */ = {
 			isa = PBXGroup;
 			children = (
-				031E16B523BE812400B0F813 /* UGGD11X5LotteryController.storyboard */,
 				031E16B623BE812400B0F813 /* UGGD11X5LotteryController.h */,
 				031E16B723BE812400B0F813 /* UGGD11X5LotteryController.m */,
+				031E16B523BE812400B0F813 /* UGGD11X5LotteryController.storyboard */,
 			);
 			path = "广东11选5";
 			sourceTree = "<group>";
@@ -5140,9 +5165,9 @@
 		031E16B923BE812400B0F813 /* 北京PK10 */ = {
 			isa = PBXGroup;
 			children = (
-				031E16BA23BE812400B0F813 /* UGBJPK10LotteryController.storyboard */,
-				031E16BB23BE812400B0F813 /* UGBJPK10LotteryController.m */,
 				031E16BC23BE812400B0F813 /* UGBJPK10LotteryController.h */,
+				031E16BB23BE812400B0F813 /* UGBJPK10LotteryController.m */,
+				031E16BA23BE812400B0F813 /* UGBJPK10LotteryController.storyboard */,
 			);
 			path = "北京PK10";
 			sourceTree = "<group>";
@@ -5151,17 +5176,17 @@
 			isa = PBXGroup;
 			children = (
 				031E16C423BE812400B0F813 /* UGbetModel.h */,
+				031E16CA23BE812400B0F813 /* UGbetModel.m */,
+				031E16CE23BE812400B0F813 /* UGLotterySettingModel.h */,
 				031E16C523BE812400B0F813 /* UGLotterySettingModel.m */,
+				031E16CD23BE812400B0F813 /* UGHallLotteryModel.h */,
 				031E16C623BE812400B0F813 /* UGHallLotteryModel.m */,
 				031E16C723BE812400B0F813 /* UGAllNextIssueListModel.h */,
-				031E16C823BE812400B0F813 /* UGGameplayModel.m */,
-				031E16C923BE812400B0F813 /* UGBetDetailModel.m */,
-				031E16CA23BE812400B0F813 /* UGbetModel.m */,
-				031E16CB23BE812400B0F813 /* UGGameplayModel.h */,
 				031E16CC23BE812400B0F813 /* UGAllNextIssueListModel.m */,
-				031E16CD23BE812400B0F813 /* UGHallLotteryModel.h */,
-				031E16CE23BE812400B0F813 /* UGLotterySettingModel.h */,
+				031E16CB23BE812400B0F813 /* UGGameplayModel.h */,
+				031E16C823BE812400B0F813 /* UGGameplayModel.m */,
 				031E16CF23BE812400B0F813 /* UGBetDetailModel.h */,
+				031E16C923BE812400B0F813 /* UGBetDetailModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5181,9 +5206,9 @@
 		031E16D123BE812400B0F813 /* 广告View */ = {
 			isa = PBXGroup;
 			children = (
+				031E16D423BE812400B0F813 /* UGLotteryAdPopView.h */,
 				031E16D223BE812400B0F813 /* UGLotteryAdPopView.m */,
 				031E16D323BE812400B0F813 /* UGLotteryAdPopView.xib */,
-				031E16D423BE812400B0F813 /* UGLotteryAdPopView.h */,
 			);
 			path = "广告View";
 			sourceTree = "<group>";
@@ -5191,30 +5216,30 @@
 		031E16D523BE812400B0F813 /* 号码Cell */ = {
 			isa = PBXGroup;
 			children = (
-				031E16D623BE812400B0F813 /* UGTimeLotteryLeftTitleCell.xib */,
-				031E16D723BE812400B0F813 /* UGLinkNumCollectionViewCell.xib */,
-				031E16D823BE812400B0F813 /* UGLotteryResultCollectionViewCell.m */,
-				031E16D923BE812400B0F813 /* UGTimeLotteryBetCollectionViewCell.xib */,
-				031E16DA23BE812400B0F813 /* UGTimeLotteryBetHeaderView.h */,
-				031E16DB23BE812400B0F813 /* UGTimeLotteryBetCollectionViewCell.m */,
-				031E16DC23BE812400B0F813 /* UGSSCBetItem1Cell.h */,
-				031E16DD23BE812400B0F813 /* UGLinkNumCollectionViewCell.h */,
-				031E16DE23BE812400B0F813 /* UGSSCBetItem1Cell.xib */,
 				031E16DF23BE812400B0F813 /* 快3Cell */,
-				031E16EC23BE812400B0F813 /* UGTimeLotteryBetHeaderView.xib */,
-				031E16ED23BE812400B0F813 /* UGLotterySubResultCollectionViewCell.m */,
-				031E16EE23BE812400B0F813 /* UGTimeLotteryLeftTitleCell.h */,
-				031E16EF23BE812400B0F813 /* UGSSCBetItem1Cell.m */,
-				031E16F023BE812400B0F813 /* UGTimeLotteryBetCollectionViewCell.h */,
-				031E16F123BE812400B0F813 /* UGTimeLotteryBetHeaderView.m */,
-				031E16F223BE812400B0F813 /* UGLotteryResultCollectionViewCell.h */,
-				031E16F323BE812400B0F813 /* UGLotterySubResultCollectionViewCell.xib */,
 				031E16F423BE812400B0F813 /* 六合彩Cell */,
-				031E16FB23BE812400B0F813 /* UGLinkNumCollectionViewCell.m */,
-				031E16FC23BE812400B0F813 /* UGLotterySubResultCollectionViewCell.h */,
 				031E16FD23BE812400B0F813 /* PK10 */,
-				031E170123BE812400B0F813 /* UGLotteryResultCollectionViewCell.xib */,
+				031E16DD23BE812400B0F813 /* UGLinkNumCollectionViewCell.h */,
+				031E16FB23BE812400B0F813 /* UGLinkNumCollectionViewCell.m */,
+				031E16D723BE812400B0F813 /* UGLinkNumCollectionViewCell.xib */,
+				031E16DC23BE812400B0F813 /* UGSSCBetItem1Cell.h */,
+				031E16EF23BE812400B0F813 /* UGSSCBetItem1Cell.m */,
+				031E16DE23BE812400B0F813 /* UGSSCBetItem1Cell.xib */,
+				031E16FC23BE812400B0F813 /* UGLotterySubResultCollectionViewCell.h */,
+				031E16ED23BE812400B0F813 /* UGLotterySubResultCollectionViewCell.m */,
+				031E16F323BE812400B0F813 /* UGLotterySubResultCollectionViewCell.xib */,
+				031E16DA23BE812400B0F813 /* UGTimeLotteryBetHeaderView.h */,
+				031E16F123BE812400B0F813 /* UGTimeLotteryBetHeaderView.m */,
+				031E16EC23BE812400B0F813 /* UGTimeLotteryBetHeaderView.xib */,
+				031E16EE23BE812400B0F813 /* UGTimeLotteryLeftTitleCell.h */,
 				031E170223BE812400B0F813 /* UGTimeLotteryLeftTitleCell.m */,
+				031E16D623BE812400B0F813 /* UGTimeLotteryLeftTitleCell.xib */,
+				031E16F023BE812400B0F813 /* UGTimeLotteryBetCollectionViewCell.h */,
+				031E16DB23BE812400B0F813 /* UGTimeLotteryBetCollectionViewCell.m */,
+				031E16D923BE812400B0F813 /* UGTimeLotteryBetCollectionViewCell.xib */,
+				031E16F223BE812400B0F813 /* UGLotteryResultCollectionViewCell.h */,
+				031E16D823BE812400B0F813 /* UGLotteryResultCollectionViewCell.m */,
+				031E170123BE812400B0F813 /* UGLotteryResultCollectionViewCell.xib */,
 			);
 			path = "号码Cell";
 			sourceTree = "<group>";
@@ -5222,18 +5247,18 @@
 		031E16DF23BE812400B0F813 /* 快3Cell */ = {
 			isa = PBXGroup;
 			children = (
-				031E16E023BE812400B0F813 /* UGFastThreeThreeCollectionViewCell.m */,
-				031E16E123BE812400B0F813 /* UGFastThreeThreeCollectionViewCell.xib */,
+				031E16E923BE812400B0F813 /* UGFastThreeOneCollectionViewCell.h */,
 				031E16E223BE812400B0F813 /* UGFastThreeOneCollectionViewCell.m */,
-				031E16E323BE812400B0F813 /* UGFastThreeFourCollectionViewCell.xib */,
-				031E16E423BE812400B0F813 /* UGFastThreeTwoCollectionViewCell.h */,
-				031E16E523BE812400B0F813 /* UGFastThreeFourCollectionViewCell.m */,
 				031E16E623BE812400B0F813 /* UGFastThreeOneCollectionViewCell.xib */,
+				031E16E423BE812400B0F813 /* UGFastThreeTwoCollectionViewCell.h */,
+				031E16EB23BE812400B0F813 /* UGFastThreeTwoCollectionViewCell.m */,
 				031E16E723BE812400B0F813 /* UGFastThreeTwoCollectionViewCell.xib */,
 				031E16E823BE812400B0F813 /* UGFastThreeThreeCollectionViewCell.h */,
-				031E16E923BE812400B0F813 /* UGFastThreeOneCollectionViewCell.h */,
+				031E16E023BE812400B0F813 /* UGFastThreeThreeCollectionViewCell.m */,
+				031E16E123BE812400B0F813 /* UGFastThreeThreeCollectionViewCell.xib */,
 				031E16EA23BE812400B0F813 /* UGFastThreeFourCollectionViewCell.h */,
-				031E16EB23BE812400B0F813 /* UGFastThreeTwoCollectionViewCell.m */,
+				031E16E523BE812400B0F813 /* UGFastThreeFourCollectionViewCell.m */,
+				031E16E323BE812400B0F813 /* UGFastThreeFourCollectionViewCell.xib */,
 			);
 			path = "快3Cell";
 			sourceTree = "<group>";
@@ -5242,9 +5267,9 @@
 			isa = PBXGroup;
 			children = (
 				031E16F523BE812400B0F813 /* UGMarkSixLotteryBetItem0Cell.h */,
-				031E16F623BE812400B0F813 /* UGMarkSixLotteryBetItem1Cell.h */,
 				031E16F723BE812400B0F813 /* UGMarkSixLotteryBetItem0Cell.m */,
 				031E16F823BE812400B0F813 /* UGMarkSixLotteryBetItem0Cell.xib */,
+				031E16F623BE812400B0F813 /* UGMarkSixLotteryBetItem1Cell.h */,
 				031E16F923BE812400B0F813 /* UGMarkSixLotteryBetItem1Cell.m */,
 				031E16FA23BE812400B0F813 /* UGMarkSixLotteryBetItem1Cell.xib */,
 			);
@@ -5254,9 +5279,9 @@
 		031E16FD23BE812400B0F813 /* PK10 */ = {
 			isa = PBXGroup;
 			children = (
+				031E170023BE812400B0F813 /* UGPK10SubResultCollectionViewCell.h */,
 				031E16FE23BE812400B0F813 /* UGPK10SubResultCollectionViewCell.m */,
 				031E16FF23BE812400B0F813 /* UGPK10SubResultCollectionViewCell.xib */,
-				031E170023BE812400B0F813 /* UGPK10SubResultCollectionViewCell.h */,
 			);
 			path = PK10;
 			sourceTree = "<group>";
@@ -5265,10 +5290,10 @@
 			isa = PBXGroup;
 			children = (
 				031E170423BE812400B0F813 /* UGSegmentView.h */,
-				031E170523BE812400B0F813 /* UGSegmentCollectionViewCell.xib */,
-				031E170623BE812400B0F813 /* UGSegmentCollectionViewCell.m */,
 				031E170723BE812400B0F813 /* UGSegmentView.m */,
 				031E170823BE812400B0F813 /* UGSegmentCollectionViewCell.h */,
+				031E170623BE812400B0F813 /* UGSegmentCollectionViewCell.m */,
+				031E170523BE812400B0F813 /* UGSegmentCollectionViewCell.xib */,
 			);
 			path = "滑块View（选择子玩法）";
 			sourceTree = "<group>";
@@ -5276,13 +5301,13 @@
 		031E170923BE812400B0F813 /* 下注明细View */ = {
 			isa = PBXGroup;
 			children = (
-				031E170A23BE812400B0F813 /* UGBetResultView.h */,
-				031E170B23BE812400B0F813 /* UGBetDetailTableViewCell.h */,
-				031E170C23BE812400B0F813 /* UGBetDetailView.m */,
-				031E170D23BE812400B0F813 /* UGBetResultView.m */,
-				031E170E23BE812400B0F813 /* UGBetDetailView.xib */,
-				031E170F23BE812400B0F813 /* UGBetDetailTableViewCell.m */,
 				031E171023BE812400B0F813 /* UGBetDetailView.h */,
+				031E170C23BE812400B0F813 /* UGBetDetailView.m */,
+				031E170E23BE812400B0F813 /* UGBetDetailView.xib */,
+				031E170A23BE812400B0F813 /* UGBetResultView.h */,
+				031E170D23BE812400B0F813 /* UGBetResultView.m */,
+				031E170B23BE812400B0F813 /* UGBetDetailTableViewCell.h */,
+				031E170F23BE812400B0F813 /* UGBetDetailTableViewCell.m */,
 				031E171123BE812400B0F813 /* UGBetDetailTableViewCell.xib */,
 			);
 			path = "下注明细View";
@@ -5291,15 +5316,16 @@
 		031E171223BE812400B0F813 /* 彩种Cell */ = {
 			isa = PBXGroup;
 			children = (
-				031E171323BE812400B0F813 /* UGLotteryCollectionViewCell.h */,
-				031E171A23BE812400B0F813 /* UGLotteryCollectionViewCell.m */,
-				031E171B23BE812400B0F813 /* UGLotteryCollectionViewCell.xib */,
+
 				031E171923BE812400B0F813 /* UGhomeRecommendCollectionViewCell.h */,
 				031E171523BE812400B0F813 /* UGhomeRecommendCollectionViewCell.m */,
 				031E171423BE812400B0F813 /* UGhomeRecommendCollectionViewCell.xib */,
 				031E171823BE812400B0F813 /* UGLotteryGameCollectionViewCell.h */,
 				031E171623BE812400B0F813 /* UGLotteryGameCollectionViewCell.m */,
 				031E171723BE812400B0F813 /* UGLotteryGameCollectionViewCell.xib */,
+				031E171323BE812400B0F813 /* UGLotteryCollectionViewCell.h */,
+				031E171A23BE812400B0F813 /* UGLotteryCollectionViewCell.m */,
+				031E171B23BE812400B0F813 /* UGLotteryCollectionViewCell.xib */,
 			);
 			path = "彩种Cell";
 			sourceTree = "<group>";
@@ -5318,11 +5344,11 @@
 			isa = PBXGroup;
 			children = (
 				031E171E23BE812400B0F813 /* 存款 */,
-				031E172523BE812400B0F813 /* UGFundsViewController.h */,
 				031E172623BE812400B0F813 /* 存取款记录 */,
-				031E172923BE812400B0F813 /* UGFundsViewController.m */,
 				031E172A23BE812400B0F813 /* 取款 */,
 				031E172E23BE812400B0F813 /* 资金明细 */,
+				031E172523BE812400B0F813 /* UGFundsViewController.h */,
+				031E172923BE812400B0F813 /* UGFundsViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -5330,11 +5356,11 @@
 		031E171E23BE812400B0F813 /* 存款 */ = {
 			isa = PBXGroup;
 			children = (
+				031E172323BE812400B0F813 /* UGDepositDetailsNoLineViewController.h */,
 				031E171F23BE812400B0F813 /* UGDepositDetailsNoLineViewController.m */,
 				031E172023BE812400B0F813 /* UGDepositDetailsViewController.h */,
-				031E172123BE812400B0F813 /* UGRechargeTypeTableViewController.h */,
 				031E172223BE812400B0F813 /* UGDepositDetailsViewController.m */,
-				031E172323BE812400B0F813 /* UGDepositDetailsNoLineViewController.h */,
+				031E172123BE812400B0F813 /* UGRechargeTypeTableViewController.h */,
 				031E172423BE812400B0F813 /* UGRechargeTypeTableViewController.m */,
 			);
 			path = "存款";
@@ -5352,9 +5378,9 @@
 		031E172A23BE812400B0F813 /* 取款 */ = {
 			isa = PBXGroup;
 			children = (
+				031E172D23BE812400B0F813 /* UGWithdrawalViewController.h */,
 				031E172B23BE812400B0F813 /* UGWithdrawalViewController.m */,
 				031E172C23BE812400B0F813 /* UGWithdrawalViewController.storyboard */,
-				031E172D23BE812400B0F813 /* UGWithdrawalViewController.h */,
 			);
 			path = "取款";
 			sourceTree = "<group>";
@@ -5362,8 +5388,8 @@
 		031E172E23BE812400B0F813 /* 资金明细 */ = {
 			isa = PBXGroup;
 			children = (
-				031E172F23BE812400B0F813 /* UGFundDetailsTableViewController.m */,
 				031E173023BE812400B0F813 /* UGFundDetailsTableViewController.h */,
+				031E172F23BE812400B0F813 /* UGFundDetailsTableViewController.m */,
 			);
 			path = "资金明细";
 			sourceTree = "<group>";
@@ -5372,12 +5398,12 @@
 			isa = PBXGroup;
 			children = (
 				031E173223BE812400B0F813 /* UGdepositModel.h */,
-				031E173323BE812400B0F813 /* UGRechargeLogsModel.h */,
-				031E173423BE812400B0F813 /* UGWithdrawLogsModel.h */,
-				031E173523BE812400B0F813 /* UGFundLogsModel.h */,
-				031E173623BE812400B0F813 /* UGRechargeLogsModel.m */,
 				031E173723BE812400B0F813 /* UGdepositModel.m */,
+				031E173323BE812400B0F813 /* UGRechargeLogsModel.h */,
+				031E173623BE812400B0F813 /* UGRechargeLogsModel.m */,
+				031E173423BE812400B0F813 /* UGWithdrawLogsModel.h */,
 				031E173823BE812400B0F813 /* UGWithdrawLogsModel.m */,
+				031E173523BE812400B0F813 /* UGFundLogsModel.h */,
 				031E173923BE812400B0F813 /* UGFundLogsModel.m */,
 			);
 			path = Model;
@@ -5387,10 +5413,10 @@
 			isa = PBXGroup;
 			children = (
 				031E173B23BE812400B0F813 /* 存款 */,
-				031E175423BE812400B0F813 /* UGFundDetailsCell.h */,
 				031E175523BE812400B0F813 /* 存取款记录 */,
-				031E175F23BE812400B0F813 /* UGFundDetailsCell.xib */,
+				031E175423BE812400B0F813 /* UGFundDetailsCell.h */,
 				031E176023BE812400B0F813 /* UGFundDetailsCell.m */,
+				031E175F23BE812400B0F813 /* UGFundDetailsCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -5398,30 +5424,30 @@
 		031E173B23BE812400B0F813 /* 存款 */ = {
 			isa = PBXGroup;
 			children = (
-				031E173C23BE812400B0F813 /* UGDepositDetailsCollectionViewCell.xib */,
-				031E173D23BE812400B0F813 /* UGOneTitleTableViewCell.h */,
-				031E173E23BE812400B0F813 /* UGDepositDetailsTableViewCell.xib */,
-				031E173F23BE812400B0F813 /* UGDepositDetailsTableViewCell.m */,
-				031E174023BE812400B0F813 /* UGFunds2microcodeView.m */,
-				031E174123BE812400B0F813 /* UGFundsBankView.m */,
-				031E174223BE812400B0F813 /* UGRechargeTypeCell.h */,
-				031E174323BE812400B0F813 /* UGFundsTransfer2View.h */,
-				031E174423BE812400B0F813 /* UGFundsTransfer2View.xib */,
-				031E174523BE812400B0F813 /* UGFundsTransferView.h */,
-				031E174623BE812400B0F813 /* UGDepositDetailsCollectionViewCell.m */,
-				031E174723BE812400B0F813 /* UGRechargeTypeCell.xib */,
-				031E174823BE812400B0F813 /* UGOneTitleTableViewCell.m */,
-				031E174923BE812400B0F813 /* UGFundsBankView.xib */,
-				031E174A23BE812400B0F813 /* UGRechargeTypeCell.m */,
-				031E174B23BE812400B0F813 /* UGFundsTransferView.xib */,
 				031E174C23BE812400B0F813 /* UGFundsBankView.h */,
-				031E174D23BE812400B0F813 /* UGFunds2microcodeView.h */,
-				031E174E23BE812400B0F813 /* UGDepositDetailsTableViewCell.h */,
-				031E174F23BE812400B0F813 /* UGOneTitleTableViewCell.xib */,
-				031E175023BE812400B0F813 /* UGFundsTransfer2View.m */,
-				031E175123BE812400B0F813 /* UGFunds2microcodeView.xib */,
-				031E175223BE812400B0F813 /* UGDepositDetailsCollectionViewCell.h */,
+				031E174123BE812400B0F813 /* UGFundsBankView.m */,
+				031E174923BE812400B0F813 /* UGFundsBankView.xib */,
+				031E174523BE812400B0F813 /* UGFundsTransferView.h */,
 				031E175323BE812400B0F813 /* UGFundsTransferView.m */,
+				031E174B23BE812400B0F813 /* UGFundsTransferView.xib */,
+				031E174323BE812400B0F813 /* UGFundsTransfer2View.h */,
+				031E175023BE812400B0F813 /* UGFundsTransfer2View.m */,
+				031E174423BE812400B0F813 /* UGFundsTransfer2View.xib */,
+				031E174D23BE812400B0F813 /* UGFunds2microcodeView.h */,
+				031E174023BE812400B0F813 /* UGFunds2microcodeView.m */,
+				031E175123BE812400B0F813 /* UGFunds2microcodeView.xib */,
+				031E173D23BE812400B0F813 /* UGOneTitleTableViewCell.h */,
+				031E174823BE812400B0F813 /* UGOneTitleTableViewCell.m */,
+				031E174F23BE812400B0F813 /* UGOneTitleTableViewCell.xib */,
+				031E175223BE812400B0F813 /* UGDepositDetailsCollectionViewCell.h */,
+				031E174623BE812400B0F813 /* UGDepositDetailsCollectionViewCell.m */,
+				031E173C23BE812400B0F813 /* UGDepositDetailsCollectionViewCell.xib */,
+				031E174223BE812400B0F813 /* UGRechargeTypeCell.h */,
+				031E174A23BE812400B0F813 /* UGRechargeTypeCell.m */,
+				031E174723BE812400B0F813 /* UGRechargeTypeCell.xib */,
+				031E174E23BE812400B0F813 /* UGDepositDetailsTableViewCell.h */,
+				031E173F23BE812400B0F813 /* UGDepositDetailsTableViewCell.m */,
+				031E173E23BE812400B0F813 /* UGDepositDetailsTableViewCell.xib */,
 			);
 			path = "存款";
 			sourceTree = "<group>";
@@ -5429,15 +5455,15 @@
 		031E175523BE812400B0F813 /* 存取款记录 */ = {
 			isa = PBXGroup;
 			children = (
-				031E175623BE812400B0F813 /* UGRechargeRecordCell.m */,
-				031E175723BE812400B0F813 /* UGFundRecordDetailView.xib */,
-				031E175823BE812400B0F813 /* UGWithdrawRecordDetailView.xib */,
-				031E175923BE812400B0F813 /* UGWithdrawRecordDetailView.m */,
-				031E175A23BE812400B0F813 /* UGFundRecordDetailView.h */,
 				031E175B23BE812400B0F813 /* UGRechargeRecordCell.h */,
+				031E175623BE812400B0F813 /* UGRechargeRecordCell.m */,
 				031E175C23BE812400B0F813 /* UGRechargeRecordCell.xib */,
+				031E175A23BE812400B0F813 /* UGFundRecordDetailView.h */,
 				031E175D23BE812400B0F813 /* UGFundRecordDetailView.m */,
+				031E175723BE812400B0F813 /* UGFundRecordDetailView.xib */,
 				031E175E23BE812400B0F813 /* UGWithdrawRecordDetailView.h */,
+				031E175923BE812400B0F813 /* UGWithdrawRecordDetailView.m */,
+				031E175823BE812400B0F813 /* UGWithdrawRecordDetailView.xib */,
 			);
 			path = "存取款记录";
 			sourceTree = "<group>";
@@ -5453,14 +5479,14 @@
 		031E176223BE812500B0F813 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+
+				031E176423BE812500B0F813 /* 客服AlertView.xib */,
 				031E176323BE812500B0F813 /* UGLaunchPageVC.h */,
 				031E176723BE812500B0F813 /* UGLaunchPageVC.m */,
-				031E176423BE812500B0F813 /* 客服AlertView.xib */,
-				031E176623BE812500B0F813 /* UGTabbarController.h */,
-				031E176823BE812500B0F813 /* UGTabbarController.m */,
 				031E176923BE812500B0F813 /* UGNavigationController.h */,
 				031E176523BE812500B0F813 /* UGNavigationController.m */,
-				03A5D38023BFB8040055A998 /* NavigationControllerProtocol.h */,
+				031E176623BE812500B0F813 /* UGTabbarController.h */,
+				031E176823BE812500B0F813 /* UGTabbarController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -5468,18 +5494,19 @@
 		031E176A23BE812500B0F813 /* baseObject */ = {
 			isa = PBXGroup;
 			children = (
-				031E176B23BE812500B0F813 /* UGViewController.h */,
-				031E177423BE812500B0F813 /* UGViewController.m */,
-				031E177323BE812500B0F813 /* UGTableViewCell.h */,
-				031E176C23BE812500B0F813 /* UGTableViewCell.m */,
-				031E177223BE812500B0F813 /* UGCollectionViewController.h */,
-				031E176D23BE812500B0F813 /* UGCollectionViewController.m */,
+
 				031E176F23BE812500B0F813 /* UGView.h */,
 				031E177523BE812500B0F813 /* UGView.m */,
+				031E177323BE812500B0F813 /* UGTableViewCell.h */,
+				031E176C23BE812500B0F813 /* UGTableViewCell.m */,
+				031E176B23BE812500B0F813 /* UGViewController.h */,
+				031E177423BE812500B0F813 /* UGViewController.m */,
 				031E177623BE812500B0F813 /* UGCollectionViewCell.h */,
 				031E177023BE812500B0F813 /* UGCollectionViewCell.m */,
 				031E177123BE812500B0F813 /* UGTableViewController.h */,
 				031E176E23BE812500B0F813 /* UGTableViewController.m */,
+				031E177223BE812500B0F813 /* UGCollectionViewController.h */,
+				031E176D23BE812500B0F813 /* UGCollectionViewController.m */,
 			);
 			path = baseObject;
 			sourceTree = "<group>";
@@ -5709,9 +5736,9 @@
 			isa = PBXGroup;
 			children = (
 				031E17DF23BE812500B0F813 /* UGPromoteDetailController.h */,
-				031E17E023BE812500B0F813 /* UGPromotionsController.m */,
-				031E17E123BE812500B0F813 /* UGPromotionsController.h */,
 				031E17E223BE812500B0F813 /* UGPromoteDetailController.m */,
+				031E17E123BE812500B0F813 /* UGPromotionsController.h */,
+				031E17E023BE812500B0F813 /* UGPromotionsController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -5719,8 +5746,8 @@
 		031E17E323BE812500B0F813 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				031E17E423BE812500B0F813 /* UGPromoteModel.m */,
 				031E17E523BE812500B0F813 /* UGPromoteModel.h */,
+				031E17E423BE812500B0F813 /* UGPromoteModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5750,17 +5777,17 @@
 		031E17E823BE812600B0F813 /* 任务大厅 */ = {
 			isa = PBXGroup;
 			children = (
-				031E17E923BE812600B0F813 /* UGIntegralConvertController.h */,
-				031E17EA23BE812600B0F813 /* UGIntegralConvertController.storyboard */,
-				031E17EB23BE812600B0F813 /* UGMissionCenterViewController.storyboard */,
-				031E17EC23BE812600B0F813 /* UGMissionCenterViewController.m */,
-				031E17ED23BE812600B0F813 /* UGMissionListController.m */,
-				031E17EE23BE812600B0F813 /* UGMissionLevelController.m */,
-				031E17EF23BE812600B0F813 /* UGIntegralConvertRecordController.h */,
-				031E17F023BE812600B0F813 /* UGMissionCenterViewController.h */,
-				031E17F123BE812600B0F813 /* UGIntegralConvertController.m */,
 				031E17F223BE812600B0F813 /* UGMissionLevelController.h */,
+				031E17EE23BE812600B0F813 /* UGMissionLevelController.m */,
 				031E17F323BE812600B0F813 /* UGMissionListController.h */,
+				031E17ED23BE812600B0F813 /* UGMissionListController.m */,
+				031E17E923BE812600B0F813 /* UGIntegralConvertController.h */,
+				031E17F123BE812600B0F813 /* UGIntegralConvertController.m */,
+				031E17EA23BE812600B0F813 /* UGIntegralConvertController.storyboard */,
+				031E17F023BE812600B0F813 /* UGMissionCenterViewController.h */,
+				031E17EC23BE812600B0F813 /* UGMissionCenterViewController.m */,
+				031E17EB23BE812600B0F813 /* UGMissionCenterViewController.storyboard */,
+				031E17EF23BE812600B0F813 /* UGIntegralConvertRecordController.h */,
 				031E17F423BE812600B0F813 /* UGIntegralConvertRecordController.m */,
 				031E17F523BE812600B0F813 /* UGIntegralConvertRecordController.storyboard */,
 			);
@@ -5779,15 +5806,15 @@
 		031E17F923BE812600B0F813 /* 推荐收益 */ = {
 			isa = PBXGroup;
 			children = (
-				031E17FA23BE812600B0F813 /* UGPromotionIncomeController.h */,
-				031E17FB23BE812600B0F813 /* UGPromotionInfoController.storyboard */,
-				031E17FC23BE812600B0F813 /* UGPromotionInfoController.m */,
-				031E17FD23BE812600B0F813 /* UGAgentViewController.xib */,
-				031E17FE23BE812600B0F813 /* UGAgentViewController.m */,
-				031E17FF23BE812600B0F813 /* UGPromotionTableController.h */,
 				031E180023BE812600B0F813 /* UGAgentViewController.h */,
+				031E17FE23BE812600B0F813 /* UGAgentViewController.m */,
+				031E17FD23BE812600B0F813 /* UGAgentViewController.xib */,
 				031E180123BE812600B0F813 /* UGPromotionInfoController.h */,
+				031E17FC23BE812600B0F813 /* UGPromotionInfoController.m */,
+				031E17FB23BE812600B0F813 /* UGPromotionInfoController.storyboard */,
+				031E17FA23BE812600B0F813 /* UGPromotionIncomeController.h */,
 				031E180223BE812600B0F813 /* UGPromotionIncomeController.m */,
+				031E17FF23BE812600B0F813 /* UGPromotionTableController.h */,
 				031E180323BE812600B0F813 /* UGPromotionTableController.m */,
 			);
 			path = "推荐收益";
@@ -5796,19 +5823,19 @@
 		031E180423BE812600B0F813 /* base */ = {
 			isa = PBXGroup;
 			children = (
-				031E180523BE812600B0F813 /* 我的资料 */,
-				031E180923BE812600B0F813 /* 谷歌认证 */,
-				031E181323BE812600B0F813 /* UGMineSkinViewController.xib */,
 				031E181423BE812600B0F813 /* 安全中心 */,
 				031E181E23BE812600B0F813 /* 站内信 */,
-				031E182123BE812600B0F813 /* UGMineSkinViewController.h */,
 				031E182223BE812600B0F813 /* 登录注册 */,
 				031E182723BE812600B0F813 /* 银行卡管理 */,
 				031E183223BE812600B0F813 /* 活动彩金 */,
 				031E183923BE812600B0F813 /* 建议反馈 */,
 				031E184323BE812600B0F813 /* 注单列表 */,
 				031E184F23BE812600B0F813 /* 额度转换 */,
+				031E180523BE812600B0F813 /* 我的资料 */,
+				031E180923BE812600B0F813 /* 谷歌认证 */,
+				031E182123BE812600B0F813 /* UGMineSkinViewController.h */,
 				031E185423BE812600B0F813 /* UGMineSkinViewController.m */,
+				031E181323BE812600B0F813 /* UGMineSkinViewController.xib */,
 				031E185523BE812600B0F813 /* Mine.storyboard */,
 			);
 			path = base;
@@ -5818,8 +5845,8 @@
 			isa = PBXGroup;
 			children = (
 				031E180623BE812600B0F813 /* UGUserInfoViewController.h */,
-				031E180723BE812600B0F813 /* UGUserInfoViewController.storyboard */,
 				031E180823BE812600B0F813 /* UGUserInfoViewController.m */,
+				031E180723BE812600B0F813 /* UGUserInfoViewController.storyboard */,
 			);
 			path = "我的资料";
 			sourceTree = "<group>";
@@ -5827,15 +5854,15 @@
 		031E180923BE812600B0F813 /* 谷歌认证 */ = {
 			isa = PBXGroup;
 			children = (
-				031E180A23BE812600B0F813 /* UGGoogleAuthenticationSecondViewController.m */,
 				031E180B23BE812600B0F813 /* UGGoogleAuthenticationFirstViewController.h */,
-				031E180C23BE812600B0F813 /* UGGoogleAuthenticationThirdViewController.xib */,
-				031E180D23BE812600B0F813 /* UGGoogleAuthenticationThirdViewController.h */,
-				031E180E23BE812600B0F813 /* UGGoogleAuthenticationSecondViewController.h */,
-				031E180F23BE812600B0F813 /* UGGoogleAuthenticationFirstViewController.xib */,
 				031E181023BE812600B0F813 /* UGGoogleAuthenticationFirstViewController.m */,
+				031E180F23BE812600B0F813 /* UGGoogleAuthenticationFirstViewController.xib */,
+				031E180E23BE812600B0F813 /* UGGoogleAuthenticationSecondViewController.h */,
+				031E180A23BE812600B0F813 /* UGGoogleAuthenticationSecondViewController.m */,
 				031E181123BE812600B0F813 /* UGGoogleAuthenticationSecondViewController.xib */,
+				031E180D23BE812600B0F813 /* UGGoogleAuthenticationThirdViewController.h */,
 				031E181223BE812600B0F813 /* UGGoogleAuthenticationThirdViewController.m */,
+				031E180C23BE812600B0F813 /* UGGoogleAuthenticationThirdViewController.xib */,
 			);
 			path = "谷歌认证";
 			sourceTree = "<group>";
@@ -5843,15 +5870,15 @@
 		031E181423BE812600B0F813 /* 安全中心 */ = {
 			isa = PBXGroup;
 			children = (
-				031E181523BE812600B0F813 /* UGModifyPayPwdController.h */,
 				031E181623BE812600B0F813 /* UGSafety.storyboard */,
-				031E181723BE812600B0F813 /* UGModifyLoginPlaceController.h */,
-				031E181823BE812600B0F813 /* UGSecurityCenterViewController.m */,
-				031E181923BE812600B0F813 /* UGModifyLoginPwdController.h */,
+				031E181523BE812600B0F813 /* UGModifyPayPwdController.h */,
 				031E181A23BE812600B0F813 /* UGModifyPayPwdController.m */,
+				031E181723BE812600B0F813 /* UGModifyLoginPlaceController.h */,
 				031E181B23BE812600B0F813 /* UGModifyLoginPlaceController.m */,
+				031E181923BE812600B0F813 /* UGModifyLoginPwdController.h */,
 				031E181C23BE812600B0F813 /* UGModifyLoginPwdController.m */,
 				031E181D23BE812600B0F813 /* UGSecurityCenterViewController.h */,
+				031E181823BE812600B0F813 /* UGSecurityCenterViewController.m */,
 			);
 			path = "安全中心";
 			sourceTree = "<group>";
@@ -5869,9 +5896,9 @@
 			isa = PBXGroup;
 			children = (
 				031E182323BE812600B0F813 /* UGLoginViewController.h */,
-				031E182423BE812600B0F813 /* UGRegisterViewController.m */,
 				031E182523BE812600B0F813 /* UGLoginViewController.m */,
 				031E182623BE812600B0F813 /* UGRegisterViewController.h */,
+				031E182423BE812600B0F813 /* UGRegisterViewController.m */,
 			);
 			path = "登录注册";
 			sourceTree = "<group>";
@@ -5880,14 +5907,14 @@
 			isa = PBXGroup;
 			children = (
 				031E182823BE812600B0F813 /* UGBankCardInfoController.h */,
-				031E182923BE812600B0F813 /* UGBindCardViewController.m */,
-				031E182A23BE812600B0F813 /* UGgoBindViewController.h */,
-				031E182B23BE812600B0F813 /* UGSetupPayPwdController.h */,
-				031E182C23BE812600B0F813 /* UGgoBindViewController.xib */,
 				031E182D23BE812600B0F813 /* UGBankCardInfoController.m */,
+				031E182B23BE812600B0F813 /* UGSetupPayPwdController.h */,
 				031E182E23BE812600B0F813 /* UGSetupPayPwdController.m */,
+				031E182A23BE812600B0F813 /* UGgoBindViewController.h */,
 				031E182F23BE812600B0F813 /* UGgoBindViewController.m */,
+				031E182C23BE812600B0F813 /* UGgoBindViewController.xib */,
 				031E183023BE812600B0F813 /* UGBindCardViewController.h */,
+				031E182923BE812600B0F813 /* UGBindCardViewController.m */,
 				031E183123BE812600B0F813 /* UGBindCardViewController.storyboard */,
 			);
 			path = "银行卡管理";
@@ -5896,12 +5923,12 @@
 		031E183223BE812600B0F813 /* 活动彩金 */ = {
 			isa = PBXGroup;
 			children = (
-				031E183323BE812600B0F813 /* UGMosaicGoldViewController.h */,
-				031E183423BE812600B0F813 /* UGActivityGoldTableViewController.m */,
-				031E183523BE812600B0F813 /* UGMosaicGoldController.m */,
 				031E183623BE812600B0F813 /* UGActivityGoldTableViewController.h */,
-				031E183723BE812600B0F813 /* UGMosaicGoldViewController.m */,
+				031E183423BE812600B0F813 /* UGActivityGoldTableViewController.m */,
 				031E183823BE812600B0F813 /* UGMosaicGoldController.h */,
+				031E183523BE812600B0F813 /* UGMosaicGoldController.m */,
+				031E183323BE812600B0F813 /* UGMosaicGoldViewController.h */,
+				031E183723BE812600B0F813 /* UGMosaicGoldViewController.m */,
 			);
 			path = "活动彩金";
 			sourceTree = "<group>";
@@ -5910,14 +5937,14 @@
 			isa = PBXGroup;
 			children = (
 				031E183A23BE812600B0F813 /* UGFeedBackRecordController.h */,
-				031E183B23BE812600B0F813 /* UGWriteMessageViewController.h */,
-				031E183C23BE812600B0F813 /* UGFeedbackDetailController.h */,
-				031E183D23BE812600B0F813 /* UGFeedBackController.h */,
 				031E183E23BE812600B0F813 /* UGFeedBackRecordController.m */,
-				031E183F23BE812600B0F813 /* UGFeedbackDetailController.m */,
+				031E183B23BE812600B0F813 /* UGWriteMessageViewController.h */,
 				031E184023BE812600B0F813 /* UGWriteMessageViewController.m */,
-				031E184123BE812600B0F813 /* UGFeedBackController.storyboard */,
+				031E183C23BE812600B0F813 /* UGFeedbackDetailController.h */,
+				031E183F23BE812600B0F813 /* UGFeedbackDetailController.m */,
+				031E183D23BE812600B0F813 /* UGFeedBackController.h */,
 				031E184223BE812600B0F813 /* UGFeedBackController.m */,
+				031E184123BE812600B0F813 /* UGFeedBackController.storyboard */,
 			);
 			path = "建议反馈";
 			sourceTree = "<group>";
@@ -5925,17 +5952,18 @@
 		031E184323BE812600B0F813 /* 注单列表 */ = {
 			isa = PBXGroup;
 			children = (
-				031E184423BE812600B0F813 /* UGBetRecordDetailViewController.storyboard */,
-				031E184523BE812600B0F813 /* UGRealBetRecordViewController.m */,
-				031E184623BE812600B0F813 /* UGBetRecordTableViewController.h */,
-				031E184723BE812600B0F813 /* UGBetRecordViewController.m */,
-				031E184823BE812600B0F813 /* UGBetRecordDetailViewController.m */,
-				031E184923BE812600B0F813 /* UGRealBetRecordViewController.storyboard */,
-				031E184A23BE812600B0F813 /* UGRealBetRecordViewController.h */,
+				CFE074D923C0E7840083EA7E /* 注单明细 */,
 				031E184B23BE812600B0F813 /* UGBetRecordViewController.h */,
+				031E184723BE812600B0F813 /* UGBetRecordViewController.m */,
+				031E184A23BE812600B0F813 /* UGRealBetRecordViewController.h */,
+				031E184523BE812600B0F813 /* UGRealBetRecordViewController.m */,
+				031E184923BE812600B0F813 /* UGRealBetRecordViewController.storyboard */,
+				031E184E23BE812600B0F813 /* UGBetRecordDetailViewController.h */,
+				031E184823BE812600B0F813 /* UGBetRecordDetailViewController.m */,
+				031E184423BE812600B0F813 /* UGBetRecordDetailViewController.storyboard */,
+				031E184623BE812600B0F813 /* UGBetRecordTableViewController.h */,
 				031E184C23BE812600B0F813 /* UGBetRecordTableViewController.m */,
 				031E184D23BE812600B0F813 /* UGBetRecordTableViewController.storyboard */,
-				031E184E23BE812600B0F813 /* UGBetRecordDetailViewController.h */,
 			);
 			path = "注单列表";
 			sourceTree = "<group>";
@@ -5944,9 +5972,9 @@
 			isa = PBXGroup;
 			children = (
 				031E185023BE812600B0F813 /* UGBalanceConversionRecordController.h */,
-				031E185123BE812600B0F813 /* UGBalanceConversionController.m */,
-				031E185223BE812600B0F813 /* UGBalanceConversionController.h */,
 				031E185323BE812600B0F813 /* UGBalanceConversionRecordController.m */,
+				031E185223BE812600B0F813 /* UGBalanceConversionController.h */,
+				031E185123BE812600B0F813 /* UGBalanceConversionController.m */,
 			);
 			path = "额度转换";
 			sourceTree = "<group>";
@@ -5954,16 +5982,16 @@
 		031E185623BE812600B0F813 /* 利息宝 */ = {
 			isa = PBXGroup;
 			children = (
+				031E185D23BE812600B0F813 /* UGYubaoViewController.h */,
 				031E185723BE812600B0F813 /* UGYubaoViewController.m */,
+				031E185C23BE812600B0F813 /* UGYubaoViewController.storyboard */,
+				031E185F23BE812600B0F813 /* UGYubaoConversionViewController.h */,
 				031E185823BE812600B0F813 /* UGYubaoConversionViewController.m */,
+				031E185E23BE812600B0F813 /* UGYubaoConversionRecordController.h */,
 				031E185923BE812600B0F813 /* UGYubaoConversionRecordController.m */,
 				031E185A23BE812600B0F813 /* UGYubaoConversionCenterController.h */,
-				031E185B23BE812600B0F813 /* UGYubaoInComeController.h */,
-				031E185C23BE812600B0F813 /* UGYubaoViewController.storyboard */,
-				031E185D23BE812600B0F813 /* UGYubaoViewController.h */,
-				031E185E23BE812600B0F813 /* UGYubaoConversionRecordController.h */,
-				031E185F23BE812600B0F813 /* UGYubaoConversionViewController.h */,
 				031E186023BE812600B0F813 /* UGYubaoConversionCenterController.m */,
+				031E185B23BE812600B0F813 /* UGYubaoInComeController.h */,
 				031E186123BE812600B0F813 /* UGYubaoInComeController.m */,
 			);
 			path = "利息宝";
@@ -6055,8 +6083,6 @@
 		031E18AF23BE812600B0F813 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				031E18B023BE812600B0F813 /* UGConvertCollectionViewCell.xib */,
-				031E18B123BE812600B0F813 /* UGConvertCollectionViewCell.h */,
 				031E18B223BE812600B0F813 /* 任务大厅 */,
 				031E18C223BE812600B0F813 /* 签到 */,
 				031E18D523BE812600B0F813 /* 安全中心 */,
@@ -6065,11 +6091,13 @@
 				031E18EC23BE812600B0F813 /* 推荐收益 */,
 				031E18FF23BE812600B0F813 /* 我的页 */,
 				031E190F23BE812600B0F813 /* 建议反馈 */,
-				031E191423BE812600B0F813 /* UGConvertCollectionViewCell.m */,
 				031E191523BE812600B0F813 /* 修改头像 */,
 				031E191C23BE812600B0F813 /* 注单列表 */,
 				031E192D23BE812600B0F813 /* 额度转换 */,
 				031E193423BE812600B0F813 /* 利息宝 */,
+				031E18B123BE812600B0F813 /* UGConvertCollectionViewCell.h */,
+				031E191423BE812600B0F813 /* UGConvertCollectionViewCell.m */,
+				031E18B023BE812600B0F813 /* UGConvertCollectionViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6077,21 +6105,21 @@
 		031E18B223BE812600B0F813 /* 任务大厅 */ = {
 			isa = PBXGroup;
 			children = (
-				031E18B323BE812600B0F813 /* UGMissionLevelTableViewCell.h */,
-				031E18B423BE812600B0F813 /* UGMissionTableViewCell.xib */,
 				031E18B523BE812600B0F813 /* UGMissionTitleCell.h */,
-				031E18B623BE812600B0F813 /* UGMissionTitleCollectionView.m */,
-				031E18B723BE812600B0F813 /* UGMissionTableViewCell.h */,
-				031E18B823BE812600B0F813 /* UGIntegarlConvertRecordCell.m */,
-				031E18B923BE812600B0F813 /* UGMissionLevelTableViewCell.xib */,
-				031E18BA23BE812600B0F813 /* UGMissionCollectionView.h */,
 				031E18BB23BE812600B0F813 /* UGMissionTitleCell.m */,
-				031E18BC23BE812600B0F813 /* UGMissionLevelTableViewCell.m */,
-				031E18BD23BE812600B0F813 /* UGMissionTitleCollectionView.h */,
-				031E18BE23BE812600B0F813 /* UGMissionCollectionView.m */,
-				031E18BF23BE812600B0F813 /* UGIntegarlConvertRecordCell.h */,
-				031E18C023BE812600B0F813 /* UGMissionTableViewCell.m */,
 				031E18C123BE812600B0F813 /* UGMissionTitleCell.xib */,
+				031E18B723BE812600B0F813 /* UGMissionTableViewCell.h */,
+				031E18C023BE812600B0F813 /* UGMissionTableViewCell.m */,
+				031E18B423BE812600B0F813 /* UGMissionTableViewCell.xib */,
+				031E18BA23BE812600B0F813 /* UGMissionCollectionView.h */,
+				031E18BE23BE812600B0F813 /* UGMissionCollectionView.m */,
+				031E18B323BE812600B0F813 /* UGMissionLevelTableViewCell.h */,
+				031E18BC23BE812600B0F813 /* UGMissionLevelTableViewCell.m */,
+				031E18B923BE812600B0F813 /* UGMissionLevelTableViewCell.xib */,
+				031E18BD23BE812600B0F813 /* UGMissionTitleCollectionView.h */,
+				031E18B623BE812600B0F813 /* UGMissionTitleCollectionView.m */,
+				031E18BF23BE812600B0F813 /* UGIntegarlConvertRecordCell.h */,
+				031E18B823BE812600B0F813 /* UGIntegarlConvertRecordCell.m */,
 			);
 			path = "任务大厅";
 			sourceTree = "<group>";
@@ -6099,24 +6127,24 @@
 		031E18C223BE812600B0F813 /* 签到 */ = {
 			isa = PBXGroup;
 			children = (
-				031E18C323BE812600B0F813 /* UGSingInHistoryTableViewCell.xib */,
-				031E18C423BE812600B0F813 /* UGSignInHeaderView.m */,
-				031E18C523BE812600B0F813 /* UGSignInScrFootView.xib */,
-				031E18C623BE812600B0F813 /* UGSignInCollectionViewCell.h */,
-				031E18C723BE812600B0F813 /* UGSingInHistoryTableViewCell.m */,
-				031E18C823BE812600B0F813 /* UGSignInScrFootView.h */,
-				031E18C923BE812600B0F813 /* UGSignInScrHeaderView.m */,
-				031E18CA23BE812600B0F813 /* UGSignInHistoryView.m */,
-				031E18CB23BE812600B0F813 /* UGSignInHeaderView.xib */,
-				031E18CC23BE812600B0F813 /* UGSignInHistoryView.xib */,
-				031E18CD23BE812600B0F813 /* UGSignInCollectionViewCell.xib */,
-				031E18CE23BE812600B0F813 /* UGSignInCollectionViewCell.m */,
 				031E18CF23BE812600B0F813 /* UGSignInHeaderView.h */,
-				031E18D023BE812600B0F813 /* UGSignInScrFootView.m */,
-				031E18D123BE812600B0F813 /* UGSingInHistoryTableViewCell.h */,
-				031E18D223BE812600B0F813 /* UGSignInScrHeaderView.xib */,
+				031E18C423BE812600B0F813 /* UGSignInHeaderView.m */,
+				031E18CB23BE812600B0F813 /* UGSignInHeaderView.xib */,
 				031E18D323BE812600B0F813 /* UGSignInHistoryView.h */,
+				031E18CA23BE812600B0F813 /* UGSignInHistoryView.m */,
+				031E18CC23BE812600B0F813 /* UGSignInHistoryView.xib */,
 				031E18D423BE812600B0F813 /* UGSignInScrHeaderView.h */,
+				031E18C923BE812600B0F813 /* UGSignInScrHeaderView.m */,
+				031E18D223BE812600B0F813 /* UGSignInScrHeaderView.xib */,
+				031E18C823BE812600B0F813 /* UGSignInScrFootView.h */,
+				031E18D023BE812600B0F813 /* UGSignInScrFootView.m */,
+				031E18C523BE812600B0F813 /* UGSignInScrFootView.xib */,
+				031E18D123BE812600B0F813 /* UGSingInHistoryTableViewCell.h */,
+				031E18C723BE812600B0F813 /* UGSingInHistoryTableViewCell.m */,
+				031E18C323BE812600B0F813 /* UGSingInHistoryTableViewCell.xib */,
+				031E18C623BE812600B0F813 /* UGSignInCollectionViewCell.h */,
+				031E18CE23BE812600B0F813 /* UGSignInCollectionViewCell.m */,
+				031E18CD23BE812600B0F813 /* UGSignInCollectionViewCell.xib */,
 			);
 			path = "签到";
 			sourceTree = "<group>";
@@ -6125,8 +6153,8 @@
 			isa = PBXGroup;
 			children = (
 				031E18D623BE812600B0F813 /* UGAddressCollectionViewCell.h */,
-				031E18D723BE812600B0F813 /* UGAddressCollectionViewCell.xib */,
 				031E18D823BE812600B0F813 /* UGAddressCollectionViewCell.m */,
+				031E18D723BE812600B0F813 /* UGAddressCollectionViewCell.xib */,
 			);
 			path = "安全中心";
 			sourceTree = "<group>";
@@ -6134,8 +6162,8 @@
 		031E18D923BE812600B0F813 /* 站内信 */ = {
 			isa = PBXGroup;
 			children = (
-				031E18DA23BE812600B0F813 /* UGMessageTableViewCell.m */,
 				031E18DB23BE812600B0F813 /* UGMessageTableViewCell.h */,
+				031E18DA23BE812600B0F813 /* UGMessageTableViewCell.m */,
 				031E18DC23BE812600B0F813 /* UGMessageTableViewCell.xib */,
 			);
 			path = "站内信";
@@ -6144,20 +6172,20 @@
 		031E18DD23BE812600B0F813 /* 活动彩金 */ = {
 			isa = PBXGroup;
 			children = (
-				031E18DE23BE812600B0F813 /* UGActivityGoldTableViewCell.xib */,
-				031E18DF23BE812600B0F813 /* UGMosaicGoldFinishView.h */,
-				031E18E023BE812600B0F813 /* UGActivityGoldTableViewCell.h */,
-				031E18E123BE812600B0F813 /* UGActivityGoldView.xib */,
-				031E18E223BE812600B0F813 /* UGActivityGoldView.h */,
 				031E18E323BE812600B0F813 /* UGContentMoneyCollectionViewCell.h */,
-				031E18E423BE812600B0F813 /* UGMosaicGoldTableViewCell.xib */,
-				031E18E523BE812600B0F813 /* UGMosaicGoldTableViewCell.m */,
-				031E18E623BE812600B0F813 /* UGContentMoneyCollectionViewCell.xib */,
-				031E18E723BE812600B0F813 /* UGActivityGoldTableViewCell.m */,
-				031E18E823BE812600B0F813 /* UGMosaicGoldFinishView.m */,
-				031E18E923BE812600B0F813 /* UGMosaicGoldTableViewCell.h */,
 				031E18EA23BE812600B0F813 /* UGContentMoneyCollectionViewCell.m */,
+				031E18E623BE812600B0F813 /* UGContentMoneyCollectionViewCell.xib */,
+				031E18E923BE812600B0F813 /* UGMosaicGoldTableViewCell.h */,
+				031E18E523BE812600B0F813 /* UGMosaicGoldTableViewCell.m */,
+				031E18E423BE812600B0F813 /* UGMosaicGoldTableViewCell.xib */,
+				031E18DF23BE812600B0F813 /* UGMosaicGoldFinishView.h */,
+				031E18E823BE812600B0F813 /* UGMosaicGoldFinishView.m */,
+				031E18E223BE812600B0F813 /* UGActivityGoldView.h */,
 				031E18EB23BE812600B0F813 /* UGActivityGoldView.m */,
+				031E18E123BE812600B0F813 /* UGActivityGoldView.xib */,
+				031E18E023BE812600B0F813 /* UGActivityGoldTableViewCell.h */,
+				031E18E723BE812600B0F813 /* UGActivityGoldTableViewCell.m */,
+				031E18DE23BE812600B0F813 /* UGActivityGoldTableViewCell.xib */,
 			);
 			path = "活动彩金";
 			sourceTree = "<group>";
@@ -6165,24 +6193,24 @@
 		031E18EC23BE812600B0F813 /* 推荐收益 */ = {
 			isa = PBXGroup;
 			children = (
-				031E18ED23BE812600B0F813 /* UGPormotionUserInfoView.m */,
-				031E18EE23BE812600B0F813 /* UGPromotion2rowTableViewCell.h */,
-				031E18EF23BE812600B0F813 /* UGPromotion5rowButtonTableViewCell.m */,
-				031E18F023BE812600B0F813 /* UGPromotion6rowButtonTableViewCell.m */,
-				031E18F123BE812600B0F813 /* UGPromotion4rowTableViewCell.h */,
-				031E18F223BE812600B0F813 /* UGPromotion6rowButtonTableViewCell.xib */,
-				031E18F323BE812600B0F813 /* UGPormotionView.xib */,
 				031E18F423BE812600B0F813 /* UGPormotionView.h */,
-				031E18F523BE812600B0F813 /* UGPromotion2rowTableViewCell.xib */,
-				031E18F623BE812600B0F813 /* UGPormotionUserInfoView.h */,
-				031E18F723BE812600B0F813 /* UGPromotion5rowButtonTableViewCell.h */,
-				031E18F823BE812600B0F813 /* UGPromotion4rowTableViewCell.xib */,
-				031E18F923BE812600B0F813 /* UGPromotion2rowTableViewCell.m */,
-				031E18FA23BE812600B0F813 /* UGPromotion4rowTableViewCell.m */,
-				031E18FB23BE812600B0F813 /* UGPromotion6rowButtonTableViewCell.h */,
-				031E18FC23BE812600B0F813 /* UGPormotionUserInfoView.xib */,
-				031E18FD23BE812600B0F813 /* UGPromotion5rowButtonTableViewCell.xib */,
 				031E18FE23BE812600B0F813 /* UGPormotionView.m */,
+				031E18F323BE812600B0F813 /* UGPormotionView.xib */,
+				031E18F623BE812600B0F813 /* UGPormotionUserInfoView.h */,
+				031E18ED23BE812600B0F813 /* UGPormotionUserInfoView.m */,
+				031E18FC23BE812600B0F813 /* UGPormotionUserInfoView.xib */,
+				031E18EE23BE812600B0F813 /* UGPromotion2rowTableViewCell.h */,
+				031E18F923BE812600B0F813 /* UGPromotion2rowTableViewCell.m */,
+				031E18F523BE812600B0F813 /* UGPromotion2rowTableViewCell.xib */,
+				031E18F123BE812600B0F813 /* UGPromotion4rowTableViewCell.h */,
+				031E18FA23BE812600B0F813 /* UGPromotion4rowTableViewCell.m */,
+				031E18F823BE812600B0F813 /* UGPromotion4rowTableViewCell.xib */,
+				031E18F723BE812600B0F813 /* UGPromotion5rowButtonTableViewCell.h */,
+				031E18EF23BE812600B0F813 /* UGPromotion5rowButtonTableViewCell.m */,
+				031E18FD23BE812600B0F813 /* UGPromotion5rowButtonTableViewCell.xib */,
+				031E18FB23BE812600B0F813 /* UGPromotion6rowButtonTableViewCell.h */,
+				031E18F023BE812600B0F813 /* UGPromotion6rowButtonTableViewCell.m */,
+				031E18F223BE812600B0F813 /* UGPromotion6rowButtonTableViewCell.xib */,
 			);
 			path = "推荐收益";
 			sourceTree = "<group>";
@@ -6191,20 +6219,20 @@
 			isa = PBXGroup;
 			children = (
 				031E190023BE812600B0F813 /* UGMineSkinFirstCollectionHeadView.h */,
-				031E190123BE812600B0F813 /* UGSkinSeconCollectionHeadView.xib */,
-				031E190223BE812600B0F813 /* UGMineSkinCollectionViewCell.xib */,
-				031E190323BE812600B0F813 /* UGMineMenuCollectionViewCell.xib */,
-				031E190423BE812600B0F813 /* UGMineSkinCollectionViewCell.h */,
-				031E190523BE812600B0F813 /* UGMineSkinFirstCollectionHeadView.xib */,
-				031E190623BE812600B0F813 /* UGSkinSeconCollectionHeadView.m */,
-				031E190723BE812600B0F813 /* UGMenuTableViewCell.h */,
-				031E190823BE812600B0F813 /* UGMineMenuCollectionViewCell.h */,
 				031E190923BE812600B0F813 /* UGMineSkinFirstCollectionHeadView.m */,
-				031E190A23BE812600B0F813 /* UGMenuTableViewCell.xib */,
-				031E190B23BE812600B0F813 /* UGMineSkinCollectionViewCell.m */,
-				031E190C23BE812600B0F813 /* UGMineMenuCollectionViewCell.m */,
-				031E190D23BE812600B0F813 /* UGSkinSeconCollectionHeadView.h */,
+				031E190523BE812600B0F813 /* UGMineSkinFirstCollectionHeadView.xib */,
+				031E190723BE812600B0F813 /* UGMenuTableViewCell.h */,
 				031E190E23BE812600B0F813 /* UGMenuTableViewCell.m */,
+				031E190A23BE812600B0F813 /* UGMenuTableViewCell.xib */,
+				031E190423BE812600B0F813 /* UGMineSkinCollectionViewCell.h */,
+				031E190B23BE812600B0F813 /* UGMineSkinCollectionViewCell.m */,
+				031E190223BE812600B0F813 /* UGMineSkinCollectionViewCell.xib */,
+				031E190823BE812600B0F813 /* UGMineMenuCollectionViewCell.h */,
+				031E190C23BE812600B0F813 /* UGMineMenuCollectionViewCell.m */,
+				031E190323BE812600B0F813 /* UGMineMenuCollectionViewCell.xib */,
+				031E190D23BE812600B0F813 /* UGSkinSeconCollectionHeadView.h */,
+				031E190623BE812600B0F813 /* UGSkinSeconCollectionHeadView.m */,
+				031E190123BE812600B0F813 /* UGSkinSeconCollectionHeadView.xib */,
 			);
 			path = "我的页";
 			sourceTree = "<group>";
@@ -6212,9 +6240,9 @@
 		031E190F23BE812600B0F813 /* 建议反馈 */ = {
 			isa = PBXGroup;
 			children = (
+				031E191223BE812600B0F813 /* UGFeedbackTableViewCell.h */,
 				031E191023BE812600B0F813 /* UGFeedbackTableViewCell.m */,
 				031E191123BE812600B0F813 /* UGFeedbackDetailCell.h */,
-				031E191223BE812600B0F813 /* UGFeedbackTableViewCell.h */,
 				031E191323BE812600B0F813 /* UGFeedbackDetailCell.m */,
 			);
 			path = "建议反馈";
@@ -6224,11 +6252,11 @@
 			isa = PBXGroup;
 			children = (
 				031E191623BE812600B0F813 /* UGAvaterCollectionViewCell.h */,
+				031E191923BE812600B0F813 /* UGAvaterCollectionViewCell.m */,
 				031E191723BE812600B0F813 /* UGAvaterCollectionViewCell.xib */,
 				031E191823BE812600B0F813 /* UGAvaterSelectView.h */,
-				031E191923BE812600B0F813 /* UGAvaterCollectionViewCell.m */,
-				031E191A23BE812600B0F813 /* UGAvaterSelectView.xib */,
 				031E191B23BE812600B0F813 /* UGAvaterSelectView.m */,
+				031E191A23BE812600B0F813 /* UGAvaterSelectView.xib */,
 			);
 			path = "修改头像";
 			sourceTree = "<group>";
@@ -6237,17 +6265,17 @@
 			isa = PBXGroup;
 			children = (
 				031E191D23BE812600B0F813 /* UGLotteryRecordCell.h */,
-				031E191E23BE812600B0F813 /* UGRecordFilterCollectionViewCell.h */,
-				031E191F23BE812600B0F813 /* UGBetRecorddHeaderView.h */,
-				031E192023BE812600B0F813 /* UGRealBetRecordCell.m */,
-				031E192123BE812600B0F813 /* UGRecordFilterCollectionViewCell.m */,
-				031E192223BE812600B0F813 /* UGBetRecorddHeaderView.xib */,
 				031E192323BE812600B0F813 /* UGLotteryRecordCell.m */,
-				031E192423BE812600B0F813 /* UGBetRecorddHeaderView.m */,
-				031E192523BE812600B0F813 /* UGRealBetRecordCell.xib */,
-				031E192623BE812600B0F813 /* UGRecordFilterCollectionViewCell.xib */,
 				031E192723BE812600B0F813 /* UGLotteryRecordCell.xib */,
 				031E192823BE812600B0F813 /* UGRealBetRecordCell.h */,
+				031E192023BE812600B0F813 /* UGRealBetRecordCell.m */,
+				031E192523BE812600B0F813 /* UGRealBetRecordCell.xib */,
+				031E191F23BE812600B0F813 /* UGBetRecorddHeaderView.h */,
+				031E192423BE812600B0F813 /* UGBetRecorddHeaderView.m */,
+				031E192223BE812600B0F813 /* UGBetRecorddHeaderView.xib */,
+				031E191E23BE812600B0F813 /* UGRecordFilterCollectionViewCell.h */,
+				031E192123BE812600B0F813 /* UGRecordFilterCollectionViewCell.m */,
+				031E192623BE812600B0F813 /* UGRecordFilterCollectionViewCell.xib */,
 				031E192923BE812600B0F813 /* CalenderAlertView */,
 			);
 			path = "注单列表";
@@ -6266,12 +6294,12 @@
 		031E192D23BE812600B0F813 /* 额度转换 */ = {
 			isa = PBXGroup;
 			children = (
-				031E192E23BE812600B0F813 /* UGPlatformBalanceTableViewCell.m */,
 				031E192F23BE812600B0F813 /* UGBalanceTransferLogsCell.h */,
-				031E193023BE812600B0F813 /* UGBalanceTransferLogsCell.xib */,
-				031E193123BE812600B0F813 /* UGPlatformBalanceTableViewCell.xib */,
 				031E193223BE812600B0F813 /* UGBalanceTransferLogsCell.m */,
+				031E193023BE812600B0F813 /* UGBalanceTransferLogsCell.xib */,
 				031E193323BE812600B0F813 /* UGPlatformBalanceTableViewCell.h */,
+				031E192E23BE812600B0F813 /* UGPlatformBalanceTableViewCell.m */,
+				031E193123BE812600B0F813 /* UGPlatformBalanceTableViewCell.xib */,
 			);
 			path = "额度转换";
 			sourceTree = "<group>";
@@ -6280,12 +6308,12 @@
 			isa = PBXGroup;
 			children = (
 				031E193523BE812600B0F813 /* UGYubaoConversionRecordCell.h */,
-				031E193623BE812600B0F813 /* UGYubaoIncomeTableViewCell.m */,
-				031E193723BE812600B0F813 /* UGYUbaoTitleView.m */,
-				031E193823BE812600B0F813 /* UGYUbaoTitleView.xib */,
 				031E193923BE812600B0F813 /* UGYubaoConversionRecordCell.m */,
 				031E193A23BE812600B0F813 /* UGYubaoIncomeTableViewCell.h */,
+				031E193623BE812600B0F813 /* UGYubaoIncomeTableViewCell.m */,
 				031E193B23BE812600B0F813 /* UGYUbaoTitleView.h */,
+				031E193723BE812600B0F813 /* UGYUbaoTitleView.m */,
+				031E193823BE812600B0F813 /* UGYUbaoTitleView.xib */,
 			);
 			path = "利息宝";
 			sourceTree = "<group>";
@@ -7041,6 +7069,15 @@
 				CF5D3D822396B8D700CC3D6B /* AutoPacking.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		CFE074D923C0E7840083EA7E /* 注单明细 */ = {
+			isa = PBXGroup;
+			children = (
+				CFE074DA23C0E7840083EA7E /* UGNotDetailViewController.m */,
+				CFE074DB23C0E7840083EA7E /* UGNotDetailViewController.h */,
+			);
+			path = "注单明细";
 			sourceTree = "<group>";
 		};
 		D4000C0E232E2CCB000705B1 /* AppDelegate+ */ = {
@@ -8263,6 +8300,7 @@
 				031E1E5F23BE812C00B0F813 /* UGConvertCollectionViewCell.m in Sources */,
 				031E1B1F23BE812800B0F813 /* UGChanglongBetRecordController.m in Sources */,
 				031E1D1B23BE812B00B0F813 /* UGPromoteDetailController.m in Sources */,
+				03E4228423C1E5B8004AB7C6 /* LotteryBetAndChatVC.m in Sources */,
 				031E1A8723BE812700B0F813 /* NSSet+HYBUnicodeReadable.m in Sources */,
 				031EF54423BE7B4D00B0F813 /* UserModel+Mapable.swift in Sources */,
 				031EF5B923BE7B4D00B0F813 /* MomentsBetCell.swift in Sources */,
@@ -8798,6 +8836,7 @@
 				031E1DCC23BE812C00B0F813 /* UGCreditsLogModel.m in Sources */,
 				031E19BA23BE812700B0F813 /* UIView+Frame.m in Sources */,
 				031E1E2A23BE812C00B0F813 /* UGContentMoneyCollectionViewCell.m in Sources */,
+				CFE074D123C0BBBF0083EA7E /* LotteryBetAndChatVC.m in Sources */,
 				031E1A1E23BE812700B0F813 /* AlertHelper.m in Sources */,
 				031E196C23BE812600B0F813 /* UGLHAdModel.m in Sources */,
 				031E19D623BE812700B0F813 /* NSDate+Millisecond.m in Sources */,
@@ -9089,6 +9128,7 @@
 				031E1D9223BE812B00B0F813 /* UGYubaoConversionViewController.m in Sources */,
 				031E1D5823BE812B00B0F813 /* UGMailBoxTableViewController.m in Sources */,
 				031E1DEE23BE812C00B0F813 /* UGIntegarlConvertRecordCell.m in Sources */,
+				CFE074DD23C0E7840083EA7E /* UGNotDetailViewController.m in Sources */,
 				031E1A2E23BE812700B0F813 /* CMNetwork+Home.m in Sources */,
 				031E1A6423BE812700B0F813 /* UIImage+ST.m in Sources */,
 				031E1D0023BE812A00B0F813 /* AFSecurityPolicy.m in Sources */,
@@ -9098,6 +9138,7 @@
 				031E1B5A23BE812800B0F813 /* UGredActivityView.m in Sources */,
 				031E1BFA23BE812900B0F813 /* UGBJPK10LotteryController.m in Sources */,
 				031E1C8E23BE812A00B0F813 /* UGOneTitleTableViewCell.m in Sources */,
+				D4BF9D1B23C1D0060047D89C /* UIColor+YYUI.m in Sources */,
 				031E1C9E23BE812A00B0F813 /* UGRechargeRecordCell.m in Sources */,
 				031E196023BE812600B0F813 /* UGStuffViewController.m in Sources */,
 				031E1B3A23BE812800B0F813 /* UGPlatformGameModel.m in Sources */,

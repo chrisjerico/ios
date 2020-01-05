@@ -16,7 +16,7 @@
 @property (nonatomic) CGFloat (^widthForItemAtIndex)(NSUInteger idx);
 @property (nonatomic) NSString *(^titleForItemAtIndex)(NSUInteger idx);
 @property (nonatomic) void (^updateCellForItemAtIndex)(UICollectionViewCell *cell, UILabel *label, NSUInteger idx);
-@property (nonatomic) void (^didSelectItemAtIndexPath)(UICollectionViewCell *cell, UILabel *label, BOOL selected);
+@property (nonatomic) void (^didSelectItemAtIndexPath)(UICollectionViewCell *cell, UILabel *label, NSUInteger idx, BOOL selected);
 
 @property (nonatomic) UIView *underlineView;                /**<    下划线 */
 - (void)reloadData;                                         /**<    刷新数据 */
@@ -27,6 +27,7 @@
 
 @property (weak, nonatomic) IBOutlet SlideSegmentBar1 *titleBar;
 @property (weak, nonatomic) IBOutlet UIScrollView *bigScrollView;
+@property (nonatomic) NSMutableArray <UIScrollView *>*scrollViews;
 
 @property (nonatomic, copy) NSArray<__kindof UIView *> *contentViews;
 @property (nonatomic, copy) NSArray<__kindof UIViewController *> *viewControllers;

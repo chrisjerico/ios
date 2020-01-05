@@ -10,7 +10,6 @@
 #import "STBarButtonItem.h"
 
 @interface UGChatViewController ()
-@property (nonatomic) UIView *statusBarBgView;
 @property (nonatomic) UIButton *closeBtn;
 @end
 
@@ -27,14 +26,9 @@
     [super viewDidLoad];
     self.title = @"聊天室";
     self.fd_prefersNavigationBarHidden = YES;
-    
-    // WebView.frame
-    [self setWebViewFrame:CGRectMake(0, 0, UGScreenW, ({
-        CGFloat h = APP.Height;
-        if ([NavController1.viewControllers.firstObject isKindOfClass:[UGChatViewController class]])
-            h -= APP.Height - TabBarController1.tabBar.y;
-        h;
-    }))];
+    if (self.navigationController.viewControllers.firstObject == self) {
+        self.navigationController.navigationBarHidden = true;
+    }
     
     // 设置URL
     __weakSelf_(__self);
@@ -97,11 +91,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    if (OBJOnceToken(self)) {
-        _statusBarBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APP.Width, APP.StatusBarHeight)];
-    }
-    _statusBarBgView.backgroundColor = Skin1.navBarBgColor;
-    [self.view addSubview:_statusBarBgView];
     
     if ([self.title isEqualToString:@"聊天室"] && !_shareBetJson.length) {
         if (OBJOnceToken(UserI)) {
@@ -110,6 +99,11 @@
             [self.tgWebView reloadFromOrigin];
         }
     }
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    self.tgWebView.scrollView.backgroundColor = Skin1.bgColor;
 }
 
 - (void)setShareBetJson:(NSString *)shareBetJson {
