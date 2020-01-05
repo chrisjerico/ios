@@ -4,6 +4,7 @@
 
 #import "UGViewController.h"
 #import "UGNavigationController.h"
+#import "UINavigationController+Push.h"
 #import "UGTableViewController.h"
 #import "UGTabbarController.h"
 #import "UGUserModel.h"

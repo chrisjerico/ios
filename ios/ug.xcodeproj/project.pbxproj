@@ -1579,6 +1579,8 @@
 		03A5D38723C0445B0055A998 /* JS_HomeGameCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03A5D38323C0445B0055A998 /* JS_HomeGameCollectionCell.xib */; };
 		03A5D38B23C051DB0055A998 /* JS_HomeGameColletionCell_1.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A5D38923C051DB0055A998 /* JS_HomeGameColletionCell_1.m */; };
 		03A5D38D23C051DB0055A998 /* JS_HomeGameColletionCell_1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03A5D38A23C051DB0055A998 /* JS_HomeGameColletionCell_1.xib */; };
+		03D6926923C22C9B003D9C12 /* UINavigationController+Push.m in Sources */ = {isa = PBXBuildFile; fileRef = 03D6926823C22C9B003D9C12 /* UINavigationController+Push.m */; };
+		03D6926A23C22C9B003D9C12 /* UINavigationController+Push.m in Sources */ = {isa = PBXBuildFile; fileRef = 03D6926823C22C9B003D9C12 /* UINavigationController+Push.m */; };
 		03E41B2C23C0903C004AB7C6 /* JS_HomePromoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E41B2B23C0903C004AB7C6 /* JS_HomePromoteView.m */; };
 		03E41B2F23C09055004AB7C6 /* JS_HomePromoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03E41B2E23C09055004AB7C6 /* JS_HomePromoteView.xib */; };
 		03E41B3223C09363004AB7C6 /* JS_HomePromoteContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E41B3123C09363004AB7C6 /* JS_HomePromoteContainerView.m */; };
@@ -3208,8 +3210,6 @@
 		031EF52623BE7B4D00B0F813 /* ConversationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationCell.swift; sourceTree = "<group>"; };
 		031EF52723BE7B4D00B0F813 /* ConversationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationModel.swift; sourceTree = "<group>"; };
 		031EF52823BE7B4D00B0F813 /* UGConversationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UGConversationVC.swift; sourceTree = "<group>"; };
-		03A5D37E23BFA2810055A998 /* ThemeApplyProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThemeApplyProtocol.h; sourceTree = "<group>"; };
-		03A5D38023BFB8040055A998 /* NavigationControllerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NavigationControllerProtocol.h; sourceTree = "<group>"; };
 		03A5D38123C0445B0055A998 /* JS_HomeGameCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JS_HomeGameCollectionCell.h; sourceTree = "<group>"; };
 		03A5D38223C0445B0055A998 /* JS_HomeGameCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JS_HomeGameCollectionCell.m; sourceTree = "<group>"; };
 		03A5D38323C0445B0055A998 /* JS_HomeGameCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JS_HomeGameCollectionCell.xib; sourceTree = "<group>"; };
@@ -3217,6 +3217,8 @@
 		03A5D38923C051DB0055A998 /* JS_HomeGameColletionCell_1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JS_HomeGameColletionCell_1.m; sourceTree = "<group>"; };
 		03A5D38A23C051DB0055A998 /* JS_HomeGameColletionCell_1.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JS_HomeGameColletionCell_1.xib; sourceTree = "<group>"; };
 		03D4C80C234F4DEC0028B48F /* ug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ug.entitlements; sourceTree = "<group>"; };
+		03D6926723C22C9B003D9C12 /* UINavigationController+Push.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Push.h"; sourceTree = "<group>"; };
+		03D6926823C22C9B003D9C12 /* UINavigationController+Push.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+Push.m"; sourceTree = "<group>"; };
 		03E41B2A23C0903C004AB7C6 /* JS_HomePromoteView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JS_HomePromoteView.h; sourceTree = "<group>"; };
 		03E41B2B23C0903C004AB7C6 /* JS_HomePromoteView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JS_HomePromoteView.m; sourceTree = "<group>"; };
 		03E41B2E23C09055004AB7C6 /* JS_HomePromoteView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JS_HomePromoteView.xib; sourceTree = "<group>"; };
@@ -3481,7 +3483,6 @@
 			children = (
 				031E13C423BE812300B0F813 /* UGSkinManagers.h */,
 				031E13C723BE812300B0F813 /* UGSkinManagers.m */,
-
 				031E13C923BE812300B0F813 /* UIImage+YYgradientImage.h */,
 				031E13C523BE812300B0F813 /* UIImage+YYgradientImage.m */,
 				031E13CA23BE812300B0F813 /* UGSkinCollectionViewCell.h */,
@@ -4574,9 +4575,6 @@
 		031E15C823BE812400B0F813 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				031E15D023BE812400B0F813 /* 资料页 */,
-				031E15D923BE812400B0F813 /* 长龙助手 */,
-				031E15CB23BE812400B0F813 /* 开奖记录 */,
 				031E15D523BE812400B0F813 /* UGHomeViewController.h */,
 				031E15E223BE812400B0F813 /* UGHomeViewController.m */,
 				031E15D723BE812400B0F813 /* UGHomeViewController.storyboard */,
@@ -4616,9 +4614,6 @@
 			children = (
 				031E15DF23BE812400B0F813 /* UGChanglongBetRecordController.h */,
 				031E15DA23BE812400B0F813 /* UGChanglongBetRecordController.m */,
-				031E15DE23BE812400B0F813 /* UGLotteryAssistantController.h */,
-				031E15DB23BE812400B0F813 /* UGLotteryAssistantController.m */,
-				031E15DD23BE812400B0F813 /* UGLotteryAssistantController.storyboard */,
 				031E15DC23BE812400B0F813 /* UGChangLongController.h */,
 				031E15E023BE812400B0F813 /* UGChangLongController.m */,
 				031E15DE23BE812400B0F813 /* UGLotteryAssistantController.h */,
@@ -4631,7 +4626,6 @@
 		031E15E323BE812400B0F813 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-
 				031E15F523BE812400B0F813 /* 六合板块 */,
 				031E15E423BE812400B0F813 /* UGRankModel.h */,
 				031E15FA23BE812400B0F813 /* UGRankModel.m */,
@@ -4681,7 +4675,6 @@
 		031E160723BE812400B0F813 /* View */ = {
 			isa = PBXGroup;
 			children = (
-
 				031E164723BE812400B0F813 /* 六合板块 */,
 				031E164D23BE812400B0F813 /* 彩种规则 */,
 				031E165123BE812400B0F813 /* 长龙助手 */,
@@ -4728,7 +4721,6 @@
 		031E161023BE812400B0F813 /* 红包弹框 */ = {
 			isa = PBXGroup;
 			children = (
-
 				031E161323BE812400B0F813 /* UGredEnvelopeView.h */,
 				031E161523BE812400B0F813 /* UGredEnvelopeView.m */,
 				031E161123BE812400B0F813 /* UGredEnvelopeView.xib */,
@@ -4771,7 +4763,6 @@
 		031E162223BE812400B0F813 /* 游戏列表 */ = {
 			isa = PBXGroup;
 			children = (
-
 				031E162D23BE812400B0F813 /* UGPlatformTitleBlackCell.h */,
 				031E162823BE812400B0F813 /* UGPlatformTitleBlackCell.m */,
 				031E162E23BE812400B0F813 /* UGPlatformTitleBlackCell.xib */,
@@ -5018,7 +5009,6 @@
 				031E168823BE812400B0F813 /* 下注页面 */,
 				031E16C023BE812400B0F813 /* UGLotteryHomeController.h */,
 				031E16BD23BE812400B0F813 /* UGLotteryHomeController.m */,
-
 				031E16C223BE812400B0F813 /* UGYYLotteryHomeViewController.h */,
 				031E16BF23BE812400B0F813 /* UGYYLotteryHomeViewController.m */,
 				031E16BE23BE812400B0F813 /* UGYYLotterySecondHomeViewController.h */,
@@ -5316,7 +5306,6 @@
 		031E171223BE812400B0F813 /* 彩种Cell */ = {
 			isa = PBXGroup;
 			children = (
-
 				031E171923BE812400B0F813 /* UGhomeRecommendCollectionViewCell.h */,
 				031E171523BE812400B0F813 /* UGhomeRecommendCollectionViewCell.m */,
 				031E171423BE812400B0F813 /* UGhomeRecommendCollectionViewCell.xib */,
@@ -5479,12 +5468,13 @@
 		031E176223BE812500B0F813 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-
 				031E176423BE812500B0F813 /* 客服AlertView.xib */,
 				031E176323BE812500B0F813 /* UGLaunchPageVC.h */,
 				031E176723BE812500B0F813 /* UGLaunchPageVC.m */,
 				031E176923BE812500B0F813 /* UGNavigationController.h */,
 				031E176523BE812500B0F813 /* UGNavigationController.m */,
+				03D6926723C22C9B003D9C12 /* UINavigationController+Push.h */,
+				03D6926823C22C9B003D9C12 /* UINavigationController+Push.m */,
 				031E176623BE812500B0F813 /* UGTabbarController.h */,
 				031E176823BE812500B0F813 /* UGTabbarController.m */,
 			);
@@ -5494,7 +5484,6 @@
 		031E176A23BE812500B0F813 /* baseObject */ = {
 			isa = PBXGroup;
 			children = (
-
 				031E176F23BE812500B0F813 /* UGView.h */,
 				031E177523BE812500B0F813 /* UGView.m */,
 				031E177323BE812500B0F813 /* UGTableViewCell.h */,
@@ -6791,14 +6780,14 @@
 		031EF4F723BE7B4D00B0F813 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
-				031EF50923BE7B4D00B0F813 /* MySetting.storyboard */,
-				031EF50A23BE7B4D00B0F813 /* MySettingVC.swift */,
 				031EF50B23BE7B4D00B0F813 /* MineTableController.swift */,
 				031EF50F23BE7B4D00B0F813 /* MineTableController.storyboard */,
+				031EF50A23BE7B4D00B0F813 /* MySettingVC.swift */,
+				031EF50923BE7B4D00B0F813 /* MySetting.storyboard */,
 				031EF50C23BE7B4D00B0F813 /* MyWalletVC.swift */,
-				031EF50D23BE7B4D00B0F813 /* MyShareVC.swift */,
-				031EF50E23BE7B4D00B0F813 /* MyWalletHeader.xib */,
 				031EF51023BE7B4D00B0F813 /* MyWallet.storyboard */,
+				031EF50E23BE7B4D00B0F813 /* MyWalletHeader.xib */,
+				031EF50D23BE7B4D00B0F813 /* MyShareVC.swift */,
 				031EF51123BE7B4D00B0F813 /* MyShare.storyboard */,
 			);
 			path = Mine;
@@ -8490,6 +8479,7 @@
 				031E1B8523BE812900B0F813 /* UGNoticePopView.m in Sources */,
 				031EF5BE23BE7B4D00B0F813 /* ConcernedMomentsHeaderView.swift in Sources */,
 				031E199D23BE812600B0F813 /* category.m in Sources */,
+				03D6926A23C22C9B003D9C12 /* UINavigationController+Push.m in Sources */,
 				031E1A2523BE812700B0F813 /* CCSessionModel.m in Sources */,
 				031E1D9F23BE812B00B0F813 /* UGUserLevelModel.m in Sources */,
 				031E1A0523BE812700B0F813 /* SlideSegmentView2.m in Sources */,
@@ -8704,6 +8694,7 @@
 				031E1D0823BE812A00B0F813 /* JSONModel.m in Sources */,
 				031E194E23BE812600B0F813 /* LHGalleryListVC2.m in Sources */,
 				031E1E8223BE812D00B0F813 /* UGBalanceTransferLogsCell.m in Sources */,
+				03D6926923C22C9B003D9C12 /* UINavigationController+Push.m in Sources */,
 				031E1E6223BE812C00B0F813 /* UGAvaterCollectionViewCell.m in Sources */,
 				031E1AD223BE812800B0F813 /* TGWebProgressLayer.m in Sources */,
 				031E1A7823BE812700B0F813 /* DKProgressLayer.m in Sources */,
