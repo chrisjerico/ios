@@ -169,7 +169,7 @@ class UGGroupChatVC: MessagesViewController {
 		
 		//发送表情的按钮
 		emojiButton.configure { (item) in
-			item.image = UIImage(named: "biaoqing")
+			item.image = UIImage(named: "input_keyboad_emoji")
 			item.setSize(CGSize(width: 30, height: 30), animated: false)
 			item.imageView?.contentMode = .scaleAspectFit
 		}
@@ -256,7 +256,7 @@ class UGGroupChatVC: MessagesViewController {
 		switch type {
 		case .system:
 			self.messageInputBar.inputTextView.inputView = nil
-			emojiButton.image = UIImage(named: "biaoqing")
+			emojiButton.image = UIImage(named: "input_keyboad_emoji")
 			attachFunctionMenusButton.image = UIImage(named: "groupchat_attach")
 		case .emoji:
 			self.messageInputBar.inputTextView.inputView = self.emojiKeyBoard

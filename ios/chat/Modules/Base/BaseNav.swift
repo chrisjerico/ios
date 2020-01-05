@@ -18,6 +18,7 @@ public class BaseNav: UINavigationController {
 	public override func viewDidLoad() {
 		super.viewDidLoad()
 		navigationBar.shadowImage = UIImage()
+		navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black];
 	}
 	public override func pushViewController(_ viewController: UIViewController, animated: Bool) {
 		if viewControllers.count > 0 {

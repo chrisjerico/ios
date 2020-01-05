@@ -9,7 +9,7 @@
 import UIKit
 import SVGKit
 
-class MineTableController: UITableViewController {
+class MineTableController: BaseTableVC {
 	
 	@IBOutlet weak var avatarImageView: UIImageView!
 	@IBOutlet weak var userIdLabel: UILabel!

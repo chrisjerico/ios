@@ -20,7 +20,7 @@ class RootTabBarController: ESTabBarController {
 		tabBar.backgroundImage = UIImage(color: UIColor.white)
 		
 		let v1 = UGMomentsHomeVC()
-		let v2 = UGRoomListVC()
+		let v2 = ContactsVC()
 		let v3 = GameHomeVC()
 		let v4 = UGConversationVC()
 		let v5 = UGMineSkinViewController()

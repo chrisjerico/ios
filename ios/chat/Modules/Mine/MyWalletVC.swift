@@ -188,7 +188,7 @@ class WalletCollectionViewCell: UICollectionViewCell {
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
-	let imageMap: [String: String] = ["存款": "ck","取款": "qk","利息宝": "lxb","推荐收益": "tj","活动彩金": "hdcj","资金明细": "zijinmingxi","彩票注单记录": "zdjl","其它注单记录": "qtzd","红包扫雷": "hongbaosaolei", "站内信": "znxx","任务中心": "rwzx","每日签到": "qd","安全中心": "aqzx"]
+	let imageMap: [String: String] = ["存款": "ck","取款": "qk","利息宝": "lxb","推荐收益": "tj","活动彩金": "hdcj","资金明细": "zijinmingxi","彩票注单记录": "zdjl","其它注单记录": "qtzd","红包扫雷": "hongbaosaolei_records", "站内信": "znxx","任务中心": "rwzx","每日签到": "qd","安全中心": "aqzx"]
 	func bind(title: String) {
 		titleLabel.text = title
 		if let imageName = imageMap[title] {

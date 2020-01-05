@@ -1554,7 +1554,6 @@
 		031EF5DE23BE7B4E00B0F813 /* BetListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EF4EF23BE7B4D00B0F813 /* BetListVC.swift */; };
 		031EF5DF23BE7B4E00B0F813 /* BetListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031EF4F023BE7B4D00B0F813 /* BetListCell.xib */; };
 		031EF5E023BE7B4E00B0F813 /* RoomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EF4F523BE7B4D00B0F813 /* RoomCell.swift */; };
-		031EF5E123BE7B4E00B0F813 /* UGRoomListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EF4F623BE7B4D00B0F813 /* UGRoomListVC.swift */; };
 		031EF5E223BE7B4E00B0F813 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EF4FF23BE7B4D00B0F813 /* LoginVC.swift */; };
 		031EF5E323BE7B4E00B0F813 /* LoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031EF50023BE7B4D00B0F813 /* LoginVC.xib */; };
 		031EF5E423BE7B4E00B0F813 /* MySetting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 031EF50923BE7B4D00B0F813 /* MySetting.storyboard */; };
@@ -1581,6 +1580,10 @@
 		03A5D38D23C051DB0055A998 /* JS_HomeGameColletionCell_1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03A5D38A23C051DB0055A998 /* JS_HomeGameColletionCell_1.xib */; };
 		03D6926923C22C9B003D9C12 /* UINavigationController+Push.m in Sources */ = {isa = PBXBuildFile; fileRef = 03D6926823C22C9B003D9C12 /* UINavigationController+Push.m */; };
 		03D6926A23C22C9B003D9C12 /* UINavigationController+Push.m in Sources */ = {isa = PBXBuildFile; fileRef = 03D6926823C22C9B003D9C12 /* UINavigationController+Push.m */; };
+		03D6926C23C23495003D9C12 /* BaseTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D6926B23C23495003D9C12 /* BaseTableVC.swift */; };
+		03D6926D23C23953003D9C12 /* UGNotDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE074DA23C0E7840083EA7E /* UGNotDetailViewController.m */; };
+		03D6927023C23B9D003D9C12 /* ContactsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D6926E23C23B9D003D9C12 /* ContactsVC.swift */; };
+		03D6927123C23B9D003D9C12 /* ContactsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03D6926F23C23B9D003D9C12 /* ContactsVC.xib */; };
 		03E41B2C23C0903C004AB7C6 /* JS_HomePromoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E41B2B23C0903C004AB7C6 /* JS_HomePromoteView.m */; };
 		03E41B2F23C09055004AB7C6 /* JS_HomePromoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03E41B2E23C09055004AB7C6 /* JS_HomePromoteView.xib */; };
 		03E41B3223C09363004AB7C6 /* JS_HomePromoteContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E41B3123C09363004AB7C6 /* JS_HomePromoteContainerView.m */; };
@@ -3191,7 +3194,6 @@
 		031EF4EF23BE7B4D00B0F813 /* BetListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BetListVC.swift; sourceTree = "<group>"; };
 		031EF4F023BE7B4D00B0F813 /* BetListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BetListCell.xib; sourceTree = "<group>"; };
 		031EF4F523BE7B4D00B0F813 /* RoomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomCell.swift; sourceTree = "<group>"; };
-		031EF4F623BE7B4D00B0F813 /* UGRoomListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UGRoomListVC.swift; sourceTree = "<group>"; };
 		031EF4FF23BE7B4D00B0F813 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		031EF50023BE7B4D00B0F813 /* LoginVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginVC.xib; sourceTree = "<group>"; };
 		031EF50923BE7B4D00B0F813 /* MySetting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MySetting.storyboard; sourceTree = "<group>"; };
@@ -3219,6 +3221,9 @@
 		03D4C80C234F4DEC0028B48F /* ug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ug.entitlements; sourceTree = "<group>"; };
 		03D6926723C22C9B003D9C12 /* UINavigationController+Push.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Push.h"; sourceTree = "<group>"; };
 		03D6926823C22C9B003D9C12 /* UINavigationController+Push.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+Push.m"; sourceTree = "<group>"; };
+		03D6926B23C23495003D9C12 /* BaseTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableVC.swift; sourceTree = "<group>"; };
+		03D6926E23C23B9D003D9C12 /* ContactsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsVC.swift; sourceTree = "<group>"; };
+		03D6926F23C23B9D003D9C12 /* ContactsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactsVC.xib; sourceTree = "<group>"; };
 		03E41B2A23C0903C004AB7C6 /* JS_HomePromoteView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JS_HomePromoteView.h; sourceTree = "<group>"; };
 		03E41B2B23C0903C004AB7C6 /* JS_HomePromoteView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JS_HomePromoteView.m; sourceTree = "<group>"; };
 		03E41B2E23C09055004AB7C6 /* JS_HomePromoteView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JS_HomePromoteView.xib; sourceTree = "<group>"; };
@@ -6456,20 +6461,20 @@
 		031EF44923BE7B4C00B0F813 /* XFoundation */ = {
 			isa = PBXGroup;
 			children = (
+				031EF45323BE7B4C00B0F813 /* Alert */,
+				031EF44D23BE7B4C00B0F813 /* APP */,
+				031EF45123BE7B4C00B0F813 /* Image+Color */,
+				031EF45923BE7B4C00B0F813 /* GCD */,
+				031EF45B23BE7B4C00B0F813 /* MJRefresh+RX */,
+				031EF45D23BE7B4C00B0F813 /* Reachability */,
 				031EF44A23BE7B4C00B0F813 /* RegexParser.swift */,
 				031EF44B23BE7B4C00B0F813 /* XFoundation.swift */,
 				031EF44C23BE7B4C00B0F813 /* XError.swift */,
-				031EF44D23BE7B4C00B0F813 /* APP */,
 				031EF45023BE7B4C00B0F813 /* DispatchQueue+XFoundation.swift */,
-				031EF45123BE7B4C00B0F813 /* Image+Color */,
-				031EF45323BE7B4C00B0F813 /* Alert */,
 				031EF45523BE7B4C00B0F813 /* Logger.swift */,
 				031EF45623BE7B4C00B0F813 /* UIColor+XFoundation.swift */,
 				031EF45723BE7B4C00B0F813 /* UIViewController+APP.swift */,
 				031EF45823BE7B4C00B0F813 /* NSAttributesString+AppKit.swift */,
-				031EF45923BE7B4C00B0F813 /* GCD */,
-				031EF45B23BE7B4C00B0F813 /* MJRefresh+RX */,
-				031EF45D23BE7B4C00B0F813 /* Reachability */,
 				031EF45F23BE7B4C00B0F813 /* UIImagePickerController+Rx.swift */,
 				031EF46023BE7B4C00B0F813 /* RxImagePickerDelegateProxy.swift */,
 				031EF46123BE7B4C00B0F813 /* String+XFoundation.swift */,
@@ -6772,7 +6777,8 @@
 			isa = PBXGroup;
 			children = (
 				031EF4F523BE7B4D00B0F813 /* RoomCell.swift */,
-				031EF4F623BE7B4D00B0F813 /* UGRoomListVC.swift */,
+				03D6926E23C23B9D003D9C12 /* ContactsVC.swift */,
+				03D6926F23C23B9D003D9C12 /* ContactsVC.xib */,
 			);
 			path = Contacts;
 			sourceTree = "<group>";
@@ -6807,6 +6813,7 @@
 			children = (
 				031E1E8D23BECD8500B0F813 /* BaseNav.swift */,
 				031E1E9E23BED78000B0F813 /* BaseVC.swift */,
+				03D6926B23C23495003D9C12 /* BaseTableVC.swift */,
 				031EF52023BE7B4D00B0F813 /* RootTabBarController.swift */,
 				031EF52223BE7B4D00B0F813 /* ControllerProvider.swift */,
 				031EF52323BE7B4D00B0F813 /* UGLaunchController.swift */,
@@ -7423,6 +7430,7 @@
 				031E1A1523BE812700B0F813 /* README.md in Resources */,
 				031EF56523BE7B4D00B0F813 /* guanliyuan.svg in Resources */,
 				031E1E3B23BE812C00B0F813 /* UGPromotion4rowTableViewCell.xib in Resources */,
+				03D6927123C23B9D003D9C12 /* ContactsVC.xib in Resources */,
 				031E1DF123BE812C00B0F813 /* UGMissionLevelTableViewCell.xib in Resources */,
 				031EF57C23BE7B4D00B0F813 /* pinglun.svg in Resources */,
 				031E194D23BE812600B0F813 /* UGLHC.storyboard in Resources */,
@@ -8162,6 +8170,7 @@
 				031EF5D023BE7B4E00B0F813 /* CheckRedpacketView.swift in Sources */,
 				031E1A4F23BE812700B0F813 /* CMCommonHook.m in Sources */,
 				031E1D3323BE812B00B0F813 /* UGPromotionInfoController.m in Sources */,
+				03D6926C23C23495003D9C12 /* BaseTableVC.swift in Sources */,
 				031E1AA723BE812800B0F813 /* WMSegmentControl.m in Sources */,
 				031EF53623BE7B4D00B0F813 /* Single+Codable.swift in Sources */,
 				031E1DB723BE812B00B0F813 /* UGModel.m in Sources */,
@@ -8208,6 +8217,7 @@
 				031E1D2723BE812B00B0F813 /* UGMissionLevelController.m in Sources */,
 				031E1A6D23BE812700B0F813 /* CAAnimation+WAnimation.m in Sources */,
 				031E1C4F23BE812A00B0F813 /* UGSegmentView.m in Sources */,
+				03D6926D23C23953003D9C12 /* UGNotDetailViewController.m in Sources */,
 				031E19DF23BE812700B0F813 /* NSMutableAttributedString+Utils.m in Sources */,
 				031E195B23BE812600B0F813 /* UGChessViewController.m in Sources */,
 				031E19DB23BE812700B0F813 /* NSString+Utils.m in Sources */,
@@ -8453,6 +8463,7 @@
 				031E19DD23BE812700B0F813 /* NSArray+Utils.m in Sources */,
 				031E1B7323BE812800B0F813 /* UGGameTypeCollectionView.m in Sources */,
 				031EF53F23BE7B4D00B0F813 /* MessageModel.swift in Sources */,
+				03D6927023C23B9D003D9C12 /* ContactsVC.swift in Sources */,
 				031E1D2923BE812B00B0F813 /* UGIntegralConvertController.m in Sources */,
 				031E1CCD23BE812A00B0F813 /* NSBundle+MJRefresh.m in Sources */,
 				031E1D7523BE812B00B0F813 /* UGWriteMessageViewController.m in Sources */,
@@ -8548,7 +8559,6 @@
 				031E194323BE812600B0F813 /* UGSkinManagers.m in Sources */,
 				031EF5B723BE7B4D00B0F813 /* MomentsCellCommentTextView.swift in Sources */,
 				031E1C2323BE812900B0F813 /* UGFastThreeOneCollectionViewCell.m in Sources */,
-				031EF5E123BE7B4E00B0F813 /* UGRoomListVC.swift in Sources */,
 				031E1A4B23BE812700B0F813 /* CMTimeCommon.m in Sources */,
 				031E1E0523BE812C00B0F813 /* UGSignInScrHeaderView.m in Sources */,
 				031E1D8123BE812B00B0F813 /* UGBetRecordDetailViewController.m in Sources */,

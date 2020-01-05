@@ -1,20 +1,20 @@
 //
-//  BaseVC.swift
+//  BaseTableVC.swift
 //  chat
 //
-//  Created by xionghx on 2020/1/3.
+//  Created by xionghx on 2020/1/5.
 //  Copyright © 2020 ug. All rights reserved.
 //
 
 import UIKit
 
-class BaseVC: UIViewController {
+class BaseTableVC: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+
     }
-    
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		let typeSet = [ConcernedMomentsVC.self, RedpacketGrabListVC.self]
@@ -30,6 +30,5 @@ class BaseVC: UIViewController {
 
 		}
 	}
-
 
 }
