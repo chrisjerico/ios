@@ -355,6 +355,10 @@
 
 #pragma mark - UITableView Delegate
 
+-(void)setReplyViewHidden:(BOOL)isHidden{
+
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return tableView.dataArray.count;
 }
@@ -374,6 +378,38 @@
         subLabel(@"评论内容Label").text = pcm.content;
         subLabel(@"评论时间Label").text = pcm.actionTime;
         [subButton(@"回复评论Button") setTitle:_NSString(@"%@回复", (pcm.replyCount ? [NSString stringWithFormat:@"%@ ", @(pcm.replyCount)] : @"")) forState:UIControlStateNormal];
+        
+        
+        { // 回复UI
+            NSLog(@"list count = %lu",(unsigned long)pcm.secReplyList.count);
+            NSLog(@"list ======================================= %@",pcm.secReplyList);
+            if (pcm.secReplyList.count) {
+                [subView(@"回复View") setHidden:NO];
+                [subView(@"回复StackView") setHidden:NO];
+                [subView(@"内容1View") setHidden:NO];
+                [subView(@"内容2View") setHidden:NO];
+                [subView(@"内容3View") setHidden:NO];
+                [subButton(@"回复内容btn") setHidden:NO];
+                
+                for (int i = 0; i< pcm.secReplyList.count; i++) {
+                    UGLHPostModel* obj = [pcm.secReplyList objectAtIndex:i];
+                     [subView([NSString stringWithFormat:@"内容%dView",i+1]) setHidden:NO];
+//                    [subImageView([NSString stringWithFormat:@"头像%dimageView",i+1]) sd_setImageWithURL:[NSURL URLWithString:obj.headImg] forState:UIControlStateNormal];
+//                    [ sd_setImageWithURL:[NSURL URLWithString:obj.headImg] forState:UIControlStateNormal];
+                    
+                }
+                
+            } else {
+                [subView(@"回复View") setHidden:YES];
+                [subView(@"回复StackView") setHidden:YES];
+                [subView(@"内容1View") setHidden:YES];
+                [subView(@"内容2View") setHidden:YES];
+                [subView(@"内容3View") setHidden:YES];
+                [subButton(@"回复内容btn") setHidden:YES];
+            }
+            
+            
+        }
     }
     
     // Action

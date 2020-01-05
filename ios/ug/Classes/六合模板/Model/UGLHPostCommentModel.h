@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "UGLHPostModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UGLHPostCommentModel : NSObject
@@ -27,6 +27,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 // 自定义参数
 @property (nonatomic, copy) NSString *cid;  /**<   帖子ID */
+
+@property (nonatomic, copy) NSArray<UGLHPostModel *> *secReplyList;    /**<   回复数组 */
+
+
 
 @end
 
