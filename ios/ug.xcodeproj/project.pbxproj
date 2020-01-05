@@ -1772,6 +1772,7 @@
 		D4B75E16227802600007047C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4B75E15227802600007047C /* Assets.xcassets */; };
 		D4B75E19227802600007047C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B75E17227802600007047C /* LaunchScreen.storyboard */; };
 		D4B75E1C227802600007047C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D4B75E1B227802600007047C /* main.m */; };
+		D4BF9D1B23C1D0060047D89C /* UIColor+YYUI.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BF9D1A23C1D0060047D89C /* UIColor+YYUI.m */; };
 		D4C0A12723913A6C00B39358 /* Global.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C0A12623913A6C00B39358 /* Global.m */; };
 		D4C0A12F239156FB00B39358 /* hot_01.gif in Resources */ = {isa = PBXBuildFile; fileRef = D4C0A12D239156FB00B39358 /* hot_01.gif */; };
 		F5614FBC2C7545CF870A0AD2 /* Pods_chat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30193B1626262AA87797C0E9 /* Pods_chat.framework */; };
@@ -3413,6 +3414,8 @@
 		D4B75E18227802600007047C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D4B75E1A227802600007047C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4B75E1B227802600007047C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D4BF9D1923C1D0060047D89C /* UIColor+YYUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+YYUI.h"; sourceTree = "<group>"; };
+		D4BF9D1A23C1D0060047D89C /* UIColor+YYUI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+YYUI.m"; sourceTree = "<group>"; };
 		D4C0A12523913A6C00B39358 /* Global.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Global.h; sourceTree = "<group>"; };
 		D4C0A12623913A6C00B39358 /* Global.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Global.m; sourceTree = "<group>"; };
 		D4C0A12D239156FB00B39358 /* hot_01.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = hot_01.gif; sourceTree = "<group>"; };
@@ -3462,6 +3465,8 @@
 				031E13C223BE812300B0F813 /* UGSkinCollectionViewCell.xib */,
 				031E13C323BE812300B0F813 /* UGSkinViewController.h */,
 				031E13C823BE812300B0F813 /* UGSkinViewController.m */,
+				D4BF9D1923C1D0060047D89C /* UIColor+YYUI.h */,
+				D4BF9D1A23C1D0060047D89C /* UIColor+YYUI.m */,
 			);
 			path = Skin;
 			sourceTree = "<group>";
@@ -3616,6 +3621,9 @@
 		031E142023BE812300B0F813 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				031E142223BE812300B0F813 /* FishUtility */,
+				031E14E523BE812300B0F813 /* CMCommon */,
+				031E14C223BE812300B0F813 /* CMNetwork */,
 				031E155223BE812300B0F813 /* segmentListControl */,
 				031E157323BE812300B0F813 /* XYYSegmentControl */,
 				031E157A23BE812300B0F813 /* TGWebController */,
@@ -3632,7 +3640,6 @@
 				031E14D823BE812300B0F813 /* 获得当前导航控制器 */,
 				031E14DB23BE812300B0F813 /* UILabel+YBAttributeTextTapAction */,
 				031E14DE23BE812300B0F813 /* Category */,
-				031E14E523BE812300B0F813 /* CMCommon */,
 				031E14F123BE812300B0F813 /* CountDown */,
 				031E14F423BE812300B0F813 /* UUMarqueeView */,
 				031E14F723BE812300B0F813 /* 手势 */,
@@ -3645,9 +3652,7 @@
 				031E153423BE812300B0F813 /* ROP */,
 				031E153D23BE812300B0F813 /* MOFSPickerManager */,
 				031E154B23BE812300B0F813 /* ZZCircleProgress */,
-				031E142223BE812300B0F813 /* FishUtility */,
 				031E14BD23BE812300B0F813 /* UITableView无内容提示 */,
-				031E14C223BE812300B0F813 /* CMNetwork */,
 				031E14D123BE812300B0F813 /* SYY单选按钮组 */,
 				031E14D423BE812300B0F813 /* 刮刮乐 */,
 				031E157923BE812300B0F813 /* WKProxy.h */,
@@ -9082,6 +9087,7 @@
 				031E1B5A23BE812800B0F813 /* UGredActivityView.m in Sources */,
 				031E1BFA23BE812900B0F813 /* UGBJPK10LotteryController.m in Sources */,
 				031E1C8E23BE812A00B0F813 /* UGOneTitleTableViewCell.m in Sources */,
+				D4BF9D1B23C1D0060047D89C /* UIColor+YYUI.m in Sources */,
 				031E1C9E23BE812A00B0F813 /* UGRechargeRecordCell.m in Sources */,
 				031E196023BE812600B0F813 /* UGStuffViewController.m in Sources */,
 				031E1B3A23BE812800B0F813 /* UGPlatformGameModel.m in Sources */,

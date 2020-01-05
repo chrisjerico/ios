@@ -152,9 +152,16 @@
         __weak_Obj_(ssv1, __ssv1);
         ssv1.titleBar.didSelectItemAtIndexPath = ^(UICollectionViewCell *cell, UILabel *label, NSUInteger idx, BOOL selected) {
             label.textColor = selected ? Skin1.textColor1 : Skin1.textColor2;
+            if (!idx && !selected) {
+                label.textColor = [UIColor whiteColor];
+            }
             label.font = selected ? [UIFont boldSystemFontOfSize:16] : [UIFont systemFontOfSize:14];
             cell.backgroundColor = selected ? [[UIColor grayColor] colorWithAlphaComponent:0.1] : [UIColor clearColor];
             __ssv1.titleBar.backgroundColor = Skin1.isBlack || idx || !APP.betBgIsWhite ? Skin1.navBarBgColor : [UIColor whiteColor];
+
+
+            
+            
         };
         ssv1.titleBar.underlineView.hidden = true;
         [self.view insertSubview:ssv1 atIndex:0];

@@ -144,7 +144,7 @@
 
 - (void)setupTotalAmountLabelTextColor {
     NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.totalBetAmountLabel.text];
-    [abStr addAttribute:NSForegroundColorAttributeName value:UGRGBColor(240, 211, 88) range:NSMakeRange(6, self.totalBetAmountLabel.text.length - 6)];
+    [abStr addAttribute:NSForegroundColorAttributeName value:UGRGBColor(240, 211, 88) range:NSMakeRange(4, self.totalBetAmountLabel.text.length - 4)];
     self.totalBetAmountLabel.attributedText = abStr;
 }
 
