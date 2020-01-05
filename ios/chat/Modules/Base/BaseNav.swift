@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwift
 import NSObject_Rx
 
-public class BaseNav: UINavigationController {
+public class BaseNav: UGNavigationController {
 	let transparentControllers = [ConcernedMomentsVC.self]
 	
 	

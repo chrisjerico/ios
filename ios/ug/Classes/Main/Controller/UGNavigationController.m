@@ -53,7 +53,16 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
 + (NSMutableArray<GameModel *> *)browsingHistoryArray {
     return __browsingHistoryArray;
 }
-
++ (instancetype)current {
+	UIViewController * rootVC = UIApplication.sharedApplication.delegate.window.rootViewController;
+	if ([rootVC isKindOfClass: [UITabBarController class]]) {
+		return ((UGNavigationController *)((UITabBarController *)rootVC).selectedViewController);
+	} else if ([rootVC isKindOfClass:[UGNavigationController class]]) {
+		return (UGNavigationController *)rootVC;
+	}
+	return nil;
+	
+}
 + (void)load {
     // 获取哪个类下的导航条,管理自己下导航条
     UINavigationBar *bar = [UINavigationBar appearanceWhenContainedIn:self, nil];

@@ -3,6 +3,7 @@
 //
 
 #import "UGViewController.h"
+#import "UGNavigationController.h"
 #import "UGTableViewController.h"
 #import "UGUserModel.h"
 #import "UGNotificationEvent.h"
