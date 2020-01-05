@@ -194,9 +194,6 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)apply:(UGSkinManagers *)skin {
-	
-}
 
 - (void)skin {
     
