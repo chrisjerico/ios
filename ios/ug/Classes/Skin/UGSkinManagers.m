@@ -1064,6 +1064,7 @@ static UGSkinManagers *__initSkin1 = nil;
 #endif
 	return [UGSkinManagers allSkin][skitType];
 
+
 }
 
 
