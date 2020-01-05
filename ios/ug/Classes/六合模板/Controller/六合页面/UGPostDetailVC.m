@@ -355,12 +355,20 @@
 
 #pragma mark - UITableView Delegate
 
--(void)setReplyViewHidden:(BOOL)isHidden{
-
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return tableView.dataArray.count;
+}
+
+- (void)setHiden:(UIButton *(^)(NSString *))subButton subView:(UIView *(^)(NSString *))subView {
+    [subView(@"回复View") setHidden:YES];
+    [subView(@"回复StackView") setHidden:YES];
+    UIStackView *sv = (id)subView(@"回复StackView");
+    for (int i = 0; i< 3; i++) {
+        FastSubViewCode(sv.arrangedSubviews[i]);
+        sv.arrangedSubviews[i].hidden = YES;
+    }
+    [subButton(@"回复内容btn") setHidden:YES];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -380,32 +388,36 @@
         [subButton(@"回复评论Button") setTitle:_NSString(@"%@回复", (pcm.replyCount ? [NSString stringWithFormat:@"%@ ", @(pcm.replyCount)] : @"")) forState:UIControlStateNormal];
         
         
-        { // 回复UI
-            NSLog(@"list count = %lu",(unsigned long)pcm.secReplyList.count);
-            NSLog(@"list ======================================= %@",pcm.secReplyList);
+        {
+            // 回复UI
             if (pcm.secReplyList.count) {
                 [subView(@"回复View") setHidden:NO];
                 [subView(@"回复StackView") setHidden:NO];
-                [subView(@"内容1View") setHidden:NO];
-                [subView(@"内容2View") setHidden:NO];
-                [subView(@"内容3View") setHidden:NO];
                 [subButton(@"回复内容btn") setHidden:NO];
                 
-                for (int i = 0; i< pcm.secReplyList.count; i++) {
-                    UGLHPostModel* obj = [pcm.secReplyList objectAtIndex:i];
-                     [subView([NSString stringWithFormat:@"内容%dView",i+1]) setHidden:NO];
-//                    [subImageView([NSString stringWithFormat:@"头像%dimageView",i+1]) sd_setImageWithURL:[NSURL URLWithString:obj.headImg] forState:UIControlStateNormal];
-//                    [ sd_setImageWithURL:[NSURL URLWithString:obj.headImg] forState:UIControlStateNormal];
-                    
+                int count  = (int)MIN(pcm.secReplyList.count, 3);
+                
+                UIStackView *sv = (id)subView(@"回复StackView");
+                for (int i = 0; i< 3; i++) {
+                    FastSubViewCode(sv.arrangedSubviews[i]);
+                    sv.arrangedSubviews[i].hidden = i >= count;
+                    UGLHPostModel* obj = [UGLHPostModel mj_objectWithKeyValues:pcm.secReplyList[i]];
+                    [subView(@"内容View") setHidden:NO];
+                    [subButton(@"头像Btn") sd_setImageWithURL:[NSURL URLWithString:obj.headImg] forState:UIControlStateNormal];
+                    subLabel(@"昵称Label").text =  obj.nickname ? [NSString stringWithFormat:@"%@:",obj.nickname]: @"";
+                    subLabel(@"内容Label").text = obj.content ? obj.content : @"";
+                }
+                
+                if (count >=  3) {
+                    [subButton(@"回复内容btn") setTitle:[NSString stringWithFormat:@"查看全部回复%lu条 >",(unsigned long)pcm.secReplyList.count] forState:(UIControlStateNormal)];
+                    [subButton(@"回复内容btn") setHidden:NO];
+                }
+                else{
+                    [subButton(@"回复内容btn") setHidden:YES];
                 }
                 
             } else {
-                [subView(@"回复View") setHidden:YES];
-                [subView(@"回复StackView") setHidden:YES];
-                [subView(@"内容1View") setHidden:YES];
-                [subView(@"内容2View") setHidden:YES];
-                [subView(@"内容3View") setHidden:YES];
-                [subButton(@"回复内容btn") setHidden:YES];
+                [self setHiden:subButton subView:subView];
             }
             
             
@@ -431,6 +443,12 @@
         }];
         [subButton(@"回复评论Button") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
         [subButton(@"回复评论Button") addBlockForControlEvents:UIControlEventTouchUpInside block:^(id sender) {
+            LHPostCommentDetailVC *vc = _LoadVC_from_storyboard_(@"LHPostCommentDetailVC");
+            vc.pcm = pcm;
+            [NavController1 pushViewController:vc animated:true];
+        }];
+        [subButton(@"回复内容btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+        [subButton(@"回复内容btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(id sender) {
             LHPostCommentDetailVC *vc = _LoadVC_from_storyboard_(@"LHPostCommentDetailVC");
             vc.pcm = pcm;
             [NavController1 pushViewController:vc animated:true];
