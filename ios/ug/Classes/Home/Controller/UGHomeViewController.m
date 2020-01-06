@@ -288,6 +288,9 @@
     if (_timer) {
         [_timer setFireDate:[NSDate date]];
     }
+    if (NavController1.topViewController == self) {
+        self.navigationController.navigationBarHidden = [Skin1 isBlack];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -477,6 +480,7 @@
         [__self getPromoteList];      // 优惠活动
         [__self getRankList];         // 投注排行榜/中奖排行榜
         [__self gethomeAdsList];      //首页广告图片
+        [__self chatgetToken] ;        //在线配置的聊天室
         
 //        if ([Skin1.skitType isEqualToString:@"六合资料"]) {
             [__self getCategoryList];     //栏目列表
@@ -1050,6 +1054,33 @@
 		}];
 	}];
 }
+
+// 得到线上配置的聊天室
+- (void)chatgetToken {
+    
+        {//得到线上配置的聊天室
+            NSDictionary *params = @{@"t":[NSString stringWithFormat:@"%ld",(long)[CMTimeCommon getNowTimestamp]]};
+                [CMNetwork chatgetTokenWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+                    [CMResult processWithResult:model success:^{
+                        NSLog(@"model.data = %@",model.data);
+                        NSDictionary *data = (NSDictionary *)model.data;
+                        NSMutableArray *chatIdAry = [NSMutableArray new];
+                        NSArray * chatAry = [data objectForKey:@"chatAry"];
+                        for (int i = 0; i< chatAry.count; i++) {
+                            NSDictionary *dic =  [chatAry objectAtIndex:i];
+                            [chatIdAry addObject:[dic objectForKey:@"typeId"]];
+                        }
+                        NSLog(@"chatIdAry = %@",chatIdAry);
+                        SysConf.chatIdAry = chatIdAry;
+    
+                    } failure:^(id msg) {
+            //            [self stopAnimation];
+                    }];
+                }];
+    
+        }
+}
+
 
 // 优惠活动
 - (void)getPromoteList {
