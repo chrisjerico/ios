@@ -225,6 +225,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 //六合用户数据
 + (void)lhcdocgetUserInfoWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+
+//聊天室数据
++ (void)chatgetTokenWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 @end
 
 NS_ASSUME_NONNULL_END

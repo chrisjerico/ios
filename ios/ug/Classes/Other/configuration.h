@@ -262,6 +262,7 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 
 #define lhcdocgetUserInfoUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=lhcdoc&a=getUserInfo"]
 
+#define chatgetTokenUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=chat&a=getToken"]
 //=============开奖网url====================================================================================================
 #define lotteryUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"open_prize/index.mobile.html?navhidden=1"]
 //=============直播url====================================================================================================

@@ -11,7 +11,7 @@
 #import "UGChangLongController.h"
 // View
 #import "STBarButtonItem.h"
-
+#import "CMTimeCommon.h"
 @interface UGCommonLotteryController (CC)
 @property (nonatomic) UITableView *tableView;
 @property (nonatomic) UIView *bottomView;
@@ -87,6 +87,8 @@
         
         
     }
+    
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {

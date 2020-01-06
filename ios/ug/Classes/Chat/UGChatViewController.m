@@ -39,11 +39,12 @@
                 __self.url = APP.chatShareUrl;
             } else if (__self.gameId.length) {
                 if ([__self.gameId isEqualToString:@"主聊天室"]) {
-                    __self.url = APP.chatHomeUrl;
+                    __self.url = APP.chatMainGameUr;
                 } else {
                     __self.url = [APP chatGameUrl:__self.gameId];
                 }
-            } else {
+//                NSLog(@"__self.url = %@",__self.url);
+             } else {
                 __self.url = APP.chatHomeUrl;
             }
             [__self.tgWebView reloadFromOrigin];
@@ -96,13 +97,14 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    if ([self.title isEqualToString:@"聊天室"] && !_shareBetJson.length) {
-        if (OBJOnceToken(UserI)) {
-            [self.tgWebView stopLoading];
-            self.url = APP.chatHomeUrl;
-            [self.tgWebView reloadFromOrigin];
-        }
-    }
+//    if ([self.title isEqualToString:@"聊天室"] && !_shareBetJson.length) {
+//        if (OBJOnceToken(UserI)) {
+//            [self.tgWebView stopLoading];
+//            self.url = APP.chatHomeUrl;
+//            [self.tgWebView reloadFromOrigin];
+//            NSLog(@"self.url = %@",self.url);
+//        }
+//    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {

@@ -16,6 +16,7 @@
 
 
 
+
 @interface UGCommonLotteryController ()
 @property (nonatomic, strong) UITableView *tableView;                   /**<   玩法列表TableView */
 @property (nonatomic, strong) UICollectionView *betCollectionView;      /**<   下注号码CollectionView */
@@ -29,6 +30,7 @@
 @interface LotteryBetAndChatVC ()
 
 @property (nonatomic) SlideSegmentView1 *ssv1;                  /**<    分页布局View */
+
 @end
 
 
@@ -73,6 +75,9 @@
         self.navigationItem.leftBarButtonItem = item;
     }
     
+    
+
+    
     // 彩票下注页VC
     UGNextIssueModel *model = _nim;
     UGCommonLotteryController *vc1 = ({
@@ -114,7 +119,10 @@
     // 聊天室VC
     UGChatViewController *vc2 = ({
         UGChatViewController *vc = [[UGChatViewController alloc] init];
-        if (model.gameId) {
+        NSLog(@"SysConf.chatIdAry = %@",SysConf.chatIdAry);
+        NSLog(@"model.gameId = %@",model.gameId);
+        NSLog(@"包含 = %d",[SysConf.chatIdAry containsObject:model.gameId]);
+        if (model.gameId && SysConf.chatIdAry.count && [SysConf.chatIdAry containsObject:model.gameId]) {
              vc.gameId = model.gameId;
         } else {
              vc.gameId = @"主聊天室";
