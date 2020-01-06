@@ -114,7 +114,12 @@
     // 聊天室VC
     UGChatViewController *vc2 = ({
         UGChatViewController *vc = [[UGChatViewController alloc] init];
-        vc.gameId = model.gameId;
+        if (model.gameId) {
+             vc.gameId = model.gameId;
+        } else {
+             vc.gameId = @"主聊天室";
+        }
+       
         // 隐藏H5的导航条
         [vc cc_hookSelector:@selector(setUrl:) withOptions:AspectPositionBefore usingBlock:^(id<AspectInfo>  _Nonnull ai) {
             NSString *url = ai.arguments.firstObject;

@@ -29,7 +29,7 @@
     if (self.navigationController.viewControllers.firstObject == self) {
         self.navigationController.navigationBarHidden = true;
     }
-    
+   
     // 设置URL
     __weakSelf_(__self);
     {
@@ -38,7 +38,11 @@
             if (__self.shareBetJson.length) {
                 __self.url = APP.chatShareUrl;
             } else if (__self.gameId.length) {
-                __self.url = [APP chatGameUrl:__self.gameId];
+                if ([__self.gameId isEqualToString:@"主聊天室"]) {
+                    __self.url = APP.chatHomeUrl;
+                } else {
+                    __self.url = [APP chatGameUrl:__self.gameId];
+                }
             } else {
                 __self.url = APP.chatHomeUrl;
             }
