@@ -165,7 +165,7 @@
     if ([@"黑色模板" containsString:Skin1.skitType]) {
         return NO;
     } else {
-        return [@"c190" containsString:_SiteId];
+        return [@"c190,test10" containsString:_SiteId];
     }
 }
 
