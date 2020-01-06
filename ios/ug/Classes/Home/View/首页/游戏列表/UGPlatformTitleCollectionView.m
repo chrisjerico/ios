@@ -249,6 +249,7 @@
     });
     GameCategoryModel *gcm = _gameTypeArray[row];
     CGFloat w = [gcm.name widthForFont:[UIFont systemFontOfSize:18]] + space;
+    w = 92.0;
     return w;
 }
 
