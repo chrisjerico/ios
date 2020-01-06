@@ -408,7 +408,7 @@
                     subLabel(@"内容Label").text = obj.content ? obj.content : @"";
                 }
                 
-                if (count >=  3) {
+                if (pcm.secReplyList.count > 3) {
                     [subButton(@"回复内容btn") setTitle:[NSString stringWithFormat:@"查看全部回复%lu条 >",(unsigned long)pcm.secReplyList.count] forState:(UIControlStateNormal)];
                     [subButton(@"回复内容btn") setHidden:NO];
                 }
