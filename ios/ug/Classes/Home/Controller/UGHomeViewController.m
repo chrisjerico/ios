@@ -858,7 +858,12 @@
                     [UGMissionCenterViewController setTitle:gm.name.length ? gm.name : gm.title];
                     
 					if (sourceData.count > 0) {
-						self.gameNavigationViewHeight.constant = ((sourceData.count - 1)/5 + 1)*80;
+						if ([SysConf.mobileTemplateCategory isEqualToString:@"9"] && [@"c190, test20" containsString:APP.SiteId]) {
+							self.gameNavigationViewHeight.constant = 80;
+						} else {
+							self.gameNavigationViewHeight.constant = ((sourceData.count - 1)/5 + 1)*80;
+
+						}
 						[self.view layoutIfNeeded];
 					}
                     // 游戏列表

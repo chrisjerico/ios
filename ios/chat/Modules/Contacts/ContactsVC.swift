@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SnapKit
 import ObjectMapper
 import RxCocoa
 import RxSwift
