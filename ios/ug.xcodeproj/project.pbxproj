@@ -1795,6 +1795,7 @@
 		D4C0A12723913A6C00B39358 /* Global.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C0A12623913A6C00B39358 /* Global.m */; };
 		D4C0A12F239156FB00B39358 /* hot_01.gif in Resources */ = {isa = PBXBuildFile; fileRef = D4C0A12D239156FB00B39358 /* hot_01.gif */; };
 		D4E6A61F23C4D340003E18B6 /* UGChatRoomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E6A61E23C4D340003E18B6 /* UGChatRoomModel.m */; };
+		D4E6A62223C4D4DD003E18B6 /* CCNetworkRequests1+UG.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E6A62123C4D4DD003E18B6 /* CCNetworkRequests1+UG.m */; };
 		F5614FBC2C7545CF870A0AD2 /* Pods_chat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30193B1626262AA87797C0E9 /* Pods_chat.framework */; };
 /* End PBXBuildFile section */
 
@@ -3459,6 +3460,8 @@
 		D4C0A12D239156FB00B39358 /* hot_01.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = hot_01.gif; sourceTree = "<group>"; };
 		D4E6A61C23C4D33F003E18B6 /* UGChatRoomModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGChatRoomModel.h; sourceTree = "<group>"; };
 		D4E6A61E23C4D340003E18B6 /* UGChatRoomModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGChatRoomModel.m; sourceTree = "<group>"; };
+		D4E6A62023C4D4DD003E18B6 /* CCNetworkRequests1+UG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCNetworkRequests1+UG.h"; sourceTree = "<group>"; };
+		D4E6A62123C4D4DD003E18B6 /* CCNetworkRequests1+UG.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCNetworkRequests1+UG.m"; sourceTree = "<group>"; };
 		E98695D8DC0D2512B92A7C32 /* Pods-ug.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ug.debug.xcconfig"; path = "Target Support Files/Pods-ug/Pods-ug.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -4044,6 +4047,8 @@
 		031E14B423BE812300B0F813 /* CCNetworkRequests1 */ = {
 			isa = PBXGroup;
 			children = (
+				D4E6A62023C4D4DD003E18B6 /* CCNetworkRequests1+UG.h */,
+				D4E6A62123C4D4DD003E18B6 /* CCNetworkRequests1+UG.m */,
 				031E14B523BE812300B0F813 /* CCSessionModel.h */,
 				031E14BA23BE812300B0F813 /* CCSessionModel.m */,
 				031E14B723BE812300B0F813 /* CCNetworkRequests1.h */,
@@ -8998,6 +9003,7 @@
 				031E1CC423BE812A00B0F813 /* UIScrollView+MJRefresh.m in Sources */,
 				031E1AF223BE812800B0F813 /* QDAlertView.m in Sources */,
 				031E1AE023BE812800B0F813 /* TADotView.m in Sources */,
+				D4E6A62223C4D4DD003E18B6 /* CCNetworkRequests1+UG.m in Sources */,
 				031E1D6223BE812B00B0F813 /* UGBankCardInfoController.m in Sources */,
 				031E1CBE23BE812A00B0F813 /* UGViewController.m in Sources */,
 				031E1DB423BE812B00B0F813 /* UGgaCaptchaModel.m in Sources */,
