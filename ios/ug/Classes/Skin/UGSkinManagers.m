@@ -1019,7 +1019,30 @@ static UGSkinManagers *__initSkin1 = nil;
 				sm.tabBarBgColor            = color(@"323232");
 				sm.tabNoSelectColor         = color(@"ffffff");
 				sm.tabSelectedColor         = color(@"aab647");
-			
+				
+				sm.progressBgColor          = color(@"d80000,fb5959");
+				sm.homeContentColor         = color(@"FFFFFF");
+				sm.homeContentSubColor      = color(@"D3D3D3");
+				sm.cellBgColor              = color(@"FFFFFF");
+				sm.CLBgColor                = color(@"E6E6E6");
+				sm.menuHeadViewColor        = color(@"ff566d,ffbac3");
+				sm.textColor1               = color(@"111111");
+				sm.textColor2               = color(@"555555");
+				sm.textColor3               = color(@"C1C1C1");
+				sm.textColor4               = color(@"FFFFFF");
+				sm;
+			}),
+			//活力橙
+			@"活力橙":({
+				UGSkinManagers *sm = [UGSkinManagers new];
+				sm.skitType                 = @"活力橙";
+				sm.skitString               = @"活力橙";
+				sm.bgColor                  = color(@"FFFFFF");
+				sm.navBarBgColor            = color(@"323232");
+				sm.tabBarBgColor            = color(@"323232");
+				sm.tabNoSelectColor         = color(@"ffffff");
+				sm.tabSelectedColor         = color(@"aab647");
+				
 				sm.progressBgColor          = color(@"d80000,fb5959");
 				sm.homeContentColor         = color(@"FFFFFF");
 				sm.homeContentSubColor      = color(@"D3D3D3");
@@ -1051,6 +1074,8 @@ static UGSkinManagers *__initSkin1 = nil;
 						   @"4":[NSString stringWithFormat:@"六合资料%@",SysConf.mobileTemplateLhcStyle],
 						   @"5":@"黑色模板",
 						   @"6":@"金沙主题",
+						   @"7":@"活力橙",
+
 	};
 	
 	NSLog(@"============================SysConf.mobileTemplateCategory=%@",SysConf.mobileTemplateStyle);
@@ -1058,14 +1083,14 @@ static UGSkinManagers *__initSkin1 = nil;
 	NSString *skitType = dict[SysConf.mobileTemplateCategory];
 #if DEBUG
 	NSLog(@"============================skitType=%@",skitType);
-//	skitType =  @"经典 18钻石蓝";
+	//	skitType =  @"经典 18钻石蓝";
 	//          skitType =  @"金沙主题";
 	//              skitType = @"黑色模板";
-//                  skitType = @"六合资料 0默认风格";
+	//                  skitType = @"六合资料 0默认风格";
 #endif
 	return [UGSkinManagers allSkin][skitType];
-
-
+	
+	
 }
 
 
@@ -1131,12 +1156,12 @@ static UGSkinManagers *__initSkin1 = nil;
 }
 
 + (UGSkinManagers *)next {
-	NSArray *keys = @[@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11", @"12", @"13", @"14", @"15", @"16", @"17", @"18", @"19", @"六合资料0",@"六合资料1",@"六合资料2",@"六合资料3",@"六合资料4",@"六合资料5",@"六合资料6",@"六合资料7",@"六合资料8",@"六合资料9",@"六合资料10",@"新年红0", @"新年红1",@"石榴红",  @"黑色模板", @"金沙模板", ];
+	NSArray *keys = @[@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11", @"12", @"13", @"14", @"15", @"16", @"17", @"18", @"19", @"六合资料0",@"六合资料1",@"六合资料2",@"六合资料3",@"六合资料4",@"六合资料5",@"六合资料6",@"六合资料7",@"六合资料8",@"六合资料9",@"六合资料10",@"新年红0", @"新年红1",@"石榴红",  @"黑色模板", @"金沙主题", ];
 	NSInteger i = [keys indexOfObject:[[UGSkinManagers allSkin] allKeysForObject:Skin1].firstObject] + keys.count;
 	return [UGSkinManagers allSkin][keys[++i%keys.count]];
 }
 + (UGSkinManagers *)last {
-	NSArray *keys = @[@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11", @"12", @"13", @"14", @"15", @"16", @"17", @"18", @"19", @"六合资料0",@"六合资料1",@"六合资料2",@"六合资料3",@"六合资料4",@"六合资料5",@"六合资料6",@"六合资料7",@"六合资料8",@"六合资料9",@"六合资料10",@"新年红0", @"新年红1",@"石榴红",  @"黑色模板", @"金沙模板", ];
+	NSArray *keys = @[@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11", @"12", @"13", @"14", @"15", @"16", @"17", @"18", @"19", @"六合资料0",@"六合资料1",@"六合资料2",@"六合资料3",@"六合资料4",@"六合资料5",@"六合资料6",@"六合资料7",@"六合资料8",@"六合资料9",@"六合资料10",@"新年红0", @"新年红1",@"石榴红",  @"黑色模板", @"金沙主题", ];
 	NSInteger i = [keys indexOfObject:[[UGSkinManagers allSkin] allKeysForObject:Skin1].firstObject] + keys.count;
 	return [UGSkinManagers allSkin][keys[--i%keys.count]];
 }

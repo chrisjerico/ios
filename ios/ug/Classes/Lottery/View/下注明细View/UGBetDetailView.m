@@ -229,6 +229,9 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
            
 		} failure:^(id msg) {
 			[SVProgressHUD dismiss];
+			
+			UIAlertController * alert = [UIAlertController alertWithTitle:@"投注失败" msg:msg btnTitles:@[@"确定"]];
+			[NavController1 presentViewController:alert animated:true completion:nil];
 //			C001BetErrorCustomView * msgView = [[NSBundle mainBundle] loadNibNamed:@"C001BetErrorCustomView" owner:self options:nil].firstObject;
 //			[self addSubview:msgView];
 //			[msgView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -237,17 +240,17 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 //			}];
 //			[msgView bind: msg];
 //
-			if ([@"test03" isEqualToString:APP.SiteId]) {
-				C001BetErrorCustomView * msgView = [[NSBundle mainBundle] loadNibNamed:@"C001BetErrorCustomView" owner:self options:nil].firstObject;
-				[self addSubview:msgView];
-				[msgView mas_makeConstraints:^(MASConstraintMaker *make) {
-					make.center.equalTo(self);
-				}];
-				[msgView bind: msg];
-			} else {
-				[SVProgressHUD showErrorWithStatus:msg];
-
-			}
+//			if ([@"test03" isEqualToString:APP.SiteId]) {
+//				C001BetErrorCustomView * msgView = [[NSBundle mainBundle] loadNibNamed:@"C001BetErrorCustomView" owner:self options:nil].firstObject;
+//				[self addSubview:msgView];
+//				[msgView mas_makeConstraints:^(MASConstraintMaker *make) {
+//					make.center.equalTo(self);
+//				}];
+//				[msgView bind: msg];
+//			} else {
+//				[SVProgressHUD showErrorWithStatus:msg];
+//
+//			}
 		
 			NSString *msgStr = (NSString *)msg;
 			if ([msgStr containsString:@"已封盘"]) {

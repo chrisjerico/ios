@@ -160,7 +160,7 @@ UGSystemConfigModel *currentConfig = nil;
     if (_type == MM_我的_默认) {
         if (Skin1.isBlack)
             return MM_我的_亮黑;
-        if ([Skin1.skitType containsString:@"六合"])
+        if ([Skin1.skitType containsString:@"六合"] || [Skin1.skitType isEqualToString:@"活力橙"])
             return MM_我的_六合;
     }
     if (_type == MM_推广收益 && UGLoginIsAuthorized() && !UserI.isAgent) {

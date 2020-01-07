@@ -6659,7 +6659,7 @@
 			children = (
 				031EF4CC23BE7B4D00B0F813 /* UGMomentsHomeVC.swift */,
 				031EF4B523BE7B4D00B0F813 /* Cells */,
-				031EF4C723BE7B4D00B0F813 /* concerned */,
+				031EF4C723BE7B4D00B0F813 /* Concerned */,
 				031EF4CD23BE7B4D00B0F813 /* Publish */,
 				031EF4D223BE7B4D00B0F813 /* Public */,
 			);
@@ -6690,7 +6690,7 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		031EF4C723BE7B4D00B0F813 /* concerned */ = {
+		031EF4C723BE7B4D00B0F813 /* Concerned */ = {
 			isa = PBXGroup;
 			children = (
 				031EF4C823BE7B4D00B0F813 /* ConcernedMomentsHeaderView.swift */,
@@ -6698,7 +6698,7 @@
 				031EF4CA23BE7B4D00B0F813 /* ConcernedMomentsVC.xib */,
 				031EF4CB23BE7B4D00B0F813 /* ConcernedMomentsHeaderView.xib */,
 			);
-			path = concerned;
+			path = Concerned;
 			sourceTree = "<group>";
 		};
 		031EF4CD23BE7B4D00B0F813 /* Publish */ = {
