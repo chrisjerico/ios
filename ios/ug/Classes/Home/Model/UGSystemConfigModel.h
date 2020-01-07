@@ -181,7 +181,7 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 
 // 自定义参数
 @property (nonatomic, readonly) NSArray <NSString *>*qqs;
-@property (nonatomic,strong) NSMutableArray *chatIdAry;                    /**<    在线配置的聊天室id */
+
 @property (nonatomic,strong) NSMutableArray<UGChatRoomModel *> *chatRoomAry;                    /**<    在线配置的聊天室i*/
 @property (nonatomic,strong) NSMutableArray *typeIdAry;                    /**<    在线配置的聊天室id对应的游戏id */
 @end
