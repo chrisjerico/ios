@@ -1794,6 +1794,7 @@
 		D4BF9D1B23C1D0060047D89C /* UIColor+YYUI.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BF9D1A23C1D0060047D89C /* UIColor+YYUI.m */; };
 		D4C0A12723913A6C00B39358 /* Global.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C0A12623913A6C00B39358 /* Global.m */; };
 		D4C0A12F239156FB00B39358 /* hot_01.gif in Resources */ = {isa = PBXBuildFile; fileRef = D4C0A12D239156FB00B39358 /* hot_01.gif */; };
+		D4E6A61F23C4D340003E18B6 /* UGChatRoomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E6A61E23C4D340003E18B6 /* UGChatRoomModel.m */; };
 		F5614FBC2C7545CF870A0AD2 /* Pods_chat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30193B1626262AA87797C0E9 /* Pods_chat.framework */; };
 /* End PBXBuildFile section */
 
@@ -3456,6 +3457,8 @@
 		D4C0A12523913A6C00B39358 /* Global.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Global.h; sourceTree = "<group>"; };
 		D4C0A12623913A6C00B39358 /* Global.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Global.m; sourceTree = "<group>"; };
 		D4C0A12D239156FB00B39358 /* hot_01.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = hot_01.gif; sourceTree = "<group>"; };
+		D4E6A61C23C4D33F003E18B6 /* UGChatRoomModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGChatRoomModel.h; sourceTree = "<group>"; };
+		D4E6A61E23C4D340003E18B6 /* UGChatRoomModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGChatRoomModel.m; sourceTree = "<group>"; };
 		E98695D8DC0D2512B92A7C32 /* Pods-ug.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ug.debug.xcconfig"; path = "Target Support Files/Pods-ug/Pods-ug.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -5518,6 +5521,8 @@
 		031E177723BE812500B0F813 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				D4E6A61C23C4D33F003E18B6 /* UGChatRoomModel.h */,
+				D4E6A61E23C4D340003E18B6 /* UGChatRoomModel.m */,
 				031E177823BE812500B0F813 /* UGChatViewController.h */,
 				031E177923BE812500B0F813 /* UGChatViewController.m */,
 			);
@@ -9131,6 +9136,7 @@
 				031E1DBA23BE812B00B0F813 /* UGdepositListModel.m in Sources */,
 				031E1A2223BE812700B0F813 /* CCNetworkRequests1+UGBlackTemplate.m in Sources */,
 				031E1E2C23BE812C00B0F813 /* UGActivityGoldView.m in Sources */,
+				D4E6A61F23C4D340003E18B6 /* UGChatRoomModel.m in Sources */,
 				031E1A8E23BE812700B0F813 /* SAROPSession.m in Sources */,
 				031E1DEC23BE812C00B0F813 /* UGMissionTitleCollectionView.m in Sources */,
 				031E19A823BE812600B0F813 /* AppDefine.m in Sources */,
