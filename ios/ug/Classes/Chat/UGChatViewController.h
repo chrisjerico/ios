@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UGChatViewController : TGWebViewController
 @property (nonatomic, copy) NSString *gameId;       /**<   从下注页面进入传入的彩种ID */
 @property (nonatomic, copy) NSString *shareBetJson; /**<   从下注页面返回的分享下注 */
+@property (nonatomic, copy) NSString *roomId;       /**<   从下注页面进入传入的RoomID */
 @end
 
 NS_ASSUME_NONNULL_END

@@ -91,7 +91,7 @@
 #import "UGLHlotteryNumberModel.h"
 #import "UGYYPlatformGames.h"
 #import "UGhomeAdsModel.h"
-
+#import "UGChatRoomModel.h"
 // Tools
 #import "UIImageView+WebCache.h"
 #import "CMCommon.h"
@@ -105,6 +105,7 @@
 #import "Global.h"
 #import "CMAudioPlayer.h"
 #import "JS_HomePromoteContainerView.h"
+
 
 @interface UGHomeViewController ()<SDCycleScrollViewDelegate,UUMarqueeViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,WSLWaterFlowLayoutDelegate>
 
@@ -1065,13 +1066,22 @@
                         NSLog(@"model.data = %@",model.data);
                         NSDictionary *data = (NSDictionary *)model.data;
                         NSMutableArray *chatIdAry = [NSMutableArray new];
+                        NSMutableArray *typeIdAry = [NSMutableArray new];
+                        NSMutableArray<UGChatRoomModel *> *chatRoomAry = [NSMutableArray new];
                         NSArray * chatAry = [data objectForKey:@"chatAry"];
                         for (int i = 0; i< chatAry.count; i++) {
                             NSDictionary *dic =  [chatAry objectAtIndex:i];
-                            [chatIdAry addObject:[dic objectForKey:@"typeId"]];
+                            [chatIdAry addObject:[dic objectForKey:@"roomId"]];
+                            [typeIdAry addObject:[dic objectForKey:@"typeId"]];
+                           [chatRoomAry addObject: [UGChatRoomModel mj_objectWithKeyValues:dic]];
+                         
                         }
                         NSLog(@"chatIdAry = %@",chatIdAry);
+                        NSLog(@"chatRoomAry = %@",chatRoomAry);
                         SysConf.chatIdAry = chatIdAry;
+                        SysConf.typeIdAry = typeIdAry;
+                        SysConf.chatRoomAry = chatRoomAry;
+                        
     
                     } failure:^(id msg) {
             //            [self stopAnimation];

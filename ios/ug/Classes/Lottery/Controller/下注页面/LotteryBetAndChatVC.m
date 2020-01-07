@@ -14,7 +14,8 @@
 #import "SlideSegmentView1.h"
 #import "STBarButtonItem.h"
 
-
+#import "CMTimeCommon.h"
+#import "CCNetworkRequests1+UG.h"
 
 
 @interface UGCommonLotteryController ()
@@ -30,13 +31,19 @@
 @interface LotteryBetAndChatVC ()
 
 @property (nonatomic) SlideSegmentView1 *ssv1;                  /**<    分页布局View */
+@property (nonatomic, strong) UIButton *downBtn;                /**<   下按钮 */
 
+@property (nonatomic, strong) NSMutableArray *chatAry ;         /**<   聊天室数据*/
 @end
 
 
 @implementation LotteryBetAndChatVC
 
 - (BOOL)允许游客访问 { return true; }
+
+-(void)showLeeView{
+
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -148,7 +155,7 @@
         
         [self addChildViewController:vc1];
         [self addChildViewController:vc2];
-        
+
         NSArray *titles = @[@"投注区", @"聊天室"];
         SlideSegmentView1 *ssv1 = _ssv1 = _LoadView_from_nib_(@"SlideSegmentView1");
         ssv1.frame = CGRectMake(0, 0, APP.Width, APP.Height);
@@ -159,22 +166,195 @@
                 make.height.mas_equalTo(APP.Height - NavController1.navigationBar.by - 40);
             }];
         }
-        ssv1.titleBar.titleForItemAtIndex = ^NSString *(NSUInteger idx) {
-            return titles[idx];
+         __weakSelf_(__self);
+        ssv1.titleBar.updateCellForItemAtIndex = ^(UICollectionViewCell *cell, UILabel *label, NSUInteger idx) {
+            label.text = titles[idx];
+            if (idx) {
+                label.text = [NSString stringWithFormat:@"%@▼",titles[idx]];
+                __self.downBtn = ({
+                    UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+                    button.frame = CGRectMake(50, 0, 40, 40);
+//                    [button setBackgroundColor:[UIColor redColor]];
+                    // 按钮的正常状态
+                    button;
+                });
+                [cell addSubview:__self.downBtn];
+                [__self.downBtn setHidden:YES];
+                [__self.downBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.left.equalTo(cell).offset(cell.width/2-30);
+                    make.right.equalTo(cell);
+                    make.top.equalTo(cell);
+                    make.bottom.equalTo(cell);
+                 }];
+                [__self.downBtn  removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+                [__self.downBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+                    
+                    if (ssv1.selectedIndex == 0) {
+                        ssv1.selectedIndex = 1;
+                    }
+                    //得到线上配置的聊天室
+                    [NetworkManager1 chat_getToken].completionBlock = ^(CCSessionModel *sm) {
+                         if (!sm.error) {
+                             NSLog(@"model.data = %@",sm.responseObject[@"data"]);
+                             NSDictionary *data = (NSDictionary *)sm.responseObject[@"data"];
+                             __self.chatAry = [NSMutableArray new];
+                             NSMutableArray *chatIdAry = [NSMutableArray new];
+                             NSMutableArray *chatTitleAry = [NSMutableArray new];
+                             NSMutableArray *typeIdAry = [NSMutableArray new];
+                             NSMutableArray<UGChatRoomModel *> *chatRoomAry = [NSMutableArray new];
+                             __self.chatAry = [data objectForKey:@"chatAry"];
+                             for (int i = 0; i< __self.chatAry.count; i++) {
+                                 NSDictionary *dic =  [__self.chatAry objectAtIndex:i];
+                                 [chatIdAry addObject:[dic objectForKey:@"roomId"]];
+                                 [chatTitleAry addObject:[dic objectForKey:@"roomName"]];
+                                 [typeIdAry addObject:[dic objectForKey:@"typeId"]];
+                                 [chatRoomAry addObject: [UGChatRoomModel mj_objectWithKeyValues:dic]];
+                             }
+//                             NSLog(@"chatIdAry = %@",chatIdAry);
+                             SysConf.chatIdAry = chatIdAry;
+                             SysConf.chatIdAry = chatIdAry;
+                             SysConf.typeIdAry = typeIdAry;
+                             SysConf.chatRoomAry = chatRoomAry;
+                                          
+                             
+                             UIAlertController *ac = [AlertHelper showAlertView:nil msg:@"请选择要切换的聊天室" btnTitles:[chatTitleAry arrayByAddingObject:@"取消"]];
+                             for (NSString *key in chatTitleAry) {
+                                 [ac setActionAtTitle:key handler:^(UIAlertAction *aa) {
+
+                                    NSDictionary *dic = [__self.chatAry objectWithValue:key keyPath:@"roomName"];
+                                     NSString *pass =  [dic objectForKey:@"password"];
+                                     NSString *chatId = [dic objectForKey:@"roomId"];
+                                     if ([CMCommon stringIsNull:pass]||[pass isEqualToString:@"%@NSCONTEXT"]) {
+                                         
+//                                         if (![vc2.roomId isEqualToString:chatId]) {
+                                             vc2.roomId = chatId;
+                                             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                                                 //需要在主线程执行的代码
+                                                 vc2.url = [APP chatGameUrl:chatId];
+                                                 NSLog(@"roomId = %@",chatId);
+                                                 NSLog(@"vc2.url = %@",vc2.url);
+                                                 label.text = [NSString stringWithFormat:@"%@▼",key];
+                                             }];
+
+//                                         }
+
+                                         
+                                     } else {
+                                         
+                                         // 使用一个变量接收自定义的输入框对象 以便于在其他位置调用
+                                         
+                                         __block UITextField *tf = nil;
+                                         
+                                         [LEEAlert alert].config
+                                         .LeeTitle(@"请输入房间密码")
+                                         .LeeAddTextField(^(UITextField *textField) {
+                                             textField.placeholder = @"请输入房间密码";
+                                             textField.textColor = [UIColor darkGrayColor];
+                                             tf = textField; //赋值
+                                         })
+                                         
+                                         .LeeAction(@"确定", ^{
+                                             NSLog(@"tf.text = %@",tf.text);
+                                             if ([pass isEqualToString:tf.text]) {
+//                                                 if (![vc2.roomId isEqualToString:chatId]) {
+                                                     vc2.roomId = chatId;
+
+
+                                                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                                                     //需要在主线程执行的代码
+                                                     vc2.url = [APP chatGameUrl:chatId];
+                                                     NSLog(@"roomId = %@",chatId);
+                                                     NSLog(@"vc2.url = %@",vc2.url);
+                                                     label.text = [NSString stringWithFormat:@"%@▼",key];
+                                                 }];
+
+//                                                 }
+                                             } else {
+                                                 [CMCommon showToastTitle:@"房间密码错误"];
+                                             }
+                                         })
+                                         .leeShouldActionClickClose(^(NSInteger index){
+                                             // 是否可以关闭回调, 当即将关闭时会被调用 根据返回值决定是否执行关闭处理
+                                             // 这里演示了与输入框非空校验结合的例子
+                                             BOOL result = ![tf.text isEqualToString:@""];
+                                             result = index == 0 ? result : YES;
+                                             return result;
+                                         })
+                                         .LeeCancelAction(@"取消", nil) // 点击事件的Block如果不需要可以传nil
+                                         .LeeShow();
+                                         
+                                     }
+                                     
+                                 }];
+                             }
+                             
+                         }
+                    };
+                }];
+            }
+            
         };
+        
         __weak_Obj_(ssv1, __ssv1);
         ssv1.titleBar.didSelectItemAtIndexPath = ^(UICollectionViewCell *cell, UILabel *label, NSUInteger idx, BOOL selected) {
             label.textColor = selected ? Skin1.textColor1 : Skin1.textColor2;
+         
             if (!idx && !selected) {
                 label.textColor = [UIColor whiteColor];
             }
             label.font = selected ? [UIFont boldSystemFontOfSize:16] : [UIFont systemFontOfSize:14];
             cell.backgroundColor = selected ? [[UIColor grayColor] colorWithAlphaComponent:0.1] : [UIColor clearColor];
             __ssv1.titleBar.backgroundColor = Skin1.isBlack || idx || !APP.betBgIsWhite ? Skin1.navBarBgColor : [UIColor whiteColor];
+        };
+        ssv1.didSelectedIndex = ^(NSUInteger idx) {
+            if (idx) {
+                 [__self.downBtn setHidden:NO];
+                 __weakSelf_(__self);
+                //得到线上配置的聊天室
+                [NetworkManager1 chat_getToken].completionBlock = ^(CCSessionModel *sm) {
+                     if (!sm.error) {
+                         NSLog(@"model.data = %@",sm.responseObject[@"data"]);
+                         NSDictionary *data = (NSDictionary *)sm.responseObject[@"data"];
+                         NSMutableArray *chatIdAry = [NSMutableArray new];
+                         NSMutableArray *typeIdAry = [NSMutableArray new];
+                         NSMutableArray<UGChatRoomModel *> *chatRoomAry = [NSMutableArray new];
+                         NSArray * chatAry = [data objectForKey:@"chatAry"];
+                         for (int i = 0; i< chatAry.count; i++) {
+                             NSDictionary *dic =  [chatAry objectAtIndex:i];
+                             [chatIdAry addObject:[dic objectForKey:@"roomId"]];
+                             [typeIdAry addObject:[dic objectForKey:@"typeId"]];
+                            [chatRoomAry addObject: [UGChatRoomModel mj_objectWithKeyValues:dic]];
+                          
+                         }
+                         NSLog(@"chatIdAry = %@",chatIdAry);
+                         NSLog(@"chatRoomAry = %@",chatRoomAry);
+                         SysConf.chatIdAry = chatIdAry;
+                         SysConf.typeIdAry = typeIdAry;
+                         SysConf.chatRoomAry = chatRoomAry;
+                         
+                         if (__self.nim.gameId && SysConf.chatIdAry.count && [SysConf.typeIdAry containsObject:__self.nim.gameId]) {
+                             if (![vc2.gameId isEqualToString:__self.nim.gameId]) {
+                                 vc2.gameId = __self.nim.gameId;
+                                 UGChatRoomModel *obj = [SysConf.chatRoomAry objectWithValue:vc2.gameId keyPath:@"typeId"];
+                                 vc2.roomId = obj.roomId;
+                                 vc2.url = [APP chatGameUrl:obj.roomId];
+                             }
 
-
-            
-            
+                         } else {
+//                             if(![vc2.gameId isEqualToString:@"主聊天室"]){
+                                 vc2.gameId = @"主聊天室";
+                                 vc2.roomId = @"0";
+                                 vc2.url = [APP chatMainGameUr];
+//                             }
+                         }
+                     }
+                };
+                
+                
+            }
+            else{
+               [__self.downBtn setHidden:YES];
+            }
         };
         ssv1.titleBar.underlineView.hidden = true;
         [self.view insertSubview:ssv1 atIndex:0];
@@ -184,7 +364,9 @@
         }];
         [self.view layoutIfNeeded];
         ssv1.selectedIndex = 0;
-    }
+        };
+
 }
 
 @end
+    
