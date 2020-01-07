@@ -863,17 +863,21 @@
                     [UGMissionCenterViewController setTitle:gm.name.length ? gm.name : gm.title];
                     
 					if (sourceData.count > 0) {
-						if ([SysConf.mobileTemplateCategory isEqualToString:@"9"] && [@"c190, test20" containsString:APP.SiteId]) {
+						/**
+						 #917 c190首页中间游戏导航需增加logo图标，游戏导航栏可进行滑动
+						 */
+						if ([SysConf.mobileTemplateCategory isEqualToString:@"9"] && [@"c190" containsString:APP.SiteId]) {
 							self.gameNavigationViewHeight.constant = 80;
 						} else {
 							self.gameNavigationViewHeight.constant = ((sourceData.count - 1)/5 + 1)*80;
-
 						}
 						[self.view layoutIfNeeded];
 					}
                     // 游戏列表
 					self.gameTypeView.gameTypeArray = self.gameCategorys = customGameModel.icons.mutableCopy;
-					[self.homePromoteContainer bind: self.gameCategorys[0].list];
+					[self.homePromoteContainer bind: [self.gameCategorys filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(GameCategoryModel * _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+						return [evaluatedObject.iid isEqualToString:@"7"];
+					}]][0].list];
 				});
 			}
 		} failure:^(id msg) {
