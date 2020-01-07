@@ -45,6 +45,7 @@
 #import "UGNotDetailViewController.h"
 
 #import "UGSystemConfigModel.h"
+#import "UGSkinManagers.h"
 
 
 

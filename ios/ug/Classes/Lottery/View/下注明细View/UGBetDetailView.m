@@ -15,6 +15,7 @@
 #import "UGBetResultView.h" /**<   金杯的视图 */
 #import "UGbetModel.h"
 #import "CMTimeCommon.h"
+#import "C001BetErrorCustomView.h"
 
 @interface UGBetDetailView ()<UITableViewDelegate,UITableViewDataSource>{
     
@@ -227,7 +228,27 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 
            
 		} failure:^(id msg) {
-			[SVProgressHUD showErrorWithStatus:msg];
+			[SVProgressHUD dismiss];
+//			C001BetErrorCustomView * msgView = [[NSBundle mainBundle] loadNibNamed:@"C001BetErrorCustomView" owner:self options:nil].firstObject;
+//			[self addSubview:msgView];
+//			[msgView mas_makeConstraints:^(MASConstraintMaker *make) {
+//				make.center.equalTo(self);
+//				make.width.equalTo(self).multipliedBy(0.9);
+//			}];
+//			[msgView bind: msg];
+//
+			if ([@"test03" isEqualToString:APP.SiteId]) {
+				C001BetErrorCustomView * msgView = [[NSBundle mainBundle] loadNibNamed:@"C001BetErrorCustomView" owner:self options:nil].firstObject;
+				[self addSubview:msgView];
+				[msgView mas_makeConstraints:^(MASConstraintMaker *make) {
+					make.center.equalTo(self);
+				}];
+				[msgView bind: msg];
+			} else {
+				[SVProgressHUD showErrorWithStatus:msg];
+
+			}
+		
 			NSString *msgStr = (NSString *)msg;
 			if ([msgStr containsString:@"已封盘"]) {
 				if (self.betClickBlock) {

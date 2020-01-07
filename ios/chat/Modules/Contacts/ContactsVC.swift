@@ -45,7 +45,7 @@ class ContactsVC: BaseVC {
 			return array.sorted { (arg0, arg1) -> Bool in
 				let thisHead = ((arg0.type == 1 ? arg0.roomName : arg0.nickname) as NSString).x.firstPinyinHead() as String
 				let thatHead = ((arg0.type == 1 ? arg0.roomName : arg0.nickname) as NSString).x.firstPinyinHead() as String
-				return thisHead > thatHead
+				return thisHead.unicodeScalars.first!.value > thatHead.unicodeScalars.first!.value
 			}
 		}
 		

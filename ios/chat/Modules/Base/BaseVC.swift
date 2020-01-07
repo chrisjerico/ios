@@ -17,18 +17,18 @@ class BaseVC: UIViewController {
     
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
-		let typeSet = [ConcernedMomentsVC.self, RedpacketGrabListVC.self]
-		if typeSet.contains(where: { (type) -> Bool in
-			return self.isKind(of: type)
-		}) {
-			
-			navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-			navigationController?.navigationBar.barStyle = .default
-		} else {
-			navigationController?.navigationBar.setBackgroundImage(UIImage(color: .white), for: .default)
-			navigationController?.navigationBar.barStyle = .default
-
-		}
+//		let typeSet = [ConcernedMomentsVC.self, RedpacketGrabListVC.self]
+//		if typeSet.contains(where: { (type) -> Bool in
+//			return self.isKind(of: type)
+//		}) {
+//			
+//			navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+//			navigationController?.navigationBar.barStyle = .default
+//		} else {
+//			navigationController?.navigationBar.setBackgroundImage(UIImage(color: .white), for: .default)
+//			navigationController?.navigationBar.barStyle = .default
+//
+//		}
 	}
 
 

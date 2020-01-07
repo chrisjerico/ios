@@ -49,7 +49,7 @@ class LoginVC: BaseVC {
 		secureInputButton.rx.tap.subscribe(onNext: { [unowned self] () in
 			self.passwordField.isSecureTextEntry = !self.secureInputButton.isSelected
 			self.secureInputButton.isSelected = !self.secureInputButton.isSelected
-
+			
 		}).disposed(by: disposeBag)
 		
 	}
@@ -114,18 +114,16 @@ class LoginVC: BaseVC {
 	
 	func getUserInfo(sessid: String,  completion: @escaping (_ user: UGUserModel) -> Void) {
 		Alert.showLoading(parenter: view)
-		ChatAPI.rx.request(.userInfo(sessid: sessid)).subscribe(onSuccess: { (response) in
-			do {
-				let user = try UGUserModel(dictionary: JSON(response.data).dictionaryObject)
+		CMNetwork.getUserInfo(withParams: ["token": sessid]) { [weak self] (result, error) in
+			if let error = error {
+				Alert.showTip(error.localizedDescription,  parenter: self?.view)
+			} else if let user = result?.data as? UGUserModel {
 				completion(user)
-			} catch {
-				Alert.showTip(error.localizedDescription,  parenter: self.view)
+			} else {
+				Alert.showTip("获取系统配置,数据解析失败", parenter: self?.view)
 			}
-			
-		}) { [weak self] (error) in
-			Alert.showTip(error.localizedDescription,  parenter: self?.view)
-		}.disposed(by: disposeBag)
-
+		}
+		
 	}
 	deinit {
 		logger.debug("")

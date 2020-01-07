@@ -485,6 +485,8 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
         if (errResponse.statusCode == 401) {
             [SVProgressHUD dismiss];
             SANotificationEventPost(UGNotificationloginTimeout, nil);
+			completion(nil, error);
+
             return ;
         }
         if (errResponse.statusCode == 402) {
@@ -492,6 +494,8 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
             [CMNetwork userLogoutWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:nil];
             UGUserModel.currentUser = nil;
             SANotificationEventPost(UGNotificationUserLogout, nil);
+			completion(nil, error);
+
             return ;
         }
         if (errResponse.statusCode == 403) {

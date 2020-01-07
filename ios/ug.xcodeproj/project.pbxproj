@@ -1584,6 +1584,10 @@
 		03D6926D23C23953003D9C12 /* UGNotDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE074DA23C0E7840083EA7E /* UGNotDetailViewController.m */; };
 		03D6927023C23B9D003D9C12 /* ContactsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D6926E23C23B9D003D9C12 /* ContactsVC.swift */; };
 		03D6927123C23B9D003D9C12 /* ContactsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03D6926F23C23B9D003D9C12 /* ContactsVC.xib */; };
+		03D6927723C32E0B003D9C12 /* C001BetErrorCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03D6927623C32E0A003D9C12 /* C001BetErrorCustomView.m */; };
+		03D6927823C32E0B003D9C12 /* C001BetErrorCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03D6927623C32E0A003D9C12 /* C001BetErrorCustomView.m */; };
+		03D6927A23C32E1A003D9C12 /* C001BetErrorCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03D6927923C32E1A003D9C12 /* C001BetErrorCustomView.xib */; };
+		03D6927B23C32E1A003D9C12 /* C001BetErrorCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03D6927923C32E1A003D9C12 /* C001BetErrorCustomView.xib */; };
 		03E41B2C23C0903C004AB7C6 /* JS_HomePromoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E41B2B23C0903C004AB7C6 /* JS_HomePromoteView.m */; };
 		03E41B2F23C09055004AB7C6 /* JS_HomePromoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03E41B2E23C09055004AB7C6 /* JS_HomePromoteView.xib */; };
 		03E41B3223C09363004AB7C6 /* JS_HomePromoteContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E41B3123C09363004AB7C6 /* JS_HomePromoteContainerView.m */; };
@@ -3224,6 +3228,9 @@
 		03D6926B23C23495003D9C12 /* BaseTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableVC.swift; sourceTree = "<group>"; };
 		03D6926E23C23B9D003D9C12 /* ContactsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsVC.swift; sourceTree = "<group>"; };
 		03D6926F23C23B9D003D9C12 /* ContactsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactsVC.xib; sourceTree = "<group>"; };
+		03D6927523C32E0A003D9C12 /* C001BetErrorCustomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = C001BetErrorCustomView.h; sourceTree = "<group>"; };
+		03D6927623C32E0A003D9C12 /* C001BetErrorCustomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = C001BetErrorCustomView.m; sourceTree = "<group>"; };
+		03D6927923C32E1A003D9C12 /* C001BetErrorCustomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = C001BetErrorCustomView.xib; sourceTree = "<group>"; };
 		03E41B2A23C0903C004AB7C6 /* JS_HomePromoteView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JS_HomePromoteView.h; sourceTree = "<group>"; };
 		03E41B2B23C0903C004AB7C6 /* JS_HomePromoteView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JS_HomePromoteView.m; sourceTree = "<group>"; };
 		03E41B2E23C09055004AB7C6 /* JS_HomePromoteView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JS_HomePromoteView.xib; sourceTree = "<group>"; };
@@ -4585,7 +4592,6 @@
 				031E15D723BE812400B0F813 /* UGHomeViewController.storyboard */,
 				031E15D823BE812400B0F813 /* UGGameListViewController.h */,
 				031E15CF23BE812400B0F813 /* UGGameListViewController.m */,
-				03A5D37F23BFA4480055A998 /* 金沙主题 */,
 				031E15CB23BE812400B0F813 /* 开奖记录 */,
 				031E15D023BE812400B0F813 /* 资料页 */,
 				031E15D923BE812400B0F813 /* 长龙助手 */,
@@ -4680,6 +4686,7 @@
 		031E160723BE812400B0F813 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				03A5D37F23BFA4480055A998 /* 金沙主题 */,
 				031E164723BE812400B0F813 /* 六合板块 */,
 				031E164D23BE812400B0F813 /* 彩种规则 */,
 				031E165123BE812400B0F813 /* 长龙助手 */,
@@ -5304,6 +5311,9 @@
 				031E170B23BE812400B0F813 /* UGBetDetailTableViewCell.h */,
 				031E170F23BE812400B0F813 /* UGBetDetailTableViewCell.m */,
 				031E171123BE812400B0F813 /* UGBetDetailTableViewCell.xib */,
+				03D6927523C32E0A003D9C12 /* C001BetErrorCustomView.h */,
+				03D6927623C32E0A003D9C12 /* C001BetErrorCustomView.m */,
+				03D6927923C32E1A003D9C12 /* C001BetErrorCustomView.xib */,
 			);
 			path = "下注明细View";
 			sourceTree = "<group>";
@@ -6647,9 +6657,9 @@
 		031EF4B423BE7B4D00B0F813 /* Moments */ = {
 			isa = PBXGroup;
 			children = (
+				031EF4CC23BE7B4D00B0F813 /* UGMomentsHomeVC.swift */,
 				031EF4B523BE7B4D00B0F813 /* Cells */,
 				031EF4C723BE7B4D00B0F813 /* concerned */,
-				031EF4CC23BE7B4D00B0F813 /* UGMomentsHomeVC.swift */,
 				031EF4CD23BE7B4D00B0F813 /* Publish */,
 				031EF4D223BE7B4D00B0F813 /* Public */,
 			);
@@ -6659,23 +6669,23 @@
 		031EF4B523BE7B4D00B0F813 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				031EF4C523BE7B4D00B0F813 /* MomentsHomeCell.swift */,
 				031EF4B623BE7B4D00B0F813 /* MomentsHomeCell.xib */,
-				031EF4B723BE7B4D00B0F813 /* CommentInputAccessView.swift */,
 				031EF4B823BE7B4D00B0F813 /* MomentsCell.swift */,
-				031EF4B923BE7B4D00B0F813 /* MomentsCellCommentLabel.swift */,
-				031EF4BA23BE7B4D00B0F813 /* CommentInputBar.swift */,
 				031EF4BB23BE7B4D00B0F813 /* MomentsCell.xib */,
-				031EF4BC23BE7B4D00B0F813 /* MomentsCellLikesLabel.swift */,
+				031EF4C623BE7B4D00B0F813 /* MomentsCellImageItem.swift */,
 				031EF4BD23BE7B4D00B0F813 /* MomentsCellImageItem.xib */,
+				031EF4BC23BE7B4D00B0F813 /* MomentsCellLikesLabel.swift */,
 				031EF4BE23BE7B4D00B0F813 /* MomentsCellLikesLabel.xib */,
+				031EF4BA23BE7B4D00B0F813 /* CommentInputBar.swift */,
 				031EF4BF23BE7B4D00B0F813 /* CommentInputBar.xib */,
-				031EF4C023BE7B4D00B0F813 /* MomentsCellCommentTextView.swift */,
 				031EF4C123BE7B4D00B0F813 /* MomentsBetCell.xib */,
 				031EF4C223BE7B4D00B0F813 /* MomentsBetCell.swift */,
 				031EF4C323BE7B4D00B0F813 /* Line.xib */,
+				031EF4B923BE7B4D00B0F813 /* MomentsCellCommentLabel.swift */,
 				031EF4C423BE7B4D00B0F813 /* MomentsCellCommentLabel.xib */,
-				031EF4C523BE7B4D00B0F813 /* MomentsHomeCell.swift */,
-				031EF4C623BE7B4D00B0F813 /* MomentsCellImageItem.swift */,
+				031EF4C023BE7B4D00B0F813 /* MomentsCellCommentTextView.swift */,
+				031EF4B723BE7B4D00B0F813 /* CommentInputAccessView.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -7529,6 +7539,7 @@
 				031E1CA323BE812A00B0F813 /* UGWithdrawRecordDetailView.xib in Resources */,
 				031EF5EA23BE7B4E00B0F813 /* MineTableController.storyboard in Resources */,
 				031E1DFD23BE812C00B0F813 /* UGSingInHistoryTableViewCell.xib in Resources */,
+				03D6927B23C32E1A003D9C12 /* C001BetErrorCustomView.xib in Resources */,
 				031EF59323BE7B4D00B0F813 /* caipiaozhudanjilu.svg in Resources */,
 				031E1BEB23BE812900B0F813 /* UGSSCLotteryController.storyboard in Resources */,
 				031E1E5323BE812C00B0F813 /* UGMenuTableViewCell.xib in Resources */,
@@ -7668,6 +7679,7 @@
 				CF475908239636D200966536 /* 166.gif in Resources */,
 				031E1DFA23BE812C00B0F813 /* UGMissionTitleCell.xib in Resources */,
 				031E1E6C23BE812C00B0F813 /* UGBetRecorddHeaderView.xib in Resources */,
+				03D6927A23C32E1A003D9C12 /* C001BetErrorCustomView.xib in Resources */,
 				CF475900239636D200966536 /* 58.gif in Resources */,
 				031E1B8823BE812900B0F813 /* UGNoticePopView.xib in Resources */,
 				CF4758C4239636D200966536 /* 6.gif in Resources */,
@@ -8228,6 +8240,7 @@
 				031E1C4923BE812900B0F813 /* UGTimeLotteryLeftTitleCell.m in Sources */,
 				031E1AD323BE812800B0F813 /* TGWebProgressLayer.m in Sources */,
 				031E1B3923BE812800B0F813 /* UGonlineCount.m in Sources */,
+				03D6927823C32E0B003D9C12 /* C001BetErrorCustomView.m in Sources */,
 				031E1E5923BE812C00B0F813 /* UGMenuTableViewCell.m in Sources */,
 				031E1D9923BE812B00B0F813 /* UGYubaoConversionCenterController.m in Sources */,
 				031E1B5323BE812800B0F813 /* UGYYRightMenuView.m in Sources */,
@@ -8851,6 +8864,7 @@
 				D405B346227DB22100F8C586 /* UGNotificationEvent.m in Sources */,
 				031E1D6E23BE812B00B0F813 /* UGMosaicGoldViewController.m in Sources */,
 				031E1D2A23BE812B00B0F813 /* UGIntegralConvertRecordController.m in Sources */,
+				03D6927723C32E0B003D9C12 /* C001BetErrorCustomView.m in Sources */,
 				031E1C7423BE812A00B0F813 /* UGFundDetailsTableViewController.m in Sources */,
 				031E195823BE812600B0F813 /* LHUserInfoVC.m in Sources */,
 				031E1CCC23BE812A00B0F813 /* NSBundle+MJRefresh.m in Sources */,
