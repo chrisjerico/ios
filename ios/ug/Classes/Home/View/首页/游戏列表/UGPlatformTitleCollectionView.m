@@ -249,8 +249,11 @@
     });
     GameCategoryModel *gcm = _gameTypeArray[row];
     CGFloat w = [gcm.name widthForFont:[UIFont systemFontOfSize:18]] + space;
-    w = 92.0;
-    return w;
+    if (APP.isShowLogo) {
+        return 92.0;
+    } else {
+        return w;
+    }
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
