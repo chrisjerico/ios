@@ -15,8 +15,8 @@
 // 回调
 @property (nonatomic) CGFloat (^widthForItemAtIndex)(NSUInteger idx);
 @property (nonatomic) NSString *(^titleForItemAtIndex)(NSUInteger idx);
-@property (nonatomic) void (^updateCellForItemAtIndex)(UICollectionViewCell *cell, UILabel *label, NSUInteger idx);
-@property (nonatomic) void (^didSelectItemAtIndexPath)(UICollectionViewCell *cell, UILabel *label, NSUInteger idx, BOOL selected);
+@property (nonatomic) void (^updateCellForItemAtIndex)(UICollectionViewCell *cell, UILabel *label, NSUInteger idx);//类似tableView 的cell 布局方法
+@property (nonatomic) void (^didSelectItemAtIndexPath)(UICollectionViewCell *cell, UILabel *label, NSUInteger idx, BOOL selected);//选中的方法
 
 @property (nonatomic) UIView *underlineView;                /**<    下划线 */
 - (void)reloadData;                                         /**<    刷新数据 */
@@ -37,5 +37,5 @@
 - (void)setSelectedIndex:(NSUInteger)selectedIndex animated:(BOOL)animated;
 
 // Block
-@property (nonatomic) void (^didSelectedIndex)(NSUInteger idx);
+@property (nonatomic) void (^didSelectedIndex)(NSUInteger idx);//选中以后的方法
 @end

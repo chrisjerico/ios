@@ -1078,7 +1078,6 @@
                         }
                         NSLog(@"chatIdAry = %@",chatIdAry);
                         NSLog(@"chatRoomAry = %@",chatRoomAry);
-                        SysConf.chatIdAry = chatIdAry;
                         SysConf.typeIdAry = typeIdAry;
                         SysConf.chatRoomAry = chatRoomAry;
                         
