@@ -33,7 +33,7 @@
 }
 
 // 获取老黄历详情
-- (CCSessionModel *)lhdoc_lhlDetail:(NSDate *)date {
+- (CCSessionModel *)lhdoc_lhlDetaillhdoc_lhlDetail:(NSDate *)date {
     return [self req:@"wjapp/api.php?c=lhcdoc&a=lhlDetail"
                     :@{@"date":[date stringWithFormat:@"yyyyMMdd"]}
                     :false];

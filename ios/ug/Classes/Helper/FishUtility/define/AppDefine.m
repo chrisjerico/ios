@@ -9,7 +9,7 @@
 #import "AppDefine.h"
 
 
-#define __SiteID__ @"test10"
+#define __SiteID__ @"test19"
 
 
 
@@ -121,7 +121,7 @@
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
         if (!_SiteId.length) {
 
-            _SiteId = @"test10";
+            _SiteId = @"test19";
 
         }
 #endif
@@ -165,7 +165,7 @@
     if ([@"黑色模板" containsString:Skin1.skitType]) {
         return NO;
     } else {
-        return [@"c190,test10" containsString:_SiteId];
+        return [@"c190" containsString:_SiteId];
     }
 }
 
@@ -218,7 +218,7 @@
 }
 
 - (NSString *)chatHomeUrl {
-    NSString *url = _NSString(@"%@/dist/#/home", _Host);
+    NSString *url = _NSString(@"%@/dist/#/chatRoom", _Host);
     return [url stringByAppendingURLParams:@{
         @"from":@"app",
         @"color":Skin1.navBarBgColor.cc_userInfo[@"color"],
@@ -233,8 +233,10 @@
     return [self.chatHomeUrl stringByAppendingURLParams:@{@"roomId":gameId}];
 }
 
+
+
 - (NSString *)chatMainGameUr {
-    return self.chatShareUrl;
+    return [self.chatHomeUrl stringByAppendingURLParams:@{@"roomId":@"0"}];
 }
 
 
