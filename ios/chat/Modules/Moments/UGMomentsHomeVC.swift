@@ -59,7 +59,11 @@ class UGMomentsHomeVC: BaseVC {
 		
 		view.addSubview(tableView)
 		tableView.snp.makeConstraints { (make) in
-			make.edges.equalTo(view)
+			if #available(iOS 11.0, *) {
+				make.edges.equalTo(view.safeAreaLayoutGuide)
+			} else {
+				make.edges.equalTo(view)
+			}
 		}
 	}
 	

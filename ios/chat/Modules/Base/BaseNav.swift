@@ -17,6 +17,7 @@ public class BaseNav: UINavigationController {
 	
 	public override func viewDidLoad() {
 		super.viewDidLoad()
+		delegate = self
 		navigationBar.shadowImage = UIImage()
 		navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black];
 	}
@@ -39,8 +40,24 @@ public class BaseNav: UINavigationController {
 		
 		super.pushViewController(viewController, animated: animated)
 	}
-
-	
 	
 }
 
+extension BaseNav: UINavigationControllerDelegate {
+	public func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+		let transparencyTypeSet = [ConcernedMomentsVC.self, RedpacketGrabListVC.self]
+			let blackTypeSet = [UGRealBetRecordViewController.self]
+			
+			if transparencyTypeSet.contains(where: { (type) -> Bool in return viewController.isKind(of: type) }) {
+				navigationBar.setBackgroundImage(UIImage(), for: .default)
+				navigationBar.barStyle = .default
+			} else if blackTypeSet.contains(where: { (type) -> Bool in return viewController.isKind(of: type) }) {
+				navigationBar.setBackgroundImage(UIImage(color: UGSkinManagers.currentSkin().navBarBgColor), for: .default)
+				navigationBar.barStyle = .default
+			} else {
+				navigationBar.setBackgroundImage(UIImage(color: .white), for: .default)
+				navigationBar.barStyle = .default
+			}
+		logger.debug(viewController.self)
+	}
+}

@@ -44,8 +44,9 @@ class MineTableController: BaseTableVC {
 	
 	@objc func rightItemTaped() {
 		
-		let vc = UIStoryboard(name: "UGUserInfoViewController", bundle: nil).instantiateInitialViewController()!
-		navigationController?.pushViewController(vc, animated: true)
+//		let vc = UIStoryboard(name: "UGUserInfoViewController", bundle: nil).instantiateInitialViewController()!
+//		navigationController?.pushViewController(vc, animated: true)
+		navigationController?.pushViewController(ProfileEditVC(), animated: true)
 		logger.debug("ssssssss")
 	}
 	

@@ -11,6 +11,8 @@
 		030A872423C4E5C90001EF82 /* JS_Sidebar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 030A872323C4E5C90001EF82 /* JS_Sidebar.xib */; };
 		030A872923C57AE30001EF82 /* JS_Sidebar.m in Sources */ = {isa = PBXBuildFile; fileRef = 030A872023C4E5B00001EF82 /* JS_Sidebar.m */; };
 		030A872B23C57AEF0001EF82 /* UGChatRoomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E6A61E23C4D340003E18B6 /* UGChatRoomModel.m */; };
+		030A873023C59FEB0001EF82 /* ProfileEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030A872E23C59FEB0001EF82 /* ProfileEditVC.swift */; };
+		030A873123C59FEB0001EF82 /* ProfileEditVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 030A872F23C59FEB0001EF82 /* ProfileEditVC.xib */; };
 		031E08EF23BE7FFB00B0F813 /* SiteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDB113723A3B1E10040DE2B /* SiteModel.m */; };
 		031E08F023BE7FFF00B0F813 /* UGNotificationEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = D405B345227DB22100F8C586 /* UGNotificationEvent.m */; };
 		031E193C23BE812600B0F813 /* UGSkinCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031E13C223BE812300B0F813 /* UGSkinCollectionViewCell.xib */; };
@@ -1817,6 +1819,8 @@
 		030A871F23C4E5B00001EF82 /* JS_Sidebar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JS_Sidebar.h; sourceTree = "<group>"; };
 		030A872023C4E5B00001EF82 /* JS_Sidebar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JS_Sidebar.m; sourceTree = "<group>"; };
 		030A872323C4E5C90001EF82 /* JS_Sidebar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JS_Sidebar.xib; sourceTree = "<group>"; };
+		030A872E23C59FEB0001EF82 /* ProfileEditVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditVC.swift; sourceTree = "<group>"; };
+		030A872F23C59FEB0001EF82 /* ProfileEditVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileEditVC.xib; sourceTree = "<group>"; };
 		031E13C223BE812300B0F813 /* UGSkinCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UGSkinCollectionViewCell.xib; sourceTree = "<group>"; };
 		031E13C323BE812300B0F813 /* UGSkinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGSkinViewController.h; sourceTree = "<group>"; };
 		031E13C423BE812300B0F813 /* UGSkinManagers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGSkinManagers.h; sourceTree = "<group>"; };
@@ -6822,6 +6826,8 @@
 				031EF50E23BE7B4D00B0F813 /* MyWalletHeader.xib */,
 				031EF50D23BE7B4D00B0F813 /* MyShareVC.swift */,
 				031EF51123BE7B4D00B0F813 /* MyShare.storyboard */,
+				030A872E23C59FEB0001EF82 /* ProfileEditVC.swift */,
+				030A872F23C59FEB0001EF82 /* ProfileEditVC.xib */,
 			);
 			path = Mine;
 			sourceTree = "<group>";
@@ -7553,6 +7559,7 @@
 				031E1E4923BE812C00B0F813 /* UGMineSkinCollectionViewCell.xib in Resources */,
 				031EF5C123BE7B4D00B0F813 /* ConcernedMomentsHeaderView.xib in Resources */,
 				031E1E7323BE812C00B0F813 /* UGRealBetRecordCell.xib in Resources */,
+				030A873123C59FEB0001EF82 /* ProfileEditVC.xib in Resources */,
 				031E199723BE812600B0F813 /* LHPostRewardView.xib in Resources */,
 				031E1E0B23BE812C00B0F813 /* UGSignInHistoryView.xib in Resources */,
 				031EF40823BE7A9400B0F813 /* Main.storyboard in Resources */,
@@ -8265,6 +8272,7 @@
 				031E1E5923BE812C00B0F813 /* UGMenuTableViewCell.m in Sources */,
 				031E1D9923BE812B00B0F813 /* UGYubaoConversionCenterController.m in Sources */,
 				031E1B5323BE812800B0F813 /* UGYYRightMenuView.m in Sources */,
+				030A873023C59FEB0001EF82 /* ProfileEditVC.swift in Sources */,
 				031EF5F123BE7B4E00B0F813 /* NSObject+HasDisposeBag.swift in Sources */,
 				031EF55D23BE7B4D00B0F813 /* GCD.swift in Sources */,
 				031EF5CA23BE7B4E00B0F813 /* RedpacketGrabListVC.swift in Sources */,
