@@ -334,6 +334,7 @@
                                 UGChatRoomModel *obj = [SysConf.chatRoomAry objectWithValue:vc2.gameId keyPath:@"typeId"];
                                 vc2.roomId = obj.roomId;
                                 vc2.url = [APP chatGameUrl:obj.roomId];
+                                NSLog(@"vc2.url = %@",vc2.url);
                             }
                             
                         } else {
