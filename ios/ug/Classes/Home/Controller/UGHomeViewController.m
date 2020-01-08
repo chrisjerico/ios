@@ -361,6 +361,7 @@
     
     // 配置初始UI
     {
+        subView(@"优惠活动Cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor : Skin1.homeContentColor;
         subImageView(@"公告图标ImageView").image = [[UIImage imageNamed:@"notice"] qmui_imageWithTintColor:Skin1.textColor1];
         subImageView(@"优惠活动图标ImageView").image = [[UIImage imageNamed:@"礼品-(1)"] qmui_imageWithTintColor:Skin1.textColor1];
         subLabel(@"优惠活动标题Label").textColor = Skin1.textColor1;
@@ -870,6 +871,7 @@
 							self.gameNavigationViewHeight.constant = 80;
 						} else {
 							self.gameNavigationViewHeight.constant = ((sourceData.count - 1)/5 + 1)*80;
+
 						}
 						[self.view layoutIfNeeded];
 					}

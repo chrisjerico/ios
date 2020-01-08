@@ -24,7 +24,7 @@
 @property (nonatomic, strong) NSIndexPath *lastPath;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray <UGchannelModel *> *tableDataArray;
-
+@property (nonatomic, strong) UIView *bg1_label;
 @property (nonatomic, strong) UIView *bg_label;
 @property (nonatomic, strong) UILabel *label;
 @property (nonatomic, strong) UILabel *tiplabel;
@@ -168,21 +168,36 @@
     //==============================================================
     [self.tiplabel  mas_remakeConstraints:^(MASConstraintMaker *make)
      {
-         make.left.equalTo(self.view.mas_left).with.offset(20);
-         make.right.equalTo(self.view.mas_right).with.offset(-20);
+         make.left.equalTo(self.view.mas_left).with.offset(40);
+         make.right.equalTo(self.view.mas_right).with.offset(-40);
          make.top.equalTo(self.mUIScrollView.mas_top).offset(20);
-         make.width.mas_equalTo(UGScreenW-20);
+         make.width.mas_equalTo(UGScreenW-40);
          
      }];
     [self.tiplabel setText:item.transferPrompt];
     [self.tiplabel sizeToFit];
     NSLog(@"%@",NSStringFromCGRect(self.tiplabel.frame));
+    
+    [self.bg1_label  mas_remakeConstraints:^(MASConstraintMaker *make)
+     {
+         make.left.equalTo(self.view.mas_left).with.offset(15);
+         make.right.equalTo(self.view.mas_right).with.offset(-15);
+         make.top.equalTo(self.mUIScrollView.mas_top).offset(10);
+         make.width.mas_equalTo(UGScreenW-20);
+         make.height.equalTo(self.tiplabel.mas_height).offset(20);
+
+     }];
+    
+    self.bg1_label.layer.cornerRadius = 5;
+    self.bg1_label.layer.masksToBounds = YES;
+    [self.bg1_label setBackgroundColor:Skin1.navBarBgColor];
+    
     //==============================================================
     [self.tip2label  mas_remakeConstraints:^(MASConstraintMaker *make)
      {
          make.left.equalTo(self.view.mas_left).with.offset(20);
          make.right.equalTo(self.view.mas_right).with.offset(-20);
-         make.top.equalTo(self.tiplabel.mas_bottom).offset(0);
+         make.top.equalTo(self.bg1_label.mas_bottom).offset(10);
          make.width.mas_equalTo(UGScreenW-20);
      }];
     [self.tip2label setText:item.depositPrompt];
@@ -346,13 +361,16 @@
     }
     
     if (self.tiplabel == nil) {
+        self.bg1_label = [UIView new];
+        [self.mUIScrollView addSubview:self.bg1_label];
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, UGScreenW, 40)];
         label.textAlignment = NSTextAlignmentLeft;
         label.font = [UIFont boldSystemFontOfSize:14];
-        label.textColor = Skin1.textColor1;
+        label.textColor = [UIColor whiteColor];
         label.numberOfLines = 0;
         label.text = @"ewerqwerqwerqwerqwer";
         [self.mUIScrollView addSubview:label];
+        label.backgroundColor = Skin1.navBarBgColor;
         [label sizeToFit];
         NSLog(@"%@",NSStringFromCGRect(label.frame));
         
@@ -364,7 +382,7 @@
         label.textAlignment = NSTextAlignmentLeft;
         label.font = [UIFont boldSystemFontOfSize:14];
         label.textColor = Skin1.textColor1;
-
+//        label.backgroundColor = Skin1.navBarBgColor;
         label.numberOfLines = 0;
         label.text = @"请选择一个任意转入账户";
         [self.mUIScrollView addSubview:label];

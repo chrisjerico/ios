@@ -48,6 +48,7 @@
 	UICollectionViewFlowLayout *layout = ({
 		layout = [[UICollectionViewFlowLayout alloc] init];
 		if ([SysConf.mobileTemplateCategory isEqualToString:@"9"] && [@"c190" containsString:APP.SiteId]) {
+
 			layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
 
 		} else {
@@ -81,6 +82,7 @@
 	_scrollRightButton.layer.mask = maskLayer;
 	
 	if ([SysConf.mobileTemplateCategory isEqualToString:@"9"] && [@"c190" containsString:APP.SiteId]) {
+
 		[self.scrollRightButton setHidden:false];
 	} else {
 		[self.scrollRightButton setHidden:true];
@@ -160,7 +162,9 @@
 		_iconImage.contentMode = UIViewContentModeScaleAspectFit;
 		_titleLabel = [UILabel new];
 		_titleLabel.textColor = Skin1.textColor1;
-		_titleLabel.font = [UIFont systemFontOfSize:14];
+
+//        [_titleLabel setBackgroundColor:[UIColor redColor]];
+		_titleLabel.font = [UIFont boldSystemFontOfSize:16];
 		[self addSubview:_iconImage];
 		[_iconImage mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.top.equalTo(self).offset(5);

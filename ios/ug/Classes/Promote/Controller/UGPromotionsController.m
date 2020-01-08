@@ -39,7 +39,7 @@
     
     self.tableView.tableFooterView = ({
         UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APP.Width, 15)];
-        v.backgroundColor = Skin1.cellBgColor;
+        v.backgroundColor = [UIColor clearColor];
         v;
     });
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -73,13 +73,13 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    cell.backgroundColor = Skin1.cellBgColor;
     UGPromoteModel *pm = tableView.dataArray[indexPath.row];
     FastSubViewCode(cell);
     if ([@"c190" containsString:APP.SiteId]) {
         subView(@"StackView").cc_constraints.top.constant = pm.title.length ? 12 : 0;
         subView(@"StackView").cc_constraints.bottom.constant = 0;
     }
+    subView(@"cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor : Skin1.homeContentColor;
     subLabel(@"标题Label").textColor = Skin1.textColor1;
     subLabel(@"标题Label").text = pm.title;
     subLabel(@"标题Label").hidden = !pm.title.length;
