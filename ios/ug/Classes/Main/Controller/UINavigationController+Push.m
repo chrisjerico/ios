@@ -390,6 +390,16 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGFeedBackController") animated:YES];
             break;
         }
+        case 17: {
+            // 全民竞猜
+            [SVProgressHUD showInfoWithStatus:@"敬请期待"];
+            break;
+        }
+        case 18: {
+            // 活动彩金
+            [NavController1 pushViewController:[UGMosaicGoldViewController new] animated:YES];
+            break;
+        }
         default: {
             return false;
         }

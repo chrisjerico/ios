@@ -92,6 +92,7 @@
 #import "UGYYPlatformGames.h"
 #import "UGhomeAdsModel.h"
 #import "UGChatRoomModel.h"
+
 // Tools
 #import "UIImageView+WebCache.h"
 #import "CMCommon.h"
@@ -376,6 +377,7 @@
         [self.upwardMultiMarqueeView setBackgroundColor:Skin1.homeContentColor];
         [self.rollingView setBackgroundColor:Skin1.homeContentColor];
         [self.gameNavigationView setBackgroundColor:Skin1.homeContentColor];
+//         [self.gameNavigationView setBackgroundColor:[UIColor redColor]];
         [self.gameTypeView setBackgroundColor:Skin1.bgColor];
         [self.bottomView setBackgroundColor:Skin1.navBarBgColor];
         
@@ -853,10 +855,12 @@
 			[SVProgressHUD dismiss];
 			if (model.data) {
 				dispatch_async(dispatch_get_main_queue(), ^{
+                    NSLog(@"model.data = %@",model.data);
 					GameCategoryDataModel *customGameModel = GameCategoryDataModel.gameCategoryData = (GameCategoryDataModel *)model.data;
                     
                     // 首页导航
 					NSArray<GameModel *> *sourceData = customGameModel.navs;
+                    
                     self.gameNavigationView.superview.hidden = !sourceData.count;
 					self.gameNavigationView.sourceData = sourceData;
                     // 设置任务大厅页的标题
@@ -1118,6 +1122,7 @@
                         subImageView(@"优惠活动ImageView").cc_constraints.height.constant = image.height/image.width * (APP.Width - 48);
                     }
                 }];
+                subView(@"优惠活动Cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor : Skin1.homeContentColor;
                 [subButton(@"优惠活动Button") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
                 [subButton(@"优惠活动Button") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
                     BOOL ret = [NavController1 pushViewControllerWithLinkCategory:pm.linkCategory linkPosition:pm.linkPosition];
