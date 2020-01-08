@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		030A872123C4E5B00001EF82 /* JS_Sidebar.m in Sources */ = {isa = PBXBuildFile; fileRef = 030A872023C4E5B00001EF82 /* JS_Sidebar.m */; };
 		030A872423C4E5C90001EF82 /* JS_Sidebar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 030A872323C4E5C90001EF82 /* JS_Sidebar.xib */; };
+		030A872923C57AE30001EF82 /* JS_Sidebar.m in Sources */ = {isa = PBXBuildFile; fileRef = 030A872023C4E5B00001EF82 /* JS_Sidebar.m */; };
+		030A872B23C57AEF0001EF82 /* UGChatRoomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E6A61E23C4D340003E18B6 /* UGChatRoomModel.m */; };
 		031E08EF23BE7FFB00B0F813 /* SiteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDB113723A3B1E10040DE2B /* SiteModel.m */; };
 		031E08F023BE7FFF00B0F813 /* UGNotificationEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = D405B345227DB22100F8C586 /* UGNotificationEvent.m */; };
 		031E193C23BE812600B0F813 /* UGSkinCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031E13C223BE812300B0F813 /* UGSkinCollectionViewCell.xib */; };
@@ -8382,6 +8384,7 @@
 				031E1B0723BE812800B0F813 /* UIView+SGExtension.m in Sources */,
 				031E1CD123BE812A00B0F813 /* MJRefreshBackGifFooter.m in Sources */,
 				031E1A5B23BE812700B0F813 /* OpenUDID.m in Sources */,
+				030A872923C57AE30001EF82 /* JS_Sidebar.m in Sources */,
 				031E1D8D23BE812B00B0F813 /* UGMineSkinViewController.m in Sources */,
 				031EF5EF23BE7B4E00B0F813 /* ControllerProvider.swift in Sources */,
 				031E199923BE812600B0F813 /* LHPostRewardView.m in Sources */,
@@ -8636,6 +8639,7 @@
 				031E1B7B23BE812900B0F813 /* UGGameNavigationView.m in Sources */,
 				031E1DB323BE812B00B0F813 /* UGYuebaoInfoModel.m in Sources */,
 				031E1BCD23BE812900B0F813 /* UGXYNCLotteryController.m in Sources */,
+				030A872B23C57AEF0001EF82 /* UGChatRoomModel.m in Sources */,
 				031EF53723BE7B4D00B0F813 /* Response+Codable.swift in Sources */,
 				031E1A3123BE812700B0F813 /* CMNetwork+Mine.m in Sources */,
 				031E1BE323BE812900B0F813 /* UGHKLHCLotteryController.m in Sources */,
