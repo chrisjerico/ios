@@ -15,9 +15,23 @@
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="CfF-Uc-HXj">
                     <rect key="frame" x="0.0" y="0.0" width="434" height="44"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Za7-Lc-M3X" customClass="FLAnimatedImageView">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a45-x7-OIO">
                             <rect key="frame" x="0.0" y="0.0" width="217" height="44"/>
-                        </imageView>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Za7-Lc-M3X" customClass="FLAnimatedImageView">
+                                    <rect key="frame" x="0.0" y="0.0" width="176" height="44"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="Za7-Lc-M3X" secondAttribute="height" multiplier="4:1" id="nIt-rO-zgI"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="Za7-Lc-M3X" firstAttribute="top" secondItem="a45-x7-OIO" secondAttribute="top" id="9C5-S9-b5m"/>
+                                <constraint firstItem="Za7-Lc-M3X" firstAttribute="leading" secondItem="a45-x7-OIO" secondAttribute="leading" id="JQ1-Uf-tOf"/>
+                                <constraint firstAttribute="bottom" secondItem="Za7-Lc-M3X" secondAttribute="bottom" id="MXk-Im-WeW"/>
+                            </constraints>
+                        </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gbc-Um-NCe">
                             <rect key="frame" x="217" y="0.0" width="217" height="44"/>
                             <subviews>

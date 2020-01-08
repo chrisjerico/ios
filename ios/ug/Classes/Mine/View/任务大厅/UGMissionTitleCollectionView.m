@@ -52,13 +52,13 @@ static NSString *titleCellid = @"UGMissionTitleCell";
 
 - (void)initGameCollectionView {
     
-    float itemW = (UGScreenW ) / 3;
+    float itemW = (UGScreenW ) / 4;
     UICollectionViewFlowLayout *layout = ({
         
         layout = [[UICollectionViewFlowLayout alloc] init];
         layout.itemSize = CGSizeMake(itemW, 48);
-        layout.minimumInteritemSpacing = 10;
-        layout.minimumLineSpacing = 3;
+        layout.minimumInteritemSpacing = 0;
+        layout.minimumLineSpacing = 0;
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         layout;
         

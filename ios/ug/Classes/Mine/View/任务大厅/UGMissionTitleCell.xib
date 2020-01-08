@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,7 +17,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="178" height="49"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YvS-Mp-qac">
+                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YvS-Mp-qac">
                         <rect key="frame" x="10" y="7" width="35" height="35"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="35" id="Rbf-eX-t1B"/>
@@ -25,7 +25,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="任务大厅" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eT6-NE-GNV">
-                        <rect key="frame" x="48" y="16" width="57.5" height="17"/>
+                        <rect key="frame" x="60.5" y="16" width="57.5" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -35,8 +35,9 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="YvS-Mp-qac" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="5aN-0c-R4s"/>
-                <constraint firstItem="eT6-NE-GNV" firstAttribute="leading" secondItem="YvS-Mp-qac" secondAttribute="trailing" constant="3" id="7qX-rU-eDG"/>
+                <constraint firstItem="eT6-NE-GNV" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="XYn-7D-riu"/>
                 <constraint firstItem="YvS-Mp-qac" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="i5w-UK-thR"/>
+                <constraint firstItem="eT6-NE-GNV" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="xLV-MY-i5i"/>
                 <constraint firstItem="eT6-NE-GNV" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="zNz-bh-SCh"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>

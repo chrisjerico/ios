@@ -18,56 +18,74 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TLY-ur-c4k">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="L4X-qO-OR3">
-                                    <rect key="frame" x="0.0" y="163" width="414" height="24"/>
+                                    <rect key="frame" x="0.0" y="187.5" width="414" height="24"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" id="tHa-sL-ShF">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="107"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="131.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tHa-sL-ShF" id="rqj-1X-FNo">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="107"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="131.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="twz-9E-u8A">
-                                                    <rect key="frame" x="12" y="12" width="390" height="90"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gz4-lb-MyM" customClass="IBView">
+                                                    <rect key="frame" x="10" y="10" width="394" height="111.5"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zLi-NY-4Z0">
-                                                            <rect key="frame" x="0.0" y="0.0" width="390" height="18"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="twz-9E-u8A">
+                                                            <rect key="frame" x="10" y="10" width="374" height="91.5"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zLi-NY-4Z0">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="19.5"/>
+                                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="标题Label"/>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </label>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0od-lh-oYP" customClass="FLAnimatedImageView">
+                                                                    <rect key="frame" x="0.0" y="31.5" width="374" height="60"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="60" id="XLm-jF-k0a"/>
+                                                                    </constraints>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="圆角偏移量">
+                                                                            <real key="value" value="5"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="图片ImageView"/>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </imageView>
+                                                            </subviews>
                                                             <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="标题Label"/>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="StackView"/>
                                                             </userDefinedRuntimeAttributes>
-                                                        </label>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0od-lh-oYP" customClass="FLAnimatedImageView">
-                                                            <rect key="frame" x="0.0" y="30" width="390" height="60"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="60" id="XLm-jF-k0a"/>
-                                                            </constraints>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="圆角偏移量">
-                                                                    <real key="value" value="5"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="图片ImageView"/>
-                                                            </userDefinedRuntimeAttributes>
-                                                        </imageView>
+                                                        </stackView>
                                                     </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="twz-9E-u8A" secondAttribute="trailing" constant="10" id="6hE-TQ-LgR"/>
+                                                        <constraint firstItem="twz-9E-u8A" firstAttribute="top" secondItem="Gz4-lb-MyM" secondAttribute="top" constant="10" id="CkG-qM-oSg"/>
+                                                        <constraint firstItem="twz-9E-u8A" firstAttribute="leading" secondItem="Gz4-lb-MyM" secondAttribute="leading" constant="10" id="dsx-T8-Dgi"/>
+                                                        <constraint firstAttribute="bottom" secondItem="twz-9E-u8A" secondAttribute="bottom" constant="10" id="s2y-Ds-IRA"/>
+                                                    </constraints>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="StackView"/>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="圆角偏移量">
+                                                            <real key="value" value="8"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="cell背景View"/>
                                                     </userDefinedRuntimeAttributes>
-                                                </stackView>
+                                                </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="twz-9E-u8A" firstAttribute="top" secondItem="rqj-1X-FNo" secondAttribute="top" constant="12" id="blb-YU-ZoN"/>
-                                                <constraint firstItem="twz-9E-u8A" firstAttribute="leading" secondItem="rqj-1X-FNo" secondAttribute="leading" constant="12" id="hRd-i2-BaG"/>
-                                                <constraint firstItem="twz-9E-u8A" firstAttribute="centerX" secondItem="rqj-1X-FNo" secondAttribute="centerX" id="uQS-qN-gDb"/>
-                                                <constraint firstAttribute="bottom" secondItem="twz-9E-u8A" secondAttribute="bottom" constant="5" id="xYc-40-tyB"/>
+                                                <constraint firstItem="Gz4-lb-MyM" firstAttribute="leading" secondItem="rqj-1X-FNo" secondAttribute="leading" constant="10" id="6vc-iS-3p5"/>
+                                                <constraint firstItem="Gz4-lb-MyM" firstAttribute="top" secondItem="rqj-1X-FNo" secondAttribute="top" constant="10" id="BbJ-hh-SYt"/>
+                                                <constraint firstAttribute="trailing" secondItem="Gz4-lb-MyM" secondAttribute="trailing" constant="10" id="YTc-NL-w8c"/>
+                                                <constraint firstAttribute="bottom" secondItem="Gz4-lb-MyM" secondAttribute="bottom" constant="10" id="h4p-09-f94"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

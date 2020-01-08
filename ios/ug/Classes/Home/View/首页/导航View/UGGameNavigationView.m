@@ -160,7 +160,8 @@
 		_iconImage.contentMode = UIViewContentModeScaleAspectFit;
 		_titleLabel = [UILabel new];
 		_titleLabel.textColor = Skin1.textColor1;
-		_titleLabel.font = [UIFont systemFontOfSize:14];
+//        [_titleLabel setBackgroundColor:[UIColor redColor]];
+		_titleLabel.font = [UIFont boldSystemFontOfSize:16];
 		[self addSubview:_iconImage];
 		[_iconImage mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.top.equalTo(self).offset(5);
