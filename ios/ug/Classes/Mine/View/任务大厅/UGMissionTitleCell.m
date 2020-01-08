@@ -9,8 +9,9 @@
 #import "UGMissionTitleCell.h"
 
 @interface UGMissionTitleCell ()
-@property (weak, nonatomic) IBOutlet UIImageView *imgView;
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
+
+
 
 @end
 @implementation UGMissionTitleCell

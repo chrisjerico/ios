@@ -52,32 +52,65 @@ static NSString *titleCellid = @"UGMissionTitleCell";
 
 - (void)initGameCollectionView {
     
-    float itemW = (UGScreenW ) / 4;
-    UICollectionViewFlowLayout *layout = ({
-        
-        layout = [[UICollectionViewFlowLayout alloc] init];
-        layout.itemSize = CGSizeMake(itemW, 48);
-        layout.minimumInteritemSpacing = 0;
-        layout.minimumLineSpacing = 0;
-        layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        layout;
-        
-    });
-    
-    UICollectionView *collectionView = ({
-        
-        collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(5, 0, self.width , self.height) collectionViewLayout:layout];
-        collectionView.backgroundColor = [UIColor clearColor];
-        collectionView.dataSource = self;
-        collectionView.delegate = self;
-        [collectionView registerNib:[UINib nibWithNibName:@"UGMissionTitleCell" bundle:nil] forCellWithReuseIdentifier:titleCellid];
 
-        collectionView;
-        
-    });
     
-    self.collectionView = collectionView;
-    [self addSubview:collectionView];
+    if (APP.isShow4) {
+            float itemW = (UGScreenW ) / 4;
+        UICollectionViewFlowLayout *layout = ({
+            
+            layout = [[UICollectionViewFlowLayout alloc] init];
+            layout.itemSize = CGSizeMake(itemW-2, 48);
+            layout.minimumInteritemSpacing = 0;
+            layout.minimumLineSpacing = 0;
+            layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+            layout;
+            
+        });
+        UICollectionView *collectionView = ({
+            
+            collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(5, 0, self.width-4 , self.height) collectionViewLayout:layout];
+            collectionView.backgroundColor = [UIColor clearColor];
+            collectionView.dataSource = self;
+            collectionView.delegate = self;
+            [collectionView registerNib:[UINib nibWithNibName:@"UGMissionTitleCell" bundle:nil] forCellWithReuseIdentifier:titleCellid];
+
+            collectionView;
+            
+        });
+        
+        self.collectionView = collectionView;
+        [self addSubview:collectionView];
+    } else {
+            float itemW = (UGScreenW ) / 3;
+        UICollectionViewFlowLayout *layout = ({
+            
+            layout = [[UICollectionViewFlowLayout alloc] init];
+            layout.itemSize = CGSizeMake(itemW, 48);
+            layout.minimumInteritemSpacing = 10;
+            layout.minimumLineSpacing = 3;
+            layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+            layout;
+            
+        });
+        UICollectionView *collectionView = ({
+            
+            collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(5, 0, self.width , self.height) collectionViewLayout:layout];
+            collectionView.backgroundColor = [UIColor clearColor];
+            collectionView.dataSource = self;
+            collectionView.delegate = self;
+            [collectionView registerNib:[UINib nibWithNibName:@"UGMissionTitleCell" bundle:nil] forCellWithReuseIdentifier:titleCellid];
+
+            collectionView;
+            
+        });
+        
+        self.collectionView = collectionView;
+        [self addSubview:collectionView];
+    }
+    
+
+    
+
     
 }
 
@@ -96,6 +129,13 @@ static NSString *titleCellid = @"UGMissionTitleCell";
     UGMissionTitleCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:titleCellid forIndexPath:indexPath];
     cell.title = self.titleArray[indexPath.row];
     cell.imgName = self.imageArray[indexPath.row];
+    if (APP.isShow4) {
+        [cell.imgbgView setHidden:YES ];
+    }
+    else{
+        [cell.imgbgView setHidden:NO ];
+    }
+    
    
     return cell;
 }
