@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cFx-CG-PhC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cFx-CG-PhC">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Modify Login Pwd Controller-->
+        <!--修改登录密码-->
         <scene sceneID="kHw-FC-Ful">
             <objects>
-                <viewController storyboardIdentifier="UGModifyLoginPwdController" id="cFx-CG-PhC" customClass="UGModifyLoginPwdController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UGModifyLoginPwdController" title="修改登录密码" id="cFx-CG-PhC" customClass="UGModifyLoginPwdController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5a9-Om-6rC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -211,10 +211,10 @@
             </objects>
             <point key="canvasLocation" x="693" y="787"/>
         </scene>
-        <!--Modify Pay Pwd Controller-->
+        <!--修改取款密码-->
         <scene sceneID="8Qe-k8-HKc">
             <objects>
-                <viewController storyboardIdentifier="UGModifyPayPwdController" id="cOh-Ze-7V6" customClass="UGModifyPayPwdController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UGModifyPayPwdController" title="修改取款密码" id="cOh-Ze-7V6" customClass="UGModifyPayPwdController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fba-en-uVk">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

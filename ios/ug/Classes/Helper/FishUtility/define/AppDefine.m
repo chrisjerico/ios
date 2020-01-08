@@ -8,9 +8,13 @@
 
 #import "AppDefine.h"
 
+<<<<<<< HEAD
 
 #define __SiteID__ @"test19"
 
+=======
+#define __SiteID__ @"c190"
+>>>>>>> 金沙主题 侧边栏
 
 
 @interface UIStoryboard ()
@@ -120,9 +124,13 @@
 #ifdef DEBUG
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
         if (!_SiteId.length) {
+<<<<<<< HEAD
 
             _SiteId = @"test19";
 
+=======
+            _SiteId = @"c190";
+>>>>>>> 金沙主题 侧边栏
         }
 #endif
         NSLog(@"%@",[_allSites objectWithValue:_SiteId.lowercaseString keyPath:@"siteId"]);

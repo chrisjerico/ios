@@ -47,7 +47,7 @@
 {
 	UICollectionViewFlowLayout *layout = ({
 		layout = [[UICollectionViewFlowLayout alloc] init];
-		if ([@"c190" containsString:APP.SiteId]) {
+		if ([SysConf.mobileTemplateCategory isEqualToString:@"9"] && [@"c190" containsString:APP.SiteId]) {
 			layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
 
 		} else {
@@ -80,7 +80,7 @@
 	maskLayer.path = maskPath.CGPath;
 	_scrollRightButton.layer.mask = maskLayer;
 	
-	if ([@"c190, test20" containsString:APP.SiteId]) {
+	if ([SysConf.mobileTemplateCategory isEqualToString:@"9"] && [@"c190" containsString:APP.SiteId]) {
 		[self.scrollRightButton setHidden:false];
 	} else {
 		[self.scrollRightButton setHidden:true];

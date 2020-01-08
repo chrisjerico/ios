@@ -28,6 +28,7 @@
 #import "UGUserModel.h"
 
 // Tools
+#import "JS_Sidebar.h"
 #import "Masonry.h"
 #import "UINavigationController+FDFullscreenPopGesture.h"
 #import "MJExtension.h"

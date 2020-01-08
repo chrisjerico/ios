@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		030A872123C4E5B00001EF82 /* JS_Sidebar.m in Sources */ = {isa = PBXBuildFile; fileRef = 030A872023C4E5B00001EF82 /* JS_Sidebar.m */; };
+		030A872423C4E5C90001EF82 /* JS_Sidebar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 030A872323C4E5C90001EF82 /* JS_Sidebar.xib */; };
 		031E08EF23BE7FFB00B0F813 /* SiteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDB113723A3B1E10040DE2B /* SiteModel.m */; };
 		031E08F023BE7FFF00B0F813 /* UGNotificationEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = D405B345227DB22100F8C586 /* UGNotificationEvent.m */; };
 		031E193C23BE812600B0F813 /* UGSkinCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031E13C223BE812300B0F813 /* UGSkinCollectionViewCell.xib */; };
@@ -1810,6 +1812,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		030A871F23C4E5B00001EF82 /* JS_Sidebar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JS_Sidebar.h; sourceTree = "<group>"; };
+		030A872023C4E5B00001EF82 /* JS_Sidebar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JS_Sidebar.m; sourceTree = "<group>"; };
+		030A872323C4E5C90001EF82 /* JS_Sidebar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JS_Sidebar.xib; sourceTree = "<group>"; };
 		031E13C223BE812300B0F813 /* UGSkinCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UGSkinCollectionViewCell.xib; sourceTree = "<group>"; };
 		031E13C323BE812300B0F813 /* UGSkinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGSkinViewController.h; sourceTree = "<group>"; };
 		031E13C423BE812300B0F813 /* UGSkinManagers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGSkinManagers.h; sourceTree = "<group>"; };
@@ -6865,6 +6870,9 @@
 				03E41B2E23C09055004AB7C6 /* JS_HomePromoteView.xib */,
 				03E41B3023C09363004AB7C6 /* JS_HomePromoteContainerView.h */,
 				03E41B3123C09363004AB7C6 /* JS_HomePromoteContainerView.m */,
+				030A871F23C4E5B00001EF82 /* JS_Sidebar.h */,
+				030A872023C4E5B00001EF82 /* JS_Sidebar.m */,
+				030A872323C4E5C90001EF82 /* JS_Sidebar.xib */,
 			);
 			path = "金沙主题";
 			sourceTree = "<group>";
@@ -7611,6 +7619,7 @@
 				031E1C2023BE812900B0F813 /* UGFastThreeThreeCollectionViewCell.xib in Resources */,
 				031E1A9023BE812700B0F813 /* province_data.xml in Resources */,
 				CF475921239636D200966536 /* 13.gif in Resources */,
+				030A872423C4E5C90001EF82 /* JS_Sidebar.xib in Resources */,
 				CF475926239636D200966536 /* 138.gif in Resources */,
 				CF4758A0239636D200966536 /* 118.gif in Resources */,
 				CF47589C239636D200966536 /* 30.gif in Resources */,
@@ -8667,6 +8676,7 @@
 				031E1B4A23BE812800B0F813 /* UGLotteryHistoryModel.m in Sources */,
 				031E19F223BE812700B0F813 /* LoadingStateView.m in Sources */,
 				031E1AA223BE812800B0F813 /* ZZCircleProgress.m in Sources */,
+				030A872123C4E5B00001EF82 /* JS_Sidebar.m in Sources */,
 				031E1A8023BE812700B0F813 /* SANotDataView.m in Sources */,
 				031E1CAC23BE812A00B0F813 /* UGFundDetailsCell.m in Sources */,
 				031E1DA423BE812B00B0F813 /* UGSignInHistoryModel.m in Sources */,
