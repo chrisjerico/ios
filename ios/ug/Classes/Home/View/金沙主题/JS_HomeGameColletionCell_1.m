@@ -26,8 +26,10 @@
 - (void)bind: (GameModel *)item {
 	
 	[self.itemImage sd_setImageWithURL:[NSURL URLWithString:item.icon] placeholderImage: [UIImage imageNamed:@""]];
-	self.titleLabel.text = item.title;
-	self.descriptionLabel.text = item.title;
+	self.titleLabel.text = item.title.length > 0 ? item.title : item.name;
+	self.descriptionLabel.text = item.title.length > 0 ? item.title : item.name;
+	self.playerNuberLabel.text = [NSString stringWithFormat:@"%ld人在玩", random()%2000 + 2000];
+
 }
 
 @end

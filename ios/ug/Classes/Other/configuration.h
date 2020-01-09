@@ -12,7 +12,7 @@
 #import <Foundation/Foundation.h>
 
 //参数是否加密
-#define checkSign 0
+#define checkSign 1
 
 
 

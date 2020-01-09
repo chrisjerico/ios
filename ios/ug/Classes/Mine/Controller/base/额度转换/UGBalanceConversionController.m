@@ -73,7 +73,7 @@ static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
         subLabel(@"账户余额label").textColor = Skin1.textColor1;
         _balanceLabel.textColor = Skin1.textColor1;
         [_balanceView setBackgroundColor:Skin1.navBarBgColor];
-        if (Skin1.isBlack) {
+        if (Skin1.isBlack || [Skin1.skitType isEqualToString:@"金沙主题"]) {
             self.tarnsferInArrow.image = [UIImage imageNamed:@"baijiantou"] ;
             self.transferOutArrow.image = [UIImage imageNamed:@"baijiantou"] ;
             [self.refreshButton setImage:[UIImage imageNamed:@"BMrefresh"] forState:(UIControlStateNormal)];

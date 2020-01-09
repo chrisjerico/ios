@@ -21,7 +21,7 @@
 }
 @property (nonatomic, strong) UICollectionView *gameCollectionView;
 
-@property (nonatomic, strong) NSMutableArray <NSMutableArray *> *sectionedDataArray;
+@property (nonatomic, strong) NSMutableArray <NSArray *> *sectionedDataArray;
 
 @end
 
@@ -74,13 +74,17 @@ static NSString *const footerId = @"footerId";
 	[self.sectionedDataArray removeAllObjects];
 	
 	NSMutableArray * tempArray = [NSMutableArray array];
-	if ([Skin1.skitType isEqualToString:@"金沙主题"]) {
+	if ([Skin1.skitType isEqualToString:@"金沙主题"] && self.typeIndex == 0) {
 		for (int i=0; i<dataArray.count; i++) {
 			[tempArray addObject:dataArray[i]];
 			if (((i + 1) % 4 == 0) || (i == dataArray.count - 1)) {
 				[self.sectionedDataArray addObject: [tempArray mutableCopy]];
 				[tempArray removeAllObjects];
 			}
+		}
+	} else if ([Skin1.skitType isEqualToString:@"金沙主题"] && self.typeIndex != 0) {
+		for (GameModel * game in dataArray) {
+			[self.sectionedDataArray addObject:@[game] ];
 		}
 	} else {
 		for (int i=0; i<dataArray.count; i++) {
@@ -234,7 +238,7 @@ static NSString *const footerId = @"footerId";
 	[collectionView reloadData];
 }
 
-- (NSMutableArray<NSMutableArray *> *)sectionedDataArray {
+- (NSMutableArray<NSArray *> *)sectionedDataArray {
 	if (!_sectionedDataArray) {
 		_sectionedDataArray = [NSMutableArray array];
 	}

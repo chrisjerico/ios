@@ -43,7 +43,7 @@
 	[sideBar mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.top.bottom.equalTo(maskView);
 		make.right.equalTo(maskView);
-		make.width.equalTo(@250);
+		make.width.equalTo(@200);
 	}];
 	[UIView animateWithDuration:0.3 animations:^{
 		[sideBar layoutIfNeeded];

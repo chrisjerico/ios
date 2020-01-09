@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,13 +17,13 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Theme_jinsha_gam_placeholed" translatesAutoresizingMaskIntoConstraints="NO" id="Ai9-CE-WVZ">
-                        <rect key="frame" x="52.5" y="20" width="26" height="26"/>
+                        <rect key="frame" x="46" y="20" width="39" height="39.5"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="Ai9-CE-WVZ" secondAttribute="height" id="bGa-sd-02Y"/>
                         </constraints>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GtS-hr-POt">
-                        <rect key="frame" x="0.0" y="51" width="131" height="62"/>
+                        <rect key="frame" x="0.0" y="64.5" width="131" height="48.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="斗地主" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gAJ-cZ-ARA">
                                 <rect key="frame" x="45.5" y="0.0" width="40" height="20"/>
@@ -34,7 +35,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⭐️⭐️⭐️⭐️⭐️" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eYa-kM-AtO">
-                                <rect key="frame" x="30.5" y="21.5" width="70" height="20"/>
+                                <rect key="frame" x="30.5" y="14.5" width="70" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="fPb-K7-tfM"/>
                                 </constraints>
@@ -43,7 +44,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8888人在玩" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IVC-yH-Pho">
-                                <rect key="frame" x="32" y="42" width="67.5" height="20"/>
+                                <rect key="frame" x="32" y="28.5" width="67.5" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="cqq-5H-u92"/>
                                 </constraints>
@@ -64,7 +65,7 @@
             </view>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="Ai9-CE-WVZ" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" multiplier="0.2" id="2jW-xg-VRz"/>
+                <constraint firstItem="Ai9-CE-WVZ" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" multiplier="0.3" id="2jW-xg-VRz"/>
                 <constraint firstItem="RtG-TL-UC6" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="AEf-ei-nZY"/>
                 <constraint firstItem="Ai9-CE-WVZ" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="E6L-Vy-5qr"/>
                 <constraint firstItem="Ai9-CE-WVZ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="20" id="KW5-ZQ-ovZ"/>

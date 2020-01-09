@@ -85,8 +85,16 @@
 	[self setupUserInfo:true];
 	[self getSystemConfig];
 	self.menuNameArray = SysConf.userCenter.copy;
-//	[self.menuNameArray setArray:SysConf.userCenter];
 	[self.collectionnView reloadData];
+	UIButton * rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
+	[rightButton addTarget:self action:@selector(rightButtonTaped)];
+	[rightButton setImage:[UIImage imageNamed:@"gengduo"] forState:UIControlStateNormal];
+//	[rightButton sd_setImageWithURL:[NSURL URLWithString:UserI.avatar] forState:UIControlStateNormal];
+	
+}
+- (void)rightButtonTaped {
+	[JS_Sidebar show];
 }
 
 #pragma mark UICollectionView datasource
@@ -342,5 +350,16 @@
 }
 - (IBAction)customerServiceButtonTaped:(id)sender {
 }
+# pragma mark <JS_TitleViewDelegagte>
+- (void)loginButtonTaped {
+	[NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLoginViewController") animated:true];
 
+}
+- (void)registButtonnTaped {
+	[NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGRegisterViewController") animated:YES];
+
+}
+- (void)moreButtonTaped {
+	[JS_Sidebar show];
+}
 @end

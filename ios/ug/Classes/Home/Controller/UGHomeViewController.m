@@ -47,6 +47,7 @@
 #import "LHGalleryListVC2.h"   // 六合图库（样式2）
 #import "LHJournalDetailVC.h"   // 期刊详情
 #import "UGPostDetailVC.h"      // 帖子详情
+#import "JS_TitleView.h"
 
 
 //测试--黑色模板
@@ -108,9 +109,10 @@
 #import "JS_HomePromoteContainerView.h"
 
 
-@interface UGHomeViewController ()<SDCycleScrollViewDelegate,UUMarqueeViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,WSLWaterFlowLayoutDelegate>
+@interface UGHomeViewController ()<SDCycleScrollViewDelegate,UUMarqueeViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,WSLWaterFlowLayoutDelegate, JS_TitleViewDelegagte>
 
 @property (nonatomic, strong) UGHomeTitleView *titleView;       /**<   自定义导航条 */
+@property (nonatomic, strong) JS_TitleView * js_titleView;
 @property (weak, nonatomic) IBOutlet UGBMHeaderView *headerView;/**<   黑色模板导航头 */
 
 @property (nonatomic, strong) UGYYRightMenuView *yymenuView;    /**<   侧边栏 */
@@ -195,7 +197,14 @@
     [_countDownForLabel destoryTimer];
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-
+- (JS_TitleView *)js_titleView {
+	if (!_js_titleView) {
+		_js_titleView = [[UINib nibWithNibName:@"JS_TitleView" bundle:nil] instantiateWithOwner:self options:nil].firstObject;
+		_js_titleView.delegate = self;
+		_js_titleView.frame = self.navigationController.navigationBar.bounds;
+	}
+	return _js_titleView;
+}
 
 - (void)skin {
     
@@ -274,6 +283,8 @@
     }
 	if ([Skin1.skitType isEqualToString:@"金沙主题"]) {
 		_rollingView.backgroundColor = UIColor.whiteColor;
+		_rankingView.backgroundColor = UIColor.whiteColor;
+		self.navigationItem.titleView = self.js_titleView;
 	}
     [self.gameNavigationView reloadData];
 }
@@ -1558,6 +1569,7 @@
 }
 
 - (void)setupSubView {
+	
 	UGHomeTitleView *titleView = [[UGHomeTitleView alloc] initWithFrame:CGRectMake(0, 0, UGScreenW, 44)];
 	self.navigationItem.titleView = titleView;
 	self.titleView = titleView;
@@ -1836,6 +1848,18 @@
         [self startLongLongStartStamp:startLongLong*1000 longlongFinishStamp:finishLongLong*1000];
         
     }
+}
+# pragma mark <JS_TitleViewDelegagte>
+- (void)loginButtonTaped {
+	[NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLoginViewController") animated:true];
+
+}
+- (void)registButtonnTaped {
+	[NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGRegisterViewController") animated:YES];
+
+}
+- (void)moreButtonTaped {
+	[JS_Sidebar show];
 }
 @end
 

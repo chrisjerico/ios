@@ -1581,6 +1581,10 @@
 		031EF5F223BE7B4E00B0F813 /* ConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EF52623BE7B4D00B0F813 /* ConversationCell.swift */; };
 		031EF5F323BE7B4E00B0F813 /* ConversationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EF52723BE7B4D00B0F813 /* ConversationModel.swift */; };
 		031EF5F423BE7B4E00B0F813 /* UGConversationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EF52823BE7B4D00B0F813 /* UGConversationVC.swift */; };
+		036CA77523C7263C007BBD25 /* JS_TitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 036CA77423C7263C007BBD25 /* JS_TitleView.m */; };
+		036CA77723C72643007BBD25 /* JS_TitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 036CA77423C7263C007BBD25 /* JS_TitleView.m */; };
+		036CA77923C72657007BBD25 /* JS_TitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 036CA77823C72657007BBD25 /* JS_TitleView.xib */; };
+		036CA77A23C72657007BBD25 /* JS_TitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 036CA77823C72657007BBD25 /* JS_TitleView.xib */; };
 		03A5D38423C0445B0055A998 /* JS_HomeGameCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A5D38223C0445B0055A998 /* JS_HomeGameCollectionCell.m */; };
 		03A5D38523C0445B0055A998 /* JS_HomeGameCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A5D38223C0445B0055A998 /* JS_HomeGameCollectionCell.m */; };
 		03A5D38623C0445B0055A998 /* JS_HomeGameCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03A5D38323C0445B0055A998 /* JS_HomeGameCollectionCell.xib */; };
@@ -3235,6 +3239,9 @@
 		031EF52623BE7B4D00B0F813 /* ConversationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationCell.swift; sourceTree = "<group>"; };
 		031EF52723BE7B4D00B0F813 /* ConversationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationModel.swift; sourceTree = "<group>"; };
 		031EF52823BE7B4D00B0F813 /* UGConversationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UGConversationVC.swift; sourceTree = "<group>"; };
+		036CA77323C7263C007BBD25 /* JS_TitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JS_TitleView.h; sourceTree = "<group>"; };
+		036CA77423C7263C007BBD25 /* JS_TitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JS_TitleView.m; sourceTree = "<group>"; };
+		036CA77823C72657007BBD25 /* JS_TitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JS_TitleView.xib; sourceTree = "<group>"; };
 		03A5D38123C0445B0055A998 /* JS_HomeGameCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JS_HomeGameCollectionCell.h; sourceTree = "<group>"; };
 		03A5D38223C0445B0055A998 /* JS_HomeGameCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JS_HomeGameCollectionCell.m; sourceTree = "<group>"; };
 		03A5D38323C0445B0055A998 /* JS_HomeGameCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JS_HomeGameCollectionCell.xib; sourceTree = "<group>"; };
@@ -6897,6 +6904,9 @@
 				030A871F23C4E5B00001EF82 /* JS_Sidebar.h */,
 				030A872023C4E5B00001EF82 /* JS_Sidebar.m */,
 				030A872323C4E5C90001EF82 /* JS_Sidebar.xib */,
+				036CA77323C7263C007BBD25 /* JS_TitleView.h */,
+				036CA77423C7263C007BBD25 /* JS_TitleView.m */,
+				036CA77823C72657007BBD25 /* JS_TitleView.xib */,
 			);
 			path = "金沙主题";
 			sourceTree = "<group>";
@@ -7338,6 +7348,7 @@
 				031EF57F23BE7B4D00B0F813 /* xiangce.svg in Resources */,
 				031E1C8D23BE812A00B0F813 /* UGRechargeTypeCell.xib in Resources */,
 				031E1CA723BE812A00B0F813 /* UGRechargeRecordCell.xib in Resources */,
+				036CA77A23C72657007BBD25 /* JS_TitleView.xib in Resources */,
 				031E1E3723BE812C00B0F813 /* UGPormotionView.xib in Resources */,
 				031EF57323BE7B4D00B0F813 /* Emoji.bundle in Resources */,
 				031EF57A23BE7B4D00B0F813 /* yixihuan.svg in Resources */,
@@ -7624,6 +7635,7 @@
 				031E1E0023BE812C00B0F813 /* UGSignInScrFootView.xib in Resources */,
 				031E19EE23BE812700B0F813 /* common_icon_search.png in Resources */,
 				CF4758D0239636D200966536 /* 144.gif in Resources */,
+				036CA77923C72657007BBD25 /* JS_TitleView.xib in Resources */,
 				031E1B6E23BE812800B0F813 /* UGPlatformTitleCollectionViewCell.xib in Resources */,
 				031E1E7423BE812C00B0F813 /* UGRecordFilterCollectionViewCell.xib in Resources */,
 				D422D67F22D9A766008E7065 /* address.json in Resources */,
@@ -8270,6 +8282,7 @@
 				031E1AC523BE812800B0F813 /* WMDropDownView.m in Sources */,
 				031E1B4B23BE812800B0F813 /* UGLotteryHistoryModel.m in Sources */,
 				031E194523BE812600B0F813 /* UGSkinViewController.m in Sources */,
+				036CA77723C72643007BBD25 /* JS_TitleView.m in Sources */,
 				031E1CBF23BE812A00B0F813 /* UGViewController.m in Sources */,
 				031E1CF323BE812A00B0F813 /* SVIndefiniteAnimatedView.m in Sources */,
 				031E1B5F23BE812800B0F813 /* UGBackToastView.m in Sources */,
@@ -8704,6 +8717,7 @@
 				031E1AE623BE812800B0F813 /* TAAbstractDotView.m in Sources */,
 				031E1A3C23BE812700B0F813 /* OttoScratchView.m in Sources */,
 				031E1A1623BE812700B0F813 /* Aspects.m in Sources */,
+				036CA77523C7263C007BBD25 /* JS_TitleView.m in Sources */,
 				031E1B4A23BE812800B0F813 /* UGLotteryHistoryModel.m in Sources */,
 				031E19F223BE812700B0F813 /* LoadingStateView.m in Sources */,
 				031E1AA223BE812800B0F813 /* ZZCircleProgress.m in Sources */,
