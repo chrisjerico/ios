@@ -131,7 +131,11 @@
     double floatString = [user.balance doubleValue];
     self.myCoinLabel.text =   [NSString stringWithFormat:@"￥%.2f",floatString];
     
-
+	// #885 c001客户要求将收益推荐会员管理 点击后的用户信息，不要显示 用户姓名，用户余额
+	if ([APP.SiteId isEqualToString:@"c001"]) {
+		self.nameLabel.text = @"***";
+		self.coinLabel.text = @"***";
+	}
     
 }
 #pragma mark -- 网络请求
