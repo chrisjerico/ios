@@ -51,6 +51,8 @@
 @property(nonatomic, strong) dispatch_source_t messageRequestTimer;
 - (NSString *)chatGameUrl:(NSString *)roomId hide:(BOOL )hideHead ;          /**<   聊天室-游戏房间 */
 
+
+
 @end
 
 

@@ -8,6 +8,7 @@
 
 #import "AppDefine.h"
 
+
 #define __SiteID__ @"l001"
 
 
@@ -120,11 +121,7 @@
 #ifdef DEBUG
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
         if (!_SiteId.length) {
-
-
             _SiteId = @"l001";
-
-
 
         }
 #endif
