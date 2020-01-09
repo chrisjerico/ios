@@ -1255,7 +1255,12 @@
 #endif
             
             NSString *nper = [self.lhModel.issue  substringFromIndex:4];
-            self.lotteryTitleLabel.text = [NSString stringWithFormat:@"第%@期开奖结果",nper];
+            if ([CMCommon stringIsNull:self.lhModel.lhcdocLotteryNo]) {
+                self.lotteryTitleLabel.text = [NSString stringWithFormat:@"第%@期开奖结果",nper];
+            } else {
+                self.lotteryTitleLabel.text = [NSString stringWithFormat:@"第%@期开奖结果",self.lhModel.lhcdocLotteryNo];
+            }
+            
             [CMLabelCommon setRichNumberWithLabel:self.lotteryTitleLabel Color:[UIColor redColor] FontSize:17.0];
             NSArray *endTimeArray = [self->_lhModel.endtime componentsSeparatedByString:@" "];
             self.timeLabel.text = [endTimeArray objectAtIndex:0];
@@ -1752,7 +1757,12 @@
                     [__self.lotteryCollectionView reloadData];
                     if (__self.lhModel.issue.length>4) {
                         NSString *nper = [__self.lhModel.issue  substringFromIndex:4];
-                        __self.lotteryTitleLabel.text = [NSString stringWithFormat:@"第%@期开奖结果",nper];
+                        if ([CMCommon stringIsNull:model.lhcdocLotteryNo]) {
+                              __self.lotteryTitleLabel.text = [NSString stringWithFormat:@"第%@期开奖结果",nper];
+                        } else {
+                              __self.lotteryTitleLabel.text = [NSString stringWithFormat:@"第%@期开奖结果",model.lhcdocLotteryNo];
+                        }
+                      
                     }
  
                     

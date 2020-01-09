@@ -129,6 +129,26 @@ static LogVC *_logVC = nil;
 
 // 重发
 - (IBAction)onRepeatBtnClick:(UIButton *)sender {
+    
+    
+    
+    {
+        NSMutableArray *titles = @[].mutableCopy;
+        [titles addObject:@"当前skintyle"];
+        [titles addObject:@"切换到六合"];
+        UIAlertController *ac = [AlertHelper showAlertView:nil msg:@"请选择操作" btnTitles:[titles arrayByAddingObject:@"取消"]];
+        
+        [ac setActionAtTitle:@"当前skintyle" handler:^(UIAlertAction *aa) {
+            NSLog(@"%@",[NSString stringWithFormat: @"当前skintyle = %@",Skin1.skitString]);
+            [CMCommon showToastTitle:[NSString stringWithFormat: @"当前skintyle = %@",Skin1.skitString]];
+        }];
+        [ac setActionAtTitle:@"切换到六合" handler:^(UIAlertAction *aa) {
+            [UGSkinManagers lhSkin];
+        }];
+        
+        
+        return;
+    }
     NSInteger idx = [_reqTableView indexPathForSelectedRow].row;
     NSMutableArray <CCSessionModel *>*requests = (_collectButton.selected ? _collects : _allRequest);
     if (requests.count > idx) {

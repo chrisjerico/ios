@@ -34,6 +34,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) BOOL isOpen;          /**<  六合界面swich开关*/
 @property (copy, nonatomic) NSString *lotteryStr;/**<   自定义开奖信息 */
 @property (nonatomic) int count;          /**< 测试用*/
+
+@property (copy, nonatomic) NSString *lhcdocLotteryNo;/**<   预备开奖期数，不为空则使用，为空则按原来的处理方式
+" */
 @end
 
 NS_ASSUME_NONNULL_END

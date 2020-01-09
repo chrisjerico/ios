@@ -13,7 +13,7 @@
 @interface TGWebViewController ()<WKNavigationDelegate>
 
 //@property (nonatomic) WKWebView *tgWebView;
-
+@property (nonatomic, assign) BOOL willReloadURL;   // 是否需要重新加载URL
 
 @end
 
@@ -25,8 +25,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
+    self.tgWebView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+    self.tgWebView.navigationDelegate = self;
+    [self.view addSubview:self.tgWebView];
+    if (_url.length) {
+        self.url = _url;
+    }
+    
     [self.tgWebView addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:NULL];
     [self setUpUI];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if (OBJOnceToken(self)) {
+        [self.tgWebView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.view).offset(self.parentViewController ? 0 : APP.StatusBarHeight);
+            make.left.right.bottom.equalTo(self.view);
+        }];
+    }
 }
 
 - (void)setUpUI {
@@ -43,21 +60,13 @@
 
 - (void)setUrl:(NSString *)urlStr {
     _url = urlStr;
-    if (!self.tgWebView) {
-        self.tgWebView  = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
-        self.tgWebView.navigationDelegate = self;
-        [self.view addSubview:self.tgWebView];
-        [self.tgWebView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.view).offset(self.parentViewController ? 0 : APP.StatusBarHeight);
-            make.left.right.bottom.equalTo(self.view);
-        }];
-    }
     NSURL *url = [NSURL URLWithString:urlStr];
     if (url.scheme == nil) {
         url = [NSURL URLWithString:_NSString(@"http://%@", urlStr)];
     }
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
-     NSLog(@"self.url = %@", url);
+    NSLog(@"self.url============================ %@", url);
+    [CMCommon showSystemTitle:[NSString stringWithFormat:@"我发送的url = %@",url]];
     [self.tgWebView loadRequest:request];
 }
 
@@ -72,6 +81,11 @@
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     [HUDHelper hideLoadingView:self.view];
     [self.webProgressLayer tg_finishedLoadWithError:nil];
+    
+//    [CMCommon showToastTitle:[NSString stringWithFormat:@"url = %@",self.tgWebView.URL]];
+    
+    NSLog(@"self.tgWebView.URL = %@",self.tgWebView.URL);
+      [CMCommon showTitle:[NSString stringWithFormat:@"didFinishNavigation 返回的url = %@",self.tgWebView.URL.absoluteString]];
 }
 
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error {

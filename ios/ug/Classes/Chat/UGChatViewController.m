@@ -39,9 +39,9 @@
                 __self.url = APP.chatShareUrl;
             } else if (__self.gameId.length) {
                 if ([__self.gameId isEqualToString:@"主聊天室"]) {
-                    __self.url = APP.chatMainGameUr;
+                    __self.url = [APP chatGameUrl:@"0" hide:__self.hideHead];
                 } else {
-                    __self.url = [APP chatGameUrl:__self.gameId];
+                    __self.url = [APP chatGameUrl:__self.gameId hide:__self.hideHead];
                 }
 //                NSLog(@"__self.url = %@",__self.url);
              } else {
@@ -92,6 +92,9 @@
             }];
         }];
     }
+    
+    
+   
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -118,6 +121,47 @@
     if (![CMCommon stringIsNull:shareBetJson]){
         [self.view addSubview:_closeBtn];
     }
+}
+
+- (void)setChangeRoomJson:(NSString *)changeRoomJson {
+    _changeRoomJson = changeRoomJson;
+    NSLog(@"changeRoomJson = %@", changeRoomJson);
+    
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        //需要在主线程执行的代码
+        [self goChangeRoomJS];
+    }];
+    
+    
+
+}
+
+-(void)goChangeRoomJS{
+    // 每秒判断一下 window.canShare 参数为YES才进行分享
+       if (_changeRoomJson.length) {
+           __weakSelf_(__self);
+           __block NSTimer *__timer = nil;
+           __timer = [NSTimer scheduledTimerWithInterval:1 repeats:true block:^(NSTimer *timer) {
+               
+               NSLog(@"在运行");
+               [__self.tgWebView evaluateJavaScript:@"window.canShare" completionHandler:^(id obj, NSError *error) {
+                   NSLog(@"是否可以切换：%d", [obj boolValue]);
+                   if ([obj isKindOfClass:[NSNumber class]] && [obj boolValue]) {
+                       [__self.tgWebView evaluateJavaScript:__self.changeRoomJson completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+                           NSLog(@"切换结果：%@----%@", result, error);
+                           [CMCommon showSystemTitle:[NSString stringWithFormat:@"切换成功！%@",__self.changeRoomJson]];
+                       }];
+                       [__timer invalidate];
+                       __timer = nil;
+                   }
+
+                   if (!__self) {
+                       [__timer invalidate];
+                       __timer = nil;
+                   }
+               }];
+           }];
+       }
 }
 
 @end

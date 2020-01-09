@@ -8,6 +8,11 @@
 
 #import "UGChatRoomModel.h"
 
+
+@implementation ChatRedBagSettingModel
+
+@end
+
 @implementation UGChatRoomModel
 
 @end

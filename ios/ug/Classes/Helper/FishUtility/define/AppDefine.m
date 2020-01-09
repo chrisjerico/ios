@@ -8,7 +8,7 @@
 
 #import "AppDefine.h"
 
-#define __SiteID__ @"test03"
+#define __SiteID__ @"l001"
 
 @interface UIStoryboard ()
 - (BOOL)containsNibNamed:(NSString *)nibName;
@@ -118,7 +118,7 @@
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
         if (!_SiteId.length) {
 
-            _SiteId = @"test03";
+            _SiteId = @"l001";
 
 
         }
@@ -220,7 +220,7 @@
 }
 
 - (NSString *)chatHomeUrl {
-    NSString *url = _NSString(@"%@/dist/#/chatRoom", _Host);
+    NSString *url = _NSString(@"%@/dist", _Host);
     return [url stringByAppendingURLParams:@{
         @"from":@"app",
         @"color":Skin1.navBarBgColor.cc_userInfo[@"color"],
@@ -231,15 +231,19 @@
     }];
 }
 
-- (NSString *)chatGameUrl:(NSString *)gameId {
-    return [self.chatHomeUrl stringByAppendingURLParams:@{@"roomId":gameId}];
+- (NSString *)chatGameUrl:(NSString *)roomId hide:(BOOL )hideHead {
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    [dic setValue:roomId forKey:@"roomId"];
+    if (hideHead) {
+        NSNumber * boolNum = [NSNumber numberWithBool:hideHead];
+        [dic setValue:boolNum forKey:@"hideHead"];
+    }
+
+    NSString *s = [self.chatHomeUrl stringByAppendingURLParams:dic];
+    NSLog(@"s= %@",s);
+    return s;
 }
 
-
-
-- (NSString *)chatMainGameUr {
-    return [self.chatHomeUrl stringByAppendingURLParams:@{@"roomId":@"0"}];
-}
 
 
 #pragma mark - Setup
