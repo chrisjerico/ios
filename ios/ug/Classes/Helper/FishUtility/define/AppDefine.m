@@ -74,6 +74,8 @@
                 sb(@"LHTemplate"),
                 sb(@"LHTemplate"),
                 sb(@"UGYubaoViewController"),
+                sb(@"JS_Mine"),
+
                 ];
     });
     
