@@ -838,7 +838,16 @@ static NSString *uuidKey =@"uuidKey";
     position:CSToastPositionCenter];
 }
 
-
+/**
+*   简单系统，ios 提示
+*
+*
+*/
++(void)showSystemTitle:(NSString * )str{
+    NSMutableArray *titles = @[].mutableCopy;
+    [titles addObject:@"取消"];
+    [AlertHelper showAlertView:nil msg:str  btnTitles:titles];
+}
 
 /**
 *   系统web

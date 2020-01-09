@@ -126,20 +126,31 @@
     // 聊天室VC
     UGChatViewController *vc2 = ({
         UGChatViewController *vc = [[UGChatViewController alloc] init];
-        NSLog(@"model.gameId = %@",model.gameId);
-        NSLog(@"包含 = %d",[SysConf.typeIdAry containsObject:model.gameId]);
+        vc.hideHead = YES;
+//        NSLog(@"model.gameId = %@",model.gameId);
+//        NSLog(@"包含 = %d",[SysConf.typeIdAry containsObject:model.gameId]);
         if (model.gameId && SysConf.typeIdAry.count && [SysConf.typeIdAry containsObject:model.gameId]) {
             vc.gameId = model.gameId;
+            UGChatRoomModel *obj = [SysConf.chatRoomAry objectWithValue:vc.gameId keyPath:@"typeId"];
+            
+            if (![CMCommon stringIsNull:obj.roomId]) {
+                vc.roomId = obj.roomId;
+                vc.url = [APP chatGameUrl:obj.roomId hide:YES];
+//                NSLog(@"vc.url = %@",vc.url);
+            }
         } else {
             vc.gameId = @"主聊天室";
+            vc.roomId = @"0";
+            vc.url = [APP chatGameUrl:vc.roomId hide:YES];
+//            NSLog(@"vc.url = %@",vc.url);
         }
         
         // 隐藏H5的导航条
-        [vc cc_hookSelector:@selector(setUrl:) withOptions:AspectPositionBefore usingBlock:^(id<AspectInfo>  _Nonnull ai) {
-            NSString *url = ai.arguments.firstObject;
-            url = _NSString(@"%@&hideHead=true", url);
-            [ai.originalInvocation setArgument:&url atIndex:2];
-        } error:nil];
+//        [vc cc_hookSelector:@selector(setUrl:) withOptions:AspectPositionBefore usingBlock:^(id<AspectInfo>  _Nonnull ai) {
+//            NSString *url = ai.arguments.firstObject;
+//            url = _NSString(@"%@&hideHead=true", url);
+//            [ai.originalInvocation setArgument:&url atIndex:2];
+//        } error:nil];
         // 隐藏退出按钮
         [vc cc_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo>  _Nonnull ai) {
             ((UGChatViewController *)ai.instance).closeBtn.hidden = true;
@@ -221,15 +232,27 @@
                                     NSDictionary *dic = [__self.chatAry objectWithValue:key keyPath:@"roomName"];
                                     NSString *pass =  [dic objectForKey:@"password"];
                                     NSString *chatId = [dic objectForKey:@"roomId"];
+                                    if ([CMCommon stringIsNull:chatId]) {
+                                        NSLog(@"房间id 为空：%@",chatId);
+                                        return ;
+                                    }
                                     if ([CMCommon stringIsNull:pass]||[pass isEqualToString:@"%@NSCONTEXT"]) {
-                                        
                                         //                                         if (![vc2.roomId isEqualToString:chatId]) {
                                         vc2.roomId = chatId;
+                                        UGChatRoomModel *obj = [SysConf.chatRoomAry objectWithValue:vc2.roomId keyPath:@"roomId"];
+                                        
+                                        if (!obj) {
+                                            NSLog(@"房间 为空：%@",obj);
+                                            return ;
+                                        }
                                         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                                             //需要在主线程执行的代码
-                                            vc2.url = [APP chatGameUrl:chatId];
-                                            NSLog(@"roomId = %@",chatId);
-                                            NSLog(@"vc2.url = %@",vc2.url);
+                                            // 模型转字符串
+                                            NSString* string = [obj toJSONString];
+//                                            NSLog(@"string = %@",string);
+                                            NSString *js = [NSString stringWithFormat:@"changeRoom(%@)",string];
+//                                            NSLog(@"js = %@",js);
+                                            [vc2 setChangeRoomJson:js];
                                             label.text = [NSString stringWithFormat:@"%@▼",key];
                                         }];
                                         
@@ -237,9 +260,7 @@
                                         
                                         
                                     } else {
-                                        
                                         // 使用一个变量接收自定义的输入框对象 以便于在其他位置调用
-                                        
                                         __block UITextField *tf = nil;
                                         
                                         [LEEAlert alert].config
@@ -251,17 +272,24 @@
                                         })
                                         
                                         .LeeAction(@"确定", ^{
-                                            NSLog(@"tf.text = %@",tf.text);
+//                                            NSLog(@"tf.text = %@",tf.text);
                                             if ([pass isEqualToString:tf.text]) {
                                                 //                                                 if (![vc2.roomId isEqualToString:chatId]) {
                                                 vc2.roomId = chatId;
+                                                UGChatRoomModel *obj = [SysConf.chatRoomAry objectWithValue:vc2.roomId keyPath:@"roomId"];
                                                 
-                                                
+                                                if (!obj) {
+                                                    NSLog(@"房间 为空：%@",obj);
+                                                    return ;
+                                                }
                                                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                                                     //需要在主线程执行的代码
-                                                    vc2.url = [APP chatGameUrl:chatId];
-                                                    NSLog(@"roomId = %@",chatId);
-                                                    NSLog(@"vc2.url = %@",vc2.url);
+                                                    // 模型转字符串
+                                                    NSString* string = [obj toJSONString];
+//                                                    NSLog(@"string = %@",string);
+                                                    NSString *js = [NSString stringWithFormat:@"changeRoom(%@)",string];
+//                                                    NSLog(@"js = %@",js);
+                                                    [vc2 setChangeRoomJson:js];
                                                     label.text = [NSString stringWithFormat:@"%@▼",key];
                                                 }];
                                                 
@@ -323,26 +351,35 @@
                             [chatRoomAry addObject: [UGChatRoomModel mj_objectWithKeyValues:dic]];
                             
                         }
-//                        NSLog(@"chatIdAry = %@",chatIdAry);
-//                        NSLog(@"chatRoomAry = %@",chatRoomAry);
+                        //                        NSLog(@"chatIdAry = %@",chatIdAry);
+                        //                        NSLog(@"chatRoomAry = %@",chatRoomAry);
                         SysConf.typeIdAry = typeIdAry;
                         SysConf.chatRoomAry = chatRoomAry;
+//                        NSLog(@"vc2.isLoading = %d",vc2.tgWebView.isLoading);
+//                        NSLog(@"vc2.loading = %d",vc2.tgWebView.loading);
+//                        NSLog(@"vc2.URL = %@",vc2.tgWebView.URL);
                         
                         if (__self.nim.gameId && SysConf.typeIdAry.count && [SysConf.typeIdAry containsObject:__self.nim.gameId]) {
-                            if (![vc2.gameId isEqualToString:__self.nim.gameId]) {
-                                vc2.gameId = __self.nim.gameId;
-                                UGChatRoomModel *obj = [SysConf.chatRoomAry objectWithValue:vc2.gameId keyPath:@"typeId"];
+                            //                            if (![vc2.gameId isEqualToString:__self.nim.gameId]) {
+                            vc2.gameId = __self.nim.gameId;
+                            UGChatRoomModel *obj = [SysConf.chatRoomAry objectWithValue:vc2.gameId keyPath:@"typeId"];
+                            
+                            if (![vc2.roomId isEqualToString:obj.roomId]) {
                                 vc2.roomId = obj.roomId;
-                                vc2.url = [APP chatGameUrl:obj.roomId];
-                                NSLog(@"vc2.url = %@",vc2.url);
+                                vc2.url = [APP chatGameUrl:obj.roomId hide:YES];
+//                                NSLog(@"vc2.url = %@",vc2.url);
                             }
                             
+                            //                            }
+                            
                         } else {
-                            //                             if(![vc2.gameId isEqualToString:@"主聊天室"]){
-                            vc2.gameId = @"主聊天室";
-                            vc2.roomId = @"0";
-                            vc2.url = [APP chatMainGameUr];
-                            //                             }
+                            if(![vc2.roomId isEqualToString:@"0"]){
+                                vc2.gameId = @"主聊天室";
+                                vc2.roomId = @"0";
+                                vc2.url = [APP chatGameUrl:vc2.roomId hide:YES];
+//                                NSLog(@"vc2.url = %@",vc2.url);
+                            }
+                            
                         }
                     }
                 };

@@ -36,6 +36,7 @@
 @property (nonatomic) BOOL addIcons;    /**<   投注页面开奖旁边添加 开奖直播 长龙助手 开奖网  */
 @property (nonatomic) BOOL isBA;    /**<   六合彩的特码A 和特码B 换一下位置 */
 @property (nonatomic) BOOL isShowLogo;    /**<  首页中间游戏导航需增加logo图标，游戏导航栏可进行滑动 */
+@property (nonatomic) BOOL isShow4;    /**<  任务中心显示4个，不显示图片 */
 + (instancetype)shared;
 @end
 
@@ -47,9 +48,10 @@
 
 @property (nonatomic, readonly) NSString *chatShareUrl; /**<   分享注单到聊天室URL */
 @property (nonatomic, readonly) NSString *chatHomeUrl;  /**<   聊天室大厅URL */
-- (NSString *)chatMainGameUr ;                          /**<   聊天室-主聊天室URL */
-- (NSString *)chatGameUrl:(NSString *)gameId;           /**<   聊天室-游戏房间 */
 @property(nonatomic, strong) dispatch_source_t messageRequestTimer;
+- (NSString *)chatGameUrl:(NSString *)roomId hide:(BOOL )hideHead ;          /**<   聊天室-游戏房间 */
+
+
 
 @end
 

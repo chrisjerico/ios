@@ -11,7 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UGMissionTitleCell : UICollectionViewCell
-
+@property (weak, nonatomic) IBOutlet UIView *imgbgView;
+@property (weak, nonatomic) IBOutlet UIImageView *imgView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (nonatomic, strong) NSString *imgName;
 @property (nonatomic, strong) NSString *title;
 

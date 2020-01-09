@@ -72,13 +72,20 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    UITableViewCell *cell;
+    if ([@"c190" containsString:APP.SiteId]) {
+        cell  = [tableView dequeueReusableCellWithIdentifier:@"cell190" forIndexPath:indexPath];
+    }
+    else{
+        cell  = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    }
     UGPromoteModel *pm = tableView.dataArray[indexPath.row];
     FastSubViewCode(cell);
     if ([@"c190" containsString:APP.SiteId]) {
         subView(@"StackView").cc_constraints.top.constant = pm.title.length ? 12 : 0;
         subView(@"StackView").cc_constraints.bottom.constant = 0;
     }
+    
     subView(@"cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor : Skin1.homeContentColor;
     subLabel(@"标题Label").textColor = Skin1.textColor1;
     subLabel(@"标题Label").text = pm.title;

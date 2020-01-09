@@ -235,6 +235,13 @@ chat_type=crm 设置意味着营销qq，可以和陌生人发起临时会话。
 *
 */
 +(void)showToastTitle:(NSString * )str;
+
+/**
+*   简单系统，ios 提示
+*
+*
+*/
++(void)showSystemTitle:(NSString * )str;
 /**
 *   系统web
 *
