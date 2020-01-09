@@ -13,6 +13,9 @@
 		030A872B23C57AEF0001EF82 /* UGChatRoomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E6A61E23C4D340003E18B6 /* UGChatRoomModel.m */; };
 		030A873023C59FEB0001EF82 /* ProfileEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030A872E23C59FEB0001EF82 /* ProfileEditVC.swift */; };
 		030A873123C59FEB0001EF82 /* ProfileEditVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 030A872F23C59FEB0001EF82 /* ProfileEditVC.xib */; };
+		030A874423C5C2C00001EF82 /* JS_Mine.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 030A874323C5C2C00001EF82 /* JS_Mine.storyboard */; };
+		030A874723C5C3070001EF82 /* JS_MineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 030A874623C5C3070001EF82 /* JS_MineVC.m */; };
+		030A874823C5C3070001EF82 /* JS_MineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 030A874623C5C3070001EF82 /* JS_MineVC.m */; };
 		031E08EF23BE7FFB00B0F813 /* SiteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDB113723A3B1E10040DE2B /* SiteModel.m */; };
 		031E08F023BE7FFF00B0F813 /* UGNotificationEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = D405B345227DB22100F8C586 /* UGNotificationEvent.m */; };
 		031E193C23BE812600B0F813 /* UGSkinCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031E13C223BE812300B0F813 /* UGSkinCollectionViewCell.xib */; };
@@ -1821,6 +1824,9 @@
 		030A872323C4E5C90001EF82 /* JS_Sidebar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JS_Sidebar.xib; sourceTree = "<group>"; };
 		030A872E23C59FEB0001EF82 /* ProfileEditVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditVC.swift; sourceTree = "<group>"; };
 		030A872F23C59FEB0001EF82 /* ProfileEditVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileEditVC.xib; sourceTree = "<group>"; };
+		030A874323C5C2C00001EF82 /* JS_Mine.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = JS_Mine.storyboard; sourceTree = "<group>"; };
+		030A874523C5C3070001EF82 /* JS_MineVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JS_MineVC.h; sourceTree = "<group>"; };
+		030A874623C5C3070001EF82 /* JS_MineVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JS_MineVC.m; sourceTree = "<group>"; };
 		031E13C223BE812300B0F813 /* UGSkinCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UGSkinCollectionViewCell.xib; sourceTree = "<group>"; };
 		031E13C323BE812300B0F813 /* UGSkinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGSkinViewController.h; sourceTree = "<group>"; };
 		031E13C423BE812300B0F813 /* UGSkinManagers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGSkinManagers.h; sourceTree = "<group>"; };
@@ -3507,6 +3513,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		030A874123C5C29C0001EF82 /* 金沙模板 */ = {
+			isa = PBXGroup;
+			children = (
+				030A874323C5C2C00001EF82 /* JS_Mine.storyboard */,
+				030A874523C5C3070001EF82 /* JS_MineVC.h */,
+				030A874623C5C3070001EF82 /* JS_MineVC.m */,
+			);
+			path = "金沙模板";
+			sourceTree = "<group>";
+		};
 		031E13C123BE812300B0F813 /* Skin */ = {
 			isa = PBXGroup;
 			children = (
@@ -7184,6 +7200,7 @@
 				031E17DC23BE812500B0F813 /* Promote */,
 				031E13CB23BE812300B0F813 /* 六合模板 */,
 				031E165823BE812400B0F813 /* 黑色模板 */,
+				030A874123C5C29C0001EF82 /* 金沙模板 */,
 				D4B75E3B2278122B0007047C /* Other */,
 				D424785C22DDF5860062A6D4 /* Resources */,
 			);
@@ -7760,6 +7777,7 @@
 				CF475929239636D200966536 /* 105.gif in Resources */,
 				CF4758D8239636D200966536 /* 53.gif in Resources */,
 				031E1E4C23BE812C00B0F813 /* UGMineSkinFirstCollectionHeadView.xib in Resources */,
+				030A874423C5C2C00001EF82 /* JS_Mine.storyboard in Resources */,
 				CF4758D4239636D200966536 /* 3.gif in Resources */,
 				CF475912239636D200966536 /* 100.gif in Resources */,
 				031E1BE023BE812900B0F813 /* UGHKLHCLotteryController.storyboard in Resources */,
@@ -8069,6 +8087,7 @@
 				031E1CAD23BE812A00B0F813 /* UGFundDetailsCell.m in Sources */,
 				031E1C2D23BE812900B0F813 /* UGFastThreeTwoCollectionViewCell.m in Sources */,
 				031E1D6B23BE812B00B0F813 /* UGActivityGoldTableViewController.m in Sources */,
+				030A874823C5C3070001EF82 /* JS_MineVC.m in Sources */,
 				031E19F923BE812700B0F813 /* ChineseSortHelper.m in Sources */,
 				031EF55A23BE7B4D00B0F813 /* UIColor+XFoundation.swift in Sources */,
 				031E1D4123BE812B00B0F813 /* UGGoogleAuthenticationSecondViewController.m in Sources */,
@@ -8812,6 +8831,7 @@
 				031E1C9223BE812A00B0F813 /* UGRechargeTypeCell.m in Sources */,
 				031E1B3C23BE812800B0F813 /* UGhomeAdsModel.m in Sources */,
 				031E194A23BE812600B0F813 /* UGMyFansViewController.m in Sources */,
+				030A874723C5C3070001EF82 /* JS_MineVC.m in Sources */,
 				031E1CDA23BE812A00B0F813 /* MJRefreshAutoNormalFooter.m in Sources */,
 				031E1AD823BE812800B0F813 /* CustomCollectionViewCell.m in Sources */,
 				031E1D3E23BE812B00B0F813 /* UGUserInfoViewController.m in Sources */,

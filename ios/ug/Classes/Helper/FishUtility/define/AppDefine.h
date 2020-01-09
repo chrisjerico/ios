@@ -48,6 +48,7 @@
 
 @property (nonatomic, readonly) NSString *chatShareUrl; /**<   分享注单到聊天室URL */
 @property (nonatomic, readonly) NSString *chatHomeUrl;  /**<   聊天室大厅URL */
+@property(nonatomic, strong) dispatch_source_t messageRequestTimer;
 - (NSString *)chatGameUrl:(NSString *)roomId hide:(BOOL )hideHead ;          /**<   聊天室-游戏房间 */
 
 @end

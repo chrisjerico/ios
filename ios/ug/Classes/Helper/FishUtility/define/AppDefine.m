@@ -10,6 +10,7 @@
 
 #define __SiteID__ @"l001"
 
+
 @interface UIStoryboard ()
 - (BOOL)containsNibNamed:(NSString *)nibName;
 @end
@@ -74,6 +75,8 @@
                 sb(@"LHTemplate"),
                 sb(@"LHTemplate"),
                 sb(@"UGYubaoViewController"),
+                sb(@"JS_Mine"),
+
                 ];
     });
     
@@ -118,7 +121,9 @@
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
         if (!_SiteId.length) {
 
+
             _SiteId = @"l001";
+
 
 
         }

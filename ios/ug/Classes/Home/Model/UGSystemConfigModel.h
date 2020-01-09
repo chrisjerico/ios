@@ -47,7 +47,8 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
     MM_我的_六合,
     MM_我的_默认,
     MM_我的_亮黑,
-    
+    MM_我的_金沙,
+
     MM_任务中心,
     MM_签到,
     MM_站内信,

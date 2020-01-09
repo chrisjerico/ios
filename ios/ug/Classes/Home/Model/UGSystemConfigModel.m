@@ -31,6 +31,7 @@
 #import "UGLHMineViewController.h"  //
 #import "UGBMpreferentialViewController.h"
 #import "UGBMLotteryHomeViewController.h"
+#import "JS_MineVC.h"
 
 
 #define filePath  [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]stringByAppendingPathComponent:@"UGSystemConfigModel"]
@@ -158,10 +159,16 @@ UGSystemConfigModel *currentConfig = nil;
 }
 - (MobileMenuType)type {
     if (_type == MM_我的_默认) {
-        if (Skin1.isBlack)
+		if (Skin1.isBlack) {
             return MM_我的_亮黑;
-        if ([Skin1.skitType containsString:@"六合"] || [Skin1.skitType isEqualToString:@"活力橙"])
+
+		} else if ([Skin1.skitType containsString:@"六合"]) {
             return MM_我的_六合;
+
+		} else if ([Skin1.skitType isEqualToString:@"金沙主题"]) {
+            return MM_我的_金沙;
+
+		}
     }
     if (_type == MM_推广收益 && UGLoginIsAuthorized() && !UserI.isAgent) {
         return MM_申请代理;
@@ -184,6 +191,9 @@ UGSystemConfigModel *currentConfig = nil;
     if (self.type == MM_我的_六合) {
         return UGLHMineViewController.class;
     }
+	if (self.type == MM_我的_金沙) {
+		return JS_MineVC.class;
+	}
     if (self.type == MM_申请代理) {
         return UGAgentViewController.class;
     }
@@ -256,7 +266,11 @@ UGSystemConfigModel *currentConfig = nil;
                 [SVProgressHUD showErrorWithStatus:msg];
             }];
         }];
-    } else {
+	} else if (self.type == MM_我的_金沙) {
+		JS_MineVC * vc = [[UIStoryboard storyboardWithName:@"JS_Mine" bundle:nil] instantiateInitialViewController];
+        completion(vc);
+
+	} else {
         UIViewController *vc = _LoadVC_from_storyboard_(NSStringFromClass(self.cls));
         if (!vc) {
             vc = [self.cls new];
