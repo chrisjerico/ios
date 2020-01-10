@@ -8,7 +8,10 @@
 
 #import "AppDefine.h"
 
-#define __SiteID__ @"test20"
+
+
+#define __SiteID__ @"test19"
+
 
 @interface UIStoryboard ()
 - (BOOL)containsNibNamed:(NSString *)nibName;
@@ -120,7 +123,7 @@
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
         if (!_SiteId.length) {
 
-            _SiteId = @"tes20";
+            _SiteId = @"test19";
 
 
         }

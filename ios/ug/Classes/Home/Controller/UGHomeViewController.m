@@ -165,28 +165,27 @@
 @property (weak, nonatomic) IBOutlet UIView *homeAdsBgView;                  /**<   首页广告图片背景View */
 @property (nonatomic, strong) SDCycleScrollView *homeAdsView;                /**<   首页广告图片View */
 //-------------------------------------------
-//六合
+//六合开奖View
 @property (weak, nonatomic) IBOutlet UIView *liuheResultContentView;                    /**<   六合开奖View*/
-
 @property (weak, nonatomic) IBOutlet UILabel *lotteryTitleLabel;                        /**<   XX期开奖结果*/
 @property (weak, nonatomic) IBOutlet UILabel *remarkLabel;                               /**<   咪*/
 @property (weak, nonatomic) IBOutlet UICollectionView *lotteryCollectionView;           /**<  开奖的显示*/
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;                                /**<  开奖的时间显示*/
 @property (weak, nonatomic) IBOutlet UILabel *countdownLabel;                           /**<  开奖的倒计时显示*/
-@property (weak, nonatomic) IBOutlet UICollectionView *contentCollectionView;           /**<  论坛，专帖XXX显示*/
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *heightLayoutConstraint;        /**<  contentCollectionView 的约束高*/
 @property (weak, nonatomic) IBOutlet UISwitch *lotteryUISwitch;                         /**<   六合switch*/
 @property (weak, nonatomic) IBOutlet UIView *liuheForumContentView;                     /**<   六合板块View*/
 @property (weak, nonatomic) IBOutlet UIImageView *hormImgV;                             /**<  喇叭图片*/
 @property (weak, nonatomic) IBOutlet UILabel *lottyLabel;                               /**<  开奖提示文字*/
-
-@property (nonatomic, strong) NSMutableArray<UGLHCategoryListModel *> *lHCategoryList;   /**<   栏目列表数据 */
 @property (nonatomic, strong) UGLHlotteryNumberModel *lhModel;
 @property (strong, nonatomic)  CountDown *countDownForLabel;                            /**<   倒计时工具*/
 @property (nonatomic)  BOOL hormIsOpen;                                                /**<  喇叭是否开启*/
 @property (nonatomic,strong)  CMAudioPlayer *player ;                                  /**<  播放器*/
 @property (strong, nonatomic) NSTimer *timer;
 //--------------------------------------------
+//六合栏目View
+@property (weak, nonatomic) IBOutlet UICollectionView *contentCollectionView;           /**<  论坛，专帖XXX显示*/
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *heightLayoutConstraint;        /**<  contentCollectionView 的约束高*/
+@property (nonatomic, strong) NSMutableArray<UGLHCategoryListModel *> *lHCategoryList;   /**<   栏目列表数据 */
 
 @end
 
@@ -531,13 +530,13 @@
     [self.contentCollectionView registerNib:[UINib nibWithNibName:@"UGLHHomeContentCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"cell"];
     [CMCommon setBorderWithView:self.contentCollectionView top:YES left:YES bottom:NO right:YES borderColor:RGBA(221, 221, 221, 1) borderWidth:1];
     [self.contentCollectionView setCollectionViewLayout:_flow];
+    
+    
 //六合开奖
     self.lotteryCollectionView.backgroundColor = [UIColor whiteColor];
     self.lotteryCollectionView.dataSource = self;
     self.lotteryCollectionView.delegate = self;
     self.lotteryCollectionView.tagString= @"六合开奖";
-//    [self.lotteryCollectionView registerNib:[UINib nibWithNibName:@"UGLHLotteryCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UGLHLotteryCollectionViewCell"];
-//    [self.lotteryCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
     [self.lotteryCollectionView setBounces:NO];
     [self.lotteryCollectionView setScrollEnabled:NO];
     
@@ -619,19 +618,8 @@
         cell.layer.borderColor = [RGBA(221, 221, 221, 1) CGColor];
         return cell;
     } else {
+        //六合开奖
       UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ballCell" forIndexPath:indexPath];
-//        if (OBJOnceToken(cell)) {
-//            UGLHLotteryCollectionViewCell *c = _LoadView_from_nib_(@"UGLHLotteryCollectionViewCell");
-//            c.tagString = @"cell";
-//            [cell addSubview:c];
-//            [c mas_makeConstraints:^(MASConstraintMaker *make) {
-//                make.edges.equalTo(cell);
-//            }];
-//        }
-//        cell = [cell viewWithTagString:@"cell"];
-        
-    //        NSDictionary *dic = [self.menuNameArray objectAtIndex:indexPath.row];
-       
         FastSubViewCode(cell);
         if (indexPath.row <= 5) {
             subLabel(@"球下字").text =  [_lhModel.numSxArrary objectAtIndex:indexPath.row];
@@ -1230,7 +1218,7 @@
 
 
 //int countkkk  = 0;
-// 当前开奖信息
+////六合开奖  当前开奖信息
 - (void)getLotteryNumberList {
 
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
@@ -1304,7 +1292,7 @@
     }];
 }
 
-
+//六合开奖
 ///此方法用两个时间戳做参数进行倒计时
 -(void)startLongLongStartStamp:(long long)strtLL longlongFinishStamp:(long long)finishLL{
     __weak __typeof(self) weakSelf= self;
@@ -1318,7 +1306,7 @@
          [weakSelf refreshUIDay:day hour:hour minute:minute second:second];
     }];
 }
-
+//六合开奖
 ///此方法用两个时间做参数进行倒计时
 -(void)startDate:(NSDate *)startDate finishDate:(NSDate *)finishDate{
     __weak __typeof(self) weakSelf= self;
@@ -1330,7 +1318,7 @@
         [weakSelf refreshUIDay:day hour:hour minute:minute second:second];
     }];
 }
-
+//六合开奖
 -(void)refreshUIDay:(NSInteger)day hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second{
 
     NSString *hourStr = @"";
@@ -1700,6 +1688,8 @@
     [NavController1 pushViewController:recordVC animated:true];
     
 }
+
+//六合开奖
 - (IBAction)voiceAction:(UIButton*)sender {
     // 前提:在xib中设置按钮的默认与选中状态的背景图
     // 切换按钮的状态
@@ -1717,11 +1707,12 @@
         [_timer setFireDate:[NSDate date]];
     }
 }
+//六合开奖
 - (IBAction)loteryValueChange:(id)sender {
     
     [self.lotteryCollectionView reloadData];
 }
-
+//六合开奖
 //倒计时结束时触发
 -(void)lotterTimeAction{
     [self.timer invalidate];
@@ -1843,7 +1834,7 @@
     }];
  
 }
-
+//六合开奖 测试
 -(void)testKaiJiang{
     {//test
         NSDate *currentDate = [NSDate date];//获取当前时间，日期

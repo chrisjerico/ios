@@ -66,7 +66,7 @@
     }
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     NSLog(@"self.url============================ %@", url);
-    [CMCommon showSystemTitle:[NSString stringWithFormat:@"我发送的url = %@",url]];
+//    [CMCommon showSystemTitle:[NSString stringWithFormat:@"我发送的url = %@",url]];
     [self.tgWebView loadRequest:request];
 }
 
@@ -85,7 +85,7 @@
 //    [CMCommon showToastTitle:[NSString stringWithFormat:@"url = %@",self.tgWebView.URL]];
     
     NSLog(@"self.tgWebView.URL = %@",self.tgWebView.URL);
-      [CMCommon showTitle:[NSString stringWithFormat:@"didFinishNavigation 返回的url = %@",self.tgWebView.URL.absoluteString]];
+//      [CMCommon showTitle:[NSString stringWithFormat:@"didFinishNavigation 返回的url = %@",self.tgWebView.URL.absoluteString]];
 }
 
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error {

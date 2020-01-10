@@ -151,9 +151,9 @@
                                             <constraint firstAttribute="width" constant="35" id="Czi-7r-Bsc"/>
                                             <constraint firstAttribute="height" constant="40" id="gL1-hD-VWq"/>
                                         </constraints>
-                                        <connections>
-                                            <action selector="showChatRoom:" destination="6cS-zt-UGc" eventType="touchUpInside" id="IfC-Lu-hYP"/>
-                                        </connections>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="聊天Btn"/>
+                                        </userDefinedRuntimeAttributes>
                                     </button>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chat" translatesAutoresizingMaskIntoConstraints="NO" id="HnP-H1-6zz">
                                         <rect key="frame" x="28" y="29" width="30" height="30"/>

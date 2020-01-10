@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LotteryBetAndChatVC : UIViewController
 
 @property (nonatomic, strong) UGNextIssueModel *nim;
+
 @end
 
 NS_ASSUME_NONNULL_END

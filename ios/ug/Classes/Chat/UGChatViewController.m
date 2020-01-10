@@ -70,29 +70,8 @@
         }
     }
     
-    // 每秒判断一下 window.canShare 参数为YES才进行分享
-    if (_shareBetJson.length) {
-        __weakSelf_(__self);
-        __block NSTimer *__timer = nil;
-        __timer = [NSTimer scheduledTimerWithInterval:1 repeats:true block:^(NSTimer *timer) {
-            [__self.tgWebView evaluateJavaScript:@"window.canShare" completionHandler:^(id obj, NSError *error) {
-                NSLog(@"是否可以分享：%d", [obj boolValue]);
-                if ([obj isKindOfClass:[NSNumber class]] && [obj boolValue]) {
-                    [__self.tgWebView evaluateJavaScript:__self.shareBetJson completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-                        NSLog(@"分享结果：%@----%@", result, error);
-                    }];
-                    [__timer invalidate];
-                    __timer = nil;
-                }
-                
-                if (!__self) {
-                    [__timer invalidate];
-                    __timer = nil;
-                }
-            }];
-        }];
-    }
-    
+  
+    [self goShareBetJson];
     
    
 }
@@ -136,6 +115,32 @@
 
 }
 
+
+-(void)goShareBetJson{
+    // 每秒判断一下 window.canShare 参数为YES才进行分享
+      if (_shareBetJson.length) {
+          __weakSelf_(__self);
+          __block NSTimer *__timer = nil;
+          __timer = [NSTimer scheduledTimerWithInterval:1 repeats:true block:^(NSTimer *timer) {
+              [__self.tgWebView evaluateJavaScript:@"window.canShare" completionHandler:^(id obj, NSError *error) {
+                  NSLog(@"是否可以分享：%d", [obj boolValue]);
+                  if ([obj isKindOfClass:[NSNumber class]] && [obj boolValue]) {
+                      [__self.tgWebView evaluateJavaScript:__self.shareBetJson completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+                          NSLog(@"分享结果：%@----%@", result, error);
+                      }];
+                      [__timer invalidate];
+                      __timer = nil;
+                  }
+                  
+                  if (!__self) {
+                      [__timer invalidate];
+                      __timer = nil;
+                  }
+              }];
+          }];
+      }
+}
+
 -(void)goChangeRoomJS{
     // 每秒判断一下 window.canShare 参数为YES才进行分享
        if (_changeRoomJson.length) {
@@ -150,6 +155,10 @@
                        [__self.tgWebView evaluateJavaScript:__self.changeRoomJson completionHandler:^(id _Nullable result, NSError * _Nullable error) {
                            NSLog(@"切换结果：%@----%@", result, error);
                            [CMCommon showSystemTitle:[NSString stringWithFormat:@"切换成功！%@",__self.changeRoomJson]];
+                           
+                           if (__self.shareBetJson) {
+                               [__self goShareBetJson];
+                           }
                        }];
                        [__timer invalidate];
                        __timer = nil;

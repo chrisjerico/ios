@@ -94,7 +94,7 @@
         FastSubViewCode(_topView);
         [subButton(@"头像Button") sd_setImageWithURL:[NSURL URLWithString:pm.headImg] forState:UIControlStateNormal];
         subLabel(@"昵称Label").text = pm.nickname;
-        subLabel(@"时间Label").text = pm.createTime;
+        //subLabel(@"时间Label").text = pm.createTime;
         subButton(@"关注Button").backgroundColor = Skin1.navBarBgColor;
         subButton(@"关注Button").selected = _pm.isFollow;
         [subButton(@"关注Button") setTitle:_pm.isFollow ? @"已关注" : @"关注楼主" forState:UIControlStateNormal];
@@ -139,8 +139,9 @@
         setupAdButton(@"底部广告Button", pm.bottomAdWap);
         subLabel(@"标题Label").text = pm.title;
         subLabel(@"标题Label").hidden = [@"mystery,rule,sixpic,humorGuess,rundog,fourUnlike,sxbm,tjym,ptyx" containsString:pm.alias];
-        subLabel(@"时间Label").text = _NSString(@"最后更新时间：%@", pm.createTime);
-        subLabel(@"时间Label").hidden = [@"mystery,rule" containsString:pm.alias];
+//        subLabel(@"时间Label").text = _NSString(@"最后更新时间：%@", pm.createTime);
+
+//        subLabel(@"时间Label").hidden = [@"mystery,rule" containsString:pm.alias];
         
         UIView *cView = subView(@"内容View");
         WKWebView *wv = [cView viewWithTagString:@"内容WebView"];
