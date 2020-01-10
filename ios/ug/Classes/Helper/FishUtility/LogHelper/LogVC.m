@@ -132,7 +132,7 @@ static LogVC *_logVC = nil;
     
     
     
-    {
+    {//切换按钮六合
         NSMutableArray *titles = @[].mutableCopy;
         [titles addObject:@"当前skintyle"];
         [titles addObject:@"切换到六合"];
@@ -140,7 +140,6 @@ static LogVC *_logVC = nil;
         
         [ac setActionAtTitle:@"当前skintyle" handler:^(UIAlertAction *aa) {
             NSLog(@"%@",[NSString stringWithFormat: @"当前skintyle = %@",Skin1.skitString]);
-            [CMCommon showToastTitle:[NSString stringWithFormat: @"当前skintyle = %@",Skin1.skitString]];
         }];
         [ac setActionAtTitle:@"切换到六合" handler:^(UIAlertAction *aa) {
             [UGSkinManagers lhSkin];

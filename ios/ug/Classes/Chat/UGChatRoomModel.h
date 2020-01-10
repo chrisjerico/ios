@@ -15,9 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface ChatRedBagSettingModel : UGModel <ChatRedBagSettingModel>
-@property (nonatomic, strong) NSString *maxAmount;         /**<   房间id */
-@property (nonatomic, strong) NSString *minAmount;       /**<   房间名 */
-@property (nonatomic, strong) NSString *maxQuantity;       /**<  密码 */
+@property (nonatomic, strong) NSString *maxAmount;         /**<    */
+@property (nonatomic, strong) NSString *minAmount;       /**<    */
+@property (nonatomic, strong) NSString *maxQuantity;       /**<   */
 @property (nonatomic)  int  isRedBag;                      /**<   */
 @end
 
@@ -30,6 +30,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *typeId;         /**<   游戏id */
 @property (nonatomic)  BOOL isChatBan;                   /**<   */
 @property (nonatomic)  int  sortId;                      /**<   */
+@property (nonatomic, strong) NSString *isMine;         /**<  */
+@property (nonatomic, strong) NSString *maxAmount;         /**<    */
+@property (nonatomic, strong) NSString *minAmount;       /**<    */
 @property (nonatomic, strong) ChatRedBagSettingModel *chatRedBagSetting;       /**<  */
 @end
 

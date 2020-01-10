@@ -1809,6 +1809,8 @@
 		D4C0A12F239156FB00B39358 /* hot_01.gif in Resources */ = {isa = PBXBuildFile; fileRef = D4C0A12D239156FB00B39358 /* hot_01.gif */; };
 		D4E6A61F23C4D340003E18B6 /* UGChatRoomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E6A61E23C4D340003E18B6 /* UGChatRoomModel.m */; };
 		D4E6A62223C4D4DD003E18B6 /* CCNetworkRequests1+UG.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E6A62123C4D4DD003E18B6 /* CCNetworkRequests1+UG.m */; };
+		D4F0410523C773170070D2B5 /* UGLHPrizeView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F0410423C773170070D2B5 /* UGLHPrizeView.m */; };
+		D4F0410723C7732A0070D2B5 /* UGLHPrizeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4F0410623C7732A0070D2B5 /* UGLHPrizeView.xib */; };
 		F5614FBC2C7545CF870A0AD2 /* Pods_chat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30193B1626262AA87797C0E9 /* Pods_chat.framework */; };
 /* End PBXBuildFile section */
 
@@ -3486,6 +3488,9 @@
 		D4E6A61E23C4D340003E18B6 /* UGChatRoomModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGChatRoomModel.m; sourceTree = "<group>"; };
 		D4E6A62023C4D4DD003E18B6 /* CCNetworkRequests1+UG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCNetworkRequests1+UG.h"; sourceTree = "<group>"; };
 		D4E6A62123C4D4DD003E18B6 /* CCNetworkRequests1+UG.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCNetworkRequests1+UG.m"; sourceTree = "<group>"; };
+		D4F0410323C773170070D2B5 /* UGLHPrizeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLHPrizeView.h; sourceTree = "<group>"; };
+		D4F0410423C773170070D2B5 /* UGLHPrizeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLHPrizeView.m; sourceTree = "<group>"; };
+		D4F0410623C7732A0070D2B5 /* UGLHPrizeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGLHPrizeView.xib; sourceTree = "<group>"; };
 		E98695D8DC0D2512B92A7C32 /* Pods-ug.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ug.debug.xcconfig"; path = "Target Support Files/Pods-ug/Pods-ug.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -3652,6 +3657,7 @@
 		031E140623BE812300B0F813 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D4F0410123C772850070D2B5 /* 解码器 */,
 				031E140723BE812300B0F813 /* 六合首页 */,
 				031E141123BE812300B0F813 /* 帖子 */,
 			);
@@ -7237,6 +7243,16 @@
 			path = Other;
 			sourceTree = "<group>";
 		};
+		D4F0410123C772850070D2B5 /* 解码器 */ = {
+			isa = PBXGroup;
+			children = (
+				D4F0410323C773170070D2B5 /* UGLHPrizeView.h */,
+				D4F0410423C773170070D2B5 /* UGLHPrizeView.m */,
+				D4F0410623C7732A0070D2B5 /* UGLHPrizeView.xib */,
+			);
+			path = "解码器";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -7727,6 +7743,7 @@
 				031E1DE823BE812C00B0F813 /* UGConvertCollectionViewCell.xib in Resources */,
 				031E199623BE812600B0F813 /* LHPostRewardView.xib in Resources */,
 				CF475910239636D200966536 /* 115.gif in Resources */,
+				D4F0410723C7732A0070D2B5 /* UGLHPrizeView.xib in Resources */,
 				CFFAB58D23755569009593AF /* lxb.gif in Resources */,
 				031E1B9023BE812900B0F813 /* UGLotteryRecordTableViewCell.xib in Resources */,
 				031E1BF423BE812900B0F813 /* UGGD11X5LotteryController.storyboard in Resources */,
@@ -8949,6 +8966,7 @@
 				031E19DC23BE812700B0F813 /* NSArray+Utils.m in Sources */,
 				03E41B2C23C0903C004AB7C6 /* JS_HomePromoteView.m in Sources */,
 				031E19B623BE812700B0F813 /* NSMutableDictionary+KVO.m in Sources */,
+				D4F0410523C773170070D2B5 /* UGLHPrizeView.m in Sources */,
 				031E1AF423BE812800B0F813 /* UIButton+touch.m in Sources */,
 				031E1A6223BE812700B0F813 /* NSString+ST.m in Sources */,
 				031E1B9823BE812900B0F813 /* UGChanglongBetRecrodCell.m in Sources */,

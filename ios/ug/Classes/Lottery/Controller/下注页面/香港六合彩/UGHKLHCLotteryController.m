@@ -207,9 +207,10 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 
 // 去聊天室
 - (IBAction)showChatRoom:(id)sender {
-    UGChatViewController *chatVC = [[UGChatViewController alloc] init];
-    chatVC.gameId = self.gameId;
-    [self.navigationController pushViewController:chatVC animated:YES];
+//    UGChatViewController *chatVC = [[UGChatViewController alloc] init];
+//    chatVC.gameId = self.gameId;
+//    [self.navigationController pushViewController:chatVC animated:YES];
+       [[NSNotificationCenter defaultCenter] postNotificationName:@"NSSelectChatRoom" object:nil userInfo:nil];
     
 }
 

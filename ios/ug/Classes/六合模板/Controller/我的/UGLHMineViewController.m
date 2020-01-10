@@ -189,7 +189,7 @@
     if (flag) {
         [subImageView(@"头像ImgV") sd_setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
     }
-    subLabel(@"名字Label").text = user.username;
+//    subLabel(@"名字Label").text = user.username;
     subLabel(@"用户等级Label").text = user.curLevelGrade;
     subLabel(@"小等级Label").text = user.curLevelGrade;
     subLabel(@"大等级Label").text = user.nextLevelGrade;
@@ -242,7 +242,9 @@
             if (user) {
                 UGUserModel *oldUser = [UGUserModel currentUser];
                 oldUser.isLhcdocVip = user.isLhcdocVip;
-                
+                FastSubViewCode(self.userInfoView)
+                subLabel(@"名字Label").text = user.nickname;
+                oldUser.lhnickname = user.nickname;
                 UGUserModel.currentUser = oldUser;
                 NSLog(@"是否是六合文档的VIP==%d",user.isLhcdocVip);
                 user.isLhcdocVip ? [self.imgBV setHidden:NO]:[self.imgBV setHidden:YES];
@@ -456,6 +458,47 @@
 - (IBAction)customerServiceAction:(id)sender {
     NSLog(@"联系客服");
     [NavController1 pushVCWithUserCenterItemType:UCI_在线客服];
+}
+- (IBAction)lhNickNameAction:(id)sender {
+
+    
+    // 使用一个变量接收自定义的输入框对象 以便于在其他位置调用
+    __block UITextField *tf = nil;
+    [LEEAlert alert].config
+    .LeeTitle(@"请输入昵称")
+    .LeeContent(@"")
+    .LeeAddTextField(^(UITextField *textField) {
+        textField.placeholder = @"请输入昵称：1-8个汉字";
+        textField.textColor = [UIColor darkGrayColor];
+        textField.限制长度 = 8;
+        UGUserModel *oldUser = [UGUserModel currentUser];
+        textField.text = oldUser.lhnickname;
+        tf = textField; //赋值
+    })
+    
+    .LeeCancelAction(@"取消", nil) // 点击事件的Block如果不需要可以传nil
+    .LeeDestructiveAction(@"好的", ^{
+        if (!tf.text.length) {
+            return ;
+        }
+        if (!tf.text.isChinese) {
+            [HUDHelper showMsg:@"请输入纯汉字昵称"];
+            return;
+        }
+        [NetworkManager1 lhcdoc_setNickname:tf.text].successBlock = ^(id responseObject) {
+            [self getUserInfo];
+        };
+        
+    })
+    .leeShouldActionClickClose(^(NSInteger index){
+        // 是否可以关闭回调, 当即将关闭时会被调用 根据返回值决定是否执行关闭处理
+        // 这里演示了与输入框非空校验结合的例子
+        BOOL result = ![tf.text isEqualToString:@""];
+        result = index == 1 ? result : YES;
+        return result;
+    })
+    .LeeShow();
+    
 }
 
 @end
