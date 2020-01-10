@@ -208,7 +208,11 @@
                 
                 // 退出登录上一个账号
                 if (UGUserModel.currentUser)
+                {
                     [CMNetwork userLogoutWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:nil];
+                    UGUserModel.currentUser = nil;
+                    SANotificationEventPost(UGNotificationUserLogout, nil);
+                }
                 
                 UGUserModel *user = model.data;
                 UGUserModel.currentUser = user;

@@ -15,4 +15,13 @@
 
 @implementation UGChatRoomModel
 
+-(instancetype)init{
+    self = [super init];
+    if (self) {
+        //initialization
+        _roomId = @"0";
+        
+    }
+    return self;
+}
 @end

@@ -160,14 +160,14 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 }
 
 
--(void)goChatRoom{
-    UGChatViewController *vc = [[UGChatViewController alloc] init];
-    vc.shareBetJson = [self shareBettingData];
-    [NavController1 pushViewController:vc animated:YES];
-}
+//-(void)goChatRoom{
+//    UGChatViewController *vc = [[UGChatViewController alloc] init];
+//    vc.shareBetJson = [self shareBettingData];
+//    [NavController1 pushViewController:vc animated:YES];
+//}
 -(void)selectChatRoom{
-     NSString *js = [self shareBettingData];
-    NSDictionary *dic = [[NSDictionary alloc] initWithObjectsAndKeys:js,@"sharejson", nil];
+     NSMutableDictionary *jsDic = [self shareBettingData];
+    NSDictionary *dic = [[NSDictionary alloc] initWithObjectsAndKeys:jsDic,@"jsDic", nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"NSSelectChatRoom_share" object:nil userInfo:dic];
 }
 
@@ -240,25 +240,6 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 			
 			UIAlertController * alert = [UIAlertController alertWithTitle:@"投注失败" msg:msg btnTitles:@[@"确定"]];
 			[NavController1 presentViewController:alert animated:true completion:nil];
-//			C001BetErrorCustomView * msgView = [[NSBundle mainBundle] loadNibNamed:@"C001BetErrorCustomView" owner:self options:nil].firstObject;
-//			[self addSubview:msgView];
-//			[msgView mas_makeConstraints:^(MASConstraintMaker *make) {
-//				make.center.equalTo(self);
-//				make.width.equalTo(self).multipliedBy(0.9);
-//			}];
-//			[msgView bind: msg];
-//
-//			if ([@"test03" isEqualToString:APP.SiteId]) {
-//				C001BetErrorCustomView * msgView = [[NSBundle mainBundle] loadNibNamed:@"C001BetErrorCustomView" owner:self options:nil].firstObject;
-//				[self addSubview:msgView];
-//				[msgView mas_makeConstraints:^(MASConstraintMaker *make) {
-//					make.center.equalTo(self);
-//				}];
-//				[msgView bind: msg];
-//			} else {
-//				[SVProgressHUD showErrorWithStatus:msg];
-//
-//			}
 		
 			NSString *msgStr = (NSString *)msg;
 			if ([msgStr containsString:@"已封盘"]) {
@@ -271,7 +252,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 	}];
 }
 
--(NSString *)shareBettingData{
+-(NSMutableDictionary *)shareBettingData{
     
        UGbetModel *betModel = [UGbetModel new];
        NSMutableArray *list = [NSMutableArray new];
@@ -451,6 +432,9 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
     
       
     
+    NSMutableDictionary *jsDic = [NSMutableDictionary new];
+    [jsDic setValue:betModel forKey:@"betModel"];
+    [jsDic setValue:list forKey:@"list"];
    //以字符串形式导出
     NSString* paramsjsonString = [betModel toJSONString];
     
@@ -464,13 +448,14 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
            
        }
     
-//     NSLog(@"listjsonString = %@",listjsonString);
+     NSLog(@"listjsonString = %@",listjsonString);
     
      NSString *jsonStr = [NSString stringWithFormat:@"shareBet(%@, %@)",listjsonString,paramsjsonString];
     
-//     NSLog(@"jsonStr = %@",jsonStr);
+     NSLog(@"jsonStr = %@",jsonStr);
+     [jsDic setValue:jsonStr forKey:@"jsonStr"];
     
-    return jsonStr;
+    return jsDic;
     
 }
 #pragma mark - UITableViewDataSource

@@ -1811,6 +1811,8 @@
 		D4E6A62223C4D4DD003E18B6 /* CCNetworkRequests1+UG.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E6A62123C4D4DD003E18B6 /* CCNetworkRequests1+UG.m */; };
 		D4F0410523C773170070D2B5 /* UGLHPrizeView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F0410423C773170070D2B5 /* UGLHPrizeView.m */; };
 		D4F0410723C7732A0070D2B5 /* UGLHPrizeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4F0410623C7732A0070D2B5 /* UGLHPrizeView.xib */; };
+		D4F0411723C868E20070D2B5 /* WHC_ModelSqlite.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F0411623C868E20070D2B5 /* WHC_ModelSqlite.m */; };
+		D4F0411A23C86A6A0070D2B5 /* RememberPass.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F0411923C86A6A0070D2B5 /* RememberPass.m */; };
 		F5614FBC2C7545CF870A0AD2 /* Pods_chat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30193B1626262AA87797C0E9 /* Pods_chat.framework */; };
 /* End PBXBuildFile section */
 
@@ -3491,6 +3493,10 @@
 		D4F0410323C773170070D2B5 /* UGLHPrizeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLHPrizeView.h; sourceTree = "<group>"; };
 		D4F0410423C773170070D2B5 /* UGLHPrizeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLHPrizeView.m; sourceTree = "<group>"; };
 		D4F0410623C7732A0070D2B5 /* UGLHPrizeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGLHPrizeView.xib; sourceTree = "<group>"; };
+		D4F0411523C868E20070D2B5 /* WHC_ModelSqlite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHC_ModelSqlite.h; sourceTree = "<group>"; };
+		D4F0411623C868E20070D2B5 /* WHC_ModelSqlite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHC_ModelSqlite.m; sourceTree = "<group>"; };
+		D4F0411823C86A6A0070D2B5 /* RememberPass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RememberPass.h; sourceTree = "<group>"; };
+		D4F0411923C86A6A0070D2B5 /* RememberPass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RememberPass.m; sourceTree = "<group>"; };
 		E98695D8DC0D2512B92A7C32 /* Pods-ug.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ug.debug.xcconfig"; path = "Target Support Files/Pods-ug/Pods-ug.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -3704,6 +3710,7 @@
 		031E142023BE812300B0F813 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				D4F0411423C868E20070D2B5 /* WHC_SqliteKit */,
 				031E142223BE812300B0F813 /* FishUtility */,
 				031E14E523BE812300B0F813 /* CMCommon */,
 				031E14C223BE812300B0F813 /* CMNetwork */,
@@ -5570,6 +5577,8 @@
 				D4E6A61E23C4D340003E18B6 /* UGChatRoomModel.m */,
 				031E177823BE812500B0F813 /* UGChatViewController.h */,
 				031E177923BE812500B0F813 /* UGChatViewController.m */,
+				D4F0411823C86A6A0070D2B5 /* RememberPass.h */,
+				D4F0411923C86A6A0070D2B5 /* RememberPass.m */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -7253,6 +7262,15 @@
 			path = "解码器";
 			sourceTree = "<group>";
 		};
+		D4F0411423C868E20070D2B5 /* WHC_SqliteKit */ = {
+			isa = PBXGroup;
+			children = (
+				D4F0411523C868E20070D2B5 /* WHC_ModelSqlite.h */,
+				D4F0411623C868E20070D2B5 /* WHC_ModelSqlite.m */,
+			);
+			path = WHC_SqliteKit;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -8776,6 +8794,7 @@
 				031E1AFC23BE812800B0F813 /* UIView+Extension.m in Sources */,
 				031E1BDE23BE812900B0F813 /* UGLotterySelectController.m in Sources */,
 				031E1B1023BE812800B0F813 /* UGLotteryRecordController.m in Sources */,
+				D4F0411723C868E20070D2B5 /* WHC_ModelSqlite.m in Sources */,
 				031E1B3223BE812800B0F813 /* UGSystemConfigModel.m in Sources */,
 				031E1B9A23BE812900B0F813 /* UGLotteryAssistantTableViewCell.m in Sources */,
 				031E1A9623BE812700B0F813 /* MOFSPickerManager.m in Sources */,
@@ -9205,6 +9224,7 @@
 				031E1DC623BE812B00B0F813 /* UGBalanceTransferLogsModel.m in Sources */,
 				031E1AF623BE812800B0F813 /* SANotificationEvent.m in Sources */,
 				031E1B6023BE812800B0F813 /* UGDocumentView.m in Sources */,
+				D4F0411A23C86A6A0070D2B5 /* RememberPass.m in Sources */,
 				031E1B2E23BE812800B0F813 /* UGBetItemModel.m in Sources */,
 				031E1D8A23BE812B00B0F813 /* UGBalanceConversionRecordController.m in Sources */,
 				031E1E2E23BE812C00B0F813 /* UGPormotionUserInfoView.m in Sources */,

@@ -34,6 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *maxAmount;         /**<    */
 @property (nonatomic, strong) NSString *minAmount;       /**<    */
 @property (nonatomic, strong) ChatRedBagSettingModel *chatRedBagSetting;       /**<  */
+@property (nonatomic)  BOOL isPassWord;                   /**<   已填写密码*/
 @end
 
 NS_ASSUME_NONNULL_END

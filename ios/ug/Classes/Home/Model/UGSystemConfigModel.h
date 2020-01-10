@@ -185,6 +185,9 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 
 @property (nonatomic,strong) NSMutableArray<UGChatRoomModel *> *chatRoomAry;                    /**<    在线配置的聊天室i*/
 @property (nonatomic,strong) NSMutableArray *typeIdAry;                    /**<    在线配置的聊天室id对应的游戏id */
+
+@property (nonatomic) BOOL hasShare;                /**<   是否可以下注分享*/
+
 @end
 
 NS_ASSUME_NONNULL_END

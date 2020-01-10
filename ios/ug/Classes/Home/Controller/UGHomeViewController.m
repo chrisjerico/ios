@@ -173,7 +173,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;                                /**<  开奖的时间显示*/
 @property (weak, nonatomic) IBOutlet UILabel *countdownLabel;                           /**<  开奖的倒计时显示*/
 @property (weak, nonatomic) IBOutlet UISwitch *lotteryUISwitch;                         /**<   六合switch*/
-@property (weak, nonatomic) IBOutlet UIView *liuheForumContentView;                     /**<   六合板块View*/
+
 @property (weak, nonatomic) IBOutlet UIImageView *hormImgV;                             /**<  喇叭图片*/
 @property (weak, nonatomic) IBOutlet UILabel *lottyLabel;                               /**<  开奖提示文字*/
 @property (nonatomic, strong) UGLHlotteryNumberModel *lhModel;
@@ -183,6 +183,7 @@
 @property (strong, nonatomic) NSTimer *timer;
 //--------------------------------------------
 //六合栏目View
+@property (weak, nonatomic) IBOutlet UIView *liuheForumContentView;                     /**<   六合板块View*/
 @property (weak, nonatomic) IBOutlet UICollectionView *contentCollectionView;           /**<  论坛，专帖XXX显示*/
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *heightLayoutConstraint;        /**<  contentCollectionView 的约束高*/
 @property (nonatomic, strong) NSMutableArray<UGLHCategoryListModel *> *lHCategoryList;   /**<   栏目列表数据 */
@@ -926,6 +927,8 @@
     self.titleView.showLoginView = YES;
     [NavController1 popToRootViewControllerAnimated:true];
     [TabBarController1 setSelectedIndex:0];
+    [CMCommon clearWebCache];
+    [CMCommon deleteWebCache];
 }
 
 // 横幅广告

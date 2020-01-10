@@ -189,7 +189,7 @@
     if (flag) {
         [subImageView(@"头像ImgV") sd_setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
     }
-//    subLabel(@"名字Label").text = user.username;
+    subLabel(@"名字Label").text = user.username;
     subLabel(@"用户等级Label").text = user.curLevelGrade;
     subLabel(@"小等级Label").text = user.curLevelGrade;
     subLabel(@"大等级Label").text = user.nextLevelGrade;
@@ -243,7 +243,6 @@
                 UGUserModel *oldUser = [UGUserModel currentUser];
                 oldUser.isLhcdocVip = user.isLhcdocVip;
                 FastSubViewCode(self.userInfoView)
-                subLabel(@"名字Label").text = user.nickname;
                 oldUser.lhnickname = user.nickname;
                 UGUserModel.currentUser = oldUser;
                 NSLog(@"是否是六合文档的VIP==%d",user.isLhcdocVip);

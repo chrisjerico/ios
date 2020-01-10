@@ -232,8 +232,18 @@
     }];
 }
 
-- (NSString *)chatGameUrl:(NSString *)gameId {
-    return [self.chatHomeUrl stringByAppendingURLParams:@{@"roomId":gameId}];
+
+- (NSString *)chatGameUrl:(NSString *)roomId hide:(BOOL )hideHead {
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    [dic setValue:roomId forKey:@"roomId"];
+    if (hideHead) {
+        NSNumber * boolNum = [NSNumber numberWithBool:hideHead];
+        [dic setValue:boolNum forKey:@"hideHead"];
+    }
+
+    NSString *s = [self.chatHomeUrl stringByAppendingURLParams:dic];
+    NSLog(@"s= %@",s);
+    return s;
 }
 
 

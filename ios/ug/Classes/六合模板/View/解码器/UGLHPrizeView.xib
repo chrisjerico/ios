@@ -76,6 +76,9 @@
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="声音按钮"/>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="voiceAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="v5y-l5-3BD"/>
+                                            </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="咪" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DTX-E6-dEt">
                                             <rect key="frame" x="319.5" y="16" width="14.5" height="22"/>
@@ -96,6 +99,9 @@
                                                 <constraint firstAttribute="height" constant="31" id="kDi-QE-ffn"/>
                                                 <constraint firstAttribute="width" constant="47" id="x1q-Kp-TBW"/>
                                             </constraints>
+                                            <connections>
+                                                <action selector="loteryValueChange:" destination="iN0-l3-epB" eventType="valueChanged" id="oCh-vb-dCt"/>
+                                            </connections>
                                         </switch>
                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Gvd-v8-klw">
                                             <rect key="frame" x="20" y="49" width="374" height="75"/>
@@ -316,10 +322,12 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="countdownLabel" destination="Kaw-yD-DIP" id="iey-i3-FI0"/>
+                <outlet property="hormImgV" destination="n0z-iI-ldY" id="qBc-jn-b3p"/>
                 <outlet property="liuheResultContentView" destination="l5o-LO-6ao" id="6XC-By-Dwe"/>
                 <outlet property="lotteryCollectionView" destination="Gvd-v8-klw" id="PgQ-1q-v1Z"/>
                 <outlet property="lotteryTitleLabel" destination="xhv-xC-Rhr" id="K35-Oh-YgF"/>
                 <outlet property="lotteryUISwitch" destination="DvL-Hg-DOK" id="gah-p5-BId"/>
+                <outlet property="lottyLabel" destination="hTy-Ap-n8d" id="GtW-nd-jHt"/>
                 <outlet property="remarkLabel" destination="DTX-E6-dEt" id="XSZ-mn-Teq"/>
                 <outlet property="timeLabel" destination="ztT-23-1I1" id="bdt-dO-gl4"/>
             </connections>
