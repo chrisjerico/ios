@@ -1585,6 +1585,14 @@
 		036CA77723C72643007BBD25 /* JS_TitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 036CA77423C7263C007BBD25 /* JS_TitleView.m */; };
 		036CA77923C72657007BBD25 /* JS_TitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 036CA77823C72657007BBD25 /* JS_TitleView.xib */; };
 		036CA77A23C72657007BBD25 /* JS_TitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 036CA77823C72657007BBD25 /* JS_TitleView.xib */; };
+		036CA77D23C759DF007BBD25 /* MyPromotion.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036CA77C23C759DF007BBD25 /* MyPromotion.storyboard */; };
+		036CA77E23C759DF007BBD25 /* MyPromotion.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036CA77C23C759DF007BBD25 /* MyPromotion.storyboard */; };
+		036CA78123C75A02007BBD25 /* MyPromotionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 036CA78023C75A02007BBD25 /* MyPromotionVC.m */; };
+		036CA78223C75A02007BBD25 /* MyPromotionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 036CA78023C75A02007BBD25 /* MyPromotionVC.m */; };
+		036CA78523C7DC60007BBD25 /* MyPromotionUrlVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 036CA78423C7DC60007BBD25 /* MyPromotionUrlVC.m */; };
+		036CA78623C7DC60007BBD25 /* MyPromotionUrlVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 036CA78423C7DC60007BBD25 /* MyPromotionUrlVC.m */; };
+		036CA78923C7DD9D007BBD25 /* MyPromotionMembersVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 036CA78823C7DD9D007BBD25 /* MyPromotionMembersVC.m */; };
+		036CA78A23C7DD9D007BBD25 /* MyPromotionMembersVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 036CA78823C7DD9D007BBD25 /* MyPromotionMembersVC.m */; };
 		03A5D38423C0445B0055A998 /* JS_HomeGameCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A5D38223C0445B0055A998 /* JS_HomeGameCollectionCell.m */; };
 		03A5D38523C0445B0055A998 /* JS_HomeGameCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A5D38223C0445B0055A998 /* JS_HomeGameCollectionCell.m */; };
 		03A5D38623C0445B0055A998 /* JS_HomeGameCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03A5D38323C0445B0055A998 /* JS_HomeGameCollectionCell.xib */; };
@@ -1601,6 +1609,7 @@
 		03D6927823C32E0B003D9C12 /* C001BetErrorCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03D6927623C32E0A003D9C12 /* C001BetErrorCustomView.m */; };
 		03D6927A23C32E1A003D9C12 /* C001BetErrorCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03D6927923C32E1A003D9C12 /* C001BetErrorCustomView.xib */; };
 		03D6927B23C32E1A003D9C12 /* C001BetErrorCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03D6927923C32E1A003D9C12 /* C001BetErrorCustomView.xib */; };
+		03E3AAB223C8234C009A28C0 /* PromotionMemberRechargeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E3AAB123C8234C009A28C0 /* PromotionMemberRechargeVC.m */; };
 		03E41B2C23C0903C004AB7C6 /* JS_HomePromoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E41B2B23C0903C004AB7C6 /* JS_HomePromoteView.m */; };
 		03E41B2F23C09055004AB7C6 /* JS_HomePromoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03E41B2E23C09055004AB7C6 /* JS_HomePromoteView.xib */; };
 		03E41B3223C09363004AB7C6 /* JS_HomePromoteContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E41B3123C09363004AB7C6 /* JS_HomePromoteContainerView.m */; };
@@ -3242,6 +3251,13 @@
 		036CA77323C7263C007BBD25 /* JS_TitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JS_TitleView.h; sourceTree = "<group>"; };
 		036CA77423C7263C007BBD25 /* JS_TitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JS_TitleView.m; sourceTree = "<group>"; };
 		036CA77823C72657007BBD25 /* JS_TitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JS_TitleView.xib; sourceTree = "<group>"; };
+		036CA77C23C759DF007BBD25 /* MyPromotion.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyPromotion.storyboard; sourceTree = "<group>"; };
+		036CA77F23C75A02007BBD25 /* MyPromotionVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyPromotionVC.h; sourceTree = "<group>"; };
+		036CA78023C75A02007BBD25 /* MyPromotionVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyPromotionVC.m; sourceTree = "<group>"; };
+		036CA78323C7DC60007BBD25 /* MyPromotionUrlVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyPromotionUrlVC.h; sourceTree = "<group>"; };
+		036CA78423C7DC60007BBD25 /* MyPromotionUrlVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyPromotionUrlVC.m; sourceTree = "<group>"; };
+		036CA78723C7DD9D007BBD25 /* MyPromotionMembersVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyPromotionMembersVC.h; sourceTree = "<group>"; };
+		036CA78823C7DD9D007BBD25 /* MyPromotionMembersVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyPromotionMembersVC.m; sourceTree = "<group>"; };
 		03A5D38123C0445B0055A998 /* JS_HomeGameCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JS_HomeGameCollectionCell.h; sourceTree = "<group>"; };
 		03A5D38223C0445B0055A998 /* JS_HomeGameCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JS_HomeGameCollectionCell.m; sourceTree = "<group>"; };
 		03A5D38323C0445B0055A998 /* JS_HomeGameCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JS_HomeGameCollectionCell.xib; sourceTree = "<group>"; };
@@ -3257,6 +3273,8 @@
 		03D6927523C32E0A003D9C12 /* C001BetErrorCustomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = C001BetErrorCustomView.h; sourceTree = "<group>"; };
 		03D6927623C32E0A003D9C12 /* C001BetErrorCustomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = C001BetErrorCustomView.m; sourceTree = "<group>"; };
 		03D6927923C32E1A003D9C12 /* C001BetErrorCustomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = C001BetErrorCustomView.xib; sourceTree = "<group>"; };
+		03E3AAB023C8234C009A28C0 /* PromotionMemberRechargeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PromotionMemberRechargeVC.h; sourceTree = "<group>"; };
+		03E3AAB123C8234C009A28C0 /* PromotionMemberRechargeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PromotionMemberRechargeVC.m; sourceTree = "<group>"; };
 		03E41B2A23C0903C004AB7C6 /* JS_HomePromoteView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JS_HomePromoteView.h; sourceTree = "<group>"; };
 		03E41B2B23C0903C004AB7C6 /* JS_HomePromoteView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JS_HomePromoteView.m; sourceTree = "<group>"; };
 		03E41B2E23C09055004AB7C6 /* JS_HomePromoteView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JS_HomePromoteView.xib; sourceTree = "<group>"; };
@@ -5813,6 +5831,7 @@
 		031E17E723BE812600B0F813 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				036CA77B23C759BF007BBD25 /* 我的推广 */,
 				031E17E823BE812600B0F813 /* 任务大厅 */,
 				031E17F623BE812600B0F813 /* 签到 */,
 				031E17F923BE812600B0F813 /* 推荐收益 */,
@@ -6887,6 +6906,22 @@
 			path = Conversation;
 			sourceTree = "<group>";
 		};
+		036CA77B23C759BF007BBD25 /* 我的推广 */ = {
+			isa = PBXGroup;
+			children = (
+				036CA77C23C759DF007BBD25 /* MyPromotion.storyboard */,
+				036CA77F23C75A02007BBD25 /* MyPromotionVC.h */,
+				036CA78023C75A02007BBD25 /* MyPromotionVC.m */,
+				036CA78323C7DC60007BBD25 /* MyPromotionUrlVC.h */,
+				036CA78423C7DC60007BBD25 /* MyPromotionUrlVC.m */,
+				036CA78723C7DD9D007BBD25 /* MyPromotionMembersVC.h */,
+				036CA78823C7DD9D007BBD25 /* MyPromotionMembersVC.m */,
+				03E3AAB023C8234C009A28C0 /* PromotionMemberRechargeVC.h */,
+				03E3AAB123C8234C009A28C0 /* PromotionMemberRechargeVC.m */,
+			);
+			path = "我的推广";
+			sourceTree = "<group>";
+		};
 		03A5D37F23BFA4480055A998 /* 金沙主题 */ = {
 			isa = PBXGroup;
 			children = (
@@ -7375,6 +7410,7 @@
 				031E19EF23BE812700B0F813 /* common_icon_search.png in Resources */,
 				031E198F23BE812600B0F813 /* LHPostVoteView.xib in Resources */,
 				031E1E0D23BE812C00B0F813 /* UGSignInCollectionViewCell.xib in Resources */,
+				036CA77E23C759DF007BBD25 /* MyPromotion.storyboard in Resources */,
 				031EF5A323BE7B4D00B0F813 /* fanhui.svg in Resources */,
 				031E1BD323BE812900B0F813 /* UGGDKL10LotteryController.storyboard in Resources */,
 				031EF59A23BE7B4D00B0F813 /* meiriqiandao.svg in Resources */,
@@ -7795,6 +7831,7 @@
 				031E1BE023BE812900B0F813 /* UGHKLHCLotteryController.storyboard in Resources */,
 				031E1CAA23BE812A00B0F813 /* UGFundDetailsCell.xib in Resources */,
 				031E1D2C23BE812B00B0F813 /* UGIntegralConvertRecordController.storyboard in Resources */,
+				036CA77D23C759DF007BBD25 /* MyPromotion.storyboard in Resources */,
 				CF4758C1239636D200966536 /* 97.gif in Resources */,
 				CF47592A239636D200966536 /* 10.gif in Resources */,
 				031E1D3423BE812B00B0F813 /* UGAgentViewController.xib in Resources */,
@@ -8193,6 +8230,7 @@
 				031E1A6123BE812700B0F813 /* UIColor+ST.m in Sources */,
 				031E1C0D23BE812900B0F813 /* UGAllNextIssueListModel.m in Sources */,
 				031E1DBD23BE812B00B0F813 /* UGAvatarModel.m in Sources */,
+				036CA78A23C7DD9D007BBD25 /* MyPromotionMembersVC.m in Sources */,
 				031E1D6D23BE812B00B0F813 /* UGMosaicGoldController.m in Sources */,
 				031E1D5D23BE812B00B0F813 /* UGLoginViewController.m in Sources */,
 				031E1DF723BE812C00B0F813 /* UGMissionCollectionView.m in Sources */,
@@ -8224,6 +8262,7 @@
 				031E1A1323BE812700B0F813 /* NSObject+AspectsHelper.m in Sources */,
 				031E1AA523BE812800B0F813 /* YBPopupMenu.m in Sources */,
 				031E1E4523BE812C00B0F813 /* UGPormotionView.m in Sources */,
+				036CA78623C7DC60007BBD25 /* MyPromotionUrlVC.m in Sources */,
 				031E1D6F23BE812B00B0F813 /* UGMosaicGoldViewController.m in Sources */,
 				031EF5C923BE7B4E00B0F813 /* UGGroupChatVC.swift in Sources */,
 				031EF55F23BE7B4D00B0F813 /* Reachability.swift in Sources */,
@@ -8629,6 +8668,7 @@
 				031E1D5523BE812B00B0F813 /* UGModifyLoginPlaceController.m in Sources */,
 				031E1AF523BE812800B0F813 /* UIButton+touch.m in Sources */,
 				031EF56423BE7B4D00B0F813 /* TimeIntervalExtension+XFoundation.swift in Sources */,
+				036CA78223C75A02007BBD25 /* MyPromotionVC.m in Sources */,
 				031E1C3923BE812900B0F813 /* UGMarkSixLotteryBetItem0Cell.m in Sources */,
 				031E1D5923BE812B00B0F813 /* UGMailBoxTableViewController.m in Sources */,
 				031E194323BE812600B0F813 /* UGSkinManagers.m in Sources */,
@@ -8781,6 +8821,7 @@
 				031E1B3823BE812800B0F813 /* UGonlineCount.m in Sources */,
 				031E1D0823BE812A00B0F813 /* JSONModel.m in Sources */,
 				031E194E23BE812600B0F813 /* LHGalleryListVC2.m in Sources */,
+				036CA78523C7DC60007BBD25 /* MyPromotionUrlVC.m in Sources */,
 				031E1E8223BE812D00B0F813 /* UGBalanceTransferLogsCell.m in Sources */,
 				03D6926923C22C9B003D9C12 /* UINavigationController+Push.m in Sources */,
 				031E1E6223BE812C00B0F813 /* UGAvaterCollectionViewCell.m in Sources */,
@@ -8951,6 +8992,7 @@
 				031E19B623BE812700B0F813 /* NSMutableDictionary+KVO.m in Sources */,
 				031E1AF423BE812800B0F813 /* UIButton+touch.m in Sources */,
 				031E1A6223BE812700B0F813 /* NSString+ST.m in Sources */,
+				036CA78923C7DD9D007BBD25 /* MyPromotionMembersVC.m in Sources */,
 				031E1B9823BE812900B0F813 /* UGChanglongBetRecrodCell.m in Sources */,
 				031E1A4C23BE812700B0F813 /* CMCommon.m in Sources */,
 				031E1DC423BE812B00B0F813 /* UGActivityGoldModel.m in Sources */,
@@ -9080,6 +9122,7 @@
 				031E1E2223BE812C00B0F813 /* UGMosaicGoldTableViewCell.m in Sources */,
 				031E1C3023BE812900B0F813 /* UGLotterySubResultCollectionViewCell.m in Sources */,
 				031E1E8623BE812D00B0F813 /* UGYUbaoTitleView.m in Sources */,
+				03E3AAB223C8234C009A28C0 /* PromotionMemberRechargeVC.m in Sources */,
 				031E1AAA23BE812800B0F813 /* WMIconSegmentControl.m in Sources */,
 				031E1B7A23BE812900B0F813 /* UGGameNavigationView.m in Sources */,
 				031E1BA423BE812900B0F813 /* UGBMLoginViewController.m in Sources */,
@@ -9176,6 +9219,7 @@
 				031E194823BE812600B0F813 /* UGLHMyAttentionViewController.m in Sources */,
 				031E1AC823BE812800B0F813 /* YLEdgeLabel.m in Sources */,
 				031E1DDA23BE812C00B0F813 /* UGBetsRecordListModel.m in Sources */,
+				036CA78123C75A02007BBD25 /* MyPromotionVC.m in Sources */,
 				031E197223BE812600B0F813 /* UGLHCategoryListModel.m in Sources */,
 				031E1BD823BE812900B0F813 /* UGCommonLotteryController.m in Sources */,
 				031E1C0823BE812900B0F813 /* UGBetDetailModel.m in Sources */,
