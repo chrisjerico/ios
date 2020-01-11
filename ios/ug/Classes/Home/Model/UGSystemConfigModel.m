@@ -323,12 +323,14 @@ MJExtensionCodingImplementation
     if (!_userCenter) {
         _userCenter = [UGUserCenterItem allItems];
     }
+    NSMutableArray *temp = _userCenter.mutableCopy;
     if (!UserI.hasActLottery) {
-        NSMutableArray *temp = _userCenter.mutableCopy;
         [temp removeObject:[temp objectWithValue:@(UCI_活动彩金) keyPath:@"code"]];
-        return temp.copy;
     }
-    return _userCenter;
+    if (!UserI.yuebaoSwitch) {
+        [temp removeObject:[temp objectWithValue:@(UCI_利息宝) keyPath:@"code"]];
+    }
+    return temp.copy;
 }
 
 - (void)setUserCenter:(NSArray<UGUserCenterItem *> *)userCenter {

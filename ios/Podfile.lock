@@ -382,6 +382,7 @@ DEPENDENCIES:
   - SGQRCode (~> 3.0.1)
   - SKPhotoBrowser (~> 6.1.0)
   - SnapKit (~> 4.0.1)
+  - SSZipArchive
   - Starscream (~> 3.1.1)
   - STPickerView (= 2.4)
   - SVGKit (~> 3.0.0-beta3)
@@ -598,6 +599,6 @@ SPEC CHECKSUMS:
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
 
-PODFILE CHECKSUM: ba4cf427104b970a581b0edb7aafb292604d059f
+PODFILE CHECKSUM: 3a2cb83f0dac2ca601a712420543299fa5458690
 
 COCOAPODS: 1.8.4
