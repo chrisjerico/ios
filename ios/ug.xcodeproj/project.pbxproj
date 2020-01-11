@@ -85,7 +85,6 @@
 		031E197C23BE812600B0F813 /* UGLHLhlModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E140423BE812300B0F813 /* UGLHLhlModel.m */; };
 		031E197D23BE812600B0F813 /* UGLHLhlModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E140423BE812300B0F813 /* UGLHLhlModel.m */; };
 		031E197E23BE812600B0F813 /* UGLHLotteryCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E140923BE812300B0F813 /* UGLHLotteryCollectionViewCell.m */; };
-		031E197F23BE812600B0F813 /* UGLHLotteryCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E140923BE812300B0F813 /* UGLHLotteryCollectionViewCell.m */; };
 		031E198023BE812600B0F813 /* UGLHHomeContentCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031E140A23BE812300B0F813 /* UGLHHomeContentCollectionViewCell.xib */; };
 		031E198123BE812600B0F813 /* UGLHHomeContentCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031E140A23BE812300B0F813 /* UGLHHomeContentCollectionViewCell.xib */; };
 		031E198223BE812600B0F813 /* UGScratchMusicView.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E140C23BE812300B0F813 /* UGScratchMusicView.m */; };
@@ -3684,9 +3683,6 @@
 				031E140823BE812300B0F813 /* UGScratchMusicView.h */,
 				031E140C23BE812300B0F813 /* UGScratchMusicView.m */,
 				031E140F23BE812300B0F813 /* UGScratchMusicView.xib */,
-				031E140D23BE812300B0F813 /* UGLHLotteryCollectionViewCell.h */,
-				031E140923BE812300B0F813 /* UGLHLotteryCollectionViewCell.m */,
-				031E140E23BE812300B0F813 /* UGLHLotteryCollectionViewCell.xib */,
 				031E140B23BE812300B0F813 /* UGLHHomeContentCollectionViewCell.h */,
 				031E141023BE812300B0F813 /* UGLHHomeContentCollectionViewCell.m */,
 				031E140A23BE812300B0F813 /* UGLHHomeContentCollectionViewCell.xib */,
@@ -3718,10 +3714,10 @@
 		031E142023BE812300B0F813 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				D4F0411423C868E20070D2B5 /* WHC_SqliteKit */,
 				031E142223BE812300B0F813 /* FishUtility */,
 				031E14E523BE812300B0F813 /* CMCommon */,
 				031E14C223BE812300B0F813 /* CMNetwork */,
+				D4F0411423C868E20070D2B5 /* WHC_SqliteKit */,
 				031E155223BE812300B0F813 /* segmentListControl */,
 				031E157323BE812300B0F813 /* XYYSegmentControl */,
 				031E157A23BE812300B0F813 /* TGWebController */,
@@ -7276,6 +7272,9 @@
 		D4F0410123C772850070D2B5 /* 解码器 */ = {
 			isa = PBXGroup;
 			children = (
+				031E140D23BE812300B0F813 /* UGLHLotteryCollectionViewCell.h */,
+				031E140923BE812300B0F813 /* UGLHLotteryCollectionViewCell.m */,
+				031E140E23BE812300B0F813 /* UGLHLotteryCollectionViewCell.xib */,
 				D4F0410323C773170070D2B5 /* UGLHPrizeView.h */,
 				D4F0410423C773170070D2B5 /* UGLHPrizeView.m */,
 				D4F0410623C7732A0070D2B5 /* UGLHPrizeView.xib */,
@@ -8208,7 +8207,6 @@
 				031E194F23BE812600B0F813 /* LHGalleryListVC2.m in Sources */,
 				031E19C123BE812700B0F813 /* NSObject+XWAdd.m in Sources */,
 				031EF52923BE7B4D00B0F813 /* UserApi.swift in Sources */,
-				031E197F23BE812600B0F813 /* UGLHLotteryCollectionViewCell.m in Sources */,
 				031EF54F23BE7B4D00B0F813 /* MessageManager.swift in Sources */,
 				031E1A6723BE812700B0F813 /* UIView+ST.m in Sources */,
 				031E1CED23BE812A00B0F813 /* SVRadialGradientLayer.m in Sources */,
