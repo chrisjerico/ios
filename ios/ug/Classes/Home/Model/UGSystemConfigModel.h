@@ -10,7 +10,7 @@
 #import "UGChatRoomModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
-
+// （我的页包含的）功能页面
 typedef NS_ENUM(NSInteger, UserCenterItemType) {
     UCI_存款       = 1,
     UCI_取款       = 2,
@@ -33,6 +33,7 @@ typedef NS_ENUM(NSInteger, UserCenterItemType) {
     UCI_QQ客服    = 19,
 };
 
+// （TabbarController包含的）功能页面
 typedef NS_ENUM(NSInteger, MobileMenuType) {
     MM_首页 = 1,
     

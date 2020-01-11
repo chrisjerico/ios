@@ -1779,6 +1779,9 @@
 		CF47592A239636D200966536 /* 10.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF47587E239636D100966536 /* 10.gif */; };
 		CF47592B239636D200966536 /* 38.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF47587F239636D100966536 /* 38.gif */; };
 		CFCADE45237D281C00680F62 /* cplts_看图王.gif in Resources */ = {isa = PBXBuildFile; fileRef = CFCADE44237D281C00680F62 /* cplts_看图王.gif */; };
+		CFCF6DBF23C5B8370039588D /* ReactNativeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CFCF6DBE23C5B8370039588D /* ReactNativeHelper.m */; };
+		CFCF6DC423C5F3CE0039588D /* JSPatchHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CFCF6DC323C5F3CE0039588D /* JSPatchHelper.m */; };
+		CFCF6DDC23C8403F0039588D /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = CFCF6DDA23C8403F0039588D /* main.jsbundle */; };
 		CFDB113823A3B1E10040DE2B /* SiteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDB113723A3B1E10040DE2B /* SiteModel.m */; };
 		CFE074D123C0BBBF0083EA7E /* LotteryBetAndChatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE074D023C0BBBF0083EA7E /* LotteryBetAndChatVC.m */; };
 		CFE074DD23C0E7840083EA7E /* UGNotDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE074DA23C0E7840083EA7E /* UGNotDetailViewController.m */; };
@@ -3445,6 +3448,11 @@
 		CF47587F239636D100966536 /* 38.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 38.gif; sourceTree = "<group>"; };
 		CF5D3D7D2396B8D000CC3D6B /* AutoPacking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AutoPacking.xcodeproj; path = AutoPacking/AutoPacking.xcodeproj; sourceTree = "<group>"; };
 		CFCADE44237D281C00680F62 /* cplts_看图王.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "cplts_看图王.gif"; sourceTree = "<group>"; };
+		CFCF6DBD23C5B8370039588D /* ReactNativeHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReactNativeHelper.h; sourceTree = "<group>"; };
+		CFCF6DBE23C5B8370039588D /* ReactNativeHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReactNativeHelper.m; sourceTree = "<group>"; };
+		CFCF6DC223C5F3CE0039588D /* JSPatchHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSPatchHelper.h; sourceTree = "<group>"; };
+		CFCF6DC323C5F3CE0039588D /* JSPatchHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSPatchHelper.m; sourceTree = "<group>"; };
+		CFCF6DDA23C8403F0039588D /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = main.jsbundle; path = ../../../../bundle/main.jsbundle; sourceTree = "<group>"; };
 		CFDB112723A25FE60040DE2B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		CFDB113623A3B1E00040DE2B /* SiteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SiteModel.h; sourceTree = "<group>"; };
 		CFDB113723A3B1E10040DE2B /* SiteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SiteModel.m; sourceTree = "<group>"; };
@@ -7144,6 +7152,17 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		CFCF6DBB23C5B8220039588D /* HotUpdate */ = {
+			isa = PBXGroup;
+			children = (
+				CFCF6DBD23C5B8370039588D /* ReactNativeHelper.h */,
+				CFCF6DBE23C5B8370039588D /* ReactNativeHelper.m */,
+				CFCF6DC223C5F3CE0039588D /* JSPatchHelper.h */,
+				CFCF6DC323C5F3CE0039588D /* JSPatchHelper.m */,
+			);
+			path = HotUpdate;
+			sourceTree = "<group>";
+		};
 		CFE074D923C0E7840083EA7E /* 注单明细 */ = {
 			isa = PBXGroup;
 			children = (
@@ -7165,6 +7184,7 @@
 		D424785C22DDF5860062A6D4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CFCF6DDA23C8403F0039588D /* main.jsbundle */,
 				CF4757D3239636D100966536 /* 六合表情 */,
 				D4B75E15227802600007047C /* Assets.xcassets */,
 				D40FA8BE229910EE003E596F /* yuebaoMone.gif */,
@@ -7212,6 +7232,7 @@
 		D4B75E22227811D50007047C /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				CFCF6DBB23C5B8220039588D /* HotUpdate */,
 				031E13C123BE812300B0F813 /* Skin */,
 				031E176A23BE812500B0F813 /* baseObject */,
 				031E177723BE812500B0F813 /* Chat */,
@@ -7901,6 +7922,7 @@
 				031E1BF823BE812900B0F813 /* UGBJPK10LotteryController.storyboard in Resources */,
 				CF4758E5239636D200966536 /* 162.gif in Resources */,
 				CF47590F239636D200966536 /* 101.gif in Resources */,
+				CFCF6DDC23C8403F0039588D /* main.jsbundle in Resources */,
 				CF4758C8239636D200966536 /* 2.gif in Resources */,
 				031E1C5823BE812A00B0F813 /* UGBetDetailTableViewCell.xib in Resources */,
 				CF475892239636D200966536 /* 33.gif in Resources */,
@@ -8837,6 +8859,7 @@
 				031E1A1223BE812700B0F813 /* NSObject+AspectsHelper.m in Sources */,
 				031E1BD023BE812900B0F813 /* UGGDKL10LotteryController.m in Sources */,
 				031E19D023BE812700B0F813 /* UIAlertController+Utils.m in Sources */,
+				CFCF6DC423C5F3CE0039588D /* JSPatchHelper.m in Sources */,
 				031E19AC23BE812700B0F813 /* NSDictionary+NilSafe.m in Sources */,
 				031E1B0623BE812800B0F813 /* UIView+SGExtension.m in Sources */,
 				031E1D2423BE812B00B0F813 /* UGMissionListController.m in Sources */,
@@ -9237,6 +9260,7 @@
 				031E1A2223BE812700B0F813 /* CCNetworkRequests1+UGBlackTemplate.m in Sources */,
 				031E1E2C23BE812C00B0F813 /* UGActivityGoldView.m in Sources */,
 				D4E6A61F23C4D340003E18B6 /* UGChatRoomModel.m in Sources */,
+				CFCF6DBF23C5B8370039588D /* ReactNativeHelper.m in Sources */,
 				031E1A8E23BE812700B0F813 /* SAROPSession.m in Sources */,
 				031E1DEC23BE812C00B0F813 /* UGMissionTitleCollectionView.m in Sources */,
 				031E19A823BE812600B0F813 /* AppDefine.m in Sources */,

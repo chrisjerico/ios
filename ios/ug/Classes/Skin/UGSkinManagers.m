@@ -1157,12 +1157,16 @@ static UGSkinManagers *__initSkin1 = nil;
 }
 
 + (UGSkinManagers *)next {
-	NSArray *keys = @[@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11", @"12", @"13", @"14", @"15", @"16", @"17", @"18", @"19", @"六合资料0",@"六合资料1",@"六合资料2",@"六合资料3",@"六合资料4",@"六合资料5",@"六合资料6",@"六合资料7",@"六合资料8",@"六合资料9",@"六合资料10",@"新年红0", @"新年红1",@"石榴红",  @"黑色模板", @"金沙主题", ];
+    NSArray *keys = [[UGSkinManagers allSkin] keysSortedByValueUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        return [obj1 compare:obj2];
+    }];
 	NSInteger i = [keys indexOfObject:[[UGSkinManagers allSkin] allKeysForObject:Skin1].firstObject] + keys.count;
 	return [UGSkinManagers allSkin][keys[++i%keys.count]];
 }
 + (UGSkinManagers *)last {
-	NSArray *keys = @[@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11", @"12", @"13", @"14", @"15", @"16", @"17", @"18", @"19", @"六合资料0",@"六合资料1",@"六合资料2",@"六合资料3",@"六合资料4",@"六合资料5",@"六合资料6",@"六合资料7",@"六合资料8",@"六合资料9",@"六合资料10",@"新年红0", @"新年红1",@"石榴红",  @"黑色模板", @"金沙主题", ];
+    NSArray *keys = [[UGSkinManagers allSkin] keysSortedByValueUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        return [obj1 compare:obj2];
+    }];
 	NSInteger i = [keys indexOfObject:[[UGSkinManagers allSkin] allKeysForObject:Skin1].firstObject] + keys.count;
 	return [UGSkinManagers allSkin][keys[--i%keys.count]];
 }

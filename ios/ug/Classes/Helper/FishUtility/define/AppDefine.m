@@ -258,10 +258,15 @@
 #pragma mark - Setup
 
 - (void)setupSystem {
-    _Name = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
-    _BundleId = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleIdentifier"];
-    _Version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
-    _Build = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+    NSDictionary *info = [NSBundle mainBundle].infoDictionary;
+    _Name = info[@"CFBundleName"];
+    _BundleId = info[@"CFBundleIdentifier"];
+    _Version = info[@"CFBundleShortVersionString"];
+    _Build = info[@"CFBundleVersion"];
+#ifdef DEBUG
+    _DevUser = info[@"Dev1"];
+    _isFish = [_DevUser isEqualToString:@"fish"];
+#endif
     
     _Window = [UIApplication sharedApplication].windows.firstObject;
     
