@@ -328,6 +328,8 @@
         });
         // 免费试玩
         SANotificationEventSubscribe(UGNotificationTryPlay, self, ^(typeof (self) self, id obj) {
+            [CMCommon clearWebCache];
+            [CMCommon deleteWebCache];
             [__self tryPlayClick];
         });
         // 去登录
@@ -336,6 +338,9 @@
         }];
         // 登录成功
         SANotificationEventSubscribe(UGNotificationLoginComplete, self, ^(typeof (self) self, id obj) {
+            
+            [CMCommon deleteWebCache];
+            [CMCommon clearWebCache];
             [__self getUserInfo];
             __self.titleView.showLoginView = NO;
             

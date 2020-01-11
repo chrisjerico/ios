@@ -822,6 +822,8 @@ static NSString *uuidKey =@"uuidKey";
     .LeeTitle(str)
     .LeeContent(@"")
     .LeeAction(@"确认", ^{
+        UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+        pasteboard.string = str;
     })
     .LeeShow(); // 设置完成后 别忘记调用Show来显示
 
@@ -845,9 +847,13 @@ static NSString *uuidKey =@"uuidKey";
 */
 +(void)showSystemTitle:(NSString * )str{
     #ifdef DEBUG
-      NSMutableArray *titles = @[].mutableCopy;
-        [titles addObject:@"取消"];
-        [AlertHelper showAlertView:nil msg:str  btnTitles:titles];
+    NSMutableArray *titles = @[].mutableCopy;
+    [titles addObject:@"复制"];
+    UIAlertController *ac = [AlertHelper showAlertView:nil msg:str  btnTitles:titles];
+    [ac setActionAtTitle:@"复制" handler:^(UIAlertAction *aa) {
+        UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+        pasteboard.string = str;
+    }];
     #endif
 
 }

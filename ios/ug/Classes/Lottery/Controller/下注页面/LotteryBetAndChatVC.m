@@ -57,6 +57,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    if (!_nim) {
+        UGNextIssueModel * oc = [UGNextIssueModel new];
+        oc.gameId = @"70";
+        oc.gameType = @"lhc";
+        oc.name = @"lhc";
+        oc.title = @"香港六合彩";
+        _nim = oc;
+    }
+    
     __weakSelf_(__self);
     [self xw_addNotificationForName:@"NSSelectChatRoom" block:^(NSNotification *notification) {
         __self.ssv1.selectedIndex = 1;

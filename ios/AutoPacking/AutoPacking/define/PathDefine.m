@@ -25,7 +25,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _username = [NSUserName() isEqualToString:@"fish"] ? @"fish" : @"andrew";
+        _username = [NSUserName() isEqualToString:@"fish"] ? @"fish" : @"Andrew";
         
         _projectDir = [NSUserName() isEqualToString:@"fish"] ? @"/Users/fish/自动打包/pack/ios" : @"/Users/ug/pack/ios";
         _exportDir = @"/Library/WebServer/Documents/ipa";
@@ -54,6 +54,8 @@
     NSString *path = nil;
     if ([NSUserName() isEqualToString:@"fish"]) {
         path = @"/Users/fish/自动打包/pack/私钥.txt";
+    } else {
+        path = @"/Users/ug/自动打包/pack/私钥.txt";
     }
     return [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
 }

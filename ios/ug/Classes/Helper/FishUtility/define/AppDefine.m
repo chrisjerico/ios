@@ -10,7 +10,7 @@
 
 
 
-#define __SiteID__ @"test19"
+#define __SiteID__ @"l001"
 
 
 @interface UIStoryboard ()
@@ -124,7 +124,7 @@
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
         if (!_SiteId.length) {
 
-            _SiteId = @"test19";
+            _SiteId = @"l001";
 
 
         }
@@ -163,6 +163,10 @@
     } else {
         return 1;
     }
+}
+
+- (BOOL)isShowWZ {
+    return [@"c048" containsString:_SiteId];
 }
 
 - (BOOL)isShowLogo {
