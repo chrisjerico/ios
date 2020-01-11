@@ -221,7 +221,9 @@
 }
 
 - (NSString *)chatHomeUrl {
-    NSString *url = _NSString(@"%@/dist/#/chatRoom", _Host);
+//        SysConf.chatLink = @"/chat";
+//    SysConf.chatLink = @"/chat/index.php";
+    NSString *url = _NSString(@"%@%@", _Host, SysConf.chatLink);
     return [url stringByAppendingURLParams:@{
         @"from":@"app",
         @"color":Skin1.navBarBgColor.cc_userInfo[@"color"],

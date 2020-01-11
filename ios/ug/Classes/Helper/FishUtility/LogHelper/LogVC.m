@@ -115,6 +115,10 @@ static LogVC *_logVC = nil;
 
 // 清空
 - (IBAction)onClearBtnClick:(UIButton *)sender {
+    
+    [CMCommon clearWebCache];
+    [CMCommon deleteWebCache];
+    
     if (_toolSegmentedControl.selectedSegmentIndex == 0) {
         [_allRequest removeAllObjects];
         [_reqTableView reloadData];
