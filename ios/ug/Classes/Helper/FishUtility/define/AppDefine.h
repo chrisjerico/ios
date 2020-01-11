@@ -29,7 +29,8 @@
 @property (nonatomic, readonly) NSString *Host;         /**<    服务器地址 */
 @property (nonatomic, readonly) NSString *SiteId;       /**<   当前站点ID */
 @property (nonatomic, readonly) NSArray <SiteModel *> *allSites;  /**<   所有站点 */
-@property (nonatomic) NSString *jspVersion;             /**<    jspatch热更新版本号 */
+@property (nonatomic, readonly) NSString *jspPath;      /**<    jspatch热更新本地文件路径 */
+@property (nonatomic, strong) NSString *jspVersion;     /**<    jspatch热更新版本号 */
 
 @property (nonatomic) NSInteger PageCount;              /**<    TableView每页显示多少条数据 */
 @property (nonatomic) NSUInteger PhotoMaxLength;        /**<    图片上传允许的最大大小 */

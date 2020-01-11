@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JSPatchHelper : NSObject
 
++ (void)install;
 + (void)updateVersion:(NSString *)version completion:(void (^)(BOOL ok))completion;  /**<   版本更新 */
 
 @end

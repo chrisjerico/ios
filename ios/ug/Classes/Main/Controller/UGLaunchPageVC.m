@@ -32,21 +32,25 @@
 	self.view.backgroundColor = UIColor.whiteColor;
     
     if (APP.isFish) {
+        [JSPatchHelper install];
+        
         // rn热更新
-        [[ReactNativeHelper shared] updateVersion:^(NSString * _Nonnull version) {
-            // JSPatch热更新
-            [JSPatchHelper updateVersion:version completion:^(BOOL ok) {
+//        [[ReactNativeHelper shared] updateVersion:^(NSString * _Nonnull version) {
+//
+//        }];
+        
+        // JSPatch热更新
+        NSString *version = @"99999";
+        [JSPatchHelper updateVersion:version completion:^(BOOL ok) {
 #ifdef DEBUG
-                if (ok) {
-                    [AlertHelper showAlertView:_NSString(@"%@ 版本更新完成，重启APP生效", version) msg:nil btnTitles:@[@"确定"]];
-                } else {
-                    [AlertHelper showAlertView:_NSString(@"%@ 版本更新失败", version) msg:nil btnTitles:@[@"确定"]];
-                }
+            if (ok) {
+                [AlertHelper showAlertView:_NSString(@"%@ 版本更新完成，重启APP生效", version) msg:nil btnTitles:@[@"确定"]];
+            } else {
+                [AlertHelper showAlertView:_NSString(@"%@ 版本更新失败", version) msg:nil btnTitles:@[@"确定"]];
+            }
 #endif
-            }];
         }];
-
-
+        
         {
             UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
             btn.frame = CGRectMake(100, 200, 200, 200);

@@ -81,7 +81,7 @@
             });
             
             // 登录
-            [NetworkManager1 login].completionBlock = ^(CCSessionModel *sm) {
+            [NetworkManager1 login:Path.username pwd:Path.pwd].completionBlock = ^(CCSessionModel *sm) {
                 if (!sm.error) {
                     NSLog(@"登录成功，%@", sm.responseObject);
                     [[NSUserDefaults standardUserDefaults] setObject:sm.responseObject[@"data"][@"loginsessid"] forKey:@"loginsessid"];

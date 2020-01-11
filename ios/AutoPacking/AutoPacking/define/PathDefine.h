@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PathDefine : NSObject
 
 @property (nonatomic, readonly) NSString *username;         /**<   当前电脑的用户名 */
+@property (nonatomic, readonly) NSString *pwd;              /**<   后台管理账号密码 */
+@property (nonatomic, readonly) NSString *privateKey;       /**<   私钥 */
 @property (nonatomic, copy) NSString *commitId;             /**<   此次打包的 git 提交ID */
 @property (nonatomic, copy) NSString *gitLog;               /**<   此次打包的 git 提交日志 */
 

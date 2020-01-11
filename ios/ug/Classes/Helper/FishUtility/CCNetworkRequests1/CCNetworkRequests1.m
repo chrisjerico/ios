@@ -153,4 +153,65 @@
     return sm;
 }
 
+
+#pragma mark - 热更新
+
+- (CCSessionModel *)getHotUpdateVersionList:(NSInteger)page {
+    CCSessionModel *sm = [CCSessionModel new];
+    sm.urlString = @"http://appadmin.fhptcdn.com/api.php";
+    sm.params = @{
+        @"m":@"get_hot_update_list",
+        @"app_type":@"ios",
+        @"page":@(page),
+        @"status":@1,  // 0全部，1已发布
+        @"rand":@(arc4random()).stringValue,
+        @"sign":@"996998ikj*",
+    };
+    sm.isPOST = true;
+    sm.reconnectCnt = 2;
+    
+    // 发起请求
+    {
+        static AFHTTPSessionManager *m = nil;
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            m = [[AFHTTPSessionManager manager] initWithBaseURL:[NSURL URLWithString:sm.urlString]];
+        });
+        m.requestSerializer = [AFHTTPRequestSerializer serializer];
+        m.responseSerializer = [AFJSONResponseSerializer serializer];
+        m.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", nil];
+        NSMutableURLRequest *req = [m.requestSerializer requestWithMethod:sm.isPOST ? @"POST":@"GET" URLString:sm.urlString parameters:sm.params error:nil];
+        [[sm dataTask:m request:req] resume];
+    }
+    return sm;
+    return [self sendRequest:@"http://appadmin.fhptcdn.com/api.php"
+                      params:@{
+                          @"m":@"get_hot_update_list",
+                          @"app_type":@"ios",
+                          @"page":@(page),
+                          @"status":@1,  // 0全部，1已发布
+                          @"rand":@(arc4random()).stringValue,
+                          @"sign":@"996998ikj*",
+                      }
+                      isPOST:true];
+}
+
+- (CCSessionModel *)downloadFile:(NSString *)url {
+    CCSessionModel *sm = [CCSessionModel new];
+    sm.urlString = url;
+    sm.reconnectCnt = 2;
+    
+    // 发起请求
+    {
+        static AFHTTPSessionManager *m = nil;
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            m = [[AFHTTPSessionManager manager]initWithBaseURL:[NSURL URLWithString:sm.urlString]];
+        });
+        NSMutableURLRequest *req = [m.requestSerializer requestWithMethod:sm.isPOST ? @"POST":@"GET" URLString:sm.urlString parameters:sm.params error:nil];
+        [[sm downloadTask:m request:req] resume];
+    }
+    return sm;
+}
+
 @end

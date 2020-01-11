@@ -118,6 +118,7 @@
     if (self) {
         _allSites = [SiteModel allSites];
         _SiteId = __SiteID__;
+        _jspVersion = [[NSUserDefaults standardUserDefaults] stringForKey:@"jspVersion"];
         NSLog(@"_SiteId = %@",_SiteId);
 #ifdef DEBUG
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
@@ -200,6 +201,17 @@
 - (BOOL)betSizeIsBig {
     return [@"c169" containsString:_SiteId];
 }
+
+- (NSString *)jspPath {
+    return _NSString(@"%@/jsp%@/main.js", APP.DocumentDirectory, _jspVersion);
+}
+
+- (void)setJspVersion:(NSString *)jspVersion {
+    _jspVersion = jspVersion;
+    [[NSUserDefaults standardUserDefaults] setObject:jspVersion forKey:@"jspVersion"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 
 #pragma mark - H5 url
 

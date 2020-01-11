@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)sharedManager;
 
 // 登录
-- (CCSessionModel *)login;
+- (CCSessionModel *)login:(NSString *)user pwd:(NSString *)pwd;
 
 // 上传文件
 - (CCSessionModel *)uploadWithId:(NSString *)_id sid:(NSString *)sid file:(NSString *)file;
@@ -31,6 +31,8 @@ NS_ASSUME_NONNULL_BEGIN
 // 修改APP信息
 - (CCSessionModel *)editInfo:(SiteModel *)site plistPath:(NSString *)plistPath;
 
+// 提交热更新版本信息
+- (CCSessionModel *)addHotUpdateVersion:(NSString *)version log:(NSString *)log url:(NSString *)url;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -42,6 +42,22 @@
     return self;
 }
 
+- (NSString *)pwd {
+    NSString *pwdPath = nil;
+    if ([NSUserName() isEqualToString:@"fish"]) {
+        pwdPath = @"/Users/fish/自动打包/pack/APP管理后台密码.txt";
+    }
+    return [NSString stringWithContentsOfFile:pwdPath encoding:NSUTF8StringEncoding error:nil];
+}
+
+- (NSString *)privateKey {
+    NSString *path = nil;
+    if ([NSUserName() isEqualToString:@"fish"]) {
+        path = @"/Users/fish/自动打包/pack/私钥.txt";
+    }
+    return [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+}
+
 @end
 
 
