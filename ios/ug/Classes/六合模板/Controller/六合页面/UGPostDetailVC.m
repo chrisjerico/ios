@@ -83,20 +83,26 @@
     
 
     NSLog(@"link = %@",self.pm.link);
+    FastSubViewCode(self.view);
+    [_lhPrizeView setHidden:![self hasShow]];
+    [subLabel(@"标题Label") setHidden:[self hasShow]];
+//    [CMCommon showSystemTitle:self.pm.link];
+    
+    // 获取生肖列表
+    // 。。。
+}
+
+-(BOOL)hasShow{
     //公式规律   rule
     //精华帖子    mystery
-    /**<  论坛详情是否显示解码器 */
+    /**<  论坛详情是否显示解码器  是否显示标题*/
     BOOL isShow = NO;
     if ([self.pm.link containsString: @"mystery/"]) {
         isShow = YES;
     } else {
         isShow = [@"rule,mystery" containsString:self.pm.alias];
     }
-    [_lhPrizeView setHidden:!isShow];
-//    [CMCommon showSystemTitle:self.pm.link];
-    
-    // 获取生肖列表
-    // 。。。
+    return isShow;
 }
 
 - (void)setupSSV {
@@ -155,7 +161,7 @@
         setupAdButton(@"顶部广告Button", pm.topAdWap);
         setupAdButton(@"底部广告Button", pm.bottomAdWap);
         subLabel(@"标题Label").text = pm.title;
-        subLabel(@"标题Label").hidden = [@"mystery,rule,sixpic,humorGuess,rundog,fourUnlike,sxbm,tjym,ptyx" containsString:pm.alias];
+
 //        subLabel(@"时间Label").text = _NSString(@"最后更新时间：%@", pm.createTime);
 
 //        subLabel(@"时间Label").hidden = [@"mystery,rule" containsString:pm.alias];
