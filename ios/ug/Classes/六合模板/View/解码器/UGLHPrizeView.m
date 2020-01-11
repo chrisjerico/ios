@@ -9,11 +9,13 @@
 #import "UGLHPrizeView.h"
 #import "UGLHlotteryNumberModel.h"
 #import "CMAudioPlayer.h"
-#import "CountDown.h"
+
 #import "UGScratchMusicView.h"
 #import "SGBrowserView.h"
 #import "CMTimeCommon.h"
 #import "CMLabelCommon.h"
+#import "UGLHLotteryCollectionViewCell.h"
+#import "UGLotteryRecordController.h"
 
 @interface UGLHPrizeView ()<UICollectionViewDelegate,UICollectionViewDataSource>
 //六合开奖View
@@ -27,7 +29,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *hormImgV;                             /**<  喇叭图片*/
 @property (weak, nonatomic) IBOutlet UILabel *lottyLabel;                               /**<  开奖提示文字*/
 @property (nonatomic, strong) UGLHlotteryNumberModel *lhModel;
-@property (strong, nonatomic)  CountDown *countDownForLabel;                            /**<   倒计时工具*/
+
 @property (nonatomic)  BOOL hormIsOpen;                                                /**<  喇叭是否开启*/
 @property (nonatomic,strong)  CMAudioPlayer *player ;                                  /**<  播放器*/
 @property (strong, nonatomic) NSTimer *timer;
@@ -60,12 +62,19 @@
     if (self = [super init]) {
         self = [self UGLHPrizeView];
         //六合开奖
+        
+        _hormIsOpen = YES;
+        [_lotteryUISwitch setOn:SysConf.lhcdocMiCard] ;
+        _countDownForLabel = [[CountDown alloc] init];
+        _player = [[CMAudioPlayer alloc] init];
         self.lotteryCollectionView.backgroundColor = [UIColor whiteColor];
         self.lotteryCollectionView.dataSource = self;
         self.lotteryCollectionView.delegate = self;
         self.lotteryCollectionView.tagString= @"六合开奖";
         [self.lotteryCollectionView setBounces:NO];
         [self.lotteryCollectionView setScrollEnabled:NO];
+        [self.lotteryCollectionView registerNib:[UINib nibWithNibName:@"UGLHLotteryCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UGLHLotteryCollectionViewCell"];
+        [self getLotteryNumberList];
     }
     return self;
 }
@@ -92,7 +101,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
      {
         //六合开奖
-      UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ballCell" forIndexPath:indexPath];
+        UGLHLotteryCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UGLHLotteryCollectionViewCell" forIndexPath:indexPath];
         FastSubViewCode(cell);
         if (indexPath.row <= 5) {
             subLabel(@"球下字").text =  [_lhModel.numSxArrary objectAtIndex:indexPath.row];
@@ -202,12 +211,6 @@
             NSArray *endTimeArray = [self->_lhModel.endtime componentsSeparatedByString:@" "];
             self.timeLabel.text = [endTimeArray objectAtIndex:0];
 
-//            if (countkkk%2) {
-//                self.lhModel.endtime = @"2019-12-12 21:55:00";
-//            }
-//            else{
-//                self.lhModel.endtime = @"2019-12-14 21:30:00";
-//            }
             NSLog(@"self.lhModel.serverTime = %@",self.lhModel.serverTime);
             NSLog(@"self.lhModel.endtime = %@",self.lhModel.endtime);
             long long startLongLong = [CMTimeCommon timeSwitchTimestamp:self.lhModel.serverTime andFormatter:@"YYYY-MM-dd HH:mm:ss"];
@@ -279,6 +282,13 @@
         
         [self lotterTimeAction ];
     }
+}
+//六合开去历史记录
+- (IBAction)historyAcion:(id)sender {
+    UGLotteryRecordController *recordVC = _LoadVC_from_storyboard_(@"UGLotteryRecordController");
+    recordVC.gameId = self.lhModel.gameId;
+    [NavController1 pushViewController:recordVC animated:true];
+    
 }
 
 //六合开奖

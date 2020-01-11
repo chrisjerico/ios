@@ -761,11 +761,16 @@
                 [NetworkManager1 lhdoc_contentDetail:model.contentId].completionBlock = ^(CCSessionModel *sm) {
                     [SVProgressHUD dismiss];
                     if (!sm.error) {
+            
+                
+                        NSLog(@"model.link = %@",model.link);
                         UGLHPostModel *pm = [UGLHPostModel mj_objectWithKeyValues:sm.responseObject[@"data"]];
+                        pm.link = model.link;
                         
                         void (^push)(void) = ^{
                             UGPostDetailVC *vc = _LoadVC_from_storyboard_(@"UGPostDetailVC");
                             vc.pm = pm;
+                            
                             vc.title = model.name;
                             [NavController1 pushViewController:vc animated:true];
                         };

@@ -839,14 +839,17 @@ static NSString *uuidKey =@"uuidKey";
 }
 
 /**
-*   简单系统，ios 提示
+*   简单系统，ios 提示  专门调试用
 *
 *
 */
 +(void)showSystemTitle:(NSString * )str{
-    NSMutableArray *titles = @[].mutableCopy;
-    [titles addObject:@"取消"];
-    [AlertHelper showAlertView:nil msg:str  btnTitles:titles];
+    #ifdef DEBUG
+      NSMutableArray *titles = @[].mutableCopy;
+        [titles addObject:@"取消"];
+        [AlertHelper showAlertView:nil msg:str  btnTitles:titles];
+    #endif
+
 }
 
 /**

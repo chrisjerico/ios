@@ -17,6 +17,7 @@
 #import "LHPostRewardView.h"        // 打赏弹框
 #import "LHPostCommentInputView.h"  // 评论弹框
 #import "LHPostVoteView.h"          // 投票弹框
+#import "UGLHPrizeView.h"           //解码器
 
 // Tools
 #import "YYText.h"
@@ -30,7 +31,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;    /**<    评论TableView */
 @property (weak, nonatomic) IBOutlet UIView *topView;           /**<   顶部作者信息 */
 @property (weak, nonatomic) IBOutlet UIView *bottomBarView;     /**<    底部菜单栏（评论、点赞） */
-
+@property (weak, nonatomic) IBOutlet UGLHPrizeView *lhPrizeView; /**<    解码器 */
 @property (nonatomic, copy) NSString *opCustomerId; /**<    被回复者ID */
 @property (nonatomic, copy) NSString *opCommentId;  /**<    被回复的评论ID（有值表示回复评论，没值表示评论动态） */
 @property (nonatomic, copy) NSMutableDictionary *textBuffer;
@@ -40,7 +41,10 @@
 
 - (BOOL)允许游客访问   { return true; }
 - (BOOL)允许未登录访问 { return true; }
-
+- (void)dealloc {
+    [_lhPrizeView.countDownForLabel destoryTimer];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     _textBuffer = [@{} mutableCopy];
@@ -77,6 +81,19 @@
     };
     lsv.didRefreshBtnClick();
     
+
+    NSLog(@"link = %@",self.pm.link);
+    //公式规律   rule
+    //精华帖子    mystery
+    /**<  论坛详情是否显示解码器 */
+    BOOL isShow = NO;
+    if ([self.pm.link containsString: @"mystery/"]) {
+        isShow = YES;
+    } else {
+        isShow = [@"rule,mystery" containsString:self.pm.alias];
+    }
+    [_lhPrizeView setHidden:!isShow];
+//    [CMCommon showSystemTitle:self.pm.link];
     
     // 获取生肖列表
     // 。。。
