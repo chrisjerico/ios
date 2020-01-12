@@ -92,20 +92,19 @@
     
 
 //    [CMCommon showSystemTitle:self.pm.link];
-    
-    // 获取生肖列表
-    // 。。。
 }
 
 -(BOOL)hasShow{
-    //公式规律   rule
-    //精华帖子    mystery
+    // 公式规律 rule
+    // 精华帖子 mystery
+    // 高手论坛 forum
+    // 平特专区 gourmet
     /**<  论坛详情是否显示解码器  */
     BOOL isShow = NO;
     if ([self.pm.link containsString: @"mystery/"]) {
         isShow = YES;
     } else {
-        isShow = [@"rule,mystery" containsString:self.pm.alias];
+        isShow = [@"rule,mystery,forum,gourmet" containsString:self.pm.alias];
     }
     return isShow;
 }

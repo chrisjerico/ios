@@ -1315,7 +1315,6 @@
     }
     
     [_countDownForLabel countDownWithStratTimeStamp:strtLL finishTimeStamp:finishLL completeBlock:^(NSInteger day, NSInteger hour, NSInteger minute, NSInteger second) {
-
          [weakSelf refreshUIDay:day hour:hour minute:minute second:second];
     }];
 }
@@ -1327,7 +1326,6 @@
         [_countDownForLabel destoryTimer];
     }
     [_countDownForLabel countDownWithStratDate:startDate finishDate:finishDate  completeBlock:^(NSInteger day, NSInteger hour, NSInteger minute, NSInteger second) {
-
         [weakSelf refreshUIDay:day hour:hour minute:minute second:second];
     }];
 }
@@ -1361,8 +1359,7 @@
     self.countdownLabel.text = [NSString stringWithFormat:@"%@:%@:%@",hourStr,minuStr,secondStr];
     
     if ([self.countdownLabel.text  isEqualToString:@"00:00:00"]) {
-        
-        [self lotterTimeAction ];
+        [self lotterTimeAction];
     }
 }
 - (void)showPlatformNoticeView {
