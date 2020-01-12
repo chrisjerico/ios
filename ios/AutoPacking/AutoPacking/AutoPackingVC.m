@@ -13,11 +13,26 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSString *ids = @"c120";
+    NSString *ids = @"c203";
     BOOL willUpload = 1; // 打包后是否上传审核
     
     [self startPackingWithIds:ids willUpload:willUpload];
 }
+
+
+
+#pragma mark - 发布热更新
+
+- (void)postHotUpdate:(NSString *)log {
+    if (log.length < 20) {
+        @throw [NSException exceptionWithName:@"日志太短，请写详细点。" reason:@"" userInfo:nil];
+    }
+    
+}
+
+
+#pragma mark - 批量打包+上传
+
 // 批量打包
 - (void)startPackingWithIds:(NSString *)ids willUpload:(BOOL)willUpload {
     __weakSelf_(__self);
