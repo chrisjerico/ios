@@ -36,6 +36,7 @@
 @property (nonatomic) SlideSegmentView1 *ssv1;                  /**<    分页布局View */
 @property (nonatomic, strong) UIButton *downBtn;                /**<   下按钮 */
 
+@property (nonatomic, strong) UGCommonLotteryController *vc1;   /**<   下注界面 */
 @property (nonatomic, strong) UGChatViewController *vc2;        /**<   聊天界面 */
 
 @property (nonatomic, strong) UILabel *mLabel;                  /**<    */
@@ -123,7 +124,7 @@
     
     // 彩票下注页VC
     UGNextIssueModel *model = _nim;
-    UGCommonLotteryController *vc1 = ({
+    _vc1 = ({
         NSDictionary *dict = @{@"cqssc" :@"UGSSCLotteryController",     // 重庆时时彩
                                @"pk10"  :@"UGBJPK10LotteryController",  // pk10
                                @"xyft"  :@"UGBJPK10LotteryController",  // 幸运飞艇
@@ -194,22 +195,23 @@
         vc;
     });
     
-    
-    
+    [self addChildViewController:_vc1];
+    [self addChildViewController:_vc2];
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
     // SlideSegmentView1 分页布局View
-    {
-        
-        [self addChildViewController: vc1];
-        [self addChildViewController:_vc2];
-        
+    if (OBJOnceToken(self)) {
+        __weakSelf_(__self);
         NSArray *titles = @[@"投注区", @"聊天室"];
         SlideSegmentView1 *ssv1 = _ssv1 = _LoadView_from_nib_(@"SlideSegmentView1");
         ssv1.frame = CGRectMake(0, 0, APP.Width, APP.Height);
-        ssv1.viewControllers = @[vc1, _vc2];
+        ssv1.viewControllers = @[_vc1, _vc2];
         for (UIView *v in ssv1.contentViews) {
             [v mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.width.mas_equalTo(ssv1.width);
-                make.height.mas_equalTo(APP.Height - NavController1.navigationBar.by - 40);
+                make.height.mas_equalTo(self.view.height - NavController1.navigationBar.by - 40);
             }];
         }
         
@@ -275,7 +277,7 @@
                         }
                         SysConf.typeIdAry = typeIdAry;
                         SysConf.chatRoomAry = chatRoomAry;
-
+                        
                         if (__self.nim.gameId && SysConf.typeIdAry.count && [SysConf.typeIdAry containsObject:__self.nim.gameId]) {
                             //                            if (![vc2.gameId isEqualToString:__self.nim.gameId]) {
                             __self.vc2.gameId = __self.nim.gameId;
@@ -317,8 +319,7 @@
         }];
         [self.view layoutIfNeeded];
         ssv1.selectedIndex = 0;
-    };
-    
+    }
 }
 
 
