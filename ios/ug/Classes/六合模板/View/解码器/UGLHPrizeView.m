@@ -392,7 +392,7 @@
                         __count = 0;
                         [__self.timer invalidate];
                         __self.timer = nil;
-                
+                        [__self.countDownForLabel destoryTimer];
                         [__self getLotteryNumberList ];
 
                     }
@@ -427,6 +427,7 @@
                     __count = 0;
                     [__self.timer invalidate];
                     __self.timer = nil;
+                    [__self.countDownForLabel destoryTimer];
                 }
             }
         };

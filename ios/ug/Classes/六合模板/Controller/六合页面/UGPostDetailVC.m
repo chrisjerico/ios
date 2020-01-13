@@ -42,7 +42,7 @@
 - (BOOL)允许游客访问   { return true; }
 - (BOOL)允许未登录访问 { return true; }
 - (void)dealloc {
-    [_lhPrizeView.countDownForLabel destoryTimer];
+//    [_lhPrizeView.countDownForLabel destoryTimer];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 - (void)viewDidLoad {
@@ -254,6 +254,9 @@
         [tv setupHeaderRefreshRequest:^CCSessionModel *(UITableView *tv) {
             return [NetworkManager1 lhdoc_contentReplyList:pm.cid replyPid:nil page:1];
         } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
+            
+            [__self.lhPrizeView getLotteryNumberList];
+            
             NSArray *array = sm.responseObject[@"data"][@"list"];
             for (NSDictionary *dict in array) {
                 UGLHPostCommentModel *pcm = [UGLHPostCommentModel mj_objectWithKeyValues:dict];
@@ -275,6 +278,7 @@
         }];
         [(MJRefreshAutoNormalFooter *)tv.mj_footer setTitle:@"" forState:MJRefreshStateNoMoreData];
         [tv.mj_footer beginRefreshing];
+        [tv.mj_header beginRefreshing];
     }
     
     // SlideSegmentView2 布局

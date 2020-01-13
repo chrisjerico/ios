@@ -194,7 +194,7 @@
 - (void)dealloc {
     [_timer invalidate];
     _timer = nil;
-    [_countDownForLabel destoryTimer];
+//    [_countDownForLabel destoryTimer];
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 - (JS_TitleView *)js_titleView {
@@ -1788,6 +1788,7 @@
 //                        model.isFinish = 1;
 //                    }
 #endif
+
                     if (model.isFinish == 1) {
                         NSArray *endTimeArray = [__self.lhModel.endtime componentsSeparatedByString:@" "];
                         __self.timeLabel.text = [endTimeArray objectAtIndex:0];
@@ -1800,7 +1801,7 @@
                         __count = 0;
                         [__self.timer invalidate];
                         __self.timer = nil;
-                
+                        [__self.countDownForLabel destoryTimer];
                         [__self getLotteryNumberList ];
 
                     }
@@ -1835,6 +1836,7 @@
                     __count = 0;
                     [__self.timer invalidate];
                     __self.timer = nil;
+                     [__self.countDownForLabel destoryTimer];
                 }
             }
         };
