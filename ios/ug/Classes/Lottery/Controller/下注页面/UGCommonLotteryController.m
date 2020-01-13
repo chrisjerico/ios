@@ -100,6 +100,19 @@
     if (self.shoulHideHeader) {
         [self hideHeader];
     }
+    
+//    if (self.navigationController.viewControllers.count > 1){
+//        [CMCommon hideTabBar];
+//    }
+//    else{
+//        [CMCommon showTabBar];
+//    }
+    
+
+}
+
+- (void)viewDidAppear:(BOOL)animated:(BOOL)animated {
+    [super viewDidAppear:animated];
 }
 
 - (void)hideHeader {
@@ -114,6 +127,7 @@
 - (void)getGameDatas {}
 
 - (void)setupTitleView {
+    self.title = @"聊天";
     // 设置返回按钮
     {
         UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -123,12 +137,24 @@
         [backButton setImage:[UIImage imageNamed:@"c_navi_back"] forState:UIControlStateHighlighted];
         [backButton sizeToFit];
         [backButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-            [NavController1 popViewControllerAnimated:true];
+            UIViewController *vc=  [NavController1 popViewControllerAnimated:true];
+
         }];
         UIView *containView = [[UIView alloc] initWithFrame:backButton.bounds];
         [containView addSubview:backButton];
         UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:containView];
-        self.navigationItem.leftBarButtonItem = item;
+
+         NSLog(@"self.navigationController.viewControllers.count = %d",self.navigationController.viewControllers.count);
+         NSLog(@"NavController1.viewControllers.count = %d",NavController1.viewControllers.count);
+
+        if (self.navigationController.viewControllers.count > 1){
+            self.navigationItem.leftBarButtonItem = item;
+        }
+        else{
+            self.navigationItem.leftBarButtonItem = nil;
+        }
+        
+
     }
     
     // 设置标题

@@ -176,7 +176,7 @@
             site(@"test03",      @"",           @"",        @"com.UGGame.chat",         @"http://test03.6yc.com",                       @"内测包",     @"test03"),    // (朗朗)
             site(@"test20",      @"",           @"",        @"com.UGGame.cp",           @"http://test20.6yc.com",                       @"内测包",     @"test20"),    // (朗朗)
             site(@"test29",      @"",           @"",        @"com.UGGame.cp",           @"http://test29f.fhptcdn.com",                  @"内测包",     @"test29"),// (小东)
-            site(@"test19",      @"",           @"",        @"com.UGGame.cp",           @"http://test19.6yc.com",                       @"内测包",     @"test19"),
+            site(@"test19",      @"test19",     @"214",        @"com.UGGame.cp",           @"http://test19.6yc.com",                       @"内测包",     @"test19"),
             site(@"test31",      @"",           @"",        @"com.UGGame.cp",           @"http://test31.6yc.com",                       @"内测包",     @"test31"),
         
                     // 站点编号 / 上传编号 / 上传ID / 签名方式 / APP名 / bundleID / 接口域名

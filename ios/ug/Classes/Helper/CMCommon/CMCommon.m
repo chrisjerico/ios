@@ -992,4 +992,40 @@ static NSString *uuidKey =@"uuidKey";
 
     }];
 }
+
+
+#pragma mark -隐藏TabBar
++ (void)hideTabBar {
+    if (TabBarController1.tabBar.hidden == YES) {
+        return;
+    }
+    UIView *contentView;
+    if ( [[TabBarController1.view.subviews objectAtIndex:0] isKindOfClass:[UITabBar class]] )
+        contentView = [TabBarController1.view.subviews objectAtIndex:1];
+    else
+        contentView = [TabBarController1.view.subviews objectAtIndex:0];
+    contentView.frame = CGRectMake(contentView.bounds.origin.x,  contentView.bounds.origin.y,  contentView.bounds.size.width, contentView.bounds.size.height + TabBarController1.tabBar.frame.size.height);
+    TabBarController1.tabBar.hidden = YES;
+    
+}
+
+#pragma mark -显示TabBar
++ (void)showTabBar {
+    if (TabBarController1.tabBar.hidden == NO)
+    {
+        return;
+    }
+    UIView *contentView;
+    if ([[TabBarController1.view.subviews objectAtIndex:0] isKindOfClass:[UITabBar class]])
+        contentView = [TabBarController1.view.subviews objectAtIndex:1];
+    
+    else{
+         contentView = [TabBarController1.view.subviews objectAtIndex:0];
+    }
+        
+       
+    contentView.frame = CGRectMake(contentView.bounds.origin.x, contentView.bounds.origin.y,  contentView.bounds.size.width, contentView.bounds.size.height - TabBarController1.tabBar.frame.size.height);
+    TabBarController1.tabBar.hidden = NO;
+    
+}
 @end

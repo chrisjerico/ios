@@ -144,7 +144,13 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     {
         LotteryBetAndChatVC *vc = [LotteryBetAndChatVC new];
         vc.nim = model;
-        vc.hidesBottomBarWhenPushed = YES;
+        if (vc.navigationController.viewControllers.count > 1){
+                  // 隐藏底部条
+            vc.hidesBottomBarWhenPushed = YES;
+        }
+        else{
+            vc.hidesBottomBarWhenPushed = NO;
+        }
         // Push
         if ([UGTabbarController canPushToViewController:vc]) {
             [NavController1 setViewControllers:({
@@ -175,8 +181,8 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         vc.gotoTabBlock = ^{
             TabBarController1.selectedIndex = 0;
         };
-        // 隐藏底部条
-        vc.hidesBottomBarWhenPushed = YES;
+
+
         // Push
         if ([UGTabbarController canPushToViewController:vc]) {
             [NavController1 setViewControllers:({

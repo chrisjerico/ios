@@ -42,8 +42,29 @@
 - (BOOL)允许游客访问   { return true; }
 - (BOOL)允许未登录访问 { return true; }
 - (void)dealloc {
-//    [_lhPrizeView.countDownForLabel destoryTimer];
+
+    if (_lhPrizeView.timer) {
+        if ([_lhPrizeView.timer isValid]) {
+            [_lhPrizeView.timer invalidate];
+            _lhPrizeView.timer = nil;
+        }
+    }
+    [_lhPrizeView.countDownForLabel destoryTimer];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if (_lhPrizeView.timer) {
+        [_lhPrizeView.timer setFireDate:[NSDate date]];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    if (_lhPrizeView.timer) {
+        [_lhPrizeView.timer setFireDate:[NSDate distantFuture]];
+    }
 }
 - (void)viewDidLoad {
     [super viewDidLoad];

@@ -15,6 +15,7 @@
 
 @interface UGDocumentListVC ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (retain, nonatomic)UGPostDetailVC *postvc;
 
 @end
 
@@ -69,13 +70,15 @@
     
     __weakSelf_(__self);
     void (^push)(void) = ^{
-        UGPostDetailVC *vc = _LoadVC_from_storyboard_(@"UGPostDetailVC");
-        vc.pm = pm;
-        vc.title = pm.title;
-        vc.didCommentOrLike = ^(UGLHPostModel *pm) {
+        if (!__self.postvc) {
+           __self.postvc =  _LoadVC_from_storyboard_(@"UGPostDetailVC");
+        }
+        __self.postvc .pm = pm;
+        __self.postvc .title = pm.title;
+        __self.postvc .didCommentOrLike = ^(UGLHPostModel *pm) {
             [__self.tableView reloadRowAtIndexPath:indexPath withRowAnimation:UITableViewRowAnimationNone];
         };
-        [NavController1 pushViewController:vc animated:true];
+        [NavController1 pushViewController:__self.postvc  animated:true];
     };
     
     if (!pm.hasPay && pm.price > 0.000001) {

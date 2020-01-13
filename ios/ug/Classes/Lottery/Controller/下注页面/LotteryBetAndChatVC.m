@@ -57,7 +57,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.title = @"聊天室";
+    self.tabBarItem.title = @"聊天室";
+    self.tabBarItem.image = [UIImage imageNamed:@"liaotian"];
+    self.tabBarItem.selectedImage = [UIImage imageNamed:@"liaotian"];
     if (!_nim) {
         UGNextIssueModel * oc = [UGNextIssueModel new];
         oc.gameId = @"70";
@@ -110,7 +113,8 @@
         [backButton setImage:[UIImage imageNamed:@"c_navi_back"] forState:UIControlStateHighlighted];
         [backButton sizeToFit];
         [backButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-            [NavController1 popViewControllerAnimated:true];
+           UIViewController *vc =  [NavController1 popViewControllerAnimated:true];
+
         }];
         UIView *containView = [[UIView alloc] initWithFrame:backButton.bounds];
         [containView addSubview:backButton];

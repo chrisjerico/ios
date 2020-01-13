@@ -13,7 +13,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSString *ids = @"c203";
+    NSString *ids = @"c085,a002,c193,c153,c048";
     BOOL willUpload = 1; // 打包后是否上传审核
     
     [self startPackingWithIds:ids willUpload:willUpload];

@@ -32,11 +32,21 @@
 
 @property (nonatomic)  BOOL hormIsOpen;                                                /**<  喇叭是否开启*/
 @property (nonatomic,strong)  CMAudioPlayer *player ;                                  /**<  播放器*/
-@property (strong, nonatomic) NSTimer *timer;
+
 //--------------------------------------------
 @end
 
 @implementation UGLHPrizeView
+
+- (void)dealloc {
+    [_countDownForLabel destoryTimer];
+    if (_timer) {
+        if ([_timer isValid]) {
+            [_timer invalidate];
+            _timer = nil;
+        }
+    }
+}
 
 - (instancetype)UGLHPrizeView {
     NSBundle *bundle=[NSBundle mainBundle];
@@ -74,6 +84,7 @@
         [self.lotteryCollectionView setBounces:NO];
         [self.lotteryCollectionView setScrollEnabled:NO];
         [self.lotteryCollectionView registerNib:[UINib nibWithNibName:@"UGLHLotteryCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UGLHLotteryCollectionViewCell"];
+        [self.lotteryUISwitch setOn:SysConf.lhcdocMiCard] ;
         [self getLotteryNumberList];
     }
     return self;

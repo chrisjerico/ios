@@ -358,6 +358,7 @@ static UGTabbarController *_tabBarVC = nil;
 	// 由 UGMobileMenu控制显示的ViewController
 	UIViewController *vc = ((UINavigationController *)viewController).viewControllers.firstObject;
 	NSLog(@"vc = %@",vc);
+    
 	// 控制器需要重新加载
 	if (vc.class != mm.cls) {
 		[mm createViewController:^(__kindof UIViewController * _Nonnull vc) {
