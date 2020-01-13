@@ -166,7 +166,7 @@
 }
 
 - (BOOL)isShowWZ {
-    return [@"c048" containsString:_SiteId];
+    return [@"c085" containsString:_SiteId];
 }
 
 - (BOOL)isShowLogo {

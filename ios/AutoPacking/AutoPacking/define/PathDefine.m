@@ -28,9 +28,9 @@
         _username = [NSUserName() isEqualToString:@"fish"] ? @"fish" : @"Andrew";
         
         _exportDir = @"/Library/WebServer/Documents/ipa";
-        _logPath = [NSUserName() isEqualToString:@"fish"] ? @"/Users/fish/自动打包/log/PackingLog.txt" : @"/Users/ug/log/PackingLog.txt";
+        _logPath = [NSUserName() isEqualToString:@"fish"] ? @"/Users/fish/自动打包/log/PackingLog.txt" : @"/Users/ug/自动打包/log/PackingLog.txt";
         
-        _projectDir = [NSUserName() isEqualToString:@"fish"] ? @"/Users/fish/自动打包/pack/ios" : @"/Users/ug/pack/ios";
+        _projectDir = [NSUserName() isEqualToString:@"fish"] ? @"/Users/fish/自动打包/pack/ios" : @"/Users/ug/自动打包/pack/ios";
         _shellDir = [_projectDir stringByAppendingPathComponent:@"AutoPacking/sh"];
         
         _tempIpa        = [_projectDir stringByAppendingPathComponent:@"ug.ipa"];
