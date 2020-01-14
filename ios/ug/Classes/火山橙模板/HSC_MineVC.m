@@ -26,6 +26,10 @@
 }
 - (void)awakeFromNib {
 	[super awakeFromNib];
+	
+}
+- (void)viewDidLoad {
+	[super viewDidLoad];
 	[self.tableView registerNib:[UINib nibWithNibName:@"UGMenuTableViewCell" bundle:nil] forCellReuseIdentifier:@"UGMenuTableViewCell"];
 	self.headTopBackDropView.backgroundColor = Skin1.navBarBgColor;
 	
@@ -40,9 +44,6 @@
 	[self setupUserInfo];
 	[self getUserInfo];
 	[self.tableView reloadData];
-}
-- (void)viewDidLoad {
-	[super viewDidLoad];
 	
 }
 
