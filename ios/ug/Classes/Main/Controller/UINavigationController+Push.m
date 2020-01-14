@@ -109,9 +109,10 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     if (!ret) {
         // 去外部链接
         if (model.url.length) {
-            SLWebViewController *vc = [SLWebViewController new];
-            vc.urlStr = model.url;
-            [NavController1 pushViewController:vc animated:true];
+//            SLWebViewController *vc = [SLWebViewController new];
+//            vc.urlStr = model.url;
+//            [NavController1 pushViewController:vc animated:true];
+            [CMCommon goTGWebUrl: model.url title:nil];
             return true;
         }
     } else {

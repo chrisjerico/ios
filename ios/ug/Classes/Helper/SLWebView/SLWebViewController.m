@@ -231,6 +231,8 @@
         url = [NSURL URLWithString:_NSString(@"http://%@", urlStr)];
     }
     
+//    [CMCommon showSystemTitle:[NSString stringWithFormat:@"SLWeb.url = %@",url]];
+    
     [self setCookie];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
