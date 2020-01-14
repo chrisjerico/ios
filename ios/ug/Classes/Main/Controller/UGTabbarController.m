@@ -38,6 +38,9 @@
 #import "cc_runtime_property.h"
 #import "UGMessageModel.h"
 
+
+
+
 @implementation UIViewController (CanPush)
 
 _CCRuntimeProperty_Assign(BOOL, 允许未登录访问, set允许未登录访问)
@@ -319,11 +322,13 @@ static UGTabbarController *_tabBarVC = nil;
 		vc.view.backgroundColor = Skin1.bgColor;
 		vc.tabBarItem.title = mm.name;
 		vc.tabBarItem.image = [UIImage imageNamed:mm.defaultImgName];
+        NSLog(@"mm.defaultImgName = %@",mm.defaultImgName);
 		vc.tabBarItem.selectedImage = [[UIImage imageNamed:mm.defaultImgName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 		[[SDWebImageManager sharedManager] diskImageExistsForURL:[NSURL URLWithString:mm.icon] completion:^(BOOL isInCache) {
 			if (isInCache) {
 				UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:mm.icon]]];
 				vc.tabBarItem.image = image;
+                NSLog(@"mm.icon = %@",mm.icon);
 				vc.tabBarItem.selectedImage = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 			}
 		}];
@@ -368,9 +373,11 @@ static UGTabbarController *_tabBarVC = nil;
 			vc.title = mm.name;
 			vc.tabBarItem.title = mm.name;
 			vc.tabBarItem.image = [UIImage imageNamed:mm.defaultImgName];
+            NSLog(@"mm.defaultImgName = %@",mm.defaultImgName);
 			vc.tabBarItem.selectedImage = [[UIImage imageNamed:mm.defaultImgName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 			[[SDWebImageManager sharedManager] diskImageExistsForURL:[NSURL URLWithString:mm.icon] completion:^(BOOL isInCache) {
 				if (isInCache) {
+                    NSLog(@"mm.icon = %@",mm.icon);
 					UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:mm.icon]]];
 					vc.tabBarItem.image = image;
 					vc.tabBarItem.selectedImage = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];

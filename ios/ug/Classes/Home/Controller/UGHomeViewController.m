@@ -280,8 +280,13 @@
 	
 	// 黑色模板的UI调整
 	BOOL isBlack = Skin1.isBlack;
-	_rollingView.backgroundColor = isBlack ? Skin1.bgColor : Skin1.navBarBgColor;
-	_rankingView.backgroundColor = isBlack ? Skin1.bgColor : Skin1.navBarBgColor;
+   // c108站点定制需求
+    if ([@"c108" containsString: APP.SiteId]) {
+            _rankingView.backgroundColor = UIColor.whiteColor;
+    } else {
+            _rankingView.backgroundColor = isBlack ? Skin1.bgColor : Skin1.navBarBgColor;
+    }
+
 	_gameTypeView.cc_constraints.top.constant = isBlack ? 0 : 10;
 	_headerView.hidden = !isBlack;
 	self.fd_prefersNavigationBarHidden = isBlack;

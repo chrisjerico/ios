@@ -144,9 +144,6 @@
         [containView addSubview:backButton];
         UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:containView];
 
-         NSLog(@"self.navigationController.viewControllers.count = %d",self.navigationController.viewControllers.count);
-         NSLog(@"NavController1.viewControllers.count = %d",NavController1.viewControllers.count);
-
         if (self.navigationController.viewControllers.count > 1){
             self.navigationItem.leftBarButtonItem = item;
         }

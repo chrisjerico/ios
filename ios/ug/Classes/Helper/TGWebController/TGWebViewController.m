@@ -7,7 +7,7 @@
 //
 
 #import "TGWebViewController.h"
-
+#import "SLWebViewController.h"
 #import <WebKit/WebKit.h>
 
 @interface TGWebViewController ()<WKNavigationDelegate>
@@ -104,7 +104,10 @@
 
     if (navigationAction.navigationType == WKNavigationTypeLinkActivated) {//跳转别的应用如系统浏览器
         // 对于跨域，需要手动跳转
-        [[UIApplication sharedApplication] openURL:navigationAction.request.URL];
+//        [[UIApplication sharedApplication] openURL:navigationAction.request.URL];
+        SLWebViewController *vc = [SLWebViewController new];
+        vc.urlStr = navigationAction.request.URL.absoluteString;
+        [NavController1 pushViewController:vc animated:true];
         // 不允许web内跳转
         decisionHandler(WKNavigationActionPolicyCancel);
     } else {//应用的web内跳转

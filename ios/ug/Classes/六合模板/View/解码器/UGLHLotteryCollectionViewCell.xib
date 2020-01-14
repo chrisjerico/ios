@@ -21,6 +21,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="QWy-CH-S92" secondAttribute="height" multiplier="1:1" id="JiA-Uw-x8a"/>
+                            <constraint firstAttribute="height" constant="40" id="gEj-P0-bF8"/>
+                            <constraint firstAttribute="width" constant="40" id="vkr-BM-rPX"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="球图"/>

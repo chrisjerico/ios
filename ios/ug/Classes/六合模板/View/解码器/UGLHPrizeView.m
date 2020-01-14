@@ -98,13 +98,13 @@
 //组内成员个数
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     int rows = 0;
-    {
-        if (_lhModel.numbersArrary.count<5) {
-             rows = (int)_lhModel.numbersArrary.count;
-        } else {
-             rows = (int)_lhModel.numbersArrary.count+1;
-        }
+   
+    if (_lhModel.numbersArrary.count<5) {
+        rows = (int)_lhModel.numbersArrary.count;
+    } else {
+        rows = (int)_lhModel.numbersArrary.count+1;
     }
+    
     return rows;
 }
 
