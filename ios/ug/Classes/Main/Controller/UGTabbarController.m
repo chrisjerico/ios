@@ -319,20 +319,20 @@ static UGTabbarController *_tabBarVC = nil;
 		// 初始化控制器
 		// （这里加载了一个假的控制器，在 tabBarController:shouldSelectViewController: 函数才会加载真正的控制器）
 		UIViewController *vc = [UIViewController new];
-		vc.view.backgroundColor = Skin1.bgColor;
-		vc.tabBarItem.title = mm.name;
-		vc.tabBarItem.image = [UIImage imageNamed:mm.defaultImgName];
-        NSLog(@"mm.defaultImgName = %@",mm.defaultImgName);
-		vc.tabBarItem.selectedImage = [[UIImage imageNamed:mm.defaultImgName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-		[[SDWebImageManager sharedManager] diskImageExistsForURL:[NSURL URLWithString:mm.icon] completion:^(BOOL isInCache) {
-			if (isInCache) {
-				UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:mm.icon]]];
-				vc.tabBarItem.image = image;
-                NSLog(@"mm.icon = %@",mm.icon);
-				vc.tabBarItem.selectedImage = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-			}
-		}];
 		UGNavigationController *nav = [[UGNavigationController alloc] initWithRootViewController:vc];
+        nav.view.backgroundColor = Skin1.bgColor;
+        nav.tabBarItem.title = mm.name;
+        nav.tabBarItem.image = [UIImage imageNamed:mm.defaultImgName];
+        nav.tabBarItem.selectedImage = [[UIImage imageNamed:mm.defaultImgName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        NSLog(@"mm.defaultImgName = %@",mm.defaultImgName);
+        [[SDWebImageManager sharedManager] diskImageExistsForURL:[NSURL URLWithString:mm.icon] completion:^(BOOL isInCache) {
+            if (isInCache) {
+                UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:mm.icon]]];
+                nav.tabBarItem.image = image;
+                NSLog(@"mm.icon = %@",mm.icon);
+                nav.tabBarItem.selectedImage = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            }
+        }];
 		[vcs addObject:nav];
 		[mms addObject:mm];
 	}
@@ -370,21 +370,22 @@ static UGTabbarController *_tabBarVC = nil;
 			if (![UGTabbarController canPushToViewController:vc]) {
 				return ;
 			}
-			vc.title = mm.name;
-			vc.tabBarItem.title = mm.name;
-			vc.tabBarItem.image = [UIImage imageNamed:mm.defaultImgName];
+            UINavigationController *nav = (UINavigationController *)viewController;
+			nav.title = mm.name;
+			nav.tabBarItem.title = mm.name;
+			nav.tabBarItem.image = [UIImage imageNamed:mm.defaultImgName];
             NSLog(@"mm.defaultImgName = %@",mm.defaultImgName);
-			vc.tabBarItem.selectedImage = [[UIImage imageNamed:mm.defaultImgName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+			nav.tabBarItem.selectedImage = [[UIImage imageNamed:mm.defaultImgName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 			[[SDWebImageManager sharedManager] diskImageExistsForURL:[NSURL URLWithString:mm.icon] completion:^(BOOL isInCache) {
 				if (isInCache) {
                     NSLog(@"mm.icon = %@",mm.icon);
 					UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:mm.icon]]];
-					vc.tabBarItem.image = image;
-					vc.tabBarItem.selectedImage = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+					nav.tabBarItem.image = image;
+					nav.tabBarItem.selectedImage = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 				}
 			}];
-			((UINavigationController *)viewController).viewControllers = @[vc];
-			tabBarController.selectedViewController = viewController;
+			nav.viewControllers = @[vc];
+			tabBarController.selectedViewController = nav;
 		}];
 		return false;
 	}
