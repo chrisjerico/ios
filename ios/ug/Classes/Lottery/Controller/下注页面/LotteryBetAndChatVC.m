@@ -59,6 +59,11 @@
     [super viewDidDisappear:animated];
 //    self.tabBarItem.image = [UIImage imageNamed:@"liaotian"];
 //    self.tabBarItem.selectedImage = [UIImage imageNamed:@"liaotian"];
+    // 矫正TabBar图片位置，使之垂直居中显示
+//    CGFloat offset = 5.0;
+//    for (UITabBarItem *item in TabBarController1.tabBar.items) {
+//    item.imageInsets = UIEdgeInsetsMake(offset, 0, -offset, 0);
+//    }
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -85,10 +90,6 @@
         
         __self.jsDic = [da objectForKey:@"jsDic"];
         SysConf.hasShare = YES;
-
-        
-        
-        
 //        NSLog(@"js = %@",js);
 //       
         [__self selectChatRoom ];
