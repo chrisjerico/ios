@@ -54,7 +54,7 @@ UIActionSheetDelegate> {
     if (self.enterGame) {
         self.fd_prefersNavigationBarHidden = YES;
         [self.navigationController setNavigationBarHidden:YES];
-        self.webView.frame = self.view.bounds;
+        self.webView.frame = CGRectMake(0, k_Height_StatusBar, UGScreenW, UGScerrnH - k_Height_StatusBar);
         AppDelegate  *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
         appDelegate.allowRotation = 1;
         
@@ -109,11 +109,11 @@ UIActionSheetDelegate> {
 }
 
 - (BOOL)prefersStatusBarHidden {
-    return YES;// 返回YES表示隐藏，返回NO表示显示
+    return NO;// 返回YES表示隐藏，返回NO表示显示
 }
 
 - (void)viewWillLayoutSubviews {
-    self.webView.frame = self.view.bounds;
+    self.webView.frame = CGRectMake(0, k_Height_StatusBar, UGScreenW, UGScerrnH - k_Height_StatusBar);
 }
 
 - (void)viewWillAppear:(BOOL)animated {
