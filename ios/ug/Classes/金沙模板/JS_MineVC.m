@@ -62,6 +62,7 @@
 @property (nonatomic, strong) CAShapeLayer *containerLayer;
 
 @property (nonatomic, strong) NSMutableArray <UGUserCenterItem *>*menuNameArray;        /**<   行数据 */
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *collectionViewHeight;
 
 @end
 
@@ -85,6 +86,7 @@
 	[self setupUserInfo:true];
 	[self getSystemConfig];
 	self.menuNameArray = SysConf.userCenter.copy;
+	self.collectionViewHeight.constant = ((self.menuNameArray.count - 1)/3 + 1) * (APP.Width)/ 3.0;
 	[self.collectionnView reloadData];
 	UIButton * rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
@@ -112,13 +114,13 @@
 	cell.menuName = uci.name;
 	[cell.imageView sd_setImageWithURL:[NSURL URLWithString:uci.logo] placeholderImage:[UIImage imageNamed:uci.lhImgName]];
 	cell.badgeNum = uci.code==UCI_站内信 ? [UGUserModel currentUser].unreadMsg : 0;
-	[cell setBackgroundColor: [UIColor clearColor]];
+	[cell setBackgroundColor: [UIColor whiteColor]];
 	cell.layer.borderWidth = 0.5;
-	cell.layer.borderColor = Skin1.isBlack ? [UIColor clearColor].CGColor : [[[UIColor whiteColor] colorWithAlphaComponent:0.9] CGColor];
+	cell.layer.borderColor = UIColor.lightGrayColor.CGColor;
 	return cell;
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-	float itemW = (APP.Width - 0.0 )/ 3.0;
+	float itemW = APP.Width/ 3.0;
 	CGSize size = {itemW, itemW};
 	return size;
 }
@@ -131,7 +133,7 @@
 	return 0.0;
 }
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
-	return 0;
+	return 0.0;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -234,7 +236,14 @@
 	}
 	return _progressLayer;
 }
-
+#pragma mark --其他方法
+- (void)showAvaterSelectView {
+    if (UserI.isTest) {
+        return;
+    }
+    UGAvaterSelectView *avaterView = [[UGAvaterSelectView alloc] initWithFrame:CGRectMake(0, UGScerrnH, UGScreenW, UGScreenW)];
+    [avaterView show];
+}
 #pragma mark - UIS
 - (void)setupUserInfo:(BOOL)flag  {
 	UGUserModel *user = [UGUserModel currentUser];
@@ -342,13 +351,13 @@
 
 - (IBAction)rechargeRecordButtonTaped:(id)sender {
 	UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
-	  fundsVC.selectIndex = 3;
+	  fundsVC.selectIndex = 2;
 	  [self.navigationController pushViewController:fundsVC animated:YES];
 }
 - (IBAction)withdrawRecordButtonTaped:(id)sender {
 	NSLog(@"提现记录");
 	 UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
-	 fundsVC.selectIndex = 4;
+	 fundsVC.selectIndex = 3;
 	 [self.navigationController pushViewController:fundsVC animated:YES];
 }
 - (IBAction)betRecordButtonTaepd:(id)sender {
