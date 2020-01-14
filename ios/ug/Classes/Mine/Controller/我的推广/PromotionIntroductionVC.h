@@ -1,5 +1,5 @@
 //
-//  PromotionMemberRechargeVC.h
+//  PromotionIntroductionVC.h
 //  ug
 //
 //  Created by xionghx on 2020/1/10.
@@ -7,12 +7,11 @@
 //
 
 #import "UGViewController.h"
-#import "UGinviteLisModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PromotionMemberRechargeVC : UGViewController
--(void)bindMember: (UGinviteLisModel *) member;
+@interface PromotionIntroductionVC : UGViewController
+
 @end
 
 NS_ASSUME_NONNULL_END

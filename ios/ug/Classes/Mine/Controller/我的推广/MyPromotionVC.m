@@ -9,8 +9,12 @@
 #import "MyPromotionVC.h"
 #import "MyPromotionUrlVC.h"
 #import "MyPromotionMembersVC.h"
-//#improt "PromotionMemberRechargeVC.h"
+#import "PromotionIntroductionVC.h"
 #import "PromotionMemberRechargeVC.h"
+#import "PromotionBetRecordVC.h"
+#import "PromotionBetReportVC.h"
+#import "PromotionAdvertisementVC.h"
+
 
 @interface MyPromotionVC ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
@@ -65,7 +69,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	switch (indexPath.row) {
 		case 0:
-			
+		{
+			PromotionAdvertisementVC * vc = [[UIStoryboard storyboardWithName:@"MyPromotion" bundle:nil] instantiateViewControllerWithIdentifier:@"PromotionAdvertisementVC"];
+			[self.navigationController pushViewController:vc animated:true];
+		}
 			break;
 		case 1:
 		{
@@ -82,7 +89,19 @@
 			break;
 		case 3:
 		{
-			PromotionMemberRechargeVC * vc = [[UIStoryboard storyboardWithName:@"MyPromotion" bundle:nil] instantiateViewControllerWithIdentifier:@"PromotionMemberRechargeVC"];
+			PromotionBetReportVC * vc = [[UIStoryboard storyboardWithName:@"MyPromotion" bundle:nil] instantiateViewControllerWithIdentifier:@"PromotionBetReportVC"];
+			[self.navigationController pushViewController:vc animated:true];
+		}
+			break;
+		case 4:
+		{
+			PromotionBetRecordVC * vc = [[UIStoryboard storyboardWithName:@"MyPromotion" bundle:nil] instantiateViewControllerWithIdentifier:@"PromotionBetRecordVC"];
+			[self.navigationController pushViewController:vc animated:true];
+		}
+			break;
+		case 5:
+		{
+			PromotionIntroductionVC * vc = [[UIStoryboard storyboardWithName:@"MyPromotion" bundle:nil] instantiateViewControllerWithIdentifier:@"PromotionIntroductionVC"];
 			[self.navigationController pushViewController:vc animated:true];
 		}
 			break;
