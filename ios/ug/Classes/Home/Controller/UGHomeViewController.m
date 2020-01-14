@@ -108,12 +108,15 @@
 #import "Global.h"
 #import "CMAudioPlayer.h"
 #import "JS_HomePromoteContainerView.h"
+#import "HSC_TitleView.h"
 
 
 @interface UGHomeViewController ()<SDCycleScrollViewDelegate,UUMarqueeViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,WSLWaterFlowLayoutDelegate, JS_TitleViewDelegagte>
 
 @property (nonatomic, strong) UGHomeTitleView *titleView;       /**<   自定义导航条 */
-@property (nonatomic, strong) JS_TitleView * js_titleView;
+@property (nonatomic, strong) JS_TitleView * js_titleView; 		/**<   金沙导航条 */
+@property (nonatomic, strong) HSC_TitleView * hsc_titleView; 	/**<   火山橙导航条 */
+
 @property (weak, nonatomic) IBOutlet UGBMHeaderView *headerView;/**<   黑色模板导航头 */
 
 @property (nonatomic, strong) UGYYRightMenuView *yymenuView;    /**<   侧边栏 */
@@ -200,6 +203,14 @@
 	}
 	return _js_titleView;
 }
+- (HSC_TitleView *)hsc_titleView {
+	if (!_hsc_titleView) {
+		_hsc_titleView = [[UINib nibWithNibName:@"HSC_TitleView" bundle:nil] instantiateWithOwner:self options:nil].firstObject;
+		_hsc_titleView.frame = self.navigationController.navigationBar.bounds;
+
+	}
+	return _hsc_titleView;
+}
 
 - (void)skin {
 	
@@ -281,6 +292,9 @@
 		_rollingView.backgroundColor = UIColor.whiteColor;
 		_rankingView.backgroundColor = UIColor.whiteColor;
 		self.navigationItem.titleView = self.js_titleView;
+	} else if ([Skin1.skitType isEqualToString:@"火山橙"]) {
+		self.navigationItem.titleView = self.hsc_titleView;
+
 	}
 	[self.gameNavigationView reloadData];
 }

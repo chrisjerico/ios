@@ -1587,6 +1587,10 @@
 		03314FD023CDA04D0070CB54 /* HSC_MineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 03314FCD23CDA04D0070CB54 /* HSC_MineVC.m */; };
 		03314FD423CDA0900070CB54 /* HSC_Mine.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03314FD323CDA0900070CB54 /* HSC_Mine.storyboard */; };
 		03314FD523CDA0900070CB54 /* HSC_Mine.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03314FD323CDA0900070CB54 /* HSC_Mine.storyboard */; };
+		03314FD923CDE2150070CB54 /* HSC_TitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03314FD823CDE2150070CB54 /* HSC_TitleView.m */; };
+		03314FDA23CDE2150070CB54 /* HSC_TitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03314FD823CDE2150070CB54 /* HSC_TitleView.m */; };
+		03314FDC23CDE22A0070CB54 /* HSC_TitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03314FDB23CDE22A0070CB54 /* HSC_TitleView.xib */; };
+		03314FDD23CDE22A0070CB54 /* HSC_TitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03314FDB23CDE22A0070CB54 /* HSC_TitleView.xib */; };
 		036CA77523C7263C007BBD25 /* JS_TitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 036CA77423C7263C007BBD25 /* JS_TitleView.m */; };
 		036CA77723C72643007BBD25 /* JS_TitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 036CA77423C7263C007BBD25 /* JS_TitleView.m */; };
 		036CA77923C72657007BBD25 /* JS_TitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 036CA77823C72657007BBD25 /* JS_TitleView.xib */; };
@@ -3282,6 +3286,9 @@
 		03314FCC23CDA04D0070CB54 /* HSC_MineVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HSC_MineVC.h; sourceTree = "<group>"; };
 		03314FCD23CDA04D0070CB54 /* HSC_MineVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HSC_MineVC.m; sourceTree = "<group>"; };
 		03314FD323CDA0900070CB54 /* HSC_Mine.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HSC_Mine.storyboard; sourceTree = "<group>"; };
+		03314FD723CDE2150070CB54 /* HSC_TitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HSC_TitleView.h; sourceTree = "<group>"; };
+		03314FD823CDE2150070CB54 /* HSC_TitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HSC_TitleView.m; sourceTree = "<group>"; };
+		03314FDB23CDE22A0070CB54 /* HSC_TitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HSC_TitleView.xib; sourceTree = "<group>"; };
 		036CA77323C7263C007BBD25 /* JS_TitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JS_TitleView.h; sourceTree = "<group>"; };
 		036CA77423C7263C007BBD25 /* JS_TitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JS_TitleView.m; sourceTree = "<group>"; };
 		036CA77823C72657007BBD25 /* JS_TitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JS_TitleView.xib; sourceTree = "<group>"; };
@@ -6983,6 +6990,9 @@
 		03314FD623CDE0B10070CB54 /* 火山橙 */ = {
 			isa = PBXGroup;
 			children = (
+				03314FD723CDE2150070CB54 /* HSC_TitleView.h */,
+				03314FD823CDE2150070CB54 /* HSC_TitleView.m */,
+				03314FDB23CDE22A0070CB54 /* HSC_TitleView.xib */,
 			);
 			path = "火山橙";
 			sourceTree = "<group>";
@@ -7670,6 +7680,7 @@
 				031E1D4F23BE812B00B0F813 /* UGSafety.storyboard in Resources */,
 				031E1C5923BE812A00B0F813 /* UGBetDetailTableViewCell.xib in Resources */,
 				031E1BBB23BE812900B0F813 /* UGfinancialView.xib in Resources */,
+				03314FDD23CDE22A0070CB54 /* HSC_TitleView.xib in Resources */,
 				031EF59F23BE7B4D00B0F813 /* qitazhudanjilu.svg in Resources */,
 				031E199B23BE812600B0F813 /* LHPostPayView.xib in Resources */,
 				031E1BC123BE812900B0F813 /* UGBMfinancialCollectionViewCell.xib in Resources */,
@@ -7897,6 +7908,7 @@
 				CF475913239636D200966536 /* 128.gif in Resources */,
 				031E1BE623BE812900B0F813 /* UGPK10NNLotteryController.storyboard in Resources */,
 				031E1D4823BE812B00B0F813 /* UGGoogleAuthenticationSecondViewController.xib in Resources */,
+				03314FDC23CDE22A0070CB54 /* HSC_TitleView.xib in Resources */,
 				D4B75E19227802600007047C /* LaunchScreen.storyboard in Resources */,
 				03E41B2F23C09055004AB7C6 /* JS_HomePromoteView.xib in Resources */,
 				031E1BC823BE812900B0F813 /* UGFC3DLotteryController.storyboard in Resources */,
@@ -8643,6 +8655,7 @@
 				031E197923BE812600B0F813 /* UGLHFocusUserModel.m in Sources */,
 				031E1B8723BE812900B0F813 /* UGNoticeHeaderView.m in Sources */,
 				031E1D9B23BE812B00B0F813 /* UGYubaoInComeController.m in Sources */,
+				03314FDA23CDE2150070CB54 /* HSC_TitleView.m in Sources */,
 				031E1A1D23BE812700B0F813 /* HUDHelper.m in Sources */,
 				031EF5D423BE7B4E00B0F813 /* EmojiKeyBoard.swift in Sources */,
 				031EF54323BE7B4D00B0F813 /* UGConversationModel.swift in Sources */,
@@ -9356,6 +9369,7 @@
 				031E1DB623BE812B00B0F813 /* UGModel.m in Sources */,
 				031E1A8223BE812700B0F813 /* NSArray+HYBUnicodeReadable.m in Sources */,
 				D417EFDB2330D24C0024F634 /* AppDelegate+HgBugly.m in Sources */,
+				03314FD923CDE2150070CB54 /* HSC_TitleView.m in Sources */,
 				031E1CF223BE812A00B0F813 /* SVIndefiniteAnimatedView.m in Sources */,
 				031E1ADE23BE812800B0F813 /* SDCollectionViewCell.m in Sources */,
 				031E1ACE23BE812800B0F813 /* TGWebViewController.m in Sources */,
