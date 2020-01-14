@@ -341,14 +341,23 @@
 }
 
 - (IBAction)rechargeRecordButtonTaped:(id)sender {
-	
+	UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
+	  fundsVC.selectIndex = 3;
+	  [self.navigationController pushViewController:fundsVC animated:YES];
 }
 - (IBAction)withdrawRecordButtonTaped:(id)sender {
-	
+	NSLog(@"提现记录");
+	 UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
+	 fundsVC.selectIndex = 4;
+	 [self.navigationController pushViewController:fundsVC animated:YES];
 }
 - (IBAction)betRecordButtonTaepd:(id)sender {
+	NSLog(@"投注记录");
+	 [self.navigationController pushViewController:[UGBetRecordViewController new] animated:YES];
 }
 - (IBAction)customerServiceButtonTaped:(id)sender {
+	NSLog(@"联系客服");
+	  [NavController1 pushVCWithUserCenterItemType:UCI_在线客服];
 }
 # pragma mark <JS_TitleViewDelegagte>
 - (void)loginButtonTaped {
