@@ -13,11 +13,26 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSString *ids = @"test19";
+    NSString *ids = @"c085,a002,c193,c153,c048";
     BOOL willUpload = 1; // 打包后是否上传审核
     
     [self startPackingWithIds:ids willUpload:willUpload];
 }
+
+
+
+#pragma mark - 发布热更新
+
+- (void)postHotUpdate:(NSString *)log {
+    if (log.length < 20) {
+        @throw [NSException exceptionWithName:@"日志太短，请写详细点。" reason:@"" userInfo:nil];
+    }
+    
+}
+
+
+#pragma mark - 批量打包+上传
+
 // 批量打包
 - (void)startPackingWithIds:(NSString *)ids willUpload:(BOOL)willUpload {
     __weakSelf_(__self);
@@ -81,7 +96,7 @@
             });
             
             // 登录
-            [NetworkManager1 login].completionBlock = ^(CCSessionModel *sm) {
+            [NetworkManager1 login:Path.username pwd:Path.pwd].completionBlock = ^(CCSessionModel *sm) {
                 if (!sm.error) {
                     NSLog(@"登录成功，%@", sm.responseObject);
                     [[NSUserDefaults standardUserDefaults] setObject:sm.responseObject[@"data"][@"loginsessid"] forKey:@"loginsessid"];

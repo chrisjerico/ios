@@ -822,6 +822,8 @@ static NSString *uuidKey =@"uuidKey";
     .LeeTitle(str)
     .LeeContent(@"")
     .LeeAction(@"确认", ^{
+        UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+        pasteboard.string = str;
     })
     .LeeShow(); // 设置完成后 别忘记调用Show来显示
 
@@ -839,14 +841,21 @@ static NSString *uuidKey =@"uuidKey";
 }
 
 /**
-*   简单系统，ios 提示
+*   简单系统，ios 提示  专门调试用
 *
 *
 */
 +(void)showSystemTitle:(NSString * )str{
+    #ifdef DEBUG
     NSMutableArray *titles = @[].mutableCopy;
-    [titles addObject:@"取消"];
-    [AlertHelper showAlertView:nil msg:str  btnTitles:titles];
+    [titles addObject:@"复制"];
+    UIAlertController *ac = [AlertHelper showAlertView:nil msg:str  btnTitles:titles];
+    [ac setActionAtTitle:@"复制" handler:^(UIAlertAction *aa) {
+        UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+        pasteboard.string = str;
+    }];
+    #endif
+
 }
 
 /**
@@ -904,5 +913,119 @@ static NSString *uuidKey =@"uuidKey";
         }
     }
     return n;
+}
+
+
+/**
+*   针对与iOS7.0、iOS8.0、 WebView的缓存
+*
+*
+*/
++(void)clearWebCache{
+    NSString *libraryDir = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory,
+    NSUserDomainMask, YES)[0];
+    NSString *bundleId  =  [[[NSBundle mainBundle] infoDictionary]
+    objectForKey:@"CFBundleIdentifier"];
+    NSString *webkitFolderInLib = [NSString stringWithFormat:@"%@/WebKit",libraryDir];
+    NSString *webKitFolderInCaches = [NSString
+    stringWithFormat:@"%@/Caches/%@/WebKit",libraryDir,bundleId];
+     NSString *webKitFolderInCachesfs = [NSString
+     stringWithFormat:@"%@/Caches/%@/fsCachedData",libraryDir,bundleId];
+
+    NSError *error;
+    /* iOS8.0 WebView Cache的存放路径 */
+    [[NSFileManager defaultManager] removeItemAtPath:webKitFolderInCaches error:&error];
+    [[NSFileManager defaultManager] removeItemAtPath:webkitFolderInLib error:nil];
+
+    /* iOS7.0 WebView Cache的存放路径 */
+    [[NSFileManager defaultManager] removeItemAtPath:webKitFolderInCachesfs error:&error];
+}
+
+/**
+*   针对与iOS9.0 WebView的缓存
+*
+*
+*/
++(void)deleteWebCache{
+ //allWebsiteDataTypes清除所有缓存
+    NSSet *websiteDataTypes = [WKWebsiteDataStore allWebsiteDataTypes];
+
+       NSDate *dateFrom = [NSDate dateWithTimeIntervalSince1970:0];
+
+       [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:websiteDataTypes modifiedSince:dateFrom completionHandler:^{
+           
+       }];
+}
+//自定义清除缓存
++ (void)deleteCustomWebCache {
+/*
+     在磁盘缓存上。
+     WKWebsiteDataTypeDiskCache,
+     
+     html离线Web应用程序缓存。
+     WKWebsiteDataTypeOfflineWebApplicationCache,
+     
+     内存缓存。
+     WKWebsiteDataTypeMemoryCache,
+     
+     本地存储。
+     WKWebsiteDataTypeLocalStorage,
+     
+     Cookies
+     WKWebsiteDataTypeCookies,
+     
+     会话存储
+     WKWebsiteDataTypeSessionStorage,
+     
+     IndexedDB数据库。
+     WKWebsiteDataTypeIndexedDBDatabases,
+     
+     查询数据库。
+     WKWebsiteDataTypeWebSQLDatabases
+     */
+    NSArray * types=@[WKWebsiteDataTypeCookies,WKWebsiteDataTypeLocalStorage,WKWebsiteDataTypeMemoryCache,WKWebsiteDataTypeOfflineWebApplicationCache];
+    
+    NSSet *websiteDataTypes= [NSSet setWithArray:types];
+    NSDate *dateFrom = [NSDate dateWithTimeIntervalSince1970:0];
+
+    [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:websiteDataTypes modifiedSince:dateFrom completionHandler:^{
+
+    }];
+}
+
+
+#pragma mark -隐藏TabBar
++ (void)hideTabBar {
+    if (TabBarController1.tabBar.hidden == YES) {
+        return;
+    }
+    UIView *contentView;
+    if ( [[TabBarController1.view.subviews objectAtIndex:0] isKindOfClass:[UITabBar class]] )
+        contentView = [TabBarController1.view.subviews objectAtIndex:1];
+    else
+        contentView = [TabBarController1.view.subviews objectAtIndex:0];
+    contentView.frame = CGRectMake(contentView.bounds.origin.x,  contentView.bounds.origin.y,  contentView.bounds.size.width, contentView.bounds.size.height + TabBarController1.tabBar.frame.size.height);
+    TabBarController1.tabBar.hidden = YES;
+    
+}
+
+#pragma mark -显示TabBar
++ (void)showTabBar {
+    if (TabBarController1.tabBar.hidden == NO)
+    {
+        return;
+    }
+    UIView *contentView;
+    if ([[TabBarController1.view.subviews objectAtIndex:0] isKindOfClass:[UITabBar class]])
+        contentView = [TabBarController1.view.subviews objectAtIndex:1];
+    
+    else{
+         contentView = [TabBarController1.view.subviews objectAtIndex:0];
+    }
+        
+       
+    contentView.frame = CGRectMake(contentView.bounds.origin.x, contentView.bounds.origin.y,  contentView.bounds.size.width, contentView.bounds.size.height - TabBarController1.tabBar.frame.size.height);
+    TabBarController1.tabBar.hidden = NO;
+    
 }
 @end

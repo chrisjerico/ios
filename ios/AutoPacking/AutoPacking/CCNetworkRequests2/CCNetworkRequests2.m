@@ -151,12 +151,12 @@
 }
 
 // 登录
-- (CCSessionModel *)login {
+- (CCSessionModel *)login:(NSString *)user pwd:(NSString *)pwd {
     NSString *vcode = nil;
     return [self req:@"api.php"
                     :@{@"m":@"login",
-                       @"username":@"bigadmin", // 用户名
-                       @"password":@"admin67890[]", // 密码
+                       @"username":user,// 用户名
+                       @"password":pwd, // 密码
                        @"vcode":vcode,  // 验证码
                     }
                     :true];
@@ -189,6 +189,19 @@
                        @"app_id":site.uploadId, // 站点在上传后台的ID
                        @"site_url":site.siteUrl,// 站点链接
                        @"ios_plist":plistPath,   // plist地址
+                    }
+                    :true];
+}
+
+// 提交热更新版本信息
+- (CCSessionModel *)addHotUpdateVersion:(NSString *)version log:(nonnull NSString *)log url:(nonnull NSString *)url {
+    return [self req:@"api.php"
+                    :@{@"m":@"add_hot_update",
+                       @"update_method":@"1",   // 1静默更新 2强制更新
+                       @"fabu_log":log,         // 更新日志
+                       @"update_url":url,       // 文件地址
+                       @"version":version,      // 版本号
+                       @"app_type":@"ios",      // ios or android
                     }
                     :true];
 }

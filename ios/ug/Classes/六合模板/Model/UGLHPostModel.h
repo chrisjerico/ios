@@ -147,7 +147,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *type;     /**<   栏目ID */
 @property (nonatomic, copy) NSString *type2;    /**<   资料ID */
 @property (nonatomic, copy) NSArray<UGLHPostModel *> *secReplyList;    /**<   回复数组 */
-
+@property (nonatomic, copy) NSString *link;    /**<   分栏链接，用来判断是否加载解码器  根据 mystery/   */
 
 // ————————————————————————————
 // 自定义参数

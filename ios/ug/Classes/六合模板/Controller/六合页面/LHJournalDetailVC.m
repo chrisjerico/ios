@@ -12,7 +12,7 @@
 #import "STBarButtonItem.h"
 
 @interface LHJournalModel : NSObject
-@property (nonatomic, copy) NSString *lhcNo;    /**<   期数名 */
+@property (nonatomic, assign) int lhcNo;        /**<   期数名 */
 @property (nonatomic, copy) NSString *jid;      /**<   期数ID */
 // 自定义参数
 @property (nonatomic, assign) BOOL selected;
@@ -134,7 +134,7 @@
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     FastSubViewCode(cell);
     LHJournalModel *jm = _dataArray[indexPath.item];
-    subLabel(@"期数Label").text = _NSString(@"%@期", jm.lhcNo);
+    subLabel(@"期数Label").text = _NSString(@"%03d期", jm.lhcNo);
     subLabel(@"期数Label").textColor = jm.selected ? Skin1.navBarBgColor : Skin1.textColor2;
     subLabel(@"期数Label").font = jm.selected ? [UIFont boldSystemFontOfSize:20] : [UIFont systemFontOfSize:20];
     subView(@"下滑线View").hidden = !jm.selected;
@@ -153,7 +153,7 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     LHJournalModel *jm = _dataArray[indexPath.item];
-    return CGSizeMake([_NSString(@"%@期", jm.lhcNo) widthForFont:[UIFont systemFontOfSize:20]] + 15, 50);
+    return CGSizeMake([_NSString(@"%03d期", jm.lhcNo) widthForFont:[UIFont systemFontOfSize:20]] + 15, 50);
 }
 
 @end

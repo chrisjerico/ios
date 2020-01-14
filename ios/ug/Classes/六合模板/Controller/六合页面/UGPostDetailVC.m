@@ -17,6 +17,7 @@
 #import "LHPostRewardView.h"        // 打赏弹框
 #import "LHPostCommentInputView.h"  // 评论弹框
 #import "LHPostVoteView.h"          // 投票弹框
+#import "UGLHPrizeView.h"           //解码器
 
 // Tools
 #import "YYText.h"
@@ -30,7 +31,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;    /**<    评论TableView */
 @property (weak, nonatomic) IBOutlet UIView *topView;           /**<   顶部作者信息 */
 @property (weak, nonatomic) IBOutlet UIView *bottomBarView;     /**<    底部菜单栏（评论、点赞） */
-
+@property (weak, nonatomic) IBOutlet UGLHPrizeView *lhPrizeView; /**<    解码器 */
 @property (nonatomic, copy) NSString *opCustomerId; /**<    被回复者ID */
 @property (nonatomic, copy) NSString *opCommentId;  /**<    被回复的评论ID（有值表示回复评论，没值表示评论动态） */
 @property (nonatomic, copy) NSMutableDictionary *textBuffer;
@@ -40,7 +41,31 @@
 
 - (BOOL)允许游客访问   { return true; }
 - (BOOL)允许未登录访问 { return true; }
+- (void)dealloc {
 
+    if (_lhPrizeView.timer) {
+        if ([_lhPrizeView.timer isValid]) {
+            [_lhPrizeView.timer invalidate];
+            _lhPrizeView.timer = nil;
+        }
+    }
+    [_lhPrizeView.countDownForLabel destoryTimer];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if (_lhPrizeView.timer) {
+        [_lhPrizeView.timer setFireDate:[NSDate date]];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    if (_lhPrizeView.timer) {
+        [_lhPrizeView.timer setFireDate:[NSDate distantFuture]];
+    }
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     _textBuffer = [@{} mutableCopy];
@@ -69,7 +94,9 @@
             if (sm.error) {
                 [LoadingStateView showWithSuperview:__self.view state:ZJLoadingStateFail];
             } else {
+                NSString  *link = __self.pm.link;
                 __self.pm = [UGLHPostModel mj_objectWithKeyValues:sm.responseObject[@"data"]];
+                __self.pm.link = link;
                 [__self setupSSV];
                 [LoadingStateView showWithSuperview:__self.view state:ZJLoadingStateSucc];
             }
@@ -77,9 +104,30 @@
     };
     lsv.didRefreshBtnClick();
     
+
+    NSLog(@"link = %@",self.pm.link);
+    FastSubViewCode(self.view);
+    [_lhPrizeView setHidden:![self hasShow]];
+    //fourUnlike  CvB3zABB rundog humorGuess
+//       subLabel(@"标题Label").hidden = [@"mystery,rule,sixpic,humorGuess,rundog,fourUnlike,sxbm,tjym,ptyx" containsString:pm.alias];
     
-    // 获取生肖列表
-    // 。。。
+
+//    [CMCommon showSystemTitle:self.pm.link];
+}
+
+-(BOOL)hasShow{
+    // 公式规律 rule
+    // 精华帖子 mystery
+    // 高手论坛 forum
+    // 平特专区 gourmet
+    /**<  论坛详情是否显示解码器  */
+    BOOL isShow = NO;
+    if ([self.pm.link containsString: @"mystery/"]) {
+        isShow = YES;
+    } else {
+        isShow = [@"rule,mystery,forum,gourmet" containsString:self.pm.alias];
+    }
+    return isShow;
 }
 
 - (void)setupSSV {
@@ -138,7 +186,24 @@
         setupAdButton(@"顶部广告Button", pm.topAdWap);
         setupAdButton(@"底部广告Button", pm.bottomAdWap);
         subLabel(@"标题Label").text = pm.title;
-        subLabel(@"标题Label").hidden = [@"mystery,rule,sixpic,humorGuess,rundog,fourUnlike,sxbm,tjym,ptyx" containsString:pm.alias];
+        BOOL isHidden = NO;
+        NSLog(@"alias = %@",self.pm.alias);
+        if([@"mystery,rule,sixpic,humorGuess,rundog,fourUnlike,sxbm,tjym,ptyx,CvB3zABB," containsString:pm.alias]) {
+             isHidden = YES;
+        }
+        else{
+            if ([self.pm.link containsString: @"mystery/"]) {
+                isHidden = YES;
+            }
+            else{
+                isHidden = NO;
+            }
+        }
+        
+//        subLabel(@"标题Label").hidden = [@"mystery,rule,sixpic,humorGuess,rundog,fourUnlike,sxbm,tjym,ptyx,CvB3zABB," containsString:pm.alias];
+        
+        [subLabel(@"标题Label") setHidden:isHidden];
+
 //        subLabel(@"时间Label").text = _NSString(@"最后更新时间：%@", pm.createTime);
 
 //        subLabel(@"时间Label").hidden = [@"mystery,rule" containsString:pm.alias];
@@ -210,6 +275,9 @@
         [tv setupHeaderRefreshRequest:^CCSessionModel *(UITableView *tv) {
             return [NetworkManager1 lhdoc_contentReplyList:pm.cid replyPid:nil page:1];
         } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
+            
+            [__self.lhPrizeView getLotteryNumberList];
+            
             NSArray *array = sm.responseObject[@"data"][@"list"];
             for (NSDictionary *dict in array) {
                 UGLHPostCommentModel *pcm = [UGLHPostCommentModel mj_objectWithKeyValues:dict];
@@ -231,6 +299,7 @@
         }];
         [(MJRefreshAutoNormalFooter *)tv.mj_footer setTitle:@"" forState:MJRefreshStateNoMoreData];
         [tv.mj_footer beginRefreshing];
+        [tv.mj_header beginRefreshing];
     }
     
     // SlideSegmentView2 布局

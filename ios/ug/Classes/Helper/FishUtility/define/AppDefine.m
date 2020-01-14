@@ -10,7 +10,7 @@
 
 
 
-#define __SiteID__ @"test19"
+#define __SiteID__ @"l001"
 
 
 @interface UIStoryboard ()
@@ -118,12 +118,13 @@
     if (self) {
         _allSites = [SiteModel allSites];
         _SiteId = __SiteID__;
+        _jspVersion = [[NSUserDefaults standardUserDefaults] stringForKey:@"jspVersion"];
         NSLog(@"_SiteId = %@",_SiteId);
 #ifdef DEBUG
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
         if (!_SiteId.length) {
 
-            _SiteId = @"test19";
+            _SiteId = @"l001";
 
 
         }
@@ -164,6 +165,10 @@
     }
 }
 
+- (BOOL)isShowWZ {
+    return [@"c085" containsString:_SiteId];
+}
+
 - (BOOL)isShowLogo {
     if ([@"黑色模板" containsString:Skin1.skitType]) {
         return NO;
@@ -201,6 +206,17 @@
     return [@"c169" containsString:_SiteId];
 }
 
+- (NSString *)jspPath {
+    return _NSString(@"%@/jsp%@/main.js", APP.DocumentDirectory, _jspVersion);
+}
+
+- (void)setJspVersion:(NSString *)jspVersion {
+    _jspVersion = jspVersion;
+    [[NSUserDefaults standardUserDefaults] setObject:jspVersion forKey:@"jspVersion"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+
 #pragma mark - H5 url
 
 - (NSString *)chatShareUrl {
@@ -221,7 +237,9 @@
 }
 
 - (NSString *)chatHomeUrl {
-    NSString *url = _NSString(@"%@/dist/#/chatRoom", _Host);
+//        SysConf.chatLink = @"/chat";
+//    SysConf.chatLink = @"/chat/index.php";
+    NSString *url = _NSString(@"%@%@", _Host, SysConf.chatLink);
     return [url stringByAppendingURLParams:@{
         @"from":@"app",
         @"color":Skin1.navBarBgColor.cc_userInfo[@"color"],
@@ -232,8 +250,18 @@
     }];
 }
 
-- (NSString *)chatGameUrl:(NSString *)gameId {
-    return [self.chatHomeUrl stringByAppendingURLParams:@{@"roomId":gameId}];
+
+- (NSString *)chatGameUrl:(NSString *)roomId hide:(BOOL )hideHead {
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    [dic setValue:roomId forKey:@"roomId"];
+    if (hideHead) {
+        NSNumber * boolNum = [NSNumber numberWithBool:hideHead];
+        [dic setValue:boolNum forKey:@"hideHead"];
+    }
+
+    NSString *s = [self.chatHomeUrl stringByAppendingURLParams:dic];
+    NSLog(@"s= %@",s);
+    return s;
 }
 
 
@@ -246,10 +274,15 @@
 #pragma mark - Setup
 
 - (void)setupSystem {
-    _Name = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
-    _BundleId = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleIdentifier"];
-    _Version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
-    _Build = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+    NSDictionary *info = [NSBundle mainBundle].infoDictionary;
+    _Name = info[@"CFBundleName"];
+    _BundleId = info[@"CFBundleIdentifier"];
+    _Version = info[@"CFBundleShortVersionString"];
+    _Build = info[@"CFBundleVersion"];
+#ifdef DEBUG
+    _DevUser = info[@"Dev1"];
+    _isFish = [_DevUser isEqualToString:@"fish"];
+#endif
     
     _Window = [UIApplication sharedApplication].windows.firstObject;
     

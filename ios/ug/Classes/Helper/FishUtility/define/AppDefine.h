@@ -14,16 +14,28 @@
 #define _LoadVC_from_storyboard_(sid)   [AppDefine viewControllerWithStoryboardID:sid]
 #define _LoadView_from_nib_(nibName)    [AppDefine viewWithNibName:nibName]
 
+#define CCSharedImplementation + (instancetype)shared {\
+    static id obj = nil;\
+    static dispatch_once_t onceToken;\
+    dispatch_once(&onceToken, ^{\
+        obj = [self new];\
+    });\
+    return obj;\
+}
+
 
 @interface AppDefine : NSObject
 
 @property (nonatomic, readonly) NSString *Host;         /**<    服务器地址 */
 @property (nonatomic, readonly) NSString *SiteId;       /**<   当前站点ID */
 @property (nonatomic, readonly) NSArray <SiteModel *> *allSites;  /**<   所有站点 */
-
+@property (nonatomic, readonly) NSString *jspPath;      /**<    jspatch热更新本地文件路径 */
+@property (nonatomic, strong) NSString *jspVersion;     /**<    jspatch热更新版本号 */
 
 @property (nonatomic) NSInteger PageCount;              /**<    TableView每页显示多少条数据 */
 @property (nonatomic) NSUInteger PhotoMaxLength;        /**<    图片上传允许的最大大小 */
+
+@property (nonatomic) BOOL isFish;
 
 @property (nonatomic) BOOL betOddsIsRed;    /**<   下注页面赔率显示为红色 */
 @property (nonatomic) BOOL betBgIsWhite;    /**<   下注页面背景白色 */
@@ -37,6 +49,7 @@
 @property (nonatomic) BOOL isBA;    /**<   六合彩的特码A 和特码B 换一下位置 */
 @property (nonatomic) BOOL isShowLogo;    /**<  首页中间游戏导航需增加logo图标，游戏导航栏可进行滑动 */
 @property (nonatomic) BOOL isShow4;    /**<  任务中心显示4个，不显示图片 */
+@property (nonatomic) BOOL isShowWZ;    /**<  将选填 这两个字更换为  如果没有，可不填写 */
 + (instancetype)shared;
 @end
 
@@ -67,6 +80,7 @@
 @property (nonatomic) NSString *BundleId;           /**<    BundleID */
 @property (nonatomic) NSString *Version;            /**<    版本号 */
 @property (nonatomic) NSString *Build;              /**<    Build号 */
+@property (nonatomic) NSString *DevUser;            /**<    开发者在当前电脑登录的用户名 */
 
 @property (nonatomic) UIWindow *Window;             /**<    UIApplication.windows.first */
 @property (nonatomic) CGRect Bounds;                /**<    bounds */

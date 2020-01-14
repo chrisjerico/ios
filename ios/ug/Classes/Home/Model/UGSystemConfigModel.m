@@ -26,6 +26,7 @@
 #import "UGPromotionIncomeController.h"     // 推广收益
 #import "UGBalanceConversionController.h"   // 额度转换
 #import "UGAgentViewController.h"           // 申请代理
+#import "LotteryBetAndChatVC.h"
 #import "UGYYLotterySecondHomeViewController.h"
 #import "UGBMMemberCenterViewController.h"  //
 #import "UGLHMineViewController.h"  //
@@ -139,7 +140,7 @@ UGSystemConfigModel *currentConfig = nil;
             item(@"/Sign",              @"qiandao",                     UGSigInCodeViewController.class,            MM_签到,           @"签到"),
             item(@"/message",           @"zhanneixin",                  UGMailBoxTableViewController.class,         MM_站内信,          @"站内信"),
             item(@"/activity",          @"youhui1",                     UGPromotionsController.class,               MM_优惠活动_默认,    @"优惠活动"),
-            item(@"/chatRoomList",      @"liaotian",                    UGChatViewController.class,                 MM_聊天室,         @"聊天室"),
+            item(@"/chatRoomList",      @"liaotian",                    LotteryBetAndChatVC.class,                  MM_聊天室,         @"聊天室"),
             item(@"/referrer",          @"shouyi1",                     UGPromotionIncomeController.class,          MM_推广收益,        @"推广收益"),
             item(@"/securityCenter",    @"ziyuan",                      UGSecurityCenterViewController.class,       MM_安全中心,        @"安全中心"),
             item(@"/funds",             @"jinlingyingcaiwangtubiao",    UGFundsViewController.class,                MM_资金管理,        @"资金管理"),
@@ -323,12 +324,14 @@ MJExtensionCodingImplementation
     if (!_userCenter) {
         _userCenter = [UGUserCenterItem allItems];
     }
+    NSMutableArray *temp = _userCenter.mutableCopy;
     if (!UserI.hasActLottery) {
-        NSMutableArray *temp = _userCenter.mutableCopy;
         [temp removeObject:[temp objectWithValue:@(UCI_活动彩金) keyPath:@"code"]];
-        return temp.copy;
     }
-    return _userCenter;
+    if (!UserI.yuebaoSwitch) {
+        [temp removeObject:[temp objectWithValue:@(UCI_利息宝) keyPath:@"code"]];
+    }
+    return temp.copy;
 }
 
 - (void)setUserCenter:(NSArray<UGUserCenterItem *> *)userCenter {

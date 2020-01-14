@@ -464,7 +464,12 @@
     
     if (config.hide_reco) {
         if (config.hide_reco == 1) {
-            self.inviterTextF.placeholder = @"请输入推荐人ID(选填)";
+            
+            if (APP.isShowWZ) {
+                self.inviterTextF.placeholder = @"请输入推荐人ID(如果没有，可不填写)";
+            } else {
+                self.inviterTextF.placeholder = @"请输入推荐人ID(选填)";
+            }
         }
     } else {
         self.inviterView.hidden = YES;

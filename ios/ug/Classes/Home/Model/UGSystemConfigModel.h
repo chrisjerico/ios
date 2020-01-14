@@ -10,7 +10,7 @@
 #import "UGChatRoomModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
-
+// （我的页包含的）功能页面
 typedef NS_ENUM(NSInteger, UserCenterItemType) {
     UCI_存款       = 1,
     UCI_取款       = 2,
@@ -33,6 +33,7 @@ typedef NS_ENUM(NSInteger, UserCenterItemType) {
     UCI_QQ客服    = 19,
 };
 
+// （TabbarController包含的）功能页面
 typedef NS_ENUM(NSInteger, MobileMenuType) {
     MM_首页 = 1,
     
@@ -175,6 +176,8 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 @property (nonatomic, copy) NSArray<UGUserCenterItem *> *userCenter;
 @property (nonatomic) BOOL lhcdocMiCard;                /**<   六合彩开奖咪牌(默认状态)开关 */
 @property (nonatomic, copy) NSString * lhcdocLotteryStr;/**<   六合彩预备开奖文字*/
+
+@property (nonatomic, copy) NSString * chatLink;/**<   聊天的链接*/
 + (instancetype)currentConfig;
 
 + (void)setCurrentConfig:(UGSystemConfigModel *)config;
@@ -185,6 +188,9 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 
 @property (nonatomic,strong) NSMutableArray<UGChatRoomModel *> *chatRoomAry;                    /**<    在线配置的聊天室i*/
 @property (nonatomic,strong) NSMutableArray *typeIdAry;                    /**<    在线配置的聊天室id对应的游戏id */
+
+@property (nonatomic) BOOL hasShare;                /**<   是否可以下注分享*/
+
 @end
 
 NS_ASSUME_NONNULL_END

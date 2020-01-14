@@ -84,14 +84,10 @@
 		031E197B23BE812600B0F813 /* UGLHlotteryNumberModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E140323BE812300B0F813 /* UGLHlotteryNumberModel.m */; };
 		031E197C23BE812600B0F813 /* UGLHLhlModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E140423BE812300B0F813 /* UGLHLhlModel.m */; };
 		031E197D23BE812600B0F813 /* UGLHLhlModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E140423BE812300B0F813 /* UGLHLhlModel.m */; };
-		031E197E23BE812600B0F813 /* UGLHLotteryCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E140923BE812300B0F813 /* UGLHLotteryCollectionViewCell.m */; };
-		031E197F23BE812600B0F813 /* UGLHLotteryCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E140923BE812300B0F813 /* UGLHLotteryCollectionViewCell.m */; };
 		031E198023BE812600B0F813 /* UGLHHomeContentCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031E140A23BE812300B0F813 /* UGLHHomeContentCollectionViewCell.xib */; };
 		031E198123BE812600B0F813 /* UGLHHomeContentCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031E140A23BE812300B0F813 /* UGLHHomeContentCollectionViewCell.xib */; };
 		031E198223BE812600B0F813 /* UGScratchMusicView.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E140C23BE812300B0F813 /* UGScratchMusicView.m */; };
 		031E198323BE812600B0F813 /* UGScratchMusicView.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E140C23BE812300B0F813 /* UGScratchMusicView.m */; };
-		031E198423BE812600B0F813 /* UGLHLotteryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031E140E23BE812300B0F813 /* UGLHLotteryCollectionViewCell.xib */; };
-		031E198523BE812600B0F813 /* UGLHLotteryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031E140E23BE812300B0F813 /* UGLHLotteryCollectionViewCell.xib */; };
 		031E198623BE812600B0F813 /* UGScratchMusicView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031E140F23BE812300B0F813 /* UGScratchMusicView.xib */; };
 		031E198723BE812600B0F813 /* UGScratchMusicView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031E140F23BE812300B0F813 /* UGScratchMusicView.xib */; };
 		031E198823BE812600B0F813 /* UGLHHomeContentCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E141023BE812300B0F813 /* UGLHHomeContentCollectionViewCell.m */; };
@@ -1806,7 +1802,13 @@
 		CF475929239636D200966536 /* 105.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF47587D239636D100966536 /* 105.gif */; };
 		CF47592A239636D200966536 /* 10.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF47587E239636D100966536 /* 10.gif */; };
 		CF47592B239636D200966536 /* 38.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF47587F239636D100966536 /* 38.gif */; };
+		CF997C2723CA1A6E0079CA7C /* UGLHLotteryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF997C2423CA1A6E0079CA7C /* UGLHLotteryCollectionViewCell.xib */; };
+		CF997C2823CA1A6E0079CA7C /* UGLHLotteryCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF997C2523CA1A6E0079CA7C /* UGLHLotteryCollectionViewCell.m */; };
 		CFCADE45237D281C00680F62 /* cplts_看图王.gif in Resources */ = {isa = PBXBuildFile; fileRef = CFCADE44237D281C00680F62 /* cplts_看图王.gif */; };
+		CFCF6DBF23C5B8370039588D /* ReactNativeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CFCF6DBE23C5B8370039588D /* ReactNativeHelper.m */; };
+		CFCF6DC423C5F3CE0039588D /* JSPatchHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CFCF6DC323C5F3CE0039588D /* JSPatchHelper.m */; };
+		CFCF6DDC23C8403F0039588D /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = CFCF6DDA23C8403F0039588D /* main.jsbundle */; };
+		CFCF6DF723C9F51C0039588D /* RSA.m in Sources */ = {isa = PBXBuildFile; fileRef = CFCF6DF423C9F51C0039588D /* RSA.m */; };
 		CFDB113823A3B1E10040DE2B /* SiteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDB113723A3B1E10040DE2B /* SiteModel.m */; };
 		CFE074D123C0BBBF0083EA7E /* LotteryBetAndChatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE074D023C0BBBF0083EA7E /* LotteryBetAndChatVC.m */; };
 		CFE074DD23C0E7840083EA7E /* UGNotDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE074DA23C0E7840083EA7E /* UGNotDetailViewController.m */; };
@@ -1839,6 +1841,8 @@
 		D4E6A62223C4D4DD003E18B6 /* CCNetworkRequests1+UG.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E6A62123C4D4DD003E18B6 /* CCNetworkRequests1+UG.m */; };
 		D4F0410523C773170070D2B5 /* UGLHPrizeView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F0410423C773170070D2B5 /* UGLHPrizeView.m */; };
 		D4F0410723C7732A0070D2B5 /* UGLHPrizeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4F0410623C7732A0070D2B5 /* UGLHPrizeView.xib */; };
+		D4F0411723C868E20070D2B5 /* WHC_ModelSqlite.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F0411623C868E20070D2B5 /* WHC_ModelSqlite.m */; };
+		D4F0411A23C86A6A0070D2B5 /* RememberPass.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F0411923C86A6A0070D2B5 /* RememberPass.m */; };
 		F5614FBC2C7545CF870A0AD2 /* Pods_chat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30193B1626262AA87797C0E9 /* Pods_chat.framework */; };
 /* End PBXBuildFile section */
 
@@ -1924,12 +1928,9 @@
 		031E140423BE812300B0F813 /* UGLHLhlModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGLHLhlModel.m; sourceTree = "<group>"; };
 		031E140523BE812300B0F813 /* UGLHPostModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGLHPostModel.h; sourceTree = "<group>"; };
 		031E140823BE812300B0F813 /* UGScratchMusicView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGScratchMusicView.h; sourceTree = "<group>"; };
-		031E140923BE812300B0F813 /* UGLHLotteryCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGLHLotteryCollectionViewCell.m; sourceTree = "<group>"; };
 		031E140A23BE812300B0F813 /* UGLHHomeContentCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UGLHHomeContentCollectionViewCell.xib; sourceTree = "<group>"; };
 		031E140B23BE812300B0F813 /* UGLHHomeContentCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGLHHomeContentCollectionViewCell.h; sourceTree = "<group>"; };
 		031E140C23BE812300B0F813 /* UGScratchMusicView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGScratchMusicView.m; sourceTree = "<group>"; };
-		031E140D23BE812300B0F813 /* UGLHLotteryCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGLHLotteryCollectionViewCell.h; sourceTree = "<group>"; };
-		031E140E23BE812300B0F813 /* UGLHLotteryCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UGLHLotteryCollectionViewCell.xib; sourceTree = "<group>"; };
 		031E140F23BE812300B0F813 /* UGScratchMusicView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UGScratchMusicView.xib; sourceTree = "<group>"; };
 		031E141023BE812300B0F813 /* UGLHHomeContentCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGLHHomeContentCollectionViewCell.m; sourceTree = "<group>"; };
 		031E141223BE812300B0F813 /* UGPostCell1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGPostCell1.h; sourceTree = "<group>"; };
@@ -3495,7 +3496,17 @@
 		CF47587E239636D100966536 /* 10.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 10.gif; sourceTree = "<group>"; };
 		CF47587F239636D100966536 /* 38.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 38.gif; sourceTree = "<group>"; };
 		CF5D3D7D2396B8D000CC3D6B /* AutoPacking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AutoPacking.xcodeproj; path = AutoPacking/AutoPacking.xcodeproj; sourceTree = "<group>"; };
+		CF997C2423CA1A6E0079CA7C /* UGLHLotteryCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UGLHLotteryCollectionViewCell.xib; sourceTree = "<group>"; };
+		CF997C2523CA1A6E0079CA7C /* UGLHLotteryCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGLHLotteryCollectionViewCell.m; sourceTree = "<group>"; };
+		CF997C2623CA1A6E0079CA7C /* UGLHLotteryCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGLHLotteryCollectionViewCell.h; sourceTree = "<group>"; };
 		CFCADE44237D281C00680F62 /* cplts_看图王.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "cplts_看图王.gif"; sourceTree = "<group>"; };
+		CFCF6DBD23C5B8370039588D /* ReactNativeHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReactNativeHelper.h; sourceTree = "<group>"; };
+		CFCF6DBE23C5B8370039588D /* ReactNativeHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReactNativeHelper.m; sourceTree = "<group>"; };
+		CFCF6DC223C5F3CE0039588D /* JSPatchHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSPatchHelper.h; sourceTree = "<group>"; };
+		CFCF6DC323C5F3CE0039588D /* JSPatchHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSPatchHelper.m; sourceTree = "<group>"; };
+		CFCF6DDA23C8403F0039588D /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = main.jsbundle; path = ../../../../bundle/main.jsbundle; sourceTree = "<group>"; };
+		CFCF6DF423C9F51C0039588D /* RSA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSA.m; sourceTree = "<group>"; };
+		CFCF6DF523C9F51C0039588D /* RSA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSA.h; sourceTree = "<group>"; };
 		CFDB112723A25FE60040DE2B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		CFDB113623A3B1E00040DE2B /* SiteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SiteModel.h; sourceTree = "<group>"; };
 		CFDB113723A3B1E10040DE2B /* SiteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SiteModel.m; sourceTree = "<group>"; };
@@ -3544,6 +3555,10 @@
 		D4F0410323C773170070D2B5 /* UGLHPrizeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLHPrizeView.h; sourceTree = "<group>"; };
 		D4F0410423C773170070D2B5 /* UGLHPrizeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLHPrizeView.m; sourceTree = "<group>"; };
 		D4F0410623C7732A0070D2B5 /* UGLHPrizeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGLHPrizeView.xib; sourceTree = "<group>"; };
+		D4F0411523C868E20070D2B5 /* WHC_ModelSqlite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHC_ModelSqlite.h; sourceTree = "<group>"; };
+		D4F0411623C868E20070D2B5 /* WHC_ModelSqlite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHC_ModelSqlite.m; sourceTree = "<group>"; };
+		D4F0411823C86A6A0070D2B5 /* RememberPass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RememberPass.h; sourceTree = "<group>"; };
+		D4F0411923C86A6A0070D2B5 /* RememberPass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RememberPass.m; sourceTree = "<group>"; };
 		E98695D8DC0D2512B92A7C32 /* Pods-ug.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ug.debug.xcconfig"; path = "Target Support Files/Pods-ug/Pods-ug.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -3723,9 +3738,6 @@
 				031E140823BE812300B0F813 /* UGScratchMusicView.h */,
 				031E140C23BE812300B0F813 /* UGScratchMusicView.m */,
 				031E140F23BE812300B0F813 /* UGScratchMusicView.xib */,
-				031E140D23BE812300B0F813 /* UGLHLotteryCollectionViewCell.h */,
-				031E140923BE812300B0F813 /* UGLHLotteryCollectionViewCell.m */,
-				031E140E23BE812300B0F813 /* UGLHLotteryCollectionViewCell.xib */,
 				031E140B23BE812300B0F813 /* UGLHHomeContentCollectionViewCell.h */,
 				031E141023BE812300B0F813 /* UGLHHomeContentCollectionViewCell.m */,
 				031E140A23BE812300B0F813 /* UGLHHomeContentCollectionViewCell.xib */,
@@ -3760,6 +3772,7 @@
 				031E142223BE812300B0F813 /* FishUtility */,
 				031E14E523BE812300B0F813 /* CMCommon */,
 				031E14C223BE812300B0F813 /* CMNetwork */,
+				D4F0411423C868E20070D2B5 /* WHC_SqliteKit */,
 				031E155223BE812300B0F813 /* segmentListControl */,
 				031E157323BE812300B0F813 /* XYYSegmentControl */,
 				031E157A23BE812300B0F813 /* TGWebController */,
@@ -5623,6 +5636,8 @@
 				D4E6A61E23C4D340003E18B6 /* UGChatRoomModel.m */,
 				031E177823BE812500B0F813 /* UGChatViewController.h */,
 				031E177923BE812500B0F813 /* UGChatViewController.m */,
+				D4F0411823C86A6A0070D2B5 /* RememberPass.h */,
+				D4F0411923C86A6A0070D2B5 /* RememberPass.m */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -7229,6 +7244,27 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		CFCF6DBB23C5B8220039588D /* HotUpdate */ = {
+			isa = PBXGroup;
+			children = (
+				CFCF6DF323C9F51C0039588D /* RSA */,
+				CFCF6DBD23C5B8370039588D /* ReactNativeHelper.h */,
+				CFCF6DBE23C5B8370039588D /* ReactNativeHelper.m */,
+				CFCF6DC223C5F3CE0039588D /* JSPatchHelper.h */,
+				CFCF6DC323C5F3CE0039588D /* JSPatchHelper.m */,
+			);
+			path = HotUpdate;
+			sourceTree = "<group>";
+		};
+		CFCF6DF323C9F51C0039588D /* RSA */ = {
+			isa = PBXGroup;
+			children = (
+				CFCF6DF523C9F51C0039588D /* RSA.h */,
+				CFCF6DF423C9F51C0039588D /* RSA.m */,
+			);
+			path = RSA;
+			sourceTree = "<group>";
+		};
 		CFE074D923C0E7840083EA7E /* 注单明细 */ = {
 			isa = PBXGroup;
 			children = (
@@ -7250,6 +7286,7 @@
 		D424785C22DDF5860062A6D4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CFCF6DDA23C8403F0039588D /* main.jsbundle */,
 				CF4757D3239636D100966536 /* 六合表情 */,
 				D4B75E15227802600007047C /* Assets.xcassets */,
 				D40FA8BE229910EE003E596F /* yuebaoMone.gif */,
@@ -7297,6 +7334,7 @@
 		D4B75E22227811D50007047C /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				CFCF6DBB23C5B8220039588D /* HotUpdate */,
 				031E13C123BE812300B0F813 /* Skin */,
 				031E176A23BE812500B0F813 /* baseObject */,
 				031E177723BE812500B0F813 /* Chat */,
@@ -7340,11 +7378,23 @@
 		D4F0410123C772850070D2B5 /* 解码器 */ = {
 			isa = PBXGroup;
 			children = (
+				CF997C2623CA1A6E0079CA7C /* UGLHLotteryCollectionViewCell.h */,
+				CF997C2523CA1A6E0079CA7C /* UGLHLotteryCollectionViewCell.m */,
+				CF997C2423CA1A6E0079CA7C /* UGLHLotteryCollectionViewCell.xib */,
 				D4F0410323C773170070D2B5 /* UGLHPrizeView.h */,
 				D4F0410423C773170070D2B5 /* UGLHPrizeView.m */,
 				D4F0410623C7732A0070D2B5 /* UGLHPrizeView.xib */,
 			);
 			path = "解码器";
+			sourceTree = "<group>";
+		};
+		D4F0411423C868E20070D2B5 /* WHC_SqliteKit */ = {
+			isa = PBXGroup;
+			children = (
+				D4F0411523C868E20070D2B5 /* WHC_ModelSqlite.h */,
+				D4F0411623C868E20070D2B5 /* WHC_ModelSqlite.m */,
+			);
+			path = WHC_SqliteKit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -7469,7 +7519,6 @@
 				031EF5A523BE7B4D00B0F813 /* ugzhudan.svg in Resources */,
 				031EF59523BE7B4D00B0F813 /* cunkuan.svg in Resources */,
 				031EF5A423BE7B4D00B0F813 /* huodongcaijin.svg in Resources */,
-				031E198523BE812600B0F813 /* UGLHLotteryCollectionViewCell.xib in Resources */,
 				031EF56F23BE7B4D00B0F813 /* yichaihongbao.svg in Resources */,
 				031E1E7923BE812C00B0F813 /* UGCalenderAlertView.xib in Resources */,
 				031EF56A23BE7B4D00B0F813 /* qunzu.svg in Resources */,
@@ -7827,7 +7876,6 @@
 				CF4758D1239636D200966536 /* 150.gif in Resources */,
 				CF475897239636D200966536 /* 133.gif in Resources */,
 				031E1BCE23BE812900B0F813 /* UGXYNCLotteryController.storyboard in Resources */,
-				031E198423BE812600B0F813 /* UGLHLotteryCollectionViewCell.xib in Resources */,
 				CF4758DB239636D200966536 /* 84.gif in Resources */,
 				031E1E3823BE812C00B0F813 /* UGPromotion2rowTableViewCell.xib in Resources */,
 				031E1DF023BE812C00B0F813 /* UGMissionLevelTableViewCell.xib in Resources */,
@@ -7959,6 +8007,7 @@
 				031E1B8A23BE812900B0F813 /* UGNoticeHeaderView.xib in Resources */,
 				CF4758E6239636D200966536 /* 88.gif in Resources */,
 				031E1B4C23BE812800B0F813 /* UGYYRightMenuView.xib in Resources */,
+				CF997C2723CA1A6E0079CA7C /* UGLHLotteryCollectionViewCell.xib in Resources */,
 				CF475915239636D200966536 /* 15.gif in Resources */,
 				CF4758F2239636D200966536 /* 49.gif in Resources */,
 				031E198023BE812600B0F813 /* UGLHHomeContentCollectionViewCell.xib in Resources */,
@@ -7982,6 +8031,7 @@
 				031E1BF823BE812900B0F813 /* UGBJPK10LotteryController.storyboard in Resources */,
 				CF4758E5239636D200966536 /* 162.gif in Resources */,
 				CF47590F239636D200966536 /* 101.gif in Resources */,
+				CFCF6DDC23C8403F0039588D /* main.jsbundle in Resources */,
 				CF4758C8239636D200966536 /* 2.gif in Resources */,
 				031E1C5823BE812A00B0F813 /* UGBetDetailTableViewCell.xib in Resources */,
 				CF475892239636D200966536 /* 33.gif in Resources */,
@@ -8268,7 +8318,6 @@
 				031E194F23BE812600B0F813 /* LHGalleryListVC2.m in Sources */,
 				031E19C123BE812700B0F813 /* NSObject+XWAdd.m in Sources */,
 				031EF52923BE7B4D00B0F813 /* UserApi.swift in Sources */,
-				031E197F23BE812600B0F813 /* UGLHLotteryCollectionViewCell.m in Sources */,
 				031EF54F23BE7B4D00B0F813 /* MessageManager.swift in Sources */,
 				031E1A6723BE812700B0F813 /* UIView+ST.m in Sources */,
 				031E1CED23BE812A00B0F813 /* SVRadialGradientLayer.m in Sources */,
@@ -8888,6 +8937,7 @@
 				031E1AFC23BE812800B0F813 /* UIView+Extension.m in Sources */,
 				031E1BDE23BE812900B0F813 /* UGLotterySelectController.m in Sources */,
 				031E1B1023BE812800B0F813 /* UGLotteryRecordController.m in Sources */,
+				D4F0411723C868E20070D2B5 /* WHC_ModelSqlite.m in Sources */,
 				031E1B3223BE812800B0F813 /* UGSystemConfigModel.m in Sources */,
 				031E1B9A23BE812900B0F813 /* UGLotteryAssistantTableViewCell.m in Sources */,
 				031E1A9623BE812700B0F813 /* MOFSPickerManager.m in Sources */,
@@ -8931,12 +8981,14 @@
 				031E1A1223BE812700B0F813 /* NSObject+AspectsHelper.m in Sources */,
 				031E1BD023BE812900B0F813 /* UGGDKL10LotteryController.m in Sources */,
 				031E19D023BE812700B0F813 /* UIAlertController+Utils.m in Sources */,
+				CFCF6DC423C5F3CE0039588D /* JSPatchHelper.m in Sources */,
 				031E19AC23BE812700B0F813 /* NSDictionary+NilSafe.m in Sources */,
 				031E1B0623BE812800B0F813 /* UIView+SGExtension.m in Sources */,
 				031E1D2423BE812B00B0F813 /* UGMissionListController.m in Sources */,
 				031E1C7A23BE812A00B0F813 /* UGWithdrawLogsModel.m in Sources */,
 				031E1C0223BE812900B0F813 /* UGLotterySettingModel.m in Sources */,
 				031E1B3E23BE812800B0F813 /* UGPlatformNoticeModel.m in Sources */,
+				CFCF6DF723C9F51C0039588D /* RSA.m in Sources */,
 				031E1A0423BE812700B0F813 /* SlideSegmentView2.m in Sources */,
 				031E1E4423BE812C00B0F813 /* UGPormotionView.m in Sources */,
 				031E198223BE812600B0F813 /* UGScratchMusicView.m in Sources */,
@@ -8970,6 +9022,7 @@
 				031E1A5823BE812700B0F813 /* UIView+Events.m in Sources */,
 				031E1ABE23BE812800B0F813 /* WMMenuCell.m in Sources */,
 				031E1DE223BE812C00B0F813 /* UGinviteInfoModel.m in Sources */,
+				CF997C2823CA1A6E0079CA7C /* UGLHLotteryCollectionViewCell.m in Sources */,
 				031E1C7823BE812A00B0F813 /* UGdepositModel.m in Sources */,
 				031E1DD423BE812C00B0F813 /* UGrealBetListModel.m in Sources */,
 				031E1C9223BE812A00B0F813 /* UGRechargeTypeCell.m in Sources */,
@@ -9239,7 +9292,6 @@
 				031E1B7623BE812800B0F813 /* UGGameTypeColletionViewCell.m in Sources */,
 				031E1DC023BE812B00B0F813 /* UGapplyWinLogDetail.m in Sources */,
 				031E1B3023BE812800B0F813 /* UGNoticeModel.m in Sources */,
-				031E197E23BE812600B0F813 /* UGLHLotteryCollectionViewCell.m in Sources */,
 				031E1E4E23BE812C00B0F813 /* UGSkinSeconCollectionHeadView.m in Sources */,
 				031E1D3A23BE812B00B0F813 /* UGPromotionTableController.m in Sources */,
 				031E1CCA23BE812A00B0F813 /* UIScrollView+MJExtension.m in Sources */,
@@ -9327,6 +9379,7 @@
 				031E1DC623BE812B00B0F813 /* UGBalanceTransferLogsModel.m in Sources */,
 				031E1AF623BE812800B0F813 /* SANotificationEvent.m in Sources */,
 				031E1B6023BE812800B0F813 /* UGDocumentView.m in Sources */,
+				D4F0411A23C86A6A0070D2B5 /* RememberPass.m in Sources */,
 				031E1B2E23BE812800B0F813 /* UGBetItemModel.m in Sources */,
 				031E1D8A23BE812B00B0F813 /* UGBalanceConversionRecordController.m in Sources */,
 				031E1E2E23BE812C00B0F813 /* UGPormotionUserInfoView.m in Sources */,
@@ -9339,6 +9392,7 @@
 				031E1A2223BE812700B0F813 /* CCNetworkRequests1+UGBlackTemplate.m in Sources */,
 				031E1E2C23BE812C00B0F813 /* UGActivityGoldView.m in Sources */,
 				D4E6A61F23C4D340003E18B6 /* UGChatRoomModel.m in Sources */,
+				CFCF6DBF23C5B8370039588D /* ReactNativeHelper.m in Sources */,
 				031E1A8E23BE812700B0F813 /* SAROPSession.m in Sources */,
 				031E1DEC23BE812C00B0F813 /* UGMissionTitleCollectionView.m in Sources */,
 				031E19A823BE812600B0F813 /* AppDefine.m in Sources */,

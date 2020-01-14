@@ -57,19 +57,23 @@ _CCRuntimeProperty_Readonly(NSMutableDictionary *, cc_userInfo, [@{} mutableCopy
 }
 
 - (void *)performSelector:(SEL)aSelector arguments:(va_list)argList {
-    return cc_objc_msgSendv(self, NSStringFromSelector(aSelector).UTF8String, argList);
+    return cc_objc_msgSendv1(self, NSStringFromSelector(aSelector).UTF8String, argList);
+}
+
+- (id)performSelector:(SEL)aSelector argArray:(NSArray *)argArray {
+    return cc_objc_msgSendv2(self, NSStringFromSelector(aSelector).UTF8String, argArray);
 }
 
 - (void *)performSelector:(const char *)methodName, ... {
     va_list list;
     va_start(list, methodName);
-    return cc_objc_msgSendv(self, methodName, list);
+    return cc_objc_msgSendv1(self, methodName, list);
 }
 
 + (void *)performSelector:(const char *)methodName, ... {
     va_list list;
     va_start(list, methodName);
-    return cc_objc_msgSendv(self, methodName, list);
+    return cc_objc_msgSendv1(self, methodName, list);
 }
 
 - (void)setValuesWithObject:(NSObject *)obj {

@@ -58,7 +58,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *gameId;      /**<   游戏id*/
 @property (nonatomic, strong) NSString *code;        /**<   游戏icode  */
 @property (nonatomic, strong) NSString *ftime;       /**<   当期期封盘时间  时间挫*/
-
+@property (nonatomic, strong) NSString *roomId;      /**<   房间id*/
 @property (nonatomic, assign) BOOL specialPlay;
 @property (nonatomic, strong) NSString *totalMoney;     /**<   下注金额*/
 @property (nonatomic, strong) NSString *totalNums;      /**<   下注数量*/

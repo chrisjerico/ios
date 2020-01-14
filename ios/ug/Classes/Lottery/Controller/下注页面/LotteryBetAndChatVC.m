@@ -16,7 +16,10 @@
 
 #import "CMTimeCommon.h"
 #import "CCNetworkRequests1+UG.h"
+#import "UGbetModel.h"
 
+#import "RememberPass.h"
+#import "WHC_ModelSqlite.h"
 
 @interface UGCommonLotteryController ()
 @property (nonatomic, strong) UITableView *tableView;                   /**<   玩法列表TableView */
@@ -33,11 +36,14 @@
 @property (nonatomic) SlideSegmentView1 *ssv1;                  /**<    分页布局View */
 @property (nonatomic, strong) UIButton *downBtn;                /**<   下按钮 */
 
+@property (nonatomic, strong) UGCommonLotteryController *vc1;   /**<   下注界面 */
 @property (nonatomic, strong) UGChatViewController *vc2;        /**<   聊天界面 */
 
 @property (nonatomic, strong) UILabel *mLabel;                  /**<    */
 
 @property (nonatomic, strong) NSMutableArray *chatAry ;         /**<   聊天室数据*/
+
+@property (nonatomic, strong) NSMutableDictionary *jsDic ;         /**<   分享数据*/
 @end
 
 
@@ -51,6 +57,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"聊天室";
+    self.tabBarItem.title = @"聊天室";
+    self.tabBarItem.image = [UIImage imageNamed:@"liaotian"];
+    self.tabBarItem.selectedImage = [UIImage imageNamed:@"liaotian"];
+    if (!_nim) {
+        UGNextIssueModel * oc = [UGNextIssueModel new];
+        oc.gameId = @"70";
+        oc.gameType = @"lhc";
+        oc.name = @"lhc";
+        oc.title = @"香港六合彩";
+        _nim = oc;
+    }
     
     __weakSelf_(__self);
     [self xw_addNotificationForName:@"NSSelectChatRoom" block:^(NSNotification *notification) {
@@ -59,9 +77,15 @@
     [self xw_addNotificationForName:@"NSSelectChatRoom_share" block:^(NSNotification *notification) {
         NSLog(@"收到通知1：%@", notification.userInfo);
         NSDictionary *da = (NSDictionary *)notification.userInfo;
-        NSString *js = [da objectForKey:@"sharejson"];
-        NSLog(@"js = %@",js);
-        __self.vc2.shareBetJson = js;
+        
+        __self.jsDic = [da objectForKey:@"jsDic"];
+        SysConf.hasShare = YES;
+
+        
+        
+        
+//        NSLog(@"js = %@",js);
+//       
         [__self selectChatRoom ];
     }];
     // 每次‘彩票下注页’设置导航条按钮时，改为设置LotteryBetAndChatVC页的导航条按钮
@@ -89,7 +113,8 @@
         [backButton setImage:[UIImage imageNamed:@"c_navi_back"] forState:UIControlStateHighlighted];
         [backButton sizeToFit];
         [backButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-            [NavController1 popViewControllerAnimated:true];
+           UIViewController *vc =  [NavController1 popViewControllerAnimated:true];
+
         }];
         UIView *containView = [[UIView alloc] initWithFrame:backButton.bounds];
         [containView addSubview:backButton];
@@ -103,7 +128,7 @@
     
     // 彩票下注页VC
     UGNextIssueModel *model = _nim;
-    UGCommonLotteryController *vc1 = ({
+    _vc1 = ({
         NSDictionary *dict = @{@"cqssc" :@"UGSSCLotteryController",     // 重庆时时彩
                                @"pk10"  :@"UGBJPK10LotteryController",  // pk10
                                @"xyft"  :@"UGBJPK10LotteryController",  // 幸运飞艇
@@ -174,30 +199,32 @@
         vc;
     });
     
-    
-    
+    [self addChildViewController:_vc1];
+    [self addChildViewController:_vc2];
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
     // SlideSegmentView1 分页布局View
-    {
-        
-        [self addChildViewController: vc1];
-        [self addChildViewController:_vc2];
-        
+    if (OBJOnceToken(self)) {
+        __weakSelf_(__self);
         NSArray *titles = @[@"投注区", @"聊天室"];
         SlideSegmentView1 *ssv1 = _ssv1 = _LoadView_from_nib_(@"SlideSegmentView1");
         ssv1.frame = CGRectMake(0, 0, APP.Width, APP.Height);
-        ssv1.viewControllers = @[vc1, _vc2];
+        ssv1.viewControllers = @[_vc1, _vc2];
         for (UIView *v in ssv1.contentViews) {
             [v mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.width.mas_equalTo(ssv1.width);
-                make.height.mas_equalTo(APP.Height - NavController1.navigationBar.by - 40);
+                make.height.mas_equalTo(self.view.height - NavController1.navigationBar.by - 40);
             }];
         }
         
         ssv1.titleBar.updateCellForItemAtIndex = ^(UICollectionViewCell *cell, UILabel *label, NSUInteger idx) {
             label.text = titles[idx];
-            __self.mLabel = label;
+    
             if (idx) {
                 label.text = [NSString stringWithFormat:@"%@▼",titles[idx]];
+                __self.mLabel = label;
                 __self.downBtn = ({
                     UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
                     button.frame = CGRectMake(50, 0, 40, 40);
@@ -252,13 +279,8 @@
                             [chatRoomAry addObject: [UGChatRoomModel mj_objectWithKeyValues:dic]];
                             
                         }
-                        //                        NSLog(@"chatIdAry = %@",chatIdAry);
-                        //                        NSLog(@"chatRoomAry = %@",chatRoomAry);
                         SysConf.typeIdAry = typeIdAry;
                         SysConf.chatRoomAry = chatRoomAry;
-                        //                        NSLog(@"vc2.isLoading = %d",vc2.tgWebView.isLoading);
-                        //                        NSLog(@"vc2.loading = %d",vc2.tgWebView.loading);
-                        //                        NSLog(@"vc2.URL = %@",vc2.tgWebView.URL);
                         
                         if (__self.nim.gameId && SysConf.typeIdAry.count && [SysConf.typeIdAry containsObject:__self.nim.gameId]) {
                             //                            if (![vc2.gameId isEqualToString:__self.nim.gameId]) {
@@ -269,6 +291,7 @@
                                 __self.vc2.roomId = obj.roomId;
                                 __self.vc2.url = [APP chatGameUrl:obj.roomId hide:YES];
                                 //                                NSLog(@"vc2.url = %@",vc2.url);
+                                __self.mLabel.text = [NSString stringWithFormat:@"%@▼",obj.roomName];
                             }
                             
                             //                            }
@@ -279,6 +302,7 @@
                                 __self.vc2.roomId = @"0";
                                 __self.vc2.url = [APP chatGameUrl:__self.vc2.roomId hide:YES];
                                 //                                NSLog(@"vc2.url = %@",vc2.url);
+                                __self.mLabel.text = [NSString stringWithFormat:@"聊天室▼"];
                             }
                             
                         }
@@ -299,8 +323,7 @@
         }];
         [self.view layoutIfNeeded];
         ssv1.selectedIndex = 0;
-    };
-    
+    }
 }
 
 
@@ -345,7 +368,19 @@
                         NSLog(@"房间id 为空：%@",chatId);
                         return ;
                     }
-                    if ([CMCommon stringIsNull:pass]||[pass isEqualToString:@"%@NSCONTEXT"]) {
+                    
+                    //取数据
+                    NSArray * rpArray = [WHCSqlite query:[RememberPass class] where:[NSString stringWithFormat:@"roomId = '%@'",chatId]];
+                    RememberPass *rp = (RememberPass *)[rpArray objectAtIndex:0];
+                    
+                    BOOL isPass = NO;
+                    if (![CMCommon stringIsNull:rp.password]) {
+                        isPass = YES;
+                    } else {
+                        isPass =[CMCommon stringIsNull:pass];
+                    }
+                    
+                    if (isPass) {
                         //                                         if (![vc2.roomId isEqualToString:chatId]) {
                         __self.vc2.roomId = chatId;
                         NSLog(@"房间dic：%@",dic);
@@ -355,6 +390,27 @@
                             NSLog(@"房间 为空：%@",obj);
                             return ;
                         }
+                        
+                        if (__self.jsDic) {
+                            UGbetModel *betModel = [__self.jsDic objectForKey:@"betModel"];
+                            betModel.roomId = chatId;
+                            NSMutableArray *list = [__self.jsDic objectForKey:@"list"];
+                            NSString* paramsjsonString = [betModel toJSONString];
+                            NSLog(@"paramsjsonString = %@",paramsjsonString);
+                            NSString *listjsonString;
+                            {
+                                NSError *error;
+                                NSData *jsonData = [NSJSONSerialization dataWithJSONObject:list options:NSJSONWritingPrettyPrinted error:&error];
+                                listjsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+                                
+                            }
+                            NSLog(@"listjsonString = %@",listjsonString);
+                            NSString *jsonStr = [NSString stringWithFormat:@"shareBet(%@, %@)",listjsonString,paramsjsonString];
+                            NSLog(@"jsonStr = %@",jsonStr);
+                            __self.vc2.shareBetJson = jsonStr;
+                        }
+                        
+                       
                         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                             //需要在主线程执行的代码
                             // 模型转字符串
@@ -387,11 +443,38 @@
                             if ([pass isEqualToString:tf.text]) {
                                 //                                                 if (![vc2.roomId isEqualToString:chatId]) {
                                 __self.vc2.roomId = chatId;
-                                UGChatRoomModel *obj = [SysConf.chatRoomAry objectWithValue:__self.vc2.roomId keyPath:@"roomId"];
-                                
+                                NSLog(@"房间dic：%@",dic);
+                                UGChatRoomModel *obj = [UGChatRoomModel mj_objectWithKeyValues:dic];
+                                NSLog(@"房间obj：%@",obj);
                                 if (!obj) {
                                     NSLog(@"房间 为空：%@",obj);
                                     return ;
+                                }
+ 
+                                //保存密码
+                                RememberPass *rp = [RememberPass new];
+                                rp.roomId = chatId;
+                                rp.roomName = obj.roomName;
+                                rp.password = pass;
+                                [WHCSqlite insert:rp];
+
+                                if (__self.jsDic) {
+                                    UGbetModel *betModel = [__self.jsDic objectForKey:@"betModel"];
+                                    betModel.roomId = chatId;
+                                    NSMutableArray *list = [__self.jsDic objectForKey:@"list"];
+                                    NSString* paramsjsonString = [betModel toJSONString];
+                                    NSLog(@"paramsjsonString = %@",paramsjsonString);
+                                    NSString *listjsonString;
+                                    {
+                                        NSError *error;
+                                        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:list options:NSJSONWritingPrettyPrinted error:&error];
+                                        listjsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+                                        
+                                    }
+                                    NSLog(@"listjsonString = %@",listjsonString);
+                                    NSString *jsonStr = [NSString stringWithFormat:@"shareBet(%@, %@)",listjsonString,paramsjsonString];
+                                    NSLog(@"jsonStr = %@",jsonStr);
+                                    __self.vc2.shareBetJson = jsonStr;
                                 }
                                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                                     //需要在主线程执行的代码

@@ -20,6 +20,7 @@
 @interface UGLHMyAttentionViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *mySegment;
+@property (nonatomic, strong)   UGPostDetailVC *postvc;                                   /**<   帖子 */
 @end
 
 @implementation UGLHMyAttentionViewController
@@ -167,9 +168,11 @@
         } else {
             // 去帖子详情页
             void (^push)(void) = ^{
-                UGPostDetailVC *vc = _LoadVC_from_storyboard_(@"UGPostDetailVC");
-                vc.pm = pm;
-                [NavController1 pushViewController:vc animated:true];
+                if (!self.postvc) {
+                    self.postvc = _LoadVC_from_storyboard_(@"UGPostDetailVC");
+                }
+                self.postvc.pm = pm;
+                [NavController1 pushViewController:self.postvc animated:true];
             };
             
             if (!pm.hasPay && pm.price > 0.000001) {

@@ -19,4 +19,7 @@
 
 - (CCSessionModel *)req:(NSString *)pathComponent :(NSDictionary *)params :(BOOL)isPOST;
 
+
+- (CCSessionModel *)getHotUpdateVersionList:(NSInteger)page;   /**<   获取热更新版本列表 */
+- (CCSessionModel *)downloadFile:(NSString *)url;
 @end

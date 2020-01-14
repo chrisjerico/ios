@@ -36,6 +36,7 @@
 @property (readonly, nonatomic) BOOL classIsCustom;     /**<    所属类是否是自定义的类 */
 
 - (void *)performSelector:(SEL)aSelector arguments:(va_list)argList;
+- (id)performSelector:(SEL)aSelector argArray:(NSArray *)argArray;
 - (void *)performSelector:(const char *)methodName, ...;
 + (void *)performSelector:(const char *)methodName, ...;
 

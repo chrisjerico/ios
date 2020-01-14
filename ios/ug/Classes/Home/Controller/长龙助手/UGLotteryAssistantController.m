@@ -280,6 +280,7 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
                     })
                     .LeeAction(@"取消", nil)
                     .LeeAction(@"分享", ^{//跳到聊天界面，把分享数据传过去
+                        SysConf.hasShare = YES;
                         UGChatViewController *vc = [[UGChatViewController alloc] init];
                         vc.shareBetJson = __self.shareJsonStr;
                         [NavController1 pushViewController:vc animated:YES];
@@ -293,6 +294,7 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
                     .LeeContent(@"是否分享到聊天室")
                     .LeeAction(@"取消", nil)
                     .LeeAction(@"分享", ^{//跳到聊天界面，把分享数据传过去
+                        SysConf.hasShare = YES;
                         UGChatViewController *vc = [[UGChatViewController alloc] init];
                         vc.shareBetJson = __self.shareJsonStr;
                         [NavController1 pushViewController:vc animated:YES];

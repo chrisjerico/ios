@@ -32,7 +32,7 @@
         NSString *number; /**<   开奖号码" */
         NSLog(@"obj.numSxArrary= %@",obj.numSxArrary);
         NSLog(@"obj.numbersArrary= %@",obj.numbersArrary);
-        if (obj.numSxArrary.count&&(obj.numSxArrary.count-1 >0) ){
+        if (obj.numSxArrary.count&&(obj.numSxArrary.count-1 >=0) ){
             sx = [obj.numSxArrary objectAtIndex:(obj.numSxArrary.count-1)];
 //             sx = [obj.numSxArrary objectAtIndex:(obj.count)];
         }
@@ -49,7 +49,7 @@
                 color = @"蓝色";
             }
         }
-        if (obj.numbersArrary.count&&(obj.numbersArrary.count-1 >0)) {
+        if (obj.numbersArrary.count&&(obj.numbersArrary.count-1 >=0)) {
             number = [obj.numbersArrary objectAtIndex:(obj.numbersArrary.count-1)];
 //            number = [obj.numbersArrary objectAtIndex:(obj.count)];
         }

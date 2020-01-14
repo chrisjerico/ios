@@ -267,4 +267,26 @@ chat_type=crm 设置意味着营销qq，可以和陌生人发起临时会话。
 *
 */
 +(float)floatForNSString:(NSString * )str;
+
+/**
+*   针对与iOS7.0、iOS8.0、iOS9.0 WebView的缓存
+*
+*
+*/
++(void)clearWebCache;
+
+/**
+*   针对与iOS9.0 WebView的缓存
+*
+*
+*/
++(void)deleteWebCache;
+//自定义清除缓存
++ (void)deleteCustomWebCache;
+
+#pragma mark -隐藏TabBar
++ (void)hideTabBar ;
+
+#pragma mark -显示TabBar
++ (void)showTabBar;
 @end

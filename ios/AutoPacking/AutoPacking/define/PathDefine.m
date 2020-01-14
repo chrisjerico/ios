@@ -25,12 +25,13 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _username = [NSUserName() isEqualToString:@"fish"] ? @"fish" : @"andrew";
+        _username = [NSUserName() isEqualToString:@"fish"] ? @"fish" : @"Andrew";
         
-        _projectDir = [NSUserName() isEqualToString:@"fish"] ? @"/Users/fish/自动打包/pack/ios" : @"/Users/ug/pack/ios";
         _exportDir = @"/Library/WebServer/Documents/ipa";
+        _logPath = [NSUserName() isEqualToString:@"fish"] ? @"/Users/fish/自动打包/log/PackingLog.txt" : @"/Users/ug/自动打包/log/PackingLog.txt";
+        
+        _projectDir = [NSUserName() isEqualToString:@"fish"] ? @"/Users/fish/自动打包/pack/ios" : @"/Users/ug/自动打包/pack/ios";
         _shellDir = [_projectDir stringByAppendingPathComponent:@"AutoPacking/sh"];
-        _logPath = [NSUserName() isEqualToString:@"fish"] ? @"/Users/fish/自动打包/log/PackingLog.txt" : @"/Users/ug/log/PackingLog.txt";
         
         _tempIpa        = [_projectDir stringByAppendingPathComponent:@"ug.ipa"];
         _tempXcarchive  = [_projectDir stringByAppendingPathComponent:@"ug.xcarchive"];
@@ -40,6 +41,26 @@
         _tempLog        = [_projectDir stringByAppendingPathComponent:@"ShortLog.txt"];
     }
     return self;
+}
+
+- (NSString *)pwd {
+    NSString *path = nil;
+    if ([NSUserName() isEqualToString:@"fish"]) {
+        path = @"/Users/fish/自动打包/APP管理后台密码.txt";
+    } else {
+        path = @"/Users/ug/自动打包/APP管理后台密码.txt";
+    }
+    return [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+}
+
+- (NSString *)privateKey {
+    NSString *path = nil;
+    if ([NSUserName() isEqualToString:@"fish"]) {
+        path = @"/Users/fish/自动打包/私钥.txt";
+    } else {
+        path = @"/Users/ug/自动打包/私钥.txt";
+    }
+    return [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
 }
 
 @end

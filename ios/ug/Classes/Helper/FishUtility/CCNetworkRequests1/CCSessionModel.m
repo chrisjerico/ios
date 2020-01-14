@@ -69,8 +69,11 @@ MJCodingImplementation
         if (__self.filePathBlock)
             __self.filePath = filePath = __self.filePathBlock(targetPath, response).relativePath;
         
-        else if (!__self.filePath.length)
-            filePath = [NSTemporaryDirectory() stringByAppendingPathComponent:response.suggestedFilename];
+        else if (!__self.filePath.length) {
+            NSDateFormatter *df = [NSDateFormatter new];
+            [df setDateFormat:@"yyyyMMddHHmmss"];
+            filePath = [NSTemporaryDirectory() stringByAppendingPathComponent:_NSString(@"%@%@", response.suggestedFilename, [df stringFromDate:[NSDate date]])];
+        }
         
         return [NSURL fileURLWithPath:filePath];
         
@@ -78,7 +81,7 @@ MJCodingImplementation
         // 请求结果
         __self.duration = [[NSDate date] timeIntervalSinceDate:startTime] * 1000;
         __self.response = response;
-        __self.responseObject = filePath.absoluteString;
+        __self.responseObject = filePath.relativePath;
         __self.error = error;
         
         [__self callback];

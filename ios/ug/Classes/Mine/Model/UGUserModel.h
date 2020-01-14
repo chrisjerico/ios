@@ -90,6 +90,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) BOOL isLhcdocVip;         /**<   是否是六合文档的VIP */
 @property (nonatomic, strong) NSString *lhnickname;      /**<   六合昵称 */
+
+
+@property (nonatomic,strong) NSMutableArray *hasPassWordAry;                    /**<   已经输入过密码*/
 + (instancetype)currentUser;
 
 + (void)setCurrentUser:(nullable UGUserModel *)user;

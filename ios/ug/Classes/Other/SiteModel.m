@@ -63,7 +63,7 @@
             site(@"c018",        @"c018hy",     @"174",     @"io.fhpt.H51E9BFB6",       @"https://www.2044234.com",                     @"企业包",     @"2044彩票"),
             site(@"c021",        @"",           @"",        @"io.fhpt.H5A730C2F",       @"",                                            @"企业包",     @"幸运彩票"),
             site(@"c028",        @"",           @"",        @"io.fhpt.H5DBF1426",       @"",                                            @"企业包",     @"鳳凰彩票"),
-            site(@"c053",        @"c053hy",     @"152",     @"io.fhpt.H563009C8",       @"https://988c53.com",                          @"企业包",     @"彩53"),  // 极光 账号：xuduoduo2018402@gmail.com 密码：Xusiling2018402.| 封装是超级签名 https://dev.app2.xin/index  账号：14779887196  密码：Xusiling2018402
+            site(@"c053",        @"c053ys",     @"152",     @"io.fhpt.H563009C8",       @"https://988c53.com",                          @"企业包",     @"彩53"),  // 极光 账号：xuduoduo2018402@gmail.com 密码：Xusiling2018402.| 封装是超级签名 https://dev.app2.xin/index  账号：14779887196  密码：Xusiling2018402
             site(@"c062",        @"c062hy",     @"153",     @"io.fhpt.H5AF9FDA4",       @"",                                            @"企业包",     @"六合彩票"),
             site(@"c067",        @"",           @"",        @"io.fhpt.H59B0EF77",       @"",                                            @"企业包",     @"乐盈彩票"),
             site(@"c068",        @"",           @"",        @"io.fhpt.H5E98EDD5",       @"",                                            @"企业包",     @"⾦牌⼿游"),
@@ -164,7 +164,8 @@
             site(@"c008",        @"c008hy",     @"217",     @"io.fhpt.YSFC008",         @"https://888123app.com",                       @"企业包",     @"888彩票"),//极光 bghguiyg@163.com qwe5794124A
             site(@"c130",        @"",           @"",        @"io.fhpt.H5A94011E",       @"",                                            @"企业包",     @"必发彩票"),
             site(@"c136",        @"",           @"",        @"io.fhpt.H5F60C8D2",       @"",                                            @"企业包",     @"⻓诚彩票"),
-            site(@"c199",        @"c199hy",     @"220",     @"io.fhpt.YSAC199",         @"https://yhfhapp.com/",                        @"企业包",     @"银河贵宾会"),//https://9587zz.com
+            site(@"c199",        @"c199hy",     @"220",     @"io.fhpt.YSAC199",         @"https://yhfhapp.com",                         @"企业包",     @"银河贵宾会"),//https://9587zz.com
+            site(@"c203",        @"c203hy",     @"235",     @"io.fhpt.YSFC203",         @"https://xpjcpapp.com",                        @"企业包",     @"新葡京彩票"),// 第二条域名：https://455126.com
             
             
             site(@"test103",     @"test103",    @"222",     @"com.UGGame.cp",           @"http://103.9.230.243",                        @"内测包",     @"test103"),
@@ -175,7 +176,7 @@
             site(@"test03",      @"",           @"",        @"com.UGGame.chat",         @"http://test03.6yc.com",                       @"内测包",     @"test03"),    // (朗朗)
             site(@"test20",      @"",           @"",        @"com.UGGame.cp",           @"http://test20.6yc.com",                       @"内测包",     @"test20"),    // (朗朗)
             site(@"test29",      @"",           @"",        @"com.UGGame.cp",           @"http://test29f.fhptcdn.com",                  @"内测包",     @"test29"),// (小东)
-            site(@"test19",      @"",           @"",        @"com.UGGame.cp",           @"http://test19.6yc.com",                       @"内测包",     @"test19"),
+            site(@"test19",      @"test19",     @"214",        @"com.UGGame.cp",           @"http://test19.6yc.com",                       @"内测包",     @"test19"),
             site(@"test31",      @"",           @"",        @"com.UGGame.cp",           @"http://test31.6yc.com",                       @"内测包",     @"test31"),
         
                     // 站点编号 / 上传编号 / 上传ID / 签名方式 / APP名 / bundleID / 接口域名

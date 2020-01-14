@@ -358,6 +358,7 @@ static UGTabbarController *_tabBarVC = nil;
 	// 由 UGMobileMenu控制显示的ViewController
 	UIViewController *vc = ((UINavigationController *)viewController).viewControllers.firstObject;
 	NSLog(@"vc = %@",vc);
+    
 	// 控制器需要重新加载
 	if (vc.class != mm.cls) {
 		[mm createViewController:^(__kindof UIViewController * _Nonnull vc) {
@@ -386,8 +387,6 @@ static UGTabbarController *_tabBarVC = nil;
 }
 
 - (void)loadMessageList {
-	
-	
 	if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
 		return;
 	}
@@ -396,47 +395,88 @@ static UGTabbarController *_tabBarVC = nil;
 							 @"token":[UGUserModel currentUser].sessid,
 							 @"type":@""
 	};
+    
+    void (^readMessage)(UGMessageModel *) = ^(UGMessageModel *mm) {
+        NSDictionary *params = @{@"id":mm.messageId,
+                                 @"token":[UGUserModel currentUser].sessid,
+                                 };
+        [CMNetwork modifyMessageStateWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+            [CMResult processWithResult:model success:^{
+                mm.isRead = YES;
+            } failure:^(id msg) {}];
+        }];
+    };
 	dispatch_suspend(APP.messageRequestTimer);
 	[CMNetwork getMessageListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
 		[CMResult processWithResult:model success:^{
-			
-			UGMessageListModel *message = model.data;
-			NSArray *array = message.list;
-			
-			NSArray<UGMessageModel *> * unreadArray = [array filteredArrayUsingPredicate: [NSPredicate predicateWithBlock:^BOOL(UGMessageModel * message , NSDictionary<NSString *,id> * _Nullable bindings) {
-				
-				return !message.isRead;
-			}]];
+            NSDate *lastDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"最新站内信的创建时间"];
+			UGMessageListModel *mlm = model.data;
+			NSArray <UGMessageModel *>*unreadArray = [mlm.list filteredArrayUsingPredicate: [NSPredicate predicateWithBlock:^BOOL(UGMessageModel *mm, NSDictionary<NSString *,id> * _Nullable bindings) {
+                NSDate *date = [mm.updateTime dateWithFormat:@"yyyy-MM-dd HH:mm:ss"];
+                if ([date isLaterThan:lastDate]) {
+                    [[NSUserDefaults standardUserDefaults] setObject:date forKey:@"最新站内信的创建时间"];
+                    return !mm.isRead;
+                }
+                return false;
+            }]];
+            
 			if (unreadArray.count > 0) {
-				//				[UIAlertController alertWithTitle:@"您有新的站内信" msg: nil btnTitles:@[@""]];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					UIAlertController * ac = [UIAlertController alertControllerWithTitle:@"您有新的站内信" message:nil preferredStyle:UIAlertControllerStyleAlert];
-					[ac addAction: [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-						dispatch_resume(APP.messageRequestTimer);
-						
-					}]];
-					[ac addAction:[UIAlertAction actionWithTitle:@"查看" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-						dispatch_resume(APP.messageRequestTimer);
-						[NavController1 pushViewController:[[UGMailBoxTableViewController alloc] initWithStyle:UITableViewStyleGrouped] animated:true];
-
-					}]];
-					[[UINavigationController current] presentViewController:ac animated:true completion:nil];
-				});
-				
-				
+				for (UGMessageModel *model in [unreadArray reverseObjectEnumerator]) {
+                    if (Skin1.isBlack) {
+                        [LEEAlert alert].config
+                        .LeeAddTitle(^(UILabel *label) {
+                            label.text = model.title;
+                            label.textColor = [UIColor whiteColor];
+                        })
+                        .LeeAddContent(^(UILabel *label) {
+                            NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithData:[model.content dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+                            NSMutableParagraphStyle *ps = [NSMutableParagraphStyle new];
+                            ps.lineSpacing = 5;
+                            [mas addAttributes:@{NSParagraphStyleAttributeName:ps,} range:NSMakeRange(0, mas.length)];
+                            
+                            // 替换文字颜色
+                            NSAttributedString *as = [mas copy];
+                            for (int i=0; i<as.length; i++) {
+                                NSRange r = NSMakeRange(0, as.length);
+                                NSMutableDictionary *dict = [as attributesAtIndex:i effectiveRange:&r].mutableCopy;
+                                UIColor *c = dict[NSForegroundColorAttributeName];
+                                if (fabs(c.red - c.green) < 0.05 && fabs(c.green - c.blue) < 0.05) {
+                                    dict[NSForegroundColorAttributeName] = Skin1.textColor2;
+                                    [mas addAttributes:dict range:NSMakeRange(i, 1)];
+                                }
+                            }
+                            
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                label.attributedText = mas;
+                            });
+                        })
+                        .LeeHeaderColor(Skin1.bgColor)
+                        .LeeAction(@"确定", ^{
+                            readMessage(model);
+                            dispatch_resume(APP.messageRequestTimer);
+                        })
+                        .LeeShow(); // 设置完成后 别忘记调用Show来显示
+                    } else {
+                        [LEEAlert alert].config
+                        .LeeTitle(model.title)
+                        .LeeAddContent(^(UILabel *label) {
+                            label.attributedText = [[NSAttributedString alloc] initWithData:[model.content dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+                        })
+                        .LeeAction(@"确定", ^{
+                            readMessage(model);
+                            dispatch_resume(APP.messageRequestTimer);
+                        })
+                        .LeeShow(); // 设置完成后 别忘记调用Show来显示
+                    }
+                }
 			} else {
 				dispatch_resume(APP.messageRequestTimer);
-				
 			}
 			
 		} failure:^(id msg) {
 			dispatch_resume(APP.messageRequestTimer);
-			
-			//            [SVProgressHUD showErrorWithStatus:msg];
 		}];
-		
 	}];
-	
 }
 - (void)beginMessageRequest {
 	WeakSelf;

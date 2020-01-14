@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *submitBtn;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
+@property (nonatomic, strong)   UGPostDetailVC *postvc;                                   /**<   帖子 */
 
 @end
 
@@ -150,13 +151,15 @@
     
     __weakSelf_(__self);
     void (^push)(void) = ^{
-        UGPostDetailVC *vc = _LoadVC_from_storyboard_(@"UGPostDetailVC");
-        vc.pm = pm;
-        vc.willComment = willComment;
-        vc.didCommentOrLike = ^(UGLHPostModel *pm) {
+        if (!self.postvc) {
+            self.postvc = _LoadVC_from_storyboard_(@"UGPostDetailVC");
+        }
+        self.postvc.pm = pm;
+        self.postvc.willComment = willComment;
+        self.postvc.didCommentOrLike = ^(UGLHPostModel *pm) {
             [__self.tableView reloadRowAtIndexPath:indexPath withRowAnimation:UITableViewRowAnimationNone];
         };
-        [NavController1 pushViewController:vc animated:true];
+        [NavController1 pushViewController:self.postvc animated:true];
     };
     
     if (!pm.hasPay && pm.price > 0.000001) {

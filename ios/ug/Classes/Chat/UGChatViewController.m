@@ -20,6 +20,8 @@
     
 }
 
+
+- (BOOL)允许未登录访问 { return false; }
 - (BOOL)允许游客访问 { return true; }
 
 - (void)viewDidLoad {
@@ -127,6 +129,11 @@
                   if ([obj isKindOfClass:[NSNumber class]] && [obj boolValue]) {
                       [__self.tgWebView evaluateJavaScript:__self.shareBetJson completionHandler:^(id _Nullable result, NSError * _Nullable error) {
                           NSLog(@"分享结果：%@----%@", result, error);
+                           SysConf.hasShare = NO;
+//                           [CMCommon showTitle:[NSString stringWithFormat:@"分享结果成功！%@,hasShare =%d",__self.shareBetJson,SysConf.hasShare]];
+                            NSLog(@"分享结果：%@", __self.shareBetJson);
+        
+                         
                       }];
                       [__timer invalidate];
                       __timer = nil;
@@ -154,11 +161,16 @@
                    if ([obj isKindOfClass:[NSNumber class]] && [obj boolValue]) {
                        [__self.tgWebView evaluateJavaScript:__self.changeRoomJson completionHandler:^(id _Nullable result, NSError * _Nullable error) {
                            NSLog(@"切换结果：%@----%@", result, error);
-                           [CMCommon showSystemTitle:[NSString stringWithFormat:@"切换成功！%@",__self.changeRoomJson]];
+//                           [CMCommon showSystemTitle:[NSString stringWithFormat:@"切换成功！%@   hasShare = %d ",__self.changeRoomJson,SysConf.hasShare]];
                            
-                           if (__self.shareBetJson) {
-                               [__self goShareBetJson];
-                           }
+//                           [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                               //需要在主线程执行的代码
+                                
+                               if (__self.shareBetJson && SysConf.hasShare) {
+                                   [__self goShareBetJson];
+                               }
+//                           }];
+
                        }];
                        [__timer invalidate];
                        __timer = nil;

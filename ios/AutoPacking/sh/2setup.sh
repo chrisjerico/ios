@@ -29,3 +29,5 @@ mv tmp.txt ug.xcodeproj/project.pbxproj
 rm -rf ug/Classes/Resources/Assets.xcassets/AppIcon.appiconset
 cp -rf "AutoPacking/打包文件/各站点AppIcon（拷贝出来使用）/$__SiteId/AppIcon.appiconset" ug/Classes/Resources/Assets.xcassets/AppIcon.appiconset
 
+# 删除开发者的用户名
+/usr/libexec/PlistBuddy -c 'Delete :Dev1' ug/Classes/Other/Info.plist
