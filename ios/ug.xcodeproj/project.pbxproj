@@ -4807,6 +4807,7 @@
 		031E160723BE812400B0F813 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				03314FD623CDE0B10070CB54 /* 火山橙 */,
 				03A5D37F23BFA4480055A998 /* 金沙主题 */,
 				031E164723BE812400B0F813 /* 六合板块 */,
 				031E164D23BE812400B0F813 /* 彩种规则 */,
@@ -6977,6 +6978,13 @@
 				03314FD323CDA0900070CB54 /* HSC_Mine.storyboard */,
 			);
 			path = "火山橙模板";
+			sourceTree = "<group>";
+		};
+		03314FD623CDE0B10070CB54 /* 火山橙 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "火山橙";
 			sourceTree = "<group>";
 		};
 		036CA77B23C759BF007BBD25 /* 我的推广 */ = {

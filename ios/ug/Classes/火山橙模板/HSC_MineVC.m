@@ -8,6 +8,7 @@
 
 #import "HSC_MineVC.h"
 #import "UGFundsViewController.h"
+#import "UGMenuTableViewCell.h"
 
 @interface HSC_MineVC ()
 @property (weak, nonatomic) IBOutlet UIView *headTopBackDropView;
@@ -15,16 +16,34 @@
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *balanceLabel;
 @property (weak, nonatomic) IBOutlet UIButton *refreshButton;
-
-@property (nonatomic, strong)NSArray * items;
+@property (nonatomic, strong)NSArray<UGUserCenterItem *> * items;
 @end
-
 @implementation HSC_MineVC
 
+- (void)dealloc
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+- (void)awakeFromNib {
+	[super awakeFromNib];
+	[self.tableView registerNib:[UINib nibWithNibName:@"UGMenuTableViewCell" bundle:nil] forCellReuseIdentifier:@"UGMenuTableViewCell"];
+	self.headTopBackDropView.backgroundColor = Skin1.navBarBgColor;
+	
+	WeakSelf;
+	weakSelf.items = SysConf.userCenter.copy;
+	[weakSelf.tableView reloadData];
+	SANotificationEventSubscribe(UGNotificationGetSystemConfigComplete, self, ^(typeof (self) self, id obj) {
+		
+		weakSelf.items = SysConf.userCenter.copy;
+		[weakSelf.tableView reloadData];
+	});
+	[self setupUserInfo];
+	[self getUserInfo];
+	[self.tableView reloadData];
+}
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	self.headTopBackDropView.backgroundColor = Skin1.navBarBgColor;
-	[self getUserInfo];
+	
 }
 
 #pragma mark - Table view data source
@@ -34,18 +53,15 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return 0;
+	return self.items.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-	FastSubViewCode(cell);
-	UGUserCenterItem *uci = tableView.dataArray[indexPath.row];
-	subLabel(@"标题Label").text = uci.name;
-	[subImageView(@"图片ImageView") sd_setImageWithURL:[NSURL URLWithString:uci.logo] placeholderImage:[UIImage imageNamed:uci.lhImgName]];
-	subLabel(@"红点Label").text = @([UGUserModel currentUser].unreadMsg).stringValue;
-	subLabel(@"红点Label").hidden = !(uci.code==UCI_站内信 && [UGUserModel currentUser].unreadMsg);
+	UGMenuTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UGMenuTableViewCell" forIndexPath:indexPath];
+	UGUserCenterItem *uci = self.items[indexPath.row];
+	cell.imgName = uci.lhImgName;
+	cell.title = uci.name;
 	return cell;
 }
 
@@ -55,12 +71,21 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-	UGUserCenterItem *uci = tableView.dataArray[indexPath.row];
+	UGUserCenterItem *uci = self.items[indexPath.row];
 	[NavController1 pushVCWithUserCenterItemType:uci.code];
 }
 
 
 - (IBAction)logoutButtonTaped:(id)sender {
+	[QDAlertView showWithTitle:@"温馨提示" message:@"确定退出账号" cancelButtonTitle:@"取消" otherButtonTitle:@"确定" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+		if (buttonIndex) {
+			dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+				[CMNetwork userLogoutWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:nil];
+				UGUserModel.currentUser = nil;
+				SANotificationEventPost(UGNotificationUserLogout, nil);
+			});
+		}
+	}];
 }
 - (IBAction)balanceRefreshButtonTaped:(id)sender {
 	[self getUserInfo];
@@ -84,22 +109,34 @@
 	}
 }
 - (IBAction)withDrawButtonTaped:(id)sender {
-	//    //提现
+	//  提现
 	UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
 	fundsVC.selectIndex = 1;
 	[self.navigationController pushViewController:fundsVC animated:YES];
 }
 - (IBAction)rechargeButtonTaped:(id)sender {
-	//    //存款
+	//  存款
 	UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
 	fundsVC.selectIndex = 0;
 	[self.navigationController pushViewController:fundsVC animated:YES];
 }
 - (IBAction)accountDetailButtonTaped:(id)sender {
+	//  存款
+	UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
+	fundsVC.selectIndex = 4;
+	[self.navigationController pushViewController:fundsVC animated:YES];
 }
 - (IBAction)rechargeRecordButtonTaped:(id)sender {
+	//  存款记录
+	UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
+	fundsVC.selectIndex = 2;
+	[self.navigationController pushViewController:fundsVC animated:YES];
 }
 - (IBAction)withDrawRecordButtonTaped:(id)sender {
+	// 取款记录
+	UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
+	fundsVC.selectIndex = 3;
+	[self.navigationController pushViewController:fundsVC animated:YES];
 }
 - (IBAction)transferButtonTaped:(id)sender {
 	//转换
@@ -123,6 +160,7 @@
 
 - (void)getUserInfo {
 	[self startAnimation];
+	WeakSelf;
 	NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
 	[CMNetwork getUserInfoWithParams:params completion:^(CMResult<id> *model, NSError *err) {
 		[CMResult processWithResult:model success:^{
@@ -131,22 +169,21 @@
 			user.sessid = oldUser.sessid;
 			user.token = oldUser.token;
 			UGUserModel.currentUser = user;
-			
-			[self getSystemConfig];
+			[weakSelf getSystemConfig];
 		} failure:^(id msg) {
-			[self stopAnimation];
+			[weakSelf stopAnimation];
 		}];
 	}];
 }
 
 - (void)getSystemConfig {
-	
+	WeakSelf;
 	[CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
 		[CMResult processWithResult:model success:^{
 			UGSystemConfigModel *config = model.data;
 			UGSystemConfigModel.currentConfig = config;
-			[self setupUserInfo];
-			[self stopAnimation];
+			[weakSelf setupUserInfo];
+			[weakSelf stopAnimation];
 			SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
 		} failure:^(id msg) {
 			[SVProgressHUD dismiss];
@@ -155,5 +192,8 @@
 }
 -(void)setupUserInfo {
 	
+	self.userNameLabel.text = [UGUserModel currentUser].username;
+	[self.avatarImageView sd_setImageWithURL: [NSURL URLWithString: UGUserModel.currentUser.avatar] placeholderImage: [UIImage imageNamed:@"js_sidebar_avatar_placeholder"]];
+	self.balanceLabel.text = [UGUserModel currentUser].balance;
 }
 @end

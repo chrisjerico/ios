@@ -193,12 +193,6 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7eC-on-LnN">
                                             <rect key="frame" x="0.0" y="0.0" width="103.5" height="60"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="McL-1f-bm6">
-                                                    <rect key="frame" x="0.0" y="0.0" width="103.5" height="60"/>
-                                                    <connections>
-                                                        <action selector="accountDetailButtonTaped:" destination="Dqm-cv-kOm" eventType="touchUpInside" id="bVa-ed-j5y"/>
-                                                    </connections>
-                                                </button>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="mCf-yz-KHR">
                                                     <rect key="frame" x="0.0" y="10" width="103.5" height="45"/>
                                                     <subviews>
@@ -213,6 +207,12 @@
                                                         </label>
                                                     </subviews>
                                                 </stackView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="McL-1f-bm6">
+                                                    <rect key="frame" x="0.0" y="0.0" width="103.5" height="60"/>
+                                                    <connections>
+                                                        <action selector="accountDetailButtonTaped:" destination="Dqm-cv-kOm" eventType="touchUpInside" id="bVa-ed-j5y"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <constraints>
@@ -229,12 +229,6 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q6k-89-J9w">
                                             <rect key="frame" x="103.5" y="0.0" width="103.5" height="60"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="48y-ws-YZ7">
-                                                    <rect key="frame" x="0.0" y="0.0" width="103.5" height="60"/>
-                                                    <connections>
-                                                        <action selector="rechargeRecordButtonTaped:" destination="Dqm-cv-kOm" eventType="touchUpInside" id="zdT-Wk-pHk"/>
-                                                    </connections>
-                                                </button>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="dLD-ox-N7E">
                                                     <rect key="frame" x="0.0" y="10" width="103.5" height="45"/>
                                                     <subviews>
@@ -249,6 +243,12 @@
                                                         </label>
                                                     </subviews>
                                                 </stackView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="48y-ws-YZ7">
+                                                    <rect key="frame" x="0.0" y="0.0" width="103.5" height="60"/>
+                                                    <connections>
+                                                        <action selector="rechargeRecordButtonTaped:" destination="Dqm-cv-kOm" eventType="touchUpInside" id="zdT-Wk-pHk"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <constraints>
@@ -265,12 +265,6 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eFh-hg-1wn">
                                             <rect key="frame" x="207" y="0.0" width="103.5" height="60"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4lN-UM-Iyd">
-                                                    <rect key="frame" x="0.0" y="0.0" width="103.5" height="60"/>
-                                                    <connections>
-                                                        <action selector="withDrawRecordButtonTaped:" destination="Dqm-cv-kOm" eventType="touchUpInside" id="wOE-jS-1vd"/>
-                                                    </connections>
-                                                </button>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="ZUz-Y9-yU9">
                                                     <rect key="frame" x="0.0" y="10" width="103.5" height="45"/>
                                                     <subviews>
@@ -285,6 +279,12 @@
                                                         </label>
                                                     </subviews>
                                                 </stackView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4lN-UM-Iyd">
+                                                    <rect key="frame" x="0.0" y="0.0" width="103.5" height="60"/>
+                                                    <connections>
+                                                        <action selector="withDrawRecordButtonTaped:" destination="Dqm-cv-kOm" eventType="touchUpInside" id="wOE-jS-1vd"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <constraints>
@@ -301,12 +301,6 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oFJ-Vz-xyW">
                                             <rect key="frame" x="310.5" y="0.0" width="103.5" height="60"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E0P-xr-FTY">
-                                                    <rect key="frame" x="0.0" y="0.0" width="103.5" height="60"/>
-                                                    <connections>
-                                                        <action selector="transferButtonTaped:" destination="Dqm-cv-kOm" eventType="touchUpInside" id="xTX-KA-95a"/>
-                                                    </connections>
-                                                </button>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="O4m-2e-oDJ">
                                                     <rect key="frame" x="0.0" y="10" width="103.5" height="45"/>
                                                     <subviews>
@@ -321,6 +315,12 @@
                                                         </label>
                                                     </subviews>
                                                 </stackView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E0P-xr-FTY">
+                                                    <rect key="frame" x="0.0" y="0.0" width="103.5" height="60"/>
+                                                    <connections>
+                                                        <action selector="transferButtonTaped:" destination="Dqm-cv-kOm" eventType="touchUpInside" id="xTX-KA-95a"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <constraints>

@@ -34,7 +34,7 @@
     self.titleLabel.text = title;
     if ([@"站内信" isEqualToString:title]) {
         self.numLabel.hidden = NO;
-        
+		self.numLabel.text = [UGUserModel currentUser].unreadMsg > 0 ? [NSString stringWithFormat:@"%ld", (long)[UGUserModel currentUser].unreadMsg] : nil;
     }else {
         self.numLabel.hidden = YES;
     }
