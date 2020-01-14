@@ -38,12 +38,35 @@
 
 - (void)bind: (NSArray<GameModel *> *)items {
 	
+	for (JS_HomePromoteView * promot in self.promots) {
+		[promot removeFromSuperview];
+	}
+	
+	NSMutableArray * promots = [NSMutableArray array];
+	UIView * temp;
+	
 	for (NSInteger i = 0; i < items.count; i ++) {
 		[self.promots[i] bind:items[i]];
+		JS_HomePromoteView * promot = [[NSBundle mainBundle] loadNibNamed:@"JS_HomePromoteView" owner:self options:nil].firstObject;
+		[promot bind:items[i]];
+		[promots appendObject:promot];
+		[self addSubview:promot];
+		
+		[promot mas_makeConstraints:^(MASConstraintMaker *make) {
+			if (temp) {
+				make.top.equalTo(temp.mas_bottom).offset(1);
+			} else {
+				make.top.equalTo(self).offset(1);
+			}
+			make.left.right.equalTo(self);
+			make.height.equalTo(@80);
+		}];
+		temp = promot;
 		if (i == 1) {
 			break;
 		}
 	}
+	self.promots = promots.copy;
 	
 }
 

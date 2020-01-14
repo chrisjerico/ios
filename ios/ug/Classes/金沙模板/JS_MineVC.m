@@ -91,7 +91,7 @@
 	[rightButton addTarget:self action:@selector(rightButtonTaped)];
 	[rightButton setImage:[UIImage imageNamed:@"gengduo"] forState:UIControlStateNormal];
 //	[rightButton sd_setImageWithURL:[NSURL URLWithString:UserI.avatar] forState:UIControlStateNormal];
-	
+	self.balanceLabel2.text = @"";
 }
 - (void)rightButtonTaped {
 	[JS_Sidebar show];
@@ -278,6 +278,7 @@
 	
 	double floatString = [user.balance doubleValue];
 	self.userMoneyLabel.text =  [NSString stringWithFormat:@"￥%.2f",floatString];
+	self.balanceLabel2.text =  [NSString stringWithFormat:@"￥%.2f",floatString];
 	//进度条
 	double progress = user.taskRewardTotal.doubleValue/user.nextLevelInt.doubleValue;
 	self.progressLayer.path = [self progressPathWithProgress:progress].CGPath;
