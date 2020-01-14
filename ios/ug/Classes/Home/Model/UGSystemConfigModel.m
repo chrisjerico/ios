@@ -33,6 +33,7 @@
 #import "UGBMpreferentialViewController.h"
 #import "UGBMLotteryHomeViewController.h"
 #import "JS_MineVC.h"
+#import "HSC_MineVC.h"
 
 
 #define filePath  [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]stringByAppendingPathComponent:@"UGSystemConfigModel"]
@@ -169,6 +170,9 @@ UGSystemConfigModel *currentConfig = nil;
 		} else if ([Skin1.skitType isEqualToString:@"金沙主题"]) {
             return MM_我的_金沙;
 
+		} else if ([Skin1.skitType isEqualToString:@"火山橙"]) {
+            return MM_我的_火山橙;
+
 		}
     }
     if (_type == MM_推广收益 && UGLoginIsAuthorized() && !UserI.isAgent) {
@@ -269,6 +273,10 @@ UGSystemConfigModel *currentConfig = nil;
         }];
 	} else if (self.type == MM_我的_金沙) {
 		JS_MineVC * vc = [[UIStoryboard storyboardWithName:@"JS_Mine" bundle:nil] instantiateInitialViewController];
+        completion(vc);
+
+	}else if (self.type == MM_我的_火山橙) {
+		HSC_MineVC * vc = [[UIStoryboard storyboardWithName:@"HSC_Mine" bundle:nil] instantiateInitialViewController];
         completion(vc);
 
 	} else {

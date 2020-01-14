@@ -159,7 +159,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *bottomTitle;  /**<   底部内容文字 */
 @property (weak, nonatomic) IBOutlet UIButton *preferentialBtn;/**<   底部优惠按钮 */
-@property (weak, nonatomic) IBOutlet JS_HomePromoteContainerView *homePromoteContainer;
+@property (weak, nonatomic) IBOutlet JS_HomePromoteContainerView *homePromoteContainer;  /**<   站长推荐 */
 
 @property (weak, nonatomic) IBOutlet UIView *homeAdsBigBgView;           /**<   首页广告图片大背景View */
 @property (nonatomic, strong) NSArray <UGhomeAdsModel *> *homeAdsArray;   /**<   首页广告图片 */
@@ -221,7 +221,8 @@
 		}
 		NSDictionary *dict = @{@"六合资料":@[_rollingView, _LhPrize_FView, _liuheForumContentView, _promotionView, _bottomView],
 							   @"黑色模板":@[_bannerBgView, _gameTypeView.superview, _rankingView, _bottomView],
-							   @"金沙主题":@[_bannerBgView, _rollingView, _homePromoteContainer, _gameTypeView.superview, _promotionView, _rankingView, _bottomView],
+							   @"金沙主题":@[_bannerBgView, _rollingView, _gameNavigationView.superview, _homePromoteContainer, _gameTypeView.superview, _promotionView, _rankingView, _bottomView],
+							   @"火山橙":@[_bannerBgView, _rollingView, _gameNavigationView.superview, _gameTypeView.superview, _rankingView, _bottomView],
 							   
 		};
 		
@@ -785,9 +786,11 @@
 
 // 自定义游戏列表
 - (void)getCustomGameList {
+	
 	[SVProgressHUD showWithStatus: nil];
+	WeakSelf;
 	[CMNetwork getCustomGamesWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-		[self.contentScrollView.mj_header endRefreshing];
+		[weakSelf.contentScrollView.mj_header endRefreshing];
 		[CMResult processWithResult:model success:^{
 			[SVProgressHUD dismiss];
 			if (model.data) {
@@ -798,8 +801,8 @@
 					// 首页导航
 					NSArray<GameModel *> *sourceData = customGameModel.navs;
 					
-					self.gameNavigationView.superview.hidden = !sourceData.count;
-					self.gameNavigationView.sourceData = sourceData;
+					weakSelf.gameNavigationView.superview.hidden = !sourceData.count;
+					weakSelf.gameNavigationView.sourceData = sourceData;
 					// 设置任务大厅页的标题
 					GameModel *gm = [sourceData objectWithValue:@13 keyPath:@"subId"];
 					[UGMissionCenterViewController setTitle:gm.name.length ? gm.name : gm.title];
@@ -809,29 +812,32 @@
 						 #917 c190首页中间游戏导航需增加logo图标，游戏导航栏可进行滑动
 						 */
 						if ([SysConf.mobileTemplateCategory isEqualToString:@"9"] && [@"c190" containsString:APP.SiteId]) {
-							self.gameNavigationViewHeight.constant = 80;
+							weakSelf.gameNavigationViewHeight.constant = 80;
 						} else {
-							self.gameNavigationViewHeight.constant = ((sourceData.count - 1)/5 + 1)*80;
+							weakSelf.gameNavigationViewHeight.constant = ((sourceData.count - 1)/5 + 1)*80;
 							
 						}
-						[self.view layoutIfNeeded];
+						[weakSelf.view layoutIfNeeded];
 					}
 					// 游戏列表
-					self.gameTypeView.gameTypeArray = self.gameCategorys = customGameModel.icons.mutableCopy;
+					self.gameTypeView.gameTypeArray = weakSelf.gameCategorys = customGameModel.icons.mutableCopy;
 					
 					if ([Skin1.skitType isEqualToString:@"金沙主题"]) {
-						NSArray<GameModel *> * homePromoteItems = [self.gameCategorys filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(GameCategoryModel * _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+						NSArray<GameModel *> * homePromoteItems = [weakSelf.gameCategorys filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(GameCategoryModel * _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
 							return [evaluatedObject.iid isEqualToString:@"7"];
 						}]][0].list;
-						[self.homePromoteContainer bind: homePromoteItems];
-						self.gameTypeView.gameTypeArray = self.gameCategorys = [customGameModel.icons filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(GameCategoryModel *  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
-							return [evaluatedObject.iid isEqualToString:@"7"];
+						if (homePromoteItems.count > 1) {
+							[weakSelf.homePromoteContainer bind: homePromoteItems];
+							
+						} else if ([weakSelf.contentStackView.arrangedSubviews containsObject:weakSelf.homePromoteContainer])  {
+							[weakSelf.contentStackView removeArrangedSubview:weakSelf.homePromoteContainer];
+							[weakSelf.homePromoteContainer removeFromSuperview];
+						}
+						weakSelf.gameTypeView.gameTypeArray = weakSelf.gameCategorys = [customGameModel.icons filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(GameCategoryModel *  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+							return ![evaluatedObject.iid isEqualToString:@"7"];
 						}]].mutableCopy;
 					}
-					
-					
-					
-					
+	
 				});
 			}
 		} failure:^(id msg) {

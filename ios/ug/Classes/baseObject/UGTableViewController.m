@@ -7,6 +7,7 @@
 //
 
 #import "UGTableViewController.h"
+#import "HSC_MineVC.h"
 
 @interface UGTableViewController ()
 
@@ -16,12 +17,23 @@
 
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    self.edgesForExtendedLayout = UIRectEdgeNone;
-    self.extendedLayoutIncludesOpaqueBars = NO;
-    
-
+	[super viewDidLoad];
+	
+	self.edgesForExtendedLayout = UIRectEdgeNone;
+	self.extendedLayoutIncludesOpaqueBars = NO;
+	
+	
+}
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	NSArray * hideNavgationbarTypeSet = @[[HSC_MineVC class]];
+	if ([hideNavgationbarTypeSet containsValue:self.class]) {
+		[self.navigationController setNavigationBarHidden:true];
+	} else {
+		[self.navigationController setNavigationBarHidden:false];
+		
+	}
+	
 }
 
 

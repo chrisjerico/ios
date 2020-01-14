@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="K3G-SB-2oe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="K3G-SB-2oe">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -59,6 +59,9 @@
                                                     <constraint firstAttribute="height" constant="25" id="xbd-a1-26A"/>
                                                 </constraints>
                                                 <state key="normal" image="shuaxin"/>
+                                                <connections>
+                                                    <action selector="refreshBalance:" destination="K3G-SB-2oe" eventType="touchUpInside" id="gVz-v8-JqH"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="---" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MF3-Op-WtQ">
                                                 <rect key="frame" x="93" y="11" width="23" height="20"/>
@@ -108,6 +111,9 @@
                                                     <constraint firstAttribute="width" constant="80" id="TrW-9I-P73"/>
                                                 </constraints>
                                                 <state key="normal" image="missionhall"/>
+                                                <connections>
+                                                    <action selector="showMissionVC:" destination="K3G-SB-2oe" eventType="touchUpInside" id="uI7-Wr-6Wk"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥               " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y2E-s2-0Fo">
                                                 <rect key="frame" x="100" y="37" width="81" height="22"/>
@@ -125,6 +131,9 @@
                                                     <constraint firstAttribute="width" constant="80" id="l1b-l8-NSF"/>
                                                 </constraints>
                                                 <state key="normal" image="dailysign"/>
+                                                <connections>
+                                                    <action selector="showSign:" destination="K3G-SB-2oe" eventType="touchUpInside" id="9Ob-vI-Tk2"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalHuggingPriority="253" horizontalCompressionResistancePriority="753" verticalCompressionResistancePriority="753" text="vip" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1tZ-Pt-6Dh">
                                                 <rect key="frame" x="244.5" y="105" width="21.5" height="20"/>

@@ -1032,16 +1032,16 @@ static UGSkinManagers *__initSkin1 = nil;
 				sm.textColor4               = color(@"FFFFFF");
 				sm;
 			}),
-			//活力橙
-			@"活力橙":({
+			//火山橙
+			@"火山橙":({
 				UGSkinManagers *sm = [UGSkinManagers new];
-				sm.skitType                 = @"活力橙";
-				sm.skitString               = @"活力橙";
+				sm.skitType                 = @"火山橙";
+				sm.skitString               = @"火山橙";
 				sm.bgColor                  = color(@"FFFFFF");
-				sm.navBarBgColor            = color(@"323232");
-				sm.tabBarBgColor            = color(@"323232");
-				sm.tabNoSelectColor         = color(@"ffffff");
-				sm.tabSelectedColor         = color(@"aab647");
+				sm.navBarBgColor            = color(@"f08c34,eb3323");
+				sm.tabBarBgColor            = color(@"262223");
+				sm.tabNoSelectColor         = color(@"999999");
+				sm.tabSelectedColor         = color(@"eb3323");
 				
 				sm.progressBgColor          = color(@"d80000,fb5959");
 				sm.homeContentColor         = color(@"FFFFFF");
@@ -1074,7 +1074,7 @@ static UGSkinManagers *__initSkin1 = nil;
 						   @"4":[NSString stringWithFormat:@"六合资料%@",SysConf.mobileTemplateLhcStyle],
 						   @"5":@"黑色模板",
 						   @"6":@"金沙主题",
-						   @"7":@"活力橙",
+						   @"7":@"火山橙",
 
 	};
 	

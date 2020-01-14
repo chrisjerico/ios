@@ -90,7 +90,6 @@
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
 	[rightButton addTarget:self action:@selector(rightButtonTaped)];
 	[rightButton setImage:[UIImage imageNamed:@"gengduo"] forState:UIControlStateNormal];
-//	[rightButton sd_setImageWithURL:[NSURL URLWithString:UserI.avatar] forState:UIControlStateNormal];
 	self.balanceLabel2.text = @"";
 }
 - (void)rightButtonTaped {

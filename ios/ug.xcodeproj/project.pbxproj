@@ -1583,6 +1583,10 @@
 		032412BC23CC5D3F00FABD51 /* PromotionRecordCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 032412B823CC5D3F00FABD51 /* PromotionRecordCell2.xib */; };
 		032412C023CC62B900FABD51 /* PromotionOtherBetRecordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 032412BF23CC62B900FABD51 /* PromotionOtherBetRecordVC.m */; };
 		032412C123CC62B900FABD51 /* PromotionOtherBetRecordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 032412BF23CC62B900FABD51 /* PromotionOtherBetRecordVC.m */; };
+		03314FCF23CDA04D0070CB54 /* HSC_MineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 03314FCD23CDA04D0070CB54 /* HSC_MineVC.m */; };
+		03314FD023CDA04D0070CB54 /* HSC_MineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 03314FCD23CDA04D0070CB54 /* HSC_MineVC.m */; };
+		03314FD423CDA0900070CB54 /* HSC_Mine.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03314FD323CDA0900070CB54 /* HSC_Mine.storyboard */; };
+		03314FD523CDA0900070CB54 /* HSC_Mine.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03314FD323CDA0900070CB54 /* HSC_Mine.storyboard */; };
 		036CA77523C7263C007BBD25 /* JS_TitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 036CA77423C7263C007BBD25 /* JS_TitleView.m */; };
 		036CA77723C72643007BBD25 /* JS_TitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 036CA77423C7263C007BBD25 /* JS_TitleView.m */; };
 		036CA77923C72657007BBD25 /* JS_TitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 036CA77823C72657007BBD25 /* JS_TitleView.xib */; };
@@ -3275,6 +3279,9 @@
 		032412B823CC5D3F00FABD51 /* PromotionRecordCell2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PromotionRecordCell2.xib; sourceTree = "<group>"; };
 		032412BE23CC62B900FABD51 /* PromotionOtherBetRecordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PromotionOtherBetRecordVC.h; sourceTree = "<group>"; };
 		032412BF23CC62B900FABD51 /* PromotionOtherBetRecordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PromotionOtherBetRecordVC.m; sourceTree = "<group>"; };
+		03314FCC23CDA04D0070CB54 /* HSC_MineVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HSC_MineVC.h; sourceTree = "<group>"; };
+		03314FCD23CDA04D0070CB54 /* HSC_MineVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HSC_MineVC.m; sourceTree = "<group>"; };
+		03314FD323CDA0900070CB54 /* HSC_Mine.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HSC_Mine.storyboard; sourceTree = "<group>"; };
 		036CA77323C7263C007BBD25 /* JS_TitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JS_TitleView.h; sourceTree = "<group>"; };
 		036CA77423C7263C007BBD25 /* JS_TitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JS_TitleView.m; sourceTree = "<group>"; };
 		036CA77823C72657007BBD25 /* JS_TitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JS_TitleView.xib; sourceTree = "<group>"; };
@@ -6962,6 +6969,16 @@
 			path = Conversation;
 			sourceTree = "<group>";
 		};
+		03314FC323CD9F8F0070CB54 /* 火山橙模板 */ = {
+			isa = PBXGroup;
+			children = (
+				03314FCC23CDA04D0070CB54 /* HSC_MineVC.h */,
+				03314FCD23CDA04D0070CB54 /* HSC_MineVC.m */,
+				03314FD323CDA0900070CB54 /* HSC_Mine.storyboard */,
+			);
+			path = "火山橙模板";
+			sourceTree = "<group>";
+		};
 		036CA77B23C759BF007BBD25 /* 我的推广 */ = {
 			isa = PBXGroup;
 			children = (
@@ -7349,6 +7366,7 @@
 				031E13CB23BE812300B0F813 /* 六合模板 */,
 				031E165823BE812400B0F813 /* 黑色模板 */,
 				030A874123C5C29C0001EF82 /* 金沙模板 */,
+				03314FC323CD9F8F0070CB54 /* 火山橙模板 */,
 				D4B75E3B2278122B0007047C /* Other */,
 				D424785C22DDF5860062A6D4 /* Resources */,
 			);
@@ -7628,6 +7646,7 @@
 				031E1E4123BE812C00B0F813 /* UGPormotionUserInfoView.xib in Resources */,
 				031E1B5723BE812800B0F813 /* UGredActivityView.xib in Resources */,
 				031E1BA923BE812900B0F813 /* BMMine.storyboard in Resources */,
+				03314FD523CDA0900070CB54 /* HSC_Mine.storyboard in Resources */,
 				031EF5AC23BE7B4D00B0F813 /* zj_gonggao.svg in Resources */,
 				031E19FB23BE812700B0F813 /* MediaViewer.xib in Resources */,
 				031EF59C23BE7B4D00B0F813 /* chakan.svg in Resources */,
@@ -7889,6 +7908,7 @@
 				031E1DE823BE812C00B0F813 /* UGConvertCollectionViewCell.xib in Resources */,
 				031E199623BE812600B0F813 /* LHPostRewardView.xib in Resources */,
 				CF475910239636D200966536 /* 115.gif in Resources */,
+				03314FD423CDA0900070CB54 /* HSC_Mine.storyboard in Resources */,
 				D4F0410723C7732A0070D2B5 /* UGLHPrizeView.xib in Resources */,
 				CFFAB58D23755569009593AF /* lxb.gif in Resources */,
 				031E1B9023BE812900B0F813 /* UGLotteryRecordTableViewCell.xib in Resources */,
@@ -8533,6 +8553,7 @@
 				031E194123BE812600B0F813 /* UGSkinCollectionViewCell.m in Sources */,
 				031E1B3323BE812800B0F813 /* UGSystemConfigModel.m in Sources */,
 				031EF5D123BE7B4E00B0F813 /* BetFollowView.swift in Sources */,
+				03314FD023CDA04D0070CB54 /* HSC_MineVC.m in Sources */,
 				031EF5DB23BE7B4E00B0F813 /* MessageCollectionViewGifCell.swift in Sources */,
 				031E1A4923BE812700B0F813 /* NSArray+Log.m in Sources */,
 				031EF5E623BE7B4E00B0F813 /* MineTableController.swift in Sources */,
@@ -9054,6 +9075,7 @@
 				031E1C0A23BE812900B0F813 /* UGbetModel.m in Sources */,
 				031E1A6823BE812700B0F813 /* UGAppVersionManager.m in Sources */,
 				031E1D0E23BE812B00B0F813 /* JSONModelClassProperty.m in Sources */,
+				03314FCF23CDA04D0070CB54 /* HSC_MineVC.m in Sources */,
 				031E1E1023BE812C00B0F813 /* UGSignInScrFootView.m in Sources */,
 				031E1ADA23BE812800B0F813 /* SDCycleScrollView.m in Sources */,
 				031E1CEE23BE812A00B0F813 /* SVProgressAnimatedView.m in Sources */,
