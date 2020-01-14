@@ -55,17 +55,9 @@
     
 }
 
--(void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-//    self.tabBarItem.image = [UIImage imageNamed:@"liaotian"];
-//    self.tabBarItem.selectedImage = [UIImage imageNamed:@"liaotian"];
-}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"聊天室";
-//    self.tabBarItem.title = @"聊天室";
-//    self.tabBarItem.image = [UIImage imageNamed:@"liaotian"];
-//    self.tabBarItem.selectedImage = [UIImage imageNamed:@"liaotian"];
     if (!_nim) {
         UGNextIssueModel * oc = [UGNextIssueModel new];
         oc.gameId = @"70";

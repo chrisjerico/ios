@@ -1157,15 +1157,15 @@ static UGSkinManagers *__initSkin1 = nil;
 }
 
 + (UGSkinManagers *)next {
-    NSArray *keys = [[UGSkinManagers allSkin] keysSortedByValueUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-        return [obj1 compare:obj2];
+    NSArray *keys = [[UGSkinManagers allSkin] keysSortedByValueUsingComparator:^NSComparisonResult(UGSkinManagers *obj1, UGSkinManagers *obj2) {
+        return [obj1.skitString compare:obj2.skitString];
     }];
 	NSInteger i = [keys indexOfObject:[[UGSkinManagers allSkin] allKeysForObject:Skin1].firstObject] + keys.count;
 	return [UGSkinManagers allSkin][keys[++i%keys.count]];
 }
 + (UGSkinManagers *)last {
-    NSArray *keys = [[UGSkinManagers allSkin] keysSortedByValueUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-        return [obj1 compare:obj2];
+    NSArray *keys = [[UGSkinManagers allSkin] keysSortedByValueUsingComparator:^NSComparisonResult(UGSkinManagers *obj1, UGSkinManagers *obj2) {
+        return [obj1.skitString compare:obj2.skitString];
     }];
 	NSInteger i = [keys indexOfObject:[[UGSkinManagers allSkin] allKeysForObject:Skin1].firstObject] + keys.count;
 	return [UGSkinManagers allSkin][keys[--i%keys.count]];
