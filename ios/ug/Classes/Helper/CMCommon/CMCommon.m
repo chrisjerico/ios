@@ -257,6 +257,19 @@ static NSString *uuidKey =@"uuidKey";
     return result;
 }
 
+//幸运农场 连码公式
++ (NSInteger)combination:(NSInteger)m Num:(NSInteger)n
+{
+    if (m <= n) {
+        NSInteger num1 = [self factorialWithNumber:n];
+        NSInteger num2 = [self factorialWithNumber:(n-m)];
+        return  num1/num2;
+    }
+    else{
+        return  0;
+    }
+}
+
 + (NSInteger)pickNum:(NSInteger)pickNum totalNum:(NSInteger)totalNum
 {
     if (pickNum > totalNum) {
@@ -268,7 +281,6 @@ static NSString *uuidKey =@"uuidKey";
         return  num1/num2;
     }
 }
-
 
 #pragma mark - 核心计算公式
 /**
@@ -336,6 +348,22 @@ static NSString *uuidKey =@"uuidKey";
         result = result * startNumber;
     }
     return  result;
+}
+
+/**
+ 阶乘
+ 
+ @param n
+ 
+ @return 阶乘结果
+ */
++ (NSInteger)factorialWithNumber:(NSInteger)n
+{
+    NSInteger sum = 1;
+    while (n>0) {
+        sum = sum*n--;
+    }
+    return  sum;
 }
 
 // #pragma mark ---------------------------------------------- 判断邮箱格式
