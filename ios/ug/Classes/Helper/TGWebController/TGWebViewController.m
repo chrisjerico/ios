@@ -73,7 +73,7 @@
 //
 //        [CMCommon goUrl:@"http://rwmenpc200yzvjjmx.ptplayyy.com/h5chat/#/chatRoom?roomId=1&roomName=%E6%89%AB%E9%9B%B710%E5%8C%851%E7%82%B91%E5%80%8D&password&isChatBan=false&isShareBet=false&typeId=0&sortId=1&chatRedBagSetting=%5Bobject%20Object%5D&isMine=1&minAmount=10.00&maxAmount=1000.00&oddsRate=1.10&quantity=10"];
 //    });
-//    [self.tgWebView loadRequest:request];
+    [self.tgWebView loadRequest:request];
 }
 
 
