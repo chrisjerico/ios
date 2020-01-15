@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)checkSiteInfo:(NSString *)siteIds;
 
 // rsa加密
-+ (void)encrypt:(NSString *)string completion:(void (^)(NSString *ret))completion;
++ (void)encrypt:(NSArray <NSString *>*)stringArray completion:(void (^)(NSArray <NSString *>*rets))completion;
 
 // 清空所有改动
 + (void)clean:(NSString *)path completion:(void (^)(void))completion;

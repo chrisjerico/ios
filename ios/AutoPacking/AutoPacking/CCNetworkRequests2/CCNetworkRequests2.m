@@ -164,6 +164,9 @@
 
 // 上传文件
 - (CCSessionModel *)uploadWithId:(NSString *)_id sid:(NSString *)sid file:(NSString *)file {
+    if (![[NSFileManager defaultManager] fileExistsAtPath:file]) {
+        @throw [NSException exceptionWithName:@"上传的文件不存在。" reason:@"" userInfo:nil];
+    }
     return [self req:@"api.php"
                     :@{@"m":@"upload_file",
                        @"上传文件":file,    // 文件本地路径

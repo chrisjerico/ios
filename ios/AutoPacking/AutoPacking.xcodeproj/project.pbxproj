@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF3263D023CF37B000D4B79A /* NSTask+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3263CF23CF37B000D4B79A /* NSTask+Block.m */; };
+		CF3263D223CF3ABB00D4B79A /* 7codepush.sh in Resources */ = {isa = PBXBuildFile; fileRef = CF3263D123CF3ABB00D4B79A /* 7codepush.sh */; };
 		CF5D3D6B2396B8CE00CC3D6B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5D3D6A2396B8CE00CC3D6B /* AppDelegate.m */; };
 		CF5D3D6E2396B8CE00CC3D6B /* AutoPackingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5D3D6D2396B8CE00CC3D6B /* AutoPackingVC.m */; };
 		CF5D3D702396B8D000CC3D6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF5D3D6F2396B8D000CC3D6B /* Assets.xcassets */; };
@@ -50,6 +52,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CF3263CE23CF37B000D4B79A /* NSTask+Block.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSTask+Block.h"; sourceTree = "<group>"; };
+		CF3263CF23CF37B000D4B79A /* NSTask+Block.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSTask+Block.m"; sourceTree = "<group>"; };
+		CF3263D123CF3ABB00D4B79A /* 7codepush.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = 7codepush.sh; sourceTree = "<group>"; };
 		CF5D3D662396B8CE00CC3D6B /* AutoPacking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutoPacking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF5D3D692396B8CE00CC3D6B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CF5D3D6A2396B8CE00CC3D6B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -182,6 +187,8 @@
 			children = (
 				CF5D3DA62396BC9300CC3D6B /* ShellHelper.h */,
 				CF5D3DA82396BC9400CC3D6B /* ShellHelper.m */,
+				CF3263CE23CF37B000D4B79A /* NSTask+Block.h */,
+				CF3263CF23CF37B000D4B79A /* NSTask+Block.m */,
 				CF5D3E882397D9D800CC3D6B /* 0encrypt.sh */,
 				CF5D3DA02396BC4600CC3D6B /* 1pull.sh */,
 				CF5D3DA12396BC4600CC3D6B /* 2setup.sh */,
@@ -189,6 +196,7 @@
 				CFDB112123A160550040DE2B /* 4plist.sh */,
 				CFDB112B23A3AE6F0040DE2B /* 5push.sh */,
 				CFDB113D23A3E1AD0040DE2B /* 6clean.sh */,
+				CF3263D123CF3ABB00D4B79A /* 7codepush.sh */,
 			);
 			path = sh;
 			sourceTree = SOURCE_ROOT;
@@ -379,6 +387,7 @@
 				CF5D3DA42396BC4600CC3D6B /* 2setup.sh in Resources */,
 				CF5D3DA22396BC4600CC3D6B /* 3packing.sh in Resources */,
 				CFDB113E23A3E1AD0040DE2B /* 6clean.sh in Resources */,
+				CF3263D223CF3ABB00D4B79A /* 7codepush.sh in Resources */,
 				CF5D3DA32396BC4600CC3D6B /* 1pull.sh in Resources */,
 				CF5D3E512397863400CC3D6B /* 打包文件 in Resources */,
 			);
@@ -400,6 +409,7 @@
 				CF5D3E622397929E00CC3D6B /* NSString+Safe.m in Sources */,
 				CF5D3E1A2397819C00CC3D6B /* AFHTTPSessionManager.m in Sources */,
 				CF5D3D762396B8D000CC3D6B /* main.m in Sources */,
+				CF3263D023CF37B000D4B79A /* NSTask+Block.m in Sources */,
 				CF5D3E44239781B800CC3D6B /* MJProperty.m in Sources */,
 				CF5D3E48239781B800CC3D6B /* NSObject+MJClass.m in Sources */,
 				CFDB111D23A15C450040DE2B /* PathDefine.m in Sources */,
@@ -561,7 +571,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AutoPacking;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "";
@@ -584,7 +594,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AutoPacking;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "";

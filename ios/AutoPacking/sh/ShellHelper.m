@@ -63,23 +63,42 @@
 }
 
 // rsa加密
-+ (void)encrypt:(NSString *)string completion:(void (^)(NSString *ret))completion {
-    NSTask *task = [[NSTask alloc] init];
-    
-    task.launchPath = [[NSBundle mainBundle] pathForResource:@"0encrypt" ofType:@"sh"];
-    task.arguments = @[string, Path.shellDir,];
-    task.terminationHandler = ^(NSTask *ts) {
-        [ts terminate];
-        
-        NSString *ret = [NSString stringWithContentsOfFile:Path.tempCiphertext encoding:NSUTF8StringEncoding error:nil];
-        if (completion) {
-            completion(ret);
++ (void)encrypt:(NSArray<NSString *> *)stringArray completion:(void (^)(NSArray<NSString *> * _Nonnull))completion {
+    NSMutableArray *temp = stringArray.mutableCopy;
+    NSMutableArray *okStrings = @[].mutableCopy;
+    __block NSString *__orString = nil;
+    void (^startEncrypt)(void) = nil;
+    void (^__block __next)(void) = startEncrypt = ^{
+        if (!__orString) {
+            __orString = temp.firstObject;
+            [temp removeObject:__orString];
         }
+        if (!__orString) {
+            //            [NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[Path.exportDir]];
+            NSLog(@"所有字符串已加密完毕！");
+            if (completion) {
+                completion(okStrings);
+            }
+            return ;
+        }
+        [[NSFileManager defaultManager] removeItemAtPath:Path.tempCiphertext error:nil];
+        
+        NSTask *task = [[NSTask alloc] init];
+        task.launchPath = [[NSBundle mainBundle] pathForResource:@"0encrypt" ofType:@"sh"];
+        task.arguments = @[__orString, Path.shellDir,];
+        task.terminationHandler = ^(NSTask *ts) {
+            [ts terminate];
+            NSString *ret = [NSString stringWithContentsOfFile:Path.tempCiphertext encoding:NSUTF8StringEncoding error:nil];
+            [okStrings addObject:ret ? : @""];
+            __next();
+        };
+        dispatch_sync(dispatch_get_global_queue(0, 0), ^{
+            [task launch];
+            [task waitUntilExit];
+        });
     };
-    dispatch_sync(dispatch_get_global_queue(0, 0), ^{
-        [task launch];
-        [task waitUntilExit];
-    });
+    
+    startEncrypt();
 }
 
 + (void)clean:(NSString *)path completion:(void (^)(void))completion {
@@ -139,7 +158,7 @@
         }
     };
     dispatch_sync(dispatch_get_global_queue(0, 0), ^{
-        NSLog(@"提交发包日志");
+        NSLog(@"提交发包记录");
         [task launch];
         [task waitUntilExit];
     });
@@ -186,7 +205,7 @@
         NSLog(@"Path.projectDir = %@",Path.projectDir);
         NSTask *task = [[NSTask alloc] init];
         task.launchPath = [[NSBundle mainBundle] pathForResource:@"2setup" ofType:@"sh"];;
-        task.arguments = @[__sm.siteId, __sm.appName, __sm.appId, Path.projectDir, ];
+        task.arguments = @[__sm.siteId, __sm.appName, Path.version, __sm.appId, Path.projectDir, ];
         task.terminationHandler = ^(NSTask *ts) {
             [ts terminate];
             NSLog(@"%@ 站点信息配置完成，开始打包", __sm.siteId);
@@ -200,14 +219,14 @@
                 NSLog(@"Path.tempIpa = %@",Path.tempIpa);
                 NSLog(@"Path.tempXcarchive = %@",Path.tempXcarchive);
                 NSLog(@"__sm.ipaPath = %@",__sm.ipaPath);
-                NSLog(@"Path.exportDir = %@,Path.commitId= %@",Path.exportDir,Path.commitId);
+                NSLog(@"Path.exportDir = %@,Path.commitId= %@",Path.ipaExportDir,Path.commitId);
                 if ([[NSFileManager defaultManager] fileExistsAtPath:Path.tempIpa]) {
                     [[NSFileManager defaultManager] createDirectoryAtPath:__sm.ipaPath.stringByDeletingLastPathComponent withIntermediateDirectories:true attributes:nil error:nil];
                     [[NSFileManager defaultManager] removeItemAtPath:__sm.ipaPath error:nil];
                     [[NSFileManager defaultManager] removeItemAtPath:__sm.xcarchivePath error:nil];
                     [[NSFileManager defaultManager] moveItemAtPath:Path.tempIpa toPath:__sm.ipaPath error:nil];
                     [[NSFileManager defaultManager] moveItemAtPath:Path.tempXcarchive toPath:__sm.xcarchivePath error:nil];
-                    [[NSFileManager defaultManager] moveItemAtPath:_NSString(@"%@/PullSuccess.txt", Path.projectDir) toPath:_NSString(@"%@/%@/log.txt", Path.exportDir, Path.commitId) error:nil];
+                    [[NSFileManager defaultManager] moveItemAtPath:_NSString(@"%@/PullSuccess.txt", Path.projectDir) toPath:_NSString(@"%@/%@/log.txt", Path.ipaExportDir, Path.commitId) error:nil];
                     NSLog(@"%@ 打包成功", __sm.siteId);
                     [okSites addObject:__sm];
                     __sm = nil;
