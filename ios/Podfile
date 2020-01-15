@@ -46,7 +46,7 @@ pod 'JPush', '3.2.2-noidfa'
 
 
 # jspatch
-pod 'JSPatch', :path => "../JSPatch/JSPatch.podspec"
+pod 'JSPatch', :path => "JSPatch/JSPatch.podspec"
 pod 'SSZipArchive'  # 加/解压缩
 
 
