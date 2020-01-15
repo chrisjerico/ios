@@ -29,6 +29,7 @@
 		[_title2Label setHidden:true];
 		[_imageView setHidden:true];
 		_titleLabel.textColor = [UIColor colorWithHex:0x111111];
+		[self setBackgroundColor: [UIColor redColor]];
 
 	}
 }

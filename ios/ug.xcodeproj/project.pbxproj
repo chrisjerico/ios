@@ -1589,8 +1589,6 @@
 		03314FD523CDA0900070CB54 /* HSC_Mine.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03314FD323CDA0900070CB54 /* HSC_Mine.storyboard */; };
 		03314FD923CDE2150070CB54 /* HSC_TitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03314FD823CDE2150070CB54 /* HSC_TitleView.m */; };
 		03314FDA23CDE2150070CB54 /* HSC_TitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03314FD823CDE2150070CB54 /* HSC_TitleView.m */; };
-		03314FDC23CDE22A0070CB54 /* HSC_TitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03314FDB23CDE22A0070CB54 /* HSC_TitleView.xib */; };
-		03314FDD23CDE22A0070CB54 /* HSC_TitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03314FDB23CDE22A0070CB54 /* HSC_TitleView.xib */; };
 		036CA77523C7263C007BBD25 /* JS_TitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 036CA77423C7263C007BBD25 /* JS_TitleView.m */; };
 		036CA77723C72643007BBD25 /* JS_TitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 036CA77423C7263C007BBD25 /* JS_TitleView.m */; };
 		036CA77923C72657007BBD25 /* JS_TitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 036CA77823C72657007BBD25 /* JS_TitleView.xib */; };
@@ -1613,6 +1611,8 @@
 		03A5D38723C0445B0055A998 /* JS_HomeGameCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03A5D38323C0445B0055A998 /* JS_HomeGameCollectionCell.xib */; };
 		03A5D38B23C051DB0055A998 /* JS_HomeGameColletionCell_1.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A5D38923C051DB0055A998 /* JS_HomeGameColletionCell_1.m */; };
 		03A5D38D23C051DB0055A998 /* JS_HomeGameColletionCell_1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03A5D38A23C051DB0055A998 /* JS_HomeGameColletionCell_1.xib */; };
+		03AFD93C23CEFC27003914A6 /* HSC_TitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03AFD93B23CEFC27003914A6 /* HSC_TitleView.xib */; };
+		03AFD93D23CEFC27003914A6 /* HSC_TitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03AFD93B23CEFC27003914A6 /* HSC_TitleView.xib */; };
 		03CF9B6023C8D6C800CDE142 /* PromotionAdvertisementVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CF9B5F23C8D6C800CDE142 /* PromotionAdvertisementVC.m */; };
 		03CF9B6123C8D6C800CDE142 /* PromotionAdvertisementVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CF9B5F23C8D6C800CDE142 /* PromotionAdvertisementVC.m */; };
 		03D6926923C22C9B003D9C12 /* UINavigationController+Push.m in Sources */ = {isa = PBXBuildFile; fileRef = 03D6926823C22C9B003D9C12 /* UINavigationController+Push.m */; };
@@ -3289,7 +3289,6 @@
 		03314FD323CDA0900070CB54 /* HSC_Mine.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HSC_Mine.storyboard; sourceTree = "<group>"; };
 		03314FD723CDE2150070CB54 /* HSC_TitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HSC_TitleView.h; sourceTree = "<group>"; };
 		03314FD823CDE2150070CB54 /* HSC_TitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HSC_TitleView.m; sourceTree = "<group>"; };
-		03314FDB23CDE22A0070CB54 /* HSC_TitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HSC_TitleView.xib; sourceTree = "<group>"; };
 		036CA77323C7263C007BBD25 /* JS_TitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JS_TitleView.h; sourceTree = "<group>"; };
 		036CA77423C7263C007BBD25 /* JS_TitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JS_TitleView.m; sourceTree = "<group>"; };
 		036CA77823C72657007BBD25 /* JS_TitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JS_TitleView.xib; sourceTree = "<group>"; };
@@ -3309,6 +3308,7 @@
 		03A5D38823C051DB0055A998 /* JS_HomeGameColletionCell_1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JS_HomeGameColletionCell_1.h; sourceTree = "<group>"; };
 		03A5D38923C051DB0055A998 /* JS_HomeGameColletionCell_1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JS_HomeGameColletionCell_1.m; sourceTree = "<group>"; };
 		03A5D38A23C051DB0055A998 /* JS_HomeGameColletionCell_1.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JS_HomeGameColletionCell_1.xib; sourceTree = "<group>"; };
+		03AFD93B23CEFC27003914A6 /* HSC_TitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HSC_TitleView.xib; sourceTree = "<group>"; };
 		03CF9B5E23C8D6C800CDE142 /* PromotionAdvertisementVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PromotionAdvertisementVC.h; sourceTree = "<group>"; };
 		03CF9B5F23C8D6C800CDE142 /* PromotionAdvertisementVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PromotionAdvertisementVC.m; sourceTree = "<group>"; };
 		03D4C80C234F4DEC0028B48F /* ug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ug.entitlements; sourceTree = "<group>"; };
@@ -6997,7 +6997,7 @@
 			children = (
 				03314FD723CDE2150070CB54 /* HSC_TitleView.h */,
 				03314FD823CDE2150070CB54 /* HSC_TitleView.m */,
-				03314FDB23CDE22A0070CB54 /* HSC_TitleView.xib */,
+				03AFD93B23CEFC27003914A6 /* HSC_TitleView.xib */,
 			);
 			path = "火山橙";
 			sourceTree = "<group>";
@@ -7606,6 +7606,7 @@
 				031E1A1123BE812700B0F813 /* LICENSE in Resources */,
 				031EF57B23BE7B4D00B0F813 /* zhanneixin.svg in Resources */,
 				031EF59823BE7B4D00B0F813 /* tianjia.svg in Resources */,
+				03AFD93D23CEFC27003914A6 /* HSC_TitleView.xib in Resources */,
 				031EF5E923BE7B4E00B0F813 /* MyWalletHeader.xib in Resources */,
 				031EF5C323BE7B4D00B0F813 /* MomentsPublishVC.xib in Resources */,
 				032412BC23CC5D3F00FABD51 /* PromotionRecordCell2.xib in Resources */,
@@ -7685,7 +7686,6 @@
 				031E1D4F23BE812B00B0F813 /* UGSafety.storyboard in Resources */,
 				031E1C5923BE812A00B0F813 /* UGBetDetailTableViewCell.xib in Resources */,
 				031E1BBB23BE812900B0F813 /* UGfinancialView.xib in Resources */,
-				03314FDD23CDE22A0070CB54 /* HSC_TitleView.xib in Resources */,
 				031EF59F23BE7B4D00B0F813 /* qitazhudanjilu.svg in Resources */,
 				031E199B23BE812600B0F813 /* LHPostPayView.xib in Resources */,
 				031E1BC123BE812900B0F813 /* UGBMfinancialCollectionViewCell.xib in Resources */,
@@ -7913,7 +7913,6 @@
 				CF475913239636D200966536 /* 128.gif in Resources */,
 				031E1BE623BE812900B0F813 /* UGPK10NNLotteryController.storyboard in Resources */,
 				031E1D4823BE812B00B0F813 /* UGGoogleAuthenticationSecondViewController.xib in Resources */,
-				03314FDC23CDE22A0070CB54 /* HSC_TitleView.xib in Resources */,
 				D4B75E19227802600007047C /* LaunchScreen.storyboard in Resources */,
 				03E41B2F23C09055004AB7C6 /* JS_HomePromoteView.xib in Resources */,
 				031E1BC823BE812900B0F813 /* UGFC3DLotteryController.storyboard in Resources */,
@@ -8110,6 +8109,7 @@
 				CF4758AD239636D200966536 /* 156.gif in Resources */,
 				CF4758D9239636D200966536 /* 146.gif in Resources */,
 				031E1C6423BE812A00B0F813 /* UGLotteryCollectionViewCell.xib in Resources */,
+				03AFD93C23CEFC27003914A6 /* HSC_TitleView.xib in Resources */,
 				CF4758A2239636D200966536 /* 124.gif in Resources */,
 				031E1DEA23BE812C00B0F813 /* UGMissionTableViewCell.xib in Resources */,
 				CF475883239636D200966536 /* 120.gif in Resources */,

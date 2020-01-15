@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gkD-UZ-5oH">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gkD-UZ-5oH">
                                 <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qM8-MJ-gKP">
@@ -157,26 +157,26 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g32-hL-eeJ">
-                                                        <rect key="frame" x="10" y="140" width="394" height="40"/>
+                                                        <rect key="frame" x="10" y="140" width="394" height="50"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="KH7-lE-M2x">
-                                                                <rect key="frame" x="10" y="0.0" width="374" height="40"/>
+                                                                <rect key="frame" x="10" y="0.0" width="374" height="50"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="wallet" translatesAutoresizingMaskIntoConstraints="NO" id="H9B-h4-o96">
-                                                                        <rect key="frame" x="0.0" y="3.5" width="33.5" height="33.5"/>
+                                                                        <rect key="frame" x="0.0" y="8.5" width="33.5" height="33.5"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="33.5" id="InC-Xs-6g7"/>
                                                                             <constraint firstAttribute="width" secondItem="H9B-h4-o96" secondAttribute="height" multiplier="1:1" id="z5a-Dj-QX5"/>
                                                                         </constraints>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0000000000000000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qWy-vW-LYI">
-                                                                        <rect key="frame" x="48.5" y="12" width="130" height="16"/>
+                                                                        <rect key="frame" x="48.5" y="17" width="130" height="16"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                         <color key="textColor" red="0.792156862745098" green="0.2627450980392157" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LNn-4w-z3d">
-                                                                        <rect key="frame" x="194" y="10" width="41" height="20"/>
+                                                                        <rect key="frame" x="194" y="15" width="41" height="20"/>
                                                                         <color key="backgroundColor" red="0.93725490196078431" green="0.84705882352941175" blue="0.47058823529411764" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="20" id="4xz-Y7-tgy"/>
@@ -186,12 +186,18 @@
                                                                         <state key="normal" title="  充值  ">
                                                                             <color key="titleColor" red="0.66274509803921566" green="0.52156862745098043" blue="0.23137254901960785" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         </state>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                                <integer key="value" value="5"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                                        </userDefinedRuntimeAttributes>
                                                                         <connections>
                                                                             <action selector="rechargeButtonTaped:" destination="K3G-SB-2oe" eventType="touchUpInside" id="Ge6-QC-D9b"/>
                                                                         </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b2U-yz-Ndm">
-                                                                        <rect key="frame" x="250" y="10" width="41" height="20"/>
+                                                                        <rect key="frame" x="250" y="15" width="41" height="20"/>
                                                                         <color key="backgroundColor" red="0.93725490199999995" green="0.84705882349999995" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="41" id="xek-KA-IDZ"/>
@@ -201,12 +207,18 @@
                                                                         <state key="normal" title="  提现  ">
                                                                             <color key="titleColor" red="0.66274509800000003" green="0.52156862749999999" blue="0.23137254900000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         </state>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                                <integer key="value" value="5"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
                                                                         <connections>
                                                                             <action selector="withdrawButtonTaped:" destination="K3G-SB-2oe" eventType="touchUpInside" id="t5L-CF-W5Y"/>
                                                                         </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rFq-w9-QOO" userLabel="充值">
-                                                                        <rect key="frame" x="306" y="10" width="68" height="20"/>
+                                                                        <rect key="frame" x="306" y="15" width="68" height="20"/>
                                                                         <color key="backgroundColor" red="0.93725490199999995" green="0.84705882349999995" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="20" id="9fm-dl-9kg"/>
@@ -216,6 +228,12 @@
                                                                         <state key="normal" title="  额度转换  ">
                                                                             <color key="titleColor" red="0.66274509800000003" green="0.52156862749999999" blue="0.23137254900000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         </state>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                                <integer key="value" value="5"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                                        </userDefinedRuntimeAttributes>
                                                                         <connections>
                                                                             <action selector="convertButtonTaped:" destination="K3G-SB-2oe" eventType="touchUpInside" id="2wu-cx-8tt"/>
                                                                         </connections>
@@ -229,8 +247,14 @@
                                                             <constraint firstAttribute="bottom" secondItem="KH7-lE-M2x" secondAttribute="bottom" id="Kgw-mb-xxx"/>
                                                             <constraint firstAttribute="trailing" secondItem="KH7-lE-M2x" secondAttribute="trailing" constant="10" id="bqI-UY-9uy"/>
                                                             <constraint firstItem="KH7-lE-M2x" firstAttribute="top" secondItem="g32-hL-eeJ" secondAttribute="top" id="eS2-rw-H2K"/>
-                                                            <constraint firstAttribute="height" constant="40" id="qdf-IH-8RY"/>
+                                                            <constraint firstAttribute="height" constant="50" id="qdf-IH-8RY"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.40392156862745099" green="0.75294117647058822" blue="0.95686274509803915" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -246,7 +270,7 @@
                                                     <constraint firstItem="Qs1-ta-Ntz" firstAttribute="leading" secondItem="MF3-Op-WtQ" secondAttribute="trailing" constant="5.3300000000000001" id="ITH-5j-gCL"/>
                                                     <constraint firstItem="riS-p0-8ul" firstAttribute="leading" secondItem="cIM-fF-6XU" secondAttribute="leading" constant="10" id="Kd3-Ui-3Kb"/>
                                                     <constraint firstAttribute="bottom" secondItem="rW9-Jm-REc" secondAttribute="bottom" constant="55" id="L5A-5F-WGS"/>
-                                                    <constraint firstAttribute="bottom" secondItem="g32-hL-eeJ" secondAttribute="bottom" id="Mp9-vH-H1w"/>
+                                                    <constraint firstAttribute="bottom" secondItem="g32-hL-eeJ" secondAttribute="bottom" constant="-10" id="Mp9-vH-H1w"/>
                                                     <constraint firstItem="rW9-Jm-REc" firstAttribute="leading" secondItem="1tZ-Pt-6Dh" secondAttribute="trailing" constant="60" id="QsU-hx-pxU"/>
                                                     <constraint firstItem="rW9-Jm-REc" firstAttribute="trailing" secondItem="2Js-y5-Gts" secondAttribute="trailing" id="RMm-MM-BAy"/>
                                                     <constraint firstItem="2Js-y5-Gts" firstAttribute="top" secondItem="cIM-fF-6XU" secondAttribute="top" constant="24" id="VqV-Vx-oL2"/>
@@ -454,7 +478,7 @@
                                             </view>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kUU-ig-xy1">
                                                 <rect key="frame" x="0.0" y="250" width="414" height="512"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="512" id="CPZ-eh-WE4"/>
                                                 </constraints>
@@ -502,7 +526,7 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="1mt-OY-A3L"/>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" red="0.4039215686" green="0.75294117650000003" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="gkD-UZ-5oH" firstAttribute="top" secondItem="a7p-jU-MuU" secondAttribute="top" id="4SM-eG-QiR"/>
                             <constraint firstItem="a7p-jU-MuU" firstAttribute="trailing" secondItem="gkD-UZ-5oH" secondAttribute="trailing" id="Rv2-50-O4Y"/>

@@ -272,7 +272,9 @@ static UGTabbarController *_tabBarVC = nil;
 }
 
 - (void)setTabbarHeight:(CGFloat)height {
-	if (@available(iOS 11.0, *) && ![UIDevice currentDevice].isSimulator) {
+//	if (@available(iOS 11.0, *) && ![UIDevice currentDevice].isSimulator) {
+	if ((@available(iOS 11.0, *)) && !(TARGET_IPHONE_SIMULATOR == 1 && TARGET_OS_IPHONE == 1)) {
+
 		static dispatch_once_t onceToken;
 		dispatch_once(&onceToken, ^{
 			[UITabBar cc_hookSelector:@selector(sizeThatFits:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> ai) {

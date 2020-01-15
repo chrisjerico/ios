@@ -26,24 +26,26 @@
 }
 - (void)awakeFromNib {
 	[super awakeFromNib];
-	
+
+	[self.tableView registerNib:[UINib nibWithNibName:@"UGMenuTableViewCell" bundle:nil] forCellReuseIdentifier:@"UGMenuTableViewCell"];
+	self.items = SysConf.userCenter.copy;
+	[self.tableView reloadData];
+
 }
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	[self.tableView registerNib:[UINib nibWithNibName:@"UGMenuTableViewCell" bundle:nil] forCellReuseIdentifier:@"UGMenuTableViewCell"];
+	if (@available(iOS 11.0,*)) {
+		self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAlways;
+	}
 	self.headTopBackDropView.backgroundColor = Skin1.navBarBgColor;
 	
 	WeakSelf;
-	weakSelf.items = SysConf.userCenter.copy;
-	[weakSelf.tableView reloadData];
 	SANotificationEventSubscribe(UGNotificationGetSystemConfigComplete, self, ^(typeof (self) self, id obj) {
-		
 		weakSelf.items = SysConf.userCenter.copy;
 		[weakSelf.tableView reloadData];
 	});
 	[self setupUserInfo];
 	[self getUserInfo];
-	[self.tableView reloadData];
 	
 }
 

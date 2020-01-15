@@ -47,6 +47,9 @@
         UICollectionView *collectionView = ({
             collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, CollectionViewW, 55) collectionViewLayout:layout];
             collectionView.backgroundColor = _isBlack ? Skin1.bgColor : Skin1.homeContentColor;
+			if ([Skin1.skitType isEqualToString:@"金沙主题"]) {
+				collectionView.backgroundColor = UIColor.clearColor;
+			}
             collectionView.dataSource = self;
             collectionView.delegate = self;
 //            collectionView.layer.cornerRadius = (_isBlack||APP.isShowLogo || [Skin1.skitType isEqualToString:@"金沙主题"]) ? 0 : 10;

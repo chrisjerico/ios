@@ -111,7 +111,7 @@
 #import "HSC_TitleView.h"
 
 
-@interface UGHomeViewController ()<SDCycleScrollViewDelegate,UUMarqueeViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,WSLWaterFlowLayoutDelegate, JS_TitleViewDelegagte>
+@interface UGHomeViewController ()<SDCycleScrollViewDelegate,UUMarqueeViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,WSLWaterFlowLayoutDelegate, JS_TitleViewDelegagte, HSC_TitleViewDelegagte>
 
 @property (nonatomic, strong) UGHomeTitleView *titleView;       /**<   自定义导航条 */
 @property (nonatomic, strong) JS_TitleView * js_titleView; 		/**<   金沙导航条 */
@@ -206,8 +206,9 @@
 - (HSC_TitleView *)hsc_titleView {
 	if (!_hsc_titleView) {
 		_hsc_titleView = [[UINib nibWithNibName:@"HSC_TitleView" bundle:nil] instantiateWithOwner:self options:nil].firstObject;
-		_hsc_titleView.frame = self.navigationController.navigationBar.bounds;
-
+		_hsc_titleView.delegate = self;
+		_hsc_titleView.bounds = self.navigationController.navigationBar.bounds;
+		
 	}
 	return _hsc_titleView;
 }
@@ -233,7 +234,7 @@
 		NSDictionary *dict = @{@"六合资料":@[_rollingView, _LhPrize_FView, _liuheForumContentView, _promotionView, _bottomView],
 							   @"黑色模板":@[_bannerBgView, _gameTypeView.superview, _rankingView, _bottomView],
 							   @"金沙主题":@[_bannerBgView, _rollingView, _homePromoteContainer, _gameTypeView.superview, _promotionView, _rankingView, _bottomView],
-							   @"火山橙":@[_bannerBgView, _rollingView, _gameNavigationView.superview, _gameTypeView.superview, _rankingView, _bottomView],
+							   @"火山橙":@[_bannerBgView, _rollingView, _gameNavigationView.superview, _gameTypeView.superview, _promotionView, _bottomView],
 							   
 		};
 		
@@ -280,13 +281,13 @@
 	
 	// 黑色模板的UI调整
 	BOOL isBlack = Skin1.isBlack;
-   // c108站点定制需求
-    if ([@"c108" containsString: APP.SiteId]) {
-            _rankingView.backgroundColor = UIColor.whiteColor;
-    } else {
-            _rankingView.backgroundColor = isBlack ? Skin1.bgColor : Skin1.navBarBgColor;
-    }
-
+	// c108站点定制需求
+	if ([@"c108" containsString: APP.SiteId]) {
+		_rankingView.backgroundColor = UIColor.whiteColor;
+	} else {
+		_rankingView.backgroundColor = isBlack ? Skin1.bgColor : Skin1.navBarBgColor;
+	}
+	
 	_gameTypeView.cc_constraints.top.constant = isBlack ? 0 : 10;
 	_headerView.hidden = !isBlack;
 	self.fd_prefersNavigationBarHidden = isBlack;
@@ -296,10 +297,25 @@
 	if ([Skin1.skitType isEqualToString:@"金沙主题"]) {
 		_rollingView.backgroundColor = UIColor.whiteColor;
 		_rankingView.backgroundColor = UIColor.whiteColor;
-		self.navigationItem.titleView = self.js_titleView;
+		_gameTypeView.backgroundColor = [UIColor colorWithHex:0xf9f9f9];
+		UIView * titleView = [UIView new];
+		[titleView addSubview:self.js_titleView];
+		[self.js_titleView mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.edges.equalTo(titleView);
+			make.width.equalTo(@(APP.Width - 20));
+			make.height.equalTo(@44);
+		}];
+		self.navigationItem.titleView = titleView;
 	} else if ([Skin1.skitType isEqualToString:@"火山橙"]) {
-		self.navigationItem.titleView = self.hsc_titleView;
-
+		UIView * titleView = [UIView new];
+		[titleView addSubview:self.hsc_titleView];
+		[self.hsc_titleView mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.edges.equalTo(titleView);
+			make.width.equalTo(@(APP.Width - 20));
+			make.height.equalTo(@44);
+		}];
+		self.navigationItem.titleView = titleView;
+		
 	}
 	[self.gameNavigationView reloadData];
 }
@@ -856,7 +872,7 @@
 							return ![evaluatedObject.iid isEqualToString:@"7"];
 						}]].mutableCopy;
 					}
-	
+					
 				});
 			}
 		} failure:^(id msg) {
@@ -1540,17 +1556,22 @@
 
 
 
-# pragma mark <JS_TitleViewDelegagte>
+# pragma mark <JS_TitleViewDelegagte, HSC_TitleViewDelegagte>
 - (void)loginButtonTaped {
 	[NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLoginViewController") animated:true];
 	
 }
 - (void)registButtonnTaped {
 	[NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGRegisterViewController") animated:YES];
-	
 }
 - (void)moreButtonTaped {
 	[JS_Sidebar show];
+}
+- (void)avatarButtonTaped {
+	[TabBarController1 setSelectedIndex:4];
+}
+- (void)emailButtonTaped {
+	[NavController1 pushViewController:[[UGMailBoxTableViewController alloc] initWithStyle:UITableViewStyleGrouped] animated:true];
 }
 @end
 

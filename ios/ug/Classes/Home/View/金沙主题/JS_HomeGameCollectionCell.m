@@ -25,7 +25,7 @@
 	
 	[self.itemImage sd_setImageWithURL:[NSURL URLWithString:item.icon] placeholderImage: [UIImage imageNamed:@""]];
 	self.itemName.text = item.title.length > 0 ? item.title : item.name;
-	self.playerNumberLabel.text = [NSString stringWithFormat:@"%ld人在玩", random()%2000 + 2000];
+	self.playerNumberLabel.text = [NSString stringWithFormat:@"%ld", random()%2000 + 9000];
 	switch (item.tipFlag) {
 		case 0:
 			self.cornerImage.image = [UIImage imageNamed:@""];
