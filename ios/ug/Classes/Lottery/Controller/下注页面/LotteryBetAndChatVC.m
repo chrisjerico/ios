@@ -302,10 +302,18 @@
                     }
                 };
                 
+
+                if (__self.vc1.timer) {
+                    [__self.vc1.timer setFireDate:[NSDate distantFuture]];
+                }
                 
             }
             else{
                 [__self.downBtn setHidden:YES];
+                if (__self.vc1.timer) {
+                    [__self.vc1.timer setFireDate:[NSDate distantPast]];
+                }
+
             }
         };
         ssv1.titleBar.underlineView.hidden = true;

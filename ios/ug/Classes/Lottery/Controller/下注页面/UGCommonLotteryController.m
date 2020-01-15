@@ -23,6 +23,21 @@
 
 @implementation UGCommonLotteryController
 
+- (void)dealloc {
+    [_nextIssueCountDown destoryTimer];
+    if (_timer) {
+        if ([_timer isValid]) {
+            [_timer invalidate];
+            _timer = nil;
+        }
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+
+}
+
 - (BOOL)允许游客访问 { return true; }
 
 - (void)viewDidLoad {

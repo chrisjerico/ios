@@ -69,7 +69,6 @@
 @property (nonatomic, strong) NSIndexPath *itemIndexPath;
 
 @property (strong, nonatomic) CountDown *countDown;
-@property (nonatomic, strong) CountDown *nextIssueCountDown;
 @property (nonatomic, strong) STBarButtonItem *rightItem1;
 @property (nonatomic, strong) NSArray <NSString *> *preNumArray;
 @property (nonatomic, strong) NSArray <NSString *> *preNumSxArray;
@@ -128,31 +127,41 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     [self updateOpenLabel];
     [self getGameDatas];
     [self getNextIssueData];
+        WeakSelf
+    // 轮循刷新封盘时间、开奖时间
+    if (OBJOnceToken(self)) {
+            self.timer = [NSTimer scheduledTimerWithInterval:1 repeats:true block:^(NSTimer *timer) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                   // UI更新代码
+                   [weakSelf updateCloseLabelText];
+                   [weakSelf updateOpenLabelText];
+                });
+
+            if (!weakSelf) {
+                [timer invalidate];
+                timer = nil;
+            }
+        }];
+    }
+
+    if (OBJOnceToken(self)) {
+        // 轮循请求下期数据
+        [self.nextIssueCountDown countDownWithSec:NextIssueSec PER_SECBlock:^{
+            UGNextIssueModel *nim = weakSelf.nextIssueModel;
+            if ([[nim.curOpenTime dateWithFormat:@"yyyy-MM-dd HH:mm:ss"] timeIntervalSinceDate:[NSDate date]] < 0
+                || nim.curIssue.intValue != nim.preIssue.intValue+1) {
+                [weakSelf getNextIssueData];
+            }
+        }];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.view bringSubviewToFront:self.bottomView];
-    WeakSelf
-    // 轮循刷新封盘时间、开奖时间
-    static NSTimer *timer = nil;
-    [timer invalidate];
-    timer = [NSTimer scheduledTimerWithInterval:0.2 repeats:true block:^(NSTimer *timer) {
-        [weakSelf updateCloseLabelText];
-        [weakSelf updateOpenLabelText];
-        if (!weakSelf) {
-            [timer invalidate];
-            timer = nil;
-        }
-    }];
-    // 轮循请求下期数据
-    [self.nextIssueCountDown countDownWithSec:NextIssueSec PER_SECBlock:^{
-        UGNextIssueModel *nim = weakSelf.nextIssueModel;
-        if ([[nim.curOpenTime dateWithFormat:@"yyyy-MM-dd HH:mm:ss"] timeIntervalSinceDate:[NSDate date]] < 0
-            || nim.curIssue.intValue != nim.preIssue.intValue+1) {
-            [weakSelf getNextIssueData];
-        }
-    }];
+
+
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

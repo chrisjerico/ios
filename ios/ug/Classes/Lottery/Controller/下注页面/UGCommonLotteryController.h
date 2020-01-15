@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "UGAllNextIssueListModel.h"
-
+#import "CountDown.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol hiddeHeader <NSObject>
@@ -23,6 +23,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL shoulHideHeader;
 @property (nonatomic, strong) UGNextIssueModel *nextIssueModel;
 @property (nonatomic, strong) NSString *gameId;
+
+@property (nonatomic, strong) CountDown *nextIssueCountDown;    /**<   下期倒数器 */
+@property (nonatomic, strong) NSTimer *timer;    /**<   开奖文本倒数器 */
 @property (nonatomic, copy) void(^gotoTabBlock)(void);
 
 - (void)getGameDatas;
