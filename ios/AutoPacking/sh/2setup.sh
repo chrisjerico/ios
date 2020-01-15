@@ -2,13 +2,15 @@
 
 __SiteId=$1
 __DisplayName=$2
-__BundleId=$3
+__Version=$3
+__BundleId=$4
+
 
 # 从Xcode运行需要先cd到当前目录
-if [ ! -n "$4" ] ;then
+if [ ! -n "$5" ] ;then
     echo "you have not input a word!"
 else
-    cd $4
+    cd $5
 fi
 
 
@@ -20,6 +22,9 @@ mv tmp.txt ug/Classes/Helper/FishUtility/define/AppDefine.m
 
 # 替换APP名
 /usr/libexec/PlistBuddy -c "Set :CFBundleDisplayName $__DisplayName" ug/Classes/Other/Info.plist
+
+# 替换版本号
+/usr/libexec/PlistBuddy -c "Set :CFBundleVersion $__Version" ug/Classes/Other/Info.plist
 
 # 替换BundleId（修改project.pbxproj文件）
 sed "s/PRODUCT_BUNDLE_IDENTIFIER.*$/PRODUCT_BUNDLE_IDENTIFIER = $__BundleId;/g" ug.xcodeproj/project.pbxproj > tmp.txt

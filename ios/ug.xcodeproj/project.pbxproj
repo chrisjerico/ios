@@ -1827,6 +1827,11 @@
 		D40FA8BF229910EF003E596F /* yuebaoMone.gif in Resources */ = {isa = PBXBuildFile; fileRef = D40FA8BE229910EE003E596F /* yuebaoMone.gif */; };
 		D417EFDB2330D24C0024F634 /* AppDelegate+HgBugly.m in Sources */ = {isa = PBXBuildFile; fileRef = D417EFDA2330D24C0024F634 /* AppDelegate+HgBugly.m */; };
 		D422D67F22D9A766008E7065 /* address.json in Resources */ = {isa = PBXBuildFile; fileRef = D422D67E22D9A764008E7065 /* address.json */; };
+		D435F90423CEF940008648CE /* KMCGeigerCounterTick.aiff in Resources */ = {isa = PBXBuildFile; fileRef = D435F90023CEF940008648CE /* KMCGeigerCounterTick.aiff */; };
+		D435F90523CEF940008648CE /* KMCGeigerCounterTick.aiff in Resources */ = {isa = PBXBuildFile; fileRef = D435F90023CEF940008648CE /* KMCGeigerCounterTick.aiff */; };
+		D435F90623CEF940008648CE /* KMCGeigerCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = D435F90223CEF940008648CE /* KMCGeigerCounter.m */; };
+		D435F90723CEF940008648CE /* KMCGeigerCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = D435F90223CEF940008648CE /* KMCGeigerCounter.m */; };
+		D435F90923CEF996008648CE /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D435F90823CEF996008648CE /* AudioToolbox.framework */; };
 		D4463AB223A773AF008EF03D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4463AB123A773AF008EF03D /* CFNetwork.framework */; };
 		D4463AB423A773B9008EF03D /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4463AB323A773B9008EF03D /* CoreFoundation.framework */; };
 		D4463AB623A773C5008EF03D /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4463AB523A773C4008EF03D /* CoreTelephony.framework */; };
@@ -3540,6 +3545,10 @@
 		D417EFD92330D24C0024F634 /* AppDelegate+HgBugly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+HgBugly.h"; sourceTree = "<group>"; };
 		D417EFDA2330D24C0024F634 /* AppDelegate+HgBugly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+HgBugly.m"; sourceTree = "<group>"; };
 		D422D67E22D9A764008E7065 /* address.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = address.json; sourceTree = "<group>"; };
+		D435F90023CEF940008648CE /* KMCGeigerCounterTick.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = KMCGeigerCounterTick.aiff; sourceTree = "<group>"; };
+		D435F90123CEF940008648CE /* KMCGeigerCounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMCGeigerCounter.h; sourceTree = "<group>"; };
+		D435F90223CEF940008648CE /* KMCGeigerCounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMCGeigerCounter.m; sourceTree = "<group>"; };
+		D435F90823CEF996008648CE /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		D4463AB123A773AF008EF03D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		D4463AB323A773B9008EF03D /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		D4463AB523A773C4008EF03D /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -3592,6 +3601,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D435F90923CEF996008648CE /* AudioToolbox.framework in Frameworks */,
 				D4463AC623A7740E008EF03D /* libresolv.tbd in Frameworks */,
 				D4463AC423A77404008EF03D /* UserNotifications.framework in Frameworks */,
 				D4463AC223A773F9008EF03D /* libz.tbd in Frameworks */,
@@ -3789,6 +3799,7 @@
 				031E142223BE812300B0F813 /* FishUtility */,
 				031E14E523BE812300B0F813 /* CMCommon */,
 				031E14C223BE812300B0F813 /* CMNetwork */,
+				D435F8FF23CEF940008648CE /* KMCGeigerCounter */,
 				D4F0411423C868E20070D2B5 /* WHC_SqliteKit */,
 				031E155223BE812300B0F813 /* segmentListControl */,
 				031E157323BE812300B0F813 /* XYYSegmentControl */,
@@ -7080,6 +7091,7 @@
 		2E2BF98637033623A296F5F9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D435F90823CEF996008648CE /* AudioToolbox.framework */,
 				D4463AC523A7740E008EF03D /* libresolv.tbd */,
 				D4463AC323A77404008EF03D /* UserNotifications.framework */,
 				D4463AC123A773F9008EF03D /* libz.tbd */,
@@ -7339,6 +7351,16 @@
 				D422D67E22D9A764008E7065 /* address.json */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		D435F8FF23CEF940008648CE /* KMCGeigerCounter */ = {
+			isa = PBXGroup;
+			children = (
+				D435F90023CEF940008648CE /* KMCGeigerCounterTick.aiff */,
+				D435F90123CEF940008648CE /* KMCGeigerCounter.h */,
+				D435F90223CEF940008648CE /* KMCGeigerCounter.m */,
+			);
+			path = KMCGeigerCounter;
 			sourceTree = "<group>";
 		};
 		D4B75E002278025E0007047C = {
@@ -7733,6 +7755,7 @@
 				031EF58323BE7B4D00B0F813 /* renwuzhongxin.svg in Resources */,
 				031EF56823BE7B4D00B0F813 /* hongbaobeijing.svg in Resources */,
 				031E193D23BE812600B0F813 /* UGSkinCollectionViewCell.xib in Resources */,
+				D435F90523CEF940008648CE /* KMCGeigerCounterTick.aiff in Resources */,
 				031EF58523BE7B4D00B0F813 /* wode.svg in Resources */,
 				031E19EB23BE812700B0F813 /* IndexesView.xib in Resources */,
 				031EF57423BE7B4D00B0F813 /* xiaoxi.svg in Resources */,
@@ -8005,6 +8028,7 @@
 				036CA77D23C759DF007BBD25 /* MyPromotion.storyboard in Resources */,
 				CF4758C1239636D200966536 /* 97.gif in Resources */,
 				CF47592A239636D200966536 /* 10.gif in Resources */,
+				D435F90423CEF940008648CE /* KMCGeigerCounterTick.aiff in Resources */,
 				031E1D3423BE812B00B0F813 /* UGAgentViewController.xib in Resources */,
 				CF4758FA239636D200966536 /* 158.gif in Resources */,
 				CF475907239636D200966536 /* 98.gif in Resources */,
@@ -8717,6 +8741,7 @@
 				031E1AEB23BE812800B0F813 /* LeeTagItem.m in Sources */,
 				031E1E8323BE812D00B0F813 /* UGBalanceTransferLogsCell.m in Sources */,
 				031EF54823BE7B4D00B0F813 /* MomentsImageUpdateApiModel.swift in Sources */,
+				D435F90723CEF940008648CE /* KMCGeigerCounter.m in Sources */,
 				031E1B9F23BE812900B0F813 /* UGGameListCollectionViewCell.m in Sources */,
 				031EF54723BE7B4D00B0F813 /* MomentsModel.swift in Sources */,
 				031E1AFF23BE812800B0F813 /* GLEncryptManager.m in Sources */,
@@ -9251,6 +9276,7 @@
 				031E1B7E23BE812900B0F813 /* UGPlatformNoticeCell.m in Sources */,
 				031E198A23BE812600B0F813 /* LHPostCommentInputView.m in Sources */,
 				031E1B9E23BE812900B0F813 /* UGGameListCollectionViewCell.m in Sources */,
+				D435F90623CEF940008648CE /* KMCGeigerCounter.m in Sources */,
 				031E196823BE812600B0F813 /* UGLHOldYearViewController.m in Sources */,
 				031E1CE423BE812A00B0F813 /* MJRefreshHeader.m in Sources */,
 				031E1DF223BE812C00B0F813 /* UGMissionTitleCell.m in Sources */,

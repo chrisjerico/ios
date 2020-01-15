@@ -23,6 +23,21 @@
 
 @implementation UGCommonLotteryController
 
+- (void)dealloc {
+    [_nextIssueCountDown destoryTimer];
+    if (_timer) {
+        if ([_timer isValid]) {
+            [_timer invalidate];
+            _timer = nil;
+        }
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+
+}
+
 - (BOOL)允许游客访问 { return true; }
 
 - (void)viewDidLoad {
@@ -89,6 +104,18 @@
         [subButton(@"聊天Btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
              [[NSNotificationCenter defaultCenter] postNotificationName:@"NSSelectChatRoom" object:nil userInfo:nil];
         }];
+        
+
+        [subButton(@"金杯btn") setHidden:!APP.isShowJinbei];
+        [subButton(@"金杯btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+        [subButton(@"金杯btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+            [CMCommon goSLWebUrl:lotteryUrl];
+        }];
+        
+       
+        
+        
+        
     }
     
 

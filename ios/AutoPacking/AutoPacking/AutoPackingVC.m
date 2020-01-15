@@ -13,10 +13,27 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSString *ids = @"c085,a002,c193,c153,c048";
-    BOOL willUpload = 1; // 打包后是否上传审核
     
-    [self startPackingWithIds:ids willUpload:willUpload];
+    BOOL isPack = 1;  // 0全站提交热更新，1批量打包上传APP后台
+    
+    // 拉取最新代码
+    [ShellHelper pullCode:Path.projectDir completion:^{
+        NSLog(@"Path.tempCommitId = %@",Path.tempCommitId);
+        NSLog(@"Path.tempLog = %@",Path.tempLog);
+        Path.commitId = [[NSString stringWithContentsOfFile:Path.tempCommitId encoding:NSUTF8StringEncoding error:nil] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+        Path.version = [[NSString stringWithContentsOfFile:Path.tempVersion encoding:NSUTF8StringEncoding error:nil] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+        Path.gitLog = [[[NSString stringWithContentsOfFile:Path.tempLog encoding:NSUTF8StringEncoding error:nil] stringByReplacingOccurrencesOfString:@"\n" withString:@""] componentsSeparatedByString:@"(1):      "].lastObject;
+        
+        if (isPack) {
+            NSString *ids = @"c085,a002,c193,c153,c048,c203,c200,c108,c053,c175";   // 站点编号
+            BOOL willUpload = 1; // 打包后是否上传审核
+            [self startPackingWithIds:ids willUpload:willUpload];
+        }
+        else {
+            NSString *log = @"";    // 更新日志
+            [self postHotUpdate:log];
+        }
+    }];
 }
 
 
@@ -24,10 +41,109 @@
 #pragma mark - 发布热更新
 
 - (void)postHotUpdate:(NSString *)log {
-    if (log.length < 20) {
-        @throw [NSException exceptionWithName:@"日志太短，请写详细点。" reason:@"" userInfo:nil];
+//    if (log.length < 20) {
+//        @throw [NSException exceptionWithName:@"日志太短，请写详细点。" reason:@"" userInfo:nil];
+//    }
+    
+//    Path.jspatchDir
+    NSString *BASE_PATH = Path.jspatchDir;
+    BOOL isDir = NO;
+    BOOL isExist = NO;
+    
+    //列举目录内容，可以遍历子目录
+    NSMutableArray *contetns = @[].mutableCopy;
+    NSMutableArray *paths = @[].mutableCopy;
+    for (NSString *path in [[NSFileManager defaultManager] enumeratorAtPath:BASE_PATH].allObjects) {
+        NSString *fullPath = [NSString stringWithFormat:@"%@/%@", BASE_PATH, path];
+        isExist = [[NSFileManager defaultManager] fileExistsAtPath:fullPath isDirectory:&isDir];
+        if (isExist && !isDir && [fullPath hasSuffix:@".js"]) {
+            NSError *err = nil;
+            [contetns addObject:[NSString stringWithContentsOfFile:fullPath encoding:NSUTF8StringEncoding error:&err]];
+            [paths addObject:path];
+            if (err) {
+                @throw [NSException exceptionWithName:@"js加密失败。" reason:@"" userInfo:nil];
+            }
+        }
     }
     
+    // 加密文件内容
+    NSString *rootDir = [Path.jsExportDir stringByAppendingFormat:@"/%@", Path.commitId];
+    [ShellHelper encrypt:contetns completion:^(NSArray<NSString *> * _Nonnull rets) {
+        // 保存加密后的内容为js文件
+        for (int i=0; i<contetns.count; i++) {
+            NSString *content = contetns[i];
+            NSString *path = paths[i];
+            if (!content.length) {
+                @throw [NSException exceptionWithName:@"js加密后为空。" reason:@"" userInfo:nil];
+            }
+            NSString *fullPath = _NSString(@"%@/%@", rootDir, path);
+            [[NSFileManager defaultManager] removeItemAtPath:fullPath error:nil];
+            [[NSFileManager defaultManager] createDirectoryAtPath:fullPath.stringByDeletingLastPathComponent withIntermediateDirectories:true attributes:nil error:nil];
+            NSError *err = nil;
+            [content writeToFile:fullPath atomically:true encoding:NSUTF8StringEncoding error:&err];
+            if (err) {
+                @throw [NSException exceptionWithName:@"js加密后保存失败。" reason:@"" userInfo:nil];
+            }
+        }
+        
+        // 压缩
+        NSString *zipPath = _NSString(@"%@/%@.zip", rootDir, Path.version);
+        [NSTask launchedTaskWithLaunchPath:@"/usr/bin/zip" arguments:@[@"-r", zipPath.lastPathComponent, _NSString(@"%@/*", rootDir)] completion:^(NSTask * _Nonnull ts) {
+            
+            // 上传js压缩包
+            NSString *uploadId = @"214";
+            NSString *uploadNum = @"test19";
+            __block int __progress = 0;
+            CCSessionModel *sm = [NetworkManager1 uploadWithId:uploadId sid:uploadNum file:zipPath];
+            sm.progressBlock = ^(NSProgress *progress) {
+                int p = progress.completedUnitCount/(double)progress.totalUnitCount * 100;
+                if (p != __progress) {
+                    __progress = p;
+                    NSLog(@"%@ js压缩包上传进度：%.2f", Path.version, (double)__progress);
+                }
+            };
+            sm.completionBlock = ^(CCSessionModel *sm) {
+                NSString *zipURL = _NSString(@"https://app.wdheco.cn%@", sm.responseObject[@"data"][@"url"]);
+                if (![zipURL containsString:@".zip"]) {
+                    NSLog(@"%@ js压缩包上传错误❌，%@", Path.version, sm.error);
+                    @throw [NSException exceptionWithName:@"js压缩包上传错误。" reason:@"" userInfo:nil];
+                    return ;
+                }
+                
+                if (!sm.error) {
+                    NSLog(@"%@ js压缩包上传成功", Path.version);
+                    
+                    // 提交热更新版本信息
+                    [NetworkManager1 addHotUpdateVersion:Path.version log:log url:zipURL].completionBlock = ^(CCSessionModel *sm) {
+                        if (sm.error) {
+                            @throw [NSException exceptionWithName:@"JSPatch热更新提交失败。" reason:@"" userInfo:nil];
+                            return ;
+                        }
+                        // 提交rn资源包
+                        [NSTask launchedTaskWithLaunchPath:[[NSBundle mainBundle] pathForResource:@"7codepush" ofType:@"sh"] arguments:@[Path.version, log] completion:^(NSTask * _Nonnull ts) {
+                            // 记录热更新日志
+                            [ShellHelper pullCode:Path.jsLogPath.stringByDeletingLastPathComponent completion:^{
+                                
+                                NSDateFormatter *df = [NSDateFormatter new];
+                                [df setDateFormat:@"yyyy年MM月dd日 HH:mm"];
+                                
+                                NSString *jsLog = _NSString(@"（%@）%@  |  %@，%@\n\t\t\t\t\t\t%@", Path.username, [df stringFromDate:[NSDate date]], Path.commitId, Path.gitLog, [log stringByReplacingOccurrencesOfString:@"\n" withString:@""]);
+                                [self saveString:jsLog toFile:Path.jsLogPath];
+                                
+                                // 提交发包日志到git
+                                NSString *title = _NSString(@"提交热更新，%@", log);
+                                [ShellHelper pushCode:Path.jsLogPath.stringByDeletingLastPathComponent title:title completion:^{
+                                    NSLog(@"发包日志提交成功");
+                                    NSLog(@"退出程序！");
+                                    exit(0);
+                                }];
+                            }];
+                        }];
+                    };
+                }
+            };
+        }];
+    }];
 }
 
 
@@ -36,83 +152,75 @@
 // 批量打包
 - (void)startPackingWithIds:(NSString *)ids willUpload:(BOOL)willUpload {
     __weakSelf_(__self);
-    // 拉取最新代码
-    [ShellHelper pullCode:Path.projectDir completion:^{
-        NSLog(@"Path.tempCommitId = %@",Path.tempCommitId);
-        NSLog(@"Path.tempLog = %@",Path.tempLog);
-        Path.commitId = [[NSString stringWithContentsOfFile:Path.tempCommitId encoding:NSUTF8StringEncoding error:nil] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-        Path.gitLog = [[[NSString stringWithContentsOfFile:Path.tempLog encoding:NSUTF8StringEncoding error:nil] stringByReplacingOccurrencesOfString:@"\n" withString:@""] componentsSeparatedByString:@"(1):      "].lastObject;
-        
-        // 检查配置
-        [ShellHelper checkSiteInfo:ids];
-        
-        // 批量打包
-        [ShellHelper packing:[SiteModel sites:ids] completion:^(NSArray<SiteModel *> *okSites) {
-            if (!okSites.count) {
-                NSLog(@"没有一个打包成功的。");
+    // 检查配置
+    [ShellHelper checkSiteInfo:ids];
+    
+    // 批量打包
+    [ShellHelper packing:[SiteModel sites:ids] completion:^(NSArray<SiteModel *> *okSites) {
+        if (!okSites.count) {
+            NSLog(@"没有一个打包成功的。");
+            exit(0);
+        }
+        if (!willUpload) {
+            [NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[okSites.firstObject.ipaPath.stringByDeletingLastPathComponent.stringByDeletingLastPathComponent]];
+            
+            // 上传打包日志
+            [self saveLog:okSites uploaded:false completion:^(BOOL ok) {
+                [NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[@"-a", @"/Applications/Xcode.app", Path.ipaLogPath]];
+                NSLog(@"只打包不上传，退出打包程序");
                 exit(0);
+            }];
+            return ;
+        }
+        okSites = ({
+            NSMutableArray *temp = okSites.mutableCopy;
+            for (SiteModel *sm in okSites) {
+                if (![@"企业包,内测包" containsString:sm.type]) {
+                    [temp removeObject:sm];
+                }
             }
-            if (!willUpload) {
+            if (temp.count < okSites.count) {
+                // 弹出不能自动上传的包，手动处理
                 [NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[okSites.firstObject.ipaPath.stringByDeletingLastPathComponent.stringByDeletingLastPathComponent]];
-                
+                NSMutableArray *ReSign = okSites.mutableCopy;
+                [ReSign removeObjectsInArray:temp];
+                NSLog(@"-------\n.");
+                for (SiteModel *sm in ReSign) {
+                    NSLog(@"此ipa需要改签：%@（%@）", sm.siteId, sm.type);
+                }
+                NSLog(@"-------");
                 // 上传打包日志
-                [self saveLog:okSites uploaded:false completion:^(BOOL ok) {
-                    [NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[@"-a", @"/Applications/Xcode.app", Path.logPath]];
-                    NSLog(@"只打包不上传，退出打包程序");
-                    exit(0);
+                [self saveLog:ReSign uploaded:false completion:^(BOOL ok) {
+                    if (!temp.count) {
+                        [NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[@"-a", @"/Applications/Xcode.app", Path.ipaLogPath]];
+                        NSLog(@"无需上传，退出打包程序！");
+                        exit(0);
+                    }
                 }];
+            }
+            if (!temp.count) {
                 return ;
             }
-            okSites = ({
-                NSMutableArray *temp = okSites.mutableCopy;
-                for (SiteModel *sm in okSites) {
-                    if (![@"企业包,内测包" containsString:sm.type]) {
-                        [temp removeObject:sm];
-                    }
-                }
-                if (temp.count < okSites.count) {
-                    // 弹出不能自动上传的包，手动处理
-                    [NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[okSites.firstObject.ipaPath.stringByDeletingLastPathComponent.stringByDeletingLastPathComponent]];
-                    NSMutableArray *ReSign = okSites.mutableCopy;
-                    [ReSign removeObjectsInArray:temp];
-                    NSLog(@"-------\n.");
-                    for (SiteModel *sm in ReSign) {
-                        NSLog(@"此ipa需要改签：%@（%@）", sm.siteId, sm.type);
-                    }
-                    NSLog(@"-------");
-                    // 上传打包日志
-                    [self saveLog:ReSign uploaded:false completion:^(BOOL ok) {
-                        if (!temp.count) {
-                            [NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[@"-a", @"/Applications/Xcode.app", Path.logPath]];
-                            NSLog(@"无需上传，退出打包程序！");
-                            exit(0);
-                        }
-                    }];
-                }
-                if (!temp.count) {
-                    return ;
-                }
-                temp.copy;
-            });
-            
-            // 登录
-            [NetworkManager1 login:Path.username pwd:Path.pwd].completionBlock = ^(CCSessionModel *sm) {
-                if (!sm.error) {
-                    NSLog(@"登录成功，%@", sm.responseObject);
-                    [[NSUserDefaults standardUserDefaults] setObject:sm.responseObject[@"data"][@"loginsessid"] forKey:@"loginsessid"];
-                    [[NSUserDefaults standardUserDefaults] setObject:sm.responseObject[@"data"][@"logintoken"] forKey:@"logintoken"];
-                    [[NSUserDefaults standardUserDefaults] synchronize];
-                    
-                    // 批量上传
-                    [__self upload:okSites completion:^(NSArray<SiteModel *> *okSites) {
-                        NSLog(@"退出打包程序");
-                        exit(0);
-                    }];
-                } else {
-                    NSLog(@"登录失败，%@", sm.error);
-                }
-            };
-        }];
+            temp.copy;
+        });
+        
+        // 登录
+        [NetworkManager1 login:Path.username pwd:Path.pwd].completionBlock = ^(CCSessionModel *sm) {
+            if (!sm.error) {
+                NSLog(@"登录成功，%@", sm.responseObject);
+                [[NSUserDefaults standardUserDefaults] setObject:sm.responseObject[@"data"][@"loginsessid"] forKey:@"loginsessid"];
+                [[NSUserDefaults standardUserDefaults] setObject:sm.responseObject[@"data"][@"logintoken"] forKey:@"logintoken"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+                
+                // 批量上传
+                [__self upload:okSites completion:^(NSArray<SiteModel *> *okSites) {
+                    NSLog(@"退出打包程序");
+                    exit(0);
+                }];
+            } else {
+                NSLog(@"登录失败，%@", sm.error);
+            }
+        };
     }];
 }
 
@@ -173,7 +281,7 @@
             }
         }
         if (!__sm) {
-            [NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[@"-a", @"/Applications/Xcode.app", Path.logPath]];
+            [NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[@"-a", @"/Applications/Xcode.app", Path.ipaLogPath]];
             
             if (okSites.count < _sites.count) {
                 NSMutableArray *errs = [_sites mutableCopy];
@@ -206,6 +314,7 @@
                     NSLog(@"%@ ipa文件上传错误❌，%@", __sm.siteId, sm.error);
                     __sm = nil;
                     __next();
+                    return ;
                 }
                 [__self saveString:ipaUrl toFile:__sm.logPath];
                 
@@ -230,7 +339,7 @@
 // 保存发包日志
 - (void)saveLog:(NSArray <SiteModel *>*)sms uploaded:(BOOL)uploaded completion:(void (^)(BOOL ok))completion {
     // 从git拉取最新的发包日志
-    [ShellHelper pullCode:Path.logPath.stringByDeletingLastPathComponent completion:^{
+    [ShellHelper pullCode:Path.ipaLogPath.stringByDeletingLastPathComponent completion:^{
         
         NSDateFormatter *df = [NSDateFormatter new];
         [df setDateFormat:@"yyyy年MM月dd日 HH:mm"];
@@ -241,12 +350,12 @@
                 downloadPath = _NSString(@"【%@ %@】打包记录", sm.siteId, sm.type);
             }
             NSString *log = _NSString(@"%@\t\t（%@）%@  |  %@，%@", downloadPath, Path.username, [df stringFromDate:[NSDate date]], Path.commitId, Path.gitLog);
-            [self saveString:log toFile:Path.logPath];
+            [self saveString:log toFile:Path.ipaLogPath];
         }
         
         // 提交发包日志到git
         NSString *title = _NSString(@"%@ %@，%@", [(NSArray *)[sms valueForKey:@"siteId"] componentsJoinedByString:@","], uploaded ? @"【发包】" : @"【只打包】", Path.gitLog);
-        [ShellHelper pushCode:Path.logPath.stringByDeletingLastPathComponent title:title completion:^{
+        [ShellHelper pushCode:Path.ipaLogPath.stringByDeletingLastPathComponent title:title completion:^{
             NSLog(@"发包日志提交成功");
             if (completion) {
                 completion(true);

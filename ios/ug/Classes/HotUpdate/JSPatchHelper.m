@@ -27,26 +27,29 @@
 
 
 
-@interface JPEngine ()
+
+
+@interface JPEngine (Decrypt)
 + (JSValue *)_evaluateScript:(NSString *)script withSourceURL:(NSURL *)resourceURL;
 @end
 
-@implementation JSPatchHelper
-
+@implementation JPEngine (Decrypt)
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        #define HookSEL(cls, selector) NSSelectorFromString([NSString stringWithFormat:@"cc_%@_%@", cls, selector])
-        
-        // japatch 解密
-        Class cls = [JPEngine class];
-        SEL sel = @selector(_evaluateScript:withSourceURL:);
-        [cls jr_swizzleClassMethod:sel withBlock:^(id obj, NSString *script, NSURL *resourceURL) {
-            script = [RSA decryptString:script];
-            [obj performSelectorWithArgs:HookSEL(cls, NSStringFromSelector(sel)), script, resourceURL];
-        } error:nil];
+        [JPEngine jr_swizzleClassMethod:@selector(_evaluateScript:withSourceURL:) withClassMethod:@selector(cc_evaluateScript:withSourceURL:) error:nil];
     });
 }
++ (JSValue *)cc_evaluateScript:(NSString *)script withSourceURL:(NSURL *)resourceURL {
+    script = [RSA decryptString:script];
+    return [self cc_evaluateScript:script withSourceURL:resourceURL];
+}
+@end
+
+
+
+
+@implementation JSPatchHelper
 
 + (void)install {
     [JPEngine startEngine];
@@ -63,6 +66,9 @@
     
     // 下载完成后解压
     void (^downloadPackage)(HotVersionModel *) = ^(HotVersionModel *hvm) {
+#ifdef DEBUG
+        hvm.update_url = @"http://192.168.1.144/1.zip";
+#endif
         CCSessionModel *sm = [NetworkManager1 downloadFile:hvm.update_url];
         __block int __progress = 0;
         sm.progressBlock = ^(NSProgress *progress) {
@@ -73,8 +79,8 @@
             }
         };
         sm.completionBlock = ^(CCSessionModel *sm) {
-            NSLog(@"下载完成");
             if (!sm.error) {
+                NSLog(@"下载完成");
                 // 解压
                 NSString *zipPath = sm.responseObject;
                 NSString *unzipPath = _NSString(@"%@/jsp%@", APP.DocumentDirectory, hvm.version);
@@ -82,13 +88,20 @@
                 BOOL ret = [SSZipArchive unzipFileAtPath:zipPath toDestination:unzipPath];
                 // 保存路径（更新成功）
                 if (ret) {
+                    NSLog(@"解压缩成功");
                     NSString *jspVersion = [NSString stringWithContentsOfFile:_NSString(@"%@/Version.txt", unzipPath) encoding:NSUTF8StringEncoding error:nil];
-                    jspVersion = [RSA decryptString:jspVersion];
-                    if ([jspVersion isEqualToString:hvm.version]) {
+                    if (jspVersion.length && [(jspVersion = [RSA decryptString:jspVersion]) hasPrefix:hvm.version]) {
+                        NSLog(@"校验成功，更新完毕");
                         APP.jspVersion = jspVersion;
                         [JSPatchHelper install];
+                    } else {
+                        NSLog(@"校验失败，不予更新");
                     }
+                } else {
+                    NSLog(@"解压缩失败");
                 }
+            } else {
+                NSLog(@"下载失败");
             }
         };
     };
@@ -111,7 +124,8 @@
             if (vs.count) {
                 HotVersionModel *newVersion = nil;
                 // 比较版本号
-                for (HotVersionModel *hvm in @[]) {
+                for (NSDictionary *dict in vs) {
+                    HotVersionModel *hvm = [HotVersionModel mj_objectWithKeyValues:dict];
                     if ([JSPatchHelper compareVersion:hvm.version newerThanVersion:APP.jspVersion]) {
                         if ([JSPatchHelper compareVersion:hvm.version newerThanVersion:cpVersion]) {
                             // 此jspatch版本比CodePush版本大，忽略此更新

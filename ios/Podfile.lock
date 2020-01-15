@@ -335,7 +335,7 @@ DEPENDENCIES:
   - IQKeyboardManagerSwift (~> 6.3.0)
   - JPush (= 3.2.2-noidfa)
   - JRSwizzle
-  - JSPatch (from `../JSPatch/JSPatch.podspec`)
+  - JSPatch (from `JSPatch/JSPatch.podspec`)
   - Kingfisher (~> 5.6.0)
   - LEEAlert
   - Masonry
@@ -470,7 +470,7 @@ EXTERNAL SOURCES:
   glog:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
   JSPatch:
-    :path: "../JSPatch/JSPatch.podspec"
+    :path: JSPatch/JSPatch.podspec
   RCTRequired:
     :path: "../node_modules/react-native/Libraries/RCTRequired"
   RCTTypeSafety:
@@ -599,6 +599,6 @@ SPEC CHECKSUMS:
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
 
-PODFILE CHECKSUM: 3a2cb83f0dac2ca601a712420543299fa5458690
+PODFILE CHECKSUM: c6e1bd273ed80269476394b2d80185d662de5cb5
 
 COCOAPODS: 1.8.4
