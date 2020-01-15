@@ -89,6 +89,18 @@
         [subButton(@"聊天Btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
              [[NSNotificationCenter defaultCenter] postNotificationName:@"NSSelectChatRoom" object:nil userInfo:nil];
         }];
+        
+
+        [subButton(@"金杯btn") setHidden:!APP.isShowJinbei];
+        [subButton(@"金杯btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+        [subButton(@"金杯btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+            [CMCommon goSLWebUrl:lotteryUrl];
+        }];
+        
+       
+        
+        
+        
     }
     
 

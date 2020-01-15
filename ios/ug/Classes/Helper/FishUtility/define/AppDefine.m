@@ -165,6 +165,11 @@
     }
 }
 
+
+- (BOOL)isShowJinbei {
+    return [@"c085" containsString:_SiteId];
+}
+
 - (BOOL)isShowWZ {
     return [@"c085" containsString:_SiteId];
 }

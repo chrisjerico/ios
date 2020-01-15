@@ -50,6 +50,7 @@
 @property (nonatomic) BOOL isShowLogo;    /**<  首页中间游戏导航需增加logo图标，游戏导航栏可进行滑动 */
 @property (nonatomic) BOOL isShow4;    /**<  任务中心显示4个，不显示图片 */
 @property (nonatomic) BOOL isShowWZ;    /**<  将选填 这两个字更换为  如果没有，可不填写 */
+@property (nonatomic) BOOL isShowJinbei;    /**<  显示金杯 */
 + (instancetype)shared;
 @end
 
