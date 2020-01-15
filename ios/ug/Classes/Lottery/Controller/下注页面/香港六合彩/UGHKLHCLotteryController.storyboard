@@ -247,11 +247,8 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JcX-fu-HjB">
-                                        <rect key="frame" x="0.0" y="43.5" width="414" height="0.5"/>
+                                        <rect key="frame" x="0.0" y="44" width="414" height="0.0"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="0.69999999999999996" id="ZvA-Wv-taK"/>
-                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -298,15 +295,29 @@
                                             <constraint firstAttribute="height" constant="28" id="UVl-wY-h4X"/>
                                         </constraints>
                                     </stackView>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5RQ-74-6OC">
+                                        <rect key="frame" x="369" y="7" width="40" height="30.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="O5u-Ut-NFf"/>
+                                            <constraint firstAttribute="height" constant="30.5" id="bgS-6V-Pfn"/>
+                                        </constraints>
+                                        <state key="normal" image="kjw_01"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="金杯btn"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="JcX-fu-HjB" firstAttribute="top" secondItem="5RQ-74-6OC" secondAttribute="bottom" constant="6.5" id="2Et-da-bPV"/>
                                     <constraint firstAttribute="height" constant="44" id="9UY-Ex-YPw"/>
                                     <constraint firstItem="eWc-fX-NZa" firstAttribute="leading" secondItem="vOk-tj-qSW" secondAttribute="trailing" constant="5" id="9bY-FS-Hd8"/>
                                     <constraint firstItem="L2n-Ux-00V" firstAttribute="leading" secondItem="eWc-fX-NZa" secondAttribute="trailing" constant="5" id="UMM-fZ-S30"/>
                                     <constraint firstItem="JcX-fu-HjB" firstAttribute="leading" secondItem="mV0-Ou-flp" secondAttribute="leading" id="Xqy-DL-jTa"/>
                                     <constraint firstAttribute="trailing" secondItem="JcX-fu-HjB" secondAttribute="trailing" id="eU6-0n-vu0"/>
+                                    <constraint firstItem="5RQ-74-6OC" firstAttribute="top" secondItem="mV0-Ou-flp" secondAttribute="top" constant="7" id="fau-uZ-Pkt"/>
                                     <constraint firstItem="eWc-fX-NZa" firstAttribute="centerY" secondItem="mV0-Ou-flp" secondAttribute="centerY" id="ieK-Gl-F7f"/>
+                                    <constraint firstAttribute="trailing" secondItem="5RQ-74-6OC" secondAttribute="trailing" constant="5" id="jUR-Nj-Z6Z"/>
                                     <constraint firstAttribute="trailing" secondItem="Ng7-pW-rY0" secondAttribute="trailing" constant="8" id="jth-kT-o1M"/>
                                     <constraint firstAttribute="bottom" secondItem="JcX-fu-HjB" secondAttribute="bottom" id="mDF-GH-YfP"/>
                                     <constraint firstItem="vOk-tj-qSW" firstAttribute="leading" secondItem="mV0-Ou-flp" secondAttribute="leading" constant="5" id="npL-32-vm2"/>
@@ -354,6 +365,7 @@
     </scenes>
     <resources>
         <image name="chat" width="50" height="50"/>
+        <image name="kjw_01" width="24" height="24"/>
         <image name="xz_icon_cl" width="100" height="100"/>
         <image name="xz_icon_kj" width="100" height="100"/>
         <image name="xz_icon_zb" width="100" height="100"/>
