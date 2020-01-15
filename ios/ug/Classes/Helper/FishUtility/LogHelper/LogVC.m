@@ -138,15 +138,27 @@ static LogVC *_logVC = nil;
     
     {//切换按钮六合
         NSMutableArray *titles = @[].mutableCopy;
-        [titles addObject:@"当前skintyle"];
-        [titles addObject:@"切换到六合"];
+        [titles addObject:@"聊天室TG"];
+        [titles addObject:@"聊天室"];
         UIAlertController *ac = [AlertHelper showAlertView:nil msg:@"请选择操作" btnTitles:[titles arrayByAddingObject:@"取消"]];
         
-        [ac setActionAtTitle:@"当前skintyle" handler:^(UIAlertAction *aa) {
-            NSLog(@"%@",[NSString stringWithFormat: @"当前skintyle = %@",Skin1.skitString]);
+        [ac setActionAtTitle:@"聊天室TG" handler:^(UIAlertAction *aa) {
+                dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    // 需要在主线程执行的代码
+            
+                    [CMCommon goTGWebUrl:@"http://rwmenpc200yzvjjmx.ptplayyy.com/h5chat/#/chatRoom?roomId=1&roomName=%E6%89%AB%E9%9B%B710%E5%8C%851%E7%82%B91%E5%80%8D&password&isChatBan=false&isShareBet=false&typeId=0&sortId=1&chatRedBagSetting=%5Bobject%20Object%5D&isMine=1&minAmount=10.00&maxAmount=1000.00&oddsRate=1.10&quantity=10" title:nil];
+                });
         }];
-        [ac setActionAtTitle:@"切换到六合" handler:^(UIAlertAction *aa) {
-            [UGSkinManagers lhSkin];
+        [ac setActionAtTitle:@"聊天室" handler:^(UIAlertAction *aa) {
+            dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                // 需要在主线程执行的代码
+                
+                UGChatViewController *webViewVC = [[UGChatViewController alloc] init];
+                webViewVC.允许未登录访问 = true;
+                webViewVC.允许游客访问 = true;
+                webViewVC.url = @"http://rwmenpc200yzvjjmx.ptplayyy.com/h5chat/#/chatRoom?roomId=1&roomName=%E6%89%AB%E9%9B%B710%E5%8C%851%E7%82%B91%E5%80%8D&password&isChatBan=false&isShareBet=false&typeId=0&sortId=1&chatRedBagSetting=%5Bobject%20Object%5D&isMine=1&minAmount=10.00&maxAmount=1000.00&oddsRate=1.10&quantity=10" ;
+                [NavController1 pushViewController:webViewVC animated:YES];
+            });
         }];
         
         
