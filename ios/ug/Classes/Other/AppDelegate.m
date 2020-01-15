@@ -29,7 +29,7 @@
 #import "UGPromotionIncomeController.h"
 #import "UGLaunchPageVC.h"
 #import "UGSystemConfigModel.h"
-
+#import "KMCGeigerCounter.h"
 #ifdef DEBUG
 
 #endif
@@ -94,6 +94,7 @@
     [self userAgent];
 #ifdef DEBUG
 	[LogVC enableLogVC];
+    [KMCGeigerCounter sharedGeigerCounter].enabled = YES;
 #endif
 	
 	return YES;

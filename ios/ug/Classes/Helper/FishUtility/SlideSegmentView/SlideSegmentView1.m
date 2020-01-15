@@ -131,6 +131,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     _bigScrollView.delegate = self;
+    _bigScrollView.scrollEnabled = NO;
     _scrollViews = [NSMutableArray array];
 }
 

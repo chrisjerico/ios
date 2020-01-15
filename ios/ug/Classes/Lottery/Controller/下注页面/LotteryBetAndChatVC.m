@@ -291,14 +291,13 @@
                             //                            }
                             
                         } else {
-                            if(![__self.vc2.roomId isEqualToString:@"0"]){
+                            if (OBJOnceToken(self) && ![__self.vc2.roomId isEqualToString:@"0"]){
                                 __self.vc2.gameId = @"主聊天室";
                                 __self.vc2.roomId = @"0";
                                 __self.vc2.url = [APP chatGameUrl:__self.vc2.roomId hide:YES];
                                 //                                NSLog(@"vc2.url = %@",vc2.url);
                                 __self.mLabel.text = [NSString stringWithFormat:@"聊天室▼"];
                             }
-                            
                         }
                     }
                 };
