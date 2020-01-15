@@ -72,7 +72,7 @@ MJCodingImplementation
         else if (!__self.filePath.length) {
             NSDateFormatter *df = [NSDateFormatter new];
             [df setDateFormat:@"yyyyMMddHHmmss"];
-            filePath = [NSTemporaryDirectory() stringByAppendingPathComponent:_NSString(@"%@%@", response.suggestedFilename, [df stringFromDate:[NSDate date]])];
+            filePath = [NSTemporaryDirectory() stringByAppendingPathComponent:_NSString(@"%@_%@", [df stringFromDate:[NSDate date]], response.suggestedFilename)];
         }
         
         return [NSURL fileURLWithPath:filePath];

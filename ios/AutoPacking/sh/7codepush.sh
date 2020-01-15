@@ -17,4 +17,4 @@ fi
 react-native bundle --entry-file index.ios.js --bundle-output ./bundle/main.jsbundle --platform ios --assets-dest ./bundle --dev false
 
 #【发布更新】
-code-push release-react ug ios --t $__Version --des "$__Log"
+code-push release-react ug ios --t 1.1 --des "$__Version"

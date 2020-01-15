@@ -24,26 +24,10 @@
 CCSharedImplementation
 
 - (void)updateVersion:(void (^)(NSString *))completion {
-    //        [CodePush setDeploymentKey:@"X1IUnBRRjstEdSE-C0UeUClh3tKxJmPjSmqHy"];
-    ////        NSLog(@"bundleURL = %@", [CodePush bundleURL]);
-    ////        NSLog(@"bundleAssetsPath = %@", [CodePush bundleAssetsPath]);
-    ////        NSLog(@"getApplicationSupportDirectory = %@", [CodePush getApplicationSupportDirectory]);
-    //        NSError *err = nil;
-    //        BOOL ret = [CodePushPackage installPackage:[CodePushPackage getCurrentPackage:nil] removePendingUpdate:true error:&err];
-    //        NSLog(@"install = %d, err = %@", ret, err);
-    //        NSLog(@"getCurrentPackage = %@", [CodePushPackage getCurrentPackage:nil]);
-    //        NSString *hash = [CodePushPackage getCurrentPackageHash:nil];
-    //        NSLog(@"getCurrentPackageHash = %@", hash);
-    //        NSLog(@"isPendingUpdate = %d", [CodePush isPendingUpdate:hash]);
-    //        NSLog(@"getPackage = %@", [CodePushPackage getPackage:hash error:nil]);
-    //        NSLog(@"getBinaryUpdateReport = %@", [CodePushTelemetryManager getBinaryUpdateReport:APP.Version]);
-    //        NSLog(@"getRetryStatusReport = %@", [CodePushTelemetryManager getRetryStatusReport]);
-    //        return;
-    
     _didUpdateFinish = completion;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [APP.Window insertSubview:[ReactNativeHelper vcWithName:@"Update" params:nil].view atIndex:0];
+        [APP.Window insertSubview:[ReactNativeHelper vcWithName:@"UpdateVersion" params:@{@"willUpdate":@true}].view atIndex:0];
     });
 }
 
@@ -51,6 +35,9 @@ CCSharedImplementation
     NSURL *bundleURL = [CodePush bundleURL];
 #ifdef DEBUG
     bundleURL = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+    if (APP.isFish) {
+        bundleURL = [NSURL URLWithString:@"http://192.168.1.144:8081/index.bundle?platform=ios"];
+    }
 #endif
     RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:bundleURL moduleName:name initialProperties:[ReactNativeHelper conversion:params] launchOptions:nil];
     UIViewController *vc = [[UIViewController alloc] init];
@@ -114,7 +101,7 @@ CCSharedImplementation
 #pragma mark - 注册JS函数
 
 // 注册js模块
-RCT_EXPORT_MODULE(YS);
+RCT_EXPORT_MODULE();
 
 // 注册js函数 push
 RCT_EXPORT_METHOD(push:(NSString *)page params:(NSDictionary *)params) {
@@ -158,16 +145,24 @@ RCT_EXPORT_METHOD(performSelectors:(NSMutableArray <NSDictionary *>*)selectors r
 }
 
 // 注册js 函数（版本更新完毕）
-RCT_EXPORT_METHOD(updateFinish:(NSString *)version) {
-    if (_didUpdateFinish) {
-        _didUpdateFinish(version);
+RCT_EXPORT_METHOD(updateFinish) {
+    NSString *version = [CodePushPackage getCurrentPackage:nil][@"appVersion"];
+    if ([ReactNativeHelper shared].didUpdateFinish) {
+        [ReactNativeHelper shared].didUpdateFinish(version);
     }
 }
 
 // 注册js常量
 - (NSDictionary *)constantsToExport {
+#ifdef DEBUG
     return @{
-        @"firstDayOfWeek": @"Monday"
+        // 测试环境Key
+        @"CodePushKey": @"X1IUnBRRjstEdSE-C0UeUClh3tKxJmPjSmqHy",
+    };
+#endif
+    return @{
+        // 发布环境Key
+        @"CodePushKey": @"a73XsUZP7sK2nC2hOdwo0DaWOvjurOJAB5-5Vj",
     };
 }
 
