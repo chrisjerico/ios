@@ -11,6 +11,7 @@
 
 @interface UGChatViewController ()
 @property (nonatomic) UIButton *closeBtn;
+@property (nonatomic,strong) NSTimer *mytimer;
 @end
 
 
@@ -81,14 +82,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-//    if ([self.title isEqualToString:@"聊天室"] && !_shareBetJson.length) {
-//        if (OBJOnceToken(UserI)) {
-//            [self.tgWebView stopLoading];
-//            self.url = APP.chatHomeUrl;
-//            [self.tgWebView reloadFromOrigin];
-//            NSLog(@"self.url = %@",self.url);
-//        }
-//    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -107,7 +100,7 @@
 - (void)setChangeRoomJson:(NSString *)changeRoomJson {
     _changeRoomJson = changeRoomJson;
     NSLog(@"changeRoomJson = %@", changeRoomJson);
-    
+
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         //需要在主线程执行的代码
         [self goChangeRoomJS];
@@ -132,7 +125,10 @@
                            SysConf.hasShare = NO;
 //                           [CMCommon showTitle:[NSString stringWithFormat:@"分享结果成功！%@,hasShare =%d",__self.shareBetJson,SysConf.hasShare]];
                             NSLog(@"分享结果：%@", __self.shareBetJson);
-        
+                          [__self setShareBetJson:@""];
+                          
+                          [ __self.mytimer invalidate];
+                           __self.mytimer = nil;
                          
                       }];
                       [__timer invalidate];
@@ -152,8 +148,8 @@
     // 每秒判断一下 window.canShare 参数为YES才进行分享
        if (_changeRoomJson.length) {
            __weakSelf_(__self);
-           __block NSTimer *__timer = nil;
-           __timer = [NSTimer scheduledTimerWithInterval:1 repeats:true block:^(NSTimer *timer) {
+           __self.mytimer = nil;
+           __self.mytimer = [NSTimer scheduledTimerWithInterval:1 repeats:true block:^(NSTimer *timer) {
                
                NSLog(@"在运行");
                [__self.tgWebView evaluateJavaScript:@"window.canShare" completionHandler:^(id obj, NSError *error) {
@@ -166,19 +162,20 @@
 //                           [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                                //需要在主线程执行的代码
                                 
-                               if (__self.shareBetJson && SysConf.hasShare) {
+                               if ([CMCommon stringIsNull:__self.shareBetJson] && SysConf.hasShare) {
                                    [__self goShareBetJson];
                                }
+                    
 //                           }];
 
                        }];
-                       [__timer invalidate];
-                       __timer = nil;
+                       [ __self.mytimer invalidate];
+                        __self.mytimer = nil;
                    }
 
                    if (!__self) {
-                       [__timer invalidate];
-                       __timer = nil;
+                       [ __self.mytimer invalidate];
+                        __self.mytimer = nil;
                    }
                }];
            }];
