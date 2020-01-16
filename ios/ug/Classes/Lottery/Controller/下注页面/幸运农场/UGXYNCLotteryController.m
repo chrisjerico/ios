@@ -140,7 +140,6 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     [self updateOpenLabel];
     [self getGameDatas];
     [self getNextIssueData];
-       WeakSelf
     // 轮循刷新封盘时间、开奖时间
     if (OBJOnceToken(self)) {
             self.timer = [NSTimer scheduledTimerWithInterval:1 repeats:true block:^(NSTimer *timer) {
