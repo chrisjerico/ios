@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1ue-Rf-Xwz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1ue-Rf-Xwz">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -711,6 +711,9 @@
                                         <rect key="frame" x="329" y="44" width="30" height="22"/>
                                         <state key="normal" image="arrow_down"/>
                                         <state key="selected" image="arrow_up"/>
+                                        <connections>
+                                            <action selector="showHomePageUrlTaped:" destination="VD5-NX-6o6" eventType="touchUpInside" id="Qqf-Ut-Bmy"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点击显示二维码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RKl-RM-JvF">
                                         <rect key="frame" x="67" y="37" width="86" height="36"/>
@@ -821,6 +824,9 @@
                                         <rect key="frame" x="329" y="44" width="30" height="22"/>
                                         <state key="normal" image="arrow_down"/>
                                         <state key="selected" image="arrow_up"/>
+                                        <connections>
+                                            <action selector="showRegistUrlTaped:" destination="VD5-NX-6o6" eventType="touchUpInside" id="dBh-bp-zWR"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点击显示二维码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hgr-Rv-Cug">
                                         <rect key="frame" x="67" y="37" width="86" height="36"/>
@@ -3472,8 +3478,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1VL-Qh-frl">
                                 <rect key="frame" x="0.0" y="629" width="375" height="38"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="推荐会员总计" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8po-Eu-bp0">
-                                        <rect key="frame" x="16" y="12" width="74" height="14.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="推荐会员总计:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8po-Eu-bp0">
+                                        <rect key="frame" x="16" y="12" width="77.5" height="14.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="0.28235294119999998" green="0.30196078430000001" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -3514,6 +3520,7 @@
                         <outlet property="arrowImage" destination="RQc-1c-v9X" id="Uv9-iq-udM"/>
                         <outlet property="handleStack" destination="NL5-Uf-6WE" id="lyC-J9-LJp"/>
                         <outlet property="ifWinStack" destination="SOR-8f-M8V" id="elE-ds-xwY"/>
+                        <outlet property="inviteTotalCountLabel" destination="ok0-cm-EpT" id="s3F-bU-3U0"/>
                         <outlet property="lastLoginStack" destination="MhK-LQ-EO3" id="Xk9-8u-5BS"/>
                         <outlet property="levelSelectButton" destination="PuU-Mp-1AO" id="MBp-GR-w6p"/>
                         <outlet property="levelSelectView" destination="Ykx-1r-bMC" id="8Hp-uZ-LWB"/>

@@ -94,7 +94,7 @@
     [self userAgent];
 #ifdef DEBUG
 	[LogVC enableLogVC];
-    [KMCGeigerCounter sharedGeigerCounter].enabled = YES;
+    [KMCGeigerCounter sharedGeigerCounter].enabled = NO;
 #endif
 	
 	return YES;

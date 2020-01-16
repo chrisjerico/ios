@@ -11,6 +11,8 @@
 #import <objc/runtime.h>
 #import "PromotionMemberRechargeVC.h"
 #import "YBPopupMenu.h"
+#import "UGinviteInfoModel.h"
+
 static NSString * promotionMemberItemKey = @"promotionMemberItemKey";
 @interface UIStackView (bindText)
 - (void)bindContent: (NSString *)content;
@@ -35,8 +37,11 @@ static NSString * promotionMemberItemKey = @"promotionMemberItemKey";
 @property (weak, nonatomic) IBOutlet UIView *levelSelectView;
 @property (weak, nonatomic) IBOutlet UIImageView *arrowImage;
 @property (weak, nonatomic) IBOutlet UIButton *levelSelectButton;
+@property (weak, nonatomic) IBOutlet UILabel *inviteTotalCountLabel;
 
 @property(nonatomic, strong) NSMutableArray * items;
+@property (nonatomic, strong) UGinviteInfoModel* inviteInfo;
+
 @end
 
 @implementation MyPromotionMembersVC
@@ -51,7 +56,7 @@ static NSString * promotionMemberItemKey = @"promotionMemberItemKey";
 		[weakSelf loadData];
 	}];
 	[self cleanAllStack];
-	[self loadData];
+	[self loadInviteInfo];
 	
 }
 - (void)loadData {
@@ -84,8 +89,32 @@ static NSString * promotionMemberItemKey = @"promotionMemberItemKey";
 			
 		}];
 		
-		
 	}];
+}
+
+- (void)loadInviteInfo {
+    if ([UGUserModel currentUser].isTest) {
+          return;
+      }
+      NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
+      
+      [SVProgressHUD showWithStatus:nil];
+      WeakSelf;
+      [CMNetwork teamInviteInfoWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+          [CMResult processWithResult:model success:^{
+              [SVProgressHUD dismiss];
+              [weakSelf loadData];
+              weakSelf.inviteInfo = model.data;
+              NSLog(@"rid = %@",weakSelf.inviteInfo.rid);
+              [weakSelf bindInviteInfo];
+          } failure:^(id msg) {
+              [SVProgressHUD dismiss];
+          }];
+      }];
+}
+- (void)bindInviteInfo {
+    NSArray * countArray = [[self.inviteInfo.total_member componentsSeparatedByString: @","] subarrayWithRange:NSMakeRange(0, 3)];
+    self.inviteTotalCountLabel.text = [countArray componentsJoinedByString:@" "];
 }
 - (void)bind: (NSArray<UGinviteLisModel*> *) items {
 	
@@ -153,7 +182,6 @@ static NSString * promotionMemberItemKey = @"promotionMemberItemKey";
 		_levelindex = index;
 		[self.levelSelectButton setTitle:_levelArray[index] forState:UIControlStateNormal];
 		[self loadData];
-		//       [self swithAction];
 	}
 	
 	CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI * 2);
