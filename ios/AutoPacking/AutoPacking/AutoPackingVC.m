@@ -21,8 +21,17 @@
         NSLog(@"Path.tempCommitId = %@",Path.tempCommitId);
         NSLog(@"Path.tempLog = %@",Path.tempLog);
         Path.commitId = [[NSString stringWithContentsOfFile:Path.tempCommitId encoding:NSUTF8StringEncoding error:nil] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-        Path.version = [[NSString stringWithContentsOfFile:Path.tempVersion encoding:NSUTF8StringEncoding error:nil] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
         Path.gitLog = [[[NSString stringWithContentsOfFile:Path.tempLog encoding:NSUTF8StringEncoding error:nil] stringByReplacingOccurrencesOfString:@"\n" withString:@""] componentsSeparatedByString:@"(1):      "].lastObject;
+        Path.version = ({
+            NSString *vStr = [[NSString stringWithContentsOfFile:Path.tempVersion encoding:NSUTF8StringEncoding error:nil] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+            if (vStr.length != 4) {
+                @throw [NSException exceptionWithName:@"版本号获取失败。" reason:@"" userInfo:nil];
+            }
+            NSString *(^getChar)(int) = ^NSString *(int idx) {
+                return [vStr substringWithRange:NSMakeRange(idx, 1)];
+            };
+            _NSString(@"%@.%@.%@%@", getChar(0), getChar(1), getChar(2), getChar(3));
+        });
         
         if (isPack) {
 
