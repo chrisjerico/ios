@@ -54,8 +54,6 @@
 -(void)showLeeView{
 	
 }
-
-
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.title = @"聊天室";
