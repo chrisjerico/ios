@@ -132,7 +132,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         [self setupBarButtonItems];
         
     });
-    
+    self.lmgmentTitleArray = [NSMutableArray new];
     self.chipArray = @[@"10",@"100",@"1000",@"10000",@"清除"];
     self.countDown = [[CountDown alloc] init];
     self.nextIssueCountDown = [[CountDown alloc] init];
@@ -218,7 +218,10 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             for (UGGameplayModel *model in self.gameDataArray) {
                 if ([@"连码" isEqualToString:model.name]) {
                     for (UGGameplaySectionModel *type in model.list) {
-                        [self.lmgmentTitleArray addObject:type.alias];
+//                        if ([type.alias  hasPrefix:@"任选"]) {
+                             [self.lmgmentTitleArray addObject:type.alias];
+//                        }
+                       
                     }
                 }
             }
@@ -573,7 +576,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             
 #pragma mark ----要改的地方
             
-            if ([@"任选二" isEqualToString:title]) {
+            if ([@"任选二" isEqualToString:title]||[@"选二连组" isEqualToString:title]) {
                 
                 if (count == 7 && !game.select) {
                     [SVProgressHUD showInfoWithStatus:@"不允许超过7个选项"];
@@ -586,7 +589,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                 }else {
                     game.select = !game.select;
                 }
-            }else if ([@"任选三" isEqualToString:title]) {
+            }else if ([@"任选三" isEqualToString:title]||[@"选三前组" isEqualToString:title]) {
                 if (count == 7 && !game.select) {
                     [SVProgressHUD showInfoWithStatus:@"不允许超过7个选项"];
                 }else {
@@ -626,6 +629,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         [self.tableView reloadData];
         [self.tableView selectRowAtIndexPath:self.typeIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
         
+        //        计算选中的注数
         NSInteger count = 0;
         for (UGGameplayModel *model in self.gameDataArray) {
             if (!model.select) {
@@ -642,35 +646,27 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                     }
                     NSString *title = self.lmgmentTitleArray[self.segmentIndex];
                     if ([@"任选二" isEqualToString:title]
-                        ||[@"选二连组" isEqualToString:title]) {
+                        ||[@"选二连组" isEqualToString:title]||[@"任选二组" isEqualToString:title]) {
                         if (num >1) {
-                            count += [CMCommon combination:2 Num:num];
+                            count += [CMCommon pickNum:2 totalNum:num];
                         }
-                        else{
-                            count = 0;
-                        }
+
                     }else if ([@"任选三" isEqualToString:title]
                               ||[@"选三前组" isEqualToString:title]) {
                         if (num > 2) {
-                            count += [CMCommon combination:3 Num:num];
+                           count += [CMCommon pickNum:3 totalNum:num];
                         }
-                        else{
-                            count = 0;
-                        }
+
                     }else if ([@"任选四" isEqualToString:title]) {
                         if (num > 3) {
-                              count += [CMCommon combination:4 Num:num];
+                              count += [CMCommon pickNum:4 totalNum:num];
                           }
-                          else{
-                              count = 0;
-                          }
+
                     }else if ([@"任选五" isEqualToString:title]) {
                         if (num > 4) {
-                              count += [CMCommon combination:5 Num:num];
+                              count += [CMCommon pickNum:5 totalNum:num];
                           }
-                          else{
-                              count = 0;
-                          }
+
                     }else {
                         
                     }
@@ -719,7 +715,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     }
     // 两面、连码
     if ([@"连码" isEqualToString:model.name]) {
-        if (indexPath.row < 9) {
+        if (indexPath.row < 18) {
             return CGSizeMake((UGScreenW / 4 * 3 - 4) / 3, 40);
         }
         return CGSizeMake((UGScreenW / 4 * 3 - 4) / 2, 40);
@@ -768,6 +764,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         collectionView.dataSource = self;
         collectionView.delegate = self;
         [collectionView registerNib:[UINib nibWithNibName:@"UGTimeLotteryBetCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:lottryBetCellid];
+        [collectionView registerNib:[UINib nibWithNibName:@"UGLinkNumCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UGLinkNumCollectionViewCell"];
         [collectionView registerNib:[UINib nibWithNibName:@"UGTimeLotteryBetHeaderView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerViewID];
         collectionView;
         
@@ -976,7 +973,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                 if (group.list.count) {
                     UGGameBetModel *play = group.list.firstObject;
                     NSMutableArray *array = [NSMutableArray array];
-                    for (int i = 0; i < 11; i++) {
+                    for (int i = 0; i < 20; i++) {
                         UGGameBetModel *bet = [[UGGameBetModel alloc] init];
                         [bet setValuesForKeysWithDictionary:play.mj_keyValues];
                         bet.alias = bet.name;
