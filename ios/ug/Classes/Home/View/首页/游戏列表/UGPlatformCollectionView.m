@@ -172,7 +172,7 @@ static NSString *const footerId = @"footerId";
 	
 	if ([Skin1.skitType isEqualToString:@"金沙主题"] && self.typeIndex == 0) {
 		CGFloat itemW = (UGScreenW - 9)/4.0;
-		return CGSizeMake(itemW, 130);
+		return CGSizeMake(itemW, 150);
 	} else if ([Skin1.skitType isEqualToString:@"金沙主题"] && self.typeIndex != 0) {
 		return CGSizeMake(UGScreenW, 80);
 	} else {

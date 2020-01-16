@@ -86,7 +86,7 @@
 	[self setupUserInfo:true];
 	[self getSystemConfig];
 	self.menuNameArray = SysConf.userCenter.copy;
-	self.collectionViewHeight.constant = ((self.menuNameArray.count - 1)/3 + 1) * (APP.Width)/ 3.0;
+	self.collectionViewHeight.constant = ((self.menuNameArray.count - 1)/3 + 1) * (APP.Width - 3)/ 3.0;
 	[self.collectionnView reloadData];
 	UIButton * rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
@@ -115,12 +115,12 @@
 	[cell.imageView sd_setImageWithURL:[NSURL URLWithString:uci.logo] placeholderImage:[UIImage imageNamed:uci.lhImgName]];
 	cell.badgeNum = uci.code==UCI_站内信 ? [UGUserModel currentUser].unreadMsg : 0;
 	[cell setBackgroundColor: [UIColor whiteColor]];
-	cell.layer.borderWidth = 0.5;
-	cell.layer.borderColor = UIColor.lightGrayColor.CGColor;
+//	cell.layer.borderWidth = 0.5;
+//	cell.layer.borderColor = UIColor.lightGrayColor.CGColor;
 	return cell;
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-	float itemW = APP.Width/ 3.0;
+	float itemW = (APP.Width - 3)/ 3.0;
 	CGSize size = {itemW, itemW};
 	return size;
 }
@@ -130,10 +130,10 @@
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-	return 0.0;
+	return 1.0;
 }
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
-	return 0.0;
+	return 1.0;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -281,7 +281,7 @@
 		self.moneyNameLabel.text = user.taskRewardTitle;
 	}
 	if (![CMCommon stringIsNull:user.taskRewardTotal]) {
-		self.moenyNumberLabel.text = _FloatString4(user.taskReward.doubleValue);
+		self.moenyNumberLabel.text = user.taskReward;
 	}
 	
 	double floatString = [user.balance doubleValue];

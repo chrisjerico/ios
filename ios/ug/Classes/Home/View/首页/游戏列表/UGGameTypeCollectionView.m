@@ -54,6 +54,8 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
 						make.left.equalTo([self superview]);
 						make.width.mas_equalTo(UGScreenW);
 						make.height.equalTo(@50);
+						_titleView.backgroundColor = [UIColor colorWithHex:0xeeeeee];
+
 					} else {
 						make.left.equalTo(self).offset(APP.isShowLogo ? 0 : 5);
 						make.right.equalTo(self).offset(APP.isShowLogo ? 0 : -5);

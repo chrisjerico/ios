@@ -199,6 +199,9 @@ UGSystemConfigModel *currentConfig = nil;
 	if (self.type == MM_我的_金沙) {
 		return JS_MineVC.class;
 	}
+	if (self.type == MM_我的_火山橙) {
+		return HSC_MineVC.class;
+	}
     if (self.type == MM_申请代理) {
         return UGAgentViewController.class;
     }
