@@ -25,7 +25,7 @@
         Path.gitLog = [[[NSString stringWithContentsOfFile:Path.tempLog encoding:NSUTF8StringEncoding error:nil] stringByReplacingOccurrencesOfString:@"\n" withString:@""] componentsSeparatedByString:@"(1):      "].lastObject;
         
         if (isPack) {
-            NSString *ids = @"c085,a002,c193,c153,c048,c203,c200,c108,c053,c175";   // 站点编号
+            NSString *ids = @"ih005";   // 站点编号
             BOOL willUpload = 1; // 打包后是否上传审核
             [self startPackingWithIds:ids willUpload:willUpload];
         }
