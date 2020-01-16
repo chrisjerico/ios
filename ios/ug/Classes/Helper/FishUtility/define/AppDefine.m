@@ -10,7 +10,7 @@
 
 
 
-#define __SiteID__ @"test20"
+#define __SiteID__ @"test19"
 
 
 @interface UIStoryboard ()
@@ -126,7 +126,6 @@
         if (!_SiteId.length) {
             _SiteId = @"test19";
         }
-		_SiteId = @"test10";
 
 #endif
         NSLog(@"%@",[_allSites objectWithValue:_SiteId.lowercaseString keyPath:@"siteId"]);
