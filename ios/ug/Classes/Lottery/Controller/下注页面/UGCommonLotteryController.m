@@ -171,14 +171,12 @@
         [containView addSubview:backButton];
         UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:containView];
 
-        if (self.navigationController.viewControllers.count > 1){
+        if (self.navigationController.viewControllers.count > 1) {
             self.navigationItem.leftBarButtonItem = item;
         }
-        else{
+        else {
             self.navigationItem.leftBarButtonItem = nil;
         }
-        
-
     }
     
     // 设置标题

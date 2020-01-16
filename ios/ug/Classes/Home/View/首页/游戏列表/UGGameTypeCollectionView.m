@@ -45,10 +45,16 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
             [self addSubview:_titleView];
             
             [_titleView mas_makeConstraints:^(MASConstraintMaker *make) {
-                if (isBlack) {
+                if ([@"h005" containsString:APP.SiteId]) {
+                    // 隐藏标题栏
+                    make.top.left.right.equalTo(self);
+                    make.height.equalTo(@0);
+                }
+                else if (isBlack) {
                     make.top.left.right.equalTo(self);
                     make.height.equalTo(@140);
-                } else {
+                }
+                else {
                     make.top.equalTo(self);
 					if ([@"金沙主题" containsString:Skin1.skitType]) {
 						make.left.equalTo([self superview]);
@@ -61,7 +67,6 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
 						make.right.equalTo(self).offset(APP.isShowLogo ? 0 : -5);
 						make.height.equalTo(APP.isShowLogo ? @80 : @55 );
 					}
-                
                 }
             }];
         }
