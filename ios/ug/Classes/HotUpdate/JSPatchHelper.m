@@ -103,6 +103,10 @@
             } else {
                 NSLog(@"下载失败");
             }
+            
+            if (completion) {
+                completion([APP.jspVersion isEqualToString:hvm.version]);
+            }
         };
     };
     
@@ -117,6 +121,7 @@
 #endif
     
     // 获取版本列表
+    NSLog(@"jspatch正在查找可用的更新");
     void (^getVersionList)(NSInteger) = nil;
     void (^__block __nextPage)(NSInteger) = getVersionList = ^(NSInteger page) {
         [NetworkManager1 getHotUpdateVersionList:page].completionBlock = ^(CCSessionModel *sm) {
@@ -151,6 +156,7 @@
             } else {
                 NSLog(@"拉取热更新列表失败，err = %@", sm.error ? : sm.responseObject[@"msg"]);
             }
+            
         };
     };
     getVersionList(1);

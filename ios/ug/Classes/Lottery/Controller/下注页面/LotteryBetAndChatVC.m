@@ -54,8 +54,6 @@
 -(void)showLeeView{
 	
 }
-
-
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.title = @"聊天室";
@@ -165,27 +163,17 @@
 		//        NSLog(@"model.gameId = %@",model.gameId);
 		//        NSLog(@"包含 = %d",[SysConf.typeIdAry containsObject:model.gameId]);
 		if (model.gameId && SysConf.typeIdAry.count && [SysConf.typeIdAry containsObject:model.gameId]) {
-			vc.gameId = model.gameId;
-			UGChatRoomModel *obj = [SysConf.chatRoomAry objectWithValue:vc.gameId keyPath:@"typeId"];
-			
+			vc.roomId = model.gameId;
+			UGChatRoomModel *obj = [SysConf.chatRoomAry objectWithValue:vc.roomId keyPath:@"typeId"];
 			if (![CMCommon stringIsNull:obj.roomId]) {
 				vc.roomId = obj.roomId;
 				vc.url = [APP chatGameUrl:obj.roomId hide:YES];
-				//                NSLog(@"vc.url = %@",vc.url);
 			}
 		} else {
-			vc.gameId = @"主聊天室";
-			vc.roomId = @"0";
+			vc.roomId = @"0";   // 主聊天室
 			vc.url = [APP chatGameUrl:vc.roomId hide:YES];
 			//            NSLog(@"vc.url = %@",vc.url);
 		}
-		
-		// 隐藏H5的导航条
-		//        [vc cc_hookSelector:@selector(setUrl:) withOptions:AspectPositionBefore usingBlock:^(id<AspectInfo>  _Nonnull ai) {
-		//            NSString *url = ai.arguments.firstObject;
-		//            url = _NSString(@"%@&hideHead=true", url);
-		//            [ai.originalInvocation setArgument:&url atIndex:2];
-		//        } error:nil];
 		// 隐藏退出按钮
 		[vc cc_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo>  _Nonnull ai) {
 			((UGChatViewController *)ai.instance).closeBtn.hidden = true;
@@ -256,7 +244,6 @@
 		ssv1.didSelectedIndex = ^(NSUInteger idx) {
 			if (idx) {
 				[__self.downBtn setHidden:NO];
-				__weakSelf_(__self);
 				//得到线上配置的聊天室
 				[NetworkManager1 chat_getToken].completionBlock = ^(CCSessionModel *sm) {
 					if (!sm.error) {
@@ -278,8 +265,8 @@
 						
 						if (__self.nim.gameId && SysConf.typeIdAry.count && [SysConf.typeIdAry containsObject:__self.nim.gameId]) {
 							//                            if (![vc2.gameId isEqualToString:__self.nim.gameId]) {
-							__self.vc2.gameId = __self.nim.gameId;
-							UGChatRoomModel *obj = [SysConf.chatRoomAry objectWithValue:__self.vc2.gameId keyPath:@"typeId"];
+							__self.vc2.roomId = __self.nim.gameId;
+							UGChatRoomModel *obj = [SysConf.chatRoomAry objectWithValue:__self.vc2.roomId keyPath:@"typeId"];
 							
 							if (![__self.vc2.roomId isEqualToString:obj.roomId]) {
 								__self.vc2.roomId = obj.roomId;
@@ -292,9 +279,8 @@
 							
 						} else {
 							if(![__self.vc2.roomId isEqualToString:@"0"]){
-								__self.vc2.gameId = @"主聊天室";
-								__self.vc2.roomId = @"0";
-								__self.vc2.url = [APP chatGameUrl:__self.vc2.roomId hide:YES];
+								__self.vc2.roomId = @"0";   // 主聊天室
+								__self.vc2.url = [APP chatGameUrl:@"0" hide:YES];
 								//                                NSLog(@"vc2.url = %@",vc2.url);
 								__self.mLabel.text = [NSString stringWithFormat:@"聊天室▼"];
 							}

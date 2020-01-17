@@ -172,7 +172,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 
 - (IBAction)showChatRoom:(id)sender {
     UGChatViewController *chatVC = [[UGChatViewController alloc] init];
-    chatVC.gameId = self.gameId;
+    chatVC.roomId = self.gameId;
     [self.navigationController pushViewController:chatVC animated:YES];
     
 }

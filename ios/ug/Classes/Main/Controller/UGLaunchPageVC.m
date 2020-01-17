@@ -32,14 +32,15 @@
 	self.view.backgroundColor = UIColor.whiteColor;
     
     if (APP.isFish) {
+        // 安装本地jsp
         [JSPatchHelper install];
         
-        // rn热更新
+        // 检查并下载rn热更
         [[ReactNativeHelper shared] updateVersion:^(NSString * _Nonnull version) {
 
-            // JSPatch热更新
+            // 检查并下载jsp热更
 #ifdef DEBUG
-            version = @"99999";
+//            version = @"99999";
 #endif
             [JSPatchHelper updateVersion:version completion:^(BOOL ok) {
 #ifdef DEBUG
@@ -51,29 +52,6 @@
 #endif
             }];
         }];
-        
-        
-        {
-            UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-            btn.frame = CGRectMake(100, 200, 200, 200);
-            btn.backgroundColor = [UIColor grayColor];
-            [btn addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
-//                [self presentViewController:[ReactNativeHelper vcWithName:@"Demo" params:nil] animated:YES completion:nil];
-                
-                NSString *version = @"99999";
-                [JSPatchHelper updateVersion:version completion:^(BOOL ok) {
-#ifdef DEBUG
-                    if (ok) {
-                        [AlertHelper showAlertView:_NSString(@"%@ 版本更新完成，重启APP生效", version) msg:nil btnTitles:@[@"确定"]];
-                    } else {
-                        [AlertHelper showAlertView:_NSString(@"%@ 版本更新失败", version) msg:nil btnTitles:@[@"确定"]];
-                    }
-#endif
-                }];
-            }];
-            [self.view addSubview:btn];
-        }
-        return;
     }
     // 下载新的启动图
     [CMNetwork.manager requestWithMethod:[[NSString stringWithFormat:@"%@/wjapp/api.php?c=system&a=launchImages", APP.Host] stringToRestfulUrlWithFlag:RESTFUL] params:nil model:CMResultArrayClassMake(LaunchPageModel.class) post:NO completion:^(CMResult<id> *model, NSError *err) {
@@ -86,7 +64,7 @@
             }
         }
     }];
-    
+//    各组根据行政提供的面试者实际要求的薪资情况，重新调整下台湾初中高级薪资标准
     // 加载旧的启动图
     CGFloat maxSecs = 7;    // ⌛️获取系统配置超时的等待时间
     CGFloat minSecs = 3;    // ⌛️最少等3秒

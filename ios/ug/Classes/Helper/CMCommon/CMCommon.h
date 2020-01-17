@@ -67,6 +67,9 @@
  */
 + (NSInteger)pickNum:(NSInteger)pickNum totalNum:(NSInteger)totalNum;
 
+//幸运农场 连码公式
++ (NSInteger)combination:(NSInteger)m Num:(NSInteger)n;
+
 // #pragma mark ---------------------------------------------- 判断邮箱格式
 + (BOOL)isValidateEmail:(NSString *)email;
 

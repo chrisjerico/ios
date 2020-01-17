@@ -34,3 +34,6 @@ done
 if [ ! -f 'CommitId.txt' ]; then
     echo "拉取代码失败，请手动拉取代码！" > PullFail.txt
 fi
+
+# 把提交次数作为版本号
+echo `git rev-list HEAD|wc -l` > Version.txt

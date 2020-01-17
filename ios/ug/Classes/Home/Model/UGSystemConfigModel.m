@@ -211,6 +211,9 @@ UGSystemConfigModel *currentConfig = nil;
     if (self.type == MM_购彩大厅_亮黑) {
         return UGBMLotteryHomeViewController.class;
     }
+    if (self.type == MM_聊天室 && [@"h005" containsString:APP.SiteId]) {
+        return UGChatViewController.class;
+    }
     return _cls;
 }
 - (void)createViewController:(void (^)(__kindof UIViewController * _Nonnull))completion {
