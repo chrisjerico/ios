@@ -57,6 +57,7 @@
 @property (weak, nonatomic) IBOutlet UIView *progressView;  /**<   进度条 */
 @property (weak, nonatomic) IBOutlet UIButton *taskButton;
 @property (weak, nonatomic) IBOutlet UIButton *signButton;
+@property (weak, nonatomic) IBOutlet UIView *headerBackDropView;
 
 @property (nonatomic, strong) CAShapeLayer *progressLayer;
 @property (nonatomic, strong) CAShapeLayer *containerLayer;
@@ -71,6 +72,7 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.navigationItem.title = @"我的";
+	self.headerBackDropView.backgroundColor = Skin1.navBarBgColor;
 	self.headImageView.layer.cornerRadius = self.headImageView.height / 2 ;
 	self.headImageView.layer.masksToBounds = YES;
 	self.headImageView.userInteractionEnabled = YES;
@@ -260,10 +262,11 @@
 		[self.taskButton setHidden:YES];
 		[self.signButton setHidden:YES];
 	}
-	
-	if (flag) {
-		[self.headImageView sd_setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
-	}
+	UIImage *cacheImage = [[SDImageCache sharedImageCache] imageFromCacheForKey:user.avatar];
+	[_headImageView sd_setImageWithURL:[NSURL URLWithString:user.avatar]
+					  placeholderImage:cacheImage? cacheImage : [UIImage imageNamed:@"txp"]
+							   options:SDWebImageRefreshCached];
+
 	
 	self.userNameLabel.text = user.username;
 	self.userVipLabel.text = user.curLevelGrade;

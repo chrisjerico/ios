@@ -1385,7 +1385,6 @@
 
 - (void)rightBarBtnClick {
 	
-	//	[JS_Sidebar show];
 	if ([Skin1.skitType isEqualToString:@"金沙主题"]) {
 		[JS_Sidebar show];
 		return;

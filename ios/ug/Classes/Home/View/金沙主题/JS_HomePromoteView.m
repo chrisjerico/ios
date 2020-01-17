@@ -21,8 +21,18 @@
 - (void)bind: (GameModel *)item {
 	
 	[self.itemImage sd_setImageWithURL:[NSURL URLWithString:item.icon] placeholderImage: [UIImage imageNamed:@""]];
-	self.itemLabel.text = item.title;
-	self.describeLabel.text = item.title;
+	self.itemLabel.text = item.title.length > 0 ? item.title : item.name;
+	self.describeLabel.text = item.title.length > 0 ? item.title : item.name;
+	self.userNubersLabel.text = [NSString stringWithFormat:@"%ld人在玩", random()%2000 + 9000];
+	
+	NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc] initWithString:@"⭐️⭐️⭐️⭐️⭐️"];
+	NSMutableAttributedString * number = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%ld", random()%2000 + 9000]];
+	[number setColor:UIColor.redColor];
+	[attributedString appendAttributedString:number];
+	[attributedString appendAttributedString: [[NSAttributedString alloc] initWithString:@"人在玩"]];
+	[attributedString setFont: [UIFont systemFontOfSize:12]];
+	
+	self.userNubersLabel.attributedText = attributedString;
 	self.model = item;
 }
 

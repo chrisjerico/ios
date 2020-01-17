@@ -1083,7 +1083,7 @@ static UGSkinManagers *__initSkin1 = nil;
 	NSString *skitType = dict[SysConf.mobileTemplateCategory];
 #if DEBUG
 	NSLog(@"============================skitType=%@",skitType);
-
+	skitType = @"金沙主题";
 #endif
 	return [UGSkinManagers allSkin][skitType];
 

@@ -249,6 +249,10 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 }
 
 - (void)showRightMenueView {
+	if ([Skin1.skitType isEqualToString:@"金沙主题"]) {
+		[JS_Sidebar show];
+		return;
+	}
     self.yymenuView = [[UGYYRightMenuView alloc] initWithFrame:CGRectMake(UGScreenW /2 , 0, UGScreenW / 2, UGScerrnH)];
     self.yymenuView.titleType = @"2";
     self.yymenuView.gameId = self.gameId;
