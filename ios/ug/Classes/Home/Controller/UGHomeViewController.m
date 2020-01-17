@@ -720,6 +720,12 @@
 			[NavController1 pushViewController:vc animated:true];
 			NSLog(@"香港挂牌");
 		}
+        else if([model.alias isEqualToString:@"E9biHXEx"]) {
+            LHJournalDetailVC *vc = _LoadVC_from_storyboard_(@"LHJournalDetailVC");
+            vc.clm = model;
+            [NavController1 pushViewController:vc animated:true];
+            NSLog(@"美女六肖");
+        }
 		else {
 			if (model.contentId.length) {
 				// 获取帖子详情

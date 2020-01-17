@@ -752,7 +752,7 @@
     CMMETHOD_END;
 }
 
-//下线信息 http://test10.6yc.com/wjapp/api.php?c=team&a=inviteList&token=2BoZKf4o22q8oKQz8OoDdd3Q
+//下线信息 http://test10.6yc.com/wjapp/api.php?c=team&a=inviteList&token=2BoZKf4o22q8oKQz8OoDdd3Q&usr=admin0
 + (void)teamInviteListWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
     CMMETHOD_BEGIN;
     [self.manager requestInMainThreadWithMethod:[teamInviteListUrl stringToRestfulUrlWithFlag:RESTFUL]
