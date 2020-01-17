@@ -261,7 +261,7 @@ static UGSkinManagers *__initSkin1 = nil;
 		
 		// 渐变色有多个色值，用英文逗号隔开
 		__dict = @{
-			//经典 1蓝色
+			//经典 1蓝色  #ADC8D7
 			@"1":({
 				UGSkinManagers *sm = [UGSkinManagers new];
 				sm.skitType                 = @"经典";
@@ -273,7 +273,7 @@ static UGSkinManagers *__initSkin1 = nil;
 				sm.tabSelectedColor         = color(@"010101");
 				sm.progressBgColor          = color(@"d80000,fb5959");
 				sm.homeContentColor         = color(@"b2cde0");
-				sm.homeContentSubColor      = color(@"7CB5D8");
+				sm.homeContentSubColor      = color(@"ADC8D7");
 				sm.cellBgColor              = color(@"C1CBC9");
 				sm.CLBgColor                = color(@"E6E6E6");
 				sm.menuHeadViewColor        = color(@"5f9bc6,fb5959");
@@ -1083,7 +1083,7 @@ static UGSkinManagers *__initSkin1 = nil;
 	NSString *skitType = dict[SysConf.mobileTemplateCategory];
 #if DEBUG
 	NSLog(@"============================skitType=%@",skitType);
-	skitType = @"金沙主题";
+//	skitType = @"经典 1蓝色";
 #endif
 	return [UGSkinManagers allSkin][skitType];
 
