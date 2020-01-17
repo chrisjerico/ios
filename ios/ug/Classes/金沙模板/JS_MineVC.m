@@ -68,7 +68,8 @@
 @end
 
 @implementation JS_MineVC
-
+- (BOOL)允许未登录访问 { return false; }
+- (BOOL)允许游客访问 { return true; }
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.navigationItem.title = @"我的";
@@ -95,6 +96,20 @@
 	[rightButton addTarget:self action:@selector(rightButtonTaped)];
 	[rightButton setImage:[UIImage imageNamed:@"gengduo"] forState:UIControlStateNormal];
 	self.balanceLabel2.text = @"";
+	
+	// 登录成功
+	WeakSelf;
+	SANotificationEventSubscribe(UGNotificationLoginComplete, self, ^(typeof (self) self, id obj) {
+		[weakSelf setupUserInfo:true];
+
+	});
+
+	//用户信息更新
+	SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
+		[weakSelf setupUserInfo:true];
+
+
+	});
 }
 - (void)rightButtonTaped {
 	[JS_Sidebar show];

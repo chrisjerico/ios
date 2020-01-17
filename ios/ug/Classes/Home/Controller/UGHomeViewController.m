@@ -233,7 +233,7 @@
 		}
 		NSDictionary *dict = @{@"六合资料":@[_rollingView, _LhPrize_FView, _liuheForumContentView, _promotionView, _bottomView],
 							   @"黑色模板":@[_bannerBgView, _gameTypeView.superview, _rankingView, _bottomView],
-							   @"金沙主题":@[_bannerBgView, _rollingView, _homePromoteContainer, _gameTypeView.superview, _promotionView, _rankingView, _bottomView],
+							   @"金沙主题":@[_bannerBgView, _rollingView,_homeAdsBigBgView, _homePromoteContainer, _gameTypeView.superview, _promotionView, _rankingView, _bottomView],
 							   @"火山橙":@[_bannerBgView, _rollingView, _gameNavigationView.superview, _gameTypeView.superview, _promotionView, _bottomView],
 							   
 		};

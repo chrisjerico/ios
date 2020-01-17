@@ -35,7 +35,7 @@
                                                 <constraint firstAttribute="width" constant="60" id="hSk-LV-etZ"/>
                                             </constraints>
                                             <state key="normal" title="注册">
-                                                <color key="titleColor" red="0.66274509800000003" green="0.52156862749999999" blue="0.23137254900000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="titleColor" red="0.14509804546833038" green="0.12941177189350128" blue="0.035294119268655777" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
