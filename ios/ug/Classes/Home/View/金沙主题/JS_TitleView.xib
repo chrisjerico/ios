@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -37,12 +37,18 @@
                                             <state key="normal" title="注册">
                                                 <color key="titleColor" red="0.66274509800000003" green="0.52156862749999999" blue="0.23137254900000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="5"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
                                             <connections>
                                                 <action selector="registButtonTaped:" destination="iN0-l3-epB" eventType="touchUpInside" id="Cf6-bx-Qt8"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3G1-ev-dhY">
-                                            <rect key="frame" x="17" y="10" width="60" height="24"/>
+                                            <rect key="frame" x="37.5" y="10" width="60" height="24"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="60" id="OgX-Vr-yEC"/>
@@ -50,6 +56,12 @@
                                             <state key="normal" title="登录">
                                                 <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="5"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
                                             <connections>
                                                 <action selector="loginButtonTaped:" destination="iN0-l3-epB" eventType="touchUpInside" id="ae7-5M-Mxk"/>
                                             </connections>
@@ -59,7 +71,7 @@
                                     <constraints>
                                         <constraint firstItem="3G1-ev-dhY" firstAttribute="width" secondItem="q0f-Ly-eYF" secondAttribute="width" id="2Sh-9K-vL5"/>
                                         <constraint firstAttribute="bottom" secondItem="q0f-Ly-eYF" secondAttribute="bottom" constant="10" id="WpB-ft-NRk"/>
-                                        <constraint firstItem="q0f-Ly-eYF" firstAttribute="leading" secondItem="3G1-ev-dhY" secondAttribute="trailing" constant="30.5" id="ZGf-9e-0S7"/>
+                                        <constraint firstItem="q0f-Ly-eYF" firstAttribute="leading" secondItem="3G1-ev-dhY" secondAttribute="trailing" constant="10" id="ZGf-9e-0S7"/>
                                         <constraint firstItem="3G1-ev-dhY" firstAttribute="bottom" secondItem="q0f-Ly-eYF" secondAttribute="bottom" id="bAa-6t-0aH"/>
                                         <constraint firstItem="3G1-ev-dhY" firstAttribute="top" secondItem="q0f-Ly-eYF" secondAttribute="top" id="dXc-HY-XpA"/>
                                         <constraint firstItem="q0f-Ly-eYF" firstAttribute="top" secondItem="36B-pS-2jT" secondAttribute="top" constant="10" id="m1J-vV-5w1"/>

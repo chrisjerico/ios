@@ -75,6 +75,10 @@
 	if (self) {
 		UIImageView *imageView = [UIImageView new];
 		imageView.image = [[UIImage imageNamed:@"subgame_bg"] qmui_imageWithTintColor:Skin1.homeContentSubColor];
+		if ([Skin1.skitType isEqualToString:@"金沙主题"]) {
+			imageView.image = [[UIImage imageNamed:@"subgame_bg"] qmui_imageWithTintColor:Skin1.navBarBgColor];
+
+		}
         [self xw_addNotificationForName:UGNotificationWithSkinSuccess block:^(NSNotification * _Nonnull noti) {
             imageView.image = [[UIImage imageNamed:@"subgame_bg"] qmui_imageWithTintColor:Skin1.homeContentSubColor];
         }];
