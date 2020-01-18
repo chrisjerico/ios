@@ -110,6 +110,8 @@
 #import "JS_HomePromoteContainerView.h"
 #import "HSC_TitleView.h"
 
+#import "BetFormViewModel.h"
+#import "HSC_BetFormCell.h"
 
 @interface UGHomeViewController ()<SDCycleScrollViewDelegate,UUMarqueeViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,WSLWaterFlowLayoutDelegate, JS_TitleViewDelegagte, HSC_TitleViewDelegagte>
 
@@ -180,6 +182,10 @@
 @property (nonatomic, strong) NSMutableArray<UGLHCategoryListModel *> *lHCategoryList;   /**<   栏目列表数据 */
 
 @property (nonatomic, strong)   UGPostDetailVC *postvc;                                   /**<   帖子 */
+@property (weak, nonatomic) IBOutlet UIView *betFormView;
+@property (weak, nonatomic) IBOutlet UITableView *betFormTableView;
+@property (nonatomic, strong) BetFormViewModel * betFormViewModel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *betFormTableHeight;
 
 @end
 
@@ -234,7 +240,7 @@
 		NSDictionary *dict = @{@"六合资料":@[_rollingView, _LhPrize_FView, _liuheForumContentView, _promotionView, _bottomView],
 							   @"黑色模板":@[_bannerBgView, _gameTypeView.superview, _rankingView, _bottomView],
 							   @"金沙主题":@[_bannerBgView, _rollingView,_homeAdsBigBgView, _homePromoteContainer, _gameTypeView.superview, _promotionView, _rankingView, _bottomView],
-							   @"火山橙":@[_bannerBgView, _rollingView, _gameNavigationView.superview, _gameTypeView.superview, _promotionView, _bottomView],
+							   @"火山橙":@[_bannerBgView, _rollingView, _homeAdsBigBgView, _gameNavigationView.superview, _gameTypeView.superview, _promotionView, _betFormView, _bottomView],
 							   
 		};
 		
@@ -1522,6 +1528,8 @@
 	self.upwardMultiMarqueeView.touchEnabled = YES;
 	self.upwardMultiMarqueeView.delegate = self;
 	
+    self.betFormViewModel = [BetFormViewModel new];
+    [self.betFormViewModel setupWithTabeView: _betFormTableView betFormTableHeight: _betFormTableHeight];
 }
 
 - (NSMutableArray<NSString *> *)leftwardMarqueeViewData {

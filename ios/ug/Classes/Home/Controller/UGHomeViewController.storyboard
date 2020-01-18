@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Qlk-11-xZ9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Qlk-11-xZ9">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -31,7 +31,7 @@
                                         <rect key="frame" x="0.0" y="110" width="414" height="2246"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="rQY-Xe-Kcn">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="2218"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="2718"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="net-c8-MAp">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="181"/>
@@ -667,8 +667,45 @@
                                                             <constraint firstAttribute="bottom" secondItem="1Sl-cU-12r" secondAttribute="bottom" constant="12" id="wB8-FZ-lXH"/>
                                                         </constraints>
                                                     </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qPu-6R-dVK" userLabel="Bet Form View">
+                                                        <rect key="frame" x="0.0" y="2158" width="414" height="500"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ziA-5S-ETQ">
+                                                                <rect key="frame" x="12" y="20" width="4" height="15"/>
+                                                                <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="15" id="4Fa-Jf-GxL"/>
+                                                                    <constraint firstAttribute="width" constant="4" id="iH4-gd-tkB"/>
+                                                                </constraints>
+                                                            </view>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="投注专栏" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rkS-3c-a7I">
+                                                                <rect key="frame" x="24" y="19" width="57.5" height="17"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="j5f-0p-VN6">
+                                                                <rect key="frame" x="12" y="45" width="390" height="443"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="443" id="Y0T-ys-Ha5"/>
+                                                                </constraints>
+                                                            </tableView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstItem="ziA-5S-ETQ" firstAttribute="leading" secondItem="qPu-6R-dVK" secondAttribute="leading" constant="12" id="0qj-1Z-uoE"/>
+                                                            <constraint firstItem="j5f-0p-VN6" firstAttribute="leading" secondItem="qPu-6R-dVK" secondAttribute="leading" constant="12" id="C51-kh-hZm"/>
+                                                            <constraint firstItem="rkS-3c-a7I" firstAttribute="centerY" secondItem="ziA-5S-ETQ" secondAttribute="centerY" id="Hnu-8v-EqY"/>
+                                                            <constraint firstAttribute="trailing" secondItem="j5f-0p-VN6" secondAttribute="trailing" constant="12" id="PTG-0e-7bD"/>
+                                                            <constraint firstItem="rkS-3c-a7I" firstAttribute="leading" secondItem="ziA-5S-ETQ" secondAttribute="trailing" constant="8" id="ejY-8U-jKf"/>
+                                                            <constraint firstItem="ziA-5S-ETQ" firstAttribute="top" secondItem="qPu-6R-dVK" secondAttribute="top" constant="20" id="opC-cZ-CaW"/>
+                                                            <constraint firstAttribute="bottom" secondItem="j5f-0p-VN6" secondAttribute="bottom" constant="12" id="uUP-WA-dre"/>
+                                                            <constraint firstItem="j5f-0p-VN6" firstAttribute="top" secondItem="ziA-5S-ETQ" secondAttribute="bottom" constant="10" id="xBZ-QM-mDZ"/>
+                                                        </constraints>
+                                                    </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M2E-aZ-PrH">
-                                                        <rect key="frame" x="0.0" y="2158" width="414" height="60"/>
+                                                        <rect key="frame" x="0.0" y="2658" width="414" height="60"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COPYRIGHT © 原生APP - 测试站111 RESERVED" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bF5-Qk-pg4">
                                                                 <rect key="frame" x="0.0" y="20" width="414" height="40"/>
@@ -759,6 +796,9 @@
                     <connections>
                         <outlet property="LhPrize_FView" destination="Gdw-Qu-rB0" id="lhu-oF-FLt"/>
                         <outlet property="bannerBgView" destination="net-c8-MAp" id="SVn-VV-nOV"/>
+                        <outlet property="betFormTableHeight" destination="Y0T-ys-Ha5" id="c17-q9-12O"/>
+                        <outlet property="betFormTableView" destination="j5f-0p-VN6" id="0N6-GM-Pzy"/>
+                        <outlet property="betFormView" destination="qPu-6R-dVK" id="TGe-QB-MeU"/>
                         <outlet property="bottomLabel" destination="bF5-Qk-pg4" id="9gR-5K-PS0"/>
                         <outlet property="bottomTitle" destination="Vq9-5e-sW1" id="G5L-9f-JvT"/>
                         <outlet property="bottomView" destination="M2E-aZ-PrH" id="0uG-uN-G9G"/>

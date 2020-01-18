@@ -19,7 +19,8 @@
 @property (nonatomic, strong)NSArray<UGUserCenterItem *> * items;
 @end
 @implementation HSC_MineVC
-
+- (BOOL)允许未登录访问 { return false; }
+- (BOOL)允许游客访问 { return true; }
 - (void)dealloc
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -46,7 +47,17 @@
 	});
 	[self setupUserInfo];
 	[self getUserInfo];
-	
+    
+    // 登录成功
+    SANotificationEventSubscribe(UGNotificationLoginComplete, self, ^(typeof (self) self, id obj) {
+        [weakSelf setupUserInfo];
+
+    });
+
+    //用户信息更新
+    SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
+        [weakSelf setupUserInfo];
+    });
 }
 
 #pragma mark - Table view data source

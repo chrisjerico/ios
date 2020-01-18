@@ -1639,6 +1639,11 @@
 		03E4228423C1E5B8004AB7C6 /* LotteryBetAndChatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE074D023C0BBBF0083EA7E /* LotteryBetAndChatVC.m */; };
 		222A0AF723D29DED00A058B0 /* XBJ_HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 222A0AF523D29DED00A058B0 /* XBJ_HomeVC.m */; };
 		222A0AF823D29DED00A058B0 /* XBJ_HomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 222A0AF623D29DED00A058B0 /* XBJ_HomeVC.xib */; };
+		226CA20F23D2E37400E4D921 /* HSC_BetFormCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 226CA20D23D2E37400E4D921 /* HSC_BetFormCell.m */; };
+		226CA21023D2E37400E4D921 /* HSC_BetFormCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 226CA20E23D2E37400E4D921 /* HSC_BetFormCell.xib */; };
+		226CA21423D2F21800E4D921 /* BetFormViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 226CA21323D2F21800E4D921 /* BetFormViewModel.m */; };
+		226CA21823D319DD00E4D921 /* HSC_HomeGameCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 226CA21623D319DD00E4D921 /* HSC_HomeGameCollectionCell.m */; };
+		226CA21923D319DD00E4D921 /* HSC_HomeGameCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 226CA21723D319DD00E4D921 /* HSC_HomeGameCollectionCell.xib */; };
 		A0C64CB6AEB0CF1B2031BBB8 /* Pods_ug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6486EFF4C273BEA0AE8994DD /* Pods_ug.framework */; };
 		CF475880239636D200966536 /* 21.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D4239636D100966536 /* 21.gif */; };
 		CF475881239636D200966536 /* 35.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D5239636D100966536 /* 35.gif */; };
@@ -3344,6 +3349,14 @@
 		222A0AF423D29DED00A058B0 /* XBJ_HomeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XBJ_HomeVC.h; sourceTree = "<group>"; };
 		222A0AF523D29DED00A058B0 /* XBJ_HomeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XBJ_HomeVC.m; sourceTree = "<group>"; };
 		222A0AF623D29DED00A058B0 /* XBJ_HomeVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = XBJ_HomeVC.xib; sourceTree = "<group>"; };
+		226CA20C23D2E37400E4D921 /* HSC_BetFormCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HSC_BetFormCell.h; sourceTree = "<group>"; };
+		226CA20D23D2E37400E4D921 /* HSC_BetFormCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HSC_BetFormCell.m; sourceTree = "<group>"; };
+		226CA20E23D2E37400E4D921 /* HSC_BetFormCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HSC_BetFormCell.xib; sourceTree = "<group>"; };
+		226CA21223D2F21800E4D921 /* BetFormViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BetFormViewModel.h; sourceTree = "<group>"; };
+		226CA21323D2F21800E4D921 /* BetFormViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BetFormViewModel.m; sourceTree = "<group>"; };
+		226CA21523D319DD00E4D921 /* HSC_HomeGameCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HSC_HomeGameCollectionCell.h; sourceTree = "<group>"; };
+		226CA21623D319DD00E4D921 /* HSC_HomeGameCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HSC_HomeGameCollectionCell.m; sourceTree = "<group>"; };
+		226CA21723D319DD00E4D921 /* HSC_HomeGameCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HSC_HomeGameCollectionCell.xib; sourceTree = "<group>"; };
 		30193B1626262AA87797C0E9 /* Pods_chat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_chat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		443C93C1135A8C900E47477A /* Pods-ug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ug.release.xcconfig"; path = "Target Support Files/Pods-ug/Pods-ug.release.xcconfig"; sourceTree = "<group>"; };
 		6486EFF4C273BEA0AE8994DD /* Pods_ug.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ug.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -4724,6 +4737,7 @@
 		031E15C723BE812400B0F813 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				226CA21123D2F1EC00E4D921 /* ViewModel */,
 				031E15C823BE812400B0F813 /* Controller */,
 				031E15E323BE812400B0F813 /* Model */,
 				031E160723BE812400B0F813 /* View */,
@@ -7014,6 +7028,12 @@
 				03314FD723CDE2150070CB54 /* HSC_TitleView.h */,
 				03314FD823CDE2150070CB54 /* HSC_TitleView.m */,
 				03AFD93B23CEFC27003914A6 /* HSC_TitleView.xib */,
+				226CA20C23D2E37400E4D921 /* HSC_BetFormCell.h */,
+				226CA20D23D2E37400E4D921 /* HSC_BetFormCell.m */,
+				226CA20E23D2E37400E4D921 /* HSC_BetFormCell.xib */,
+				226CA21523D319DD00E4D921 /* HSC_HomeGameCollectionCell.h */,
+				226CA21623D319DD00E4D921 /* HSC_HomeGameCollectionCell.m */,
+				226CA21723D319DD00E4D921 /* HSC_HomeGameCollectionCell.xib */,
 			);
 			path = "火山橙";
 			sourceTree = "<group>";
@@ -7090,6 +7110,15 @@
 				222A0AF623D29DED00A058B0 /* XBJ_HomeVC.xib */,
 			);
 			path = "香槟金模板";
+			sourceTree = "<group>";
+		};
+		226CA21123D2F1EC00E4D921 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				226CA21223D2F21800E4D921 /* BetFormViewModel.h */,
+				226CA21323D2F21800E4D921 /* BetFormViewModel.m */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		2AA8F6FD940D74819498256A /* Pods */ = {
@@ -7876,6 +7905,7 @@
 				CFCADE45237D281C00680F62 /* cplts_看图王.gif in Resources */,
 				031E1D9623BE812B00B0F813 /* UGYubaoViewController.storyboard in Resources */,
 				031E1E1A23BE812C00B0F813 /* UGMessageTableViewCell.xib in Resources */,
+				226CA21923D319DD00E4D921 /* HSC_HomeGameCollectionCell.xib in Resources */,
 				031E1E0023BE812C00B0F813 /* UGSignInScrFootView.xib in Resources */,
 				031E19EE23BE812700B0F813 /* common_icon_search.png in Resources */,
 				CF4758D0239636D200966536 /* 144.gif in Resources */,
@@ -8139,6 +8169,7 @@
 				CF47589F239636D200966536 /* 119.gif in Resources */,
 				031E1C9423BE812A00B0F813 /* UGFundsTransferView.xib in Resources */,
 				031E1BB823BE812900B0F813 /* UGOnlineWithdrawalsView.xib in Resources */,
+				226CA21023D2E37400E4D921 /* HSC_BetFormCell.xib in Resources */,
 				031E1C2E23BE812900B0F813 /* UGTimeLotteryBetHeaderView.xib in Resources */,
 				031E1C5A23BE812A00B0F813 /* UGhomeRecommendCollectionViewCell.xib in Resources */,
 				031E1C1023BE812900B0F813 /* UGLotteryAdPopView.xib in Resources */,
@@ -9115,6 +9146,7 @@
 				031E1C7823BE812A00B0F813 /* UGdepositModel.m in Sources */,
 				031E1DD423BE812C00B0F813 /* UGrealBetListModel.m in Sources */,
 				031E1C9223BE812A00B0F813 /* UGRechargeTypeCell.m in Sources */,
+				226CA21423D2F21800E4D921 /* BetFormViewModel.m in Sources */,
 				031E1B3C23BE812800B0F813 /* UGhomeAdsModel.m in Sources */,
 				031E194A23BE812600B0F813 /* UGMyFansViewController.m in Sources */,
 				030A874723C5C3070001EF82 /* JS_MineVC.m in Sources */,
@@ -9211,6 +9243,7 @@
 				031E1A7623BE812700B0F813 /* UGEncryptUtil.m in Sources */,
 				031E1A5223BE812700B0F813 /* CMAudioPlayer.m in Sources */,
 				031E1A3423BE812700B0F813 /* CMNetwork.m in Sources */,
+				226CA21823D319DD00E4D921 /* HSC_HomeGameCollectionCell.m in Sources */,
 				031E1DD623BE812C00B0F813 /* UGSignInModel.m in Sources */,
 				031E1C1623BE812900B0F813 /* UGLotteryResultCollectionViewCell.m in Sources */,
 				031E1E1823BE812C00B0F813 /* UGMessageTableViewCell.m in Sources */,
@@ -9481,6 +9514,7 @@
 				031E195223BE812600B0F813 /* UGDocumentListVC.m in Sources */,
 				031E197423BE812600B0F813 /* UGLHPostModel.m in Sources */,
 				031E1CB623BE812A00B0F813 /* UGTableViewCell.m in Sources */,
+				226CA20F23D2E37400E4D921 /* HSC_BetFormCell.m in Sources */,
 				031E1C1E23BE812900B0F813 /* UGFastThreeThreeCollectionViewCell.m in Sources */,
 				031E1DBA23BE812B00B0F813 /* UGdepositListModel.m in Sources */,
 				031E1A2223BE812700B0F813 /* CCNetworkRequests1+UGBlackTemplate.m in Sources */,

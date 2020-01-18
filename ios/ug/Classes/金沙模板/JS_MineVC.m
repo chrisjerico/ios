@@ -107,8 +107,6 @@
 	//用户信息更新
 	SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
 		[weakSelf setupUserInfo:true];
-
-
 	});
 }
 - (void)rightButtonTaped {
