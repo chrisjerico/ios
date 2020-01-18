@@ -1056,7 +1056,29 @@ static UGSkinManagers *__initSkin1 = nil;
 				sm;
 			}),
 			
-			
+			//火山橙
+            @"香槟金":({
+                UGSkinManagers *sm = [UGSkinManagers new];
+                sm.skitType                 = @"香槟金";
+                sm.skitString               = @"香槟金";
+                sm.bgColor                  = color(@"FFFFFF");
+                sm.navBarBgColor            = color(@"f08c34,eb3323");
+                sm.tabBarBgColor            = color(@"262223");
+                sm.tabNoSelectColor         = color(@"999999");
+                sm.tabSelectedColor         = color(@"eb3323");
+                
+                sm.progressBgColor          = color(@"d80000,fb5959");
+                sm.homeContentColor         = color(@"FFFFFF");
+                sm.homeContentSubColor      = color(@"D3D3D3");
+                sm.cellBgColor              = color(@"FFFFFF");
+                sm.CLBgColor                = color(@"E6E6E6");
+                sm.menuHeadViewColor        = color(@"ff566d,ffbac3");
+                sm.textColor1               = color(@"111111");
+                sm.textColor2               = color(@"555555");
+                sm.textColor3               = color(@"C1C1C1");
+                sm.textColor4               = color(@"FFFFFF");
+                sm;
+            }),
 		};
 		
 		__currentSkin1 = __lastSkin1 = __initSkin1 = __dict[@"1"];
@@ -1075,6 +1097,7 @@ static UGSkinManagers *__initSkin1 = nil;
 						   @"5":@"黑色模板",
 						   @"6":@"金沙主题",
 						   @"7":@"火山橙",
+                           @"8":@"香槟金",
 
 	};
 	
@@ -1083,7 +1106,7 @@ static UGSkinManagers *__initSkin1 = nil;
 	NSString *skitType = dict[SysConf.mobileTemplateCategory];
 #if DEBUG
 	NSLog(@"============================skitType=%@",skitType);
-//	skitType = @"经典 1蓝色";
+	skitType = @"香槟金";
 #endif
 	return [UGSkinManagers allSkin][skitType];
 

@@ -36,7 +36,7 @@ typedef NS_ENUM(NSInteger, UserCenterItemType) {
 // （TabbarController包含的）功能页面
 typedef NS_ENUM(NSInteger, MobileMenuType) {
     MM_首页 = 1,
-    
+    MM_首页_香槟金,
     MM_长龙助手,
     MM_购彩大厅_默认,
     MM_购彩大厅_亮黑,

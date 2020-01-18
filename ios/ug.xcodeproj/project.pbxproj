@@ -1637,6 +1637,8 @@
 		03E41B2F23C09055004AB7C6 /* JS_HomePromoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03E41B2E23C09055004AB7C6 /* JS_HomePromoteView.xib */; };
 		03E41B3223C09363004AB7C6 /* JS_HomePromoteContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E41B3123C09363004AB7C6 /* JS_HomePromoteContainerView.m */; };
 		03E4228423C1E5B8004AB7C6 /* LotteryBetAndChatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE074D023C0BBBF0083EA7E /* LotteryBetAndChatVC.m */; };
+		222A0AF723D29DED00A058B0 /* XBJ_HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 222A0AF523D29DED00A058B0 /* XBJ_HomeVC.m */; };
+		222A0AF823D29DED00A058B0 /* XBJ_HomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 222A0AF623D29DED00A058B0 /* XBJ_HomeVC.xib */; };
 		A0C64CB6AEB0CF1B2031BBB8 /* Pods_ug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6486EFF4C273BEA0AE8994DD /* Pods_ug.framework */; };
 		CF475880239636D200966536 /* 21.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D4239636D100966536 /* 21.gif */; };
 		CF475881239636D200966536 /* 35.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D5239636D100966536 /* 35.gif */; };
@@ -3339,6 +3341,9 @@
 		03E41B3023C09363004AB7C6 /* JS_HomePromoteContainerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JS_HomePromoteContainerView.h; sourceTree = "<group>"; };
 		03E41B3123C09363004AB7C6 /* JS_HomePromoteContainerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JS_HomePromoteContainerView.m; sourceTree = "<group>"; };
 		09180447B2D6D470EA76AFD9 /* Pods-chat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chat.release.xcconfig"; path = "Target Support Files/Pods-chat/Pods-chat.release.xcconfig"; sourceTree = "<group>"; };
+		222A0AF423D29DED00A058B0 /* XBJ_HomeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XBJ_HomeVC.h; sourceTree = "<group>"; };
+		222A0AF523D29DED00A058B0 /* XBJ_HomeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XBJ_HomeVC.m; sourceTree = "<group>"; };
+		222A0AF623D29DED00A058B0 /* XBJ_HomeVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = XBJ_HomeVC.xib; sourceTree = "<group>"; };
 		30193B1626262AA87797C0E9 /* Pods_chat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_chat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		443C93C1135A8C900E47477A /* Pods-ug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ug.release.xcconfig"; path = "Target Support Files/Pods-ug/Pods-ug.release.xcconfig"; sourceTree = "<group>"; };
 		6486EFF4C273BEA0AE8994DD /* Pods_ug.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ug.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -7077,6 +7082,16 @@
 			path = "金沙主题";
 			sourceTree = "<group>";
 		};
+		222A0AF323D29DBE00A058B0 /* 香槟金模板 */ = {
+			isa = PBXGroup;
+			children = (
+				222A0AF423D29DED00A058B0 /* XBJ_HomeVC.h */,
+				222A0AF523D29DED00A058B0 /* XBJ_HomeVC.m */,
+				222A0AF623D29DED00A058B0 /* XBJ_HomeVC.xib */,
+			);
+			path = "香槟金模板";
+			sourceTree = "<group>";
+		};
 		2AA8F6FD940D74819498256A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -7412,6 +7427,7 @@
 				031E165823BE812400B0F813 /* 黑色模板 */,
 				030A874123C5C29C0001EF82 /* 金沙模板 */,
 				03314FC323CD9F8F0070CB54 /* 火山橙模板 */,
+				222A0AF323D29DBE00A058B0 /* 香槟金模板 */,
 				D4B75E3B2278122B0007047C /* Other */,
 				D424785C22DDF5860062A6D4 /* Resources */,
 			);
@@ -8133,6 +8149,7 @@
 				CF4758AD239636D200966536 /* 156.gif in Resources */,
 				CF4758D9239636D200966536 /* 146.gif in Resources */,
 				031E1C6423BE812A00B0F813 /* UGLotteryCollectionViewCell.xib in Resources */,
+				222A0AF823D29DED00A058B0 /* XBJ_HomeVC.xib in Resources */,
 				03AFD93C23CEFC27003914A6 /* HSC_TitleView.xib in Resources */,
 				CF4758A2239636D200966536 /* 124.gif in Resources */,
 				031E1DEA23BE812C00B0F813 /* UGMissionTableViewCell.xib in Resources */,
@@ -9404,6 +9421,7 @@
 				03314FD923CDE2150070CB54 /* HSC_TitleView.m in Sources */,
 				031E1CF223BE812A00B0F813 /* SVIndefiniteAnimatedView.m in Sources */,
 				031E1ADE23BE812800B0F813 /* SDCollectionViewCell.m in Sources */,
+				222A0AF723D29DED00A058B0 /* XBJ_HomeVC.m in Sources */,
 				031E1ACE23BE812800B0F813 /* TGWebViewController.m in Sources */,
 				031E1A4E23BE812700B0F813 /* CMCommonHook.m in Sources */,
 				031E1B2423BE812800B0F813 /* UGChangLongController.m in Sources */,
