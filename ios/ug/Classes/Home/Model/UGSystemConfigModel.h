@@ -145,6 +145,7 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 @property (nonatomic, copy) NSString *appPopupWechatImg;        /**<   微信客服二维码 */
 @property (nonatomic, copy) NSString *appPopupQqNum;        /**<   QQ客服号 */
 @property (nonatomic, copy) NSString *appPopupQqImg;        /**<   微信客服二维码 */
+@property (nonatomic, copy) NSString *domainBindAgentId;    /**<   如果这个属性大于0，则在注册邀请人输入框填入改ID，且无法更改 */
 
 @property (nonatomic, copy) NSArray<UGMobileMenu *> *mobileMenu;
 
