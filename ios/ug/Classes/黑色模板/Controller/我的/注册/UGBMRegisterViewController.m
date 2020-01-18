@@ -114,6 +114,17 @@
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         [self skin];
     });
+    SANotificationEventSubscribe(UGNotificationGetSystemConfigComplete, self, ^(typeof (self) self, id obj) {
+        if (SysConf.domainBindAgentId.intValue > 0) {
+            self.inviterTextF.text = SysConf.domainBindAgentId;
+            self.inviterTextF.userInteractionEnabled = false;
+        }
+    });
+    if (SysConf.domainBindAgentId.intValue > 0) {
+        _inviterTextF.text = SysConf.domainBindAgentId;
+        _inviterTextF.userInteractionEnabled = false;
+    }
+    
     [self creatView];
     self.extendedLayoutIncludesOpaqueBars = YES;
     
