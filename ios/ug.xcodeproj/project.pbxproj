@@ -1838,6 +1838,7 @@
 		D40FA8BF229910EF003E596F /* yuebaoMone.gif in Resources */ = {isa = PBXBuildFile; fileRef = D40FA8BE229910EE003E596F /* yuebaoMone.gif */; };
 		D417EFDB2330D24C0024F634 /* AppDelegate+HgBugly.m in Sources */ = {isa = PBXBuildFile; fileRef = D417EFDA2330D24C0024F634 /* AppDelegate+HgBugly.m */; };
 		D422D67F22D9A766008E7065 /* address.json in Resources */ = {isa = PBXBuildFile; fileRef = D422D67E22D9A764008E7065 /* address.json */; };
+		D433EBF723D493F300D31008 /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = D433EBF623D493F300D31008 /* UIImage+Extension.m */; };
 		D435F90423CEF940008648CE /* KMCGeigerCounterTick.aiff in Resources */ = {isa = PBXBuildFile; fileRef = D435F90023CEF940008648CE /* KMCGeigerCounterTick.aiff */; };
 		D435F90523CEF940008648CE /* KMCGeigerCounterTick.aiff in Resources */ = {isa = PBXBuildFile; fileRef = D435F90023CEF940008648CE /* KMCGeigerCounterTick.aiff */; };
 		D435F90623CEF940008648CE /* KMCGeigerCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = D435F90223CEF940008648CE /* KMCGeigerCounter.m */; };
@@ -3570,6 +3571,8 @@
 		D417EFD92330D24C0024F634 /* AppDelegate+HgBugly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+HgBugly.h"; sourceTree = "<group>"; };
 		D417EFDA2330D24C0024F634 /* AppDelegate+HgBugly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+HgBugly.m"; sourceTree = "<group>"; };
 		D422D67E22D9A764008E7065 /* address.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = address.json; sourceTree = "<group>"; };
+		D433EBF523D493F300D31008 /* UIImage+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extension.h"; sourceTree = "<group>"; };
+		D433EBF623D493F300D31008 /* UIImage+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extension.m"; sourceTree = "<group>"; };
 		D435F90023CEF940008648CE /* KMCGeigerCounterTick.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = KMCGeigerCounterTick.aiff; sourceTree = "<group>"; };
 		D435F90123CEF940008648CE /* KMCGeigerCounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMCGeigerCounter.h; sourceTree = "<group>"; };
 		D435F90223CEF940008648CE /* KMCGeigerCounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMCGeigerCounter.m; sourceTree = "<group>"; };
@@ -3834,6 +3837,7 @@
 				031E142223BE812300B0F813 /* FishUtility */,
 				031E14E523BE812300B0F813 /* CMCommon */,
 				031E14C223BE812300B0F813 /* CMNetwork */,
+				D433EBF323D4939000D31008 /* 截屏UIImage分类 */,
 				D435F8FF23CEF940008648CE /* KMCGeigerCounter */,
 				D4F0411423C868E20070D2B5 /* WHC_SqliteKit */,
 				031E155223BE812300B0F813 /* segmentListControl */,
@@ -7415,6 +7419,15 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		D433EBF323D4939000D31008 /* 截屏UIImage分类 */ = {
+			isa = PBXGroup;
+			children = (
+				D433EBF523D493F300D31008 /* UIImage+Extension.h */,
+				D433EBF623D493F300D31008 /* UIImage+Extension.m */,
+			);
+			path = "截屏UIImage分类";
+			sourceTree = "<group>";
+		};
 		D435F8FF23CEF940008648CE /* KMCGeigerCounter */ = {
 			isa = PBXGroup;
 			children = (
@@ -9142,6 +9155,7 @@
 				031E1CBC23BE812A00B0F813 /* UGCollectionViewCell.m in Sources */,
 				031E1AFE23BE812800B0F813 /* GLEncryptManager.m in Sources */,
 				031E1A6A23BE812700B0F813 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
+				D433EBF723D493F300D31008 /* UIImage+Extension.m in Sources */,
 				031E1E6623BE812C00B0F813 /* UGAvaterSelectView.m in Sources */,
 				031E1CB423BE812A00B0F813 /* UGTabbarController.m in Sources */,
 				031E1CFA23BE812A00B0F813 /* AFURLSessionManager.m in Sources */,
