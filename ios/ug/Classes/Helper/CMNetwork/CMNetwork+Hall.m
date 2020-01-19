@@ -28,6 +28,18 @@
 	 CMMETHOD_END;
 }
 
++ (void)getOfficialLotteryTrend: (NSDictionary *)params completion: (CMNetworkBlock)completionBlock {
+    CMMETHOD_BEGIN;
+     
+     [self.manager requestInMainThreadWithMethod:[officialLotteryTrendUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                          params:params
+                                           model:nil
+                                            post:NO
+                                      completion:completionBlock];
+     
+     CMMETHOD_END;
+}
+
 //获取彩票大厅数据
 + (void)getAllNextIssueWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock {
     

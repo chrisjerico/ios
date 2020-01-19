@@ -16,19 +16,27 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	[SVProgressHUD showWithStatus:nil];
-	[CMNetwork getLotteryTrend:@{@"gameMark": @"yflhc"} completion:^(CMResult<id> *model, NSError *err) {
-		
-		if (err) {
-			[SVProgressHUD showErrorWithStatus:err.localizedDescription];
-		} else {
-			
-		}
-		
-	}];
+    [SVProgressHUD showWithStatus:nil];
+    [CMNetwork getLotteryTrend:@{@"gameMark": @"jsufbh"} completion:^(CMResult<id> *model, NSError *err) {
+        
+        if (err) {
+            [SVProgressHUD showErrorWithStatus:err.localizedDescription];
+        } else {
+            
+        }
+        
+    }];
+    
+    [CMNetwork getOfficialLotteryTrend:@{@"gameMark": @"jsufbh"} completion:^(CMResult<id> *model, NSError *err) {
+        if (err) {
+            [SVProgressHUD showErrorWithStatus:err.localizedDescription];
+        } else {
+            
+        }
+    }];
 }
 
 
 
 @end
-    
+
