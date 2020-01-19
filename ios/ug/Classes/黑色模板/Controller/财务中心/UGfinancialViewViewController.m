@@ -149,7 +149,7 @@
     [subButton(@"按钮") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
         if (isOK) {
             NSString *str = subLabel(@"内容").text;
-            CGFloat height = [CMCommon getLabelWidthWithText:str stringFont:[UIFont systemFontOfSize:13.0] allowHeight:(UGScreenW-100)];
+            CGFloat height = [CMCommon getLabelWidthWithText:str stringFont:[UIFont systemFontOfSize:13.0] allowWidth:(UGScreenW-100)];
             CGFloat height_poor = height - 44;
             subView(@"内容View").cc_constraints.height.constant =  60.0 + height_poor;
             isOK = NO;

@@ -250,7 +250,7 @@
             button.tag = i;
            
             CGRect frame = button.frame;
-            frame.size.width = [CMCommon getLabelWidthWithText:[quickAmountArray objectAtIndex:i] stringFont:[UIFont systemFontOfSize:9.0] allowHeight:15] + 20;
+            frame.size.width = [CMCommon getLabelWidthWithText:[quickAmountArray objectAtIndex:i] stringFont:[UIFont systemFontOfSize:9.0] allowWidth:15] + 20;
             frame.origin.x = beginX;
             frame.origin.y = beginY;
             frame.size.height = 15.0;

@@ -21,7 +21,7 @@ static NSString * promotionMemberItemKey = @"promotionMemberItemKey";
 @interface UIButton (hasItem)
 @property(nonatomic, strong) UGinviteLisModel* promotionMember;
 @end
-@interface MyPromotionMembersVC ()<YBPopupMenuDelegate>
+@interface MyPromotionMembersVC ()<YBPopupMenuDelegate,UITextFieldDelegate>
 {
 	NSInteger _levelindex;
 	NSArray * _levelArray;
@@ -39,6 +39,11 @@ static NSString * promotionMemberItemKey = @"promotionMemberItemKey";
 @property (weak, nonatomic) IBOutlet UIButton *levelSelectButton;
 @property (weak, nonatomic) IBOutlet UILabel *inviteTotalCountLabel;
 
+@property (weak, nonatomic) IBOutlet UITextField *searchTxt;
+@property(nonatomic, strong) NSMutableArray *originalArr;
+@property(nonatomic, strong) NSMutableArray *searchArr;
+
+
 @property(nonatomic, strong) NSMutableArray * items;
 @property (nonatomic, strong) UGinviteInfoModel* inviteInfo;
 
@@ -51,12 +56,19 @@ static NSString * promotionMemberItemKey = @"promotionMemberItemKey";
 	self.items = [NSMutableArray array];
 	_levelArray = @[@"全部下线",@"1级下线",@"2级下线",@"3级下线",@"4级下线",@"5级下线",@"6级下线",@"7级下线",@"8级下线",@"9级下线",@"10级下线"];
 	_levelindex = 0;
+    _originalArr =[NSMutableArray new];
+    _searchArr =[NSMutableArray new];
 	WeakSelf;
 	self.rootScrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
 		[weakSelf loadData];
 	}];
 	[self cleanAllStack];
 	[self loadInviteInfo];
+    
+    //UITextFieldDelegate
+    _searchTxt.delegate = self;
+    [self textFieldMethod];
+
 	
 }
 - (void)loadData {
@@ -71,16 +83,16 @@ static NSString * promotionMemberItemKey = @"promotionMemberItemKey";
 	};
 	
 	[SVProgressHUD showWithStatus:nil];
-	WeakSelf;
+    __weak __typeof(self)weakSelf = self;
 	[CMNetwork teamInviteListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
 		[CMResult processWithResult:model success:^{
 			
 			[SVProgressHUD dismiss];
-			
+			 self.originalArr =[NSMutableArray new];
 			NSDictionary *data =  model.data;
 			NSArray *list = [data objectForKey:@"list"];
-			NSArray *array =  [UGinviteLisModel arrayOfModelsFromDictionaries:list error:nil];
-			[weakSelf bind:array];
+			weakSelf.originalArr =  [UGinviteLisModel arrayOfModelsFromDictionaries:list error:nil];
+			[weakSelf bind:weakSelf.originalArr];
 			
 			[self.rootScrollView.mj_header endRefreshing];
 			
@@ -175,6 +187,26 @@ static NSString * promotionMemberItemKey = @"promotionMemberItemKey";
 	[popView showRelyOnView:self.levelSelectView];
 }
 
+- (void)textFieldMethod {
+    [self.searchTxt addTarget:self action:@selector(textFieldDidChange) forControlEvents:UIControlEventEditingChanged];
+}
+
+
+- (void)textFieldDidChange {
+    if (self.searchTxt.text != nil && self.searchTxt.text.length > 0) {
+        _searchArr = [NSMutableArray array];//这里可以说是清空tableview的旧dataSource
+        for (UGinviteLisModel * item in _originalArr) {
+            
+            if ([item.username rangeOfString:self.searchTxt.text options:NSCaseInsensitiveSearch].length > 0) {
+                [_searchArr addObject:item];
+
+                [self bind:_searchArr];
+            }
+        }
+    }
+    [self bind:_searchArr];
+}
+
 #pragma mark YBPopupMenuDelegate
 
 - (void)ybPopupMenuDidSelectedAtIndex:(NSInteger)index ybPopupMenu:(YBPopupMenu *)ybPopupMenu {
@@ -233,4 +265,6 @@ static NSString * promotionMemberItemKey = @"promotionMemberItemKey";
 - (UGinviteLisModel *)promotionMember {
 	return objc_getAssociatedObject(self, &promotionMemberItemKey);
 }
+
+
 @end

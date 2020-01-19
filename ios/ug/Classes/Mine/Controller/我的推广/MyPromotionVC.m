@@ -15,7 +15,7 @@
 #import "PromotionBetReportVC.h"
 #import "PromotionAdvertisementVC.h"
 #import "UGinviteInfoModel.h"
-
+#import "CMLabelCommon.h"
 
 @interface MyPromotionVC ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
@@ -46,7 +46,7 @@
 	_tableView.dataSource = self;
 	[_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
 	//	[_tableView reloadData];
-    _avatarImageView.layer.cornerRadius = 50;
+    _avatarImageView.layer.cornerRadius = 42;
     _avatarImageView.layer. masksToBounds = YES; // 部分UIView需要设置这个属性
 	
 }
@@ -162,6 +162,16 @@
     self.incomeLabel.text = self.mUGinviteInfoModel.month_earn;
     NSLog(@"本月推荐会员=%@",self.mUGinviteInfoModel.month_member);
     self.monthMembers.text = self.mUGinviteInfoModel.month_member;
-
+    
+    [CMLabelCommon setRichNumberWithLabel:self.monthMembers Color:RGBA(250, 234, 168, 1) FontSize:12.0];
+    
+    CGFloat h =  [CMCommon getLabelWidthWithText:self.monthMembers.text stringFont:[UIFont systemFontOfSize:12.0] allowWidth:APP.Width - 80];
+//    self.headView.cc_constraints.height.constant = 116 + h -20;
+//    [self.tableView reloadData];
+//    CGRect frame  =  self.headView.frame;
+//    frame.size.height = 116 + h ;
+//    self.headView.frame = frame;
+    [CMCommon changeHeight:self.headView Height:(116+h)];
+    [self.tableView reloadData];
 }
 @end

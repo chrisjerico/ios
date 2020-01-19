@@ -546,7 +546,7 @@ static NSString *uuidKey =@"uuidKey";
  *
  *  @return 高度
  */
-+ (CGFloat)getLabelWidthWithText:(NSString *)text stringFont:(UIFont *)font allowHeight:(CGFloat)width{
++ (CGFloat)getLabelWidthWithText:(NSString *)text stringFont:(UIFont *)font allowWidth:(CGFloat)width{
     CGFloat height;
     CGSize basetipSize = CGSizeMake(width, CGFLOAT_MAX);
     CGSize rect  = [text
@@ -1055,5 +1055,18 @@ static NSString *uuidKey =@"uuidKey";
     contentView.frame = CGRectMake(contentView.bounds.origin.x, contentView.bounds.origin.y,  contentView.bounds.size.width, contentView.bounds.size.height - TabBarController1.tabBar.frame.size.height);
     TabBarController1.tabBar.hidden = NO;
     
+}
+
+/**
+*   改变View的高度
+*
+*
+*/
++(UIView *)changeHeight:(UIView *)mView  Height:(CGFloat)h{
+    CGRect frame  =  mView.frame;
+    frame.size.height =  h ;
+    mView.frame = frame;
+    
+    return mView;
 }
 @end
