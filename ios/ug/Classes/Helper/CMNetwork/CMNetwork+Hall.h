@@ -11,11 +11,12 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CMNetwork (Hall)
+//自营彩种列表
++ (void)getOwnLotteryList: (NSDictionary *)params completion: (CMNetworkBlock)completionBlock;
 //彩票开奖走势
 + (void)getLotteryTrend: (NSDictionary *)params completion: (CMNetworkBlock)completionBlock;
 //官方彩票开奖走势
 + (void)getOfficialLotteryTrend: (NSDictionary *)params completion: (CMNetworkBlock)completionBlock;
-
 //获取彩票大厅游戏数据
 + (void)getAllNextIssueWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 

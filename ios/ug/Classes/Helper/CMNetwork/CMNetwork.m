@@ -409,7 +409,7 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
 /// @param completion   结果回调
 ///
 - (void)requestWithMethod:(NSString*)method params:(NSDictionary*)params model:(CMResultClass)model post:(BOOL)isPost completion:(CMNetworkBlock)completion {
-    if (checkSign) {
+    if (checkSign && ![method containsString:@"eapi"]) {
         // 参数加密
         method = [NSString stringWithFormat:@"%@&checkSign=1",method];
         params = [CMNetwork encryptionCheckSign:params];

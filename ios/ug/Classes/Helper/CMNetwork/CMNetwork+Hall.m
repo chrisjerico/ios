@@ -16,6 +16,18 @@
 #import "UGBetDetailModel.h"
 @implementation CMNetwork (Hall)
 
++ (void)getOwnLotteryList: (NSDictionary *)params completion: (CMNetworkBlock)completionBlock {
+    CMMETHOD_BEGIN;
+     
+     [self.manager requestInMainThreadWithMethod:[ownLotteryListUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                          params:params
+                                           model:nil
+                                            post:NO
+                                      completion:completionBlock];
+     
+     CMMETHOD_END;
+}
+
 + (void)getLotteryTrend: (NSDictionary *)params completion: (CMNetworkBlock)completionBlock {
 	CMMETHOD_BEGIN;
 	 
