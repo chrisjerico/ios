@@ -21,7 +21,7 @@
 	 
 	 [self.manager requestInMainThreadWithMethod:[lotteryTrendUrl stringToRestfulUrlWithFlag:RESTFUL]
 										  params:params
-										   model:CMResultArrayClassMake(UGAllNextIssueListModel.class)
+										   model:nil
 											post:NO
 									  completion:completionBlock];
 	 

@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	[SVProgressHUD showWithStatus:nil];
-	[CMNetwork getLotteryTrend:@{@"": self.lotteryAlias} completion:^(CMResult<id> *model, NSError *err) {
+	[CMNetwork getLotteryTrend:@{@"gameMark": @"yflhc"} completion:^(CMResult<id> *model, NSError *err) {
 		
 		if (err) {
 			[SVProgressHUD showErrorWithStatus:err.localizedDescription];
@@ -31,3 +31,4 @@
 
 
 @end
+    

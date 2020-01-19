@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *userButton;
 @property (weak, nonatomic) IBOutlet UIButton *mailButton;
 @property (weak, nonatomic) IBOutlet UILabel *balanceLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *avatarImageVIew;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *totalWidth;
 
@@ -34,15 +35,17 @@
 		[self.userButton setHidden:false];
 		[self.mailButton setHidden:false];
 		[self.balanceLabel setHidden:false];
+        [self.avatarImageVIew setHidden:false];
 		self.balanceLabel.text = [UGUserModel currentUser].balance;
 		[self.mailButton setSelected:[UGUserModel currentUser].unreadMsg > 0];
-		self.userButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
+		self.userButton.imageView.contentMode = UIViewContentModeScaleToFill;
 	} else {
 		[self.loginButton setHidden:false];
 		[self.registButton setHidden:false];
 		[self.userButton setHidden:true];
 		[self.mailButton setHidden:true];
 		[self.balanceLabel setHidden:true];
+        [self.avatarImageVIew setHidden:true];
 
 	}
 	// 登录成功
@@ -53,6 +56,7 @@
 		[weakSelf.userButton setHidden:false];
 		[weakSelf.mailButton setHidden:false];
 		[self.balanceLabel setHidden:false];
+        [self.avatarImageVIew setHidden:false];
 
 	});
 	//退出登录
@@ -62,11 +66,11 @@
 		[weakSelf.userButton setHidden:true];
 		[weakSelf.mailButton setHidden:true];
 		[self.balanceLabel setHidden:true];
+        [self.avatarImageVIew setHidden:true];
 
 	});
 	//用户信息更新
 	SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
-		[weakSelf.userButton setTitle:[UGUserModel currentUser].balance forState:UIControlStateNormal];
 		weakSelf.balanceLabel.text = [UGUserModel currentUser].balance;
 		[weakSelf.mailButton setSelected:[UGUserModel currentUser].unreadMsg > 0];
 

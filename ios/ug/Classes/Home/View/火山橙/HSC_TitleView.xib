@@ -45,14 +45,22 @@
                                         <action selector="registButtonTaped:" destination="iN0-l3-epB" eventType="touchUpInside" id="2Ab-SR-jNp"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="keE-hT-9tu">
-                                    <rect key="frame" x="10" y="10" width="54" height="73"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="hsc_placeholder_avatar" translatesAutoresizingMaskIntoConstraints="NO" id="H3D-bo-mnn">
+                                    <rect key="frame" x="10" y="10" width="73" height="73"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" secondItem="keE-hT-9tu" secondAttribute="height" multiplier="54:73" id="JnN-38-XAP"/>
+                                        <constraint firstAttribute="width" secondItem="H3D-bo-mnn" secondAttribute="height" multiplier="1:1" id="jte-zU-SxL"/>
                                     </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zcw-Ah-ldF">
+                                    <rect key="frame" x="88" y="39.5" width="25.5" height="14.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                    <state key="normal" image="hsc_placeholder_avatar"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="keE-hT-9tu">
+                                    <rect key="frame" x="10" y="0.0" width="103.5" height="93"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <connections>
                                         <action selector="avatarButtonTaped:" destination="iN0-l3-epB" eventType="touchUpInside" id="YWU-jH-wec"/>
                                     </connections>
@@ -68,29 +76,27 @@
                                         <action selector="emailButtonTaped:" destination="iN0-l3-epB" eventType="touchUpInside" id="P03-5q-bOS"/>
                                     </connections>
                                 </button>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zcw-Ah-ldF">
-                                    <rect key="frame" x="69" y="39.5" width="25.5" height="14.5"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstItem="zcw-Ah-ldF" firstAttribute="leading" secondItem="keE-hT-9tu" secondAttribute="trailing" constant="5" id="76M-id-XED"/>
                                 <constraint firstItem="keE-hT-9tu" firstAttribute="centerY" secondItem="CrN-uu-Ff8" secondAttribute="centerY" id="C8z-gi-tbF"/>
+                                <constraint firstItem="H3D-bo-mnn" firstAttribute="centerY" secondItem="CrN-uu-Ff8" secondAttribute="centerY" id="CCA-ou-BfU"/>
+                                <constraint firstItem="zcw-Ah-ldF" firstAttribute="centerY" secondItem="H3D-bo-mnn" secondAttribute="centerY" id="FJE-Ne-65E"/>
                                 <constraint firstItem="1wU-xr-mf5" firstAttribute="centerY" secondItem="CrN-uu-Ff8" secondAttribute="centerY" id="FbW-kk-e3C"/>
                                 <constraint firstItem="1wU-xr-mf5" firstAttribute="top" secondItem="CrN-uu-Ff8" secondAttribute="top" constant="10" id="Jeb-f3-xaS"/>
-                                <constraint firstItem="keE-hT-9tu" firstAttribute="top" secondItem="CrN-uu-Ff8" secondAttribute="top" constant="10" id="KqM-tE-4kz"/>
+                                <constraint firstItem="keE-hT-9tu" firstAttribute="top" secondItem="CrN-uu-Ff8" secondAttribute="top" id="KqM-tE-4kz"/>
                                 <constraint firstItem="l1N-oI-F7a" firstAttribute="centerY" secondItem="CrN-uu-Ff8" secondAttribute="centerY" id="KrD-lX-iSI"/>
                                 <constraint firstItem="l1N-oI-F7a" firstAttribute="leading" secondItem="CrN-uu-Ff8" secondAttribute="leading" constant="10" id="LB9-gD-qFD"/>
+                                <constraint firstItem="zcw-Ah-ldF" firstAttribute="leading" secondItem="H3D-bo-mnn" secondAttribute="trailing" constant="5" id="QFL-nB-Mb3"/>
                                 <constraint firstAttribute="trailing" secondItem="1wU-xr-mf5" secondAttribute="trailing" constant="10" id="QaX-CO-fUE"/>
+                                <constraint firstItem="H3D-bo-mnn" firstAttribute="leading" secondItem="CrN-uu-Ff8" secondAttribute="leading" constant="10" id="XpR-qb-Rfr"/>
+                                <constraint firstItem="H3D-bo-mnn" firstAttribute="top" secondItem="CrN-uu-Ff8" secondAttribute="top" constant="10" id="b87-mJ-am1"/>
                                 <constraint firstItem="Zgl-ws-ZJ2" firstAttribute="centerX" secondItem="CrN-uu-Ff8" secondAttribute="centerX" id="dGs-b5-Vns"/>
                                 <constraint firstItem="keE-hT-9tu" firstAttribute="leading" secondItem="CrN-uu-Ff8" secondAttribute="leading" constant="10" id="kqF-Ua-l88"/>
                                 <constraint firstItem="5v3-uE-75F" firstAttribute="centerY" secondItem="CrN-uu-Ff8" secondAttribute="centerY" id="kxt-rd-gsm"/>
                                 <constraint firstItem="Zgl-ws-ZJ2" firstAttribute="centerY" secondItem="CrN-uu-Ff8" secondAttribute="centerY" id="qpw-f8-xIK"/>
                                 <constraint firstAttribute="trailing" secondItem="5v3-uE-75F" secondAttribute="trailing" constant="10" id="r6b-f5-9xU"/>
-                                <constraint firstItem="zcw-Ah-ldF" firstAttribute="centerY" secondItem="keE-hT-9tu" secondAttribute="centerY" id="wAY-TA-TdF"/>
+                                <constraint firstItem="keE-hT-9tu" firstAttribute="trailing" secondItem="zcw-Ah-ldF" secondAttribute="trailing" id="sM6-xW-coh"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -107,6 +113,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="avatarImageVIew" destination="H3D-bo-mnn" id="CkY-ep-iPK"/>
                 <outlet property="balanceLabel" destination="zcw-Ah-ldF" id="dCb-KC-McZ"/>
                 <outlet property="loginButton" destination="l1N-oI-F7a" id="GYz-fI-dFP"/>
                 <outlet property="mailButton" destination="1wU-xr-mf5" id="MF6-SH-NT6"/>
@@ -120,6 +127,6 @@
     <resources>
         <image name="hsc_mail" width="105.5" height="98"/>
         <image name="hsc_mail_new" width="105.5" height="98"/>
-        <image name="hsc_placeholder_avatar" width="54" height="54"/>
+        <image name="hsc_placeholder_avatar" width="13.5" height="13.5"/>
     </resources>
 </document>
