@@ -165,10 +165,10 @@
     CCSessionModel *sm = [CCSessionModel new];
     sm.urlString = @"http://appadmin.fhptcdn.com/api.php";
     sm.params = @{
-        @"m":@"get_hot_update_list",
-        @"app_type":@"ios",
+        @"m":@"get_app_log_list",
+        @"type":@"1",   // 1=ios,2=andriod
         @"page":@(page),
-        @"status":@1,  // 0全部，1已发布
+        @"status":@1,  // 0未发布，1已发布
         @"rand":@(arc4random()).stringValue,
         @"sign":@"996998ikj*",
     };
@@ -189,16 +189,6 @@
         [[sm dataTask:m request:req] resume];
     }
     return sm;
-    return [self sendRequest:@"http://appadmin.fhptcdn.com/api.php"
-                      params:@{
-                          @"m":@"get_hot_update_list",
-                          @"app_type":@"ios",
-                          @"page":@(page),
-                          @"status":@1,  // 0全部，1已发布
-                          @"rand":@(arc4random()).stringValue,
-                          @"sign":@"996998ikj*",
-                      }
-                      isPOST:true];
 }
 
 - (CCSessionModel *)downloadFile:(NSString *)url {

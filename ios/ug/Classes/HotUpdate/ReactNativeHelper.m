@@ -36,7 +36,7 @@ CCSharedImplementation
 #ifdef DEBUG
     bundleURL = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
     if (APP.isFish) {
-        bundleURL = [NSURL URLWithString:@"http://192.168.1.144:8081/index.bundle?platform=ios"];
+        bundleURL = [NSURL URLWithString:@"http://192.168.2.1:8081/index.bundle?platform=ios"];
     }
 #endif
     RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:bundleURL moduleName:name initialProperties:[ReactNativeHelper conversion:params] launchOptions:nil];
@@ -157,12 +157,12 @@ RCT_EXPORT_METHOD(updateFinish) {
 #ifdef DEBUG
     return @{
         // 测试环境Key
-        @"CodePushKey": @"X1IUnBRRjstEdSE-C0UeUClh3tKxJmPjSmqHy",
+        @"CodePushKey": @"by5lebbE5vmYSJAdd5y0HRIFRcVJ4ksvOXqog",
     };
 #endif
     return @{
         // 发布环境Key
-        @"CodePushKey": @"a73XsUZP7sK2nC2hOdwo0DaWOvjurOJAB5-5Vj",
+        @"CodePushKey": @"67f7hDao71zMjLy5xjilGx0THS4o4ksvOXqog",
     };
 }
 

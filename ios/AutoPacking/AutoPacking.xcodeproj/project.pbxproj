@@ -49,6 +49,7 @@
 		CFDB112C23A3AE6F0040DE2B /* 5push.sh in Resources */ = {isa = PBXBuildFile; fileRef = CFDB112B23A3AE6F0040DE2B /* 5push.sh */; };
 		CFDB113B23A3B62F0040DE2B /* SiteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDB113923A3B62F0040DE2B /* SiteModel.m */; };
 		CFDB113E23A3E1AD0040DE2B /* 6clean.sh in Resources */ = {isa = PBXBuildFile; fileRef = CFDB113D23A3E1AD0040DE2B /* 6clean.sh */; };
+		CFE8765623D424A200BAA5D4 /* 8zip.sh in Resources */ = {isa = PBXBuildFile; fileRef = CFE8765523D424A200BAA5D4 /* 8zip.sh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -131,6 +132,7 @@
 		CFDB113A23A3B62F0040DE2B /* SiteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SiteModel.h; path = ../../../ug/Classes/Other/SiteModel.h; sourceTree = "<group>"; };
 		CFDB113C23A3D2670040DE2B /* cc_runtime_property.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cc_runtime_property.h; path = ../../../ug/Classes/Helper/FishUtility/define/cc_runtime_property.h; sourceTree = "<group>"; };
 		CFDB113D23A3E1AD0040DE2B /* 6clean.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = 6clean.sh; sourceTree = "<group>"; };
+		CFE8765523D424A200BAA5D4 /* 8zip.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = 8zip.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +199,7 @@
 				CFDB112B23A3AE6F0040DE2B /* 5push.sh */,
 				CFDB113D23A3E1AD0040DE2B /* 6clean.sh */,
 				CF3263D123CF3ABB00D4B79A /* 7codepush.sh */,
+				CFE8765523D424A200BAA5D4 /* 8zip.sh */,
 			);
 			path = sh;
 			sourceTree = SOURCE_ROOT;
@@ -382,6 +385,7 @@
 				CF5D3D702396B8D000CC3D6B /* Assets.xcassets in Resources */,
 				CF5D3E892397D9D800CC3D6B /* 0encrypt.sh in Resources */,
 				CFDB112223A160550040DE2B /* 4plist.sh in Resources */,
+				CFE8765623D424A200BAA5D4 /* 8zip.sh in Resources */,
 				CFDB112C23A3AE6F0040DE2B /* 5push.sh in Resources */,
 				CF5D3D732396B8D000CC3D6B /* Main.storyboard in Resources */,
 				CF5D3DA42396BC4600CC3D6B /* 2setup.sh in Resources */,

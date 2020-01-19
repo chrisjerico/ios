@@ -14,13 +14,15 @@
 
 
 @interface HotVersionModel : NSObject
-@property (nonatomic) NSString *version;    /**<   版本号 */
-@property (nonatomic) NSString *update_url; /**<   文件下载地址 */
-@property (nonatomic) NSString *fabu_log;   /**<   更新日志 */
-@property (nonatomic) NSString *update_time;/**<   发布时间 */
-@property (nonatomic) BOOL update_method;   /**<   0静默更新 1强制更新 */
-@property (nonatomic) BOOL app_type;        /**<  1 ios ，2 android */
-@property (nonatomic) BOOL fabu_status;     /**<   是否已发布 */
+@property (nonatomic) NSString *version;        /**<   版本号 */
+@property (nonatomic) NSString *file_link;      /**<   文件下载地址 */
+@property (nonatomic) NSString *detail;         /**<   更新日志 */
+@property (nonatomic) NSString *release_time;   /**<   发布时间 */
+@property (nonatomic) NSString *add_time;       /**<   提交时间 */
+@property (nonatomic) NSString *username;       /**<   提交者 */
+@property (nonatomic) BOOL is_force_update;     /**<   是否强制更新 */
+@property (nonatomic) NSInteger type;           /**<  1 ios ，2 android */
+@property (nonatomic) BOOL status;              /**<   是否已发布 */
 @end
 @implementation HotVersionModel
 @end
@@ -41,7 +43,12 @@
     });
 }
 + (JSValue *)cc_evaluateScript:(NSString *)script withSourceURL:(NSURL *)resourceURL {
-    script = [RSA decryptString:script];
+    // 分段解密，每段之间用\n隔开（因为rsa无法加/解密太长的字符串）
+    NSMutableArray *temp = @[].mutableCopy;
+    for (NSString *str in [script componentsSeparatedByString:@"\n"]) {
+        [temp addObject:[RSA decryptString:str]];
+    }
+    script = [temp componentsJoinedByString:@""];
     return [self cc_evaluateScript:script withSourceURL:resourceURL];
 }
 @end
@@ -66,10 +73,7 @@
     
     // 下载完成后解压
     void (^downloadPackage)(HotVersionModel *) = ^(HotVersionModel *hvm) {
-#ifdef DEBUG
-        hvm.update_url = @"http://192.168.1.144/1.zip";
-#endif
-        CCSessionModel *sm = [NetworkManager1 downloadFile:hvm.update_url];
+        CCSessionModel *sm = [NetworkManager1 downloadFile:hvm.file_link];
         __block int __progress = 0;
         sm.progressBlock = ^(NSProgress *progress) {
             int p = progress.completedUnitCount/(double)progress.totalUnitCount * 100;
@@ -109,16 +113,6 @@
             }
         };
     };
-    
-#ifdef DEBUG
-//    downloadPackage(({
-//        HotVersionModel *hvm = [HotVersionModel new];
-//        hvm.version = @"1.1.1";
-//        hvm.update_url = @"http://192.168.1.144/chat.zip";
-//        hvm;
-//    }));
-//    return;
-#endif
     
     // 获取版本列表
     NSLog(@"jspatch正在查找可用的更新");

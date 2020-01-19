@@ -165,7 +165,7 @@
 // 上传文件
 - (CCSessionModel *)uploadWithId:(NSString *)_id sid:(NSString *)sid file:(NSString *)file {
     if (![[NSFileManager defaultManager] fileExistsAtPath:file]) {
-        @throw [NSException exceptionWithName:@"上传的文件不存在。" reason:@"" userInfo:nil];
+        @throw [NSException exceptionWithName:_NSString(@"上传的文件不存在。%@", file) reason:@"" userInfo:nil];
     }
     return [self req:@"api.php"
                     :@{@"m":@"upload_file",
@@ -208,5 +208,20 @@
                     }
                     :true];
 }
+
+// 提交热更新
+- (CCSessionModel *)addHotUpdateVersion:(NSString *)version log:(nonnull NSString *)log filePath:(NSString *)filePath {
+    return [self req:@"api.php"
+                    :@{@"m":@"add_app_update_log",
+                       @"is_force_update":@false,   // 是否强制更新
+                       @"detail":log,               // 更新日志
+                       @"上传文件":filePath,        // 文件本地路径
+                       @"version":version,          // 版本号
+                       @"type":@1,                  // 1=ios，2=android
+                    }
+                    :true];
+}
+
+
 
 @end

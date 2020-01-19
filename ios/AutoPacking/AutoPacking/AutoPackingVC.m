@@ -14,7 +14,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    BOOL isPack = 1;  // 0全站提交热更新，1批量打包上传APP后台
+    BOOL isPack = 0;  // 0全站提交热更新，1批量打包上传APP后台
     
     // 拉取最新代码
     [ShellHelper pullCode:Path.projectDir completion:^{
@@ -22,7 +22,7 @@
         NSLog(@"Path.tempLog = %@",Path.tempLog);
         Path.commitId = [[NSString stringWithContentsOfFile:Path.tempCommitId encoding:NSUTF8StringEncoding error:nil] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
         Path.gitLog = [[[NSString stringWithContentsOfFile:Path.tempLog encoding:NSUTF8StringEncoding error:nil] stringByReplacingOccurrencesOfString:@"\n" withString:@""] componentsSeparatedByString:@"(1):      "].lastObject;
-        Path.version = ({
+        Path.gitVersion = ({
             NSString *vStr = [[NSString stringWithContentsOfFile:Path.tempVersion encoding:NSUTF8StringEncoding error:nil] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
             if (vStr.length != 4) {
                 @throw [NSException exceptionWithName:@"版本号获取失败。" reason:@"" userInfo:nil];
@@ -35,12 +35,12 @@
         
         if (isPack) {
 
-            NSString *ids = @"l002,l001,c190";   // 站点编号
+            NSString *ids = @"c116";   // 站点编号
             BOOL willUpload = 1; // 打包后是否上传审核
             [self startPackingWithIds:ids willUpload:willUpload];
         }
         else {
-            NSString *log = @"";    // 更新日志
+            NSString *log = @"热更新发包测试，热更新发包测试，热更新发包测试，热更新发包测试，热更新发包测试2，";    // 更新日志
             [self postHotUpdate:log];
         }
     }];
@@ -51,12 +51,13 @@
 #pragma mark - 发布热更新
 
 - (void)postHotUpdate:(NSString *)log {
-//    if (log.length < 20) {
-//        @throw [NSException exceptionWithName:@"日志太短，请写详细点。" reason:@"" userInfo:nil];
-//    }
+    if (log.length < 20) {
+        @throw [NSException exceptionWithName:@"日志太短，请写详细点。" reason:@"" userInfo:nil];
+    }
     
 //    Path.jspatchDir
     NSString *BASE_PATH = Path.jspatchDir;
+    BASE_PATH = @"/Users/fish/自动打包/pack/js/rn";
     BOOL isDir = NO;
     BOOL isExist = NO;
     
@@ -66,12 +67,12 @@
     for (NSString *path in [[NSFileManager defaultManager] enumeratorAtPath:BASE_PATH].allObjects) {
         NSString *fullPath = [NSString stringWithFormat:@"%@/%@", BASE_PATH, path];
         isExist = [[NSFileManager defaultManager] fileExistsAtPath:fullPath isDirectory:&isDir];
-        if (isExist && !isDir && [fullPath hasSuffix:@".js"]) {
+        if (isExist && !isDir) {
             NSError *err = nil;
             [contetns addObject:[NSString stringWithContentsOfFile:fullPath encoding:NSUTF8StringEncoding error:&err]];
             [paths addObject:path];
             if (err) {
-                @throw [NSException exceptionWithName:@"js加密失败。" reason:@"" userInfo:nil];
+                @throw [NSException exceptionWithName:@"js导出失败。" reason:@"" userInfo:nil];
             }
         }
     }
@@ -80,8 +81,8 @@
     NSString *rootDir = [Path.jsExportDir stringByAppendingFormat:@"/%@", Path.commitId];
     [ShellHelper encrypt:contetns completion:^(NSArray<NSString *> * _Nonnull rets) {
         // 保存加密后的内容为js文件
-        for (int i=0; i<contetns.count; i++) {
-            NSString *content = contetns[i];
+        for (int i=0; i<rets.count; i++) {
+            NSString *content = rets[i];
             NSString *path = paths[i];
             if (!content.length) {
                 @throw [NSException exceptionWithName:@"js加密后为空。" reason:@"" userInfo:nil];
@@ -97,60 +98,52 @@
         }
         
         // 压缩
-        NSString *zipPath = _NSString(@"%@/%@.zip", rootDir, Path.version);
-        [NSTask launchedTaskWithLaunchPath:@"/usr/bin/zip" arguments:@[@"-r", zipPath.lastPathComponent, _NSString(@"%@/*", rootDir)] completion:^(NSTask * _Nonnull ts) {
+        NSString *zipPath = _NSString(@"%@/%@.zip", rootDir, Path.gitVersion);
+        [NSTask launchedTaskWithLaunchPath:[[NSBundle mainBundle] pathForResource:@"8zip" ofType:@"sh"] arguments:@[Path.gitVersion, rootDir] completion:^(NSTask * _Nonnull ts) {
             
             // 上传js压缩包
-            NSString *uploadId = @"214";
-            NSString *uploadNum = @"test19";
             __block int __progress = 0;
-            CCSessionModel *sm = [NetworkManager1 uploadWithId:uploadId sid:uploadNum file:zipPath];
+            CCSessionModel *sm = [NetworkManager1 addHotUpdateVersion:Path.gitVersion log:log filePath:zipPath];
             sm.progressBlock = ^(NSProgress *progress) {
                 int p = progress.completedUnitCount/(double)progress.totalUnitCount * 100;
                 if (p != __progress) {
                     __progress = p;
-                    NSLog(@"%@ js压缩包上传进度：%.2f", Path.version, (double)__progress);
+                    NSLog(@"%@ js压缩包上传进度：%.2f", Path.gitVersion, (double)__progress);
                 }
             };
             sm.completionBlock = ^(CCSessionModel *sm) {
-                NSString *zipURL = _NSString(@"https://app.wdheco.cn%@", sm.responseObject[@"data"][@"url"]);
-                if (![zipURL containsString:@".zip"]) {
-                    NSLog(@"%@ js压缩包上传错误❌，%@", Path.version, sm.error);
-                    @throw [NSException exceptionWithName:@"js压缩包上传错误。" reason:@"" userInfo:nil];
+                if (sm.error) {
+                    @throw [NSException exceptionWithName:@"JSPatch热更新提交失败。" reason:@"" userInfo:nil];
                     return ;
                 }
                 
-                if (!sm.error) {
-                    NSLog(@"%@ js压缩包上传成功", Path.version);
+                NSLog(@"%@ JSPatch热更新提交成功。", Path.gitVersion);
+                // 提交rn资源包
+                [NSTask launchedTaskWithLaunchPath:[[NSBundle mainBundle] pathForResource:@"7codepush" ofType:@"sh"] arguments:@[APPVersion, Path.gitVersion, [log stringByReplacingOccurrencesOfString:@"\n" withString:@";"], Path.projectDir.stringByDeletingLastPathComponent] completion:^(NSTask * _Nonnull ts) {
+                    NSString *rnRet = [NSString stringWithContentsOfFile:_NSString(@"%@/rn打包结果.txt", Path.projectDir.stringByDeletingLastPathComponent) encoding:NSUTF8StringEncoding error:nil];
+                    [rnRet stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+                    if ([rnRet hasSuffix:@"info Done copying assets"]) {
+                        @throw [NSException exceptionWithName:@"rn打包失败。" reason:@"" userInfo:nil];
+                    }
                     
-                    // 提交热更新版本信息
-                    [NetworkManager1 addHotUpdateVersion:Path.version log:log url:zipURL].completionBlock = ^(CCSessionModel *sm) {
-                        if (sm.error) {
-                            @throw [NSException exceptionWithName:@"JSPatch热更新提交失败。" reason:@"" userInfo:nil];
-                            return ;
-                        }
-                        // 提交rn资源包
-                        [NSTask launchedTaskWithLaunchPath:[[NSBundle mainBundle] pathForResource:@"7codepush" ofType:@"sh"] arguments:@[Path.version, log] completion:^(NSTask * _Nonnull ts) {
-                            // 记录热更新日志
-                            [ShellHelper pullCode:Path.jsLogPath.stringByDeletingLastPathComponent completion:^{
-                                
-                                NSDateFormatter *df = [NSDateFormatter new];
-                                [df setDateFormat:@"yyyy年MM月dd日 HH:mm"];
-                                
-                                NSString *jsLog = _NSString(@"（%@）%@  |  %@，%@\n\t\t\t\t\t\t%@", Path.username, [df stringFromDate:[NSDate date]], Path.commitId, Path.gitLog, [log stringByReplacingOccurrencesOfString:@"\n" withString:@""]);
-                                [self saveString:jsLog toFile:Path.jsLogPath];
-                                
-                                // 提交发包日志到git
-                                NSString *title = _NSString(@"提交热更新，%@", log);
-                                [ShellHelper pushCode:Path.jsLogPath.stringByDeletingLastPathComponent title:title completion:^{
-                                    NSLog(@"发包日志提交成功");
-                                    NSLog(@"退出程序！");
-                                    exit(0);
-                                }];
-                            }];
+                    // 记录热更新日志
+                    [ShellHelper pullCode:Path.jsLogPath.stringByDeletingLastPathComponent completion:^{
+                        
+                        NSDateFormatter *df = [NSDateFormatter new];
+                        [df setDateFormat:@"yyyy年MM月dd日 HH:mm"];
+                        
+                        NSString *jsLog = _NSString(@"（%@）%@  |  %@，%@（%@）", Path.username, [df stringFromDate:[NSDate date]], Path.commitId, Path.gitLog, [log stringByReplacingOccurrencesOfString:@"\n" withString:@""]);
+                        [self saveString:jsLog toFile:Path.jsLogPath];
+                        
+                        // 提交发包日志到git
+                        NSString *title = _NSString(@"%@ 提交热更新，%@", Path.gitVersion, log);
+                        [ShellHelper pushCode:Path.jsLogPath.stringByDeletingLastPathComponent title:title completion:^{
+                            NSLog(@"发包日志提交成功");
+                            NSLog(@"退出程序！");
+                            exit(0);
                         }];
-                    };
-                }
+                    }];
+                }];
             };
         }];
     }];
