@@ -70,9 +70,8 @@
     
     __weakSelf_(__self);
     void (^push)(void) = ^{
-        if (!__self.postvc) {
-           __self.postvc =  _LoadVC_from_storyboard_(@"UGPostDetailVC");
-        }
+        __self.postvc =  _LoadVC_from_storyboard_(@"UGPostDetailVC");
+
         __self.postvc .pm = pm;
         __self.postvc .title = pm.title;
         __self.postvc .didCommentOrLike = ^(UGLHPostModel *pm) {

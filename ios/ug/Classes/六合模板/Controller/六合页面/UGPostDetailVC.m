@@ -567,8 +567,8 @@
     LHVoteModel *vm = _pm.vote[indexPath.item];
     FastSubViewCode(cell);
     subLabel(@"生肖Label").text = vm.animal;
-    subLabel(@"票数Label1").text = _NSString(@"%d票（%d%%）", (int)vm.num, (int)vm.percent);
-    subLabel(@"票数Label2").text = _NSString(@"%d票（%d%%）", (int)vm.num, (int)vm.percent);
+    subLabel(@"票数Label1").text = _NSString(@"（%d%%）",  (int)vm.percent);
+    subLabel(@"票数Label2").text = _NSString(@"（%d%%）",  (int)vm.percent);
     subLabel(@"进度条View").cc_constraints.right.constant = (cell.width-30) * (1-vm.percent/100.0);
     return cell;
 }
