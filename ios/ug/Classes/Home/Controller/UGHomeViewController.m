@@ -736,20 +736,21 @@
 			if (model.contentId.length) {
 				// 获取帖子详情
 				[SVProgressHUD showWithStatus:nil];
+                
+                NSLog(@"model.contentId = %@",model.contentId);
 				[NetworkManager1 lhdoc_contentDetail:model.contentId].completionBlock = ^(CCSessionModel *sm) {
 					[SVProgressHUD dismiss];
 					if (!sm.error) {
+            
+//                        NSLog(@"获取帖子详情data = %@",sm.responseObject[@"data"]);
 						
-						
-						NSLog(@"model.link = %@",model.link);
+			
 						UGLHPostModel *pm = [UGLHPostModel mj_objectWithKeyValues:sm.responseObject[@"data"]];
 						pm.link = model.link;
-						
+                        NSLog(@"获取帖子详情 = %@",pm.content);
 						void (^push)(void) = ^{
-							
-							if (!self.postvc) {
-								self.postvc = _LoadVC_from_storyboard_(@"UGPostDetailVC");
-							}
+        
+                            self.postvc = _LoadVC_from_storyboard_(@"UGPostDetailVC");
 							self.postvc.pm = pm;
 							self.postvc.title = model.name;
 							[NavController1 pushViewController:self.postvc animated:true];

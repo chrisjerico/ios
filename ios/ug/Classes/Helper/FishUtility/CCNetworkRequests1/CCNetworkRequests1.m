@@ -101,6 +101,7 @@
 - (CCSessionModel *)req:(NSString *)pathComponent :(NSDictionary *)params :(BOOL)isPOST {
     NSString *host = APP.Host;
     NSString *string = [host stringByAppendingPathComponent:pathComponent];
+
     return [self sendRequest:string params:params isPOST:isPOST];
 }
 
@@ -126,6 +127,10 @@
     sm.isPOST = isPOST;
     sm.delegate = self;
     sm.reconnectCnt = 1;
+    
+    
+    NSLog(@"请求接口url：%@",urlString);
+    NSLog(@"请求参数：%@",params);
     
     if (checkSign) {
         urlString = [urlString containsString:@"?"] ? [urlString stringByAppendingFormat:@"&checkSign=1"] : [urlString stringByAppendingFormat:@"?checkSign=1"];
