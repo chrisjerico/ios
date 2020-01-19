@@ -16,6 +16,10 @@
 		030A874423C5C2C00001EF82 /* JS_Mine.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 030A874323C5C2C00001EF82 /* JS_Mine.storyboard */; };
 		030A874723C5C3070001EF82 /* JS_MineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 030A874623C5C3070001EF82 /* JS_MineVC.m */; };
 		030A874823C5C3070001EF82 /* JS_MineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 030A874623C5C3070001EF82 /* JS_MineVC.m */; };
+		031A781D23D35A9C00FF2FFA /* LotteryTrendVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 031A781B23D35A9C00FF2FFA /* LotteryTrendVC.m */; };
+		031A781E23D35A9C00FF2FFA /* LotteryTrendVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 031A781B23D35A9C00FF2FFA /* LotteryTrendVC.m */; };
+		031A781F23D35A9C00FF2FFA /* LotteryTrendVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031A781C23D35A9C00FF2FFA /* LotteryTrendVC.xib */; };
+		031A782023D35A9C00FF2FFA /* LotteryTrendVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031A781C23D35A9C00FF2FFA /* LotteryTrendVC.xib */; };
 		031E08EF23BE7FFB00B0F813 /* SiteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDB113723A3B1E10040DE2B /* SiteModel.m */; };
 		031E08F023BE7FFF00B0F813 /* UGNotificationEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = D405B345227DB22100F8C586 /* UGNotificationEvent.m */; };
 		031E193C23BE812600B0F813 /* UGSkinCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031E13C223BE812300B0F813 /* UGSkinCollectionViewCell.xib */; };
@@ -1886,6 +1890,9 @@
 		030A874323C5C2C00001EF82 /* JS_Mine.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = JS_Mine.storyboard; sourceTree = "<group>"; };
 		030A874523C5C3070001EF82 /* JS_MineVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JS_MineVC.h; sourceTree = "<group>"; };
 		030A874623C5C3070001EF82 /* JS_MineVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JS_MineVC.m; sourceTree = "<group>"; };
+		031A781A23D35A9C00FF2FFA /* LotteryTrendVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LotteryTrendVC.h; sourceTree = "<group>"; };
+		031A781B23D35A9C00FF2FFA /* LotteryTrendVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LotteryTrendVC.m; sourceTree = "<group>"; };
+		031A781C23D35A9C00FF2FFA /* LotteryTrendVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LotteryTrendVC.xib; sourceTree = "<group>"; };
 		031E13C223BE812300B0F813 /* UGSkinCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UGSkinCollectionViewCell.xib; sourceTree = "<group>"; };
 		031E13C323BE812300B0F813 /* UGSkinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGSkinViewController.h; sourceTree = "<group>"; };
 		031E13C423BE812300B0F813 /* UGSkinManagers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGSkinManagers.h; sourceTree = "<group>"; };
@@ -3648,6 +3655,16 @@
 			path = "金沙模板";
 			sourceTree = "<group>";
 		};
+		031A781923D35A5A00FF2FFA /* 走势图 */ = {
+			isa = PBXGroup;
+			children = (
+				031A781A23D35A9C00FF2FFA /* LotteryTrendVC.h */,
+				031A781B23D35A9C00FF2FFA /* LotteryTrendVC.m */,
+				031A781C23D35A9C00FF2FFA /* LotteryTrendVC.xib */,
+			);
+			path = "走势图";
+			sourceTree = "<group>";
+		};
 		031E13C123BE812300B0F813 /* Skin */ = {
 			isa = PBXGroup;
 			children = (
@@ -5180,6 +5197,7 @@
 		031E168723BE812400B0F813 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				031A781923D35A5A00FF2FFA /* 走势图 */,
 				031E168823BE812400B0F813 /* 下注页面 */,
 				031E16C023BE812400B0F813 /* UGLotteryHomeController.h */,
 				031E16BD23BE812400B0F813 /* UGLotteryHomeController.m */,
@@ -7846,6 +7864,7 @@
 				031EF58623BE7B4D00B0F813 /* tuijianshouyi.svg in Resources */,
 				031EF5B623BE7B4D00B0F813 /* CommentInputBar.xib in Resources */,
 				031E1A0B23BE812700B0F813 /* TextFieldAlertView.xib in Resources */,
+				031A782023D35A9C00FF2FFA /* LotteryTrendVC.xib in Resources */,
 				031EF57823BE7B4D00B0F813 /* xianshi.svg in Resources */,
 				031E198123BE812600B0F813 /* UGLHHomeContentCollectionViewCell.xib in Resources */,
 				031E1A9123BE812700B0F813 /* province_data.xml in Resources */,
@@ -8172,6 +8191,7 @@
 				226CA21023D2E37400E4D921 /* HSC_BetFormCell.xib in Resources */,
 				031E1C2E23BE812900B0F813 /* UGTimeLotteryBetHeaderView.xib in Resources */,
 				031E1C5A23BE812A00B0F813 /* UGhomeRecommendCollectionViewCell.xib in Resources */,
+				031A781F23D35A9C00FF2FFA /* LotteryTrendVC.xib in Resources */,
 				031E1C1023BE812900B0F813 /* UGLotteryAdPopView.xib in Resources */,
 				031E1B4E23BE812800B0F813 /* UGYYRightMenuTableViewCell.xib in Resources */,
 				031E1C5423BE812A00B0F813 /* UGBetDetailView.xib in Resources */,
@@ -8470,6 +8490,7 @@
 				03CF9B6123C8D6C800CDE142 /* PromotionAdvertisementVC.m in Sources */,
 				031E1CFD23BE812A00B0F813 /* AFURLRequestSerialization.m in Sources */,
 				031E1CCB23BE812A00B0F813 /* UIScrollView+MJExtension.m in Sources */,
+				031A781E23D35A9C00FF2FFA /* LotteryTrendVC.m in Sources */,
 				031E1D7123BE812B00B0F813 /* UGFeedBackRecordController.m in Sources */,
 				031EF5AF23BE7B4D00B0F813 /* MomentsCell.swift in Sources */,
 				031EF5F423BE7B4E00B0F813 /* UGConversationVC.swift in Sources */,
@@ -9436,6 +9457,7 @@
 				031E196223BE812600B0F813 /* UGPostListVC.m in Sources */,
 				031E19E623BE812700B0F813 /* UIViewController+Log.m in Sources */,
 				031E1A6623BE812700B0F813 /* UIView+ST.m in Sources */,
+				031A781D23D35A9C00FF2FFA /* LotteryTrendVC.m in Sources */,
 				031E1B1823BE812800B0F813 /* UGDocumentVC.m in Sources */,
 				031E197C23BE812600B0F813 /* UGLHLhlModel.m in Sources */,
 				031E1DDC23BE812C00B0F813 /* UGMissionLevelModel.m in Sources */,

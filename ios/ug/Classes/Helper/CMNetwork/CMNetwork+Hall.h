@@ -11,7 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CMNetwork (Hall)
-
+//彩票开奖走势
++ (void)getLotteryTrend: (NSDictionary *)params completion: (CMNetworkBlock)completionBlock;
 //获取彩票大厅游戏数据
 + (void)getAllNextIssueWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 

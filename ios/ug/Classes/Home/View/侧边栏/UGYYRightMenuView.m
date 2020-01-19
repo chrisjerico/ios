@@ -21,6 +21,7 @@
 #import "UGSkinViewController.h"
 #import "UGAppVersionManager.h"
 #import "SLWebViewController.h"
+#import "LotteryTrendVC.h"
 
 @interface UGYYRightMenuView ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
@@ -476,6 +477,15 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         [NavController1 pushViewController:[[UGMailBoxTableViewController alloc] initWithStyle:UITableViewStyleGrouped] animated:true];
     }
     else if ([title isEqualToString:@"利息宝"]) {
+#if DEBUG
+		if (self.gameName) {
+			LotteryTrendVC * vc = [LotteryTrendVC new];
+			vc.lotteryAlias = self.gameName;
+			[[UINavigationController current] pushViewController:vc animated:true];
+			return;
+		}
+		
+#endif
         [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGYubaoViewController") animated:true];
     }
    else if ([title isEqualToString:@"充值"]) {

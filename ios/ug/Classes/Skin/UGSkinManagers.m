@@ -1056,7 +1056,7 @@ static UGSkinManagers *__initSkin1 = nil;
 				sm;
 			}),
 			
-			//火山橙
+			//香槟金
             @"香槟金":({
                 UGSkinManagers *sm = [UGSkinManagers new];
                 sm.skitType                 = @"香槟金";

@@ -16,6 +16,18 @@
 #import "UGBetDetailModel.h"
 @implementation CMNetwork (Hall)
 
++ (void)getLotteryTrend: (NSDictionary *)params completion: (CMNetworkBlock)completionBlock {
+	CMMETHOD_BEGIN;
+	 
+	 [self.manager requestInMainThreadWithMethod:[lotteryTrendUrl stringToRestfulUrlWithFlag:RESTFUL]
+										  params:params
+										   model:CMResultArrayClassMake(UGAllNextIssueListModel.class)
+											post:NO
+									  completion:completionBlock];
+	 
+	 CMMETHOD_END;
+}
+
 //获取彩票大厅数据
 + (void)getAllNextIssueWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock {
     
