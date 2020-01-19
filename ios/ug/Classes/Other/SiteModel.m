@@ -58,8 +58,8 @@
             site(@"c048",        @"c048hy",     @"133",     @"io.fhpt.H5F00A9FA",       @"https://dsjf43-43-f14-345-36-g54t-gfh54.com", @"超级签名",    @"凤凰国际"),//用户15687374617  密码   qaz123123  超级苹果签
             site(@"l001",        @"l001hy",     @"218",     @"io.fhpt.YSFL001",         @"https://4988wap.com",                         @"超级签名",    @"六合宝典"),//激光账号，qazttcp@gmail.com 密码 ttcp2075ZXCs  ISO 超级签 18759487805    ZXC4988tianji
             
-            site(@"l002",        @"l002hy",     @"239",     @"io.fhpt.YSAL002",         @"http://70333.me",                         @"企业包",          @" 王中王"),//
-            site(@"h002",        @"",           @"f",        @"",                        @"",                                            @"企业包",     @"⾹港赛⻢会"),          // https://dev.app2.xin/index | 15827947817 | dz990990
+            site(@"l002",        @"l002hy",     @"239",     @"io.fhpt.YSAL002",         @"http://70333.me",                             @"企业包",     @" 王中王"),//
+            site(@"h002",        @"",           @"",        @"",                        @"",                                            @"企业包",     @"⾹港赛⻢会"),          // https://dev.app2.xin/index | 15827947817 | dz990990
             site(@"h005",        @"h005hy",     @"236",     @"io.fhpt.YSAH005",         @"https://534023.com",                          @"企业包",     @"开心红包"),
             site(@"c018",        @"c018hy",     @"174",     @"io.fhpt.H51E9BFB6",       @"https://www.2044234.com",                     @"企业包",     @"2044彩票"),
             site(@"c021",        @"",           @"",        @"io.fhpt.H5A730C2F",       @"",                                            @"企业包",     @"幸运彩票"),
@@ -178,10 +178,14 @@
             site(@"test06",      @"",           @"",        @"com.UGGame.chat",         @"http://test06.6yc.com",                       @"内测包",     @"test06"),    // (army)
             site(@"test20",      @"",           @"",        @"com.UGGame.cp",           @"http://test20.6yc.com",                       @"内测包",     @"test20"),    // (朗朗)
             site(@"test29",      @"",           @"",        @"com.UGGame.cp",           @"http://test29f.fhptcdn.com",                  @"内测包",     @"test29"),// (小东)
-            site(@"test19",      @"test19",     @"214",        @"com.UGGame.cp",           @"http://test19.6yc.com",                       @"内测包",     @"test19"),
+            site(@"test19",      @"test19",     @"214",     @"com.UGGame.cp",           @"http://test19.6yc.com",                       @"内测包",     @"test19"),
             site(@"test31",      @"",           @"",        @"com.UGGame.cp",           @"http://test31.6yc.com",                       @"内测包",     @"test31"),
-        
-                    // 站点编号 / 上传编号 / 上传ID / 签名方式 / APP名 / bundleID / 接口域名
+            site(@"t005",        @"t005",       @"241",     @"com.UGGame.cp",           @"http://t500f.fhptcdn.com",                    @"内测包",     @"t500"),
+            site(@"t500",        @"t500",       @"240",     @"com.UGGame.cp",           @"http://t500f.fhptcdn.com",                    @"内测包",     @"t500"),
+            site(@"t501",        @"t501",       @"242",     @"com.UGGame.cp",           @"http://t501f.fhptcdn.com",                    @"内测包",     @"t501"),
+            site(@"t502",        @"t502",       @"243",     @"com.UGGame.cp",           @"http://t502f.fhptcdn.com",                    @"内测包",     @"t502"),
+            
+            // 站点编号 / 上传编号 / 上传ID / 签名方式 / APP名 / bundleID / 接口域名
 //            NSString *siteId, NSString *uploadNum, NSString *uploadId, NSString *appId, NSString *host, NSString *type, NSString *appName
         ];
     });

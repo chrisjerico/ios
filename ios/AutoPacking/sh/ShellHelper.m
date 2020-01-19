@@ -64,6 +64,7 @@
 
 // rsa加密
 + (void)encrypt:(NSArray<NSString *> *)stringArray completion:(void (^)(NSArray<NSString *> * _Nonnull))completion {
+    // 遍历加密字符串列表
     NSMutableArray *temp = stringArray.mutableCopy;
     NSMutableArray *okStrings = @[].mutableCopy;
     __block NSString *__orString = nil;
@@ -81,25 +82,66 @@
             }
             return ;
         }
-        [[NSFileManager defaultManager] removeItemAtPath:Path.tempCiphertext error:nil];
         
-        NSTask *task = [[NSTask alloc] init];
-        task.launchPath = [[NSBundle mainBundle] pathForResource:@"0encrypt" ofType:@"sh"];
-        task.arguments = @[__orString, Path.shellDir,];
-        task.terminationHandler = ^(NSTask *ts) {
-            [ts terminate];
-            NSString *ret = [NSString stringWithContentsOfFile:Path.tempCiphertext encoding:NSUTF8StringEncoding error:nil];
-            [okStrings addObject:ret ? : @""];
-            __next();
-        };
-        dispatch_sync(dispatch_get_global_queue(0, 0), ^{
-            [task launch];
-            [task waitUntilExit];
+        NSMutableArray *substrings = ({
+            substrings = @[].mutableCopy;
+            NSUInteger loc = 0;
+            NSUInteger len = 300;    // 分段加密长度（最大只能300多一点）
+            while (loc + len <= __orString.length) {
+                [substrings addObject:[__orString substringWithRange:NSMakeRange(loc, len)]];
+                loc += len;
+            }
+            substrings;
         });
+        
+        // 分段加密，每段之间用\n隔开（因为rsa无法加密太长的字符串）
+        [self encryptSubstrins:substrings completion:^(NSArray<NSString *> *rets) {
+            [okStrings addObject:[rets componentsJoinedByString:@"\n"]];
+            __orString = nil;
+            __next();
+        }];
     };
     
     startEncrypt();
 }
+
+// rsa加密
++ (void)encryptSubstrins:(NSArray<NSString *> *)substrings completion:(void (^)(NSArray<NSString *> * _Nonnull))completion {
+    // 遍历加密字符串列表
+    NSMutableArray *temp = substrings.mutableCopy;
+    NSMutableArray *okStrings = @[].mutableCopy;
+    __block NSString *__orString = nil;
+    void (^startEncrypt)(void) = nil;
+    void (^__block __next)(void) = startEncrypt = ^{
+        if (!__orString) {
+            __orString = temp.firstObject;
+            [temp removeObject:__orString];
+        }
+        if (!__orString) {
+            //            [NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[Path.exportDir]];
+            NSLog(@"字符串加密完成！");
+            if (completion) {
+                completion(okStrings);
+            }
+            return ;
+        }
+        [[NSFileManager defaultManager] removeItemAtPath:Path.tempCiphertext error:nil];
+        
+        [NSTask launchedTaskWithLaunchPath:[[NSBundle mainBundle] pathForResource:@"0encrypt" ofType:@"sh"] arguments:@[__orString, Path.privateKey, Path.shellDir,] completion:^(NSTask * _Nonnull ts) {
+            NSString *ret = [NSString stringWithContentsOfFile:Path.tempCiphertext encoding:NSUTF8StringEncoding error:nil];
+            if (!ret.length) {
+                @throw [NSException exceptionWithName:@"js分段加密为空。" reason:@"" userInfo:nil];
+            }
+            [okStrings addObject:ret];
+            __orString = nil;
+            __next();
+        }];
+    };
+    
+    startEncrypt();
+}
+
+
 
 + (void)clean:(NSString *)path completion:(void (^)(void))completion {
     NSTask *task = [[NSTask alloc] init];
@@ -205,7 +247,7 @@
         NSLog(@"Path.projectDir = %@",Path.projectDir);
         NSTask *task = [[NSTask alloc] init];
         task.launchPath = [[NSBundle mainBundle] pathForResource:@"2setup" ofType:@"sh"];;
-        task.arguments = @[__sm.siteId, __sm.appName, Path.version, __sm.appId, Path.projectDir, ];
+        task.arguments = @[__sm.siteId, __sm.appName, APPVersion, __sm.appId, Path.projectDir, ];
         task.terminationHandler = ^(NSTask *ts) {
             [ts terminate];
             NSLog(@"%@ 站点信息配置完成，开始打包", __sm.siteId);

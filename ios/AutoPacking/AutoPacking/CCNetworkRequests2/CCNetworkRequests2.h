@@ -33,6 +33,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 // 提交热更新版本信息
 - (CCSessionModel *)addHotUpdateVersion:(NSString *)version log:(NSString *)log url:(NSString *)url;
+
+// 提交热更新
+- (CCSessionModel *)addHotUpdateVersion:(NSString *)version log:(nonnull NSString *)log filePath:(NSString *)filePath;
 @end
 
 NS_ASSUME_NONNULL_END

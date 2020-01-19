@@ -67,7 +67,7 @@ static BOOL isFish = false;
     } else {
         path = @"/Users/ug/自动打包/私钥.txt";
     }
-    return [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    return path;
 }
 
 @end

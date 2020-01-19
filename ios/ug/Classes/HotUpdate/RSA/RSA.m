@@ -419,18 +419,10 @@ static NSData *base64_decode(NSString *str){
 + (NSString *)decryptString:(NSString *)str {
     NSString *publicKey = @"\
     -----BEGIN PUBLIC KEY-----\
-    MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA0HK+wyka1YbczHZW3tqP\
-    EgLKs8r/goE+APJS3V8NqVVSEk3vwHRFocbcSyS88lOipwfCqJ9VLzz2azYvI1Nr\
-    Pgk0+vbhm0vKgjXLaqOfbCNFcmp6kqF2HjRxBXYT0XqTO3C1HFD0WxVRc3KLrYzu\
-    xNn5TeJl7oyU/C67IHRmiAUVwKMVW62lJPXxz1I6eizxYtdv4Z89/dXdVTV55GIF\
-    FUOjrlwIecl7bi++0dZJtT+hiL8tC7bQgW57MkNkI/MtmtkHVKEwe/skNvJEEAv9\
-    kG1q9tB0QOgNJenojuf/JHrww2/0jCjH7pMyJzUUeJNoZ6R0pC5Se1YdHEpf5plD\
-    du7ui48ZinhN3t9OC8CJUrolisHIDIY6zvrvcYWotIhq30O0sRFWdAzUbjNhCUlA\
-    hlDqcUla8gH/e99SSUR+eYJdsJH6+YleeSLu12VvQtgjI173P6w3DQfpq9F2818u\
-    oXPDWKAHve8InYwdrgEJ7sTLRXKe9BHaaBfz3EWYarKNClGCHkT52qN2FqBEYFxm\
-    JV6e2Jtzz49DVufaCczjPc/kj08BCwj3UiaHyiPUmgzTpM6meV2inm7l1QthyGH1\
-    HnNAy42b/jEHoDeLzVqjjpdASvuiNDuR4kvRumEGDRUfcBKrqzp67ZHMvWPxoSpg\
-    uq1QJ2y4/Z3YjLW6riyuZHECAwEAAQ==\
+    MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCsROKKsYAwe6P0sfoU9uNOpC3v\
+    pzZNg3ZZW1V2kT44+epl6sgUyxHOK3dJUvm2w9BvOeOEFy/pTI9yDr4NMLA0nrr3\
+    RZGgScpzbf2NG4ENDd50idx+rWoQRq4FPIBmrKALNxWk4sAJ/vVLMSOrmDMnGj/Y\
+    YZo4GESci5b1QScIhwIDAQAB\
     -----END PUBLIC KEY-----\
     ";
     return [RSA decryptString:str publicKey:publicKey];
