@@ -168,9 +168,7 @@
         } else {
             // 去帖子详情页
             void (^push)(void) = ^{
-                if (!self.postvc) {
-                    self.postvc = _LoadVC_from_storyboard_(@"UGPostDetailVC");
-                }
+                self.postvc = _LoadVC_from_storyboard_(@"UGPostDetailVC");
                 self.postvc.pm = pm;
                 [NavController1 pushViewController:self.postvc animated:true];
             };
