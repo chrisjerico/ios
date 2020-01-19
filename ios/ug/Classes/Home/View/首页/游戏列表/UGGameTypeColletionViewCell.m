@@ -8,10 +8,11 @@
 
 #import "UGGameTypeColletionViewCell.h"
 #import "UGPlatformGameModel.h"
+#import "FLAnimatedImageView.h"
 //#import <SDWebImage/FLAnimatedImageView+WebCache.h>
 
 @interface UGGameTypeColletionViewCell ()
-@property (weak, nonatomic) IBOutlet UIImageView *imgView;      /**<   图片ImageView */
+@property (weak, nonatomic) IBOutlet FLAnimatedImageView *imgView;      /**<   图片ImageView */
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;        /**<   标题ImageView */
 @property (weak, nonatomic) IBOutlet UIImageView *hotImageView; /**<   热门ImageView */
 @property (nonatomic, strong) UIImageView *hasSubSign;          /**<   二级目录ImageView */
