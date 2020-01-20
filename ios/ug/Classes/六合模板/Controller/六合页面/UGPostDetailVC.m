@@ -366,6 +366,9 @@
     __weakSelf_(__self);
     pvv.didConfirmBtnClick = ^(LHPostVoteView * _Nonnull pvv, LHVoteModel * _Nonnull vm) {
         [NetworkManager1 lhdoc_vote:pvv.pm.cid animalId:vm.animalFlag].successBlock = ^(id responseObject) {
+            
+            
+            [CMCommon showToastTitle:@"投票成功！"];
             vm.num += 1;
             CGFloat totalNum = 0;
             for (LHVoteModel *vm in __self.pm.vote) {
