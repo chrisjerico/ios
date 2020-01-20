@@ -15,6 +15,7 @@
     [super viewDidLoad];
     
     BOOL isPack = 1;  // 0全站提交热更新，1批量打包上传APP后台
+//    BOOL isPack = 0;  // 0全站提交热更新，1批量打包上传APP后台
     
     // 拉取最新代码
     [ShellHelper pullCode:Path.projectDir completion:^{
@@ -57,19 +58,18 @@
     
 //    Path.jspatchDir
     NSString *BASE_PATH = Path.jspatchDir;
-    BASE_PATH = @"/Users/fish/自动打包/pack/js/rn";
     BOOL isDir = NO;
     BOOL isExist = NO;
     
     //列举目录内容，可以遍历子目录
-    NSMutableArray *contetns = @[].mutableCopy;
+    NSMutableArray *contents = @[].mutableCopy;
     NSMutableArray *paths = @[].mutableCopy;
     for (NSString *path in [[NSFileManager defaultManager] enumeratorAtPath:BASE_PATH].allObjects) {
         NSString *fullPath = [NSString stringWithFormat:@"%@/%@", BASE_PATH, path];
         isExist = [[NSFileManager defaultManager] fileExistsAtPath:fullPath isDirectory:&isDir];
         if (isExist && !isDir) {
             NSError *err = nil;
-            [contetns addObject:[NSString stringWithContentsOfFile:fullPath encoding:NSUTF8StringEncoding error:&err]];
+            [contents addObject:[NSString stringWithContentsOfFile:fullPath encoding:NSUTF8StringEncoding error:&err]];
             [paths addObject:path];
             if (err) {
                 @throw [NSException exceptionWithName:@"js导出失败。" reason:@"" userInfo:nil];
@@ -79,7 +79,7 @@
     
     // 加密文件内容
     NSString *rootDir = [Path.jsExportDir stringByAppendingFormat:@"/%@", Path.commitId];
-    [ShellHelper encrypt:contetns completion:^(NSArray<NSString *> * _Nonnull rets) {
+    [ShellHelper encrypt:contents completion:^(NSArray<NSString *> * _Nonnull rets) {
         // 保存加密后的内容为js文件
         for (int i=0; i<rets.count; i++) {
             NSString *content = rets[i];
