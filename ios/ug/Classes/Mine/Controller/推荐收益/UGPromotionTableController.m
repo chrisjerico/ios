@@ -1241,10 +1241,14 @@
 #pragma mark -- 其他方法
 - (void)showUGPormotionUserInfoViewWithModel :(UGinviteLisModel *)model{
     
-    UGPormotionUserInfoView *notiveView = [[UGPormotionUserInfoView alloc] initWithFrame:CGRectMake(0, 0, UGScreenW - 40, 500)];
+    
+    if (![@"c001" containsString:APP.SiteId]) {
+        UGPormotionUserInfoView *notiveView = [[UGPormotionUserInfoView alloc] initWithFrame:CGRectMake(0, 0, UGScreenW - 40, 500)];
+        notiveView.item = model;
+        [SGBrowserView showZoomView:notiveView];
+    }
+    
 
-    notiveView.item = model;
-    [SGBrowserView showZoomView:notiveView];
 //    [notiveView show];
    
 }
