@@ -9,7 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "SiteModel.h"
 
+#ifdef DEBUG
 //#define APP_TEST (DEBUG || 1)
+#endif
+
 
 
 #define APP [AppDefine shared]

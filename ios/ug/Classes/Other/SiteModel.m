@@ -167,7 +167,7 @@
             site(@"c136",        @"",           @"",        @"io.fhpt.H5F60C8D2",       @"",                                            @"企业包",     @"⻓诚彩票"),
             site(@"c199",        @"c199hy",     @"220",     @"io.fhpt.YSAC199",         @"https://yhfhapp.com",                         @"企业包",     @"银河贵宾会"),//https://9587zz.com
             site(@"c203",        @"c203hy",     @"235",     @"io.fhpt.YSFC203",         @"https://xpjcpapp.com",                        @"企业包",     @"新葡京彩票"),// 第二条域名：https://455126.com
-            site(@"c208",        @"c208hy",     @"",        @"io.fhpt.YSAC208",         @"",                        @"企业包",     @""),//102972
+            site(@"c208",        @"c208hy",     @"246",        @"io.fhpt.YSAC208",         @"https://771aa771.com",                        @"企业包",     @"威尼斯人"),//102972
             site(@"c212",        @"c212hy",     @"",        @"io.fhpt.YSAC212",         @"",                        @"企业包",     @""),//
      
             
