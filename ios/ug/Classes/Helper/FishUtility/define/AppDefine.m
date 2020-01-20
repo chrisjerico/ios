@@ -79,6 +79,9 @@
                 sb(@"UGYubaoViewController"),
                 sb(@"JS_Mine"),
                 sb(@"HSC_Mine"),
+                sb(@"HSC_Mine"),
+                sb(@"MyPromotion"),
+                
 
                 ];
     });
