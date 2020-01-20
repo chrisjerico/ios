@@ -48,6 +48,9 @@
     if (![[NSString stringWithContentsOfFile:_NSString(@"%@/ug/Classes/Other/configuration.h", Path.projectDir) encoding:NSUTF8StringEncoding error:nil] containsString:@"#define checkSign 1"]) {
         [errs addObject:@"未开启参数加密，请到 configuration.h 文件开启参数加密"];
     }
+    if (![[NSString stringWithContentsOfFile:_NSString(@"%@/ug/Classes/Helper/FishUtility/define/AppDefine.h", Path.projectDir) encoding:NSUTF8StringEncoding error:nil] containsString:@"//#define APP_TEST"]) {
+        [errs addObject:@"未关闭内测环境，请到 AppDefine.h 文件注释掉 #define APP_TEST 宏"];
+    }
     
     NSLog(@"\n\n");
     NSLog(@"-——————————检查站点配置———————————\n\n");
@@ -64,6 +67,9 @@
 
 // rsa加密
 + (void)encrypt:(NSArray<NSString *> *)stringArray completion:(void (^)(NSArray<NSString *> * _Nonnull))completion {
+    if (!stringArray.count) {
+        @throw [NSException exceptionWithName:@"字符串为空。" reason:@"" userInfo:nil];
+    }
     // 遍历加密字符串列表
     NSMutableArray *temp = stringArray.mutableCopy;
     NSMutableArray *okStrings = @[].mutableCopy;
@@ -86,9 +92,9 @@
         NSMutableArray *substrings = ({
             substrings = @[].mutableCopy;
             NSUInteger loc = 0;
-            NSUInteger len = 300;    // 分段加密长度（最大只能300多一点）
-            while (loc + len <= __orString.length) {
-                [substrings addObject:[__orString substringWithRange:NSMakeRange(loc, len)]];
+            NSUInteger len = 100;    // 分段加密长度（最大只能100多一点）
+            while (loc < __orString.length) {
+                [substrings addObject:[__orString substringWithRange:NSMakeRange(loc, MIN(__orString.length - loc, len))]];
                 loc += len;
             }
             substrings;
@@ -107,6 +113,9 @@
 
 // rsa加密
 + (void)encryptSubstrins:(NSArray<NSString *> *)substrings completion:(void (^)(NSArray<NSString *> * _Nonnull))completion {
+    if (!substrings.count) {
+        @throw [NSException exceptionWithName:@"字符串为空。" reason:@"" userInfo:nil];
+    }
     // 遍历加密字符串列表
     NSMutableArray *temp = substrings.mutableCopy;
     NSMutableArray *okStrings = @[].mutableCopy;
@@ -127,7 +136,7 @@
         }
         [[NSFileManager defaultManager] removeItemAtPath:Path.tempCiphertext error:nil];
         
-        [NSTask launchedTaskWithLaunchPath:[[NSBundle mainBundle] pathForResource:@"0encrypt" ofType:@"sh"] arguments:@[__orString, Path.privateKey, Path.shellDir,] completion:^(NSTask * _Nonnull ts) {
+        [NSTask launchedTaskWithLaunchPath:[[NSBundle mainBundle] pathForResource:@"0encrypt" ofType:@"sh"] arguments:@[__orString, Path.privateKey, Path.tempCiphertext,] completion:^(NSTask * _Nonnull ts) {
             NSString *ret = [NSString stringWithContentsOfFile:Path.tempCiphertext encoding:NSUTF8StringEncoding error:nil];
             if (!ret.length) {
                 @throw [NSException exceptionWithName:@"js分段加密为空。" reason:@"" userInfo:nil];
