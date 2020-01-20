@@ -255,7 +255,7 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
                                 model:(CMResultClass)model
                                  post:(BOOL)isPost
                            completion:(CMNetworkBlock)completion {
-#ifdef DEBUG
+#ifdef APP_TEST
     CCSessionModel *sm = [CCSessionModel new];
     sm.urlString = method;
     sm.params = params;
@@ -263,17 +263,17 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
 #endif
     __block id __block1 = nil;
     __block id __block2 = __block1 = ^(CMResult<id> *model, NSError *err) {
-    #ifdef DEBUG
-            sm.responseObject = [__block2 cc_userInfo][@"responseObject"];
-            sm.error = [__block2 cc_userInfo][@"error"];
-            [LogVC addRequestModel:sm];
-    #endif
-            if (completion == nil) {
-                return ;
-            }
-            dispatch_async(dispatch_get_main_queue(), ^{
-                completion(model, err);
-            });
+#ifdef APP_TEST
+        sm.responseObject = [__block2 cc_userInfo][@"responseObject"];
+        sm.error = [__block2 cc_userInfo][@"error"];
+        [LogVC addRequestModel:sm];
+#endif
+        if (completion == nil) {
+            return ;
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completion(model, err);
+        });
     };
     [self requestWithMethod:method
                      params:params
@@ -473,7 +473,7 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
         if (json) {
             result  = [resultClass resultWithJSON:json dataClass:dataClass error:&error];
         }
-#ifdef DEBUG
+#ifdef APP_TEST
         [completion cc_userInfo][@"responseObject"] = json;
 #endif
         if (completion != nil) {
@@ -507,7 +507,7 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
                 return;
             }
         }
-#ifdef DEBUG
+#ifdef APP_TEST
         [completion cc_userInfo][@"error"] = error;
 #endif
         CMResult* result  = [resultClass resultWithJSON:nil dataClass:dataClass error:&error];
@@ -559,7 +559,7 @@ completion:(CMNetworkBlock)completion {
         if (json) {
             result  = [resultClass resultWithJSON:json dataClass:dataClass error:&error];
         }
-#ifdef DEBUG
+#ifdef APP_TEST
         [completion cc_userInfo][@"responseObject"] = json;
 #endif
         if (completion != nil) {
@@ -588,7 +588,7 @@ completion:(CMNetworkBlock)completion {
                 return;
             }
         }
-#ifdef DEBUG
+#ifdef APP_TEST
         [completion cc_userInfo][@"error"] = error;
 #endif
         CMResult* result  = [resultClass resultWithJSON:nil dataClass:dataClass error:&error];

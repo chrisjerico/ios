@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "SiteModel.h"
 
+#define APP_TEST (DEBUG || 1)
+
+
 #define APP [AppDefine shared]
 
 #define _LoadVC_from_storyboard_(sid)   [AppDefine viewControllerWithStoryboardID:sid]
@@ -31,6 +34,7 @@
 @property (nonatomic, readonly) NSArray <SiteModel *> *allSites;  /**<   所有站点 */
 @property (nonatomic, readonly) NSString *jspPath;      /**<    jspatch热更新本地文件路径 */
 @property (nonatomic, strong) NSString *jspVersion;     /**<    jspatch热更新版本号 */
+@property (nonatomic) BOOL Test;                        /**<   是否是测试环境 */
 
 @property (nonatomic) NSInteger PageCount;              /**<    TableView每页显示多少条数据 */
 @property (nonatomic) NSUInteger PhotoMaxLength;        /**<    图片上传允许的最大大小 */

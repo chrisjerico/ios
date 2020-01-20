@@ -6,7 +6,7 @@
 //  Copyright © 2018年 fish. All rights reserved.
 //
 
-#ifdef DEBUG
+#ifdef APP_TEST
 
 #import "LogVC.h"
 

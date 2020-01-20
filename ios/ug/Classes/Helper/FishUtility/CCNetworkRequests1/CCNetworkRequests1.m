@@ -152,7 +152,7 @@
         [[sm dataTask:m request:req] resume];
     }
     
-#ifdef DEBUG
+#ifdef APP_TEST
     [LogVC addRequestModel:sm];
 #endif
     return sm;

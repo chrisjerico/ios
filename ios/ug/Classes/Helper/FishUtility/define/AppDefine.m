@@ -120,20 +120,19 @@
         _allSites = [SiteModel allSites];
         _SiteId = __SiteID__;
         _jspVersion = [[NSUserDefaults standardUserDefaults] stringForKey:@"jspVersion"];
-        NSLog(@"_SiteId = %@",_SiteId);
-#ifdef DEBUG
+#ifdef APP_TEST
+        _Test = true;
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
         if (!_SiteId.length) {
             _SiteId = @"l001";
         }
-        
 #endif
         NSLog(@"%@",[_allSites objectWithValue:_SiteId.lowercaseString keyPath:@"siteId"]);
         _Host = [_allSites objectWithValue:_SiteId.lowercaseString keyPath:@"siteId"].host;
         if (!_Host.length) {
-            #ifdef DEBUG
-                 @throw [NSException exceptionWithName:@"缺少域名" reason:_NSString(@"（%@）该站点没有配置接口域名", _SiteId) userInfo:nil];
-            #endif
+#ifdef DEBUG
+            @throw [NSException exceptionWithName:@"缺少域名" reason:_NSString(@"（%@）该站点没有配置接口域名", _SiteId) userInfo:nil];
+#endif
         }
         
         _PhotoMaxLength = 60 * 1024;    // 约等于1M大小
