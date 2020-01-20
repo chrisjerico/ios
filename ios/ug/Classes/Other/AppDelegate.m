@@ -77,6 +77,7 @@
     
 #ifdef DEBUG
     [JPUSHService setupWithOption:launchOptions appKey:appKey channel:@"develop" apsForProduction:0 advertisingIdentifier:nil];
+    [KMCGeigerCounter sharedGeigerCounter].enabled = NO;
 #else
     [JPUSHService setupWithOption:launchOptions appKey:appKey channel:@"dis" apsForProduction:1 advertisingIdentifier:nil];
 #endif
@@ -92,9 +93,8 @@
     [self initBugly];
 //#endif
     [self userAgent];
-#ifdef DEBUG
+#ifdef APP_TEST
 	[LogVC enableLogVC];
-    [KMCGeigerCounter sharedGeigerCounter].enabled = NO;
 #endif
 	
 	return YES;

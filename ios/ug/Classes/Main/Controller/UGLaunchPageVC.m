@@ -39,9 +39,6 @@
         [[ReactNativeHelper shared] updateVersion:^(NSString * _Nonnull version) {
 
             // 检查并下载jsp热更
-#ifdef DEBUG
-//            version = @"99999";
-#endif
             [JSPatchHelper updateVersion:version completion:^(BOOL ok) {
 #ifdef DEBUG
                 if (ok) {

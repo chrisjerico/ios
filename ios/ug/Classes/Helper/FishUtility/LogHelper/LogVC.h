@@ -10,7 +10,7 @@
 #import "CCSessionModel.h"
 
 // 当 DEBUG 或 APP_TEST 时，启用LogVC
-#ifdef DEBUG
+#ifdef APP_TEST
 //#define NSLog(s, ...) {NSString *log = [NSString stringWithFormat:(s), ##__VA_ARGS__];[LogVC addLog:log];NSLog( @"%@", log);}
 
 @interface LogVC : UIViewController

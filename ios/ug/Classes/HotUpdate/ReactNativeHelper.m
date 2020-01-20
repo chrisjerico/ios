@@ -154,7 +154,7 @@ RCT_EXPORT_METHOD(updateFinish) {
 
 // 注册js常量
 - (NSDictionary *)constantsToExport {
-#ifdef DEBUG
+#ifdef APP_TEST
     return @{
         // 测试环境Key
         @"CodePushKey": @"by5lebbE5vmYSJAdd5y0HRIFRcVJ4ksvOXqog",
