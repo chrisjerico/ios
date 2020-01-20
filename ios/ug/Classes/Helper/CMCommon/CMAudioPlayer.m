@@ -34,11 +34,9 @@
         NSLog(@"obj.numbersArrary= %@",obj.numbersArrary);
         if (obj.numSxArrary.count&&(obj.numSxArrary.count-1 >=0) ){
             sx = [obj.numSxArrary objectAtIndex:(obj.numSxArrary.count-1)];
-//             sx = [obj.numSxArrary objectAtIndex:(obj.count)];
         }
         if (obj.numColorArrary.count) {
             NSString* colorEN = [obj.numColorArrary objectAtIndex:(obj.numColorArrary.count-1)];
-//            NSString* colorEN = [obj.numColorArrary objectAtIndex:(obj.count)];
             if ([colorEN isEqualToString:@"green"]) {
                 color = @"绿色";
             }
@@ -51,10 +49,8 @@
         }
         if (obj.numbersArrary.count&&(obj.numbersArrary.count-1 >=0)) {
             number = [obj.numbersArrary objectAtIndex:(obj.numbersArrary.count-1)];
-//            number = [obj.numbersArrary objectAtIndex:(obj.count)];
         }
         if (obj.numSxArrary.count==7) {
-//         if (obj.count==6) {
             if (!obj.isOpen) {
                 text = [NSString stringWithFormat:@"特码,%@号。%@波,生肖:%@",number,color,sx];
             } else {
@@ -63,7 +59,6 @@
         }
         else{
             text = [NSString stringWithFormat:@"第%lu球,%@号。%@波,生肖:%@",(unsigned long)obj.numSxArrary.count,number,color,sx];
-//              text = [NSString stringWithFormat:@"第%lu球,%@号。%@波,生肖:%@",(unsigned long)obj.count+1,number,color,sx];
         }
         
         AVSpeechUtterance *utterance = [AVSpeechUtterance speechUtteranceWithString:text];

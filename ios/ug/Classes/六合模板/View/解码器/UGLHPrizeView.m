@@ -17,7 +17,9 @@
 #import "UGLHLotteryCollectionViewCell.h"
 #import "UGLotteryRecordController.h"
 
-@interface UGLHPrizeView ()<UICollectionViewDelegate,UICollectionViewDataSource>
+@interface UGLHPrizeView ()<UICollectionViewDelegate,UICollectionViewDataSource>{
+    
+}
 //六合开奖View
 @property (weak, nonatomic) IBOutlet UIView *liuheResultContentView;                    /**<   六合开奖View*/
 @property (weak, nonatomic) IBOutlet UILabel *lotteryTitleLabel;                        /**<   XX期开奖结果*/
@@ -34,6 +36,8 @@
 @property (nonatomic,strong)  CMAudioPlayer *player ;                                  /**<  播放器*/
 
 //--------------------------------------------
+@property (nonatomic,strong) UGLHlotteryNumberModel *lastLHModel;
+@property (nonatomic)  int count;
 @end
 
 @implementation UGLHPrizeView
@@ -325,6 +329,119 @@
     
     [self.lotteryCollectionView reloadData];
 }
+
+-(void)lhLotter{
+    CCSessionModel * sessionModel = [NetworkManager1 lhdoc_lotteryNumber];
+    sessionModel.completionBlock = ^(CCSessionModel *sm) {
+        NSNumber *cn = (NSNumber *)sm.responseObject[@"code"];
+        if (!sm.error  && [cn intValue] == 0) {
+            NSLog(@"model= %@",sm.responseObject[@"code"]);
+            NSLog(@"获取开奖信息成功");
+            NSLog(@"model= %@",sm.responseObject[@"data"]);
+            self.lhModel = nil;
+            
+            UGLHlotteryNumberModel *model = (UGLHlotteryNumberModel *)[UGLHlotteryNumberModel mj_objectWithKeyValues:sm.responseObject[@"data"]];
+            model.numSxArrary = [model.numSx componentsSeparatedByString:@","];
+            model.numbersArrary = [model.numbers componentsSeparatedByString:@","];
+            model.numColorArrary = [model.numColor componentsSeparatedByString:@","];
+            model.isOpen = self.lotteryUISwitch.isOn;
+            NSLog(@"model = %@",model);
+            self.lhModel = model;
+            if (!model) {
+                return ;
+            }
+            NSLog(@"auto= %d",model.autoBL);
+            if (model.autoBL) {
+                return ;
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // 需要在主线程执行的代码
+                
+                [self.lottyLabel setHidden:YES];
+                [self.lotteryCollectionView reloadData];
+                if (self.lhModel.issue.length>4) {
+                    NSString *nper = [self.lhModel.issue  substringFromIndex:4];
+                    if ([CMCommon stringIsNull:model.lhcdocLotteryNo]) {
+                        self.lotteryTitleLabel.text = [NSString stringWithFormat:@"第%@期开奖结果",nper];
+                    } else {
+                        self.lotteryTitleLabel.text = [NSString stringWithFormat:@"第%@期开奖结果",model.lhcdocLotteryNo];
+                    }
+                    
+                }
+                
+                
+                [CMLabelCommon setRichNumberWithLabel:self.lotteryTitleLabel Color:[UIColor redColor] FontSize:17.0];
+#ifdef DEBUG
+                //                    if (count < 7) {
+                //                        model.isFinish = 0;
+                //                    }
+                //                    else{
+                //                        model.isFinish = 1;
+                //                    }
+#endif
+                if (model.isFinish == 1) {
+                    NSArray *endTimeArray = [self.lhModel.endtime componentsSeparatedByString:@" "];
+                    self.timeLabel.text = [endTimeArray objectAtIndex:0];
+                    long long startLongLong = [CMTimeCommon timeSwitchTimestamp:self.lhModel.serverTime andFormatter:@"YYYY-MM-dd HH:mm:ss"];
+                    long long finishLongLong = [CMTimeCommon timeSwitchTimestamp:self.lhModel.endtime andFormatter:@"YYYY-MM-dd HH:mm:ss"];
+                    [self startLongLongStartStamp:startLongLong*1000 longlongFinishStamp:finishLongLong*1000];
+                    
+                    
+                    self.lastLHModel = nil;
+                    self.count = 0;
+                    [self.timer invalidate];
+                    self.timer = nil;
+                    [self.countDownForLabel destoryTimer];
+                    [self getLotteryNumberList ];
+                    
+                }
+                else
+                {
+                    __weak static UIView *__shared = nil;
+                    if (!__shared) {
+                        __shared = self;
+                    }
+                    if (self.lastLHModel) {
+                        if ([CMCommon array:self.lastLHModel.numbersArrary isOrderEqualTo:self.lhModel.numbersArrary] ) {
+                            return ;
+                        }
+                        else
+                        {
+                            model.count = self.count;
+                            if (__shared == self) {
+                                [self.player playLH:model ];
+                            }
+                            self.lastLHModel = model;
+                            self.count ++;
+                            NSLog(@"count = %d",self.count);
+                        }
+                    }
+                    else{
+                        if (__shared == self) {
+                            [self.player playLH:model ];
+                        }
+                        self.lastLHModel = model;
+                        self.count ++;
+                        NSLog(@"count = %d",self.count);
+                    }
+                    
+                }
+                
+            });
+            
+            if (!self) {
+                self.lastLHModel = nil;
+                self.count = 0;
+                [self.timer invalidate];
+                self.timer = nil;
+                [self.countDownForLabel destoryTimer];
+            }
+        }
+    };
+    sessionModel.failureBlock = ^(NSError *error) {
+        
+    };
+}
 //六合开奖
 //倒计时结束时触发
 -(void)lotterTimeAction{
@@ -339,122 +456,18 @@
 //    [_countdownLabel setTextColor:[UIColor blackColor]];
     [self setLhModel:nil];
     
-    __weakSelf_(__self);
-    __block UGLHlotteryNumberModel *__lastLHModel = nil;
-    __block int __count = 0;
+//    __weakSelf_(__self);
+//    __block UGLHlotteryNumberModel *lastLHModel = nil;
+//    __block int count = 0;
+    
+      self.lastLHModel = nil;
+       self.count = 0;
+    
+    [self lhLotter];
     
     if (!_timer) {
           _timer = [NSTimer scheduledTimerWithInterval:6 repeats:true block:^(NSTimer *timer) {
-                CCSessionModel * sessionModel = [NetworkManager1 lhdoc_lotteryNumber];
-                sessionModel.completionBlock = ^(CCSessionModel *sm) {
-                    NSNumber *cn = (NSNumber *)sm.responseObject[@"code"];
-                    if (!sm.error  && [cn intValue] == 0) {
-                        NSLog(@"model= %@",sm.responseObject[@"code"]);
-                        NSLog(@"获取开奖信息成功");
-                        NSLog(@"model= %@",sm.responseObject[@"data"]);
-                        __self.lhModel = nil;
-                        
-                        UGLHlotteryNumberModel *model = (UGLHlotteryNumberModel *)[UGLHlotteryNumberModel mj_objectWithKeyValues:sm.responseObject[@"data"]];
-                        model.numSxArrary = [model.numSx componentsSeparatedByString:@","];
-                        model.numbersArrary = [model.numbers componentsSeparatedByString:@","];
-                        model.numColorArrary = [model.numColor componentsSeparatedByString:@","];
-                        model.isOpen = __self.lotteryUISwitch.isOn;
-                        NSLog(@"model = %@",model);
-                        __self.lhModel = model;
-                        if (!model) {
-                            return ;
-                        }
-                        NSLog(@"auto= %d",model.autoBL);
-                        if (model.autoBL) {
-                            return ;
-                        }
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            // 需要在主线程执行的代码
-                            
-                            [__self.lottyLabel setHidden:YES];
-                            [__self.lotteryCollectionView reloadData];
-                            if (__self.lhModel.issue.length>4) {
-                                NSString *nper = [__self.lhModel.issue  substringFromIndex:4];
-                                if ([CMCommon stringIsNull:model.lhcdocLotteryNo]) {
-                                      __self.lotteryTitleLabel.text = [NSString stringWithFormat:@"第%@期开奖结果",nper];
-                                } else {
-                                      __self.lotteryTitleLabel.text = [NSString stringWithFormat:@"第%@期开奖结果",model.lhcdocLotteryNo];
-                                }
-                              
-                            }
-         
-                            
-                            [CMLabelCommon setRichNumberWithLabel:__self.lotteryTitleLabel Color:[UIColor redColor] FontSize:17.0];
-        #ifdef DEBUG
-        //                    if (__count < 7) {
-        //                        model.isFinish = 0;
-        //                    }
-        //                    else{
-        //                        model.isFinish = 1;
-        //                    }
-        #endif
-                            if (model.isFinish == 1) {
-                                NSArray *endTimeArray = [__self.lhModel.endtime componentsSeparatedByString:@" "];
-                                __self.timeLabel.text = [endTimeArray objectAtIndex:0];
-                                long long startLongLong = [CMTimeCommon timeSwitchTimestamp:self.lhModel.serverTime andFormatter:@"YYYY-MM-dd HH:mm:ss"];
-                                long long finishLongLong = [CMTimeCommon timeSwitchTimestamp:self.lhModel.endtime andFormatter:@"YYYY-MM-dd HH:mm:ss"];
-                                [__self startLongLongStartStamp:startLongLong*1000 longlongFinishStamp:finishLongLong*1000];
-                                
-              
-                                __lastLHModel = nil;
-                                __count = 0;
-                                [__self.timer invalidate];
-                                __self.timer = nil;
-                                [__self.countDownForLabel destoryTimer];
-                                [__self getLotteryNumberList ];
-
-                            }
-                            else
-                            {
-                                __weak static UIView *__shared = nil;
-                                if (!__shared) {
-                                    __shared = __self;
-                                }
-                                if (__lastLHModel) {
-                                    if ([CMCommon array:__lastLHModel.numbersArrary isOrderEqualTo:__self.lhModel.numbersArrary] ) {
-                                        return ;
-                                    }
-                                    else
-                                    {
-                                        model.count = __count;
-                                        if (__shared == __self) {
-                                            [__self.player playLH:model ];
-                                        }
-                                        __lastLHModel = model;
-                                        __count ++;
-                                        NSLog(@"__count = %d",__count);
-                                    }
-                                }
-                                else{
-                                    if (__shared == __self) {
-                                        [__self.player playLH:model ];
-                                    }
-                                    __lastLHModel = model;
-                                    __count ++;
-                                    NSLog(@"__count = %d",__count);
-                                }
-
-                            }
-                            
-                        });
-                        
-                        if (!__self) {
-                            __lastLHModel = nil;
-                            __count = 0;
-                            [__self.timer invalidate];
-                            __self.timer = nil;
-                            [__self.countDownForLabel destoryTimer];
-                        }
-                    }
-                };
-                sessionModel.failureBlock = ^(NSError *error) {
-                    
-                };
+              [self lhLotter];
             }];
          
     }
