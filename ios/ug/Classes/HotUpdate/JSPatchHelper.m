@@ -120,6 +120,9 @@
     void (^__block __nextPage)(NSInteger) = getVersionList = ^(NSInteger page) {
         [NetworkManager1 getHotUpdateVersionList:page].completionBlock = ^(CCSessionModel *sm) {
             NSArray *vs = sm.responseObject[@"data"][@"result"];
+//            NSLog(@"vs = %@", vs);
+            NSLog(@"cpVersion = %@", cpVersion);
+            NSLog(@"jspVersion = %@", APP.jspVersion);
             if (vs.count) {
                 HotVersionModel *newVersion = nil;
                 // 比较版本号
@@ -127,10 +130,10 @@
                     HotVersionModel *hvm = [HotVersionModel mj_objectWithKeyValues:dict];
                     if ([JSPatchHelper compareVersion:hvm.version newerThanVersion:APP.jspVersion]) {
                         if ([JSPatchHelper compareVersion:hvm.version newerThanVersion:cpVersion]) {
-                            // 此jspatch版本比CodePush版本大，忽略此更新
+                            NSLog(@"%@ 此jspatch版本比CodePush版本大，忽略此更新", hvm.version);
                             continue;
                         } else {
-                            // 发现新版本
+                            NSLog(@"发现新版本：%@", hvm.version);
                             newVersion = hvm;
                             break;
                         }

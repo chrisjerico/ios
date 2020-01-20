@@ -30,39 +30,39 @@ export default class UpdateVersion extends Component {
         status => {
           switch (status) {
             case CodePush.SyncStatus.UP_TO_DATE:
-              console.log("已是最新版本");
+              console.log("rn已是最新版本");
               RNHelper.updateFinish();
               break;
             case CodePush.SyncStatus.UPDATE_INSTALLED:
-              console.log("热更新安装成功下次启动生效");
+              console.log("rn热更新安装成功下次启动生效");
               RNHelper.updateFinish();
               break;
             case CodePush.SyncStatus.UPDATE_IGNORED:
-              console.log("忽略此热更新");
+              console.log("rn忽略此热更新");
               break;
             case CodePush.SyncStatus.UNKNOWN_ERROR:
-              console.log("热更新出错❌");
+              console.log("rn热更新出错❌");
               break;
             case CodePush.SyncStatus.SYNC_IN_PROGRESS:
               console.log("SYNC_IN_PROGRESS");
               break;
             case CodePush.SyncStatus.CHECKING_FOR_UPDATE:
-              console.log("正在查找可用的更新");
+              console.log("rn正在查找可用的更新");
               break;
             case CodePush.SyncStatus.AWAITING_USER_ACTION:
-              console.log("弹了框让用户自己选择是否要更新");
+              console.log("rn弹了框让用户自己选择是否要更新");
               break;
             case CodePush.SyncStatus.DOWNLOADING_PACKAGE:
-              console.log("正在下载热更新");
+              console.log("rn正在下载热更新");
               break;
             case CodePush.SyncStatus.INSTALLING_UPDATE:
-              console.log("正在安装热更新");
+              console.log("rn正在安装热更新");
               break;
           }
         },
         progress => {
           var p = (progress.receivedBytes / progress.totalBytes) * 100;
-          console.log("热更新包下载进度：" + p);
+          console.log("rn热更新包下载进度：" + p);
         }
       );
     }
