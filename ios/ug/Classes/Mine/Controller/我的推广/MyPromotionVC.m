@@ -14,19 +14,29 @@
 #import "PromotionBetRecordVC.h"
 #import "PromotionBetReportVC.h"
 #import "PromotionAdvertisementVC.h"
-
+#import "UGinviteInfoModel.h"
+#import "CMLabelCommon.h"
 
 @interface MyPromotionVC ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UIView *headView;
+@property (weak, nonatomic) IBOutlet UILabel *promotionIdlabel;
+@property (weak, nonatomic) IBOutlet UILabel *incomeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *monthMembers;
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *headerLabels;
 @property (strong, nonatomic) NSArray * items;
+@property (strong, nonatomic)  UGinviteInfoModel *mUGinviteInfoModel;
 @end
 
 @implementation MyPromotionVC
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self teamInviteInfoData];
+}
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
@@ -36,6 +46,8 @@
 	_tableView.dataSource = self;
 	[_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
 	//	[_tableView reloadData];
+    _avatarImageView.layer.cornerRadius = 42;
+    _avatarImageView.layer. masksToBounds = YES; // 部分UIView需要设置这个属性
 	
 }
 
@@ -112,5 +124,54 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
 	return 12;
+}
+
+#pragma mark - 得到数据
+//得到推荐信息数据
+- (void)teamInviteInfoData {
+    if ([UGUserModel currentUser].isTest) {
+        return;
+    }
+    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
+    
+    [SVProgressHUD showWithStatus:nil];
+    WeakSelf;
+    [CMNetwork teamInviteInfoWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            
+            [SVProgressHUD dismiss];
+            self.mUGinviteInfoModel = model.data;
+            NSLog(@"rid = %@",self.mUGinviteInfoModel.rid);
+           
+            [weakSelf setUIDate];
+
+        } failure:^(id msg) {
+            
+            [SVProgressHUD dismiss];
+            
+        }];
+    }];
+}
+
+#pragma mark -- UI数据
+-(void)setUIDate{
+    UGUserModel *user = [UGUserModel currentUser];
+    [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
+    self.nameLabel.text = self.mUGinviteInfoModel.username;
+    self.promotionIdlabel.text =self.mUGinviteInfoModel.rid;
+    self.incomeLabel.text = self.mUGinviteInfoModel.month_earn;
+    NSLog(@"本月推荐会员=%@",self.mUGinviteInfoModel.month_member);
+    self.monthMembers.text = self.mUGinviteInfoModel.month_member;
+    
+    [CMLabelCommon setRichNumberWithLabel:self.monthMembers Color:RGBA(250, 234, 168, 1) FontSize:12.0];
+    
+    CGFloat h =  [CMCommon getLabelWidthWithText:self.monthMembers.text stringFont:[UIFont systemFontOfSize:12.0] allowWidth:APP.Width - 80];
+//    self.headView.cc_constraints.height.constant = 116 + h -20;
+//    [self.tableView reloadData];
+//    CGRect frame  =  self.headView.frame;
+//    frame.size.height = 116 + h ;
+//    self.headView.frame = frame;
+    [CMCommon changeHeight:self.headView Height:(116+h)];
+    [self.tableView reloadData];
 }
 @end

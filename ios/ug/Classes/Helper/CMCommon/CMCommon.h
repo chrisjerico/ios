@@ -106,7 +106,7 @@
  *
  *  @return 高度
  */
-+ (CGFloat)getLabelWidthWithText:(NSString *)text stringFont:(UIFont *)font allowHeight:(CGFloat)width;
++ (CGFloat)getLabelWidthWithText:(NSString *)text stringFont:(UIFont *)font allowWidth:(CGFloat)width;
 
 /**
  *  UIImageView 加载含有汉字的url处理方法
@@ -292,4 +292,11 @@ chat_type=crm 设置意味着营销qq，可以和陌生人发起临时会话。
 
 #pragma mark -显示TabBar
 + (void)showTabBar;
+
+/**
+*   改变View的高度
+*
+*
+*/
++(UIView *)changeHeight:(UIView *)mView  Height:(CGFloat)h;
 @end
