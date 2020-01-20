@@ -10,7 +10,7 @@
 #import "SiteModel.h"
 
 //#ifdef DEBUG
-// #define APP_TEST (DEBUG || 1)
+//#define APP_TEST (DEBUG || 1)
 //#endif
 
 
