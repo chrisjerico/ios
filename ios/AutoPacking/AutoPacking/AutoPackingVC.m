@@ -14,7 +14,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    BOOL isPack = 0;  // 0全站提交热更新，1批量打包上传APP后台
+    BOOL isPack = 1;  // 0全站提交热更新，1批量打包上传APP后台
     
     // 拉取最新代码
     [ShellHelper pullCode:Path.projectDir completion:^{
