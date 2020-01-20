@@ -286,7 +286,7 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 
 #else
 
-#define NSLog(...) {}
+//#define NSLog(...) {}
 
 #endif
 

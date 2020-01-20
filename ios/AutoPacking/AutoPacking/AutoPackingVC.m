@@ -19,8 +19,6 @@
     
     // 拉取最新代码
     [ShellHelper pullCode:Path.projectDir completion:^{
-        NSLog(@"Path.tempCommitId = %@",Path.tempCommitId);
-        NSLog(@"Path.tempLog = %@",Path.tempLog);
         Path.commitId = [[NSString stringWithContentsOfFile:Path.tempCommitId encoding:NSUTF8StringEncoding error:nil] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
         Path.gitLog = [[[NSString stringWithContentsOfFile:Path.tempLog encoding:NSUTF8StringEncoding error:nil] stringByReplacingOccurrencesOfString:@"\n" withString:@""] componentsSeparatedByString:@"(1):      "].lastObject;
         Path.gitVersion = ({
@@ -59,23 +57,29 @@
     }
     
 //    Path.jspatchDir
-    NSString *BASE_PATH = Path.jspatchDir;
     BOOL isDir = NO;
     BOOL isExist = NO;
+    
+    // 更新Version.txt
+    {
+        NSString *versionPath = _NSString(@"%@/Version.txt", Path.jspatchDir);
+        [[NSFileManager defaultManager] removeItemAtPath:versionPath error:nil];
+        [Path.gitVersion writeToFile:versionPath atomically:true encoding:NSUTF8StringEncoding error:nil];
+    }
     
     //列举目录内容，可以遍历子目录
     NSMutableArray *contents = @[].mutableCopy;
     NSMutableArray *paths = @[].mutableCopy;
-    for (NSString *path in [[NSFileManager defaultManager] enumeratorAtPath:BASE_PATH].allObjects) {
-        NSString *fullPath = [NSString stringWithFormat:@"%@/%@", BASE_PATH, path];
+    for (NSString *path in [[NSFileManager defaultManager] enumeratorAtPath:Path.jspatchDir].allObjects) {
+        NSString *fullPath = [NSString stringWithFormat:@"%@/%@", Path.jspatchDir, path];
         isExist = [[NSFileManager defaultManager] fileExistsAtPath:fullPath isDirectory:&isDir];
         if (isExist && !isDir) {
-            NSError *err = nil;
-            [contents addObject:[NSString stringWithContentsOfFile:fullPath encoding:NSUTF8StringEncoding error:&err]];
-            [paths addObject:path];
-            if (err) {
-                @throw [NSException exceptionWithName:@"js导出失败。" reason:@"" userInfo:nil];
+            NSString *content = [NSString stringWithContentsOfFile:fullPath encoding:NSUTF8StringEncoding error:nil];
+            if (!content.length) {
+                @throw [NSException exceptionWithName:@"js导出失败，文件不存在。" reason:@"" userInfo:nil];
             }
+            [contents addObject:content];
+            [paths addObject:path];
         }
     }
     
@@ -115,6 +119,7 @@
             };
             sm.completionBlock = ^(CCSessionModel *sm) {
                 if (sm.error) {
+                    NSLog(@"err = %@", sm.error);
                     @throw [NSException exceptionWithName:@"JSPatch热更新提交失败。" reason:@"" userInfo:nil];
                     return ;
                 }
