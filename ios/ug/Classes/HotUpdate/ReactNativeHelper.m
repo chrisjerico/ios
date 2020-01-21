@@ -13,6 +13,36 @@
 #import <React/RCTBridge.h>
 
 #import "CodePush.h"
+#import "RSA.h"
+
+
+@interface NSBundle (AA)
+
+@end
+@implementation NSBundle (AA)
++ (void)load {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [NSBundle jr_swizzleMethod:@selector(infoDictionary) withMethod:@selector(cc_infoDictionary) error:nil];
+    });
+}
+- (NSDictionary *)cc_infoDictionary {
+    if (self == [NSBundle mainBundle]) {
+        NSMutableDictionary *infoDict = [self cc_infoDictionary].mutableCopy;
+        infoDict[@"CodePushDeploymentKey"] = @"67f7hDao71zMjLy5xjilGx0THS4o4ksvOXqog";
+#ifdef APP_TEST
+        infoDict[@"CodePushDeploymentKey"] = @"by5lebbE5vmYSJAdd5y0HRIFRcVJ4ksvOXqog";
+#endif
+        infoDict[@"CodePushServerURL"] = @"http://ec2-18-163-2-208.ap-east-1.compute.amazonaws.com:3000/";
+//        infoDict[@"CodePushPublicKey"] = RSA.publicKey;
+        return infoDict;
+    }
+    return [self cc_infoDictionary];
+}
+@end
+
+
+
 
 
 @interface ReactNativeHelper ()<RCTBridgeModule>
@@ -146,7 +176,8 @@ RCT_EXPORT_METHOD(performSelectors:(NSMutableArray <NSDictionary *>*)selectors r
 
 // 注册js 函数（版本更新完毕）
 RCT_EXPORT_METHOD(updateFinish) {
-    NSString *version = [CodePushPackage getCurrentPackage:nil][@"appVersion"];
+    NSString *version = [CodePushPackage getCurrentPackage:nil][@"description"];
+    NSLog(@"rn版本号 = %@", version);
     if ([ReactNativeHelper shared].didUpdateFinish) {
         [ReactNativeHelper shared].didUpdateFinish(version);
     }
@@ -154,15 +185,9 @@ RCT_EXPORT_METHOD(updateFinish) {
 
 // 注册js常量
 - (NSDictionary *)constantsToExport {
-#ifdef APP_TEST
-    return @{
-        // 测试环境Key
-        @"CodePushKey": @"by5lebbE5vmYSJAdd5y0HRIFRcVJ4ksvOXqog",
-    };
-#endif
     return @{
         // 发布环境Key
-        @"CodePushKey": @"67f7hDao71zMjLy5xjilGx0THS4o4ksvOXqog",
+        @"CodePushKey": [NSBundle mainBundle].infoDictionary[@"CodePushDeploymentKey"],
     };
 }
 

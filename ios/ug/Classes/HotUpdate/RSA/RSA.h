@@ -24,5 +24,6 @@
 
 
 // 用公钥解密
++ (NSString *)publicKey;
 + (NSString *)decryptString:(NSString *)str;
 @end

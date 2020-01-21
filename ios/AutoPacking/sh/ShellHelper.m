@@ -48,8 +48,8 @@
     if (![[NSString stringWithContentsOfFile:_NSString(@"%@/ug/Classes/Other/configuration.h", Path.projectDir) encoding:NSUTF8StringEncoding error:nil] containsString:@"#define checkSign 1"]) {
         [errs addObject:@"未开启参数加密，请到 configuration.h 文件开启参数加密"];
     }
-    if (![[NSString stringWithContentsOfFile:_NSString(@"%@/ug/Classes/Helper/FishUtility/define/AppDefine.h", Path.projectDir) encoding:NSUTF8StringEncoding error:nil] containsString:@"//#define APP_TEST"]) {
-        [errs addObject:@"未关闭内测环境，请到 AppDefine.h 文件注释掉 #define APP_TEST 宏"];
+    if (![[NSString stringWithContentsOfFile:_NSString(@"%@/ug/Classes/Helper/FishUtility/define/AppDefine.h", Path.projectDir) encoding:NSUTF8StringEncoding error:nil] containsString:@"#ifdef DEBUG\n#define APP_TEST 1\n#endif"]) {
+        [errs addObject:@"未关闭内测环境，请到 AppDefine.h 文件注把 #define APP_TEST 宏用 #ifdef DEBUG 包起来"];
     }
     
     NSLog(@"\n\n");

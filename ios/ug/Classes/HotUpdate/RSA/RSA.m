@@ -416,8 +416,10 @@ static NSData *base64_decode(NSString *str){
 /* END: Encryption & Decryption with RSA public key */
 
 
-+ (NSString *)decryptString:(NSString *)str {
-    NSString *publicKey = @"\
+#pragma mark - Fish新增函数
+
++ (NSString *)publicKey {
+    return @"\
     -----BEGIN PUBLIC KEY-----\
     MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCsROKKsYAwe6P0sfoU9uNOpC3v\
     pzZNg3ZZW1V2kT44+epl6sgUyxHOK3dJUvm2w9BvOeOEFy/pTI9yDr4NMLA0nrr3\
@@ -425,7 +427,9 @@ static NSData *base64_decode(NSString *str){
     YZo4GESci5b1QScIhwIDAQAB\
     -----END PUBLIC KEY-----\
     ";
-    return [RSA decryptString:str publicKey:publicKey];
+}
++ (NSString *)decryptString:(NSString *)str {
+    return [RSA decryptString:str publicKey:self.publicKey];
 }
 
 @end
