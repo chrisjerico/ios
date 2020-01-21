@@ -31,7 +31,7 @@
     [self initNetwork];
 	self.view.backgroundColor = UIColor.whiteColor;
     
-    {
+    if (APP.isFish) {
         // 安装本地jsp
         [JSPatchHelper install];
         
