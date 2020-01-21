@@ -545,6 +545,16 @@
 	if (_contentScrollView.mj_header.refreshingBlock) {
 		_contentScrollView.mj_header.refreshingBlock();
 	}
+    
+    
+    if ([@"c193" containsString:APP.SiteId]) {
+        //只需要设置layer层的两个属性
+        //设置圆角
+        _homeAdsView.layer.cornerRadius =10;
+        //将多余的部分切掉
+        _homeAdsView.layer.masksToBounds = YES;
+    }
+
 }
 
 - (BOOL)prefersStatusBarHidden {
