@@ -22,7 +22,7 @@
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
     [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
-    ((UICollectionViewFlowLayout *)_collectionView.collectionViewLayout).itemSize = CGSizeMake(240/3, 40);
+    ((UICollectionViewFlowLayout *)_collectionView.collectionViewLayout).itemSize = CGSizeMake(250/3, 40);
     _collectionView.collectionViewLayout = _collectionView.collectionViewLayout;
     [_collectionView reloadData];
 }
@@ -67,8 +67,8 @@
     FastSubViewCode(cell);
     UILabel *lb1 = [cell viewWithTagString:@"生肖Label"];
     if (!lb1) {
-        lb1 = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 40, cell.height)];
-        lb1.font = [UIFont systemFontOfSize:14];
+        lb1 = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 20, cell.height)];
+        lb1.font = [UIFont systemFontOfSize:12];
         lb1.textColor = APP.AuxiliaryColor2;
         lb1.tagString = @"生肖Label";
         [cell addSubview:lb1];
@@ -76,8 +76,8 @@
     
     UILabel *lb2 = [cell viewWithTagString:@"票数Label"];
     if (!lb2) {
-        lb2 = [[UILabel alloc] initWithFrame:CGRectMake(40, 0, 40, cell.height)];
-        lb2.font = [UIFont systemFontOfSize:14];
+        lb2 = [[UILabel alloc] initWithFrame:CGRectMake(30, 0, 40, cell.height)];
+        lb2.font = [UIFont systemFontOfSize:12];
         lb2.textColor = Skin1.textColor2;
         lb2.tagString = @"票数Label";
         [cell addSubview:lb2];
