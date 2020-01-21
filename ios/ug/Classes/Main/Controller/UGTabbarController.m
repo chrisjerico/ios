@@ -351,6 +351,9 @@ static UGTabbarController *_tabBarVC = nil;
 	if (selectedIndex < self.viewControllers.count) {
 		if ([self tabBarController:self shouldSelectViewController:self.viewControllers[selectedIndex]]) {
 			[super setSelectedIndex:selectedIndex];
+            // 修复切换SelectedIndex后tabBar不显示bug
+            UINavigationController *nav = self.viewControllers[selectedIndex];
+            self.tabBar.hidden = nav.topViewController.hidesBottomBarWhenPushed;
 		}
 	}
 }
