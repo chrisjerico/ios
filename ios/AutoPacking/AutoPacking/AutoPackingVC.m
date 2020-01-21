@@ -22,11 +22,11 @@
 //       [self postHotUpdate:log];
 //        return;
 //    }
-    
-    
-//    BOOL isPack = 1;  // 0全站提交热更新，1批量打包上传APP后台
-    BOOL isPack = 0;  // 0全站提交热更新，1批量打包上传APP后台
-    
+
+
+    BOOL isPack = ![NSUserName() isEqualToString:@"fish"];  // 0全站提交热更新，1批量打包上传APP后台
+    NSLog(@"isPack = %d",isPack);
+ 
     // 拉取最新代码
     [ShellHelper pullCode:Path.projectDir completion:^{
         Path.commitId = [[NSString stringWithContentsOfFile:Path.tempCommitId encoding:NSUTF8StringEncoding error:nil] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
