@@ -252,21 +252,21 @@
 			[_contentStackView addArrangedSubviews:@[_bannerBgView, _rollingView, _gameNavigationView.superview,_homeAdsBigBgView, _gameTypeView.superview, _promotionView, _rankingView, _bottomView]];
 			
 			// c134在导航栏下添加一张动图
-			if ([APP.SiteId containsString:@"c134"]) {
-				UIView *v = [UIView new];
-				v.backgroundColor = [UIColor clearColor];
-				CGFloat h = (APP.Width-20)/1194.0 * 247;
-				[v addSubview:({
-					FLAnimatedImageView *imgView = [[FLAnimatedImageView alloc] initWithFrame:CGRectMake(10, 10, APP.Width-20, h)];
-					[imgView sd_setImageWithURL:[[NSBundle mainBundle] URLForResource:@"cplts_看图王" withExtension:@"gif"]];
-					imgView;
-				})];
-				[_contentStackView insertArrangedSubview:v atIndex:3];
-				[v mas_makeConstraints:^(MASConstraintMaker *make) {
-					make.width.mas_equalTo(APP.Width);
-					make.height.mas_equalTo(h+10);
-				}];
-			}
+//			if ([APP.SiteId containsString:@"c134"]) {
+//				UIView *v = [UIView new];
+//				v.backgroundColor = [UIColor clearColor];
+//				CGFloat h = (APP.Width-20)/1194.0 * 247;
+//				[v addSubview:({
+//					FLAnimatedImageView *imgView = [[FLAnimatedImageView alloc] initWithFrame:CGRectMake(10, 10, APP.Width-20, h)];
+//					[imgView sd_setImageWithURL:[[NSBundle mainBundle] URLForResource:@"cplts_看图王" withExtension:@"gif"]];
+//					imgView;
+//				})];
+//				[_contentStackView insertArrangedSubview:v atIndex:3];
+//				[v mas_makeConstraints:^(MASConstraintMaker *make) {
+//					make.width.mas_equalTo(APP.Width);
+//					make.height.mas_equalTo(h+10);
+//				}];
+//			}
 		}
 	}
 	// l001站点定制需求
