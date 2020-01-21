@@ -14,10 +14,9 @@ else
     cd $5
 fi
 
-pwd
 
 # 随便改点东西（要是跟上个包一摸一样会提交不成功）
-git log -1 --oneline >> js/CommitLog.txt
+git "console.log('123');" >> js/rn/UpdateVersion.js
 
 #echo $PATH
 export PATH=/usr/local/bin:$PATH

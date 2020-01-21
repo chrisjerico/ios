@@ -14,8 +14,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    BOOL isPack = 1;  // 0全站提交热更新，1批量打包上传APP后台
-//    BOOL isPack = 0;  // 0全站提交热更新，1批量打包上传APP后台
+    
+    // 热更新测试
+//    {
+//        Path.gitVersion = @"1.1.63";
+//        NSString *log = @"热更新发包测试，热更新发包测试，热更新发包测试，热更新发包测试，热更新发包测试2，";    // 更新日志
+//       [self postHotUpdate:log];
+//        return;
+//    }
+    
+    
+//    BOOL isPack = 1;  // 0全站提交热更新，1批量打包上传APP后台
+    BOOL isPack = 0;  // 0全站提交热更新，1批量打包上传APP后台
     
     // 拉取最新代码
     [ShellHelper pullCode:Path.projectDir completion:^{
@@ -67,7 +77,7 @@
         [Path.gitVersion writeToFile:versionPath atomically:true encoding:NSUTF8StringEncoding error:nil];
     }
     
-    //列举目录内容，可以遍历子目录
+    // 列举目录内容，可以遍历子目录
     NSMutableArray *contents = @[].mutableCopy;
     NSMutableArray *paths = @[].mutableCopy;
     for (NSString *path in [[NSFileManager defaultManager] enumeratorAtPath:Path.jspatchDir].allObjects) {
@@ -126,6 +136,7 @@
                 
                 NSLog(@"%@ JSPatch热更新提交成功。", Path.gitVersion);
                 // 提交rn资源包
+                NSLog(@"准备打包rn代码");
                 [NSTask launchedTaskWithLaunchPath:[[NSBundle mainBundle] pathForResource:@"7codepush" ofType:@"sh"] arguments:@[APPVersion, Path.gitVersion, [log stringByReplacingOccurrencesOfString:@"\n" withString:@";"], Path.privateKey, Path.projectDir.stringByDeletingLastPathComponent] completion:^(NSTask * _Nonnull ts) {
                     NSString *rnRet = [NSString stringWithContentsOfFile:_NSString(@"%@/rn打包结果.txt", Path.projectDir.stringByDeletingLastPathComponent) encoding:NSUTF8StringEncoding error:nil];
                     [rnRet stringByReplacingOccurrencesOfString:@"\n" withString:@""];

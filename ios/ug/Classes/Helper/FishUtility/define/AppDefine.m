@@ -213,7 +213,7 @@
 }
 
 - (NSString *)jspPath {
-    return _NSString(@"%@/jsp%@/main.js", APP.DocumentDirectory, _jspVersion);
+    return _NSString(@"%@/jsp%@/main.js", APP.DocumentDirectory, [_jspVersion stringByReplacingOccurrencesOfString:@"\n" withString:@""]);
 }
 
 - (void)setJspVersion:(NSString *)jspVersion {

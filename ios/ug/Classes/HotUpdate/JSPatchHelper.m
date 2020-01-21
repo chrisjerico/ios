@@ -45,11 +45,12 @@
 }
 + (JSValue *)cc_evaluateScript:(NSString *)script withSourceURL:(NSURL *)resourceURL {
     // 分段解密，每段之间用\n隔开（因为rsa无法加/解密太长的字符串）
-    NSMutableArray *temp = @[].mutableCopy;
+    NSMutableString *temp = @"".mutableCopy;
     for (NSString *str in [script componentsSeparatedByString:@"\n"]) {
-        [temp addObject:[RSA decryptString:str]];
+        NSString *a = [RSA decryptString:str];
+        [temp appendString:[a stringByReplacingOccurrencesOfString:@"\n" withString:@"" options:NSBackwardsSearch range:NSMakeRange(a.length-1, 1)]];
     }
-    script = [temp componentsJoinedByString:@""];
+    script = temp;
     return [self cc_evaluateScript:script withSourceURL:resourceURL];
 }
 @end
@@ -95,6 +96,7 @@
                 if (ret) {
                     NSLog(@"解压缩成功");
                     NSString *jspVersion = [NSString stringWithContentsOfFile:_NSString(@"%@/Version.txt", unzipPath) encoding:NSUTF8StringEncoding error:nil];
+                    jspVersion = [jspVersion stringByReplacingOccurrencesOfString:@"\n" withString:@""];
                     if (jspVersion.length && [(jspVersion = [RSA decryptString:jspVersion]) hasPrefix:hvm.version]) {
                         NSLog(@"校验成功，更新完毕");
                         APP.jspVersion = jspVersion;
