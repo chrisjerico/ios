@@ -31,7 +31,7 @@
     [self initNetwork];
 	self.view.backgroundColor = UIColor.whiteColor;
     
-    if (APP.isFish) {
+    {
         // 安装本地jsp
         [JSPatchHelper install];
         
@@ -40,7 +40,7 @@
 
             // 检查并下载jsp热更
             [JSPatchHelper updateVersion:version completion:^(BOOL ok) {
-#ifdef DEBUG
+#ifdef APP_TEST
                 if (ok) {
                     [AlertHelper showAlertView:_NSString(@"%@ 版本更新完成，重启APP生效", version) msg:nil btnTitles:@[@"确定"]];
                 } else {

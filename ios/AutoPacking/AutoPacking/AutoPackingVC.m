@@ -126,7 +126,7 @@
                 
                 NSLog(@"%@ JSPatch热更新提交成功。", Path.gitVersion);
                 // 提交rn资源包
-                [NSTask launchedTaskWithLaunchPath:[[NSBundle mainBundle] pathForResource:@"7codepush" ofType:@"sh"] arguments:@[APPVersion, Path.gitVersion, [log stringByReplacingOccurrencesOfString:@"\n" withString:@";"], Path.projectDir.stringByDeletingLastPathComponent] completion:^(NSTask * _Nonnull ts) {
+                [NSTask launchedTaskWithLaunchPath:[[NSBundle mainBundle] pathForResource:@"7codepush" ofType:@"sh"] arguments:@[APPVersion, Path.gitVersion, [log stringByReplacingOccurrencesOfString:@"\n" withString:@";"], Path.privateKey, Path.projectDir.stringByDeletingLastPathComponent] completion:^(NSTask * _Nonnull ts) {
                     NSString *rnRet = [NSString stringWithContentsOfFile:_NSString(@"%@/rn打包结果.txt", Path.projectDir.stringByDeletingLastPathComponent) encoding:NSUTF8StringEncoding error:nil];
                     [rnRet stringByReplacingOccurrencesOfString:@"\n" withString:@""];
                     if ([rnRet hasSuffix:@"info Done copying assets"]) {

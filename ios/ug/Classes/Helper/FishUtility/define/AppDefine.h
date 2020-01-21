@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "SiteModel.h"
 
-//#ifdef DEBUG
-//#define APP_TEST (DEBUG || 1)
-//#endif
+#ifdef DEBUG
+#define APP_TEST 1
+#endif
 
 
 
@@ -35,9 +35,6 @@
 @property (nonatomic, readonly) NSString *Host;         /**<    服务器地址 */
 @property (nonatomic, readonly) NSString *SiteId;       /**<   当前站点ID */
 @property (nonatomic, readonly) NSArray <SiteModel *> *allSites;  /**<   所有站点 */
-@property (nonatomic, readonly) NSString *jspPath;      /**<    jspatch热更新本地文件路径 */
-@property (nonatomic, strong) NSString *jspVersion;     /**<    jspatch热更新版本号 */
-@property (nonatomic) BOOL Test;                        /**<   是否是测试环境 */
 
 @property (nonatomic) NSInteger PageCount;              /**<    TableView每页显示多少条数据 */
 @property (nonatomic) NSUInteger PhotoMaxLength;        /**<    图片上传允许的最大大小 */
@@ -58,6 +55,17 @@
 @property (nonatomic) BOOL isShow4;    /**<  任务中心显示4个，不显示图片 */
 @property (nonatomic) BOOL isShowWZ;    /**<  将选填 这两个字更换为  如果没有，可不填写 */
 @property (nonatomic) BOOL isShowJinbei;    /**<  显示金杯 */
+
+
+// 热更新相关字段
+@property (nonatomic) BOOL Test;                        /**<   是否是测试环境 */
+@property (nonatomic, readonly) NSString *jspPath;      /**<    jspatch热更新本地文件路径 */
+@property (nonatomic, strong) NSString *jspVersion;     /**<    jspatch热更新版本号 */
+//@property (nonatomic, copy) NSString *publicKey;        /**<   公钥 */
+//@property (nonatomic, copy) NSString *codePushKey;      /**<   CodePushKey */
+//@property (nonatomic, copy) NSString *codePushServer;   /**<   CodePush服务器地址 */
+
+
 + (instancetype)shared;
 @end
 

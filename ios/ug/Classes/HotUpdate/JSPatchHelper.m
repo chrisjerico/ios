@@ -32,9 +32,10 @@
 
 
 @interface JPEngine (Decrypt)
+@end
+@interface JPEngine ()
 + (JSValue *)_evaluateScript:(NSString *)script withSourceURL:(NSURL *)resourceURL;
 @end
-
 @implementation JPEngine (Decrypt)
 + (void)load {
     static dispatch_once_t onceToken;
@@ -84,7 +85,7 @@
         };
         sm.completionBlock = ^(CCSessionModel *sm) {
             if (!sm.error) {
-                NSLog(@"下载完成");
+                NSLog(@"jsp包下载完成");
                 // 解压
                 NSString *zipPath = sm.responseObject;
                 NSString *unzipPath = _NSString(@"%@/jsp%@", APP.DocumentDirectory, hvm.version);
@@ -99,13 +100,13 @@
                         APP.jspVersion = jspVersion;
                         [JSPatchHelper install];
                     } else {
-                        NSLog(@"校验失败，不予更新");
+                        NSLog(@"jsp校验失败，不予更新");
                     }
                 } else {
                     NSLog(@"解压缩失败");
                 }
             } else {
-                NSLog(@"下载失败");
+                NSLog(@"jsp下载失败");
             }
             
             if (completion) {
@@ -115,12 +116,12 @@
     };
     
     // 获取版本列表
-    NSLog(@"jspatch正在查找可用的更新");
+    NSLog(@"正在查找jsp可用的更新");
     void (^getVersionList)(NSInteger) = nil;
     void (^__block __nextPage)(NSInteger) = getVersionList = ^(NSInteger page) {
         [NetworkManager1 getHotUpdateVersionList:page].completionBlock = ^(CCSessionModel *sm) {
             NSArray *vs = sm.responseObject[@"data"][@"result"];
-//            NSLog(@"vs = %@", vs);
+            NSLog(@"vs = %@", vs);
             NSLog(@"cpVersion = %@", cpVersion);
             NSLog(@"jspVersion = %@", APP.jspVersion);
             if (vs.count) {
@@ -128,32 +129,35 @@
                 // 比较版本号
                 for (NSDictionary *dict in vs) {
                     HotVersionModel *hvm = [HotVersionModel mj_objectWithKeyValues:dict];
+                    if ([hvm.version componentsSeparatedByString:@"."].count != 3) {
+                        NSLog(@"%@, 版本号不合法", hvm.version);
+                        continue;
+                    }
                     if ([JSPatchHelper compareVersion:hvm.version newerThanVersion:APP.jspVersion]) {
                         if ([JSPatchHelper compareVersion:hvm.version newerThanVersion:cpVersion]) {
                             NSLog(@"%@ 此jspatch版本比CodePush版本大，忽略此更新", hvm.version);
                             continue;
                         } else {
-                            NSLog(@"发现新版本：%@", hvm.version);
+                            NSLog(@"发现jsp新版本：%@", hvm.version);
                             newVersion = hvm;
                             break;
                         }
                     } else {
                         // 已是最新版本
-                        NSLog(@"已是最新版本");
+                        NSLog(@"jsp已是最新版本");
                         return ;
                     }
                 }
                 if (newVersion) {
-                    NSLog(@"下载更新包");
+                    NSLog(@"下载jsp更新包");
                     downloadPackage(newVersion);
                 } else if (vs.count >= 10) {
                     // 未找到可以更新的版本，拉取下一页数据继续找
                     __nextPage(page + 1);
                 }
             } else {
-                NSLog(@"拉取热更新列表失败，err = %@", sm.error ? : sm.responseObject[@"msg"]);
+                NSLog(@"拉取jsp热更新列表失败，err = %@", sm.error ? : sm.responseObject[@"msg"]);
             }
-            
         };
     };
     getVersionList(1);
