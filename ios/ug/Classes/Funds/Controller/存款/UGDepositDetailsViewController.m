@@ -223,7 +223,7 @@
 //              }];
              
              
-              self.mUIScrollView.contentSize = CGSizeMake(UGScreenW, 60.0+height+tipHeigth+tip2Heigth+tableViewHeight+self.blank_button .height);
+              self.mUIScrollView.contentSize = CGSizeMake(UGScreenW, 60.0+height+tipHeigth+tip2Heigth+tableViewHeight+self.blank_button .height+100);
         });
     }];
 }

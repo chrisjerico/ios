@@ -337,7 +337,7 @@
         codeHeight = 140;
         
     }
-    _mUIScrollView.contentSize = CGSizeMake(UGScreenW, labelHeigth+tip2Heigth+tableViewHeight+181.0+191.0+self.submit_button.height+buttonHight+90 +tipHeigth+codeHeight);
+    _mUIScrollView.contentSize = CGSizeMake(UGScreenW, labelHeigth+tip2Heigth+tableViewHeight+181.0+191.0+self.submit_button.height+buttonHight+90 +tipHeigth+codeHeight+100);
 
     
 }
