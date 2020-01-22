@@ -742,6 +742,18 @@
             [NavController1 pushViewController:vc animated:true];
             NSLog(@"美女六肖");
         }
+        else if([model.alias isEqualToString:@"n0v3azC0"]) {
+             LHJournalDetailVC *vc = _LoadVC_from_storyboard_(@"LHJournalDetailVC");
+             vc.clm = model;
+             [NavController1 pushViewController:vc animated:true];
+             NSLog(@"香港挂牌");
+         }
+        else if([model.alias isEqualToString:@"mT303M99"]) {
+             LHJournalDetailVC *vc = _LoadVC_from_storyboard_(@"LHJournalDetailVC");
+             vc.clm = model;
+             [NavController1 pushViewController:vc animated:true];
+             NSLog(@"看图找肖");
+         }
 		else {
 			if (model.contentId.length) {
 				// 获取帖子详情
