@@ -558,7 +558,7 @@
                 }
                 url = [CMNetwork encryptionCheckSignForURL:url];
 //                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
-                [CMCommon goSLWebUrl:url];
+                [CMCommon goTGWebUrl:url title:nil];
    
             }
         } failure:^(id msg) {
