@@ -205,8 +205,15 @@
                 }
             }
             else{
-                self.lottyLabel.text = self.lhModel.lotteryStr;
-                [self.lottyLabel setHidden:NO];
+                if (self.lhModel.numbersArrary.count) {
+                    [self.lottyLabel setHidden:YES];
+                    [self.lotteryCollectionView reloadData];
+                }
+                else{
+                    self.lottyLabel.text = self.lhModel.lotteryStr;
+                    [self.lottyLabel setHidden:NO];
+                }
+
                 
             }
 
