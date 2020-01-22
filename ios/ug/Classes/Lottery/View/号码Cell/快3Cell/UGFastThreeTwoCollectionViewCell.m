@@ -23,7 +23,13 @@
 
 - (void)setItem:(UGGameBetModel *)item {
     _item = item;
-    self.oddsLabel.text = [item.odds removeFloatAllZero];
+    
+    if (item.enable) {
+           self.oddsLabel.text = [item.odds removeFloatAllZero];
+    } else {
+           self.oddsLabel.text = @"--";
+    }
+   
     self.imgView.image = [UIImage imageNamed:[NSString stringWithFormat:@"shaizi%@",item.name]];
     
     self.layer.borderWidth = item.select ? APP.borderWidthTimes *  1 : APP.borderWidthTimes *  0.5;

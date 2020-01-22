@@ -27,8 +27,14 @@
     _item = item;
     self.leftLabel.text = item.name;
     
-    self.rightLabel.text = [item.odds removeFloatAllZero];
+    
     self.rightLabel.hidden = [_rightLabel.text isEqualToString:@"0"];
+    if (item.enable) {
+        self.rightLabel.text = [item.odds removeFloatAllZero];
+    }
+    else{
+       self.rightLabel.text = @"--";
+    }
     
     self.layer.borderWidth = item.select ? APP.borderWidthTimes * 1 : APP.borderWidthTimes * 0.5;
     

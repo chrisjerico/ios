@@ -44,7 +44,13 @@
             mas;
         });
     } else {
-        self.titleLabel.text = _NSString(@"%@ %@",item.name, [item.odds removeFloatAllZero]);
+        if (item.enable) {
+            self.titleLabel.text = _NSString(@"%@ %@",item.name, [item.odds removeFloatAllZero]);
+        }
+        else{
+            self.titleLabel.text = _NSString(@"%@ --",item.name);
+        }
+        
     }
     
     self.layer.borderWidth = item.select ? APP.borderWidthTimes * 1 : APP.borderWidthTimes *  0.5;

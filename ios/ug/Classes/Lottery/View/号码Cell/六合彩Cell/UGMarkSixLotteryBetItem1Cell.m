@@ -80,7 +80,12 @@
             mas;
         });
     } else {
-        self.leftTitleLabel.text = _NSString(@"%@ %@",item.name, [item.odds removeFloatAllZero]);
+        if (item.enable) {
+              self.leftTitleLabel.text = _NSString(@"%@ %@",item.name, [item.odds removeFloatAllZero]);
+        } else {
+              self.leftTitleLabel.text = _NSString(@"%@ --",item.name);
+        }
+      
     }
     if (Skin1.isBlack) {
         self.backgroundColor = item.select ? Skin1.homeContentSubColor : UIColorHex(101010);
