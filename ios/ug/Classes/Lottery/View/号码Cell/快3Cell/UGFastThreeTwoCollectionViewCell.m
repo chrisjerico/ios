@@ -24,7 +24,7 @@
 - (void)setItem:(UGGameBetModel *)item {
     _item = item;
     
-    if (item.enable) {
+    if (item.enable && item.gameEnable) {
            self.oddsLabel.text = [item.odds removeFloatAllZero];
     } else {
            self.oddsLabel.text = @"--";

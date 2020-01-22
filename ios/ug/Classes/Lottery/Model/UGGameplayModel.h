@@ -53,6 +53,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSString *rebate;
 @property (nonatomic, assign) BOOL enable;              /**<   是否启用：0=否，1=是 */
+@property (nonatomic, assign) BOOL gameEnable;             /**<   是否启用：0=否，1=是   自己加的  == UGGameplaySectionModel 的enable*/
 @property (nonatomic, strong) NSString *groupNum;
 @property (nonatomic, strong) NSString *groupColor;
 @property (nonatomic, strong) NSString *title;

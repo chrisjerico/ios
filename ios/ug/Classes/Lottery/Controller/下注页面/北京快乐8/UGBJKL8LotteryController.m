@@ -204,13 +204,24 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         [CMResult processWithResult:model success:^{
             UGPlayOddsModel *play = model.data;
             self.gameDataArray = play.playOdds.mutableCopy;
-//            // 删除enable为NO的数据（不显示出来）
-//            for (UGGameplayModel *gm in play.playOdds) {
-//                for (UGGameplaySectionModel *gsm in gm.list) {
-//                    if (!gsm.enable)
-//                        [self.gameDataArray removeObject:gm];
-//                }
-//            }
+            for (UGGameplayModel *gm in play.playOdds) {
+                for (UGGameplaySectionModel *gsm in gm.list) {
+                    for (UGGameBetModel *gbm in gsm.lhcOddsArray){
+                        gbm.gameEnable = gsm.enable;
+                    }
+                    for (UGGameBetModel *gbm in gsm.list){
+                        gbm.gameEnable = gsm.enable;
+                    }
+                }
+            }
+            
+            // 删除enable为NO的数据（不显示出来）
+            for (UGGameplayModel *gm in play.playOdds) {
+                for (UGGameplaySectionModel *gsm in gm.list) {
+                    if (!gsm.enable)
+                        [self.gameDataArray removeObject:gm];
+                }
+            }
             [self.tableView reloadData];
             [self.betCollectionView reloadData];
             [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
@@ -478,6 +489,9 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
         UGGameplaySectionModel *type = model.list[indexPath.section];
         UGGameBetModel *game = type.list[indexPath.row];
+        if (!(game.gameEnable && game.enable)) {
+             return;
+        }
         game.select = !game.select;
         [self.betCollectionView reloadData];
         

@@ -221,13 +221,24 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                     }
                 }
             }
-//            // 删除enable为NO的数据（不显示出来）
-//            for (UGGameplayModel *gm in play.playOdds) {
-//                for (UGGameplaySectionModel *gsm in gm.list) {
-//                    if (!gsm.enable)
-//                        [self.gameDataArray removeObject:gm];
-//                }
-//            }
+            for (UGGameplayModel *gm in play.playOdds) {
+                for (UGGameplaySectionModel *gsm in gm.list) {
+                    for (UGGameBetModel *gbm in gsm.lhcOddsArray){
+                        gbm.gameEnable = gsm.enable;
+                    }
+                    for (UGGameBetModel *gbm in gsm.list){
+                        gbm.gameEnable = gsm.enable;
+                    }
+                }
+            }
+            
+            // 删除enable为NO的数据（不显示出来）
+            for (UGGameplayModel *gm in play.playOdds) {
+                for (UGGameplaySectionModel *gsm in gm.list) {
+                    if (!gsm.enable)
+                        [self.gameDataArray removeObject:gm];
+                }
+            }
             [self handleData];
             self.segmentView.dataArray = self.segmentTitleArray;
             [self.tableView reloadData];
@@ -580,6 +591,10 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             type = model.list[indexPath.section];
         }
         UGGameBetModel *game = type.list[indexPath.row];
+        if (!(game.gameEnable && game.enable)) {
+             return;
+        }
+        
         if ([@"连码" isEqualToString:model.name]) {
             NSInteger count = 0;
             for (UGGameBetModel *bet in type.list) {

@@ -33,7 +33,7 @@
     _item = item;
     self.nameLabel.text = item.name;
     
-    if (item.enable) {
+    if (item.enable && item.gameEnable) {
         self.oddsLabel.text = [item.odds removeFloatAllZero];
     } else {
         self.oddsLabel.text = @"--";

@@ -251,13 +251,24 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             UGPlayOddsModel *play = model.data;
             self.playOddsModel = play;
             self.gameDataArray = [play.playOdds mutableCopy];
-//            // 删除enable为NO的数据（不显示出来）
-//            for (UGGameplayModel *gm in play.playOdds) {
-//                for (UGGameplaySectionModel *gsm in gm.list) {
-//                    if (!gsm.enable)
-//                        [self.gameDataArray removeObject:gm];
-//                }
-//            }
+            for (UGGameplayModel *gm in play.playOdds) {
+                for (UGGameplaySectionModel *gsm in gm.list) {
+                    for (UGGameBetModel *gbm in gsm.lhcOddsArray){
+                        gbm.gameEnable = gsm.enable;
+                    }
+                    for (UGGameBetModel *gbm in gsm.list){
+                        gbm.gameEnable = gsm.enable;
+                    }
+                }
+            }
+            
+            // 删除enable为NO的数据（不显示出来）
+            for (UGGameplayModel *gm in play.playOdds) {
+                for (UGGameplaySectionModel *gsm in gm.list) {
+                    if (!gsm.enable)
+                        [self.gameDataArray removeObject:gm];
+                }
+            }
             [self handleData];
             
             if ([self.gameDataArray.firstObject.name isEqualToString:@"特码"]) {
@@ -869,11 +880,15 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             type = model.list[indexPath.section];
         }
         
+  
+        
         // 修改game.select
         {
             UGGameBetModel *game = type.list[indexPath.row];
             
-         
+            if (!(game.gameEnable && game.enable)) {
+                return;
+            }
             
             
             if ([@"自选不中" isEqualToString:type.name]) {

@@ -29,7 +29,7 @@
     
     
     self.rightLabel.hidden = [_rightLabel.text isEqualToString:@"0"];
-    if (item.enable) {
+    if (item.enable && item.gameEnable) {
         self.rightLabel.text = [item.odds removeFloatAllZero];
     }
     else{

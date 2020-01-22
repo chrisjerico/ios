@@ -80,7 +80,7 @@
             mas;
         });
     } else {
-        if (item.enable) {
+        if (item.enable && item.gameEnable) {
               self.leftTitleLabel.text = _NSString(@"%@ %@",item.name, [item.odds removeFloatAllZero]);
         } else {
               self.leftTitleLabel.text = _NSString(@"%@ --",item.name);
