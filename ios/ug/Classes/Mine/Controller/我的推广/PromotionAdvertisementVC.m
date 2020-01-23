@@ -53,7 +53,7 @@
     [subImageView(@"二微码ImgV") setImage:image];
     [subButton(@"备用网址Btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
     [subButton(@"备用网址Btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-       
+        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"MyPromotionUrlVC") animated:true];
     }];
 
     [subButton(@"分享推广图Btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
