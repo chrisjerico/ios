@@ -754,6 +754,10 @@
              [NavController1 pushViewController:vc animated:true];
              NSLog(@"看图找肖");
          }
+        else if([model.alias isEqualToString:@"rwzx"]) {
+            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController")  animated:YES];
+            NSLog(@"任务中心");
+        }
 		else {
 			if (model.contentId.length) {
 				// 获取帖子详情
