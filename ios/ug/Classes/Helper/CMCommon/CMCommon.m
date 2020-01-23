@@ -1069,4 +1069,41 @@ static NSString *uuidKey =@"uuidKey";
     
     return mView;
 }
+
+/**
+*   系统分享
+*    Text 文本
+*    image 图片   url ：链接
+*/
++(UIActivityViewController *)sysSharText:(NSString *)text  Image:(UIImage *)image URL:(NSURL *)url{
+    NSString *shareText = text;
+    UIImage *shareImage = image;
+    NSURL *shareURL = url;
+    NSArray *activityItems;
+    if (shareImage) {
+        activityItems = [[NSArray alloc] initWithObjects:shareText, shareImage, shareURL, nil];
+        
+    } else {
+        activityItems = [[NSArray alloc] initWithObjects:shareText, shareURL, nil];
+        
+    }
+    
+
+    UIActivityViewController *vc = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
+    
+    UIActivityViewControllerCompletionWithItemsHandler myBlock = ^(UIActivityType activityType, BOOL completed, NSArray *returnedItems, NSError *activityError) {
+        NSLog(@"%@",activityType);
+        if (completed) {
+            NSLog(@"分享成功");
+        } else {
+            NSLog(@"分享失败");
+        }
+        [vc dismissViewControllerAnimated:YES completion:nil];
+    };
+    
+    vc.completionWithItemsHandler = myBlock;
+    
+    return vc;
+
+}
 @end

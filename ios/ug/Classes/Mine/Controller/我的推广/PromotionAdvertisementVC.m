@@ -13,6 +13,9 @@
 
 @interface PromotionAdvertisementVC ()
 @property (nonatomic, strong) UGinviteInfoModel* inviteInfo;
+@property (weak, nonatomic) IBOutlet UIView *upView;
+@property (weak, nonatomic) IBOutlet UIView *midView;
+
 @end
 
 @implementation PromotionAdvertisementVC
@@ -52,54 +55,18 @@
     [subButton(@"备用网址Btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
        
     }];
-    [subButton(@"朋友圈Btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
-    [subButton(@"朋友圈Btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-       NSString *shareText = @"分享";
-       UIImage *shareImage = [UIImage imageNamed:@"BM_qqwallet_payment"];
-       NSURL *shareURL = [NSURL URLWithString:self.inviteInfo.link_i];
-       NSArray *activityItems = [[NSArray alloc] initWithObjects:shareText, shareImage, shareURL, nil];
-       
-       UIActivityViewController *vc = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
-       
-       UIActivityViewControllerCompletionWithItemsHandler myBlock = ^(UIActivityType activityType, BOOL completed, NSArray *returnedItems, NSError *activityError) {
-           NSLog(@"%@",activityType);
-           if (completed) {
-               NSLog(@"分享成功");
-           } else {
-               NSLog(@"分享失败");
-           }
-           [vc dismissViewControllerAnimated:YES completion:nil];
-       };
-       
-       vc.completionWithItemsHandler = myBlock;
-       
-       [self presentViewController:vc animated:YES completion:nil];
-    }];
-    [subButton(@"微信好友Btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
-    [subButton(@"微信好友Btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-       
-    }];
-    [subButton(@"QQ好友Btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
-    [subButton(@"QQ好友Btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-       
-    }];
-    [subButton(@"QQ空间Btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
-    [subButton(@"QQ空间Btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-       
-    }];
-    [subButton(@"微博Btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
-    [subButton(@"微博Btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-       
-    }];
+
     [subButton(@"分享推广图Btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
     [subButton(@"分享推广图Btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-       
+        //    1.获取一个截图图片
+        UIImage *newImage = [ UIImage rendImageWithView:self.view];
+        UIActivityViewController *vc = [CMCommon sysSharText:@"分享" Image:newImage URL:[NSURL URLWithString:self.inviteInfo.link_i]];
+        [self presentViewController:vc animated:YES completion:nil];
     }];
-    [subButton(@"复制链接Btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
-    [subButton(@"复制链接Btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-       UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-       pasteboard.string = self.inviteInfo.link_i;
-       [SVProgressHUD showSuccessWithStatus:@"复制成功"];
+    [subButton(@"分享链接Btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+    [subButton(@"分享链接Btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+        UIActivityViewController *vc =[CMCommon sysSharText:@"分享" Image:nil URL:[NSURL URLWithString:self.inviteInfo.link_i]];
+        [self presentViewController:vc animated:YES completion:nil];
     }];
     [subButton(@"保存推广图Btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
     [subButton(@"保存推广图Btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
@@ -132,6 +99,7 @@
 #pragma mark 用来监听图片保存到相册的状况
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
+    NSLog(@"");
     if (error) {
         [CMCommon showToastTitle:@"保存失败"];
     }else{

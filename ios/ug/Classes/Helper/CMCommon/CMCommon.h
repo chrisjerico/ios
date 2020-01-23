@@ -299,4 +299,16 @@ chat_type=crm 设置意味着营销qq，可以和陌生人发起临时会话。
 *
 */
 +(UIView *)changeHeight:(UIView *)mView  Height:(CGFloat)h;
+
+/**
+*   系统分享
+*    Text 文本
+*    image 图片   url ：链接
+*/
+/**
+*   系统分享
+*    Text 文本
+*    image 图片   url ：链接
+*/
++(UIActivityViewController *)sysSharText:(NSString *)text  Image:(UIImage *)image URL:(NSURL *)url;
 @end
