@@ -79,7 +79,7 @@
     }
 
     [self.activity startAnimating];
-    NSString *str = [NSString stringWithFormat:@"<head><style>img{width:auto !important;max-width:%f;height:auto}</style></head>%@", UGScreenW - 10, self.item.content];
+    NSString *str = [NSString stringWithFormat:@"<head><style > body{margin:0} img{width:auto !important;max-width:%f;height:auto}</style></head>%@", UGScreenW - 10, self.item.content];
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
 //        NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithData:[str dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,} documentAttributes:nil error:nil];
 //        NSMutableParagraphStyle *ps = [NSMutableParagraphStyle new];
@@ -133,7 +133,7 @@
     [super viewWillLayoutSubviews];
     CGFloat labelX = 5;
     CGFloat labelY = 15;
-    CGFloat labelW = CGRectGetWidth(self.view.frame) - 2*labelX;
+    CGFloat labelW = UGScreenW - 2*labelX;
     if (![@"c001" containsString:APP.SiteId]) {
         self.titleLabel.frame = CGRectMake(labelX, labelY, labelW, 0);
         [self.titleLabel sizeToFit];
@@ -143,6 +143,7 @@
 //    self.myWebView.frame = CGRectMake(labelX, CGRectGetMaxY(self.titleLabel.frame) + 8, labelW, UGScerrnH - CGRectGetMaxY(self.titleLabel.frame) - 60 );
     self.myWebView.frame = CGRectMake(labelX, labelY, labelW, UGScerrnH - CGRectGetMaxY(self.titleLabel.frame) - 60 );
     self.activity.center = CGPointMake(UGScreenW / 2, UGScerrnH / 2 - 50);
+
     
 }
 

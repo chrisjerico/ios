@@ -54,7 +54,26 @@
     }];
     [subButton(@"朋友圈Btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
     [subButton(@"朋友圈Btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+       NSString *shareText = @"分享";
+       UIImage *shareImage = [UIImage imageNamed:@"BM_qqwallet_payment"];
+       NSURL *shareURL = [NSURL URLWithString:self.inviteInfo.link_i];
+       NSArray *activityItems = [[NSArray alloc] initWithObjects:shareText, shareImage, shareURL, nil];
        
+       UIActivityViewController *vc = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
+       
+       UIActivityViewControllerCompletionWithItemsHandler myBlock = ^(UIActivityType activityType, BOOL completed, NSArray *returnedItems, NSError *activityError) {
+           NSLog(@"%@",activityType);
+           if (completed) {
+               NSLog(@"分享成功");
+           } else {
+               NSLog(@"分享失败");
+           }
+           [vc dismissViewControllerAnimated:YES completion:nil];
+       };
+       
+       vc.completionWithItemsHandler = myBlock;
+       
+       [self presentViewController:vc animated:YES completion:nil];
     }];
     [subButton(@"微信好友Btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
     [subButton(@"微信好友Btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
