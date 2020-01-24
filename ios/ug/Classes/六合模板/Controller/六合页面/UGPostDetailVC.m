@@ -107,7 +107,7 @@
 
     NSLog(@"link = %@",self.pm.link);
     FastSubViewCode(self.view);
-    [_lhPrizeView setHidden:![self hasShow]];
+
     //fourUnlike  CvB3zABB rundog humorGuess
 //       subLabel(@"标题Label").hidden = [@"mystery,rule,sixpic,humorGuess,rundog,fourUnlike,sxbm,tjym,ptyx" containsString:pm.alias];
     
@@ -125,7 +125,7 @@
     if ([self.pm.link containsString: @"mystery/"]) {
         isShow = YES;
     } else {
-        isShow = [@"rule,mystery,forum,gourmet" containsString:self.pm.alias];
+        isShow = [@"rule,mystery,forum,gourmet,E9biHXEx,n0v3azC0,fourUnlike,mT303M99,rundog,humorGuess" containsString:self.pm.alias];
     }
     return isShow;
 }
@@ -164,7 +164,8 @@
     {
         FastSubViewCode(_tableView.tableHeaderView);
         void (^setupAdButton)(NSString *, LHPostAdModel *) = ^(NSString *tagString, LHPostAdModel *ad) {
-            subButton(tagString).hidden = [@"sixpic,humorGuess,rundog,fourUnlike" containsString:pm.alias] || !ad.isShow;
+            subButton(tagString).hidden = [@"sixpic,humorGuess,rundog,fourUnlike,E9biHXEx,n0v3azC0,fourUnlike,mT303M99,rundog,humorGuess" containsString:pm.alias] || !ad.isShow;
+            NSLog(@"hidden = %d",subButton(tagString).hidden);
             [subButton(tagString) removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
             [subButton(tagString) addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
                 if (ad.link.length) {
@@ -203,6 +204,7 @@
 //        subLabel(@"标题Label").hidden = [@"mystery,rule,sixpic,humorGuess,rundog,fourUnlike,sxbm,tjym,ptyx,CvB3zABB," containsString:pm.alias];
         
         [subLabel(@"标题Label") setHidden:isHidden];
+        [_lhPrizeView setHidden:![self hasShow]];
 
 //        subLabel(@"时间Label").text = _NSString(@"最后更新时间：%@", pm.createTime);
 
@@ -237,7 +239,7 @@
         }
         NSString *head = _NSString(@"<head><meta name='viewport' content='initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'><style>img{width:auto !important;max-width:%f;height:auto}</style><style>body{width:%.f;word-break: break-all;word-wrap: break-word;vertical-align: middle;overflow: hidden;}</style></head>", APP.Width-40, APP.Width-40);
         [wv loadHTMLString:[head stringByAppendingString:content] baseURL:nil];
-        wv.superview.hidden = [@"sixpic" containsString:pm.alias];
+        wv.superview.hidden = !pm.content.length || [@"sixpic" containsString:pm.alias];
         
         _photoCollectionView.hidden = !pm.contentPic.count;
         [_photoCollectionView reloadData];
