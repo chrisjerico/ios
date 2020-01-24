@@ -175,6 +175,7 @@
             
             site(@"test103",     @"test103",    @"222",     @"com.UGGame.cp",           @"http://103.9.230.243",                        @"内测包",     @"test103"),
             site(@"test10",      @"88",         @"125",     @"com.UGGame.cp",           @"http://test10.6yc.com",                       @"内测包",     @"test10"),
+            site(@"test11",      @"test11",      @"",       @"com.UGGame.cp",             @"http://test11.6yc.com",                       @"内测包",     @"test11"),
             site(@"c083",        @"c083",       @"226",     @"com.UGGame.cp",           @"http://t111f.fhptcdn.com",                    @"内测包",     @"c083测试"),
             site(@"test100",     @"",           @"",        @"com.UGGame.cp",           @"http://test100f.fhptcdn.com",                 @"内测包",     @"test100"),
             site(@"t032",        @"",           @"",        @"com.UGGame.cp",           @"http://t005f.fhptcdn.com",                    @"内测包",     @"t032"),     // (老虎)
