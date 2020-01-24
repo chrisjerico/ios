@@ -164,7 +164,7 @@
     {
         FastSubViewCode(_tableView.tableHeaderView);
         void (^setupAdButton)(NSString *, LHPostAdModel *) = ^(NSString *tagString, LHPostAdModel *ad) {
-            subButton(tagString).hidden = [@"sixpic,humorGuess,rundog,fourUnlike,E9biHXEx,n0v3azC0,fourUnlike,mT303M99,rundog,humorGuess" containsString:pm.alias] || !ad.isShow;
+            subButton(tagString).hidden = [@"sixpic,humorGuess,rundog,fourUnlike" containsString:pm.alias] || !ad.isShow;
             NSLog(@"hidden = %d",subButton(tagString).hidden);
             [subButton(tagString) removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
             [subButton(tagString) addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
