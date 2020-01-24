@@ -204,8 +204,19 @@
 //        subLabel(@"标题Label").hidden = [@"mystery,rule,sixpic,humorGuess,rundog,fourUnlike,sxbm,tjym,ptyx,CvB3zABB," containsString:pm.alias];
         
         [subLabel(@"标题Label") setHidden:isHidden];
-        [_lhPrizeView setHidden:![self hasShow]];
+        [_lhPrizeView setHidden:NO];
 
+        if ([@"l001" isEqualToString:APP.SiteId]) {
+            subLabel(@"时间Label").text = @"本站备用网址一:www.889777.com";
+            subLabel(@"时间Label2").text = @"本站备用网址二:www.668000.com";
+        }
+        else if([@"l002" isEqualToString:APP.SiteId]) {
+            subLabel(@"时间Label").text = @"本站备用网址一:www.300777.com";
+            subLabel(@"时间Label2").text = @"本站备用网址二:www.400777.com";
+        }
+        else{
+            
+        }
 //        subLabel(@"时间Label").text = _NSString(@"最后更新时间：%@", pm.createTime);
 
 //        subLabel(@"时间Label").hidden = [@"mystery,rule" containsString:pm.alias];

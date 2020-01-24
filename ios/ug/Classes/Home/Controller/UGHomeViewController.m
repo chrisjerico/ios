@@ -678,6 +678,15 @@
 	[collectionView deselectItemAtIndexPath:indexPath animated:YES];
 	if ([collectionView.tagString isEqualToString:@"六合内容"]) {
 		UGLHCategoryListModel *model = [self.lHCategoryList objectAtIndex:indexPath.row];
+        
+        if ([model.thread_type isEqualToString:@"2"]) {
+            UGPostListVC *vc = _LoadVC_from_storyboard_(@"UGPostListVC");
+            vc.clm = model;
+            [NavController1 pushViewController:vc animated:true];
+            NSLog(@"多期");
+            return;
+        } 
+        
 		if ([model.alias isEqualToString:@"forum"]) {
 			UGPostListVC *vc = _LoadVC_from_storyboard_(@"UGPostListVC");
 			vc.clm = model;
