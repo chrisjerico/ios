@@ -135,7 +135,9 @@
             return ;
         }
         [[NSFileManager defaultManager] removeItemAtPath:Path.tempCiphertext error:nil];
-        
+        NSLog(@"__orString= %@",__orString);
+        NSLog(@"Path.privateKey= %@",Path.privateKey);
+        NSLog(@"Path.privateKey= %@",Path.privateKey);
         [NSTask launchedTaskWithLaunchPath:[[NSBundle mainBundle] pathForResource:@"0encrypt" ofType:@"sh"] arguments:@[__orString, Path.privateKey, Path.tempCiphertext,] completion:^(NSTask * _Nonnull ts) {
             NSString *ret = [NSString stringWithContentsOfFile:Path.tempCiphertext encoding:NSUTF8StringEncoding error:nil];
             if (!ret.length) {
