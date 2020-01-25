@@ -1072,25 +1072,51 @@ static NSString *uuidKey =@"uuidKey";
 
 /**
 *   系统分享
-*    Text 文本
+*    Text 文本  分享图片，不能传url；
 *    image 图片   url ：链接
+     type :1 :图片，2 url   3：带icon的url
 */
-+(UIActivityViewController *)sysSharText:(NSString *)text  Image:(UIImage *)image URL:(NSURL *)url{
++(UIActivityViewController *)sysSharText:(NSString *)text  Image:(UIImage *)image URL:(NSURL *)url  type:(NSString *)type{
     NSString *shareText = text;
     UIImage *shareImage = image;
     NSURL *shareURL = url;
     NSArray *activityItems;
-    if (shareImage) {
-        activityItems = [[NSArray alloc] initWithObjects:shareText, shareImage, shareURL, nil];
+    
+    
+    if ([type  isEqualToString:@"1"]) {
+        activityItems = [[NSArray alloc] initWithObjects:shareText, shareImage, nil];
         
-    } else {
+    }
+    else if([type  isEqualToString:@"2"]){
         activityItems = [[NSArray alloc] initWithObjects:shareText, shareURL, nil];
+        
+    }
+    else if([type  isEqualToString:@"3"]){
+        activityItems = [[NSArray alloc] initWithObjects:shareText, shareImage,shareURL, nil];
         
     }
     
 
     UIActivityViewController *vc = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
-    
+    vc.modalInPopover = YES;
+    //去除特定的分享功能 不需要展现的Activity类型
+    vc.excludedActivityTypes = @[
+        UIActivityTypePostToFacebook,
+        UIActivityTypePostToTwitter,
+        UIActivityTypePostToWeibo,
+        UIActivityTypeMessage,
+        UIActivityTypeMail,
+        UIActivityTypePrint,
+        UIActivityTypeCopyToPasteboard,
+        UIActivityTypeAssignToContact,
+        UIActivityTypeSaveToCameraRoll,
+        UIActivityTypeAddToReadingList,
+        UIActivityTypePostToFlickr,
+        UIActivityTypePostToVimeo,
+        UIActivityTypePostToTencentWeibo,
+        UIActivityTypeAirDrop,
+        UIActivityTypeOpenInIBooks
+    ];
     UIActivityViewControllerCompletionWithItemsHandler myBlock = ^(UIActivityType activityType, BOOL completed, NSArray *returnedItems, NSError *activityError) {
         NSLog(@"%@",activityType);
         if (completed) {

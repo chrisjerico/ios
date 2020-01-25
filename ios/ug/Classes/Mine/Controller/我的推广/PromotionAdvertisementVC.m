@@ -60,12 +60,12 @@
     [subButton(@"分享推广图Btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
         //    1.获取一个截图图片
         UIImage *newImage = [ UIImage rendImageWithView:self.view];
-        UIActivityViewController *vc = [CMCommon sysSharText:@"分享" Image:newImage URL:[NSURL URLWithString:self.inviteInfo.link_i]];
+        UIActivityViewController *vc = [CMCommon sysSharText:@"分享" Image:newImage URL:nil type:@"1"];
         [self presentViewController:vc animated:YES completion:nil];
     }];
     [subButton(@"分享链接Btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
     [subButton(@"分享链接Btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-        UIActivityViewController *vc =[CMCommon sysSharText:@"分享" Image:nil URL:[NSURL URLWithString:self.inviteInfo.link_i]];
+        UIActivityViewController *vc =[CMCommon sysSharText:@"分享" Image:nil URL:[NSURL URLWithString:self.inviteInfo.link_i ] type:@"2"];
         [self presentViewController:vc animated:YES completion:nil];
     }];
     [subButton(@"保存推广图Btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];

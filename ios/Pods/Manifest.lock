@@ -5,6 +5,18 @@ PODS:
   - Base64 (1.1.2)
   - BAWKWebView (1.0.9)
   - boost-for-react-native (1.63.0)
+  - BRPickerView (2.5.1):
+    - BRPickerView/AddressPickerView (= 2.5.1)
+    - BRPickerView/Base (= 2.5.1)
+    - BRPickerView/DatePickerView (= 2.5.1)
+    - BRPickerView/StringPickerView (= 2.5.1)
+  - BRPickerView/AddressPickerView (2.5.1):
+    - BRPickerView/Base
+  - BRPickerView/Base (2.5.1)
+  - BRPickerView/DatePickerView (2.5.1):
+    - BRPickerView/Base
+  - BRPickerView/StringPickerView (2.5.1):
+    - BRPickerView/Base
   - CocoaLumberjack (3.6.0):
     - CocoaLumberjack/Core (= 3.6.0)
   - CocoaLumberjack/Core (3.6.0)
@@ -319,6 +331,7 @@ DEPENDENCIES:
   - Aspects
   - AvoidCrash
   - BAWKWebView
+  - BRPickerView
   - CodePush (from `../node_modules/react-native-code-push`)
   - CryptoSwift (~> 1.1.3)
   - DateTools
@@ -403,6 +416,7 @@ SPEC REPOS:
     - Base64
     - BAWKWebView
     - boost-for-react-native
+    - BRPickerView
     - CocoaLumberjack
     - CryptoSwift
     - DateTools
@@ -519,6 +533,7 @@ SPEC CHECKSUMS:
   Base64: cecfb41a004124895a7bcee567a89bae5a89d49b
   BAWKWebView: a45b5c77424a015c91c6684f03392d981932f909
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
+  BRPickerView: c51b8d27cd053baf282e75a19d7dfcefbbaf42c2
   CocoaLumberjack: 78b0c238666f4f58db069738ec176f4519557516
   CodePush: 67f488101c41e13e594e9c2714b95dd8bffa6cb4
   CryptoSwift: 6b6e488df0598b3e9fa49254ed1a65e8c1b1e10b
@@ -599,6 +614,6 @@ SPEC CHECKSUMS:
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
 
-PODFILE CHECKSUM: c6e1bd273ed80269476394b2d80185d662de5cb5
+PODFILE CHECKSUM: 66a355c30ce72da97f71dd3b72f11b1cbe220d09
 
 COCOAPODS: 1.8.4

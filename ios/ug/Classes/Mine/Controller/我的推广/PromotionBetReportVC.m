@@ -12,6 +12,7 @@
 #import "UGrealBetStatModel.h"
 #import "YBPopupMenu.h"
 
+#import <BRPickerView.h>
 @interface PromotionBetReportVC ()<UITableViewDelegate, UITableViewDataSource, YBPopupMenuDelegate>
 {
 	NSInteger _levelindex;
@@ -223,4 +224,10 @@
 	CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI * 2);
 	self.arrowImage.transform = transform;
 }
+
+- (IBAction)dateBtnAction:(id)sender {
+}
+- (IBAction)date2BtnAcion:(id)sender {
+}
+
 @end

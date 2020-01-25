@@ -302,13 +302,9 @@ chat_type=crm 设置意味着营销qq，可以和陌生人发起临时会话。
 
 /**
 *   系统分享
-*    Text 文本
+*    Text 文本  分享图片，不能传url；
 *    image 图片   url ：链接
+     type :1 :图片，2 url   3：带icon的url
 */
-/**
-*   系统分享
-*    Text 文本
-*    image 图片   url ：链接
-*/
-+(UIActivityViewController *)sysSharText:(NSString *)text  Image:(UIImage *)image URL:(NSURL *)url;
++(UIActivityViewController *)sysSharText:(NSString *)text  Image:(UIImage *)image URL:(NSURL *)url  type:(NSString *)type;
 @end
