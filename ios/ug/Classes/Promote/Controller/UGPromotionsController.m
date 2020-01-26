@@ -42,8 +42,9 @@
         v.backgroundColor = [UIColor clearColor];
         v;
     });
+    __weakSelf_(__self);
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [self getPromoteList];
+        [__self getPromoteList];
     }];
     [self getPromoteList];
 }
@@ -90,14 +91,32 @@
     subLabel(@"标题Label").textColor = Skin1.textColor1;
     subLabel(@"标题Label").text = pm.title;
     subLabel(@"标题Label").hidden = !pm.title.length;
-    __weakSelf_(__self);
-    [subImageView(@"图片ImageView") sd_setImageWithURL:[NSURL URLWithString:pm.pic] placeholderImage:[UIImage imageNamed:@"placeholder"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-        if (image) {
-            subImageView(@"图片ImageView").cc_constraints.height.constant = image.height/image.width * (APP.Width - 48);
-//            [__self.tableView beginUpdates];
-//            [__self.tableView endUpdates];
+    
+    UIImageView *imgView = [cell viewWithTagString:@"图片ImageView"];
+    imgView.frame = cell.bounds;
+    NSURL *url = [NSURL URLWithString:pm.pic];
+    UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:url]];
+    if (image) {
+        if ([@"c190" containsString:APP.SiteId]) {
+            CGFloat w = APP.Width;
+            CGFloat h = image.height/image.width * w;
+            imgView.cc_constraints.height.constant = h;
+        } else {
+            CGFloat w = APP.Width - 48;
+            CGFloat h = image.height/image.width * w;
+            imgView.cc_constraints.height.constant = h;
         }
-    }];
+        [imgView sd_setImageWithURL:url];   // 由于要支持gif动图，还是用sd加载
+    } else {
+        __weakSelf_(__self);
+        __weak_Obj_(imgView, __imgView);
+        imgView.cc_constraints.height.constant = 60;
+        [imgView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"placeholder"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+            if (image) {
+                [__self.tableView reloadRowAtIndexPath:indexPath withRowAnimation:UITableViewRowAnimationNone];
+            }
+        }];
+    }
     return cell;
 }
 
