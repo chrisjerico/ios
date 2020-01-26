@@ -107,7 +107,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     if (model.seriesId == 9) {
         // 去聊天室页
         UGChatViewController *vc = [[UGChatViewController alloc] init];
-        vc.roomId = @(model.seriesId).stringValue;
+        vc.roomId = @(model.subId).stringValue;
         vc.showChangeRoomTitle = true;
         vc.hideHead = true;
         vc.title = model.name.length ? model.name : model.title;
@@ -446,8 +446,19 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
 - (BOOL)pushVCWithUserCenterItemType:(UserCenterItemType)uciType {
     switch (uciType) {
         case UCI_在线客服: {
+            NSString *urlStr = [SysConf.zxkfUrl stringByTrim];
+            if (!urlStr.length) {
+                return true;
+            }
             SLWebViewController *webViewVC = [SLWebViewController new];
-            webViewVC.urlStr = SysConf.zxkfUrl;
+            NSURL *url = [NSURL URLWithString:urlStr];
+            if (!url.host.length) {
+                urlStr = _NSString(@"%@%@", APP.Host, SysConf.zxkfUrl);
+            }
+            else if (!url.scheme.length) {
+                urlStr = _NSString(@"http://%@", SysConf.zxkfUrl);
+            }
+            webViewVC.urlStr = urlStr;
             [NavController1 pushViewController:webViewVC animated:YES];
             return true;
         }
