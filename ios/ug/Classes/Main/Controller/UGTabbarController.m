@@ -350,13 +350,19 @@ static UGTabbarController *_tabBarVC = nil;
 - (void)setSelectedIndex:(NSUInteger)selectedIndex {
 	if (selectedIndex < self.viewControllers.count) {
 		if ([self tabBarController:self shouldSelectViewController:self.viewControllers[selectedIndex]]) {
-			[super setSelectedIndex:selectedIndex];
             // 修复切换SelectedIndex后tabBar不显示bug
-            UINavigationController *nav = self.viewControllers[selectedIndex];
-            if (nav.viewControllers.count == 1) {
-                self.tabBar.hidden = false;
+            UINavigationController *currentNav = self.selectedViewController;
+            UINavigationController *nextNav = self.viewControllers[selectedIndex];
+            if (currentNav.topViewController.hidesBottomBarWhenPushed) {
+                if (!nextNav.topViewController.hidesBottomBarWhenPushed) {
+                    [nextNav pushViewController:currentNav.topViewController animated:false];
+                    [nextNav popToRootViewControllerAnimated:true];
+                    [super setSelectedIndex:selectedIndex];
+                }
             }
-//            self.tabBar.hidden = nav.topViewController.hidesBottomBarWhenPushed;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [super setSelectedIndex:selectedIndex];
+            });
 		}
 	}
 }
