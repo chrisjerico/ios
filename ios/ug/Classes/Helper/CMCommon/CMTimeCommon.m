@@ -165,6 +165,41 @@
 }
 
 /******************************************************************************
+函数名称 : currentDateStringWithFormat;
+函数描述 :
+   //根据格式返回当前时间的字符串
+
+输入参数 : format
+输出参数 : NSString 当前时间的字符串
+返回参数 :
+备注信息 :
+******************************************************************************/
++ (NSString *)currentDateStringWithFormat:(NSString *)format {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:format];
+    NSDate *datenow = [NSDate date];
+    NSString *currentTimeString = [formatter stringFromDate:datenow];
+    return currentTimeString;
+}
+
+/******************************************************************************
+函数名称 : dateStringWithFormat; date
+函数描述 :
+   //根据格式,时间返回时间的字符串 NSDate转NSString
+
+输入参数 : format，date
+输出参数 : NSString 当前时间的字符串
+返回参数 :
+备注信息 :
+******************************************************************************/
++ (NSString *)dateStringWithFormat:(NSString *)format  date:(NSDate *)date {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:format];
+    NSString *currentTimeString = [formatter stringFromDate:date];
+    return currentTimeString;
+}
+
+/******************************************************************************
 函数名称 : lastDay;
 函数描述 :
    //前一天
@@ -273,5 +308,44 @@
     NSString *strDate = [dateFormatter stringFromDate:date];
     return strDate;
 }
+
+/******************************************************************************
+函数名称 : compareOneDay;
+函数描述 :
+   //比较NSDate 大小
+
+输入参数 :oneDay 时间   anotherDay
+返回参数 : int   1  晚， -1 早  0 相同
+备注信息 :
+******************************************************************************/
++(int)compareOneDay:(NSDate *)oneDay withAnotherDay:(NSDate *)anotherDay
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+
+    NSString *oneDayStr = [dateFormatter stringFromDate:oneDay];
+
+    NSString *anotherDayStr = [dateFormatter stringFromDate:anotherDay];
+
+    NSDate *dateA = [dateFormatter dateFromString:oneDayStr];
+
+    NSDate *dateB = [dateFormatter dateFromString:anotherDayStr];
+
+    NSComparisonResult result = [dateA compare:dateB];
+
+    if (result == NSOrderedDescending) {
+        //NSLog(@"oneDay比 anotherDay时间晚");
+        return 1;
+    }
+    else if (result == NSOrderedAscending){
+        //NSLog(@"oneDay比 anotherDay时间早");
+        return -1;
+    }
+    //NSLog(@"两者时间是同一个时间");
+    return 0;
+             
+}
+
 
 @end

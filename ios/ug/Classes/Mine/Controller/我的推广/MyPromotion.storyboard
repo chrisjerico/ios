@@ -158,13 +158,13 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="692"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="my_promotion_wenzi" translatesAutoresizingMaskIntoConstraints="NO" id="VhF-mb-GuJ">
-                                <rect key="frame" x="-134.33333333333334" y="90" width="711.33333333333337" height="216"/>
+                                <rect key="frame" x="43.666666666666657" y="90" width="355.33333333333337" height="108"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="VhF-mb-GuJ" secondAttribute="height" multiplier="79:24" id="Ude-f2-1oa"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aun-JY-aB2">
-                                <rect key="frame" x="24" y="470.66666666666669" width="366" height="76.333333333333314"/>
+                                <rect key="frame" x="24" y="362.66666666666669" width="366" height="76.333333333333314"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="QR_Code" translatesAutoresizingMaskIntoConstraints="NO" id="bQa-dl-dyP">
                                         <rect key="frame" x="28" y="16" width="44" height="44"/>
@@ -219,10 +219,10 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="flX-am-qK1">
-                                <rect key="frame" x="24" y="567" width="366" height="129.66666666666663"/>
+                                <rect key="frame" x="24" y="459.00000000000006" width="366" height="129.66666666666669"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="8gi-Oa-Qgi">
-                                        <rect key="frame" x="0.0" y="-0.33333333333337123" width="366" height="130"/>
+                                        <rect key="frame" x="0.0" y="-0.33333333333331439" width="366" height="130"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FRS-oa-RXA">
                                                 <rect key="frame" x="0.0" y="0.0" width="366" height="50"/>
@@ -235,7 +235,7 @@
                                                         </constraints>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 分享图片链接 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KxL-c7-v5V" userLabel="快捷分享">
-                                                        <rect key="frame" x="136.33333333333334" y="16.666666666666742" width="93.333333333333343" height="17"/>
+                                                        <rect key="frame" x="136.33333333333334" y="16.666666666666629" width="93.333333333333343" height="17"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <color key="textColor" red="0.28235294119999998" green="0.30196078430000001" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -262,14 +262,14 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="122" height="65"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LHq-G4-IfO">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="122" height="52"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="122" height="43.333333333333336"/>
                                                                         <state key="normal" image="my_promotion_fenxiangtuiguangtu"/>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="分享推广图Btn"/>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </button>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="分享推广图" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cgc-aN-8i6">
-                                                                        <rect key="frame" x="0.0" y="60" width="122" height="5"/>
+                                                                        <rect key="frame" x="0.0" y="51.333333333333314" width="122" height="13.666666666666671"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                         <color key="textColor" red="0.28235294119999998" green="0.30196078430000001" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -280,14 +280,14 @@
                                                                 <rect key="frame" x="122" y="0.0" width="122" height="65"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2fw-sn-MP7">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="122" height="52"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="122" height="43.333333333333336"/>
                                                                         <state key="normal" image="my_promotion_fuzhilianjie"/>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="分享链接Btn"/>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </button>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="分享链接" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t5W-07-8dR">
-                                                                        <rect key="frame" x="0.0" y="60" width="122" height="5"/>
+                                                                        <rect key="frame" x="0.0" y="51.333333333333314" width="122" height="13.666666666666671"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                         <color key="textColor" red="0.28235294119999998" green="0.30196078430000001" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -298,14 +298,14 @@
                                                                 <rect key="frame" x="244" y="0.0" width="122" height="65"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q92-Be-pfV">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="122" height="52"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="122" height="43.333333333333336"/>
                                                                         <state key="normal" image="my_promotion_baocuntuiguangtu"/>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="保存推广图Btn"/>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </button>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="保存推广图" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tMB-rg-WfE">
-                                                                        <rect key="frame" x="0.0" y="60" width="122" height="5"/>
+                                                                        <rect key="frame" x="0.0" y="51.333333333333314" width="122" height="13.666666666666671"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                         <color key="textColor" red="0.28235294119999998" green="0.30196078430000001" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -418,7 +418,7 @@
                                 </constraints>
                             </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="my_promotion_hongbao" translatesAutoresizingMaskIntoConstraints="NO" id="4Jz-di-bf1">
-                                <rect key="frame" x="20" y="326" width="374" height="145.66666666666663"/>
+                                <rect key="frame" x="20" y="218" width="374" height="145.66666666666663"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="4Jz-di-bf1" secondAttribute="height" multiplier="678:264" id="oRK-so-C6m"/>
@@ -507,7 +507,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PLZ-fn-saw">
-                                        <rect key="frame" x="366" y="4.6666666666666714" width="32" height="27"/>
+                                        <rect key="frame" x="368" y="4.6666666666666714" width="30" height="27"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <state key="normal" title="复制">
                                             <color key="titleColor" red="0.94509803921568625" green="0.36078431372549019" blue="0.37254901960784315" alpha="1" colorSpace="calibratedRGB"/>
@@ -545,7 +545,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GNv-MH-WMN">
-                                        <rect key="frame" x="366" y="39" width="32" height="32"/>
+                                        <rect key="frame" x="368" y="44" width="30" height="22"/>
                                         <state key="normal" image="arrow_down"/>
                                         <state key="selected" image="arrow_up"/>
                                         <connections>
@@ -626,7 +626,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hKm-4R-4Pt">
-                                        <rect key="frame" x="366" y="4.6666666666666856" width="32" height="27"/>
+                                        <rect key="frame" x="368" y="4.6666666666666856" width="30" height="27"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <state key="normal" title="复制">
                                             <color key="titleColor" red="0.94509803920000002" green="0.36078431370000003" blue="0.37254901959999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -658,7 +658,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mhu-PA-Ber">
-                                        <rect key="frame" x="366" y="39.000000000000028" width="32" height="32"/>
+                                        <rect key="frame" x="368" y="44.000000000000028" width="30" height="22"/>
                                         <state key="normal" image="arrow_down"/>
                                         <state key="selected" image="arrow_up"/>
                                         <connections>
@@ -3951,6 +3951,8 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="arrowImage" destination="BfW-UJ-GHW" id="SSg-Jw-j7y"/>
+                        <outlet property="beiginTimeButton" destination="XSK-i4-7Mp" id="xst-LI-KPD"/>
+                        <outlet property="endTimeButton" destination="kOv-W9-yOH" id="tWY-Ul-bhZ"/>
                         <outlet property="levelSelectButton" destination="Kfw-U0-Gkb" id="iMY-c3-ZeH"/>
                         <outlet property="levelSelectView" destination="cLC-dB-Mg9" id="yUd-wK-2t3"/>
                         <outlet property="tableView" destination="B7t-w6-MaX" id="Ydc-Fz-Rzz"/>
@@ -4029,6 +4031,9 @@
                                                         <state key="normal" title="2019-12-10">
                                                             <color key="titleColor" red="0.28235294119999998" green="0.30196078430000001" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="dateBtnAction:" destination="EY4-MU-TJm" eventType="touchUpInside" id="Vzi-zM-Am4"/>
+                                                        </connections>
                                                     </button>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="arrow_down" translatesAutoresizingMaskIntoConstraints="NO" id="L7W-Va-SrT">
                                                         <rect key="frame" x="66" y="10" width="14" height="8"/>
@@ -4073,6 +4078,9 @@
                                                         <state key="normal" title="2019-12-10">
                                                             <color key="titleColor" red="0.28235294119999998" green="0.30196078430000001" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="date2BtnAcion:" destination="EY4-MU-TJm" eventType="touchUpInside" id="cNW-sy-z3h"/>
+                                                        </connections>
                                                     </button>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="arrow_down" translatesAutoresizingMaskIntoConstraints="NO" id="Ly7-TO-T8B">
                                                         <rect key="frame" x="65.999999999999972" y="10" width="14" height="8"/>
@@ -4209,6 +4217,8 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="arrowImage" destination="E1N-eQ-zJL" id="JPQ-gS-M22"/>
+                        <outlet property="beiginTimeButton" destination="ClH-Kb-weV" id="8xh-sT-QuO"/>
+                        <outlet property="endTimeButton" destination="bZb-iq-6ji" id="hgp-vZ-Nv5"/>
                         <outlet property="headerStack" destination="9R7-rs-BiF" id="wHI-KT-sUt"/>
                         <outlet property="levelSelectButton" destination="2Rl-fy-Mb7" id="qyO-e6-bLi"/>
                         <outlet property="levelSelectView" destination="jN7-Tk-RKa" id="2rA-eR-Wt9"/>
@@ -4358,6 +4368,9 @@
                                                         <state key="normal" title="2019-12-10">
                                                             <color key="titleColor" red="0.28235294119999998" green="0.30196078430000001" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="dateBtnAction:" destination="POv-Vp-dKp" eventType="touchUpInside" id="N5D-qx-b3P"/>
+                                                        </connections>
                                                     </button>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="arrow_down" translatesAutoresizingMaskIntoConstraints="NO" id="mL8-hp-9tz">
                                                         <rect key="frame" x="66" y="10" width="14" height="8"/>
@@ -4402,6 +4415,9 @@
                                                         <state key="normal" title="2019-12-10">
                                                             <color key="titleColor" red="0.28235294119999998" green="0.30196078430000001" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="date2BtnAcion:" destination="POv-Vp-dKp" eventType="touchUpInside" id="k7m-mH-Axr"/>
+                                                        </connections>
                                                     </button>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="arrow_down" translatesAutoresizingMaskIntoConstraints="NO" id="zZ0-ED-aKW">
                                                         <rect key="frame" x="65.999999999999972" y="10" width="14" height="8"/>
@@ -4555,6 +4571,8 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="arrowImage" destination="Eby-x4-F75" id="VA7-PG-PAF"/>
+                        <outlet property="beiginTimeButton" destination="NE1-xX-beY" id="qle-d2-A5F"/>
+                        <outlet property="endTimeButton" destination="8da-O5-XzK" id="lTC-gr-Nqe"/>
                         <outlet property="headerStack" destination="Wac-cP-i5a" id="tVj-2h-YdV"/>
                         <outlet property="levelSelectButton" destination="buo-cC-MbX" id="d0w-JC-Gnp"/>
                         <outlet property="levelSelectView" destination="Fbl-Gm-IxM" id="Woc-Ni-8SC"/>

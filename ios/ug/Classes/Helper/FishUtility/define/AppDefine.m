@@ -140,6 +140,7 @@
         
         _PhotoMaxLength = 60 * 1024;    // 约等于1M大小
         _PageCount = 20;
+        _beginTime =  @"2019-01-01";
         
         [self setupSystem];
         [self setupColor];

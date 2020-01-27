@@ -13,6 +13,8 @@
 #import "UGBetListModel.h"
 #import "UGrealBetListModel.h"
 #import "YBPopupMenu.h"
+#import <BRPickerView.h>
+#import "CMTimeCommon.h"
 @interface PromotionOtherBetRecordVC ()<UITableViewDelegate, UITableViewDataSource, YBPopupMenuDelegate>
 {
 	NSInteger _levelindex;
@@ -29,6 +31,13 @@
 @property (weak, nonatomic) IBOutlet UIView *levelSelectView;
 @property (weak, nonatomic) IBOutlet UIImageView *arrowImage;
 @property (weak, nonatomic) IBOutlet UIButton *levelSelectButton;
+@property (weak, nonatomic) IBOutlet UIButton *beiginTimeButton;
+@property (weak, nonatomic) IBOutlet UIButton *endTimeButton;
+
+@property (nonatomic, strong) NSDate *beginTimeSelectDate;
+@property (nonatomic, strong) NSDate *endTimeSelectDate;
+@property (nonatomic, strong) NSString *beginTimeStr;
+@property (nonatomic, strong) NSString *endTimeStr;
 @end
 
 @implementation PromotionOtherBetRecordVC
@@ -41,6 +50,12 @@
 	
 	self.tableView.delegate = self;
 	self.tableView.dataSource = self;
+    self.beginTimeStr = APP.beginTime;
+    self.endTimeStr = [CMTimeCommon currentDateStringWithFormat:@"yyyy-MM-dd"];
+    self.beginTimeSelectDate = [CMTimeCommon dateForStr:APP.beginTime format:@"yyyy-MM-dd"];
+    self.endTimeSelectDate = [CMTimeCommon dateForStr:self.endTimeStr format:@"yyyy-MM-dd"];
+    [self.beiginTimeButton setTitle:APP.beginTime forState:(0)];
+    [self.endTimeButton setTitle:self.endTimeStr forState:(0)];
 	self.pageSize = 20;
 	self.pageNumber = 1;
 	self.items = [NSMutableArray array];
@@ -96,6 +111,8 @@
 							 @"level":[NSString stringWithFormat:@"%ld",(long)_levelindex],
 							 @"page":@(self.pageNumber),
 							 @"rows":@(self.pageSize),
+                             @"startDate":self.beginTimeStr,
+                             @"endDate":self.endTimeStr,
 	};
 	
 	[SVProgressHUD showWithStatus:nil];
@@ -147,6 +164,52 @@
 	
 	CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI * 2);
 	self.arrowImage.transform = transform;
+}
+
+//开始时间
+- (IBAction)dateBtnAction:(id)sender {
+    // 开始时间
+     BRDatePickerView *datePickerView = [[BRDatePickerView alloc]init];
+     datePickerView.pickerMode = BRDatePickerModeDate;
+     datePickerView.title = @"开始时间";
+     datePickerView.selectDate = self.beginTimeSelectDate;
+     datePickerView.isAutoSelect = NO;
+     datePickerView.resultBlock = ^(NSDate *selectDate, NSString *selectValue) {
+         self.beginTimeSelectDate = selectDate;
+         [self.beiginTimeButton setTitle:selectValue forState:(0)];
+         self.beginTimeStr = selectValue;
+     };
+     // 自定义弹框样式
+     BRPickerStyle *customStyle = [BRPickerStyle pickerStyleWithThemeColor:[UIColor darkGrayColor]];
+     datePickerView.pickerStyle = customStyle;
+     [datePickerView show];
+}
+//结束时间
+- (IBAction)date2BtnAcion:(id)sender {
+ 
+    // 结束时间
+     BRDatePickerView *datePickerView = [[BRDatePickerView alloc]init];
+     datePickerView.pickerMode = BRDatePickerModeDate;
+     datePickerView.title = @"结束时间";
+     datePickerView.selectDate = self.endTimeSelectDate;
+     datePickerView.isAutoSelect = NO;
+     datePickerView.resultBlock = ^(NSDate *selectDate, NSString *selectValue) {
+         
+         int re = [CMTimeCommon compareOneDay:selectDate withAnotherDay:self.beginTimeSelectDate];
+         if (re == -1 ) {
+             [CMCommon showToastTitle:@"开始时间大于结束时间，请重新选择"];
+             return;
+         }
+         self.endTimeSelectDate = selectDate;
+         [self.endTimeButton setTitle:selectValue forState:(0)];
+         self.endTimeStr = selectValue;
+         
+         [self loadData];
+     };
+     // 自定义弹框样式
+     BRPickerStyle *customStyle = [BRPickerStyle pickerStyleWithThemeColor:[UIColor darkGrayColor]];
+     datePickerView.pickerStyle = customStyle;
+     [datePickerView show];
 }
 
 @end

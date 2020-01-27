@@ -38,6 +38,7 @@
 
 @property (nonatomic) NSInteger PageCount;              /**<    TableView每页显示多少条数据 */
 @property (nonatomic) NSUInteger PhotoMaxLength;        /**<    图片上传允许的最大大小 */
+@property (nonatomic, readonly) NSString *beginTime;         /**<    推荐收益的默认开始时间*/
 
 @property (nonatomic) BOOL isFish;
 

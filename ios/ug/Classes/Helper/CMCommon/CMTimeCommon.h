@@ -60,7 +60,28 @@ NS_ASSUME_NONNULL_BEGIN
 //当前日期20090909
 + (NSString *)currentDateString;
 
+/******************************************************************************
+函数名称 : currentDateStringWithFormat;
+函数描述 :
+   //根据格式返回当前时间的字符串
 
+输入参数 : format
+输出参数 : NSString 当前时间的字符串
+返回参数 :
+备注信息 :
+******************************************************************************/
++ (NSString *)currentDateStringWithFormat:(NSString *)format;
+/******************************************************************************
+函数名称 : dateStringWithFormat; date
+函数描述 :
+   //根据格式,时间返回时间的字符串 NSDate转NSString
+
+输入参数 : format，date
+输出参数 : NSString 当前时间的字符串
+返回参数 :
+备注信息 :
+******************************************************************************/
++ (NSString *)dateStringWithFormat:(NSString *)format  date:(NSDate *)date;
 /******************************************************************************
 函数名称 : lastDayStr;
 函数描述 :
@@ -106,6 +127,17 @@ NS_ASSUME_NONNULL_BEGIN
 备注信息 :
 ******************************************************************************/
 + (NSString *)strForDate:(NSDate *)date format:(NSString *)formatStr;
+
+/******************************************************************************
+函数名称 : compareOneDay;
+函数描述 :
+   //比较NSDate 大小
+
+输入参数 :oneDay 时间   anotherDay
+返回参数 : int   1  晚， -1 早  0 相同
+备注信息 :
+******************************************************************************/
++(int)compareOneDay:(NSDate *)oneDay withAnotherDay:(NSDate *)anotherDay;
 @end
 
 NS_ASSUME_NONNULL_END
