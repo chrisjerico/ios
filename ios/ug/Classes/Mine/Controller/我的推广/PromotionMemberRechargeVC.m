@@ -148,16 +148,16 @@
         }
 
         // 小数点后最多能输入两位
-        if (self.isHaveDian) {
-            NSRange ran = [textField.text rangeOfString:@"."];
-            // 由于range.location是NSUInteger类型的，所以这里不能通过(range.location - ran.location)>2来判断
-            if (range.location > ran.location) {
-                if ((range.location - ran.location)>1) {
-                    [CMCommon showErrorTitle:@"小数点后最多有两位小数"];
-                    return NO;
-                }
-            }
-        }
+//        if (self.isHaveDian) {
+//            NSRange ran = [textField.text rangeOfString:@"."];
+//            // 由于range.location是NSUInteger类型的，所以这里不能通过(range.location - ran.location)>2来判断
+//            if (range.location > ran.location) {
+//                if ((range.location - ran.location)>2) {
+//                    [CMCommon showErrorTitle:@"小数点后最多有两位小数"];
+//                    return NO;
+//                }
+//            }
+//        }
 
     }
 
