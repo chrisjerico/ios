@@ -14,16 +14,20 @@
 #import "UGSystemConfigModel.h"
 @interface UGWithdrawalViewController ()<UITextFieldDelegate>
 @property (strong, nonatomic) IBOutlet UIView *bandCardView;
-@property (weak, nonatomic) IBOutlet UILabel *bandCardTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *bandCardTitleLabel;/**<   您还没有绑定银行卡*/
+@property (weak, nonatomic) IBOutlet UIButton *bandCardButton;/**<  绑定银行卡*/
+
 
 @property (weak, nonatomic) IBOutlet UIView *withdrawalView;
-@property (weak, nonatomic) IBOutlet UIButton *bandCardButton;
 @property (weak, nonatomic) IBOutlet UIButton *commitButton;
 @property (weak, nonatomic) IBOutlet UITextField *amountTextF;
 @property (weak, nonatomic) IBOutlet UITextField *pwdTextF;
 @property (weak, nonatomic) IBOutlet UILabel *cardInfoLabel;
 @property (weak, nonatomic) IBOutlet UILabel *limitLabel;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;   /**<   当前到账银行卡*/
+
+
+
 
 @end
 
@@ -36,6 +40,14 @@
         self.bandCardView.frame = CGRectMake(0, 0, APP.Width, self.withdrawalView.height);
         self.bandCardView.backgroundColor = Skin1.CLBgColor;
         self.bandCardTitleLabel.textColor = Skin1.textColor1;
+        
+        if ([@"c153" containsString:APP.SiteId]) {
+            self.bandCardTitleLabel.text = @"您还没提现银行卡号";
+            [self.bandCardButton setTitle:@"提现银行卡" forState:0];
+        } else {
+            self.bandCardTitleLabel.text = @"您还没有绑定银行卡";
+            [self.bandCardButton setTitle:@"绑定银行卡" forState:0];
+        }
         [self.view addSubview:self.bandCardView];
     }
     

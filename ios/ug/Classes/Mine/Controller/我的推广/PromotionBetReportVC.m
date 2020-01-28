@@ -21,10 +21,18 @@
 }
 @property(nonatomic, strong)UISegmentedControl * titleSegment;
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *headerLabels;
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, assign)NSInteger pageSize;
 @property (nonatomic, assign)NSInteger pageNumber;
 @property (nonatomic, strong)NSMutableArray* items;
+
+//其他投注
+@property (nonatomic, assign)NSInteger pageSizeOther;
+@property (nonatomic, assign)NSInteger pageNumberOther;
+@property (nonatomic, strong)NSMutableArray* itemsOther;
+
+
 @property (nonatomic, assign)NSInteger typeIndex;
 
 @property (weak, nonatomic) IBOutlet UIView *levelSelectView;
@@ -66,9 +74,14 @@
     [self.beiginTimeButton setTitle:APP.beginTime forState:(0)];
     [self.endTimeButton setTitle:self.endTimeStr forState:(0)];
 
-	self.pageSize = 20;
+	self.pageSize = APP.PageCount;
 	self.pageNumber = 1;
 	self.items = [NSMutableArray array];
+    
+    self.pageSizeOther = APP.PageCount;
+    self.pageNumberOther = 1;
+    self.itemsOther = [NSMutableArray array];
+    
 	self.typeIndex = 0;
 	_levelArray = @[@"全部下线",@"1级下线",@"2级下线",@"3级下线",@"4级下线",@"5级下线",@"6级下线",@"7级下线",@"8级下线",@"9级下线",@"10级下线"];
 	_levelindex = 0;
@@ -126,6 +139,19 @@
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	return self.items.count;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (self.typeIndex == 0) {
+        UGbetStatModel *ob = (UGbetStatModel *)self.items[indexPath.row];
+    } else {
+       UGrealBetStatModel *ob = (UGrealBetStatModel *)self.items[indexPath.row];
+    }
+ 
+}
+
 - (void)loadData {
 
     

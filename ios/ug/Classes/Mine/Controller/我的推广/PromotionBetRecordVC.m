@@ -121,6 +121,15 @@
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	return self.items.count;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    
+    
+    
+}
 - (void)loadData {
 	if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
 		return;

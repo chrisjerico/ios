@@ -28,6 +28,9 @@
             if (!sm.host.length) {
                 [errs addObject:[NSString stringWithFormat:@"接口域名未配置, %@", sm.siteId]];
             }
+            if (![sm.host hasPrefix:@"http"]) {
+                [errs addObject:[NSString stringWithFormat:@"接口域名未配置, %@", sm.siteId]];
+            }
             if (!sm.uploadNum.length) {
                 [errs addObject:[NSString stringWithFormat:@"上传编号未配置, %@", sm.siteId]];
             }
