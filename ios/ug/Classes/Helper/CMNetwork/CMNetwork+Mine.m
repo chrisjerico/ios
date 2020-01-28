@@ -1055,5 +1055,18 @@
     
     CMMETHOD_END;
 }
+
+//给下级会员充值接口-/team/recharge
++ (void)teamRechargeWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    [self.manager requestInMainThreadWithMethod:[teamRechargeUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
+                                           post:YES
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
 @end
 

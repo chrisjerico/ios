@@ -181,6 +181,7 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 @property (nonatomic, copy) NSString * lhcdocLotteryStr;/**<   六合彩预备开奖文字*/
 
 @property (nonatomic, copy) NSString * chatLink;/**<   聊天的链接*/
+@property (nonatomic) BOOL switchAgentRecharge;                /**<   给下级会员充值开关 */
 + (instancetype)currentConfig;
 
 + (void)setCurrentConfig:(UGSystemConfigModel *)config;

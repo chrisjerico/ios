@@ -869,6 +869,15 @@ static NSString *uuidKey =@"uuidKey";
 }
 
 /**
+*   SVProgressHUD showErrorWithStatus
+*
+*
+*/
++(void)showErrorTitle:(NSString * )str{
+    [SVProgressHUD showErrorWithStatus:str];
+}
+
+/**
 *   简单系统，ios 提示  专门调试用
 *
 *

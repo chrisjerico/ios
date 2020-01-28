@@ -36,5 +36,6 @@ react-native bundle --entry-file index.ios.js --bundle-output ./bundle/main.jsbu
 code-push release-react UGiOS ios --t $__APPVersion --des "$__Version" -k $__KeyFile
 # 发布到正式环境
 #code-push release-react UGiOS ios --t $__APPVersion --dev false --d Production --des "$__Version" --m true
+#其中参数--t为二进制(.ipa与apk)安装包的的版本；--dev为是否启用开发者模式(默认为false)；--d是要发布更新的环境分Production与Staging(默认为Staging)；--des为更新说明；--m 是强制更新。
 # 把测试环境的更新包推送到正式环境
 #code-push promote UGiOS Staging Production

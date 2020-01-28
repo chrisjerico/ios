@@ -164,11 +164,12 @@ static NSString * promotionMemberItemKey = @"promotionMemberItemKey";
 	}
 }
 -(void)rechargeButtonTaped: (UIButton *)sender {
-	UGinviteLisModel * member = sender.promotionMember;
-	if (![member.is_setting isEqualToString:@"1"]) {
-		[SVProgressHUD showErrorWithStatus:@"充值功能已关闭"];
-		return;
-	}
+
+    if (!SysConf.switchAgentRecharge) {
+        [CMCommon showErrorTitle:@"充值功能已关闭"];
+        return;
+    }
+    UGinviteLisModel * member = sender.promotionMember;
 	PromotionMemberRechargeVC * vc = [[UIStoryboard storyboardWithName:@"MyPromotion" bundle:nil] instantiateViewControllerWithIdentifier:@"PromotionMemberRechargeVC"];
 	vc.modalPresentationStyle = UIModalPresentationFullScreen;
 	[self presentViewController: [[UGNavigationController alloc] initWithRootViewController:vc] animated:true completion:^{

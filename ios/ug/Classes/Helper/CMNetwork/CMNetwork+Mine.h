@@ -229,6 +229,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 //聊天室数据
 + (void)chatgetTokenWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+//给下级会员充值接口-/team/recharge
++ (void)teamRechargeWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 @end
 
 NS_ASSUME_NONNULL_END

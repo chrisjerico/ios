@@ -252,7 +252,8 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 #define lotteryTrendUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"eapi/get_lottery_data?gameMark=jsxingyu"]
 #define officialLotteryTrendUrl [NSString stringWithFormat:@"%@/%@",@"https://www.fhptjk01.com",@"eapi/get_lottery_data?"]
 
-
+//给下级会员充值接口
+#define teamRechargeUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=team&a=recharge"]
 
 //=============六合====================================================================================================
 #define lhlDetailUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=lhcdoc&a=lhlDetail"]
