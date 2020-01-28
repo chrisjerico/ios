@@ -45,7 +45,7 @@
         if (isPack) {
 
 
-            NSString *ids = @"c184";   // 站点编号
+            NSString *ids = @"c116,c001,c213,c200";   // 站点编号
 
             BOOL willUpload = 1; // 打包后是否上传审核
             [self startPackingWithIds:ids willUpload:willUpload];

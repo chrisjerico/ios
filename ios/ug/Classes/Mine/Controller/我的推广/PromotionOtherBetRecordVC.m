@@ -178,6 +178,8 @@
          self.beginTimeSelectDate = selectDate;
          [self.beiginTimeButton setTitle:selectValue forState:(0)];
          self.beginTimeStr = selectValue;
+         
+         [self loadData];
      };
      // 自定义弹框样式
      BRPickerStyle *customStyle = [BRPickerStyle pickerStyleWithThemeColor:[UIColor darkGrayColor]];

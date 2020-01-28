@@ -138,6 +138,7 @@
 	
 	[SVProgressHUD showWithStatus:nil];
 	WeakSelf;
+    //投注记录信息
 	[CMNetwork teamBetListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
 		[CMResult processWithResult:model success:^{
 			[SVProgressHUD dismiss];
@@ -196,6 +197,8 @@
          self.beginTimeSelectDate = selectDate;
          [self.beiginTimeButton setTitle:selectValue forState:(0)];
          self.beginTimeStr = selectValue;
+         
+        [self loadData];
      };
      // 自定义弹框样式
      BRPickerStyle *customStyle = [BRPickerStyle pickerStyleWithThemeColor:[UIColor darkGrayColor]];
