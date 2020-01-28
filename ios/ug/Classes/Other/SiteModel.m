@@ -169,8 +169,8 @@
             site(@"c203",        @"c203hy",     @"235",     @"io.fhpt.YSFC203",         @"https://xpjcpapp.com",                        @"企业包",     @"新葡京彩票"),// 第二条域名：https://455126.com
             site(@"c208",        @"c208hy",     @"246",     @"io.fhpt.YSAC208",         @"https://771aa771.com",                        @"企业包",     @"威尼斯人"),//
             site(@"c212",        @"c212hy",     @"247",     @"io.fhpt.YSAC212",         @"https://00852030.com",                        @"企业包",     @"新葡京"),//
-            site(@"c213",        @"c213hy",     @"248",     @"io.fhpt.YSAC213",         @"https://450450app.com",                        @"企业包",     @"450集团"),//
-            site(@"c228",        @"c228hy",     @"",     @"io.fhpt.YSAC228",         @"",                        @"企业包",     @"太陽城集團"),//
+            site(@"c213",        @"c213hy",     @"248",     @"io.fhpt.YSAC213",         @"https://450450app.com",                       @"企业包",     @"450集团"),//
+            site(@"c228",        @"c228hy",     @"249",     @"io.fhpt.YSAC228",         @"https://app77787.co",                         @"企业包",     @"太陽城集團"),//https://app77787.co/  https://app77787.com/ https://77787app.co/  https://77787app.com/
             
             
             site(@"test103",     @"test103",    @"222",     @"com.UGGame.cp",           @"http://103.9.230.243",                        @"内测包",     @"test103"),
