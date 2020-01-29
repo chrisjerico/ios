@@ -10,12 +10,18 @@
 #import "UGbetStatModel.h"
 #import "UGrealBetStatModel.h"
 #import "UGBetListModel.h"
+#import "UGdepositStatModel.h"
+#import "UGwithdrawStatModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PromotionRecordCell1 : UGTableViewCell
 -(void)bindBetReport: (UGbetStatModel *)model;
 -(void)bindOtherReport: (UGrealBetStatModel *)model;
 -(void)bindBetRecord: (UGBetListModel*)model;
+//存款报表
+- (void)bindDepositList:(UGdepositStatModel *)model;
+//提款报表
+- (void)bindWithdrawalsList:(UGwithdrawStatModel *)model;
 @end
 
 NS_ASSUME_NONNULL_END

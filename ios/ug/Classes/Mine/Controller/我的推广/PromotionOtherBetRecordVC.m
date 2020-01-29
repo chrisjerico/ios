@@ -107,6 +107,10 @@
 	if ([UGUserModel currentUser].isTest) {
 		return;
 	}
+    if (![CMCommon stringIsNull:self.dateStr]) {
+        self.beginTimeStr = self.dateStr;
+        self.endTimeStr = self.dateStr;
+    }
 	NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
 							 @"level":[NSString stringWithFormat:@"%ld",(long)_levelindex],
 							 @"page":@(self.pageNumber),
@@ -122,6 +126,9 @@
 			[SVProgressHUD dismiss];
 			NSDictionary *data =  model.data;
 			NSArray *list = [data objectForKey:@"list"];
+            if ([CMCommon stringIsNull:self.dateStr]) {
+                 [self setDateStr:@""];
+            }
 			if (weakSelf.pageNumber == 1 ) {
 				[weakSelf.items removeAllObjects];
 			}

@@ -14,6 +14,8 @@
 
 #import <BRPickerView.h>
 #import "CMTimeCommon.h"
+#import "PromotionBetRecordVC.h"
+#import "PromotionOtherBetRecordVC.h"
 @interface PromotionBetReportVC ()<UITableViewDelegate, UITableViewDataSource, YBPopupMenuDelegate>
 {
 	NSInteger _levelindex;
@@ -50,7 +52,7 @@
 @implementation PromotionBetReportVC
 -(UISegmentedControl *)titleSegment {
 	if (!_titleSegment) {
-		_titleSegment = [[UISegmentedControl alloc] initWithItems:@[@"彩票投注", @"其它投注"]];
+		_titleSegment = [[UISegmentedControl alloc] initWithItems:@[@"彩票报表", @"第三方报表"]];
 		[_titleSegment setTitleTextAttributes:@{NSForegroundColorAttributeName:Skin1.navBarBgColor} forState:UIControlStateSelected];
 		[_titleSegment setTitleTextAttributes:@{NSForegroundColorAttributeName:UIColor.whiteColor} forState:UIControlStateNormal];
 		_titleSegment.layer.borderWidth = 0.5;
@@ -131,13 +133,18 @@
 	if (self.typeIndex == 0) {
 		[cell bindBetReport:self.items[indexPath.row]];
 	} else {
-		[cell bindOtherReport:self.items[indexPath.row]];
+		[cell bindOtherReport:self.itemsOther[indexPath.row]];
 	}
 	return cell;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return self.items.count;
+    if (self.typeIndex == 0) {
+        return self.items.count;
+    } else {
+        return self.itemsOther.count;
+    }
+	
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -146,8 +153,17 @@
     
     if (self.typeIndex == 0) {
         UGbetStatModel *ob = (UGbetStatModel *)self.items[indexPath.row];
+        PromotionBetRecordVC * vc = [[UIStoryboard storyboardWithName:@"MyPromotion" bundle:nil] instantiateViewControllerWithIdentifier:@"PromotionBetRecordVC"];
+        vc.dateStr = ob.date;
+        [self.navigationController pushViewController:vc animated:YES];
+        
+        
+        
     } else {
-       UGrealBetStatModel *ob = (UGrealBetStatModel *)self.items[indexPath.row];
+       UGrealBetStatModel *ob = (UGrealBetStatModel *)self.itemsOther[indexPath.row];
+        PromotionOtherBetRecordVC * vc = [[UIStoryboard storyboardWithName:@"MyPromotion" bundle:nil] instantiateViewControllerWithIdentifier:@"PromotionOtherBetRecordVC"];
+        vc.dateStr = ob.date;
+        [self.navigationController pushViewController:vc animated:YES];
     }
  
 }
@@ -231,11 +247,11 @@
 			NSDictionary *data =  model.data;
 			NSArray *list = [data objectForKey:@"list"];
 			if (weakSelf.pageNumber == 1 ) {
-				[weakSelf.items removeAllObjects];
+				[weakSelf.itemsOther removeAllObjects];
 			}
 			//数组转模型数组
 			NSArray *array  = [UGrealBetStatModel arrayOfModelsFromDictionaries:list error:nil];
-			[weakSelf.items addObjectsFromArray:array];
+			[weakSelf.itemsOther addObjectsFromArray:array];
 			[weakSelf.tableView reloadData];
 			if (array.count < weakSelf.pageSize) {
 				[weakSelf.tableView.mj_footer setState:MJRefreshStateNoMoreData];

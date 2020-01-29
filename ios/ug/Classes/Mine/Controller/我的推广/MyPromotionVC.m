@@ -16,7 +16,7 @@
 #import "PromotionAdvertisementVC.h"
 #import "UGinviteInfoModel.h"
 #import "CMLabelCommon.h"
-
+#import "PromotionDepositListVC.h"
 @interface MyPromotionVC ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -107,7 +107,7 @@
 			break;
 		case 4:
 		{
-			PromotionBetRecordVC * vc = [[UIStoryboard storyboardWithName:@"MyPromotion" bundle:nil] instantiateViewControllerWithIdentifier:@"PromotionBetRecordVC"];
+			PromotionDepositListVC * vc = [[UIStoryboard storyboardWithName:@"MyPromotion" bundle:nil] instantiateViewControllerWithIdentifier:@"PromotionDepositListVC"];
 			[self.navigationController pushViewController:vc animated:true];
 		}
 			break;

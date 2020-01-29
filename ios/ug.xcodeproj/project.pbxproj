@@ -1860,6 +1860,7 @@
 		D40FA8BF229910EF003E596F /* yuebaoMone.gif in Resources */ = {isa = PBXBuildFile; fileRef = D40FA8BE229910EE003E596F /* yuebaoMone.gif */; };
 		D417EFDB2330D24C0024F634 /* AppDelegate+HgBugly.m in Sources */ = {isa = PBXBuildFile; fileRef = D417EFDA2330D24C0024F634 /* AppDelegate+HgBugly.m */; };
 		D422D67F22D9A766008E7065 /* address.json in Resources */ = {isa = PBXBuildFile; fileRef = D422D67E22D9A764008E7065 /* address.json */; };
+		D42E14F323E06CE900F53407 /* PromotionDepositListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D42E14F223E06CE900F53407 /* PromotionDepositListVC.m */; };
 		D433EBF723D493F300D31008 /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = D433EBF623D493F300D31008 /* UIImage+Extension.m */; };
 		D435F90423CEF940008648CE /* KMCGeigerCounterTick.aiff in Resources */ = {isa = PBXBuildFile; fileRef = D435F90023CEF940008648CE /* KMCGeigerCounterTick.aiff */; };
 		D435F90523CEF940008648CE /* KMCGeigerCounterTick.aiff in Resources */ = {isa = PBXBuildFile; fileRef = D435F90023CEF940008648CE /* KMCGeigerCounterTick.aiff */; };
@@ -3614,6 +3615,8 @@
 		D417EFD92330D24C0024F634 /* AppDelegate+HgBugly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+HgBugly.h"; sourceTree = "<group>"; };
 		D417EFDA2330D24C0024F634 /* AppDelegate+HgBugly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+HgBugly.m"; sourceTree = "<group>"; };
 		D422D67E22D9A764008E7065 /* address.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = address.json; sourceTree = "<group>"; };
+		D42E14F123E06CE900F53407 /* PromotionDepositListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PromotionDepositListVC.h; sourceTree = "<group>"; };
+		D42E14F223E06CE900F53407 /* PromotionDepositListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PromotionDepositListVC.m; sourceTree = "<group>"; };
 		D433EBF523D493F300D31008 /* UIImage+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extension.h"; sourceTree = "<group>"; };
 		D433EBF623D493F300D31008 /* UIImage+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extension.m"; sourceTree = "<group>"; };
 		D435F90023CEF940008648CE /* KMCGeigerCounterTick.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = KMCGeigerCounterTick.aiff; sourceTree = "<group>"; };
@@ -7125,6 +7128,8 @@
 				032412BF23CC62B900FABD51 /* PromotionOtherBetRecordVC.m */,
 				03E3AAC023C84EA5009A28C0 /* PromotionIntroductionVC.h */,
 				03E3AAC123C84EA5009A28C0 /* PromotionIntroductionVC.m */,
+				D42E14F123E06CE900F53407 /* PromotionDepositListVC.h */,
+				D42E14F223E06CE900F53407 /* PromotionDepositListVC.m */,
 			);
 			path = "我的推广";
 			sourceTree = "<group>";
@@ -9397,6 +9402,7 @@
 				031E1C2223BE812900B0F813 /* UGFastThreeOneCollectionViewCell.m in Sources */,
 				031E1A0223BE812700B0F813 /* SlideSegmentView1.m in Sources */,
 				031E19DC23BE812700B0F813 /* NSArray+Utils.m in Sources */,
+				D42E14F323E06CE900F53407 /* PromotionDepositListVC.m in Sources */,
 				03E41B2C23C0903C004AB7C6 /* JS_HomePromoteView.m in Sources */,
 				031E19B623BE812700B0F813 /* NSMutableDictionary+KVO.m in Sources */,
 				D4F0410523C773170070D2B5 /* UGLHPrizeView.m in Sources */,

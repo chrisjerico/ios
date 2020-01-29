@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PromotionBetRecordVC : UGViewController
 @property (nonatomic, assign)NSInteger typeIndex;
-
+@property (nonatomic, strong) NSString *dateStr;       /**<   日期 */
 @end
 
 NS_ASSUME_NONNULL_END
