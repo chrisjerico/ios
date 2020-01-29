@@ -167,6 +167,9 @@
     }
 }
 
+- (BOOL)isHideText {
+    return [@"c200" containsString:_SiteId];
+}
 
 - (BOOL)isShowJinbei {
     return [@"c085" containsString:_SiteId];

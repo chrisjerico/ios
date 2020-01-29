@@ -132,7 +132,28 @@
            int tip2Heigth = tip2size.height +20;
         // 同步到主线程
          dispatch_async(dispatch_get_main_queue(), ^{
-            
+
+             if (APP.isHideText) {
+                 if ([CMCommon arryIsNull:self.amountDataArray]) {
+                     [self.textField setHidden:NO];
+                     [self.mUIScrollView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                         make.left.equalTo(self.view).offset(0);
+                         make.right.equalTo(self.view).offset(0);
+                         make.top.equalTo(self.view).offset(60);
+                         make.bottom.equalTo(self.view).offset(-(IPHONE_SAFEBOTTOMAREA_HEIGHT+44));
+                     }];
+                     
+                 } else {
+                     [self.textField setHidden:YES];
+                     [self.mUIScrollView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                         make.left.equalTo(self.view).offset(0);
+                         make.right.equalTo(self.view).offset(0);
+                         make.top.equalTo(self.view).offset(10);
+                         make.bottom.equalTo(self.view).offset(-(IPHONE_SAFEBOTTOMAREA_HEIGHT+44));
+                     }];
+                 }
+             }
+             
             if ([CMCommon arryIsNull:self.blankDataArray]) {
                 [self->_blank_button setHidden:YES];
             } else {
