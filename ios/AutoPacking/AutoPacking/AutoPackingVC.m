@@ -367,7 +367,7 @@
         [df setDateFormat:@"yyyy年MM月dd日 HH:mm"];
         
         for (SiteModel *sm in sms) {
-            NSString *downloadPath = _NSString(@"https://baidujump.app/eipeyipeyi/jump-%@.html  (%@原生iOS 已上传请测试审核)", sm.uploadId, sm.siteId);
+            NSString *downloadPath = _NSString(@"https://baidujump.app/eipeyipeyi/jump-%@.html  (%@原生iOS 已上传请测试审核,审核后请关闭工单，通知客服)", sm.uploadId, sm.siteId);
             if (!uploaded) {
                 downloadPath = _NSString(@"【%@ %@】打包记录", sm.siteId, sm.type);
             }
