@@ -183,14 +183,15 @@
     STBarButtonItem *item0 = [STBarButtonItem barButtonItemWithTitle:_NSString(@"%@ ▼", self.nextIssueModel.title ? : @"") target:self action:@selector(onTitleClick)];
     self.navigationItem.leftBarButtonItems = @[self.navigationItem.leftBarButtonItems.firstObject, item0];
     self.navigationItem.titleView = [UIView new];   // 隐藏标题
-    
-    if (OBJOnceToken(self)) {
-        [self.navigationItem cc_hookSelector:@selector(setTitle:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> ai) {
-            NSString *title = ai.arguments.lastObject;
-            [(UIButton *)item0.customView setTitle:_NSString(@"%@ ▼", title) forState:UIControlStateNormal];
-            [(UIButton *)item0.customView sizeToFit];
-        } error:nil];
-    }
+#pragma mark - 去掉这里就不会标题变动。
+//    if (OBJOnceToken(self)) {
+//        [self.navigationItem cc_hookSelector:@selector(setTitle:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> ai) {
+//            NSString *title = ai.arguments.lastObject;
+//            NSLog(@"title = %@",title);
+//            [(UIButton *)item0.customView setTitle:_NSString(@"%@ ▼===", title) forState:UIControlStateNormal];
+//            [(UIButton *)item0.customView sizeToFit];
+//        } error:nil];
+//    }
 }
 
 - (void)onTitleClick {

@@ -72,7 +72,7 @@
 		
 	}];
 	self.tableView.tableFooterView = [UIView new];
-	self.navigationItem.title = @"其它投注记录";
+	self.navigationItem.title = @"第三方报表记录";
 	[weakSelf loadData];
 	
 	

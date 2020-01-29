@@ -18,6 +18,8 @@
 #import "PromotionOtherBetRecordVC.h"
 #import "UGdepositStatModel.h"
 #import "UGwithdrawStatModel.h"
+#import "PromotionDepositRecordVC.h"
+#import "PromotionWithdrawalsRecordVC.h"
 @interface PromotionDepositListVC ()<UITableViewDelegate, UITableViewDataSource, YBPopupMenuDelegate>
 {
     NSInteger _levelindex;
@@ -139,7 +141,7 @@
     if (self.typeIndex == 0) {
         [cell bindDepositList:self.items[indexPath.row]];
     } else {
-        [cell bindOtherReport:self.itemsOther[indexPath.row]];
+        [cell bindWithdrawalsList:self.itemsOther[indexPath.row]];
     }
     return cell;
 }
@@ -159,7 +161,7 @@
     
     if (self.typeIndex == 0) {
         UGdepositStatModel *ob = (UGdepositStatModel *)self.items[indexPath.row];
-        PromotionBetRecordVC * vc = [[UIStoryboard storyboardWithName:@"MyPromotion" bundle:nil] instantiateViewControllerWithIdentifier:@"PromotionBetRecordVC"];
+        PromotionDepositRecordVC * vc = [[UIStoryboard storyboardWithName:@"MyPromotion" bundle:nil] instantiateViewControllerWithIdentifier:@"PromotionDepositRecordVC"];
         vc.dateStr = ob.date;
         [self.navigationController pushViewController:vc animated:YES];
         
@@ -167,7 +169,7 @@
         
     } else {
        UGrealBetStatModel *ob = (UGrealBetStatModel *)self.itemsOther[indexPath.row];
-        PromotionOtherBetRecordVC * vc = [[UIStoryboard storyboardWithName:@"MyPromotion" bundle:nil] instantiateViewControllerWithIdentifier:@"PromotionOtherBetRecordVC"];
+        PromotionWithdrawalsRecordVC * vc = [[UIStoryboard storyboardWithName:@"MyPromotion" bundle:nil] instantiateViewControllerWithIdentifier:@"PromotionWithdrawalsRecordVC"];
         vc.dateStr = ob.date;
         [self.navigationController pushViewController:vc animated:YES];
     }
