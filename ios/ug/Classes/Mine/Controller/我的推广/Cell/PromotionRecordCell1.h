@@ -12,6 +12,8 @@
 #import "UGBetListModel.h"
 #import "UGdepositStatModel.h"
 #import "UGwithdrawStatModel.h"
+#import "UGdepositListModel.h"
+#import "UGwithdrawListModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PromotionRecordCell1 : UGTableViewCell
@@ -22,6 +24,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)bindDepositList:(UGdepositStatModel *)model;
 //提款报表
 - (void)bindWithdrawalsList:(UGwithdrawStatModel *)model;
+//存款记录
+- (void)bindDepositRecord:(UGdepositListModel *)model;
+
+//提款记录
+- (void)bindWithdrawalRecord:(UGwithdrawListModel *)model;
 @end
 
 NS_ASSUME_NONNULL_END

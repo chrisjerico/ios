@@ -4872,12 +4872,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nhJ-ZG-tRh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4614" y="719"/>
+            <point key="canvasLocation" x="3819" y="1406"/>
         </scene>
         <!--存款记录-->
         <scene sceneID="PT5-on-5Zl">
             <objects>
-                <viewController title="存款记录" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jdR-xd-wsg" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PromotionDepositRecordVC" title="存款记录" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jdR-xd-wsg" customClass="PromotionDepositRecordVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3bh-uk-zhf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4898,7 +4898,7 @@
                                                             <color key="titleColor" red="0.28235294119999998" green="0.30196078430000001" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="levelButtonTaped:" destination="jdR-xd-wsg" eventType="touchUpInside" id="mCu-De-dyu"/>
+                                                            <action selector="levelButtonTaped:" destination="jdR-xd-wsg" eventType="touchUpInside" id="q4r-iz-331"/>
                                                         </connections>
                                                     </button>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="arrow_down" translatesAutoresizingMaskIntoConstraints="NO" id="rza-Oz-Dqb">
@@ -4940,7 +4940,7 @@
                                                             <color key="titleColor" red="0.28235294119999998" green="0.30196078430000001" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="dateBtnAction:" destination="jdR-xd-wsg" eventType="touchUpInside" id="4J5-cw-leG"/>
+                                                            <action selector="dateBtnAction:" destination="jdR-xd-wsg" eventType="touchUpInside" id="Ttf-qw-XcU"/>
                                                         </connections>
                                                     </button>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="arrow_down" translatesAutoresizingMaskIntoConstraints="NO" id="3kT-CN-fqh">
@@ -4987,7 +4987,7 @@
                                                             <color key="titleColor" red="0.28235294119999998" green="0.30196078430000001" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="date2BtnAcion:" destination="jdR-xd-wsg" eventType="touchUpInside" id="Xkd-FK-ttZ"/>
+                                                            <action selector="date2BtnAcion:" destination="jdR-xd-wsg" eventType="touchUpInside" id="ER9-Kh-YUd"/>
                                                         </connections>
                                                     </button>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="arrow_down" translatesAutoresizingMaskIntoConstraints="NO" id="GqF-dK-97y">
@@ -5052,7 +5052,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rOe-Mc-9qF">
                                         <rect key="frame" x="103.66666666666669" y="0.0" width="103" height="36"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="日期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b9N-CX-zOa">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b9N-CX-zOa">
                                                 <rect key="frame" x="38.999999999999986" y="11" width="24.666666666666671" height="14.333333333333336"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -5069,8 +5069,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4BJ-tn-5LY">
                                         <rect key="frame" x="207.66666666666666" y="0.0" width="102.66666666666666" height="36"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="投注金额" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SeY-PM-JPd">
-                                                <rect key="frame" x="26.666666666666689" y="11" width="49.333333333333343" height="14.333333333333336"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="日期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SeY-PM-JPd">
+                                                <rect key="frame" x="39" y="11" width="24.666666666666671" height="14.333333333333336"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -5086,8 +5086,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e0J-8x-zx4">
                                         <rect key="frame" x="311.33333333333331" y="0.0" width="102.66666666666669" height="36"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="佣金" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rGH-Ov-nbW">
-                                                <rect key="frame" x="39" y="11" width="24.666666666666671" height="14.333333333333336"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="存款金额" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rGH-Ov-nbW">
+                                                <rect key="frame" x="26.666666666666689" y="11" width="49.333333333333343" height="14.333333333333336"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -5124,16 +5124,17 @@
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="arrowImage" destination="rza-Oz-Dqb" id="I7h-LD-5Dl"/>
-                        <outlet property="beiginTimeButton" destination="q6e-LJ-1wD" id="LRu-fV-pLH"/>
-                        <outlet property="endTimeButton" destination="K6o-05-hLf" id="CRb-lg-wGn"/>
-                        <outlet property="levelSelectButton" destination="xi5-2G-pe4" id="APi-uE-yJl"/>
-                        <outlet property="levelSelectView" destination="lYQ-qJ-992" id="crE-Il-VnM"/>
-                        <outlet property="tableView" destination="StC-oF-iOv" id="9qt-Ev-HpP"/>
-                        <outletCollection property="headerLabels" destination="4D3-fq-Uuh" id="XZO-qR-oMX"/>
-                        <outletCollection property="headerLabels" destination="b9N-CX-zOa" id="LcI-Ra-CGg"/>
-                        <outletCollection property="headerLabels" destination="SeY-PM-JPd" id="RCj-E8-Sjq"/>
-                        <outletCollection property="headerLabels" destination="rGH-Ov-nbW" id="rye-XX-tO9"/>
+                        <outlet property="arrowImage" destination="rza-Oz-Dqb" id="y1M-6I-Dnc"/>
+                        <outlet property="beiginTimeButton" destination="q6e-LJ-1wD" id="nDC-kS-xcT"/>
+                        <outlet property="endTimeButton" destination="K6o-05-hLf" id="Oza-w3-zOp"/>
+                        <outlet property="headerStack" destination="c7E-0P-LcR" id="iUe-LO-a0X"/>
+                        <outlet property="levelSelectButton" destination="xi5-2G-pe4" id="YPk-Rr-bwL"/>
+                        <outlet property="levelSelectView" destination="lYQ-qJ-992" id="B61-jy-uDY"/>
+                        <outlet property="tableView" destination="StC-oF-iOv" id="OpB-DZ-Vqu"/>
+                        <outletCollection property="headerLabels" destination="4D3-fq-Uuh" id="tdv-xt-Drb"/>
+                        <outletCollection property="headerLabels" destination="b9N-CX-zOa" id="vKq-P7-N3y"/>
+                        <outletCollection property="headerLabels" destination="SeY-PM-JPd" id="XG4-W7-qvN"/>
+                        <outletCollection property="headerLabels" destination="rGH-Ov-nbW" id="LyI-xY-vHx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xbf-gR-jwX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -5318,7 +5319,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="paX-b9-0RI">
                                         <rect key="frame" x="103.66666666666669" y="0.0" width="103" height="36"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="日期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfq-YS-IUN">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfq-YS-IUN">
                                                 <rect key="frame" x="38.999999999999986" y="11" width="24.666666666666671" height="14.333333333333336"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -5335,8 +5336,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8fA-FY-6pX">
                                         <rect key="frame" x="207.66666666666666" y="0.0" width="102.66666666666666" height="36"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="投注金额" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TEE-41-UJt">
-                                                <rect key="frame" x="26.666666666666689" y="11" width="49.333333333333343" height="14.333333333333336"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="日期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TEE-41-UJt">
+                                                <rect key="frame" x="39" y="11" width="24.666666666666671" height="14.333333333333336"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -5352,8 +5353,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="07Y-5K-aAy">
                                         <rect key="frame" x="311.33333333333331" y="0.0" width="102.66666666666669" height="36"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="佣金" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wMk-6u-Qop">
-                                                <rect key="frame" x="39" y="11" width="24.666666666666671" height="14.333333333333336"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="提款金额" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wMk-6u-Qop">
+                                                <rect key="frame" x="26.666666666666689" y="11" width="49.333333333333343" height="14.333333333333336"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>

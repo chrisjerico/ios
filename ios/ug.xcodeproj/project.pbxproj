@@ -1857,6 +1857,8 @@
 		CFFAB58B237315C2009593AF /* event.gif in Resources */ = {isa = PBXBuildFile; fileRef = CFFAB58A237315C2009593AF /* event.gif */; };
 		CFFAB58D23755569009593AF /* lxb.gif in Resources */ = {isa = PBXBuildFile; fileRef = CFFAB58C23755569009593AF /* lxb.gif */; };
 		D405B346227DB22100F8C586 /* UGNotificationEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = D405B345227DB22100F8C586 /* UGNotificationEvent.m */; };
+		D40A295423E16C0200F07146 /* PromotionDepositRecordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D40A295323E16C0200F07146 /* PromotionDepositRecordVC.m */; };
+		D40A295823E173A900F07146 /* PromotionWithdrawalsRecordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D40A295723E173A900F07146 /* PromotionWithdrawalsRecordVC.m */; };
 		D40FA8BF229910EF003E596F /* yuebaoMone.gif in Resources */ = {isa = PBXBuildFile; fileRef = D40FA8BE229910EE003E596F /* yuebaoMone.gif */; };
 		D417EFDB2330D24C0024F634 /* AppDelegate+HgBugly.m in Sources */ = {isa = PBXBuildFile; fileRef = D417EFDA2330D24C0024F634 /* AppDelegate+HgBugly.m */; };
 		D422D67F22D9A766008E7065 /* address.json in Resources */ = {isa = PBXBuildFile; fileRef = D422D67E22D9A764008E7065 /* address.json */; };
@@ -3611,6 +3613,10 @@
 		D405AFCE2278240A00F8C586 /* UGPCH.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGPCH.pch; sourceTree = "<group>"; };
 		D405B344227DB22100F8C586 /* UGNotificationEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGNotificationEvent.h; sourceTree = "<group>"; };
 		D405B345227DB22100F8C586 /* UGNotificationEvent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGNotificationEvent.m; sourceTree = "<group>"; };
+		D40A295223E16C0200F07146 /* PromotionDepositRecordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PromotionDepositRecordVC.h; sourceTree = "<group>"; };
+		D40A295323E16C0200F07146 /* PromotionDepositRecordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PromotionDepositRecordVC.m; sourceTree = "<group>"; };
+		D40A295623E173A900F07146 /* PromotionWithdrawalsRecordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PromotionWithdrawalsRecordVC.h; sourceTree = "<group>"; };
+		D40A295723E173A900F07146 /* PromotionWithdrawalsRecordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PromotionWithdrawalsRecordVC.m; sourceTree = "<group>"; };
 		D40FA8BE229910EE003E596F /* yuebaoMone.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = yuebaoMone.gif; sourceTree = "<group>"; };
 		D417EFD92330D24C0024F634 /* AppDelegate+HgBugly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+HgBugly.h"; sourceTree = "<group>"; };
 		D417EFDA2330D24C0024F634 /* AppDelegate+HgBugly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+HgBugly.m"; sourceTree = "<group>"; };
@@ -7130,6 +7136,10 @@
 				03E3AAC123C84EA5009A28C0 /* PromotionIntroductionVC.m */,
 				D42E14F123E06CE900F53407 /* PromotionDepositListVC.h */,
 				D42E14F223E06CE900F53407 /* PromotionDepositListVC.m */,
+				D40A295223E16C0200F07146 /* PromotionDepositRecordVC.h */,
+				D40A295323E16C0200F07146 /* PromotionDepositRecordVC.m */,
+				D40A295623E173A900F07146 /* PromotionWithdrawalsRecordVC.h */,
+				D40A295723E173A900F07146 /* PromotionWithdrawalsRecordVC.m */,
 			);
 			path = "我的推广";
 			sourceTree = "<group>";
@@ -9233,6 +9243,7 @@
 				031E1E6223BE812C00B0F813 /* UGAvaterCollectionViewCell.m in Sources */,
 				031E1AD223BE812800B0F813 /* TGWebProgressLayer.m in Sources */,
 				031E1A7823BE812700B0F813 /* DKProgressLayer.m in Sources */,
+				D40A295423E16C0200F07146 /* PromotionDepositRecordVC.m in Sources */,
 				031E19AA23BE812600B0F813 /* NSError+Safe.m in Sources */,
 				031E1CE023BE812A00B0F813 /* MJRefreshGifHeader.m in Sources */,
 				031E19BC23BE812700B0F813 /* AVAsset+Degress.m in Sources */,
@@ -9446,6 +9457,7 @@
 				031E1D3623BE812B00B0F813 /* UGAgentViewController.m in Sources */,
 				031E195A23BE812600B0F813 /* UGChessViewController.m in Sources */,
 				031E1A4623BE812700B0F813 /* UIColor+CTop.m in Sources */,
+				D40A295823E173A900F07146 /* PromotionWithdrawalsRecordVC.m in Sources */,
 				031E199C23BE812600B0F813 /* category.m in Sources */,
 				031E1CF823BE812A00B0F813 /* AFHTTPSessionManager.m in Sources */,
 				031E1D5C23BE812B00B0F813 /* UGLoginViewController.m in Sources */,

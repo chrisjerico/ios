@@ -90,6 +90,34 @@
     }
 
 }
+
+//存款记录
+- (void)bindDepositRecord:(UGdepositListModel *)model {
+    int intLevel = [model.level intValue];
+
+    ((UILabel *)self.itemLabels[0]).text = [NSString stringWithFormat:@"%d级下线",intLevel];
+    ((UILabel *)self.itemLabels[1]).text = model.username;
+    if ([CMCommon stringIsNull:model.date]) {
+        ((UILabel *)self.itemLabels[2]).text = @"--";
+    } else {
+        ((UILabel *)self.itemLabels[2]).text = model.date;
+    }
+    ((UILabel *)self.itemLabels[3]).text = model.amount;
+}
+
+//提款记录
+- (void)bindWithdrawalRecord:(UGwithdrawListModel *)model {
+    int intLevel = [model.level intValue];
+
+    ((UILabel *)self.itemLabels[0]).text = [NSString stringWithFormat:@"%d级下线",intLevel];
+    ((UILabel *)self.itemLabels[1]).text = model.username;
+    if ([CMCommon stringIsNull:model.date]) {
+        ((UILabel *)self.itemLabels[2]).text = @"--";
+    } else {
+        ((UILabel *)self.itemLabels[2]).text = model.date;
+    }
+    ((UILabel *)self.itemLabels[3]).text = model.amount;
+}
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
