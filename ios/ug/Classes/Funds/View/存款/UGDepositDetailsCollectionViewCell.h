@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UGDepositDetailsCollectionViewCell : UICollectionViewCell
+@property (weak, nonatomic) IBOutlet UILabel *myLabel;
 @property (strong, nonatomic) NSString *myStr;
 @end
 
