@@ -45,6 +45,7 @@
 #import "UGPK10NNLotteryController.h"
 
 #import "UGYYRightMenuView.h"
+#import "UGLotterySettingModel.h"
 
 @interface UGHKLHCLotteryController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,WSLWaterFlowLayoutDelegate,YBPopupMenuDelegate,SGSegmentedControlDelegate,UITextFieldDelegate>
 
@@ -132,7 +133,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     self.bottomCloseView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     self.bottomCloseView.hidden = YES;
     [self.view addSubview:self.segmentView];
-    [self.view addSubview:self.zodiacScrollView];
+//    [self.view addSubview:self.zodiacScrollView];
     WeakSelf
     self.segmentIndex = 0;
     self.segmentView.segmentIndexBlock = ^(NSInteger row) {
@@ -250,6 +251,8 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         [CMResult processWithResult:model success:^{
             UGPlayOddsModel *play = model.data;
             self.playOddsModel = play;
+            [self.view addSubview:self.zodiacScrollView];
+            
             self.gameDataArray = [play.playOdds mutableCopy];
             for (UGGameplayModel *gm in play.playOdds) {
                 for (UGGameplaySectionModel *gsm in gm.list) {
@@ -1523,18 +1526,33 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             }
             [btn setImage:[UIImage imageNamed:@"RadioButton-Unselected"] forState:UIControlStateNormal];
             [btn setImage:[UIImage imageNamed:@"RadioButton-Selected"] forState:UIControlStateSelected];
+            
+
             // 点击生肖时，选中/取消选中对应号码
             [btn addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
                 BOOL selected = sender.selected = !sender.selected;
                 NSInteger cnt = 0;
+
+                NSArray<UGZodiacModel> *array =  self.playOddsModel.setting.zodiacNums;
                 
+                NSLog(@"self.playOddsModel= %@",self.playOddsModel);
+                NSMutableArray *nums = [NSMutableArray new];
+                for (UGZodiacModel *ob in array) {
+                    if ([ob.name isEqualToString:titles[i]]) {
+                        for (NSNumber *jb in ob.nums) {
+                            [nums addObject:[NSString stringWithFormat:@"%@",jb]];
+                        }
+                        break;
+                    }
+                }
+
                 UGGameplayModel *gm = __self.gameDataArray[__self.typeIndexPath.row];
-                NSLog(@"gm.list = %@",gm.list);
-                
                 NSString *tl =  [self.tmTitleArray objectAtIndex:self.segmentIndex];
                 UGGameplaySectionModel *gsm = [gm.list objectWithValue:tl keyPath:@"name"];
                 for (UGGameBetModel *gbm in gsm.list) {
-                    if ([gbm.name isInteger] && (gbm.name.intValue-1)%12 == 12-1-i)
+//                    if ([gbm.name isInteger] && (gbm.name.intValue-1)%12 == 12-1-i)
+                    NSString *rs = [self conversionInt:gbm.name];
+                    if ([gbm.name isInteger] && [nums containsObject:rs])
                         gbm.select = selected;
                     if (gbm.select)
                         cnt++;
@@ -1579,6 +1597,17 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     return _zodiacScrollView;
 }
 
+
+-(NSString *)conversionInt:(NSString *)intStr{
+    NSString *rs;
+    if ([@"01,02,03,04,05,06,07,08,09" containsString:intStr]) {
+        rs =  [intStr substringFromIndex:intStr.length-1];
+        
+    } else {
+        rs = intStr;
+    }
+    return rs;
+}
 - (NSArray<NSString *> *)numColorArray {
     if (_numColorArray == nil) {
         _numColorArray = [self.nextIssueModel.preNumColor componentsSeparatedByString:@","];
