@@ -29,6 +29,12 @@
     self.nameLabel.textColor = Skin1.textColor1;
     self.hotImageView.hidden = YES;
     
+    if (APP.isWhite) {
+        self.layer.borderWidth = 1;
+        self.layer.borderColor = [[UIColor whiteColor] CGColor];
+    }
+    
+    
 	[self addSubview:self.hasSubSign];
 	[self.hasSubSign mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.centerY.equalTo(self);
@@ -52,6 +58,9 @@
             __timer = nil;
         }
     }];
+    
+    
+    
 }
 
 - (void)setItem:(GameModel *)item {

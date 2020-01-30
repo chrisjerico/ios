@@ -167,6 +167,10 @@
     }
 }
 
+- (BOOL)isWhite {
+    return [@"c213" containsString:_SiteId];
+}
+
 - (BOOL)isHideText {
     return [@"c200" containsString:_SiteId];
 }

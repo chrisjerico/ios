@@ -57,6 +57,7 @@
 @property (nonatomic) BOOL isShowWZ;    /**<  将选填 这两个字更换为  如果没有，可不填写 */
 @property (nonatomic) BOOL isShowJinbei;    /**<  显示金杯 */
 @property (nonatomic) BOOL isHideText;    /**<  在线三方支付设置快捷金额后，隐藏掉输入金额那一栏 */
+@property (nonatomic) BOOL isWhite;    /**<  首页游戏cell加白边 */
 
 
 // 热更新相关字段
