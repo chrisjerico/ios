@@ -1165,7 +1165,7 @@
 	[CMNetwork getPromoteListWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
 		[CMResult processWithResult:model success:^{
 			UGPromoteListModel *listModel = model.data;
-            NSArray *smallArray ;
+            NSArray *smallArray = [NSArray new]; ;
             if (![CMCommon arryIsNull:listModel.list]) {
                 if (listModel.list.count>5) {
                     smallArray = [listModel.list subarrayWithRange:NSMakeRange(0, 5)];
