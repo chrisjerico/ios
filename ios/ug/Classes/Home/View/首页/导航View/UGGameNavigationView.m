@@ -202,6 +202,8 @@
 			make.centerX.equalTo(self).offset(20);
 			make.top.equalTo(self);
 		}];
+        
+
 	}
 	return self;
 }
