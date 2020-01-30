@@ -361,7 +361,7 @@
 {
     if ([keyPath isEqualToString:@"contentSize"]) {
         CGFloat ht = self.tableView.contentSize.height;
-        self.tableView.cc_constraints.height.constant  = ht +10;
+        self.tableView.cc_constraints.height.constant  = ht +2;
     }
 }
 
@@ -431,7 +431,7 @@
         
         self.tableView.backgroundColor = Skin1.bgColor;
         [self.tableView addObserver:self forKeyPath:@"contentSize"  options:NSKeyValueObservingOptionNew context:@"tableContext"];
-        
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
         
 		subView(@"优惠活动Cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor : Skin1.homeContentColor;
