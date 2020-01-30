@@ -186,6 +186,9 @@
 @property (weak, nonatomic) IBOutlet UITableView *betFormTableView;
 @property (nonatomic, strong) BetFormViewModel * betFormViewModel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *betFormTableHeight;
+//-------------------------------------------
+//优惠活动列表
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -200,6 +203,7 @@
 	}
 	[_lhPrizeView.countDownForLabel destoryTimer];
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self.tableView removeObserver:self forKeyPath:@"contentSize" context:@"tableContext"];
 }
 - (JS_TitleView *)js_titleView {
 	if (!_js_titleView) {
@@ -352,6 +356,15 @@
 	}
 }
 
+/** 监听自适应高度 */
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"contentSize"]) {
+        CGFloat ht = self.tableView.contentSize.height;
+        self.tableView.cc_constraints.height.constant  = ht +10;
+    }
+}
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	FastSubViewCode(self.view);
@@ -415,6 +428,12 @@
 	
 	// 配置初始UI
 	{
+        
+        self.tableView.backgroundColor = Skin1.bgColor;
+        [self.tableView addObserver:self forKeyPath:@"contentSize"  options:NSKeyValueObservingOptionNew context:@"tableContext"];
+        
+
+        
 		subView(@"优惠活动Cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor : Skin1.homeContentColor;
 		subImageView(@"公告图标ImageView").image = [[UIImage imageNamed:@"notice"] qmui_imageWithTintColor:Skin1.textColor1];
 		subImageView(@"优惠活动图标ImageView").image = [[UIImage imageNamed:@"礼品-(1)"] qmui_imageWithTintColor:Skin1.textColor1];
@@ -1146,33 +1165,16 @@
 	[CMNetwork getPromoteListWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
 		[CMResult processWithResult:model success:^{
 			UGPromoteListModel *listModel = model.data;
-			int i=0;
-			for (UIView *v in __self.promotionsStackView.arrangedSubviews) {
-				if (listModel.list.count <= i) {
-					v.hidden = true;
-					continue;
-				}
-				UGPromoteModel *pm = listModel.list[i++];
-				FastSubViewCode(v);
-				subLabel(@"优惠活动Label").text = pm.title;
-				subLabel(@"优惠活动Label").hidden = !pm.title.length;
-				[subImageView(@"优惠活动ImageView") sd_setImageWithURL:[NSURL URLWithString:pm.pic] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-					if (image) {
-						subImageView(@"优惠活动ImageView").cc_constraints.height.constant = image.height/image.width * (APP.Width - 48);
-					}
-				}];
-				subView(@"优惠活动Cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor : Skin1.homeContentColor;
-				[subButton(@"优惠活动Button") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
-				[subButton(@"优惠活动Button") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-					BOOL ret = [NavController1 pushViewControllerWithLinkCategory:pm.linkCategory linkPosition:pm.linkPosition];
-					if (!ret) {
-						// 去优惠详情
-						UGPromoteDetailController *detailVC = [[UGPromoteDetailController alloc] init];
-						detailVC.item = pm;
-						[NavController1 pushViewController:detailVC animated:YES];
-					}
-				}];
-			}
+            NSArray *smallArray ;
+            if (![CMCommon arryIsNull:listModel.list]) {
+                if (listModel.list.count>5) {
+                    smallArray = [listModel.list subarrayWithRange:NSMakeRange(0, 5)];
+                } else {
+                    smallArray = listModel.list;
+                }
+            }
+            [__self.tableView.dataArray setArray:smallArray];
+            [__self.tableView reloadData];
 			__self.promotionView.hidden = !SysConf.m_promote_pos || !listModel.list.count;
 		} failure:nil];
 	}];
@@ -1622,5 +1624,72 @@
 - (void)emailButtonTaped {
 	[NavController1 pushViewController:[[UGMailBoxTableViewController alloc] initWithStyle:UITableViewStyleGrouped] animated:true];
 }
+
+#pragma mark - Table view data source
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return tableView.dataArray.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell;
+    if ([@"c190" containsString:APP.SiteId]) {
+        cell  = [tableView dequeueReusableCellWithIdentifier:@"cell190" forIndexPath:indexPath];
+    }
+    else{
+        cell  = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    }
+    UGPromoteModel *pm = tableView.dataArray[indexPath.row];
+    FastSubViewCode(cell);
+    if ([@"c190" containsString:APP.SiteId]) {
+        subView(@"StackView").cc_constraints.top.constant = pm.title.length ? 12 : 0;
+        subView(@"StackView").cc_constraints.bottom.constant = 0;
+    }
+    
+    subView(@"cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor : Skin1.homeContentColor;
+    subLabel(@"标题Label").textColor = Skin1.textColor1;
+    subLabel(@"标题Label").text = pm.title;
+    subLabel(@"标题Label").hidden = !pm.title.length;
+    
+    UIImageView *imgView = [cell viewWithTagString:@"图片ImageView"];
+    imgView.frame = cell.bounds;
+    NSURL *url = [NSURL URLWithString:pm.pic];
+    UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:url]];
+    if (image) {
+        if ([@"c190" containsString:APP.SiteId]) {
+            CGFloat w = APP.Width;
+            CGFloat h = image.height/image.width * w;
+            imgView.cc_constraints.height.constant = h;
+        } else {
+            CGFloat w = APP.Width - 48;
+            CGFloat h = image.height/image.width * w;
+            imgView.cc_constraints.height.constant = h;
+        }
+        [imgView sd_setImageWithURL:url];   // 由于要支持gif动图，还是用sd加载
+    } else {
+        __weakSelf_(__self);
+        __weak_Obj_(imgView, __imgView);
+        imgView.cc_constraints.height.constant = 60;
+        [imgView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"placeholder"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+            if (image) {
+                [__self.tableView reloadRowAtIndexPath:indexPath withRowAnimation:UITableViewRowAnimationNone];
+            }
+        }];
+    }
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UGPromoteModel *pm = tableView.dataArray[indexPath.row];
+    BOOL ret = [NavController1 pushViewControllerWithLinkCategory:pm.linkCategory linkPosition:pm.linkPosition];
+    if (!ret) {
+        // 去优惠详情
+        UGPromoteDetailController *detailVC = [[UGPromoteDetailController alloc] init];
+        detailVC.item = pm;
+        [NavController1 pushViewController:detailVC animated:YES];
+    }
+}
+
+
 @end
 
