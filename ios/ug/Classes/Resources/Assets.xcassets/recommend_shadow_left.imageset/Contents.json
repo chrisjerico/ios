@@ -2,22 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "阴影.png",
       "scale" : "1x"
     },
     {
-      "resizing" : {
-        "mode" : "3-part-vertical",
-        "center" : {
-          "mode" : "tile",
-          "height" : 4
-        },
-        "cap-insets" : {
-          "top" : 0,
-          "bottom" : 0
-        }
-      },
       "idiom" : "universal",
-      "filename" : "recommend_shadow.png",
       "scale" : "2x"
     },
     {

@@ -48,6 +48,12 @@
 	//	[_tableView reloadData];
     _avatarImageView.layer.cornerRadius = 42;
     _avatarImageView.layer. masksToBounds = YES; // 部分UIView需要设置这个属性
+    if (Skin1.isBlack) {
+        [self.tableView setBackgroundColor:Skin1.CLBgColor];
+        [self.view setBackgroundColor:Skin1.CLBgColor];
+//        [self.tableView setSeparatorColor : Skin1.textColor1];
+//        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    }
 	
 }
 
@@ -61,7 +67,15 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
 	cell.textLabel.font = [UIFont boldSystemFontOfSize:16];
-	cell.textLabel.textColor = [UIColor colorWithHex:0x484D52];
+    if (Skin1.isBlack) {
+       cell.textLabel.textColor = Skin1.textColor1;
+       cell.backgroundColor = Skin1.cellBgColor;
+    }
+    else{
+        cell.textLabel.textColor = [UIColor colorWithHex:0x484D52];
+        cell.backgroundColor = [UIColor whiteColor];
+    }
+	
 	cell.textLabel.text = _items[indexPath.row];
 	cell.separatorInset = UIEdgeInsetsMake(0, 16, 0, 16);
 	cell.imageView.image = [UIImage imageNamed:@[@"my_promotion_tuiguangzhuanqian.png",

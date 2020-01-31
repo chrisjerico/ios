@@ -171,7 +171,7 @@
             site(@"c208",        @"c208hy",     @"246",     @"io.fhpt.YSAC208",         @"https://771aa771.com",                        @"企业包",     @"威尼斯人"),//
             site(@"c212",        @"c212hy",     @"247",     @"io.fhpt.YSAC212",         @"https://00852030.com",                        @"企业包",     @"新葡京"),//
             site(@"c213",        @"c213hy",     @"248",     @"io.fhpt.YSAC213",         @"https://450450app.com",                       @"企业包",     @"450集团"),//
-            
+            site(@"c216",        @"c216hy",     @"250",     @"io.fhpt.YSAC216",         @"https://www.6510086.com/",                    @"企业包",     @"凤凰彩票"),//
             
             site(@"test103",     @"test103",    @"222",     @"com.UGGame.cp",           @"http://103.9.230.243",                        @"内测包",     @"test103"),
             site(@"test10",      @"88",         @"125",     @"com.UGGame.cp",           @"http://test10.6yc.com",                       @"内测包",     @"test10"),
