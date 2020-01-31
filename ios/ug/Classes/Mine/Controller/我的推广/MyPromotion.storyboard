@@ -884,6 +884,9 @@
                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                 <color key="textColor" red="0.52156862745098043" green="0.5490196078431373" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="用户名Label"/>
+                                                                </userDefinedRuntimeAttributes>
                                                             </label>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -893,6 +896,9 @@
                                                             <constraint firstAttribute="width" constant="90" id="fFh-l0-tIA"/>
                                                             <constraint firstAttribute="height" constant="36" id="iCD-ab-80u"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="用户名View"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="K2O-Iy-e1j">
                                                         <rect key="frame" x="0.0" y="37" width="90" height="1006"/>
@@ -1247,6 +1253,9 @@
                                                             <constraint firstItem="qLf-vo-0Hi" firstAttribute="centerX" secondItem="Txp-L6-lbU" secondAttribute="centerX" id="sHj-at-G5D"/>
                                                             <constraint firstAttribute="height" constant="36" id="uzw-ZM-icz"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="操作View"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="NL5-Uf-6WE">
                                                         <rect key="frame" x="0.0" y="37" width="49" height="1006"/>
