@@ -1141,4 +1141,14 @@ static NSString *uuidKey =@"uuidKey";
     return vc;
 
 }
+
+
+/**
+*   NavigationController返回上一层界面
+*
+*
+*/
++(void )goPreviousVC{
+    [NavController1 popViewControllerAnimated:YES];
+}
 @end

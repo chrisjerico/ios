@@ -1882,6 +1882,7 @@
 		D4463AC623A7740E008EF03D /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D4463AC523A7740E008EF03D /* libresolv.tbd */; };
 		D4564A4523E3E3A800A1A8C6 /* UIView+shadowPath.m in Sources */ = {isa = PBXBuildFile; fileRef = D4564A4423E3E3A800A1A8C6 /* UIView+shadowPath.m */; };
 		D4564A4623E3E3A800A1A8C6 /* UIView+shadowPath.m in Sources */ = {isa = PBXBuildFile; fileRef = D4564A4423E3E3A800A1A8C6 /* UIView+shadowPath.m */; };
+		D4564A4723E3FA9600A1A8C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4B75E15227802600007047C /* Assets.xcassets */; };
 		D4AE1C0A22C0FCC400C142FE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AE1C0922C0FCC300C142FE /* AppDelegate.m */; };
 		D4B75E16227802600007047C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4B75E15227802600007047C /* Assets.xcassets */; };
 		D4B75E19227802600007047C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B75E17227802600007047C /* LaunchScreen.storyboard */; };
@@ -3889,11 +3890,11 @@
 		031E142023BE812300B0F813 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				D4564A4123E326FE00A1A8C6 /* View带阴影分类 */,
 				031E142223BE812300B0F813 /* FishUtility */,
 				031E14E523BE812300B0F813 /* CMCommon */,
 				031E14C223BE812300B0F813 /* CMNetwork */,
 				D433EBF323D4939000D31008 /* 截屏UIImage分类 */,
+				D4564A4123E326FE00A1A8C6 /* View带阴影分类 */,
 				D435F8FF23CEF940008648CE /* KMCGeigerCounter */,
 				D4F0411423C868E20070D2B5 /* WHC_SqliteKit */,
 				031E155223BE812300B0F813 /* segmentListControl */,
@@ -7876,6 +7877,7 @@
 				031E1B5523BE812800B0F813 /* UGredEnvelopeView.xib in Resources */,
 				031E1C1523BE812900B0F813 /* UGLinkNumCollectionViewCell.xib in Resources */,
 				031E198723BE812600B0F813 /* UGScratchMusicView.xib in Resources */,
+				D4564A4723E3FA9600A1A8C6 /* Assets.xcassets in Resources */,
 				031EF57223BE7B4D00B0F813 /* kai.svg in Resources */,
 				031E1D3523BE812B00B0F813 /* UGAgentViewController.xib in Resources */,
 				031E1BF123BE812900B0F813 /* UGQXCLotteryController.storyboard in Resources */,

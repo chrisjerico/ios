@@ -17,6 +17,7 @@
 #import "YBPopupMenu.h"
 #import <BRPickerView.h>
 #import "CMTimeCommon.h"
+#import "UITableView+LSEmpty.h"
 @interface PromotionBetRecordVC ()<UITableViewDelegate, UITableViewDataSource, YBPopupMenuDelegate>
 {
 	NSInteger _levelindex;
@@ -83,11 +84,8 @@
 	self.tableView.tableFooterView = [UIView new];
 	[weakSelf loadData];
 	self.navigationItem.title = @"彩票投注记录";
-//	UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//	[rightButton setTitle:@"其它" forState:UIControlStateNormal];
-//	rightButton.titleLabel.textColor = UIColor.whiteColor;
-//	[rightButton addTarget:self action:@selector(rightButtonTaped) forControlEvents:UIControlEventTouchUpInside];
-//	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
+    self.tableView.startTip = YES;
+    self.tableView.tipTitle = @"暂无更多数据";
 	
 	
 }

@@ -236,7 +236,7 @@
     double proportion = [self.mUGinviteInfoModel.fandian doubleValue];
     double jg =  proportion *1000/100;
     NSString *jgStr = [NSString stringWithFormat:@"%.2f",jg];
-    self.sectionLabel4.text =  [NSString stringWithFormat:@"您推荐的会员在下注结算后，佣金会自动按照比例加到您的资金账户上。例如：您所推荐的会员下注1000元，您的收益=1000元*(一级下线比例比如：%@%）=%@元。",self.mUGinviteInfoModel.fandian,jgStr];
+    self.sectionLabel4.text =  [NSString stringWithFormat:@"您推荐的会员在下注结算后，佣金会自动按照比例加到您的资金账户上。例如：您所推荐的会员下注1000元，您的收益=1000元*(一级下线比例比如：%@%%）=%@元。",self.mUGinviteInfoModel.fandian,jgStr];
 
    [self.myQrcode1ImageView setImage:[SGQRCodeObtain generateQRCodeWithData:self.mUGinviteInfoModel.link_i size:160.0]];
     

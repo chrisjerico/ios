@@ -14,6 +14,7 @@
 #import "YBPopupMenu.h"
 #import <BRPickerView.h>
 #import "CMTimeCommon.h"
+#import "UITableView+LSEmpty.h"
 @interface PromotionWithdrawalsRecordVC ()<UITableViewDelegate, UITableViewDataSource, YBPopupMenuDelegate>
 {
     NSInteger _levelindex;
@@ -75,6 +76,8 @@
     self.tableView.tableFooterView = [UIView new];
     [weakSelf loadData];
     self.navigationItem.title = @"取款记录";
+    self.tableView.startTip = YES;
+    self.tableView.tipTitle = @"暂无更多数据";
 }
 
 - (IBAction)levelButtonTaped:(id)sender {

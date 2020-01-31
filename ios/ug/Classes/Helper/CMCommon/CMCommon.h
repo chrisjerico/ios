@@ -313,4 +313,11 @@ chat_type=crm 设置意味着营销qq，可以和陌生人发起临时会话。
      type :1 :图片，2 url   3：带icon的url
 */
 +(UIActivityViewController *)sysSharText:(NSString *)text  Image:(UIImage *)image URL:(NSURL *)url  type:(NSString *)type;
+
+/**
+*   NavigationController返回上一层界面
+*
+*
+*/
++(void )goPreviousVC;
 @end

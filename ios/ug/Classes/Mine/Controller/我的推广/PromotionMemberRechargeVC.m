@@ -40,6 +40,8 @@
 	self.myBalanceLabel.text = UGUserModel.currentUser.balance;
 }
 - (IBAction)cancelButtonTaped:(id)sender {
+//    [self.navigationController popViewControllerAnimated:YES];
+    [CMCommon goPreviousVC];
 }
 - (IBAction)confirmButtonTaped:(id)sender {
     if (!SysConf.switchAgentRecharge) {

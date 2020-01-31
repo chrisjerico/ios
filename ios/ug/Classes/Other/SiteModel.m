@@ -55,7 +55,7 @@
             site(@"c114",        @"c114hy",     @"157",     @"",                        @"",                                            @"超级签名",    @"彩43"),          // https://dev.app2.xin/index | 19859553001 | wenxiang123123
             site(@"c190",        @"c190hy",     @"167",     @"io.fhpt.H5F40948F",       @"https://fhylofc190nyvqo.playslot8.com",       @"超级签名",    @"22333彩世界"),          // https://dev.app2.xin/index 账号：15559931943   密码：qwert12345
             site(@"c201",        @"c201hy",     @"213",     @"io.fhpt.YSFC201",         @"https://dkcp520.com",                         @"超级签名",    @"大咖彩票"),          //https://dev.app2.xin/index | 18675958156 | dk789789
-            site(@"c048",        @"c048hy",     @"133",     @"io.fhpt.H5F00A9FA",       @"https://dsjf43-43-f14-345-36-g54t-gfh54.com", @"超级签名",    @"凤凰国际"),//用户15687374617  密码   qaz123123  超级苹果签
+            site(@"c048",        @"c048hy",     @"133",     @"io.fhpt.H5F00A9FA",       @"https://dsjf43-43-f14-345-36-g54t-gfh54.com", @"超级签名",    @"凤凰国际"),//用户15687374617  密码   qaz123123  超级苹果签 
             site(@"l001",        @"l001hy",     @"218",     @"io.fhpt.YSFL001",         @"https://4988wap.com",                         @"超级签名",    @"六合宝典"),//激光账号，qazttcp@gmail.com 密码 ttcp2075ZXCs  ISO 超级签 18759487805    ZXC4988tianji
             
             site(@"l002",        @"l002hy",     @"239",     @"io.fhpt.YSAL002",         @"https://7033301.com",                             @"企业包",     @" 王中王"),//wang70333@gmail.com   WANGzhongwang70333   极光账号跟密码   

@@ -127,10 +127,10 @@
     UILabel * label2 = self.headerLabels[2];
     if (self.typeIndex == 0) {
         label.text = @"存款人数";
-        label.text = @"存款金额";
+        label2.text = @"存款金额";
     } else if (self.typeIndex == 1) {
         label.text = @"取款人数";
-        label.text = @"取款金额";
+        label2.text = @"取款金额";
     }
     [self loadData];
 }

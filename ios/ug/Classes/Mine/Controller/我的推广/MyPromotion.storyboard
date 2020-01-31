@@ -3417,7 +3417,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GGY-zR-wvU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2220" y="24.7376311844078"/>
+            <point key="canvasLocation" x="2218.840579710145" y="24.456521739130437"/>
         </scene>
         <!--充值-->
         <scene sceneID="UXz-gD-cLm">
@@ -4584,6 +4584,10 @@
                         <viewLayoutGuide key="safeArea" id="MlS-Ee-3yl"/>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="title1Lable" destination="3Vd-CE-2qp" id="qZh-OR-W9R"/>
+                        <outlet property="title2Lable" destination="ybM-ux-2qn" id="ZXP-4x-AYI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="shu-sR-aVP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -4872,7 +4876,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nhJ-ZG-tRh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3819" y="1406"/>
+            <point key="canvasLocation" x="4612" y="717"/>
         </scene>
         <!--存款记录-->
         <scene sceneID="PT5-on-5Zl">

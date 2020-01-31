@@ -13,9 +13,20 @@
 @end
 
 @implementation PromotionRecordCell1
+//其他报表
 - (void)bindOtherReport:(UGrealBetStatModel *)model {
-	((UILabel *)self.itemLabels[0]).text = [model.level stringValue];
-	((UILabel *)self.itemLabels[1]).text = model.date;
+    int intLevel = [model.level intValue];
+    if (intLevel == 0) {
+         ((UILabel *)self.itemLabels[0]).text = @"全部下线";
+    }
+    else{
+         ((UILabel *)self.itemLabels[0]).text = [NSString stringWithFormat:@"%d级下线",intLevel];
+    }
+    if ([CMCommon stringIsNull:model.date]) {
+        ((UILabel *)self.itemLabels[1]).text = @"--";
+    } else {
+        ((UILabel *)self.itemLabels[1]).text = model.date;
+    }
 	((UILabel *)self.itemLabels[2]).text = model.bet_sum;
 	((UILabel *)self.itemLabels[3]).text = model.netAmount;
 }
@@ -37,8 +48,18 @@
 
 }
 - (void)bindBetRecord:(UGBetListModel *)model {
-	((UILabel *)self.itemLabels[0]).text = [model.level stringValue];
-	((UILabel *)self.itemLabels[1]).text = model.date;
+    int intLevel = [model.level intValue];
+    if (intLevel == 0) {
+         ((UILabel *)self.itemLabels[0]).text = @"全部下线";
+    }
+    else{
+         ((UILabel *)self.itemLabels[0]).text = [NSString stringWithFormat:@"%d级下线",intLevel];
+    }
+    if ([CMCommon stringIsNull:model.date]) {
+        ((UILabel *)self.itemLabels[1]).text = @"--";
+    } else {
+        ((UILabel *)self.itemLabels[1]).text = model.date;
+    }
 	((UILabel *)self.itemLabels[2]).text = model.username;
 	((UILabel *)self.itemLabels[3]).text = model.money;
 
@@ -52,7 +73,6 @@
     else{
         ((UILabel *)self.itemLabels[0]).text = [NSString stringWithFormat:@"%d级下线",intLevel];
     }
-    ((UILabel *)self.itemLabels[0]).text = [model.level stringValue];
     if ([CMCommon stringIsNull:model.date]) {
         ((UILabel *)self.itemLabels[1]).text = @"--";
     } else {
@@ -75,7 +95,6 @@
     else{
         ((UILabel *)self.itemLabels[0]).text = [NSString stringWithFormat:@"%d级下线",intLevel];
     }
-    ((UILabel *)self.itemLabels[0]).text = [model.level stringValue];
     if ([CMCommon stringIsNull:model.date]) {
         ((UILabel *)self.itemLabels[1]).text = @"--";
     } else {

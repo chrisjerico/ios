@@ -52,7 +52,7 @@
 @implementation PromotionBetReportVC
 -(UISegmentedControl *)titleSegment {
 	if (!_titleSegment) {
-		_titleSegment = [[UISegmentedControl alloc] initWithItems:@[@"彩票报表", @"第三方报表"]];
+		_titleSegment = [[UISegmentedControl alloc] initWithItems:@[@"彩票报表", @"其他报表"]];
 		[_titleSegment setTitleTextAttributes:@{NSForegroundColorAttributeName:Skin1.navBarBgColor} forState:UIControlStateSelected];
 		[_titleSegment setTitleTextAttributes:@{NSForegroundColorAttributeName:UIColor.whiteColor} forState:UIControlStateNormal];
 		_titleSegment.layer.borderWidth = 0.5;

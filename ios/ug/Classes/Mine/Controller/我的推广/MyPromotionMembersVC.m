@@ -62,6 +62,8 @@ static NSString * promotionMemberItemKey = @"promotionMemberItemKey";
 	self.rootScrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
 		[weakSelf loadData];
 	}];
+    [self getSystemConfig];
+    
 	[self cleanAllStack];
 	[self loadInviteInfo];
     
@@ -71,6 +73,7 @@ static NSString * promotionMemberItemKey = @"promotionMemberItemKey";
 
 	
 }
+
 - (void)loadData {
 	if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
 		return;
@@ -103,6 +106,20 @@ static NSString * promotionMemberItemKey = @"promotionMemberItemKey";
 		
 	}];
 }
+
+// 获取系统配置
+- (void)getSystemConfig {
+    [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            NSLog(@"model = %@",model);
+            UGSystemConfigModel *config = model.data;
+            UGSystemConfigModel.currentConfig = config;
+        } failure:^(id msg) {
+            [SVProgressHUD showErrorWithStatus:msg];
+        }];
+    }];
+}
+
 
 - (void)loadInviteInfo {
     if ([UGUserModel currentUser].isTest) {
