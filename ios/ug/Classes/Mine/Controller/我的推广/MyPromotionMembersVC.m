@@ -66,8 +66,26 @@ static NSString * promotionMemberItemKey = @"promotionMemberItemKey";
         [subLabel(@"推荐会员Label") setTextColor:Skin1.textColor1];
         [_inviteTotalCountLabel setTextColor:Skin1.textColor1];
         
+        [subView(@"用户名View") setBackgroundColor:Skin1.textColor4];
+        [subLabel(@"用户名Label") setTextColor:Skin1.textColor1];
         
+        [subView(@"操作View") setBackgroundColor:Skin1.textColor4];
+        [subLabel(@"操作Label") setTextColor:Skin1.textColor1];
         
+        [subView(@"分级View") setBackgroundColor:Skin1.textColor4];
+        [subLabel(@"分级Label") setTextColor:Skin1.textColor1];
+        
+        [subView(@"状态View") setBackgroundColor:Skin1.textColor4];
+        [subLabel(@"状态Label") setTextColor:Skin1.textColor1];
+        
+        [subView(@"下线盈亏View") setBackgroundColor:Skin1.textColor4];
+        [subLabel(@"下线盈亏Label") setTextColor:Skin1.textColor1];
+        
+        [subView(@"最后登录时间View") setBackgroundColor:Skin1.textColor4];
+        [subLabel(@"最后登录时间Label") setTextColor:Skin1.textColor1];
+        
+        [subView(@"注册时间View") setBackgroundColor:Skin1.textColor4];
+        [subLabel(@"注册时间Label") setTextColor:Skin1.textColor1];
     }
     
     
@@ -262,9 +280,10 @@ static NSString * promotionMemberItemKey = @"promotionMemberItemKey";
 
 - (void)bindContent: (NSString *)content {
 	UIView * view = [UIView new];
-	view.backgroundColor = UIColor.whiteColor;
+
+	
 	UILabel * label = [UILabel new];
-	label.textColor = [UIColor colorWithHex:0x484D52];
+	
 	label.font = [UIFont systemFontOfSize:12];
 	label.textAlignment = NSTextAlignmentCenter;
 	label.numberOfLines = 0;
@@ -275,14 +294,21 @@ static NSString * promotionMemberItemKey = @"promotionMemberItemKey";
 	}];
 	label.text = content;
 	[self addArrangedSubview:view];
+    
+    if (Skin1.isBlack) {
+        view.backgroundColor = Skin1.textColor4;
+        label.textColor = Skin1.textColor1;
+    } else {
+        view.backgroundColor = UIColor.whiteColor;
+        label.textColor = [UIColor colorWithHex:0x484D52];
+    }
 }
 
 - (void)bindHandle: (void (^)(UIButton *)) handle {
 	UIView * view = [UIView new];
-	view.backgroundColor = UIColor.whiteColor;
 	UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
 	[button setTitle:@"充值" forState:UIControlStateNormal];
-	[button setTitleColor: [UIColor colorWithHex:0xF15C5F] forState:UIControlStateNormal];
+
 	button.titleLabel.font = [UIFont systemFontOfSize:12];
 	[view addSubview:button];
 	[button mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -291,6 +317,14 @@ static NSString * promotionMemberItemKey = @"promotionMemberItemKey";
 	}];
 	[self addArrangedSubview:view];
 	handle(button);
+    
+    if (Skin1.isBlack) {
+        view.backgroundColor = Skin1.textColor4;
+        [button setTitleColor: Skin1.textColor1 forState:UIControlStateNormal];
+    } else {
+        view.backgroundColor = UIColor.whiteColor;
+        [button setTitleColor: [UIColor colorWithHex:0xF15C5F] forState:UIControlStateNormal];
+    }
 }
 @end
 

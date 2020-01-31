@@ -140,6 +140,15 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    
+    if (Skin1.isBlack) {
+        [((UILabel *)self.itemLabels[0]) setTextColor:Skin1.textColor1];
+        [((UILabel *)self.itemLabels[1]) setTextColor:Skin1.textColor1];
+        [((UILabel *)self.itemLabels[2]) setTextColor:Skin1.textColor1];
+        [((UILabel *)self.itemLabels[3]) setTextColor:Skin1.textColor1];
+        
+        [self setBackgroundColor:Skin1.cellBgColor];
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

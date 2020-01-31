@@ -31,6 +31,37 @@
 	self.memberBalanceLabel.text = nil;
 	self.myBalanceLabel.text = nil;
     self.rechargeField.delegate = self;
+     FastSubViewCode(self.view);
+      if (Skin1.isBlack) {
+          [self.view setBackgroundColor:Skin1.CLBgColor];
+          [subView(@"上面View") setBackgroundColor:Skin1.textColor4];
+          [subView(@"上级关系View") setBackgroundColor:Skin1.textColor4];
+          [subLabel(@"上级关系Label") setTextColor:Skin1.textColor1];
+          [subLabel(@"上级关系内容Label") setTextColor:Skin1.textColor1];
+          
+          [subView(@"用户名View") setBackgroundColor:Skin1.textColor4];
+          [subLabel(@"用户名Label") setTextColor:Skin1.textColor1];
+          [subLabel(@"用户名内容Label") setTextColor:Skin1.textColor1];
+          
+          [subView(@"用户余额View") setBackgroundColor:Skin1.textColor4];
+          [subLabel(@"用户余额Label") setTextColor:Skin1.textColor1];
+          [subLabel(@"用户余额内容Label") setTextColor:Skin1.textColor1];
+          
+          [subView(@"我的余额View") setBackgroundColor:Skin1.textColor4];
+          [subLabel(@"我的余额Label") setTextColor:Skin1.textColor1];
+          [subLabel(@"我的余额内容Label") setTextColor:Skin1.textColor1];
+          
+          [subView(@"下面View") setBackgroundColor:Skin1.textColor4];
+          
+          [subLabel(@"用户名2Label") setTextColor:Skin1.textColor1];
+          [subLabel(@"钱Label") setTextColor:Skin1.textColor1];
+          [subLabel(@"范围Label") setTextColor:Skin1.textColor1];
+          
+          [subButton(@"确定Btn") setBackgroundColor:Skin1.navBarBgColor];
+          
+          
+      }
+    
 }
 - (void)bindMember:(UGinviteLisModel *)member {
 	self.promotionMember = member;
