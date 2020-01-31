@@ -1880,6 +1880,8 @@
 		D4463AC223A773F9008EF03D /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D4463AC123A773F9008EF03D /* libz.tbd */; };
 		D4463AC423A77404008EF03D /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4463AC323A77404008EF03D /* UserNotifications.framework */; };
 		D4463AC623A7740E008EF03D /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D4463AC523A7740E008EF03D /* libresolv.tbd */; };
+		D4564A4523E3E3A800A1A8C6 /* UIView+shadowPath.m in Sources */ = {isa = PBXBuildFile; fileRef = D4564A4423E3E3A800A1A8C6 /* UIView+shadowPath.m */; };
+		D4564A4623E3E3A800A1A8C6 /* UIView+shadowPath.m in Sources */ = {isa = PBXBuildFile; fileRef = D4564A4423E3E3A800A1A8C6 /* UIView+shadowPath.m */; };
 		D4AE1C0A22C0FCC400C142FE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AE1C0922C0FCC300C142FE /* AppDelegate.m */; };
 		D4B75E16227802600007047C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4B75E15227802600007047C /* Assets.xcassets */; };
 		D4B75E19227802600007047C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B75E17227802600007047C /* LaunchScreen.storyboard */; };
@@ -3640,6 +3642,8 @@
 		D4463AC123A773F9008EF03D /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		D4463AC323A77404008EF03D /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		D4463AC523A7740E008EF03D /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
+		D4564A4323E3E3A800A1A8C6 /* UIView+shadowPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+shadowPath.h"; sourceTree = "<group>"; };
+		D4564A4423E3E3A800A1A8C6 /* UIView+shadowPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+shadowPath.m"; sourceTree = "<group>"; };
 		D4AE1C0922C0FCC300C142FE /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		D4B75E092278025E0007047C /* testC053.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testC053.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4B75E0C2278025E0007047C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -3885,6 +3889,7 @@
 		031E142023BE812300B0F813 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				D4564A4123E326FE00A1A8C6 /* View带阴影分类 */,
 				031E142223BE812300B0F813 /* FishUtility */,
 				031E14E523BE812300B0F813 /* CMCommon */,
 				031E14C223BE812300B0F813 /* CMNetwork */,
@@ -7541,6 +7546,15 @@
 			path = KMCGeigerCounter;
 			sourceTree = "<group>";
 		};
+		D4564A4123E326FE00A1A8C6 /* View带阴影分类 */ = {
+			isa = PBXGroup;
+			children = (
+				D4564A4323E3E3A800A1A8C6 /* UIView+shadowPath.h */,
+				D4564A4423E3E3A800A1A8C6 /* UIView+shadowPath.m */,
+			);
+			path = "View带阴影分类";
+			sourceTree = "<group>";
+		};
 		D4B75E002278025E0007047C = {
 			isa = PBXGroup;
 			children = (
@@ -8596,6 +8610,7 @@
 				031EF53523BE7B4D00B0F813 /* CustomMappable.swift in Sources */,
 				031E1BFF23BE812900B0F813 /* UGYYLotteryHomeViewController.m in Sources */,
 				031E1B5B23BE812800B0F813 /* UGredActivityView.m in Sources */,
+				D4564A4623E3E3A800A1A8C6 /* UIView+shadowPath.m in Sources */,
 				031E1ABF23BE812800B0F813 /* WMMenuCell.m in Sources */,
 				031E19C523BE812700B0F813 /* UIView+Utils.m in Sources */,
 				031E1CC523BE812A00B0F813 /* UIScrollView+MJRefresh.m in Sources */,
@@ -9686,6 +9701,7 @@
 				CFCF6DBF23C5B8370039588D /* ReactNativeHelper.m in Sources */,
 				031E1A8E23BE812700B0F813 /* SAROPSession.m in Sources */,
 				031E1DEC23BE812C00B0F813 /* UGMissionTitleCollectionView.m in Sources */,
+				D4564A4523E3E3A800A1A8C6 /* UIView+shadowPath.m in Sources */,
 				031E19A823BE812600B0F813 /* AppDefine.m in Sources */,
 				031E1D2E23BE812B00B0F813 /* UGSigInCodeViewController.m in Sources */,
 				031E1BDC23BE812900B0F813 /* UGBJKL8LotteryController.m in Sources */,
