@@ -10,8 +10,12 @@
 #import "UGinviteInfoModel.h"
 
 @interface PromotionIntroductionVC ()
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *title1Lable;
 @property (weak, nonatomic) IBOutlet UILabel *title2Lable;
+@property (strong, nonatomic) IBOutlet UIView *bgView;      /**<   自定义导航条 */
+@property (weak, nonatomic) IBOutlet UIView *contentView;   /**<   自定义导航条 */
+
 
 
 @property (strong, nonatomic)  UGinviteInfoModel *mUGinviteInfoModel;
@@ -24,6 +28,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
    [self teamInviteInfoData];
+    
+    if (Skin1.isBlack) {
+        [_bgView setBackgroundColor:Skin1.CLBgColor];
+        [_bgView setBackgroundColor:Skin1.bgColor];
+        [_titleLabel setTextColor:Skin1.textColor1];
+        [_title1Lable setTextColor:Skin1.textColor1];
+        [_title2Lable setTextColor:Skin1.textColor3];
+        
+    }
 }
 
 #pragma mark -- 网络请求

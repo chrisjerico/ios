@@ -39,6 +39,7 @@ static NSString * promotionMemberItemKey = @"promotionMemberItemKey";
 @property (weak, nonatomic) IBOutlet UIButton *levelSelectButton;
 @property (weak, nonatomic) IBOutlet UILabel *inviteTotalCountLabel;
 
+
 @property (weak, nonatomic) IBOutlet UITextField *searchTxt;
 @property(nonatomic, strong) NSMutableArray *originalArr;
 @property(nonatomic, strong) NSMutableArray *searchArr;
@@ -53,6 +54,23 @@ static NSString * promotionMemberItemKey = @"promotionMemberItemKey";
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+    FastSubViewCode(self.view);
+    if (Skin1.isBlack) {
+        [self.view setBackgroundColor:Skin1.CLBgColor];
+        [self.levelSelectView setBackgroundColor:Skin1.textColor4];
+        [self.levelSelectButton setTitleColor:Skin1.textColor1 forState:0];
+        [self.arrowImage setImage: [[UIImage imageNamed:@"arrow_down"] qmui_imageWithTintColor:Skin1.textColor1] ];
+        [subView(@"搜索View") setBackgroundColor:Skin1.textColor4];
+        [subImageView(@"搜索Img") setImage:[[UIImage imageNamed:@"tg_sousuo"] qmui_imageWithTintColor:Skin1.textColor1]];
+        [subView(@"下面View") setBackgroundColor:Skin1.textColor4];
+        [subLabel(@"推荐会员Label") setTextColor:Skin1.textColor1];
+        [_inviteTotalCountLabel setTextColor:Skin1.textColor1];
+        
+        
+        
+    }
+    
+    
 	self.items = [NSMutableArray array];
 	_levelArray = @[@"全部下线",@"1级下线",@"2级下线",@"3级下线",@"4级下线",@"5级下线",@"6级下线",@"7级下线",@"8级下线",@"9级下线",@"10级下线"];
 	_levelindex = 0;

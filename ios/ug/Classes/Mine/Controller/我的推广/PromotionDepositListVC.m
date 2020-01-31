@@ -125,6 +125,7 @@
     self.typeIndex = sender.selectedSegmentIndex;
     UILabel * label = self.headerLabels[3];
     UILabel * label2 = self.headerLabels[2];
+    
     if (self.typeIndex == 0) {
         label.text = @"存款人数";
         label2.text = @"存款金额";

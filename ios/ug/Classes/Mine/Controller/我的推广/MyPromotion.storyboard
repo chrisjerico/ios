@@ -3409,6 +3409,9 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="0.28235294119999998" green="0.30196078430000001" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="推荐会员Label"/>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="推荐会员总计" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ok0-cm-EpT">
                                         <rect key="frame" x="285.33333333333331" y="12" width="73.666666666666686" height="14.333333333333336"/>
@@ -3425,6 +3428,9 @@
                                     <constraint firstAttribute="height" constant="38" id="nCF-Cl-EnV"/>
                                     <constraint firstAttribute="trailing" secondItem="ok0-cm-EpT" secondAttribute="trailing" constant="16" id="qAw-Fm-T4Z"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="下面View"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nav-Y5-LkA" customClass="IBView">
                                 <rect key="frame" x="135" y="100" width="220" height="28"/>
@@ -3435,6 +3441,9 @@
                                             <constraint firstAttribute="width" constant="15" id="FXL-EZ-J1t"/>
                                             <constraint firstAttribute="height" constant="15" id="qSt-RT-wWd"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="搜索Img"/>
+                                        </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入会员名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f4V-es-xVD">
                                         <rect key="frame" x="15" y="0.0" width="160" height="28"/>
@@ -3456,6 +3465,7 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="圆角偏移量">
                                         <real key="value" value="14"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="搜索View"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
@@ -4664,8 +4674,11 @@
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="bgView" destination="aSC-Un-zVk" id="c2F-i1-ALq"/>
+                        <outlet property="contentView" destination="Xxj-vn-v92" id="X1K-Tt-Asa"/>
                         <outlet property="title1Lable" destination="3Vd-CE-2qp" id="qZh-OR-W9R"/>
                         <outlet property="title2Lable" destination="ybM-ux-2qn" id="ZXP-4x-AYI"/>
+                        <outlet property="titleLabel" destination="OxP-yt-KUt" id="FNN-Gl-DeA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="shu-sR-aVP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
