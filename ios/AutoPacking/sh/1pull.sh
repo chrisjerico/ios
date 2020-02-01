@@ -24,7 +24,7 @@ for i in $(seq 1 10)
 do
     __CommitId=`git rev-parse HEAD`
     git reset --hard $__CommitId
-    git clean -d -fx
+    git clean -d -f
     __Result=`git pull`
 
     echo $__Result;

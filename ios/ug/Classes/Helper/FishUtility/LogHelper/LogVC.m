@@ -82,6 +82,12 @@ static LogVC *_logVC = nil;
         swipe.direction = UISwipeGestureRecognizerDirectionRight;
         swipe;
     })];
+    
+    // 3击拷贝手势
+    [_logVC.resTextView addGestureTapEventHandle:^(id sender, UITapGestureRecognizer *gestureRecognizer) {
+        [UIPasteboard generalPasteboard].string = _logVC.resTextView.text;
+        [HUDHelper showMsg:@"已拷贝"];
+    }].numberOfTapsRequired = 3;
 }
 
 + (void)addRequestModel:(CCSessionModel *)sm {
