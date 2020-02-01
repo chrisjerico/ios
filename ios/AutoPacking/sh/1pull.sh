@@ -9,6 +9,16 @@ fi
 
 
 
+# 配置环境变量
+export PATH=/usr/local/bin:$PATH
+
+# 删除依赖库
+rm -rf node_modules
+
+# 重新安装rn依赖库
+yarn install
+
+
 # 循环10次拉取代码，直到已经是最新代码
 for i in $(seq 1 10)
 do
