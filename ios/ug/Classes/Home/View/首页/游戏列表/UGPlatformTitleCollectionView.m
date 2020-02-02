@@ -47,13 +47,11 @@
         UICollectionView *collectionView = ({
             collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, CollectionViewW, 55) collectionViewLayout:layout];
             collectionView.backgroundColor = _isBlack ? Skin1.bgColor : Skin1.homeContentColor;
-            if (APP.isWhite) {
-                  collectionView.layer.borderWidth = 1;
-                   collectionView.layer.borderColor = [UIColor whiteColor].CGColor;
-            }
+
 			if ([Skin1.skitType isEqualToString:@"金沙主题"]) {
 				collectionView.backgroundColor = UIColor.clearColor;
 			}
+ 
             collectionView.dataSource = self;
             collectionView.delegate = self;
 //            collectionView.layer.cornerRadius = (_isBlack||APP.isShowLogo || [Skin1.skitType isEqualToString:@"金沙主题"]) ? 0 : 10;
@@ -62,6 +60,11 @@
             [collectionView registerNib:[UINib nibWithNibName:@"UGPlatformTitleCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"默认Cell"];
             [collectionView registerNib:[UINib nibWithNibName:@"UGPlatformTitleBlackCell" bundle:nil] forCellWithReuseIdentifier:@"黑色模板Cell"];
             [collectionView setShowsHorizontalScrollIndicator:NO];
+            
+            if (APP.isWhite) {
+                 collectionView.layer.borderWidth = 1;
+                 collectionView.layer.borderColor = [UIColor whiteColor].CGColor;
+             }
             collectionView;
             
   
@@ -182,6 +185,10 @@
             }];
 //            __self.collectionView.layer.cornerRadius = (__self.isBlack||APP.isShowLogo) ? 0 : 10;
              __self.collectionView.layer.cornerRadius = __self.isBlack ? 0 : 10;
+            if (APP.isWhite) {
+                __self.collectionView.layer.borderWidth = 1;
+                __self.collectionView.layer.borderColor = [UIColor whiteColor].CGColor;
+            }
             [__self.collectionView.collectionViewLayout invalidateLayout];
             [__self.collectionView reloadData];
         }];
