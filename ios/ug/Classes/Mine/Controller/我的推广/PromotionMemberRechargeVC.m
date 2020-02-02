@@ -59,6 +59,9 @@
           
           [subButton(@"确定Btn") setBackgroundColor:Skin1.navBarBgColor];
           
+          [_rechargeField setTextColor:Skin1.textColor1];
+          [CMCommon textFieldSetPlaceholderLabelColor:Skin1.textColor3 TextField:_rechargeField];
+          
           
       }
     
@@ -72,7 +75,7 @@
 }
 - (IBAction)cancelButtonTaped:(id)sender {
 //    [self.navigationController popViewControllerAnimated:YES];
-    [CMCommon goPreviousVC];
+    [CMCommon disPreviousVC];
 }
 - (IBAction)confirmButtonTaped:(id)sender {
     if (!SysConf.switchAgentRecharge) {

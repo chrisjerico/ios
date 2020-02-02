@@ -320,4 +320,11 @@ chat_type=crm 设置意味着营销qq，可以和陌生人发起临时会话。
 *
 */
 +(void )goPreviousVC;
+
+/**
+*   NavigationController返回上一层界面
+*
+*
+*/
++(void )disPreviousVC;
 @end

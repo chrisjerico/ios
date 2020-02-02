@@ -326,7 +326,7 @@ static NSString * promotionMemberItemKey = @"promotionMemberItemKey";
     
     if (Skin1.isBlack) {
         view.backgroundColor = Skin1.textColor4;
-        [button setTitleColor: Skin1.textColor1 forState:UIControlStateNormal];
+        [button setTitleColor: [UIColor colorWithHex:0xF15C5F] forState:UIControlStateNormal];
     } else {
         view.backgroundColor = UIColor.whiteColor;
         [button setTitleColor: [UIColor colorWithHex:0xF15C5F] forState:UIControlStateNormal];

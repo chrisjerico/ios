@@ -168,7 +168,11 @@
 }
 
 - (BOOL)isWhite {
-    return [@"c213" containsString:_SiteId];
+    if (Skin1.isBlack) {
+        return NO;
+    } else {
+         return [@"c213" containsString:_SiteId];
+    }
 }
 
 - (BOOL)isHideText {
