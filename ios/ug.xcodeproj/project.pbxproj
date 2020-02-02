@@ -3645,15 +3645,6 @@
 		D4463AC523A7740E008EF03D /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 		D4564A4323E3E3A800A1A8C6 /* UIView+shadowPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+shadowPath.h"; sourceTree = "<group>"; };
 		D4564A4423E3E3A800A1A8C6 /* UIView+shadowPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+shadowPath.m"; sourceTree = "<group>"; };
-		D45B304723E702D10009E313 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		D45B304823E702D10009E313 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		D45B304A23E702D10009E313 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		D45B304B23E702D10009E313 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		D45B304D23E702D30009E313 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D45B305023E702D30009E313 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		D45B305223E702D30009E313 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D45B305323E702D30009E313 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		D45B305523E702D30009E313 /* TESTApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TESTApp.entitlements; sourceTree = "<group>"; };
 		D4AE1C0922C0FCC300C142FE /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		D4B75E092278025E0007047C /* testC053.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testC053.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4B75E0C2278025E0007047C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -7565,29 +7556,12 @@
 			path = "View带阴影分类";
 			sourceTree = "<group>";
 		};
-		D45B304623E702D10009E313 /* TESTApp */ = {
-			isa = PBXGroup;
-			children = (
-				D45B304723E702D10009E313 /* AppDelegate.h */,
-				D45B304823E702D10009E313 /* AppDelegate.m */,
-				D45B304A23E702D10009E313 /* ViewController.h */,
-				D45B304B23E702D10009E313 /* ViewController.m */,
-				D45B304D23E702D30009E313 /* Assets.xcassets */,
-				D45B304F23E702D30009E313 /* Main.storyboard */,
-				D45B305223E702D30009E313 /* Info.plist */,
-				D45B305323E702D30009E313 /* main.m */,
-				D45B305523E702D30009E313 /* TESTApp.entitlements */,
-			);
-			path = TESTApp;
-			sourceTree = "<group>";
-		};
 		D4B75E002278025E0007047C = {
 			isa = PBXGroup;
 			children = (
 				CF5D3D7D2396B8D000CC3D6B /* AutoPacking.xcodeproj */,
 				D4B75E0B2278025E0007047C /* ug */,
 				031EF3FF23BE7A9400B0F813 /* chat */,
-				D45B304623E702D10009E313 /* TESTApp */,
 				D4B75E0A2278025E0007047C /* Products */,
 				2AA8F6FD940D74819498256A /* Pods */,
 				2E2BF98637033623A296F5F9 /* Frameworks */,
@@ -9787,14 +9761,6 @@
 				031EF40C23BE7A9600B0F813 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		D45B304F23E702D30009E313 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D45B305023E702D30009E313 /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		D4B75E17227802600007047C /* LaunchScreen.storyboard */ = {
