@@ -77,6 +77,40 @@
 	[weakSelf loadData];
     self.tableView.startTip = YES;
     self.tableView.tipTitle = @"暂无更多数据";
+    
+    FastSubViewCode(self.view);
+       if (Skin1.isBlack) {
+           [self.view setBackgroundColor:Skin1.CLBgColor];
+           [subView(@"上View") setBackgroundColor:Skin1.textColor4];
+           [_levelSelectView setBackgroundColor:Skin1.textColor4];
+           [self.levelSelectButton setTitleColor:Skin1.textColor1 forState:0];
+                [self.arrowImage setImage: [[UIImage imageNamed:@"arrow_down"] qmui_imageWithTintColor:Skin1.textColor1] ];
+           
+           [subView(@"开始View") setBackgroundColor:Skin1.textColor4];
+           [self.beiginTimeButton setTitleColor:Skin1.textColor1 forState:0];
+                [subImageView(@"下Img") setImage: [[UIImage imageNamed:@"arrow_down"] qmui_imageWithTintColor:Skin1.textColor1] ];
+           
+           [subLabel(@"至Label") setTextColor:Skin1.textColor1];
+           
+           [subView(@"结束View") setBackgroundColor:Skin1.textColor4];
+           [self.endTimeButton setTitleColor:Skin1.textColor1 forState:0];
+                [subImageView(@"下img2") setImage: [[UIImage imageNamed:@"arrow_down"] qmui_imageWithTintColor:Skin1.textColor1] ];
+
+           [subView(@"分级View") setBackgroundColor:Skin1.textColor4];
+           [subLabel(@"分级Label") setTextColor:Skin1.textColor1];
+           
+           [subView(@"日期View") setBackgroundColor:Skin1.textColor4];
+           [subLabel(@"日期Label") setTextColor:Skin1.textColor1];
+           
+           [subView(@"投注金额View") setBackgroundColor:Skin1.textColor4];
+           [subLabel(@"投注金额Label") setTextColor:Skin1.textColor1];
+           
+           [subView(@"佣金View") setBackgroundColor:Skin1.textColor4];
+           [subLabel(@"佣金Label") setTextColor:Skin1.textColor1];
+           
+           [subView(@"游戏View") setBackgroundColor:Skin1.textColor4];
+           [subLabel(@"游戏Label") setTextColor:Skin1.textColor1];
+       }
 	
 }
 

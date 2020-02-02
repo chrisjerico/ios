@@ -131,8 +131,6 @@
         [subView(@"佣金View") setBackgroundColor:Skin1.textColor4];
         [subLabel(@"佣金Label") setTextColor:Skin1.textColor1];
         
-//        self.tableView 佣金Label
-        
         
     }
 }

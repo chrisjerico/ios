@@ -30,11 +30,11 @@
    [self teamInviteInfoData];
     
     if (Skin1.isBlack) {
-        [_bgView setBackgroundColor:Skin1.CLBgColor];
         [_bgView setBackgroundColor:Skin1.bgColor];
+        [_contentView setBackgroundColor:Skin1.CLBgColor];
         [_titleLabel setTextColor:Skin1.textColor1];
         [_title1Lable setTextColor:Skin1.textColor1];
-        [_title2Lable setTextColor:Skin1.textColor3];
+        [_title2Lable setTextColor:Skin1.textColor1];
         
     }
 }

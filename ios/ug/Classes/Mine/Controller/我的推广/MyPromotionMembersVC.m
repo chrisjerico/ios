@@ -66,6 +66,12 @@ static NSString * promotionMemberItemKey = @"promotionMemberItemKey";
         [subLabel(@"推荐会员Label") setTextColor:Skin1.textColor1];
         [_inviteTotalCountLabel setTextColor:Skin1.textColor1];
         
+        [_searchTxt setTextColor:Skin1.textColor1];
+        [CMCommon textFieldSetPlaceholderLabelColor:Skin1.textColor3 TextField:_searchTxt];
+        
+        [subImageView(@"右阴影imgV") setHidden:YES];
+        [subImageView(@"左阴影imgV") setHidden:YES];
+        
         [subView(@"用户名View") setBackgroundColor:Skin1.textColor4];
         [subLabel(@"用户名Label") setTextColor:Skin1.textColor1];
         

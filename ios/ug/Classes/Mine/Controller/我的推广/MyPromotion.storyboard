@@ -3408,9 +3408,15 @@
                                             </scrollView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="recommend_shadow_left" translatesAutoresizingMaskIntoConstraints="NO" id="xaK-F9-5wy">
                                                 <rect key="frame" x="90" y="0.0" width="8" height="1043"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="右阴影imgV"/>
+                                                </userDefinedRuntimeAttributes>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="recommend_shadow_right" translatesAutoresizingMaskIntoConstraints="NO" id="dlv-Wl-8kE">
                                                 <rect key="frame" x="318" y="0.0" width="8" height="1043"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="左阴影imgV"/>
+                                                </userDefinedRuntimeAttributes>
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3976,6 +3982,9 @@
                                                             <constraint firstAttribute="width" secondItem="67P-7d-v14" secondAttribute="height" multiplier="7:4" id="nyU-ON-QGO"/>
                                                             <constraint firstAttribute="width" constant="14" id="qUM-Ot-r2N"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="下Img"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </imageView>
                                                 </subviews>
                                             </stackView>
@@ -3993,6 +4002,7 @@
                                                 <integer key="value" value="14"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="开始View"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="至" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xK5-Wa-Gij">
@@ -4000,6 +4010,9 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="0.28235294119999998" green="0.30196078430000001" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="至Label"/>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hpL-jG-FXc">
                                         <rect key="frame" x="227.33333333333337" y="4" width="104" height="28"/>
@@ -4024,6 +4037,9 @@
                                                             <constraint firstAttribute="width" constant="14" id="Ojx-OK-M4O"/>
                                                             <constraint firstAttribute="width" secondItem="e1S-zH-xhe" secondAttribute="height" multiplier="7:4" id="PQg-KH-6Za"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="下img2"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </imageView>
                                                 </subviews>
                                             </stackView>
@@ -4041,6 +4057,7 @@
                                                 <integer key="value" value="14"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="结束View"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
@@ -4056,6 +4073,9 @@
                                     <constraint firstItem="xK5-Wa-Gij" firstAttribute="centerY" secondItem="Ive-4D-wAf" secondAttribute="centerY" id="yHD-rV-GLk"/>
                                     <constraint firstItem="hpL-jG-FXc" firstAttribute="centerY" secondItem="Ive-4D-wAf" secondAttribute="centerY" id="yRH-Ep-kec"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="上View"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="Fnx-Iv-I0L">
                                 <rect key="frame" x="0.0" y="135" width="375" height="36"/>
@@ -4068,6 +4088,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="分级Label"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -4076,6 +4099,9 @@
                                             <constraint firstItem="x6X-5q-bNL" firstAttribute="centerX" secondItem="dnW-Sc-rft" secondAttribute="centerX" id="7CB-U1-4ld"/>
                                             <constraint firstItem="x6X-5q-bNL" firstAttribute="centerY" secondItem="dnW-Sc-rft" secondAttribute="centerY" id="paF-t7-thU"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="分级View"/>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PhM-N0-a0B">
                                         <rect key="frame" x="94" y="0.0" width="93" height="36"/>
@@ -4085,6 +4111,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="日期Label"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -4093,6 +4122,9 @@
                                             <constraint firstItem="DLD-Em-LZx" firstAttribute="centerY" secondItem="PhM-N0-a0B" secondAttribute="centerY" id="THI-9e-ZtZ"/>
                                             <constraint firstItem="DLD-Em-LZx" firstAttribute="centerX" secondItem="PhM-N0-a0B" secondAttribute="centerX" id="yRc-3g-Gco"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="日期View"/>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="itN-RS-wG9">
                                         <rect key="frame" x="188" y="0.0" width="93" height="36"/>
@@ -4102,6 +4134,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="投注金额Label"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -4110,6 +4145,9 @@
                                             <constraint firstItem="bMa-n5-M3a" firstAttribute="centerX" secondItem="itN-RS-wG9" secondAttribute="centerX" id="E1B-55-9dL"/>
                                             <constraint firstItem="bMa-n5-M3a" firstAttribute="centerY" secondItem="itN-RS-wG9" secondAttribute="centerY" id="un4-LQ-EdY"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="投注金额View"/>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xR6-DK-oVH">
                                         <rect key="frame" x="282" y="0.0" width="93" height="36"/>
@@ -4119,6 +4157,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="佣金Label"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -4127,6 +4168,9 @@
                                             <constraint firstItem="Qqw-b4-DwN" firstAttribute="centerX" secondItem="xR6-DK-oVH" secondAttribute="centerX" id="mfS-gY-7yD"/>
                                             <constraint firstAttribute="height" constant="36" id="t2V-qy-HXq"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="佣金View"/>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
                             </stackView>
@@ -4549,6 +4593,9 @@
                                                             <constraint firstAttribute="width" secondItem="L7W-Va-SrT" secondAttribute="height" multiplier="7:4" id="Fck-1S-7Hi"/>
                                                             <constraint firstAttribute="width" constant="14" id="QMv-l0-dW1"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="下Img"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </imageView>
                                                 </subviews>
                                             </stackView>
@@ -4566,6 +4613,7 @@
                                                 <integer key="value" value="14"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="开始View"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="至" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KtQ-cd-mf1">
@@ -4573,6 +4621,9 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="0.28235294119999998" green="0.30196078430000001" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="至Label"/>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uLx-qw-zkh">
                                         <rect key="frame" x="227.33333333333337" y="4" width="104" height="28"/>
@@ -4596,6 +4647,9 @@
                                                             <constraint firstAttribute="width" secondItem="Ly7-TO-T8B" secondAttribute="height" multiplier="7:4" id="7RP-8t-Xnb"/>
                                                             <constraint firstAttribute="width" constant="14" id="zHw-81-di8"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="下img2"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </imageView>
                                                 </subviews>
                                             </stackView>
@@ -4613,6 +4667,7 @@
                                                 <integer key="value" value="14"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="结束View"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
@@ -4628,6 +4683,9 @@
                                     <constraint firstItem="Ndp-8e-7wD" firstAttribute="leading" secondItem="jN7-Tk-RKa" secondAttribute="trailing" constant="12" id="ngg-b2-rCm"/>
                                     <constraint firstItem="KtQ-cd-mf1" firstAttribute="centerY" secondItem="UBE-y6-2nL" secondAttribute="centerY" id="w3o-ge-Slw"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="上View"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="9R7-rs-BiF">
                                 <rect key="frame" x="0.0" y="137" width="375" height="36"/>
@@ -4640,6 +4698,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="分级Label"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -4648,6 +4709,9 @@
                                             <constraint firstAttribute="height" constant="36" id="nHW-0m-9rn"/>
                                             <constraint firstItem="Psw-Hs-vM5" firstAttribute="centerY" secondItem="EWT-Xq-stb" secondAttribute="centerY" id="puh-8e-xB4"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="分级View"/>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9uA-kn-wRr">
                                         <rect key="frame" x="94" y="0.0" width="93" height="36"/>
@@ -4657,6 +4721,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="日期Label"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -4665,6 +4732,9 @@
                                             <constraint firstItem="hbU-Dc-Kl0" firstAttribute="centerY" secondItem="9uA-kn-wRr" secondAttribute="centerY" id="aBS-u4-Zv6"/>
                                             <constraint firstAttribute="height" constant="36" id="mGk-Kg-2GI"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="日期View"/>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dnN-cY-rKE">
                                         <rect key="frame" x="188" y="0.0" width="93" height="36"/>
@@ -4674,6 +4744,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="投注金额Label"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -4682,6 +4755,9 @@
                                             <constraint firstItem="hcD-SB-tGs" firstAttribute="centerX" secondItem="dnN-cY-rKE" secondAttribute="centerX" id="iDS-hJ-bEB"/>
                                             <constraint firstItem="hcD-SB-tGs" firstAttribute="centerY" secondItem="dnN-cY-rKE" secondAttribute="centerY" id="tAJ-it-g3L"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="投注金额View"/>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="41a-kU-oa2">
                                         <rect key="frame" x="282" y="0.0" width="93" height="36"/>
@@ -4691,6 +4767,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="佣金Label"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -4699,6 +4778,9 @@
                                             <constraint firstItem="pLH-dm-6q4" firstAttribute="centerY" secondItem="41a-kU-oa2" secondAttribute="centerY" id="Uua-r0-54B"/>
                                             <constraint firstItem="pLH-dm-6q4" firstAttribute="centerX" secondItem="41a-kU-oa2" secondAttribute="centerX" id="wqe-US-K2G"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="佣金View"/>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
                             </stackView>
@@ -4893,6 +4975,9 @@
                                                             <constraint firstAttribute="width" secondItem="mL8-hp-9tz" secondAttribute="height" multiplier="7:4" id="BSq-ad-8tI"/>
                                                             <constraint firstAttribute="width" constant="14" id="bF2-R0-vuu"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="下Img"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </imageView>
                                                 </subviews>
                                             </stackView>
@@ -4910,6 +4995,7 @@
                                                 <integer key="value" value="14"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="开始View"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="至" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IhE-R1-dbH">
@@ -4917,6 +5003,9 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="0.28235294119999998" green="0.30196078430000001" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="至Label"/>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XYE-I7-ilF">
                                         <rect key="frame" x="227.33333333333337" y="4" width="104" height="28"/>
@@ -4940,6 +5029,9 @@
                                                             <constraint firstAttribute="width" constant="14" id="D4V-rM-6zn"/>
                                                             <constraint firstAttribute="width" secondItem="zZ0-ED-aKW" secondAttribute="height" multiplier="7:4" id="byW-zV-rTo"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="下img2"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </imageView>
                                                 </subviews>
                                             </stackView>
@@ -4957,6 +5049,7 @@
                                                 <integer key="value" value="14"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="结束View"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
@@ -4972,6 +5065,9 @@
                                     <constraint firstItem="rGo-j8-5fk" firstAttribute="leading" secondItem="Fbl-Gm-IxM" secondAttribute="trailing" constant="12" id="mjd-8B-3wj"/>
                                     <constraint firstAttribute="height" constant="36" id="w6D-xR-znc"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="上View"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="Wac-cP-i5a">
                                 <rect key="frame" x="0.0" y="137" width="375" height="36"/>
@@ -4984,6 +5080,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="分级Label"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -4992,6 +5091,9 @@
                                             <constraint firstItem="ci3-sp-X6b" firstAttribute="centerX" secondItem="yz6-w0-FgV" secondAttribute="centerX" id="s6F-Fk-cIU"/>
                                             <constraint firstAttribute="height" constant="36" id="sic-E2-Y1k"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="分级View"/>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hXE-KI-3xX">
                                         <rect key="frame" x="75.333333333333329" y="0.0" width="73.999999999999986" height="36"/>
@@ -5001,6 +5103,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="游戏Label"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -5009,6 +5114,9 @@
                                             <constraint firstItem="f1w-Yc-CJ2" firstAttribute="centerX" secondItem="hXE-KI-3xX" secondAttribute="centerX" id="rta-Ro-je4"/>
                                             <constraint firstAttribute="height" constant="36" id="tdq-sm-BpG"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="游戏View"/>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2M2-gX-V1I">
                                         <rect key="frame" x="150.33333333333334" y="0.0" width="74.333333333333343" height="36"/>
@@ -5018,6 +5126,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="日期Label"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -5026,6 +5137,9 @@
                                             <constraint firstItem="r2P-ti-CIc" firstAttribute="centerX" secondItem="2M2-gX-V1I" secondAttribute="centerX" id="T4N-9R-ktw"/>
                                             <constraint firstAttribute="height" constant="36" id="ZGU-aT-ZcW"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="日期View"/>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Chh-uB-TMP">
                                         <rect key="frame" x="225.66666666666663" y="0.0" width="74" height="36"/>
@@ -5035,6 +5149,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="投注金额Label"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -5043,6 +5160,9 @@
                                             <constraint firstItem="dSN-Hg-SbL" firstAttribute="centerY" secondItem="Chh-uB-TMP" secondAttribute="centerY" id="RAF-aC-2wn"/>
                                             <constraint firstItem="dSN-Hg-SbL" firstAttribute="centerX" secondItem="Chh-uB-TMP" secondAttribute="centerX" id="kn4-Dt-GN3"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="投注金额View"/>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FD4-DG-1gD">
                                         <rect key="frame" x="300.66666666666669" y="0.0" width="74.333333333333314" height="36"/>
@@ -5052,6 +5172,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="佣金Label"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -5060,6 +5183,9 @@
                                             <constraint firstItem="UPl-ag-owm" firstAttribute="centerY" secondItem="FD4-DG-1gD" secondAttribute="centerY" id="ObD-j8-6SO"/>
                                             <constraint firstItem="UPl-ag-owm" firstAttribute="centerX" secondItem="FD4-DG-1gD" secondAttribute="centerX" id="Us5-8I-Eth"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="佣金View"/>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
                             </stackView>
@@ -5178,6 +5304,9 @@
                                                             <constraint firstAttribute="width" constant="14" id="4Mg-7L-wyR"/>
                                                             <constraint firstAttribute="width" secondItem="3kT-CN-fqh" secondAttribute="height" multiplier="7:4" id="QmP-07-ubs"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="下Img"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </imageView>
                                                 </subviews>
                                             </stackView>
@@ -5195,6 +5324,7 @@
                                                 <integer key="value" value="14"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="开始View"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="至" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E8g-MV-4jI">
@@ -5202,6 +5332,9 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="0.28235294119999998" green="0.30196078430000001" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="至Label"/>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6OU-6C-IwQ">
                                         <rect key="frame" x="227.33333333333337" y="4" width="104" height="28"/>
@@ -5225,6 +5358,9 @@
                                                             <constraint firstAttribute="width" secondItem="GqF-dK-97y" secondAttribute="height" multiplier="7:4" id="2Ah-IO-sjQ"/>
                                                             <constraint firstAttribute="width" constant="14" id="SiE-AK-eFI"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="下img2"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </imageView>
                                                 </subviews>
                                             </stackView>
@@ -5242,6 +5378,7 @@
                                                 <integer key="value" value="14"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="结束View"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
@@ -5257,6 +5394,9 @@
                                     <constraint firstItem="E8g-MV-4jI" firstAttribute="centerY" secondItem="0DK-5v-ICq" secondAttribute="centerY" id="fI1-e3-mfO"/>
                                     <constraint firstItem="6OU-6C-IwQ" firstAttribute="centerY" secondItem="0DK-5v-ICq" secondAttribute="centerY" id="v5K-GR-jfR"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="上View"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="c7E-0P-LcR">
                                 <rect key="frame" x="0.0" y="137" width="375" height="36"/>
@@ -5269,6 +5409,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="分级Label"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -5277,6 +5420,9 @@
                                             <constraint firstItem="4D3-fq-Uuh" firstAttribute="centerY" secondItem="Iok-wA-9NM" secondAttribute="centerY" id="ABo-BL-Sw2"/>
                                             <constraint firstAttribute="height" constant="36" id="SUk-UY-Kk3"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="分级View"/>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rOe-Mc-9qF">
                                         <rect key="frame" x="94" y="0.0" width="93" height="36"/>
@@ -5286,6 +5432,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="日期Label"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -5294,6 +5443,9 @@
                                             <constraint firstItem="b9N-CX-zOa" firstAttribute="centerX" secondItem="rOe-Mc-9qF" secondAttribute="centerX" id="hA3-0K-bAe"/>
                                             <constraint firstAttribute="height" constant="36" id="vZH-Xw-Dyq"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="日期View"/>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4BJ-tn-5LY">
                                         <rect key="frame" x="188" y="0.0" width="93" height="36"/>
@@ -5303,6 +5455,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="投注金额Label"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -5311,6 +5466,9 @@
                                             <constraint firstAttribute="height" constant="36" id="GTJ-dG-zgI"/>
                                             <constraint firstItem="SeY-PM-JPd" firstAttribute="centerY" secondItem="4BJ-tn-5LY" secondAttribute="centerY" id="ejq-jq-hgT"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="投注金额View"/>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e0J-8x-zx4">
                                         <rect key="frame" x="282" y="0.0" width="93" height="36"/>
@@ -5320,6 +5478,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="佣金Label"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -5328,6 +5489,9 @@
                                             <constraint firstItem="rGH-Ov-nbW" firstAttribute="centerY" secondItem="e0J-8x-zx4" secondAttribute="centerY" id="AeW-Vl-GC5"/>
                                             <constraint firstAttribute="height" constant="36" id="PV2-8e-eIz"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="佣金View"/>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
                             </stackView>
@@ -5445,6 +5609,9 @@
                                                             <constraint firstAttribute="width" constant="14" id="iZe-K7-fcR"/>
                                                             <constraint firstAttribute="width" secondItem="RsY-7w-Wv4" secondAttribute="height" multiplier="7:4" id="jLh-dW-c76"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="下Img"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </imageView>
                                                 </subviews>
                                             </stackView>
@@ -5462,6 +5629,7 @@
                                                 <integer key="value" value="14"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="开始View"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="至" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wdh-1r-HgS">
@@ -5469,6 +5637,9 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="0.28235294119999998" green="0.30196078430000001" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="至Label"/>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qKo-LS-FDR">
                                         <rect key="frame" x="227.33333333333337" y="4" width="104" height="28"/>
@@ -5492,6 +5663,9 @@
                                                             <constraint firstAttribute="width" secondItem="dmH-eY-hMX" secondAttribute="height" multiplier="7:4" id="UXF-tJ-0iu"/>
                                                             <constraint firstAttribute="width" constant="14" id="ZpU-IN-L9r"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="下img2"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </imageView>
                                                 </subviews>
                                             </stackView>
@@ -5509,6 +5683,7 @@
                                                 <integer key="value" value="14"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="结束View"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
@@ -5524,6 +5699,9 @@
                                     <constraint firstItem="fhY-TE-PjL" firstAttribute="centerY" secondItem="65l-fv-YWq" secondAttribute="centerY" id="rUd-ul-TaO"/>
                                     <constraint firstItem="65l-fv-YWq" firstAttribute="centerY" secondItem="P0I-JU-xRa" secondAttribute="centerY" id="toZ-f3-CMn"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="上View"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="M6Y-Wv-C0K">
                                 <rect key="frame" x="0.0" y="137" width="375" height="36"/>
@@ -5536,6 +5714,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="分级Label"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -5544,6 +5725,9 @@
                                             <constraint firstItem="Me3-GL-8dJ" firstAttribute="centerX" secondItem="Vhl-p0-qLO" secondAttribute="centerX" id="PK5-ZL-8qF"/>
                                             <constraint firstAttribute="height" constant="36" id="x2u-sW-M31"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="分级View"/>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="paX-b9-0RI">
                                         <rect key="frame" x="94" y="0.0" width="93" height="36"/>
@@ -5553,6 +5737,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="日期Label"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -5561,6 +5748,9 @@
                                             <constraint firstItem="yfq-YS-IUN" firstAttribute="centerY" secondItem="paX-b9-0RI" secondAttribute="centerY" id="CP3-cD-2kg"/>
                                             <constraint firstItem="yfq-YS-IUN" firstAttribute="centerX" secondItem="paX-b9-0RI" secondAttribute="centerX" id="NqM-VG-ERf"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="日期View"/>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8fA-FY-6pX">
                                         <rect key="frame" x="188" y="0.0" width="93" height="36"/>
@@ -5570,6 +5760,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="投注金额Label"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -5578,6 +5771,9 @@
                                             <constraint firstItem="TEE-41-UJt" firstAttribute="centerY" secondItem="8fA-FY-6pX" secondAttribute="centerY" id="OOj-14-ryK"/>
                                             <constraint firstItem="TEE-41-UJt" firstAttribute="centerX" secondItem="8fA-FY-6pX" secondAttribute="centerX" id="SXg-Wm-rE5"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="投注金额View"/>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="07Y-5K-aAy">
                                         <rect key="frame" x="282" y="0.0" width="93" height="36"/>
@@ -5587,6 +5783,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="佣金Label"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -5595,6 +5794,9 @@
                                             <constraint firstAttribute="height" constant="36" id="UKP-fK-aQN"/>
                                             <constraint firstItem="wMk-6u-Qop" firstAttribute="centerX" secondItem="07Y-5K-aAy" secondAttribute="centerX" id="VSo-Ps-jUU"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="佣金View"/>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
                             </stackView>
@@ -5617,6 +5819,9 @@
                             <constraint firstItem="P0I-JU-xRa" firstAttribute="leading" secondItem="au6-RS-cg3" secondAttribute="leading" id="xl4-9g-gs9"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="au6-RS-cg3"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="上View"/>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>

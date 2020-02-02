@@ -147,7 +147,12 @@
         [((UILabel *)self.itemLabels[2]) setTextColor:Skin1.textColor1];
         [((UILabel *)self.itemLabels[3]) setTextColor:Skin1.textColor1];
         
-        [self setBackgroundColor:Skin1.cellBgColor];
+        [((UILabel *)self.itemLabels[0]) setBackgroundColor:Skin1.textColor4];
+        [((UILabel *)self.itemLabels[1]) setBackgroundColor:Skin1.textColor4];
+        [((UILabel *)self.itemLabels[2]) setBackgroundColor:Skin1.textColor4];
+        [((UILabel *)self.itemLabels[3]) setBackgroundColor:Skin1.textColor4];
+        
+        [self setBackgroundColor:Skin1.CLBgColor];
     }
 }
 
