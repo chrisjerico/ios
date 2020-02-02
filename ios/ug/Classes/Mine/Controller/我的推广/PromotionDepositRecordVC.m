@@ -40,6 +40,9 @@
 @property (nonatomic, strong) NSString *beginTimeStr;
 @property (nonatomic, strong) NSString *endTimeStr;
 
+
+@property (nonatomic, strong)BRDatePickerView *beigindatePickerView;
+@property (nonatomic, strong)BRDatePickerView *enddatePickerView;
 @end
 
 @implementation PromotionDepositRecordVC
@@ -47,7 +50,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.tableView registerNib: [UINib nibWithNibName:@"PromotionRecordCell1" bundle:nil] forCellReuseIdentifier:@"PromotionRecordCell1"];
-
+    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.pageSize = 20;
@@ -62,6 +65,71 @@
     self.endTimeSelectDate = [CMTimeCommon dateForStr:self.endTimeStr format:@"yyyy-MM-dd"];
     [self.beiginTimeButton setTitle:APP.beginTime forState:(0)];
     [self.endTimeButton setTitle:self.endTimeStr forState:(0)];
+    
+    if (![CMCommon stringIsNull:self.dateStr]) {
+        self.beginTimeStr = self.dateStr;
+        self.endTimeStr = self.dateStr;
+        self.beginTimeSelectDate = [CMTimeCommon dateForStr:self.dateStr format:@"yyyy-MM-dd"];
+        self.endTimeSelectDate = [CMTimeCommon dateForStr:self.dateStr format:@"yyyy-MM-dd"];
+    }
+    
+    _beigindatePickerView = ({
+        [self.beiginTimeButton setTitle:self.beginTimeStr forState:(0)];
+        BRDatePickerView *datePickerView = [[BRDatePickerView alloc]init];
+        datePickerView.pickerMode = BRDatePickerModeDate;
+        datePickerView.title = @"开始时间";
+        datePickerView.selectDate = self.beginTimeSelectDate;
+        datePickerView.isAutoSelect = NO;
+        datePickerView.resultBlock = ^(NSDate *selectDate, NSString *selectValue) {
+            
+            if (self.endTimeSelectDate) {
+                int re = [CMTimeCommon compareOneDay:selectDate withAnotherDay:self.endTimeSelectDate];
+                if (re == 1 ) {
+                    [CMCommon showToastTitle:@"开始时间大于结束时间，请重新选择"];
+                    return;
+                }
+            }
+            self.beginTimeSelectDate = selectDate;
+            [self.beiginTimeButton setTitle:selectValue forState:(0)];
+            self.beginTimeStr = selectValue;
+            self.pageNumber = 1;
+            [self loadData];
+        };
+        // 自定义弹框样式
+        BRPickerStyle *customStyle = [BRPickerStyle pickerStyleWithThemeColor:[UIColor darkGrayColor]];
+        datePickerView.pickerStyle = customStyle;
+        datePickerView;
+    });
+    
+    _enddatePickerView = ({
+        [self.endTimeButton setTitle:self.beginTimeStr forState:(0)];
+        BRDatePickerView *datePickerView = [[BRDatePickerView alloc]init];
+        datePickerView.pickerMode = BRDatePickerModeDate;
+        datePickerView.title = @"结束时间";
+        datePickerView.selectDate = self.endTimeSelectDate;
+        datePickerView.isAutoSelect = NO;
+        datePickerView.resultBlock = ^(NSDate *selectDate, NSString *selectValue) {
+            
+            if (self.beginTimeSelectDate) {
+                int re = [CMTimeCommon compareOneDay:selectDate withAnotherDay:self.beginTimeSelectDate];
+                if (re == -1 ) {
+                    [CMCommon showToastTitle:@"开始时间大于结束时间，请重新选择"];
+                    return;
+                }
+            }
+            
+            self.endTimeSelectDate = selectDate;
+            [self.endTimeButton setTitle:selectValue forState:(0)];
+            self.endTimeStr = selectValue;
+            self.pageNumber = 1;
+            [self loadData];
+        };
+        // 自定义弹框样式
+        BRPickerStyle *customStyle = [BRPickerStyle pickerStyleWithThemeColor:[UIColor darkGrayColor]];
+        datePickerView.pickerStyle = customStyle;
+        datePickerView;
+    });
+    
     WeakSelf;
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         self.pageNumber = 1;
@@ -80,37 +148,37 @@
     self.tableView.tipTitle = @"暂无更多数据";
     
     FastSubViewCode(self.view);
-       if (Skin1.isBlack) {
-           [self.view setBackgroundColor:Skin1.CLBgColor];
-           [subView(@"上View") setBackgroundColor:Skin1.textColor4];
-           [_levelSelectView setBackgroundColor:Skin1.textColor4];
-           [self.levelSelectButton setTitleColor:Skin1.textColor1 forState:0];
-                [self.arrowImage setImage: [[UIImage imageNamed:@"arrow_down"] qmui_imageWithTintColor:Skin1.textColor1] ];
-           
-           [subView(@"开始View") setBackgroundColor:Skin1.textColor4];
-           [self.beiginTimeButton setTitleColor:Skin1.textColor1 forState:0];
-                [subImageView(@"下Img") setImage: [[UIImage imageNamed:@"arrow_down"] qmui_imageWithTintColor:Skin1.textColor1] ];
-           
-           [subLabel(@"至Label") setTextColor:Skin1.textColor1];
-           
-           [subView(@"结束View") setBackgroundColor:Skin1.textColor4];
-           [self.endTimeButton setTitleColor:Skin1.textColor1 forState:0];
-                [subImageView(@"下img2") setImage: [[UIImage imageNamed:@"arrow_down"] qmui_imageWithTintColor:Skin1.textColor1] ];
-
-           [subView(@"分级View") setBackgroundColor:Skin1.textColor4];
-           [subLabel(@"分级Label") setTextColor:Skin1.textColor1];
-           
-           [subView(@"日期View") setBackgroundColor:Skin1.textColor4];
-           [subLabel(@"日期Label") setTextColor:Skin1.textColor1];
-           
-           [subView(@"投注金额View") setBackgroundColor:Skin1.textColor4];
-           [subLabel(@"投注金额Label") setTextColor:Skin1.textColor1];
-           
-           [subView(@"佣金View") setBackgroundColor:Skin1.textColor4];
-           [subLabel(@"佣金Label") setTextColor:Skin1.textColor1];
-           
-           
-       }
+    if (Skin1.isBlack) {
+        [self.view setBackgroundColor:Skin1.CLBgColor];
+        [subView(@"上View") setBackgroundColor:Skin1.textColor4];
+        [_levelSelectView setBackgroundColor:Skin1.textColor4];
+        [self.levelSelectButton setTitleColor:Skin1.textColor1 forState:0];
+        [self.arrowImage setImage: [[UIImage imageNamed:@"arrow_down"] qmui_imageWithTintColor:Skin1.textColor1] ];
+        
+        [subView(@"开始View") setBackgroundColor:Skin1.textColor4];
+        [self.beiginTimeButton setTitleColor:Skin1.textColor1 forState:0];
+        [subImageView(@"下Img") setImage: [[UIImage imageNamed:@"arrow_down"] qmui_imageWithTintColor:Skin1.textColor1] ];
+        
+        [subLabel(@"至Label") setTextColor:Skin1.textColor1];
+        
+        [subView(@"结束View") setBackgroundColor:Skin1.textColor4];
+        [self.endTimeButton setTitleColor:Skin1.textColor1 forState:0];
+        [subImageView(@"下img2") setImage: [[UIImage imageNamed:@"arrow_down"] qmui_imageWithTintColor:Skin1.textColor1] ];
+        
+        [subView(@"分级View") setBackgroundColor:Skin1.textColor4];
+        [subLabel(@"分级Label") setTextColor:Skin1.textColor1];
+        
+        [subView(@"日期View") setBackgroundColor:Skin1.textColor4];
+        [subLabel(@"日期Label") setTextColor:Skin1.textColor1];
+        
+        [subView(@"投注金额View") setBackgroundColor:Skin1.textColor4];
+        [subLabel(@"投注金额Label") setTextColor:Skin1.textColor1];
+        
+        [subView(@"佣金View") setBackgroundColor:Skin1.textColor4];
+        [subLabel(@"佣金Label") setTextColor:Skin1.textColor1];
+        
+        
+    }
 }
 
 - (IBAction)levelButtonTaped:(id)sender {
@@ -126,11 +194,11 @@
 
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-
-        PromotionRecordCell1 * cell = [tableView dequeueReusableCellWithIdentifier:@"PromotionRecordCell1" forIndexPath:indexPath];
-        [cell bindDepositRecord:self.items[indexPath.row]];
-        return cell;
-
+    
+    PromotionRecordCell1 * cell = [tableView dequeueReusableCellWithIdentifier:@"PromotionRecordCell1" forIndexPath:indexPath];
+    [cell bindDepositRecord:self.items[indexPath.row]];
+    return cell;
+    
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -152,10 +220,7 @@
     if ([UGUserModel currentUser].isTest) {
         return;
     }
-    if (![CMCommon stringIsNull:self.dateStr]) {
-        self.beginTimeStr = self.dateStr;
-        self.endTimeStr = self.dateStr;
-    }
+    
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"level":[NSString stringWithFormat:@"%ld",(long)_levelindex],
                              @"page":@(self.pageNumber),
@@ -173,7 +238,7 @@
             NSDictionary *data =  model.data;
             NSArray *list = [data objectForKey:@"list"];
             if ([CMCommon stringIsNull:self.dateStr]) {
-                 [self setDateStr:@""];
+                [self setDateStr:@""];
             }
             if (weakSelf.pageNumber == 1 ) {
                 [weakSelf.items removeAllObjects];
@@ -218,50 +283,11 @@
 
 //开始时间
 - (IBAction)dateBtnAction:(id)sender {
-    // 开始时间
-     BRDatePickerView *datePickerView = [[BRDatePickerView alloc]init];
-     datePickerView.pickerMode = BRDatePickerModeDate;
-     datePickerView.title = @"开始时间";
-     datePickerView.selectDate = self.beginTimeSelectDate;
-     datePickerView.isAutoSelect = NO;
-     datePickerView.resultBlock = ^(NSDate *selectDate, NSString *selectValue) {
-         self.beginTimeSelectDate = selectDate;
-         [self.beiginTimeButton setTitle:selectValue forState:(0)];
-         self.beginTimeStr = selectValue;
-         
-        [self loadData];
-     };
-     // 自定义弹框样式
-     BRPickerStyle *customStyle = [BRPickerStyle pickerStyleWithThemeColor:[UIColor darkGrayColor]];
-     datePickerView.pickerStyle = customStyle;
-     [datePickerView show];
+    [_beigindatePickerView show];
 }
 //结束时间
 - (IBAction)date2BtnAcion:(id)sender {
- 
-    // 结束时间
-     BRDatePickerView *datePickerView = [[BRDatePickerView alloc]init];
-     datePickerView.pickerMode = BRDatePickerModeDate;
-     datePickerView.title = @"结束时间";
-     datePickerView.selectDate = self.endTimeSelectDate;
-     datePickerView.isAutoSelect = NO;
-     datePickerView.resultBlock = ^(NSDate *selectDate, NSString *selectValue) {
-         
-         int re = [CMTimeCommon compareOneDay:selectDate withAnotherDay:self.beginTimeSelectDate];
-         if (re == -1 ) {
-             [CMCommon showToastTitle:@"开始时间大于结束时间，请重新选择"];
-             return;
-         }
-         self.endTimeSelectDate = selectDate;
-         [self.endTimeButton setTitle:selectValue forState:(0)];
-         self.endTimeStr = selectValue;
-         
-         [self loadData];
-     };
-     // 自定义弹框样式
-     BRPickerStyle *customStyle = [BRPickerStyle pickerStyleWithThemeColor:[UIColor darkGrayColor]];
-     datePickerView.pickerStyle = customStyle;
-     [datePickerView show];
+    [_enddatePickerView show];
 }
 
 @end

@@ -10,7 +10,7 @@
 
 
 
-#define __SiteID__ @"test36"
+#define __SiteID__ @"test29"
 
 
 @interface UIStoryboard ()
@@ -127,7 +127,7 @@
         _Test = true;
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
         if (!_SiteId.length) {
-            _SiteId = @"test36";
+            _SiteId = @"test29";
         }
 #endif
         NSLog(@"%@",[_allSites objectWithValue:_SiteId.lowercaseString keyPath:@"siteId"]);
@@ -140,7 +140,7 @@
         
         _PhotoMaxLength = 60 * 1024;    // 约等于1M大小
         _PageCount = 20;
-        _beginTime =  @"2019-01-01";
+        _beginTime =  @"2020-01-01";
         
         [self setupSystem];
         [self setupColor];

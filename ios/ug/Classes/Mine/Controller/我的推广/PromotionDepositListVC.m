@@ -194,6 +194,8 @@
     
     if (self.typeIndex == 0) {
         UGdepositStatModel *ob = (UGdepositStatModel *)self.items[indexPath.row];
+        
+        NSLog(@"ob.date = %@",ob.date);
         PromotionDepositRecordVC * vc = [[UIStoryboard storyboardWithName:@"MyPromotion" bundle:nil] instantiateViewControllerWithIdentifier:@"PromotionDepositRecordVC"];
         vc.dateStr = ob.date;
         [self.navigationController pushViewController:vc animated:YES];
@@ -204,6 +206,7 @@
        UGrealBetStatModel *ob = (UGrealBetStatModel *)self.itemsOther[indexPath.row];
         PromotionWithdrawalsRecordVC * vc = [[UIStoryboard storyboardWithName:@"MyPromotion" bundle:nil] instantiateViewControllerWithIdentifier:@"PromotionWithdrawalsRecordVC"];
         vc.dateStr = ob.date;
+        NSLog(@"ob.date = %@",ob.date);
         [self.navigationController pushViewController:vc animated:YES];
     }
  
@@ -232,6 +235,7 @@
                              @"startDate":self.beginTimeStr,
                              @"endDate":self.endTimeStr,
     };
+    NSLog(@"请求参数：%@",params);
     
     [SVProgressHUD showWithStatus:nil];
     WeakSelf;
@@ -279,7 +283,7 @@
                              @"startDate":self.beginTimeStr,
                              @"endDate":self.endTimeStr,
     };
-    
+    NSLog(@"请求参数：%@",params);
     [SVProgressHUD showWithStatus:nil];
     WeakSelf;
     [CMNetwork teamWithdrawStatWithParams:params completion:^(CMResult<id> *model, NSError *err) {
@@ -337,10 +341,18 @@
      datePickerView.selectDate = self.beginTimeSelectDate;
      datePickerView.isAutoSelect = NO;
      datePickerView.resultBlock = ^(NSDate *selectDate, NSString *selectValue) {
+         //         int   1  晚， -1 早  0 相同
+         if (self.endTimeSelectDate) {
+             int re = [CMTimeCommon compareOneDay:selectDate withAnotherDay:self.endTimeSelectDate];
+             if (re == 1 ) {
+                 [CMCommon showToastTitle:@"开始时间大于结束时间，请重新选择"];
+                 return;
+             }
+         }
          self.beginTimeSelectDate = selectDate;
          [self.beiginTimeButton setTitle:selectValue forState:(0)];
          self.beginTimeStr = selectValue;
-         
+         self.pageNumber = 1;
          [self loadData];
      };
      // 自定义弹框样式
@@ -367,7 +379,7 @@
          self.endTimeSelectDate = selectDate;
          [self.endTimeButton setTitle:selectValue forState:(0)];
          self.endTimeStr = selectValue;
-         
+         self.pageNumber = 1;
          [self loadData];
      };
      // 自定义弹框样式

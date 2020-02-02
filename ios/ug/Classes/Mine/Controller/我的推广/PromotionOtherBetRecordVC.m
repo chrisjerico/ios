@@ -18,8 +18,8 @@
 #import "UITableView+LSEmpty.h"
 @interface PromotionOtherBetRecordVC ()<UITableViewDelegate, UITableViewDataSource, YBPopupMenuDelegate>
 {
-	NSInteger _levelindex;
-	NSArray * _levelArray;
+    NSInteger _levelindex;
+    NSArray * _levelArray;
 }
 
 @property (weak, nonatomic) IBOutlet UIStackView *headerStack;
@@ -39,158 +39,224 @@
 @property (nonatomic, strong) NSDate *endTimeSelectDate;
 @property (nonatomic, strong) NSString *beginTimeStr;
 @property (nonatomic, strong) NSString *endTimeStr;
+
+@property (nonatomic, strong)BRDatePickerView *beigindatePickerView;
+@property (nonatomic, strong)BRDatePickerView *enddatePickerView;
 @end
 
 @implementation PromotionOtherBetRecordVC
 
 
 - (void)viewDidLoad {
-	[super viewDidLoad];
-	[self.tableView registerNib: [UINib nibWithNibName:@"PromotionRecordCell1" bundle:nil] forCellReuseIdentifier:@"PromotionRecordCell1"];
-	[self.tableView registerNib: [UINib nibWithNibName:@"PromotionRecordCell2" bundle:nil] forCellReuseIdentifier:@"PromotionRecordCell2"];
-	
-	self.tableView.delegate = self;
-	self.tableView.dataSource = self;
+    [super viewDidLoad];
+    [self.tableView registerNib: [UINib nibWithNibName:@"PromotionRecordCell1" bundle:nil] forCellReuseIdentifier:@"PromotionRecordCell1"];
+    [self.tableView registerNib: [UINib nibWithNibName:@"PromotionRecordCell2" bundle:nil] forCellReuseIdentifier:@"PromotionRecordCell2"];
+    
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
     self.beginTimeStr = APP.beginTime;
     self.endTimeStr = [CMTimeCommon currentDateStringWithFormat:@"yyyy-MM-dd"];
     self.beginTimeSelectDate = [CMTimeCommon dateForStr:APP.beginTime format:@"yyyy-MM-dd"];
     self.endTimeSelectDate = [CMTimeCommon dateForStr:self.endTimeStr format:@"yyyy-MM-dd"];
     [self.beiginTimeButton setTitle:APP.beginTime forState:(0)];
     [self.endTimeButton setTitle:self.endTimeStr forState:(0)];
-	self.pageSize = 20;
-	self.pageNumber = 1;
-	self.items = [NSMutableArray array];
-	_levelArray = @[@"全部下线",@"1级下线",@"2级下线",@"3级下线",@"4级下线",@"5级下线",@"6级下线",@"7级下线",@"8级下线",@"9级下线",@"10级下线"];
-	_levelindex = 0;
-	WeakSelf;
-	self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-		self.pageNumber = 1;
-		[weakSelf loadData];
-	}];
-	self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-		weakSelf.pageNumber =weakSelf.pageNumber+1;
-		[weakSelf loadData];
-		
-	}];
-	self.tableView.tableFooterView = [UIView new];
-	self.navigationItem.title = @"其他报表记录";
-	[weakSelf loadData];
+    
+    
+    self.pageSize = 20;
+    self.pageNumber = 1;
+    self.items = [NSMutableArray array];
+    _levelArray = @[@"全部下线",@"1级下线",@"2级下线",@"3级下线",@"4级下线",@"5级下线",@"6级下线",@"7级下线",@"8级下线",@"9级下线",@"10级下线"];
+    _levelindex = 0;
+    
+    if (![CMCommon stringIsNull:self.dateStr]) {
+        self.beginTimeStr = self.dateStr;
+        self.endTimeStr = self.dateStr;
+        self.beginTimeSelectDate = [CMTimeCommon dateForStr:self.dateStr format:@"yyyy-MM-dd"];
+        self.endTimeSelectDate = [CMTimeCommon dateForStr:self.dateStr format:@"yyyy-MM-dd"];
+    }
+    _beigindatePickerView = ({
+        [self.beiginTimeButton setTitle:self.beginTimeStr forState:(0)];
+        BRDatePickerView *datePickerView = [[BRDatePickerView alloc]init];
+        datePickerView.pickerMode = BRDatePickerModeDate;
+        datePickerView.title = @"开始时间";
+        datePickerView.selectDate = self.beginTimeSelectDate;
+        datePickerView.isAutoSelect = NO;
+        datePickerView.resultBlock = ^(NSDate *selectDate, NSString *selectValue) {
+            
+            if (self.endTimeSelectDate) {
+                int re = [CMTimeCommon compareOneDay:selectDate withAnotherDay:self.endTimeSelectDate];
+                if (re == 1 ) {
+                    [CMCommon showToastTitle:@"开始时间大于结束时间，请重新选择"];
+                    return;
+                }
+            }
+            self.beginTimeSelectDate = selectDate;
+            [self.beiginTimeButton setTitle:selectValue forState:(0)];
+            self.beginTimeStr = selectValue;
+            self.pageNumber = 1;
+            [self loadData];
+        };
+        // 自定义弹框样式
+        BRPickerStyle *customStyle = [BRPickerStyle pickerStyleWithThemeColor:[UIColor darkGrayColor]];
+        datePickerView.pickerStyle = customStyle;
+        datePickerView;
+    });
+    
+    _enddatePickerView = ({
+        [self.endTimeButton setTitle:self.beginTimeStr forState:(0)];
+        BRDatePickerView *datePickerView = [[BRDatePickerView alloc]init];
+        datePickerView.pickerMode = BRDatePickerModeDate;
+        datePickerView.title = @"结束时间";
+        datePickerView.selectDate = self.endTimeSelectDate;
+        datePickerView.isAutoSelect = NO;
+        datePickerView.resultBlock = ^(NSDate *selectDate, NSString *selectValue) {
+            
+            if (self.beginTimeSelectDate) {
+                int re = [CMTimeCommon compareOneDay:selectDate withAnotherDay:self.beginTimeSelectDate];
+                if (re == -1 ) {
+                    [CMCommon showToastTitle:@"开始时间大于结束时间，请重新选择"];
+                    return;
+                }
+            }
+            
+            self.endTimeSelectDate = selectDate;
+            [self.endTimeButton setTitle:selectValue forState:(0)];
+            self.endTimeStr = selectValue;
+            self.pageNumber = 1;
+            [self loadData];
+        };
+        // 自定义弹框样式
+        BRPickerStyle *customStyle = [BRPickerStyle pickerStyleWithThemeColor:[UIColor darkGrayColor]];
+        datePickerView.pickerStyle = customStyle;
+        datePickerView;
+    });
+    
+    WeakSelf;
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        self.pageNumber = 1;
+        [weakSelf loadData];
+    }];
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        weakSelf.pageNumber =weakSelf.pageNumber+1;
+        [weakSelf loadData];
+        
+    }];
+    self.tableView.tableFooterView = [UIView new];
+    self.navigationItem.title = @"其他报表记录";
+    [weakSelf loadData];
     self.tableView.startTip = YES;
     self.tableView.tipTitle = @"暂无更多数据";
     
     FastSubViewCode(self.view);
-       if (Skin1.isBlack) {
-           [self.view setBackgroundColor:Skin1.CLBgColor];
-           [subView(@"上View") setBackgroundColor:Skin1.textColor4];
-           [_levelSelectView setBackgroundColor:Skin1.textColor4];
-           [self.levelSelectButton setTitleColor:Skin1.textColor1 forState:0];
-                [self.arrowImage setImage: [[UIImage imageNamed:@"arrow_down"] qmui_imageWithTintColor:Skin1.textColor1] ];
-           
-           [subView(@"开始View") setBackgroundColor:Skin1.textColor4];
-           [self.beiginTimeButton setTitleColor:Skin1.textColor1 forState:0];
-                [subImageView(@"下Img") setImage: [[UIImage imageNamed:@"arrow_down"] qmui_imageWithTintColor:Skin1.textColor1] ];
-           
-           [subLabel(@"至Label") setTextColor:Skin1.textColor1];
-           
-           [subView(@"结束View") setBackgroundColor:Skin1.textColor4];
-           [self.endTimeButton setTitleColor:Skin1.textColor1 forState:0];
-                [subImageView(@"下img2") setImage: [[UIImage imageNamed:@"arrow_down"] qmui_imageWithTintColor:Skin1.textColor1] ];
-
-           [subView(@"分级View") setBackgroundColor:Skin1.textColor4];
-           [subLabel(@"分级Label") setTextColor:Skin1.textColor1];
-           
-           [subView(@"日期View") setBackgroundColor:Skin1.textColor4];
-           [subLabel(@"日期Label") setTextColor:Skin1.textColor1];
-           
-           [subView(@"投注金额View") setBackgroundColor:Skin1.textColor4];
-           [subLabel(@"投注金额Label") setTextColor:Skin1.textColor1];
-           
-           [subView(@"佣金View") setBackgroundColor:Skin1.textColor4];
-           [subLabel(@"佣金Label") setTextColor:Skin1.textColor1];
-           
-           [subView(@"游戏View") setBackgroundColor:Skin1.textColor4];
-           [subLabel(@"游戏Label") setTextColor:Skin1.textColor1];
-       }
-	
+    if (Skin1.isBlack) {
+        [self.view setBackgroundColor:Skin1.CLBgColor];
+        [subView(@"上View") setBackgroundColor:Skin1.textColor4];
+        [_levelSelectView setBackgroundColor:Skin1.textColor4];
+        [self.levelSelectButton setTitleColor:Skin1.textColor1 forState:0];
+        [self.arrowImage setImage: [[UIImage imageNamed:@"arrow_down"] qmui_imageWithTintColor:Skin1.textColor1] ];
+        
+        [subView(@"开始View") setBackgroundColor:Skin1.textColor4];
+        [self.beiginTimeButton setTitleColor:Skin1.textColor1 forState:0];
+        [subImageView(@"下Img") setImage: [[UIImage imageNamed:@"arrow_down"] qmui_imageWithTintColor:Skin1.textColor1] ];
+        
+        [subLabel(@"至Label") setTextColor:Skin1.textColor1];
+        
+        [subView(@"结束View") setBackgroundColor:Skin1.textColor4];
+        [self.endTimeButton setTitleColor:Skin1.textColor1 forState:0];
+        [subImageView(@"下img2") setImage: [[UIImage imageNamed:@"arrow_down"] qmui_imageWithTintColor:Skin1.textColor1] ];
+        
+        [subView(@"分级View") setBackgroundColor:Skin1.textColor4];
+        [subLabel(@"分级Label") setTextColor:Skin1.textColor1];
+        
+        [subView(@"日期View") setBackgroundColor:Skin1.textColor4];
+        [subLabel(@"日期Label") setTextColor:Skin1.textColor1];
+        
+        [subView(@"投注金额View") setBackgroundColor:Skin1.textColor4];
+        [subLabel(@"投注金额Label") setTextColor:Skin1.textColor1];
+        
+        [subView(@"佣金View") setBackgroundColor:Skin1.textColor4];
+        [subLabel(@"佣金Label") setTextColor:Skin1.textColor1];
+        
+        [subView(@"游戏View") setBackgroundColor:Skin1.textColor4];
+        [subLabel(@"游戏Label") setTextColor:Skin1.textColor1];
+    }
+    
 }
 
 - (IBAction)levelButtonTaped:(id)sender {
-	CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI);
-	self.arrowImage.transform = transform;
-	
-	YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:_levelArray icons:nil menuWidth:CGSizeMake(UGScreenW / _levelArray.count + 70, 180) delegate:self];
-	popView.type = YBPopupMenuTypeDefault;
-	popView.fontSize = 12;
-	popView.textColor = [UIColor colorWithHex:0x484D52];
-	[popView showRelyOnView:self.levelSelectView];
+    CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI);
+    self.arrowImage.transform = transform;
+    
+    YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:_levelArray icons:nil menuWidth:CGSizeMake(UGScreenW / _levelArray.count + 70, 180) delegate:self];
+    popView.type = YBPopupMenuTypeDefault;
+    popView.fontSize = 12;
+    popView.textColor = [UIColor colorWithHex:0x484D52];
+    [popView showRelyOnView:self.levelSelectView];
 }
 
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-	PromotionRecordCell2 * cell = [tableView dequeueReusableCellWithIdentifier:@"PromotionRecordCell2" forIndexPath:indexPath];
-	[cell bindOtherRecord:self.items[indexPath.row]];
-	return cell;
-	
+    PromotionRecordCell2 * cell = [tableView dequeueReusableCellWithIdentifier:@"PromotionRecordCell2" forIndexPath:indexPath];
+    [cell bindOtherRecord:self.items[indexPath.row]];
+    return cell;
+    
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return self.items.count;
+    return self.items.count;
 }
 - (void)loadData {
-	if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
-		return;
-	}
-	if ([UGUserModel currentUser].isTest) {
-		return;
-	}
-    if (![CMCommon stringIsNull:self.dateStr]) {
-        self.beginTimeStr = self.dateStr;
-        self.endTimeStr = self.dateStr;
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
     }
-	NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
-							 @"level":[NSString stringWithFormat:@"%ld",(long)_levelindex],
-							 @"page":@(self.pageNumber),
-							 @"rows":@(self.pageSize),
+    if ([UGUserModel currentUser].isTest) {
+        return;
+    }
+    
+    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
+                             @"level":[NSString stringWithFormat:@"%ld",(long)_levelindex],
+                             @"page":@(self.pageNumber),
+                             @"rows":@(self.pageSize),
                              @"startDate":self.beginTimeStr,
                              @"endDate":self.endTimeStr,
-	};
-	
-	[SVProgressHUD showWithStatus:nil];
-	WeakSelf;
-	[CMNetwork teamRealBetListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
-		[CMResult processWithResult:model success:^{
-			[SVProgressHUD dismiss];
-			NSDictionary *data =  model.data;
-			NSArray *list = [data objectForKey:@"list"];
+    };
+    
+    [SVProgressHUD showWithStatus:nil];
+    WeakSelf;
+    [CMNetwork teamRealBetListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            [SVProgressHUD dismiss];
+            NSDictionary *data =  model.data;
+            NSArray *list = [data objectForKey:@"list"];
             if ([CMCommon stringIsNull:self.dateStr]) {
-                 [self setDateStr:@""];
+                [self setDateStr:@""];
             }
-			if (weakSelf.pageNumber == 1 ) {
-				[weakSelf.items removeAllObjects];
-			}
-			//数组转模型数组
-			NSArray *array  = [UGrealBetListModel arrayOfModelsFromDictionaries:list error:nil];
-			[weakSelf.items addObjectsFromArray:array];
-			[weakSelf.tableView reloadData];
-			if (array.count < weakSelf.pageSize) {
-				[weakSelf.tableView.mj_footer setState:MJRefreshStateNoMoreData];
-				[weakSelf.tableView.mj_footer setHidden:YES];
-			}else{
-				
-				[weakSelf.tableView.mj_footer setState:MJRefreshStateIdle];
-				[weakSelf.tableView.mj_footer setHidden:NO];
-			}
-			
-		} failure:^(id msg) {
-			[SVProgressHUD showErrorWithStatus:msg];
-		}];
-		if ([weakSelf.tableView.mj_header isRefreshing]) {
-			[weakSelf.tableView.mj_header endRefreshing];
-		}
-		if ([weakSelf.tableView.mj_footer isRefreshing]) {
-			[weakSelf.tableView.mj_footer endRefreshing];
-		}
-	}];
+            if (weakSelf.pageNumber == 1 ) {
+                [weakSelf.items removeAllObjects];
+            }
+            //数组转模型数组
+            NSArray *array  = [UGrealBetListModel arrayOfModelsFromDictionaries:list error:nil];
+            [weakSelf.items addObjectsFromArray:array];
+            [weakSelf.tableView reloadData];
+            if (array.count < weakSelf.pageSize) {
+                [weakSelf.tableView.mj_footer setState:MJRefreshStateNoMoreData];
+                [weakSelf.tableView.mj_footer setHidden:YES];
+            }else{
+                
+                [weakSelf.tableView.mj_footer setState:MJRefreshStateIdle];
+                [weakSelf.tableView.mj_footer setHidden:NO];
+            }
+            
+        } failure:^(id msg) {
+            [SVProgressHUD showErrorWithStatus:msg];
+        }];
+        if ([weakSelf.tableView.mj_header isRefreshing]) {
+            [weakSelf.tableView.mj_header endRefreshing];
+        }
+        if ([weakSelf.tableView.mj_footer isRefreshing]) {
+            [weakSelf.tableView.mj_footer endRefreshing];
+        }
+    }];
 }
 
 
@@ -199,62 +265,23 @@
 #pragma mark YBPopupMenuDelegate
 
 - (void)ybPopupMenuDidSelectedAtIndex:(NSInteger)index ybPopupMenu:(YBPopupMenu *)ybPopupMenu {
-	if (index >= 0) {
-		_levelindex = index;
-		[self.levelSelectButton setTitle:_levelArray[index] forState:UIControlStateNormal];
-		[self loadData];
-	}
-	
-	CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI * 2);
-	self.arrowImage.transform = transform;
+    if (index >= 0) {
+        _levelindex = index;
+        [self.levelSelectButton setTitle:_levelArray[index] forState:UIControlStateNormal];
+        [self loadData];
+    }
+    
+    CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI * 2);
+    self.arrowImage.transform = transform;
 }
 
 //开始时间
 - (IBAction)dateBtnAction:(id)sender {
-    // 开始时间
-     BRDatePickerView *datePickerView = [[BRDatePickerView alloc]init];
-     datePickerView.pickerMode = BRDatePickerModeDate;
-     datePickerView.title = @"开始时间";
-     datePickerView.selectDate = self.beginTimeSelectDate;
-     datePickerView.isAutoSelect = NO;
-     datePickerView.resultBlock = ^(NSDate *selectDate, NSString *selectValue) {
-         self.beginTimeSelectDate = selectDate;
-         [self.beiginTimeButton setTitle:selectValue forState:(0)];
-         self.beginTimeStr = selectValue;
-         
-         [self loadData];
-     };
-     // 自定义弹框样式
-     BRPickerStyle *customStyle = [BRPickerStyle pickerStyleWithThemeColor:[UIColor darkGrayColor]];
-     datePickerView.pickerStyle = customStyle;
-     [datePickerView show];
+    [_beigindatePickerView show];
 }
 //结束时间
 - (IBAction)date2BtnAcion:(id)sender {
- 
-    // 结束时间
-     BRDatePickerView *datePickerView = [[BRDatePickerView alloc]init];
-     datePickerView.pickerMode = BRDatePickerModeDate;
-     datePickerView.title = @"结束时间";
-     datePickerView.selectDate = self.endTimeSelectDate;
-     datePickerView.isAutoSelect = NO;
-     datePickerView.resultBlock = ^(NSDate *selectDate, NSString *selectValue) {
-         
-         int re = [CMTimeCommon compareOneDay:selectDate withAnotherDay:self.beginTimeSelectDate];
-         if (re == -1 ) {
-             [CMCommon showToastTitle:@"开始时间大于结束时间，请重新选择"];
-             return;
-         }
-         self.endTimeSelectDate = selectDate;
-         [self.endTimeButton setTitle:selectValue forState:(0)];
-         self.endTimeStr = selectValue;
-         
-         [self loadData];
-     };
-     // 自定义弹框样式
-     BRPickerStyle *customStyle = [BRPickerStyle pickerStyleWithThemeColor:[UIColor darkGrayColor]];
-     datePickerView.pickerStyle = customStyle;
-     [datePickerView show];
+    [_enddatePickerView show];
 }
 
 @end
