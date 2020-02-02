@@ -432,7 +432,17 @@
         self.tableView.backgroundColor = Skin1.bgColor;
         [self.tableView addObserver:self forKeyPath:@"contentSize"  options:NSKeyValueObservingOptionNew context:@"tableContext"];
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-
+        subView(@"优惠活动外View").layer.cornerRadius = 5;
+        subView(@"优惠活动外View").layer.masksToBounds = YES;
+        if (APP.isWhite) {
+             subView(@"优惠活动外View").layer.borderWidth = 0;
+            _gameNavigationView.layer.borderWidth = 1;
+            _gameNavigationView.layer.borderColor = [[UIColor whiteColor] CGColor];
+        }
+        else{
+            subView(@"优惠活动外View").layer.borderWidth = 1;
+            subView(@"优惠活动外View").layer.borderColor = [[UIColor whiteColor] CGColor];
+        }
 
         
 		subView(@"优惠活动Cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor : Skin1.homeContentColor;
@@ -445,10 +455,9 @@
 		self.gameNavigationView.layer.borderWidth = 1;
 		self.gameNavigationView.layer.borderColor = Skin1.homeContentColor.CGColor;
         
-        if (APP.isWhite) {
-            _gameNavigationView.layer.borderWidth = 1;
-            _gameNavigationView.layer.borderColor = [[UIColor whiteColor] CGColor];
-        }
+
+
+     
 		
 		[self.view setBackgroundColor: Skin1.bgColor];
 		[self.rankingView setBackgroundColor:Skin1.navBarBgColor];
