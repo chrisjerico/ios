@@ -3914,7 +3914,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ive-4D-wAf">
-                                <rect key="frame" x="0.0" y="86" width="375" height="36"/>
+                                <rect key="frame" x="0.0" y="88" width="375" height="36"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X9J-Rj-8Bd">
                                         <rect key="frame" x="8" y="4" width="91" height="28"/>
@@ -4173,6 +4173,9 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="JEU-Rq-0rs"/>
+                                </constraints>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5fh-aK-sqB">
                                 <rect key="frame" x="0.0" y="172" width="375" height="606"/>
@@ -4187,7 +4190,8 @@
                             <constraint firstItem="5fh-aK-sqB" firstAttribute="trailing" secondItem="Ive-4D-wAf" secondAttribute="trailing" id="4qL-Fs-kpC"/>
                             <constraint firstItem="5fh-aK-sqB" firstAttribute="leading" secondItem="Fnx-Iv-I0L" secondAttribute="leading" id="9M2-Xm-JHz"/>
                             <constraint firstItem="5fh-aK-sqB" firstAttribute="centerX" secondItem="xJx-4w-xUj" secondAttribute="centerX" id="ebM-UL-bNm"/>
-                            <constraint firstItem="Fnx-Iv-I0L" firstAttribute="top" secondItem="Ive-4D-wAf" secondAttribute="bottom" constant="13" id="f3M-lb-Dz5"/>
+                            <constraint firstItem="Fnx-Iv-I0L" firstAttribute="top" secondItem="Ive-4D-wAf" secondAttribute="bottom" constant="11" id="f3M-lb-Dz5"/>
+                            <constraint firstItem="Ive-4D-wAf" firstAttribute="top" secondItem="1H1-mD-bPG" secondAttribute="top" id="hwm-bv-9nc"/>
                             <constraint firstItem="5fh-aK-sqB" firstAttribute="bottom" secondItem="1H1-mD-bPG" secondAttribute="bottom" id="n8E-Xj-fZQ"/>
                             <constraint firstItem="5fh-aK-sqB" firstAttribute="leading" secondItem="1H1-mD-bPG" secondAttribute="leading" id="pg6-NW-6oO"/>
                             <constraint firstItem="5fh-aK-sqB" firstAttribute="top" secondItem="Fnx-Iv-I0L" secondAttribute="bottom" constant="1" id="puX-Om-2Mx"/>
