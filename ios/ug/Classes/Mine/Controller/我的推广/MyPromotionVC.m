@@ -175,7 +175,7 @@
     self.promotionIdlabel.text =self.mUGinviteInfoModel.rid;
     self.incomeLabel.text = self.mUGinviteInfoModel.month_earn;
     NSLog(@"本月推荐会员=%@",self.mUGinviteInfoModel.month_member);
-    self.monthMembers.text = self.mUGinviteInfoModel.month_member;
+    self.monthMembers.text = [NSString stringWithFormat:@"本月推荐会员:%@",self.mUGinviteInfoModel.month_member];
     
     [CMLabelCommon setRichNumberWithLabel:self.monthMembers Color:RGBA(250, 234, 168, 1) FontSize:12.0];
     

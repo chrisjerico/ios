@@ -47,6 +47,10 @@
         UICollectionView *collectionView = ({
             collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, CollectionViewW, 55) collectionViewLayout:layout];
             collectionView.backgroundColor = _isBlack ? Skin1.bgColor : Skin1.homeContentColor;
+            if (APP.isWhite) {
+                  collectionView.layer.borderWidth = 1;
+                   collectionView.layer.borderColor = [UIColor whiteColor].CGColor;
+            }
 			if ([Skin1.skitType isEqualToString:@"金沙主题"]) {
 				collectionView.backgroundColor = UIColor.clearColor;
 			}
@@ -59,6 +63,8 @@
             [collectionView registerNib:[UINib nibWithNibName:@"UGPlatformTitleBlackCell" bundle:nil] forCellWithReuseIdentifier:@"黑色模板Cell"];
             [collectionView setShowsHorizontalScrollIndicator:NO];
             collectionView;
+            
+  
         });
         
         self.collectionView = collectionView;

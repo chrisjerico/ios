@@ -69,6 +69,9 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
 					}
                 }
             }];
+            
+
+ 
         }
         
         // _contentStackView

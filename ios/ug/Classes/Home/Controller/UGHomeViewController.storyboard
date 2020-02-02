@@ -316,6 +316,12 @@
                                                                                                         </userDefinedRuntimeAttribute>
                                                                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
                                                                                                         <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="cell背景View"/>
+                                                                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                                                            <real key="value" value="1"/>
+                                                                                                        </userDefinedRuntimeAttribute>
+                                                                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                                                            <color key="value" red="0.95677274469999996" green="0.96077066659999999" blue="0.96078509089999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                                                        </userDefinedRuntimeAttribute>
                                                                                                     </userDefinedRuntimeAttributes>
                                                                                                 </view>
                                                                                             </subviews>
