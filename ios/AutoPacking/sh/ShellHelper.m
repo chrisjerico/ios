@@ -315,7 +315,7 @@
 
 // 配置plist文件
 + (void)setupPlist:(SiteModel *)sm ipaUrl:(NSString *)ipaUrl completion:(void (^)(void))completion {
-    NSString *logoUrl = _NSString(@"https://app.wdheco.cn/img/%@/%@.png", sm.uploadNum, sm.uploadNum);
+    NSString *logoUrl = _NSString(@"https://app.pindanduo.cn/img/%@/%@.png", sm.uploadNum, sm.uploadNum);
     
     NSTask *task = [[NSTask alloc] init];
     task.launchPath = [[NSBundle mainBundle] pathForResource:@"4plist" ofType:@"sh"];

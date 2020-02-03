@@ -46,9 +46,9 @@
 客户下载不了:
 -——————————————————————
 1：让客户打开icon
-https://app.wdheco.cn/img/c085/c085.png
+https://app.pindanduo.cn/img/c085/c085.png
 2：让客户打开直接链接
-https://app.wdheco.cn/ipa/c085/c085_1577104817.ipa
+https://app.pindanduo.cn/ipa/c085/c085_1577104817.ipa
 3：再不行==》运维
 
 
