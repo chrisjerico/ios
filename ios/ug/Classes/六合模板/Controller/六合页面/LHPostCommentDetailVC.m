@@ -10,7 +10,7 @@
 
 #import "LHPostCommentInputView.h"
 
-
+#import "CMTimeCommon.h"
 @interface LHPostCommentDetailVC ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -44,7 +44,8 @@
             subButton(@"点赞图标Button").selected = pcm.isLike;
             subLabel(@"点赞次数Label").text = pcm.likeNum ? @(pcm.likeNum).stringValue : @"";
             subLabel(@"评价内容Label").text = pcm.content;
-            subLabel(@"评论时间Label").text = pcm.actionTime;
+           
+            subLabel(@"评论时间Label").text =  [CMTimeCommon formatTimeStr:pcm.actionTime];
         }
         
         // 初始化TableView 及下拉刷新事件
