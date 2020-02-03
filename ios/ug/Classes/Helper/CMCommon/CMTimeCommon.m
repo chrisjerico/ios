@@ -348,4 +348,45 @@
 }
 
 
+/******************************************************************************
+函数名称 : formatTimeStr;
+函数描述 :
+   //返回 刚刚，几分钟前，几小时前，昨天，前天
+
+输入参数 :timeStr   "2017-01-01 21:05:10
+返回参数 : 刚刚，几分钟前，几小时前，昨天，前天
+备注信息 :
+******************************************************************************/
++(NSString *)formatTimeStr:(NSString *)timeStr
+{
+    //把字符串转为NSdate
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *timeDate = [dateFormatter dateFromString:timeStr];
+    //得到与当前时间差
+    NSTimeInterval timeInterval = [timeDate timeIntervalSinceNow];
+    timeInterval = -timeInterval;
+    long temp = 0;
+    NSString *result;
+    if (timeInterval < 60) {
+        result = [NSString stringWithFormat:@"刚刚"];
+    }else if((temp = timeInterval/60) < 60){
+        result = [NSString stringWithFormat:@"%ld分钟前",temp];
+    }else if((temp = timeInterval/3600) > 1 && (temp = timeInterval/3600) <24){
+        result = [NSString stringWithFormat:@"%ld小时前",temp];
+    }else if ((temp = timeInterval/3600) > 24 && (temp = timeInterval/3600) < 48){
+        result = [NSString stringWithFormat:@"昨天"];
+    }else if ((temp = timeInterval/3600) > 48 && (temp = timeInterval/3600) < 72){
+        result = [NSString stringWithFormat:@"前天"];
+    }else{
+        result = timeStr;
+    }
+    NSLog(@"%@",result);
+    return result;
+    
+
+    
+}
+
+
 @end

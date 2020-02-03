@@ -21,6 +21,7 @@
 
 // Tools
 #import "YYText.h"
+#import "CMTimeCommon.h"
 
 #define ContentWidth (APP.Width-40)
 
@@ -470,7 +471,8 @@
         subLabel(@"点赞次数Label").text = pcm.likeNum ? @(pcm.likeNum).stringValue : @"";
         subLabel(@"点赞次数Label").textColor = pcm.isLike ? Skin1.navBarBgColor : APP.TextColor3;
         subLabel(@"评论内容Label").text = pcm.content;
-        subLabel(@"评论时间Label").text = pcm.actionTime;
+   
+        subLabel(@"评论时间Label").text =  [CMTimeCommon formatTimeStr:pcm.actionTime];;
         [subButton(@"回复评论Button") setTitle:_NSString(@"%@回复", (pcm.replyCount ? [NSString stringWithFormat:@"%@ ", @(pcm.replyCount)] : @"")) forState:UIControlStateNormal];
         
         
