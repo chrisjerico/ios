@@ -168,6 +168,14 @@
 }
 
 
+- (BOOL)isBorderNavBarBgColor {
+    if (Skin1.isBlack) {
+        return NO;
+    } else {
+         return [@"c085" containsString:_SiteId];
+    }
+}
+
 - (BOOL)isBall {
     return [@"c212,c085" containsString:_SiteId];
 }

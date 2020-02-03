@@ -80,7 +80,7 @@
         }
     } else {
         self.backgroundColor = item.select ? [Skin1.homeContentSubColor colorWithAlphaComponent:0.2] : [UIColor clearColor];
-        if ([@"c085" containsString:APP.SiteId]) {
+        if (APP.isBorderNavBarBgColor) {
             self.backgroundColor = item.select ?Skin1.navBarBgColor:[UIColor clearColor];
         }
         if (APP.betBgIsWhite) {

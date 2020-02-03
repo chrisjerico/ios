@@ -53,6 +53,9 @@
         
     } else {
         self.backgroundColor = item.select ? [Skin1.homeContentSubColor colorWithAlphaComponent:0.2] : [UIColor clearColor];
+        if (APP.isBorderNavBarBgColor) {
+            self.backgroundColor = item.select ?Skin1.navBarBgColor:[UIColor clearColor];
+        }
         if (APP.betBgIsWhite) {
             self.layer.borderColor = (item.select ? Skin1.navBarBgColor : APP.LineColor).CGColor;
         } else {

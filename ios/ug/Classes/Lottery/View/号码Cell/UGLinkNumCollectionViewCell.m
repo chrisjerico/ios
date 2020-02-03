@@ -33,6 +33,9 @@
         self.layer.borderColor = (item.select ? [UIColor whiteColor] : Skin1.textColor3).CGColor;
     } else {
         self.backgroundColor = item.select ? [Skin1.homeContentSubColor colorWithAlphaComponent:0.2] : [UIColor clearColor];
+        if (APP.isBorderNavBarBgColor) {
+            self.backgroundColor = item.select ?Skin1.navBarBgColor:[UIColor clearColor];
+        }
         self.layer.borderColor = (item.select ? Skin1.navBarBgColor : APP.LineColor).CGColor;
     }
 }
