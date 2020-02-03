@@ -29,7 +29,7 @@
                         <constraints>
                             <constraint firstAttribute="width" secondItem="py4-UL-eaI" secondAttribute="height" multiplier="1:1" id="0vi-g1-kNb"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="11"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
