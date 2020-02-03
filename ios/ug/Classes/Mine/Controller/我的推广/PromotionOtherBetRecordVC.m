@@ -142,7 +142,7 @@
         
     }];
     self.tableView.tableFooterView = [UIView new];
-    self.navigationItem.title = @"其他报表记录";
+    self.navigationItem.title = @"其它报表记录";
     [weakSelf loadData];
     self.tableView.startTip = YES;
     self.tableView.tipTitle = @"暂无更多数据";
