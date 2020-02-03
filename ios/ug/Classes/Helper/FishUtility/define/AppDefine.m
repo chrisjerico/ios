@@ -169,7 +169,7 @@
 
 
 - (BOOL)isBall {
-    return [@"c208,c202" containsString:_SiteId];
+    return [@"c212" containsString:_SiteId];
 }
 
 - (BOOL)isWhite {
