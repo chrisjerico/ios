@@ -43,7 +43,7 @@
 #import "UGGDKL10LotteryController.h"
 #import "UGFC3DLotteryController.h"
 #import "UGPK10NNLotteryController.h"
-
+#import "UIColor+YYUI.h"
 #import "UGYYRightMenuView.h"
 #import "UGLotterySettingModel.h"
 
@@ -1290,9 +1290,18 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         [abStr addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(3, self.selectLabel.text.length - 4)];
         self.selectLabel.attributedText = abStr;
     } else {
-        NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.selectLabel.text];
-        [abStr addAttribute:NSForegroundColorAttributeName value:Skin1.navBarBgColor range:NSMakeRange(3, self.selectLabel.text.length - 4)];
-        self.selectLabel.attributedText = abStr;
+       
+        if ([@"c085" containsString:APP.SiteId]) {
+            NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.selectLabel.text];
+            [abStr addAttribute:NSForegroundColorAttributeName value:RGBA(247, 211, 72, 1)  range:NSMakeRange(3, self.selectLabel.text.length - 4)];
+            self.selectLabel.attributedText = abStr;
+        }
+        else{
+            NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.selectLabel.text];
+            [abStr addAttribute:NSForegroundColorAttributeName value:Skin1.navBarBgColor range:NSMakeRange(3, self.selectLabel.text.length - 4)];
+            self.selectLabel.attributedText = abStr;
+        }
+
     }
 }
 
@@ -1522,7 +1531,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             if (Skin1.isBlack) {
                 [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             } else {
-                [btn setTitleColor:APP.TextColor2 forState:UIControlStateNormal];
+                [btn setTitleColor:APP.TextColor1 forState:UIControlStateNormal];
             }
             [btn setImage:[UIImage imageNamed:@"RadioButton-Unselected"] forState:UIControlStateNormal];
             [btn setImage:[UIImage imageNamed:@"RadioButton-Selected"] forState:UIControlStateSelected];

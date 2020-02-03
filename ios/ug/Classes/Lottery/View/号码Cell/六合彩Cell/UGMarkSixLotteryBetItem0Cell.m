@@ -56,7 +56,14 @@
         } else {
             self.leftLabel.textColor = item.select ? [UIColor whiteColor] : Skin1.textColor1;
         }
+        
+
         self.backgroundColor = item.select ? [Skin1.homeContentSubColor colorWithAlphaComponent:0.2] : [UIColor clearColor];
+        
+        if ([@"c085" containsString:APP.SiteId]) {
+            self.backgroundColor = item.select ?Skin1.navBarBgColor:[UIColor clearColor];
+        }
+        
         if (APP.betBgIsWhite) {
             self.layer.borderColor = (item.select ? Skin1.navBarBgColor : APP.LineColor).CGColor;
         } else {

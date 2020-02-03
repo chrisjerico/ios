@@ -44,7 +44,16 @@
 
 - (void)setShowAdd:(BOOL)showAdd {
     _showAdd = showAdd;
-    _titleLabel.hidden = showAdd;
+    if ([@"c085" containsString:APP.SiteId]) {
+        _titleLabel.hidden = NO;
+        if (showAdd) {
+            _titleLabel.text = @"+";
+        }
+        
+    } else {
+        _titleLabel.hidden = showAdd;
+    }
+
     _bgImageView.hidden = showAdd;
 }
 

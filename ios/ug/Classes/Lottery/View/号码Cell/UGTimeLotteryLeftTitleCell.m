@@ -61,6 +61,10 @@
             self.titleLabel.textColor = selected ? [UIColor whiteColor] : Skin1.textColor1;
             self.leftPoint.backgroundColor = selected ? [UIColor whiteColor] : UGRGBColor(195, 195, 196);
             self.layer.borderColor = [UIColor whiteColor].CGColor;
+            
+            if ([@"c085" containsString:APP.SiteId]) {
+                self.backgroundColor = selected ?Skin1.navBarBgColor:[UIColor clearColor];
+            }
         }
     }
 }
