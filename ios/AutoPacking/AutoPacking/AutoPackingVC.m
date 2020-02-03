@@ -45,8 +45,8 @@
         if (isPack) {
 
 
-            NSString *ids = @"c208,c213";   // 站点编号
-//            NSString *ids = @"c199,c213,c208,c216,c048,ic213,l002,c018,h005,c053,c062,c085,c137,c141,c150,c151,c153,c158,c163,c165,c169,c173,c175,c177,c002,c091,c084,c049,c011,c012,c073,c092,c116,c129,c192,c194,c035,c047”;   // 站点编号
+            NSString *ids = @"c085";   // 站点编号
+//            NSString *ids = @"c085,c199,c213,c208,c216,c048,ic213,l002,c018,h005,c053,c062,c085,c137,c141,c150,c151,c153,c158,c163,c165,c169,c173,c175,c177,c002,c091,c084,c049,c011,c012,c073,c092,c116,c129,c192,c194,c035,c047”;   // 站点编号
 
             BOOL willUpload = 1; // 打包后是否上传审核
             [self startPackingWithIds:ids willUpload:willUpload];
