@@ -58,7 +58,7 @@
 @property (nonatomic) BOOL isShowJinbei;    /**<  显示金杯 */
 @property (nonatomic) BOOL isHideText;    /**<  在线三方支付设置快捷金额后，隐藏掉输入金额那一栏 */
 @property (nonatomic) BOOL isWhite;    /**<  首页游戏cell加白边 */
-
+@property (nonatomic) BOOL isBall;    /**<  下注界面号码显示为球图 */
 
 // 热更新相关字段
 @property (nonatomic) BOOL Test;                        /**<   是否是测试环境 */
