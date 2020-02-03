@@ -233,6 +233,28 @@ static NSString *uuidKey =@"uuidKey";
     
 }
 
++ (UIImage *)getHKLotteryNumColorImg:(NSString *)num {
+    //    1、红波:1.2.7.8.12.13.18.19.23.24.29.30.34.35.40.45.46
+    //
+    //    2、蓝波:3.4.9.10.14.15.20.25.26.31.36.37.41.42.47.48
+    //
+    //    3、绿波:5.6.11.16.17.21.22.27.28.32.33.38.39.43.44.49
+    NSSet *redSet = [NSSet setWithObjects:@"01",@"02",@"07",@"08",@"12",@"13",@"18",@"19",@"23",@"24",@"29",@"30",@"34",@"35",@"40",@"45",@"46", nil];
+    NSSet *blueSet = [NSSet setWithObjects:@"03",@"04",@"09",@"10",@"14",@"15",@"20",@"25",@"26",@"31",@"36",@"37",@"41",@"42",@"47",@"48", nil];
+    NSSet *greenSet = [NSSet setWithObjects:@"05",@"06",@"11",@"16",@"17",@"21",@"22",@"27",@"28",@"32",@"33",@"38",@"39",@"43",@"44",@"49", nil];
+    if (num.length == 0) {
+        num = [NSString stringWithFormat:@"0%@",num];
+    }
+    if ([redSet containsObject:num]) {
+        return [UIImage imageNamed:@"icon_red"];
+    }else if ([blueSet containsObject:num]) {
+        return [UIImage imageNamed:@"icon_blue"];
+    }else {
+        return [UIImage imageNamed:@"icon_green"];
+    }
+    
+}
+
 + (NSString *)getDateStringWithLastDate:(NSInteger)date {
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];

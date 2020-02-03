@@ -12,15 +12,14 @@
 @property (weak, nonatomic) IBOutlet UILabel *leftLabel;
 @property (weak, nonatomic) IBOutlet UILabel *rightLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftLabelCenterXConstraint;
+@property (weak, nonatomic) IBOutlet UIImageView *ballImg;
 
 @end
 @implementation UGMarkSixLotteryBetItem0Cell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.leftLabel.layer.cornerRadius = self.leftLabel.width / 2;
-    self.leftLabel.layer.masksToBounds = YES;
-    self.leftLabel.layer.borderWidth = 1;
+
 }
 
 - (void)setItem:(UGGameBetModel *)item {
@@ -75,8 +74,31 @@
         }
     }
    
-    
-    self.leftLabel.layer.borderColor = [CMCommon getHKLotteryNumColor:item.name].CGColor;
+
+    if (APP.isBall) {
+        [self.ballImg setHidden:NO];
+        NSString *colorStr = [CMCommon getHKLotteryNumColorString:item.name];
+        if ([colorStr isEqualToString:@"red"]) {
+            [self.ballImg setImage:[UIImage imageNamed:@"icon_red"]];
+        }
+        else if ([colorStr isEqualToString:@"blue"]) {
+            [self.ballImg setImage:[UIImage imageNamed:@"icon_blue"]];
+        }
+        else if ([colorStr isEqualToString:@"greed"]) {
+            [self.ballImg setImage:[UIImage imageNamed:@"icon_green"]];
+        }
+        self.leftLabel.layer.masksToBounds = NO;
+        self.leftLabel.layer.borderWidth = 0;
+        
+    }
+    else {
+        [self.ballImg setHidden:YES];
+        self.leftLabel.layer.borderColor = [CMCommon getHKLotteryNumColor:item.name].CGColor;
+        self.leftLabel.layer.cornerRadius = self.leftLabel.width / 2;
+        self.leftLabel.layer.masksToBounds = YES;
+        self.leftLabel.layer.borderWidth = 1;
+    }
+
     if (item.odds.length) {
         if ([item.odds containsString:@"/"]) {
             self.leftLabelCenterXConstraint.constant = -25;

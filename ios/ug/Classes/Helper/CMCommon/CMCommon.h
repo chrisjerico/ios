@@ -43,6 +43,12 @@
 + (UIColor *)getHKLotteryNumColor:(NSString *)num;
 
 + (NSString *)getHKLotteryNumColorString:(NSString *)num;
+/**
+
+@param num  数字
+@return 根据规则返回球图
+*/
++ (UIImage *)getHKLotteryNumColorImg:(NSString *)num ;
 
 + (NSString *)getDateStringWithLastDate:(NSInteger)date;
 
