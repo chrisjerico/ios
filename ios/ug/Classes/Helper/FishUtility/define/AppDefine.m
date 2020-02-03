@@ -221,7 +221,7 @@
     if ([Skin1.skitString isEqualToString:@"新年红 1蓝色风格"]) {
         return NO;
     } else {
-         return ![@"c175,c085,c073,c169,a002,c190,c048,c200,c001,c208,c202" containsString:_SiteId] || [@"新年红,石榴红" containsString:Skin1.skitType];
+         return ![@"c175,c085,c073,c169,a002,c190,c048,c200,c001,c208,c202,c212" containsString:_SiteId] || [@"新年红,石榴红" containsString:Skin1.skitType];
     }
 }
 
