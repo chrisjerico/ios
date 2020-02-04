@@ -124,7 +124,7 @@
         _SiteId = __SiteID__;
         _jspVersion = [[NSUserDefaults standardUserDefaults] stringForKey:@"jspVersion"];
 #ifdef APP_TEST
-//        _Test = true;
+        _Test = true;
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
         if (!_SiteId.length) {
             _SiteId = @"test29";
@@ -160,14 +160,24 @@
 - (float )cellNormalFontSize        { return 14.0; }
 
 - (float )borderWidthTimes          {
-    if ([@"a002,c085,c212,c208" containsString:_SiteId]) {
+    if ([@"a002,c085,c208" containsString:_SiteId]) {
         return  2.0;
     } else {
         return 1;
     }
 }
+
+- (BOOL)isSelectStyle {
+    return [@"c212" containsString:_SiteId];
+}
+
+
+- (BOOL)isShowBorder {
+    return [@"c212" containsString:_SiteId];
+}
+
 - (BOOL)isShowHornView {
-    return [@"l001" containsString:_SiteId];
+    return [@"l001,l002" containsString:_SiteId];
 }
 
 - (BOOL)isGrey {

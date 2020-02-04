@@ -21,6 +21,8 @@
     } else {
          self.titleLabel.textColor = Skin1.textColor1;
     }
+    
+
 }
 
 - (void)setLeftTitle:(BOOL)leftTitle {

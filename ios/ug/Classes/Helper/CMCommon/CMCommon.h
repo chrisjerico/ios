@@ -333,4 +333,18 @@ chat_type=crm 设置意味着营销qq，可以和陌生人发起临时会话。
 *
 */
 +(void )disPreviousVC;
+/**
+*   加边框
+*
+*
+*/
++(void )addBordeView:(UIView *)view Width:(float ) width Color:(UIColor *)color;
+
+
+/**
+*   返回下注界面边框颜色
+*
+*
+*/
++(UIColor * )bordeColor;
 @end

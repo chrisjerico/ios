@@ -15,6 +15,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet FLAnimatedImageView *imgGif2;
 @property (weak, nonatomic) IBOutlet FLAnimatedImageView *imgGif3;
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLab1;
+@property (weak, nonatomic) IBOutlet UILabel *titleLab2;
+@property (weak, nonatomic) IBOutlet UILabel *titleLab3;
+
 -(instancetype)initView;
 @end
 

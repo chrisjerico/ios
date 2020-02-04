@@ -791,6 +791,9 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         UGTimeLotteryBetHeaderView*  headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerViewID forIndexPath:indexPath];
         
         if (collectionView == self.betCollectionView) {
+            if (APP.isShowBorder) {
+                [CMCommon addBordeView:headerView Width:1 Color:[CMCommon bordeColor]];
+            }
             UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
             UGGameplaySectionModel *type = nil;
             if ([@"连码" isEqualToString:model.name] ||
@@ -1214,17 +1217,17 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 /** 列间距*/
 - (CGFloat)columnMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
 
-    return 1;
+    return 0;
 }
 /** 行间距*/
 - (CGFloat)rowMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
 
-    return 1;
+    return 0;
 }
 /** 边缘之间的间距*/
 - (UIEdgeInsets)edgeInsetInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout {
     self.betCollectionView.backgroundColor = [UIColor clearColor];
-    return UIEdgeInsetsMake(1, 1, 1, 1);
+    return UIEdgeInsetsMake(0, 0, 0, 0);
 }
 
 - (void)initBetCollectionView {
@@ -1508,7 +1511,9 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     if (_segmentView == nil) {
         _segmentView = [[UGSegmentView alloc] initWithFrame:CGRectMake(UGScreenW / 4, 114, UGScreenW /4 * 3, 50) titleArray:self.tmTitleArray];
         _segmentView.hidden = YES;
-        
+        if (APP.isShowBorder) {
+            [CMCommon addBordeView:_segmentView Width:1 Color:[CMCommon bordeColor]];
+        }
         
     }
     return _segmentView;
@@ -1520,7 +1525,15 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         NSArray *titles = @[@"鼠", @"牛", @"虎", @"兔", @"龙", @"蛇", @"马", @"羊", @"猴", @"鸡", @"狗", @"猪",];
         NSMutableArray *btns = [NSMutableArray array];
         CGFloat w = 60, h = 45;
-        UIScrollView *sv = [[UIScrollView alloc] initWithFrame:CGRectMake(_segmentView.x, _segmentView.by-5, _segmentView.width, h)];
+        UIScrollView *sv ;
+
+        if (APP.isShowBorder) {
+            [CMCommon addBordeView:sv Width:1 Color:[CMCommon bordeColor]];
+            sv = [[UIScrollView alloc] initWithFrame:CGRectMake(_segmentView.x, _segmentView.by, _segmentView.width, h)];
+        }
+        else{
+            sv = [[UIScrollView alloc] initWithFrame:CGRectMake(_segmentView.x, _segmentView.by-5, _segmentView.width, h)];
+        }
         sv.contentSize = CGSizeMake(titles.count * w, h);
         for (int i=0; i<titles.count; i++) {
             UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];

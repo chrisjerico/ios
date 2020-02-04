@@ -1182,4 +1182,34 @@ static NSString *uuidKey =@"uuidKey";
 +(void )disPreviousVC{
     [NavController1 dismissViewControllerAnimated:YES completion:nil];
 }
+
+/**
+*   加边框
+*
+*
+*/
++(void )addBordeView:(UIView *)view Width:(float ) width Color:(UIColor *)color{
+    view.layer.borderWidth = width;
+    view.layer.borderColor = [color CGColor];
+}
+
+/**
+*   返回下注界面边框颜色
+*
+*
+*/
++(UIColor * )bordeColor{
+    UIColor *borderColor;
+    if (Skin1.isBlack) {
+        borderColor = Skin1.textColor3;
+    }
+    else{
+        if (APP.betBgIsWhite) {
+            borderColor =  APP.LineColor;
+        } else {
+            borderColor =  [[UIColor whiteColor] colorWithAlphaComponent:0.3];
+        }
+    }
+    return borderColor;
+}
 @end

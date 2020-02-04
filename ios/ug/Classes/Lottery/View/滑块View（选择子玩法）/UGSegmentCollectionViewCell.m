@@ -8,6 +8,8 @@
 
 #import "UGSegmentCollectionViewCell.h"
 
+#import "UIColor+YYUI.h"
+
 @interface UGSegmentCollectionViewCell ()
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
@@ -32,12 +34,21 @@
     self.titleLabel.font = selected ? [UIFont boldSystemFontOfSize:14] : [UIFont systemFontOfSize:14];
     if (Skin1.isBlack) {
         self.titleLabel.textColor = selected ? [UIColor whiteColor] : RGBA(159, 166, 173, 1);
+        if (APP.isSelectStyle) {
+             self.backgroundColor = selected ? [RGBA(159, 166, 173, 1) colorWithAlphaComponent:0.2] : RGBA(159, 166, 173, 1);
+        }
+       
     } else {
         UIColor *selectedColor = APP.betBgIsWhite ? Skin1.navBarBgColor : [UIColor whiteColor];
         if ([@"c085" containsString:APP.SiteId]) {
             selectedColor = [UIColor blueColor];
         }
+      
         self.titleLabel.textColor = selected ? selectedColor : [UIColor blackColor];
+        if (APP.isSelectStyle) {
+               self.backgroundColor = selected ?  [Skin1.homeContentSubColor colorWithAlphaComponent:0.2] : [UIColor clearColor];
+        }
+      
     }
 }
 
