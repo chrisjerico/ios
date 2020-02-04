@@ -1509,7 +1509,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 
 - (UGSegmentView *)segmentView {
     if (_segmentView == nil) {
-        _segmentView = [[UGSegmentView alloc] initWithFrame:CGRectMake(UGScreenW / 4, 114, UGScreenW /4 * 3, 50) titleArray:self.tmTitleArray];
+        _segmentView = [[UGSegmentView alloc] initWithFrame:CGRectMake(UGScreenW / 4, 114, UGScreenW /4 * 3, 40) titleArray:self.tmTitleArray];
         _segmentView.hidden = YES;
         if (APP.isShowBorder) {
             [CMCommon addBordeView:_segmentView Width:1 Color:[CMCommon bordeColor]];

@@ -122,6 +122,7 @@
             self.endTimeSelectDate = selectDate;
             [self.endTimeButton setTitle:selectValue forState:(0)];
             self.endTimeStr = selectValue;
+            
             self.pageNumber = 1;
             [self loadData];
         };
