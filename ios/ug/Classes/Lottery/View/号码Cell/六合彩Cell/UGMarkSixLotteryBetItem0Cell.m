@@ -100,6 +100,8 @@
         self.leftLabel.layer.masksToBounds = NO;
         self.leftLabel.layer.borderWidth = 0;
         
+        self.leftLabel.textColor =  Skin1.textColor1;
+        
     }
     else {
         [self.ballImg setHidden:YES];
