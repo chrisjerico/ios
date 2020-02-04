@@ -164,7 +164,7 @@
 				if ([obj isKindOfClass:[NSNumber class]] && [obj boolValue]) {
 					[__self.tgWebView evaluateJavaScript:__self.changeRoomJson completionHandler:^(id _Nullable result, NSError * _Nullable error) {
 						NSLog(@"切换结果：%@----%@", result, error);
-						//                           [CMCommon showSystemTitle:[NSString stringWithFormat:@"切换成功！%@   hasShare = %d ",__self.changeRoomJson,SysConf.hasShare]];
+//                        [CMCommon showSystemTitle:[NSString stringWithFormat:@"切换成功！%@   hasShare = %d ",__self.changeRoomJson,SysConf.hasShare]];
 						
 						//                           [[NSOperationQueue mainQueue] addOperationWithBlock:^{
 						//需要在主线程执行的代码

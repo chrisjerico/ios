@@ -1869,6 +1869,10 @@
 		D435F90623CEF940008648CE /* KMCGeigerCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = D435F90223CEF940008648CE /* KMCGeigerCounter.m */; };
 		D435F90723CEF940008648CE /* KMCGeigerCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = D435F90223CEF940008648CE /* KMCGeigerCounter.m */; };
 		D435F90923CEF996008648CE /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D435F90823CEF996008648CE /* AudioToolbox.framework */; };
+		D44258FD23E948D80067E981 /* LH_laba.gif in Resources */ = {isa = PBXBuildFile; fileRef = D44258FC23E948D80067E981 /* LH_laba.gif */; };
+		D44258FF23E948E00067E981 /* LH_l001jt.gif in Resources */ = {isa = PBXBuildFile; fileRef = D44258FE23E948DF0067E981 /* LH_l001jt.gif */; };
+		D442590323E949600067E981 /* LHHornView.m in Sources */ = {isa = PBXBuildFile; fileRef = D442590223E949600067E981 /* LHHornView.m */; };
+		D442590523E949F00067E981 /* LHHornView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D442590423E949F00067E981 /* LHHornView.xib */; };
 		D4463AB223A773AF008EF03D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4463AB123A773AF008EF03D /* CFNetwork.framework */; };
 		D4463AB423A773B9008EF03D /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4463AB323A773B9008EF03D /* CoreFoundation.framework */; };
 		D4463AB623A773C5008EF03D /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4463AB523A773C4008EF03D /* CoreTelephony.framework */; };
@@ -3632,6 +3636,11 @@
 		D435F90123CEF940008648CE /* KMCGeigerCounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMCGeigerCounter.h; sourceTree = "<group>"; };
 		D435F90223CEF940008648CE /* KMCGeigerCounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMCGeigerCounter.m; sourceTree = "<group>"; };
 		D435F90823CEF996008648CE /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		D44258FC23E948D80067E981 /* LH_laba.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = LH_laba.gif; sourceTree = "<group>"; };
+		D44258FE23E948DF0067E981 /* LH_l001jt.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = LH_l001jt.gif; sourceTree = "<group>"; };
+		D442590123E949600067E981 /* LHHornView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LHHornView.h; sourceTree = "<group>"; };
+		D442590223E949600067E981 /* LHHornView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LHHornView.m; sourceTree = "<group>"; };
+		D442590423E949F00067E981 /* LHHornView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LHHornView.xib; sourceTree = "<group>"; };
 		D4463AB123A773AF008EF03D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		D4463AB323A773B9008EF03D /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		D4463AB523A773C4008EF03D /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -3846,6 +3855,7 @@
 		031E140623BE812300B0F813 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D442590023E948FF0067E981 /* 喇叭 */,
 				D4F0410123C772850070D2B5 /* 解码器 */,
 				031E140723BE812300B0F813 /* 六合首页 */,
 				031E141123BE812300B0F813 /* 帖子 */,
@@ -7512,6 +7522,7 @@
 		D424785C22DDF5860062A6D4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D44258FB23E948C50067E981 /* git */,
 				CF8E240F23DDBFD80054BF0F /* Fonts */,
 				CFCF6DDA23C8403F0039588D /* main.jsbundle */,
 				CF4757D3239636D100966536 /* 六合表情 */,
@@ -7545,6 +7556,25 @@
 				D435F90223CEF940008648CE /* KMCGeigerCounter.m */,
 			);
 			path = KMCGeigerCounter;
+			sourceTree = "<group>";
+		};
+		D44258FB23E948C50067E981 /* git */ = {
+			isa = PBXGroup;
+			children = (
+				D44258FE23E948DF0067E981 /* LH_l001jt.gif */,
+				D44258FC23E948D80067E981 /* LH_laba.gif */,
+			);
+			path = git;
+			sourceTree = "<group>";
+		};
+		D442590023E948FF0067E981 /* 喇叭 */ = {
+			isa = PBXGroup;
+			children = (
+				D442590123E949600067E981 /* LHHornView.h */,
+				D442590223E949600067E981 /* LHHornView.m */,
+				D442590423E949F00067E981 /* LHHornView.xib */,
+			);
+			path = "喇叭";
 			sourceTree = "<group>";
 		};
 		D4564A4123E326FE00A1A8C6 /* View带阴影分类 */ = {
@@ -8081,6 +8111,7 @@
 				CF475889239636D200966536 /* 20.gif in Resources */,
 				CFFAB58B237315C2009593AF /* event.gif in Resources */,
 				031E1C2A23BE812900B0F813 /* UGFastThreeTwoCollectionViewCell.xib in Resources */,
+				D442590523E949F00067E981 /* LHHornView.xib in Resources */,
 				031E1C2023BE812900B0F813 /* UGFastThreeThreeCollectionViewCell.xib in Resources */,
 				031E1A9023BE812700B0F813 /* province_data.xml in Resources */,
 				CF475921239636D200966536 /* 13.gif in Resources */,
@@ -8154,6 +8185,7 @@
 				CF4758B7239636D200966536 /* 69.gif in Resources */,
 				CF8E242023DDBFD80054BF0F /* Fontisto.ttf in Resources */,
 				031E1DE823BE812C00B0F813 /* UGConvertCollectionViewCell.xib in Resources */,
+				D44258FD23E948D80067E981 /* LH_laba.gif in Resources */,
 				031E199623BE812600B0F813 /* LHPostRewardView.xib in Resources */,
 				CF475910239636D200966536 /* 115.gif in Resources */,
 				03314FD423CDA0900070CB54 /* HSC_Mine.storyboard in Resources */,
@@ -8314,6 +8346,7 @@
 				031E1C5823BE812A00B0F813 /* UGBetDetailTableViewCell.xib in Resources */,
 				CF475892239636D200966536 /* 33.gif in Resources */,
 				03A5D38D23C051DB0055A998 /* JS_HomeGameColletionCell_1.xib in Resources */,
+				D44258FF23E948E00067E981 /* LH_l001jt.gif in Resources */,
 				CF47590D239636D200966536 /* 28.gif in Resources */,
 				CF475893239636D200966536 /* 27.gif in Resources */,
 				CF475902239636D200966536 /* 66.gif in Resources */,
@@ -9531,6 +9564,7 @@
 				031E1D6623BE812B00B0F813 /* UGgoBindViewController.m in Sources */,
 				031E1B7223BE812800B0F813 /* UGGameTypeCollectionView.m in Sources */,
 				031E1D5A23BE812B00B0F813 /* UGRegisterViewController.m in Sources */,
+				D442590323E949600067E981 /* LHHornView.m in Sources */,
 				031E1A4023BE812700B0F813 /* UINavigationController+Extension.m in Sources */,
 				031E1AD623BE812800B0F813 /* WSLWaterFlowLayout.m in Sources */,
 				031E19DA23BE812700B0F813 /* NSString+Utils.m in Sources */,

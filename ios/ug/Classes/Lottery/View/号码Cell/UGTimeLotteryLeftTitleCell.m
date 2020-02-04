@@ -24,6 +24,8 @@
     self.leftPoint.layer.cornerRadius = self.leftPoint.width / 2;
     self.leftPoint.layer.masksToBounds = YES;
     self.bottomLine.backgroundColor = Skin1.isBlack ? Skin1.textColor2 : (APP.betBgIsWhite ? Skin1.navBarBgColor : [UIColor whiteColor]);
+    
+
 }
 
 - (void)setItem:(UGGameplayModel *)item {
@@ -65,6 +67,10 @@
             if (APP.isBorderNavBarBgColor) {
                 self.backgroundColor = selected ?Skin1.navBarBgColor:[UIColor clearColor];
             }
+            
+//            if (APP.isGrey) {
+//                        [self setBackgroundColor:RGBA(118, 138, 152, 1.0)];
+//            }
         }
     }
 }

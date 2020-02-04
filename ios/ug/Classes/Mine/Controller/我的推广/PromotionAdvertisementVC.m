@@ -89,7 +89,7 @@
     }];
     [subButton(@"会员交易Btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
     [subButton(@"会员交易Btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-[NavController1 pushViewController:_LoadVC_from_storyboard_(@"PromotionBetRecordVC") animated:true];
+[NavController1 pushViewController:_LoadVC_from_storyboard_(@"PromotionDepositListVC") animated:true];
     }];
 
 

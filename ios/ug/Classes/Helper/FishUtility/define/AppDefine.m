@@ -124,7 +124,7 @@
         _SiteId = __SiteID__;
         _jspVersion = [[NSUserDefaults standardUserDefaults] stringForKey:@"jspVersion"];
 #ifdef APP_TEST
-        _Test = true;
+//        _Test = true;
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
         if (!_SiteId.length) {
             _SiteId = @"test29";
@@ -166,7 +166,9 @@
         return 1;
     }
 }
-
+- (BOOL)isGrey {
+    return [@"c212" containsString:_SiteId];
+}
 
 - (BOOL)isBorderNavBarBgColor {
     if (Skin1.isBlack) {

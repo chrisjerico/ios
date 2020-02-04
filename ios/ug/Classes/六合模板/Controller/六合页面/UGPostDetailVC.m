@@ -18,7 +18,7 @@
 #import "LHPostCommentInputView.h"  // 评论弹框
 #import "LHPostVoteView.h"          // 投票弹框
 #import "UGLHPrizeView.h"           //解码器
-
+#import "LHHornView.h"              //喇叭
 // Tools
 #import "YYText.h"
 #import "CMTimeCommon.h"
@@ -33,6 +33,7 @@
 @property (weak, nonatomic) IBOutlet UIView *topView;           /**<   顶部作者信息 */
 @property (weak, nonatomic) IBOutlet UIView *bottomBarView;     /**<    底部菜单栏（评论、点赞） */
 @property (weak, nonatomic) IBOutlet UGLHPrizeView *lhPrizeView; /**<    解码器 */
+@property (weak, nonatomic) IBOutlet LHHornView *lhHornView; /**<    喇叭 */
 @property (nonatomic, copy) NSString *opCustomerId; /**<    被回复者ID */
 @property (nonatomic, copy) NSString *opCommentId;  /**<    被回复的评论ID（有值表示回复评论，没值表示评论动态） */
 @property (nonatomic, copy) NSMutableDictionary *textBuffer;
@@ -206,6 +207,10 @@
         
         [subLabel(@"标题Label") setHidden:isHidden];
         [_lhPrizeView setHidden:NO];
+        
+        if (APP.isShowHornView) {
+             [_lhHornView setHidden:NO];
+        }
 
         if ([@"l001" isEqualToString:APP.SiteId]) {
             subLabel(@"时间Label").text = @"本站备用网址一:www.889777.com";

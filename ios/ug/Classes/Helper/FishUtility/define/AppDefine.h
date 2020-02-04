@@ -60,7 +60,8 @@
 @property (nonatomic) BOOL isWhite;    /**<  首页游戏cell加白边 */
 @property (nonatomic) BOOL isBall;    /**<  下注界面号码显示为球图 */
 @property (nonatomic) BOOL isBorderNavBarBgColor;    /**<  选中底色为navBarBgColor */
-
+@property (nonatomic) BOOL isShowHornView;    /**<  六合模板显示喇叭*/
+@property (nonatomic) BOOL isGrey;    /**<  下注界面tableCell 背景为灰色/
 // 热更新相关字段
 @property (nonatomic) BOOL Test;                        /**<   是否是测试环境 */
 @property (nonatomic, readonly) NSString *jspPath;      /**<    jspatch热更新本地文件路径 */

@@ -57,8 +57,14 @@
         }
         
         // 左侧玩法栏背景色
+        
         self.tableView.backgroundColor = [UIColor clearColor];
         self.tableView.separatorColor = [UIColor clearColor];
+        
+        if (APP.isGrey) {
+            self.tableView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
+            self.tableView.separatorColor = [UIColor whiteColor];
+        }
         
         // 顶部栏背景色
         [subView(@"上背景View") setBackgroundColor:[UIColor clearColor]];
