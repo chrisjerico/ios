@@ -166,6 +166,10 @@
         return 1;
     }
 }
+- (BOOL)isShowHornView {
+    return [@"l001" containsString:_SiteId];
+}
+
 - (BOOL)isGrey {
     return [@"c212,c208" containsString:_SiteId];
 }

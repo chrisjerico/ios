@@ -37,7 +37,7 @@
         self = [self LHHornView];
         
         _imgGif1.contentMode = UIViewContentModeScaleAspectFit;
-        [_imgGif1 sd_setImageWithURL:[[NSBundle mainBundle] URLForResource:@"LH_l001jt" withExtension:@"gif"]];
+        [_imgGif1 sd_setImageWithURL:[[NSBundle mainBundle] URLForResource:@"LH_laba" withExtension:@"gif"]];
         [_imgGif2 sd_setImageWithURL:[[NSBundle mainBundle] URLForResource:@"LH_laba" withExtension:@"gif"]];
         [_imgGif3 sd_setImageWithURL:[[NSBundle mainBundle] URLForResource:@"LH_laba" withExtension:@"gif"]];
         
