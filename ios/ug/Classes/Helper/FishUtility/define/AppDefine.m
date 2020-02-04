@@ -160,7 +160,7 @@
 - (float )cellNormalFontSize        { return 14.0; }
 
 - (float )borderWidthTimes          {
-    if ([@"a002,c085" containsString:_SiteId]) {
+    if ([@"a002,c085,c212" containsString:_SiteId]) {
         return  2.0;
     } else {
         return 1;
@@ -172,7 +172,7 @@
     if (Skin1.isBlack) {
         return NO;
     } else {
-         return [@"c085" containsString:_SiteId];
+         return [@"c085,c212" containsString:_SiteId];
     }
 }
 

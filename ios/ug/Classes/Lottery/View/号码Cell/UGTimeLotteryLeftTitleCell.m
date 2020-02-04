@@ -62,7 +62,7 @@
             self.leftPoint.backgroundColor = selected ? [UIColor whiteColor] : UGRGBColor(195, 195, 196);
             self.layer.borderColor = [UIColor whiteColor].CGColor;
             
-            if ([@"c085" containsString:APP.SiteId]) {
+            if (APP.isBorderNavBarBgColor) {
                 self.backgroundColor = selected ?Skin1.navBarBgColor:[UIColor clearColor];
             }
         }
