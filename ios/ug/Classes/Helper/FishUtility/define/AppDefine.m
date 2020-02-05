@@ -168,7 +168,7 @@
 }
 
 - (BOOL)isYellow {
-    return [@"c085" containsString:_SiteId];
+    return [@"c085,c134" containsString:_SiteId];
 }
 
 - (BOOL)isSelectStyle {
