@@ -21,15 +21,6 @@
     self.layer.cornerRadius = self.width / 2;
     self.layer.masksToBounds = YES;
     
-    if (self.ballImg.isHidden) {
-
-        [self.titleLabel  mas_remakeConstraints:^(MASConstraintMaker *make)
-         {
-            make.centerX.equalTo(self.mas_centerX).with.offset(-2);
-        }];
-    
-
-    }
 }
 
 - (void)setTitle:(NSString *)title {
@@ -112,6 +103,10 @@
     }else {
         
         if (self.showBall6) {
+            [self.titleLabel  mas_remakeConstraints:^(MASConstraintMaker *make)
+             {
+                make.centerX.equalTo(self.mas_centerX).with.offset(-2);
+            }];
             self.titleLabel.textColor = [UIColor blackColor];
             self.backgroundColor = [UIColor clearColor];
         }
