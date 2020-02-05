@@ -65,7 +65,7 @@
 @property (nonatomic) BOOL isSelectStyle;    /**< 下注六合彩 特码A|特码B 有选中效果*/
 @property (nonatomic) BOOL isGrey;    /**<  下注界面tableCell 背景为灰色*/
 @property (nonatomic) BOOL isYellow;    /**<  下注界面已选中数字为亮黄色*/
-                                       
+@property (nonatomic) BOOL isBall6;    /**<  下注界面六合彩上面显示为球图*/
                                        
 // 热更新相关字段
 @property (nonatomic) BOOL Test;                        /**<   是否是测试环境 */

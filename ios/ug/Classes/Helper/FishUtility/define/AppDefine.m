@@ -167,6 +167,11 @@
     }
 }
 
+
+- (BOOL)isBall6 {
+    return [@"c134" containsString:_SiteId];
+}
+
 - (BOOL)isYellow {
     return [@"c085,c134" containsString:_SiteId];
 }

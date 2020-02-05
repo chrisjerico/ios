@@ -18,6 +18,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *color;
 
+@property (nonatomic, assign) BOOL showBall6;
+@property (weak, nonatomic) IBOutlet UIImageView *ballImg;
+
+
 
 @end
 

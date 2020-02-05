@@ -769,6 +769,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             
             UGLotteryResultCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:lotteryResultCellid forIndexPath:indexPath];
             cell.showBorder = NO;
+            cell.showBall6 = YES;
             if (indexPath.row == 6) {
                 cell.showAdd = YES;
             } else {
