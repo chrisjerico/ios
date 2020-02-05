@@ -21,11 +21,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSNumber *level;          /**<   等级 */
 @property (nonatomic, strong) NSString *date;           /**<   日期 */
 @property (nonatomic, strong) NSString *username;       /**<   游戏 */
-@property (nonatomic, strong) NSString *validBetAmount;//
+@property (nonatomic, strong) NSString *validBetAmount;//有效投注
 @property (nonatomic, strong) NSString *betAmount;//
-@property (nonatomic, strong) NSString *netAmount;//
+@property (nonatomic, strong) NSString *netAmount;//会员输赢
 @property (nonatomic, strong) NSString *comNetAmount;//
 @property (nonatomic, strong) NSString *platform;//
+@property (nonatomic, strong) NSString *bet_sum;//投注金额
 @end
 
 NS_ASSUME_NONNULL_END

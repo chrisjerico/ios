@@ -256,13 +256,28 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             self.gameDataArray = [play.playOdds mutableCopy];
             for (UGGameplayModel *gm in play.playOdds) {
                 for (UGGameplaySectionModel *gsm in gm.list) {
-                    for (UGGameBetModel *gbm in gsm.lhcOddsArray){
+
+                    for (UGGameBetModel *gbm in gsm.list){
+                        NSLog(@"gsm.typeName= %@",gsm.typeName);
+                        if ([gsm.typeName isEqualToString:@"合肖"]) {
+                            NSLog(@"gsm.list = %@",gsm.list);
+                        }
                         gbm.gameEnable = gsm.enable;
                     }
-                    for (UGGameBetModel *gbm in gsm.list){
+                    
+                    for (UGGameBetModel *gbm in gsm.lhcOddsArray){
+                           NSLog(@"gsm.typeName222222= %@",gsm.typeName);
+                        if ([gsm.typeName isEqualToString:@"合肖"]) {
+                            NSLog(@"gsm.lhcOddsArray = %@",gsm.lhcOddsArray);
+                        }
                         gbm.gameEnable = gsm.enable;
                     }
                 }
+                
+                
+               
+                
+                
             }
             
             // 删除enable为NO的数据（不显示出来）
@@ -705,10 +720,14 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             [@"自选不中" isEqualToString:model.name]) {
             if (indexPath.section == 1) {
                 UGTimeLotteryBetCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:lottryBetCellid forIndexPath:indexPath];
+                NSLog(@"game.typeName =%@",game.typeName);
+                game.typeName= model.name;
                 cell.item = game;
                 return cell;
             }
             UGMarkSixLotteryBetItem0Cell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:markSixBetItem0 forIndexPath:indexPath];
+           
+            game.typeName= model.name;
             cell.item = game;
             return cell;
         }
@@ -892,9 +911,14 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         {
             UGGameBetModel *game = type.list[indexPath.row];
             
-            if (!(game.gameEnable && game.enable)) {
-                return;
+            if ([game.typeName isEqualToString:@"合肖"]||[game.typeName isEqualToString:@"自选不中"]) {
+                
+            } else {
+                if (!(game.gameEnable && game.enable)) {
+                    return;
+                }
             }
+   
             
             
             if ([@"自选不中" isEqualToString:type.name]) {
@@ -905,13 +929,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                     if (bet.select)
                         count ++;
                 }
-              
-              
-                
-                
-                
-               
-                
+     
                 
                 if (count == 12 && !game.select) {
                     [SVProgressHUD showInfoWithStatus:@"不允许超过12个选项"];
@@ -1438,7 +1456,10 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             }
         }
         if ([@"合肖" isEqualToString:model.name]) {
+
+   
             for (UGGameplaySectionModel *group in model.list) {
+         
                 NSArray *titles = @[@"鼠",@"牛",@"虎",@"兔",@"龙",@"蛇",@"马",@"羊",@"猴",@"鸡",@"狗",@"猪"];
                 NSMutableArray *mutArr = [NSMutableArray array];
                 for (int i = 0; i < titles.count; i++) {
@@ -1446,8 +1467,11 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                     bet.name = titles[i];
                     bet.typeName = model.name;
                     bet.odds = @"";
+                    bet.gameEnable = YES;
+                    bet.enable = YES;
                     [mutArr addObject:bet];
                 }
+                
                 if (!group.lhcOddsArray.count) {
                     
                     group.lhcOddsArray = group.list.copy;

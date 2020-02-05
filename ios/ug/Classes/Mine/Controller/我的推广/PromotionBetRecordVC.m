@@ -80,7 +80,7 @@
          self.endTimeStr = self.dateStr;
          self.beginTimeSelectDate = [CMTimeCommon dateForStr:self.dateStr format:@"yyyy-MM-dd"];
          self.endTimeSelectDate = [CMTimeCommon dateForStr:self.dateStr format:@"yyyy-MM-dd"];
-        self.dateStr == @"";
+        self.dateStr = @"";
     }
     
     _beigindatePickerView = ({

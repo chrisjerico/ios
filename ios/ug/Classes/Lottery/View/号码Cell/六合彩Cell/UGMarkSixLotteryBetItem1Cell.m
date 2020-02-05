@@ -62,11 +62,18 @@
             mas;
         });
     } else {
-        if (item.enable && item.gameEnable) {
-            self.leftTitleLabel.text = _NSString(@"%@ %@",item.name, [item.odds removeFloatAllZero]);
-        } else {
-            self.leftTitleLabel.text = _NSString(@"%@ --",item.name);
-        }
+
+            if (item.enable && item.gameEnable) {
+                if ([item.typeName isEqualToString:@"合肖"]) {
+                     self.leftTitleLabel.text = _item.name;
+                } else {
+                     self.leftTitleLabel.text = _NSString(@"%@ %@",item.name, [item.odds removeFloatAllZero]);
+                }
+               
+            } else {
+                self.leftTitleLabel.text = _NSString(@"%@ --",item.name);
+            }
+
         
     }
     if (Skin1.isBlack) {

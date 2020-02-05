@@ -16,8 +16,8 @@
 	((UILabel *)self.itemLabels[0]).text = [model.level stringValue];
 	((UILabel *)self.itemLabels[1]).text = model.username;
 	((UILabel *)self.itemLabels[2]).text = model.date;
-	((UILabel *)self.itemLabels[3]).text = model.betAmount;
-	((UILabel *)self.itemLabels[4]).text = model.validBetAmount;
+	((UILabel *)self.itemLabels[3]).text = model.bet_sum;
+	((UILabel *)self.itemLabels[4]).text = model.netAmount;
 
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

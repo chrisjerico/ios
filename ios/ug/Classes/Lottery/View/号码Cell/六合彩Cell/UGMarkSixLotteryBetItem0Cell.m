@@ -28,13 +28,18 @@
     
     
     self.rightLabel.hidden = [_rightLabel.text isEqualToString:@"0"];
-    if (item.enable && item.gameEnable) {
-        self.rightLabel.text = [item.odds removeFloatAllZero];
+    if ([item.typeName isEqualToString:@"自选不中"]) {
+        self.rightLabel.text = @"";
     }
     else{
-       self.rightLabel.text = @"--";
+        if (item.enable && item.gameEnable) {
+            self.rightLabel.text = [item.odds removeFloatAllZero];
+        }
+        else{
+            self.rightLabel.text = @"--";
+        }
     }
-    
+
     self.layer.borderWidth = item.select ? APP.borderWidthTimes * 1 : APP.borderWidthTimes * 0.5;
     
     if (Skin1.isBlack) {
