@@ -64,7 +64,7 @@
 @property (nonatomic) BOOL isShowBorder;    /**< 下注上面显示边框*/
 @property (nonatomic) BOOL isSelectStyle;    /**< 下注六合彩 特码A|特码B 有选中效果*/
 @property (nonatomic) BOOL isGrey;    /**<  下注界面tableCell 背景为灰色*/
-
+@property (nonatomic) BOOL isYellow;    /**<  下注界面已选中数字为亮黄色*/
                                        
                                        
 // 热更新相关字段

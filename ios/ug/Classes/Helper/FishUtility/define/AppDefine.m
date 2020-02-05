@@ -167,13 +167,17 @@
     }
 }
 
+- (BOOL)isYellow {
+    return [@"c085" containsString:_SiteId];
+}
+
 - (BOOL)isSelectStyle {
-    return [@"c212,c208" containsString:_SiteId];
+    return [@"c212,c208,c134" containsString:_SiteId];
 }
 
 
 - (BOOL)isShowBorder {
-    return [@"c212,c208" containsString:_SiteId];
+    return [@"c212,c208,c134" containsString:_SiteId];
 }
 
 - (BOOL)isShowHornView {
@@ -181,19 +185,19 @@
 }
 
 - (BOOL)isGrey {
-    return [@"c212,c208" containsString:_SiteId];
+    return [@"c212,c208,c134" containsString:_SiteId];
 }
 
 - (BOOL)isBorderNavBarBgColor {
     if (Skin1.isBlack) {
         return NO;
     } else {
-         return [@"c085,c212,c208" containsString:_SiteId];
+         return [@"c085,c212,c208,c134" containsString:_SiteId];
     }
 }
 
 - (BOOL)isBall {
-    return [@"c212,c085,c208" containsString:_SiteId];
+    return [@"c212,c085,c208,c134" containsString:_SiteId];
 }
 
 - (BOOL)isWhite {
@@ -209,7 +213,7 @@
 }
 
 - (BOOL)isShowJinbei {
-    return [@"c085,c208" containsString:_SiteId];
+    return [@"c085,c208,c212" containsString:_SiteId];
 }
 
 - (BOOL)isShowWZ {
@@ -245,7 +249,7 @@
     if ([Skin1.skitString isEqualToString:@"新年红 1蓝色风格"]) {
         return NO;
     } else {
-         return ![@"c175,c085,c073,c169,a002,c190,c048,c200,c001,c208,c202,c212" containsString:_SiteId] || [@"新年红,石榴红" containsString:Skin1.skitType];
+         return ![@"c175,c085,c073,c169,a002,c190,c048,c200,c001,c208,c202,c212,c134" containsString:_SiteId] || [@"新年红,石榴红" containsString:Skin1.skitType];
     }
 }
 

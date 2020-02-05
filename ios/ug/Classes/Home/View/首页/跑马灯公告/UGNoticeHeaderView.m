@@ -25,6 +25,7 @@
 
 - (void)setItem:(UGNoticeModel *)item {
     _item = item;
+    NSLog(@"title = %@",item.title);
     self.titleLabel.text = item.title;
     self.lineLabel.hidden = item.hiddenBottomLine;
     if (item.hiddenBottomLine) {

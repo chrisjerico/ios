@@ -30,6 +30,7 @@
 @property (nonatomic, strong) UILabel *tiplabel;
 @property (nonatomic, strong) NSArray <UGchannelModel *> *channelDataArray;
 @property (nonatomic, strong) UILabel *tip2label;
+@property (nonatomic, strong) UIView *tip2bg_label;
 @property (nonatomic, strong) UGFundsTransferView *uGFundsTransferView;
 @property (nonatomic, strong) UGFundsTransfer2View *uGFundsTransfer2View;
 @property (nonatomic, strong) UGFunds2microcodeView *uGFunds2microcodeView;
@@ -192,24 +193,40 @@
     self.bg1_label.layer.masksToBounds = YES;
     [self.bg1_label setBackgroundColor:Skin1.navBarBgColor];
     
+    
+    
     //==============================================================
     [self.tip2label  mas_remakeConstraints:^(MASConstraintMaker *make)
      {
-         make.left.equalTo(self.view.mas_left).with.offset(20);
-         make.right.equalTo(self.view.mas_right).with.offset(-20);
-         make.top.equalTo(self.bg1_label.mas_bottom).offset(10);
-         make.width.mas_equalTo(UGScreenW-20);
+         make.left.equalTo(self.view.mas_left).with.offset(40);
+         make.right.equalTo(self.view.mas_right).with.offset(-40);
+         make.top.equalTo(self.bg1_label.mas_bottom).offset(20);
+         make.width.mas_equalTo(UGScreenW-40);
      }];
     [self.tip2label setText:item.depositPrompt];
-      [self.tip2label sizeToFit];
+    [self.tip2label sizeToFit];
     NSLog(@"%@",NSStringFromCGRect(self.tip2label.frame));
+    
+    [self.tip2bg_label  mas_remakeConstraints:^(MASConstraintMaker *make)
+     {
+        make.left.equalTo(self.view.mas_left).with.offset(15);
+        make.right.equalTo(self.view.mas_right).with.offset(-15);
+        make.top.equalTo(self.bg1_label.mas_bottom).offset(10);
+        make.width.mas_equalTo(UGScreenW-20);
+        make.height.equalTo(self.tip2label.mas_height).offset(20);
+        
+    }];
+    
+    self.tip2bg_label.layer.cornerRadius = 5;
+    self.tip2bg_label.layer.masksToBounds = YES;
+    [self.tip2bg_label setBackgroundColor:RGBA(221, 116, 119, 0.9)];
     //==============================================================
     float tableViewHeight = self->_tableDataArray.count *44.0;
     [self.tableView  mas_remakeConstraints:^(MASConstraintMaker *make)
      {
          make.left.equalTo(self.view.mas_left).with.offset(0);
          make.right.equalTo(self.view.mas_right).with.offset(0);
-         make.top.equalTo(self.tip2label.mas_bottom).offset(0);
+         make.top.equalTo(self.tip2bg_label.mas_bottom).offset(10);
          make.height.mas_equalTo(tableViewHeight);
 
      }];
@@ -281,7 +298,7 @@
     
     self.bg_label.layer.cornerRadius = 5;
     self.bg_label.layer.masksToBounds = YES;
-    [self.bg_label setBackgroundColor:Skin1.navBarBgColor];
+    [self.bg_label setBackgroundColor:RGBA(221, 116, 119, 0.9)];
     //==================================================================
     [self.blank_button  mas_remakeConstraints:^(MASConstraintMaker *make)
      {
@@ -337,7 +354,7 @@
         codeHeight = 140;
         
     }
-    _mUIScrollView.contentSize = CGSizeMake(UGScreenW, labelHeigth+tip2Heigth+tableViewHeight+181.0+191.0+self.submit_button.height+buttonHight+90 +tipHeigth+codeHeight+100);
+    _mUIScrollView.contentSize = CGSizeMake(UGScreenW, labelHeigth+tip2Heigth+tableViewHeight+181.0+191.0+self.submit_button.height+buttonHight+90 +tipHeigth+codeHeight+100+40);
 
     
 }
@@ -370,7 +387,7 @@
         label.numberOfLines = 0;
         label.text = @"ewerqwerqwerqwerqwer";
         [self.mUIScrollView addSubview:label];
-        label.backgroundColor = Skin1.navBarBgColor;
+//        label.backgroundColor = Skin1.navBarBgColor;
         [label sizeToFit];
         NSLog(@"%@",NSStringFromCGRect(label.frame));
         
@@ -378,10 +395,12 @@
         self.tiplabel = label;
     }
     if (self.tip2label == nil) {
+        self.tip2bg_label = [UIView new];
+        [self.mUIScrollView addSubview:self.tip2bg_label];
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 40, UGScreenW, 40)];
         label.textAlignment = NSTextAlignmentLeft;
         label.font = [UIFont boldSystemFontOfSize:14];
-        label.textColor = Skin1.textColor1;
+        label.textColor = [UIColor whiteColor];
 //        label.backgroundColor = Skin1.navBarBgColor;
         label.numberOfLines = 0;
         label.text = @"请选择一个任意转入账户";
@@ -435,7 +454,7 @@
         //        label.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
         label.font = [UIFont systemFontOfSize:14];
         label.textColor = [UIColor whiteColor];
-        label.backgroundColor = Skin1.navBarBgColor;
+//        label.backgroundColor = Skin1.navBarBgColor;
         label.numberOfLines = 0;
         label.text = @"";
         [self.mUIScrollView addSubview:label];

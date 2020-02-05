@@ -1294,7 +1294,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         self.selectLabel.attributedText = abStr;
     } else {
        
-        if ([@"c085" containsString:APP.SiteId]) {
+        if (APP.isYellow) {
             NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.selectLabel.text];
             [abStr addAttribute:NSForegroundColorAttributeName value:RGBA(247, 211, 72, 1)  range:NSMakeRange(3, self.selectLabel.text.length - 4)];
             self.selectLabel.attributedText = abStr;
