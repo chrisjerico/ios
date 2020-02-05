@@ -73,6 +73,7 @@
         self.endTimeStr = self.dateStr;
         self.beginTimeSelectDate = [CMTimeCommon dateForStr:self.dateStr format:@"yyyy-MM-dd"];
         self.endTimeSelectDate = [CMTimeCommon dateForStr:self.dateStr format:@"yyyy-MM-dd"];
+        self.dateStr == @"";
     }
     _beigindatePickerView = ({
         [self.beiginTimeButton setTitle:self.beginTimeStr forState:(0)];
@@ -221,7 +222,7 @@
                              @"startDate":self.beginTimeStr,
                              @"endDate":self.endTimeStr,
     };
-    
+    [CMCommon showSystemTitle:[NSString stringWithFormat:@"参数：%@",params]];
     [SVProgressHUD showWithStatus:nil];
     WeakSelf;
     [CMNetwork teamRealBetListWithParams:params completion:^(CMResult<id> *model, NSError *err) {

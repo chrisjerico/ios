@@ -160,7 +160,7 @@
 - (float )cellNormalFontSize        { return 14.0; }
 
 - (float )borderWidthTimes          {
-    if ([@"a002,c085,c208" containsString:_SiteId]) {
+    if ([@"a002,c085" containsString:_SiteId]) {
         return  2.0;
     } else {
         return 1;
@@ -168,12 +168,12 @@
 }
 
 - (BOOL)isSelectStyle {
-    return [@"c212" containsString:_SiteId];
+    return [@"c212,c208" containsString:_SiteId];
 }
 
 
 - (BOOL)isShowBorder {
-    return [@"c212" containsString:_SiteId];
+    return [@"c212,c208" containsString:_SiteId];
 }
 
 - (BOOL)isShowHornView {
@@ -209,7 +209,7 @@
 }
 
 - (BOOL)isShowJinbei {
-    return [@"c085" containsString:_SiteId];
+    return [@"c085,c208" containsString:_SiteId];
 }
 
 - (BOOL)isShowWZ {
@@ -225,7 +225,7 @@
 }
 
 - (BOOL)isBA {
-    return [@"c001,c085,c208" containsString:_SiteId];
+    return [@"c001,c085,c208,a002,c054" containsString:_SiteId];
 }
 
 - (BOOL)addIcons {
