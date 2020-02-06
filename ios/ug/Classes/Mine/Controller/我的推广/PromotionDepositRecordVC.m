@@ -197,7 +197,7 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     
     PromotionRecordCell1 * cell = [tableView dequeueReusableCellWithIdentifier:@"PromotionRecordCell1" forIndexPath:indexPath];
-    [cell bindDepositRecord:self.items[indexPath.row]];
+    [cell bindDepositRecord:self.items[indexPath.row] row:indexPath.row];
     return cell;
     
 }

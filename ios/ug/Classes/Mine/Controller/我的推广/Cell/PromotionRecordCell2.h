@@ -12,7 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PromotionRecordCell2 : UGTableViewCell
--(void)bindOtherRecord: (UGrealBetListModel*)model;
+-(void)bindOtherRecord: (UGrealBetListModel*)model row:(int )row;
 
 @end
 

@@ -172,9 +172,9 @@
     PromotionRecordCell1 * cell = [tableView dequeueReusableCellWithIdentifier:@"PromotionRecordCell1" forIndexPath:indexPath];
     
     if (self.typeIndex == 0) {
-        [cell bindDepositList:self.items[indexPath.row]];
+        [cell bindDepositList:self.items[indexPath.row] row:indexPath.row];
     } else {
-        [cell bindWithdrawalsList:self.itemsOther[indexPath.row]];
+        [cell bindWithdrawalsList:self.itemsOther[indexPath.row] row:indexPath.row];
     }
     return cell;
 }

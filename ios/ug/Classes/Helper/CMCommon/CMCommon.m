@@ -1212,4 +1212,26 @@ static NSString *uuidKey =@"uuidKey";
     }
     return borderColor;
 }
+
+/**
+*   iOS 阿拉伯数字转汉字(1转一)
+*原值:2.7999999999
+typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
+    kCFNumberFormatterRoundCeiling = 0,//四舍五入,直接输出3
+    kCFNumberFormatterRoundFloor = 1,//保留小数输出2.8
+    kCFNumberFormatterRoundDown = 2,//加上了人民币标志,原值输出￥2.8
+    kCFNumberFormatterRoundUp = 3,//本身数值乘以100后用百分号表示,输出280%
+    kCFNumberFormatterRoundHalfEven = 4,//输出2.799999999E0
+    kCFNumberFormatterRoundHalfDown = 5,//原值的中文表示,输出二点七九九九。。。。
+    kCFNumberFormatterRoundHalfUp = 6//原值中文表示,输出第三
+};
+*
+*/
++(NSString * )switchNumber:(int )number{
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    formatter.numberStyle = kCFNumberFormatterRoundHalfDown;
+    NSString *string = [formatter stringFromNumber:[NSNumber numberWithInt:number]];
+    NSLog(@"str = %@", string);
+    return string;
+}
 @end

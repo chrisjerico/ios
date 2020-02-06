@@ -199,7 +199,7 @@
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PromotionRecordCell2 * cell = [tableView dequeueReusableCellWithIdentifier:@"PromotionRecordCell2" forIndexPath:indexPath];
-    [cell bindOtherRecord:self.items[indexPath.row]];
+    [cell bindOtherRecord:self.items[indexPath.row] row:indexPath.row];
     return cell;
     
 }

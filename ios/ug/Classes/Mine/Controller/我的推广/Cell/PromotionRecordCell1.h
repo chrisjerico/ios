@@ -17,18 +17,18 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PromotionRecordCell1 : UGTableViewCell
--(void)bindBetReport: (UGbetStatModel *)model;
--(void)bindOtherReport: (UGrealBetStatModel *)model;
--(void)bindBetRecord: (UGBetListModel*)model;
+-(void)bindBetReport: (UGbetStatModel *)model row:(int )row;
+-(void)bindOtherReport: (UGrealBetStatModel *)model row:(int )row;
+-(void)bindBetRecord: (UGBetListModel*)model row:(int )row;
 //存款报表
-- (void)bindDepositList:(UGdepositStatModel *)model;
+- (void)bindDepositList:(UGdepositStatModel *)model row:(int )row;
 //提款报表
-- (void)bindWithdrawalsList:(UGwithdrawStatModel *)model;
+- (void)bindWithdrawalsList:(UGwithdrawStatModel *)model row:(int )row;
 //存款记录
-- (void)bindDepositRecord:(UGdepositListModel *)model;
+- (void)bindDepositRecord:(UGdepositListModel *)model row:(int )row;
 
 //提款记录
-- (void)bindWithdrawalRecord:(UGwithdrawListModel *)model;
+- (void)bindWithdrawalRecord:(UGwithdrawListModel *)model row:(int )row;
 @end
 
 NS_ASSUME_NONNULL_END

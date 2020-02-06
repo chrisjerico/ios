@@ -208,12 +208,12 @@
 	
 	if (self.typeIndex == 0) {
 		PromotionRecordCell1 * cell = [tableView dequeueReusableCellWithIdentifier:@"PromotionRecordCell1" forIndexPath:indexPath];
-		[cell bindBetRecord:self.items[indexPath.row]];
+		[cell bindBetRecord:self.items[indexPath.row] row:indexPath.row];
 		return cell;
 		
 	} else {
 		PromotionRecordCell2 * cell = [tableView dequeueReusableCellWithIdentifier:@"PromotionRecordCell2" forIndexPath:indexPath];
-		[cell bindOtherRecord:self.items[indexPath.row]];
+		[cell bindOtherRecord:self.items[indexPath.row] row:indexPath.row];
 		return cell;
 	}
 }

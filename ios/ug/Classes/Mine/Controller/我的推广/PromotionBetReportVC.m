@@ -69,6 +69,8 @@
 	[self.tableView registerNib: [UINib nibWithNibName:@"PromotionRecordCell1" bundle:nil] forCellReuseIdentifier:@"PromotionRecordCell1"];
 	self.tableView.delegate = self;
 	self.tableView.dataSource = self;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
     self.beginTimeStr = APP.beginTime;
     self.endTimeStr = [CMTimeCommon currentDateStringWithFormat:@"yyyy-MM-dd"];
     self.beginTimeSelectDate = [CMTimeCommon dateForStr:APP.beginTime format:@"yyyy-MM-dd"];
@@ -87,7 +89,7 @@
     self.itemsOther = [NSMutableArray array];
     
 	self.typeIndex = 0;
-	_levelArray = @[@"全部下线",@"1级下线",@"2级下线",@"3级下线",@"4级下线",@"5级下线",@"6级下线",@"7级下线",@"8级下线",@"9级下线",@"10级下线"];
+	_levelArray = @[@"全部下线",@"一级下线",@"二级下线",@"三级下线",@"四级下线",@"五级下线",@"六级下线",@"七级下线",@"八级下线",@"九级下线",@"十级下线"];
 	_levelindex = 0;
 	WeakSelf;
 	self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -164,10 +166,12 @@
 	PromotionRecordCell1 * cell = [tableView dequeueReusableCellWithIdentifier:@"PromotionRecordCell1" forIndexPath:indexPath];
 	
 	if (self.typeIndex == 0) {
-		[cell bindBetReport:self.items[indexPath.row]];
+		[cell bindBetReport:self.items[indexPath.row] row:indexPath.row];
 	} else {
-		[cell bindOtherReport:self.itemsOther[indexPath.row]];
+		[cell bindOtherReport:self.itemsOther[indexPath.row] row:indexPath.row];
 	}
+    
+
 	return cell;
 }
 

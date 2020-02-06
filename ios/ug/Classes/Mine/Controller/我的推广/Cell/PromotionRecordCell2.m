@@ -12,7 +12,35 @@
 
 @end
 @implementation PromotionRecordCell2
-- (void)bindOtherRecord:(UGrealBetListModel *)model {
+
+- (void)celBgColor:(int)row {
+    if (row%2) {
+        [((UILabel *)self.itemLabels[0]) setBackgroundColor:RGBA(235, 235, 235, 0.7)];
+        [((UILabel *)self.itemLabels[1]) setBackgroundColor:RGBA(235, 235, 235, 0.7)];
+        [((UILabel *)self.itemLabels[2]) setBackgroundColor:RGBA(235, 235, 235, 0.7)];
+        [((UILabel *)self.itemLabels[3]) setBackgroundColor:RGBA(235, 235, 235, 0.7)];
+        [((UILabel *)self.itemLabels[4]) setBackgroundColor:RGBA(235, 235, 235, 0.7)];
+    } else {
+        if (Skin1.isBlack) {
+            [((UILabel *)self.itemLabels[0]) setBackgroundColor:Skin1.CLBgColor];
+            [((UILabel *)self.itemLabels[1]) setBackgroundColor:Skin1.CLBgColor];
+            [((UILabel *)self.itemLabels[2]) setBackgroundColor:Skin1.CLBgColor];
+            [((UILabel *)self.itemLabels[3]) setBackgroundColor:Skin1.CLBgColor];
+            [((UILabel *)self.itemLabels[4]) setBackgroundColor:Skin1.CLBgColor];
+        } else {
+            [((UILabel *)self.itemLabels[0]) setBackgroundColor:[UIColor whiteColor]];
+            [((UILabel *)self.itemLabels[1]) setBackgroundColor:[UIColor whiteColor]];
+            [((UILabel *)self.itemLabels[2]) setBackgroundColor:[UIColor whiteColor]];
+            [((UILabel *)self.itemLabels[3]) setBackgroundColor:[UIColor whiteColor]];
+            [((UILabel *)self.itemLabels[4]) setBackgroundColor:[UIColor whiteColor]];
+        }
+    }
+}
+
+- (void)bindOtherRecord:(UGrealBetListModel *)model row:(int )row{
+
+    [self celBgColor:row];
+
 	((UILabel *)self.itemLabels[0]).text = [model.level stringValue];
 	((UILabel *)self.itemLabels[1]).text = model.username;
 	((UILabel *)self.itemLabels[2]).text = model.date;

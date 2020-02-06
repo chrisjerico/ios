@@ -219,7 +219,7 @@
     
     self.tip2bg_label.layer.cornerRadius = 5;
     self.tip2bg_label.layer.masksToBounds = YES;
-    [self.tip2bg_label setBackgroundColor:RGBA(221, 116, 119, 0.9)];
+    [self.tip2bg_label setBackgroundColor:RGBA(232, 73, 64, 1)];
     //==============================================================
     float tableViewHeight = self->_tableDataArray.count *44.0;
     [self.tableView  mas_remakeConstraints:^(MASConstraintMaker *make)
@@ -298,7 +298,7 @@
     
     self.bg_label.layer.cornerRadius = 5;
     self.bg_label.layer.masksToBounds = YES;
-    [self.bg_label setBackgroundColor:RGBA(221, 116, 119, 0.9)];
+    [self.bg_label setBackgroundColor:RGBA(232, 73, 64, 1)];
     //==================================================================
     [self.blank_button  mas_remakeConstraints:^(MASConstraintMaker *make)
      {
