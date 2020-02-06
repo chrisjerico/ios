@@ -79,7 +79,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *alias;                  /**<   玩法名 */
 @property (nonatomic, strong) NSArray<UGGameBetModel> *lhcOddsArray;            /**<   六合彩合肖玩法赔率 */
 @property (nonatomic, strong) NSArray<UGGameBetModel> *list;    /**<   号码ModelList */
-
+@property (nonatomic, strong) NSArray<UGGameBetModel> *zxbzlist;            /**<  自选不中下注的数组 */
 @end
 
 @protocol UGGameplayModel <NSObject>
