@@ -4056,8 +4056,8 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dnW-Sc-rft">
                                         <rect key="frame" x="0.0" y="0.0" width="93" height="36"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="     分级" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x6X-5q-bNL">
-                                                <rect key="frame" x="25.666666666666668" y="11" width="41.666666666666657" height="14.333333333333336"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="分级" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x6X-5q-bNL">
+                                                <rect key="frame" x="8.0000000000000018" y="11" width="24.666666666666671" height="14.333333333333336"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -4069,7 +4069,7 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="0z2-gP-pQa"/>
-                                            <constraint firstItem="x6X-5q-bNL" firstAttribute="centerX" secondItem="dnW-Sc-rft" secondAttribute="centerX" id="7CB-U1-4ld"/>
+                                            <constraint firstItem="x6X-5q-bNL" firstAttribute="leading" secondItem="dnW-Sc-rft" secondAttribute="leading" constant="8" id="1zj-cj-b7z"/>
                                             <constraint firstItem="x6X-5q-bNL" firstAttribute="centerY" secondItem="dnW-Sc-rft" secondAttribute="centerY" id="paF-t7-thU"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
@@ -4080,7 +4080,7 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                         <rect key="frame" x="94" y="0.0" width="93" height="36"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="日期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DLD-Em-LZx">
-                                                <rect key="frame" x="34.333333333333343" y="11" width="24.666666666666671" height="14.333333333333336"/>
+                                                <rect key="frame" x="60.333333333333336" y="11" width="24.666666666666664" height="14.333333333333336"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -4093,7 +4093,7 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="0lH-en-iCk"/>
                                             <constraint firstItem="DLD-Em-LZx" firstAttribute="centerY" secondItem="PhM-N0-a0B" secondAttribute="centerY" id="THI-9e-ZtZ"/>
-                                            <constraint firstItem="DLD-Em-LZx" firstAttribute="centerX" secondItem="PhM-N0-a0B" secondAttribute="centerX" id="yRc-3g-Gco"/>
+                                            <constraint firstAttribute="trailing" secondItem="DLD-Em-LZx" secondAttribute="trailing" constant="8" id="lPf-au-Rba"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="日期View"/>
@@ -4103,7 +4103,7 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                         <rect key="frame" x="188" y="0.0" width="93" height="36"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="存款金额" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bMa-n5-M3a">
-                                                <rect key="frame" x="22.000000000000004" y="11" width="49.333333333333343" height="14.333333333333336"/>
+                                                <rect key="frame" x="35.666666666666657" y="11" width="49.333333333333343" height="14.333333333333336"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -4115,7 +4115,7 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="2sb-4q-khL"/>
-                                            <constraint firstItem="bMa-n5-M3a" firstAttribute="centerX" secondItem="itN-RS-wG9" secondAttribute="centerX" id="E1B-55-9dL"/>
+                                            <constraint firstAttribute="trailing" secondItem="bMa-n5-M3a" secondAttribute="trailing" constant="8" id="4CD-U9-oao"/>
                                             <constraint firstItem="bMa-n5-M3a" firstAttribute="centerY" secondItem="itN-RS-wG9" secondAttribute="centerY" id="un4-LQ-EdY"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
@@ -4126,7 +4126,7 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                         <rect key="frame" x="282" y="0.0" width="93" height="36"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="存款人数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qqw-b4-DwN">
-                                                <rect key="frame" x="22.000000000000004" y="11" width="49.333333333333343" height="14.333333333333336"/>
+                                                <rect key="frame" x="35.666666666666686" y="11" width="49.333333333333343" height="14.333333333333336"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -4138,7 +4138,7 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstItem="Qqw-b4-DwN" firstAttribute="centerY" secondItem="xR6-DK-oVH" secondAttribute="centerY" id="WU8-Fh-Rja"/>
-                                            <constraint firstItem="Qqw-b4-DwN" firstAttribute="centerX" secondItem="xR6-DK-oVH" secondAttribute="centerX" id="mfS-gY-7yD"/>
+                                            <constraint firstAttribute="trailing" secondItem="Qqw-b4-DwN" secondAttribute="trailing" constant="8" id="cH3-Rc-CeD"/>
                                             <constraint firstAttribute="height" constant="36" id="t2V-qy-HXq"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
@@ -4670,8 +4670,8 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EWT-Xq-stb">
                                         <rect key="frame" x="0.0" y="0.0" width="93" height="36"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="     分级" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Psw-Hs-vM5">
-                                                <rect key="frame" x="25.666666666666668" y="11" width="41.666666666666657" height="14.333333333333336"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="分级" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Psw-Hs-vM5">
+                                                <rect key="frame" x="8.0000000000000018" y="11" width="24.666666666666671" height="14.333333333333336"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -4682,7 +4682,7 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
-                                            <constraint firstItem="Psw-Hs-vM5" firstAttribute="centerX" secondItem="EWT-Xq-stb" secondAttribute="centerX" id="aH4-Zx-3YH"/>
+                                            <constraint firstItem="Psw-Hs-vM5" firstAttribute="leading" secondItem="EWT-Xq-stb" secondAttribute="leading" constant="8" id="634-bb-fyZ"/>
                                             <constraint firstAttribute="height" constant="36" id="nHW-0m-9rn"/>
                                             <constraint firstItem="Psw-Hs-vM5" firstAttribute="centerY" secondItem="EWT-Xq-stb" secondAttribute="centerY" id="puh-8e-xB4"/>
                                         </constraints>
@@ -4694,7 +4694,7 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                         <rect key="frame" x="94" y="0.0" width="93" height="36"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="日期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hbU-Dc-Kl0">
-                                                <rect key="frame" x="34.333333333333343" y="11" width="24.666666666666671" height="14.333333333333336"/>
+                                                <rect key="frame" x="60.333333333333336" y="11" width="24.666666666666664" height="14.333333333333336"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -4705,7 +4705,7 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
-                                            <constraint firstItem="hbU-Dc-Kl0" firstAttribute="centerX" secondItem="9uA-kn-wRr" secondAttribute="centerX" id="NcF-FK-B3c"/>
+                                            <constraint firstAttribute="trailing" secondItem="hbU-Dc-Kl0" secondAttribute="trailing" constant="8" id="5q6-no-hqs"/>
                                             <constraint firstItem="hbU-Dc-Kl0" firstAttribute="centerY" secondItem="9uA-kn-wRr" secondAttribute="centerY" id="aBS-u4-Zv6"/>
                                             <constraint firstAttribute="height" constant="36" id="mGk-Kg-2GI"/>
                                         </constraints>
@@ -4717,7 +4717,7 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                         <rect key="frame" x="188" y="0.0" width="93" height="36"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hcD-SB-tGs">
-                                                <rect key="frame" x="34.333333333333343" y="11" width="24.666666666666671" height="14.333333333333336"/>
+                                                <rect key="frame" x="60.333333333333336" y="11" width="24.666666666666664" height="14.333333333333336"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -4729,7 +4729,7 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="Px1-AO-UvZ"/>
-                                            <constraint firstItem="hcD-SB-tGs" firstAttribute="centerX" secondItem="dnN-cY-rKE" secondAttribute="centerX" id="iDS-hJ-bEB"/>
+                                            <constraint firstAttribute="trailing" secondItem="hcD-SB-tGs" secondAttribute="trailing" constant="8" id="h9R-xt-uZv"/>
                                             <constraint firstItem="hcD-SB-tGs" firstAttribute="centerY" secondItem="dnN-cY-rKE" secondAttribute="centerY" id="tAJ-it-g3L"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
@@ -4740,7 +4740,7 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                         <rect key="frame" x="282" y="0.0" width="93" height="36"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="投注金额" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pLH-dm-6q4">
-                                                <rect key="frame" x="22.000000000000004" y="11" width="49.333333333333343" height="14.333333333333336"/>
+                                                <rect key="frame" x="35.666666666666686" y="11" width="49.333333333333343" height="14.333333333333336"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -4751,9 +4751,9 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="pLH-dm-6q4" secondAttribute="trailing" constant="8" id="4pS-XL-sji"/>
                                             <constraint firstAttribute="height" constant="36" id="GdA-nD-JEB"/>
                                             <constraint firstItem="pLH-dm-6q4" firstAttribute="centerY" secondItem="41a-kU-oa2" secondAttribute="centerY" id="Uua-r0-54B"/>
-                                            <constraint firstItem="pLH-dm-6q4" firstAttribute="centerX" secondItem="41a-kU-oa2" secondAttribute="centerX" id="wqe-US-K2G"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="佣金View"/>
@@ -5052,8 +5052,8 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yz6-w0-FgV">
                                         <rect key="frame" x="0.0" y="0.0" width="74.333333333333329" height="36"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="     分级" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ci3-sp-X6b">
-                                                <rect key="frame" x="16.333333333333332" y="11" width="41.666666666666671" height="14.333333333333336"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="分级" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ci3-sp-X6b">
+                                                <rect key="frame" x="8.0000000000000018" y="11" width="24.666666666666671" height="14.333333333333336"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -5065,7 +5065,7 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstItem="ci3-sp-X6b" firstAttribute="centerY" secondItem="yz6-w0-FgV" secondAttribute="centerY" id="5db-Qh-jja"/>
-                                            <constraint firstItem="ci3-sp-X6b" firstAttribute="centerX" secondItem="yz6-w0-FgV" secondAttribute="centerX" id="s6F-Fk-cIU"/>
+                                            <constraint firstItem="ci3-sp-X6b" firstAttribute="leading" secondItem="yz6-w0-FgV" secondAttribute="leading" constant="8" id="QVq-pO-WOW"/>
                                             <constraint firstAttribute="height" constant="36" id="sic-E2-Y1k"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
@@ -5076,7 +5076,7 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                         <rect key="frame" x="75.333333333333329" y="0.0" width="73.999999999999986" height="36"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="游戏" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f1w-Yc-CJ2">
-                                                <rect key="frame" x="24.666666666666671" y="11" width="24.666666666666671" height="14.333333333333336"/>
+                                                <rect key="frame" x="41.333333333333343" y="11" width="24.666666666666671" height="14.333333333333336"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -5087,8 +5087,8 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="f1w-Yc-CJ2" secondAttribute="trailing" constant="8" id="5Tx-6b-KgD"/>
                                             <constraint firstItem="f1w-Yc-CJ2" firstAttribute="centerY" secondItem="hXE-KI-3xX" secondAttribute="centerY" id="By4-yx-NR4"/>
-                                            <constraint firstItem="f1w-Yc-CJ2" firstAttribute="centerX" secondItem="hXE-KI-3xX" secondAttribute="centerX" id="rta-Ro-je4"/>
                                             <constraint firstAttribute="height" constant="36" id="tdq-sm-BpG"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
@@ -5099,7 +5099,7 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                         <rect key="frame" x="150.33333333333334" y="0.0" width="74.333333333333343" height="36"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="日期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r2P-ti-CIc">
-                                                <rect key="frame" x="25" y="11" width="24.666666666666671" height="14.333333333333336"/>
+                                                <rect key="frame" x="41.666666666666657" y="11" width="24.666666666666671" height="14.333333333333336"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -5110,8 +5110,8 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="r2P-ti-CIc" secondAttribute="trailing" constant="8" id="Lpb-Sg-Gys"/>
                                             <constraint firstItem="r2P-ti-CIc" firstAttribute="centerY" secondItem="2M2-gX-V1I" secondAttribute="centerY" id="SzB-gs-za2"/>
-                                            <constraint firstItem="r2P-ti-CIc" firstAttribute="centerX" secondItem="2M2-gX-V1I" secondAttribute="centerX" id="T4N-9R-ktw"/>
                                             <constraint firstAttribute="height" constant="36" id="ZGU-aT-ZcW"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
@@ -5122,7 +5122,7 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                         <rect key="frame" x="225.66666666666663" y="0.0" width="74" height="36"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="投注金额" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSN-Hg-SbL">
-                                                <rect key="frame" x="12.333333333333346" y="11" width="49.333333333333343" height="14.333333333333336"/>
+                                                <rect key="frame" x="16.666666666666689" y="11" width="49.333333333333343" height="14.333333333333336"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -5133,9 +5133,9 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="dSN-Hg-SbL" secondAttribute="trailing" constant="8" id="3u1-1v-MIv"/>
                                             <constraint firstAttribute="height" constant="36" id="I1M-X5-vPv"/>
                                             <constraint firstItem="dSN-Hg-SbL" firstAttribute="centerY" secondItem="Chh-uB-TMP" secondAttribute="centerY" id="RAF-aC-2wn"/>
-                                            <constraint firstItem="dSN-Hg-SbL" firstAttribute="centerX" secondItem="Chh-uB-TMP" secondAttribute="centerX" id="kn4-Dt-GN3"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="投注金额View"/>
@@ -5145,7 +5145,7 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                         <rect key="frame" x="300.66666666666669" y="0.0" width="74.333333333333314" height="36"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="会员输赢" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UPl-ag-owm">
-                                                <rect key="frame" x="12.666666666666632" y="11" width="49.333333333333343" height="14.333333333333336"/>
+                                                <rect key="frame" x="17.000000000000004" y="11" width="49.333333333333343" height="14.333333333333336"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -5158,7 +5158,7 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="Gaw-xn-isr"/>
                                             <constraint firstItem="UPl-ag-owm" firstAttribute="centerY" secondItem="FD4-DG-1gD" secondAttribute="centerY" id="ObD-j8-6SO"/>
-                                            <constraint firstItem="UPl-ag-owm" firstAttribute="centerX" secondItem="FD4-DG-1gD" secondAttribute="centerX" id="Us5-8I-Eth"/>
+                                            <constraint firstAttribute="trailing" secondItem="UPl-ag-owm" secondAttribute="trailing" constant="8" id="ea6-M1-L7w"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="佣金View"/>
@@ -5381,8 +5381,8 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iok-wA-9NM">
                                         <rect key="frame" x="0.0" y="0.0" width="93" height="36"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="     分级" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4D3-fq-Uuh">
-                                                <rect key="frame" x="25.666666666666668" y="11" width="41.666666666666657" height="14.333333333333336"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="分级" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4D3-fq-Uuh">
+                                                <rect key="frame" x="8.0000000000000018" y="11" width="24.666666666666671" height="14.333333333333336"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -5393,9 +5393,9 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
-                                            <constraint firstItem="4D3-fq-Uuh" firstAttribute="centerX" secondItem="Iok-wA-9NM" secondAttribute="centerX" id="564-63-gKo"/>
                                             <constraint firstItem="4D3-fq-Uuh" firstAttribute="centerY" secondItem="Iok-wA-9NM" secondAttribute="centerY" id="ABo-BL-Sw2"/>
                                             <constraint firstAttribute="height" constant="36" id="SUk-UY-Kk3"/>
+                                            <constraint firstItem="4D3-fq-Uuh" firstAttribute="leading" secondItem="Iok-wA-9NM" secondAttribute="leading" constant="8" id="pCK-ur-ysX"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="分级View"/>
@@ -5405,7 +5405,7 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                         <rect key="frame" x="94" y="0.0" width="93" height="36"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b9N-CX-zOa">
-                                                <rect key="frame" x="34.333333333333343" y="11" width="24.666666666666671" height="14.333333333333336"/>
+                                                <rect key="frame" x="60.333333333333336" y="11" width="24.666666666666664" height="14.333333333333336"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -5417,7 +5417,7 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstItem="b9N-CX-zOa" firstAttribute="centerY" secondItem="rOe-Mc-9qF" secondAttribute="centerY" id="J1k-WP-BN2"/>
-                                            <constraint firstItem="b9N-CX-zOa" firstAttribute="centerX" secondItem="rOe-Mc-9qF" secondAttribute="centerX" id="hA3-0K-bAe"/>
+                                            <constraint firstAttribute="trailing" secondItem="b9N-CX-zOa" secondAttribute="trailing" constant="8" id="jc4-Dr-efO"/>
                                             <constraint firstAttribute="height" constant="36" id="vZH-Xw-Dyq"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
@@ -5428,7 +5428,7 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                         <rect key="frame" x="188" y="0.0" width="93" height="36"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="日期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SeY-PM-JPd">
-                                                <rect key="frame" x="34.333333333333343" y="11" width="24.666666666666671" height="14.333333333333336"/>
+                                                <rect key="frame" x="60.333333333333336" y="11" width="24.666666666666664" height="14.333333333333336"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -5439,9 +5439,9 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
-                                            <constraint firstItem="SeY-PM-JPd" firstAttribute="centerX" secondItem="4BJ-tn-5LY" secondAttribute="centerX" id="5Vo-RA-cFA"/>
                                             <constraint firstAttribute="height" constant="36" id="GTJ-dG-zgI"/>
                                             <constraint firstItem="SeY-PM-JPd" firstAttribute="centerY" secondItem="4BJ-tn-5LY" secondAttribute="centerY" id="ejq-jq-hgT"/>
+                                            <constraint firstAttribute="trailing" secondItem="SeY-PM-JPd" secondAttribute="trailing" constant="8" id="zPc-6s-Jaw"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="投注金额View"/>
@@ -5451,7 +5451,7 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                         <rect key="frame" x="282" y="0.0" width="93" height="36"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="存款金额" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rGH-Ov-nbW">
-                                                <rect key="frame" x="22.000000000000004" y="11" width="49.333333333333343" height="14.333333333333336"/>
+                                                <rect key="frame" x="35.666666666666686" y="11" width="49.333333333333343" height="14.333333333333336"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -5462,7 +5462,7 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
-                                            <constraint firstItem="rGH-Ov-nbW" firstAttribute="centerX" secondItem="e0J-8x-zx4" secondAttribute="centerX" id="3cj-GN-c4j"/>
+                                            <constraint firstAttribute="trailing" secondItem="rGH-Ov-nbW" secondAttribute="trailing" constant="8" id="6JT-ek-JGB"/>
                                             <constraint firstItem="rGH-Ov-nbW" firstAttribute="centerY" secondItem="e0J-8x-zx4" secondAttribute="centerY" id="AeW-Vl-GC5"/>
                                             <constraint firstAttribute="height" constant="36" id="PV2-8e-eIz"/>
                                         </constraints>
@@ -5686,8 +5686,8 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vhl-p0-qLO">
                                         <rect key="frame" x="0.0" y="0.0" width="93" height="36"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="     分级" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Me3-GL-8dJ">
-                                                <rect key="frame" x="25.666666666666668" y="11" width="41.666666666666657" height="14.333333333333336"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="分级" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Me3-GL-8dJ">
+                                                <rect key="frame" x="8.0000000000000018" y="11" width="24.666666666666671" height="14.333333333333336"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -5699,8 +5699,8 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstItem="Me3-GL-8dJ" firstAttribute="centerY" secondItem="Vhl-p0-qLO" secondAttribute="centerY" id="6FA-rA-Ie6"/>
-                                            <constraint firstItem="Me3-GL-8dJ" firstAttribute="centerX" secondItem="Vhl-p0-qLO" secondAttribute="centerX" id="PK5-ZL-8qF"/>
                                             <constraint firstAttribute="height" constant="36" id="x2u-sW-M31"/>
+                                            <constraint firstItem="Me3-GL-8dJ" firstAttribute="leading" secondItem="Vhl-p0-qLO" secondAttribute="leading" constant="8" id="zVe-Lz-vyl"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="分级View"/>
@@ -5710,7 +5710,7 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                         <rect key="frame" x="94" y="0.0" width="93" height="36"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfq-YS-IUN">
-                                                <rect key="frame" x="34.333333333333343" y="11" width="24.666666666666671" height="14.333333333333336"/>
+                                                <rect key="frame" x="60.333333333333336" y="11" width="24.666666666666664" height="14.333333333333336"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -5723,7 +5723,7 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="Bgg-aR-Tu3"/>
                                             <constraint firstItem="yfq-YS-IUN" firstAttribute="centerY" secondItem="paX-b9-0RI" secondAttribute="centerY" id="CP3-cD-2kg"/>
-                                            <constraint firstItem="yfq-YS-IUN" firstAttribute="centerX" secondItem="paX-b9-0RI" secondAttribute="centerX" id="NqM-VG-ERf"/>
+                                            <constraint firstAttribute="trailing" secondItem="yfq-YS-IUN" secondAttribute="trailing" constant="8" id="fSH-8w-GZa"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="日期View"/>
@@ -5733,7 +5733,7 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                         <rect key="frame" x="188" y="0.0" width="93" height="36"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="日期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TEE-41-UJt">
-                                                <rect key="frame" x="34.333333333333343" y="11" width="24.666666666666671" height="14.333333333333336"/>
+                                                <rect key="frame" x="60.333333333333336" y="11" width="24.666666666666664" height="14.333333333333336"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -5746,7 +5746,7 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="Jj2-Bb-MA2"/>
                                             <constraint firstItem="TEE-41-UJt" firstAttribute="centerY" secondItem="8fA-FY-6pX" secondAttribute="centerY" id="OOj-14-ryK"/>
-                                            <constraint firstItem="TEE-41-UJt" firstAttribute="centerX" secondItem="8fA-FY-6pX" secondAttribute="centerX" id="SXg-Wm-rE5"/>
+                                            <constraint firstAttribute="trailing" secondItem="TEE-41-UJt" secondAttribute="trailing" constant="8" id="TuT-eW-ddl"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="投注金额View"/>
@@ -5756,7 +5756,7 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                         <rect key="frame" x="282" y="0.0" width="93" height="36"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="提款金额" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wMk-6u-Qop">
-                                                <rect key="frame" x="22.000000000000004" y="11" width="49.333333333333343" height="14.333333333333336"/>
+                                                <rect key="frame" x="35.666666666666686" y="11" width="49.333333333333343" height="14.333333333333336"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -5768,8 +5768,8 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstItem="wMk-6u-Qop" firstAttribute="centerY" secondItem="07Y-5K-aAy" secondAttribute="centerY" id="7Mw-Fc-0pI"/>
+                                            <constraint firstAttribute="trailing" secondItem="wMk-6u-Qop" secondAttribute="trailing" constant="8" id="Q9W-dy-RFp"/>
                                             <constraint firstAttribute="height" constant="36" id="UKP-fK-aQN"/>
-                                            <constraint firstItem="wMk-6u-Qop" firstAttribute="centerX" secondItem="07Y-5K-aAy" secondAttribute="centerX" id="VSo-Ps-jUU"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="佣金View"/>
