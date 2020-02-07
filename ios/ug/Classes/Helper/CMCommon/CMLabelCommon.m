@@ -53,6 +53,9 @@
  *改变字符串中所有数字的颜色
  */
 + (void)setRichNumberWithLabel:(UILabel*)label Color:(UIColor *)color FontSize:(CGFloat)size {
+    if ([CMCommon stringIsNull:label.text]) {
+        return;
+    }
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:label.text];
     NSString *temp = nil;
     for(int i =0; i < [attributedString length]; i++) {
