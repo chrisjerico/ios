@@ -80,8 +80,9 @@
     [JPUSHService setupWithOption:launchOptions appKey:appKey channel:@"develop" apsForProduction:0 advertisingIdentifier:nil];
     [KMCGeigerCounter sharedGeigerCounter].enabled = NO;
     
-    [self initBugly];
+ 
 #else
+    [self initBugly];
     [JPUSHService setupWithOption:launchOptions appKey:appKey channel:@"dis" apsForProduction:1 advertisingIdentifier:nil];
 #endif
     
