@@ -68,6 +68,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.titleView = self.titleSegment;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerNib: [UINib nibWithNibName:@"PromotionRecordCell1" bundle:nil] forCellReuseIdentifier:@"PromotionRecordCell1"];
     [self.tableView registerNib: [UINib nibWithNibName:@"PromotionRecordCell2" bundle:nil] forCellReuseIdentifier:@"PromotionRecordCell2"];
     self.tableView.delegate = self;

@@ -59,7 +59,7 @@
 	[super viewDidLoad];
 	[self.tableView registerNib: [UINib nibWithNibName:@"PromotionRecordCell1" bundle:nil] forCellReuseIdentifier:@"PromotionRecordCell1"];
 	[self.tableView registerNib: [UINib nibWithNibName:@"PromotionRecordCell2" bundle:nil] forCellReuseIdentifier:@"PromotionRecordCell2"];
-	
+	self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 	self.tableView.delegate = self;
 	self.tableView.dataSource = self;
 	self.pageSize = 20;

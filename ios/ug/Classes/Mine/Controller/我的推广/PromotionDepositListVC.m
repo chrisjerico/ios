@@ -72,6 +72,7 @@
     [super viewDidLoad];
     self.navigationItem.titleView = self.titleSegment;
     [self.tableView registerNib: [UINib nibWithNibName:@"PromotionRecordCell1" bundle:nil] forCellReuseIdentifier:@"PromotionRecordCell1"];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.beginTimeStr = APP.beginTime;
