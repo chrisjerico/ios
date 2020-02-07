@@ -222,7 +222,7 @@
                              @"startDate":self.beginTimeStr,
                              @"endDate":self.endTimeStr,
     };
-    [CMCommon showSystemTitle:[NSString stringWithFormat:@"参数：%@",params]];
+//    [CMCommon showSystemTitle:[NSString stringWithFormat:@"参数：%@",params]];
     [SVProgressHUD showWithStatus:nil];
     WeakSelf;
     [CMNetwork teamRealBetListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
