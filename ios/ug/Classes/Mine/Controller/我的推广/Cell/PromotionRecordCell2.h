@@ -8,12 +8,12 @@
 
 #import "UGTableViewCell.h"
 #import "UGrealBetListModel.h"
-
+#import "UGbetStatModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PromotionRecordCell2 : UGTableViewCell
 -(void)bindOtherRecord: (UGrealBetListModel*)model row:(int )row;
-
+- (void)bindBetReport:(UGbetStatModel *)model row:(int )row;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -24,7 +24,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="63" height="36"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AZs-vs-eGz">
-                                        <rect key="frame" x="8" y="11" width="31.5" height="14.5"/>
+                                        <rect key="frame" x="8" y="11" width="55" height="14.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
                                         <color key="textColor" red="0.28235294119999998" green="0.30196078430000001" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -35,13 +35,14 @@
                                 <constraints>
                                     <constraint firstItem="AZs-vs-eGz" firstAttribute="leading" secondItem="gfn-fG-qng" secondAttribute="leading" constant="8" id="8JW-rr-fPe"/>
                                     <constraint firstItem="AZs-vs-eGz" firstAttribute="centerY" secondItem="gfn-fG-qng" secondAttribute="centerY" id="In3-2W-3j4"/>
+                                    <constraint firstAttribute="trailing" secondItem="AZs-vs-eGz" secondAttribute="trailing" id="ovg-1o-P9O"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g2o-NE-MEb">
                                 <rect key="frame" x="64" y="0.0" width="63.5" height="36"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P68-TN-lIZ">
-                                        <rect key="frame" x="24" y="11" width="31.5" height="14.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="阿打发是打发斯蒂芬" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P68-TN-lIZ">
+                                        <rect key="frame" x="0.0" y="11" width="55.5" height="14.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
                                         <color key="textColor" red="0.28235294119999998" green="0.30196078430000001" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -50,6 +51,7 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
+                                    <constraint firstItem="P68-TN-lIZ" firstAttribute="leading" secondItem="g2o-NE-MEb" secondAttribute="leading" id="9Kk-Mm-O4T"/>
                                     <constraint firstItem="P68-TN-lIZ" firstAttribute="centerY" secondItem="g2o-NE-MEb" secondAttribute="centerY" id="ATU-Cz-uC5"/>
                                     <constraint firstAttribute="trailing" secondItem="P68-TN-lIZ" secondAttribute="trailing" constant="8" id="QNC-cD-Wff"/>
                                 </constraints>
@@ -58,7 +60,7 @@
                                 <rect key="frame" x="128.5" y="0.0" width="63" height="36"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c1V-kZ-QH3">
-                                        <rect key="frame" x="23.5" y="11" width="31.5" height="14.5"/>
+                                        <rect key="frame" x="0.0" y="11" width="55" height="14.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
                                         <color key="textColor" red="0.28235294119999998" green="0.30196078430000001" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -67,6 +69,7 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
+                                    <constraint firstItem="c1V-kZ-QH3" firstAttribute="leading" secondItem="L7V-vd-W3p" secondAttribute="leading" id="1Qd-nV-aAu"/>
                                     <constraint firstAttribute="trailing" secondItem="c1V-kZ-QH3" secondAttribute="trailing" constant="8" id="A2d-ef-1lU"/>
                                     <constraint firstItem="c1V-kZ-QH3" firstAttribute="centerY" secondItem="L7V-vd-W3p" secondAttribute="centerY" id="cOe-8c-bOn"/>
                                 </constraints>
@@ -75,7 +78,7 @@
                                 <rect key="frame" x="192.5" y="0.0" width="63.5" height="36"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WJZ-1R-jwP">
-                                        <rect key="frame" x="24" y="11" width="31.5" height="14.5"/>
+                                        <rect key="frame" x="0.0" y="11" width="55.5" height="14.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
                                         <color key="textColor" red="0.28235294119999998" green="0.30196078430000001" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -85,6 +88,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="WJZ-1R-jwP" secondAttribute="trailing" constant="8" id="7eq-bs-PzU"/>
+                                    <constraint firstItem="WJZ-1R-jwP" firstAttribute="leading" secondItem="2QT-Io-76m" secondAttribute="leading" id="Bc8-RU-rew"/>
                                     <constraint firstItem="WJZ-1R-jwP" firstAttribute="centerY" secondItem="2QT-Io-76m" secondAttribute="centerY" id="hOC-q1-A29"/>
                                 </constraints>
                             </view>
@@ -92,7 +96,7 @@
                                 <rect key="frame" x="257" y="0.0" width="63" height="36"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nQf-QP-uOc">
-                                        <rect key="frame" x="23.5" y="11" width="31.5" height="14.5"/>
+                                        <rect key="frame" x="0.0" y="11" width="55" height="14.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
                                         <color key="textColor" red="0.28235294119999998" green="0.30196078430000001" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -103,6 +107,7 @@
                                 <constraints>
                                     <constraint firstItem="nQf-QP-uOc" firstAttribute="centerY" secondItem="Wgb-WO-JMj" secondAttribute="centerY" id="472-K5-6MP"/>
                                     <constraint firstAttribute="trailing" secondItem="nQf-QP-uOc" secondAttribute="trailing" constant="8" id="Ult-FW-wPv"/>
+                                    <constraint firstItem="nQf-QP-uOc" firstAttribute="leading" secondItem="Wgb-WO-JMj" secondAttribute="leading" id="p2a-qz-zRf"/>
                                 </constraints>
                             </view>
                         </subviews>

@@ -247,8 +247,10 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 // 彩票游戏数据
 - (void)getGameDatas {
     NSDictionary *params = @{@"id":self.gameId};
+    [SVProgressHUD showWithStatus:nil];
     [CMNetwork getGameDatasWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
+            [SVProgressHUD dismiss];
             UGPlayOddsModel *play = model.data;
             self.playOddsModel = play;
             [self.view addSubview:self.zodiacScrollView];
@@ -273,11 +275,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                         gbm.gameEnable = gsm.enable;
                     }
                 }
-                
-                
-                
-                
-                
+  
             }
             
             // 删除enable为NO的数据（不显示出来）
@@ -305,7 +303,9 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             [self.tableView reloadData];
             [self.betCollectionView reloadData];
             [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
-        } failure:nil];
+        } failure:^(id msg) {
+             [SVProgressHUD dismiss];
+        }];
     }];
 }
 
@@ -682,12 +682,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             } else {
                 type = model.list[indexPath.section];
             }
-            
-            //            if (self.segmentIndex) {//B
-            //                type = model.list[indexPath.section + 3];
-            //            } else {//B
-            //                type = model.list[indexPath.section];
-            //            }
+
         } else {
             type = model.list[indexPath.section];
         }

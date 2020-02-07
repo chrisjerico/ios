@@ -27,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *comNetAmount;//
 @property (nonatomic, strong) NSString *platform;//游戏名
 @property (nonatomic, strong) NSString *bet_sum;//投注金额
+@property (nonatomic, strong) NSString *win_amount;//会员输赢
 @end
 
 NS_ASSUME_NONNULL_END

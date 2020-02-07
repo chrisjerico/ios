@@ -158,16 +158,16 @@
                                 <rect key="frame" x="0.0" y="88" width="375" height="690"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="my_promotion_wenzi" translatesAutoresizingMaskIntoConstraints="NO" id="VhF-mb-GuJ">
-                                <rect key="frame" x="24" y="134" width="355.66666666666669" height="108"/>
+                                <rect key="frame" x="-153.66666666666666" y="134" width="711" height="216"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="VhF-mb-GuJ" secondAttribute="height" multiplier="79:24" id="Ude-f2-1oa"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aun-JY-aB2">
-                                <rect key="frame" x="24" y="391.33333333333331" width="327" height="76.333333333333314"/>
+                                <rect key="frame" x="24" y="499.33333333333331" width="327" height="76.333333333333314"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="QR_Code" translatesAutoresizingMaskIntoConstraints="NO" id="bQa-dl-dyP">
-                                        <rect key="frame" x="28" y="16.333333333333371" width="44" height="44"/>
+                                        <rect key="frame" x="28" y="16.333333333333314" width="44" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="44" id="1F5-7s-CjE"/>
                                             <constraint firstAttribute="width" secondItem="bQa-dl-dyP" secondAttribute="height" id="oCh-J5-gU1"/>
@@ -219,7 +219,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="flX-am-qK1">
-                                <rect key="frame" x="24" y="487.66666666666669" width="327" height="129.66666666666669"/>
+                                <rect key="frame" x="24" y="595.66666666666663" width="327" height="129.66666666666663"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="8gi-Oa-Qgi">
                                         <rect key="frame" x="0.0" y="0.0" width="327" height="130"/>
@@ -235,7 +235,7 @@
                                                         </constraints>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 分享图片链接 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KxL-c7-v5V" userLabel="快捷分享">
-                                                        <rect key="frame" x="117" y="16.333333333333314" width="93.333333333333314" height="17"/>
+                                                        <rect key="frame" x="117" y="16.333333333333371" width="93.333333333333314" height="17"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <color key="textColor" red="0.28235294119999998" green="0.30196078430000001" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -253,7 +253,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0ET-Lh-OlN">
-                                                <rect key="frame" x="0.0" y="49.999999999999943" width="327" height="80"/>
+                                                <rect key="frame" x="0.0" y="50" width="327" height="80"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="NSU-uV-efi">
                                                         <rect key="frame" x="0.0" y="0.0" width="327" height="65"/>
@@ -262,14 +262,14 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="109" height="65"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LHq-G4-IfO">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="109" height="43"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="109" height="51.666666666666664"/>
                                                                         <state key="normal" image="my_promotion_fenxiangtuiguangtu"/>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="分享推广图Btn"/>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </button>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="分享推广图" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cgc-aN-8i6">
-                                                                        <rect key="frame" x="0.0" y="51" width="109" height="14"/>
+                                                                        <rect key="frame" x="0.0" y="59.666666666666742" width="109" height="5.3333333333333286"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                         <color key="textColor" red="0.28235294119999998" green="0.30196078430000001" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -280,14 +280,14 @@
                                                                 <rect key="frame" x="109" y="0.0" width="109" height="65"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2fw-sn-MP7">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="109" height="43"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="109" height="51.666666666666664"/>
                                                                         <state key="normal" image="my_promotion_fuzhilianjie"/>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="分享链接Btn"/>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </button>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="分享链接" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t5W-07-8dR">
-                                                                        <rect key="frame" x="0.0" y="51" width="109" height="14"/>
+                                                                        <rect key="frame" x="0.0" y="59.666666666666742" width="109" height="5.3333333333333286"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                         <color key="textColor" red="0.28235294119999998" green="0.30196078430000001" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -298,14 +298,14 @@
                                                                 <rect key="frame" x="218" y="0.0" width="109" height="65"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q92-Be-pfV">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="109" height="43"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="109" height="51.666666666666664"/>
                                                                         <state key="normal" image="my_promotion_baocuntuiguangtu"/>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="保存推广图Btn"/>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </button>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="保存推广图" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tMB-rg-WfE">
-                                                                        <rect key="frame" x="0.0" y="51" width="109" height="14"/>
+                                                                        <rect key="frame" x="0.0" y="59.666666666666742" width="109" height="5.3333333333333286"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                         <color key="textColor" red="0.28235294119999998" green="0.30196078430000001" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -418,7 +418,7 @@
                                 </constraints>
                             </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="my_promotion_hongbao" translatesAutoresizingMaskIntoConstraints="NO" id="4Jz-di-bf1">
-                                <rect key="frame" x="20" y="262" width="335" height="130.33333333333337"/>
+                                <rect key="frame" x="20" y="370" width="335" height="130.33333333333337"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="4Jz-di-bf1" secondAttribute="height" multiplier="678:264" id="oRK-so-C6m"/>
@@ -558,7 +558,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GNv-MH-WMN">
-                                        <rect key="frame" x="329" y="46" width="16" height="22"/>
+                                        <rect key="frame" x="321" y="41" width="32" height="32"/>
                                         <state key="normal" image="arrow_down"/>
                                         <state key="selected" image="arrow_up"/>
                                         <userDefinedRuntimeAttributes>
@@ -694,7 +694,7 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mhu-PA-Ber">
-                                        <rect key="frame" x="329" y="44" width="16" height="22"/>
+                                        <rect key="frame" x="321" y="39" width="32" height="32"/>
                                         <state key="normal" image="arrow_down"/>
                                         <state key="selected" image="arrow_up"/>
                                         <userDefinedRuntimeAttributes>
@@ -3380,13 +3380,13 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                                 <viewLayoutGuide key="frameLayoutGuide" id="HFW-cv-wsH"/>
                                             </scrollView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="recommend_shadow_left" translatesAutoresizingMaskIntoConstraints="NO" id="xaK-F9-5wy">
-                                                <rect key="frame" x="90" y="0.0" width="8" height="1043"/>
+                                                <rect key="frame" x="90" y="0.0" width="16" height="1043"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="右阴影imgV"/>
                                                 </userDefinedRuntimeAttributes>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="recommend_shadow_right" translatesAutoresizingMaskIntoConstraints="NO" id="dlv-Wl-8kE">
-                                                <rect key="frame" x="318" y="0.0" width="8" height="1043"/>
+                                                <rect key="frame" x="310" y="0.0" width="16" height="1043"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="左阴影imgV"/>
                                                 </userDefinedRuntimeAttributes>
@@ -4364,7 +4364,7 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                 <rect key="frame" x="0.0" y="137" width="375" height="36"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eoa-pg-6pB">
-                                        <rect key="frame" x="0.0" y="0.0" width="93" height="36"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="74.333333333333329" height="36"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="分级" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pgv-eP-7pb">
                                                 <rect key="frame" x="8.0000000000000018" y="11" width="24.666666666666671" height="14.333333333333336"/>
@@ -4387,10 +4387,10 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bCl-2Z-QXp">
-                                        <rect key="frame" x="94" y="0.0" width="93" height="36"/>
+                                        <rect key="frame" x="75.333333333333329" y="0.0" width="73.999999999999986" height="36"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="日期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QHi-cK-Zme">
-                                                <rect key="frame" x="60.333333333333336" y="11" width="24.666666666666664" height="14.333333333333336"/>
+                                                <rect key="frame" x="41.333333333333343" y="11" width="24.666666666666671" height="14.333333333333336"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -4410,10 +4410,10 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HjE-pD-q1q">
-                                        <rect key="frame" x="188" y="0.0" width="93" height="36"/>
+                                        <rect key="frame" x="150.33333333333334" y="0.0" width="74.333333333333343" height="36"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="投注金额" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vq1-pC-gbQ">
-                                                <rect key="frame" x="35.666666666666657" y="11" width="49.333333333333343" height="14.333333333333336"/>
+                                                <rect key="frame" x="17.000000000000004" y="11" width="49.333333333333343" height="14.333333333333336"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -4432,11 +4432,34 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="投注金额View"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WeY-3K-LYM">
+                                        <rect key="frame" x="225.66666666666663" y="0.0" width="74" height="36"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="会员输赢" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1hx-4c-zYN">
+                                                <rect key="frame" x="16.666666666666689" y="11" width="49.333333333333343" height="14.333333333333336"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="输赢Label"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="36" id="CeO-6e-tcI"/>
+                                            <constraint firstAttribute="trailing" secondItem="1hx-4c-zYN" secondAttribute="trailing" constant="8" id="J5Z-hj-qVK"/>
+                                            <constraint firstItem="1hx-4c-zYN" firstAttribute="centerY" secondItem="WeY-3K-LYM" secondAttribute="centerY" id="w1A-g7-RzZ"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="输赢View"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ay-R8-K0Q">
-                                        <rect key="frame" x="282" y="0.0" width="93" height="36"/>
+                                        <rect key="frame" x="300.66666666666669" y="0.0" width="74.333333333333314" height="36"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="佣金" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5IJ-bb-twv">
-                                                <rect key="frame" x="60.333333333333307" y="11" width="24.666666666666664" height="14.333333333333336"/>
+                                                <rect key="frame" x="41.666666666666629" y="11" width="24.666666666666671" height="14.333333333333336"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -4485,10 +4508,6 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                         <outlet property="levelSelectButton" destination="Kfw-U0-Gkb" id="iMY-c3-ZeH"/>
                         <outlet property="levelSelectView" destination="cLC-dB-Mg9" id="yUd-wK-2t3"/>
                         <outlet property="tableView" destination="B7t-w6-MaX" id="Ydc-Fz-Rzz"/>
-                        <outletCollection property="headerLabels" destination="Pgv-eP-7pb" id="urb-Ci-KIA"/>
-                        <outletCollection property="headerLabels" destination="QHi-cK-Zme" id="gvx-nP-6XE"/>
-                        <outletCollection property="headerLabels" destination="Vq1-pC-gbQ" id="Iye-lB-pto"/>
-                        <outletCollection property="headerLabels" destination="5IJ-bb-twv" id="Gpd-FR-Gzc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g1S-wY-VOH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

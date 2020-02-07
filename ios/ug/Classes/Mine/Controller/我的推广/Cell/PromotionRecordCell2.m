@@ -62,6 +62,63 @@
     }
 
 }
+
+
+- (void)bindBetReport:(UGbetStatModel *)model row:(int )row{
+    
+    [self celBgColor:row];
+    
+    int intLevel = [model.level intValue];
+    if (intLevel == 0) {
+         ((UILabel *)self.itemLabels[0]).text = @"全部下线";
+    }
+    else{
+         ((UILabel *)self.itemLabels[0]).text = [NSString stringWithFormat:@"%@级下线",[CMCommon switchNumber:intLevel]];
+    }
+    if ([CMCommon stringIsNull:model.date]) {
+        ((UILabel *)self.itemLabels[1]).text = @"--";
+    } else {
+        ((UILabel *)self.itemLabels[1]).text = model.date;
+    }
+    ((UILabel *)self.itemLabels[2]).text = model.bet_sum;
+    
+    if (model.win_amount.intValue) {
+           if (model.win_amount.intValue>0) {
+               [((UILabel *)self.itemLabels[3]) setTextColor:[UIColor redColor]];
+           }
+           else if(model.win_amount.intValue<0)  {
+               [((UILabel *)self.itemLabels[3]) setTextColor:[UIColor greenColor]];
+           }
+           else{
+               if (Skin1.isBlack) {
+                   [((UILabel *)self.itemLabels[3]) setTextColor:Skin1.textColor1];
+               }
+               else{
+                   [((UILabel *)self.itemLabels[3]) setTextColor:[UIColor blackColor]];
+               }
+           }
+       }
+       else{
+           if (Skin1.isBlack) {
+               [((UILabel *)self.itemLabels[3]) setTextColor:Skin1.textColor1];
+           }
+           else{
+               [((UILabel *)self.itemLabels[3]) setTextColor:[UIColor blackColor]];
+           }
+       }
+    
+    ((UILabel *)self.itemLabels[3]).text = model.win_amount;
+    
+    if (Skin1.isBlack) {
+        [((UILabel *)self.itemLabels[4]) setTextColor:Skin1.textColor1];
+    }
+    else{
+        [((UILabel *)self.itemLabels[4]) setTextColor:[UIColor blackColor]];
+    }
+
+    ((UILabel *)self.itemLabels[4]).text = model.fandian_sum;
+
+}
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:false animated:animated];
 
