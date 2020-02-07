@@ -51,7 +51,13 @@
         if (!APP.betBgIsWhite) {
             [self.view insertSubview:({
                 UIView *bgView = [[UIView alloc] initWithFrame:APP.Bounds];
-                bgView.backgroundColor = [Skin1.skitString containsString:@"六合"] ? Skin1.navBarBgColor : Skin1.bgColor;
+                if (APP.isLight) {
+                      bgView.backgroundColor = [Skin1.skitString containsString:@"六合"] ? [Skin1.navBarBgColor colorWithAlphaComponent:0.8] :[Skin1.bgColor colorWithAlphaComponent:0.8];
+                }
+                else{
+                      bgView.backgroundColor = [Skin1.skitString containsString:@"六合"] ? Skin1.navBarBgColor : Skin1.bgColor;
+                }
+              
                 bgView;
             }) atIndex:0];
         }

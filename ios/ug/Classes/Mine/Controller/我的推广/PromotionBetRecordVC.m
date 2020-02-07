@@ -65,7 +65,7 @@
 	self.pageSize = 20;
 	self.pageNumber = 1;
 	self.items = [NSMutableArray array];
-	_levelArray = @[@"全部下线",@"1级下线",@"2级下线",@"3级下线",@"4级下线",@"5级下线",@"6级下线",@"7级下线",@"8级下线",@"9级下线",@"10级下线"];
+	_levelArray = @[@"全部下线",@"一级下线",@"二级下线",@"三级下线",@"四级下线",@"五级下线",@"六级下线",@"七级下线",@"八级下线",@"九级下线",@"十级下线"];
 	_levelindex = 0;
     
     self.beginTimeStr = APP.beginTime;
@@ -152,7 +152,7 @@
 	}];
 	self.tableView.tableFooterView = [UIView new];
 	[weakSelf loadData];
-	self.navigationItem.title = @"彩票投注记录";
+	self.navigationItem.title = @"彩票记录";
     self.tableView.startTip = YES;
     self.tableView.tipTitle = @"暂无更多数据";
     

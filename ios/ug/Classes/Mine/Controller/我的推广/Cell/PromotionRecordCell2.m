@@ -9,30 +9,32 @@
 #import "PromotionRecordCell2.h"
 @interface PromotionRecordCell2()
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *itemLabels;
-
+@property (strong, nonatomic) IBOutletCollection(UIView) NSArray *itemViews;
 @end
 @implementation PromotionRecordCell2
 
 - (void)celBgColor:(int)row {
     if (row%2) {
-        [((UILabel *)self.itemLabels[0]) setBackgroundColor:RGBA(235, 235, 235, 0.7)];
-        [((UILabel *)self.itemLabels[1]) setBackgroundColor:RGBA(235, 235, 235, 0.7)];
-        [((UILabel *)self.itemLabels[2]) setBackgroundColor:RGBA(235, 235, 235, 0.7)];
-        [((UILabel *)self.itemLabels[3]) setBackgroundColor:RGBA(235, 235, 235, 0.7)];
-        [((UILabel *)self.itemLabels[4]) setBackgroundColor:RGBA(235, 235, 235, 0.7)];
+        [((UIView *)self.itemViews[0]) setBackgroundColor:RGBA(244, 245, 245, 0.7)];
+        [((UIView *)self.itemViews[1]) setBackgroundColor:RGBA(244, 245, 245, 0.7)];
+        [((UIView *)self.itemViews[2]) setBackgroundColor:RGBA(244, 245, 245, 0.7)];
+        [((UIView *)self.itemViews[3]) setBackgroundColor:RGBA(244, 245, 245, 0.7)];
+        [((UIView *)self.itemViews[4]) setBackgroundColor:RGBA(244, 245, 245, 0.7)];
     } else {
         if (Skin1.isBlack) {
-            [((UILabel *)self.itemLabels[0]) setBackgroundColor:Skin1.CLBgColor];
-            [((UILabel *)self.itemLabels[1]) setBackgroundColor:Skin1.CLBgColor];
-            [((UILabel *)self.itemLabels[2]) setBackgroundColor:Skin1.CLBgColor];
-            [((UILabel *)self.itemLabels[3]) setBackgroundColor:Skin1.CLBgColor];
-            [((UILabel *)self.itemLabels[4]) setBackgroundColor:Skin1.CLBgColor];
+            [((UIView *)self.itemViews[0]) setBackgroundColor:Skin1.CLBgColor];
+            [((UIView *)self.itemViews[1]) setBackgroundColor:Skin1.CLBgColor];
+            [((UIView *)self.itemViews[2]) setBackgroundColor:Skin1.CLBgColor];
+            [((UIView *)self.itemViews[3]) setBackgroundColor:Skin1.CLBgColor];
+            [((UIView *)self.itemViews[4]) setBackgroundColor:Skin1.CLBgColor];
+         
         } else {
-            [((UILabel *)self.itemLabels[0]) setBackgroundColor:[UIColor whiteColor]];
-            [((UILabel *)self.itemLabels[1]) setBackgroundColor:[UIColor whiteColor]];
-            [((UILabel *)self.itemLabels[2]) setBackgroundColor:[UIColor whiteColor]];
-            [((UILabel *)self.itemLabels[3]) setBackgroundColor:[UIColor whiteColor]];
-            [((UILabel *)self.itemLabels[4]) setBackgroundColor:[UIColor whiteColor]];
+            [((UIView *)self.itemViews[0]) setBackgroundColor:[UIColor whiteColor]];
+            [((UIView *)self.itemViews[1]) setBackgroundColor:[UIColor whiteColor]];
+            [((UIView *)self.itemViews[2]) setBackgroundColor:[UIColor whiteColor]];
+            [((UIView *)self.itemViews[3]) setBackgroundColor:[UIColor whiteColor]];
+            [((UIView *)self.itemViews[4]) setBackgroundColor:[UIColor whiteColor]];
+         
         }
     }
 }
@@ -40,11 +42,17 @@
 - (void)bindOtherRecord:(UGrealBetListModel *)model row:(int )row{
 
     [self celBgColor:row];
-
-	((UILabel *)self.itemLabels[0]).text = [model.level stringValue];
-	((UILabel *)self.itemLabels[1]).text = model.username;
+    
+    int intLevel = [model.level intValue];
+    if (intLevel == 0) {
+        ((UILabel *)self.itemLabels[0]).text = @"全部下线";
+    }
+    else{
+        ((UILabel *)self.itemLabels[0]).text = [NSString stringWithFormat:@"%@级下线",[CMCommon switchNumber:intLevel]];
+    }
+	((UILabel *)self.itemLabels[1]).text = model.platform;
 	((UILabel *)self.itemLabels[2]).text = model.date;
-	((UILabel *)self.itemLabels[3]).text = model.bet_sum;
+	((UILabel *)self.itemLabels[3]).text = model.betAmount;
 	((UILabel *)self.itemLabels[4]).text = model.netAmount;
 
 }

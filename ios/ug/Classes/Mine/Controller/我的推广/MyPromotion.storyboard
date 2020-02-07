@@ -4495,10 +4495,10 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
             </objects>
             <point key="canvasLocation" x="3821.5999999999999" y="24.7376311844078"/>
         </scene>
-        <!--投注记录-->
+        <!--彩票记录-->
         <scene sceneID="qpW-Ma-llt">
             <objects>
-                <viewController storyboardIdentifier="PromotionBetRecordVC" title="投注记录" useStoryboardIdentifierAsRestorationIdentifier="YES" id="EY4-MU-TJm" customClass="PromotionBetRecordVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PromotionBetRecordVC" title="彩票记录" useStoryboardIdentifierAsRestorationIdentifier="YES" id="EY4-MU-TJm" customClass="PromotionBetRecordVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="M1e-iT-Qms">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4877,10 +4877,10 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
             </objects>
             <point key="canvasLocation" x="5421.6000000000004" y="24.7376311844078"/>
         </scene>
-        <!--其它投注记录-->
+        <!--其它记录-->
         <scene sceneID="Zst-3Z-VJL">
             <objects>
-                <viewController storyboardIdentifier="PromotionOtherBetRecordVC" title="其它投注记录" useStoryboardIdentifierAsRestorationIdentifier="YES" id="POv-Vp-dKp" customClass="PromotionOtherBetRecordVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PromotionOtherBetRecordVC" title="其它记录" useStoryboardIdentifierAsRestorationIdentifier="YES" id="POv-Vp-dKp" customClass="PromotionOtherBetRecordVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iP5-kx-yd9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

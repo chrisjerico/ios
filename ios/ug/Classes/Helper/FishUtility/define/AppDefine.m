@@ -168,6 +168,10 @@
 }
 
 
+- (BOOL)isLight {
+    return [@"c134" containsString:_SiteId];
+}
+
 - (BOOL)isBall6 {
     return [@"c134" containsString:_SiteId];
 }

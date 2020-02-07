@@ -158,8 +158,12 @@
      [self celBgColor:row];
     
     int intLevel = [model.level intValue];
-
-    ((UILabel *)self.itemLabels[0]).text = [NSString stringWithFormat:@"%@级下线",[CMCommon switchNumber:intLevel]];
+    if (intLevel == 0) {
+        ((UILabel *)self.itemLabels[0]).text = @"全部下线";
+    }
+    else{
+        ((UILabel *)self.itemLabels[0]).text = [NSString stringWithFormat:@"%@级下线",[CMCommon switchNumber:intLevel]];
+    }
     ((UILabel *)self.itemLabels[1]).text = model.username;
     if ([CMCommon stringIsNull:model.date]) {
         ((UILabel *)self.itemLabels[2]).text = @"--";
@@ -175,8 +179,12 @@
      [self celBgColor:row];
     
     int intLevel = [model.level intValue];
-
-    ((UILabel *)self.itemLabels[0]).text = [NSString stringWithFormat:@"%@级下线",[CMCommon switchNumber:intLevel]];
+    if (intLevel == 0) {
+        ((UILabel *)self.itemLabels[0]).text = @"全部下线";
+    }
+    else{
+        ((UILabel *)self.itemLabels[0]).text = [NSString stringWithFormat:@"%@级下线",[CMCommon switchNumber:intLevel]];
+    }
     ((UILabel *)self.itemLabels[1]).text = model.username;
     if ([CMCommon stringIsNull:model.date]) {
         ((UILabel *)self.itemLabels[2]).text = @"--";
