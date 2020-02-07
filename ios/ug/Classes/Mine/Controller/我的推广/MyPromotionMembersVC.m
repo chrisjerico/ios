@@ -96,7 +96,7 @@ static NSString * promotionMemberItemKey = @"promotionMemberItemKey";
     
     
 	self.items = [NSMutableArray array];
-	_levelArray = @[@"全部下线",@"1级下线",@"2级下线",@"3级下线",@"4级下线",@"5级下线",@"6级下线",@"7级下线",@"8级下线",@"9级下线",@"10级下线"];
+	_levelArray = @[@"全部下线",@"一级下线",@"二级下线",@"三级下线",@"四级下线",@"五级下线",@"六级下线",@"七级下线",@"八级下线",@"九级下线",@"十级下线"];
 	_levelindex = 0;
     _originalArr =[NSMutableArray new];
     _searchArr =[NSMutableArray new];
@@ -187,6 +187,9 @@ static NSString * promotionMemberItemKey = @"promotionMemberItemKey";
     NSArray * countArray = [[self.inviteInfo.total_member componentsSeparatedByString: @","] subarrayWithRange:NSMakeRange(0, 3)];
     self.inviteTotalCountLabel.text = [countArray componentsJoinedByString:@" "];
 }
+
+
+
 - (void)bind: (NSArray<UGinviteLisModel*> *) items {
 	
 	self.items = items.mutableCopy;
@@ -194,7 +197,7 @@ static NSString * promotionMemberItemKey = @"promotionMemberItemKey";
 	for (NSInteger i = 0; i < items.count; i++) {
 		UGinviteLisModel * item = items[i];
 		[self.nameStack bindContent:[NSString stringWithFormat:@"%@\n%@", item.username,item.name]];
-		[self.levelStack bindContent:item.level];
+        [self.levelStack bindContent: [item.level intValue] ? [NSString stringWithFormat:@"%@级下线",[CMCommon switchNumber:[item.level intValue]]]:@"全部下线"];
 		[self.statusStack bindContent:item.enable];
 		[self.ifWinStack bindContent:item.sunyi];
 		[self.lastLoginStack bindContent:item.accessTime];

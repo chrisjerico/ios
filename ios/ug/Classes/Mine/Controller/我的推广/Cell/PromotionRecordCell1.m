@@ -57,14 +57,27 @@
     }
 	((UILabel *)self.itemLabels[2]).text = model.bet_sum;
     if (model.netAmount.intValue) {
-        [((UILabel *)self.itemLabels[3]) setTextColor:[UIColor redColor]];
+        if (model.netAmount.intValue>0) {
+            [((UILabel *)self.itemLabels[3]) setTextColor:[UIColor redColor]];
+        }
+        else if(model.netAmount.intValue<0)  {
+            [((UILabel *)self.itemLabels[3]) setTextColor:[UIColor greenColor]];
+        }
+        else{
+            if (Skin1.isBlack) {
+                [((UILabel *)self.itemLabels[3]) setTextColor:Skin1.textColor1];
+            }
+            else{
+                [((UILabel *)self.itemLabels[3]) setTextColor:[UIColor blackColor]];
+            }
+        }
     }
     else{
         if (Skin1.isBlack) {
-              [((UILabel *)self.itemLabels[3]) setTextColor:Skin1.textColor1];
+            [((UILabel *)self.itemLabels[3]) setTextColor:Skin1.textColor1];
         }
         else{
-              [((UILabel *)self.itemLabels[3]) setTextColor:[UIColor blackColor]];
+            [((UILabel *)self.itemLabels[3]) setTextColor:[UIColor blackColor]];
         }
     }
 	((UILabel *)self.itemLabels[3]).text = model.netAmount;
@@ -88,6 +101,15 @@
         ((UILabel *)self.itemLabels[1]).text = model.date;
     }
 	((UILabel *)self.itemLabels[2]).text = model.bet_sum;
+    
+
+    if (Skin1.isBlack) {
+        [((UILabel *)self.itemLabels[3]) setTextColor:Skin1.textColor1];
+    }
+    else{
+        [((UILabel *)self.itemLabels[3]) setTextColor:[UIColor blackColor]];
+    }
+
 	((UILabel *)self.itemLabels[3]).text = model.fandian_sum;
 
 }
