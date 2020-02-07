@@ -54,6 +54,12 @@
 	((UILabel *)self.itemLabels[2]).text = model.date;
 	((UILabel *)self.itemLabels[3]).text = model.betAmount;
 	((UILabel *)self.itemLabels[4]).text = model.netAmount;
+    if (model.netAmount.intValue) {
+        [((UILabel *)self.itemLabels[4]) setTextColor:[UIColor redColor]];
+    }
+    else{
+         [((UILabel *)self.itemLabels[4]) setTextColor:[UIColor blackColor]];
+    }
 
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

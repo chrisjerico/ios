@@ -56,6 +56,17 @@
         ((UILabel *)self.itemLabels[1]).text = model.date;
     }
 	((UILabel *)self.itemLabels[2]).text = model.bet_sum;
+    if (model.netAmount.intValue) {
+        [((UILabel *)self.itemLabels[3]) setTextColor:[UIColor redColor]];
+    }
+    else{
+        if (Skin1.isBlack) {
+              [((UILabel *)self.itemLabels[3]) setTextColor:Skin1.textColor1];
+        }
+        else{
+              [((UILabel *)self.itemLabels[3]) setTextColor:[UIColor blackColor]];
+        }
+    }
 	((UILabel *)self.itemLabels[3]).text = model.netAmount;
 }
 
