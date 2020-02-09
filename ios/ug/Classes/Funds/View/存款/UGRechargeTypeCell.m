@@ -83,7 +83,9 @@
         @"wechat_online"            :@"wechat_online",  // 微信在线支付
         @"wechat_transfer"          :@"wechat_online",  // 微信转账
         @"wxsm_transfer"            :@"wechat_online",  // 微信扫码
-        @"wechat_alipay_transfer"   :@"wechat_online",  // 微信支付宝转账
+        
+        @"wechat_alipay_transfer"   :@"wx_zfb",         // 微信支付宝转账
+        @"wxzfbsm_transfer"         :@"wx_zfb",         // 微信支付宝扫码
         
         @"alipay_online"            :@"zfb_icon",       // 支付宝在线支付
         @"alihb_online"             :@"zfb_icon",       // 支付宝红包支付
