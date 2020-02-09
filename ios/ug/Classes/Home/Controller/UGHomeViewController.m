@@ -621,7 +621,7 @@
                 [__self.ulowerLefttView setHidden:YES];
             };
             self.uLowerRightView.redClickBlock = ^(void) {
-                UGhomeAdsModel *banner = __self.ulowerLefttView.itemSuspension;
+                UGhomeAdsModel *banner = __self.uLowerRightView.itemSuspension;
                 BOOL ret = [NavController1 pushViewControllerWithLinkCategory:[banner.linkCategory integerValue] linkPosition:[banner.linkPosition integerValue]];
             };
         }
