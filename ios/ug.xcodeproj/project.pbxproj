@@ -7558,6 +7558,37 @@
 			path = KMCGeigerCounter;
 			sourceTree = "<group>";
 		};
+		D43A784F23EFEB1A00F75B0C /* 红包扫雷 */ = {
+			isa = PBXGroup;
+			children = (
+				D43A785123EFEB4000F75B0C /* Controller */,
+				D43A785323EFEB5200F75B0C /* View */,
+				D43A785223EFEB4A00F75B0C /* Model */,
+			);
+			path = "红包扫雷";
+			sourceTree = "<group>";
+		};
+		D43A785123EFEB4000F75B0C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D43A785223EFEB4A00F75B0C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D43A785323EFEB5200F75B0C /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		D44258FB23E948C50067E981 /* git */ = {
 			isa = PBXGroup;
 			children = (
@@ -7631,6 +7662,7 @@
 				031E176123BE812500B0F813 /* Main */,
 				031E17E623BE812600B0F813 /* Mine */,
 				031E17DC23BE812500B0F813 /* Promote */,
+				D43A784F23EFEB1A00F75B0C /* 红包扫雷 */,
 				031E13CB23BE812300B0F813 /* 六合模板 */,
 				031E165823BE812400B0F813 /* 黑色模板 */,
 				030A874123C5C29C0001EF82 /* 金沙模板 */,
