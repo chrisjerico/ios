@@ -216,6 +216,17 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
 
 - (BOOL)pushViewControllerWithLinkCategory:(NSInteger)linkCategory linkPosition:(NSInteger)linkPosition {
     // linkCategory ： 1=彩票游戏；2=真人视讯；3=捕鱼游戏；4=电子游戏；5=棋牌游戏；6=体育赛事；7=导航链接；8=电竞游戏；9=聊天室；10=手机资料栏目
+    if (linkCategory == 9) {
+        // 去聊天室页
+        UGChatViewController *vc = [[UGChatViewController alloc] init];
+        vc.roomId = @(linkPosition).stringValue;
+        vc.showChangeRoomTitle = true;
+        vc.hideHead = true;
+        vc.title = @"聊天室";
+        [NavController1 pushViewController:vc animated:true];
+        return true;
+    }
+    
     if (!linkCategory || !linkPosition) {
         return false;
     }
@@ -223,16 +234,6 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     if (linkCategory == 1) {
         // 去彩票下注页
         return [NavController1 pushViewControllerWithNextIssueModel:[UGNextIssueModel modelWithGameId:@(linkPosition).stringValue]];
-    }
-    
-    if (linkCategory == 9) {
-        // 去聊天室页
-        UGChatViewController *vc = [[UGChatViewController alloc] init];
-        vc.roomId = @(linkPosition).stringValue;
-        vc.showChangeRoomTitle = true;
-        vc.hideHead = true;
-        [NavController1 pushViewController:vc animated:true];
-        return true;
     }
     
     if (linkCategory == 10) {
