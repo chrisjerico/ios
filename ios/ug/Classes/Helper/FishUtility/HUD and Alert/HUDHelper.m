@@ -31,6 +31,7 @@
 }
 
 + (void)removeViewPointer:(UIView *)view {
+    [SVProgressHUD showErrorWithStatus:nil];
     NSUInteger index = [self.views indexOfObject:view];
     if (view && index < self.views.count)
         [self.viewPointers removePointerAtIndex:index];

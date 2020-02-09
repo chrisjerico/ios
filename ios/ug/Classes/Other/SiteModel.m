@@ -56,10 +56,11 @@
             site(@"c190",        @"c190hy",     @"167",     @"io.fhpt.H5F40948F",       @"https://fhylofc190nyvqo.playslot8.com",       @"超级签名",    @"22333彩世界"),          // https://dev.app2.xin/index 账号：15559931943   密码：qwert12345
             site(@"c201",        @"c201hy",     @"213",     @"io.fhpt.YSFC201",         @"https://dkcp520.com",                         @"超级签名",    @"大咖彩票"),          //https://dev.app2.xin/index | 18675958156 | dk789789
             site(@"c048",        @"c048hy",     @"133",     @"io.fhpt.H5F00A9FA",       @"https://dsjf43-43-f14-345-36-g54t-gfh54.com", @"超级签名",    @"凤凰国际"),//用户15687374617  密码   qaz123123  超级苹果签 
-            site(@"l001",        @"l001hy",     @"218",     @"io.fhpt.YSFL001",         @"https://wap4988.com/",                         @"超级签名",    @"六合宝典"),//激光账号，qazttcp@gmail.com 密码 ttcp2075ZXCs  ISO 超级签 18759487805    ZXC4988tianji
+            site(@"l001",        @"l001hy",     @"218",     @"io.fhpt.YSFL001",         @"https://wap4988.com/",                        @"超级签名",    @"六合宝典"),//激光账号，qazttcp@gmail.com 密码 ttcp2075ZXCs  ISO 超级签 18759487805    ZXC4988tianji
             site(@"c228",        @"c228hy",     @"249",     @"io.fhpt.YSAC228",         @"https://app77787.co",                         @"超级签名",    @"太陽城集團"),//https://app77787.co/  https://app77787.com/ https://77787app.co/  https://77787app.com/，超级签名：15346561706 / aa362600
             
-            site(@"l002",        @"l002hy",     @"239",     @"io.fhpt.YSAL002",         @"https://7033301.com",                             @"企业包",     @" 王中王"),//wang70333@gmail.com   WANGzhongwang70333   极光账号跟密码   
+            
+            site(@"l002",        @"l002hy",     @"239",     @"io.fhpt.YSAL002",         @"https://7033301.com",                         @"企业包",     @"王中王"),//wang70333@gmail.com   WANGzhongwang70333   极光账号跟密码
             site(@"h002",        @"",           @"",        @"",                        @"",                                            @"企业包",     @"⾹港赛⻢会"),          // https://dev.app2.xin/index | 15827947817 | dz990990
             site(@"h005",        @"h005hy",     @"236",     @"io.fhpt.H5EAA48E4",       @"https://534023.com",                          @"企业包",     @"开心红包"),// 超级签 15757187321    dz990990
             site(@"c018",        @"c018hy",     @"174",     @"io.fhpt.H51E9BFB6",       @"https://www.2044234.com",                     @"企业包",     @"2044彩票"),
@@ -73,7 +74,7 @@
             site(@"c074",        @"c074hy",     @"154",     @"io.fhpt.H5016B05F",       @"",                                            @"企业包",     @"5360彩票"),
             site(@"c076",        @"",           @"",        @"io.fhpt.H59A95B9B",       @"",                                            @"企业包",     @"彩98"),
             site(@"c080",        @"",           @"",        @"io.fhpt.H5C82F72A",       @"",                                            @"企业包",     @"007彩票"),
-            site(@"c085",        @"c085hy",       @"165",     @"io.fhpt.H53F348DC",       @"https://c10000ll.com",                        @"企业包",     @"彩壹万"),//已上架    https://c10000ll.com  https://xn--10app-308h91u.com
+            site(@"c085",        @"c085hy",     @"165",     @"io.fhpt.H53F348DC",       @"https://c10000ll.com",                        @"企业包",     @"彩壹万"),//已上架    https://c10000ll.com  https://xn--10app-308h91u.com
             site(@"c085a",       @"",           @"",        @"",                        @"https://c10000ll.com",                        @"企业包",     @"彩壹万"),
             site(@"c117",        @"",           @"",        @"io.fhpt.H5AAB211E",       @"",                                            @"企业包",     @"50.CC彩票⽹"),
             site(@"c125",        @"",           @"",        @"io.fhpt.H52CD2820",       @"",                                            @"企业包",     @"财神彩票"),
@@ -123,7 +124,7 @@
             site(@"c090",        @"c090hy",     @"176",     @"io.fhpt.H5D6E1F0A",       @"",                                            @"企业包",     @"⾦沙彩票"),
             site(@"c092",        @"c092hy",     @"156",     @"io.fhpt.H57B34489",       @"https://4681kkk.com",                         @"企业包",     @"2013彩票"),
             site(@"c115",        @"",           @"",        @"io.fhpt.H59BD7AE3",       @"",                                            @"企业包",     @"中彩⽹"),
-            site(@"c116",        @"c116hy",     @"139",     @"io.fhpt.H50A85511",       @"https://13531995.com",       @"企业包",     @"1353彩世界"),
+            site(@"c116",        @"c116hy",     @"139",     @"io.fhpt.H50A85511",       @"https://13531995.com",                        @"企业包",     @"1353彩世界"),
             site(@"c126",        @"",           @"",        @"io.fhpt.H5FD4D963",       @"",                                            @"企业包",     @"758彩票"),
             site(@"c129",        @"c129hy",     @"141",     @"io.fhpt.H58AE4F87",       @"https://7803000.com",                         @"企业包",     @"万豪彩票"),
             site(@"c601",        @"",           @"",        @"io.fhpt.H5D5F880F",       @"",                                            @"企业包",     @"六合宝典"),
@@ -177,7 +178,7 @@
             
             site(@"test103",     @"test103",    @"222",     @"com.UGGame.cp",           @"http://103.9.230.243",                        @"内测包",     @"test103"),
             site(@"test10",      @"88",         @"125",     @"com.UGGame.cp",           @"http://test10.6yc.com",                       @"内测包",     @"test10"),
-            site(@"test11",      @"test11",      @"",       @"com.UGGame.cp",             @"http://test11.6yc.com",                       @"内测包",     @"test11"),
+            site(@"test11",      @"test11",      @"",       @"com.UGGame.cp",           @"http://test11.6yc.com",                       @"内测包",     @"test11"),
             site(@"c083",        @"c083",       @"226",     @"com.UGGame.cp",           @"http://t111f.fhptcdn.com",                    @"内测包",     @"c083测试"),
             site(@"test100",     @"",           @"",        @"com.UGGame.cp",           @"http://test100f.fhptcdn.com",                 @"内测包",     @"test100"),
             site(@"t032",        @"",           @"",        @"com.UGGame.cp",           @"http://t005f.fhptcdn.com",                    @"内测包",     @"t032"),     // (老虎)
@@ -187,14 +188,14 @@
             site(@"test29",      @"test29",     @"245",     @"com.UGGame.cp",           @"http://test29f.fhptcdn.com",                  @"内测包",     @"test29"),// (小东)
             site(@"test19",      @"test19",     @"214",     @"com.UGGame.cp",           @"http://test19.6yc.com",                       @"内测包",     @"test19"),
             site(@"test31",      @"",           @"",        @"com.UGGame.cp",           @"http://test31.6yc.com",                       @"内测包",     @"test31"),
-            site(@"t005",        @"t005",       @"241",     @"com.UGGame.cp",           @"http://t500f.fhptcdn.com",                    @"内测包",     @"t500"),
+            site(@"t005",        @"t005",       @"241",     @"com.UGGame.cp",           @"http://t005f.fhptcdn.com",                    @"内测包",     @"t500"),
             site(@"t500",        @"t500",       @"240",     @"com.UGGame.cp",           @"http://t500f.fhptcdn.com",                    @"内测包",     @"t500"),
             site(@"t501",        @"t501",       @"242",     @"com.UGGame.cp",           @"http://t501f.fhptcdn.com",                    @"内测包",     @"t501"),
             site(@"t502",        @"t502",       @"243",     @"com.UGGame.cp",           @"http://t502f.fhptcdn.com",                    @"内测包",     @"t502"),
             site(@"test36",      @"test36",     @"",        @"com.UGGame.cp",           @"http://test36.6yc.com",                       @"内测包",     @"test36"),//Michael
-            site(@"l001gbhy",    @"l001gbhy",   @"252",     @"com.UGGame.cp",           @"https://demo.gbbet.com/",                     @"内测包",     @"港博"),
-            site(@"test60f",     @"test60f",    @"",        @"com.UGGame.cp",           @"http://test60f.fhptcdn.com",                 @"内测包",     @"test60f"),
-            site(@"test61f",     @"test61f",    @"",        @"com.UGGame.cp",           @"http://test61f.fhptcdn.com",                 @"内测包",     @"test61f"),
+            site(@"l001gbhy",    @"l001gbhy",   @"252",     @"com.UGGame.cp",           @"https://demo.gbbet.com/",                     @"内测包",     @"港博"),//Michael
+            site(@"test60f",     @"test60f",    @"",        @"com.UGGame.cp",           @"http://test60f.fhptcdn.com",                  @"内测包",     @"test60f"),//Michael
+            site(@"test61f",     @"test61f",    @"",        @"com.UGGame.cp",           @"http://test61f.fhptcdn.com",                  @"内测包",     @"test61f"),//Michael
             // 站点编号 / 上传编号 / 上传ID / 签名方式 / APP名 / bundleID / 接口域名
 //            NSString *siteId, NSString *uploadNum, NSString *uploadId, NSString *appId, NSString *host, NSString *type, NSString *appName
         ];
