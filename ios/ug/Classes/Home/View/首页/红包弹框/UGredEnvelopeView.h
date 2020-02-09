@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "UGRedEnvelopeModel.h"
+#import "UGhomeAdsModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 typedef void(^RedEnvelopeCancelBlock)(void);
@@ -17,6 +18,8 @@ typedef void(^RedEnvelopeRedBlock)(void);
 @property (nonatomic, copy) RedEnvelopeRedBlock redClickBlock;
 
 @property (nonatomic, strong) UGRedEnvelopeModel *item;
+
+@property (nonatomic, strong) UGhomeAdsModel *itemSuspension;
 @end
 
 NS_ASSUME_NONNULL_END

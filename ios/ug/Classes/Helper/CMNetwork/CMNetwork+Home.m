@@ -223,4 +223,18 @@
     
     CMMETHOD_END;
 }
+
+//首页左右浮窗  {TEST_HOST}}?c=system&a=floatAds&token={{TOKEN}
++ (void)systemfloatAdsWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+{
+    CMMETHOD_BEGIN;
+       
+       [self.manager requestInMainThreadWithMethod:[systemfloatAdsUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                            params:params
+                                             model:CMResultArrayClassMake(UGhomeAdsModel.class)
+                                              post:NO
+                                        completion:completionBlock];
+       
+       CMMETHOD_END;
+}
 @end

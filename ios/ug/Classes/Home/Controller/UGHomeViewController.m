@@ -190,6 +190,14 @@
 //优惠活动列表
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+//-------------------------------------------
+//悬浮窗
+@property (nonatomic, strong)  UGredEnvelopeView *uUpperLeftView;    /**<   手机端浮窗1  左上 */
+@property (nonatomic, strong)  UGredEnvelopeView *ulowerLefttView;   /**<   手机端浮窗2  左下 */
+@property (nonatomic, strong)  UGredEnvelopeView *uUpperRightView;    /**<   手机端浮窗3  右上 */
+@property (nonatomic, strong)  UGredEnvelopeView *uLowerRightView;    /**<   手机端浮窗4  右下 */
+
+
 @end
 
 @implementation UGHomeViewController
@@ -541,6 +549,83 @@
 		};
 	}
 	
+    
+    // 手机悬浮按钮
+    {
+        {//左上
+            self.uUpperLeftView = [[UGredEnvelopeView alloc] initWithFrame:CGRectMake(UGScreenW-100, 150, 95, 95) ];
+            [self.view addSubview:_uUpperLeftView];
+            [self.uUpperLeftView setHidden:YES];
+            [self.uUpperLeftView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(__self.view.mas_left).with.offset(10);
+                make.width.mas_equalTo(95.0);
+                make.height.mas_equalTo(95.0);
+                make.top.equalTo(__self.view.mas_top).offset(150+105);
+            }];
+            self.uUpperLeftView.cancelClickBlock = ^(void) {
+                [__self.uUpperLeftView setHidden:YES];
+            };
+            self.uUpperLeftView.redClickBlock = ^(void) {
+                UGhomeAdsModel *banner = __self.uUpperLeftView.itemSuspension;
+                BOOL ret = [NavController1 pushViewControllerWithLinkCategory:[banner.linkCategory integerValue] linkPosition:[banner.linkPosition integerValue]];
+            };
+        }
+        {//左下
+            self.ulowerLefttView = [[UGredEnvelopeView alloc] initWithFrame:CGRectMake(UGScreenW-100, 150, 95, 95) ];
+            [self.view addSubview:_ulowerLefttView];
+            [self.ulowerLefttView setHidden:YES];
+            [self.ulowerLefttView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(__self.view.mas_left).with.offset(10);
+                make.width.mas_equalTo(95.0);
+                make.height.mas_equalTo(95.0);
+                make.top.equalTo(__self.uUpperLeftView.mas_bottom).offset(5);
+            }];
+            self.ulowerLefttView.cancelClickBlock = ^(void) {
+                [__self.ulowerLefttView setHidden:YES];
+            };
+            self.ulowerLefttView.redClickBlock = ^(void) {
+                UGhomeAdsModel *banner = __self.ulowerLefttView.itemSuspension;
+                BOOL ret = [NavController1 pushViewControllerWithLinkCategory:[banner.linkCategory integerValue] linkPosition:[banner.linkPosition integerValue]];
+            };
+        }
+        
+        {//右上
+            self.uUpperRightView = [[UGredEnvelopeView alloc] initWithFrame:CGRectMake(UGScreenW-100, 150, 95, 95) ];
+            [self.view addSubview:_uUpperRightView];
+            [self.uUpperRightView setHidden:YES];
+            [self.uUpperRightView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(__self.view.mas_right).with.offset(-10);
+                make.width.mas_equalTo(95.0);
+                make.height.mas_equalTo(95.0);
+                make.top.equalTo(__self.view.mas_top).offset(150+105);
+            }];
+            self.uUpperRightView.cancelClickBlock = ^(void) {
+                [__self.uUpperRightView setHidden:YES];
+            };
+            self.uUpperRightView.redClickBlock = ^(void) {
+                UGhomeAdsModel *banner = __self.uUpperRightView.itemSuspension;
+                BOOL ret = [NavController1 pushViewControllerWithLinkCategory:[banner.linkCategory integerValue] linkPosition:[banner.linkPosition integerValue]];
+            };
+        }
+        {//右下
+            self.uLowerRightView = [[UGredEnvelopeView alloc] initWithFrame:CGRectMake(UGScreenW-100, 150, 95, 95) ];
+            [self.view addSubview:_uLowerRightView];
+            [self.uLowerRightView setHidden:YES];
+            [self.uLowerRightView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(__self.view.mas_right).with.offset(-10);
+                make.width.mas_equalTo(95.0);
+                make.height.mas_equalTo(95.0);
+                make.top.equalTo(__self.uUpperRightView.mas_bottom).offset(5);
+            }];
+            self.uLowerRightView.cancelClickBlock = ^(void) {
+                [__self.ulowerLefttView setHidden:YES];
+            };
+            self.uLowerRightView.redClickBlock = ^(void) {
+                UGhomeAdsModel *banner = __self.ulowerLefttView.itemSuspension;
+                BOOL ret = [NavController1 pushViewControllerWithLinkCategory:[banner.linkCategory integerValue] linkPosition:[banner.linkPosition integerValue]];
+            };
+        }
+    }
 	// c200、c035站点定制需求
 	if ([APP.SiteId containsString:@"c200"] || [APP.SiteId containsString:@"c035"]) {
 		FLAnimatedImageView *gifImageView = [[FLAnimatedImageView alloc] initWithFrame:CGRectMake(APP.Width-100, 300, 100, 100)];
@@ -567,6 +652,7 @@
 		[__self getRankList];         // 投注排行榜/中奖排行榜
 		[__self gethomeAdsList];      //首页广告图片
 		[__self chatgetToken] ;        //在线配置的聊天室
+        [__self getfloatAdsList];      //首页左右浮窗
 		
 		//        if ([Skin1.skitType isEqualToString:@"六合资料"]) {
 		[__self getCategoryList];     //栏目列表
@@ -1228,6 +1314,79 @@
 	}];
 }
 
+//手机浮窗
+- (void)getfloatAdsList {
+
+    [CMNetwork systemfloatAdsWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+        [self.contentScrollView.mj_header endRefreshing];
+        [CMResult processWithResult:model success:^{
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // 需要在主线程执行的代码
+                [SVProgressHUD dismiss];
+//                self.homeAdsArray = model.data;
+                NSLog(@"数据=%@",model.data);
+                NSMutableArray *mutArr = model.data;
+                if (mutArr.count) {
+
+                    NSMutableArray *posArr  = [NSMutableArray new];
+                    for (UGhomeAdsModel *banner in mutArr) {
+                        [posArr addObject:[NSString stringWithFormat:@"%d",banner.position]];
+                    }
+                    
+                       
+                        if ([posArr containsObject: @"1"]) {
+                            UGhomeAdsModel *banner = [mutArr objectWithValue:@"1" keyPath:@"position"];
+                            self.uUpperLeftView.itemSuspension = banner;
+                            self.uUpperLeftView.hidden = NO;
+                            
+                        }
+                        else{
+                            self.uUpperLeftView.hidden = YES;
+                        }
+                       if ([posArr containsObject: @"2"]) {
+                            UGhomeAdsModel *banner = [mutArr objectWithValue:@"2" keyPath:@"position"];
+                            self.ulowerLefttView.itemSuspension = banner;
+                            self.ulowerLefttView.hidden = NO;
+                        }
+                        else{
+                            self.ulowerLefttView.hidden = YES;
+                        }
+                        if ([posArr containsObject: @"3"]) {
+                            UGhomeAdsModel *banner = [mutArr objectWithValue:@"3" keyPath:@"position"];
+                            self.uUpperRightView.itemSuspension = banner;
+                            self.uUpperRightView.hidden = NO;
+                        }
+                        else{
+                            self.uUpperRightView.hidden = YES;
+                        }
+                       if ([posArr containsObject: @"4"]) {
+                            UGhomeAdsModel *banner = [mutArr objectWithValue:@"4" keyPath:@"position"];
+                            self.uLowerRightView.itemSuspension = banner;
+                            self.uLowerRightView.hidden = NO;
+                        }
+                        else{
+                            self.uLowerRightView.hidden = YES;
+                        }
+                        
+                
+                    NSLog(@"mutArr = %@",mutArr);
+                }
+                else {
+                    self.uUpperLeftView.hidden = YES;
+                    self.ulowerLefttView.hidden = YES;
+                    self.uUpperRightView.hidden = YES;
+                    self.uLowerRightView.hidden = YES;
+                }
+                
+          
+            });
+            
+        } failure:^(id msg) {
+          
+        }];
+    }];
+}
 #pragma mark ------------六合------------------------------------------------------
 // 栏目列表
 - (void)getCategoryList {

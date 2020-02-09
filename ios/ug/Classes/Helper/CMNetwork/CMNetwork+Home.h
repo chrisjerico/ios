@@ -52,6 +52,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 //首页广告图片 http://test100f.fhptcdn.com/wjapp/api.php?c=system&a=homeAds
 + (void)systemhomeAdsWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+//首页左右浮窗  {TEST_HOST}}?c=system&a=floatAds&token={{TOKEN}
++ (void)systemfloatAdsWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 @end
 
 NS_ASSUME_NONNULL_END

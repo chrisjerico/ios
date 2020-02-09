@@ -799,13 +799,13 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ykx-1r-bMC">
-                                <rect key="frame" x="24" y="100" width="91" height="28"/>
+                                <rect key="frame" x="24" y="100" width="91" height="27"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="56o-Rx-ReJ">
-                                        <rect key="frame" x="12" y="0.0" width="67" height="28"/>
+                                        <rect key="frame" x="12" y="0.0" width="67" height="27"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PuU-Mp-1AO">
-                                                <rect key="frame" x="0.0" y="0.6666666666666714" width="50" height="27"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="50" height="27"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <state key="normal" title="全部下线">
                                                     <color key="titleColor" red="0.28235294117647058" green="0.30196078431372547" blue="0.32156862745098036" alpha="1" colorSpace="calibratedRGB"/>
@@ -815,7 +815,7 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                                 </connections>
                                             </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="arrow_down" translatesAutoresizingMaskIntoConstraints="NO" id="RQc-1c-v9X">
-                                                <rect key="frame" x="53" y="10" width="14" height="8"/>
+                                                <rect key="frame" x="53" y="9.6666666666666714" width="14" height="8"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="14" id="BIr-x0-OPO"/>
                                                     <constraint firstAttribute="width" secondItem="RQc-1c-v9X" secondAttribute="height" multiplier="7:4" id="BaI-0L-75s"/>
@@ -829,7 +829,6 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                     <constraint firstAttribute="width" constant="91" id="0iL-kR-gek"/>
                                     <constraint firstItem="56o-Rx-ReJ" firstAttribute="top" secondItem="Ykx-1r-bMC" secondAttribute="top" id="1Qp-OB-Fbr"/>
                                     <constraint firstAttribute="trailing" secondItem="56o-Rx-ReJ" secondAttribute="trailing" constant="12" id="7yE-tb-oem"/>
-                                    <constraint firstAttribute="height" constant="28" id="OpF-0s-9wE"/>
                                     <constraint firstAttribute="bottom" secondItem="56o-Rx-ReJ" secondAttribute="bottom" id="PVO-tO-uAH"/>
                                     <constraint firstItem="56o-Rx-ReJ" firstAttribute="leading" secondItem="Ykx-1r-bMC" secondAttribute="leading" constant="12" id="oDS-fd-shR"/>
                                 </constraints>
@@ -3380,13 +3379,13 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                                 <viewLayoutGuide key="frameLayoutGuide" id="HFW-cv-wsH"/>
                                             </scrollView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="recommend_shadow_left" translatesAutoresizingMaskIntoConstraints="NO" id="xaK-F9-5wy">
-                                                <rect key="frame" x="90" y="0.0" width="16" height="1043"/>
+                                                <rect key="frame" x="90" y="0.0" width="8" height="1043"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="右阴影imgV"/>
                                                 </userDefinedRuntimeAttributes>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="recommend_shadow_right" translatesAutoresizingMaskIntoConstraints="NO" id="dlv-Wl-8kE">
-                                                <rect key="frame" x="310" y="0.0" width="16" height="1043"/>
+                                                <rect key="frame" x="318" y="0.0" width="8" height="1043"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="左阴影imgV"/>
                                                 </userDefinedRuntimeAttributes>
@@ -3454,32 +3453,53 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nav-Y5-LkA" customClass="IBView">
-                                <rect key="frame" x="135" y="100" width="220" height="28"/>
+                                <rect key="frame" x="135" y="100" width="220" height="27"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tg_sousuo" translatesAutoresizingMaskIntoConstraints="NO" id="002-Hx-brw">
-                                        <rect key="frame" x="190" y="6.6666666666666714" width="15" height="15"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7As-8r-pje" customClass="UIButton">
+                                        <rect key="frame" x="176" y="1" width="43" height="25"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tg_sousuo" translatesAutoresizingMaskIntoConstraints="NO" id="002-Hx-brw">
+                                                <rect key="frame" x="14" y="5" width="15" height="15"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="15" id="FXL-EZ-J1t"/>
+                                                    <constraint firstAttribute="height" constant="15" id="qSt-RT-wWd"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="搜索Img"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.9450262188911438" green="0.94886976480484009" blue="0.96078521013259888" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="15" id="FXL-EZ-J1t"/>
-                                            <constraint firstAttribute="height" constant="15" id="qSt-RT-wWd"/>
+                                            <constraint firstItem="002-Hx-brw" firstAttribute="centerX" secondItem="7As-8r-pje" secondAttribute="centerX" id="b8q-6a-nQF"/>
+                                            <constraint firstItem="002-Hx-brw" firstAttribute="centerY" secondItem="7As-8r-pje" secondAttribute="centerY" id="c87-GI-ZP2"/>
+                                            <constraint firstAttribute="width" constant="43" id="gua-sj-8Ur"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="搜索Img"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="圆角偏移量">
+                                                <real key="value" value="11"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="point" keyPath="圆角倍数">
+                                                <point key="value" x="0.0" y="0.0"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
-                                    </imageView>
+                                    </view>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入会员名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f4V-es-xVD">
-                                        <rect key="frame" x="15" y="0.0" width="160" height="28"/>
+                                        <rect key="frame" x="15" y="0.0" width="161" height="27"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="002-Hx-brw" secondAttribute="trailing" constant="15" id="BWj-gO-dUt"/>
-                                    <constraint firstItem="002-Hx-brw" firstAttribute="centerY" secondItem="f4V-es-xVD" secondAttribute="centerY" id="Clk-lm-9je"/>
+                                    <constraint firstItem="7As-8r-pje" firstAttribute="leading" secondItem="f4V-es-xVD" secondAttribute="trailing" id="5vB-lt-f7G"/>
+                                    <constraint firstAttribute="trailing" secondItem="7As-8r-pje" secondAttribute="trailing" constant="1" id="EqK-gQ-hld"/>
                                     <constraint firstAttribute="bottom" secondItem="f4V-es-xVD" secondAttribute="bottom" id="Fot-Ci-nJY"/>
-                                    <constraint firstItem="002-Hx-brw" firstAttribute="leading" secondItem="f4V-es-xVD" secondAttribute="trailing" constant="15" id="MJ6-XT-EB4"/>
                                     <constraint firstItem="f4V-es-xVD" firstAttribute="top" secondItem="nav-Y5-LkA" secondAttribute="top" id="g0m-5i-Sx6"/>
+                                    <constraint firstAttribute="bottom" secondItem="7As-8r-pje" secondAttribute="bottom" constant="1" id="rcQ-D1-Pc3"/>
                                     <constraint firstItem="f4V-es-xVD" firstAttribute="leading" secondItem="nav-Y5-LkA" secondAttribute="leading" constant="15" id="utr-6Z-ct9"/>
+                                    <constraint firstItem="7As-8r-pje" firstAttribute="top" secondItem="nav-Y5-LkA" secondAttribute="top" constant="1" id="zLz-Br-cw0"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
@@ -3489,6 +3509,16 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                     <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="搜索View"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LPB-RU-5gf">
+                                <rect key="frame" x="313" y="88" width="62" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="62" id="2d9-bp-gQ5"/>
+                                    <constraint firstAttribute="height" constant="40" id="8f7-aR-6J9"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="btnAction:" destination="YNk-hz-jCM" eventType="touchUpInside" id="CWM-Uc-Sm4"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.94509803920000002" green="0.94901960780000005" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -3501,16 +3531,19 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                             <constraint firstItem="3M0-Lo-RR8" firstAttribute="trailing" secondItem="nav-Y5-LkA" secondAttribute="trailing" constant="20" id="O3r-c5-ne9"/>
                             <constraint firstItem="3M0-Lo-RR8" firstAttribute="trailing" secondItem="1VL-Qh-frl" secondAttribute="trailing" id="O8g-6m-KAo"/>
                             <constraint firstItem="Ykx-1r-bMC" firstAttribute="leading" secondItem="3M0-Lo-RR8" secondAttribute="leading" constant="24" id="Q7r-Pk-pLp"/>
+                            <constraint firstItem="LPB-RU-5gf" firstAttribute="top" secondItem="3M0-Lo-RR8" secondAttribute="top" id="QPS-Qr-bZ2"/>
                             <constraint firstItem="1VL-Qh-frl" firstAttribute="bottom" secondItem="3M0-Lo-RR8" secondAttribute="bottom" id="Vpf-Lu-70G"/>
                             <constraint firstItem="TVu-K1-kJX" firstAttribute="top" secondItem="3M0-Lo-RR8" secondAttribute="top" constant="53" id="fbv-xC-GXs"/>
                             <constraint firstItem="nav-Y5-LkA" firstAttribute="leading" secondItem="Ykx-1r-bMC" secondAttribute="trailing" constant="20" id="i8G-NI-bA3"/>
                             <constraint firstItem="3M0-Lo-RR8" firstAttribute="trailing" secondItem="TVu-K1-kJX" secondAttribute="trailing" id="kDx-IK-Yj3"/>
+                            <constraint firstItem="LPB-RU-5gf" firstAttribute="trailing" secondItem="3M0-Lo-RR8" secondAttribute="trailing" id="uWf-Kg-Sky"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3M0-Lo-RR8"/>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="arrowImage" destination="RQc-1c-v9X" id="Uv9-iq-udM"/>
+                        <outlet property="buttonView" destination="7As-8r-pje" id="HFm-Uw-HXi"/>
                         <outlet property="handleStack" destination="NL5-Uf-6WE" id="lyC-J9-LJp"/>
                         <outlet property="ifWinStack" destination="SOR-8f-M8V" id="elE-ds-xwY"/>
                         <outlet property="inviteTotalCountLabel" destination="ok0-cm-EpT" id="s3F-bU-3U0"/>
@@ -3527,7 +3560,7 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GGY-zR-wvU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2218.840579710145" y="24.456521739130437"/>
+            <point key="canvasLocation" x="2218.4000000000001" y="24.384236453201972"/>
         </scene>
         <!--充值-->
         <scene sceneID="UXz-gD-cLm">

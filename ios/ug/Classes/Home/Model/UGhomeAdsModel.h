@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , strong) NSString *lotteryGameType;           /**<   如果是彩票，彩票类型 */
 @property (nonatomic ) int realIsPopup;  /**<    如果是真人，是否弹出 */
 @property (nonatomic ) int realSupportTrial;  /**<    如果是真人，是否支持试玩*/
+@property (nonatomic ) int position;  /**<    手机悬浮，1 == 左上  2== 左下     3  == 右上     4 == 右下*/
 @end
 
 NS_ASSUME_NONNULL_END

@@ -1862,6 +1862,7 @@
 		D40FA8BF229910EF003E596F /* yuebaoMone.gif in Resources */ = {isa = PBXBuildFile; fileRef = D40FA8BE229910EE003E596F /* yuebaoMone.gif */; };
 		D417EFDB2330D24C0024F634 /* AppDelegate+HgBugly.m in Sources */ = {isa = PBXBuildFile; fileRef = D417EFDA2330D24C0024F634 /* AppDelegate+HgBugly.m */; };
 		D422D67F22D9A766008E7065 /* address.json in Resources */ = {isa = PBXBuildFile; fileRef = D422D67E22D9A764008E7065 /* address.json */; };
+		D42752CF23EFFA31001E27A0 /* RedEnvelopeVCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D42752CE23EFFA31001E27A0 /* RedEnvelopeVCViewController.m */; };
 		D42E14F323E06CE900F53407 /* PromotionDepositListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D42E14F223E06CE900F53407 /* PromotionDepositListVC.m */; };
 		D433EBF723D493F300D31008 /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = D433EBF623D493F300D31008 /* UIImage+Extension.m */; };
 		D435F90423CEF940008648CE /* KMCGeigerCounterTick.aiff in Resources */ = {isa = PBXBuildFile; fileRef = D435F90023CEF940008648CE /* KMCGeigerCounterTick.aiff */; };
@@ -1869,6 +1870,7 @@
 		D435F90623CEF940008648CE /* KMCGeigerCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = D435F90223CEF940008648CE /* KMCGeigerCounter.m */; };
 		D435F90723CEF940008648CE /* KMCGeigerCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = D435F90223CEF940008648CE /* KMCGeigerCounter.m */; };
 		D435F90923CEF996008648CE /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D435F90823CEF996008648CE /* AudioToolbox.framework */; };
+		D43A785523EFEFED00F75B0C /* RedEnvelope.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D43A785423EFEFED00F75B0C /* RedEnvelope.storyboard */; };
 		D44258FD23E948D80067E981 /* LH_laba.gif in Resources */ = {isa = PBXBuildFile; fileRef = D44258FC23E948D80067E981 /* LH_laba.gif */; };
 		D44258FF23E948E00067E981 /* LH_l001jt.gif in Resources */ = {isa = PBXBuildFile; fileRef = D44258FE23E948DF0067E981 /* LH_l001jt.gif */; };
 		D442590323E949600067E981 /* LHHornView.m in Sources */ = {isa = PBXBuildFile; fileRef = D442590223E949600067E981 /* LHHornView.m */; };
@@ -3628,6 +3630,8 @@
 		D417EFD92330D24C0024F634 /* AppDelegate+HgBugly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+HgBugly.h"; sourceTree = "<group>"; };
 		D417EFDA2330D24C0024F634 /* AppDelegate+HgBugly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+HgBugly.m"; sourceTree = "<group>"; };
 		D422D67E22D9A764008E7065 /* address.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = address.json; sourceTree = "<group>"; };
+		D42752CD23EFFA31001E27A0 /* RedEnvelopeVCViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RedEnvelopeVCViewController.h; sourceTree = "<group>"; };
+		D42752CE23EFFA31001E27A0 /* RedEnvelopeVCViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RedEnvelopeVCViewController.m; sourceTree = "<group>"; };
 		D42E14F123E06CE900F53407 /* PromotionDepositListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PromotionDepositListVC.h; sourceTree = "<group>"; };
 		D42E14F223E06CE900F53407 /* PromotionDepositListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PromotionDepositListVC.m; sourceTree = "<group>"; };
 		D433EBF523D493F300D31008 /* UIImage+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extension.h"; sourceTree = "<group>"; };
@@ -3636,6 +3640,7 @@
 		D435F90123CEF940008648CE /* KMCGeigerCounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMCGeigerCounter.h; sourceTree = "<group>"; };
 		D435F90223CEF940008648CE /* KMCGeigerCounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMCGeigerCounter.m; sourceTree = "<group>"; };
 		D435F90823CEF996008648CE /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		D43A785423EFEFED00F75B0C /* RedEnvelope.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RedEnvelope.storyboard; sourceTree = "<group>"; };
 		D44258FC23E948D80067E981 /* LH_laba.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = LH_laba.gif; sourceTree = "<group>"; };
 		D44258FE23E948DF0067E981 /* LH_l001jt.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = LH_l001jt.gif; sourceTree = "<group>"; };
 		D442590123E949600067E981 /* LHHornView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LHHornView.h; sourceTree = "<group>"; };
@@ -7561,6 +7566,8 @@
 		D43A784F23EFEB1A00F75B0C /* 红包扫雷 */ = {
 			isa = PBXGroup;
 			children = (
+				D43A785423EFEFED00F75B0C /* RedEnvelope.storyboard */,
+				D43A785623EFF59300F75B0C /* Cell */,
 				D43A785123EFEB4000F75B0C /* Controller */,
 				D43A785323EFEB5200F75B0C /* View */,
 				D43A785223EFEB4A00F75B0C /* Model */,
@@ -7571,6 +7578,8 @@
 		D43A785123EFEB4000F75B0C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D42752CD23EFFA31001E27A0 /* RedEnvelopeVCViewController.h */,
+				D42752CE23EFFA31001E27A0 /* RedEnvelopeVCViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -7587,6 +7596,13 @@
 			children = (
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		D43A785623EFF59300F75B0C /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		D44258FB23E948C50067E981 /* git */ = {
@@ -8205,6 +8221,7 @@
 				CF4758D1239636D200966536 /* 150.gif in Resources */,
 				CF475897239636D200966536 /* 133.gif in Resources */,
 				031E1BCE23BE812900B0F813 /* UGXYNCLotteryController.storyboard in Resources */,
+				D43A785523EFEFED00F75B0C /* RedEnvelope.storyboard in Resources */,
 				CF4758DB239636D200966536 /* 84.gif in Resources */,
 				031E1E3823BE812C00B0F813 /* UGPromotion2rowTableViewCell.xib in Resources */,
 				031E1DF023BE812C00B0F813 /* UGMissionLevelTableViewCell.xib in Resources */,
@@ -9362,6 +9379,7 @@
 				031E1AFE23BE812800B0F813 /* GLEncryptManager.m in Sources */,
 				031E1A6A23BE812700B0F813 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				D433EBF723D493F300D31008 /* UIImage+Extension.m in Sources */,
+				D42752CF23EFFA31001E27A0 /* RedEnvelopeVCViewController.m in Sources */,
 				031E1E6623BE812C00B0F813 /* UGAvaterSelectView.m in Sources */,
 				031E1CB423BE812A00B0F813 /* UGTabbarController.m in Sources */,
 				031E1CFA23BE812A00B0F813 /* AFURLSessionManager.m in Sources */,

@@ -42,4 +42,9 @@
     [self.imgView sd_setImageWithURL:[NSURL URLWithString:item.redBagLogo]];
 }
 
+
+- (void)setItemSuspension:(UGhomeAdsModel *)item {
+    _itemSuspension = item;
+    [self.imgView sd_setImageWithURL:[NSURL URLWithString:item.image]];
+}
 @end

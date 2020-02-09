@@ -45,6 +45,7 @@ static NSString * promotionMemberItemKey = @"promotionMemberItemKey";
 @property(nonatomic, strong) NSMutableArray *searchArr;
 
 
+@property (weak, nonatomic) IBOutlet UIView *buttonView; /**<   搜索的圆形背景*/
 @property(nonatomic, strong) NSMutableArray * items;
 @property (nonatomic, strong) UGinviteInfoModel* inviteInfo;
 
@@ -94,6 +95,8 @@ static NSString * promotionMemberItemKey = @"promotionMemberItemKey";
         [subLabel(@"注册时间Label") setTextColor:Skin1.textColor1];
     }
     
+    _buttonView.layer.cornerRadius = 14.5;
+    _buttonView.layer.masksToBounds = YES;
     
 	self.items = [NSMutableArray array];
 	_levelArray = @[@"全部下线",@"一级下线",@"二级下线",@"三级下线",@"四级下线",@"五级下线",@"六级下线",@"七级下线",@"八级下线",@"九级下线",@"十级下线"];
@@ -110,8 +113,8 @@ static NSString * promotionMemberItemKey = @"promotionMemberItemKey";
 	[self loadInviteInfo];
     
     //UITextFieldDelegate
-    _searchTxt.delegate = self;
-    [self textFieldMethod];
+//    _searchTxt.delegate = self;
+//    [self textFieldMethod];
 
 	
 }
@@ -250,26 +253,41 @@ static NSString * promotionMemberItemKey = @"promotionMemberItemKey";
 	[popView showRelyOnView:self.levelSelectView];
 }
 
-- (void)textFieldMethod {
-    [self.searchTxt addTarget:self action:@selector(textFieldDidChange) forControlEvents:UIControlEventEditingChanged];
-}
+//- (void)textFieldMethod {
+//    [self.searchTxt addTarget:self action:@selector(textFieldDidChange) forControlEvents:UIControlEventEditingChanged];
+//}
+//
+//
+//- (void)textFieldDidChange {
+//    if (self.searchTxt.text != nil && self.searchTxt.text.length > 0) {
+//        _searchArr = [NSMutableArray array];//这里可以说是清空tableview的旧dataSource
+//        for (UGinviteLisModel * item in _originalArr) {
+//
+//            if ([item.username rangeOfString:self.searchTxt.text options:NSCaseInsensitiveSearch].length > 0) {
+//                [_searchArr addObject:item];
+//
+//                [self bind:_searchArr];
+//            }
+//        }
+//    }
+//    [self bind:_searchArr];
+//}
 
 
-- (void)textFieldDidChange {
+- (IBAction)btnAction:(id)sender {
     if (self.searchTxt.text != nil && self.searchTxt.text.length > 0) {
         _searchArr = [NSMutableArray array];//这里可以说是清空tableview的旧dataSource
         for (UGinviteLisModel * item in _originalArr) {
             
             if ([item.username rangeOfString:self.searchTxt.text options:NSCaseInsensitiveSearch].length > 0) {
                 [_searchArr addObject:item];
-
+                
                 [self bind:_searchArr];
             }
         }
     }
     [self bind:_searchArr];
 }
-
 #pragma mark YBPopupMenuDelegate
 
 - (void)ybPopupMenuDidSelectedAtIndex:(NSInteger)index ybPopupMenu:(YBPopupMenu *)ybPopupMenu {
@@ -335,6 +353,8 @@ static NSString * promotionMemberItemKey = @"promotionMemberItemKey";
         [button setTitleColor: [UIColor colorWithHex:0xF15C5F] forState:UIControlStateNormal];
     }
 }
+
+
 @end
 
 @implementation UIButton (hasItem)
