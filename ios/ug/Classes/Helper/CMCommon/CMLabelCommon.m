@@ -5,10 +5,44 @@
 //  Created by ug on 2019/11/28.
 //  Copyright © 2019 ug. All rights reserved.
 //
-
+//            NSMutableAttributedString * attriStr = [[NSMutableAttributedString alloc] initWithString:_titleLab3.text];
+//             [attriStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(8, 10)];
+//             [attriStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(24, 10)];
+//             _titleLab3.attributedText = attriStr;
 #import "CMLabelCommon.h"
 
 @implementation CMLabelCommon
+
+
+/**
+ *改变字符串中具体某些字符串的颜色
+ *theLab  要改变的label
+ *change 要改变的文字组 @"300777.com,400777.com"
+ *markColor  要变成的颜色 ：[UIColor redColor]
+ *fontSize     要变成的字体  ：为 0 就是保持和原来一样
+ *
+ */
++ (void)messageSomeAction:(UILabel *)theLab changeString:(NSString *)change andMarkColor:(UIColor *)markColor andMarkFondSize:(float)fontSize {
+ 
+    NSMutableAttributedString * attriStr = [[NSMutableAttributedString alloc] initWithString:theLab.text];
+   
+    NSDictionary * attriBute ;
+    if (fontSize) {
+        attriBute = @{NSForegroundColorAttributeName:markColor,NSFontAttributeName:[UIFont systemFontOfSize:fontSize]};
+    } else {
+        attriBute = @{NSForegroundColorAttributeName:markColor};
+    }
+   
+    
+    NSArray  *array = [change componentsSeparatedByString:@","];
+    for (NSString *ns in array) {
+        NSRange markRange = [theLab.text rangeOfString:ns];
+        [attriStr addAttributes:attriBute range:markRange];
+    }
+
+    theLab.attributedText = attriStr;
+}
+
 
 /**
  *改变字符串中具体某字符串的颜色

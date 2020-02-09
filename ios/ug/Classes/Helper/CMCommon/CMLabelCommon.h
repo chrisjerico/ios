@@ -13,6 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
 @interface CMLabelCommon : NSObject
 
 /**
+ *改变字符串中具体某些字符串的颜色
+ */
++ (void)messageSomeAction:(UILabel *)theLab changeString:(NSString *)change andMarkColor:(UIColor *)markColor andMarkFondSize:(float)fontSize;
+
+/**
  *改变字符串中具体某字符串的颜色
  */
 + (void)messageAction:(UILabel *)theLab changeString:(NSString *)change andAllColor:(UIColor *)allColor andMarkColor:(UIColor *)markColor andMarkFondSize:(float)fontSize ;
