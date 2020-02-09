@@ -125,4 +125,25 @@
     // Configure the view for the selected state
 }
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    // Initialization code
+    
+    if (Skin1.isBlack) {
+        [((UILabel *)self.itemLabels[0]) setTextColor:Skin1.textColor1];
+        [((UILabel *)self.itemLabels[1]) setTextColor:Skin1.textColor1];
+        [((UILabel *)self.itemLabels[2]) setTextColor:Skin1.textColor1];
+        [((UILabel *)self.itemLabels[3]) setTextColor:Skin1.textColor1];
+        [((UILabel *)self.itemLabels[4]) setTextColor:Skin1.textColor1];
+        
+        [((UIView *)self.itemViews[0]) setBackgroundColor:Skin1.textColor4];
+        [((UIView *)self.itemViews[1]) setBackgroundColor:Skin1.textColor4];
+        [((UIView *)self.itemViews[2]) setBackgroundColor:Skin1.textColor4];
+        [((UIView *)self.itemViews[3]) setBackgroundColor:Skin1.textColor4];
+        [((UILabel *)self.itemViews[4]) setBackgroundColor:Skin1.textColor4];
+
+        
+        [self setBackgroundColor:Skin1.CLBgColor];
+    }
+}
 @end
