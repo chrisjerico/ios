@@ -10,7 +10,7 @@
 
 
 
-#define __SiteID__ @"test29"
+#define __SiteID__ @"c217"
 
 
 @interface UIStoryboard ()
@@ -81,6 +81,7 @@
                 sb(@"HSC_Mine"),
                 sb(@"HSC_Mine"),
                 sb(@"MyPromotion"),
+                sb(@"ContractedTemplate"),
                 
 
                 ];
@@ -127,7 +128,7 @@
         _Test = true;
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
         if (!_SiteId.length) {
-            _SiteId = @"test29";
+            _SiteId = @"c217";
         }
 #endif
         NSLog(@"%@",[_allSites objectWithValue:_SiteId.lowercaseString keyPath:@"siteId"]);
