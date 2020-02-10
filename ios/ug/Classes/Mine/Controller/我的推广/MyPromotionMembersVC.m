@@ -275,8 +275,8 @@ static NSString * promotionMemberItemKey = @"promotionMemberItemKey";
 
 
 - (IBAction)btnAction:(id)sender {
-    [SVProgressHUD show];
-    [CMCommon showToastTitle:@"加载中..."];
+//    [SVProgressHUD show];
+    [CMCommon showToastTitle:@"加载中......"];
 
     if (self.searchTxt.text != nil && self.searchTxt.text.length > 0) {
         _searchArr = [NSMutableArray array];//这里可以说是清空tableview的旧dataSource
@@ -291,7 +291,7 @@ static NSString * promotionMemberItemKey = @"promotionMemberItemKey";
     }
     [self bind:_searchArr];
 
-    [SVProgressHUD dismiss];
+//    [SVProgressHUD dismiss];
 }
 #pragma mark YBPopupMenuDelegate
 
