@@ -193,9 +193,10 @@
             site(@"t501",        @"t501",       @"242",     @"com.UGGame.cp",           @"http://t501f.fhptcdn.com",                    @"内测包",     @"t501"),
             site(@"t502",        @"t502",       @"243",     @"com.UGGame.cp",           @"http://t502f.fhptcdn.com",                    @"内测包",     @"t502"),
             site(@"test36",      @"test36",     @"",        @"com.UGGame.cp",           @"http://test36.6yc.com",                       @"内测包",     @"test36"),//Michael
-            site(@"l001gbhy",    @"l001gbhy",   @"252",     @"com.UGGame.cp",           @"https://demo.gbbet.com/",                     @"内测包",     @"港博"),//Michael
-            site(@"test60f",     @"test60f",    @"",        @"com.UGGame.cp",           @"http://test60f.fhptcdn.com",                  @"内测包",     @"test60f"),//Michael
-            site(@"test61f",     @"test61f",    @"",        @"com.UGGame.cp",           @"http://test61f.fhptcdn.com",                  @"内测包",     @"test61f"),//Michael
+            site(@"l001gbhy",    @"l001gbhy",   @"252",     @"com.UGGame.cp",           @"https://demo.gbbet.com/",                     @"内测包",     @"港博"),//
+            site(@"test60f",     @"test60f",    @"",        @"com.UGGame.cp",           @"http://test60f.fhptcdn.com",                  @"内测包",     @"test60f"),//
+            site(@"test61f",     @"test61f",    @"",        @"com.UGGame.cp",           @"http://test61f.fhptcdn.com",                  @"内测包",     @"test61f"),//
+            site(@"test58f",     @"test58f",    @"",        @"com.UGGame.cp",           @"http://test58f.ccpt.site",                    @"内测包",     @"test58f"),//
             // 站点编号 / 上传编号 / 上传ID / 签名方式 / APP名 / bundleID / 接口域名
 //            NSString *siteId, NSString *uploadNum, NSString *uploadId, NSString *appId, NSString *host, NSString *type, NSString *appName
         ];
