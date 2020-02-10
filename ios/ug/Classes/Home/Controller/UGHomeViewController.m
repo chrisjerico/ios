@@ -618,7 +618,7 @@
                 make.top.equalTo(__self.uUpperRightView.mas_bottom).offset(5);
             }];
             self.uLowerRightView.cancelClickBlock = ^(void) {
-                [__self.ulowerLefttView setHidden:YES];
+                [__self.uLowerRightView setHidden:YES];
             };
             self.uLowerRightView.redClickBlock = ^(void) {
                 UGhomeAdsModel *banner = __self.uLowerRightView.itemSuspension;
