@@ -148,7 +148,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
                 viewController = _LoadVC_from_storyboard_(@"UGBMRegisterViewController");
             }
             if (Skin1.isJY){//简约模板  注册
-                viewController = _LoadVC_from_storyboard_(@"UGBMRegisterViewController");
+                viewController = _LoadVC_from_storyboard_(@"JYRegisterViewController");
             }
         }
         
@@ -237,6 +237,13 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     }
     else if ([NavController1.lastVC isKindOfClass:UGLoginViewController.class]&&[viewController isKindOfClass:[UGLoginViewController class]]) {
         UIViewController *vc = [NavController1.viewControllers objectWithValue:UGLoginViewController.class keyPath:@"class"];
+        if (vc) {
+            [NavController1 popToViewController:vc animated:false];
+            return;
+        }
+    }
+    else if ([NavController1.lastVC isKindOfClass:JYLoginViewController.class]&&[viewController isKindOfClass:[JYLoginViewController class]]) {
+        UIViewController *vc = [NavController1.viewControllers objectWithValue:JYLoginViewController.class keyPath:@"class"];
         if (vc) {
             [NavController1 popToViewController:vc animated:false];
             return;
