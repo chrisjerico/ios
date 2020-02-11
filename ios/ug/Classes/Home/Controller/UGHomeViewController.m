@@ -335,6 +335,11 @@
 		self.navigationItem.titleView = titleView;
 		
 	}
+    if (Skin1.isJY) {
+       _rollingView.backgroundColor = RGBA(249, 249, 249, 1);
+        [CMCommon setBorderWithView:_rollingView top:YES left:NO bottom:YES right:NO borderColor:RGBA(241, 241, 241, 1) borderWidth:1];
+        
+    }
 	[self.gameNavigationView reloadData];
 }
 
@@ -1014,7 +1019,7 @@
 						/**
 						 #917 c190首页中间游戏导航需增加logo图标，游戏导航栏可进行滑动
 						 */
-						if ([SysConf.mobileTemplateCategory isEqualToString:@"9"] && [@"c190" containsString:APP.SiteId]) {
+                        if (([SysConf.mobileTemplateCategory isEqualToString:@"9"] && [@"c190" containsString:APP.SiteId])|| [Skin1 isJY]) {
 							weakSelf.gameNavigationViewHeight.constant = 80;
 						} else {
 							weakSelf.gameNavigationViewHeight.constant = ((sourceData.count - 1)/5 + 1)*80;
