@@ -1862,6 +1862,7 @@
 		D40FA8BF229910EF003E596F /* yuebaoMone.gif in Resources */ = {isa = PBXBuildFile; fileRef = D40FA8BE229910EE003E596F /* yuebaoMone.gif */; };
 		D417EFDB2330D24C0024F634 /* AppDelegate+HgBugly.m in Sources */ = {isa = PBXBuildFile; fileRef = D417EFDA2330D24C0024F634 /* AppDelegate+HgBugly.m */; };
 		D422D67F22D9A766008E7065 /* address.json in Resources */ = {isa = PBXBuildFile; fileRef = D422D67E22D9A764008E7065 /* address.json */; };
+		D4250BF023F2650700ABA3C9 /* JYLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4250BEF23F2650700ABA3C9 /* JYLoginViewController.m */; };
 		D42752CF23EFFA31001E27A0 /* RedEnvelopeVCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D42752CE23EFFA31001E27A0 /* RedEnvelopeVCViewController.m */; };
 		D42752DF23F128BA001E27A0 /* ContractedTemplate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D42752DE23F128BA001E27A0 /* ContractedTemplate.storyboard */; };
 		D42E14F323E06CE900F53407 /* PromotionDepositListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D42E14F223E06CE900F53407 /* PromotionDepositListVC.m */; };
@@ -3631,6 +3632,8 @@
 		D417EFD92330D24C0024F634 /* AppDelegate+HgBugly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+HgBugly.h"; sourceTree = "<group>"; };
 		D417EFDA2330D24C0024F634 /* AppDelegate+HgBugly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+HgBugly.m"; sourceTree = "<group>"; };
 		D422D67E22D9A764008E7065 /* address.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = address.json; sourceTree = "<group>"; };
+		D4250BEE23F2650700ABA3C9 /* JYLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JYLoginViewController.h; sourceTree = "<group>"; };
+		D4250BEF23F2650700ABA3C9 /* JYLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JYLoginViewController.m; sourceTree = "<group>"; };
 		D42752CD23EFFA31001E27A0 /* RedEnvelopeVCViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RedEnvelopeVCViewController.h; sourceTree = "<group>"; };
 		D42752CE23EFFA31001E27A0 /* RedEnvelopeVCViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RedEnvelopeVCViewController.m; sourceTree = "<group>"; };
 		D42752DE23F128BA001E27A0 /* ContractedTemplate.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ContractedTemplate.storyboard; sourceTree = "<group>"; };
@@ -7582,6 +7585,8 @@
 		D42752DB23F1282E001E27A0 /* 注册 */ = {
 			isa = PBXGroup;
 			children = (
+				D4250BEE23F2650700ABA3C9 /* JYLoginViewController.h */,
+				D4250BEF23F2650700ABA3C9 /* JYLoginViewController.m */,
 			);
 			path = "注册";
 			sourceTree = "<group>";
@@ -9625,6 +9630,7 @@
 				031E1CE223BE812A00B0F813 /* MJRefreshFooter.m in Sources */,
 				031E1C4C23BE812A00B0F813 /* UGSegmentCollectionViewCell.m in Sources */,
 				031E1D1C23BE812B00B0F813 /* UGPromoteModel.m in Sources */,
+				D4250BF023F2650700ABA3C9 /* JYLoginViewController.m in Sources */,
 				031E1A7C23BE812700B0F813 /* QDWebViewController.m in Sources */,
 				031E1DFE23BE812C00B0F813 /* UGSignInHeaderView.m in Sources */,
 				031E1BFC23BE812900B0F813 /* UGLotteryHomeController.m in Sources */,
