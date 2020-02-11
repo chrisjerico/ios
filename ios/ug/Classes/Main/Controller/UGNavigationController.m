@@ -56,7 +56,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     // 获取哪个类下的导航条,管理自己下导航条
     UINavigationBar *bar = [UINavigationBar appearanceWhenContainedIn:self, nil];
     // 设置背景图片
-//    [bar setBackgroundImage:[UIImage imageNamed:@"Rectangle"] forBarMetrics:UIBarMetricsDefault];
+    //    [bar setBackgroundImage:[UIImage imageNamed:@"Rectangle"] forBarMetrics:UIBarMetricsDefault];
     
     [bar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
 }
@@ -105,50 +105,31 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     
     // 判断下是否是非根控制器
     if (self.childViewControllers.count) { // 不是根控制器
-        // 设置非根控制器的返回按钮
-        // 设置返回按钮
-        UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [backButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [backButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
-        [backButton setImage:[UIImage imageNamed:@"c_navi_back"] forState:UIControlStateNormal];
-        [backButton setImage:[UIImage imageNamed:@"c_navi_back"] forState:UIControlStateHighlighted];
-        [backButton sizeToFit];
-        [backButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-            [NavController1 popViewControllerAnimated:true];
-        }];
-        UIView *containView = [[UIView alloc] initWithFrame:backButton.bounds];
-        [containView addSubview:backButton];
-        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:containView];
-        // 设置返回按钮
-        viewController.navigationItem.leftBarButtonItem = item;
         
-        if ([viewController isKindOfClass:UGBMBrowseViewController.class]||[viewController isKindOfClass:UGBMMemberCenterViewController.class]) {
-             // 不隐藏底部条
-                viewController.hidesBottomBarWhenPushed = NO;
-        }
-        else{
-             // 隐藏底部条
-               viewController.hidesBottomBarWhenPushed = YES;
-        }
-
-//        __weakSelf_(__self);
-//        void (^navPush)(UIViewController *) = ^(UIViewController *vc) {
-//             // 真正在执行跳转
-//            [super pushViewController:viewController animated:animated];
-//        };
-
+        
+        
+        
         if ([viewController isKindOfClass:[UGBMRegisterViewController class]]
             ||[viewController isKindOfClass:[UGRegisterViewController class]]
             ||[viewController isKindOfClass:[JYRegisterViewController class]] ) {
-
+            
             if (!Skin1.isBlack && !Skin1.isJY){
-                viewController =  _LoadVC_from_storyboard_(@"UGRegisterViewController");
+                if (![viewController isKindOfClass:[JYRegisterViewController class]]) {
+                    viewController =  _LoadVC_from_storyboard_(@"UGRegisterViewController");
+                }
+                
             }
             if (Skin1.isBlack){//黑色模板  注册
-                viewController = _LoadVC_from_storyboard_(@"UGBMRegisterViewController");
+                if (![viewController isKindOfClass:[UGBMRegisterViewController class]]) {
+                    viewController = _LoadVC_from_storyboard_(@"UGBMRegisterViewController");
+                }
+                
             }
             if (Skin1.isJY){//简约模板  注册
-                viewController = _LoadVC_from_storyboard_(@"JYRegisterViewController");
+                if (![viewController isKindOfClass:[JYRegisterViewController class]]) {
+                    viewController = _LoadVC_from_storyboard_(@"JYRegisterViewController");
+                }
+                
             }
         }
         
@@ -157,39 +138,60 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             ||[viewController isKindOfClass:[JYLoginViewController class]] ) {
             
             if (!Skin1.isBlack && !Skin1.isJY){
-                viewController =  _LoadVC_from_storyboard_(@"UGLoginViewController");
+                if (![viewController isKindOfClass:[UGLoginViewController class]]) {
+                    viewController =  _LoadVC_from_storyboard_(@"UGLoginViewController");
+                }
+                
             }
             if (Skin1.isBlack){//黑色模板  登录
-                viewController = _LoadVC_from_storyboard_(@"UGBMLoginViewController");
+                if (![viewController isKindOfClass:[UGBMLoginViewController class]]) {
+                    viewController = _LoadVC_from_storyboard_(@"UGBMLoginViewController");
+                }
+                
             }
             if (Skin1.isJY){//简约模板  登录
-                viewController = _LoadVC_from_storyboard_(@"JYLoginViewController");
+                if (![viewController isKindOfClass:[JYLoginViewController class]]) {
+                    viewController = _LoadVC_from_storyboard_(@"JYLoginViewController");
+                }
+                
             }
         }
         
         if ([viewController isKindOfClass:[UGBMpreferentialViewController class]]
-             || [viewController isKindOfClass:[UGPromotionsController class]]) {
+            || [viewController isKindOfClass:[UGPromotionsController class]]) {
             
             if (Skin1.isBlack ){
-                viewController =  _LoadVC_from_storyboard_(@"UGBMpreferentialViewController");
+                if (![viewController isKindOfClass:[UGBMpreferentialViewController class]]) {
+                    viewController =  _LoadVC_from_storyboard_(@"UGBMpreferentialViewController");
+                }
+                
             }
             else{
-                viewController =  _LoadVC_from_storyboard_(@"UGPromotionsController");
+                if (![viewController isKindOfClass:[UGPromotionsController class]]) {
+                    viewController =  _LoadVC_from_storyboard_(@"UGPromotionsController");
+                }
+                
             }
         }
         if ([viewController isKindOfClass:[UGBMLotteryHomeViewController class]]
-             || [viewController isKindOfClass:[UGYYLotteryHomeViewController class]]) {
+            || [viewController isKindOfClass:[UGYYLotteryHomeViewController class]]) {
             
             if (Skin1.isBlack ){
-                viewController =  _LoadVC_from_storyboard_(@"UGBMLotteryHomeViewController");
+                if (![viewController isKindOfClass:[UGBMLotteryHomeViewController class]]) {
+                    viewController =  _LoadVC_from_storyboard_(@"UGBMLotteryHomeViewController");
+                }
+                
             }
             else{
-                viewController =  [UGYYLotteryHomeViewController new];
+                if (![viewController isKindOfClass:[UGYYLotteryHomeViewController class]]) {
+                    viewController =  [UGYYLotteryHomeViewController new];
+                }
+                
             }
         }
-                 
-     
-              
+        
+        
+        
         
         if ([viewController isKindOfClass:[UGLHMineViewController class]] || [viewController isKindOfClass:[UGBMMemberCenterViewController class]]
             ||[viewController isKindOfClass:[UGMineSkinViewController class]] ) {
@@ -221,6 +223,35 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         }
         
     }
+    
+    
+    // 设置非根控制器的返回按钮
+    // 设置返回按钮
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [backButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [backButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
+    [backButton setImage:[UIImage imageNamed:@"c_navi_back"] forState:UIControlStateNormal];
+    [backButton setImage:[UIImage imageNamed:@"c_navi_back"] forState:UIControlStateHighlighted];
+    [backButton sizeToFit];
+    [backButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+        [NavController1 popViewControllerAnimated:true];
+    }];
+    UIView *containView = [[UIView alloc] initWithFrame:backButton.bounds];
+    [containView addSubview:backButton];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:containView];
+    // 设置返回按钮
+    viewController.navigationItem.leftBarButtonItem = item;
+    
+    if ([viewController isKindOfClass:UGBMBrowseViewController.class]||[viewController isKindOfClass:UGBMMemberCenterViewController.class]) {
+        // 不隐藏底部条
+        viewController.hidesBottomBarWhenPushed = NO;
+    }
+    else{
+        // 隐藏底部条
+        viewController.hidesBottomBarWhenPushed = YES;
+    }
+    
+    
     NSLog(@"NavController1= %@",NavController1);
     NSLog(@"NavController1.viewControllers= %@",NavController1.viewControllers);
     NSLog(@"lastVC= %@",NavController1.lastVC);
@@ -253,7 +284,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         // 真正在执行跳转
         [super pushViewController:viewController animated:animated];
     }
-   
+    
 }
 
 @end

@@ -76,12 +76,14 @@
 #pragma mark - UIWebViewDelegate
 
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
-    [HUDHelper showLoadingViewWithSuperview:self.view];
+//    [HUDHelper showLoadingViewWithSuperview:self.view];
+      [SVProgressHUD showWithStatus:nil];
     [self.webProgressLayer tg_startLoad];
 }
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
-    [HUDHelper hideLoadingView:self.view];
+//    [HUDHelper hideLoadingView:self.view];
+     [SVProgressHUD dismiss];
     [self.webProgressLayer tg_finishedLoadWithError:nil];
     
 //    [CMCommon showToastTitle:[NSString stringWithFormat:@"url = %@",self.tgWebView.URL]];
