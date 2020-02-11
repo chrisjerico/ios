@@ -1863,6 +1863,7 @@
 		D417EFDB2330D24C0024F634 /* AppDelegate+HgBugly.m in Sources */ = {isa = PBXBuildFile; fileRef = D417EFDA2330D24C0024F634 /* AppDelegate+HgBugly.m */; };
 		D422D67F22D9A766008E7065 /* address.json in Resources */ = {isa = PBXBuildFile; fileRef = D422D67E22D9A764008E7065 /* address.json */; };
 		D4250BF023F2650700ABA3C9 /* JYLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4250BEF23F2650700ABA3C9 /* JYLoginViewController.m */; };
+		D4250BF623F27BE700ABA3C9 /* JYRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4250BF523F27BE700ABA3C9 /* JYRegisterViewController.m */; };
 		D42752CF23EFFA31001E27A0 /* RedEnvelopeVCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D42752CE23EFFA31001E27A0 /* RedEnvelopeVCViewController.m */; };
 		D42752DF23F128BA001E27A0 /* ContractedTemplate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D42752DE23F128BA001E27A0 /* ContractedTemplate.storyboard */; };
 		D42E14F323E06CE900F53407 /* PromotionDepositListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D42E14F223E06CE900F53407 /* PromotionDepositListVC.m */; };
@@ -3634,6 +3635,8 @@
 		D422D67E22D9A764008E7065 /* address.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = address.json; sourceTree = "<group>"; };
 		D4250BEE23F2650700ABA3C9 /* JYLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JYLoginViewController.h; sourceTree = "<group>"; };
 		D4250BEF23F2650700ABA3C9 /* JYLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JYLoginViewController.m; sourceTree = "<group>"; };
+		D4250BF423F27BE700ABA3C9 /* JYRegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JYRegisterViewController.h; sourceTree = "<group>"; };
+		D4250BF523F27BE700ABA3C9 /* JYRegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JYRegisterViewController.m; sourceTree = "<group>"; };
 		D42752CD23EFFA31001E27A0 /* RedEnvelopeVCViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RedEnvelopeVCViewController.h; sourceTree = "<group>"; };
 		D42752CE23EFFA31001E27A0 /* RedEnvelopeVCViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RedEnvelopeVCViewController.m; sourceTree = "<group>"; };
 		D42752DE23F128BA001E27A0 /* ContractedTemplate.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ContractedTemplate.storyboard; sourceTree = "<group>"; };
@@ -7562,8 +7565,7 @@
 		D42752D823F127FD001E27A0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				D42752DB23F1282E001E27A0 /* 注册 */,
-				D42752DA23F12827001E27A0 /* 登录 */,
+				D42752DB23F1282E001E27A0 /* 登录注册 */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -7575,20 +7577,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		D42752DA23F12827001E27A0 /* 登录 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "登录";
-			sourceTree = "<group>";
-		};
-		D42752DB23F1282E001E27A0 /* 注册 */ = {
+		D42752DB23F1282E001E27A0 /* 登录注册 */ = {
 			isa = PBXGroup;
 			children = (
 				D4250BEE23F2650700ABA3C9 /* JYLoginViewController.h */,
 				D4250BEF23F2650700ABA3C9 /* JYLoginViewController.m */,
+				D4250BF423F27BE700ABA3C9 /* JYRegisterViewController.h */,
+				D4250BF523F27BE700ABA3C9 /* JYRegisterViewController.m */,
 			);
-			path = "注册";
+			path = "登录注册";
 			sourceTree = "<group>";
 		};
 		D433EBF323D4939000D31008 /* 截屏UIImage分类 */ = {
@@ -9616,6 +9613,7 @@
 				031E1CB223BE812A00B0F813 /* UGLaunchPageVC.m in Sources */,
 				031E1CBA23BE812A00B0F813 /* UGTableViewController.m in Sources */,
 				031E195C23BE812600B0F813 /* LHPostCommentDetailVC.m in Sources */,
+				D4250BF623F27BE700ABA3C9 /* JYRegisterViewController.m in Sources */,
 				031E1C7023BE812A00B0F813 /* UGWithdrawalViewController.m in Sources */,
 				031E1E8A23BE812D00B0F813 /* UGYubaoConversionRecordCell.m in Sources */,
 				031E1DBC23BE812B00B0F813 /* UGAvatarModel.m in Sources */,
