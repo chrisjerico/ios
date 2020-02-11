@@ -141,13 +141,13 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             ||[viewController isKindOfClass:[UGRegisterViewController class]]
             ||[viewController isKindOfClass:[JYRegisterViewController class]] ) {
 
-            if (!Skin1.isBlack && !Skin1.isJY)){
+            if (!Skin1.isBlack && !Skin1.isJY){
                 viewController =  _LoadVC_from_storyboard_(@"UGRegisterViewController");
             }
-            if (Skin1.isBlack)){//黑色模板  注册
+            if (Skin1.isBlack){//黑色模板  注册
                 viewController = _LoadVC_from_storyboard_(@"UGBMRegisterViewController");
             }
-            if (Skin1.isJY)){//简约模板  注册
+            if (Skin1.isJY){//简约模板  注册
                 viewController = _LoadVC_from_storyboard_(@"UGBMRegisterViewController");
             }
         }
@@ -156,31 +156,31 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             ||[viewController isKindOfClass:[UGLoginViewController class]]
             ||[viewController isKindOfClass:[JYLoginViewController class]] ) {
             
-            if (!Skin1.isBlack && !Skin1.isJY)){
+            if (!Skin1.isBlack && !Skin1.isJY){
                 viewController =  _LoadVC_from_storyboard_(@"UGLoginViewController");
             }
-            if (Skin1.isBlack)){//黑色模板  登录
+            if (Skin1.isBlack){//黑色模板  登录
                 viewController = _LoadVC_from_storyboard_(@"UGBMLoginViewController");
             }
-            if (Skin1.isJY)){//简约模板  登录
+            if (Skin1.isJY){//简约模板  登录
                 viewController = _LoadVC_from_storyboard_(@"JYLoginViewController");
             }
         }
         
-        if ([viewController isKindOfClass:[viewController isKindOfClass:[UGBMpreferentialViewController class]]
-             || [viewController isKindOfClass:[UGPromotionsController class]]]) {
+        if ([viewController isKindOfClass:[UGBMpreferentialViewController class]]
+             || [viewController isKindOfClass:[UGPromotionsController class]]) {
             
-            if (Skin1.isBlack )){
+            if (Skin1.isBlack ){
                 viewController =  _LoadVC_from_storyboard_(@"UGBMpreferentialViewController");
             }
             else{
                 viewController =  _LoadVC_from_storyboard_(@"UGPromotionsController");
             }
         }
-        if ([viewController isKindOfClass:[viewController isKindOfClass:[UGBMLotteryHomeViewController class]]
-             || [viewController isKindOfClass:[UGYYLotteryHomeViewController class]) {
+        if ([viewController isKindOfClass:[UGBMLotteryHomeViewController class]]
+             || [viewController isKindOfClass:[UGYYLotteryHomeViewController class]]) {
             
-            if (Skin1.isBlack )){
+            if (Skin1.isBlack ){
                 viewController =  _LoadVC_from_storyboard_(@"UGBMLotteryHomeViewController");
             }
             else{
