@@ -1080,10 +1080,31 @@ static UGSkinManagers *__initSkin1 = nil;
                 sm;
             }),
             //简约
-            @"简约":({
+            @"简约模板0":({
                 UGSkinManagers *sm = [UGSkinManagers new];
-                sm.skitType                 = @"简约";
-                sm.skitString               = @"简约 1红色";
+                sm.skitType                 = @"简约模板";
+                sm.skitString               = @"简约模板 0蓝色";
+                sm.bgColor                  = color(@"FFFFFF");
+                sm.navBarBgColor            = color(@"4463A5");
+                sm.tabBarBgColor            = color(@"F4F4F4");
+                sm.tabNoSelectColor         = color(@"525252");
+                sm.tabSelectedColor         = color(@"010101");
+                sm.progressBgColor          = color(@"FEC434,FE8A23");
+                sm.homeContentColor         = color(@"FFFFFF");
+                sm.homeContentSubColor      = color(@"D3D3D3");
+                sm.cellBgColor              = color(@"FFFFFF");
+                sm.CLBgColor                = color(@"E6E6E6");
+                sm.menuHeadViewColor        = color(@"fa7dc5,f5c3e0");
+                sm.textColor1               = color(@"111111");
+                sm.textColor2               = color(@"555555");
+                sm.textColor3               = color(@"C1C1C1");
+                sm.textColor4               = color(@"FFFFFF");
+                sm;
+            }),
+            @"简约模板1":({
+                UGSkinManagers *sm = [UGSkinManagers new];
+                sm.skitType                 = @"简约模板";
+                sm.skitString               = @"简约模板 1红色";
                 sm.bgColor                  = color(@"FFFFFF");
                 sm.navBarBgColor            = color(@"fb8787,e45353");
                 sm.tabBarBgColor            = color(@"F4F4F4");
@@ -1101,6 +1122,8 @@ static UGSkinManagers *__initSkin1 = nil;
                 sm.textColor4               = color(@"FFFFFF");
                 sm;
             }),
+
+
 		};
 		
 		__currentSkin1 = __lastSkin1 = __initSkin1 = __dict[@"1"];
@@ -1120,7 +1143,7 @@ static UGSkinManagers *__initSkin1 = nil;
 						   @"6":@"金沙主题",
 						   @"7":@"火山橙",
                            @"8":@"香槟金",
-                           @"9":@"简约",
+                           @"9":[NSString stringWithFormat:@"简约模板%@",SysConf.mobileTemplateStyle],
 
 	};
 	
@@ -1166,6 +1189,10 @@ static UGSkinManagers *__initSkin1 = nil;
 
 - (BOOL)isLH {
 	return [_skitType containsString:@"六合资料"];
+}
+
+- (BOOL)isJY{
+    return [_skitType containsString:@"简约模板"];
 }
 
 + (UIColor *)randomThemeColor {
