@@ -37,8 +37,8 @@
                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="活动ImageView"/>
                         </userDefinedRuntimeAttributes>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="北京赛车" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D3K-5V-lmD">
-                        <rect key="frame" x="41.5" y="75" width="65.5" height="67"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="北京赛车132131321231" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D3K-5V-lmD">
+                        <rect key="frame" x="0.0" y="75" width="148" height="72"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -124,11 +124,13 @@
                 <constraint firstItem="D3K-5V-lmD" firstAttribute="centerX" secondItem="vAi-j2-QOg" secondAttribute="centerX" id="AEs-fN-WHq"/>
                 <constraint firstItem="xYG-kv-1Tn" firstAttribute="top" secondItem="vAi-j2-QOg" secondAttribute="top" constant="15" id="B2L-Uh-74Q"/>
                 <constraint firstItem="TLv-Zb-J88" firstAttribute="centerX" secondItem="ZSj-qO-fRE" secondAttribute="centerX" id="Scv-Mn-gu2"/>
-                <constraint firstAttribute="bottom" secondItem="D3K-5V-lmD" secondAttribute="bottom" constant="5" id="UX1-m0-SfT"/>
+                <constraint firstAttribute="bottom" secondItem="D3K-5V-lmD" secondAttribute="bottom" id="UX1-m0-SfT"/>
+                <constraint firstAttribute="trailing" secondItem="D3K-5V-lmD" secondAttribute="trailing" id="a6B-ze-LFl"/>
                 <constraint firstItem="HQD-27-qh7" firstAttribute="top" secondItem="vAi-j2-QOg" secondAttribute="top" id="dXT-EZ-tXy"/>
                 <constraint firstItem="jk0-ui-U0m" firstAttribute="leading" secondItem="xYG-kv-1Tn" secondAttribute="leading" constant="-22" id="f7i-yA-HWk"/>
                 <constraint firstItem="R1J-ul-7Uf" firstAttribute="top" secondItem="jk0-ui-U0m" secondAttribute="top" id="gOl-q0-ga5"/>
                 <constraint firstItem="R1J-ul-7Uf" firstAttribute="trailing" secondItem="xYG-kv-1Tn" secondAttribute="trailing" constant="22" id="jJU-AA-SHd"/>
+                <constraint firstItem="D3K-5V-lmD" firstAttribute="leading" secondItem="vAi-j2-QOg" secondAttribute="leading" id="u1b-do-R2p"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="kjU-1a-6QP"/>
             <size key="customSize" width="148" height="147"/>

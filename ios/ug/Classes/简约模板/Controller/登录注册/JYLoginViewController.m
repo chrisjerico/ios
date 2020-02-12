@@ -14,6 +14,7 @@
 #import "UGImgVcodeModel.h"
 #import "UGSecurityCenterViewController.h"
 #import "SLWebViewController.h"
+#import "JYRegisterViewController.h"
 
 @interface JYLoginViewController ()<UITextFieldDelegate,UINavigationControllerDelegate,WKScriptMessageHandler,WKNavigationDelegate,WKUIDelegate>
 {
@@ -269,12 +270,12 @@
 //去注册界面
 - (IBAction)showRegister:(id)sender {
     for (UIViewController *vc in self.navigationController.childViewControllers) {
-        if ([vc isKindOfClass:UGRegisterViewController.class]) {
+        if ([vc isKindOfClass:JYRegisterViewController.class]) {
             [self.navigationController popViewControllerAnimated:YES];
             return;
         }
     }
-    UGRegisterViewController *registerVC = [self.storyboard instantiateViewControllerWithIdentifier:@"UGRegisterViewController"];
+    JYRegisterViewController *registerVC = [self.storyboard instantiateViewControllerWithIdentifier:@"JYRegisterViewController"];
     [self.navigationController pushViewController:registerVC animated:YES];
     
 }

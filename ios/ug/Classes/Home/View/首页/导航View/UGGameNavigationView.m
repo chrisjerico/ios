@@ -58,6 +58,10 @@
         layout;
     });
     self = [super initWithFrame:frame collectionViewLayout:layout];
+    if (Skin1.isJY) {
+        self.showsVerticalScrollIndicator = NO;
+        self.showsHorizontalScrollIndicator = NO;
+    }
     //    self.alwaysBounceHorizontal=YES;
     if (self) {
         [self registerClass: [UGGameNavigationViewCell class] forCellWithReuseIdentifier:@"UGGameNavigationViewCell"];
@@ -72,7 +76,7 @@
     
     [self.superview addSubview: self.scrollRightButton];
     [self.scrollRightButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self);
+        make.centerY.equalTo(self).offset(-5);
         make.right.equalTo(self);
         make.width.equalTo(@15);
         make.height.equalTo(@40);
@@ -165,10 +169,17 @@
         _iconImage = [YYAnimatedImageView new];
         _iconImage.contentMode = UIViewContentModeScaleAspectFit;
         _titleLabel = [UILabel new];
-        _titleLabel.textColor = Skin1.textColor1;
+
         
         //        [_titleLabel setBackgroundColor:[UIColor redColor]];
-        _titleLabel.font = [UIFont boldSystemFontOfSize:16];
+        if (APP.isFontSystemSize) {
+             _titleLabel.font = [UIFont systemFontOfSize:16];
+             _titleLabel.textColor = RGBA(117, 117, 117, 1);
+        } else {
+             _titleLabel.font = [UIFont boldSystemFontOfSize:16];
+             _titleLabel.textColor = Skin1.textColor1;
+        }
+       
         [self addSubview:_iconImage];
         [_iconImage mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self).offset(5);

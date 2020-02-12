@@ -54,7 +54,6 @@
  
             collectionView.dataSource = self;
             collectionView.delegate = self;
-//            collectionView.layer.cornerRadius = (_isBlack||APP.isShowLogo || [Skin1.skitType isEqualToString:@"金沙主题"]) ? 0 : 10;
              collectionView.layer.cornerRadius = (_isBlack || [Skin1.skitType isEqualToString:@"金沙主题"]) ? 0 : 10;
             collectionView.layer.masksToBounds = true;
             [collectionView registerNib:[UINib nibWithNibName:@"UGPlatformTitleCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"默认Cell"];
@@ -88,30 +87,13 @@
             button;
         });
         __weakSelf_(__self);
-//        [_leftBtn  removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
-//        [_leftBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-//            [__self.collectionView setContentOffset:({
-//                CGPoint offset = __self.collectionView.contentOffset;
-//                offset.x -= __self.collectionView.width;
-//                offset.x = MAX(offset.x, 0);
-//                offset;
-//            }) animated:true];
-//        }];
-//        [_rightBtn  removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
-//        [_rightBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-//            [__self.collectionView setContentOffset:({
-//                CGPoint offset = __self.collectionView.contentOffset;
-//                offset.x += __self.collectionView.width;
-//                offset.x = MIN(offset.x, __self.collectionView.contentSize.width-__self.collectionView.width);
-//                offset;
-//            }) animated:true];
-//        }];
+
 
         [self addSubview:_leftBtn];
         [self addSubview:_rightBtn];
         
-        [_leftBtn setHidden:!APP.isShowLogo];
-        [_rightBtn setHidden:!APP.isShowLogo];
+        [_leftBtn setHidden:!APP.isShowArrow];
+        [_rightBtn setHidden:!APP.isShowArrow];
         
         [_leftBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.mas_left).offset(5);
@@ -145,27 +127,7 @@
 				make.edges.equalTo(self);
 			}];
 		}
-//        [collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.edges.equalTo(self);
-//        }];
-        // 背景
-        {
-//            UIView *left = [UIView new];
-//            left.backgroundColor = _isBlack ? Skin1.bgColor : Skin1.homeContentColor;
-//            [self insertSubview:left atIndex:0];
-//            [left mas_makeConstraints:^(MASConstraintMaker *make) {
-//                make.left.bottom.equalTo(self);
-//                make.width.height.mas_equalTo(20);
-//            }];
-//
-//            UIView *rifht = [UIView new];
-//            rifht.backgroundColor = _isBlack ? Skin1.bgColor : Skin1.homeContentColor;
-//            [self insertSubview:rifht atIndex:0];
-//            [rifht mas_makeConstraints:^(MASConstraintMaker *make) {
-//                make.right.top.equalTo(self);
-//                make.width.height.mas_equalTo(20);
-//            }];
-        }
+
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [__self.collectionView.collectionViewLayout invalidateLayout];
@@ -183,7 +145,6 @@
                     make.height.equalTo(@55);
                 }
             }];
-//            __self.collectionView.layer.cornerRadius = (__self.isBlack||APP.isShowLogo) ? 0 : 10;
              __self.collectionView.layer.cornerRadius = __self.isBlack ? 0 : 10;
             if (APP.isWhite) {
                 __self.collectionView.layer.borderWidth = 1;
@@ -266,7 +227,11 @@
     GameCategoryModel *gcm = _gameTypeArray[row];
     CGFloat w = [gcm.name widthForFont:[UIFont systemFontOfSize:18]] + space;
     if (APP.isShowLogo) {
-        return 92.0;
+        if (Skin1.isJY) {
+             return [gcm.name widthForFont:[UIFont systemFontOfSize:18]] ;
+        } else {
+             return 92.0;
+        }
     } else {
         return w;
     }

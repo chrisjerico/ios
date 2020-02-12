@@ -24,10 +24,14 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.backgroundColor = Skin1.isBlack ? Skin1.bgColor : Skin1.homeContentColor;
-    self.layer.cornerRadius = 10;
-    self.layer.masksToBounds = YES;
     self.nameLabel.textColor = Skin1.textColor1;
     self.hotImageView.hidden = YES;
+    
+    if (!Skin1.isJY) {
+        self.layer.cornerRadius = 10;
+        self.layer.masksToBounds = YES;
+        [self.nameLabel setFont:[UIFont systemFontOfSize:15]];
+    }
     
     if (APP.isWhite) {
         self.layer.borderWidth = 1;

@@ -41,6 +41,20 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
             _titleView.platformTitleSelectBlock = ^(NSInteger selectIndex) {
                 __self.contentScrollView.contentOffset = CGPointMake(__self.width * selectIndex, 0);
                 [__self refreshHeight];
+                
+              GameCategoryModel *ob =  [__self.gameTypeArray objectAtIndex:selectIndex];
+                NSLog(@"ob.name = %@",ob.name);//ob.name = 热门游戏 ob.name = 彩票游戏 ob.name = 真人视讯
+                NSLog(@"ob.iid = %@",ob.iid);//ob.iid = 7 ob.iid = 1 ob.iid = 2
+                
+                for (int i = 0; i<ob.list.count; i++) {
+                    GameModel *model  = [ob.list objectAtIndex:i];
+                    
+                     NSLog(@"model.game_id = %@===========名字：%@ ==========gameId = %@  ===========名字2：%@  ",model.game_id,model.name,model.gameId,model.title);
+                    // model.game_id = (null)===========名字：香港赛马会 ==========gameId = 2  ===========名字2：(null)
+//                    model.game_id = (null)===========名字：六合彩系列 ==========gameId = 128  ===========名字2：(null)
+//                    model.game_id = 59===========名字： ==========gameId = 84  ===========名字2：AG视讯
+                }
+                
             };
             [self addSubview:_titleView];
             
@@ -62,7 +76,8 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
 						make.height.equalTo(@50);
 						_titleView.backgroundColor = [UIColor colorWithHex:0xeeeeee];
 
-					} else {
+					}
+                    else {
 						make.left.equalTo(self).offset(APP.isShowLogo ? 0 : 5);
 						make.right.equalTo(self).offset(APP.isShowLogo ? 0 : -5);
 						make.height.equalTo(APP.isShowLogo ? @80 : @55 );
@@ -109,6 +124,7 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
 	NSInteger i = 0;
     for (GameCategoryModel *gcm in gameTypeArray) {
         UGPlatformCollectionView *pcv = [[UGPlatformCollectionView alloc] initWithFrame:CGRectZero];
+        pcv.iid = gcm.iid;
 		pcv.typeIndex = i;
 		pcv.dataArray = gcm.list;
         [pcv xw_addObserverBlockForKeyPath:@"contentSize" block:^(id  _Nonnull obj, id  _Nonnull oldVal, id  _Nonnull newVal) {
