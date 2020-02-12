@@ -10,7 +10,7 @@
 #import "JYLotteryCollectionViewCell.h"
 #define CollectionViewW (APP.Width-16)
 @interface JYLotteryTitleCollectionView ()<UICollectionViewDelegate,UICollectionViewDataSource>{
-    
+
 }
 @property (nonatomic, strong) UICollectionView *collectionView;
 
@@ -31,7 +31,7 @@
             layout = [[UICollectionViewFlowLayout alloc] init];
             layout.minimumInteritemSpacing = 0;
             layout.minimumLineSpacing = 0;
-//            layout.sectionInset = _isBlack ? UIEdgeInsetsZero : UIEdgeInsetsMake(0, 2, 0, 2);
+            layout.sectionInset =  UIEdgeInsetsMake(0, 2, 0, 2);
             layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
             layout;
         });
@@ -40,7 +40,7 @@
             collectionView.backgroundColor = RGBA(117, 117, 117, 1);
             collectionView.dataSource = self;
             collectionView.delegate = self;
-            [collectionView registerNib:[UINib nibWithNibName:@"JYLotteryCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"默认Cell"];
+            [collectionView registerNib:[UINib nibWithNibName:@"JYLotteryCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"JYLotteryCollectionViewCell"];
             [collectionView setShowsHorizontalScrollIndicator:NO];
             collectionView;
             
@@ -49,7 +49,7 @@
         
         self.collectionView = collectionView;
         [self addSubview:collectionView];
-     
+        self.backgroundColor = RGBA(117, 117, 117, 1);
         
         [collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.mas_top);
@@ -72,6 +72,12 @@
 
 - (void)setList:(NSArray<GameModel> *)list {
     _list = list;
+
+    for (GameModel *model in _list) {
+       NSLog(@"model.game_id = %@===========名字：%@ ==========gameId = %@  ===========名字2：%@  ",model.game_id,model.name,model.gameId,model.title);
+        NSLog(@"model.subType = %@",model.subType);
+
+    }
     [self.collectionView reloadData];
 }
 
@@ -83,7 +89,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 
-    JYLotteryCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"默认Cell" forIndexPath:indexPath];
+    JYLotteryCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"JYLotteryCollectionViewCell" forIndexPath:indexPath];
     cell.item = _list[indexPath.row];
     return cell;
 }
@@ -101,12 +107,16 @@
         CGPointMake(x, 0);
     }) animated:true];
     
-    if (self.jYLotteryTitleeSelectBlock)
-        self.jYLotteryTitleeSelectBlock(_selectIndex = indexPath.row);
+    if (self.jygameTypeSelectBlock)
+        self.jygameTypeSelectBlock(indexPath.row);
+    
+
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(100,40);
+    GameModel *gcm = _list[indexPath.row];
+    CGFloat w = [gcm.name widthForFont:[UIFont systemFontOfSize:16]] + 10;
+    return CGSizeMake(MAX(100, w),40);
 }
 
 @end

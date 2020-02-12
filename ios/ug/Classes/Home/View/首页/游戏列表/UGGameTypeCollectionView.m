@@ -53,6 +53,8 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
                     // model.game_id = (null)===========名字：香港赛马会 ==========gameId = 2  ===========名字2：(null)
 //                    model.game_id = (null)===========名字：六合彩系列 ==========gameId = 128  ===========名字2：(null)
 //                    model.game_id = 59===========名字： ==========gameId = 84  ===========名字2：AG视讯
+                    
+                    NSLog(@"subType = %@",model.subType);
                 }
                 
             };

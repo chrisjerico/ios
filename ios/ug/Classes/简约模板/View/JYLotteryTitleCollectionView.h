@@ -10,13 +10,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void(^JYLotteryTitleSelectBlock)(NSInteger selectIndex);
+typedef void(^JYgameTypeSelectBlock)(NSInteger selectIndex);
+//typedef void(^JYgameItemSelectBlock)(GameModel *game);
 
 @interface JYLotteryTitleCollectionView : UIView
 
-@property (nonatomic) JYLotteryTitleSelectBlock jYLotteryTitleeSelectBlock;
+@property (nonatomic) JYgameTypeSelectBlock jygameTypeSelectBlock;
+//@property (nonatomic) JYgameItemSelectBlock jygameItemSelectBlock;
 @property (nonatomic) NSInteger selectIndex;
-@property (nonatomic, strong) NSArray<GameModel> * list;
+@property (nonatomic, strong)  NSArray <GameModel *> * list;
 
 @end
 
