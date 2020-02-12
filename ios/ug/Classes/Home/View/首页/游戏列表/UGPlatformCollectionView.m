@@ -44,7 +44,11 @@ static NSString *const footerId = @"footerId";
             _flow.flowLayoutStyle = WSLWaterFlowVerticalEqualHeight;
             self = [super initWithFrame:frame collectionViewLayout:_flow];
         } else {
-            
+            WSLWaterFlowLayout * _flow;
+            _flow = [[WSLWaterFlowLayout alloc] init];
+            _flow.delegate = self;
+            _flow.flowLayoutStyle = WSLWaterFlowVerticalEqualHeight;
+            self = [super initWithFrame:frame collectionViewLayout:_flow];
         }
 
     }
