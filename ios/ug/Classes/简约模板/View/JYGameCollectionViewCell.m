@@ -17,9 +17,7 @@
 - (void)setItem:(GameModel *)item {
     _item = item;
     NSLog(@"icon = %@",item.icon);
-    
-    
-//   [self.imgView sd_setImageWithURL:[NSURL URLWithString:item.icon] placeholderImage:[UIImage imageNamed:@"loading"]];
+   [self.imgView sd_setImageWithURL:[NSURL URLWithString:item.icon] placeholderImage:[UIImage imageNamed:@"loading"]];
 }
 
 @end
