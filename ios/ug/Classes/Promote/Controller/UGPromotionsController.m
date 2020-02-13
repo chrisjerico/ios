@@ -93,7 +93,7 @@
     subLabel(@"标题Label").hidden = !pm.title.length;
     
     UIImageView *imgView = [cell viewWithTagString:@"图片ImageView"];
-    imgView.frame = cell.bounds;
+//    imgView.frame = cell.bounds;
     NSURL *url = [NSURL URLWithString:pm.pic];
     UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:url]];
     if (image) {
@@ -105,6 +105,8 @@
             CGFloat w = APP.Width - 48;
             CGFloat h = image.height/image.width * w;
             imgView.cc_constraints.height.constant = h;
+            
+        
         }
         [imgView sd_setImageWithURL:url];   // 由于要支持gif动图，还是用sd加载
     } else {

@@ -564,7 +564,7 @@
     if (collectionView == _photoCollectionView) {
         UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
         UIImageView *imgView = [cell viewWithTagString:@"图片ImageView"];
-        imgView.frame = cell.bounds;
+//        imgView.frame = cell.bounds;
         NSURL *url = [NSURL URLWithString:_pm.contentPic[indexPath.item]];
         UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:url]];
         if (image) {

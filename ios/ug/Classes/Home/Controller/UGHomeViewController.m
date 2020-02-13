@@ -1829,7 +1829,7 @@
     subLabel(@"标题Label").hidden = !pm.title.length;
     
     UIImageView *imgView = [cell viewWithTagString:@"图片ImageView"];
-    imgView.frame = cell.bounds;
+//    imgView.frame = cell.bounds;
     NSURL *url = [NSURL URLWithString:pm.pic];
     UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:url]];
     if (image) {

@@ -3662,7 +3662,7 @@
 		D4564A4323E3E3A800A1A8C6 /* UIView+shadowPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+shadowPath.h"; sourceTree = "<group>"; };
 		D4564A4423E3E3A800A1A8C6 /* UIView+shadowPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+shadowPath.m"; sourceTree = "<group>"; };
 		D4AE1C0922C0FCC300C142FE /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		D4B75E092278025E0007047C /* testC053.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testC053.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4B75E092278025E0007047C /* testC053_a.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testC053_a.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4B75E0C2278025E0007047C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D4B75E15227802600007047C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4B75E18227802600007047C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -7690,7 +7690,7 @@
 		D4B75E0A2278025E0007047C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D4B75E092278025E0007047C /* testC053.app */,
+				D4B75E092278025E0007047C /* testC053_a.app */,
 				031EF3FE23BE7A9400B0F813 /* chat.app */,
 			);
 			name = Products;
@@ -7813,7 +7813,7 @@
 			);
 			name = ug;
 			productName = ug;
-			productReference = D4B75E092278025E0007047C /* testC053.app */;
+			productReference = D4B75E092278025E0007047C /* testC053_a.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -10087,8 +10087,8 @@
 				);
 				MARKETING_VERSION = 1.1.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = io.fhpt.H5DBF1426;
-				PRODUCT_NAME = testC053;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.fhpt.H5DBF1426-a";
+				PRODUCT_NAME = testC053_a;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -10113,8 +10113,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = io.fhpt.H5DBF1426;
-				PRODUCT_NAME = testC053;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.fhpt.H5DBF1426-a";
+				PRODUCT_NAME = testC053_a;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
