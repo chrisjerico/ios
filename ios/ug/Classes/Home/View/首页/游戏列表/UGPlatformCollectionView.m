@@ -77,15 +77,12 @@ static NSString *const footerId = @"footerId";
         });
         self = [super initWithFrame:frame collectionViewLayout:layout];
     }
-    
-    
-    
+
     if (self) {
         [self registerNib:[UINib nibWithNibName:@"UGGameTypeColletionViewCell" bundle:nil] forCellWithReuseIdentifier:gameCellid];
         [self registerNib:[UINib nibWithNibName:@"JS_HomeGameCollectionCell" bundle:nil] forCellWithReuseIdentifier:@"JS_HomeGameCollectionCell"];
         [self registerNib:[UINib nibWithNibName:@"JS_HomeGameColletionCell_1" bundle:nil] forCellWithReuseIdentifier:@"JS_HomeGameColletionCell_1"];
         [self registerNib:[UINib nibWithNibName:@"HSC_HomeGameCollectionCell" bundle:nil] forCellWithReuseIdentifier:@"HSC_HomeGameCollectionCell"];
-        [self registerNib:[UINib nibWithNibName:@"JYLotteryTitleCollectionView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"JYLotteryTitleCollectionView"];
         [self registerClass:[CollectionFooter class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:footerId];
         self.delegate = self;
         self.dataSource = self;
@@ -95,9 +92,7 @@ static NSString *const footerId = @"footerId";
             self.backgroundColor = [UIColor colorWithHex:0xf2f2f2];
         }
         else if (Skin1.isJY) {
-            
             self.backgroundColor = UIColor.whiteColor;
-            
         }
         else {
             self.backgroundColor = UIColor.clearColor;
@@ -125,8 +120,7 @@ static NSString *const footerId = @"footerId";
                 _flow.flowLayoutStyle = WSLWaterFlowVerticalEqualHeight;
                 [self setCollectionViewLayout:_flow];
             }
-            
-            
+
         }
     }
 }
@@ -252,21 +246,15 @@ static NSString *const footerId = @"footerId";
 #pragma mark - UICollectionViewDelegate
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    
-//    if (Skin1.isJY) {
-//        return 1;
-//    } else {
+
         return self.sectionedDataArray.count;
-//    }
+
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-//    if (Skin1.isJY) {
-//         return self.sectionedDataArray.count;
-//    } else {
+
          return ((NSArray *)self.sectionedDataArray[section]).count;
-//    }
-   
+ 
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -285,20 +273,19 @@ static NSString *const footerId = @"footerId";
         return cell;
     } else {
         UGGameTypeColletionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:gameCellid forIndexPath:indexPath];
-        cell.item = ((NSArray *)self.sectionedDataArray[indexPath.section])[indexPath.row];
-        
-        if ([self.iid isEqualToString:@"1"]) {
-            cell.subitem = (GameSubModel *)((NSArray *)self.sectionedDataArray[indexPath.section])[indexPath.row];
-        } else {
-            cell.item = ((NSArray *)self.sectionedDataArray[indexPath.section])[indexPath.row];
-        }
-
         if (Skin1.isJY) {
+            if ([self.iid isEqualToString:@"1"]) {
+                cell.subitem = (GameSubModel *)((NSArray *)self.sectionedDataArray[indexPath.section])[indexPath.row];
+            } else {
+                cell.item = ((NSArray *)self.sectionedDataArray[indexPath.section])[indexPath.row];
+            }
             [cell setBackgroundColor: [UIColor whiteColor]];
             cell.layer.borderWidth = 0.7;
             cell.layer.borderColor = [[UIColor colorWithHex:0xE4E4E4] CGColor];
         }
-        
+        else{
+             cell.item = ((NSArray *)self.sectionedDataArray[indexPath.section])[indexPath.row];
+        }
         return cell;
     }
     
@@ -310,26 +297,12 @@ static NSString *const footerId = @"footerId";
     
     if([kind isEqualToString:UICollectionElementKindSectionHeader])
     {
-        
-        //        if (Skin1.isJY && [self.iid isEqualToString:@"1"]) {
-        //
-        //            JYLotteryTitleCollectionView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"JYLotteryTitleCollectionView" forIndexPath:indexPath];
-        //            if(headerView == nil)
-        //            {
-        //                headerView = [[JYLotteryTitleCollectionView alloc] initWithFrame:CGRectMake(0, 0,APP.Width , 40.0)];
-        //                headerView.jYLotteryTitleeSelectBlock = ^(NSInteger selectIndex) {
-        //
-        //                };
-        //                headerView.list = self.dataArray;
-        //            }
-        //            return headerView;
-        //        } else
+
         {
             UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:headerId forIndexPath:indexPath];
             if(headerView == nil)
             {
                 headerView = [[UICollectionReusableView alloc] init];
-                //                [headerView addSubview:<#(nonnull UIView *)#>];
             }
             headerView.backgroundColor = [UIColor clearColor];
             
