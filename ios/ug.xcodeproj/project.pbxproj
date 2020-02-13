@@ -1894,6 +1894,8 @@
 		D4463AC623A7740E008EF03D /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D4463AC523A7740E008EF03D /* libresolv.tbd */; };
 		D451A46623F538B000CD0E36 /* JYGameCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D451A46523F538B000CD0E36 /* JYGameCollectionViewCell.m */; };
 		D451A46923F538D800CD0E36 /* JYGameCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D451A46823F538D700CD0E36 /* JYGameCollectionViewCell.xib */; };
+		D451A47623F586CF00CD0E36 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D451A47423F586CF00CD0E36 /* ViewController.m */; };
+		D451A47723F586CF00CD0E36 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D451A47523F586CF00CD0E36 /* ViewController.xib */; };
 		D4564A4523E3E3A800A1A8C6 /* UIView+shadowPath.m in Sources */ = {isa = PBXBuildFile; fileRef = D4564A4423E3E3A800A1A8C6 /* UIView+shadowPath.m */; };
 		D4564A4623E3E3A800A1A8C6 /* UIView+shadowPath.m in Sources */ = {isa = PBXBuildFile; fileRef = D4564A4423E3E3A800A1A8C6 /* UIView+shadowPath.m */; };
 		D4564A4723E3FA9600A1A8C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4B75E15227802600007047C /* Assets.xcassets */; };
@@ -3678,6 +3680,9 @@
 		D451A46423F538B000CD0E36 /* JYGameCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JYGameCollectionViewCell.h; sourceTree = "<group>"; };
 		D451A46523F538B000CD0E36 /* JYGameCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JYGameCollectionViewCell.m; sourceTree = "<group>"; };
 		D451A46823F538D700CD0E36 /* JYGameCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JYGameCollectionViewCell.xib; sourceTree = "<group>"; };
+		D451A47323F586CF00CD0E36 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		D451A47423F586CF00CD0E36 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		D451A47523F586CF00CD0E36 /* ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
 		D4564A4323E3E3A800A1A8C6 /* UIView+shadowPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+shadowPath.h"; sourceTree = "<group>"; };
 		D4564A4423E3E3A800A1A8C6 /* UIView+shadowPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+shadowPath.m"; sourceTree = "<group>"; };
 		D4AE1C0922C0FCC300C142FE /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -7579,6 +7584,9 @@
 			isa = PBXGroup;
 			children = (
 				D42752DB23F1282E001E27A0 /* 登录注册 */,
+				D451A47323F586CF00CD0E36 /* ViewController.h */,
+				D451A47423F586CF00CD0E36 /* ViewController.m */,
+				D451A47523F586CF00CD0E36 /* ViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -8537,6 +8545,7 @@
 				CF47588C239636D200966536 /* 137.gif in Resources */,
 				CF4758F6239636D200966536 /* 71.gif in Resources */,
 				031E1E4623BE812C00B0F813 /* UGSkinSeconCollectionHeadView.xib in Resources */,
+				D451A47723F586CF00CD0E36 /* ViewController.xib in Resources */,
 				031E1B7023BE812800B0F813 /* UGPlatformTitleBlackCell.xib in Resources */,
 				CF4758A5239636D200966536 /* 19.gif in Resources */,
 				031E1C6023BE812A00B0F813 /* UGLotteryGameCollectionViewCell.xib in Resources */,
@@ -9774,6 +9783,7 @@
 				031A781D23D35A9C00FF2FFA /* LotteryTrendVC.m in Sources */,
 				031E1B1823BE812800B0F813 /* UGDocumentVC.m in Sources */,
 				031E197C23BE812600B0F813 /* UGLHLhlModel.m in Sources */,
+				D451A47623F586CF00CD0E36 /* ViewController.m in Sources */,
 				031E1DDC23BE812C00B0F813 /* UGMissionLevelModel.m in Sources */,
 				031E1AD423BE812800B0F813 /* SRActionSheet.m in Sources */,
 				031E1C5223BE812A00B0F813 /* UGBetResultView.m in Sources */,
