@@ -10,6 +10,11 @@
 #import "IBView.h"
 #import "cc_runtime_property.h"
 
+
+@interface IBButton()
+@property (nonatomic, weak) CAGradientLayer *gradientLayer;//用于渐变色
+@end
+
 @implementation IBButton
 
 - (void)layoutSubviews {
@@ -67,6 +72,19 @@
             self.titleEdgeInsets = UIEdgeInsetsMake(0, self.文字左间距, 0, 0);
         }
     }
+    
+    {
+        if (self.开启渐变色3种颜色都要设置) {
+            if (!self.gradientLayer) {
+                 CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+                self.gradientLayer = gradientLayer;
+            }
+            self.gradientLayer.colors = @[(__bridge id)self.渐变开始色.CGColor, (__bridge id)self.渐变中间色.CGColor, (__bridge id)self.渐变结束色.CGColor];
+            
+        }
+    }
+    
+    
 }
 
 @end

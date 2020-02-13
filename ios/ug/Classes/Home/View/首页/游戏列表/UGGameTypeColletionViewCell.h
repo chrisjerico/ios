@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) GameModel *item;
 
-@property (nonatomic, strong) GameSubModel *subitem;
+
 
 @end
 

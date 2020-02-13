@@ -16,6 +16,8 @@
 @property (nonatomic) IBInspectable UIColor *borderColor;
 @property (nonatomic) IBInspectable CGFloat borderWidth;
 
+
+
 + (void)refreshIBEffect:(UIView *)view;             /**<    刷新 IBInspectable 的效果 */
 @end
 
