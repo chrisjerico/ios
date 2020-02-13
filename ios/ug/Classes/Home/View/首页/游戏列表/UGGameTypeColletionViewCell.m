@@ -69,7 +69,8 @@
 
 - (void)setItem:(GameModel *)item {
     _item = item;
-	self.nameLabel.text = [item.name length] > 0 ? item.name : item.title;
+   
+	self.nameLabel.text =  [CMCommon stringIsNull:item.name] ? item.title : item.title;
 	[self.hasSubSign setHidden: (item.subType.count > 0 ? false : true)];
     [self.imgView sd_setImageWithURL:[NSURL URLWithString:item.icon] placeholderImage:[UIImage imageNamed:@"loading"]];
     
@@ -86,6 +87,30 @@
     subImageView(@"活动ImageView").hidden = !(isBlack && item.tipFlag==2);
     subButton(@"热Button").superview.hidden = !(isBlack && item.tipFlag==1);
     subButton(@"大奖Button").superview.hidden = !(isBlack && item.tipFlag==3);
+}
+
+- (void)setSubitem:(GameSubModel *)subitem {
+    _subitem = subitem;
+   
+    self.nameLabel.text =  [CMCommon stringIsNull:subitem.name] ? subitem.title : subitem.title;
+    NSLog(@"self.nameLabel. = %@",self.nameLabel.text);
+    NSLog(@"subitem = %@",subitem);
+//    [self.hasSubSign setHidden: (subitem.subType.count > 0 ? false : true)];
+    [self.imgView sd_setImageWithURL:[NSURL URLWithString:subitem.icon] placeholderImage:[UIImage imageNamed:@"loading"]];
+    
+    __weakSelf_(__self);
+    [self.hotImageView sd_setImageWithURL:[NSURL URLWithString:subitem.hotIcon] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        if (error) {
+            __self.hotImageView.image = [UIImage imageNamed:@"hot"];
+        }
+    }];
+    
+    FastSubViewCode(self);
+    BOOL isBlack = Skin1.isBlack;
+    _hotImageView.hidden = isBlack || !subitem.tipFlag;
+    subImageView(@"活动ImageView").hidden = !(isBlack && subitem.tipFlag==2);
+    subButton(@"热Button").superview.hidden = !(isBlack && subitem.tipFlag==1);
+    subButton(@"大奖Button").superview.hidden = !(isBlack && subitem.tipFlag==3);
 }
 
 - (UIImageView *)hasSubSign {

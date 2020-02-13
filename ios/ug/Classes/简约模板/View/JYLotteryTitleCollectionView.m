@@ -37,7 +37,7 @@
         });
         UICollectionView *collectionView = ({
             collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, CollectionViewW, 40) collectionViewLayout:layout];
-            collectionView.backgroundColor = RGBA(117, 117, 117, 1);
+            collectionView.backgroundColor =  RGBA(246, 246, 246, 1);
             collectionView.dataSource = self;
             collectionView.delegate = self;
             [collectionView registerNib:[UINib nibWithNibName:@"JYLotteryCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"JYLotteryCollectionViewCell"];
@@ -49,7 +49,8 @@
         
         self.collectionView = collectionView;
         [self addSubview:collectionView];
-        self.backgroundColor = RGBA(117, 117, 117, 1);
+        self.backgroundColor =   RGBA(246, 246, 246, 1);
+
         
         [collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.mas_top);
@@ -107,8 +108,9 @@
         CGPointMake(x, 0);
     }) animated:true];
     
+    GameModel *model = [_list objectAtIndex:indexPath.row];
     if (self.jygameTypeSelectBlock)
-        self.jygameTypeSelectBlock(indexPath.row);
+        self.jygameTypeSelectBlock( model.subType);
     
 
 }

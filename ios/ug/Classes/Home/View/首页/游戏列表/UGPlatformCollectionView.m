@@ -33,27 +33,32 @@ static NSString *const footerId = @"footerId";
 
 #pragma mark - 设置表头方式一
 
-- (void)contentInsetHeaderView {
-    CGFloat header_y = 40;
-    // CGFloat top, left, bottom, right;
-    self.contentInset = UIEdgeInsetsMake(header_y, 0, 0, 0);
-    if (!_tvHeaderView) {
-        _tvHeaderView = [[JYLotteryTitleCollectionView alloc] initWithFrame:CGRectMake(0, 0,APP.Width , 40.0)];
-        _tvHeaderView.frame = CGRectMake(0, -header_y, [UIScreen mainScreen].bounds.size.width, header_y);
-        _tvHeaderView.list = _dataArray;
-        [self addSubview:_tvHeaderView];
-    }
-    __weakSelf_(__self);
-    _tvHeaderView.jygameTypeSelectBlock = ^(NSInteger selectIndex) {
-        GameModel *model  = [__self.dataArray objectAtIndex:selectIndex];
-        [__self jyLoadData: model.subType];
-    };
-    //    _tvHeaderView.jygameItemSelectBlock = ^(GameModel *game) {
-    //        __self.gameItemSelectBlock(game);
-    //    };
-   
+- (void)contentInsetHeaderView :(NSArray <GameModel *> *)  arry{
     
-    [self setContentOffset:CGPointMake(0, -header_y)];
+    NSMutableArray <GameModel *> * headArray = [NSMutableArray new];
+    
+    for (GameModel *model in arry) {
+        if (model.subType.count) {
+            [headArray addObject:model];
+        }
+    }
+
+    if (headArray.count) {
+        CGFloat header_y = 40;
+        // CGFloat top, left, bottom, right;
+        self.contentInset = UIEdgeInsetsMake(header_y, 0, 0, 0);
+        if (!_tvHeaderView) {
+            _tvHeaderView = [[JYLotteryTitleCollectionView alloc] initWithFrame:CGRectMake(0, 0,APP.Width , 40.0)];
+            _tvHeaderView.frame = CGRectMake(0, -header_y, [UIScreen mainScreen].bounds.size.width, header_y);
+            _tvHeaderView.list = headArray;
+            [self addSubview:_tvHeaderView];
+        }
+        __weakSelf_(__self);
+        _tvHeaderView.jygameTypeSelectBlock = ^(NSArray* subType) {
+            [__self jyLoadData: subType];
+        };
+        [self setContentOffset:CGPointMake(0, -header_y)];
+    }
 }
 
 
@@ -123,34 +128,22 @@ static NSString *const footerId = @"footerId";
             
             
         }
-        
-        
     }
-    
 }
 
 -(void)jyLoadData:(NSArray<GameModel *> *)dataArray {
-
-    
     [self.sectionedDataArray removeAllObjects];
-     NSMutableArray * tempArray = [NSMutableArray array];
-    GameModel *model  = [_dataArray objectAtIndex:0];
-      for (int i=0; i<model.subType.count; i++) {
-          [tempArray addObject:dataArray[i]];
-          if (((i + 1) % 4 == 0) || (i == dataArray.count - 1)) {
-              [self.sectionedDataArray addObject: [tempArray mutableCopy]];
-              [tempArray removeAllObjects];
-          }
-          
-      }
-    
-    NSMutableArray * documentArray = [NSMutableArray array];
-    for (GameModel * model in dataArray) {
-        if ([model.docType isEqualToString:@"1"]) {
-            [documentArray addObject:model];
+    NSMutableArray * tempArray = [NSMutableArray array];
+    if (dataArray.count) {
+        for (int i=0; i<dataArray.count; i++) {
+            [tempArray addObject:dataArray[i]];
+            if (((i + 1) % 4 == 0) || (i == dataArray.count - 1)) {
+                [self.sectionedDataArray addObject: [tempArray mutableCopy]];
+                [tempArray removeAllObjects];
+            }
         }
     }
-    [DocumentTypeList setAllGames:documentArray];
+    [self reloadData];
 }
 
 - (void)setDataArray:(NSArray<GameModel *> *)dataArray {
@@ -186,24 +179,43 @@ static NSString *const footerId = @"footerId";
         
     }
     else if (Skin1.isJY) {
-        
-        
         if ([self.iid isEqualToString:@"1"]) {
             // 3.GCD
+   
             dispatch_async(dispatch_get_main_queue(), ^{
                 // UI更新代码
-                [self contentInsetHeaderView];
+                [self contentInsetHeaderView :self.dataArray];
             });
             
-            GameModel *model  = [_dataArray objectAtIndex:0];
-            for (int i=0; i<model.subType.count; i++) {
-                [tempArray addObject:dataArray[i]];
-                if (((i + 1) % 4 == 0) || (i == dataArray.count - 1)) {
-                    [self.sectionedDataArray addObject: [tempArray mutableCopy]];
-                    [tempArray removeAllObjects];
+            NSMutableArray <GameModel *> * headArray = [NSMutableArray new];
+            
+            for (GameModel *model in _dataArray) {
+                if (model.subType.count) {
+                    [headArray addObject:model];
                 }
-                
             }
+            
+            if (headArray.count) {
+                GameModel *model  = [headArray objectAtIndex:0];
+                
+                for (int i=0; i<model.subType.count; i++) {
+                    [tempArray addObject:model.subType[i]];
+                    if (((i + 1) % 4 == 0) || (i == model.subType.count - 1)) {
+                        [self.sectionedDataArray addObject: [tempArray mutableCopy]];
+                        [tempArray removeAllObjects];
+                    }
+                }
+            }
+            else{
+                for (int i=0; i<dataArray.count; i++) {
+                    [tempArray addObject:dataArray[i]];
+                    if (((i + 1) % 4 == 0) || (i == dataArray.count - 1)) {
+                        [self.sectionedDataArray addObject: [tempArray mutableCopy]];
+                        [tempArray removeAllObjects];
+                    }
+                }
+            }
+  
         }
         else{
             for (int i=0; i<dataArray.count; i++) {
@@ -240,11 +252,21 @@ static NSString *const footerId = @"footerId";
 #pragma mark - UICollectionViewDelegate
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return self.sectionedDataArray.count;
+    
+//    if (Skin1.isJY) {
+//        return 1;
+//    } else {
+        return self.sectionedDataArray.count;
+//    }
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return ((NSArray *)self.sectionedDataArray[section]).count;
+//    if (Skin1.isJY) {
+//         return self.sectionedDataArray.count;
+//    } else {
+         return ((NSArray *)self.sectionedDataArray[section]).count;
+//    }
+   
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -265,6 +287,12 @@ static NSString *const footerId = @"footerId";
         UGGameTypeColletionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:gameCellid forIndexPath:indexPath];
         cell.item = ((NSArray *)self.sectionedDataArray[indexPath.section])[indexPath.row];
         
+        if ([self.iid isEqualToString:@"1"]) {
+            cell.subitem = (GameSubModel *)((NSArray *)self.sectionedDataArray[indexPath.section])[indexPath.row];
+        } else {
+            cell.item = ((NSArray *)self.sectionedDataArray[indexPath.section])[indexPath.row];
+        }
+
         if (Skin1.isJY) {
             [cell setBackgroundColor: [UIColor whiteColor]];
             cell.layer.borderWidth = 0.7;

@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void(^JYgameTypeSelectBlock)(NSInteger selectIndex);
+typedef void(^JYgameTypeSelectBlock)(NSArray *subType);
 //typedef void(^JYgameItemSelectBlock)(GameModel *game);
 
 @interface JYLotteryTitleCollectionView : UIView

@@ -16,6 +16,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     _titleLabel.textColor = RGBA(117, 117, 117, 1);
+    self.backgroundColor = RGBA(246, 246, 246, 1);
 }
 
 - (void)setItem:(GameModel *)item {

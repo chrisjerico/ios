@@ -39,24 +39,10 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
             _titleView = [[UGPlatformTitleCollectionView alloc] initWithFrame:CGRectZero];
             _titleView.backgroundColor = [UIColor clearColor];
             _titleView.platformTitleSelectBlock = ^(NSInteger selectIndex) {
+             NSLog(@"selectIndex ===============%lu",(unsigned long)selectIndex);
                 __self.contentScrollView.contentOffset = CGPointMake(__self.width * selectIndex, 0);
                 [__self refreshHeight];
-                
-              GameCategoryModel *ob =  [__self.gameTypeArray objectAtIndex:selectIndex];
-                NSLog(@"ob.name = %@",ob.name);//ob.name = 热门游戏 ob.name = 彩票游戏 ob.name = 真人视讯
-                NSLog(@"ob.iid = %@",ob.iid);//ob.iid = 7 ob.iid = 1 ob.iid = 2
-                
-                for (int i = 0; i<ob.list.count; i++) {
-                    GameModel *model  = [ob.list objectAtIndex:i];
-                    
-                     NSLog(@"model.game_id = %@===========名字：%@ ==========gameId = %@  ===========名字2：%@  ",model.game_id,model.name,model.gameId,model.title);
-                    // model.game_id = (null)===========名字：香港赛马会 ==========gameId = 2  ===========名字2：(null)
-//                    model.game_id = (null)===========名字：六合彩系列 ==========gameId = 128  ===========名字2：(null)
-//                    model.game_id = 59===========名字： ==========gameId = 84  ===========名字2：AG视讯
-                    
-                    NSLog(@"subType = %@",model.subType);
-                }
-                
+    
             };
             [self addSubview:_titleView];
             
@@ -147,8 +133,24 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
 - (void)refreshHeight {
     NSInteger idx = _titleView.selectIndex;
     UGPlatformCollectionView *pcv = _contentStackView.arrangedSubviews[idx];
-    CGFloat h = pcv.contentSize.height + _titleView.height + 5;
-    self.cc_constraints.height.constant = h;
+    CGFloat h ;
+
+    if (Skin1.isJY) {
+        GameCategoryModel *ob =  [self.gameTypeArray objectAtIndex:idx];
+        if ([ob.iid isEqualToString:@"1"]){
+            h = pcv.contentSize.height + _titleView.height + 5 +40;
+            _contentScrollView.cc_constraints.height.constant = h;
+        } else {
+            h = pcv.contentSize.height + _titleView.height + 5 ;
+        }
+         self.cc_constraints.height.constant = h;
+    }
+    else{
+        h = pcv.contentSize.height + _titleView.height + 5;
+         self.cc_constraints.height.constant = h;
+    }
+   NSLog(@"h ==== = %f",h);
+   
 }
 
 
