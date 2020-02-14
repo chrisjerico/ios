@@ -16,6 +16,7 @@
 #import "WKProxy.h"
 #import "RegExCategories.h"
 #import "SLWebViewController.h"
+#import "WavesView.h"
 @interface JYRegisterViewController ()<UITextFieldDelegate,UINavigationControllerDelegate,WKScriptMessageHandler,WKNavigationDelegate,WKUIDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *myScrollView;        /**<   滚动面板*/
 @property (weak, nonatomic) IBOutlet UITextField *inviterTextF;         /**<   推荐id*/
@@ -53,6 +54,15 @@
 @property (weak, nonatomic) IBOutlet UIButton *goLoginButton;               /**<    登录按钮*/
 @property (weak, nonatomic) IBOutlet UISegmentedControl *mySegmentCV;       /**<   */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *mySegmentHightConstraint;/**<   */
+//===========================头=====================================
+@property (weak, nonatomic) IBOutlet UIView *userInfoView;
+@property (weak, nonatomic) IBOutlet UIView *waveBgView;
+@property (weak, nonatomic) IBOutlet UIView *waveBottomView;
+@property (weak, nonatomic) IBOutlet UIImageView *waveUImageV;
+@property (weak, nonatomic) IBOutlet UIImageView *headerImageV;
+
+@property (nonatomic, strong) WavesView *waveView;
+//================================================================
 
 
 @property (nonatomic, strong) WKWebView *webView;                           /**<   加载阿里的条*/
@@ -72,6 +82,39 @@
 - (BOOL)允许未登录访问 { return true; }
 - (BOOL)允许游客访问 { return true; }
 
+- (void)initView {
+    self.userInfoView.backgroundColor = Skin1.navBarBgColor;
+   
+    self.waveView = [[WavesView alloc] initWithFrame:self.waveBgView.bounds];
+    [self.waveBgView addSubview:self.waveView];
+    self.waveView.backgroundColor = [UIColor clearColor];
+    self.waveBottomView.backgroundColor = Skin1.tabBarBgColor;
+    self.waveView.realWaveColor = Skin1.tabBarBgColor;
+    self.waveView.maskWaveColor = [UIColor clearColor];
+    self.waveView.waveHeight = 10;
+    [self.waveView startWaveAnimation];
+    
+    [_waveUImageV setHidden:NO];
+    self.view.backgroundColor = [UIColor whiteColor];
+
+    
+    NSString *url = [CMCommon imgformat: SysConf.mobile_logo];
+    [self.headerImageV sd_setImageWithURL:[NSURL URLWithString:url]];
+    
+    UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:url]]];
+    if (image) {
+          
+               CGFloat w = APP.Width - 60;
+               CGFloat h = (image.height/image.width) * w;
+               self.headerImageV.cc_constraints.height.constant = h;
+           
+           [self.headerImageV  sd_setImageWithURL:[NSURL URLWithString:url]];   // 由于要支持gif动图，还是用sd加载
+       } else {
+
+           self.headerImageV.cc_constraints.height.constant = 100;
+           [self.headerImageV sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"loading"]];
+       }
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -122,6 +165,8 @@
     
     self.checkPasswordTextF.clearButtonMode=UITextFieldViewModeNever;
     
+    [self initView];
+    
     [self setupSubViews];
     
     _webView = ({
@@ -165,7 +210,6 @@
     
     UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
     if (config.reg_vcode == 1) {
-        
         [self getImgVcode:nil];
     }
     
@@ -188,6 +232,7 @@
         }];
     }
     
+ 
 }
 
 //从系统设置中配置界面
@@ -758,4 +803,21 @@
 }
 
 
+// 获取系统配置
+- (void)getSystemConfig {
+    [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+        
+        [CMResult processWithResult:model success:^{
+
+            UGSystemConfigModel *config = model.data;
+            UGSystemConfigModel.currentConfig = config;
+            
+             NSString *url = [CMCommon imgformat: SysConf.mobile_logo];
+            [self.headerImageV sd_setImageWithURL:[NSURL URLWithString:url]];
+
+        } failure:^(id msg) {
+            [SVProgressHUD showErrorWithStatus:msg];
+        }];
+    }];
+}
 @end

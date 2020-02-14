@@ -17,7 +17,20 @@
 - (void)setItem:(GameModel *)item {
     _item = item;
     NSLog(@"icon = %@",item.icon);
-   [self.imgView sd_setImageWithURL:[NSURL URLWithString:item.icon] placeholderImage:[UIImage imageNamed:@"loading"]];
+    UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:item.icon]]];
+    if (image) {
+          
+               CGFloat w = APP.Width - 20;
+               CGFloat h = 214.0/724.0 * w;
+               self.imgView.cc_constraints.height.constant = h;
+           
+           [self.imgView  sd_setImageWithURL:[NSURL URLWithString:item.icon]];   // 由于要支持gif动图，还是用sd加载
+       } else {
+
+           self.imgView.cc_constraints.height.constant = 120;
+           [self.imgView sd_setImageWithURL:[NSURL URLWithString:item.icon] placeholderImage:[UIImage imageNamed:@"loading"]];
+       }
+  
 }
 
 @end

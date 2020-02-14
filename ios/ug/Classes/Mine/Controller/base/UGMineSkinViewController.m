@@ -40,6 +40,8 @@
 #import "UGChangLongController.h"
 #import "STBarButtonItem.h"
 #import "UGYYRightMenuView.h"
+
+#import "JYMineCollectionViewCell.h"
 @interface UGMineSkinViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 {
     NSString *skitType;
@@ -92,7 +94,7 @@
     
     
     skitType = Skin1.skitType;
-    if ([skitType isEqualToString:@"经典"]) {
+    if ([skitType isEqualToString:@"经典"]||Skin1.isJY) {
         self.topupView.hidden = YES;
         self.topupViewNSLayoutConstraintHight.constant = 0.1;
     }
@@ -116,7 +118,7 @@
     if (!self.menuSecondNameArray.count || !self.menuNameArray.count) {
         [self refreshBalance:nil];
     }
-//    SANotificationEventPost(UGNotificationGetUserInfo, nil);
+    //    SANotificationEventPost(UGNotificationGetUserInfo, nil);
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -171,11 +173,11 @@
     self.progressView.layer.cornerRadius = self.progressView.height / 2;
     self.progressView.layer.masksToBounds = YES;
     self.progressView.backgroundColor = UGRGBColor(213, 224, 237);
-//    self.topupView.backgroundColor = Skin1.navBarBgColor;
-//    FastSubViewCode(self.topupView);
-//    subLabel(@"存款Label").textColor = Skin1.textColor1;
-//    subLabel(@"提现Label").textColor = Skin1.textColor1;
-//    subLabel(@"转换Label").textColor = Skin1.textColor1;
+    //    self.topupView.backgroundColor = Skin1.navBarBgColor;
+    //    FastSubViewCode(self.topupView);
+    //    subLabel(@"存款Label").textColor = Skin1.textColor1;
+    //    subLabel(@"提现Label").textColor = Skin1.textColor1;
+    //    subLabel(@"转换Label").textColor = Skin1.textColor1;
     
     
     //设置皮肤
@@ -185,7 +187,7 @@
     
     skitType = Skin1.skitType;
     
-    if ([skitType isEqualToString:@"经典"] || [skitType isEqualToString:@"六合资料"]) {
+    if ([skitType isEqualToString:@"经典"] || [skitType isEqualToString:@"六合资料"]|| Skin1.isJY) {
         self.topupView.hidden = YES;
         self.topupViewNSLayoutConstraintHight.constant = 0.1;
     }
@@ -208,7 +210,7 @@
         [__self skinSeconddataSource];
         [__self.myCollectionView reloadData];
     });
-
+    
     //初始化
     [self initCollectionView];
 }
@@ -300,40 +302,40 @@ BOOL isOk = NO;
 
 - (void)initCollectionView {
     
-       skitType = Skin1.skitType;
+    skitType = Skin1.skitType;
     
-//    float itemW = (UGScreenW - 8) / 3;
+    //    float itemW = (UGScreenW - 8) / 3;
     UICollectionViewFlowLayout *layout = ({
         
         layout = [[UICollectionViewFlowLayout alloc] init];
-//        layout.itemSize = CGSizeMake(itemW, itemW );
-//        layout.minimumInteritemSpacing = 1;
-//        layout.minimumLineSpacing = 1;
+        //        layout.itemSize = CGSizeMake(itemW, itemW );
+        //        layout.minimumInteritemSpacing = 1;
+        //        layout.minimumLineSpacing = 1;
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
         
         if ([skitType isEqualToString:@"新年红"]) {
             layout.headerReferenceSize = CGSizeMake(UGScreenW, 35);
         }
         else  if([skitType isEqualToString:@"石榴红"]){
-             layout.headerReferenceSize = CGSizeMake(UGScreenW, 80);
+            layout.headerReferenceSize = CGSizeMake(UGScreenW, 80);
         }
-        else  if([skitType isEqualToString:@"经典"]){
+        else  if([skitType isEqualToString:@"经典"]|| Skin1.isJY){
             layout.headerReferenceSize = CGSizeMake(UGScreenW, 0.1);
         }
         else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
-             layout.headerReferenceSize = CGSizeMake(UGScreenW, 0.1);
+            layout.headerReferenceSize = CGSizeMake(UGScreenW, 0.1);
         }
         
         layout;
         
     });
-
-        self.myCollectionView.backgroundColor = Skin1.bgColor;
-        self.myCollectionView.dataSource = self;
-        self.myCollectionView.delegate = self;
-        [self.myCollectionView registerNib:[UINib nibWithNibName:@"UGMineMenuCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UGMineMenuCollectionViewCell"];
-        [self.myCollectionView registerNib:[UINib nibWithNibName:@"UGMineSkinCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UGMineSkinCollectionViewCell"];
     
+    self.myCollectionView.backgroundColor = Skin1.bgColor;
+    self.myCollectionView.dataSource = self;
+    self.myCollectionView.delegate = self;
+    [self.myCollectionView registerNib:[UINib nibWithNibName:@"UGMineMenuCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UGMineMenuCollectionViewCell"];
+    [self.myCollectionView registerNib:[UINib nibWithNibName:@"UGMineSkinCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UGMineSkinCollectionViewCell"];
+    [self.myCollectionView registerNib:[UINib nibWithNibName:@"JYMineCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"JYMineCollectionViewCell"];
     
     [self.myCollectionView registerNib:[UINib nibWithNibName:@"UGMineSkinFirstCollectionHeadView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"UGMineSkinFirstCollectionHeadView"];
     
@@ -358,7 +360,7 @@ BOOL isOk = NO;
     else  if([skitType isEqualToString:@"石榴红"]){
         sections = 1;
     }
-    else  if([skitType isEqualToString:@"经典"]){
+    else  if([skitType isEqualToString:@"经典"]||Skin1.isJY){
         sections = 1;
     }
     else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
@@ -379,7 +381,7 @@ BOOL isOk = NO;
 //每个cell的具体内容
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-//    NSString *skitType = Skin1.skitType;
+    //    NSString *skitType = Skin1.skitType;
     if ([skitType isEqualToString:@"新年红"]) {
         UGMineSkinCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UGMineSkinCollectionViewCell" forIndexPath:indexPath];
         UGUserCenterItem *uci = self.menuSecondNameArray[indexPath.section].dataArray[indexPath.row];
@@ -389,6 +391,16 @@ BOOL isOk = NO;
         [cell setBackgroundColor: [UIColor clearColor]];
         cell.layer.borderWidth = 0.5;
         cell.layer.borderColor = UGRGBColor(231, 230, 230).CGColor;
+        return cell;
+    }
+    else  if(Skin1.isJY) {
+        JYMineCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"JYMineCollectionViewCell" forIndexPath:indexPath];
+        FastSubViewCode(cell);
+        UGUserCenterItem *uci = self.menuNameArray[indexPath.row];
+        cell.menuName = uci.name;
+        [cell.imageView sd_setImageWithURL:[NSURL URLWithString:uci.logo] placeholderImage:[UIImage imageNamed:uci.lhImgName]];
+        subLabel(@"红点Label").text = @([UGUserModel currentUser].unreadMsg).stringValue;
+        subLabel(@"红点Label").hidden = !(uci.code==UCI_站内信 && [UGUserModel currentUser].unreadMsg);
         return cell;
     }
     else  {
@@ -419,8 +431,8 @@ BOOL isOk = NO;
             {
                 headerView = [[UGMineSkinFirstCollectionHeadView alloc] init];
             }
-
-             UGMineSkinModel *model = [self.menuSecondNameArray objectAtIndex:indexPath.section];
+            
+            UGMineSkinModel *model = [self.menuSecondNameArray objectAtIndex:indexPath.section];
             [headerView setMenuName :model.name];
             [headerView setBackgroundColor: [UIColor clearColor]];
             
@@ -437,14 +449,14 @@ BOOL isOk = NO;
             return headerView;
         }
         else{
-     
+            
             UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"UICollectionReusableView" forIndexPath:indexPath];
             if(headerView == nil)
             {
                 headerView = [[UICollectionReusableView alloc] init];
             }
             headerView.backgroundColor = [UIColor clearColor];
-             return headerView;
+            return headerView;
         }
         
         
@@ -452,7 +464,7 @@ BOOL isOk = NO;
     }
     
     
-
+    
     return nil;
 }
 
@@ -468,7 +480,7 @@ BOOL isOk = NO;
         CGSize size = {UGScreenW, 80};
         return size;
     }
-    else  if([skitType isEqualToString:@"经典"]) {
+    else  if([skitType isEqualToString:@"经典"]||Skin1.isJY) {
         CGSize size = {UGScreenW, 0.1};
         return size;
     }
@@ -483,6 +495,10 @@ BOOL isOk = NO;
     float itemW = (APP.Width - 0.0 )/ 3.0;
     if ([skitType isEqualToString:@"新年红"]) {
         CGSize size = {itemW, 100};
+        return size;
+    }
+    else if(Skin1.isJY){
+         CGSize size = {APP.Width, 50};
         return size;
     }
     else {
@@ -521,13 +537,13 @@ BOOL isOk = NO;
 
 // 任务中心
 - (IBAction)showMissionVC:(id)sender {
-  // 任务中心
-       UIViewController *vc = [NavController1.viewControllers objectWithValue:UGMissionCenterViewController.class keyPath:@"class"];
-       if (vc) {
-           [NavController1 popToViewController:vc animated:false];
-       } else {
-           [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController") animated:false];
-       }
+    // 任务中心
+    UIViewController *vc = [NavController1.viewControllers objectWithValue:UGMissionCenterViewController.class keyPath:@"class"];
+    if (vc) {
+        [NavController1 popToViewController:vc animated:false];
+    } else {
+        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController") animated:false];
+    }
 }
 
 // 每日签到
@@ -638,13 +654,13 @@ BOOL isOk = NO;
     self.fristVipLabel.text = user.curLevelGrade;
     NSString *imagerStr = [user.curLevelGrade lowercaseString];
     NSLog(@"imagerStr = %@",imagerStr);
-           unreadMsg = user.unreadMsg;
+    unreadMsg = user.unreadMsg;
     NSLog(@"unreadMsg = %d", (int)unreadMsg);
-
-      self.secondVipLabel.text = user.nextLevelGrade;
+    
+    self.secondVipLabel.text = user.nextLevelGrade;
     
     self.valueLabel.text = _NSString(@"成长值（%@-%@）", _FloatString4(user.taskRewardTotal.doubleValue), _FloatString4(user.nextLevelInt.doubleValue));
-   
+    
     if (![CMCommon stringIsNull:user.taskRewardTitle]) {
         self.moneyNameLabel.text = user.taskRewardTitle;
     }
@@ -675,8 +691,8 @@ BOOL isOk = NO;
             NSLog(@"签到==%d",[UGUserModel currentUser].checkinSwitch);
             
             [self getSystemConfig];
-//            //初始化数据
-//            [self getDateSource];
+            //            //初始化数据
+            //            [self getDateSource];
         } failure:^(id msg) {
             [self stopAnimation];
         }];
