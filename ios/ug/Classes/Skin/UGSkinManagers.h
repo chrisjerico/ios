@@ -42,6 +42,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)isBlack;    /**<   是否是黑色模板 */
 - (BOOL)isLH;       /**<   是否是六合资料 */
 - (BOOL)isJY;       /**<   是否是简约模板 */
+- (BOOL)isSLH;       /**<   是否是石榴红模板 */
+
 
 
 + (UGSkinManagers *)next; /**<   测试换肤功能时使用 */

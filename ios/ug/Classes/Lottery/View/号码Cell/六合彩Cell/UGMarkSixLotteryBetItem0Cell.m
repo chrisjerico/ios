@@ -92,15 +92,23 @@
 
     if (APP.isBall) {
         [self.ballImg setHidden:NO];
+        self.ballImg.cc_constraints.width.constant = 34;
+        self.ballImg.cc_constraints.height.constant = 34;
+        self.leftLabel.cc_constraints.width.constant = 34;
+        self.leftLabel.cc_constraints.height.constant = 34;
+//        [self.leftLabel  mas_remakeConstraints:^(MASConstraintMaker *make)
+//         {
+//            make.centerY.equalTo(self.mas_centerY).with.offset(-2);
+//        }];
         NSString *colorStr = [CMCommon getHKLotteryNumColorString:item.name];
         if ([colorStr isEqualToString:@"red"]) {
-            [self.ballImg setImage:[UIImage imageNamed:@"icon_red"]];
+            [self.ballImg setImage:[UIImage imageNamed:@"lhc_red"]];
         }
         else if ([colorStr isEqualToString:@"blue"]) {
-            [self.ballImg setImage:[UIImage imageNamed:@"icon_blue"]];
+            [self.ballImg setImage:[UIImage imageNamed:@"lhc_blue"]];
         }
         else if ([colorStr isEqualToString:@"greed"]) {
-            [self.ballImg setImage:[UIImage imageNamed:@"icon_green"]];
+            [self.ballImg setImage:[UIImage imageNamed:@"lhc_green"]];
         }
         self.leftLabel.layer.masksToBounds = NO;
         self.leftLabel.layer.borderWidth = 0;
@@ -110,6 +118,10 @@
     }
     else {
         [self.ballImg setHidden:YES];
+        self.ballImg.cc_constraints.width.constant = 28;
+        self.ballImg.cc_constraints.height.constant = 28;
+        self.leftLabel.cc_constraints.width.constant = 28;
+        self.leftLabel.cc_constraints.height.constant = 28;
         self.leftLabel.layer.borderColor = [CMCommon getHKLotteryNumColor:item.name].CGColor;
         self.leftLabel.layer.cornerRadius = self.leftLabel.width / 2;
         self.leftLabel.layer.masksToBounds = YES;

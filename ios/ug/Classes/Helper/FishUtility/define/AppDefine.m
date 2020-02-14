@@ -83,8 +83,8 @@
                 sb(@"MyPromotion"),
                 sb(@"ContractedTemplate"),
                 
-
-                ];
+                
+        ];
     });
     
     const char *sel = [@"contains11111NibNamed:" stringByReplacingOccurrencesOfString:@"1" withString:@""].UTF8String;
@@ -170,10 +170,10 @@
 
 - (BOOL)isChatWhite {
     if (!APP.betBgIsWhite) {
-         return YES ;
-     } else {
+        return YES ;
+    } else {
         return NO;
-     }
+    }
 }
 
 - (BOOL)isHideChat {
@@ -185,7 +185,11 @@
 }
 
 - (BOOL)isBall6 {
-    return [@"c134" containsString:_SiteId];
+    if (Skin1.isSLH) {
+        return YES;
+    } else {
+        return [@"c134" containsString:_SiteId];
+    }
 }
 
 - (BOOL)isYellow {
@@ -198,7 +202,9 @@
 
 
 - (BOOL)isShowBorder {
+    
     return [@"c212,c208,c134" containsString:_SiteId];
+    
 }
 
 - (BOOL)isShowHornView {
@@ -212,20 +218,26 @@
 - (BOOL)isBorderNavBarBgColor {
     if (Skin1.isBlack) {
         return NO;
-    } else {
-         return [@"c085,c212,c208,c134" containsString:_SiteId];
+    }
+    else {
+        return [@"c085,c212,c208,c134" containsString:_SiteId]||[@"石榴红" containsString:Skin1.skitType];
     }
 }
 
 - (BOOL)isBall {
-    return [@"c212,c085,c208,c134" containsString:_SiteId];
+    if (Skin1.isSLH) {
+        return YES;
+    } else {
+        return [@"c212,c085,c208,c134" containsString:_SiteId];
+    }
+    
 }
 
 - (BOOL)isWhite {
     if (Skin1.isBlack) {
         return NO;
     } else {
-         return [@"c213" containsString:_SiteId];
+        return [@"c213" containsString:_SiteId];
     }
 }
 
@@ -248,9 +260,9 @@
         if (Skin1.isJY) {
             return YES;
         } else {
-             return [@"c190,test10" containsString:_SiteId];
+            return [@"c190,test10" containsString:_SiteId];
         }
-       
+        
     }
 }
 
@@ -295,11 +307,11 @@
 }
 
 - (BOOL)betBgIsWhite {
-
+    
     if ([Skin1.skitString isEqualToString:@"新年红 1蓝色风格"]) {
         return NO;
     } else {
-         return ![@"c175,c085,c073,c169,a002,c190,c048,c200,c001,c208,c202,c212,c134" containsString:_SiteId] || [@"新年红,石榴红" containsString:Skin1.skitType]||Skin1.isJY;
+        return ![@"c175,c085,c073,c169,a002,c190,c048,c200,c001,c208,c202,c212,c134" containsString:_SiteId] || [@"新年红,石榴红" containsString:Skin1.skitType]||Skin1.isJY;
     }
 }
 
@@ -338,8 +350,8 @@
 }
 
 - (NSString *)chatHomeUrl {
-//        SysConf.chatLink = @"/chat";
-//    SysConf.chatLink = @"/chat/index.php";
+    //        SysConf.chatLink = @"/chat";
+    //    SysConf.chatLink = @"/chat/index.php";
     NSString *url = _NSString(@"%@%@", _Host, SysConf.chatLink);
     return [url stringByAppendingURLParams:@{
         @"from":@"app",
@@ -359,7 +371,7 @@
         NSNumber * boolNum = [NSNumber numberWithBool:hideHead];
         [dic setValue:boolNum forKey:@"hideHead"];
     }
-
+    
     NSString *s = [self.chatHomeUrl stringByAppendingURLParams:dic];
     NSLog(@"s= %@",s);
     return s;

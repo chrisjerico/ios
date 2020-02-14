@@ -148,16 +148,37 @@
         [self.ballImg2 setHidden:NO];
         [self.ballImg3 setHidden:NO];
         [self.ballImg4 setHidden:NO];
+        self.ballImg0.cc_constraints.width.constant = 34;
+        self.ballImg0.cc_constraints.height.constant = 34;
+        self.ballImg1.cc_constraints.width.constant = 34;
+        self.ballImg1.cc_constraints.height.constant = 34;
+        self.ballImg2.cc_constraints.width.constant = 34;
+        self.ballImg2.cc_constraints.height.constant = 34;
+        self.ballImg3.cc_constraints.width.constant = 34;
+        self.ballImg3.cc_constraints.height.constant = 34;
+        self.ballImg4.cc_constraints.width.constant = 34;
+        self.ballImg4.cc_constraints.height.constant = 34;
+        
         self.num0Label.layer.masksToBounds = NO;
         self.num0Label.layer.borderWidth = 0;
+        self.num0Label.cc_constraints.width.constant = 34;
+        self.num0Label.cc_constraints.height.constant = 34;
         self.num1Label.layer.masksToBounds = NO;
         self.num1Label.layer.borderWidth = 0;
+        self.num1Label.cc_constraints.width.constant = 34;
+        self.num1Label.cc_constraints.height.constant = 34;
         self.num2Label.layer.masksToBounds = NO;
         self.num2Label.layer.borderWidth = 0;
+        self.num2Label.cc_constraints.width.constant = 34;
+        self.num2Label.cc_constraints.height.constant = 34;
         self.num3Label.layer.masksToBounds = NO;
         self.num3Label.layer.borderWidth = 0;
+        self.num3Label.cc_constraints.width.constant = 34;
+        self.num3Label.cc_constraints.height.constant = 34;
         self.num4Label.layer.masksToBounds = NO;
         self.num4Label.layer.borderWidth = 0;
+        self.num4Label.cc_constraints.width.constant = 34;
+        self.num4Label.cc_constraints.height.constant = 34;
         [self.ballImg0 setImage:[CMCommon getHKLotteryNumColorImg:num0]];
         [self.ballImg1 setImage:[CMCommon getHKLotteryNumColorImg:num1]];
         [self.ballImg2 setImage:[CMCommon getHKLotteryNumColorImg:num2]];
@@ -181,30 +202,52 @@
         
     }
     else {
+        
+
         [self.ballImg0 setHidden:YES];
         [self.ballImg1 setHidden:YES];
         [self.ballImg2 setHidden:YES];
         [self.ballImg3 setHidden:YES];
         [self.ballImg4 setHidden:YES];
+        self.ballImg0.cc_constraints.width.constant = 28;
+        self.ballImg0.cc_constraints.height.constant = 28;
+        self.ballImg1.cc_constraints.width.constant = 28;
+        self.ballImg1.cc_constraints.height.constant = 28;
+        self.ballImg2.cc_constraints.width.constant = 28;
+        self.ballImg2.cc_constraints.height.constant = 28;
+        self.ballImg3.cc_constraints.width.constant = 28;
+        self.ballImg3.cc_constraints.height.constant = 28;
+        self.ballImg4.cc_constraints.width.constant = 28;
+        self.ballImg4.cc_constraints.height.constant = 28;
         self.num0Label.layer.cornerRadius = self.num0Label.width / 2;
         self.num0Label.layer.masksToBounds = YES;
         self.num0Label.layer.borderWidth = 1;
+        self.num0Label.cc_constraints.width.constant = 28;
+        self.num0Label.cc_constraints.height.constant = 28;
         
         self.num1Label.layer.cornerRadius = self.num1Label.width / 2;
         self.num1Label.layer.masksToBounds = YES;
         self.num1Label.layer.borderWidth = 1;
+        self.num1Label.cc_constraints.width.constant = 28;
+        self.num1Label.cc_constraints.height.constant = 28;
         
         self.num2Label.layer.cornerRadius = self.num2Label.width / 2;
         self.num2Label.layer.masksToBounds = YES;
         self.num2Label.layer.borderWidth = 1;
+        self.num2Label.cc_constraints.width.constant = 28;
+        self.num2Label.cc_constraints.height.constant = 28;
         
         self.num3Label.layer.cornerRadius = self.num3Label.width / 2;
         self.num3Label.layer.masksToBounds = YES;
         self.num3Label.layer.borderWidth = 1;
+        self.num3Label.cc_constraints.width.constant = 28;
+        self.num3Label.cc_constraints.height.constant = 28;
         
         self.num4Label.layer.cornerRadius = self.num4Label.width / 2;
         self.num4Label.layer.masksToBounds = YES;
         self.num4Label.layer.borderWidth = 1;
+        self.num4Label.cc_constraints.width.constant = 28;
+        self.num4Label.cc_constraints.height.constant = 28;
         
         self.num0Label.layer.borderColor = [CMCommon getHKLotteryNumColor:num0].CGColor;
         self.num1Label.layer.borderColor = [CMCommon getHKLotteryNumColor:num1].CGColor;

@@ -7,8 +7,12 @@
 //
 
 #import "UGBetResultView.h"
+#import "BetImgView.h"
 
 @interface UGBetResultView()
+
+@property(nonatomic, strong) NSMutableArray<BetImgView *> * numberImgVs;//用于加载球图图片
+
 @property(nonatomic, strong) NSMutableArray<UILabel *> * numberlabels;
 @property(nonatomic, strong) NSMutableArray<UILabel *> * resultlabels;
 @property(nonatomic, strong) UIImageView * resultImage;
@@ -81,21 +85,35 @@ static UGBetResultView *_singleInstance = nil;
                 v.backgroundColor = [UIColor clearColor];
                 UIStackView *sv = [UIStackView new];
                 [v addSubview:({
-                    sv.spacing = 3;
-                    sv.axis = UILayoutConstraintAxisHorizontal;
-                    for (int i = 0; i < 10 ; i ++) {
-                        UILabel * label = [UILabel new];
-                        label.textColor = UIColor.whiteColor;
-                        label.backgroundColor = [UIColor colorWithHex:0x2f9cf3];
-                        label.font = [UIFont systemFontOfSize: 12];
-                        label.layer.cornerRadius = 2;
-                        label.layer.masksToBounds = true;
-                        label.textAlignment = NSTextAlignmentCenter;
-                        [self.numberlabels addObject:label];
-                        [sv addArrangedSubview:label];
-                        [label mas_makeConstraints:^(MASConstraintMaker *make) {
-                            make.width.height.equalTo(@25);
-                        }];
+                    
+                    if (APP.isBall) {
+                        sv.spacing = 0;
+                        sv.axis = UILayoutConstraintAxisHorizontal;
+                        for (int i = 0; i < 10 ; i ++) {
+                            BetImgView * bet =  [[BetImgView alloc] initView];
+                            [self.numberImgVs addObject:bet];
+                            [sv addArrangedSubview:bet];
+                            [bet mas_makeConstraints:^(MASConstraintMaker *make) {
+                                make.width.height.equalTo(@34);
+                            }];
+                        }
+                    } else {
+                        sv.spacing = 3;
+                        sv.axis = UILayoutConstraintAxisHorizontal;
+                        for (int i = 0; i < 10 ; i ++) {
+                            UILabel * label = [UILabel new];
+                            label.textColor = UIColor.whiteColor;
+                            label.backgroundColor = [UIColor colorWithHex:0x2f9cf3];
+                            label.font = [UIFont systemFontOfSize: 12];
+                            label.layer.cornerRadius = 2;
+                            label.layer.masksToBounds = true;
+                            label.textAlignment = NSTextAlignmentCenter;
+                            [self.numberlabels addObject:label];
+                            [sv addArrangedSubview:label];
+                            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                                make.width.height.equalTo(@25);
+                            }];
+                        }
                     }
                     sv;
                 })];
@@ -179,20 +197,32 @@ static UGBetResultView *_singleInstance = nil;
 	NSArray<NSString *> * numbers = [model.openNum componentsSeparatedByString: @","];
 
 	for (int i = 0; i < 10; i ++) {
-        UILabel * label = resultView.numberlabels[i];
-        if (i < numbers.count) {
-            label.hidden = false;
-            label.text = numbers[i];
-            NSString *color = [CMCommon getHKLotteryNumColorString:numbers[i]];
-            if ([@"blue" isEqualToString:color]) {
-                 label.backgroundColor = UGRGBColor(86, 170, 236);
-            } else if ([@"red" isEqualToString:color]) {
-                 label.backgroundColor = UGRGBColor(197, 52, 60);
+        
+        if (APP.isBall) {
+            BetImgView * bet = resultView.numberImgVs[i];
+            if (i < numbers.count) {
+                bet.hidden = false;
+                bet.titleLabel.text = numbers[i];
+                [bet.ballImgV setImage:[CMCommon getHKLotteryNumColorImg:numbers[i]]];
             } else {
-                 label.backgroundColor = UGRGBColor(96, 174, 108);
+                bet.hidden = true;
             }
         } else {
-            label.hidden = true;
+            UILabel * label = resultView.numberlabels[i];
+            if (i < numbers.count) {
+                label.hidden = false;
+                label.text = numbers[i];
+                NSString *color = [CMCommon getHKLotteryNumColorString:numbers[i]];
+                if ([@"blue" isEqualToString:color]) {
+                     label.backgroundColor = UGRGBColor(86, 170, 236);
+                } else if ([@"red" isEqualToString:color]) {
+                     label.backgroundColor = UGRGBColor(197, 52, 60);
+                } else {
+                     label.backgroundColor = UGRGBColor(96, 174, 108);
+                }
+            } else {
+                label.hidden = true;
+            }
         }
 	}
     
@@ -251,6 +281,15 @@ static UGBetResultView *_singleInstance = nil;
 		_resultImage = [[UIImageView alloc] init];
 	}
 	return _resultImage;
+}
+
+
+
+- (NSMutableArray<BetImgView *> *)numberImgVs {
+    if (!_numberImgVs) {
+        _numberImgVs = [NSMutableArray array];
+    }
+    return _numberImgVs;
 }
 
 - (NSMutableArray<UILabel *> *)numberlabels {

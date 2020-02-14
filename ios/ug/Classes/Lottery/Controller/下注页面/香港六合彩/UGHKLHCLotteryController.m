@@ -1303,15 +1303,22 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 - (void)initHeaderCollectionView {
     UICollectionViewFlowLayout *layout = ({
         layout = [[UICollectionViewFlowLayout alloc] init];
-        layout.itemSize = CGSizeMake(24, 24);
-        layout.minimumInteritemSpacing = 1;
-        layout.minimumLineSpacing = 1;
+        if (APP.isBall6) {
+            layout.itemSize = CGSizeMake(28, 28);
+            layout.minimumInteritemSpacing = 0;
+            layout.minimumLineSpacing = 0;
+        } else {
+            layout.itemSize = CGSizeMake(24, 24);
+            layout.minimumInteritemSpacing = 1;
+            layout.minimumLineSpacing = 1;
+        }
+
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
         layout.headerReferenceSize = CGSizeMake(300, 3);
         layout;
     });
     UICollectionView *collectionView = ({
-        collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(120 , 5, UGScreenW - 120 , 55) collectionViewLayout:layout];
+        collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(120 , 5, UGScreenW - 120 , 66) collectionViewLayout:layout];
         collectionView.backgroundColor = [UIColor clearColor];
         collectionView.dataSource = self;
         collectionView.delegate = self;

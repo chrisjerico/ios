@@ -246,11 +246,11 @@ static NSString *uuidKey =@"uuidKey";
         num = [NSString stringWithFormat:@"0%@",num];
     }
     if ([redSet containsObject:num]) {
-        return [UIImage imageNamed:@"icon_red"];
+        return [UIImage imageNamed:@"lhc_red"];
     }else if ([blueSet containsObject:num]) {
-        return [UIImage imageNamed:@"icon_blue"];
+        return [UIImage imageNamed:@"lhc_blue"];
     }else {
-        return [UIImage imageNamed:@"icon_green"];
+        return [UIImage imageNamed:@"lhc_green"];
     }
     
 }

@@ -43,11 +43,11 @@
         [self.ballImg setHidden:NO];
         
         if ([@"blue" isEqualToString:color]) {
-            [self.ballImg setImage:[UIImage imageNamed:@"icon_blue"]];
+            [self.ballImg setImage:[UIImage imageNamed:@"lhc_blue"]];
         } else if ([@"red" isEqualToString:color]) {
-            [self.ballImg setImage:[UIImage imageNamed:@"icon_red"]];
+            [self.ballImg setImage:[UIImage imageNamed:@"lhc_red"]];
         } else {
-            [self.ballImg setImage:[UIImage imageNamed:@"icon_green"]];
+            [self.ballImg setImage:[UIImage imageNamed:@"lhc_green"]];
         }
     } else {
         if ([@"blue" isEqualToString:color]) {
@@ -105,8 +105,10 @@
         if (self.showBall6) {
             [self.titleLabel  mas_remakeConstraints:^(MASConstraintMaker *make)
              {
-                make.centerX.equalTo(self.mas_centerX).with.offset(-2);
+                make.centerX.equalTo(self.mas_centerX).with.offset(-1);
+                make.centerY.equalTo(self.mas_centerY).with.offset(-1);
             }];
+            [self.titleLabel setFont:[UIFont systemFontOfSize:12.0]];
             self.titleLabel.textColor = [UIColor blackColor];
             self.backgroundColor = [UIColor clearColor];
         }

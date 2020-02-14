@@ -1152,7 +1152,9 @@ static UGSkinManagers *__initSkin1 = nil;
 	NSString *skitType = dict[SysConf.mobileTemplateCategory];
 #if DEBUG
 	NSLog(@"============================skitType=%@",skitType);
-//	skitType = @"简约模板1";
+//	skitType = @"石榴红";
+        skitType = @"新年红0";
+//        skitType = @"简约模板0";
 #endif
 	return [UGSkinManagers allSkin][skitType];
 
@@ -1195,6 +1197,9 @@ static UGSkinManagers *__initSkin1 = nil;
     return [_skitType containsString:@"简约模板"];
 }
 
+- (BOOL)isSLH {
+    return [_skitType isEqualToString:@"石榴红"];
+}
 + (UIColor *)randomThemeColor {
 #define UIColorTheme1 UGRGBColor(239, 83, 98) // Grapefruit
 #define UIColorTheme2 UGRGBColor(254, 109, 75) // Bittersweet

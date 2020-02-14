@@ -1870,6 +1870,8 @@
 		D42B958623F3E59C0030C653 /* JYLotteryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D42B958523F3E59C0030C653 /* JYLotteryCollectionViewCell.xib */; };
 		D42B958923F3EAD00030C653 /* JYLotteryTitleCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D42B958823F3EAD00030C653 /* JYLotteryTitleCollectionView.m */; };
 		D42E14F323E06CE900F53407 /* PromotionDepositListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D42E14F223E06CE900F53407 /* PromotionDepositListVC.m */; };
+		D4326F0623F6D45200BEEA1B /* BetImgView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4326F0523F6D45200BEEA1B /* BetImgView.m */; };
+		D4326F0923F6D46900BEEA1B /* BetImgView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4326F0823F6D46900BEEA1B /* BetImgView.xib */; };
 		D433EBF723D493F300D31008 /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = D433EBF623D493F300D31008 /* UIImage+Extension.m */; };
 		D435F90423CEF940008648CE /* KMCGeigerCounterTick.aiff in Resources */ = {isa = PBXBuildFile; fileRef = D435F90023CEF940008648CE /* KMCGeigerCounterTick.aiff */; };
 		D435F90523CEF940008648CE /* KMCGeigerCounterTick.aiff in Resources */ = {isa = PBXBuildFile; fileRef = D435F90023CEF940008648CE /* KMCGeigerCounterTick.aiff */; };
@@ -3654,6 +3656,9 @@
 		D42B958823F3EAD00030C653 /* JYLotteryTitleCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JYLotteryTitleCollectionView.m; sourceTree = "<group>"; };
 		D42E14F123E06CE900F53407 /* PromotionDepositListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PromotionDepositListVC.h; sourceTree = "<group>"; };
 		D42E14F223E06CE900F53407 /* PromotionDepositListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PromotionDepositListVC.m; sourceTree = "<group>"; };
+		D4326F0423F6D45200BEEA1B /* BetImgView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BetImgView.h; sourceTree = "<group>"; };
+		D4326F0523F6D45200BEEA1B /* BetImgView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BetImgView.m; sourceTree = "<group>"; };
+		D4326F0823F6D46900BEEA1B /* BetImgView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BetImgView.xib; sourceTree = "<group>"; };
 		D433EBF523D493F300D31008 /* UIImage+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extension.h"; sourceTree = "<group>"; };
 		D433EBF623D493F300D31008 /* UIImage+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extension.m"; sourceTree = "<group>"; };
 		D435F90023CEF940008648CE /* KMCGeigerCounterTick.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = KMCGeigerCounterTick.aiff; sourceTree = "<group>"; };
@@ -5596,6 +5601,9 @@
 				03D6927523C32E0A003D9C12 /* C001BetErrorCustomView.h */,
 				03D6927623C32E0A003D9C12 /* C001BetErrorCustomView.m */,
 				03D6927923C32E1A003D9C12 /* C001BetErrorCustomView.xib */,
+				D4326F0423F6D45200BEEA1B /* BetImgView.h */,
+				D4326F0523F6D45200BEEA1B /* BetImgView.m */,
+				D4326F0823F6D46900BEEA1B /* BetImgView.xib */,
 			);
 			path = "下注明细View";
 			sourceTree = "<group>";
@@ -8270,6 +8278,7 @@
 				031E1D2023BE812B00B0F813 /* UGMissionCenterViewController.storyboard in Resources */,
 				CF4758AA239636D200966536 /* 95.gif in Resources */,
 				031E1CF423BE812A00B0F813 /* SVProgressHUD.bundle in Resources */,
+				D4326F0923F6D46900BEEA1B /* BetImgView.xib in Resources */,
 				031E1BA023BE812900B0F813 /* BMpreferential.storyboard in Resources */,
 				031E1AB223BE812800B0F813 /* icon_arrow_up@2x.png in Resources */,
 				031E1ABA23BE812800B0F813 /* Shade_left@2x.png in Resources */,
@@ -9456,6 +9465,7 @@
 				031E1CF623BE812A00B0F813 /* AFURLResponseSerialization.m in Sources */,
 				031E1CBC23BE812A00B0F813 /* UGCollectionViewCell.m in Sources */,
 				031E1AFE23BE812800B0F813 /* GLEncryptManager.m in Sources */,
+				D4326F0623F6D45200BEEA1B /* BetImgView.m in Sources */,
 				031E1A6A23BE812700B0F813 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				D433EBF723D493F300D31008 /* UIImage+Extension.m in Sources */,
 				D42752CF23EFFA31001E27A0 /* RedEnvelopeVCViewController.m in Sources */,
