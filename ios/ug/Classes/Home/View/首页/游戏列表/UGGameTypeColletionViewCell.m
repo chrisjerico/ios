@@ -24,10 +24,14 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.backgroundColor = Skin1.isBlack ? Skin1.bgColor : Skin1.homeContentColor;
-    self.layer.cornerRadius = 10;
-    self.layer.masksToBounds = YES;
     self.nameLabel.textColor = Skin1.textColor1;
     self.hotImageView.hidden = YES;
+    
+    if (!Skin1.isJY) {
+        self.layer.cornerRadius = 10;
+        self.layer.masksToBounds = YES;
+        [self.nameLabel setFont:[UIFont systemFontOfSize:15]];
+    }
     
     if (APP.isWhite) {
         self.layer.borderWidth = 1;
@@ -65,7 +69,8 @@
 
 - (void)setItem:(GameModel *)item {
     _item = item;
-	self.nameLabel.text = [item.name length] > 0 ? item.name : item.title;
+   
+	self.nameLabel.text =  [CMCommon stringIsNull:item.name] ? item.title : item.title;
 	[self.hasSubSign setHidden: (item.subType.count > 0 ? false : true)];
     [self.imgView sd_setImageWithURL:[NSURL URLWithString:item.icon] placeholderImage:[UIImage imageNamed:@"loading"]];
     
@@ -83,6 +88,8 @@
     subButton(@"热Button").superview.hidden = !(isBlack && item.tipFlag==1);
     subButton(@"大奖Button").superview.hidden = !(isBlack && item.tipFlag==3);
 }
+
+
 
 - (UIImageView *)hasSubSign {
 	if (!_hasSubSign) {

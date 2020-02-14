@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="JYMineCollectionViewCell" id="OBq-2O-x86" customClass="JYMineCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="394" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Azw-CD-Mex">
+                <rect key="frame" x="0.0" y="0.0" width="394" height="50"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3EY-BE-SvC">
+                        <rect key="frame" x="10" y="7.5" width="35" height="35"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="35" id="Wh4-hu-dJx"/>
+                            <constraint firstAttribute="width" constant="35" id="hWF-IA-8S6"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="图片ImageView"/>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="每日签到" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NMc-B6-sCA">
+                        <rect key="frame" x="53" y="14.5" width="69.5" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="b1B-ZV-pOh"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="标题Label"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="200" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZbB-xk-iw6" customClass="IBLabel">
+                        <rect key="frame" x="329" y="12.5" width="25" height="25"/>
+                        <color key="backgroundColor" red="0.78829783200000003" green="0.21705946330000001" blue="0.16467148070000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="25" id="dod-go-yeG"/>
+                            <constraint firstAttribute="height" constant="25" id="y0V-zf-EiN"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.95678490400000005" green="0.96067994830000003" blue="0.96862822770000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="红点Label"/>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="圆角偏移量">
+                                <real key="value" value="12.5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="point" keyPath="圆角倍数">
+                                <point key="value" x="0.0" y="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="jiantouyou" translatesAutoresizingMaskIntoConstraints="NO" id="4iT-3U-FIm">
+                        <rect key="frame" x="360" y="13" width="24" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="6xC-Do-2FW"/>
+                            <constraint firstAttribute="width" constant="24" id="Mtu-X9-guH"/>
+                        </constraints>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="36M-E5-wkC">
+                        <rect key="frame" x="53" y="49" width="341" height="1"/>
+                        <color key="backgroundColor" red="0.85098618268966675" green="0.85097020864486694" blue="0.85098105669021606" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="Dd7-MY-v77"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="36M-E5-wkC" firstAttribute="leading" secondItem="NMc-B6-sCA" secondAttribute="leading" id="1OG-k2-rQv"/>
+                    <constraint firstAttribute="trailing" secondItem="ZbB-xk-iw6" secondAttribute="trailing" constant="40" id="42f-V3-R50"/>
+                    <constraint firstAttribute="trailing" secondItem="36M-E5-wkC" secondAttribute="trailing" id="EpX-AF-rc6"/>
+                    <constraint firstItem="3EY-BE-SvC" firstAttribute="centerY" secondItem="Azw-CD-Mex" secondAttribute="centerY" id="PtI-uR-GlY"/>
+                    <constraint firstItem="3EY-BE-SvC" firstAttribute="leading" secondItem="Azw-CD-Mex" secondAttribute="leading" constant="10" id="WAX-fZ-255"/>
+                    <constraint firstItem="ZbB-xk-iw6" firstAttribute="centerY" secondItem="3EY-BE-SvC" secondAttribute="centerY" id="Ytq-kY-9lT"/>
+                    <constraint firstAttribute="bottom" secondItem="36M-E5-wkC" secondAttribute="bottom" id="Zda-xD-Rsj"/>
+                    <constraint firstItem="4iT-3U-FIm" firstAttribute="centerY" secondItem="3EY-BE-SvC" secondAttribute="centerY" id="cU1-8k-AFh"/>
+                    <constraint firstAttribute="trailing" secondItem="4iT-3U-FIm" secondAttribute="trailing" constant="10" id="hui-gd-gIg"/>
+                    <constraint firstItem="NMc-B6-sCA" firstAttribute="centerY" secondItem="3EY-BE-SvC" secondAttribute="centerY" id="qoZ-i3-834"/>
+                    <constraint firstItem="NMc-B6-sCA" firstAttribute="leading" secondItem="3EY-BE-SvC" secondAttribute="trailing" constant="8" id="qvl-sA-WPq"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <size key="customSize" width="394" height="50"/>
+            <connections>
+                <outlet property="imageView" destination="3EY-BE-SvC" id="YS0-CF-dbs"/>
+                <outlet property="nameLabel" destination="NMc-B6-sCA" id="wFY-RM-6Of"/>
+            </connections>
+            <point key="canvasLocation" x="149.27536231884059" y="32.477678571428569"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="jiantouyou" width="24" height="24"/>
+    </resources>
+</document>

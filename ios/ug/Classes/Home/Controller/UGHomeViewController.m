@@ -335,6 +335,11 @@
 		self.navigationItem.titleView = titleView;
 		
 	}
+    if (Skin1.isJY) {
+       _rollingView.backgroundColor = RGBA(249, 249, 249, 1);
+        [CMCommon setBorderWithView:_rollingView top:YES left:NO bottom:YES right:NO borderColor:RGBA(241, 241, 241, 1) borderWidth:1];
+        
+    }
 	[self.gameNavigationView reloadData];
 }
 
@@ -445,7 +450,12 @@
 
         
 		subView(@"优惠活动Cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor : Skin1.homeContentColor;
-		subImageView(@"公告图标ImageView").image = [[UIImage imageNamed:@"notice"] qmui_imageWithTintColor:Skin1.textColor1];
+        if (Skin1.isJY) {
+            subImageView(@"公告图标ImageView").image = [UIImage imageNamed:@"JY_gg"] ;
+        }
+        else{
+           subImageView(@"公告图标ImageView").image = [[UIImage imageNamed:@"notice"] qmui_imageWithTintColor:Skin1.textColor1];
+        }
 		subImageView(@"优惠活动图标ImageView").image = [[UIImage imageNamed:@"礼品-(1)"] qmui_imageWithTintColor:Skin1.textColor1];
 		subLabel(@"优惠活动标题Label").textColor = Skin1.textColor1;
 		[subButton(@"查看更多优惠活动Button") setTitleColor:Skin1.textColor1 forState:UIControlStateNormal];
@@ -667,7 +677,7 @@
 	}
     
     
-    if ([@"c193" containsString:APP.SiteId]) {
+    if (APP.isCornerRadius) {
         //只需要设置layer层的两个属性
         //设置圆角
         _homeAdsView.layer.cornerRadius =10;
@@ -1014,8 +1024,9 @@
 						/**
 						 #917 c190首页中间游戏导航需增加logo图标，游戏导航栏可进行滑动
 						 */
-						if ([SysConf.mobileTemplateCategory isEqualToString:@"9"] && [@"c190" containsString:APP.SiteId]) {
+                        if (([SysConf.mobileTemplateCategory isEqualToString:@"9"] && [@"c190" containsString:APP.SiteId])|| [Skin1 isJY]) {
 							weakSelf.gameNavigationViewHeight.constant = 80;
+                            weakSelf.gameNavigationView.showsVerticalScrollIndicator = NO;
 						} else {
 							weakSelf.gameNavigationViewHeight.constant = ((sourceData.count - 1)/5 + 1)*80;
 							
@@ -1465,9 +1476,9 @@
 
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
 #ifdef DEBUG
-	[[UGSkinManagers next] useSkin];
-	[HUDHelper showMsg:[UGSkinManagers currentSkin].skitString];
-	return;
+//	[[UGSkinManagers next] useSkin];
+//	[HUDHelper showMsg:[UGSkinManagers currentSkin].skitString];
+//	return;
 #endif
 	
 	if ([cycleScrollView isEqual:self.bannerView]) {

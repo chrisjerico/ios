@@ -16,6 +16,7 @@
 #import "NSMutableArray+KVO.h"
 #import <SafariServices/SafariServices.h>
 
+
 @interface LogVC ()<NSMutableArrayDidChangeDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *reqTableView;     /**<    请求TableView */
 @property (weak, nonatomic) IBOutlet UITableView *paramsTableView;  /**<    参数TableView */
@@ -147,6 +148,7 @@ static LogVC *_logVC = nil;
         [titles addObject:@"聊天室TG"];
         [titles addObject:@"聊天室"];
         UIAlertController *ac = [AlertHelper showAlertView:nil msg:@"请选择操作" btnTitles:[titles arrayByAddingObject:@"取消"]];
+
         
         [ac setActionAtTitle:@"聊天室TG" handler:^(UIAlertAction *aa) {
                 dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{

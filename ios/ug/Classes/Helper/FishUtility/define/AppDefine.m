@@ -10,7 +10,7 @@
 
 
 
-#define __SiteID__ @"c217"
+#define __SiteID__ @"c085"
 
 
 @interface UIStoryboard ()
@@ -128,7 +128,7 @@
         _Test = true;
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
         if (!_SiteId.length) {
-            _SiteId = @"c217";
+            _SiteId = @"c085";
         }
 #endif
         NSLog(@"%@",[_allSites objectWithValue:_SiteId.lowercaseString keyPath:@"siteId"]);
@@ -234,9 +234,38 @@
     if ([@"黑色模板" containsString:Skin1.skitType]) {
         return NO;
     } else {
-        return [@"c190" containsString:_SiteId];
+        if (Skin1.isJY) {
+            return YES;
+        } else {
+             return [@"c190,test10" containsString:_SiteId];
+        }
+       
     }
 }
+
+- (BOOL)isShowArrow {
+    if ([@"黑色模板" containsString:Skin1.skitType]) {
+        return NO;
+    } else {
+        return [@"test10" containsString:_SiteId];
+    }
+}
+
+
+- (BOOL)isCornerRadius {
+    return [@"c193" containsString:_SiteId];
+}
+
+- (BOOL)isFontSystemSize {
+    if (Skin1.isJY) {
+        return YES;
+    } else {
+        return NO;
+    }
+    
+}
+
+
 
 - (BOOL)isBA {
     return [@"c001,c085,c208,a002,c054,c212" containsString:_SiteId];

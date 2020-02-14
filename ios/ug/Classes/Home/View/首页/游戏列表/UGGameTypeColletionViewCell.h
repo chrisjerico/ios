@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) GameModel *item;
 
+
+
 @end
 
 NS_ASSUME_NONNULL_END

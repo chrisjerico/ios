@@ -39,8 +39,10 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
             _titleView = [[UGPlatformTitleCollectionView alloc] initWithFrame:CGRectZero];
             _titleView.backgroundColor = [UIColor clearColor];
             _titleView.platformTitleSelectBlock = ^(NSInteger selectIndex) {
+             NSLog(@"selectIndex ===============%lu",(unsigned long)selectIndex);
                 __self.contentScrollView.contentOffset = CGPointMake(__self.width * selectIndex, 0);
                 [__self refreshHeight];
+    
             };
             [self addSubview:_titleView];
             
@@ -62,7 +64,8 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
 						make.height.equalTo(@50);
 						_titleView.backgroundColor = [UIColor colorWithHex:0xeeeeee];
 
-					} else {
+					}
+                    else {
 						make.left.equalTo(self).offset(APP.isShowLogo ? 0 : 5);
 						make.right.equalTo(self).offset(APP.isShowLogo ? 0 : -5);
 						make.height.equalTo(APP.isShowLogo ? @80 : @55 );
@@ -109,6 +112,7 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
 	NSInteger i = 0;
     for (GameCategoryModel *gcm in gameTypeArray) {
         UGPlatformCollectionView *pcv = [[UGPlatformCollectionView alloc] initWithFrame:CGRectZero];
+        pcv.iid = gcm.iid;
 		pcv.typeIndex = i;
 		pcv.dataArray = gcm.list;
         [pcv xw_addObserverBlockForKeyPath:@"contentSize" block:^(id  _Nonnull obj, id  _Nonnull oldVal, id  _Nonnull newVal) {
@@ -129,8 +133,24 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
 - (void)refreshHeight {
     NSInteger idx = _titleView.selectIndex;
     UGPlatformCollectionView *pcv = _contentStackView.arrangedSubviews[idx];
-    CGFloat h = pcv.contentSize.height + _titleView.height + 5;
-    self.cc_constraints.height.constant = h;
+    CGFloat h ;
+
+    if (Skin1.isJY) {
+        GameCategoryModel *ob =  [self.gameTypeArray objectAtIndex:idx];
+        if ([ob.iid isEqualToString:@"1"]){
+            h = pcv.contentSize.height + _titleView.height + 5 +40;
+            _contentScrollView.cc_constraints.height.constant = h;
+        } else {
+            h = pcv.contentSize.height + _titleView.height + 5 ;
+        }
+         self.cc_constraints.height.constant = h;
+    }
+    else{
+        h = pcv.contentSize.height + _titleView.height + 5;
+         self.cc_constraints.height.constant = h;
+    }
+   NSLog(@"h ==== = %f",h);
+   
 }
 
 

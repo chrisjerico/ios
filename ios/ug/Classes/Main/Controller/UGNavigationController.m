@@ -19,6 +19,8 @@
 #import "UGBetRecordViewController.h"
 #import "UGGameListViewController.h"
 #import "UGDocumentVC.h"
+#import "JYRegisterViewController.h"            // 黑色模板注册
+#import "JYLoginViewController.h"                // 简约模板登录
 #import "UGBMRegisterViewController.h"           // 黑色模板注册
 #import "UGBMLoginViewController.h"              // 黑色模板登录
 #import "UGLoginViewController.h"                // 模板登录
@@ -54,7 +56,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     // 获取哪个类下的导航条,管理自己下导航条
     UINavigationBar *bar = [UINavigationBar appearanceWhenContainedIn:self, nil];
     // 设置背景图片
-//    [bar setBackgroundImage:[UIImage imageNamed:@"Rectangle"] forBarMetrics:UIBarMetricsDefault];
+    //    [bar setBackgroundImage:[UIImage imageNamed:@"Rectangle"] forBarMetrics:UIBarMetricsDefault];
     
     [bar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
 }
@@ -103,71 +105,93 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     
     // 判断下是否是非根控制器
     if (self.childViewControllers.count) { // 不是根控制器
-        // 设置非根控制器的返回按钮
-        // 设置返回按钮
-        UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [backButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [backButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
-        [backButton setImage:[UIImage imageNamed:@"c_navi_back"] forState:UIControlStateNormal];
-        [backButton setImage:[UIImage imageNamed:@"c_navi_back"] forState:UIControlStateHighlighted];
-        [backButton sizeToFit];
-        [backButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-            [NavController1 popViewControllerAnimated:true];
-        }];
-        UIView *containView = [[UIView alloc] initWithFrame:backButton.bounds];
-        [containView addSubview:backButton];
-        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:containView];
-        // 设置返回按钮
-        viewController.navigationItem.leftBarButtonItem = item;
         
-        if ([viewController isKindOfClass:UGBMBrowseViewController.class]||[viewController isKindOfClass:UGBMMemberCenterViewController.class]) {
-             // 不隐藏底部条
-                viewController.hidesBottomBarWhenPushed = NO;
+        
+        
+        
+        if ([viewController isKindOfClass:[UGBMRegisterViewController class]]
+            ||[viewController isKindOfClass:[UGRegisterViewController class]]
+            ||[viewController isKindOfClass:[JYRegisterViewController class]] ) {
+            
+            if (!Skin1.isBlack && !Skin1.isJY){
+                if (![viewController isKindOfClass:[JYRegisterViewController class]]) {
+                    viewController =  _LoadVC_from_storyboard_(@"UGRegisterViewController");
+                }
+                
+            }
+            if (Skin1.isBlack){//黑色模板  注册
+                if (![viewController isKindOfClass:[UGBMRegisterViewController class]]) {
+                    viewController = _LoadVC_from_storyboard_(@"UGBMRegisterViewController");
+                }
+                
+            }
+            if (Skin1.isJY){//简约模板  注册
+                if (![viewController isKindOfClass:[JYRegisterViewController class]]) {
+                    viewController = _LoadVC_from_storyboard_(@"JYRegisterViewController");
+                }
+                
+            }
         }
-        else{
-             // 隐藏底部条
-               viewController.hidesBottomBarWhenPushed = YES;
+        
+        if ([viewController isKindOfClass:[UGBMLoginViewController class]]
+            ||[viewController isKindOfClass:[UGLoginViewController class]]
+            ||[viewController isKindOfClass:[JYLoginViewController class]] ) {
+            
+            if (!Skin1.isBlack && !Skin1.isJY){
+                if (![viewController isKindOfClass:[UGLoginViewController class]]) {
+                    viewController =  _LoadVC_from_storyboard_(@"UGLoginViewController");
+                }
+                
+            }
+            if (Skin1.isBlack){//黑色模板  登录
+                if (![viewController isKindOfClass:[UGBMLoginViewController class]]) {
+                    viewController = _LoadVC_from_storyboard_(@"UGBMLoginViewController");
+                }
+                
+            }
+            if (Skin1.isJY){//简约模板  登录
+                if (![viewController isKindOfClass:[JYLoginViewController class]]) {
+                    viewController = _LoadVC_from_storyboard_(@"JYLoginViewController");
+                }
+                
+            }
         }
-
-//        __weakSelf_(__self);
-//        void (^navPush)(UIViewController *) = ^(UIViewController *vc) {
-//             // 真正在执行跳转
-//            [super pushViewController:viewController animated:animated];
-//        };
-        //如果是黑色模板==》黑色模板  登录 注册  优惠专区
-        //如果不是黑色模板==》登录 注册  优惠专区  优惠活动
-        if ([viewController isKindOfClass:[UGBMRegisterViewController class]] || [viewController isKindOfClass:[UGBMLoginViewController class]]
-            ||[viewController isKindOfClass:[UGRegisterViewController class]] || [viewController isKindOfClass:[UGLoginViewController class]]
-            ||[viewController isKindOfClass:[UGBMpreferentialViewController class]] || [viewController isKindOfClass:[UGPromotionsController class]]
-            ||[viewController isKindOfClass:[UGBMLotteryHomeViewController class]] || [viewController isKindOfClass:[UGYYLotteryHomeViewController class]]) {
-            //黑色模板的登录 注册+不是黑色模板
-            //登录 注册+是黑色模板
-            if (([viewController isKindOfClass:[UGBMRegisterViewController class]] && !Skin1.isBlack)){
-                viewController =  _LoadVC_from_storyboard_(@"UGRegisterViewController");
+        
+        if ([viewController isKindOfClass:[UGBMpreferentialViewController class]]
+            || [viewController isKindOfClass:[UGPromotionsController class]]) {
+            
+            if (Skin1.isBlack ){
+                if (![viewController isKindOfClass:[UGBMpreferentialViewController class]]) {
+                    viewController =  _LoadVC_from_storyboard_(@"UGBMpreferentialViewController");
+                }
+                
             }
-            if (([viewController isKindOfClass:[UGRegisterViewController class]] && Skin1.isBlack)){
-                viewController = _LoadVC_from_storyboard_(@"UGBMRegisterViewController");
+            else{
+                if (![viewController isKindOfClass:[UGPromotionsController class]]) {
+                    viewController =  _LoadVC_from_storyboard_(@"UGPromotionsController");
+                }
+                
             }
-            if (([viewController isKindOfClass:[UGBMLoginViewController class]] && !Skin1.isBlack)){
-                viewController = _LoadVC_from_storyboard_(@"UGLoginViewController");
-            }
-            if (([viewController isKindOfClass:[UGLoginViewController class]] && Skin1.isBlack)){
-                viewController = _LoadVC_from_storyboard_(@"UGBMLoginViewController");
-            }
-            if (([viewController isKindOfClass:[UGBMpreferentialViewController class]] && !Skin1.isBlack)){
-                viewController = _LoadVC_from_storyboard_(@"UGPromotionsController");
-            }
-            if (([viewController isKindOfClass:[UGPromotionsController class]] && Skin1.isBlack)){
-                viewController = _LoadVC_from_storyboard_(@"UGBMpreferentialViewController");
-            }
-            if (([viewController isKindOfClass:[UGBMLotteryHomeViewController class]] && !Skin1.isBlack)){
-                  viewController =  [UGYYLotteryHomeViewController new];
-            }
-            if (([viewController isKindOfClass:[UGYYLotteryHomeViewController class]] && Skin1.isBlack)){
-                viewController =  _LoadVC_from_storyboard_(@"UGBMLotteryHomeViewController");
-            }
-           
         }
+        if ([viewController isKindOfClass:[UGBMLotteryHomeViewController class]]
+            || [viewController isKindOfClass:[UGYYLotteryHomeViewController class]]) {
+            
+            if (Skin1.isBlack ){
+                if (![viewController isKindOfClass:[UGBMLotteryHomeViewController class]]) {
+                    viewController =  _LoadVC_from_storyboard_(@"UGBMLotteryHomeViewController");
+                }
+                
+            }
+            else{
+                if (![viewController isKindOfClass:[UGYYLotteryHomeViewController class]]) {
+                    viewController =  [UGYYLotteryHomeViewController new];
+                }
+                
+            }
+        }
+        
+        
+        
         
         if ([viewController isKindOfClass:[UGLHMineViewController class]] || [viewController isKindOfClass:[UGBMMemberCenterViewController class]]
             ||[viewController isKindOfClass:[UGMineSkinViewController class]] ) {
@@ -199,6 +223,35 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         }
         
     }
+    
+    
+    // 设置非根控制器的返回按钮
+    // 设置返回按钮
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [backButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [backButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
+    [backButton setImage:[UIImage imageNamed:@"c_navi_back"] forState:UIControlStateNormal];
+    [backButton setImage:[UIImage imageNamed:@"c_navi_back"] forState:UIControlStateHighlighted];
+    [backButton sizeToFit];
+    [backButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+        [NavController1 popViewControllerAnimated:true];
+    }];
+    UIView *containView = [[UIView alloc] initWithFrame:backButton.bounds];
+    [containView addSubview:backButton];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:containView];
+    // 设置返回按钮
+    viewController.navigationItem.leftBarButtonItem = item;
+    
+    if ([viewController isKindOfClass:UGBMBrowseViewController.class]||[viewController isKindOfClass:UGBMMemberCenterViewController.class]) {
+        // 不隐藏底部条
+        viewController.hidesBottomBarWhenPushed = NO;
+    }
+    else{
+        // 隐藏底部条
+        viewController.hidesBottomBarWhenPushed = YES;
+    }
+    
+    
     NSLog(@"NavController1= %@",NavController1);
     NSLog(@"NavController1.viewControllers= %@",NavController1.viewControllers);
     NSLog(@"lastVC= %@",NavController1.lastVC);
@@ -220,11 +273,18 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             return;
         }
     }
+    else if ([NavController1.lastVC isKindOfClass:JYLoginViewController.class]&&[viewController isKindOfClass:[JYLoginViewController class]]) {
+        UIViewController *vc = [NavController1.viewControllers objectWithValue:JYLoginViewController.class keyPath:@"class"];
+        if (vc) {
+            [NavController1 popToViewController:vc animated:false];
+            return;
+        }
+    }
     else {
         // 真正在执行跳转
         [super pushViewController:viewController animated:animated];
     }
-   
+    
 }
 
 @end

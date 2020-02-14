@@ -52,7 +52,8 @@
 @property (nonatomic) BOOL lotteryHallCustomImgS;    /**<   彩票大厅自定义图标 */
 @property (nonatomic) BOOL addIcons;    /**<   投注页面开奖旁边添加 开奖直播 长龙助手 开奖网  */
 @property (nonatomic) BOOL isBA;    /**<   六合彩的特码A 和特码B 换一下位置 */
-@property (nonatomic) BOOL isShowLogo;    /**<  首页中间游戏导航需增加logo图标，游戏导航栏可进行滑动 */
+@property (nonatomic) BOOL isShowLogo;    /**<  首页中间游戏导航需增加logo图标，游戏导航栏可进行滑动  有左右箭头*/
+@property (nonatomic) BOOL isShowArrow;    /**<  首页中间游戏导航需增加左右箭头 */
 @property (nonatomic) BOOL isShow4;    /**<  任务中心显示4个，不显示图片 */
 @property (nonatomic) BOOL isShowWZ;    /**<  将选填 这两个字更换为  如果没有，可不填写 */
 @property (nonatomic) BOOL isShowJinbei;    /**<  显示金杯 */
@@ -67,6 +68,8 @@
 @property (nonatomic) BOOL isYellow;    /**<  下注界面已选中数字为亮黄色*/
 @property (nonatomic) BOOL isBall6;    /**<  下注界面六合彩上面显示为球图*/
 @property (nonatomic) BOOL isLight;    /**<  下注界面背景色变淡*/
+@property (nonatomic) BOOL isCornerRadius;    /**<  首页广告View加圆角*/
+@property (nonatomic) BOOL isFontSystemSize;    /**<  首页导航文字不加粗*/
                                        
 // 热更新相关字段
 @property (nonatomic) BOOL Test;                        /**<   是否是测试环境 */

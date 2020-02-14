@@ -32,6 +32,12 @@
 		[self setBackgroundColor: [UIColor redColor]];
 
 	}
+    if (Skin1.isJY) {
+        _title2Label.textColor = RGBA(117, 117, 117, 1);
+        [self setBackgroundColor: [UIColor whiteColor]];
+        [_title2Label setFont:[UIFont systemFontOfSize:16]];
+
+    }
 }
 
 - (void)setItem:(GameCategoryModel *)item {
@@ -80,6 +86,16 @@
 	if ([Skin1.skitType isEqualToString:@"金沙主题"]) {
 		_titleLabel.textColor = selected ?  UIColor.redColor : [UIColor colorWithHex:0x111111];
 	}
+    if (Skin1.isJY) {
+        _title2Label.textColor = selected ? RGBA(217, 157, 63, 1) : RGBA(117, 117, 117, 1);
+        if (selected) {
+             [CMCommon setBorderWithView:self top:NO left:NO bottom:YES right:NO borderColor:RGBA(217, 157, 63, 1)  borderWidth:1];
+        }
+        else{
+             [CMCommon setBorderWithView:self top:NO left:NO bottom:YES right:NO borderColor:UIColor.whiteColor  borderWidth:1];
+        }
+       
+    }
 }
 
 @end

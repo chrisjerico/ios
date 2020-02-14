@@ -26,7 +26,7 @@
 /**
  *  手机唯一码
  *
- *  @return <#return value description#>
+ *  @return
  */
 +(NSString *)createUUID;
 

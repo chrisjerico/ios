@@ -13,16 +13,16 @@
 #import "JS_HomeGameCollectionCell.h"
 #import "JS_HomeGameColletionCell_1.h"
 #import "HSC_HomeGameCollectionCell.h"
+#import "JYLotteryTitleCollectionView.h"
+#import "JYGameCollectionViewCell.h"
 
-
-
-@interface UGPlatformCollectionView()<UICollectionViewDelegate, UICollectionViewDataSource>
+@interface UGPlatformCollectionView()<UICollectionViewDelegate, UICollectionViewDataSource,WSLWaterFlowLayoutDelegate>
 {
     NSIndexPath * _selectedPath;
 }
 
 @property (nonatomic, strong) NSMutableArray <NSArray *> *sectionedDataArray;
-
+@property (strong, nonatomic)  JYLotteryTitleCollectionView *tvHeaderView;
 @end
 
 static NSString *gameCellid = @"UGGameTypeColletionViewCell";
@@ -31,24 +31,59 @@ static NSString *gameCellid = @"UGGameTypeColletionViewCell";
 static NSString *const headerId = @"headerId";
 static NSString *const footerId = @"footerId";
 
+#pragma mark - 设置表头方式一
+
+- (void)contentInsetHeaderView :(NSArray <GameModel *> *)  arry{
+    
+    NSMutableArray <GameModel *> * headArray = [NSMutableArray new];
+    
+    for (GameModel *model in arry) {
+        if (model.subType.count) {
+            [headArray addObject:model];
+        }
+    }
+    
+    if (headArray.count) {
+        CGFloat header_y = 40;
+        // CGFloat top, left, bottom, right;
+        self.contentInset = UIEdgeInsetsMake(header_y, 0, 0, 0);
+        if (!_tvHeaderView) {
+            _tvHeaderView = [[JYLotteryTitleCollectionView alloc] initWithFrame:CGRectMake(0, 0,APP.Width , 40.0)];
+            _tvHeaderView.frame = CGRectMake(0, -header_y, [UIScreen mainScreen].bounds.size.width, header_y);
+            _tvHeaderView.list = headArray;
+            [self addSubview:_tvHeaderView];
+        }
+        __weakSelf_(__self);
+        _tvHeaderView.jygameTypeSelectBlock = ^(NSArray* subType) {
+            [__self jyLoadData: subType];
+        };
+        [self setContentOffset:CGPointMake(0, -header_y)];
+    }
+}
+
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
-    UICollectionViewFlowLayout *layout = ({
-        layout = [[UICollectionViewFlowLayout alloc] init];
-        layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-        layout.minimumInteritemSpacing = 1;
-        layout.minimumLineSpacing = 1;
-        layout;
-    });
-    self = [super initWithFrame:frame collectionViewLayout:layout];
+    
+    
+    {
+        UICollectionViewFlowLayout *layout = ({
+            layout = [[UICollectionViewFlowLayout alloc] init];
+            layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+            layout.minimumInteritemSpacing = 1;
+            layout.minimumLineSpacing = 1;
+            
+            layout;
+        });
+        self = [super initWithFrame:frame collectionViewLayout:layout];
+    }
+    
     if (self) {
         [self registerNib:[UINib nibWithNibName:@"UGGameTypeColletionViewCell" bundle:nil] forCellWithReuseIdentifier:gameCellid];
         [self registerNib:[UINib nibWithNibName:@"JS_HomeGameCollectionCell" bundle:nil] forCellWithReuseIdentifier:@"JS_HomeGameCollectionCell"];
         [self registerNib:[UINib nibWithNibName:@"JS_HomeGameColletionCell_1" bundle:nil] forCellWithReuseIdentifier:@"JS_HomeGameColletionCell_1"];
         [self registerNib:[UINib nibWithNibName:@"HSC_HomeGameCollectionCell" bundle:nil] forCellWithReuseIdentifier:@"HSC_HomeGameCollectionCell"];
-        
-        [self registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerId];
+        [self registerNib:[UINib nibWithNibName:@"JYGameCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"JYGameCollectionViewCell"];
         [self registerClass:[CollectionFooter class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:footerId];
         self.delegate = self;
         self.dataSource = self;
@@ -56,13 +91,59 @@ static NSString *const footerId = @"footerId";
             self.backgroundColor = [UIColor colorWithHex:0xf2f2f2];
         } else if ([Skin1.skitType isEqualToString:@"火山橙"]) {
             self.backgroundColor = [UIColor colorWithHex:0xf2f2f2];
-        } else {
+        }
+        else if (Skin1.isJY) {
+            self.backgroundColor = UIColor.whiteColor;
+        }
+        else {
             self.backgroundColor = UIColor.clearColor;
         }
     }
     return self;
 }
 
+
+-(void)setIid:(NSString *)iid{
+    _iid  = iid;
+    if (Skin1.isJY) {
+        if (Skin1.isJY) {
+            if ([self.iid isEqualToString:@"7"]
+                ||[self.iid isEqualToString:@"1"] ) {
+                WSLWaterFlowLayout * _flow;
+                _flow = [[WSLWaterFlowLayout alloc] init];
+                _flow.delegate = self;
+                _flow.flowLayoutStyle = WSLWaterFlowVerticalEqualHeight;
+                [self setCollectionViewLayout:_flow];
+            } else {
+                UICollectionViewFlowLayout *layout = ({
+                    layout = [[UICollectionViewFlowLayout alloc] init];
+                    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+                    layout.minimumInteritemSpacing = 10;
+                    layout.minimumLineSpacing = 10;
+                    
+                    layout;
+                });
+                [self setCollectionViewLayout:layout];
+            }
+            
+        }
+    }
+}
+
+-(void)jyLoadData:(NSArray<GameModel *> *)dataArray {
+    [self.sectionedDataArray removeAllObjects];
+    NSMutableArray * tempArray = [NSMutableArray array];
+    if (dataArray.count) {
+        for (int i=0; i<dataArray.count; i++) {
+            [tempArray addObject:dataArray[i]];
+            if (((i + 1) % 4 == 0) || (i == dataArray.count - 1)) {
+                [self.sectionedDataArray addObject: [tempArray mutableCopy]];
+                [tempArray removeAllObjects];
+            }
+        }
+    }
+    [self reloadData];
+}
 
 - (void)setDataArray:(NSArray<GameModel *> *)dataArray {
     _dataArray = dataArray;
@@ -95,7 +176,63 @@ static NSString *const footerId = @"footerId";
             }
         }
         
-    } else {
+    }
+    else if (Skin1.isJY) {
+        if ([self.iid isEqualToString:@"1"]) {
+            // 3.GCD
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // UI更新代码
+                [self contentInsetHeaderView :self.dataArray];
+            });
+            
+            NSMutableArray <GameModel *> * headArray = [NSMutableArray new];
+            
+            for (GameModel *model in _dataArray) {
+                if (model.subType.count) {
+                    [headArray addObject:model];
+                }
+            }
+            
+            if (headArray.count) {
+                GameModel *model  = [headArray objectAtIndex:0];
+                
+                for (int i=0; i<model.subType.count; i++) {
+                    [tempArray addObject:model.subType[i]];
+                    if (((i + 1) % 4 == 0) || (i == model.subType.count - 1)) {
+                        [self.sectionedDataArray addObject: [tempArray mutableCopy]];
+                        [tempArray removeAllObjects];
+                    }
+                }
+            }
+            else{
+                for (int i=0; i<dataArray.count; i++) {
+                    [tempArray addObject:dataArray[i]];
+                    if (((i + 1) % 4 == 0) || (i == dataArray.count - 1)) {
+                        [self.sectionedDataArray addObject: [tempArray mutableCopy]];
+                        [tempArray removeAllObjects];
+                    }
+                }
+            }
+            
+        }
+        else if([self.iid isEqualToString:@"7"]){
+            for (int i=0; i<dataArray.count; i++) {
+                [tempArray addObject:dataArray[i]];
+                if (((i + 1) % 4 == 0) || (i == dataArray.count - 1)) {
+                    [self.sectionedDataArray addObject: [tempArray mutableCopy]];
+                    [tempArray removeAllObjects];
+                }
+            }
+        }
+        else{
+            for (GameModel * game in dataArray) {
+                [self.sectionedDataArray addObject:@[game] ];
+            }
+        }
+        
+    }
+    else {
         for (int i=0; i<dataArray.count; i++) {
             [tempArray addObject:dataArray[i]];
             if (((i + 1) % 3 == 0) || (i == dataArray.count - 1)) {
@@ -119,11 +256,15 @@ static NSString *const footerId = @"footerId";
 #pragma mark - UICollectionViewDelegate
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return self.sectionedDataArray.count;
+
+        return self.sectionedDataArray.count;
+ 
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return ((NSArray *)self.sectionedDataArray[section]).count;
+
+        return ((NSArray *)self.sectionedDataArray[section]).count;
+
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -138,9 +279,33 @@ static NSString *const footerId = @"footerId";
     }else if ([Skin1.skitType isEqualToString:@"火山橙"]) {
         HSC_HomeGameCollectionCell *cell =  [collectionView dequeueReusableCellWithReuseIdentifier:@"HSC_HomeGameCollectionCell" forIndexPath:indexPath];
         [cell bind:((NSArray *)self.sectionedDataArray[indexPath.section])[indexPath.row]];
+        
         return cell;
-    } else {
+    }
+    else if (Skin1.isJY) {
+        if ([self.iid isEqualToString:@"7"]
+            ||[self.iid isEqualToString:@"1"] ) {
+            UGGameTypeColletionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:gameCellid forIndexPath:indexPath];
+            if ([self.iid isEqualToString:@"1"]) {
+                cell.item = (GameSubModel *)((NSArray *)self.sectionedDataArray[indexPath.section])[indexPath.row];
+            } else {
+                cell.item = ((NSArray *)self.sectionedDataArray[indexPath.section])[indexPath.row];
+            }
+            [cell setBackgroundColor: [UIColor whiteColor]];
+            cell.layer.borderWidth = 0.7;
+            cell.layer.borderColor = [[UIColor colorWithHex:0xE4E4E4] CGColor];
+            return cell;
+        } else {
+            JYGameCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"JYGameCollectionViewCell" forIndexPath:indexPath];
+            GameModel *ob = [[self.sectionedDataArray objectAtIndex:indexPath.section] objectAtIndex:0];
+            cell.item = ob;
+            
+            return cell;
+        }
+    }
+    else {
         UGGameTypeColletionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:gameCellid forIndexPath:indexPath];
+        
         cell.item = ((NSArray *)self.sectionedDataArray[indexPath.section])[indexPath.row];
         
         return cell;
@@ -154,14 +319,18 @@ static NSString *const footerId = @"footerId";
     
     if([kind isEqualToString:UICollectionElementKindSectionHeader])
     {
-        UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:headerId forIndexPath:indexPath];
-        if(headerView == nil)
-        {
-            headerView = [[UICollectionReusableView alloc] init];
-        }
-        headerView.backgroundColor = [UIColor clearColor];
         
-        return headerView;
+        {
+            UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:headerId forIndexPath:indexPath];
+            if(headerView == nil)
+            {
+                headerView = [[UICollectionReusableView alloc] init];
+            }
+            headerView.backgroundColor = [UIColor clearColor];
+            
+            return headerView;
+        }
+        
     }
     else if([kind isEqualToString:UICollectionElementKindSectionFooter])
     {
@@ -188,7 +357,21 @@ static NSString *const footerId = @"footerId";
         return CGSizeMake(UGScreenW, 80);
     }else if ([Skin1.skitType isEqualToString:@"火山橙"]) {
         return CGSizeMake((UGScreenW - 7)/2, 90);
-    } else {
+    }
+    else if (Skin1.isJY) {
+        if ([self.iid isEqualToString:@"7"]
+            ||[self.iid isEqualToString:@"1"] ) {
+             CGFloat itemW = (UGScreenW -7)/4.0;
+                  return CGSizeMake(itemW, 120);
+        } else {
+              CGFloat itemW = (UGScreenW -7);
+//            CGFloat itemH = 214/734 *(UGScreenW -7);        return CGSizeMake(itemW, itemH);
+                  return CGSizeMake(itemW, 110);
+                      
+        }
+      
+    }
+    else {
         return CGSizeMake(UGScreenW/3-10, 110);
         
     }
@@ -199,7 +382,17 @@ static NSString *const footerId = @"footerId";
         return UIEdgeInsetsZero;
     } else if ([Skin1.skitType isEqualToString:@"火山橙"]) {
         return UIEdgeInsetsZero;
-    }else {
+    }
+    else if (Skin1.isJY) {
+        if ([self.iid isEqualToString:@"7"]
+            ||[self.iid isEqualToString:@"1"] ) {
+             return UIEdgeInsetsZero;
+        } else {
+            return UIEdgeInsetsMake(6, 5, 0, 5);
+        }
+       
+    }
+    else {
         return UIEdgeInsetsMake(6, 5, 0, 5);
         
     }
@@ -210,7 +403,16 @@ static NSString *const footerId = @"footerId";
         return 1.0f;
     } else if ([Skin1.skitType isEqualToString:@"火山橙"]) {
         return 1.0f;
-    } else {
+    }
+    else if (Skin1.isJY) {
+         if ([self.iid isEqualToString:@"7"]
+                   ||[self.iid isEqualToString:@"1"] ) {
+                     return 0.f;
+               } else {
+                   return 10.0f;
+               }
+    }
+    else {
         return 0.f;
         
     }
@@ -221,17 +423,30 @@ static NSString *const footerId = @"footerId";
         return 1.0f;
     } else if ([Skin1.skitType isEqualToString:@"火山橙"]) {
         return 1.0f;
-    } else {
+    }
+    else if (Skin1.isJY) {
+       if ([self.iid isEqualToString:@"7"]
+                         ||[self.iid isEqualToString:@"1"] ) {
+                           return 0.f;
+                     } else {
+                         return 10.0f;
+                     }
+    }
+    else {
         return 0.f;
         
-    }}
+    }
+    
+}
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
     if ([Skin1.skitType isEqualToString:@"火山橙"]) {
         return (CGSize){UGScreenW,1};
     } else {
-        return CGSizeMake(UGScreenW, 0);
-        
+        {
+            return CGSizeMake(UGScreenW, 0);
+        }
+    
     }
 }
 
@@ -243,9 +458,45 @@ static NSString *const footerId = @"footerId";
         return (CGSize){UGScreenW,1};
     } else if ([Skin1.skitType isEqualToString:@"火山橙"]) {
         return (CGSize){UGScreenW,0};
-    } else {
+    }
+    else if (Skin1.isJY) {
         return (CGSize){UGScreenW,0};
     }
+    else {
+        return (CGSize){UGScreenW,0};
+    }
+}
+
+
+#pragma mark - WSLWaterFlowLayoutDelegate
+//返回每个item大小
+- (CGSize)waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    CGFloat itemW = (UGScreenW -7)/4.0;
+    return CGSizeMake(itemW, 120);
+    
+}
+
+/** 列数*/
+-(CGFloat)columnCountInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
+    return 1;
+}
+/** 行数*/
+//-(CGFloat)rowCountInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
+//    return 5;
+//}
+/** 列间距*/
+-(CGFloat)columnMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
+    return 0;
+}
+/** 行间距*/
+-(CGFloat)rowMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
+    return 0;
+}
+/** 边缘之间的间距*/
+-(UIEdgeInsets)edgeInsetInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
+    
+    return UIEdgeInsetsMake(0, 0, 0,0);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
