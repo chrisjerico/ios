@@ -76,7 +76,13 @@
     UILabel *label = [cell viewWithTagString:@"label"];
     if (!label) {
         label = [UILabel new];
-        label.textColor = [UIColor grayColor];
+        if (APP.isChatWhite && !APP.betBgIsWhite) {
+            label.textColor = [UIColor whiteColor];
+        }
+        else{
+            label.textColor = [UIColor grayColor];
+        }
+        
         label.textAlignment = NSTextAlignmentCenter;
         label.font = [UIFont systemFontOfSize:16];
         label.tagString = @"label";

@@ -232,13 +232,17 @@
 		
 		__weak_Obj_(ssv1, __ssv1);
 		ssv1.titleBar.didSelectItemAtIndexPath = ^(UICollectionViewCell *cell, UILabel *label, NSUInteger idx, BOOL selected) {
-			label.textColor = selected ? Skin1.textColor1 : Skin1.textColor2;
-			
-			if (!idx && !selected) {
-				label.textColor = [UIColor whiteColor];
-			}
+            if (APP.isChatWhite && !APP.betBgIsWhite) {
+                label.textColor = [UIColor whiteColor];
+            } else {
+                label.textColor = selected ? Skin1.textColor1 : Skin1.textColor2;
+                if (!idx && !selected) {
+                    label.textColor = [UIColor whiteColor];
+                }
+            }
+
 			label.font = selected ? [UIFont boldSystemFontOfSize:16] : [UIFont systemFontOfSize:14];
-			cell.backgroundColor = selected ? [[UIColor grayColor] colorWithAlphaComponent:0.1] : [UIColor clearColor];
+			cell.backgroundColor = selected ? [[UIColor grayColor] colorWithAlphaComponent:0.25] : [UIColor clearColor];
 			__ssv1.titleBar.backgroundColor = Skin1.isBlack || idx || !APP.betBgIsWhite ? Skin1.navBarBgColor : [UIColor whiteColor];
 		};
 		ssv1.didSelectedIndex = ^(NSUInteger idx) {

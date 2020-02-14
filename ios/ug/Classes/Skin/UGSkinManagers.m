@@ -1152,7 +1152,7 @@ static UGSkinManagers *__initSkin1 = nil;
 	NSString *skitType = dict[SysConf.mobileTemplateCategory];
 #if DEBUG
 	NSLog(@"============================skitType=%@",skitType);
-	skitType = @"简约模板1";
+//	skitType = @"简约模板1";
 #endif
 	return [UGSkinManagers allSkin][skitType];
 

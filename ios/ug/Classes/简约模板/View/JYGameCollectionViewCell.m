@@ -20,8 +20,9 @@
     UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:item.icon]]];
     if (image) {
           
-               CGFloat w = APP.Width - 20;
+               CGFloat w = APP.Width - 16;
                CGFloat h = 214.0/724.0 * w;
+//                CGFloat h = (image.height/image.width) * w;
                self.imgView.cc_constraints.height.constant = h;
            
            [self.imgView  sd_setImageWithURL:[NSURL URLWithString:item.icon]];   // 由于要支持gif动图，还是用sd加载
