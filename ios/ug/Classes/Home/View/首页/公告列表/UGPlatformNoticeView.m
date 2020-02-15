@@ -129,13 +129,19 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
     
     // 加载html
     {
+        static UGNoticeModel *__nm = nil;
+        __nm = nm;
+        
         UIWebView *wv = [cell viewWithTagString:@"WebView"];
         if (!wv) {
             wv = [UIWebView new];
             wv.backgroundColor = [UIColor clearColor];
             wv.tagString = @"WebView";
             [wv xw_addObserverBlockForKeyPath:@"scrollView.contentSize" block:^(id  _Nonnull obj, id  _Nonnull oldVal, id  _Nonnull newVal) {
-                CGFloat h = [newVal CGSizeValue].height + 5;
+                NSLog(@"newH === %f",[newVal CGSizeValue].height);
+                NSLog(@"oldH === %f",[oldVal CGSizeValue].height);
+                CGFloat h = __nm.cellHeight = [newVal CGSizeValue].height;
+                NSLog(@"高度==========%f",h);
                 [obj mas_updateConstraints:^(MASConstraintMaker *make) {
                     make.height.mas_equalTo(h);
                 }];
@@ -150,9 +156,12 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
                 make.height.mas_equalTo(60);
             }];
         }
-//        wv.scrollView.contentSize = CGSizeMake(100, 100);
-        NSLog(@"内容 = %@",nm.content);
-        [wv loadHTMLString:_NSString(@"<head><style>img{width:auto !important;max-width:%f;height:auto}</style></head>%@", self.width-30, nm.content) baseURL:nil];
+
+        wv.scrollView.contentSize = CGSizeMake(100, __nm.cellHeight);
+        NSLog(@"内容 ============================= %@",__nm.content);
+        NSString *str = _NSString(@"<head><style>img{width:auto !important;max-width:%f;height:auto}</style></head>%@", self.width-30, __nm.content);
+        NSLog(@"str ======%@",str);
+        [wv loadHTMLString:_NSString(@"<head><style>img{width:auto !important;max-width:%f;height:auto}</style></head>%@", self.width-30, __nm.content) baseURL:nil];
     }
     
     
