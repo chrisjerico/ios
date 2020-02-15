@@ -11,6 +11,8 @@
 
 @interface UGBetResultView()
 
+//用于保存[@"7", @"11", @"9"]  11 为六合秒秒彩
+
 @property(nonatomic, strong) NSMutableArray<BetImgView *> * numberImgVs;//用于加载球图图片
 
 @property(nonatomic, strong) NSMutableArray<UILabel *> * numberlabels;
@@ -29,20 +31,8 @@
 @end
 @implementation UGBetResultView
 
-static UGBetResultView *_singleInstance = nil;
 
-+ (instancetype)shareInstance {
-	static dispatch_once_t onceToken;
-	dispatch_once(&onceToken, ^{
-		if (_singleInstance == nil) {
-			_singleInstance = [[self alloc]init];
-		}
-	});
-	return _singleInstance;
-}
-
-
-- (instancetype)init
+- (instancetype)initWithShowSecondLine :(BOOL)showSecondLine
 {
 	self = [super init];
 	if (self) {
@@ -86,7 +76,7 @@ static UGBetResultView *_singleInstance = nil;
                 UIStackView *sv = [UIStackView new];
                 [v addSubview:({
                     
-                    if (APP.isBall) {
+                    if (APP.isBall &&  showSecondLine) {
                         sv.spacing = 0;
                         sv.axis = UILayoutConstraintAxisHorizontal;
                         for (int i = 0; i < 10 ; i ++) {
@@ -129,7 +119,7 @@ static UGBetResultView *_singleInstance = nil;
                 v.backgroundColor = [UIColor clearColor];
                 UIStackView *sv = [UIStackView new];
                 [v addSubview:({
-                    if (APP.isBall) {
+                    if (APP.isBall && showSecondLine) {
                            sv.spacing = 9;
                     } else {
                            sv.spacing = 3;
@@ -138,12 +128,18 @@ static UGBetResultView *_singleInstance = nil;
                     sv.axis = UILayoutConstraintAxisHorizontal;
                     for (int i = 0; i < 10 ; i ++) {
                         UILabel * label = [UILabel new];
-                        label.textColor = [UIColor colorWithHex:0x2c962c];
+                        label.textColor = [UIColor blackColor];
                         label.backgroundColor = [UIColor whiteColor];
-                        label.font = [UIFont systemFontOfSize: 10];
+                        label.font = [UIFont boldSystemFontOfSize: 12];
                         label.layer.borderWidth = 0.5;
                         label.layer.cornerRadius = 2;
                         label.layer.borderColor = UIColor.grayColor.CGColor;
+                        if (i == 6) {
+                            if (APP.isBall && showSecondLine) {
+                                label.layer.borderColor = [UIColor clearColor].CGColor;
+                                label.backgroundColor = [UIColor clearColor];
+                            }
+                        }
                         label.textAlignment = NSTextAlignmentCenter;
                         [self.resultlabels addObject:label];
                         [sv addArrangedSubview:label];
@@ -159,7 +155,12 @@ static UGBetResultView *_singleInstance = nil;
                 }];
                 v;
             })]];
-            stackView.spacing = 3;
+            if (APP.isBall && showSecondLine) {
+                stackView.spacing = 1;
+            } else {
+                stackView.spacing = 3;
+            }
+            
             stackView.axis = UILayoutConstraintAxisVertical;
             [self addSubview:stackView];
             [stackView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -185,35 +186,47 @@ static UGBetResultView *_singleInstance = nil;
 }
 
 
-+ (void)showWith:(UGBetDetailModel *)model showSecondLine:(BOOL)showSecondLine timerAction:(void(^)(dispatch_source_t timer))timerAction {
-	UGBetResultView * resultView = [UGBetResultView shareInstance] ;
+- (void)showWith:(UGBetDetailModel *)model showSecondLine:(BOOL)showSecondLine timerAction:(void(^)(dispatch_source_t timer))timerAction {
 
-	[resultView removeFromSuperview];
+	[self removeFromSuperview];
 	
 	UIWindow * window = [[UIApplication sharedApplication] keyWindow] ;
 	
-	[window addSubview: resultView];
+	[window addSubview: self];
 	
 	
-	[resultView mas_makeConstraints:^(MASConstraintMaker *make) {
+	[self mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.edges.equalTo(window);
 	}];
 	
+    
+    
 	NSArray<NSString *> * numbers = [model.openNum componentsSeparatedByString: @","];
 
 	for (int i = 0; i < 10; i ++) {
         
-        if (APP.isBall) {
-            BetImgView * bet = resultView.numberImgVs[i];
-            if (i < numbers.count) {
+        if (APP.isBall  &&  showSecondLine) {
+            BetImgView * bet = self.numberImgVs[i];
+            if (i < 8) {
                 bet.hidden = false;
-                bet.titleLabel.text = numbers[i];
-                [bet.ballImgV setImage:[CMCommon getHKLotteryNumColorImg:numbers[i]]];
+                if (i <  6) {
+                     bet.titleLabel.text = numbers[i];
+                    [bet.ballImgV setImage:[CMCommon getHKLotteryNumColorImg:numbers[i]]];
+               
+                }
+                else if(i == 6){
+                     bet.titleLabel.text = @"+";
+                }
+                else {
+                     bet.titleLabel.text = numbers[i - 1];
+                    [bet.ballImgV setImage:[CMCommon getHKLotteryNumColorImg:numbers[i - 1]]];
+                }
+            
             } else {
                 bet.hidden = true;
             }
         } else {
-            UILabel * label = resultView.numberlabels[i];
+            UILabel * label = self.numberlabels[i];
             if (i < numbers.count) {
                 label.hidden = false;
                 label.text = numbers[i];
@@ -232,27 +245,47 @@ static UGBetResultView *_singleInstance = nil;
 	}
     
 	NSArray<NSString *> * results = [model.result componentsSeparatedByString: @","];
-	for (int i = 0; i < 10; i ++) {
-		UILabel *label = resultView.resultlabels[i];
-		if (i < results.count) {
-            label.hidden = false;
-			label.text = results[i];
-		} else {
-            label.hidden = true;
-		}
-	}
-	[resultView viewWithTagString:@"第二行结果View"].hidden = !showSecondLine;
+    for (int i = 0; i < 10; i ++) {
+        if (APP.isBall  &&  showSecondLine) {
+            UILabel *label = self.resultlabels[i];
+            if (i < 8) {
+                label.hidden = false;
+                if (i <  6) {
+                     label.text = results[i];
+                }
+                else if(i == 6){
+                     label.text = @"+";
+                }
+                else {
+                    label.text = results[i - 1];
+                }
+                
+            } else {
+                label.hidden = true;
+            }
+        }
+        else{
+            UILabel *label = self.resultlabels[i];
+            if (i < results.count) {
+                label.hidden = false;
+                label.text = results[i];
+            } else {
+                label.hidden = true;
+            }
+        }
+    }
+	[self viewWithTagString:@"第二行结果View"].hidden = !showSecondLine;
     
 	if ([model.bonus floatValue] > 0) {
-		resultView.bonusLabel.text = [NSString stringWithFormat:@"+%@", model.bonus];
-		resultView.resultImage.image = [UIImage imageNamed:@"mmczjl"];
+		self.bonusLabel.text = [NSString stringWithFormat:@"+%@", model.bonus];
+		self.resultImage.image = [UIImage imageNamed:@"mmczjl"];
 	} else {
-		resultView.bonusLabel.text = @"再接再历";
-		resultView.resultImage.image = [UIImage imageNamed:@"mmcwzj"];
+		self.bonusLabel.text = @"再接再历";
+		self.resultImage.image = [UIImage imageNamed:@"mmcwzj"];
 
 	}
 	
-    resultView.timerAction = timerAction;
+    self.timerAction = timerAction;
 }
 
 - (UIButton *)closeButton {
@@ -337,10 +370,10 @@ static BOOL paused = true;
 
 - (void)closeButtonTaped {
 	if (paused) {
-		UGBetResultView * resultView = [UGBetResultView shareInstance] ;
-		[resultView removeFromSuperview];
-		if (resultView.timer) {
-			dispatch_source_cancel(resultView.timer);
+	
+		[self removeFromSuperview];
+		if (self.timer) {
+			dispatch_source_cancel(self.timer);
 			preparedToClose = false;
 			paused = true;
 		}

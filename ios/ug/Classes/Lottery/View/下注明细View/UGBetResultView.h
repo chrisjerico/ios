@@ -13,9 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UGBetResultView : UIView
 
-+ (instancetype)shareInstance;
+- (instancetype)initWithShowSecondLine :(BOOL)showSecondLine;
 
-+(void)showWith:(UGBetDetailModel *)model showSecondLine:(BOOL)show timerAction:(void(^)(dispatch_source_t timer))timerAction;
+-(void)showWith:(UGBetDetailModel *)model showSecondLine:(BOOL)show timerAction:(void(^)(dispatch_source_t timer))timerAction;
 
 - (void)closeButtonTaped;
 @end

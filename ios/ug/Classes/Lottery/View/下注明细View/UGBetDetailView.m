@@ -181,7 +181,12 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 			// 秒秒彩系列（即时开奖无需等待）
 			if ([@[@"7", @"11", @"9"] containsObject:self.nextIssueModel.gameId]) {
                 BOOL showSecondLine = [@[@"11"] containsObject:self.nextIssueModel.gameId]; // 六合秒秒彩
-				[UGBetResultView showWith:model.data showSecondLine:showSecondLine timerAction:^(dispatch_source_t  _Nonnull timer) {
+                UGBetDetailModel *mod = (UGBetDetailModel *)model.data;
+                mod.gameId = self.nextIssueModel.gameId;
+                
+                UGBetResultView *bet = [[UGBetResultView alloc] initWithShowSecondLine:showSecondLine];
+                
+				[bet showWith:mod showSecondLine:showSecondLine timerAction:^(dispatch_source_t  _Nonnull timer) {
 					[self submitBet:params];
 				}];
 			} else {
