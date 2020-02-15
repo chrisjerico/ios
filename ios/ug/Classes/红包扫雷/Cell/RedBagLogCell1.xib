@@ -23,26 +23,31 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ey8-rq-6mH">
                                 <rect key="frame" x="0.0" y="0.0" width="138" height="50"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2020-09-09 23:56:99 123123" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ij-ch-9gH">
-                                        <rect key="frame" x="0.0" y="10" width="138" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="DaR-Ag-AEM"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="时间Label"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="tsc-lM-n9d">
+                                        <rect key="frame" x="0.0" y="0.0" width="138" height="50"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2020-02-04" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KR6-Nq-ugk">
+                                                <rect key="frame" x="0.0" y="0.0" width="138" height="24.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" red="0.51326191425323486" green="0.53313243389129639" blue="0.54902046918869019" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12:23:11" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="low-rd-Wck">
+                                                <rect key="frame" x="0.0" y="25.5" width="138" height="24.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" red="0.474051833152771" green="0.49386978149414062" blue="0.51372635364532471" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="I8y-Hy-do7"/>
-                                    <constraint firstItem="8ij-ch-9gH" firstAttribute="centerY" secondItem="ey8-rq-6mH" secondAttribute="centerY" id="MaF-DN-i4J"/>
-                                    <constraint firstItem="8ij-ch-9gH" firstAttribute="centerX" secondItem="ey8-rq-6mH" secondAttribute="centerX" id="aYq-sQ-pKk"/>
-                                    <constraint firstAttribute="trailing" secondItem="8ij-ch-9gH" secondAttribute="trailing" id="iUZ-vK-Glu"/>
-                                    <constraint firstItem="8ij-ch-9gH" firstAttribute="leading" secondItem="ey8-rq-6mH" secondAttribute="leading" id="yHW-ci-QQe"/>
+                                    <constraint firstAttribute="bottom" secondItem="tsc-lM-n9d" secondAttribute="bottom" id="J6u-bs-KfX"/>
+                                    <constraint firstItem="tsc-lM-n9d" firstAttribute="leading" secondItem="ey8-rq-6mH" secondAttribute="leading" id="JXl-Sf-Wpl"/>
+                                    <constraint firstItem="tsc-lM-n9d" firstAttribute="top" secondItem="ey8-rq-6mH" secondAttribute="top" id="dfu-Y0-pd3"/>
+                                    <constraint firstAttribute="trailing" secondItem="tsc-lM-n9d" secondAttribute="trailing" id="nzr-oq-DdX"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="时间View"/>
@@ -52,8 +57,8 @@
                                 <rect key="frame" x="138" y="0.0" width="138" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="类型" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VQk-V0-EmO">
-                                        <rect key="frame" x="56.5" y="18" width="25" height="14.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <rect key="frame" x="54.5" y="16.5" width="29" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                         <userDefinedRuntimeAttributes>
@@ -75,8 +80,8 @@
                                 <rect key="frame" x="276" y="0.0" width="138" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="输赢" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sQe-P5-iVF">
-                                        <rect key="frame" x="56.5" y="18" width="25" height="14.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <rect key="frame" x="54.5" y="16.5" width="29" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                         <userDefinedRuntimeAttributes>
@@ -107,14 +112,15 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
-                <outletCollection property="itemLabels" destination="8ij-ch-9gH" id="EiY-8v-eLg"/>
-                <outletCollection property="itemLabels" destination="VQk-V0-EmO" id="0cg-yl-Yqq"/>
-                <outletCollection property="itemLabels" destination="sQe-P5-iVF" id="d0h-xe-q9K"/>
                 <outletCollection property="itemViews" destination="ey8-rq-6mH" id="3XP-G4-VaR"/>
                 <outletCollection property="itemViews" destination="tQd-cb-7ai" id="scf-UC-2ED"/>
                 <outletCollection property="itemViews" destination="lD4-bY-A82" id="9wg-da-bIg"/>
+                <outletCollection property="itemLabels" destination="KR6-Nq-ugk" id="v2q-Rx-SvT"/>
+                <outletCollection property="itemLabels" destination="low-rd-Wck" id="HFk-SO-oQ5"/>
+                <outletCollection property="itemLabels" destination="VQk-V0-EmO" id="6eR-yI-uUZ"/>
+                <outletCollection property="itemLabels" destination="sQe-P5-iVF" id="uVB-hZ-ytS"/>
             </connections>
-            <point key="canvasLocation" x="139" y="153"/>
+            <point key="canvasLocation" x="137.68115942028987" y="152.67857142857142"/>
         </tableViewCell>
     </objects>
 </document>
