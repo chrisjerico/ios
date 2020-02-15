@@ -82,6 +82,8 @@
                 sb(@"HSC_Mine"),
                 sb(@"MyPromotion"),
                 sb(@"ContractedTemplate"),
+                sb(@"RedEnvelope"),
+                
                 
                 
         ];

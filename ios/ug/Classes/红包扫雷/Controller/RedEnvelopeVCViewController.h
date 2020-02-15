@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RedEnvelopeVCViewController : UIViewController
-
+@property (nonatomic, assign)NSInteger type;       /**<   类型 1 = 普通紅包, 2 = 掃雷紅包                              |*/
 @end
 
 NS_ASSUME_NONNULL_END

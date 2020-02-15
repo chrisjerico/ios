@@ -1153,7 +1153,7 @@ static UGSkinManagers *__initSkin1 = nil;
 #if DEBUG
 	NSLog(@"============================skitType=%@",skitType);
 //	skitType = @"石榴红";
-        skitType = @"新年红0";
+//        skitType = @"新年红0";
 //        skitType = @"简约模板0";
 #endif
 	return [UGSkinManagers allSkin][skitType];

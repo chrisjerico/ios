@@ -222,6 +222,8 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 
 #define activityGetRedBagUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=activity&a=getRedBag"]
 
+#define chatRedBagLogPageUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=chat&a=redBagLogPage"]
+
 #define activityWinApplyListUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=activity&a=winApplyList"]
 
 #define activityApplyWinLogUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=activity&a=applyWinLog"]

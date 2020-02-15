@@ -1872,6 +1872,10 @@
 		D42E14F323E06CE900F53407 /* PromotionDepositListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D42E14F223E06CE900F53407 /* PromotionDepositListVC.m */; };
 		D4326F0623F6D45200BEEA1B /* BetImgView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4326F0523F6D45200BEEA1B /* BetImgView.m */; };
 		D4326F0923F6D46900BEEA1B /* BetImgView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4326F0823F6D46900BEEA1B /* BetImgView.xib */; };
+		D4326F0E23F7B4F900BEEA1B /* RedBagLogModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4326F0D23F7B4F900BEEA1B /* RedBagLogModel.m */; };
+		D4326F0F23F7B51200BEEA1B /* RedBagLogModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4326F0D23F7B4F900BEEA1B /* RedBagLogModel.m */; };
+		D4326F1423F7C13900BEEA1B /* RedBagLogCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = D4326F1223F7C13900BEEA1B /* RedBagLogCell1.m */; };
+		D4326F1523F7C13900BEEA1B /* RedBagLogCell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4326F1323F7C13900BEEA1B /* RedBagLogCell1.xib */; };
 		D433EBF723D493F300D31008 /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = D433EBF623D493F300D31008 /* UIImage+Extension.m */; };
 		D435F90423CEF940008648CE /* KMCGeigerCounterTick.aiff in Resources */ = {isa = PBXBuildFile; fileRef = D435F90023CEF940008648CE /* KMCGeigerCounterTick.aiff */; };
 		D435F90523CEF940008648CE /* KMCGeigerCounterTick.aiff in Resources */ = {isa = PBXBuildFile; fileRef = D435F90023CEF940008648CE /* KMCGeigerCounterTick.aiff */; };
@@ -3659,6 +3663,11 @@
 		D4326F0423F6D45200BEEA1B /* BetImgView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BetImgView.h; sourceTree = "<group>"; };
 		D4326F0523F6D45200BEEA1B /* BetImgView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BetImgView.m; sourceTree = "<group>"; };
 		D4326F0823F6D46900BEEA1B /* BetImgView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BetImgView.xib; sourceTree = "<group>"; };
+		D4326F0C23F7B4F900BEEA1B /* RedBagLogModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RedBagLogModel.h; sourceTree = "<group>"; };
+		D4326F0D23F7B4F900BEEA1B /* RedBagLogModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RedBagLogModel.m; sourceTree = "<group>"; };
+		D4326F1123F7C13900BEEA1B /* RedBagLogCell1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RedBagLogCell1.h; sourceTree = "<group>"; };
+		D4326F1223F7C13900BEEA1B /* RedBagLogCell1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RedBagLogCell1.m; sourceTree = "<group>"; };
+		D4326F1323F7C13900BEEA1B /* RedBagLogCell1.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RedBagLogCell1.xib; sourceTree = "<group>"; };
 		D433EBF523D493F300D31008 /* UIImage+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extension.h"; sourceTree = "<group>"; };
 		D433EBF623D493F300D31008 /* UIImage+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extension.m"; sourceTree = "<group>"; };
 		D435F90023CEF940008648CE /* KMCGeigerCounterTick.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = KMCGeigerCounterTick.aiff; sourceTree = "<group>"; };
@@ -7625,6 +7634,16 @@
 			path = "登录注册";
 			sourceTree = "<group>";
 		};
+		D4326F1023F7BEF900BEEA1B /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				D4326F1123F7C13900BEEA1B /* RedBagLogCell1.h */,
+				D4326F1223F7C13900BEEA1B /* RedBagLogCell1.m */,
+				D4326F1323F7C13900BEEA1B /* RedBagLogCell1.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		D433EBF323D4939000D31008 /* 截屏UIImage分类 */ = {
 			isa = PBXGroup;
 			children = (
@@ -7648,9 +7667,8 @@
 			isa = PBXGroup;
 			children = (
 				D43A785423EFEFED00F75B0C /* RedEnvelope.storyboard */,
-				D43A785623EFF59300F75B0C /* Cell */,
 				D43A785123EFEB4000F75B0C /* Controller */,
-				D43A785323EFEB5200F75B0C /* View */,
+				D4326F1023F7BEF900BEEA1B /* Cell */,
 				D43A785223EFEB4A00F75B0C /* Model */,
 			);
 			path = "红包扫雷";
@@ -7668,22 +7686,10 @@
 		D43A785223EFEB4A00F75B0C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D4326F0C23F7B4F900BEEA1B /* RedBagLogModel.h */,
+				D4326F0D23F7B4F900BEEA1B /* RedBagLogModel.m */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		D43A785323EFEB5200F75B0C /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		D43A785623EFF59300F75B0C /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Cell;
 			sourceTree = "<group>";
 		};
 		D44258FB23E948C50067E981 /* git */ = {
@@ -8588,6 +8594,7 @@
 				CF475927239636D200966536 /* 139.gif in Resources */,
 				CF475895239636D200966536 /* 126.gif in Resources */,
 				CF4758D5239636D200966536 /* 79.gif in Resources */,
+				D4326F1523F7C13900BEEA1B /* RedBagLogCell1.xib in Resources */,
 				CF4758A9239636D200966536 /* 81.gif in Resources */,
 				031E1A1023BE812700B0F813 /* LICENSE in Resources */,
 				CF4758ED239636D200966536 /* 48.gif in Resources */,
@@ -8714,6 +8721,7 @@
 				031E1CBB23BE812A00B0F813 /* UGTableViewController.m in Sources */,
 				031E1E3D23BE812C00B0F813 /* UGPromotion2rowTableViewCell.m in Sources */,
 				031E1DED23BE812C00B0F813 /* UGMissionTitleCollectionView.m in Sources */,
+				D4326F0F23F7B51200BEEA1B /* RedBagLogModel.m in Sources */,
 				031E1AAB23BE812800B0F813 /* WMIconSegmentControl.m in Sources */,
 				031E1E0323BE812C00B0F813 /* UGSingInHistoryTableViewCell.m in Sources */,
 				031E1B7F23BE812900B0F813 /* UGPlatformNoticeCell.m in Sources */,
@@ -9380,6 +9388,7 @@
 				031E1C3423BE812900B0F813 /* UGTimeLotteryBetHeaderView.m in Sources */,
 				CFDB113823A3B1E10040DE2B /* SiteModel.m in Sources */,
 				031E1C8623BE812A00B0F813 /* UGFundsBankView.m in Sources */,
+				D4326F1423F7C13900BEEA1B /* RedBagLogCell1.m in Sources */,
 				031E1A2A23BE812700B0F813 /* UITableView+LSEmpty.m in Sources */,
 				031E1E2623BE812C00B0F813 /* UGActivityGoldTableViewCell.m in Sources */,
 				031E1CD223BE812A00B0F813 /* MJRefreshBackStateFooter.m in Sources */,
@@ -9715,6 +9724,7 @@
 				031E1A2C23BE812700B0F813 /* CMNetwork+LH.m in Sources */,
 				031E1AEC23BE812800B0F813 /* LeeTagView.m in Sources */,
 				031E1DC223BE812B00B0F813 /* UGinviteLisModel.m in Sources */,
+				D4326F0E23F7B4F900BEEA1B /* RedBagLogModel.m in Sources */,
 				031E1E5C23BE812C00B0F813 /* UGFeedbackDetailCell.m in Sources */,
 				031E1DAE23BE812B00B0F813 /* UGwithdrawStatModel.m in Sources */,
 				031E1A4A23BE812700B0F813 /* CMTimeCommon.m in Sources */,

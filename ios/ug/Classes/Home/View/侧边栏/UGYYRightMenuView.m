@@ -22,6 +22,7 @@
 #import "UGAppVersionManager.h"
 #import "SLWebViewController.h"
 #import "LotteryTrendVC.h"
+#import "RedEnvelopeVCViewController.h"
 
 @interface UGYYRightMenuView ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
@@ -60,22 +61,22 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
 @implementation UGYYRightMenuView
 
 -(void)initTitleAndImgs{
-
+    
     if (Skin1.isBlack) {
-       [self titleArrayAndimageNameArrayInit];
+        [self titleArrayAndimageNameArrayInit];
         
         NSArray *arrayTmp = @[@"提现", @"充值"];
-       // NSMakeRange(1, 2)：1表示要插入的位置，2表示插入数组的个数
+        // NSMakeRange(1, 2)：1表示要插入的位置，2表示插入数组的个数
         NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, 2)];
         [_titleArray insertObjects:arrayTmp atIndexes:indexSet];
         
-         NSArray *arrayImg = @[@"BMchongzhi", @"BMtixian"];
-         [_imageNameArray insertObjects:arrayImg atIndexes:indexSet];
+        NSArray *arrayImg = @[@"BMchongzhi", @"BMtixian"];
+        [_imageNameArray insertObjects:arrayImg atIndexes:indexSet];
         
     } else {
         [self titleArrayAndimageNameArrayInit];
     }
- 
+    
     if ([@"c008,c049" containsString:APP.SiteId]) {
         NSArray *arrayTmp = @[@"在线客服"];
         // NSMakeRange(1, 2)：1表示要插入的位置，2表示插入数组的个数
@@ -85,7 +86,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         NSArray *arrayImg = @[@"jd_message"];
         [_imageNameArray insertObjects:arrayImg atIndexes:indexSet];
     }
-     
+    
     
     
 }
@@ -142,23 +143,23 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         
         if (user.yuebaoSwitch) {
             if (UGLoginIsAuthorized()) {//已经登录
-                self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"彩种规则",@"长龙助手",@"利息宝",@"站内信",@"退出登录", app_Version,nil] ;
-                self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"gantanhao",@"changlong",@"lixibao",@"zhanneixin",@"tuichudenglu",@"appVicon", nil] ;
+                self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"彩种规则",@"长龙助手",@"红包记录",@"扫雷记录",@"利息宝",@"站内信",@"退出登录", app_Version,nil] ;
+                self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"gantanhao",@"changlong",@"cbl_hongbao",@"cbl_saolei",@"lixibao",@"zhanneixin",@"tuichudenglu",@"appVicon", nil] ;
             }
             else{
-                self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"彩种规则",@"长龙助手",@"利息宝",@"站内信", app_Version,nil] ;
-                self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"gantanhao",@"changlong",@"lixibao",@"zhanneixin",@"appVicon", nil] ;
+                self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"彩种规则",@"长龙助手",@"红包记录",@"扫雷记录",@"利息宝",@"站内信", app_Version,nil] ;
+                self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"gantanhao",@"changlong",@"cbl_hongbao",@"cbl_saolei",@"lixibao",@"zhanneixin",@"appVicon", nil] ;
             }
             
         }
         else{
             if (UGLoginIsAuthorized()) {//已经登录
-                self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"彩种规则",@"长龙助手",@"站内信",@"退出登录", app_Version,nil] ;
-                self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"gantanhao",@"changlong",@"zhanneixin",@"tuichudenglu",@"appVicon", nil] ;
+                self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"彩种规则",@"长龙助手",@"红包记录",@"扫雷记录",@"站内信",@"退出登录", app_Version,nil] ;
+                self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"gantanhao",@"changlong",@"cbl_hongbao",@"cbl_saolei",@"zhanneixin",@"tuichudenglu",@"appVicon", nil] ;
             }
             else{
-                self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"彩种规则",@"长龙助手",@"站内信", app_Version,nil] ;
-                self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"gantanhao",@"changlong",@"zhanneixin",@"appVicon", nil] ;
+                self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"彩种规则",@"长龙助手",@"红包记录",@"扫雷记录",@"站内信", app_Version,nil] ;
+                self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"gantanhao",@"changlong",@"cbl_hongbao",@"cbl_saolei",@"zhanneixin",@"appVicon", nil] ;
             }
             
         }
@@ -167,22 +168,22 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
     else{
         if (user.yuebaoSwitch) {
             if (UGLoginIsAuthorized()) {//已经登录
-                self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"长龙助手",@"利息宝",@"站内信",@"退出登录",app_Version, nil] ;
-                self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"changlong",@"lixibao",@"zhanneixin",@"tuichudenglu",@"appVicon", nil] ;
+                self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"长龙助手",@"红包记录",@"扫雷记录",@"利息宝",@"站内信",@"退出登录",app_Version, nil] ;
+                self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"changlong",@"cbl_hongbao",@"cbl_saolei",@"lixibao",@"zhanneixin",@"tuichudenglu",@"appVicon", nil] ;
             }
             else{
-                self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"长龙助手",@"利息宝",@"站内信",app_Version, nil] ;
-                self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"changlong",@"lixibao",@"zhanneixin",@"appVicon", nil] ;
+                self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"长龙助手",@"红包记录",@"扫雷记录",@"利息宝",@"站内信",app_Version, nil] ;
+                self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"changlong",@"cbl_hongbao",@"cbl_saolei",@"lixibao",@"zhanneixin",@"appVicon", nil] ;
             }
             
         } else {
             if (UGLoginIsAuthorized()) {//已经登录
-                self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"长龙助手",@"站内信",@"退出登录",app_Version, nil] ;
-                self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"changlong",@"zhanneixin",@"tuichudenglu",@"appVicon", nil] ;
+                self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"长龙助手",@"红包记录",@"扫雷记录",@"站内信",@"退出登录",app_Version, nil] ;
+                self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"changlong",@"cbl_hongbao",@"cbl_saolei",@"zhanneixin",@"tuichudenglu",@"appVicon", nil] ;
             }
             else{
-                self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"长龙助手",@"站内信",app_Version, nil] ;
-                self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"changlong",@"zhanneixin",@"appVicon", nil] ;
+                self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"长龙助手",@"红包记录",@"扫雷记录",@"站内信",app_Version, nil] ;
+                self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"changlong",@"cbl_hongbao",@"cbl_saolei",@"zhanneixin",@"appVicon", nil] ;
             }
             
         }
@@ -210,20 +211,20 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         self.headImageView.layer.cornerRadius = self.headImageView.height / 2 ;
         self.headImageView.layer.masksToBounds = YES;
         
- 
-
+        
+        
         SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
             [self.refreshButton.layer removeAllAnimations];
             self.balanceLabel.text = [NSString stringWithFormat:@"¥%@",[UGUserModel currentUser].balance];
             
             NSLog(@"todayWinAmount = %@",[UGUserModel currentUser].todayWinAmount);
             NSLog(@"unsettleAmount = %@",[UGUserModel currentUser].unsettleAmount);
-			
+            
             [self initTitleAndImgs ];
             
             [self.tableView reloadData];
         });
-
+        
         SANotificationEventSubscribe(UGNotificationUserAvatarChanged, self, ^(typeof (self) self, id obj) {
             [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[UGUserModel currentUser].avatar] placeholderImage:[UIImage imageNamed:@"BMprofile"]];
         });
@@ -231,8 +232,8 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         SANotificationEventSubscribe(UGNotificationloginTimeout, self, ^(typeof (self) self, id obj) {
             [self hiddenSelf];
         });
-       
-         [self initTitleAndImgs ];
+        
+        [self initTitleAndImgs ];
         
     }
     return self;
@@ -242,14 +243,14 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
 -(IBAction)showMMemberCenterView{
     NSLog(@"tap");
     if (Skin1.isBlack) {
-       [self hiddenSelf];
-       [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGBMMemberCenterViewController") animated:YES];
+        [self hiddenSelf];
+        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGBMMemberCenterViewController") animated:YES];
     }
 }
 
 - (void)setTitleType:(NSString *)titleType {
     _titleType = titleType;
-
+    
     self.balanceLabel.text = [NSString stringWithFormat:@"¥%@",[UGUserModel currentUser].balance];
     
     [self initTitleAndImgs ];
@@ -269,52 +270,52 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
 
 - (IBAction)refreshBalance:(id)sender {
     FastSubViewCode(self);
-     if (UGLoginIsAuthorized()) {//已经登录
-         [self startAnimation];
-         SANotificationEventPost(UGNotificationGetUserInfo, nil);
-         [_userNameLabel setHidden:NO];
-         [_balanceLabel setHidden:NO];
-         [_refreshButton setHidden:NO];
-         [subButton(@"登入按钮") setHidden:YES];
-         [subButton(@"免费开户按钮") setHidden:YES];
- 
-         [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[UGUserModel currentUser].avatar] placeholderImage:[UIImage imageNamed:@"BMprofile"]];
-     }
-     else{
-         [_userNameLabel setHidden:YES];
-         [_balanceLabel setHidden:YES];
-         [_refreshButton setHidden:YES];
-         [subButton(@"登入按钮") setHidden:NO];
-         [subButton(@"免费开户按钮") setHidden:NO];
-         [subButton(@"登入按钮") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
-         [subButton(@"登入按钮") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+    if (UGLoginIsAuthorized()) {//已经登录
+        [self startAnimation];
+        SANotificationEventPost(UGNotificationGetUserInfo, nil);
+        [_userNameLabel setHidden:NO];
+        [_balanceLabel setHidden:NO];
+        [_refreshButton setHidden:NO];
+        [subButton(@"登入按钮") setHidden:YES];
+        [subButton(@"免费开户按钮") setHidden:YES];
+        
+        [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[UGUserModel currentUser].avatar] placeholderImage:[UIImage imageNamed:@"BMprofile"]];
+    }
+    else{
+        [_userNameLabel setHidden:YES];
+        [_balanceLabel setHidden:YES];
+        [_refreshButton setHidden:YES];
+        [subButton(@"登入按钮") setHidden:NO];
+        [subButton(@"免费开户按钮") setHidden:NO];
+        [subButton(@"登入按钮") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+        [subButton(@"登入按钮") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
             [self hiddenSelf];
             //登录
             [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGBMLoginViewController") animated:true];
-         }];
-         [subButton(@"免费开户按钮") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
-         [subButton(@"免费开户按钮") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+        }];
+        [subButton(@"免费开户按钮") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+        [subButton(@"免费开户按钮") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
             [self hiddenSelf];
             //注册
             [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGBMRegisterViewController") animated:true];
-         }];
-     }
-   
+        }];
+    }
+    
 }
 
 - (IBAction)rechregeClick:(id)sender {
     [self hiddenSelf];
-//    if (self.menuSelectBlock) {
-//        self.menuSelectBlock(100);
-//    }
-      [self didSelectCellWithTitle:@"充值"];
+    //    if (self.menuSelectBlock) {
+    //        self.menuSelectBlock(100);
+    //    }
+    [self didSelectCellWithTitle:@"充值"];
 }
 
 - (IBAction)withdraw:(id)sender {
     [self hiddenSelf];
-//    if (self.menuSelectBlock) {
-//        self.menuSelectBlock(101);
-//    }
+    //    if (self.menuSelectBlock) {
+    //        self.menuSelectBlock(101);
+    //    }
     [self didSelectCellWithTitle:@"提现"];
 }
 
@@ -343,13 +344,13 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
     
     NSString *title = [self.titleArray objectAtIndex:indexPath.row];
     if ([title isEqualToString:@"长龙助手"]) {
-     [cell letArrowHidden];
+        [cell letArrowHidden];
     }
     else if([title isEqualToString:@"利息宝"]) {
-     [cell letArrowHidden];
+        [cell letArrowHidden];
     }
     else{
-     [cell letIconHidden];
+        [cell letIconHidden];
     }
     return cell;
 }
@@ -364,9 +365,9 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    if (self.menuSelectBlock) {
-//        self.menuSelectBlock(indexPath.row);
-//    }
+    //    if (self.menuSelectBlock) {
+    //        self.menuSelectBlock(indexPath.row);
+    //    }
     [self hiddenSelf];
     [self didSelectCellWithTitle:[self.titleArray objectAtIndex:indexPath.row]];
 }
@@ -401,7 +402,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         [_bg2View setHidden:NO];
         self.bgViewHeightConstraint.constant = 180;
     }
-   
+    
     self.backgroundColor = Skin1.textColor4;
     [self.bgView setBackgroundColor:Skin1.menuHeadViewColor];
     
@@ -443,10 +444,10 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
     if ([title isEqualToString:@"返回首页"]) {
         if (self.backToHomeBlock)
             self.backToHomeBlock();
-	}
+    }
     else if ([title isEqualToString:_NSString(@"当前版本号(%@)", [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"])]) {
-		[[UGAppVersionManager shareInstance] updateVersionApi:true];
-	}
+        [[UGAppVersionManager shareInstance] updateVersionApi:true];
+    }
     else if ([title isEqualToString:@"彩种规则"]) {
         UGLotteryRulesView *rulesView = [[UGLotteryRulesView alloc] initWithFrame:CGRectMake(30, 120, UGScreenW - 60, UGScerrnH - 230)];
         rulesView.gameId = self.gameId;
@@ -478,48 +479,58 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
     }
     else if ([title isEqualToString:@"利息宝"]) {
 #if DEBUG
-		if (self.gameName) {
-			LotteryTrendVC * vc = [LotteryTrendVC new];
-			vc.lotteryAlias = self.gameName;
-			[[UINavigationController current] pushViewController:vc animated:true];
-			return;
-		}
-		
+        if (self.gameName) {
+            LotteryTrendVC * vc = [LotteryTrendVC new];
+            vc.lotteryAlias = self.gameName;
+            [[UINavigationController current] pushViewController:vc animated:true];
+            return;
+        }
+        
 #endif
         [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGYubaoViewController") animated:true];
     }
-   else if ([title isEqualToString:@"充值"]) {
+    else if ([title isEqualToString:@"充值"]) {
         UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
         fundsVC.selectIndex = 0;
         [NavController1 pushViewController:fundsVC animated:true];
     }
-   else if ([title isEqualToString:@"提现"]) {
-       UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
-       fundsVC.selectIndex = 1;
-       [NavController1 pushViewController:fundsVC animated:true];
-   }
-   else if ([title isEqualToString:@"优惠活动"]) {
-       [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGPromotionsController") animated:YES];
-   }
-   else if ([title isEqualToString:@"退出登录"]) {
-       [QDAlertView showWithTitle:@"温馨提示" message:@"确定退出账号" cancelButtonTitle:@"取消" otherButtonTitle:@"确定" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-           if (buttonIndex) {
-               dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                   [CMNetwork userLogoutWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:nil];
-                   UGUserModel.currentUser = nil;
-                   SANotificationEventPost(UGNotificationUserLogout, nil);
-               });
-           }
-       }];
-   }
-   else if ([title isEqualToString:@"换肤"]) {
-       [NavController1 pushViewController:[UGSkinViewController new] animated:true];
-   }
-   else if ([title isEqualToString:@"在线客服"]) {
-       // 在线客服
-       [NavController1 pushVCWithUserCenterItemType:UCI_在线客服];
-   }
-
+    else if ([title isEqualToString:@"提现"]) {
+        UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
+        fundsVC.selectIndex = 1;
+        [NavController1 pushViewController:fundsVC animated:true];
+    }
+    else if ([title isEqualToString:@"优惠活动"]) {
+        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGPromotionsController") animated:YES];
+    }
+    else if ([title isEqualToString:@"退出登录"]) {
+        [QDAlertView showWithTitle:@"温馨提示" message:@"确定退出账号" cancelButtonTitle:@"取消" otherButtonTitle:@"确定" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+            if (buttonIndex) {
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [CMNetwork userLogoutWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:nil];
+                    UGUserModel.currentUser = nil;
+                    SANotificationEventPost(UGNotificationUserLogout, nil);
+                });
+            }
+        }];
+    }
+    else if ([title isEqualToString:@"换肤"]) {
+        [NavController1 pushViewController:[UGSkinViewController new] animated:true];
+    }
+    else if ([title isEqualToString:@"在线客服"]) {
+        // 在线客服
+        [NavController1 pushVCWithUserCenterItemType:UCI_在线客服];
+    }
+    else if ([title isEqualToString:@"红包记录"]) {
+        RedEnvelopeVCViewController *recordVC = _LoadVC_from_storyboard_(@"RedEnvelopeVCViewController");
+        recordVC.type = 1;
+        [NavController1 pushViewController:recordVC animated:true];
+    }
+    else if ([title isEqualToString:@"扫雷记录"]) {
+        RedEnvelopeVCViewController *recordVC = _LoadVC_from_storyboard_(@"RedEnvelopeVCViewController");
+        recordVC.type = 2;
+        [NavController1 pushViewController:recordVC animated:true];
+    }
+    
 }
 
 @end

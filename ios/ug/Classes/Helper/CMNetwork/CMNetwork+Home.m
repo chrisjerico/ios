@@ -19,7 +19,7 @@
 #import "UGonlineCount.h"
 #import "UGYYPlatformGames.h"
 #import "UGhomeAdsModel.h"
-
+#import "RedBagLogModel.h"
 @implementation CMNetwork (Home)
 
 //获取系统配置
@@ -194,6 +194,32 @@
                                           model:nil
                                            post:YES
                                      completion:completionBlock];
+    
+    CMMETHOD_END;
+}
+
+//红包日志
+//HTTP请求方式：POST
+//
+//请求参数：
+//
+//| 参数      | 必选  | 类型      | 说明                                                         |
+//| --------- | ----- | --------- | ------------------------------------------------------------ |
+//| token     | true  | string    | 授权TOKEN                                                    |
+//| type      | true  | int       | 类型 1 = 普通紅包, 2 = 掃雷紅包                              |
+//| page      | false | int       | 分页页码                                                     |
+//| rows      | false | int       | 每页条数                                                     |
+//| startTime | false | timeStamp | 开始时间                                                     |
+//| endTime   | false | timeStamp | 结束时间                                                     |
+//| operate   | false | int       | 操作类型1-发送红包，2-抢红包，3-过期退回，4-踩雷赔付，5-获得赔付，6-幸运奖励，7-多雷奖励 |
++ (void)chatRedBagLogPageWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    [self.manager requestInMainThreadWithMethod:[chatRedBagLogPageUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
+                                           post:YES
+                                     completion:completionBlock];
+    
     
     CMMETHOD_END;
 }
