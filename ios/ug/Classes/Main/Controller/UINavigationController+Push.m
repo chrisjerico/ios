@@ -509,9 +509,9 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         case UCI_推荐收益: {
 			
 # if DEBUG
-			MyPromotionVC *vc = [[UIStoryboard storyboardWithName:@"MyPromotion" bundle:nil] instantiateInitialViewController];
-			[[UINavigationController current] pushViewController:vc animated:true];
-			return true;
+//			MyPromotionVC *vc = [[UIStoryboard storyboardWithName:@"MyPromotion" bundle:nil] instantiateInitialViewController];
+//			[[UINavigationController current] pushViewController:vc animated:true];
+//			return true;
 # endif
             if (UserI.isTest) {
                 [NavController1 pushViewController:[UGPromotionIncomeController new] animated:YES];

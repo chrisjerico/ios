@@ -150,7 +150,7 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
                 make.height.mas_equalTo(60);
             }];
         }
-        wv.scrollView.contentSize = CGSizeMake(100, 100);
+//        wv.scrollView.contentSize = CGSizeMake(100, 100);
         NSLog(@"内容 = %@",nm.content);
         [wv loadHTMLString:_NSString(@"<head><style>img{width:auto !important;max-width:%f;height:auto}</style></head>%@", self.width-30, nm.content) baseURL:nil];
     }

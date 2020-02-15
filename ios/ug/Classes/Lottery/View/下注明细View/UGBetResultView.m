@@ -129,7 +129,12 @@ static UGBetResultView *_singleInstance = nil;
                 v.backgroundColor = [UIColor clearColor];
                 UIStackView *sv = [UIStackView new];
                 [v addSubview:({
-                    sv.spacing = 3;
+                    if (APP.isBall) {
+                           sv.spacing = 9;
+                    } else {
+                           sv.spacing = 3;
+                    }
+                 
                     sv.axis = UILayoutConstraintAxisHorizontal;
                     for (int i = 0; i < 10 ; i ++) {
                         UILabel * label = [UILabel new];
