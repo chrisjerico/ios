@@ -103,10 +103,6 @@ static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
                         // bug fix: 52941 彩种：开奖记录中去掉秒秒彩类彩票。
                         continue;
                     }
-                    if ([model.gameId isEqualToString:__self.gameId]) {
-                        __self.gameNameLabel.text = model.title;
-                        [__self.logoView sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:@"loading"]];
-                    }
                     [__self.gameArray addObject:model];
                     [__self.gameNameArray addObject:model.title];
                 }
@@ -116,7 +112,10 @@ static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
                     __self.selGameIndex = [__self.gameArray indexOfObject:model];
                 }
             }
-            [self getLotteryHistory];
+            UGNextIssueModel *model = __self.gameArray[__self.selGameIndex];
+            __self.gameNameLabel.text = model.title;
+            [__self.logoView sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:@"loading"]];
+            [__self getLotteryHistory];
         };
         if ([CMCommon arryIsNull:_lotteryGamesArray]) {
             // 获取彩票大厅数据
@@ -146,7 +145,7 @@ static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
 
 - (void)getLotteryHistory {
     UGNextIssueModel *model = self.gameArray[self.selGameIndex];
-    BOOL lessDataType = [model.title isEqualToString:@"七星彩"] || [model.title isEqualToString:@"香港六合彩"];
+    BOOL lessDataType = [@"70,13,2" containsString:model.gameId];// 低频彩不筛选日期，香港六合彩、新加坡六合彩、七星彩
     self.navigationItem.rightBarButtonItem = lessDataType ? nil : [STBarButtonItem barButtonItemWithImageName:@"riqi" target:self action:@selector(rightBarButonItemClick)];
     _dateLabel.hidden = lessDataType;
     
