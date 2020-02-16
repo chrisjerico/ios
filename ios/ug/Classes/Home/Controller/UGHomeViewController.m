@@ -441,8 +441,6 @@
 	
 	// 配置初始UI
 	{
-        
-        self.tableView.backgroundColor = Skin1.bgColor;
         [self.tableView addObserver:self forKeyPath:@"contentSize"  options:NSKeyValueObservingOptionNew context:@"tableContext"];
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         subView(@"优惠活动外View").layer.cornerRadius = 5;
@@ -1831,9 +1829,7 @@
         subView(@"StackView").cc_constraints.bottom.constant = 0;
     }
     
-
-    
-    subView(@"cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor : Skin1.homeContentColor;
+    subView(@"cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor : [UIColor clearColor];
 
     subLabel(@"标题Label").textColor = Skin1.textColor1;
     subLabel(@"标题Label").text = pm.title;

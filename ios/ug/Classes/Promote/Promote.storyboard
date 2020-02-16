@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -67,10 +67,10 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="trailing" secondItem="twz-9E-u8A" secondAttribute="trailing" constant="10" id="6hE-TQ-LgR"/>
+                                                        <constraint firstItem="twz-9E-u8A" firstAttribute="centerY" secondItem="Gz4-lb-MyM" secondAttribute="centerY" id="7xH-ov-0zf"/>
                                                         <constraint firstItem="twz-9E-u8A" firstAttribute="top" secondItem="Gz4-lb-MyM" secondAttribute="top" constant="10" id="CkG-qM-oSg"/>
                                                         <constraint firstItem="twz-9E-u8A" firstAttribute="leading" secondItem="Gz4-lb-MyM" secondAttribute="leading" constant="10" id="dsx-T8-Dgi"/>
-                                                        <constraint firstAttribute="bottom" secondItem="twz-9E-u8A" secondAttribute="bottom" constant="10" id="s2y-Ds-IRA"/>
+                                                        <constraint firstItem="twz-9E-u8A" firstAttribute="centerX" secondItem="Gz4-lb-MyM" secondAttribute="centerX" id="k1X-vZ-uC6"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="圆角偏移量">

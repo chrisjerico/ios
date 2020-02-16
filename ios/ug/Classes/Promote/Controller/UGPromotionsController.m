@@ -86,6 +86,10 @@
         subView(@"StackView").cc_constraints.top.constant = pm.title.length ? 12 : 0;
         subView(@"StackView").cc_constraints.bottom.constant = 0;
     }
+    if ([@"c199" containsString:APP.SiteId]) {
+        subView(@"StackView").cc_constraints.top.constant = 0;
+        subView(@"StackView").cc_constraints.left.constant = 0;
+    }
     
     subView(@"cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor : Skin1.homeContentColor;
     subLabel(@"标题Label").textColor = Skin1.textColor1;
