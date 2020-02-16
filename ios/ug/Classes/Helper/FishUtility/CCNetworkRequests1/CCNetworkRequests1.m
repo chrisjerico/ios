@@ -147,6 +147,13 @@
         });
         m.requestSerializer = [AFJSONRequestSerializer serializer];
         m.responseSerializer = [AFJSONResponseSerializer serializer];
+        m.securityPolicy = ({
+            // 安全策略：不验证证书
+            AFSecurityPolicy *policy = [AFSecurityPolicy defaultPolicy];
+            policy.allowInvalidCertificates = true;
+            policy.validatesDomainName = false;
+            policy;
+        });
         m.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", nil];
         NSMutableURLRequest *req = [m.requestSerializer requestWithMethod:isPOST ? @"POST":@"GET" URLString:urlString parameters:params error:nil];
         [[sm dataTask:m request:req] resume];
