@@ -1461,7 +1461,7 @@
 		
 		AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 		if (!appDelegate.notiveViewHasShow) {
-			self.notiveView = [[UGPlatformNoticeView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - ([APP.SiteId isEqualToString:@"c085"] ? 160 : 200))];
+			self.notiveView = [[UGPlatformNoticeView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - 160)];
 			self.notiveView.dataArray = self.popNoticeArray;
 			[self.notiveView.bgView setBackgroundColor: Skin1.navBarBgColor];
 			[self.notiveView show];

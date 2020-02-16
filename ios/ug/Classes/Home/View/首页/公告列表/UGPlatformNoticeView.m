@@ -158,7 +158,11 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
         }
 
         wv.scrollView.contentSize = CGSizeMake(100, __nm.cellHeight);
-        [wv loadHTMLString:[APP htmlStyleString:__nm.content] baseURL:nil];
+        if ([@"c200" containsString:APP.SiteId]) {
+            [wv loadHTMLString:_NSString(@"<head><style>p{margin:0}img{width:auto !important;max-width:100%%;height:auto !important}</style></head>%@", __nm.content) baseURL:nil];
+        } else {
+            [wv loadHTMLString:[APP htmlStyleString:__nm.content] baseURL:nil];
+        }
     }
     
     
@@ -195,7 +199,7 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 50;
+    return 45;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
