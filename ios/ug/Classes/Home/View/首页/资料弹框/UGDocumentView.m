@@ -129,7 +129,7 @@ static UGDocumentView *_singleInstance = nil;
     [self.activity startAnimating];
     __weakSelf_(__self);
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        NSString *str = _NSString(@"<head><style>img{width:auto !important;max-width:%f;height:auto}</style></head>%@%@%@", APP.Width-50, model.header, model.content, model.footer);
+        NSString *str = [APP htmlStyleString:_NSString(@"%@%@%@", model.header, model.content, model.footer)];
          NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithData:[str dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,} documentAttributes:nil error:nil];
          NSMutableParagraphStyle *ps = [NSMutableParagraphStyle new];
          ps.lineSpacing = 5;

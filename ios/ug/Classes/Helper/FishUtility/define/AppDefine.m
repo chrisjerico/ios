@@ -334,6 +334,10 @@
 
 #pragma mark - H5 url
 
+- (NSString *)htmlStyleString:(NSString *)content {
+    return _NSString(@"<head><style>img{width:auto !important;max-width:100%%;height:auto !important}</style></head>%@", content);
+}
+
 - (NSString *)chatShareUrl {
     NSString *url = _NSString(@"%@/dist/index.html#/home", _Host);
     return [url stringByAppendingURLParams:@{

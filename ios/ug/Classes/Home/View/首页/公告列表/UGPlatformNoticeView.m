@@ -158,10 +158,7 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
         }
 
         wv.scrollView.contentSize = CGSizeMake(100, __nm.cellHeight);
-        NSLog(@"内容 ============================= %@",__nm.content);
-        NSString *str = _NSString(@"<head><style>img{width:auto !important;max-width:%f;height:auto}</style></head>%@", self.width-30, __nm.content);
-        NSLog(@"str ======%@",str);
-        [wv loadHTMLString:_NSString(@"<head><style>img{width:auto !important;max-width:%f;height:auto}</style></head>%@", self.width-30, __nm.content) baseURL:nil];
+        [wv loadHTMLString:[APP htmlStyleString:__nm.content] baseURL:nil];
     }
     
     
@@ -221,6 +218,9 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
             item.hiddenBottomLine = !item.hiddenBottomLine;
         }
         [weakSelf.tableView reloadData];
+        // 有时SectionHeader会没加载出来，不知道原因，加上这两句就ok
+        [weakSelf.tableView beginUpdates];
+        [weakSelf.tableView endUpdates];
     };
     return headerView;
 }

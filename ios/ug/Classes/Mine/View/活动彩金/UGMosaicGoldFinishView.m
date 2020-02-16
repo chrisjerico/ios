@@ -58,7 +58,7 @@
     
     _item = item;
  
-    NSString *str = [NSString stringWithFormat:@"<head><style>img{width:auto !important;max-width:%f;height:auto}</style></head>%@", UGScreenW - 10, self.item.win_apply_content];
+    NSString *str = [APP htmlStyleString:self.item.win_apply_content];
     NSAttributedString *__block attStr = [[NSAttributedString alloc] init];
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         attStr = [[NSAttributedString alloc] initWithData:[str dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];

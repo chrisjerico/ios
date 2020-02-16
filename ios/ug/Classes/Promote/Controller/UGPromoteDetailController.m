@@ -79,7 +79,7 @@
     }
 
     [self.activity startAnimating];
-    NSString *str = [NSString stringWithFormat:@"<head><style > body{margin:0} img{width:auto !important;max-width:%f;height:auto}</style></head>%@", UGScreenW - 10, self.item.content];
+    NSString *str = [APP htmlStyleString:self.item.content];
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
 //        NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithData:[str dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,} documentAttributes:nil error:nil];
 //        NSMutableParagraphStyle *ps = [NSMutableParagraphStyle new];

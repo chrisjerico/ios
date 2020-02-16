@@ -38,7 +38,7 @@
 - (void)setContent:(NSString *)content {
     _content = content;
     
-    NSString *str = [NSString stringWithFormat:@"<head><style>img{width:auto !important;max-width:%f;height:auto}</style></head>%@", self.frame.size.width - 5,content];
+    NSString *str = [APP htmlStyleString:content];
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithData:[str dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
         NSMutableParagraphStyle *ps = [NSMutableParagraphStyle new];

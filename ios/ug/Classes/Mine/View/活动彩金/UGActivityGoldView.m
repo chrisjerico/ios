@@ -154,7 +154,7 @@
     
     NSLog(@"self.item.win_apply_content = %@", self.item.win_apply_content);
     
-    [self.webView loadHTMLString:_NSString(@"<head><style>img{width:auto !important;max-width:%f;height:auto}</style></head>%@", self.width-30, self.item.win_apply_content) baseURL:nil];
+    [self.webView loadHTMLString:[APP htmlStyleString:self.item.win_apply_content] baseURL:nil];
     
     
 //    NSString *str = _NSString(@"<head><style>img{width:auto !important;max-width:%f;height:auto}</style></head>%@", self.width-30, self.item.win_apply_content);

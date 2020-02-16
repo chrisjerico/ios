@@ -95,8 +95,7 @@
 @property (nonatomic, readonly) NSString *chatHomeUrl;  /**<   聊天室大厅URL */
 @property(nonatomic, strong) dispatch_source_t messageRequestTimer;
 - (NSString *)chatGameUrl:(NSString *)roomId hide:(BOOL )hideHead ;          /**<   聊天室-游戏房间 */
-
-
+- (NSString *)htmlStyleString:(NSString *)content;  /**<   添加html样式 */
 
 @end
 

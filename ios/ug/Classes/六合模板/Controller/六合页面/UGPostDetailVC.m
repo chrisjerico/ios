@@ -254,7 +254,7 @@
                 content = [content stringByReplacingOccurrencesOfString:_NSString(@"[em_%@]", gifName) withString:_NSString(@"<img src=\"http://admintest10.6yc.com/images/arclist/%@.gif\"/>", gifName)];
             }
         }
-        NSString *head = _NSString(@"<head><meta name='viewport' content='initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'><style>img{width:auto !important;max-width:%f;height:auto}</style><style>body{width:%.f;word-break: break-all;word-wrap: break-word;vertical-align: middle;overflow: hidden;}</style></head>", APP.Width-40, APP.Width-40);
+        NSString *head = @"<head><meta name='viewport' content='initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'><style>img{width:auto !important;max-width:100%%;height:auto !important}</style><style>body{width:100%%;word-break: break-all;word-wrap: break-word;vertical-align: middle;overflow: hidden;}</style></head>";
         [wv loadHTMLString:[head stringByAppendingString:content] baseURL:nil];
         wv.superview.hidden = !pm.content.length || [@"sixpic" containsString:pm.alias];
         
@@ -494,11 +494,13 @@
                 for (int i = 0; i< 3; i++) {
                     FastSubViewCode(sv.arrangedSubviews[i]);
                     sv.arrangedSubviews[i].hidden = i >= count;
-                    UGLHPostModel* obj = [UGLHPostModel mj_objectWithKeyValues:pcm.secReplyList[i]];
-                    [subView(@"内容View") setHidden:NO];
-                    [subButton(@"头像Btn") sd_setImageWithURL:[NSURL URLWithString:obj.headImg] forState:UIControlStateNormal];
-                    subLabel(@"昵称Label").text =  obj.nickname ? [NSString stringWithFormat:@"%@:",obj.nickname]: @"";
-                    subLabel(@"内容Label").text = obj.content ? obj.content : @"";
+                    if (i < pcm.secReplyList.count) {
+                        UGLHPostModel* obj = [UGLHPostModel mj_objectWithKeyValues:pcm.secReplyList[i]];
+                        [subView(@"内容View") setHidden:NO];
+                        [subButton(@"头像Btn") sd_setImageWithURL:[NSURL URLWithString:obj.headImg] forState:UIControlStateNormal];
+                        subLabel(@"昵称Label").text =  obj.nickname ? [NSString stringWithFormat:@"%@:",obj.nickname]: @"";
+                        subLabel(@"内容Label").text = obj.content ? obj.content : @"";
+                    }
                 }
                 
                 if (pcm.secReplyList.count > 3) {
