@@ -8,6 +8,7 @@
 
 #import "RedBagLogCell1.h"
 #import "CMTimeCommon.h"
+#import "UIColor+RGBValues.h"
 
 @interface RedBagLogCell1()
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *itemLabels;
@@ -72,33 +73,35 @@
     
     ((UILabel *)self.itemLabels[2]).text = model.operateText ;
 
-    if (model.amount.intValue) {
+    
+    if ([model.amount isEqualToString:@"0.51"]) {
+        
+    }
+    
+    if (model.amount) {
 
         if(model.operate.intValue == 1 || model.operate.intValue == 4)  {
-            [((UILabel *)self.itemLabels[3]) setTextColor:[UIColor greenColor]];
+            [((UILabel *)self.itemLabels[3]) setTextColor:[UIColor colorWithHexString:@"#16AD58"]];
             ((UILabel *)self.itemLabels[3]).text = [NSString stringWithFormat:@"-%@",model.amount];
         }
         else{
-            [((UILabel *)self.itemLabels[3]) setTextColor:[UIColor redColor]];
+            [((UILabel *)self.itemLabels[3]) setTextColor:[UIColor colorWithHexString:@"#F15C5F"]];
             ((UILabel *)self.itemLabels[3]).text = [NSString stringWithFormat:@"+%@",model.amount];
         }
-//        else{
-//            if (Skin1.isBlack) {
-//                [((UILabel *)self.itemLabels[3]) setTextColor:Skin1.textColor1];
-//            }
-//            else{
-//                [((UILabel *)self.itemLabels[2]) setTextColor:[UIColor blackColor]];
-//            }
-//        }
+
+    }
+    
+    if (Skin1.isBlack) {
+        [((UILabel *)self.itemLabels[0]) setTextColor:Skin1.textColor1];
+        [((UILabel *)self.itemLabels[1]) setTextColor:Skin1.textColor1];
+        [((UILabel *)self.itemLabels[2]) setTextColor:Skin1.textColor1];
     }
     else{
-        if (Skin1.isBlack) {
-            [((UILabel *)self.itemLabels[2]) setTextColor:Skin1.textColor1];
-        }
-        else{
-            [((UILabel *)self.itemLabels[2]) setTextColor:[UIColor blackColor]];
-        }
+        [((UILabel *)self.itemLabels[0]) setTextColor:[UIColor blackColor]];
+        [((UILabel *)self.itemLabels[1]) setTextColor:[UIColor blackColor]];
+        [((UILabel *)self.itemLabels[2]) setTextColor:[UIColor blackColor]];
     }
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

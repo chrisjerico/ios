@@ -228,7 +228,8 @@
     CGFloat w = [gcm.name widthForFont:[UIFont systemFontOfSize:18]] + space;
     if (APP.isShowLogo) {
         if (Skin1.isJY) {
-             return  MAX(70, w);
+//             return  MAX(70, w);
+             return 92.0;
         } else {
              return 92.0;
         }

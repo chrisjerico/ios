@@ -36,7 +36,8 @@
 #import "UGLHMineViewController.h"    // 六合 我的
 #import "UGMineSkinViewController.h"    //  我的
 #import "LotteryBetAndChatVC.h"
-#import "MyPromotionVC.h"
+#import "UGYYLotteryHomeViewController.h"     //  游戏大厅
+
 
 
 // Tools
@@ -471,6 +472,12 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         case 18: {
             // 活动彩金
             [NavController1 pushViewController:[UGMosaicGoldViewController new] animated:YES];
+            break;
+        }
+        case 19: {
+            // 游戏大厅
+            UGYYLotteryHomeViewController*vc = [[UGYYLotteryHomeViewController alloc] init];
+            [NavController1 pushViewController:vc animated:YES];
             break;
         }
         default: {

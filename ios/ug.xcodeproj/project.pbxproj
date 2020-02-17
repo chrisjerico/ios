@@ -1876,6 +1876,8 @@
 		D4326F0F23F7B51200BEEA1B /* RedBagLogModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4326F0D23F7B4F900BEEA1B /* RedBagLogModel.m */; };
 		D4326F1423F7C13900BEEA1B /* RedBagLogCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = D4326F1223F7C13900BEEA1B /* RedBagLogCell1.m */; };
 		D4326F1523F7C13900BEEA1B /* RedBagLogCell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4326F1323F7C13900BEEA1B /* RedBagLogCell1.xib */; };
+		D4326F1B23FA81B300BEEA1B /* UIColor+RGBValues.m in Sources */ = {isa = PBXBuildFile; fileRef = D4326F1A23FA81B300BEEA1B /* UIColor+RGBValues.m */; };
+		D4326F1C23FA81B300BEEA1B /* UIColor+RGBValues.m in Sources */ = {isa = PBXBuildFile; fileRef = D4326F1A23FA81B300BEEA1B /* UIColor+RGBValues.m */; };
 		D433EBF723D493F300D31008 /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = D433EBF623D493F300D31008 /* UIImage+Extension.m */; };
 		D435F90423CEF940008648CE /* KMCGeigerCounterTick.aiff in Resources */ = {isa = PBXBuildFile; fileRef = D435F90023CEF940008648CE /* KMCGeigerCounterTick.aiff */; };
 		D435F90523CEF940008648CE /* KMCGeigerCounterTick.aiff in Resources */ = {isa = PBXBuildFile; fileRef = D435F90023CEF940008648CE /* KMCGeigerCounterTick.aiff */; };
@@ -3668,6 +3670,8 @@
 		D4326F1123F7C13900BEEA1B /* RedBagLogCell1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RedBagLogCell1.h; sourceTree = "<group>"; };
 		D4326F1223F7C13900BEEA1B /* RedBagLogCell1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RedBagLogCell1.m; sourceTree = "<group>"; };
 		D4326F1323F7C13900BEEA1B /* RedBagLogCell1.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RedBagLogCell1.xib; sourceTree = "<group>"; };
+		D4326F1923FA81B200BEEA1B /* UIColor+RGBValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+RGBValues.h"; sourceTree = "<group>"; };
+		D4326F1A23FA81B300BEEA1B /* UIColor+RGBValues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+RGBValues.m"; sourceTree = "<group>"; };
 		D433EBF523D493F300D31008 /* UIImage+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extension.h"; sourceTree = "<group>"; };
 		D433EBF623D493F300D31008 /* UIImage+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extension.m"; sourceTree = "<group>"; };
 		D435F90023CEF940008648CE /* KMCGeigerCounterTick.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = KMCGeigerCounterTick.aiff; sourceTree = "<group>"; };
@@ -3945,6 +3949,7 @@
 		031E142023BE812300B0F813 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				D4326F1723FA815B00BEEA1B /* UIColor十六转UIColor分类 */,
 				031E142223BE812300B0F813 /* FishUtility */,
 				031E14E523BE812300B0F813 /* CMCommon */,
 				031E14C223BE812300B0F813 /* CMNetwork */,
@@ -7644,6 +7649,15 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		D4326F1723FA815B00BEEA1B /* UIColor十六转UIColor分类 */ = {
+			isa = PBXGroup;
+			children = (
+				D4326F1923FA81B200BEEA1B /* UIColor+RGBValues.h */,
+				D4326F1A23FA81B300BEEA1B /* UIColor+RGBValues.m */,
+			);
+			path = "UIColor十六转UIColor分类";
+			sourceTree = "<group>";
+		};
 		D433EBF323D4939000D31008 /* 截屏UIImage分类 */ = {
 			isa = PBXGroup;
 			children = (
@@ -8940,6 +8954,7 @@
 				031E1B3923BE812800B0F813 /* UGonlineCount.m in Sources */,
 				03D6927823C32E0B003D9C12 /* C001BetErrorCustomView.m in Sources */,
 				031E1E5923BE812C00B0F813 /* UGMenuTableViewCell.m in Sources */,
+				D4326F1C23FA81B300BEEA1B /* UIColor+RGBValues.m in Sources */,
 				031E1D9923BE812B00B0F813 /* UGYubaoConversionCenterController.m in Sources */,
 				031E1B5323BE812800B0F813 /* UGYYRightMenuView.m in Sources */,
 				030A873023C59FEB0001EF82 /* ProfileEditVC.swift in Sources */,
@@ -9665,6 +9680,7 @@
 				031E1CB223BE812A00B0F813 /* UGLaunchPageVC.m in Sources */,
 				031E1CBA23BE812A00B0F813 /* UGTableViewController.m in Sources */,
 				031E195C23BE812600B0F813 /* LHPostCommentDetailVC.m in Sources */,
+				D4326F1B23FA81B300BEEA1B /* UIColor+RGBValues.m in Sources */,
 				D4250BF623F27BE700ABA3C9 /* JYRegisterViewController.m in Sources */,
 				031E1C7023BE812A00B0F813 /* UGWithdrawalViewController.m in Sources */,
 				031E1E8A23BE812D00B0F813 /* UGYubaoConversionRecordCell.m in Sources */,
