@@ -89,7 +89,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
-    
+
     UGYYGames *game = self.dataArray[indexPath.row];
     // 去二级游戏列表
     if (game.isPopup) {

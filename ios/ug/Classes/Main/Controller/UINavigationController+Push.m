@@ -84,9 +84,45 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
 }
 
 
+
+
+- (void)getGotoGameUrl:(GameModel *)game {
+    if (!UGLoginIsAuthorized()) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:UGNotificationShowLoginView object:nil];
+        return;
+    }
+    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
+                             @"id":[NSString stringWithFormat:@"%ld",(long)game.subId],
+                             @"game":game.gameCode
+                             };
+    [SVProgressHUD showWithStatus:nil];
+    [CMNetwork getGotoGameUrlWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            [SVProgressHUD dismiss];
+            QDWebViewController *qdwebVC = [[QDWebViewController alloc] init];
+
+            NSLog(@"网络链接：model.data = %@",model.data);
+            qdwebVC.urlString = [CMNetwork encryptionCheckSignForURL:model.data];
+            qdwebVC.enterGame = YES;
+            [self.navigationController pushViewController:qdwebVC  animated:YES];
+        } failure:^(id msg) {
+            [SVProgressHUD showErrorWithStatus:msg];
+        }];
+    }];
+}
 #pragma mark - 根据Model快捷跳转函数
 
 - (BOOL)pushViewControllerWithGameModel:(GameModel *)model {
+    
+    NSLog(@"model.gameCode= %@",model.gameCode);
+    
+    if (![CMCommon stringIsNull:model.gameCode]) {
+        if (![model.gameCode isEqualToString:@"-1"]) {
+            NSLog(@"model.gameCode========== %@",model.gameCode);
+            [self getGotoGameUrl:model];
+        }
+    }
+    
     if (model.game_id) {
         model.gameId = model.game_id;
     }
