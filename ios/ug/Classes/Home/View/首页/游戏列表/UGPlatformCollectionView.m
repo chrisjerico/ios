@@ -107,8 +107,8 @@ static NSString *const footerId = @"footerId";
     _iid  = iid;
     if (Skin1.isJY) {
         if (Skin1.isJY) {
-            if ([self.iid isEqualToString:@"7"]
-                ||[self.iid isEqualToString:@"1"] ) {
+
+             if ([self.iid isEqualToString:@"1"] ) {
                 WSLWaterFlowLayout * _flow;
                 _flow = [[WSLWaterFlowLayout alloc] init];
                 _flow.delegate = self;
