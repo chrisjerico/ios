@@ -21,7 +21,11 @@
     
     NSInteger count;  /**<   总注数*/
     NSString *amount; /**<   总金额*/
+    
+    UIScrollView* maskView;
 }
+@property (weak, nonatomic) IBOutlet UIButton *allUpButton;    /**<   批量修改金额Button */
+@property (weak, nonatomic) IBOutlet UITextField *allUpText;    /**<  批量修改金额Label */
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;       /**<   期数彩种Label */
 @property (weak, nonatomic) IBOutlet UILabel *totalAmountLabel; /**<   总金额Label */
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;    /**<   确认下注Button */
@@ -36,6 +40,12 @@
 
 static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 @implementation UGBetDetailView
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+}
 
 - (instancetype)init {
 	self = [super init];
@@ -54,10 +64,16 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 		self.center = CGPointMake(UGScreenW / 2 , UGScerrnH / 2);
 		self.submitButton.layer.cornerRadius = 3;
 		self.submitButton.layer.masksToBounds = YES;
+        self.allUpButton.layer.cornerRadius = 3;
+        self.allUpButton.layer.masksToBounds = YES;
+        
 		self.cancelButton.layer.cornerRadius = 3;
 		self.cancelButton.layer.masksToBounds = YES;
 		self.cancelButton.layer.borderColor = Skin1.bgColor.CGColor;
 		self.cancelButton.layer.borderWidth = 0.7;
+        
+        
+        
 		self.layer.cornerRadius = 6;
 		self.layer.masksToBounds = YES;
 		[self addSubview:self.tableView];
@@ -66,6 +82,12 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 		SANotificationEventSubscribe(UGNotificationloginTimeout, self, ^(typeof (self) self, id obj) {
 			[self hiddenSelf];
 		});
+        
+        #pragma mark -键盘弹出添加监听事件
+        // 键盘出现的通知
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
+        // 键盘消失的通知
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHiden:) name:UIKeyboardWillHideNotification object:nil];
 	}
 	return self;
 }
@@ -771,15 +793,16 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
     }
     
 	UIWindow* window = UIApplication.sharedApplication.keyWindow;
-	UIView* maskView = [[UIView alloc] initWithFrame:window.bounds];
-	UIView* view = self;
-	view.hidden = NO;
-	
-	maskView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
-	maskView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
-	
-	[maskView addSubview:view];
-	[window addSubview:maskView];
+    UIView* view = self;
+    if (!maskView) {
+        maskView = [[UIScrollView alloc] initWithFrame:window.bounds];
+        maskView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
+        [maskView addSubview:view];
+        [window addSubview:maskView];
+    }
+    
+    view.hidden = NO;
+
 }
 
 - (void)hiddenSelf {
@@ -792,7 +815,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 
 - (UITableView *)tableView {
 	if (_tableView == nil) {
-		_tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 100, self.frame.size.width, self.frame.size.height - 210) style:UITableViewStyleGrouped];
+		_tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 100, self.frame.size.width, self.frame.size.height - 210-30) style:UITableViewStyleGrouped];
 		_tableView.delegate = self;
 		_tableView.dataSource = self;
 		[_tableView registerNib:[UINib nibWithNibName:@"UGBetDetailTableViewCell" bundle:nil] forCellReuseIdentifier:betDetailCellid];
@@ -808,6 +831,34 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 		_betArray = [NSMutableArray array];
 	}
 	return _betArray;
+}
+- (IBAction)allUpBtnAction:(id)sender {
+    NSString *number = _allUpText.text;
+    
+   for (UGGameBetModel *model in _betArray) {
+       model.money = number;
+    }
+    [_tableView reloadData];
+    
+    [self performSelector:@selector(updateTotalLabelText) withObject:nil afterDelay:1.5];
+
+}
+
+
+#pragma mark -键盘监听方法
+- (void)keyboardWasShown:(NSNotification *)notification
+{
+    // 获取键盘的高度
+//    CGRect frame = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+
+    maskView.contentOffset = CGPointMake(0,130);
+    //或者
+//    [self.scrollView scrollRectToVisible:CGRectMake(0, 0, 300, 400) animated:NO];
+
+}
+- (void)keyboardWillBeHiden:(NSNotification *)notification
+{
+    maskView.frame = CGRectMake(0, 0, APP.Width, APP.Height);
 }
 
 @end

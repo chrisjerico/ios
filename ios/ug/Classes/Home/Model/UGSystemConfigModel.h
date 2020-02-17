@@ -147,10 +147,12 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 @property (nonatomic, copy) NSString *appPopupQqNum;        /**<   QQ客服号 */
 @property (nonatomic, copy) NSString *appPopupQqImg;        /**<   微信客服二维码 */
 @property (nonatomic, copy) NSString *domainBindAgentId;    /**<   如果这个属性大于0，则在注册邀请人输入框填入改ID，且无法更改 */
+@property (nonatomic, copy) NSString *homeTypeSelect;        /**<  是否开启前台分类*/
 
 @property (nonatomic, copy) NSArray<UGMobileMenu *> *mobileMenu;
 
 @property (nonatomic) NSInteger hide_reco;          /**<   代理人 */
+
 @property (nonatomic) NSInteger reg_name;           /**<   真实姓名 */
 @property (nonatomic) NSInteger reg_fundpwd;        /**<   取款密码 */
 @property (nonatomic) NSInteger reg_qq;             /**<   QQ */

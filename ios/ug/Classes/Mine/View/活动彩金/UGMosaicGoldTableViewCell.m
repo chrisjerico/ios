@@ -32,7 +32,48 @@
     _item = item;
     self.tiltleLabel.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.4];
     [self.imgView sd_setImageWithURL:[NSURL URLWithString:item.param.win_apply_image] placeholderImage:[UIImage imageNamed:@"winapply_default"]];
-    self.tiltleLabel.text = item.name;
+    
+    NSString *titleShow = @"";
+    switch (item.param.activity_type2.intValue) {
+        case 1:
+            titleShow = @"热门";
+            break;
+        case 2:
+            titleShow = @"彩票";
+            break;
+        case 3:
+            titleShow = @"真人";
+            break;
+        case 4:
+            titleShow = @"捕鱼";
+            break;
+        case 5:
+            titleShow = @"电子";
+            break;
+        case 6:
+            titleShow = @"棋牌";
+            break;
+        case 7:
+            titleShow = @"体育";
+            break;
+        case 8:
+            titleShow = @"电竞";
+            break;
+        case 9:
+            titleShow = @"其他";
+            break;
+        default:
+            break;
+    }
+    
+    if (SysConf.homeTypeSelect) {
+        self.tiltleLabel.text = [NSString stringWithFormat:@"%@--%@",titleShow,item.name];
+    }
+    else{
+        self.tiltleLabel.text = item.name;
+    }
+    
+    
 }
 
 - (IBAction)buttonClick:(id)sender {
