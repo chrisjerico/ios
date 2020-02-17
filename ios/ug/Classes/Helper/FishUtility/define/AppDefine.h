@@ -72,6 +72,8 @@
 @property (nonatomic) BOOL isFontSystemSize;    /**<  首页导航文字不加粗*/
 @property (nonatomic) BOOL isChatWhite;    /**<  下注界面 投注区，聊天室标题文字为白色*/
 @property (nonatomic) BOOL isHideChat;    /**<  下注界面 投注区，聊天室图片隐藏  显示历史开奖几期*/
+
+@property (nonatomic) BOOL isYHShowTitle;    /**<  优惠详情现在titleLabel ,导航条显示：活动详情*/
                                        
 // 热更新相关字段
 @property (nonatomic) BOOL Test;                        /**<   是否是测试环境 */

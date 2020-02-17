@@ -43,7 +43,8 @@
     self.view.backgroundColor = Skin1.textColor4;
     self.contentTextView.backgroundColor = [UIColor clearColor];
     self.titleLabel.textColor = Skin1.textColor1;
-//    [self.view addSubview:self.titleLabel];
+
+    [self.view addSubview:self.titleLabel];
 //    [self.view addSubview:self.contentTextView];
     [self.view addSubview:self.myWebView];
     [self.view addSubview:self.activity];
@@ -71,32 +72,31 @@
 
 - (void)setItem:(UGPromoteModel *)item {
     _item = item;
-//    self.titleLabel.text = self.item.title;
-    if ([CMCommon stringIsNull:self.item.title]) {
+    
+    if (APP.isYHShowTitle) {
+       
+        if ([CMCommon stringIsNull:self.item.title]) {
+            self.titleLabel.text = @"活动详情";
+        } else {
+            self.titleLabel.text = self.item.title;
+        }
         self.navigationItem.title = @"活动详情";
-    } else {
-        self.navigationItem.title = self.item.title;
     }
+    else{
+        [self.titleLabel setHidden:YES];
+        if ([CMCommon stringIsNull:self.item.title]) {
+            self.navigationItem.title = @"活动详情";
+        } else {
+            self.navigationItem.title = self.item.title;
+        }
+    }
+    
+   
 
     [self.activity startAnimating];
     NSString *str = _NSString(@"<head><style>body{margin:0}img{width:auto !important;max-width:100%%;height:auto !important}</style></head>%@", self.item.content);
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-//        NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithData:[str dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,} documentAttributes:nil error:nil];
-//        NSMutableParagraphStyle *ps = [NSMutableParagraphStyle new];
-//        ps.lineSpacing = 5;
-//        [mas addAttributes:@{NSParagraphStyleAttributeName:ps,} range:NSMakeRange(0, mas.length)];
-//
-//        // 替换文字颜色
-//        NSAttributedString *as = [mas copy];
-//        for (int i=0; i<as.length; i++) {
-//            NSRange r = NSMakeRange(0, as.length);
-//            NSMutableDictionary *dict = [as attributesAtIndex:i effectiveRange:&r].mutableCopy;
-//            UIColor *c = dict[NSForegroundColorAttributeName];
-//            if (fabs(c.red - c.green) < 0.05 && fabs(c.green - c.blue) < 0.05) {
-//                dict[NSForegroundColorAttributeName] = Skin1.textColor2;
-//                [mas addAttributes:dict range:NSMakeRange(i, 1)];
-//            }
-//        }
+
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.activity stopAnimating];
 //            self.contentTextView.attributedText = mas;
@@ -131,17 +131,31 @@
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
-    CGFloat labelX = 5;
-    CGFloat labelY = 15;
+    CGFloat labelX = 10;
+    CGFloat labelY = 8;
     CGFloat labelW = UGScreenW - 2*labelX;
     if (![@"c001" containsString:APP.SiteId]) {
         self.titleLabel.frame = CGRectMake(labelX, labelY, labelW, 0);
         [self.titleLabel sizeToFit];
+        
     }
-//    self.contentTextView.frame = CGRectMake(labelX, CGRectGetMaxY(self.titleLabel.frame) + 8, labelW, UGScerrnH - CGRectGetMaxY(self.titleLabel.frame) - 60 );
-    
-//    self.myWebView.frame = CGRectMake(labelX, CGRectGetMaxY(self.titleLabel.frame) + 8, labelW, UGScerrnH - CGRectGetMaxY(self.titleLabel.frame) - 60 );
-    self.myWebView.frame = CGRectMake(labelX, labelY, labelW, UGScerrnH - CGRectGetMaxY(self.titleLabel.frame) - 60 );
+    if (APP.isYHShowTitle) {
+        self.titleLabel.frame = CGRectMake(labelX, labelY, labelW, 0);
+        [self.titleLabel sizeToFit];
+        [_titleLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.centerX.equalTo(self.view);
+                make.top.equalTo(self.view.mas_top).offset(labelY);
+        }];
+    }
+
+    if (APP.isYHShowTitle) {
+        self.myWebView.frame = CGRectMake(labelX, CGRectGetMaxY(self.titleLabel.frame) + labelY,labelW, UGScerrnH - CGRectGetMaxY(self.titleLabel.frame) - 60 );
+    }
+    else{
+         self.myWebView.frame = CGRectMake(labelX, labelY, labelW, UGScerrnH - CGRectGetMaxY(self.titleLabel.frame) - 60 );
+    }
+
+   
     self.activity.center = CGPointMake(UGScreenW / 2, UGScerrnH / 2 - 50);
 
     
