@@ -83,7 +83,7 @@
                 sb(@"MyPromotion"),
                 sb(@"ContractedTemplate"),
                 sb(@"RedEnvelope"),
-                
+                sb(@"LineConversion"),
                 
                 
         ];
