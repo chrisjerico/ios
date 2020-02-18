@@ -8,9 +8,9 @@
 
 #import "UGPlatformTitleCollectionViewCell.h"
 #import "UGPlatformGameModel.h"
-
+#import "FLAnimatedImageView.h"
 @interface UGPlatformTitleCollectionViewCell ()
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet FLAnimatedImageView *imageView;  /**<   图片ImageView */
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *title2Label;
 @end
@@ -44,34 +44,7 @@
     _item = item;
     self.titleLabel.text = item.name;
     self.title2Label.text = item.name;
-    self.imageView.image = ({
-        NSString *imgName = nil;
-        if ([@"8" isEqualToString:item.iid]) {
-            // 最新游戏
-            imgName = @"最新-1";
-        } else if ([@"1" isEqualToString:item.iid]) {
-            // 彩票游戏
-            imgName = @"cp";
-        } else if ([@"2" isEqualToString:item.iid]) {
-            // 真人视讯
-            imgName = @"zr";
-        } else if ([@"4" isEqualToString:item.iid]) {
-            // 电子游戏
-            imgName = @"dz";
-        } else if ([@"3" isEqualToString:item.iid]) {
-            // 捕鱼游戏
-            imgName = @"by";
-        } else if ([@"5" isEqualToString:item.iid]) {
-            // 棋牌游戏
-            imgName = @"qp";
-        } else if ([@"6" isEqualToString:item.iid]) {
-            // 体育赛事
-            imgName = @"ty";
-        } else {
-            imgName = @"ty";
-        }
-        [UIImage imageNamed:imgName];
-    });
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:item.logo] placeholderImage:[UIImage imageNamed:@"loading"]];
 }
 
 - (void)setSelected:(BOOL)selected {
