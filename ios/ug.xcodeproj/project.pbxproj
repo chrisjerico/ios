@@ -1915,6 +1915,7 @@
 		D4C0A12723913A6C00B39358 /* Global.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C0A12623913A6C00B39358 /* Global.m */; };
 		D4C0A12F239156FB00B39358 /* hot_01.gif in Resources */ = {isa = PBXBuildFile; fileRef = D4C0A12D239156FB00B39358 /* hot_01.gif */; };
 		D4D920CE23CD8A9200F02C9D /* CYLTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = D4D920CD23CD8A9200F02C9D /* CYLTabBar.m */; };
+		D4DB5D4123FBB4DD001C6D8F /* UIView+JHViewCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = D4DB5D4023FBB4DD001C6D8F /* UIView+JHViewCorner.m */; };
 		D4E6A61F23C4D340003E18B6 /* UGChatRoomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E6A61E23C4D340003E18B6 /* UGChatRoomModel.m */; };
 		D4E6A62223C4D4DD003E18B6 /* CCNetworkRequests1+UG.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E6A62123C4D4DD003E18B6 /* CCNetworkRequests1+UG.m */; };
 		D4F0410523C773170070D2B5 /* UGLHPrizeView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F0410423C773170070D2B5 /* UGLHPrizeView.m */; };
@@ -3717,6 +3718,8 @@
 		D4C0A12D239156FB00B39358 /* hot_01.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = hot_01.gif; sourceTree = "<group>"; };
 		D4D920CC23CD8A9200F02C9D /* CYLTabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYLTabBar.h; sourceTree = "<group>"; };
 		D4D920CD23CD8A9200F02C9D /* CYLTabBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYLTabBar.m; sourceTree = "<group>"; };
+		D4DB5D3F23FBB4DD001C6D8F /* UIView+JHViewCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JHViewCorner.h"; sourceTree = "<group>"; };
+		D4DB5D4023FBB4DD001C6D8F /* UIView+JHViewCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JHViewCorner.m"; sourceTree = "<group>"; };
 		D4E6A61C23C4D33F003E18B6 /* UGChatRoomModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGChatRoomModel.h; sourceTree = "<group>"; };
 		D4E6A61E23C4D340003E18B6 /* UGChatRoomModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGChatRoomModel.m; sourceTree = "<group>"; };
 		D4E6A62023C4D4DD003E18B6 /* CCNetworkRequests1+UG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCNetworkRequests1+UG.h"; sourceTree = "<group>"; };
@@ -3949,11 +3952,12 @@
 		031E142023BE812300B0F813 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				D4326F1723FA815B00BEEA1B /* UIColor十六转UIColor分类 */,
 				031E142223BE812300B0F813 /* FishUtility */,
 				031E14E523BE812300B0F813 /* CMCommon */,
 				031E14C223BE812300B0F813 /* CMNetwork */,
 				D433EBF323D4939000D31008 /* 截屏UIImage分类 */,
+				D4DB5D3E23FBB48D001C6D8F /* 可以画心的UIView分类 */,
+				D4326F1723FA815B00BEEA1B /* UIColor十六转UIColor分类 */,
 				D4564A4123E326FE00A1A8C6 /* View带阴影分类 */,
 				D435F8FF23CEF940008648CE /* KMCGeigerCounter */,
 				D4F0411423C868E20070D2B5 /* WHC_SqliteKit */,
@@ -7812,6 +7816,15 @@
 			path = Other;
 			sourceTree = "<group>";
 		};
+		D4DB5D3E23FBB48D001C6D8F /* 可以画心的UIView分类 */ = {
+			isa = PBXGroup;
+			children = (
+				D4DB5D3F23FBB4DD001C6D8F /* UIView+JHViewCorner.h */,
+				D4DB5D4023FBB4DD001C6D8F /* UIView+JHViewCorner.m */,
+			);
+			path = "可以画心的UIView分类";
+			sourceTree = "<group>";
+		};
 		D4F0410123C772850070D2B5 /* 解码器 */ = {
 			isa = PBXGroup;
 			children = (
@@ -9680,6 +9693,7 @@
 				031E1CB223BE812A00B0F813 /* UGLaunchPageVC.m in Sources */,
 				031E1CBA23BE812A00B0F813 /* UGTableViewController.m in Sources */,
 				031E195C23BE812600B0F813 /* LHPostCommentDetailVC.m in Sources */,
+				D4DB5D4123FBB4DD001C6D8F /* UIView+JHViewCorner.m in Sources */,
 				D4326F1B23FA81B300BEEA1B /* UIColor+RGBValues.m in Sources */,
 				D4250BF623F27BE700ABA3C9 /* JYRegisterViewController.m in Sources */,
 				031E1C7023BE812A00B0F813 /* UGWithdrawalViewController.m in Sources */,

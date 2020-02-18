@@ -10,7 +10,8 @@
 #import "UGinviteInfoModel.h"
 #import "SGQRCodeObtain.h"
 #import "UIImage+Extension.h"
-
+#import "UIView+shadowPath.h"
+#import "UIColor+RGBValues.h"
 @interface PromotionAdvertisementVC ()
 @property (nonatomic, strong) UGinviteInfoModel* inviteInfo;
 @property (weak, nonatomic) IBOutlet UIView *upView;
@@ -93,7 +94,6 @@
     }];
 
 
-    
 }
 
 #pragma mark 用来监听图片保存到相册的状况

@@ -17,6 +17,8 @@
 #import "UGinviteInfoModel.h"
 #import "CMLabelCommon.h"
 #import "PromotionDepositListVC.h"
+
+
 @interface MyPromotionVC ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -54,6 +56,10 @@
 //        [self.tableView setSeparatorColor : Skin1.textColor1];
 //        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
+
+    _avatarImageView.layer.borderWidth = 4;
+    _avatarImageView.layer.borderColor = [[UIColor whiteColor] CGColor];
+    
 	
 }
 

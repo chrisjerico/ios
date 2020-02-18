@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1ue-Rf-Xwz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1ue-Rf-Xwz">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -75,15 +75,15 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="本月推荐会员:本月推荐会员:本月推荐会员:本月推" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yat-56-rqx">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="本月推荐会员:本月推荐会员:本月推荐会员:本月推" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yat-56-rqx">
                                             <rect key="frame" x="40" y="119.66666666666667" width="295" height="14.333333333333329"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dkZ-XF-FEC">
+                                        <view alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dkZ-XF-FEC">
                                             <rect key="frame" x="40" y="106.66666666666667" width="295" height="1"/>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="1" id="eXO-nJ-7Eb"/>
                                             </constraints>
@@ -158,16 +158,16 @@
                                 <rect key="frame" x="0.0" y="88" width="375" height="690"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="my_promotion_wenzi" translatesAutoresizingMaskIntoConstraints="NO" id="VhF-mb-GuJ">
-                                <rect key="frame" x="-153.66666666666666" y="134" width="711" height="216"/>
+                                <rect key="frame" x="24" y="134" width="355.66666666666669" height="108"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="VhF-mb-GuJ" secondAttribute="height" multiplier="79:24" id="Ude-f2-1oa"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aun-JY-aB2">
-                                <rect key="frame" x="24" y="499.33333333333331" width="327" height="76.333333333333314"/>
+                                <rect key="frame" x="24" y="391.33333333333331" width="327" height="76.333333333333314"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="QR_Code" translatesAutoresizingMaskIntoConstraints="NO" id="bQa-dl-dyP">
-                                        <rect key="frame" x="28" y="16.333333333333314" width="44" height="44"/>
+                                        <rect key="frame" x="28" y="16.333333333333371" width="44" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="44" id="1F5-7s-CjE"/>
                                             <constraint firstAttribute="width" secondItem="bQa-dl-dyP" secondAttribute="height" id="oCh-J5-gU1"/>
@@ -182,15 +182,17 @@
                                         <color key="textColor" red="0.28235294119999998" green="0.30196078430000001" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AbS-Mh-dnL">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AbS-Mh-dnL" customClass="IBButton">
                                         <rect key="frame" x="234.66666666666669" y="24.666666666666686" width="72" height="27"/>
                                         <color key="backgroundColor" red="0.94509803920000002" green="0.36078431370000003" blue="0.37254901959999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="72" id="9xe-Hj-CwU"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <size key="titleShadowOffset" width="0.0" height="2"/>
                                         <state key="normal" title="备用网址">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="titleShadowColor" red="0.76426142450000001" green="0.25971049070000002" blue="0.23527345059999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -198,6 +200,20 @@
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="备用网址Btn"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="圆角偏移量">
+                                                <real key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="开启渐变色3种颜色都要设置" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="渐变中间色">
+                                                <color key="value" red="0.88154500719999995" green="0.46800130610000001" blue="0.36861246819999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="渐变开始色">
+                                                <color key="value" red="0.88478320840000002" green="0.52740538120000002" blue="0.34508168700000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="渐变结束色">
+                                                <color key="value" red="0.87828397749999998" green="0.40055522319999998" blue="0.39214307069999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                 </subviews>
@@ -219,7 +235,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="flX-am-qK1">
-                                <rect key="frame" x="24" y="595.66666666666663" width="327" height="129.66666666666663"/>
+                                <rect key="frame" x="24" y="487.66666666666669" width="327" height="129.66666666666669"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="8gi-Oa-Qgi">
                                         <rect key="frame" x="0.0" y="0.0" width="327" height="130"/>
@@ -234,26 +250,36 @@
                                                             <constraint firstAttribute="height" constant="2" id="y4F-X3-Qcj"/>
                                                         </constraints>
                                                     </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 分享图片链接 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KxL-c7-v5V" userLabel="快捷分享">
-                                                        <rect key="frame" x="117" y="16.333333333333371" width="93.333333333333314" height="17"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <color key="textColor" red="0.28235294119999998" green="0.30196078430000001" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dEu-ty-AC9">
+                                                        <rect key="frame" x="118.66666666666666" y="8" width="90" height="34"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="90" id="pif-pC-lOR"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tj_shareUrl" translatesAutoresizingMaskIntoConstraints="NO" id="W7B-Sh-Sv3">
+                                                        <rect key="frame" x="122" y="18.333333333333314" width="83" height="13"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="13" id="4Sv-N3-Rqt"/>
+                                                            <constraint firstAttribute="width" secondItem="W7B-Sh-Sv3" secondAttribute="height" multiplier="166:26" id="YP1-Tm-v2e"/>
+                                                        </constraints>
+                                                    </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="ySE-aA-U1g" secondAttribute="trailing" constant="88" id="02a-zq-cc5"/>
-                                                    <constraint firstItem="KxL-c7-v5V" firstAttribute="centerX" secondItem="ySE-aA-U1g" secondAttribute="centerX" id="ANU-Qg-eKO"/>
+                                                    <constraint firstItem="dEu-ty-AC9" firstAttribute="centerX" secondItem="FRS-oa-RXA" secondAttribute="centerX" id="4hx-KJ-PJ9"/>
+                                                    <constraint firstItem="dEu-ty-AC9" firstAttribute="top" secondItem="FRS-oa-RXA" secondAttribute="topMargin" id="7Kg-KP-EHe"/>
                                                     <constraint firstItem="ySE-aA-U1g" firstAttribute="leading" secondItem="FRS-oa-RXA" secondAttribute="leading" constant="88" id="C5S-pX-pRx"/>
-                                                    <constraint firstItem="KxL-c7-v5V" firstAttribute="centerY" secondItem="ySE-aA-U1g" secondAttribute="centerY" id="Qsp-Ud-uUe"/>
                                                     <constraint firstItem="ySE-aA-U1g" firstAttribute="centerY" secondItem="FRS-oa-RXA" secondAttribute="centerY" id="YTi-1D-5Xt"/>
+                                                    <constraint firstItem="W7B-Sh-Sv3" firstAttribute="centerY" secondItem="FRS-oa-RXA" secondAttribute="centerY" id="b9N-TX-rmb"/>
+                                                    <constraint firstItem="W7B-Sh-Sv3" firstAttribute="centerX" secondItem="FRS-oa-RXA" secondAttribute="centerX" id="qRf-5Y-eZq"/>
                                                     <constraint firstAttribute="height" constant="50" id="x7Q-DY-oxR"/>
+                                                    <constraint firstItem="dEu-ty-AC9" firstAttribute="centerY" secondItem="FRS-oa-RXA" secondAttribute="centerY" id="ypb-YU-UaD"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0ET-Lh-OlN">
-                                                <rect key="frame" x="0.0" y="50" width="327" height="80"/>
+                                                <rect key="frame" x="0.0" y="49.999999999999943" width="327" height="80"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="NSU-uV-efi">
                                                         <rect key="frame" x="0.0" y="0.0" width="327" height="65"/>
@@ -262,14 +288,14 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="109" height="65"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LHq-G4-IfO">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="109" height="51.666666666666664"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="109" height="43"/>
                                                                         <state key="normal" image="my_promotion_fenxiangtuiguangtu"/>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="分享推广图Btn"/>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </button>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="分享推广图" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cgc-aN-8i6">
-                                                                        <rect key="frame" x="0.0" y="59.666666666666742" width="109" height="5.3333333333333286"/>
+                                                                        <rect key="frame" x="0.0" y="51" width="109" height="14"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                         <color key="textColor" red="0.28235294119999998" green="0.30196078430000001" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -280,14 +306,14 @@
                                                                 <rect key="frame" x="109" y="0.0" width="109" height="65"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2fw-sn-MP7">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="109" height="51.666666666666664"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="109" height="43"/>
                                                                         <state key="normal" image="my_promotion_fuzhilianjie"/>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="分享链接Btn"/>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </button>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="分享链接" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t5W-07-8dR">
-                                                                        <rect key="frame" x="0.0" y="59.666666666666742" width="109" height="5.3333333333333286"/>
+                                                                        <rect key="frame" x="0.0" y="51" width="109" height="14"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                         <color key="textColor" red="0.28235294119999998" green="0.30196078430000001" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -298,14 +324,14 @@
                                                                 <rect key="frame" x="218" y="0.0" width="109" height="65"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q92-Be-pfV">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="109" height="51.666666666666664"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="109" height="43"/>
                                                                         <state key="normal" image="my_promotion_baocuntuiguangtu"/>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="保存推广图Btn"/>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </button>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="保存推广图" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tMB-rg-WfE">
-                                                                        <rect key="frame" x="0.0" y="59.666666666666742" width="109" height="5.3333333333333286"/>
+                                                                        <rect key="frame" x="0.0" y="51" width="109" height="14"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                         <color key="textColor" red="0.28235294119999998" green="0.30196078430000001" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -347,15 +373,17 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Rlb-dh-pMC">
                                 <rect key="frame" x="16" y="737.66666666666663" width="343" height="28"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ov5-4Y-dV3">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ov5-4Y-dV3" customClass="IBButton">
                                         <rect key="frame" x="0.0" y="0.0" width="102.33333333333333" height="28"/>
                                         <color key="backgroundColor" red="0.94509803921568625" green="0.36078431372549019" blue="0.37254901960784315" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="28" id="68j-x5-7ki"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <size key="titleShadowOffset" width="0.0" height="2"/>
                                         <state key="normal" title="收益推荐说明">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="titleShadowColor" red="0.76426142454147339" green="0.25971049070358276" blue="0.23527345061302185" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -363,14 +391,30 @@
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="说明Btn"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="开启渐变色3种颜色都要设置" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="渐变开始色">
+                                                <color key="value" red="0.88478511571884155" green="0.52737855911254883" blue="0.34900358319282532" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="渐变结束色">
+                                                <color key="value" red="0.8505890965461731" green="0.38877320289611816" blue="0.3803788423538208" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="渐变中间色">
+                                                <color key="value" red="0.88163608312606812" green="0.46006602048873901" blue="0.37253421545028687" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="圆角偏移量">
+                                                <real key="value" value="14"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="du3-4l-ZQv">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="du3-4l-ZQv" customClass="IBButton">
                                         <rect key="frame" x="110.33333333333334" y="0.0" width="69.333333333333343" height="28"/>
                                         <color key="backgroundColor" red="0.94509803921568625" green="0.36078431372549019" blue="0.37254901960784315" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <size key="titleShadowOffset" width="0.0" height="2"/>
                                         <state key="normal" title="我的会员">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="titleShadowColor" red="0.76426142450000001" green="0.25971049070000002" blue="0.23527345059999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -378,14 +422,30 @@
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="我的会员Btn"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="圆角偏移量">
+                                                <real key="value" value="14"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="开启渐变色3种颜色都要设置" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="渐变中间色">
+                                                <color key="value" red="0.88140374422073364" green="0.47991526126861572" blue="0.3607688844203949" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="渐变开始色">
+                                                <color key="value" red="0.88478320837020874" green="0.52740538120269775" blue="0.34508168697357178" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="渐变结束色">
+                                                <color key="value" red="0.87828397750854492" green="0.40055522322654724" blue="0.39214307069778442" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ir-7n-IP1">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ir-7n-IP1" customClass="IBButton">
                                         <rect key="frame" x="187.66666666666666" y="0.0" width="68.999999999999972" height="28"/>
                                         <color key="backgroundColor" red="0.94509803921568625" green="0.36078431372549019" blue="0.37254901960784315" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <size key="titleShadowOffset" width="0.0" height="2"/>
                                         <state key="normal" title="会员投注">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="titleShadowColor" red="0.76426142450000001" green="0.25971049070000002" blue="0.23527345059999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -393,14 +453,30 @@
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="会员投注Btn"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="圆角偏移量">
+                                                <real key="value" value="14"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="开启渐变色3种颜色都要设置" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="渐变开始色">
+                                                <color key="value" red="0.88478320837020874" green="0.52740538120269775" blue="0.34508168697357178" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="渐变结束色">
+                                                <color key="value" red="0.87828397750854492" green="0.40055522322654724" blue="0.39214307069778442" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="渐变中间色">
+                                                <color key="value" red="0.88140565156936646" green="0.47988337278366089" blue="0.36469069123268127" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eM4-dC-9MQ">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eM4-dC-9MQ" customClass="IBButton">
                                         <rect key="frame" x="264.66666666666669" y="0.0" width="78.333333333333314" height="28"/>
                                         <color key="backgroundColor" red="0.94509803921568625" green="0.36078431372549019" blue="0.37254901960784315" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <size key="titleShadowOffset" width="0.0" height="2"/>
                                         <state key="normal" title="会员交易">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="titleShadowColor" red="0.76426142450000001" green="0.25971049070000002" blue="0.23527345059999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -408,6 +484,20 @@
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="会员交易Btn"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="开启渐变色3种颜色都要设置" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="渐变开始色">
+                                                <color key="value" red="0.88478320837020874" green="0.52740538120269775" blue="0.34508168697357178" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="渐变结束色">
+                                                <color key="value" red="0.87828397750854492" green="0.40055522322654724" blue="0.39214307069778442" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="渐变中间色">
+                                                <color key="value" red="0.88154500722885132" green="0.46800130605697632" blue="0.36861246824264526" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="圆角偏移量">
+                                                <real key="value" value="14"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                 </subviews>
@@ -418,7 +508,7 @@
                                 </constraints>
                             </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="my_promotion_hongbao" translatesAutoresizingMaskIntoConstraints="NO" id="4Jz-di-bf1">
-                                <rect key="frame" x="20" y="370" width="335" height="130.33333333333337"/>
+                                <rect key="frame" x="20" y="262" width="335" height="130.33333333333337"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="4Jz-di-bf1" secondAttribute="height" multiplier="678:264" id="oRK-so-C6m"/>
@@ -457,7 +547,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="upS-bp-Gpz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="816.79999999999995" y="24.7376311844078"/>
+            <point key="canvasLocation" x="816.79999999999995" y="24.384236453201972"/>
         </scene>
         <!--我的推荐链接-->
         <scene sceneID="rF3-4p-Q5G">
@@ -3379,13 +3469,13 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
                                                 <viewLayoutGuide key="frameLayoutGuide" id="HFW-cv-wsH"/>
                                             </scrollView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="recommend_shadow_left" translatesAutoresizingMaskIntoConstraints="NO" id="xaK-F9-5wy">
-                                                <rect key="frame" x="90" y="0.0" width="8" height="1043"/>
+                                                <rect key="frame" x="90" y="0.0" width="16" height="1043"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="右阴影imgV"/>
                                                 </userDefinedRuntimeAttributes>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="recommend_shadow_right" translatesAutoresizingMaskIntoConstraints="NO" id="dlv-Wl-8kE">
-                                                <rect key="frame" x="318" y="0.0" width="8" height="1043"/>
+                                                <rect key="frame" x="310" y="0.0" width="16" height="1043"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="左阴影imgV"/>
                                                 </userDefinedRuntimeAttributes>
@@ -5887,5 +5977,6 @@ https://baidujump.app/eipeyipeyi/jump-215.html  (c202原生iOS 已上传请测�
         <image name="recommend_shadow_left" width="8" height="4"/>
         <image name="recommend_shadow_right" width="8" height="4"/>
         <image name="tg_sousuo" width="24" height="24"/>
+        <image name="tj_shareUrl" width="83" height="13"/>
     </resources>
 </document>
