@@ -214,6 +214,7 @@
                                             <userDefinedRuntimeAttribute type="color" keyPath="渐变结束色">
                                                 <color key="value" red="0.87828397749999998" green="0.40055522319999998" blue="0.39214307069999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="开启阴影" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                 </subviews>
@@ -405,6 +406,7 @@
                                             <userDefinedRuntimeAttribute type="number" keyPath="圆角偏移量">
                                                 <real key="value" value="14"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="开启阴影" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="du3-4l-ZQv" customClass="IBButton">
@@ -436,6 +438,7 @@
                                             <userDefinedRuntimeAttribute type="color" keyPath="渐变结束色">
                                                 <color key="value" red="0.87828397750854492" green="0.40055522322654724" blue="0.39214307069778442" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="开启阴影" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ir-7n-IP1" customClass="IBButton">
@@ -467,6 +470,7 @@
                                             <userDefinedRuntimeAttribute type="color" keyPath="渐变中间色">
                                                 <color key="value" red="0.88140565156936646" green="0.47988337278366089" blue="0.36469069123268127" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="开启阴影" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eM4-dC-9MQ" customClass="IBButton">
@@ -498,6 +502,7 @@
                                             <userDefinedRuntimeAttribute type="number" keyPath="圆角偏移量">
                                                 <real key="value" value="14"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="开启阴影" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                 </subviews>

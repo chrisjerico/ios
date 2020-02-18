@@ -79,6 +79,14 @@
                 CAGradientLayer *gradientLayer = [CAGradientLayer layer];
                 self.gradientLayer = gradientLayer;
             }
+            if (self.渐变中间色) {
+                if (self.开启阴影) {
+                    CGFloat selfH = self.size.height;
+                    self.layer.shadowColor = self.渐变中间色.CGColor;
+                    self.layer.shadowOpacity = 0.35f;
+                    self.layer.shadowOffset = CGSizeMake(0, 3.5 * selfH/41);
+                }
+            }
             self.gradientLayer.colors = @[(__bridge id)self.渐变开始色.CGColor, (__bridge id)self.渐变中间色.CGColor, (__bridge id)self.渐变结束色.CGColor];
             self.gradientLayer.locations = @[@0.0, @.5, @1.0];
             self.gradientLayer.type = kCAGradientLayerAxial;

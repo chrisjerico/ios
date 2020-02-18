@@ -36,6 +36,7 @@
 @property (nonatomic) IBInspectable UIColor *渐变中间色;
 @property (nonatomic) IBInspectable UIColor *渐变开始色;
 @property (nonatomic) IBInspectable UIColor *渐变结束色;
+@property (nonatomic) IBInspectable BOOL 开启阴影;
 @end
 
 
