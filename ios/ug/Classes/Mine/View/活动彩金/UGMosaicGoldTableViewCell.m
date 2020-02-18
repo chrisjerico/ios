@@ -66,7 +66,7 @@
             break;
     }
     
-    if (SysConf.homeTypeSelect) {
+    if ([SysConf.homeTypeSelect isEqualToString:@"1"]) {
         self.tiltleLabel.text = [NSString stringWithFormat:@"%@--%@",titleShow,item.name];
     }
     else{
