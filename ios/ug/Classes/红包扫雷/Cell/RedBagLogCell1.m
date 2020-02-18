@@ -75,7 +75,7 @@
            ((UILabel *)self.itemLabels[2]).text = [NSString stringWithFormat:@"%@--%@",model.rid,model.uid];//model.operateText ;
      
     #else
-            ((UILabel *)self.itemLabels[2]).text = model.operateTex;//model.operateText ;
+            ((UILabel *)self.itemLabels[2]).text = model.operateText;//model.operateText ;
     #endif
 
 
