@@ -172,7 +172,7 @@
 //    [self.headImageView addGestureRecognizer:tap];
     
     if ([@"c134" containsString:APP.SiteId]) {
-        [_headerLabelView setHidden:YES];
+        [_headerLabelView setHidden:NO];
     }
 
     
