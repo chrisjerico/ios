@@ -23,7 +23,7 @@
     _collectionView.dataSource = self;
     [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
     
-    // 导航条下划线
+    // 导航条分割线
     UIView *line = [self viewWithTagString:@"导航条下滑线View"];
     [_collectionView addSubview:line];
     [line mas_makeConstraints:^(MASConstraintMaker *make) {
