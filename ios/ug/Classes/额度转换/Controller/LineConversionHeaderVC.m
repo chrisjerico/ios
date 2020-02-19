@@ -88,11 +88,11 @@
     self.slideSwitchView.tabItemNormalColor = Skin1.textColor2;
     self.slideSwitchView.tabItemNormalFont = 14;
     //设置tab 被选中的颜色(可选)
-    self.slideSwitchView.tabItemSelectedColor = [UIColor redColor] ;
+    self.slideSwitchView.tabItemSelectedColor = Skin1.navBarBgColor ;
     //设置tab 背景颜色(可选)
-    self.slideSwitchView.tabItemNormalBackgroundColor = [Skin1.navBarBgColor colorWithAlphaComponent:0.35];
+    self.slideSwitchView.tabItemNormalBackgroundColor = Skin1.textColor4;
     //设置tab 被选中的标识的颜色(可选)
-    self.slideSwitchView.tabItemSelectionIndicatorColor = [UIColor redColor] ;
+    self.slideSwitchView.tabItemSelectionIndicatorColor = Skin1.navBarBgColor ;
     
     [_slideSwitchView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_headView.mas_bottom);
@@ -105,10 +105,13 @@
     // Do any additional setup after loading the view.
     self.title = @"额度转换";
     
-    [_headView setBackgroundColor:Skin1.navBarBgColor colorWithAlphaComponent:0.45]];
-    
+    [_headView setBackgroundColor:Skin1.navBarBgColor];
+    self.headImageView.layer.cornerRadius = self.headImageView.height / 2 ;
+    self.headImageView.layer.masksToBounds = YES;
 //    [self fishSegmentView];
     [self xyySegmentView];
+    
+     [self getUserInfo];
 }
 
 #pragma mark - XYYSegmentControlDelegate
@@ -161,7 +164,7 @@
             user.sessid = oldUser.sessid;
             user.token = oldUser.token;
             UGUserModel.currentUser = user;
-            NSLog(@"签到==%d",[UGUserModel currentUser].checkinSwitch);
+            [self stopAnimation];
             [self setupUserInfo];
         } failure:^(id msg) {
             [self stopAnimation];
@@ -185,7 +188,9 @@
 
 #pragma mark - UIS
 - (void)setupUserInfo {
+    
     UGUserModel *user = [UGUserModel currentUser];
+    NSLog(@"user.avatar = %@",user.avatar);
 
     [self.headImageView sd_setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
     self.userNameLabel.text = user.username;

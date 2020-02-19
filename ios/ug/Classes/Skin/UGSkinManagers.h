@@ -44,6 +44,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)isJY;       /**<   是否是简约模板 */
 - (BOOL)isSLH;       /**<   是否是石榴红模板 */
 
+-(UIColor *)navBarBgColor;
+
 
 
 + (UGSkinManagers *)next; /**<   测试换肤功能时使用 */
