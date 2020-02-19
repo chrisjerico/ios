@@ -68,6 +68,7 @@
 @property (nonatomic, strong) CAShapeLayer *progressLayer;
 @property (nonatomic, strong) CAShapeLayer *containerLayer;
 //===================================================
+@property (weak, nonatomic) IBOutlet UIView *headerLabelView;
 
 @property (weak, nonatomic) IBOutlet UIButton *topupButton;
 @property (weak, nonatomic) IBOutlet UIButton *withdrawalsButton;
@@ -137,7 +138,7 @@
     [self setupUserInfo:true];
 }
 
-- (void)showAvaterSelectView {
+- (IBAction)showAvaterSelectView {
     if (UserI.isTest) {
         return;
     }
@@ -167,8 +168,14 @@
     self.headImageView.layer.cornerRadius = self.headImageView.height / 2 ;
     self.headImageView.layer.masksToBounds = YES;
     self.headImageView.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showAvaterSelectView)];
-    [self.headImageView addGestureRecognizer:tap];
+//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showAvaterSelectView)];
+//    [self.headImageView addGestureRecognizer:tap];
+    
+    if ([@"c134" containsString:APP.SiteId]) {
+        [_headerLabelView setHidden:YES];
+    }
+
+    
     [self.progressView.layer addSublayer:self.progressLayer];
     self.progressView.layer.cornerRadius = self.progressView.height / 2;
     self.progressView.layer.masksToBounds = YES;

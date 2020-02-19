@@ -102,7 +102,7 @@
 }
 
 -(void)setYYBgViewBgColor{
-	if ([@"新年红,石榴红,六合资料,金沙主题,简约模板" containsString:Skin1.skitType]) {
+	if ([@"新年红,石榴红,六合资料,金沙主题,简约模板,火山橙,香槟金" containsString:Skin1.skitType]) {
 		[_yyBgView setBackgroundColor:Skin1.navBarBgColor];
 		self.waveBotomView.backgroundColor =  Skin1.navBarBgColor;
 		self.waveView.realWaveColor =  Skin1.navBarBgColor;
