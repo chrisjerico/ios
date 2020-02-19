@@ -9,6 +9,8 @@
 #import "LineConversionHeaderVC.h"
 #import "SlideSegmentView1.h"    /**<    分页布局View  fish */
 #import "XYYSegmentControl.h"    /**<    分页布局View  */
+#import "LineMainViewController.h"   //额度转换界面
+#import "UGBalanceConversionRecordController.h"   //转换记录界面
 @interface LineConversionHeaderVC ()<XYYSegmentControlDelegate>
 @property (weak, nonatomic) IBOutlet UIView *headView;
 @property (nonatomic) SlideSegmentView1 *segmentView;                  /**<    分页布局View */
@@ -122,30 +124,21 @@
 
 ///待加载的控制器
 - (UIViewController *)slideSwitchView:(XYYSegmentControl *)view viewOfTab:(NSUInteger)number {
-    // 存款
+    // 额度转换
     if (number == 0) {
-        UIViewController *vc1 = [UIViewController new];
-        [vc1.view setBackgroundColor:[UIColor greenColor]];
+        LineMainViewController *vc1 = [[LineMainViewController alloc] init];
         return vc1;
     }
-    // 资金明细
+    // 转换记录
     else {
-        UIViewController *vc2 = [UIViewController new];
-           [vc2.view setBackgroundColor:[UIColor yellowColor]];
-        return vc2;
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Mine" bundle:nil];
+        UGBalanceConversionRecordController *recordVC = [storyboard instantiateViewControllerWithIdentifier:@"UGBalanceConversionRecordController"];
+        return recordVC;
     }
 }
 
 - (void)slideSwitchView:(XYYSegmentControl *)view didselectTab:(NSUInteger)number {
-    if (number != 1){
-        
-    }
-        
-    
-    if (number == 2) {
-        
-    }
-    
+
 }
 
 

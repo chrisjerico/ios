@@ -1909,6 +1909,7 @@
 		D4564A4723E3FA9600A1A8C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4B75E15227802600007047C /* Assets.xcassets */; };
 		D4773ABF23FC16B100D38D60 /* LineConversion.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4773ABE23FC16B100D38D60 /* LineConversion.storyboard */; };
 		D4773AC223FC1F7F00D38D60 /* LineConversionHeaderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D4773AC123FC1F7F00D38D60 /* LineConversionHeaderVC.m */; };
+		D4773ACE23FD628800D38D60 /* LineMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4773ACD23FD628800D38D60 /* LineMainViewController.m */; };
 		D4AE1C0A22C0FCC400C142FE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AE1C0922C0FCC300C142FE /* AppDelegate.m */; };
 		D4B75E16227802600007047C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4B75E15227802600007047C /* Assets.xcassets */; };
 		D4B75E19227802600007047C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B75E17227802600007047C /* LaunchScreen.storyboard */; };
@@ -3709,6 +3710,8 @@
 		D4773ABE23FC16B100D38D60 /* LineConversion.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LineConversion.storyboard; sourceTree = "<group>"; };
 		D4773AC023FC1F7F00D38D60 /* LineConversionHeaderVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LineConversionHeaderVC.h; sourceTree = "<group>"; };
 		D4773AC123FC1F7F00D38D60 /* LineConversionHeaderVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LineConversionHeaderVC.m; sourceTree = "<group>"; };
+		D4773ACC23FD628800D38D60 /* LineMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LineMainViewController.h; sourceTree = "<group>"; };
+		D4773ACD23FD628800D38D60 /* LineMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LineMainViewController.m; sourceTree = "<group>"; };
 		D4AE1C0922C0FCC300C142FE /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		D4B75E092278025E0007047C /* testC053_a.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testC053_a.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4B75E0C2278025E0007047C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -7759,6 +7762,8 @@
 			children = (
 				D4773AC023FC1F7F00D38D60 /* LineConversionHeaderVC.h */,
 				D4773AC123FC1F7F00D38D60 /* LineConversionHeaderVC.m */,
+				D4773ACC23FD628800D38D60 /* LineMainViewController.h */,
+				D4773ACD23FD628800D38D60 /* LineMainViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -9901,6 +9906,7 @@
 				031E1D6C23BE812B00B0F813 /* UGMosaicGoldController.m in Sources */,
 				031E1C0623BE812900B0F813 /* UGGameplayModel.m in Sources */,
 				031E1DD223BE812C00B0F813 /* UGlevelsModel.m in Sources */,
+				D4773ACE23FD628800D38D60 /* LineMainViewController.m in Sources */,
 				031E1D6A23BE812B00B0F813 /* UGActivityGoldTableViewController.m in Sources */,
 				031E1E6823BE812C00B0F813 /* UGRealBetRecordCell.m in Sources */,
 				031E1DA823BE812B00B0F813 /* UGMosaicGoldModel.m in Sources */,

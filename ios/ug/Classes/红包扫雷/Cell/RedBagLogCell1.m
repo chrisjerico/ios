@@ -71,12 +71,12 @@
     ((UILabel *)self.itemLabels[0]).text = [CMTimeCommon timestampSwitchTime: [model.createTime intValue] andFormatter:@"YYYY-MM-dd"];
     ((UILabel *)self.itemLabels[1]).text = [CMTimeCommon timestampSwitchTime: [model.createTime intValue] andFormatter:@"hh:mm:ss"];
     
-    #ifdef DEBUG
-           ((UILabel *)self.itemLabels[2]).text = [NSString stringWithFormat:@"%@--%@",model.rid,model.uid];//model.operateText ;
-     
-    #else
+//    #ifdef DEBUG
+//           ((UILabel *)self.itemLabels[2]).text = [NSString stringWithFormat:@"%@--%@",model.rid,model.uid];//model.operateText ;
+//
+//    #else
             ((UILabel *)self.itemLabels[2]).text = model.operateText;//model.operateText ;
-    #endif
+//    #endif
 
 
 

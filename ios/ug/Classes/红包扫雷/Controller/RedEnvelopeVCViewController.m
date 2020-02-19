@@ -106,7 +106,7 @@
                              @"rows":@(self.pageSize),
                              
     };
-        [CMCommon showSystemTitle:[NSString stringWithFormat:@"参数：%@",params]];
+//        [CMCommon showSystemTitle:[NSString stringWithFormat:@"参数：%@",params]];
     [SVProgressHUD showWithStatus:nil];
     WeakSelf;
     //投注记录信息
