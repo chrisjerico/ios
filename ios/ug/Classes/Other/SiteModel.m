@@ -55,7 +55,7 @@
             site(@"c114",        @"c114hy",     @"157",     @"",                        @"",                                            @"超级签名",    @"彩43"),          // https://dev.app2.xin/index | 19859553001 | wenxiang123123
             site(@"c190",        @"c190hy",     @"167",     @"io.fhpt.H5F40948F",       @"https://fhylofc190nyvqo.playslot8.com",       @"超级签名",    @"22333彩世界"),          // https://dev.app2.xin/index 账号：15559931943   密码：qwert12345
             site(@"c201",        @"c201hy",     @"213",     @"io.fhpt.YSFC201",         @"https://dkcp520.com",                         @"超级签名",    @"大咖彩票"),          //https://dev.app2.xin/index | 18675958156 | dk789789
-            site(@"c048",        @"c048hy",     @"133",     @"io.fhpt.H5F00A9FA",       @"https://dsjf43-43-f14-345-36-g54t-gfh54.com", @"超级签名",    @"凤凰国际"),//用户15687374617  密码   qaz123123  超级苹果签 
+            site(@"c048",        @"c048hy",     @"133",     @"io.fhpt.H5F00A9FA",       @"https://dsjf43-43-f14-345-36-g54t-gfh54.com", @"超级签名",    @"凤凰国际"),//用户15687374617  密码   qaz123123  超级苹果签
             site(@"l001",        @"l001hy",     @"218",     @"io.fhpt.YSFL001",         @"https://wap4988.com/",                        @"超级签名",    @"六合宝典"),//激光账号，qazttcp@gmail.com 密码 ttcp2075ZXCs  ISO 超级签 18759487805    ZXC4988tianji
             site(@"c228",        @"c228hy",     @"249",     @"io.fhpt.YSAC228",         @"https://app77787.co",                         @"超级签名",    @"太陽城集團"),//https://app77787.co/  https://app77787.com/ https://77787app.co/  https://77787app.com/，超级签名：15346561706 / aa362600
             
@@ -198,8 +198,13 @@
             site(@"test60f",     @"test60f",    @"",        @"com.UGGame.cp",           @"http://test60f.fhptcdn.com",                  @"内测包",     @"test60f"),//
             site(@"test61f",     @"test61f",    @"",        @"com.UGGame.cp",           @"http://test61f.fhptcdn.com",                  @"内测包",     @"test61f"),//
             site(@"test58f",     @"test58f",    @"",        @"com.UGGame.cp",           @"http://test58f.ccpt.site",                    @"内测包",     @"test58f"),//
+            site(@"tess6001",     @"tess6001",    @"",        @"com.UGGame.cp",           @"http://tess6001.fhptcdn.com",                    @"内测包",     @"tess6001"),//
+            site(@"tess6002",     @"tess6002",    @"",        @"com.UGGame.cp",           @"http://tess6002.fhptcdn.com",                    @"内测包",     @"tess6002"),//
+            site(@"tess6003",     @"tess6003",    @"",        @"com.UGGame.cp",           @"http://tess6003.fhptcdn.com",                    @"内测包",     @"tess6003"),//
+            site(@"t600f",     @"t600f",    @"",        @"com.UGGame.cp",           @"http://www.t600f.fhptcdn.com",                    @"内测包",     @"t600f"),//
+            site(@"wt600f",     @"wt600f",    @"",        @"com.UGGame.cp",           @"http://wwwt600f.fhptcdn.com",                    @"内测包",     @"wt600f"),//
             // 站点编号 / 上传编号 / 上传ID / 签名方式 / APP名 / bundleID / 接口域名
-//            NSString *siteId, NSString *uploadNum, NSString *uploadId, NSString *appId, NSString *host, NSString *type, NSString *appName
+            //            NSString *siteId, NSString *uploadNum, NSString *uploadId, NSString *appId, NSString *host, NSString *type, NSString *appName
         ];
     });
     return __dataArray;
