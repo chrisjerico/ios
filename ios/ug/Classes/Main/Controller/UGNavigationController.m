@@ -114,7 +114,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             ||[viewController isKindOfClass:[JYRegisterViewController class]] ) {
             
             if (!Skin1.isBlack && !Skin1.isJY){
-                if (![viewController isKindOfClass:[JYRegisterViewController class]]) {
+                if (![viewController isKindOfClass:[UGRegisterViewController class]]) {
                     viewController =  _LoadVC_from_storyboard_(@"UGRegisterViewController");
                 }
                 

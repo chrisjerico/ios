@@ -278,6 +278,8 @@
     JYRegisterViewController *registerVC = [self.storyboard instantiateViewControllerWithIdentifier:@"JYRegisterViewController"];
     [self.navigationController pushViewController:registerVC animated:YES];
     
+//    [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGRegisterViewController") animated:YES];
+    
 }
 //免费试玩
 - (IBAction)playAction:(id)sender {

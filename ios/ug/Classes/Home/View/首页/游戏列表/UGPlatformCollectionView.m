@@ -108,7 +108,7 @@ static NSString *const footerId = @"footerId";
     if (Skin1.isJY) {
         if (Skin1.isJY) {
 
-             if ([self.iid isEqualToString:@"1"] ) {
+             if ([self.iid isEqualToString:@"1"] || [self.iid isEqualToString:@"7"]) {
                 WSLWaterFlowLayout * _flow;
                 _flow = [[WSLWaterFlowLayout alloc] init];
                 _flow.delegate = self;
@@ -178,48 +178,49 @@ static NSString *const footerId = @"footerId";
         
     }
     else if (Skin1.isJY) {
-        if ([self.iid isEqualToString:@"1"]) {
-            // 3.GCD
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                // UI更新代码
-                [self contentInsetHeaderView :self.dataArray];
-            });
-            
-            NSMutableArray <GameModel *> * headArray = [NSMutableArray new];
-            
-            for (GameModel *model in _dataArray) {
-                if (model.subType.count) {
-                    [headArray addObject:model];
-                }
-            }
-            
-            if (headArray.count) {
-                GameModel *model  = [headArray objectAtIndex:0];
-                
-                for (int i=0; i<model.subType.count; i++) {
-                    [tempArray addObject:model.subType[i]];
-                    if (((i + 1) % 4 == 0) || (i == model.subType.count - 1)) {
-                        [self.sectionedDataArray addObject: [tempArray mutableCopy]];
-                        [tempArray removeAllObjects];
-                    }
-                }
-            }
-            else{
-                for (int i=0; i<dataArray.count; i++) {
-                    [tempArray addObject:dataArray[i]];
-                    if (((i + 1) % 4 == 0) || (i == dataArray.count - 1)) {
-                        [self.sectionedDataArray addObject: [tempArray mutableCopy]];
-                        [tempArray removeAllObjects];
-                    }
-                }
-            }
-            
-        }
-        else if([self.iid isEqualToString:@"7"]){
+//        if ([self.iid isEqualToString:@"1"]) {
+//            // 3.GCD
+//
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                // UI更新代码
+//                [self contentInsetHeaderView :self.dataArray];
+//            });
+//
+//            NSMutableArray <GameModel *> * headArray = [NSMutableArray new];
+//
+//            for (GameModel *model in _dataArray) {
+//                if (model.subType.count) {
+//                    [headArray addObject:model];
+//                }
+//            }
+//
+//            if (headArray.count) {
+//                GameModel *model  = [headArray objectAtIndex:0];
+//
+//                for (int i=0; i<model.subType.count; i++) {
+//                    [tempArray addObject:model.subType[i]];
+//                    if (((i + 1) % 4 == 0) || (i == model.subType.count - 1)) {
+//                        [self.sectionedDataArray addObject: [tempArray mutableCopy]];
+//                        [tempArray removeAllObjects];
+//                    }
+//                }
+//            }
+//            else{
+//                for (int i=0; i<dataArray.count; i++) {
+//                    [tempArray addObject:dataArray[i]];
+//                    if (((i + 1) % 4 == 0) || (i == dataArray.count - 1)) {
+//                        [self.sectionedDataArray addObject: [tempArray mutableCopy]];
+//                        [tempArray removeAllObjects];
+//                    }
+//                }
+//            }
+//
+//        }
+//        else
+        if([self.iid isEqualToString:@"7"]||[self.iid isEqualToString:@"1"]){
             for (int i=0; i<dataArray.count; i++) {
                 [tempArray addObject:dataArray[i]];
-                if (((i + 1) % 4 == 0) || (i == dataArray.count - 1)) {
+                if (((i + 1) % 3 == 0) || (i == dataArray.count - 1)) {
                     [self.sectionedDataArray addObject: [tempArray mutableCopy]];
                     [tempArray removeAllObjects];
                 }
@@ -286,9 +287,10 @@ static NSString *const footerId = @"footerId";
         if ([self.iid isEqualToString:@"7"]
             ||[self.iid isEqualToString:@"1"] ) {
             UGGameTypeColletionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:gameCellid forIndexPath:indexPath];
-            if ([self.iid isEqualToString:@"1"]) {
-                cell.item = (GameSubModel *)((NSArray *)self.sectionedDataArray[indexPath.section])[indexPath.row];
-            } else {
+//            if ([self.iid isEqualToString:@"1"]) {
+//                cell.item = (GameSubModel *)((NSArray *)self.sectionedDataArray[indexPath.section])[indexPath.row];
+//            } else
+            {
                 cell.item = ((NSArray *)self.sectionedDataArray[indexPath.section])[indexPath.row];
             }
             [cell setBackgroundColor: [UIColor whiteColor]];
@@ -361,11 +363,11 @@ static NSString *const footerId = @"footerId";
     else if (Skin1.isJY) {
         if ([self.iid isEqualToString:@"7"]
             ||[self.iid isEqualToString:@"1"] ) {
-             CGFloat itemW = (UGScreenW -7)/4.0;
-                  return CGSizeMake(itemW, 120);
+//             CGFloat itemW = (UGScreenW -7)/4.0;
+//                  return CGSizeMake(itemW, 120);
+              return CGSizeMake(UGScreenW/3-10, 110);
         } else {
               CGFloat itemW = (UGScreenW -7);
-//            CGFloat itemH = 214/734 *(UGScreenW -7);        return CGSizeMake(itemW, itemH);
                   return CGSizeMake(itemW, 110);
                       
         }
@@ -386,7 +388,7 @@ static NSString *const footerId = @"footerId";
     else if (Skin1.isJY) {
         if ([self.iid isEqualToString:@"7"]
             ||[self.iid isEqualToString:@"1"] ) {
-             return UIEdgeInsetsZero;
+             return UIEdgeInsetsMake(6, 5, 0, 5);
         } else {
             return UIEdgeInsetsMake(6, 5, 0, 5);
         }
@@ -472,7 +474,7 @@ static NSString *const footerId = @"footerId";
 //返回每个item大小
 - (CGSize)waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    CGFloat itemW = (UGScreenW -7)/4.0;
+    CGFloat itemW = (UGScreenW -7)/3.0;
     return CGSizeMake(itemW, 120);
     
 }

@@ -98,17 +98,17 @@ static NSString *convertCellid = @"UGConvertCollectionViewCell";
 }
 
 -(void)setYyBgViewBgColor{
-	NSString *skitType = Skin1.skitType;
-	if ([skitType isEqualToString:@"新年红"] || [skitType isEqualToString:@"石榴红"]|| [skitType isEqualToString:@"六合资料"] || [skitType isEqualToString:@"金沙主题"]) {
-		[_yyBgView setBackgroundColor:Skin1.navBarBgColor];
-		self.waveBotomView.backgroundColor =  Skin1.navBarBgColor;
-		self.waveView.realWaveColor =  Skin1.navBarBgColor;
-	}
-	else  {
-		[_yyBgView setBackgroundColor:Skin1.bgColor];
-		self.waveBotomView.backgroundColor =  Skin1.bgColor;
-		self.waveView.realWaveColor =  Skin1.bgColor;
-	}
+    NSString *skitType = Skin1.skitType;
+    if ([@"新年红,石榴红,六合资料,金沙主题,简约模板" containsString:Skin1.skitType]) {
+        [_yyBgView setBackgroundColor:Skin1.navBarBgColor];
+        self.waveBotomView.backgroundColor =  Skin1.navBarBgColor;
+        self.waveView.realWaveColor =  Skin1.navBarBgColor;
+    }
+    else  {
+        [_yyBgView setBackgroundColor:Skin1.bgColor];
+        self.waveBotomView.backgroundColor =  Skin1.bgColor;
+        self.waveView.realWaveColor =  Skin1.bgColor;
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated{

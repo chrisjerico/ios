@@ -38,6 +38,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bgViewHeightConstraint;    /**<   高度约束 */
 @property (weak, nonatomic) IBOutlet UILabel *welComeLabel;     /**<   欢迎您！*/
 
+@property (weak, nonatomic) IBOutlet UIView *jybgView;           /**<   简约模板时隐藏充值提现背景*/
 @property (weak, nonatomic) IBOutlet UIView *bg2View;           /**<   充值提现背景*/
 @property (weak, nonatomic) IBOutlet UIView *rechargeView;      /**<   充值背景*/
 @property (weak, nonatomic) IBOutlet UIView *withdrawlView;     /**<   提现背景*/
@@ -405,6 +406,13 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
     
     self.backgroundColor = Skin1.textColor4;
     [self.bgView setBackgroundColor:Skin1.menuHeadViewColor];
+    
+    if (Skin1.isJY) {
+        self.bgViewHeightConstraint.constant = k_Height_StatusBar;
+        [self.jybgView setBackgroundColor:Skin1.navBarBgColor];
+        [self.jybgView setHidden:NO];
+
+    }
     
     UIWindow* window = UIApplication.sharedApplication.keyWindow;
     UIView* maskView = [[UIView alloc] initWithFrame:window.bounds];
