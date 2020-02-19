@@ -14,6 +14,13 @@
 @property (nonatomic) SlideSegmentView1 *segmentView;                  /**<    分页布局View */
 @property (nonatomic, strong)XYYSegmentControl *slideSwitchView;       /**<    分页布局View */
 @property (nonatomic,strong)  NSArray <NSString *> *itemArray;
+//===================================================
+@property (weak, nonatomic) IBOutlet UIButton *refreshFirstButton;    /**<    刷新按钮 */
+@property (weak, nonatomic) IBOutlet UIImageView *headImageView;
+@property (weak, nonatomic) IBOutlet UILabel *userNameLabel;/**<    昵称 */
+@property (weak, nonatomic) IBOutlet UILabel *moneyLabel;   /**<    余额 */
+@property (weak, nonatomic) IBOutlet UILabel *realNameLabel;/**<    真实名 */
+
 @end
 
 @implementation LineConversionHeaderVC
@@ -33,6 +40,8 @@
             make.height.mas_equalTo(self.view.height - NavController1.navigationBar.by - 40);
         }];
     }
+    
+ 
     __weakSelf_(__self);
     _segmentView.titleBar.updateCellForItemAtIndex = ^(UICollectionViewCell *cell, UILabel *label, NSUInteger idx) {
         label.text = titles[idx];
@@ -45,17 +54,21 @@
         
         label.textColor = selected ? [UIColor redColor] : Skin1.textColor2;
         label.font = selected ? [UIFont boldSystemFontOfSize:16] : [UIFont systemFontOfSize:14];
-        __self.segmentView.titleBar.backgroundColor = [Skin1.navBarBgColor colorWithAlphaComponent:0.35];
+       
         
         if (selected) {
             // 下划线的默认动画
             [UIView animateWithDuration:0.25 animations:^{
-                __self.segmentView.titleBar.underlineView.frame = CGRectMake(cell.left, cell.height-2, cell.width, 2);
+                __self.segmentView.titleBar.underlineView.frame = CGRectMake(cell.left, cell.height-2, label.width +20, 2);
+//                [__self.segmentView.titleBar.underlineView mas_updateConstraints:^(MASConstraintMaker *make) {
+//                    make.centerX.equalTo(cell.mas_centerX);
+//                }];
             }];
         }
 
     };
-    [CMCommon setBorderWithView:self.segmentView.titleBar top:NO left:NO bottom:YES right:NO borderColor:[UIColor whiteColor] borderWidth:1];
+    self.segmentView.titleBar.backgroundColor = [Skin1.navBarBgColor colorWithAlphaComponent:0.35];
+    [CMCommon setBorderWithView:self.segmentView.titleBar top:YES left:NO bottom:YES right:NO borderColor:[UIColor whiteColor] borderWidth:1];
     [self.view addSubview:_segmentView];
     [_segmentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_headView.mas_bottom);
@@ -92,11 +105,10 @@
     // Do any additional setup after loading the view.
     self.title = @"额度转换";
     
-    [_headView setBackgroundColor:[Skin1.navBarBgColor colorWithAlphaComponent:0.45]];
+    [_headView setBackgroundColor:Skin1.navBarBgColor colorWithAlphaComponent:0.45]];
     
-    [self fishSegmentView];
-    
-//    [self xyySegmentView];
+//    [self fishSegmentView];
+    [self xyySegmentView];
 }
 
 #pragma mark - XYYSegmentControlDelegate
@@ -132,5 +144,63 @@
     }
     
 }
+
+
+#pragma mark -- 网络请求
+// 刷新余额
+- (IBAction)refreshBalance:(id)sender {
+    [self getUserInfo];
+}
+- (void)getUserInfo {
+    [self startAnimation];
+    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
+    [CMNetwork getUserInfoWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            UGUserModel *user = model.data;
+            UGUserModel *oldUser = [UGUserModel currentUser];
+            user.sessid = oldUser.sessid;
+            user.token = oldUser.token;
+            UGUserModel.currentUser = user;
+            NSLog(@"签到==%d",[UGUserModel currentUser].checkinSwitch);
+            [self setupUserInfo];
+        } failure:^(id msg) {
+            [self stopAnimation];
+        }];
+    }];
+}
+
+//刷新余额动画
+- (void)startAnimation {
+    CABasicAnimation *ReFreshAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    ReFreshAnimation.toValue = [NSNumber numberWithFloat:M_PI*2.0];
+    ReFreshAnimation.duration = 1;
+    ReFreshAnimation.repeatCount = HUGE_VALF;
+    [self.refreshFirstButton.layer addAnimation:ReFreshAnimation forKey:@"rotationAnimation"];
+}
+
+//刷新余额动画
+- (void)stopAnimation {
+    [self.refreshFirstButton.layer removeAllAnimations];
+}
+
+#pragma mark - UIS
+- (void)setupUserInfo {
+    UGUserModel *user = [UGUserModel currentUser];
+
+    [self.headImageView sd_setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
+    self.userNameLabel.text = user.username;
+
+    double floatString = [user.balance doubleValue];
+    self.moneyLabel.text =  [NSString stringWithFormat:@"￥%.2f",floatString];
+    if (![CMCommon stringIsNull:user.fullName]) {
+        self.realNameLabel.text = user.fullName;
+    }
+    else{
+        self.realNameLabel.text = @"";
+    }
+    
+
+}
+
 
 @end
