@@ -163,6 +163,9 @@
 - (float )cellNormalFontSize        { return 14.0; }
 
 
+- (BOOL)isNoBorder {
+    return [@"c200" containsString:_SiteId];
+}
 
 - (BOOL)isYHShowTitle {
     return [@"c217" containsString:_SiteId];

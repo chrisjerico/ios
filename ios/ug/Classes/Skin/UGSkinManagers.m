@@ -13,6 +13,7 @@
 
 @implementation UGSkinManagers
 
+
 static NSPointerArray *__viewPointers = nil;    // 保存需要换肤的对象
 static UGSkinManagers *__currentSkin1 = nil;    // 当前皮肤
 static UGSkinManagers *__lastSkin1 = nil;       // 上一个皮肤，用来做CGColor的色值匹配
@@ -311,7 +312,12 @@ static UGSkinManagers *__initSkin1 = nil;
 				sm.skitType                 = @"经典";
 				sm.skitString               = @"经典 3褐色";
 				sm.bgColor                  = color(@"B48A46,8A5C3E");
-				sm.navBarBgColor            = color(@"7E503C");
+                if ([@"c228" containsString:APP.SiteId]) {
+                    sm.navBarBgColor            = RGBA(210, 70, 62, 1.0) ;
+                } else {
+                    sm.navBarBgColor            = color(@"7E503C");
+                }
+				
 				sm.tabBarBgColor            = color(@"DFC8A1");
 				sm.tabNoSelectColor         = color(@"000000");
 				sm.tabSelectedColor         = color(@"FFFFFF");
@@ -1297,11 +1303,11 @@ static UGSkinManagers *__initSkin1 = nil;
 }
 
 
--(UIColor *)navBarBgColor{
+-(UIColor *)c228NavBarBgColor:(UIColor *)navColor{
     if ([@"c228" containsString:APP.SiteId]) {
         return RGBA(210, 70, 62, 1.0);
     } else {
-        return _navBarBgColor;
+        return navColor;
     }
 }
 @end
