@@ -24,8 +24,10 @@
     self.leftPoint.layer.cornerRadius = self.leftPoint.width / 2;
     self.leftPoint.layer.masksToBounds = YES;
     self.bottomLine.backgroundColor = Skin1.isBlack ? Skin1.textColor2 : (APP.betBgIsWhite ? Skin1.navBarBgColor : [UIColor whiteColor]);
-    
-
+   
+    if (APP.isRedWhite) {
+        self.bottomLine.backgroundColor = RGBA(231, 213, 231, 1.0);
+    }
 }
 
 - (void)setItem:(UGGameplayModel *)item {
@@ -69,6 +71,14 @@
             }
 
         }
+    }
+    
+    if (APP.isRedWhite) {
+        self.titleLabel.textColor = selected ? [UIColor whiteColor] : Skin1.textColor1;
+        self.leftPoint.backgroundColor = selected ? [UIColor whiteColor] : UGRGBColor(195, 195, 196);
+        self.layer.borderColor = [UIColor whiteColor].CGColor;
+        self.layer.borderWidth = selected ? 0.5 : 0;
+        self.backgroundColor = selected ?Skin1.navBarBgColor :[UIColor clearColor];
     }
 }
 

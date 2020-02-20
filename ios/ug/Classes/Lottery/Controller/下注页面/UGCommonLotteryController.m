@@ -72,6 +72,11 @@
             self.tableView.separatorColor = [UIColor whiteColor];
         }
         
+        if (APP.isRedWhite) {
+             self.tableView.backgroundColor = RGBA(242, 242, 242, 1.0);
+             self.tableView.separatorColor = RGBA(231, 213, 231, 1.0);
+        }
+        
         // 顶部栏背景色
         [subView(@"上背景View") setBackgroundColor:[UIColor clearColor]];
         [subView(@"中间View") setBackgroundColor:[UIColor clearColor]];
