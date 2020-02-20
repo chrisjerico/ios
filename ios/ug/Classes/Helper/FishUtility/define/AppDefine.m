@@ -163,6 +163,15 @@
 - (float )cellNormalFontSize        { return 14.0; }
 
 
+- (BOOL)isRedWhite {
+    if ( [@"新年红0" containsString:Skin1.skitType]) {
+        return [@"c184" containsString:_SiteId];
+    }
+    else{
+        return NO;
+    }
+}
+
 - (BOOL)isNoBorder {
     return [@"c200" containsString:_SiteId];
 }

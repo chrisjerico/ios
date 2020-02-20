@@ -1167,7 +1167,7 @@ static UGSkinManagers *__initSkin1 = nil;
 	NSLog(@"============================skitType=%@",skitType);
 //	skitType = @"经典 1蓝色";
 //        skitType = @"石榴红";
-//        skitType = @"新年红1";
+        skitType = @"新年红0";
 #endif
 	return [UGSkinManagers allSkin][skitType];
 
@@ -1303,11 +1303,11 @@ static UGSkinManagers *__initSkin1 = nil;
 }
 
 
--(UIColor *)c228NavBarBgColor:(UIColor *)navColor{
-    if ([@"c228" containsString:APP.SiteId]) {
-        return RGBA(210, 70, 62, 1.0);
-    } else {
-        return navColor;
-    }
-}
+//-(UIColor *)c228NavBarBgColor:(UIColor *)navColor{
+//    if ([@"c228" containsString:APP.SiteId]) {
+//        return RGBA(210, 70, 62, 1.0);
+//    } else {
+//        return navColor;
+//    }
+//}
 @end

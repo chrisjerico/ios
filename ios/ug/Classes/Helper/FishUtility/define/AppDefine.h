@@ -75,6 +75,9 @@
 
 @property (nonatomic) BOOL isYHShowTitle;    /**<  优惠详情现在titleLabel ,导航条显示：活动详情*/
 @property (nonatomic) BOOL isNoBorder;    /**<  首页优惠活动没有外面的View */
+@property (nonatomic) BOOL isRedWhite;    /**<  下注界面新年红模板样式 红白配色*/
+
+
 // 热更新相关字段
 @property (nonatomic) BOOL Test;                        /**<   是否是测试环境 */
 @property (nonatomic, readonly) NSString *jspPath;      /**<    jspatch热更新本地文件路径 */

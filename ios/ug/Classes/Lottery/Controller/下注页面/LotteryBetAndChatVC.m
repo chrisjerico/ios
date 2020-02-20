@@ -253,8 +253,17 @@
             }
 
 			label.font = selected ? [UIFont boldSystemFontOfSize:16] : [UIFont systemFontOfSize:14];
-			cell.backgroundColor = selected ? [[UIColor grayColor] colorWithAlphaComponent:0.25] : [UIColor clearColor];
-			__ssv1.titleBar.backgroundColor = Skin1.isBlack || idx || !APP.betBgIsWhite ? Skin1.navBarBgColor : [UIColor whiteColor];
+            
+            if (APP.isRedWhite) {
+                cell.backgroundColor = selected ? [UIColor whiteColor] : Skin1.navBarBgColor;
+                __ssv1.titleBar.backgroundColor = Skin1.navBarBgColor;
+                 label.textColor = selected ? [UIColor blackColor] : [UIColor whiteColor];
+            } else {
+                cell.backgroundColor = selected ? [[UIColor grayColor] colorWithAlphaComponent:0.25] : [UIColor clearColor];
+                __ssv1.titleBar.backgroundColor = Skin1.isBlack || idx || !APP.betBgIsWhite ? Skin1.navBarBgColor : [UIColor whiteColor];
+            }
+	
+			
 		};
 		ssv1.didSelectedIndex = ^(NSUInteger idx) {
 			if (idx) {

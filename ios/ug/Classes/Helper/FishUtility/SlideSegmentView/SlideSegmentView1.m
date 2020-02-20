@@ -83,6 +83,10 @@
             label.textColor = [UIColor grayColor];
         }
         
+        if (APP.isRedWhite) {
+            label.textColor = [UIColor whiteColor];
+        }
+        
         label.textAlignment = NSTextAlignmentCenter;
         label.font = [UIFont systemFontOfSize:16];
         label.tagString = @"label";
