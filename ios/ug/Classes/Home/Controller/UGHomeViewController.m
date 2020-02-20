@@ -479,8 +479,8 @@
             subView(@"优惠活动外View").layer.masksToBounds = NO;
             subView(@"优惠活动外View").layer.borderWidth = 0;
             subView(@"优惠活动外View").backgroundColor = [UIColor clearColor];
-            _promotionsStackView.cc_constraints.top.constant = 0;
-            _promotionsStackView.cc_constraints.left.constant = 0;
+            _promotionsStackView.cc_constraints.top.constant = -10;
+            _promotionsStackView.cc_constraints.left.constant = -10;
         } else {
             subView(@"优惠活动外View").layer.cornerRadius = 5;
             subView(@"优惠活动外View").layer.masksToBounds = YES;
