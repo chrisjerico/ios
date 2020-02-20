@@ -316,11 +316,8 @@
 
 - (BOOL)betBgIsWhite {
     
-    if ([Skin1.skitString isEqualToString:@"新年红 1蓝色风格"]) {
-        return NO;
-    } else {
-        return ![@"c175,c085,c073,c169,a002,c190,c048,c200,c001,c208,c202,c212,c134" containsString:_SiteId] || [@"新年红,石榴红" containsString:Skin1.skitType]||Skin1.isJY;
-    }
+    return ![@"c175,c085,c073,c169,a002,c190,c048,c200,c001,c208,c202,c212,c134" containsString:_SiteId] || [@"新年红,石榴红" containsString:Skin1.skitType]||Skin1.isJY;
+    
 }
 
 - (BOOL)betSizeIsBig {

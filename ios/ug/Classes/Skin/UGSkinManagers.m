@@ -1149,8 +1149,12 @@ static UGSkinManagers *__initSkin1 = nil;
 	
 	NSLog(@"============================SysConf.mobileTemplateCategory=%@",SysConf.mobileTemplateStyle);
 	
-	NSString *skitType = dict[SysConf.mobileTemplateCategory];
+    NSString *skitType = dict[SysConf.mobileTemplateCategory];;
     
+    //如果是c199, 新年红模板 ==》蓝色模板
+    if ([@"c199" containsString:APP.SiteId] && [skitType containsString:@"新年红"] ) {
+        skitType = @"新年红1";
+    }
     
     
 #if DEBUG
