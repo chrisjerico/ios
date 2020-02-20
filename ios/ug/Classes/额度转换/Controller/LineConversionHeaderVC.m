@@ -87,14 +87,14 @@
     [self.slideSwitchView setUserInteractionEnabled:YES];
     self.slideSwitchView.segmentControlDelegate = self;
     //设置tab 颜色(可选)
-    self.slideSwitchView.tabItemNormalColor = Skin1.textColor2;
+    self.slideSwitchView.tabItemNormalColor = Skin1.textColor1;
     self.slideSwitchView.tabItemNormalFont = 14;
     //设置tab 被选中的颜色(可选)
-    self.slideSwitchView.tabItemSelectedColor = Skin1.navBarBgColor ;
+    self.slideSwitchView.tabItemSelectedColor = RGBA(203, 43, 37, 1.0) ;
     //设置tab 背景颜色(可选)
-    self.slideSwitchView.tabItemNormalBackgroundColor = Skin1.textColor4;
+    self.slideSwitchView.tabItemNormalBackgroundColor = [Skin1.navBarBgColor colorWithAlphaComponent:0.55];
     //设置tab 被选中的标识的颜色(可选)
-    self.slideSwitchView.tabItemSelectionIndicatorColor = Skin1.navBarBgColor ;
+    self.slideSwitchView.tabItemSelectionIndicatorColor = RGBA(203, 43, 37, 1.0) ;
     
     [_slideSwitchView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_headView.mas_bottom);
