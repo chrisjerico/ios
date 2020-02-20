@@ -70,7 +70,7 @@
 - (void)setItem:(GameModel *)item {
     _item = item;
    
-	self.nameLabel.text =  [CMCommon stringIsNull:item.name] ? item.title : item.title;
+	self.nameLabel.text =  [CMCommon stringIsNull:item.name] ? item.title : item.name;
 	[self.hasSubSign setHidden: (item.subType.count > 0 ? false : true)];
     [self.imgView sd_setImageWithURL:[NSURL URLWithString:item.icon] placeholderImage:[UIImage imageNamed:@"loading"]];
     
