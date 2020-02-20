@@ -119,7 +119,7 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 
 @interface UGSystemConfigModel : UGModel<UGSystemConfigModel>
 
-
+@property (nonatomic, copy) NSString *zxkfUrl2;                    /**<   在线客服2 */
 @property (nonatomic, copy) NSString *zxkfUrl;                    /**<   在线客服 */
 @property (nonatomic, copy) NSString *minWithdrawMoney;           /**<   最低提款金额 */
 @property (nonatomic, copy) NSString *maxWithdrawMoney;           /**<   最高提款金额 */

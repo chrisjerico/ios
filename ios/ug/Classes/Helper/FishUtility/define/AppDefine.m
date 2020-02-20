@@ -197,7 +197,7 @@
 }
 
 - (BOOL)isHideChat {
-    return [@"c212" containsString:_SiteId];
+    return [@"c212,c208" containsString:_SiteId];
 }
 
 - (BOOL)isLight {
@@ -208,12 +208,12 @@
     if (Skin1.isSLH) {
         return YES;
     } else {
-        return [@"c134,c200" containsString:_SiteId];
+        return [@"c134,c200,c208" containsString:_SiteId];
     }
 }
 
 - (BOOL)isYellow {
-    return [@"c085,c134,c200" containsString:_SiteId];
+    return [@"c085,c134,c200,c208," containsString:_SiteId];
 }
 
 - (BOOL)isSelectStyle {
@@ -248,7 +248,7 @@
     if (Skin1.isSLH) {
         return YES;
     } else {
-        return [@"c212,c085,c208,c134,c200" containsString:_SiteId];
+        return [@"c212,c085,c208,c134,c200,c208" containsString:_SiteId];
     }
     
 }
