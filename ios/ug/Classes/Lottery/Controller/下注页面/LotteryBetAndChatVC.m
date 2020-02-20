@@ -58,12 +58,23 @@
 	[super viewDidLoad];
 	self.title = @"聊天室";
 	if (!_nim) {
-		UGNextIssueModel * oc = [UGNextIssueModel new];
-		oc.gameId = @"70";
-		oc.gameType = @"lhc";
-		oc.name = @"lhc";
-		oc.title = @"香港六合彩";
-		_nim = oc;
+        
+        if ([@"c084" containsString:APP.SiteId]) {
+            UGNextIssueModel * oc = [UGNextIssueModel new];
+            oc.gameId = @"164";
+            oc.gameType = @"lhc";
+            oc.name = @"jslhc";
+            oc.title = @"分分六合彩";
+            _nim = oc;
+        } else {
+            UGNextIssueModel * oc = [UGNextIssueModel new];
+            oc.gameId = @"70";
+            oc.gameType = @"lhc";
+            oc.name = @"lhc";
+            oc.title = @"香港六合彩";
+            _nim = oc;
+        }
+		
 	}
 	
 	__weakSelf_(__self);
