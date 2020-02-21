@@ -51,8 +51,9 @@
     if (![[NSString stringWithContentsOfFile:_NSString(@"%@/ug/Classes/Other/configuration.h", Path.projectDir) encoding:NSUTF8StringEncoding error:nil] containsString:@"#define checkSign 1"]) {
         [errs addObject:@"未开启参数加密，请到 configuration.h 文件开启参数加密"];
     }
-    if (![[NSString stringWithContentsOfFile:_NSString(@"%@/ug/Classes/Helper/FishUtility/define/AppDefine.h", Path.projectDir) encoding:NSUTF8StringEncoding error:nil] containsString:@"#ifdef DEBUG\n#define APP_TEST 1\n#endif"]) {
-        [errs addObject:@"未关闭内测环境，请到 AppDefine.h 文件注把 #define APP_TEST 宏用 #ifdef DEBUG 包起来"];
+    NSString *appDefine = [NSString stringWithContentsOfFile:_NSString(@"%@/ug/Classes/Helper/FishUtility/define/AppDefine.h", Path.projectDir) encoding:NSUTF8StringEncoding error:nil];
+    if (!([appDefine componentsSeparatedByString:@"#define APP_TEST"].count == 2 && [appDefine containsString:@"\n#define APP_TEST\n"])) {
+        [errs addObject:@"未正确配置 APP_TEST宏，请在AppDefine.h上配置。"];
     }
     
     NSLog(@"\n\n");
@@ -105,6 +106,7 @@
         
         // 分段加密，每段之间用\n隔开（因为rsa无法加密太长的字符串）
         [self encryptSubstrins:substrings completion:^(NSArray<NSString *> *rets) {
+            NSLog(@"完整的字符串加密完成");
             [okStrings addObject:[rets componentsJoinedByString:@"\n"]];
             __orString = nil;
             __next();
@@ -131,16 +133,14 @@
         }
         if (!__orString) {
             //            [NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[Path.exportDir]];
-            NSLog(@"字符串加密完成！");
+            NSLog(@"-分割出来的字符串加密完成！");
             if (completion) {
                 completion(okStrings);
             }
             return ;
         }
         [[NSFileManager defaultManager] removeItemAtPath:Path.tempCiphertext error:nil];
-        NSLog(@"__orString= %@",__orString);
-        NSLog(@"Path.privateKey= %@",Path.privateKey);
-        NSLog(@"Path.privateKey= %@",Path.privateKey);
+//        NSLog(@"__orString= %@",__orString);
         [NSTask launchedTaskWithLaunchPath:[[NSBundle mainBundle] pathForResource:@"0encrypt" ofType:@"sh"] arguments:@[__orString, Path.privateKey, Path.tempCiphertext,] completion:^(NSTask * _Nonnull ts) {
             NSString *ret = [NSString stringWithContentsOfFile:Path.tempCiphertext encoding:NSUTF8StringEncoding error:nil];
             if (!ret.length) {
@@ -264,6 +264,16 @@
         task.arguments = @[__sm.siteId, __sm.appName, APPVersion, __sm.appId, Path.projectDir, ];
         task.terminationHandler = ^(NSTask *ts) {
             [ts terminate];
+            
+            // 注释掉APP_TEST
+            if (![__sm.siteId isEqualToString:@"hotUpdate"]) {
+                NSString *filePath = _NSString(@"%@/ug/Classes/Helper/FishUtility/define/AppDefine.h", Path.projectDir);
+                NSString *content = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
+                [[NSFileManager defaultManager] removeItemAtPath:filePath error:nil];
+                content = [content stringByReplacingOccurrencesOfString:@"#define APP_TEST" withString:@"//#define APP_TEST"];
+                [content writeToFile:filePath atomically:true encoding:NSUTF8StringEncoding error:nil];
+            }
+            
             NSLog(@"%@ 站点信息配置完成，开始打包", __sm.siteId);
             NSLog(@"%@ ", __sm.type);
             BOOL isEnterprise = [@"企业包,内测包" containsString:__sm.type];

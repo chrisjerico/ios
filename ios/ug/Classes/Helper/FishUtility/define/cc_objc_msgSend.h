@@ -16,9 +16,6 @@
 //void * cc_objc_msgSend(id self, const char *op, ...);
 //void * cc_objc_msgSendv(id self, const char *op, va_list argList);
 
-@interface NSObject ()
-+ (id)getReturnFromInv:(NSInvocation *)inv withSig:(NSMethodSignature *)sig;
-@end
 
 
 // 用于代替 respondsToSelector:
@@ -31,6 +28,74 @@ BOOL cc_hasMethod(id self, SEL op) {
 
 
 // ———————————— 以下是实现 ————————————
+
+id getReturnFromInv(NSInvocation *inv, NSMethodSignature *sig) {
+    NSUInteger length = [sig methodReturnLength];
+    if (length == 0) return nil;
+    
+    char *type = (char *)[sig methodReturnType];
+    while (*type == 'r' || // const
+           *type == 'n' || // in
+           *type == 'N' || // inout
+           *type == 'o' || // out
+           *type == 'O' || // bycopy
+           *type == 'R' || // byref
+           *type == 'V') { // oneway
+        type++; // cutoff useless prefix
+    }
+    
+#define return_with_number(_type_) \
+do { \
+_type_ ret; \
+[inv getReturnValue:&ret]; \
+return @(ret); \
+} while (0)
+    
+    switch (*type) {
+        case 'v': return nil; // void
+        case 'B': return_with_number(bool);
+        case 'c': return_with_number(char);
+        case 'C': return_with_number(unsigned char);
+        case 's': return_with_number(short);
+        case 'S': return_with_number(unsigned short);
+        case 'i': return_with_number(int);
+        case 'I': return_with_number(unsigned int);
+        case 'l': return_with_number(int);
+        case 'L': return_with_number(unsigned int);
+        case 'q': return_with_number(long long);
+        case 'Q': return_with_number(unsigned long long);
+        case 'f': return_with_number(float);
+        case 'd': return_with_number(double);
+        case 'D': { // long double
+            long double ret;
+            [inv getReturnValue:&ret];
+            return [NSNumber numberWithDouble:ret];
+        };
+            
+        case '@': { // id
+            void *ret = nil;
+            [inv getReturnValue:&ret];
+            return (__bridge id)(ret);
+        };
+            
+        case '#': { // Class
+            Class ret = nil;
+            [inv getReturnValue:&ret];
+            return ret;
+        };
+            
+        default: { // struct / union / SEL / void* / unknown
+            const char *objCType = [sig methodReturnType];
+            char *buf = calloc(1, length);
+            if (!buf) return nil;
+            [inv getReturnValue:buf];
+            NSValue *value = [NSValue valueWithBytes:buf objCType:objCType];
+            free(buf);
+            return value;
+        };
+    }
+#undef return_with_number
+}
 
 void setInv(NSInvocation *inv, NSMethodSignature *sig, NSArray *args) {
     NSUInteger count = [sig numberOfArguments];
@@ -229,7 +294,11 @@ id cc_objc_msgSendv2(id self, const char *_op, NSArray *args) {
     setInv(invocation, signature, args);
     [invocation invokeWithTarget:self];
     
-    return [NSObject getReturnFromInv:invocation withSig:signature];
+    return getReturnFromInv(invocation, signature);
+//    void *ret = nil;
+//    if (signature.methodReturnLength)
+//        [invocation getReturnValue:&ret];
+//    return ret;
 }
 
 void * cc_objc_msgSendv1(id self, const char *_op, va_list argList) {
@@ -266,6 +335,5 @@ void * cc_objc_msgSend(id self, const char *op, ...) {
     
     return result;
 }
-
 
 #endif /* cc_objc_msgSend_h */

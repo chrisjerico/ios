@@ -132,7 +132,7 @@ static UGTabbarController *_tabBarVC = nil;
 		else{
 			smallmenus = menus;
 		}
-		NSLog(@"menus = %@",smallmenus);
+//		NSLog(@"menus = %@",smallmenus);
 		if (smallmenus.count > 3) {
 			// 后台配置的页面
 			[self resetUpChildViewController:smallmenus];
@@ -252,6 +252,7 @@ static UGTabbarController *_tabBarVC = nil;
 		dispatch_once(&onceToken, ^{
 			__stateView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APP.Width, APP.StatusBarHeight)];
 			__stateView.backgroundColor = Skin1.navBarBgColor;
+            __stateView.tagString = @"状态栏背景View";
 			[self.view addSubview:__stateView];
 			for (Class cls in @[QDWebViewController.class, UGBMLoginViewController.class]) {
 				[cls cc_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
@@ -302,13 +303,13 @@ static UGTabbarController *_tabBarVC = nil;
 		}
 		
 		// 判断优惠活动展示在首页还是内页（c001显示在内页）
-		if (mm.cls == [UGPromotionsController class] && SysConf.m_promote_pos && ![APP.SiteId isEqualToString:@"c001"] && !Skin1.isBlack)
+		if ([mm.clsName isEqualToString:[UGPromotionsController className]] && SysConf.m_promote_pos && ![APP.SiteId isEqualToString:@"c001"] && !Skin1.isBlack)
 			continue;
 		
 		// 已存在的控制器不需要重新初始化
 		BOOL existed = false;
 		for (UINavigationController *nav in self.viewControllers) {
-			if ([nav.viewControllers.firstObject isKindOfClass:mm.cls]) {
+			if ([nav.viewControllers.firstObject isKindOfClass:NSClassFromString(mm.clsName)]) {
 				[vcs addObject:nav];
 				[mms addObject:mm];
 				existed = true;
@@ -327,7 +328,7 @@ static UGTabbarController *_tabBarVC = nil;
         nav.tabBarItem.title = mm.name;
         nav.tabBarItem.image = [UIImage imageNamed:mm.defaultImgName];
         nav.tabBarItem.selectedImage = [[UIImage imageNamed:mm.defaultImgName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        NSLog(@"mm.defaultImgName = %@",mm.defaultImgName);
+//        NSLog(@"mm.defaultImgName = %@",mm.defaultImgName);
         [[SDWebImageManager sharedManager] diskImageExistsForURL:[NSURL URLWithString:mm.icon] completion:^(BOOL isInCache) {
             if (isInCache) {
                 UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:mm.icon]]];
@@ -371,16 +372,16 @@ static UGTabbarController *_tabBarVC = nil;
 #pragma mark - UITabBarControllerDelegate
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
-	NSLog(@"viewController = %@",viewController);
-	NSLog(@"_mms = %@",_mms);
+//	NSLog(@"viewController = %@",viewController);
+//	NSLog(@"_mms = %@",_mms);
 	UGMobileMenu *mm = _mms[[tabBarController.viewControllers indexOfObject:viewController]];
-	NSLog(@"mm = %@",mm);
+//	NSLog(@"mm = %@",mm);
 	// 由 UGMobileMenu控制显示的ViewController
 	UIViewController *vc = ((UINavigationController *)viewController).viewControllers.firstObject;
-	NSLog(@"vc = %@",vc);
+//	NSLog(@"vc = %@",vc);
     
 	// 控制器需要重新加载
-	if (vc.class != mm.cls) {
+	if (![vc.className isEqualToString:mm.clsName]) {
 		[mm createViewController:^(__kindof UIViewController * _Nonnull vc) {
 			if (![UGTabbarController canPushToViewController:vc]) {
 				return ;
@@ -390,7 +391,7 @@ static UGTabbarController *_tabBarVC = nil;
 			nav.title = mm.name;
 			nav.tabBarItem.title = mm.name;
 			nav.tabBarItem.image = [UIImage imageNamed:mm.defaultImgName];
-            NSLog(@"mm.defaultImgName = %@",mm.defaultImgName);
+//            NSLog(@"mm.defaultImgName = %@",mm.defaultImgName);
 			nav.tabBarItem.selectedImage = [[UIImage imageNamed:mm.defaultImgName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 			[[SDWebImageManager sharedManager] diskImageExistsForURL:[NSURL URLWithString:mm.icon] completion:^(BOOL isInCache) {
 				if (isInCache) {
@@ -409,6 +410,9 @@ static UGTabbarController *_tabBarVC = nil;
 	// push权限判断
 	return [UGTabbarController canPushToViewController:vc];
 }
+
+
+#pragma mark - 每90秒获取一次站内信
 
 - (void)loadMessageList {
 	if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
@@ -502,6 +506,7 @@ static UGTabbarController *_tabBarVC = nil;
 		}];
 	}];
 }
+
 - (void)beginMessageRequest {
 	WeakSelf;
 	dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0));
@@ -511,6 +516,6 @@ static UGTabbarController *_tabBarVC = nil;
 	});
 	dispatch_resume(timer);
 	APP.messageRequestTimer = timer;
-	
 }
+
 @end

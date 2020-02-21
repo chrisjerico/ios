@@ -175,7 +175,10 @@
         @"m":@"get_app_log_list",
         @"type":@"1",   // 1=ios,2=andriod
         @"page":@(page),
-        @"status":@1,  // 0未发布，1已发布
+#ifdef APP_TEST
+#else
+        @"status":@1,  // 0未发布，1已发布，不传(全部)
+#endif
         @"rand":@(arc4random()).stringValue,
         @"sign":@"996998ikj*",
     };
@@ -214,6 +217,65 @@
         [[sm downloadTask:m request:req] resume];
     }
     return sm;
+}
+
+// 获取ip
+- (CCSessionModel *)getIp {
+    NSString *urlString = @"http://ip.taobao.com/service/getIpInfo2.php";
+    NSDictionary *params = @{@"ip":@"myip"};
+    BOOL isPost = true;
+    
+    static AFHTTPSessionManager *m = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        m = [AFHTTPSessionManager manager];
+    });
+    m.requestSerializer = [AFHTTPRequestSerializer serializer];
+    m.responseSerializer = [AFJSONResponseSerializer serializer];
+    m.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", nil];
+    
+    CCSessionModel *sm = [CCSessionModel new];
+    sm.urlString = urlString;
+    sm.params = params;
+    sm.isPOST = isPost;
+    sm.reconnectCnt = 2;
+    NSMutableURLRequest *req = [m.requestSerializer requestWithMethod:sm.isPOST ? @"POST":@"GET" URLString:sm.urlString parameters:sm.params error:nil];
+    [[sm dataTask:m request:req] resume];
+    return sm;
+//    return [self sendRequest:@"http://ip.taobao.com/service/getIpInfo2.php" params:@{@"ip":@"myip"} isPost:true files:nil];
+}
+
+// 上传日志到ShowDoc
+- (CCSessionModel *)uploadLog:(NSString *)log title:(NSString *)title tag:(nonnull NSString *)tag {
+    NSString *urlString = @"https://www.showdoc.cc/server/api/item/updateByApi";
+    NSDictionary *params = @{
+        @"api_key":@"8d36c0232492493fe13fad667eeb221f2104779671",
+        @"api_token":@"0a98a37b01f88f2afe9b9f5c052db169143601101",
+        @"page_content":log,// 内容
+        @"page_title":_NSString(@"%@（%@）", [[NSDate date] stringWithFormat:@"MM月dd日 HH:mm"], title),// 标题
+        @"cat_name":tag,    // 目录名
+        @"s_number":[[NSDate date] stringWithFormat:@"yyyyMMddHHmm"],// 序号，数字越小越靠前
+    };
+    BOOL isPost = true;
+    
+    static AFHTTPSessionManager *m = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        m = [AFHTTPSessionManager manager];
+    });
+    m.requestSerializer = [AFHTTPRequestSerializer serializer];
+    m.responseSerializer = [AFJSONResponseSerializer serializer];
+    m.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", nil];
+    
+    CCSessionModel *sm = [CCSessionModel new];
+    sm.urlString = urlString;
+    sm.params = params;
+    sm.isPOST = isPost;
+    sm.reconnectCnt = 2;
+    NSMutableURLRequest *req = [m.requestSerializer requestWithMethod:sm.isPOST ? @"POST":@"GET" URLString:sm.urlString parameters:sm.params error:nil];
+    [[sm dataTask:m request:req] resume];
+    return sm;
+//    return [CCSessionModel dataTask:m isPost:isPost url:urlString params:params];
 }
 
 @end

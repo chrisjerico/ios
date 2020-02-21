@@ -17,9 +17,11 @@
     
     // 热更新测试
 //    {
-//        Path.gitVersion = @"1.1.63";
-//        NSString *log = @"热更新发包测试，热更新发包测试，热更新发包测试，热更新发包测试，热更新发包测试2，";    // 更新日志
-//       [self postHotUpdate:log];
+//        Path.gitVersion = @"1.2.31";
+//        NSString *log = @"热更新发包测试，热更新发包测试，热更新发包测试，热更新发包测试，热更新发包测试31，";    // 更新日志
+//        [self login:^{
+//            [self postHotUpdate:log];
+//        }];
 //        return;
 //    }
 
@@ -58,6 +60,33 @@
     }];
 }
 
+
+- (void)login:(void (^)(void))completion {
+    // 登录
+    [NetworkManager1 getInfo:@"123"].completionBlock = ^(CCSessionModel *sm) {
+        if (!sm.error) {
+            if (completion)
+                completion();
+        }
+        else if (sm.error.code == 12) {
+            [NetworkManager1 login:Path.username pwd:Path.pwd].completionBlock = ^(CCSessionModel *sm) {
+                if (!sm.error) {
+                    NSLog(@"登录成功，%@", sm.responseObject);
+                    [[NSUserDefaults standardUserDefaults] setObject:sm.responseObject[@"data"][@"loginsessid"] forKey:@"loginsessid"];
+                    [[NSUserDefaults standardUserDefaults] setObject:sm.responseObject[@"data"][@"logintoken"] forKey:@"logintoken"];
+                    [[NSUserDefaults standardUserDefaults] synchronize];
+
+                    if (completion)
+                        completion();
+                } else {
+                    NSLog(@"登录失败，%@", sm.error);
+                }
+            };
+        } else {
+            NSLog(@"登录失败，%@", sm.error);
+        }
+    };
+}
 
 
 #pragma mark - 发布热更新

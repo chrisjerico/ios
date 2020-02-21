@@ -226,9 +226,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         if ([@[@"7", @"11", @"9"] containsObject:model.gameId]) {
             vc.shoulHideHeader = true;
         }
-        UGNextIssueModel *nextIssueModel = [UGNextIssueModel new];
-        [nextIssueModel setValuesWithObject:model];
-        vc.nextIssueModel = nextIssueModel;
+        vc.nextIssueModel = model;
         vc.gameId = model.gameId;
         vc.gotoTabBlock = ^{
             TabBarController1.selectedIndex = 0;
@@ -253,6 +251,17 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
 }
 
 - (BOOL)pushViewControllerWithLinkCategory:(NSInteger)linkCategory linkPosition:(NSInteger)linkPosition {
+    if (!linkCategory) {
+        return false;
+    }
+    
+    // 去rn页面
+    RnPageModel *rpm = [[APP.rnPageInfos objectsWithValue:@(linkCategory) keyPath:@"linkCategory"] objectWithValue:@(linkPosition) keyPath:@"linkPosition"];
+    if (rpm) {
+        [NavController1 pushViewController:[ReactNativeVC shared:rpm params:nil] animated:true];
+        return true;
+    }
+    
     // linkCategory ： 1=彩票游戏；2=真人视讯；3=捕鱼游戏；4=电子游戏；5=棋牌游戏；6=体育赛事；7=导航链接；8=电竞游戏；9=聊天室；10=手机资料栏目
     if (linkCategory == 9) {
         // 去聊天室页
@@ -263,10 +272,6 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         vc.title = @"聊天室";
         [NavController1 pushViewController:vc animated:true];
         return true;
-    }
-    
-    if (!linkCategory || !linkPosition) {
-        return false;
     }
     
     if (linkCategory == 1) {
@@ -489,6 +494,12 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
 }
 
 - (BOOL)pushVCWithUserCenterItemType:(UserCenterItemType)uciType {
+    RnPageModel *rpm = [APP.rnPageInfos objectWithValue:@(uciType) keyPath:@"userCenterItemCode"];
+    if (rpm) {
+        [NavController1 pushViewController:[ReactNativeVC shared:rpm params:nil] animated:true];
+        return true;
+    }
+    
     switch (uciType) {
         case UCI_在线客服: {
             NSString *urlStr = [SysConf.zxkfUrl stringByTrim];

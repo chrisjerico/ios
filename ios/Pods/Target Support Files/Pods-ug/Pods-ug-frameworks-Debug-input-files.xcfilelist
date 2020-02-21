@@ -2,6 +2,7 @@ ${PODS_ROOT}/Target Support Files/Pods-ug/Pods-ug-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/AvoidCrash/AvoidCrash.framework
 ${BUILT_PRODUCTS_DIR}/BAWKWebView/BAWKWebView.framework
 ${BUILT_PRODUCTS_DIR}/BRPickerView/BRPickerView.framework
+${BUILT_PRODUCTS_DIR}/BVLinearGradient/BVLinearGradient.framework
 ${BUILT_PRODUCTS_DIR}/Base64/Base64.framework
 ${BUILT_PRODUCTS_DIR}/CodePush/CodePush.framework
 ${BUILT_PRODUCTS_DIR}/DLPickerView/DLPickerView.framework
@@ -18,6 +19,11 @@ ${BUILT_PRODUCTS_DIR}/LEEAlert/LEEAlert.framework
 ${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework
 ${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework
 ${BUILT_PRODUCTS_DIR}/RCTTypeSafety/RCTTypeSafety.framework
+${BUILT_PRODUCTS_DIR}/RNCMaskedView/RNCMaskedView.framework
+${BUILT_PRODUCTS_DIR}/RNGestureHandler/RNGestureHandler.framework
+${BUILT_PRODUCTS_DIR}/RNReanimated/RNReanimated.framework
+${BUILT_PRODUCTS_DIR}/RNScreens/RNScreens.framework
+${BUILT_PRODUCTS_DIR}/RNVectorIcons/RNVectorIcons.framework
 ${BUILT_PRODUCTS_DIR}/React-Core/React.framework
 ${BUILT_PRODUCTS_DIR}/React-CoreModules/CoreModules.framework
 ${BUILT_PRODUCTS_DIR}/React-RCTActionSheet/RCTActionSheet.framework
@@ -49,3 +55,5 @@ ${BUILT_PRODUCTS_DIR}/YYText/YYText.framework
 ${BUILT_PRODUCTS_DIR}/YYWebImage/YYWebImage.framework
 ${BUILT_PRODUCTS_DIR}/Yoga/yoga.framework
 ${BUILT_PRODUCTS_DIR}/glog/glog.framework
+${BUILT_PRODUCTS_DIR}/react-native-safe-area-context/react_native_safe_area_context.framework
+${BUILT_PRODUCTS_DIR}/react-native-webview/react_native_webview.framework

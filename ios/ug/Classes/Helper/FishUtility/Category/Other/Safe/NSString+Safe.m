@@ -29,4 +29,8 @@
 - (NSString *)stringValue {
     return [self copy];
 }
+
+- (id)objectForKeyedSubscript:(NSString *)key {
+    return nil;
+}
 @end

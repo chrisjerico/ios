@@ -51,8 +51,6 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *imgBV;      /**<   大V图片*/
 
-@property (nonatomic, copy) NSArray<UGUserCenterItem *> *gms; /**<   行数据 */
-
 @end
 
 @implementation UGLHMineViewController

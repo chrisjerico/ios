@@ -127,44 +127,46 @@
 	}
 	
 	
-	
-	
 	// 彩票下注页VC
 	UGNextIssueModel *model = _nim;
 	_vc1 = ({
-		NSDictionary *dict = @{@"cqssc" :@"UGSSCLotteryController",     // 重庆时时彩
-							   @"pk10"  :@"UGBJPK10LotteryController",  // pk10
-							   @"xyft"  :@"UGBJPK10LotteryController",  // 幸运飞艇
-							   @"qxc"   :@"UGQXCLotteryController",     // 七星彩
-							   @"lhc"   :@"UGHKLHCLotteryController",   // 六合彩
-							   @"jsk3"  :@"UGJSK3LotteryController",    // 江苏快3
-							   @"pcdd"  :@"UGPCDDLotteryController",    // pc蛋蛋
-							   @"gd11x5":@"UGGD11X5LotteryController",  // 广东11选5
-							   @"xync"  :@"UGXYNCLotteryController",    // 幸运农场
-							   @"bjkl8" :@"UGBJKL8LotteryController",   // 北京快乐8
-							   @"gdkl10":@"UGGDKL10LotteryController",  // 广东快乐10
-							   @"fc3d"  :@"UGFC3DLotteryController",    // 福彩3D
-							   @"pk10nn":@"UGPK10NNLotteryController",  // pk10牛牛
-		};
-		NSString *vcName = dict[model.gameType];
-		UGCommonLotteryController *vc = _LoadVC_from_storyboard_(vcName);
-		if ([@[@"7", @"11", @"9"] containsObject:model.gameId]) {
-			vc.shoulHideHeader = true;
-		}
-		UGNextIssueModel *nextIssueModel = [UGNextIssueModel new];
-		[nextIssueModel setValuesWithObject:model];
-		vc.nextIssueModel = nextIssueModel;
-		vc.gameId = model.gameId;
-		vc.gotoTabBlock = ^{
-			TabBarController1.selectedIndex = 0;
-		};
-		// 底部占位调大到100
-		[vc cc_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo>  _Nonnull ai) {
-			UGCommonLotteryController *vc = ai.instance;
-			vc.tableView.contentInset = UIEdgeInsetsMake(0, 0, 100, 0);
-			vc.betCollectionView.contentInset = UIEdgeInsetsMake(0, 0, 100, 0);
-		} error:nil];
-		vc;
+        RnPageModel *rpm = [APP.rnPageInfos objectWithValue:model.gameType keyPath:@"gameType"];
+        if (rpm) {
+            _vc1 = (id)[ReactNativeVC shared:rpm params:@{@"model":model}];
+        } else {
+            NSDictionary *dict = @{@"cqssc" :@"UGSSCLotteryController",     // 重庆时时彩
+                                   @"pk10"  :@"UGBJPK10LotteryController",  // pk10
+                                   @"xyft"  :@"UGBJPK10LotteryController",  // 幸运飞艇
+                                   @"qxc"   :@"UGQXCLotteryController",     // 七星彩
+                                   @"lhc"   :@"UGHKLHCLotteryController",   // 六合彩
+                                   @"jsk3"  :@"UGJSK3LotteryController",    // 江苏快3
+                                   @"pcdd"  :@"UGPCDDLotteryController",    // pc蛋蛋
+                                   @"gd11x5":@"UGGD11X5LotteryController",  // 广东11选5
+                                   @"xync"  :@"UGXYNCLotteryController",    // 幸运农场
+                                   @"bjkl8" :@"UGBJKL8LotteryController",   // 北京快乐8
+                                   @"gdkl10":@"UGGDKL10LotteryController",  // 广东快乐10
+                                   @"fc3d"  :@"UGFC3DLotteryController",    // 福彩3D
+                                   @"pk10nn":@"UGPK10NNLotteryController",  // pk10牛牛
+            };
+            NSString *vcName = dict[model.gameType];
+            UGCommonLotteryController *vc = _LoadVC_from_storyboard_(vcName);
+            if ([@[@"7", @"11", @"9"] containsObject:model.gameId]) {
+                vc.shoulHideHeader = true;
+            }
+            vc.nextIssueModel = model;
+            vc.gameId = model.gameId;
+            vc.gotoTabBlock = ^{
+                TabBarController1.selectedIndex = 0;
+            };
+            // 底部占位调大到100
+            [vc cc_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo>  _Nonnull ai) {
+                UGCommonLotteryController *vc = ai.instance;
+                vc.tableView.contentInset = UIEdgeInsetsMake(0, 0, 100, 0);
+                vc.betCollectionView.contentInset = UIEdgeInsetsMake(0, 0, 100, 0);
+            } error:nil];
+            _vc1 = vc;
+        }
+		_vc1;
 	});
 	
 	// 聊天室VC

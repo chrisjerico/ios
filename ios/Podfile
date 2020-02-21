@@ -116,6 +116,8 @@ pod 'AvoidCrash'  # 防奔溃
 pod 'BAWKWebView'  #web浏览器
 pod 'SGQRCode', '~> 3.0.1'  #二维码生成与扫描
 pod 'STPickerView', '2.4' # 一个多功能的选择器,有城市选择，日期选择和单数组源自定的功能
+pod 'BRPickerView'        #BRPickerView 封装的是iOS中常用的选择器组件，主要包括：日期选择器、时间选择器、地址选择器、自定义字符串选择器。高度封装，提供了两种使用方式，支持自定义主题样式，适配深色模式。
+
 
 # fish新增
 

@@ -179,7 +179,7 @@
             
             site(@"test103",     @"test103",    @"222",     @"com.UGGame.cp",           @"http://103.9.230.243",                        @"内测包",     @"test103"),
             site(@"test10",      @"88",         @"125",     @"com.UGGame.cp",           @"http://test10.6yc.com",                       @"内测包",     @"test10"),
-            site(@"test11",      @"test11",      @"257",    @"com.UGGame.cp",           @"http://test11.6yc.com",                       @"内测包",     @"test11"),
+            site(@"test11",      @"test11",     @"257",     @"com.UGGame.cp",           @"http://test11.6yc.com",                       @"内测包",     @"test11"),
             site(@"c083",        @"c083",       @"226",     @"com.UGGame.cp",           @"http://t111f.fhptcdn.com",                    @"内测包",     @"c083测试"),
             site(@"test100",     @"",           @"",        @"com.UGGame.cp",           @"http://test100f.fhptcdn.com",                 @"内测包",     @"test100"),
             site(@"t032",        @"",           @"",        @"com.UGGame.cp",           @"http://t005f.fhptcdn.com",                    @"内测包",     @"t032"),     // (老虎)
@@ -198,11 +198,12 @@
             site(@"test60f",     @"test60f",    @"",        @"com.UGGame.cp",           @"http://test60f.fhptcdn.com",                  @"内测包",     @"test60f"),//
             site(@"test61f",     @"test61f",    @"",        @"com.UGGame.cp",           @"http://test61f.fhptcdn.com",                  @"内测包",     @"test61f"),//
             site(@"test58f",     @"test58f",    @"",        @"com.UGGame.cp",           @"http://test58f.ccpt.site",                    @"内测包",     @"test58f"),//
-            site(@"tess6001",     @"tess6001",    @"",        @"com.UGGame.cp",           @"http://tess6001.fhptcdn.com",                    @"内测包",     @"tess6001"),//
-            site(@"tess6002",     @"tess6002",    @"",        @"com.UGGame.cp",           @"http://tess6002.fhptcdn.com",                    @"内测包",     @"tess6002"),//
-            site(@"tess6003",     @"tess6003",    @"",        @"com.UGGame.cp",           @"http://tess6003.fhptcdn.com",                    @"内测包",     @"tess6003"),//
-            site(@"t600f",     @"t600f",    @"",        @"com.UGGame.cp",           @"http://www.t600f.fhptcdn.com",                    @"内测包",     @"t600f"),//
-            site(@"wt600f",     @"wt600f",    @"",        @"com.UGGame.cp",           @"http://wwwt600f.fhptcdn.com",                    @"内测包",     @"wt600f"),//
+            site(@"tess6001",    @"tess6001",   @"",        @"com.UGGame.cp",           @"http://tess6001.fhptcdn.com",                 @"内测包",     @"tess6001"),//
+            site(@"tess6002",    @"tess6002",   @"",        @"com.UGGame.cp",           @"http://tess6002.fhptcdn.com",                 @"内测包",     @"tess6002"),//
+            site(@"tess6003",    @"tess6003",   @"",        @"com.UGGame.cp",           @"http://tess6003.fhptcdn.com",                 @"内测包",     @"tess6003"),//
+            site(@"t600f",       @"t600f",      @"",        @"com.UGGame.cp",           @"http://www.t600f.fhptcdn.com",                @"内测包",     @"t600f"),//
+            site(@"wt600f",      @"wt600f",     @"",        @"com.UGGame.cp",           @"http://wwwt600f.fhptcdn.com",                 @"内测包",     @"wt600f"),//
+            site(@"hotUpdate",   @"hotUpdate",  @"260",     @"com.UGGame.cp",           @"http://test10.6yc.com",                       @"内测包",     @"热更新测试包"),
             // 站点编号 / 上传编号 / 上传ID / 签名方式 / APP名 / bundleID / 接口域名
             //            NSString *siteId, NSString *uploadNum, NSString *uploadId, NSString *appId, NSString *host, NSString *type, NSString *appName
         ];

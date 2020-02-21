@@ -11,19 +11,9 @@
 #import "SSZipArchive.h"// 加/解压缩
 #import "RSA.h"         // RSA加/解密
 #import "JPEngine.h"    // JsPatch引擎
+#import "ReactNativeHelper.h"
 
 
-@interface HotVersionModel : NSObject
-@property (nonatomic) NSString *version;        /**<   版本号 */
-@property (nonatomic) NSString *file_link;      /**<   文件下载地址 */
-@property (nonatomic) NSString *detail;         /**<   更新日志 */
-@property (nonatomic) NSString *release_time;   /**<   发布时间 */
-@property (nonatomic) NSString *add_time;       /**<   提交时间 */
-@property (nonatomic) NSString *username;       /**<   提交者 */
-@property (nonatomic) BOOL is_force_update;     /**<   是否强制更新 */
-@property (nonatomic) NSInteger type;           /**<  1 ios ，2 android */
-@property (nonatomic) BOOL status;              /**<   是否已发布 */
-@end
 @implementation HotVersionModel
 @end
 
@@ -61,6 +51,7 @@
 @implementation JSPatchHelper
 
 + (void)install {
+    NSLog(@"初始化jspatch");
     [JPEngine startEngine];
     
     if ([[NSFileManager defaultManager] fileExistsAtPath:APP.jspPath]) {
@@ -71,22 +62,148 @@
     }
 }
 
-+ (void)updateVersion:(NSString *)cpVersion completion:(void (^)(BOOL))completion {
++ (void)checkUpdate:(NSString *)rnVersion completion:(nonnull void (^)(NSError *, HotVersionModel *))completion {
+    if (!rnVersion.length) {
+        NSLog(@"rn版本号为空！");
+        // 获取ip信息
+        [NetworkManager1 getIp].completionBlock = ^(CCSessionModel *ipSM) {
+            NSDictionary *ipAddress = ipSM.responseObject[@"data"] ? : @{};
+            NSString *ipInfo = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:ipAddress options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
+            NSString *log = _NSString(@"ip地址：%@\n错误类型：%@", ipInfo, @"rn版本号为空");
+            NSString *title = _NSString(@"%@%@", ipAddress[@"country"], ipAddress[@"region"]);
+            // 上传日志
+            [NetworkManager1 uploadLog:log title:title tag:@"rn版本号为空"];
+        };
+        return;
+    }
     
-    // 下载完成后解压
-    void (^downloadPackage)(HotVersionModel *) = ^(HotVersionModel *hvm) {
+    NSMutableArray *newVersions = @[].mutableCopy;
+    void (^didFindEnd)(void) = ^{
+        HotVersionModel *hvm = newVersions.firstObject; // 最新版本
+        // 新版本中只要存在强制更新的版本，就要强制更新
+        hvm.is_force_update = [newVersions objectWithValue:@true keyPath:@"is_force_update"];
+        if (completion) {
+            if ([JSPatchHelper compareVersion:hvm.version newerThanVersion:APP.jspVersion]) {
+                NSLog(@"%@", hvm.is_force_update ? @"强制更新" : @"静默更新");
+                completion(nil, hvm);
+            } else {
+                NSLog(@"jsp已是最新版本");
+                completion(nil, nil);
+            }
+        }
+    };
+    
+    
+    // 获取版本列表
+    NSLog(@"当前jsp版本：%@", APP.jspVersion);
+    NSLog(@"正在查找jsp可用的更新");
+    void (^findNewVersions)(NSInteger) = nil;
+    void (^__block __nextPage)(NSInteger) = findNewVersions = ^(NSInteger page) {
+        [NetworkManager1 getHotUpdateVersionList:page].completionBlock = ^(CCSessionModel *sm) {
+            NSArray *vs = sm.responseObject[@"data"][@"result"];
+            if (!vs.count) {
+                if (page <= 1) {
+                    NSError *err = sm.error ? : [NSError errorWithDomain:sm.responseObject[@"msg"] code:-1 userInfo:nil];
+                    if (completion) {
+                        completion(err, nil);
+                    }
+                    NSLog(@"拉取jsp热更新列表失败，err = %@", err);
+                } else {
+                    // 没有更多版本信息了，结束查找
+                    didFindEnd();
+                }
+                return ;
+            }
+            
+            // 比较版本号
+            for (NSDictionary *dict in vs) {
+                HotVersionModel *hvm = [HotVersionModel mj_objectWithKeyValues:dict];
+                if ([hvm.version componentsSeparatedByString:@"."].count != 3) {
+                    NSLog(@"%@, 版本号不合法", hvm.version);
+                    continue;
+                }
+                if ([JSPatchHelper compareVersion:hvm.version newerThanVersion:APP.jspVersion]) {
+                    if ([JSPatchHelper compareVersion:hvm.version newerThanVersion:rnVersion]) {
+                        NSLog(@"%@ 此jspatch版本比CodePush版本大，忽略此更新", hvm.version);
+                        continue;
+                    } else {
+                        NSLog(@"发现jsp新版本：%@", hvm.version);
+                        [newVersions addObject:hvm];
+                        break;
+                    }
+                } else {
+                    // 发现比自己低的版本，结束查找
+                    didFindEnd();
+                    return ;
+                }
+            }
+            
+            // 拉取下一页数据继续找比自己新的版本
+            __nextPage(page + 1);
+        };
+    };
+    findNewVersions(1);
+}
+
++ (void)updateVersion:(NSString *)rnVersion progress:(nonnull void (^)(CGFloat))progress completion:(nonnull void (^)(BOOL))completion {
+    [self checkUpdate:rnVersion completion:^(NSError *err, HotVersionModel *hvm) {
+        if (err || !hvm) {
+            // 已是最新版本
+            [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
+                [ReactNativeHelper sendEvent:@"jsp更新结果" params:@(!err)];
+            }];
+            return ;
+        }
+        
+        // 下载完成后解压
+        NSMutableArray <NSNumber *>*speeds = @[].mutableCopy;
+        NSDate *startDate = [NSDate date];
+        
+        NSLog(@"开始下载jsp包：%@", hvm.version);
         CCSessionModel *sm = [NetworkManager1 downloadFile:hvm.file_link];
         __block int __progress = 0;
-        sm.progressBlock = ^(NSProgress *progress) {
-            int p = progress.completedUnitCount/(double)progress.totalUnitCount * 100;
-            if (p != __progress) {
-                __progress = p;
-                NSLog(@"JSPatch文件下载进度：%.2f", (double)__progress);
+        __block unsigned long long __downloadSpeed = 0;
+        __block unsigned long long __lastCompletedUnitCount = 0;
+        __block_Obj_(sm, __sm);
+        sm.progressBlock = ^(NSProgress *p) {
+            // 进度回调
+            CGFloat fp = p.completedUnitCount/(double)p.totalUnitCount;
+            if (progress) {
+                progress(fp);
+            }
+            
+            // 通知rn刷新进度
+            [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
+                if (!waited) {
+                    [ReactNativeHelper sendEvent:@"jsp下载进度" params:@(fp)];
+                }
+            }];
+            
+            // 打印下载进度
+            int ip = fp * 100;
+            if (ip != __progress) {
+                __progress = ip;
+                NSLog(@"%@ jsp文件下载进度：%.2f", hvm.version, (double)__progress);
+            }
+            
+            // 计算下载速度
+            __downloadSpeed += p.completedUnitCount - __lastCompletedUnitCount;
+            __lastCompletedUnitCount = p.completedUnitCount;
+            // 保存下载速度
+            if (OBJOnceToken(__sm)) {
+                dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                    while (__sm.completionBlock) {
+                        [NSThread sleepForTimeInterval:1];
+                        [speeds addObject:@(__downloadSpeed)];
+                        __downloadSpeed = 0;
+                    }
+                });
             }
         };
         sm.completionBlock = ^(CCSessionModel *sm) {
+            NSString *err = nil;
             if (!sm.error) {
-                NSLog(@"jsp包下载完成");
+                NSLog(@"jsp包下载完成 %@", hvm.version);
                 // 解压
                 NSString *zipPath = sm.responseObject;
                 NSString *unzipPath = _NSString(@"%@/jsp%@", APP.DocumentDirectory, hvm.version);
@@ -96,73 +213,55 @@
                 if (ret) {
                     NSLog(@"解压缩成功");
                     NSString *jspVersion = [NSString stringWithContentsOfFile:_NSString(@"%@/Version.txt", unzipPath) encoding:NSUTF8StringEncoding error:nil];
-                    jspVersion = [jspVersion stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-                    if (jspVersion.length && [(jspVersion = [RSA decryptString:jspVersion]) hasPrefix:hvm.version]) {
-                        NSLog(@"校验成功，更新完毕");
+                    if (jspVersion.length && [(jspVersion = [RSA decryptString:jspVersion].stringByTrim) hasPrefix:hvm.version]) {
+                        NSLog(@"%@ 校验成功，更新完毕", jspVersion);
                         APP.jspVersion = jspVersion;
                         [JSPatchHelper install];
                     } else {
-                        NSLog(@"jsp校验失败，不予更新");
+                        NSLog(@"%@", err = @"jsp校验失败，不予更新");
                     }
                 } else {
-                    NSLog(@"解压缩失败");
+                    NSLog(@"%@", err = @"解压缩失败");
                 }
             } else {
-                NSLog(@"jsp下载失败");
+                NSLog(@"%@", err = @"jsp下载失败");
             }
             
+            BOOL isSucc = [APP.jspVersion isEqualToString:hvm.version];
             if (completion) {
-                completion([APP.jspVersion isEqualToString:hvm.version]);
+                completion(isSucc);
             }
-        };
-    };
-    
-    // 获取版本列表
-    NSLog(@"正在查找jsp可用的更新");
-    void (^getVersionList)(NSInteger) = nil;
-    void (^__block __nextPage)(NSInteger) = getVersionList = ^(NSInteger page) {
-        [NetworkManager1 getHotUpdateVersionList:page].completionBlock = ^(CCSessionModel *sm) {
-            NSArray *vs = sm.responseObject[@"data"][@"result"];
-            NSLog(@"vs = %@", vs);
-            NSLog(@"cpVersion = %@", cpVersion);
-            NSLog(@"jspVersion = %@", APP.jspVersion);
-            if (vs.count) {
-                HotVersionModel *newVersion = nil;
-                // 比较版本号
-                for (NSDictionary *dict in vs) {
-                    HotVersionModel *hvm = [HotVersionModel mj_objectWithKeyValues:dict];
-                    if ([hvm.version componentsSeparatedByString:@"."].count != 3) {
-                        NSLog(@"%@, 版本号不合法", hvm.version);
-                        continue;
-                    }
-                    if ([JSPatchHelper compareVersion:hvm.version newerThanVersion:APP.jspVersion]) {
-                        if ([JSPatchHelper compareVersion:hvm.version newerThanVersion:cpVersion]) {
-                            NSLog(@"%@ 此jspatch版本比CodePush版本大，忽略此更新", hvm.version);
-                            continue;
-                        } else {
-                            NSLog(@"发现jsp新版本：%@", hvm.version);
-                            newVersion = hvm;
-                            break;
-                        }
-                    } else {
-                        // 已是最新版本
-                        NSLog(@"jsp已是最新版本");
-                        return ;
-                    }
+            [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
+                [ReactNativeHelper sendEvent:@"jsp更新结果" params:@(isSucc)];
+            }];
+            
+            // 安装失败时上传错误日志
+            if (!isSucc) {
+                NSMutableArray *temp = @[].mutableCopy;
+                for (NSNumber *s in speeds) {
+                    [temp addObject:[AppDefine stringWithFileSize:s.doubleValue]];
                 }
-                if (newVersion) {
-                    NSLog(@"下载jsp更新包");
-                    downloadPackage(newVersion);
-                } else if (vs.count >= 10) {
-                    // 未找到可以更新的版本，拉取下一页数据继续找
-                    __nextPage(page + 1);
-                }
-            } else {
-                NSLog(@"拉取jsp热更新列表失败，err = %@", sm.error ? : sm.responseObject[@"msg"]);
+                NSTimeInterval duration = [[NSDate date] timeIntervalSinceDate:startDate];
+                NSString *averageSpeed = ({
+                    unsigned long long totalLenght = 0;
+                    for (NSNumber *s in speeds) {
+                        totalLenght += s.doubleValue;
+                    }
+                    [AppDefine stringWithFileSize:totalLenght/MAX(speeds.count, 1)];
+                });
+                // 获取ip信息
+                [NetworkManager1 getIp].completionBlock = ^(CCSessionModel *ipSM) {
+                    NSDictionary *ipAddress = ipSM.responseObject[@"data"] ? : @{};
+                    NSString *ipInfo = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:ipAddress options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
+                    NSString *log = _NSString(@"下载文件：%@\n\n耗时：%.f秒\n平均下载速度：%@\n\nip地址：%@\n\n下载速度：\n%@\n\n\n错误类型：%@\n错误信息：%@", [hvm rn_keyValues], duration, averageSpeed, ipInfo, temp, err, sm.error);
+                    NSString *title = _NSString(@"%@%@", ipAddress[@"country"], ipAddress[@"region"]);
+                    // 上传日志
+                    [NetworkManager1 uploadLog:log title:title tag:@"jsp更新失败"];
+                };
             }
+            sm.completionBlock = nil;
         };
-    };
-    getVersionList(1);
+    }];
 }
 
 + (BOOL)compareVersion:(NSString *)v1 newerThanVersion:(NSString *)v2 {

@@ -43,6 +43,8 @@
 
 // Tools
 #import "UGAppVersionManager.h"
+#import "NSObject+RnKeyValues.h"
+#import "ReactNativeHelper.h"
 
 
 @interface UGNavigationController ()
@@ -100,6 +102,18 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
 }
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    // 去RN页面
+    RnPageModel *rpm = [APP.rnPageInfos objectWithValue:viewController.className keyPath:@"clsName"];
+    if (rpm) {
+        ReactNativeVC *vc = [ReactNativeVC shared:rpm params:[viewController rn_keyValues]];
+        vc.hidesBottomBarWhenPushed = true;
+        // push权限判断
+        if (!self.viewControllers.count || [UGTabbarController canPushToViewController:vc]) {
+            [super pushViewController:vc animated:animated];
+        }
+        return;
+    }
+    
     // push权限判断
     if (self.viewControllers.count && ![UGTabbarController canPushToViewController:viewController])
         return;
@@ -259,12 +273,12 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     }
     
     
-    NSLog(@"NavController1= %@",NavController1);
-    NSLog(@"NavController1.viewControllers= %@",NavController1.viewControllers);
-    NSLog(@"lastVC= %@",NavController1.lastVC);
-    NSLog(@"viewControllers.lastObject= %@",NavController1.viewControllers.lastObject);
-    NSLog(@"self.navigationController= %@",self.navigationController);
-    NSLog(@"self.navigationController.lastObject= %@",self.navigationController.viewControllers.lastObject);
+//    NSLog(@"NavController1= %@",NavController1);
+//    NSLog(@"NavController1.viewControllers= %@",NavController1.viewControllers);
+//    NSLog(@"lastVC= %@",NavController1.lastVC);
+//    NSLog(@"viewControllers.lastObject= %@",NavController1.viewControllers.lastObject);
+//    NSLog(@"self.navigationController= %@",self.navigationController);
+//    NSLog(@"self.navigationController.lastObject= %@",self.navigationController.viewControllers.lastObject);
     // 登录
     if ([NavController1.lastVC isKindOfClass:UGBMLoginViewController.class]&&[viewController isKindOfClass:[UGBMLoginViewController class]]) {
         UIViewController *vc = [NavController1.viewControllers objectWithValue:UGBMLoginViewController.class keyPath:@"class"];

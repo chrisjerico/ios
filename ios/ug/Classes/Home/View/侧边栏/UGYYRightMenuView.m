@@ -105,8 +105,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         str2 = @"今日输赢";
     }
     UGUserModel *user = [UGUserModel currentUser];
-    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-    NSString *app_Version = [NSString stringWithFormat:@"当前版本号(%@)", [infoDictionary objectForKey:@"CFBundleShortVersionString"]] ;
+    NSString *app_Version = [NSString stringWithFormat:@"当前版本号(%@)", APP.Version] ;
     if ([self.titleType isEqualToString:@"1"]) {
         if ([@"h005" containsString:APP.SiteId]) {
             if (UGLoginIsAuthorized()) {//已经登录
@@ -453,7 +452,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         if (self.backToHomeBlock)
             self.backToHomeBlock();
     }
-    else if ([title isEqualToString:_NSString(@"当前版本号(%@)", [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"])]) {
+    else if ([title hasPrefix:@"当前版本号("]) {
         [[UGAppVersionManager shareInstance] updateVersionApi:true];
     }
     else if ([title isEqualToString:@"彩种规则"]) {

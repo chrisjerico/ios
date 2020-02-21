@@ -8,26 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import "SiteModel.h"
+#import "ReactNativeVC.h"
 
-#ifdef DEBUG
-#define APP_TEST 1
-#endif
-
+// 测试环境宏
+#define APP_TEST
 
 
 #define APP [AppDefine shared]
 
 #define _LoadVC_from_storyboard_(sid)   [AppDefine viewControllerWithStoryboardID:sid]
 #define _LoadView_from_nib_(nibName)    [AppDefine viewWithNibName:nibName]
-
-#define CCSharedImplementation + (instancetype)shared {\
-    static id obj = nil;\
-    static dispatch_once_t onceToken;\
-    dispatch_once(&onceToken, ^{\
-        obj = [self new];\
-    });\
-    return obj;\
-}
 
 
 @interface AppDefine : NSObject
@@ -82,9 +72,8 @@
 @property (nonatomic) BOOL Test;                        /**<   是否是测试环境 */
 @property (nonatomic, readonly) NSString *jspPath;      /**<    jspatch热更新本地文件路径 */
 @property (nonatomic, strong) NSString *jspVersion;     /**<    jspatch热更新版本号 */
+@property (nonatomic, copy) NSArray <RnPageModel *>*rnPageInfos;/**<   需要替换成rn的页面 */
 //@property (nonatomic, copy) NSString *publicKey;        /**<   公钥 */
-//@property (nonatomic, copy) NSString *codePushKey;      /**<   CodePushKey */
-//@property (nonatomic, copy) NSString *codePushServer;   /**<   CodePush服务器地址 */
 
 
 + (instancetype)shared;
@@ -135,6 +124,7 @@
 + (__kindof UIViewController *)viewControllerWithNibName:(NSString *)nibName;   /**<    从xib加载vc */
 + (__kindof UIView *)viewWithNibName:(NSString *)nibName;                       /**<    从xib加载view */
 + (NSString *)stringWithFloat:(double)f decimal:(unsigned short)d;              /**<   double转字符串，去除末尾的0 */
++ (NSString *)stringWithFileSize:(double)size;
 @end
 
 

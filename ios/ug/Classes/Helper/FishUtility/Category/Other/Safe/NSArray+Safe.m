@@ -46,6 +46,10 @@
     return nil;
 }
 
+- (id)objectForKeyedSubscript:(NSString *)key {
+    return nil;
+}
+
 @end
 
 
@@ -59,6 +63,7 @@
         [NSClassFromString(@"__NSArrayM") jr_swizzleMethod:@selector(replaceObjectAtIndex:withObject:) withMethod:@selector(ccSafe_replaceObjectAtIndex:withObject:) error:nil];
         [NSClassFromString(@"__NSArrayM") jr_swizzleMethod:@selector(setObject:atIndex:) withMethod:@selector(ccSafe_setObject:atIndex:) error:nil];
         [NSClassFromString(@"__NSArrayM") jr_swizzleMethod:@selector(objectAtIndexedSubscript:) withMethod:@selector(ccSafe_objectAtIndexedSubscript:) error:nil];
+        [NSClassFromString(@"__NSArrayM") jr_swizzleMethod:@selector(setObject:atIndexedSubscript:) withMethod:@selector(ccSafe_setObject:atIndexedSubscript:) error:nil];
     });
 }
 
@@ -86,6 +91,14 @@
     if (idx < self.count)
         return [self ccSafe_objectAtIndexedSubscript:idx];
     return nil;
+}
+
+- (void)ccSafe_setObject:(id)obj atIndexedSubscript:(NSUInteger)idx {
+    if (!obj) {
+        obj = [NSNull null];
+    }
+    if (idx <= self.count) 
+        [self ccSafe_setObject:obj atIndexedSubscript:idx];
 }
 
 @end

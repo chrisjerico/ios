@@ -9,6 +9,9 @@
 #ifndef UGPCH_pch
 #define UGPCH_pch
 
+// 用户区分《原生APP》和《聊天APP》，勿删
+#define isYSAPP
+
 
 // 引入Fish工具集
 #import "FishUtility.h"

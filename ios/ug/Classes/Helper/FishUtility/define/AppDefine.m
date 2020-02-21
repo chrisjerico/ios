@@ -116,6 +116,18 @@
     return s;
 }
 
++ (NSString *)stringWithFileSize:(double)size {
+    if (size < 0)
+        return @"0B";
+    if (size < 1024)
+        return _NSString(@"%.fB", size);
+    if (size < 1024 * 1024)
+        return _NSString(@"%.fK", size/1024);
+    if (size < 1024 * 1024 * 1024)
+        return _NSString(@"%.1fM", size/1024/1024);
+    return _NSString(@"%.1fG", size/1024/1024/1024);
+}
+
 
 #pragma mark - Init
 
@@ -162,6 +174,7 @@
 - (UIFont *)cellNormalFont          { return [UIFont systemFontOfSize:14]; }
 - (float )cellNormalFontSize        { return 14.0; }
 
+#pragma mark - 定制样式
 
 - (BOOL)oldConversion {
     return [@"c200" containsString:_SiteId];
@@ -341,6 +354,9 @@
     return [@"c169" containsString:_SiteId];
 }
 
+
+#pragma mark - 热更新
+
 - (NSString *)jspPath {
     return _NSString(@"%@/jsp%@/main.js", APP.DocumentDirectory, [_jspVersion stringByReplacingOccurrencesOfString:@"\n" withString:@""]);
 }
@@ -349,6 +365,18 @@
     _jspVersion = jspVersion;
     [[NSUserDefaults standardUserDefaults] setObject:jspVersion forKey:@"jspVersion"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)setRnPageInfos:(NSArray<RnPageModel *> *)rnPageInfos {
+    if ([rnPageInfos.firstObject isKindOfClass:[NSDictionary class]]) {
+        NSMutableArray *temp = @[].mutableCopy;
+        for (NSDictionary *dict in rnPageInfos) {
+            [temp addObject:[RnPageModel mj_objectWithKeyValues:dict]];
+        }
+        _rnPageInfos = temp.copy;
+    } else {
+        _rnPageInfos = rnPageInfos;
+    }
 }
 
 
@@ -416,7 +444,7 @@
     NSDictionary *info = [NSBundle mainBundle].infoDictionary;
     _Name = info[@"CFBundleName"];
     _BundleId = info[@"CFBundleIdentifier"];
-    _Version = info[@"CFBundleShortVersionString"];
+    _Version = _jspVersion ? : info[@"CFBundleShortVersionString"];
     _Build = info[@"CFBundleVersion"];
 #ifdef DEBUG
     _DevUser = info[@"Dev1"];

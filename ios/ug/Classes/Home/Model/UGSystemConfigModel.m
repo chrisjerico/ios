@@ -98,8 +98,10 @@ UGSystemConfigModel *currentConfig = nil;
     if (_code == UCI_推荐收益 && !UserI.isAgent) {
         return @"申请代理";
     }
-    return _name;
+    RnPageModel *rpm = [APP.rnPageInfos objectWithValue:@(_code) keyPath:@"userCenterItemCode"];
+    return rpm.userCenterItemTitle.length ? rpm.userCenterItemTitle : _name;
 }
+
 - (void)setCode:(UserCenterItemType)code {
     _code = code;
     UGUserCenterItem *uci = [UGUserCenterItem.allItems objectWithValue:@(code) keyPath:@"code"];
@@ -107,48 +109,54 @@ UGSystemConfigModel *currentConfig = nil;
     _bmImgName = uci.bmImgName;
     _defaultImgName = uci.defaultImgName;
 }
+
+- (NSString *)logo {
+    RnPageModel *rpm = [APP.rnPageInfos objectWithValue:@(_code) keyPath:@"userCenterItemCode"];
+    return rpm.userCenterItemIcon.length ? rpm.userCenterItemIcon : _logo;
+}
+
 @end
 
 
 @interface UGMobileMenu ()
 @property (nonatomic, readwrite) MobileMenuType type;
 @property (nonatomic, readwrite) NSString *defaultImgName;
-@property (nonatomic, readwrite) Class cls;
+@property (nonatomic, readwrite) NSString *clsName;
 @end
 @implementation UGMobileMenu
 + (NSArray <UGMobileMenu *>*)allMenus {
     static NSArray *_items = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        UGMobileMenu *(^item)(NSString *, NSString *, Class, MobileMenuType, NSString *) = ^UGMobileMenu *(NSString *path, NSString *defaultImgName, Class cls, MobileMenuType type, NSString *name) {
+        UGMobileMenu *(^item)(NSString *, NSString *, NSString *, MobileMenuType, NSString *) = ^UGMobileMenu *(NSString *path, NSString *defaultImgName, NSString *clsName, MobileMenuType type, NSString *name) {
             UGMobileMenu *mm = [UGMobileMenu new];
             [mm setValue:path forKey:@"_path"];
             mm.name = name;
             mm.defaultImgName = defaultImgName;
-            mm.cls = cls;
+            mm.clsName = clsName;
             mm.type = type;
             return mm;
         };
         _items =@[
-            item(@"/home",              @"shouye",                      UGHomeViewController.class,                 MM_首页,           @"首页"),
-            item(@"/changLong",         @"changlong",                   UGChangLongController.class,                MM_长龙助手,        @"长龙助手"),
-            item(@"/lotteryList",       @"dating",                      UGYYLotteryHomeViewController.class,        MM_购彩大厅_默认,    @"购彩大厅"),
-            item(@"/lotteryRecord",     @"zdgl",                        UGLotteryRecordController.class,            MM_开奖记录,        @"开奖记录"),
-            item(@"/zrsx",              @"real_video1",                 UGYYLotterySecondHomeViewController.class,  MM_真人视讯,        @"真人视讯"),
-            item(@"/qpdz",              @"chess_electronic1",           UGYYLotterySecondHomeViewController.class,  MM_棋牌电子,        @"棋牌电子"),
-            item(@"/gameHall",          @"gcdt",                        UGLotteryHomeController.class,              MM_彩票大厅,        @"彩票大厅"),
-            item(@"/user",              @"wode",                        UGMineSkinViewController.class,             MM_我的_默认,       @"我的"),
-            item(@"/task",              @"renwu",                       UGMissionCenterViewController.class,        MM_任务中心,        @"任务中心"),
-            item(@"/Sign",              @"qiandao",                     UGSigInCodeViewController.class,            MM_签到,           @"签到"),
-            item(@"/message",           @"zhanneixin",                  UGMailBoxTableViewController.class,         MM_站内信,          @"站内信"),
-            item(@"/activity",          @"youhui1",                     UGPromotionsController.class,               MM_优惠活动_默认,    @"优惠活动"),
-            item(@"/chatRoomList",      @"liaotian",                    LotteryBetAndChatVC.class,                  MM_聊天室,         @"聊天室"),
-            item(@"/referrer",          @"shouyi1",                     UGPromotionIncomeController.class,          MM_推广收益,        @"推广收益"),
-            item(@"/securityCenter",    @"ziyuan",                      UGSecurityCenterViewController.class,       MM_安全中心,        @"安全中心"),
-            item(@"/funds",             @"jinlingyingcaiwangtubiao",    UGFundsViewController.class,                MM_资金管理,        @"资金管理"),
-            item(@"/conversion",        @"change",                      UGBalanceConversionController.class,        MM_额度转换,        @"额度转换"),
-            item(@"/banks",             @"yinhangqia",                  UGBindCardViewController.class,             MM_银行卡,         @"银行卡"),
-            item(@"/yuebao",            @"lixibao",                     UGYubaoViewController.class,                MM_利息宝,         @"利息宝"),
+            item(@"/home",              @"shouye",                      UGHomeViewController.className,                 MM_首页,           @"首页"),
+            item(@"/changLong",         @"changlong",                   UGChangLongController.className,                MM_长龙助手,        @"长龙助手"),
+            item(@"/lotteryList",       @"dating",                      UGYYLotteryHomeViewController.className,        MM_购彩大厅_默认,    @"购彩大厅"),
+            item(@"/lotteryRecord",     @"zdgl",                        UGLotteryRecordController.className,            MM_开奖记录,        @"开奖记录"),
+            item(@"/zrsx",              @"real_video1",                 UGYYLotterySecondHomeViewController.className,  MM_真人视讯,        @"真人视讯"),
+            item(@"/qpdz",              @"chess_electronic1",           UGYYLotterySecondHomeViewController.className,  MM_棋牌电子,        @"棋牌电子"),
+            item(@"/gameHall",          @"gcdt",                        UGLotteryHomeController.className,              MM_彩票大厅,        @"彩票大厅"),
+            item(@"/user",              @"wode",                        UGMineSkinViewController.className,             MM_我的_默认,       @"我的"),
+            item(@"/task",              @"renwu",                       UGMissionCenterViewController.className,        MM_任务中心,        @"任务中心"),
+            item(@"/Sign",              @"qiandao",                     UGSigInCodeViewController.className,            MM_签到,           @"签到"),
+            item(@"/message",           @"zhanneixin",                  UGMailBoxTableViewController.className,         MM_站内信,          @"站内信"),
+            item(@"/activity",          @"youhui1",                     UGPromotionsController.className,               MM_优惠活动_默认,    @"优惠活动"),
+            item(@"/chatRoomList",      @"liaotian",                    LotteryBetAndChatVC.className,                  MM_聊天室,         @"聊天室"),
+            item(@"/referrer",          @"shouyi1",                     UGPromotionIncomeController.className,          MM_推广收益,        @"推广收益"),
+            item(@"/securityCenter",    @"ziyuan",                      UGSecurityCenterViewController.className,       MM_安全中心,        @"安全中心"),
+            item(@"/funds",             @"jinlingyingcaiwangtubiao",    UGFundsViewController.className,                MM_资金管理,        @"资金管理"),
+            item(@"/conversion",        @"change",                      UGBalanceConversionController.className,        MM_额度转换,        @"额度转换"),
+            item(@"/banks",             @"yinhangqia",                  UGBindCardViewController.className,             MM_银行卡,         @"银行卡"),
+            item(@"/yuebao",            @"lixibao",                     UGYubaoViewController.className,                MM_利息宝,         @"利息宝"),
         ];
     });
     return _items;
@@ -157,8 +165,16 @@ UGSystemConfigModel *currentConfig = nil;
     _path = path;
     UGMobileMenu *mm = [UGMobileMenu.allMenus objectWithValue:path keyPath:@"path"];
     _type = [[mm valueForKey:@"_type"] intValue];
-    _cls = [mm valueForKey:@"_cls"];
+    _clsName = [mm valueForKey:@"_clsName"];
     _defaultImgName = mm.defaultImgName;
+}
+- (NSString *)icon {
+    RnPageModel *rpm = [APP.rnPageInfos objectWithValue:_path keyPath:@"tabbarItemPath"];
+    return rpm.tabbarItemIcon.length ? rpm.tabbarItemIcon : _icon;
+}
+- (NSString *)name {
+    RnPageModel *rpm = [APP.rnPageInfos objectWithValue:_path keyPath:@"tabbarItemPath"];
+    return rpm.tabbarItemTitle.length ? rpm.tabbarItemTitle : _name;
 }
 - (MobileMenuType)type {
     if (_type == MM_我的_默认) {
@@ -191,44 +207,48 @@ UGSystemConfigModel *currentConfig = nil;
     }
     return _type;
 }
-- (Class)cls {
+- (NSString *)clsName {
     if (_status) {
-        return NSClassFromString(@"LHStayTunedVC");
+        return @"LHStayTunedVC";
     }
     if (self.type == MM_我的_亮黑) {
-        return UGBMMemberCenterViewController.class;
+        return UGBMMemberCenterViewController.className;
     }
     if (self.type == MM_我的_六合) {
-        return UGLHMineViewController.class;
+        return UGLHMineViewController.className;
     }
 	if (self.type == MM_我的_金沙) {
-		return JS_MineVC.class;
+		return JS_MineVC.className;
 	}
 	if (self.type == MM_我的_火山橙) {
-		return HSC_MineVC.class;
+		return HSC_MineVC.className;
 	}
     if (self.type == MM_申请代理) {
-        return UGAgentViewController.class;
+        return UGAgentViewController.className;
     }
     if (self.type == MM_优惠活动_亮黑) {
-        return UGBMpreferentialViewController.class;
+        return UGBMpreferentialViewController.className;
     }
     if (self.type == MM_购彩大厅_亮黑) {
-        return UGBMLotteryHomeViewController.class;
+        return UGBMLotteryHomeViewController.className;
     }
     if (self.type == MM_聊天室 && [@"h005" containsString:APP.SiteId]) {
-        return UGChatViewController.class;
+        return UGChatViewController.className;
     }
     if (self.type == MM_首页_香槟金) {
-        return XBJ_HomeVC.class;
+        return XBJ_HomeVC.className;
     }
-    return _cls;
+    return _clsName;
 }
 - (void)createViewController:(void (^)(__kindof UIViewController * _Nonnull))completion {
     if (!completion)
         return;
     
-    if (_status) {
+    RnPageModel *rpm = [APP.rnPageInfos objectWithValue:_path keyPath:@"tabbarItemPath"];
+    if (rpm) {
+        completion([ReactNativeVC shared:rpm params:nil]);
+    }
+    else if (_status) {
         completion(_LoadVC_from_storyboard_(@"LHStayTunedVC"));
     }
     else if (UGLoginIsAuthorized() && (self.type == MM_申请代理 || self.type == MM_推广收益) && !UserI.isTest) {
@@ -297,9 +317,9 @@ UGSystemConfigModel *currentConfig = nil;
         XBJ_HomeVC * vc = [[XBJ_HomeVC alloc] init];
         completion(vc);
     } else {
-        UIViewController *vc = _LoadVC_from_storyboard_(NSStringFromClass(self.cls));
+        UIViewController *vc = _LoadVC_from_storyboard_(self.clsName);
         if (!vc) {
-            vc = [self.cls new];
+            vc = [NSClassFromString(self.clsName) new];
         }
         completion(vc);
     }

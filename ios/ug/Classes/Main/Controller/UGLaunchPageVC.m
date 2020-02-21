@@ -11,8 +11,11 @@
 #import "FLAnimatedImageView.h"
 
 #import <SafariServices/SafariServices.h>
+
+#ifdef isYSAPP  // 原生APP时才引用热更新文件
 #import "ReactNativeHelper.h"
 #import "JSPatchHelper.h"
+#endif
 
 
 @interface LaunchPageModel : UGModel
@@ -31,25 +34,23 @@
     [self initNetwork];
 	self.view.backgroundColor = UIColor.whiteColor;
     
-    if (APP.isFish) {
-        // 安装本地jsp
-        [JSPatchHelper install];
-        
-        // 检查并下载rn热更
-        [[ReactNativeHelper shared] updateVersion:^(NSString * _Nonnull version) {
-
-            // 检查并下载jsp热更
-            [JSPatchHelper updateVersion:version completion:^(BOOL ok) {
-#ifdef APP_TEST
-                if (ok) {
-                    [AlertHelper showAlertView:_NSString(@"%@ 版本更新完成，重启APP生效", version) msg:nil btnTitles:@[@"确定"]];
-                } else {
-                    [AlertHelper showAlertView:_NSString(@"%@ 版本更新失败", version) msg:nil btnTitles:@[@"确定"]];
-                }
+#ifdef isYSAPP // 原生APP时才使用热更新
+//    if (APP.isFish) {
+//        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+//        btn.backgroundColor = APP.NavigationBarColor;
+//        btn.frame = CGRectMake(100, 200, 200, 200);
+//        [btn addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
+//            [self presentViewController:[ReactNativeVC shared:[RnPageModel updateVersionPage] params:nil] animated:true completion:nil];
+//        }];
+//        [self.view addSubview:btn];
+//        return;
+//    }
+    
+    // 初始化jsp
+    [JSPatchHelper install];
+    [self.view addSubview:[ReactNativeVC shared:[RnPageModel updateVersionPage] params:nil].view];
 #endif
-            }];
-        }];
-    }
+    
     // 下载新的启动图
     [CMNetwork.manager requestWithMethod:[[NSString stringWithFormat:@"%@/wjapp/api.php?c=system&a=launchImages", APP.Host] stringToRestfulUrlWithFlag:RESTFUL] params:nil model:CMResultArrayClassMake(LaunchPageModel.class) post:NO completion:^(CMResult<id> *model, NSError *err) {
         if (!err) {
@@ -110,15 +111,22 @@
         showPics();
     }
     
-    // 获取系统配置
-    [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-        [CMResult processWithResult:model success:^{
-            UGSystemConfigModel.currentConfig = model.data;
-            SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
-        } failure:nil];
-       
-        // 如果很快拿到数据，就等足3秒就再去主页
-        __waitSecs -= MAX(maxSecs-minSecs, 0);
+    // 检查是否强制更新
+    __block HotVersionModel *__forceUpdateVersion = nil; // 强制更新的版本
+    [JSPatchHelper checkUpdate:@"9999" completion:^(NSError *err, HotVersionModel *hvm) {
+        if (hvm.is_force_update) {
+            __forceUpdateVersion = hvm;
+        }
+        // 获取APP配置信息
+        [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+            [CMResult processWithResult:model success:^{
+                UGSystemConfigModel.currentConfig = model.data;
+                SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
+            } failure:nil];
+           
+            // 如果很快拿到数据，就等足3秒就再去主页
+            __waitSecs -= MAX(maxSecs-minSecs, 0);
+        }];
     }];
     
     // 等Gif启动图显示完毕，获取系统配置完毕后才进入主页
@@ -132,7 +140,12 @@
             break;
         }
         dispatch_async(dispatch_get_main_queue(), ^{
-            APP.Window.rootViewController = [[UGTabbarController alloc] init];
+            // 若强制更新则去rn更新页面
+            if (__forceUpdateVersion) {
+                APP.Window.rootViewController = [ReactNativeVC shared:[RnPageModel updateVersionPage] params:@{@"hvm":__forceUpdateVersion}];
+            } else {
+                APP.Window.rootViewController = [[UGTabbarController alloc] init];
+            }
         });
     });
 }

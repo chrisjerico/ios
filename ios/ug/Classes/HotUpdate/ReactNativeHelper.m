@@ -8,192 +8,224 @@
 
 #import "ReactNativeHelper.h"
 
-#import <React/RCTBundleURLProvider.h>
-#import <React/RCTRootView.h>
 #import <React/RCTBridge.h>
 
 #import "CodePush.h"
 #import "RSA.h"
 
 
-@interface NSBundle (AA)
+#define CodePushHost @"http://ec2-18-163-2-208.ap-east-1.compute.amazonaws.com:3000/"
+#ifdef APP_TEST
+#define CodePushKey @"by5lebbE5vmYSJAdd5y0HRIFRcVJ4ksvOXqog"
+#else
+#define CodePushKey @"67f7hDao71zMjLy5xjilGx0THS4o4ksvOXqog"
+#endif
 
+
+
+@interface CodePushConfig (CodePushSetup)
 @end
-@implementation NSBundle (AA)
+@implementation CodePushConfig (CodePushSetup)
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [NSBundle jr_swizzleMethod:@selector(infoDictionary) withMethod:@selector(cc_infoDictionary) error:nil];
+        [[CodePushConfig current] setAppVersion:@"1.1.1"];
+        [[CodePushConfig current] setServerURL:CodePushHost];
+        [[CodePushConfig current] setDeploymentKey:CodePushKey];
+//        [[CodePushConfig current] configuration[@"publicKey"] = ;
     });
 }
-- (NSDictionary *)cc_infoDictionary {
-    if (self == [NSBundle mainBundle]) {
-        NSMutableDictionary *infoDict = [self cc_infoDictionary].mutableCopy;
-        infoDict[@"CodePushDeploymentKey"] = @"67f7hDao71zMjLy5xjilGx0THS4o4ksvOXqog";
-#ifdef APP_TEST
-        infoDict[@"CodePushDeploymentKey"] = @"by5lebbE5vmYSJAdd5y0HRIFRcVJ4ksvOXqog";
-#endif
-        infoDict[@"CodePushServerURL"] = @"http://ec2-18-163-2-208.ap-east-1.compute.amazonaws.com:3000/";
-//        infoDict[@"CodePushPublicKey"] = RSA.publicKey;
-        return infoDict;
-    }
-    return [self cc_infoDictionary];
-}
 @end
-
-
 
 
 
 @interface ReactNativeHelper ()<RCTBridgeModule>
-@property (nonatomic) void (^didUpdateFinish)(NSString *);
+@property (nonatomic, strong) NSMutableArray *launchFinishBlocks;
 @end
 
 @implementation ReactNativeHelper
 
-CCSharedImplementation
-
-- (void)updateVersion:(void (^)(NSString *))completion {
-    _didUpdateFinish = completion;
+static id _instace;
++ (instancetype)allocWithZone:(struct _NSZone *)zone {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [APP.Window insertSubview:[ReactNativeHelper vcWithName:@"UpdateVersion" params:@{@"willUpdate":@true}].view atIndex:0];
+        _instace = [super allocWithZone:zone];
     });
+    return _instace;
 }
 
-+ (UIViewController *)vcWithName:(NSString *)name params:(NSDictionary *)params {
-    NSURL *bundleURL = [CodePush bundleURL];
-#ifdef DEBUG
-    bundleURL = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
-    if (APP.isFish) {
-        bundleURL = [NSURL URLWithString:@"http://192.168.2.1:8081/index.bundle?platform=ios"];
++ (instancetype)shared {
+    static ReactNativeHelper *obj = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        obj = [self new];
+        obj.launchFinishBlocks = @[].mutableCopy;
+    });
+    return obj;
+}
+
++ (void)waitLaunchFinish:(void (^)(BOOL))finishBlock {
+    if (finishBlock) {
+        if ([ReactNativeHelper shared].launchFinishBlocks) {
+            [[ReactNativeHelper shared].launchFinishBlocks addObject:finishBlock];
+        } else {
+            finishBlock(false);
+        }
     }
-#endif
-    RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:bundleURL moduleName:name initialProperties:[ReactNativeHelper conversion:params] launchOptions:nil];
-    UIViewController *vc = [[UIViewController alloc] init];
-    vc.view = rootView;
-    return vc;
 }
 
-+ (void)sendEvent:(NSString *)eventName params:(NSDictionary *)params {
+
+static NSMutableDictionary *_blockDict = nil;
+
++ (id)addOnceBlocks:(id)blocks key:(NSString *)key {
+    id (^setupBlocks)(NSString *, id) = nil;
+    id (^__block __sub)(NSString *, id) = setupBlocks = ^id (NSString *bKey, id obj) {
+        if ([obj isKindOfClass:[NSArray class]]) {
+            NSMutableArray *temp = [obj mutableCopy];
+            for (int i=0; i<[obj count]; i++) {
+                bKey = [bKey stringByAppendingFormat:@"[%d]", i];
+                temp[i] = __sub(bKey, obj[i]);;
+            }
+            return temp;
+        }
+        else if ([obj isKindOfClass:[NSDictionary class]]) {
+            NSMutableDictionary *temp = [obj mutableCopy];
+            for (NSString *key in [obj allKeys]) {
+                bKey = [bKey stringByAppendingFormat:@".%@", key];
+                temp[key] = __sub(bKey, obj[key]);
+            }
+            return temp;
+        }
+        else if ([obj isKindOfClass:NSClassFromString(@"NSBlock")]) {
+            static dispatch_once_t onceToken;
+            dispatch_once(&onceToken, ^{
+                _blockDict = @{}.mutableCopy;
+            });
+            _blockDict[bKey] = obj;
+            return bKey;
+        }
+        return obj;
+    };
+    return setupBlocks(key, blocks);
+}
+
++ (void)sendEvent:(NSString *)eventName params:(id)params {
+    NSMutableDictionary *temp = @{}.mutableCopy;
+    temp[@"_EventName"] = eventName;
+    temp[@"params"] = params;
+    [[ReactNativeHelper shared] sendEventWithName:@"EventReminder" body:[ReactNativeHelper addOnceBlocks:temp key:eventName]];
+}
+
++ (void)selectViewController:(NSString *)vcName params:(NSDictionary *)params {
     NSMutableDictionary *temp = @{}.mutableCopy;
     [temp addEntriesFromDictionary:params];
-    temp[@"_EventName"] = eventName;
-    [[ReactNativeHelper shared] sendEventWithName:@"EventReminder" body:temp];
+    temp[@"vcName"] = vcName;
+    [[ReactNativeHelper shared] sendEventWithName:@"SelectViewController" body:[ReactNativeHelper addOnceBlocks:temp key:vcName]];
 }
 
-#pragma mark -
-
-+ (id)conversion:(id)obj {
-    // 是否是数据模型类
-    BOOL (^isModelClass)(id) = ^BOOL (id obj) {
-        Class temp = [obj class];
-        while (temp) {
-            if (temp == [NSObject class])
-                return true;
-            if ([NSBundle bundleForClass:temp] != NSBundle.mainBundle)
-                return false;
-            temp = [temp superclass];
-        }
-        return true;
-    };
-    
-    // 把数据模型转换为Dictionary
-    if ([obj isKindOfClass:[NSArray class]]) {
-        NSMutableArray *temp = @[].mutableCopy;
-        for (id ele in (NSArray *)obj) {
-            if (isModelClass(obj)) {
-                [temp addObject:[ele mj_keyValues]];
-            } else {
-                [temp addObject:ele];
-            }
-        }
-        return temp;
-    } else if ([obj isKindOfClass:[NSDictionary class]]) {
-        NSDictionary *dict = obj;
-        NSMutableDictionary *temp = @{}.mutableCopy;
-        for (NSString *key in dict.allKeys) {
-            id val = dict[key];
-            if (isModelClass(obj)) {
-                temp[key] = [obj mj_keyValues];
-            } else {
-                temp[key] = val;
-            }
-        }
-        return temp;
-    } else if (isModelClass(obj)) {
-        return [obj mj_keyValues];
-    }
-    return obj;
++ (void)exit {
+    exit(0);
 }
 
 
 #pragma mark - 注册JS函数
 
 // 注册js模块
-RCT_EXPORT_MODULE();
+RCT_EXPORT_MODULE()
 
-// 注册js函数 push
+// 注册 push
 RCT_EXPORT_METHOD(push:(NSString *)page params:(NSDictionary *)params) {
-    UIViewController *vc = _LoadVC_from_storyboard_(page);
-    if (!vc) {
-        vc = [NSClassFromString(page) new];
-    }
-    for (NSString *key in params.allKeys) {
-        [vc setValue:params[key] forKey:key];
-    }
-    [NavController1 pushViewController:vc animated:true];
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        UIViewController *vc = _LoadVC_from_storyboard_(page);
+        if (!vc) {
+            vc = [NSClassFromString(page) new];
+        }
+        for (NSString *key in params.allKeys) {
+            [vc setValue:[params[key] rn_models] forKey:key];
+        }
+        [NavController1 pushViewController:vc animated:true];
+    });
 }
 
-// 注册js函数 pop
+// 注册 pop
 RCT_EXPORT_METHOD(pop) {
-    [NavController1 popViewControllerAnimated:true];
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        [NavController1 popViewControllerAnimated:true];
+    });
+}
+
+// 注册 callblack
+RCT_EXPORT_METHOD(callback:(NSString *)key params:(id)params) {
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        void (^block)(NSArray *) = _blockDict[key];
+        if (block) {
+            block([params rn_models]);
+        }
+    });
 }
 
 // 注册js函数 performSelectors:returnValue:
-RCT_EXPORT_METHOD(performSelectors:(NSMutableArray <NSDictionary *>*)selectors returnValue:(RCTResponseSenderBlock)returnValue) {
-    selectors = selectors.mutableCopy;
-    
-    id ret = NSClassFromString(selectors.firstObject[@"class"]);
-    for (NSDictionary *dict in selectors) {
-        NSString *path = dict[@"selector"];
-        if ([path containsString:@"."]) {
-            for (NSString *selector in [path componentsSeparatedByString:@"."]) {
-                ret = [ret performSelector:NSSelectorFromString(selector) argArray:nil];
+RCT_EXPORT_METHOD(performSelectors:(NSArray <NSDictionary *>*)selectors resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
+    dispatch_sync(dispatch_get_main_queue(), ^{
+#warning 暂不支持返回值为基本数据类型
+        id (^invoke)(NSArray <NSDictionary *>*) = nil;
+        id (^__block __getArg)(NSArray <NSDictionary *>*) = invoke = ^id (NSArray <NSDictionary *>*selectors) {
+            
+            id ret = NSClassFromString(selectors.firstObject[@"class"]);
+            for (NSDictionary *dict in selectors) {
+                
+                // 参数是函数返回值的情况处理
+                NSMutableArray *argArray = [dict[@"args"] mutableCopy];
+                for (int i=0; i<argArray.count; i++) {
+                    id arg = argArray[i];
+                    if ([arg isKindOfClass:[NSDictionary class]] && dict[@"class"] && arg[@"selector"]) {
+                        argArray[i] = __getArg(@[arg]);
+                    } else if ([arg isKindOfClass:[NSArray class]] && [arg firstObject][@"class"] && [arg firstObject][@"selector"]) {
+                        argArray[i] = __getArg(arg);
+                    }
+                }
+                
+                // 调用函数
+                NSString *path = dict[@"selector"];
+                if ([path containsString:@"."]) {
+                    NSArray *paths = [path componentsSeparatedByString:@"."];
+                    for (int i=0; i<paths.count; i++) {
+                        ret = [ret performSelector:NSSelectorFromString(paths[i]) argArray:(i < paths.count - 1 ? nil : argArray)];
+                    }
+                } else {
+                    ret = [ret performSelector:NSSelectorFromString(dict[@"selector"]) argArray:argArray];
+                }
             }
-        } else {
-            ret = [ret performSelector:NSSelectorFromString(dict[@"selector"]) argArray:dict[@"args"]];
-        }
-    }
-    ret = [ReactNativeHelper conversion:ret];
-    
-    if ([ret isKindOfClass:[NSArray class]]) {
-        returnValue(ret);
-    } else {
-        returnValue(@[ret]);
-    }
+            return ret;
+        };
+        // 开始执行函数，返回结果做数据转换(NSDictionary)
+        resolve([invoke(selectors) rn_keyValues]);
+    });
 }
 
-// 注册js 函数（版本更新完毕）
-RCT_EXPORT_METHOD(updateFinish) {
-    NSString *version = [CodePushPackage getCurrentPackage:nil][@"description"];
-    NSLog(@"rn版本号 = %@", version);
-    if ([ReactNativeHelper shared].didUpdateFinish) {
-        [ReactNativeHelper shared].didUpdateFinish(version);
-    }
+RCT_EXPORT_METHOD(launchFinish) {
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        for (void (^b)(BOOL waited) in [ReactNativeHelper shared].launchFinishBlocks) {
+            b(true);
+        }
+        [ReactNativeHelper shared].launchFinishBlocks = nil;
+    });
 }
 
 // 注册js常量
 - (NSDictionary *)constantsToExport {
     return @{
         // 发布环境Key
-        @"CodePushKey": [NSBundle mainBundle].infoDictionary[@"CodePushDeploymentKey"],
+        @"CodePushKey": CodePushKey,
     };
 }
 
 // 注册js事件
 - (NSArray<NSString *> *)supportedEvents {
-    return @[@"EventReminder"];
+    return @[
+        @"EventReminder",   // 其他
+        @"SelectViewController",// 用于切换页面
+    ];
 }
 
 @end
