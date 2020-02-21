@@ -92,7 +92,7 @@
     //设置tab 被选中的颜色(可选)
     self.slideSwitchView.tabItemSelectedColor = RGBA(203, 43, 37, 1.0) ;
     //设置tab 背景颜色(可选)
-    self.slideSwitchView.tabItemNormalBackgroundColor = [Skin1.navBarBgColor colorWithAlphaComponent:0.55];
+    self.slideSwitchView.tabItemNormalBackgroundColor = Skin1.homeContentSubColor ;
     //设置tab 被选中的标识的颜色(可选)
     self.slideSwitchView.tabItemSelectionIndicatorColor = RGBA(203, 43, 37, 1.0) ;
     

@@ -1907,6 +1907,9 @@
 		D4564A4523E3E3A800A1A8C6 /* UIView+shadowPath.m in Sources */ = {isa = PBXBuildFile; fileRef = D4564A4423E3E3A800A1A8C6 /* UIView+shadowPath.m */; };
 		D4564A4623E3E3A800A1A8C6 /* UIView+shadowPath.m in Sources */ = {isa = PBXBuildFile; fileRef = D4564A4423E3E3A800A1A8C6 /* UIView+shadowPath.m */; };
 		D4564A4723E3FA9600A1A8C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4B75E15227802600007047C /* Assets.xcassets */; };
+		D4593B0623FFA6C1008396BE /* LineMainListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4593B0523FFA6C1008396BE /* LineMainListViewController.m */; };
+		D4593B0B23FFB646008396BE /* LineMainListCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4593B0923FFB646008396BE /* LineMainListCollectionViewCell.m */; };
+		D4593B0C23FFB646008396BE /* LineMainListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4593B0A23FFB646008396BE /* LineMainListCollectionViewCell.xib */; };
 		D4773ABF23FC16B100D38D60 /* LineConversion.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4773ABE23FC16B100D38D60 /* LineConversion.storyboard */; };
 		D4773AC223FC1F7F00D38D60 /* LineConversionHeaderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D4773AC123FC1F7F00D38D60 /* LineConversionHeaderVC.m */; };
 		D4773ACE23FD628800D38D60 /* LineMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4773ACD23FD628800D38D60 /* LineMainViewController.m */; };
@@ -3707,6 +3710,11 @@
 		D451A47E23F6669C00CD0E36 /* JYMineCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JYMineCollectionViewCell.xib; sourceTree = "<group>"; };
 		D4564A4323E3E3A800A1A8C6 /* UIView+shadowPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+shadowPath.h"; sourceTree = "<group>"; };
 		D4564A4423E3E3A800A1A8C6 /* UIView+shadowPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+shadowPath.m"; sourceTree = "<group>"; };
+		D4593B0423FFA6C1008396BE /* LineMainListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LineMainListViewController.h; sourceTree = "<group>"; };
+		D4593B0523FFA6C1008396BE /* LineMainListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LineMainListViewController.m; sourceTree = "<group>"; };
+		D4593B0823FFB646008396BE /* LineMainListCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LineMainListCollectionViewCell.h; sourceTree = "<group>"; };
+		D4593B0923FFB646008396BE /* LineMainListCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LineMainListCollectionViewCell.m; sourceTree = "<group>"; };
+		D4593B0A23FFB646008396BE /* LineMainListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LineMainListCollectionViewCell.xib; sourceTree = "<group>"; };
 		D4773ABE23FC16B100D38D60 /* LineConversion.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LineConversion.storyboard; sourceTree = "<group>"; };
 		D4773AC023FC1F7F00D38D60 /* LineConversionHeaderVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LineConversionHeaderVC.h; sourceTree = "<group>"; };
 		D4773AC123FC1F7F00D38D60 /* LineConversionHeaderVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LineConversionHeaderVC.m; sourceTree = "<group>"; };
@@ -7764,6 +7772,8 @@
 				D4773AC123FC1F7F00D38D60 /* LineConversionHeaderVC.m */,
 				D4773ACC23FD628800D38D60 /* LineMainViewController.h */,
 				D4773ACD23FD628800D38D60 /* LineMainViewController.m */,
+				D4593B0423FFA6C1008396BE /* LineMainListViewController.h */,
+				D4593B0523FFA6C1008396BE /* LineMainListViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -7771,6 +7781,9 @@
 		D4773ABC23FC166800D38D60 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				D4593B0823FFB646008396BE /* LineMainListCollectionViewCell.h */,
+				D4593B0923FFB646008396BE /* LineMainListCollectionViewCell.m */,
+				D4593B0A23FFB646008396BE /* LineMainListCollectionViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -8558,6 +8571,7 @@
 				CF4758C8239636D200966536 /* 2.gif in Resources */,
 				031E1C5823BE812A00B0F813 /* UGBetDetailTableViewCell.xib in Resources */,
 				CF475892239636D200966536 /* 33.gif in Resources */,
+				D4593B0C23FFB646008396BE /* LineMainListCollectionViewCell.xib in Resources */,
 				03A5D38D23C051DB0055A998 /* JS_HomeGameColletionCell_1.xib in Resources */,
 				D44258FF23E948E00067E981 /* LH_l001jt.gif in Resources */,
 				CF47590D239636D200966536 /* 28.gif in Resources */,
@@ -9902,6 +9916,7 @@
 				031E1A4E23BE812700B0F813 /* CMCommonHook.m in Sources */,
 				031E1B2423BE812800B0F813 /* UGChangLongController.m in Sources */,
 				031E197823BE812600B0F813 /* UGLHFocusUserModel.m in Sources */,
+				D4593B0623FFA6C1008396BE /* LineMainListViewController.m in Sources */,
 				031E1BA623BE812900B0F813 /* UGBMpreferentialViewController.m in Sources */,
 				031E1D6C23BE812B00B0F813 /* UGMosaicGoldController.m in Sources */,
 				031E1C0623BE812900B0F813 /* UGGameplayModel.m in Sources */,
@@ -9966,6 +9981,7 @@
 				031E1E2C23BE812C00B0F813 /* UGActivityGoldView.m in Sources */,
 				D4E6A61F23C4D340003E18B6 /* UGChatRoomModel.m in Sources */,
 				CFCF6DBF23C5B8370039588D /* ReactNativeHelper.m in Sources */,
+				D4593B0B23FFB646008396BE /* LineMainListCollectionViewCell.m in Sources */,
 				031E1A8E23BE812700B0F813 /* SAROPSession.m in Sources */,
 				031E1DEC23BE812C00B0F813 /* UGMissionTitleCollectionView.m in Sources */,
 				D4564A4523E3E3A800A1A8C6 /* UIView+shadowPath.m in Sources */,

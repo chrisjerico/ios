@@ -10,6 +10,7 @@
 #import "XYYSegmentControl.h"
 #import "UGPlatformGameModel.h"
 #import "UGBMHeaderView.h"
+#import "LineMainListViewController.h"
 @interface LineMainViewController ()<XYYSegmentControlDelegate>{
     UGBMHeaderView *headView;                /**<   黑色模板导航头 */
 }
@@ -23,6 +24,15 @@
 @property (nonatomic, strong)NSMutableArray <UGPlatformGameModel *> *esportdataArray ;  //电竞
 @property (nonatomic, strong)NSMutableArray <UGPlatformGameModel *> *fishdataArray ;    //捕鱼
 @property (nonatomic, strong)NSMutableArray <UGPlatformGameModel *> *sportdataArray ;    //体育
+
+
+@property (nonatomic, strong)LineMainListViewController *gameView;
+@property (nonatomic, strong)LineMainListViewController *realView;
+@property (nonatomic, strong)LineMainListViewController *cardView;
+@property (nonatomic, strong)LineMainListViewController *esportView;
+@property (nonatomic, strong)LineMainListViewController *fishView;
+@property (nonatomic, strong)LineMainListViewController *sportView;
+
 @end
 
 @implementation LineMainViewController
@@ -30,6 +40,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"额度转换";
+    _gamedataArray = [NSMutableArray new];
+    _realdataArray = [NSMutableArray new];
+    _carddataArray = [NSMutableArray new];
+    _esportdataArray = [NSMutableArray new];
+    _fishdataArray = [NSMutableArray new];
+    _sportdataArray = [NSMutableArray new];
     
     [self getRealGames];
 }
@@ -63,8 +79,9 @@
                     [__self.sportdataArray addObject:obj];
                 }
                 
-                [self buildSegment];
+                
             }
+            [self buildSegment];
             
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
@@ -128,42 +145,96 @@
 - (UIViewController *)slideSwitchView:(XYYSegmentControl *)view viewOfTab:(NSUInteger)number {
     // 视讯
     if (number == 0) {
-        UIViewController *vc  = [UIViewController new];
-        [vc.view setBackgroundColor:[UIColor redColor]];
-        return vc;
+        if (!_realView) {
+            _realView  = _LoadVC_from_storyboard_(@"LineMainListViewController") ;
+        }
+        _realView.dataArray = _realdataArray;
+        return _realView;
     }
     // 棋牌
     else if (number == 1) {
-        UIViewController *vc  = [UIViewController new];
-        [vc.view setBackgroundColor:[UIColor greenColor]];
-        return vc;
+        if (!_cardView) {
+            _cardView  = _LoadVC_from_storyboard_(@"LineMainListViewController") ;
+        }
+        _cardView.dataArray = _carddataArray;
+        return _cardView;
     }
     // 电子
     else if (number == 2) {
-        UIViewController *vc  = [UIViewController new];
-        [vc.view setBackgroundColor:[UIColor grayColor]];
-        return vc;
+        if (!_gameView) {
+            _gameView  = _LoadVC_from_storyboard_(@"LineMainListViewController") ;
+        }
+        _gameView.dataArray = _gamedataArray;
+        return _gameView;
     }
     // 电竞
     else if (number == 3) {
-        UIViewController *vc  = [UIViewController new];
-        [vc.view setBackgroundColor:[UIColor yellowColor]];
-        return vc;
+        if (!_esportView) {
+            _esportView  = _LoadVC_from_storyboard_(@"LineMainListViewController") ;
+        }
+        _esportView.dataArray = _esportdataArray;
+        return _esportView;
     }
     // 捕鱼
     else if (number == 4) {
-        UIViewController *vc  = [UIViewController new];
-        [vc.view setBackgroundColor:[UIColor orangeColor]];
-        return vc;
+        if (!_fishView) {
+            _fishView  = _LoadVC_from_storyboard_(@"LineMainListViewController") ;
+        }
+        _fishView.dataArray = _fishdataArray;
+        return _fishView;
     }
     //体育
     else {
-        UIViewController *vc  = [UIViewController new];
-        [vc.view setBackgroundColor:[UIColor blueColor]];
-        return vc;
+        if (!_sportView) {
+            _sportView  = _LoadVC_from_storyboard_(@"LineMainListViewController") ;
+        }
+        _sportView.dataArray = _sportdataArray;
+        return _sportView;
     }
 }
 
 - (void)slideSwitchView:(XYYSegmentControl *)view didselectTab:(NSUInteger)number {
+    // 视讯
+       if (number == 0) {
+           if (!_realView.dataArray) {
+                _realView.dataArray = _realdataArray;
+           }
+           [_realView dataReLoad];
+       }
+       // 棋牌
+       else if (number == 1) {
+           if (!_cardView.dataArray) {
+                _cardView.dataArray = _carddataArray;
+           }
+           [_cardView dataReLoad];
+       }
+       // 电子
+       else if (number == 2) {
+           if (!_gameView.dataArray) {
+                _gameView.dataArray = _gamedataArray;
+           }
+           [_gameView dataReLoad];
+       }
+       // 电竞
+       else if (number == 3) {
+           if (!_esportView.dataArray) {
+                _esportView.dataArray = _esportdataArray;
+           }
+           [_esportView dataReLoad];
+       }
+       // 捕鱼
+       else if (number == 4) {
+           if (!_fishView.dataArray) {
+                _fishView.dataArray = _fishdataArray;
+           }
+           [_fishView dataReLoad];
+       }
+       //体育
+       else {
+           if (!_sportView.dataArray) {
+                _sportView.dataArray = _sportdataArray;
+           }
+           [_sportView dataReLoad];
+       }
 }
 @end
