@@ -37,7 +37,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIColor *textColor2;              /**<    占位字颜色 深灰色 */
 @property (nonatomic, strong) UIColor *textColor3;              /**<    占位字颜色 淡灰色 */
 @property (nonatomic, strong) UIColor *textColor4;              /**<    反差字体 白色 */
-
+//新额度转换
+//@property (nonatomic, strong) UIColor *conversionHeaderColor;    /**<    头颜色*/
+//@property (nonatomic, strong) UIColor *middleSegmentColor;       /**<    中间切换*/
+@property (nonatomic, strong) UIColor *conversionCellColor;      /**<    内容Cell*/
+@property (nonatomic, strong) UIColor *intoViewColor;            /**<    转入View*/
+@property (nonatomic, strong) UIColor *moneyCellColor;           /**<    金额Cell*/
 - (void)useSkin;    /**<   应用此皮肤 */
 - (BOOL)isBlack;    /**<   是否是黑色模板 */
 - (BOOL)isLH;       /**<   是否是六合资料 */

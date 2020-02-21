@@ -38,6 +38,7 @@
 #import "UGLHMineViewController.h"    // 六合 我的
 #import "UGMineSkinViewController.h"    //  我的
 #import "LotteryBetAndChatVC.h"
+#import "UGBalanceConversionController.h"//额度转换
 
 
 // Tools
@@ -107,6 +108,12 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     if (self.childViewControllers.count) { // 不是根控制器
         
         
+        if ([viewController isKindOfClass:[UGBalanceConversionController class]]) {
+            
+            if (APP.oldConversion) {
+                 viewController =  _LoadVC_from_storyboard_(@"LineConversionHeaderVC");
+            } 
+        }
         
         
         if ([viewController isKindOfClass:[UGBMRegisterViewController class]]

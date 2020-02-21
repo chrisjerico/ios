@@ -51,11 +51,12 @@
     self.lineCollection.delegate = self;
     
     [self.lineCollection registerNib:[UINib nibWithNibName:@"LineMainListCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"LineMainListCollectionViewCell"];
-    
+
     [self.lineCollection reloadData];
     
      float height =   self.lineCollection.collectionViewLayout.collectionViewContentSize.height;
     self.lineCollection.cc_constraints.height.constant = height;
+ 
 }
 
 -(void)setDataArray:(NSMutableArray<UGPlatformGameModel *> *)dataArray{
@@ -86,7 +87,7 @@
         UGPlatformGameModel *model = self.dataArray[indexPath.row];
         cell.item = model;
         [cell.nameLabel setTextColor:Skin1.textColor1];
-        [cell.contentView setBackgroundColor:Skin1.homeContentSubColor];
+        [cell.contentView setBackgroundColor:Skin1.conversionCellColor];
         cell.layer.borderWidth = 1;
         cell.layer.borderColor = [[UIColor whiteColor] CGColor];
 
@@ -171,7 +172,7 @@
 - (IBAction)transferOutClick:(id)sender {
     CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI);
     self.transferOutArrow.transform = transform;
-    self.transferOutPopView = [[YBPopupMenu alloc] initWithTitles:self.transferArray icons:nil menuWidth:CGSizeMake(self.moneyBtn1.width, 250) delegate:self];
+    self.transferOutPopView = [[YBPopupMenu alloc] initWithTitles:self.transferArray icons:nil menuWidth:CGSizeMake(self.moneyBtn1.width+30, 250) delegate:self];
     self.transferOutPopView.fontSize = 14;
     self.transferOutPopView.type = YBPopupMenuTypeDefault;
     [self.transferOutPopView showRelyOnView:self.moneyBtn1];
@@ -181,7 +182,7 @@
 - (IBAction)transferInClick:(id)sender {
     CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI);
     self.tarnsferInArrow.transform = transform;
-    self.transferInPopView = [[YBPopupMenu alloc] initWithTitles:self.transferArray icons:nil menuWidth:CGSizeMake(self.moneyBtn2.width, 250) delegate:self];
+    self.transferInPopView = [[YBPopupMenu alloc] initWithTitles:self.transferArray icons:nil menuWidth:CGSizeMake(self.moneyBtn2.width+30, 250) delegate:self];
     self.transferInPopView.fontSize = 14;
     self.transferInPopView.type = YBPopupMenuTypeDefault;
     [self.transferInPopView showRelyOnView:self.moneyBtn2];

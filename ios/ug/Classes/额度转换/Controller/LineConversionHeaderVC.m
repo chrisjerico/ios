@@ -106,7 +106,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"额度转换";
-    
+    [self.view setBackgroundColor:Skin1.navBarBgColor];
     [_headView setBackgroundColor:Skin1.navBarBgColor];
     self.headImageView.layer.cornerRadius = self.headImageView.height / 2 ;
     self.headImageView.layer.masksToBounds = YES;

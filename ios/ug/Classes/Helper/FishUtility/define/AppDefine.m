@@ -163,6 +163,11 @@
 - (float )cellNormalFontSize        { return 14.0; }
 
 
+- (BOOL)oldConversion {
+    return [@"c200" containsString:_SiteId];
+}
+
+
 - (BOOL)isRedWhite {
     if ( [@"新年红0" containsString:Skin1.skitType]) {
         return [@"c184" containsString:_SiteId];

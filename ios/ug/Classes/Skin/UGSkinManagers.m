@@ -282,6 +282,9 @@ static UGSkinManagers *__initSkin1 = nil;
 				sm.textColor2               = color(@"555555");
 				sm.textColor3               = color(@"C1C1C1");
 				sm.textColor4               = color(@"FFFFFF");
+                sm.conversionCellColor      = color(@"7BA2C2");
+                sm.intoViewColor            = color(@"7BA2C2");
+                sm.moneyCellColor           = color(@"9BB8CB");
 				sm;
 			}),
 			//经典 2红色
@@ -304,6 +307,9 @@ static UGSkinManagers *__initSkin1 = nil;
 				sm.textColor2               = color(@"555555");
 				sm.textColor3               = color(@"C1C1C1");
 				sm.textColor4               = color(@"FFFFFF");
+                sm.conversionCellColor      = color(@"7BA2C2");
+                sm.intoViewColor            = color(@"7BA2C2");
+                sm.moneyCellColor           = color(@"9BB8CB");
 				sm;
 			}),
 			//经典 3褐色
@@ -331,6 +337,9 @@ static UGSkinManagers *__initSkin1 = nil;
 				sm.textColor2               = color(@"555555");
 				sm.textColor3               = color(@"C1C1C1");
 				sm.textColor4               = color(@"FFFFFF");
+                sm.conversionCellColor      = color(@"7BA2C2");
+                sm.intoViewColor            = color(@"7BA2C2");
+                sm.moneyCellColor           = color(@"9BB8CB");
 				sm;
 			}),
 			//经典 4绿色
@@ -353,6 +362,9 @@ static UGSkinManagers *__initSkin1 = nil;
 				sm.textColor2               = color(@"555555");
 				sm.textColor3               = color(@"C1C1C1");
 				sm.textColor4               = color(@"FFFFFF");
+                sm.conversionCellColor      = color(@"7BA2C2");
+                sm.intoViewColor            = color(@"7BA2C2");
+                sm.moneyCellColor           = color(@"9BB8CB");
 				sm;
 			}),
 			//经典 5褐色
@@ -375,6 +387,9 @@ static UGSkinManagers *__initSkin1 = nil;
 				sm.textColor2               = color(@"555555");
 				sm.textColor3               = color(@"C1C1C1");
 				sm.textColor4               = color(@"FFFFFF");
+                sm.conversionCellColor      = color(@"7BA2C2");
+                sm.intoViewColor            = color(@"7BA2C2");
+                sm.moneyCellColor           = color(@"9BB8CB");
 				sm;
 			}),
 			//经典 6淡蓝色
@@ -396,7 +411,9 @@ static UGSkinManagers *__initSkin1 = nil;
 				sm.textColor1               = color(@"111111");
 				sm.textColor2               = color(@"555555");
 				sm.textColor3               = color(@"C1C1C1");
-				sm.textColor4               = color(@"FFFFFF");
+                sm.conversionCellColor      = color(@"7BA2C2");
+                sm.intoViewColor            = color(@"7BA2C2");
+                sm.moneyCellColor           = color(@"9BB8CB");
 				sm;
 			}),
 			//经典 7深蓝
@@ -419,6 +436,9 @@ static UGSkinManagers *__initSkin1 = nil;
 				sm.textColor2               = color(@"555555");
 				sm.textColor3               = color(@"C1C1C1");
 				sm.textColor4               = color(@"FFFFFF");
+                sm.conversionCellColor      = color(@"7BA2C2");
+                sm.intoViewColor            = color(@"7BA2C2");
+                sm.moneyCellColor           = color(@"9BB8CB");
 				sm;
 			}),
 			//经典 8紫色
@@ -441,6 +461,9 @@ static UGSkinManagers *__initSkin1 = nil;
 				sm.textColor2               = color(@"555555");
 				sm.textColor3               = color(@"C1C1C1");
 				sm.textColor4               = color(@"FFFFFF");
+                sm.conversionCellColor      = color(@"7BA2C2");
+                sm.intoViewColor            = color(@"7BA2C2");
+                sm.moneyCellColor           = color(@"9BB8CB");
 				sm;
 			}),
 			//经典 9深红
@@ -463,6 +486,9 @@ static UGSkinManagers *__initSkin1 = nil;
 				sm.textColor2               = color(@"555555");
 				sm.textColor3               = color(@"C1C1C1");
 				sm.textColor4               = color(@"FFFFFF");
+                sm.conversionCellColor      = color(@"7BA2C2");
+                sm.intoViewColor            = color(@"7BA2C2");
+                sm.moneyCellColor           = color(@"9BB8CB");
 				sm;
 			}),
 			//经典 10淡灰
@@ -485,6 +511,9 @@ static UGSkinManagers *__initSkin1 = nil;
 				sm.textColor2               = color(@"555555");
 				sm.textColor3               = color(@"C1C1C1");
 				sm.textColor4               = color(@"FFFFFF");
+                sm.conversionCellColor      = color(@"7BA2C2");
+                sm.intoViewColor            = color(@"7BA2C2");
+                sm.moneyCellColor           = color(@"9BB8CB");
 				sm;
 			}),
 			//经典 11橘红
@@ -507,6 +536,9 @@ static UGSkinManagers *__initSkin1 = nil;
 				sm.textColor2               = color(@"555555");
 				sm.textColor3               = color(@"C1C1C1");
 				sm.textColor4               = color(@"FFFFFF");
+                sm.conversionCellColor      = color(@"7BA2C2");
+                sm.intoViewColor            = color(@"7BA2C2");
+                sm.moneyCellColor           = color(@"9BB8CB");
 				sm;
 			}),
 			//经典 12星空蓝
@@ -529,6 +561,9 @@ static UGSkinManagers *__initSkin1 = nil;
 				sm.textColor2               = color(@"555555");
 				sm.textColor3               = color(@"C1C1C1");
 				sm.textColor4               = color(@"FFFFFF");
+                sm.conversionCellColor      = color(@"7BA2C2");
+                sm.intoViewColor            = color(@"7BA2C2");
+                sm.moneyCellColor           = color(@"9BB8CB");
 				sm;
 			}),
 			//经典 13紫色
@@ -551,6 +586,9 @@ static UGSkinManagers *__initSkin1 = nil;
 				sm.textColor2               = color(@"555555");
 				sm.textColor3               = color(@"C1C1C1");
 				sm.textColor4               = color(@"FFFFFF");
+                sm.conversionCellColor      = color(@"7BA2C2");
+                sm.intoViewColor            = color(@"7BA2C2");
+                sm.moneyCellColor           = color(@"9BB8CB");
 				sm;
 			}),
 			//经典 14粉红
@@ -573,6 +611,9 @@ static UGSkinManagers *__initSkin1 = nil;
 				sm.textColor2               = color(@"555555");
 				sm.textColor3               = color(@"C1C1C1");
 				sm.textColor4               = color(@"FFFFFF");
+                sm.conversionCellColor      = color(@"7BA2C2");
+                sm.intoViewColor            = color(@"7BA2C2");
+                sm.moneyCellColor           = color(@"9BB8CB");
 				sm;
 			}),
 			//经典 15淡蓝
@@ -595,6 +636,9 @@ static UGSkinManagers *__initSkin1 = nil;
 				sm.textColor2               = color(@"555555");
 				sm.textColor3               = color(@"C1C1C1");
 				sm.textColor4               = color(@"FFFFFF");
+                sm.conversionCellColor      = color(@"7BA2C2");
+                sm.intoViewColor            = color(@"7BA2C2");
+                sm.moneyCellColor           = color(@"9BB8CB");
 				sm;
 			}),
 			//经典 16淡灰
@@ -617,6 +661,9 @@ static UGSkinManagers *__initSkin1 = nil;
 				sm.textColor2               = color(@"555555");
 				sm.textColor3               = color(@"C1C1C1");
 				sm.textColor4               = color(@"FFFFFF");
+                sm.conversionCellColor      = color(@"7BA2C2");
+                sm.intoViewColor            = color(@"7BA2C2");
+                sm.moneyCellColor           = color(@"9BB8CB");
 				sm;
 			}),
 			//经典 17淡灰
@@ -639,6 +686,9 @@ static UGSkinManagers *__initSkin1 = nil;
 				sm.textColor2               = color(@"555555");
 				sm.textColor3               = color(@"C1C1C1");
 				sm.textColor4               = color(@"FFFFFF");
+                sm.conversionCellColor      = color(@"7BA2C2");
+                sm.intoViewColor            = color(@"7BA2C2");
+                sm.moneyCellColor           = color(@"9BB8CB");
 				sm;
 			}),
 			//经典 18钻石蓝
@@ -661,6 +711,9 @@ static UGSkinManagers *__initSkin1 = nil;
 				sm.textColor2               = color(@"555555");
 				sm.textColor3               = color(@"C1C1C1");
 				sm.textColor4               = color(@"FFFFFF");
+                sm.conversionCellColor      = color(@"7BA2C2");
+                sm.intoViewColor            = color(@"7BA2C2");
+                sm.moneyCellColor           = color(@"9BB8CB");
 				sm;
 			}),
 			//经典 19忧郁蓝
@@ -683,6 +736,9 @@ static UGSkinManagers *__initSkin1 = nil;
 				sm.textColor2               = color(@"555555");
 				sm.textColor3               = color(@"C1C1C1");
 				sm.textColor4               = color(@"FFFFFF");
+                sm.conversionCellColor      = color(@"7BA2C2");
+                sm.intoViewColor            = color(@"7BA2C2");
+                sm.moneyCellColor           = color(@"9BB8CB");
 				sm;
 			}),
 			//六合资料
@@ -705,6 +761,9 @@ static UGSkinManagers *__initSkin1 = nil;
 				sm.textColor2               = color(@"555555");
 				sm.textColor3               = color(@"C1C1C1");
 				sm.textColor4               = color(@"FFFFFF");
+                sm.conversionCellColor      = color(@"7BA2C2");
+                sm.intoViewColor            = color(@"7BA2C2");
+                sm.moneyCellColor           = color(@"9BB8CB");
 				sm;
 			}),
 			@"六合资料1":({
@@ -726,6 +785,9 @@ static UGSkinManagers *__initSkin1 = nil;
 				sm.textColor2               = color(@"555555");
 				sm.textColor3               = color(@"C1C1C1");
 				sm.textColor4               = color(@"FFFFFF");
+                sm.conversionCellColor      = color(@"7BA2C2");
+                sm.intoViewColor            = color(@"7BA2C2");
+                sm.moneyCellColor           = color(@"9BB8CB");
 				sm;
 			}),
 			@"六合资料2":({
@@ -747,6 +809,9 @@ static UGSkinManagers *__initSkin1 = nil;
 				sm.textColor2               = color(@"555555");
 				sm.textColor3               = color(@"C1C1C1");
 				sm.textColor4               = color(@"FFFFFF");
+                sm.conversionCellColor      = color(@"7BA2C2");
+                sm.intoViewColor            = color(@"7BA2C2");
+                sm.moneyCellColor           = color(@"9BB8CB");
 				sm;
 			}),
 			@"六合资料3":({
@@ -768,6 +833,9 @@ static UGSkinManagers *__initSkin1 = nil;
 				sm.textColor2               = color(@"555555");
 				sm.textColor3               = color(@"C1C1C1");
 				sm.textColor4               = color(@"FFFFFF");
+                sm.conversionCellColor      = color(@"7BA2C2");
+                sm.intoViewColor            = color(@"7BA2C2");
+                sm.moneyCellColor           = color(@"9BB8CB");
 				sm;
 			}),
 			@"六合资料4":({
@@ -789,6 +857,9 @@ static UGSkinManagers *__initSkin1 = nil;
 				sm.textColor2               = color(@"555555");
 				sm.textColor3               = color(@"C1C1C1");
 				sm.textColor4               = color(@"FFFFFF");
+                sm.conversionCellColor      = color(@"7BA2C2");
+                sm.intoViewColor            = color(@"7BA2C2");
+                sm.moneyCellColor           = color(@"9BB8CB");
 				sm;
 			}),
 			@"六合资料5":({
@@ -810,6 +881,9 @@ static UGSkinManagers *__initSkin1 = nil;
 				sm.textColor2               = color(@"555555");
 				sm.textColor3               = color(@"C1C1C1");
 				sm.textColor4               = color(@"FFFFFF");
+                sm.conversionCellColor      = color(@"7BA2C2");
+                sm.intoViewColor            = color(@"7BA2C2");
+                sm.moneyCellColor           = color(@"9BB8CB");
 				sm;
 			}),
 			@"六合资料6":({
@@ -831,6 +905,9 @@ static UGSkinManagers *__initSkin1 = nil;
 				sm.textColor2               = color(@"555555");
 				sm.textColor3               = color(@"C1C1C1");
 				sm.textColor4               = color(@"FFFFFF");
+                sm.conversionCellColor      = color(@"7BA2C2");
+                sm.intoViewColor            = color(@"7BA2C2");
+                sm.moneyCellColor           = color(@"9BB8CB");
 				sm;
 			}),
 			@"六合资料7":({
@@ -852,6 +929,9 @@ static UGSkinManagers *__initSkin1 = nil;
 				sm.textColor2               = color(@"555555");
 				sm.textColor3               = color(@"C1C1C1");
 				sm.textColor4               = color(@"FFFFFF");
+                sm.conversionCellColor      = color(@"7BA2C2");
+                sm.intoViewColor            = color(@"7BA2C2");
+                sm.moneyCellColor           = color(@"9BB8CB");
 				sm;
 			}),
 			@"六合资料8":({
@@ -873,6 +953,9 @@ static UGSkinManagers *__initSkin1 = nil;
 				sm.textColor2               = color(@"555555");
 				sm.textColor3               = color(@"C1C1C1");
 				sm.textColor4               = color(@"FFFFFF");
+                sm.conversionCellColor      = color(@"7BA2C2");
+                sm.intoViewColor            = color(@"7BA2C2");
+                sm.moneyCellColor           = color(@"9BB8CB");
 				sm;
 			}),
 			@"六合资料9":({
@@ -894,6 +977,9 @@ static UGSkinManagers *__initSkin1 = nil;
 				sm.textColor2               = color(@"555555");
 				sm.textColor3               = color(@"C1C1C1");
 				sm.textColor4               = color(@"FFFFFF");
+                sm.conversionCellColor      = color(@"7BA2C2");
+                sm.intoViewColor            = color(@"7BA2C2");
+                sm.moneyCellColor           = color(@"9BB8CB");
 				sm;
 			}),
 			@"六合资料10":({
@@ -915,6 +1001,9 @@ static UGSkinManagers *__initSkin1 = nil;
 				sm.textColor2               = color(@"555555");
 				sm.textColor3               = color(@"C1C1C1");
 				sm.textColor4               = color(@"FFFFFF");
+                sm.conversionCellColor      = color(@"7BA2C2");
+                sm.intoViewColor            = color(@"7BA2C2");
+                sm.moneyCellColor           = color(@"9BB8CB");
 				sm;
 			}),
 			//石榴红
@@ -946,6 +1035,9 @@ static UGSkinManagers *__initSkin1 = nil;
 				sm.textColor2               = color(@"555555");
 				sm.textColor3               = color(@"C1C1C1");
 				sm.textColor4               = color(@"FFFFFF");
+                sm.conversionCellColor      = color(@"7BA2C2");
+                sm.intoViewColor            = color(@"7BA2C2");
+                sm.moneyCellColor           = color(@"9BB8CB");
 				sm;
 			}),
 			//新年红
@@ -968,6 +1060,9 @@ static UGSkinManagers *__initSkin1 = nil;
 				sm.textColor2               = color(@"555555");
 				sm.textColor3               = color(@"C1C1C1");
 				sm.textColor4               = color(@"FFFFFF");
+                sm.conversionCellColor      = color(@"7BA2C2");
+                sm.intoViewColor            = color(@"7BA2C2");
+                sm.moneyCellColor           = color(@"9BB8CB");
 				sm;
 			}),
 			@"新年红1":({
@@ -989,6 +1084,9 @@ static UGSkinManagers *__initSkin1 = nil;
 				sm.textColor2               = color(@"555555");
 				sm.textColor3               = color(@"C1C1C1");
 				sm.textColor4               = color(@"FFFFFF");
+                sm.conversionCellColor      = color(@"7BA2C2");
+                sm.intoViewColor            = color(@"7BA2C2");
+                sm.moneyCellColor           = color(@"9BB8CB");
 				sm;
 			}),
 			
@@ -1013,6 +1111,9 @@ static UGSkinManagers *__initSkin1 = nil;
 				sm.textColor2               = color(@"C1C1C1");
 				sm.textColor3               = color(@"555555");
 				sm.textColor4               = color(@"000000");
+                sm.conversionCellColor      = color(@"7BA2C2");
+                sm.intoViewColor            = color(@"7BA2C2");
+                sm.moneyCellColor           = color(@"9BB8CB");
 				sm;
 			}),
 			//金沙模板
@@ -1036,6 +1137,9 @@ static UGSkinManagers *__initSkin1 = nil;
 				sm.textColor2               = color(@"555555");
 				sm.textColor3               = color(@"C1C1C1");
 				sm.textColor4               = color(@"FFFFFF");
+                sm.conversionCellColor      = color(@"7BA2C2");
+                sm.intoViewColor            = color(@"7BA2C2");
+                sm.moneyCellColor           = color(@"9BB8CB");
 				sm;
 			}),
 			//火山橙
@@ -1059,6 +1163,9 @@ static UGSkinManagers *__initSkin1 = nil;
 				sm.textColor2               = color(@"555555");
 				sm.textColor3               = color(@"C1C1C1");
 				sm.textColor4               = color(@"FFFFFF");
+                sm.conversionCellColor      = color(@"7BA2C2");
+                sm.intoViewColor            = color(@"7BA2C2");
+                sm.moneyCellColor           = color(@"9BB8CB");
 				sm;
 			}),
 			
@@ -1083,6 +1190,9 @@ static UGSkinManagers *__initSkin1 = nil;
                 sm.textColor2               = color(@"555555");
                 sm.textColor3               = color(@"C1C1C1");
                 sm.textColor4               = color(@"FFFFFF");
+                sm.conversionCellColor      = color(@"7BA2C2");
+                sm.intoViewColor            = color(@"7BA2C2");
+                sm.moneyCellColor           = color(@"9BB8CB");
                 sm;
             }),
             //简约
@@ -1105,6 +1215,9 @@ static UGSkinManagers *__initSkin1 = nil;
                 sm.textColor2               = color(@"555555");
                 sm.textColor3               = color(@"C1C1C1");
                 sm.textColor4               = color(@"FFFFFF");
+                sm.conversionCellColor      = color(@"7BA2C2");
+                sm.intoViewColor            = color(@"7BA2C2");
+                sm.moneyCellColor           = color(@"9BB8CB");
                 sm;
             }),
             @"简约模板1":({
@@ -1126,6 +1239,9 @@ static UGSkinManagers *__initSkin1 = nil;
                 sm.textColor2               = color(@"555555");
                 sm.textColor3               = color(@"C1C1C1");
                 sm.textColor4               = color(@"FFFFFF");
+                sm.conversionCellColor      = color(@"7BA2C2");
+                sm.intoViewColor            = color(@"7BA2C2");
+                sm.moneyCellColor           = color(@"9BB8CB");
                 sm;
             }),
 
