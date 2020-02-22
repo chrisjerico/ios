@@ -67,16 +67,15 @@ export default class AppDefine {
       // 退到root
       AppDefine.navController?.canGoBack() && AppDefine.navController?.popToTop();
       // 再push
-      AppDefine.navigationRef.current?.navigate(params.vcName);
+      AppDefine.tabController?.navigate(params.vcName);
+      // AppDefine.navigationRef?.current?.navigate(params.vcName);
     });
 
     // 移除页面
-    AppDefine.ocEvent.addListener("RemoveVC", params => {
-      
-    });
+    AppDefine.ocEvent.addListener("RemoveVC", params => {});
 
     // 必须在注册监听之后执行
-    AppDefine.ocHelper.launchFinish();
+    // AppDefine.ocHelper.launchFinish();
   }
 
   static ocCall(clsName: string, selector: string, args: Array<any | CallFuncType> = []): Promise<any> {

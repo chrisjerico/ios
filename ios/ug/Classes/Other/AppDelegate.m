@@ -30,12 +30,9 @@
 #import "UGLaunchPageVC.h"
 #import "UGSystemConfigModel.h"
 #import "KMCGeigerCounter.h"
-#ifdef DEBUG
-
-#endif
 #import "AppDelegate+HgBugly.h"
-
 #import "JPUSHService.h"
+
 #ifdef NSFoundationVersionNumber_iOS_9_x_Max
 #import <UserNotifications/UserNotifications.h>
 #endif

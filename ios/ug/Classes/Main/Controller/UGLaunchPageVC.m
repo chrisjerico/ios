@@ -46,9 +46,15 @@
 //        return;
 //    }
     
-    // 初始化jsp
-    [JSPatchHelper install];
-    [self.view addSubview:[ReactNativeVC reactNativeWithRPM:[RnPageModel updateVersionPage] params:nil].view];
+    
+    {
+        // 初始化jsp
+        [JSPatchHelper install];
+        // 初始化rn
+        ReactNativeVC *vc = [ReactNativeVC reactNativeWithRPM:[RnPageModel updateVersionPage] params:nil];
+        [self addChildViewController:vc];
+        [self.view addSubview:vc.view];
+    }
 #endif
     
     // 下载新的启动图
@@ -70,6 +76,7 @@
     __block CGFloat __waitSecs = maxSecs;
     {
         FLAnimatedImageView *imageView = [FLAnimatedImageView new];
+        imageView.backgroundColor = [UIColor whiteColor];
         imageView.contentMode = UIViewContentModeScaleAspectFill;
         [self.view addSubview:imageView];
         [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
