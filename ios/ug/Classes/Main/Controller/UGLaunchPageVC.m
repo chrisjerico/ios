@@ -76,6 +76,7 @@
     __block CGFloat __waitSecs = maxSecs;
     {
         FLAnimatedImageView *imageView = [FLAnimatedImageView new];
+        imageView.backgroundColor = [UIColor whiteColor];
         imageView.contentMode = UIViewContentModeScaleAspectFill;
         [self.view addSubview:imageView];
         [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
