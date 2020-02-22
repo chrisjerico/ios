@@ -106,6 +106,11 @@ static RCTRootView *_rnView;
     [self setStateViewHidden:false];
 }
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    _rnView.frame = self.view.bounds;
+}
+
 - (void)setStateViewHidden:(BOOL)hidden {
     for (UIView *stateView in TabBarController1.view.subviews) {
         if ([stateView.tagString isEqualToString:@"状态栏背景View"]) {

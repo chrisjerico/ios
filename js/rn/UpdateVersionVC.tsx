@@ -29,6 +29,9 @@ export default class UpdateVersionVC extends Component<IProps, IState> {
 
     var { navigation } = this.props;
     AppDefine.tabController = navigation;
+
+    // 必须在注册监听之后执行
+    AppDefine.ocHelper.launchFinish();
   }
 
   updateJspatch() {
