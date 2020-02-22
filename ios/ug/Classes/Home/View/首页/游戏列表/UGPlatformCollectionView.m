@@ -103,12 +103,12 @@ static NSString *const footerId = @"footerId";
 }
 
 
--(void)setIid:(NSString *)iid{
-    _iid  = iid;
-    if (Skin1.isJY) {
+-(void)setStyle:(NSString *)style{
+    _style  = style;
+ 
         if (Skin1.isJY) {
 
-             if ([self.iid isEqualToString:@"1"] || [self.iid isEqualToString:@"7"]) {
+             if (self.style.intValue == 0) {
                 WSLWaterFlowLayout * _flow;
                 _flow = [[WSLWaterFlowLayout alloc] init];
                 _flow.delegate = self;
@@ -127,7 +127,7 @@ static NSString *const footerId = @"footerId";
             }
             
         }
-    }
+    
 }
 
 -(void)jyLoadData:(NSArray<GameModel *> *)dataArray {
@@ -178,46 +178,8 @@ static NSString *const footerId = @"footerId";
         
     }
     else if (Skin1.isJY) {
-//        if ([self.iid isEqualToString:@"1"]) {
-//            // 3.GCD
-//
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                // UI更新代码
-//                [self contentInsetHeaderView :self.dataArray];
-//            });
-//
-//            NSMutableArray <GameModel *> * headArray = [NSMutableArray new];
-//
-//            for (GameModel *model in _dataArray) {
-//                if (model.subType.count) {
-//                    [headArray addObject:model];
-//                }
-//            }
-//
-//            if (headArray.count) {
-//                GameModel *model  = [headArray objectAtIndex:0];
-//
-//                for (int i=0; i<model.subType.count; i++) {
-//                    [tempArray addObject:model.subType[i]];
-//                    if (((i + 1) % 4 == 0) || (i == model.subType.count - 1)) {
-//                        [self.sectionedDataArray addObject: [tempArray mutableCopy]];
-//                        [tempArray removeAllObjects];
-//                    }
-//                }
-//            }
-//            else{
-//                for (int i=0; i<dataArray.count; i++) {
-//                    [tempArray addObject:dataArray[i]];
-//                    if (((i + 1) % 4 == 0) || (i == dataArray.count - 1)) {
-//                        [self.sectionedDataArray addObject: [tempArray mutableCopy]];
-//                        [tempArray removeAllObjects];
-//                    }
-//                }
-//            }
-//
-//        }
-//        else
-        if([self.iid isEqualToString:@"7"]||[self.iid isEqualToString:@"1"]){
+
+        if(self.style.intValue == 0){
             for (int i=0; i<dataArray.count; i++) {
                 [tempArray addObject:dataArray[i]];
                 if (((i + 1) % 3 == 0) || (i == dataArray.count - 1)) {
@@ -284,12 +246,8 @@ static NSString *const footerId = @"footerId";
         return cell;
     }
     else if (Skin1.isJY) {
-        if ([self.iid isEqualToString:@"7"]
-            ||[self.iid isEqualToString:@"1"] ) {
+        if (self.style.intValue == 0) {
             UGGameTypeColletionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:gameCellid forIndexPath:indexPath];
-//            if ([self.iid isEqualToString:@"1"]) {
-//                cell.item = (GameSubModel *)((NSArray *)self.sectionedDataArray[indexPath.section])[indexPath.row];
-//            } else
             {
                 cell.item = ((NSArray *)self.sectionedDataArray[indexPath.section])[indexPath.row];
             }
@@ -361,10 +319,7 @@ static NSString *const footerId = @"footerId";
         return CGSizeMake((UGScreenW - 7)/2, 90);
     }
     else if (Skin1.isJY) {
-        if ([self.iid isEqualToString:@"7"]
-            ||[self.iid isEqualToString:@"1"] ) {
-//             CGFloat itemW = (UGScreenW -7)/4.0;
-//                  return CGSizeMake(itemW, 120);
+        if (self.style.intValue == 0 ) {
               return CGSizeMake(UGScreenW/3-10, 110);
         } else {
               CGFloat itemW = (UGScreenW -7);
@@ -386,8 +341,7 @@ static NSString *const footerId = @"footerId";
         return UIEdgeInsetsZero;
     }
     else if (Skin1.isJY) {
-        if ([self.iid isEqualToString:@"7"]
-            ||[self.iid isEqualToString:@"1"] ) {
+        if (self.style.intValue == 0) {
              return UIEdgeInsetsMake(6, 5, 0, 5);
         } else {
             return UIEdgeInsetsMake(6, 5, 0, 5);
@@ -407,12 +361,11 @@ static NSString *const footerId = @"footerId";
         return 1.0f;
     }
     else if (Skin1.isJY) {
-         if ([self.iid isEqualToString:@"7"]
-                   ||[self.iid isEqualToString:@"1"] ) {
-                     return 0.f;
-               } else {
-                   return 10.0f;
-               }
+        if (self.style.intValue == 0 ) {
+            return 0.f;
+        } else {
+            return 10.0f;
+        }
     }
     else {
         return 0.f;
@@ -427,12 +380,11 @@ static NSString *const footerId = @"footerId";
         return 1.0f;
     }
     else if (Skin1.isJY) {
-       if ([self.iid isEqualToString:@"7"]
-                         ||[self.iid isEqualToString:@"1"] ) {
-                           return 0.f;
-                     } else {
-                         return 10.0f;
-                     }
+        if (self.style.intValue == 0) {
+            return 0.f;
+        } else {
+            return 10.0f;
+        }
     }
     else {
         return 0.f;

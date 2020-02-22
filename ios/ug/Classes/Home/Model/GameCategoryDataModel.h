@@ -57,6 +57,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString * name;
 @property (nonatomic, strong) NSString * iid;
 @property (nonatomic, strong) NSString * logo;
+@property (nonatomic, strong) NSString * style;
 @property (nonatomic, strong) NSArray<GameModel> * list;
 @end
 

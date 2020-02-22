@@ -12,7 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UGPlatformCollectionView : UICollectionView
-@property (nonatomic, strong) NSString * iid;;//类型 //ob.name = 热门游戏 7 ob.name = 彩票游戏 1 ob.name = 真人视讯 2
+@property (nonatomic, strong) NSString * style;//类型  0=九宫格；1=列表式
 @property (nonatomic, assign)NSInteger typeIndex;
 @property (nonatomic, copy) void(^gameTypeSelectBlock)(NSInteger index);
 @property (nonatomic, copy) void(^gameItemSelectBlock)(GameModel *game);

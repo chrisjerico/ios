@@ -112,7 +112,7 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
 	NSInteger i = 0;
     for (GameCategoryModel *gcm in gameTypeArray) {
         UGPlatformCollectionView *pcv = [[UGPlatformCollectionView alloc] initWithFrame:CGRectZero];
-        pcv.iid = gcm.iid;
+        pcv.style = gcm.style;
 		pcv.typeIndex = i;
 		pcv.dataArray = gcm.list;
         [pcv xw_addObserverBlockForKeyPath:@"contentSize" block:^(id  _Nonnull obj, id  _Nonnull oldVal, id  _Nonnull newVal) {
