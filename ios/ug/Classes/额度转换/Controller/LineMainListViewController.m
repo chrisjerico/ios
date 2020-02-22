@@ -109,7 +109,7 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     float itemW = (APP.Width - 0.0 )/ 3.0;
     
-    CGSize size = {itemW, itemW};
+    CGSize size = {itemW, itemW*2/3};
     return size;
     
 }

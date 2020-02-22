@@ -26,6 +26,7 @@
 #import "UGPromotionIncomeController.h"     // 推广收益
 #import "UGBalanceConversionController.h"   // 额度转换
 #import "UGAgentViewController.h"           // 申请代理
+#import "LineConversionHeaderVC.h"          // 额度转换 1
 #import "LotteryBetAndChatVC.h"
 #import "UGYYLotterySecondHomeViewController.h"
 #import "UGBMMemberCenterViewController.h"  //
@@ -125,7 +126,7 @@ UGSystemConfigModel *currentConfig = nil;
 @end
 @implementation UGMobileMenu
 + (NSArray <UGMobileMenu *>*)allMenus {
-    static NSArray *_items = nil;
+    static NSMutableArray *_items = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         UGMobileMenu *(^item)(NSString *, NSString *, NSString *, MobileMenuType, NSString *) = ^UGMobileMenu *(NSString *path, NSString *defaultImgName, NSString *clsName, MobileMenuType type, NSString *name) {
@@ -153,11 +154,21 @@ UGSystemConfigModel *currentConfig = nil;
             item(@"/chatRoomList",      @"liaotian",                    LotteryBetAndChatVC.className,                  MM_聊天室,         @"聊天室"),
             item(@"/referrer",          @"shouyi1",                     UGPromotionIncomeController.className,          MM_推广收益,        @"推广收益"),
             item(@"/securityCenter",    @"ziyuan",                      UGSecurityCenterViewController.className,       MM_安全中心,        @"安全中心"),
-            item(@"/funds",             @"jinlingyingcaiwangtubiao",    UGFundsViewController.className,                MM_资金管理,        @"资金管理"),
-            item(@"/conversion",        @"change",                      UGBalanceConversionController.className,        MM_额度转换,        @"额度转换"),
+            item(@"/funds",             @"jinlingyingcaiwangtubiao",    UGFundsViewController.className,                MM_资金管理,        @"资金管理"), 
             item(@"/banks",             @"yinhangqia",                  UGBindCardViewController.className,             MM_银行卡,         @"银行卡"),
             item(@"/yuebao",            @"lixibao",                     UGYubaoViewController.className,                MM_利息宝,         @"利息宝"),
-        ];
+        ].mutableCopy;
+        
+        UGMobileMenu * itemLine;
+        if (APP.oldConversion) {
+            itemLine = item(@"/conversion",        @"change",                      LineConversionHeaderVC.className,               MM_额度转换,        @"额度转换");
+        } else {
+            itemLine = item(@"/conversion",        @"change",                      UGBalanceConversionController.className,        MM_额度转换,        @"额度转换");
+        }
+        NSArray *arrayTmp = @[itemLine];
+        // NSMakeRange(1, 2)：1表示要插入的位置，2表示插入数组的个数
+        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1,1)];
+        [_items insertObjects:arrayTmp atIndexes:indexSet];
     });
     return _items;
 }
