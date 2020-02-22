@@ -28,6 +28,10 @@
 
 @implementation UGPromotionsController
 
+-(void)dataReLoad{
+    [self getPromoteList];
+}
+
 - (BOOL)允许未登录访问 { return ![@"c049,c008" containsString:APP.SiteId]; }
 - (BOOL)允许游客访问 { return true; }
 
@@ -52,7 +56,11 @@
 - (void)getPromoteList {
     __weakSelf_(__self);
     [SVProgressHUD show];
-    [CMNetwork getPromoteListWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+    NSDictionary *params = [NSDictionary new];
+    if (![CMCommon stringIsNull:_typeid]) {
+        params = @{@"typeid":_typeid};
+    }
+    [CMNetwork getPromoteListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [__self.tableView.mj_header endRefreshing];
         [SVProgressHUD dismiss];
         [CMResult processWithResult:model success:^{

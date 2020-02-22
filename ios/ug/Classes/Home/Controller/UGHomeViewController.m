@@ -1088,8 +1088,7 @@
             }
             
             
-            
-            //            [[UGSkinManagers skinWithSysConf] useSkin];
+            [self getPromotionsType ];// 获取优惠图片分类信息
             
             NSString *title =[NSString stringWithFormat:@"COPYRIGHT © %@ RESERVED",config.webName];
             [self.bottomLabel setText:title];
@@ -1100,6 +1099,24 @@
         }];
     }];
 }
+
+// 获取优惠图片分类信息
+- (void)getPromotionsType {
+    [CMNetwork getPromotionsTypeWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+
+        [CMResult processWithResult:model success:^{
+            NSLog(@"model = %@",model);
+            NSDictionary *dic = model.data;
+            [UGSystemConfigModel.currentConfig setTypyArr:dic[@"typeArr"]];
+            NSNumber * number = dic[@"typeIsShow"];
+            [UGSystemConfigModel.currentConfig setTypeIsShow:[number intValue]];
+
+        } failure:^(id msg) {
+            [SVProgressHUD showErrorWithStatus:msg];
+        }];
+    }];
+}
+
 
 - (void)userLogout {
     [SVProgressHUD showSuccessWithStatus:@"退出成功"];

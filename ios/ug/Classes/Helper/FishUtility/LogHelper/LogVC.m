@@ -15,7 +15,7 @@
 #import "AFHTTPSessionManager.h"
 #import "NSMutableArray+KVO.h"
 #import <SafariServices/SafariServices.h>
-#import "LineConversionHeaderVC.h"
+#import "UGPromotionsListController.h"
 
 @interface LogVC ()<NSMutableArrayDidChangeDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *reqTableView;     /**<    请求TableView */
@@ -147,13 +147,13 @@ static LogVC *_logVC = nil;
         NSMutableArray *titles = @[].mutableCopy;
         [titles addObject:@"聊天室TG"];
         [titles addObject:@"聊天室"];
-        [titles addObject:@"额度转换"];
+        [titles addObject:@"优惠活动"];
         UIAlertController *ac = [AlertHelper showAlertView:nil msg:@"请选择操作" btnTitles:[titles arrayByAddingObject:@"取消"]];
 
-        [ac setActionAtTitle:@"额度转换" handler:^(UIAlertAction *aa) {
+        [ac setActionAtTitle:@"优惠活动" handler:^(UIAlertAction *aa) {
                 dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                     // 需要在主线程执行的代码
-                    LineConversionHeaderVC *recordVC = _LoadVC_from_storyboard_(@"LineConversionHeaderVC");
+                    UGPromotionsListController *recordVC = _LoadVC_from_storyboard_(@"UGPromotionsListController");
                     [NavController1 pushViewController:recordVC animated:true];
                    
                 });

@@ -39,4 +39,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+// 优惠活动列表Cell Model
+@interface UGPromoteTitleCellModel : UGModel
+
+@property (nonatomic, strong) NSString *title;      /**<   分类名称 */
+@property (nonatomic, strong) NSString *key;      /**<   分类key */
+
+@end
+
 NS_ASSUME_NONNULL_END

@@ -51,12 +51,12 @@
     self.lineCollection.delegate = self;
     
     [self.lineCollection registerNib:[UINib nibWithNibName:@"LineMainListCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"LineMainListCollectionViewCell"];
-
+    
     [self.lineCollection reloadData];
     
-     float height =   self.lineCollection.collectionViewLayout.collectionViewContentSize.height;
+    float height =   self.lineCollection.collectionViewLayout.collectionViewContentSize.height;
     self.lineCollection.cc_constraints.height.constant = height;
- 
+    
 }
 
 -(void)setDataArray:(NSMutableArray<UGPlatformGameModel *> *)dataArray{
@@ -90,7 +90,7 @@
         [cell.contentView setBackgroundColor:Skin1.conversionCellColor];
         cell.layer.borderWidth = 1;
         cell.layer.borderColor = [[UIColor whiteColor] CGColor];
-
+        
         WeakSelf
         cell.refreshBlock = ^{
             model.refreshing = YES;
@@ -129,7 +129,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
-
+    
 }
 #pragma mark YBPopupMenuDelegate
 
@@ -295,7 +295,9 @@
     UIButton *btn = (UIButton *)sender;
     
     if ([btn.tagString isEqualToString:@"全部Btn"]) {
-        _moneyTxt.text = @"";
+        UGUserModel *user = [UGUserModel currentUser];
+        double floatString = [user.balance doubleValue];
+        _moneyTxt.text = [NSString stringWithFormat:@"%.2f",floatString];;
     }
     if ([btn.tagString isEqualToString:@"100Btn"]) {
         _moneyTxt.text = @"100";

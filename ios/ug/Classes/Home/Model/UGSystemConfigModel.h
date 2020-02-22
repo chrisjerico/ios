@@ -197,7 +197,9 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 @property (nonatomic,strong) NSMutableArray *typeIdAry;                    /**<    在线配置的聊天室id对应的游戏id */
 
 @property (nonatomic) BOOL hasShare;                /**<   是否可以下注分享*/
-
+//优惠图片分类信息
+@property (nonatomic, strong) NSDictionary *typyArr;/**<   优惠图片分类信息*/
+@property (nonatomic) NSInteger typeIsShow;           /**<    1 有分类 0没有分类 */
 @end
 
 NS_ASSUME_NONNULL_END

@@ -122,6 +122,8 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 
 #define getPromoteListUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=system&a=promotions"]
 
+#define getPromotionsTypeUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=system&a=getPromotionsType"]
+
 #define feedbackUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php/?c=user&a=addFeedback"]
 
 #define getFeedbackListUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php/?c=user&a=myFeedback"]

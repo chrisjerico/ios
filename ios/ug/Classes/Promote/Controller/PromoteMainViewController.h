@@ -1,8 +1,8 @@
 //
-//  LineMainViewController.h
+//  PromoteViewController.h
 //  ug
 //
-//  Created by ug on 2020/2/19.
+//  Created by ug on 2020/2/22.
 //  Copyright © 2020 ug. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LineMainViewController : UIViewController
+@interface PromoteMainViewController : UIViewController
 
 @end
 

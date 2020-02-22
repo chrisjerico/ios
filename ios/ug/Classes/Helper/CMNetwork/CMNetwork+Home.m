@@ -141,13 +141,28 @@
     
 }
 
-//查询优惠活动列表
+//查询优惠活动列表 typeid
 + (void)getPromoteListWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock {
     CMMETHOD_BEGIN;
     
     [self.manager requestInMainThreadWithMethod:[getPromoteListUrl stringToRestfulUrlWithFlag:RESTFUL]
                                          params:params
                                           model:CMResultClassMake(UGPromoteListModel.class)
+                                           post:NO
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+    
+}
+
+//查询优惠图片分类信息
++ (void)getPromotionsTypeWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock {
+    CMMETHOD_BEGIN;
+    
+    [self.manager requestInMainThreadWithMethod:[getPromotionsTypeUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
                                            post:NO
                                      completion:completionBlock];
     
