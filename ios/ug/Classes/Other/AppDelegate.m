@@ -64,7 +64,7 @@
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
     
     // 极光推送
-    NSDictionary *dict = @{@"c049":@"ccb82fc32e80809ae7655a47",
+    NSDictionary *dict = @{@"c049":@"6ee045aa7ffcf3320b396041",
                            @"c084":@"865d65d06153a662e03a57d4",
                            @"c008":@"07c42b09a5f1b3f80ccb9b0a",
                            @"c053":@"370d706112f879592224e336",
