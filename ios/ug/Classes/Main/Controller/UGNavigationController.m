@@ -103,9 +103,9 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
     // 去RN页面
-    RnPageModel *rpm = [APP.rnPageInfos objectWithValue:viewController.className keyPath:@"clsName"];
+    RnPageModel *rpm = [APP.rnPageInfos objectWithValue:viewController.className keyPath:@"vcName"];
     if (rpm) {
-        ReactNativeVC *vc = [ReactNativeVC shared:rpm params:[viewController rn_keyValues]];
+        ReactNativeVC *vc = [ReactNativeVC reactNativeWithRPM:rpm params:[viewController rn_keyValues]];
         vc.hidesBottomBarWhenPushed = true;
         // push权限判断
         if (!self.viewControllers.count || [UGTabbarController canPushToViewController:vc]) {

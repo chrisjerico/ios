@@ -258,7 +258,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     // 去rn页面
     RnPageModel *rpm = [[APP.rnPageInfos objectsWithValue:@(linkCategory) keyPath:@"linkCategory"] objectWithValue:@(linkPosition) keyPath:@"linkPosition"];
     if (rpm) {
-        [NavController1 pushViewController:[ReactNativeVC shared:rpm params:nil] animated:true];
+        [NavController1 pushViewController:[ReactNativeVC reactNativeWithRPM:rpm params:nil] animated:true];
         return true;
     }
     
@@ -496,7 +496,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
 - (BOOL)pushVCWithUserCenterItemType:(UserCenterItemType)uciType {
     RnPageModel *rpm = [APP.rnPageInfos objectWithValue:@(uciType) keyPath:@"userCenterItemCode"];
     if (rpm) {
-        [NavController1 pushViewController:[ReactNativeVC shared:rpm params:nil] animated:true];
+        [NavController1 pushViewController:[ReactNativeVC reactNativeWithRPM:rpm params:nil] animated:true];
         return true;
     }
     

@@ -26,6 +26,9 @@ export default class UpdateVersionVC extends Component<IProps, IState> {
       rnProgress: 0,
       jspProgress: 0
     };
+
+    var { navigation } = this.props;
+    AppDefine.tabController = navigation;
   }
 
   updateJspatch() {
@@ -58,8 +61,6 @@ export default class UpdateVersionVC extends Component<IProps, IState> {
   }
 
   componentDidMount() {
-    AppDefine.navController = this.props.navigation;
-
     console.log("更新页面（rn）加载完毕");
     CodePush.sync(
       {
@@ -124,7 +125,6 @@ export default class UpdateVersionVC extends Component<IProps, IState> {
 
   render() {
     var p = this.state.rnProgress * 0.5 + this.state.jspProgress * 0.5;
-
     return (
       <View style={{ flex: 1 }}>
         {/* 7F9493 , 5389B3 */}
@@ -138,11 +138,11 @@ export default class UpdateVersionVC extends Component<IProps, IState> {
               <Text style={{ marginTop: 20, fontSize: 13, color: "#AAA", textAlign: "center" }}>Wi-Fi情况下更新不到30秒哦</Text>
             </View>
             <Progress.Bar progress={p} borderWidth={0.5} borderRadius={9} unfilledColor="white" height={15} width={AppDefine.width - 130} style={{ marginTop: 50 }} />
-            { p >= 1 ? 
+            {p >= 1 ? (
               <Text style={{ textAlign: "center", marginTop: 15, marginBottom: 20, color: "#000" }}>更新完成，重启APP生效</Text>
-              :
+            ) : (
               <Text style={{ textAlign: "center", marginTop: 15, marginBottom: 20, color: "#000" }}>版本正在努力更新中，请等候...</Text>
-            }
+            )}
           </Card>
           <View style={{ height: AppDefine.height * 0.11 }} />
         </LinearGradient>

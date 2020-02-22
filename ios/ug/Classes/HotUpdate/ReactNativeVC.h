@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RnPageModel : NSObject
 
 // 替换oc页面
-@property (nonatomic, strong) NSString *clsName;    /**<   页面类名 */
+@property (nonatomic, strong) NSString *vcName;    /**<   页面类名 */
 @property (nonatomic, assign) BOOL fd_prefersNavigationBarHidden;   /**<   是否隐藏导航条 */
 @property (nonatomic, assign) BOOL 允许游客访问;
 @property (nonatomic, assign) BOOL 允许未登录访问;
@@ -44,7 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ReactNativeVC : UIViewController
 
-+ (instancetype)shared:(RnPageModel *_Nullable)rpm params:(NSDictionary <NSString *, id>* _Nullable)params;  /**<   切换rn页面 */
++ (instancetype)reactNativeWithRPM:(RnPageModel *)rpm params:(NSDictionary <NSString *, id>* _Nullable)params;  /**<   切换rn页面 */
 @end
 
 NS_ASSUME_NONNULL_END

@@ -21,11 +21,6 @@ interface IState {
 export default class HomePageVC extends Component<IProps, IState> {
   constructor(props: any) {
     super(props);
-    var { navigation } = this.props;
-    console.log("导航 = ");
-    console.log(navigation);
-    AppDefine.navController = navigation;
-
     this.state = {
       pm: {}, // 帖子详情
       dataArray: [], // 评论列表

@@ -132,7 +132,7 @@
 	_vc1 = ({
         RnPageModel *rpm = [APP.rnPageInfos objectWithValue:model.gameType keyPath:@"gameType"];
         if (rpm) {
-            _vc1 = (id)[ReactNativeVC shared:rpm params:@{@"model":model}];
+            _vc1 = (id)[ReactNativeVC reactNativeWithRPM:rpm params:@{@"model":model}];
         } else {
             NSDictionary *dict = @{@"cqssc" :@"UGSSCLotteryController",     // 重庆时时彩
                                    @"pk10"  :@"UGBJPK10LotteryController",  // pk10

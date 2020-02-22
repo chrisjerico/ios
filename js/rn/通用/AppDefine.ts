@@ -1,6 +1,7 @@
 import { Dimensions } from "react-native";
 import { NativeEventEmitter, NativeModules } from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
+import React from "react";
 
 type RootStackParamList = {
   Home: undefined;
@@ -30,9 +31,9 @@ export default class AppDefine {
   //
   static ocHelper = NativeModules.ReactNativeHelper; // oc助手
   static ocEvent = new NativeEventEmitter(AppDefine.ocHelper); // oc事件
-  static navController: ProfileScreenNavigationProp = null; // 导航控制器
-  static tabController: ProfileScreenNavigationProp = null; // tab控制器
-
+  static navigationRef = React.createRef<ProfileScreenNavigationProp>();
+  static navController: ProfileScreenNavigationProp;
+  static tabController: ProfileScreenNavigationProp;
   static ocBlocks = {};
 
   static setup() {
@@ -62,11 +63,16 @@ export default class AppDefine {
     });
 
     // 跳转到指定页面
-    AppDefine.ocEvent.addListener("SelectViewController", params => {
+    AppDefine.ocEvent.addListener("SelectVC", params => {
       // 退到root
-      AppDefine.navController.canGoBack() && AppDefine.navController.popToTop();
+      AppDefine.navController?.canGoBack() && AppDefine.navController?.popToTop();
       // 再push
-      AppDefine.navController.navigate(params.vcName);
+      AppDefine.navigationRef.current?.navigate(params.vcName);
+    });
+
+    // 移除页面
+    AppDefine.ocEvent.addListener("RemoveVC", params => {
+      
     });
 
     // 必须在注册监听之后执行

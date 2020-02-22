@@ -116,11 +116,15 @@ static NSMutableDictionary *_blockDict = nil;
     [[ReactNativeHelper shared] sendEventWithName:@"EventReminder" body:[ReactNativeHelper addOnceBlocks:temp key:eventName]];
 }
 
-+ (void)selectViewController:(NSString *)vcName params:(NSDictionary *)params {
++ (void)selectVC:(NSString *)vcName params:(NSDictionary *)params {
     NSMutableDictionary *temp = @{}.mutableCopy;
     [temp addEntriesFromDictionary:params];
     temp[@"vcName"] = vcName;
-    [[ReactNativeHelper shared] sendEventWithName:@"SelectViewController" body:[ReactNativeHelper addOnceBlocks:temp key:vcName]];
+    [[ReactNativeHelper shared] sendEventWithName:@"SelectVC" body:[ReactNativeHelper addOnceBlocks:temp key:vcName]];
+}
+
++ (void)removeVC:(NSString *)vcName {
+    [[ReactNativeHelper shared] sendEventWithName:@"RemoveVC" body:@{@"vcName":vcName}];
 }
 
 + (void)exit {
@@ -160,6 +164,7 @@ RCT_EXPORT_METHOD(callback:(NSString *)key params:(id)params) {
         void (^block)(NSArray *) = _blockDict[key];
         if (block) {
             block([params rn_models]);
+            _blockDict[key] = nil;
         }
     });
 }
@@ -224,7 +229,8 @@ RCT_EXPORT_METHOD(launchFinish) {
 - (NSArray<NSString *> *)supportedEvents {
     return @[
         @"EventReminder",   // 其他
-        @"SelectViewController",// 用于切换页面
+        @"SelectVC",// 用于切换页面
+        @"RemoveVC",// 用于移除页面
     ];
 }
 

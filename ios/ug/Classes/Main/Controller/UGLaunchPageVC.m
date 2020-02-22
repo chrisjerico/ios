@@ -40,7 +40,7 @@
 //        btn.backgroundColor = APP.NavigationBarColor;
 //        btn.frame = CGRectMake(100, 200, 200, 200);
 //        [btn addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
-//            [self presentViewController:[ReactNativeVC shared:[RnPageModel updateVersionPage] params:nil] animated:true completion:nil];
+//            [self presentViewController:[ReactNativeVC reactNativeWithRPM:[RnPageModel updateVersionPage] params:nil] animated:true completion:nil];
 //        }];
 //        [self.view addSubview:btn];
 //        return;
@@ -48,7 +48,7 @@
     
     // 初始化jsp
     [JSPatchHelper install];
-    [self.view addSubview:[ReactNativeVC shared:[RnPageModel updateVersionPage] params:nil].view];
+    [self.view addSubview:[ReactNativeVC reactNativeWithRPM:[RnPageModel updateVersionPage] params:nil].view];
 #endif
     
     // 下载新的启动图
@@ -142,7 +142,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             // 若强制更新则去rn更新页面
             if (__forceUpdateVersion) {
-                APP.Window.rootViewController = [ReactNativeVC shared:[RnPageModel updateVersionPage] params:@{@"hvm":__forceUpdateVersion}];
+                APP.Window.rootViewController = [ReactNativeVC reactNativeWithRPM:[RnPageModel updateVersionPage] params:@{@"hvm":__forceUpdateVersion}];
             } else {
                 APP.Window.rootViewController = [[UGTabbarController alloc] init];
             }

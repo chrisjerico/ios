@@ -1,6 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import AppDefine from "./通用/AppDefine";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import AppDefine, { ProfileScreenNavigationProp } from "./通用/AppDefine";
 
 // 页面
 import UpdateVersionVC from "./UpdateVersionVC";
@@ -40,22 +41,42 @@ function HomeScreen() {
 }
 
 const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
+interface IProps {
+  navigation?: ProfileScreenNavigationProp;
+}
+// TabbarController
+class TabBarController extends Component<IProps> {
+  constructor(props) {
+    super(props);
+    var { navigation } = this.props;
+    AppDefine.navController = navigation;
+  }
+  render() {
+    return (
+      <Tab.Navigator initialRouteName="UpdateVersionVC" screenOptions={{}}>
+        <Tab.Screen name="Home3" component={HomePageVC} options={{}} />
+        <Tab.Screen name="Home2" component={Home2} options={{}} />
+        <Tab.Screen name="UGPromoteDetailController" component={HomeScreen} options={{}} />
+        <Tab.Screen name="UpdateVersionVC" component={UpdateVersionVC} options={{}} />
+      </Tab.Navigator>
+    );
+  }
+}
+
+// NavController
 class Root extends Component {
   render() {
     return (
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="UpdateVersionVC" headerMode="screen" screenOptions={{ headerTintColor: "white", headerStyle: { backgroundColor: "tomato" } }}>
-          <Stack.Screen name="Home3" component={HomePageVC} options={{ animationEnabled: false, headerStyle: { height: 80, backgroundColor: "green" } }} />
-          <Stack.Screen name="Home2" component={Home2} options={{ animationEnabled: false }} />
-          <Stack.Screen name="UGPromoteDetailController" component={HomeScreen} options={{ animationEnabled: false }} />
-          <Stack.Screen name="UpdateVersionVC" component={UpdateVersionVC} options={{ animationEnabled: false, header: () => null }} />
+      <NavigationContainer ref={AppDefine.navigationRef}>
+        <Stack.Navigator headerMode="screen">
+          <Stack.Screen name="Tabbar" component={TabBarController} />
         </Stack.Navigator>
       </NavigationContainer>
     );
   }
 }
-
 
 // 注册组件到原生APP（ReactNativeVC）
 AppRegistry.registerComponent("Main", () => Root);

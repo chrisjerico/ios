@@ -246,7 +246,7 @@ UGSystemConfigModel *currentConfig = nil;
     
     RnPageModel *rpm = [APP.rnPageInfos objectWithValue:_path keyPath:@"tabbarItemPath"];
     if (rpm) {
-        completion([ReactNativeVC shared:rpm params:nil]);
+        completion([ReactNativeVC reactNativeWithRPM:rpm params:nil]);
     }
     else if (_status) {
         completion(_LoadVC_from_storyboard_(@"LHStayTunedVC"));
