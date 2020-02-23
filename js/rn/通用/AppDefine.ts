@@ -63,7 +63,9 @@ export default class AppDefine {
       console.log("rn收到oc通知：");
       console.log(params);
       var block = AppDefine.ocBlocks[params._EventName];
-      block && block(params.params);
+      if (typeof block == "function") {
+        block(params.params);
+      }
     });
 
     // 跳转到指定页面
