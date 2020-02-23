@@ -1102,6 +1102,7 @@
 
 // 获取优惠图片分类信息
 - (void)getPromotionsType {
+    return;
     [CMNetwork getPromotionsTypeWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
 
         [CMResult processWithResult:model success:^{
@@ -1112,7 +1113,7 @@
             [UGSystemConfigModel.currentConfig setTypeIsShow:[number intValue]];
 
         } failure:^(id msg) {
-            [SVProgressHUD showErrorWithStatus:msg];
+//            [SVProgressHUD showErrorWithStatus:msg];
         }];
     }];
 }
