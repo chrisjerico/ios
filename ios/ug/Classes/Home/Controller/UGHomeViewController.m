@@ -1860,7 +1860,7 @@
         subView(@"StackView").cc_constraints.bottom.constant = 0;
     }
     
-    subView(@"cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor : Skin1.homeContentColor;
+//    subView(@"cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor : Skin1.homeContentColor;
     
     subLabel(@"标题Label").textColor = Skin1.textColor1;
     subLabel(@"标题Label").text = pm.title;
