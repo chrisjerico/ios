@@ -113,14 +113,14 @@ static NSMutableDictionary *_blockDict = nil;
     NSMutableDictionary *temp = @{}.mutableCopy;
     temp[@"_EventName"] = eventName;
     temp[@"params"] = params;
-    [[ReactNativeHelper shared] sendEventWithName:@"EventReminder" body:[ReactNativeHelper addOnceBlocks:temp key:eventName]];
+    [[ReactNativeHelper shared] sendEventWithName:@"EventReminder" body:[ReactNativeHelper addOnceBlocks:[temp rn_keyValues] key:eventName]];
 }
 
 + (void)selectVC:(NSString *)vcName params:(NSDictionary *)params {
     NSMutableDictionary *temp = @{}.mutableCopy;
     [temp addEntriesFromDictionary:params];
     temp[@"vcName"] = vcName;
-    [[ReactNativeHelper shared] sendEventWithName:@"SelectVC" body:[ReactNativeHelper addOnceBlocks:temp key:vcName]];
+    [[ReactNativeHelper shared] sendEventWithName:@"SelectVC" body:[ReactNativeHelper addOnceBlocks:[temp rn_keyValues] key:vcName]];
 }
 
 + (void)removeVC:(NSString *)vcName {
@@ -172,7 +172,6 @@ RCT_EXPORT_METHOD(callback:(NSString *)key params:(id)params) {
 // 注册js函数 performSelectors:returnValue:
 RCT_EXPORT_METHOD(performSelectors:(NSArray <NSDictionary *>*)selectors resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
     dispatch_sync(dispatch_get_main_queue(), ^{
-#warning 暂不支持返回值为基本数据类型
         id (^invoke)(NSArray <NSDictionary *>*) = nil;
         id (^__block __getArg)(NSArray <NSDictionary *>*) = invoke = ^id (NSArray <NSDictionary *>*selectors) {
             

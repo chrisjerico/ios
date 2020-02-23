@@ -128,6 +128,9 @@
         [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
             [CMResult processWithResult:model success:^{
                 UGSystemConfigModel.currentConfig = model.data;
+                [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
+                    [ReactNativeHelper sendEvent:@"UGSystemConfigModel.currentConfig" params:[UGSystemConfigModel currentConfig]];
+                }];
                 SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
             } failure:nil];
            

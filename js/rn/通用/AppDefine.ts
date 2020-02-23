@@ -2,6 +2,7 @@ import { Dimensions } from "react-native";
 import { NativeEventEmitter, NativeModules } from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import React from "react";
+import UGSysConfModel from "../Model/六合/UGSysConfModel";
 
 type RootStackParamList = {
   Home: undefined;
@@ -36,30 +37,33 @@ export default class AppDefine {
   static tabController: ProfileScreenNavigationProp;
   static ocBlocks = {};
 
+  static setRnPageInfo() {
+    // 配置需要被替换的oc页面（替换成rn）
+    var pages = [];
+
+    //
+    // if (1 || UGSysConfModel.current.allowMemberCancelBet) {
+    //   pages.push({
+    //     clsName: "UGPromoteDetailController",
+    //     fd_prefersNavigationBarHidden: true,
+    //     允许游客访问: true,
+    //     允许未登录访问: true
+    //   });
+    // }
+
+    AppDefine.ocHelper.performSelectors([{ class: "AppDefine", selector: "shared.setRnPageInfos:", args: [pages] }]);
+  }
+
   static setup() {
     // 配置需要被替换的oc页面（替换成rn）
-    AppDefine.ocHelper.performSelectors([
-      {
-        class: "AppDefine",
-        selector: "shared.setRnPageInfos:",
-        args: [
-          [
-            // {
-            //   clsName: "UGPromoteDetailController",
-            //   fd_prefersNavigationBarHidden: true,
-            //   允许游客访问: true,
-            //   允许未登录访问: true
-            // }
-          ]
-        ]
-      }
-    ]);
+    this.setRnPageInfo();
 
     // 监听原生发过来的事件通知
     AppDefine.ocEvent.addListener("EventReminder", params => {
       console.log("rn收到oc通知：");
       console.log(params);
-      AppDefine.ocBlocks[params._EventName](params.params);
+      var block = AppDefine.ocBlocks[params._EventName];
+      block && block(params.params);
     });
 
     // 跳转到指定页面

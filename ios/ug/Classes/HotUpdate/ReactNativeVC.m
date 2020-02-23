@@ -12,9 +12,6 @@
 #import <React/RCTRootView.h>
 #import <React/RCTBundleURLProvider.h>
 
-// ReactNativeHelper
-#import "ReactNativeHelper.h"
-
 #import "CodePush.h"
 
 @implementation RnPageModel

@@ -149,6 +149,10 @@ static UGTabbarController *_tabBarVC = nil;
 	}
 	
 	SANotificationEventSubscribe(UGNotificationGetSystemConfigComplete, self, ^(typeof (self) self, id obj) {
+        [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
+            [ReactNativeHelper sendEvent:@"UGSystemConfigModel.currentConfig" params:[UGSystemConfigModel currentConfig]];
+        }];
+        
 		if (OBJOnceToken(TabBarController1)) {
 			NSArray<UGMobileMenu *> *menus = [[UGMobileMenu arrayOfModelsFromDictionaries:SysConf.mobileMenu error:nil] sortedArrayUsingComparator:^NSComparisonResult(UGMobileMenu *obj1, UGMobileMenu *obj2) {
 				return obj1.sort > obj2.sort;

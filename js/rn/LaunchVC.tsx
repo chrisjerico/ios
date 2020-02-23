@@ -11,6 +11,7 @@ import HomePageVC from "./模板/默认/HomePageVC";
 import React, { Component } from "react";
 import { AppRegistry, View, Text } from "react-native";
 import { Button } from "react-native-elements";
+import UGSysConfModel from "./Model/六合/UGSysConfModel";
 
 class Home2 extends Component {
   render() {
@@ -83,3 +84,11 @@ AppRegistry.registerComponent("Main", () => Root);
 
 // 初始化 AppDefine
 AppDefine.setup();
+
+// 获得系统配置信息
+AppDefine.ocBlocks["UGSystemConfigModel.currentConfig"] = sysConf => {
+  if (sysConf) {
+    UGSysConfModel.current = sysConf;
+    AppDefine.setRnPageInfo();
+  }
+};
