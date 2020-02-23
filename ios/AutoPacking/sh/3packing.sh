@@ -52,9 +52,11 @@ __PACK_TYPE=$1
 if [[ $__PACK_TYPE -eq 1 ]]; then
   __EXPORT_OPTIONS_PLIST_PATH="./AutoPacking/Plist/AdHocExportOptionsPlist.plist"
   __BUILD_METHOD_NAME="AdHoc"
+  echo '正在打越狱包';
 elif [[ $__PACK_TYPE -eq 2 ]]; then
   __EXPORT_OPTIONS_PLIST_PATH="./AutoPacking/Plist/EnterpriseExportOptionsPlist.plist"
   __BUILD_METHOD_NAME="Enterprise"
+  echo '正在打企业包';
 fi
 
 

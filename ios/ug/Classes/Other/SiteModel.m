@@ -164,7 +164,7 @@
             site(@"c197",        @"c197hy",     @"175",     @"io.fhpt.H52622B1F",       @"https://tycgw3.com",                          @"企业包",     @"太阳城官⽹"),
             site(@"c198",        @"c198hy",     @"185",     @"io.fhpt.H53E43223",       @"https://2909tycjt.com",                       @"企业包",     @"太阳城集团"),
             site(@"h003a",       @"",           @"",        @"io.fhpt.H554013D2",       @"",                                            @"企业包",     @"澳⻔威尼斯⼈"),
-            site(@"c008",        @"c008hy",     @"217",     @"io.fhpt.YSFC008",         @"https://888123app.com",                       @"企业包",     @"888彩票"),//极光 bghguiyg@163.com qwe5794124A
+            site(@"c008",        @"c008hy",     @"217",     @"io.fhpt.YSFC008",         @"https://888123app.com",                       @"越狱包",     @"888"),//极光 bghguiyg@163.com qwe5794124A
             site(@"c130",        @"",           @"",        @"io.fhpt.H5A94011E",       @"",                                            @"企业包",     @"必发彩票"),
             site(@"c136",        @"",           @"",        @"io.fhpt.H5F60C8D2",       @"",                                            @"企业包",     @"⻓诚彩票"),
             site(@"c199",        @"c199hy",     @"220",     @"io.fhpt.YSAC199",         @"https://yhfhapp.com",                         @"企业包",     @"银河贵宾会"),//https://9587zz.com
@@ -187,6 +187,7 @@
             site(@"test06",      @"",           @"",        @"com.UGGame.chat",         @"http://test06.6yc.com",                       @"内测包",     @"test06"),    // (army)
             site(@"test20",      @"",           @"",        @"com.UGGame.cp",           @"http://test20.6yc.com",                       @"内测包",     @"test20"),    // (朗朗)
             site(@"test29",      @"test29",     @"245",     @"com.UGGame.cp",           @"http://test29f.fhptcdn.com",                  @"内测包",     @"test29"),// (小东)
+            site(@"test30",      @"",           @"",        @"com.UGGame.cp",           @"http://test30f.fhptcdn.com",                  @"内测包",     @"test30"),
             site(@"test19",      @"test19",     @"214",     @"com.UGGame.cp",           @"http://test19.6yc.com",                       @"内测包",     @"test19"),
             site(@"test31",      @"",           @"",        @"com.UGGame.cp",           @"http://test31.6yc.com",                       @"内测包",     @"test31"),
             site(@"t005",        @"t005",       @"241",     @"com.UGGame.cp",           @"http://t005f.fhptcdn.com",                    @"内测包",     @"t500"),
