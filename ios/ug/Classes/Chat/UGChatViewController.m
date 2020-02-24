@@ -45,13 +45,10 @@
 			[__self.tgWebView stopLoading];
 			if (__self.shareBetJson.length) {
 				__self.url = APP.chatShareUrl;
-			} else if (__self.roomId.length) {
-				if ([__self.roomId isEqualToString:@"主聊天室"]) {
-					__self.url = [APP chatGameUrl:@"0" hide:__self.hideHead];
-				} else {
-					__self.url = [APP chatGameUrl:__self.roomId hide:__self.hideHead];
-				}
-				//                NSLog(@"__self.url = %@",__self.url);
+            } else if (__self.roomId.length) {
+                
+                __self.url = [APP chatGameUrl:__self.roomId hide:__self.hideHead];
+ 
 			} else {
 				__self.url = APP.chatHomeUrl;
 			}
