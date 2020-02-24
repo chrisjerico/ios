@@ -111,13 +111,13 @@
     int tip2Heigth = tip2size.height +20;
     
 
-    self.label.text = self.item.prompt;
-    self.label.attributedText = ({
-          NSMutableAttributedString *mas = [[NSAttributedString alloc] initWithData:[self.item.prompt dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil].mutableCopy;
-          NSLog(@"string = %@",mas.string);
-          
-          mas;
-      });
+//    self.label.text = self.item.prompt;
+//    self.label.attributedText = ({
+//          NSMutableAttributedString *mas = [[NSAttributedString alloc] initWithData:[self.item.prompt dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil].mutableCopy;
+//          NSLog(@"string = %@",mas.string);
+//
+//          mas;
+//      });
     
     
     CGSize labelsize  = [self.item.depositPrompt
@@ -288,12 +288,19 @@
 
      }];
     [self.label setText:self.item.prompt];
-    self.label.attributedText = ({
-          NSMutableAttributedString *mas = [[NSAttributedString alloc] initWithData:[self.item.prompt dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil].mutableCopy;
-          NSLog(@"string = %@",mas.string);
-          
-          mas;
-      });
+    
+
+    if (self.item.prompt.isHtmlStr) {
+            self.label.attributedText = ({
+              NSMutableAttributedString *mas = [[NSAttributedString alloc] initWithData:[self.item.prompt dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil].mutableCopy;
+              NSLog(@"string = %@",mas.string);
+              
+              mas;
+          });
+    }
+
+    
+
     [self.label sizeToFit];
    
     NSLog(@"%@",NSStringFromCGRect(self.label.frame));
@@ -311,7 +318,7 @@
     
     self.bg_label.layer.cornerRadius = 5;
     self.bg_label.layer.masksToBounds = YES;
-    if (!self.label.attributedText) {
+    if (!self.item.prompt.isHtmlStr) {
           [self.bg_label setBackgroundColor:RGBA(232, 73, 64, 1)];
     }
   

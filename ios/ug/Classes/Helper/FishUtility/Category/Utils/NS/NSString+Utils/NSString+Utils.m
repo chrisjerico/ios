@@ -34,6 +34,7 @@
 - (BOOL)isLowercaseLetter    {return [self isMatch:RX(@"^[a-z]+$")]; }
 - (BOOL)isUppercaseLetter    {return [self isMatch:RX(@"^[A-Z]+$")]; }
 - (BOOL)isSpecialCharacter   {return [self isMatch:RX(@"^[^\\da-zA-Z\\u4e00-\\u9fff]+$")]; }
+- (BOOL)isHtmlStr            {return [self isMatch:RX(@"<[^>]+>")]; }
 
 
 //- (BOOL (^)(NSString *))isDate {

@@ -34,7 +34,7 @@
 @property (readonly, nonatomic) BOOL isLowercaseLetter;             /**<   纯小写字母 */
 @property (readonly, nonatomic) BOOL isUppercaseLetter;             /**<   纯大写字母 */
 @property (readonly, nonatomic) BOOL isSpecialCharacter;            /**<   纯特殊字符 */
-
+@property (readonly, nonatomic) BOOL isHtmlStr;                     /**<   含有html标签的检测 */
 
 //@property (readonly, nonatomic) BOOL (^isDate)(NSString *format);   /**<   日期 */
 @property (readonly, nonatomic) BOOL isEmail;                       /**<   Email */
