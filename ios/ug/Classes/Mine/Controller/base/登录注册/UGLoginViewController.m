@@ -231,10 +231,7 @@
                 }
                
             } failure:^(id msg) {
-                
-              
-                
-            
+
                 self.errorTimes += 1;
                 if (self.errorTimes == 4) {
                     self.webBgView.hidden = NO;
