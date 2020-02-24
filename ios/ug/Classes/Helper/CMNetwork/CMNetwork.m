@@ -528,8 +528,8 @@ completion:(CMNetworkBlock)completion {
     id resultClass = CMResultClassGetResultClass(model);
     id dataClass = CMResultClassGetDataClass(model);
     
-//    NSLog(@"url = %@",method);
-//    NSLog(@"params = %@",params);
+    NSLog(@"url = %@",method);
+    NSLog(@"params = %@",params);
 
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
    manager.requestSerializer = [AFHTTPRequestSerializer serializer];

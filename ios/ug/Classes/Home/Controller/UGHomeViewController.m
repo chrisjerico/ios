@@ -479,8 +479,8 @@
             subView(@"优惠活动外View").layer.masksToBounds = NO;
             subView(@"优惠活动外View").layer.borderWidth = 0;
             subView(@"优惠活动外View").backgroundColor = [UIColor clearColor];
-            _promotionsStackView.cc_constraints.top.constant = -10;
-            _promotionsStackView.cc_constraints.left.constant = -10;
+            _promotionsStackView.cc_constraints.top.constant = 0;
+            _promotionsStackView.cc_constraints.left.constant = 0;
         } else {
             subView(@"优惠活动外View").layer.cornerRadius = 5;
             subView(@"优惠活动外View").layer.masksToBounds = YES;
@@ -1847,51 +1847,56 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell;
-    if ([@"c190" containsString:APP.SiteId]) {
-        cell  = [tableView dequeueReusableCellWithIdentifier:@"cell190" forIndexPath:indexPath];
-    }
-    else{
-        cell  = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    }
-    UGPromoteModel *pm = tableView.dataArray[indexPath.row];
-    FastSubViewCode(cell);
-    if ([@"c190" containsString:APP.SiteId]) {
-        subView(@"StackView").cc_constraints.top.constant = pm.title.length ? 12 : 0;
-        subView(@"StackView").cc_constraints.bottom.constant = 0;
-    }
-    
-//    subView(@"cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor : Skin1.homeContentColor;
-    
-    subLabel(@"标题Label").textColor = Skin1.textColor1;
-    subLabel(@"标题Label").text = pm.title;
-    subLabel(@"标题Label").hidden = !pm.title.length;
-    
-    UIImageView *imgView = [cell viewWithTagString:@"图片ImageView"];
-    //    imgView.frame = cell.bounds;
-    NSURL *url = [NSURL URLWithString:pm.pic];
-    UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:url]];
-    if (image) {
-        if ([@"c190" containsString:APP.SiteId]) {
-            CGFloat w = APP.Width;
-            CGFloat h = image.height/image.width * w;
-            imgView.cc_constraints.height.constant = h;
-        } else {
-            CGFloat w = APP.Width - 48;
-            CGFloat h = image.height/image.width * w;
-            imgView.cc_constraints.height.constant = h;
+     if ([@"c190" containsString:APP.SiteId]) {
+            cell  = [tableView dequeueReusableCellWithIdentifier:@"cell190" forIndexPath:indexPath];
         }
-        [imgView sd_setImageWithURL:url];   // 由于要支持gif动图，还是用sd加载
-    } else {
-        __weakSelf_(__self);
-        __weak_Obj_(imgView, __imgView);
-        imgView.cc_constraints.height.constant = 60;
-        [imgView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"placeholder"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-            if (image) {
-                [__self.tableView reloadRowAtIndexPath:indexPath withRowAnimation:UITableViewRowAnimationNone];
+        else{
+            cell  = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+        }
+        UGPromoteModel *pm = tableView.dataArray[indexPath.row];
+        FastSubViewCode(cell);
+        if ([@"c190" containsString:APP.SiteId]) {
+            subView(@"StackView").cc_constraints.top.constant = pm.title.length ? 12 : 0;
+            subView(@"StackView").cc_constraints.bottom.constant = 0;
+        }
+        if ([@"c199" containsString:APP.SiteId]) {
+            subView(@"StackView").cc_constraints.top.constant = 0;
+            subView(@"StackView").cc_constraints.left.constant = 0;
+        }
+        
+        subView(@"cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor : Skin1.homeContentColor;
+        subLabel(@"标题Label").textColor = Skin1.textColor1;
+        subLabel(@"标题Label").text = pm.title;
+        subLabel(@"标题Label").hidden = !pm.title.length;
+        
+        UIImageView *imgView = [cell viewWithTagString:@"图片ImageView"];
+    //    imgView.frame = cell.bounds;
+        NSURL *url = [NSURL URLWithString:pm.pic];
+        UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:url]];
+        if (image) {
+            if ([@"c190" containsString:APP.SiteId]) {
+                CGFloat w = APP.Width;
+                CGFloat h = image.height/image.width * w;
+                imgView.cc_constraints.height.constant = h;
+            } else {
+                CGFloat w = APP.Width - 48;
+                CGFloat h = image.height/image.width * w;
+                imgView.cc_constraints.height.constant = h;
+                
+            
             }
-        }];
-    }
-    return cell;
+            [imgView sd_setImageWithURL:url];   // 由于要支持gif动图，还是用sd加载
+        } else {
+            __weakSelf_(__self);
+            __weak_Obj_(imgView, __imgView);
+            imgView.cc_constraints.height.constant = 60;
+            [imgView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"placeholder"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                if (image) {
+                    [__self.tableView reloadRowAtIndexPath:indexPath withRowAnimation:UITableViewRowAnimationNone];
+                }
+            }];
+        }
+        return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
