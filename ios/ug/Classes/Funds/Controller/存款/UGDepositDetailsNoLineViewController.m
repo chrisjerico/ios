@@ -112,6 +112,13 @@
     
 
     self.label.text = self.item.prompt;
+    self.label.attributedText = ({
+          NSMutableAttributedString *mas = [[NSAttributedString alloc] initWithData:[self.item.prompt dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil].mutableCopy;
+          NSLog(@"string = %@",mas.string);
+          
+          mas;
+      });
+    
     
     CGSize labelsize  = [self.item.depositPrompt
       boundingRectWithSize:baseSize
@@ -281,6 +288,12 @@
 
      }];
     [self.label setText:self.item.prompt];
+    self.label.attributedText = ({
+          NSMutableAttributedString *mas = [[NSAttributedString alloc] initWithData:[self.item.prompt dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil].mutableCopy;
+          NSLog(@"string = %@",mas.string);
+          
+          mas;
+      });
     [self.label sizeToFit];
    
     NSLog(@"%@",NSStringFromCGRect(self.label.frame));
@@ -298,7 +311,10 @@
     
     self.bg_label.layer.cornerRadius = 5;
     self.bg_label.layer.masksToBounds = YES;
-    [self.bg_label setBackgroundColor:RGBA(232, 73, 64, 1)];
+    if (!self.label.attributedText) {
+          [self.bg_label setBackgroundColor:RGBA(232, 73, 64, 1)];
+    }
+  
     //==================================================================
     [self.blank_button  mas_remakeConstraints:^(MASConstraintMaker *make)
      {
