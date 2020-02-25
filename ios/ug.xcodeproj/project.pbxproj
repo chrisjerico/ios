@@ -1888,6 +1888,8 @@
 		D433EBF723D493F300D31008 /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = D433EBF623D493F300D31008 /* UIImage+Extension.m */; };
 		D4346B572404EFAD00D8FE7C /* PromotePopView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4346B562404EFAD00D8FE7C /* PromotePopView.m */; };
 		D4346B592404EFC900D8FE7C /* PromotePopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4346B582404EFC900D8FE7C /* PromotePopView.xib */; };
+		D4346B5E24053DB100D8FE7C /* UGCellHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4346B5D24053DB100D8FE7C /* UGCellHeaderView.m */; };
+		D4346B6024053DF800D8FE7C /* UGCellHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4346B5F24053DF800D8FE7C /* UGCellHeaderView.xib */; };
 		D435F90423CEF940008648CE /* KMCGeigerCounterTick.aiff in Resources */ = {isa = PBXBuildFile; fileRef = D435F90023CEF940008648CE /* KMCGeigerCounterTick.aiff */; };
 		D435F90523CEF940008648CE /* KMCGeigerCounterTick.aiff in Resources */ = {isa = PBXBuildFile; fileRef = D435F90023CEF940008648CE /* KMCGeigerCounterTick.aiff */; };
 		D435F90623CEF940008648CE /* KMCGeigerCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = D435F90223CEF940008648CE /* KMCGeigerCounter.m */; };
@@ -3702,6 +3704,9 @@
 		D4346B552404EFAD00D8FE7C /* PromotePopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PromotePopView.h; sourceTree = "<group>"; };
 		D4346B562404EFAD00D8FE7C /* PromotePopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PromotePopView.m; sourceTree = "<group>"; };
 		D4346B582404EFC900D8FE7C /* PromotePopView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PromotePopView.xib; sourceTree = "<group>"; };
+		D4346B5C24053DB100D8FE7C /* UGCellHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGCellHeaderView.h; sourceTree = "<group>"; };
+		D4346B5D24053DB100D8FE7C /* UGCellHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGCellHeaderView.m; sourceTree = "<group>"; };
+		D4346B5F24053DF800D8FE7C /* UGCellHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGCellHeaderView.xib; sourceTree = "<group>"; };
 		D435F90023CEF940008648CE /* KMCGeigerCounterTick.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = KMCGeigerCounterTick.aiff; sourceTree = "<group>"; };
 		D435F90123CEF940008648CE /* KMCGeigerCounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMCGeigerCounter.h; sourceTree = "<group>"; };
 		D435F90223CEF940008648CE /* KMCGeigerCounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMCGeigerCounter.m; sourceTree = "<group>"; };
@@ -5066,6 +5071,7 @@
 		031E160F23BE812400B0F813 /* 首页 */ = {
 			isa = PBXGroup;
 			children = (
+				D4346B5B24053D2000D8FE7C /* 折叠优惠HeaderView */,
 				031E161023BE812400B0F813 /* 红包弹框 */,
 				031E161723BE812400B0F813 /* H5的返回弹框 */,
 				031E161B23BE812400B0F813 /* 资料弹框 */,
@@ -7736,6 +7742,16 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		D4346B5B24053D2000D8FE7C /* 折叠优惠HeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				D4346B5C24053DB100D8FE7C /* UGCellHeaderView.h */,
+				D4346B5D24053DB100D8FE7C /* UGCellHeaderView.m */,
+				D4346B5F24053DF800D8FE7C /* UGCellHeaderView.xib */,
+			);
+			path = "折叠优惠HeaderView";
+			sourceTree = "<group>";
+		};
 		D435F8FF23CEF940008648CE /* KMCGeigerCounter */ = {
 			isa = PBXGroup;
 			children = (
@@ -8572,6 +8588,7 @@
 				031E1D8E23BE812B00B0F813 /* Mine.storyboard in Resources */,
 				031E1E6423BE812C00B0F813 /* UGAvaterSelectView.xib in Resources */,
 				CF4758AC239636D200966536 /* 157.gif in Resources */,
+				D4346B6024053DF800D8FE7C /* UGCellHeaderView.xib in Resources */,
 				CF4758B2239636D200966536 /* 5.gif in Resources */,
 				CF475917239636D200966536 /* 116.gif in Resources */,
 				CF4758BC239636D200966536 /* 140.gif in Resources */,
@@ -10066,6 +10083,7 @@
 				031E1E5E23BE812C00B0F813 /* UGConvertCollectionViewCell.m in Sources */,
 				031E1D9223BE812B00B0F813 /* UGYubaoConversionViewController.m in Sources */,
 				031E1D5823BE812B00B0F813 /* UGMailBoxTableViewController.m in Sources */,
+				D4346B5E24053DB100D8FE7C /* UGCellHeaderView.m in Sources */,
 				031E1DEE23BE812C00B0F813 /* UGIntegarlConvertRecordCell.m in Sources */,
 				CFE074DD23C0E7840083EA7E /* UGNotDetailViewController.m in Sources */,
 				031E1A2E23BE812700B0F813 /* CMNetwork+Home.m in Sources */,

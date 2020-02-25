@@ -27,9 +27,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSInteger linkPosition;       /**<  linkPosition：跳转位置。linkCategory=1-6代表游戏ID，linkCategory=7, 导航链接明细：1=存取款；2=APP下载；3=聊天室；4=在线客服；5=长龙助手；6=推荐收益；7=开奖网；8=利息宝；9=优惠活动；10=游戏记录；11=QQ客服 13任务大厅 */
 
 //自定义参数
-@property (nonatomic) float cellHeight;             /**<   优惠cell 高*/
+@property (nonatomic) float headHeight;             /**<   优惠折叠的headerl 高*/
 @property (nonatomic) float webViewHeight;          /**<   优惠webView 高*/
 @property (nonatomic, strong) NSString *style;      /**<   优惠图片样式。slide=折叠式,popup=弹窗式 page = 内页*/
+@property (nonatomic, assign) BOOL hiddenBottomLine;
+@property (nonatomic, assign) BOOL selected;
 @end
 
 

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iN0-l3-epB" customClass="UGCellHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mUm-KN-gjt" customClass="IBView">
+                    <rect key="frame" x="10" y="10" width="394" height="130"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="cfH-Gb-57t">
+                            <rect key="frame" x="10" y="10" width="374" height="110"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9BG-6J-NMc">
+                                    <rect key="frame" x="0.0" y="0.0" width="374" height="38"/>
+                                    <viewLayoutGuide key="safeArea" id="C3K-Yh-5vP"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="标题Label"/>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ge4-HC-fU9" customClass="FLAnimatedImageView">
+                                    <rect key="frame" x="0.0" y="50" width="374" height="60"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="60" id="Zpy-R3-ycr"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="圆角偏移量">
+                                            <real key="value" value="5"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="图片ImageView"/>
+                                    </userDefinedRuntimeAttributes>
+                                </imageView>
+                            </subviews>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="StackView"/>
+                            </userDefinedRuntimeAttributes>
+                        </stackView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qQ8-I1-HOs">
+                            <rect key="frame" x="0.0" y="0.0" width="394" height="130"/>
+                            <connections>
+                                <action selector="showDetail:" destination="iN0-l3-epB" eventType="touchUpInside" id="n0o-hc-8KO"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="qQ8-I1-HOs" secondAttribute="bottom" id="RMS-tE-Pxl"/>
+                        <constraint firstItem="cfH-Gb-57t" firstAttribute="centerY" secondItem="mUm-KN-gjt" secondAttribute="centerY" id="XyO-nL-dFr"/>
+                        <constraint firstItem="qQ8-I1-HOs" firstAttribute="leading" secondItem="mUm-KN-gjt" secondAttribute="leading" id="aqP-hW-DBY"/>
+                        <constraint firstItem="cfH-Gb-57t" firstAttribute="centerX" secondItem="mUm-KN-gjt" secondAttribute="centerX" id="bav-Wj-qbv"/>
+                        <constraint firstAttribute="trailing" secondItem="qQ8-I1-HOs" secondAttribute="trailing" id="cUk-bK-Q7K"/>
+                        <constraint firstItem="qQ8-I1-HOs" firstAttribute="top" secondItem="mUm-KN-gjt" secondAttribute="top" id="coE-aX-EDH"/>
+                        <constraint firstItem="cfH-Gb-57t" firstAttribute="top" secondItem="mUm-KN-gjt" secondAttribute="top" constant="10" id="nQh-1o-lTm"/>
+                        <constraint firstItem="cfH-Gb-57t" firstAttribute="leading" secondItem="mUm-KN-gjt" secondAttribute="leading" constant="10" id="u0E-2d-ofQ"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="圆角偏移量">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="cell背景View"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="mUm-KN-gjt" secondAttribute="trailing" constant="10" id="0qo-qJ-mgh"/>
+                <constraint firstAttribute="bottom" secondItem="mUm-KN-gjt" secondAttribute="bottom" constant="10" id="Zh6-se-ARZ"/>
+                <constraint firstItem="mUm-KN-gjt" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="c4g-GN-pd8"/>
+                <constraint firstItem="mUm-KN-gjt" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="ss4-8e-JPS"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="imageView" destination="ge4-HC-fU9" id="DIT-t0-I3Q"/>
+                <outlet property="stackView" destination="cfH-Gb-57t" id="mQj-HK-IVD"/>
+                <outlet property="titleLabel" destination="9BG-6J-NMc" id="em6-hW-XHL"/>
+            </connections>
+            <point key="canvasLocation" x="139" y="153"/>
+        </view>
+    </objects>
+</document>

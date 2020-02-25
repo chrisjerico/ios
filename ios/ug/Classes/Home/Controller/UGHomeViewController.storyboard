@@ -262,7 +262,7 @@
                                                                                     <constraint firstAttribute="height" constant="600" id="FzF-1k-7ut"/>
                                                                                 </constraints>
                                                                                 <prototypes>
-                                                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" id="X7d-U4-jsb">
+                                                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell1" id="X7d-U4-jsb">
                                                                                         <rect key="frame" x="0.0" y="28" width="366" height="132"/>
                                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="X7d-U4-jsb" id="7H5-zd-EIg">
