@@ -289,7 +289,7 @@
      }];
     [self.label setText:self.item.prompt];
     
-
+//    self.item.prompt = @"<font style='font-size:12px;'>温馨提示：为确保财务第一时间为您添加游戏额度，请您尽量不要转账整数（例如：欲入￥5000，请￥5000.68）谢谢！</font>";
     if (self.item.prompt.isHtmlStr) {
             self.label.attributedText = ({
               NSMutableAttributedString *mas = [[NSAttributedString alloc] initWithData:[self.item.prompt dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil].mutableCopy;
@@ -297,7 +297,11 @@
               
               mas;
           });
+        self.label.font = [UIFont systemFontOfSize:20];
     }
+    
+    
+    
     
 //    self.label.attributedText
 

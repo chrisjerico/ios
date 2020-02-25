@@ -28,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 //自定义参数
 @property (nonatomic) float cellHeight;             /**<   优惠cell 高*/
+@property (nonatomic) float webViewHeight;          /**<   优惠webView 高*/
 @property (nonatomic, strong) NSString *style;      /**<   优惠图片样式。slide=折叠式,popup=弹窗式 page = 内页*/
 @end
 
