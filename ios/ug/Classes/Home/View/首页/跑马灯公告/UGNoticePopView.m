@@ -10,7 +10,6 @@
 
 @interface UGNoticePopView ()
 @property (weak, nonatomic) IBOutlet UITextView *contentTextV;
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end
 @implementation UGNoticePopView

@@ -1886,6 +1886,8 @@
 		D4326F1B23FA81B300BEEA1B /* UIColor+RGBValues.m in Sources */ = {isa = PBXBuildFile; fileRef = D4326F1A23FA81B300BEEA1B /* UIColor+RGBValues.m */; };
 		D4326F1C23FA81B300BEEA1B /* UIColor+RGBValues.m in Sources */ = {isa = PBXBuildFile; fileRef = D4326F1A23FA81B300BEEA1B /* UIColor+RGBValues.m */; };
 		D433EBF723D493F300D31008 /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = D433EBF623D493F300D31008 /* UIImage+Extension.m */; };
+		D4346B572404EFAD00D8FE7C /* PromotePopView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4346B562404EFAD00D8FE7C /* PromotePopView.m */; };
+		D4346B592404EFC900D8FE7C /* PromotePopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4346B582404EFC900D8FE7C /* PromotePopView.xib */; };
 		D435F90423CEF940008648CE /* KMCGeigerCounterTick.aiff in Resources */ = {isa = PBXBuildFile; fileRef = D435F90023CEF940008648CE /* KMCGeigerCounterTick.aiff */; };
 		D435F90523CEF940008648CE /* KMCGeigerCounterTick.aiff in Resources */ = {isa = PBXBuildFile; fileRef = D435F90023CEF940008648CE /* KMCGeigerCounterTick.aiff */; };
 		D435F90623CEF940008648CE /* KMCGeigerCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = D435F90223CEF940008648CE /* KMCGeigerCounter.m */; };
@@ -3697,6 +3699,9 @@
 		D4326F1A23FA81B300BEEA1B /* UIColor+RGBValues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+RGBValues.m"; sourceTree = "<group>"; };
 		D433EBF523D493F300D31008 /* UIImage+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extension.h"; sourceTree = "<group>"; };
 		D433EBF623D493F300D31008 /* UIImage+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extension.m"; sourceTree = "<group>"; };
+		D4346B552404EFAD00D8FE7C /* PromotePopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PromotePopView.h; sourceTree = "<group>"; };
+		D4346B562404EFAD00D8FE7C /* PromotePopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PromotePopView.m; sourceTree = "<group>"; };
+		D4346B582404EFC900D8FE7C /* PromotePopView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PromotePopView.xib; sourceTree = "<group>"; };
 		D435F90023CEF940008648CE /* KMCGeigerCounterTick.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = KMCGeigerCounterTick.aiff; sourceTree = "<group>"; };
 		D435F90123CEF940008648CE /* KMCGeigerCounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMCGeigerCounter.h; sourceTree = "<group>"; };
 		D435F90223CEF940008648CE /* KMCGeigerCounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMCGeigerCounter.m; sourceTree = "<group>"; };
@@ -6084,6 +6089,7 @@
 			children = (
 				031E17DD23BE812500B0F813 /* Promote.storyboard */,
 				D476E5E7240166C600BA0EA9 /* Cell */,
+				D4346B532404EEBE00D8FE7C /* View */,
 				031E17DE23BE812500B0F813 /* Controller */,
 				031E17E323BE812500B0F813 /* Model */,
 			);
@@ -7720,6 +7726,16 @@
 			path = "截屏UIImage分类";
 			sourceTree = "<group>";
 		};
+		D4346B532404EEBE00D8FE7C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D4346B552404EFAD00D8FE7C /* PromotePopView.h */,
+				D4346B562404EFAD00D8FE7C /* PromotePopView.m */,
+				D4346B582404EFC900D8FE7C /* PromotePopView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		D435F8FF23CEF940008648CE /* KMCGeigerCounter */ = {
 			isa = PBXGroup;
 			children = (
@@ -8521,6 +8537,7 @@
 				CF475903239636D200966536 /* 72.gif in Resources */,
 				CF4758C3239636D200966536 /* 40.gif in Resources */,
 				031E1C4623BE812900B0F813 /* UGLotteryResultCollectionViewCell.xib in Resources */,
+				D4346B592404EFC900D8FE7C /* PromotePopView.xib in Resources */,
 				CF475929239636D200966536 /* 105.gif in Resources */,
 				CF4758D8239636D200966536 /* 53.gif in Resources */,
 				031E1E4C23BE812C00B0F813 /* UGMineSkinFirstCollectionHeadView.xib in Resources */,
@@ -9767,6 +9784,7 @@
 				031E1DE623BE812C00B0F813 /* UGagentApplyInfo.m in Sources */,
 				031E1DE023BE812C00B0F813 /* UGbetStatModel.m in Sources */,
 				031E1BE223BE812900B0F813 /* UGHKLHCLotteryController.m in Sources */,
+				D4346B572404EFAD00D8FE7C /* PromotePopView.m in Sources */,
 				031E1CEA23BE812A00B0F813 /* MJRefreshComponent.m in Sources */,
 				031E1B5E23BE812800B0F813 /* UGBackToastView.m in Sources */,
 				031E1C4223BE812900B0F813 /* UGPK10SubResultCollectionViewCell.m in Sources */,

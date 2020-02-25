@@ -71,7 +71,7 @@
 #import "UGPromotionIncomeController.h"
 #import "FLAnimatedImageView.h"
 #import "UGBMHeaderView.h"
-
+#import "PromotePopView.h"
 // 六合View
 //#import "UGLHLotteryCollectionViewCell.h"
 #import "UGLHHomeContentCollectionViewCell.h"
@@ -1306,7 +1306,10 @@
     [CMNetwork getPromoteListWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             UGPromoteListModel *listModel = model.data;
-            NSArray *smallArray = [NSArray new]; ;
+            NSArray *smallArray = [NSArray new];
+            for (UGPromoteModel *obj in listModel.list) {
+                obj.style = listModel.style;
+            }
             if (![CMCommon arryIsNull:listModel.list]) {
                 if (listModel.list.count>5) {
                     smallArray = [listModel.list subarrayWithRange:NSMakeRange(0, 5)];
@@ -1904,9 +1907,26 @@
     BOOL ret = [NavController1 pushViewControllerWithLinkCategory:pm.linkCategory linkPosition:pm.linkPosition];
     if (!ret) {
         // 去优惠详情
-        UGPromoteDetailController *detailVC = [[UGPromoteDetailController alloc] init];
-        detailVC.item = pm;
-        [NavController1 pushViewController:detailVC animated:YES];
+        
+        NSLog(@"style = %@",pm.style);//slide=折叠式,popup=弹窗式 page = 内页*/
+        
+        if ([pm.style isEqualToString:@"slide"]) {
+            
+        }
+        else if([pm.style isEqualToString:@"popup"]) {
+            PromotePopView *popView = [[PromotePopView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - 160)];
+              popView.item = pm;
+              [popView show];
+        }
+        else if([pm.style isEqualToString:@"page"]) {
+            UGPromoteDetailController *detailVC = [[UGPromoteDetailController alloc] init];
+            detailVC.item = pm;
+            [NavController1 pushViewController:detailVC animated:YES];
+        }
+        
+        
+
+  
     }
 }
 

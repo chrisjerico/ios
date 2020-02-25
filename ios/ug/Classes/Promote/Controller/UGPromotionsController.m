@@ -21,6 +21,7 @@
 #import "GameCategoryDataModel.h"
 
 
+
 @interface UGPromotionsController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -142,6 +143,9 @@
         UGPromoteDetailController *detailVC = [[UGPromoteDetailController alloc] init];
         detailVC.item = pm;
         [NavController1 pushViewController:detailVC animated:YES];
+        
+        
+
     }
 }
 
