@@ -190,6 +190,10 @@
     }
 }
 
+- (BOOL)isShow4 {
+    return [@"c200" containsString:_SiteId];
+}
+
 - (BOOL)isNoBorder {
     return [@"c200,c208" containsString:_SiteId];
 }

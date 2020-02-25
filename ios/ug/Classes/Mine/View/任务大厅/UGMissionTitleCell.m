@@ -70,7 +70,6 @@
 			self.layer.borderWidth = 1;
 		}else {
 			self.layer.borderColor = [UIColor whiteColor].CGColor;
-			
 		}
 	}
 	

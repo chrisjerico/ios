@@ -298,6 +298,9 @@
               mas;
           });
     }
+    
+//    self.label.attributedText
+
 
     
 
