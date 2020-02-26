@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="r92-tg-yeV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="r92-tg-yeV">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -145,49 +145,12 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="线label"/>
                                         </userDefinedRuntimeAttributes>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IVz-Lw-yTJ">
-                                        <rect key="frame" x="25" y="27" width="35" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="35" id="L0f-Nx-Gfl"/>
-                                            <constraint firstAttribute="height" constant="40" id="YrS-zb-W8r"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="聊天Btn"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </button>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chat" translatesAutoresizingMaskIntoConstraints="NO" id="XPa-2t-6us">
-                                        <rect key="frame" x="27" y="29" width="35" height="33"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="33" id="KVv-oa-sMb"/>
-                                            <constraint firstAttribute="width" constant="35" id="pcN-Kf-UhW"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="聊天室image"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="聊天室" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q8a-Sa-SFl">
-                                        <rect key="frame" x="27" y="55" width="37" height="15"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="15" id="8sZ-tv-bad"/>
-                                            <constraint firstAttribute="width" constant="37" id="F5u-g7-aJu"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="聊天室label"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="sPN-fc-UC3" firstAttribute="leading" secondItem="Wkf-xc-rg8" secondAttribute="leading" id="9q4-PE-ZLw"/>
-                                    <constraint firstItem="q8a-Sa-SFl" firstAttribute="leading" secondItem="Wkf-xc-rg8" secondAttribute="leading" constant="27" id="A1L-Y7-c5g"/>
                                     <constraint firstAttribute="bottom" secondItem="If0-Cj-3Eb" secondAttribute="bottom" constant="10" id="Dg6-xC-E0o"/>
-                                    <constraint firstItem="IVz-Lw-yTJ" firstAttribute="leading" secondItem="Wkf-xc-rg8" secondAttribute="leading" constant="25" id="FDW-r5-21o"/>
-                                    <constraint firstAttribute="bottom" secondItem="IVz-Lw-yTJ" secondAttribute="bottom" constant="3" id="HG4-22-9PS"/>
                                     <constraint firstItem="Drj-Gy-SH0" firstAttribute="leading" secondItem="Wkf-xc-rg8" secondAttribute="leading" constant="5" id="M2i-3a-SAl"/>
-                                    <constraint firstItem="q8a-Sa-SFl" firstAttribute="top" secondItem="Drj-Gy-SH0" secondAttribute="bottom" constant="28" id="OzT-ul-fkY"/>
                                     <constraint firstAttribute="trailing" secondItem="sPN-fc-UC3" secondAttribute="trailing" id="Uvd-jD-YnO"/>
                                     <constraint firstAttribute="height" constant="70" id="bwj-qS-JZk"/>
                                     <constraint firstItem="If0-Cj-3Eb" firstAttribute="leading" secondItem="Drj-Gy-SH0" secondAttribute="trailing" constant="5" id="dds-2t-Sdz"/>
@@ -195,8 +158,6 @@
                                     <constraint firstAttribute="bottom" secondItem="sPN-fc-UC3" secondAttribute="bottom" id="fmp-vQ-hOe"/>
                                     <constraint firstItem="If0-Cj-3Eb" firstAttribute="top" secondItem="Wkf-xc-rg8" secondAttribute="top" constant="5" id="jT9-3O-0t3"/>
                                     <constraint firstItem="Drj-Gy-SH0" firstAttribute="top" secondItem="Wkf-xc-rg8" secondAttribute="top" constant="10" id="pNA-Il-EZ0"/>
-                                    <constraint firstItem="XPa-2t-6us" firstAttribute="top" secondItem="Drj-Gy-SH0" secondAttribute="bottom" constant="2" id="vbQ-KF-2ub"/>
-                                    <constraint firstItem="XPa-2t-6us" firstAttribute="leading" secondItem="Wkf-xc-rg8" secondAttribute="leading" constant="27" id="yRW-JQ-VM9"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="上背景View"/>
@@ -332,7 +293,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="chat" width="50" height="50"/>
         <image name="xz_icon_cl" width="100" height="100"/>
         <image name="xz_icon_kj" width="100" height="100"/>
         <image name="xz_icon_zb" width="100" height="100"/>

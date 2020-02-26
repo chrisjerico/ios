@@ -238,7 +238,7 @@
             label.text = titles[idx];
             
             if (idx) {
-                label.text = [NSString stringWithFormat:@"%@▼",titles[idx]];
+                label.text = [NSString stringWithFormat:@"%@",titles[idx]];
                 __self.mLabel = label;
                 __self.downBtn = ({
                     UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -281,7 +281,7 @@
                 __ssv1.titleBar.backgroundColor = Skin1.navBarBgColor;
                 label.textColor = selected ? [UIColor blackColor] : [UIColor whiteColor];
             } else {
-                cell.backgroundColor = selected ? [[UIColor grayColor] colorWithAlphaComponent:0.25] : [UIColor clearColor];
+                cell.backgroundColor = selected ? [[UIColor whiteColor] colorWithAlphaComponent:0.25] : [UIColor clearColor];
                 __ssv1.titleBar.backgroundColor = Skin1.isBlack || idx || !APP.betBgIsWhite ? Skin1.navBarBgColor : [UIColor whiteColor];
             }
             
@@ -353,6 +353,11 @@
             }
             else{
                 [__self.downBtn setHidden:YES];
+                if ([__self.mLabel.text containsString:@"▼"]) {
+                    NSString *text = __self.mLabel.text;
+                    text =  [text stringByReplacingOccurrencesOfString:@"▼"withString:@""];;
+                    __self.mLabel.text = text;
+                }
             }
         };
         ssv1.titleBar.underlineView.hidden = true;

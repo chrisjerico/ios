@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="F99-Mv-w7O">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="F99-Mv-w7O">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -146,39 +146,12 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="线label"/>
                                         </userDefinedRuntimeAttributes>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gv8-rZ-aeP">
-                                        <rect key="frame" x="25" y="21.5" width="35" height="40"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="VxC-1J-4uC"/>
-                                            <constraint firstAttribute="width" constant="35" id="cLh-mj-6Pd"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="聊天Btn"/>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="showChatRoom:" destination="F99-Mv-w7O" eventType="touchUpInside" id="5Kk-vA-95Y"/>
-                                        </connections>
-                                    </button>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chat" translatesAutoresizingMaskIntoConstraints="NO" id="3dQ-UB-Ijo">
-                                        <rect key="frame" x="27" y="27" width="30" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="NKw-Sw-pGQ"/>
-                                            <constraint firstAttribute="width" constant="30" id="uhT-sY-USL"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="聊天室image"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="pJ6-vP-gLz" firstAttribute="leading" secondItem="GBX-5m-TSD" secondAttribute="leading" constant="5" id="5LU-w0-7bz"/>
                                     <constraint firstItem="Gua-zE-ni4" firstAttribute="leading" secondItem="pJ6-vP-gLz" secondAttribute="trailing" id="9IK-W7-OzV"/>
                                     <constraint firstAttribute="bottom" secondItem="Gua-zE-ni4" secondAttribute="bottom" constant="10" id="O5z-Bp-LG0"/>
-                                    <constraint firstItem="ydW-9e-nlg" firstAttribute="top" secondItem="Gv8-rZ-aeP" secondAttribute="bottom" constant="8" id="Pq2-jZ-eyG"/>
-                                    <constraint firstItem="3dQ-UB-Ijo" firstAttribute="top" secondItem="pJ6-vP-gLz" secondAttribute="bottom" id="ReK-Ki-e5W"/>
-                                    <constraint firstItem="Gv8-rZ-aeP" firstAttribute="leading" secondItem="GBX-5m-TSD" secondAttribute="leading" constant="25" id="SC7-x3-UVb"/>
                                     <constraint firstAttribute="trailing" secondItem="Gua-zE-ni4" secondAttribute="trailing" constant="5" id="Wzg-8A-yiw"/>
                                     <constraint firstAttribute="bottom" secondItem="ydW-9e-nlg" secondAttribute="bottom" id="XLs-y6-WFy"/>
                                     <constraint firstItem="pJ6-vP-gLz" firstAttribute="top" secondItem="GBX-5m-TSD" secondAttribute="top" constant="10" id="beV-jB-Ciq"/>
@@ -186,7 +159,6 @@
                                     <constraint firstAttribute="trailing" secondItem="ydW-9e-nlg" secondAttribute="trailing" id="jJc-9M-taK"/>
                                     <constraint firstItem="Gua-zE-ni4" firstAttribute="top" secondItem="GBX-5m-TSD" secondAttribute="top" constant="5" id="nnA-Sr-64g"/>
                                     <constraint firstItem="ydW-9e-nlg" firstAttribute="leading" secondItem="GBX-5m-TSD" secondAttribute="leading" id="wL4-eB-4dq"/>
-                                    <constraint firstItem="3dQ-UB-Ijo" firstAttribute="leading" secondItem="GBX-5m-TSD" secondAttribute="leading" constant="27" id="wLx-0d-ACL"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="上背景View"/>
@@ -285,23 +257,9 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="中间View"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="聊天室" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VCM-h2-3Dx">
-                                <rect key="frame" x="27" y="55" width="37" height="15"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="15" id="jSR-pt-pZm"/>
-                                    <constraint firstAttribute="width" constant="37" id="wyj-54-XOY"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="聊天室label"/>
-                                </userDefinedRuntimeAttributes>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="VCM-h2-3Dx" firstAttribute="top" secondItem="3dQ-UB-Ijo" secondAttribute="bottom" constant="-2" id="5MO-hZ-5Ny"/>
                             <constraint firstItem="jwM-AZ-4fy" firstAttribute="leading" secondItem="eHQ-5S-NqR" secondAttribute="leading" id="Amb-HO-JZH"/>
                             <constraint firstItem="GBX-5m-TSD" firstAttribute="leading" secondItem="eHQ-5S-NqR" secondAttribute="leading" id="EdB-WX-2rM"/>
                             <constraint firstAttribute="trailing" secondItem="jwM-AZ-4fy" secondAttribute="trailing" id="K0p-3c-vPt"/>
@@ -310,7 +268,6 @@
                             <constraint firstItem="liL-H7-uqq" firstAttribute="top" secondItem="GBX-5m-TSD" secondAttribute="bottom" id="Rkx-Bk-B3r"/>
                             <constraint firstItem="lHu-FV-5jd" firstAttribute="trailing" secondItem="liL-H7-uqq" secondAttribute="trailing" id="Uvm-91-M6C"/>
                             <constraint firstItem="GBX-5m-TSD" firstAttribute="top" secondItem="eHQ-5S-NqR" secondAttribute="top" id="pPc-zm-fjd"/>
-                            <constraint firstItem="VCM-h2-3Dx" firstAttribute="leading" secondItem="lHu-FV-5jd" secondAttribute="leading" constant="27" id="qy4-OF-7zK"/>
                             <constraint firstAttribute="trailing" secondItem="GBX-5m-TSD" secondAttribute="trailing" id="uS4-5v-MeK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lHu-FV-5jd"/>
@@ -337,7 +294,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="chat" width="50" height="50"/>
         <image name="xz_icon_cl" width="100" height="100"/>
         <image name="xz_icon_kj" width="100" height="100"/>
         <image name="xz_icon_zb" width="100" height="100"/>
