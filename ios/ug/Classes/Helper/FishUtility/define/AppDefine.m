@@ -176,6 +176,11 @@
 
 #pragma mark - 定制样式
 
+
+- (BOOL)isParagraphSpacing {
+    return [@"c134,c200" containsString:_SiteId];
+}
+
 - (BOOL)oldConversion {
     return [@"c200" containsString:_SiteId];
 }

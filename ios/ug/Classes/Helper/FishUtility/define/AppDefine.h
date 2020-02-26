@@ -67,8 +67,9 @@
 @property (nonatomic) BOOL isNoBorder;    /**<  首页优惠活动没有外面的View */
 @property (nonatomic) BOOL isRedWhite;    /**<  下注界面新年红模板样式 红白配色*/
 @property (nonatomic) BOOL oldConversion;    /**<  老的转换界面*/
-
+@property (nonatomic) BOOL isParagraphSpacing;    /**<  首页公告详情段落有间距*/
 // 热更新相关字段
+                                                   
 @property (nonatomic) BOOL Test;                        /**<   是否是测试环境 */
 @property (nonatomic, readonly) NSString *jspPath;      /**<    jspatch热更新本地文件路径 */
 @property (nonatomic, strong) NSString *jspVersion;     /**<    jspatch热更新版本号 */

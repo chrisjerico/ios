@@ -42,8 +42,8 @@
         NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithData:[str dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
         NSMutableParagraphStyle *ps = [NSMutableParagraphStyle new];
         ps.lineSpacing = 5;
-        if ([@"c134" containsString:APP.SiteId]) {
-            ps.paragraphSpacing = 5;
+        if (APP.isParagraphSpacing) {
+            ps.paragraphSpacing = 10;
         }
 
         [mas addAttributes:@{NSParagraphStyleAttributeName:ps,} range:NSMakeRange(0, mas.length)];
