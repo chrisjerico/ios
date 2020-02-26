@@ -44,6 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL preIsOpen;           /**<   上期是否开奖:1=是，0=否 */
 @property (nonatomic, strong) NSString *dataNum;
 @property (nonatomic, strong) NSString *totalNum;
+@property (nonatomic, strong) NSString *lowFreq;         /**<   1 是低频 0 高频  */
 
 //弹窗广告
 @property (nonatomic, strong) NSString *adPic;          /**<   彩票广告图片 */

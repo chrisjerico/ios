@@ -13,7 +13,7 @@
 #import "UGIntegralConvertController.h"
 #import "UGIntegralConvertRecordController.h"
 #import "UGMissionLevelController.h"
-
+#import "UGMissionMainViewController.h"
 @interface UGMissionCollectionView ()<UICollectionViewDelegate,UICollectionViewDataSource>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -31,7 +31,7 @@ static NSString *missionCellid = @"missionCellid";
         
         self.frame = frame;
         
-            UGMissionListController *missionListVC = [[UGMissionListController alloc] initWithStyle:UITableViewStyleGrouped];
+            UGMissionMainViewController *missionListVC = [[UGMissionMainViewController alloc] init];
         
             UIStoryboard *storyboard0 = [UIStoryboard storyboardWithName:@"UGIntegralConvertController" bundle:nil];
             UGIntegralConvertController *convertVC = [storyboard0 instantiateInitialViewController];

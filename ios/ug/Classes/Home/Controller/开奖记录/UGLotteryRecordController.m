@@ -26,6 +26,8 @@
 @property (nonatomic, strong) YBPopupMenu *lotteryTypePopView;  /**<   彩种选择弹框 */
 @property (nonatomic, readonly) NSArray<UGAllNextIssueListModel *> *lotteryGamesArray;/**<   彩票大厅数据 */
 
+@property (nonatomic, strong) NSMutableArray <NSString *> *lowFrequencydateArray;   /**<   低频id数组 */
+
 @property (nonatomic, strong) NSMutableArray <NSString *> *dateArray;
 @property (nonatomic, strong) NSMutableArray <UGNextIssueModel *> *gameArray;
 @property (nonatomic, strong) NSMutableArray <NSString *> *gameNameArray;
@@ -47,6 +49,7 @@ static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
         _dataArray = [NSMutableArray array];
         _gameNameArray = [NSMutableArray array];
         _dateArray = [NSMutableArray array];
+        _lowFrequencydateArray = [NSMutableArray array];
         
         for (int i = 0; i < 7; i++) {
             NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -103,6 +106,10 @@ static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
                         // bug fix: 52941 彩种：开奖记录中去掉秒秒彩类彩票。
                         continue;
                     }
+                    
+                    if (model.lowFreq.intValue == 1) {
+                        [__self.lowFrequencydateArray addObject:model.gameId];
+                    }
                     [__self.gameArray addObject:model];
                     [__self.gameNameArray addObject:model.title];
                 }
@@ -145,7 +152,9 @@ static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
 
 - (void)getLotteryHistory {
     UGNextIssueModel *model = self.gameArray[self.selGameIndex];
-    BOOL lessDataType = [@"70,13,2" containsString:model.gameId];// 低频彩不筛选日期，香港六合彩、新加坡六合彩、七星彩
+//    BOOL lessDataType = [@"70,13,2" containsString:model.gameId];// 低频彩不筛选日期，香港六合彩、新加坡六合彩、七星彩
+     BOOL lessDataType = [_lowFrequencydateArray containsObject:model.gameId];// 低频彩不筛选日期，
+    
     self.navigationItem.rightBarButtonItem = lessDataType ? nil : [STBarButtonItem barButtonItemWithImageName:@"riqi" target:self action:@selector(rightBarButonItemClick)];
     _dateLabel.hidden = lessDataType;
     

@@ -178,6 +178,8 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 
 #define centerUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=task&a=center"]
 
+#define categoriesUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=task&a=categories"]
+
 #define taskGetUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=task&a=get"]
 
 #define taskRewardUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=task&a=reward"]

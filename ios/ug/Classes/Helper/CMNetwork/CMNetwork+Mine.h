@@ -141,6 +141,9 @@ NS_ASSUME_NONNULL_BEGIN
 //任务大厅
 + (void)centerWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 
+//任务大厅分类 http://test10.6yc.com/wjapp/api.php?c=task&a=categories&token=SNNn1AN33aO3404nlaA33ZXN
++ (void)categoriesWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
 //领取任务
 + (void)taskGetWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 

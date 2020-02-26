@@ -1890,6 +1890,7 @@
 		D4346B592404EFC900D8FE7C /* PromotePopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4346B582404EFC900D8FE7C /* PromotePopView.xib */; };
 		D4346B5E24053DB100D8FE7C /* UGCellHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4346B5D24053DB100D8FE7C /* UGCellHeaderView.m */; };
 		D4346B6024053DF800D8FE7C /* UGCellHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4346B5F24053DF800D8FE7C /* UGCellHeaderView.xib */; };
+		D4346B652406407C00D8FE7C /* UGMissionMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4346B642406407C00D8FE7C /* UGMissionMainViewController.m */; };
 		D435F90423CEF940008648CE /* KMCGeigerCounterTick.aiff in Resources */ = {isa = PBXBuildFile; fileRef = D435F90023CEF940008648CE /* KMCGeigerCounterTick.aiff */; };
 		D435F90523CEF940008648CE /* KMCGeigerCounterTick.aiff in Resources */ = {isa = PBXBuildFile; fileRef = D435F90023CEF940008648CE /* KMCGeigerCounterTick.aiff */; };
 		D435F90623CEF940008648CE /* KMCGeigerCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = D435F90223CEF940008648CE /* KMCGeigerCounter.m */; };
@@ -3707,6 +3708,8 @@
 		D4346B5C24053DB100D8FE7C /* UGCellHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGCellHeaderView.h; sourceTree = "<group>"; };
 		D4346B5D24053DB100D8FE7C /* UGCellHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGCellHeaderView.m; sourceTree = "<group>"; };
 		D4346B5F24053DF800D8FE7C /* UGCellHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGCellHeaderView.xib; sourceTree = "<group>"; };
+		D4346B632406407C00D8FE7C /* UGMissionMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGMissionMainViewController.h; sourceTree = "<group>"; };
+		D4346B642406407C00D8FE7C /* UGMissionMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGMissionMainViewController.m; sourceTree = "<group>"; };
 		D435F90023CEF940008648CE /* KMCGeigerCounterTick.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = KMCGeigerCounterTick.aiff; sourceTree = "<group>"; };
 		D435F90123CEF940008648CE /* KMCGeigerCounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMCGeigerCounter.h; sourceTree = "<group>"; };
 		D435F90223CEF940008648CE /* KMCGeigerCounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMCGeigerCounter.m; sourceTree = "<group>"; };
@@ -6165,6 +6168,8 @@
 				031E17EF23BE812600B0F813 /* UGIntegralConvertRecordController.h */,
 				031E17F423BE812600B0F813 /* UGIntegralConvertRecordController.m */,
 				031E17F523BE812600B0F813 /* UGIntegralConvertRecordController.storyboard */,
+				D4346B632406407C00D8FE7C /* UGMissionMainViewController.h */,
+				D4346B642406407C00D8FE7C /* UGMissionMainViewController.m */,
 			);
 			path = "任务大厅";
 			sourceTree = "<group>";
@@ -9916,6 +9921,7 @@
 				031E1D6223BE812B00B0F813 /* UGBankCardInfoController.m in Sources */,
 				031E1CBE23BE812A00B0F813 /* UGViewController.m in Sources */,
 				031E1DB423BE812B00B0F813 /* UGgaCaptchaModel.m in Sources */,
+				D4346B652406407C00D8FE7C /* UGMissionMainViewController.m in Sources */,
 				03E41B3223C09363004AB7C6 /* JS_HomePromoteContainerView.m in Sources */,
 				031E1D7823BE812B00B0F813 /* UGFeedBackController.m in Sources */,
 				031E1E0423BE812C00B0F813 /* UGSignInScrHeaderView.m in Sources */,

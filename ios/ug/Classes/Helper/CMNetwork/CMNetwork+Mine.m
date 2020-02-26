@@ -670,6 +670,20 @@
     CMMETHOD_END;
 }
 
+//任务大厅分类 http://test10.6yc.com/wjapp/api.php?c=task&a=categories&token=SNNn1AN33aO3404nlaA33ZXN
++ (void)categoriesWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    
+    [self.manager requestInMainThreadWithMethod:[categoriesUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
+                                           post:NO
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
+
 //领取任务 http://test10.6yc.com/wjapp/api.php?c=task&a=get  mid token
 + (void)taskGetWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
     CMMETHOD_BEGIN;

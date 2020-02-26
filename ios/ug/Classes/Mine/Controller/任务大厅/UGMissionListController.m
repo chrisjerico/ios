@@ -23,11 +23,17 @@
 static NSString *missionCellid = @"UGMissionTableViewCell";
 @implementation UGMissionListController
 
+-(void)dataReLoad{
+    [self getCenterData];
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.dataArray = [NSMutableArray new];
 //    self.pageNumber = 1;
+
     [self getCenterData];
     
     self.tableView.estimatedRowHeight = 0;
@@ -37,6 +43,8 @@ static NSString *missionCellid = @"UGMissionTableViewCell";
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 120, 0);
     self.tableView.rowHeight = 80;
     [self.view setBackgroundColor:[UIColor clearColor]];
+    
+ 
     
   
 }
@@ -103,16 +111,29 @@ static NSString *missionCellid = @"UGMissionTableViewCell";
 }
 
 #pragma mark -- 网络请求
+
+
 //得到日期列表数据
 - (void)getCenterData {
     if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
         return;
     }
-    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
-                             @"page":@"1",
-                             @"rows":@"1000",
-                             
-                             };
+    NSDictionary *params = [NSDictionary new];
+    if (![CMCommon stringIsNull:_typeid]) {
+
+        params = @{@"token":[UGUserModel currentUser].sessid,
+                   @"page":@"1",
+                   @"rows":@"1000",
+                   @"category":_typeid
+        };
+    }
+    else{
+        params = @{@"token":[UGUserModel currentUser].sessid,
+                   @"page":@"1",
+                   @"rows":@"1000",
+                   
+        };
+    }
     
     [SVProgressHUD showWithStatus:nil];
     WeakSelf;
@@ -120,36 +141,20 @@ static NSString *missionCellid = @"UGMissionTableViewCell";
         [CMResult processWithResult:model success:^{
             
             [SVProgressHUD dismiss];
-          
             NSDictionary *data =  model.data;
             NSArray *list = [data objectForKey:@"list"];
-//            if (self.pageNumber == 1 ) {
-//
-//                [self.dataArray removeAllObjects];
-//            }
-            
-//            //字典转模型
-//            UserMembersShareBean *membersShare = [[UserMembersShareBean alloc]initWithDictionary:dic[kMsg]
-            //数组转模型数组
-//            NSArray *array = [UGMissionModel arrayOfModelsFromDictionaries:list error:nil];
-//            [self.dataArray addObjectsFromArray:array];
-             self.dataArray = [UGMissionModel arrayOfModelsFromDictionaries:list error:nil];
+            if (weakSelf.typeid) {
+                [self.dataArray removeAllObjects];
+            }
+            self.dataArray = [UGMissionModel arrayOfModelsFromDictionaries:list error:nil];
             [self.tableView reloadData];
 
-            
         } failure:^(id msg) {
             
             [SVProgressHUD showErrorWithStatus:msg];
             
         }];
-        
-//        if ([self.tableView.mj_header isRefreshing]) {
-//            [self.tableView.mj_header endRefreshing];
-//        }
-//
-//        if ([self.tableView.mj_footer isRefreshing]) {
-//            [self.tableView.mj_footer endRefreshing];
-//        }
+
     }];
 }
 

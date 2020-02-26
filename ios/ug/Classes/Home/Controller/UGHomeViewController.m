@@ -2055,13 +2055,20 @@
     headerView.item = item;
     WeakSelf
     headerView.clickBllock = ^{
-        item.selected = !item.selected;
-        for (UGPromoteModel *pm in weakSelf.tableView.dataArray) {
-            if (pm != item) {
-                pm.selected = false;
-            }
-        }
-        [weakSelf.tableView reloadData];
+        
+        BOOL ret = [NavController1 pushViewControllerWithLinkCategory:item.linkCategory linkPosition:item.linkPosition];
+          if (!ret) {
+              if ([item.style isEqualToString:@"slide"]) {
+                  // 去优惠详情
+                  item.selected = !item.selected;
+                  for (UGPromoteModel *pm in weakSelf.tableView.dataArray) {
+                      if (pm != item) {
+                          pm.selected = false;
+                      }
+                  }
+                  [weakSelf.tableView reloadData];
+              }
+          }
     };
     return contentView;
 }
