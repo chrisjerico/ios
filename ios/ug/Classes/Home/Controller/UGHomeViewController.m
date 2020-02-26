@@ -913,7 +913,7 @@
             if (model.contentId.length) {
                 // 获取帖子详情
                 [SVProgressHUD showWithStatus:nil];
-                
+                NSLog(@"");
                 NSLog(@"model.contentId = %@",model.contentId);
                 [NetworkManager1 lhdoc_contentDetail:model.contentId].completionBlock = ^(CCSessionModel *sm) {
                     [SVProgressHUD dismiss];
