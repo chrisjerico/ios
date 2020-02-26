@@ -281,7 +281,13 @@
                 __ssv1.titleBar.backgroundColor = Skin1.navBarBgColor;
                 label.textColor = selected ? [UIColor blackColor] : [UIColor whiteColor];
             } else {
-                cell.backgroundColor = selected ? [[UIColor whiteColor] colorWithAlphaComponent:0.25] : [UIColor clearColor];
+                if (APP.betBgIsWhite) {
+                    cell.backgroundColor = selected ? [[UIColor grayColor] colorWithAlphaComponent:0.25] : [UIColor clearColor];
+                }
+                else{
+                    cell.backgroundColor = selected ? [[UIColor whiteColor] colorWithAlphaComponent:0.25] : [UIColor clearColor];
+                }
+                
                 __ssv1.titleBar.backgroundColor = Skin1.isBlack || idx || !APP.betBgIsWhite ? Skin1.navBarBgColor : [UIColor whiteColor];
             }
             
