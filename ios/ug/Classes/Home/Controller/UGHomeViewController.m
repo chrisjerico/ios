@@ -73,6 +73,7 @@
 #import "UGBMHeaderView.h"
 #import "PromotePopView.h"
 #import "UGCellHeaderView.h"
+#import "UGCell190HeaderView.h"
 // 六合View
 //#import "UGLHLotteryCollectionViewCell.h"
 #import "UGLHHomeContentCollectionViewCell.h"
@@ -444,7 +445,6 @@
     {
         [self.tableView addObserver:self forKeyPath:@"contentSize"  options:NSKeyValueObservingOptionNew context:@"tableContext"];
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-//        [self.tableView registerNib:[UINib nibWithNibName:@"UGCellHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:@"UGCellHeaderView" ];
         [self.tableView registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"header"];
         [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
         
@@ -664,9 +664,9 @@
     _contentScrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [__self getSystemConfig];     // APP配置信息
         [__self getBannerList];       // Banner图
-//        if (__self.notiveView == nil) {
-            [__self getNoticeList];   // 公告列表
-//        }
+        //        if (__self.notiveView == nil) {
+        [__self getNoticeList];   // 公告列表
+        //        }
         [__self getUserInfo];         // 用户信息
         [__self getCheckinListData];  // 红包数据
         [__self systemOnlineCount];   // 在线人数
@@ -1105,16 +1105,16 @@
 - (void)getPromotionsType {
     return;
     [CMNetwork getPromotionsTypeWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-
+        
         [CMResult processWithResult:model success:^{
             NSLog(@"model = %@",model);
             NSDictionary *dic = model.data;
             [UGSystemConfigModel.currentConfig setTypyArr:dic[@"typeArr"]];
             NSNumber * number = dic[@"typeIsShow"];
             [UGSystemConfigModel.currentConfig setTypeIsShow:[number intValue]];
-
+            
         } failure:^(id msg) {
-//            [SVProgressHUD showErrorWithStatus:msg];
+            //            [SVProgressHUD showErrorWithStatus:msg];
         }];
     }];
 }
@@ -1169,7 +1169,7 @@
                 }
                 [self.leftwardMarqueeView reloadData];
                 if (self.popNoticeArray.count) {
-                        [self showPlatformNoticeView];
+                    [self showPlatformNoticeView];
                 }
             });
         } failure:nil];
@@ -1304,7 +1304,7 @@
         [CMResult processWithResult:model success:^{
             UGPromoteListModel *listModel = model.data;
             NSArray *smallArray = [NSArray new];
-             
+            
             __self.style = listModel.style;
             for (UGPromoteModel *obj in listModel.list) {
                 obj.style = listModel.style;
@@ -1488,15 +1488,15 @@
 
 
 - (void)showPlatformNoticeView {
-     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     if (self.notiveView == nil) {
         if (!appDelegate.notiveViewHasShow) {
             self.notiveView = [[UGPlatformNoticeView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - 160)];
             self.notiveView.dataArray = self.popNoticeArray;
             [self.notiveView.bgView setBackgroundColor: Skin1.navBarBgColor];
-
+            
         }
-       
+        
     }
     [self.notiveView show];
     appDelegate.notiveViewHasShow = YES;
@@ -1846,9 +1846,9 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     if ([_style isEqualToString:@"slide"]) {
         NSLog(@"count = %lu",(unsigned long)_tableView.dataArray.count);
-         return _tableView.dataArray.count;
+        return _tableView.dataArray.count;
     } else {
-         return 1;
+        return 1;
     }
 }
 
@@ -1865,127 +1865,127 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([_style isEqualToString:@"slide"]) {
         UITableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-         UGPromoteModel *nm = _tableView.dataArray[indexPath.section];
-         
-         // 加载html
-         {
-             static UGPromoteModel *__nm = nil;
-             __nm = nm;
-             
-             UIWebView *wv = [cell viewWithTagString:@"WebView"];
-             if (!wv) {
-                 wv = [UIWebView new];
-                 wv.backgroundColor = [UIColor clearColor];
-                 wv.tagString = @"WebView";
-                 [wv xw_addObserverBlockForKeyPath:@"scrollView.contentSize" block:^(id  _Nonnull obj, id  _Nonnull oldVal, id  _Nonnull newVal) {
-//                     NSLog(@"newH === %f",[newVal CGSizeValue].height);
-//                     NSLog(@"oldH === %f",[oldVal CGSizeValue].height);
-                     CGFloat h = __nm.webViewHeight = [newVal CGSizeValue].height;
-//                     NSLog(@"高度==========%f",h);
-                     [obj mas_updateConstraints:^(MASConstraintMaker *make) {
-                         make.height.mas_equalTo(h);
-                     }];
-                     [self->_tableView beginUpdates];
-                     [self->_tableView endUpdates];
-                 }];
-                 [cell addSubview:wv];
-                 
-                 [wv mas_makeConstraints:^(MASConstraintMaker *make) {
-                     make.left.right.equalTo(cell).offset(-2);
-                     make.top.bottom.equalTo(cell).offset(2);
-                     make.height.mas_equalTo(60);
-                 }];
-             }
-
-             wv.scrollView.contentSize = CGSizeMake(100, __nm.webViewHeight);
-             if ([@"c200" containsString:APP.SiteId]) {
-                 [wv loadHTMLString:_NSString(@"<head><style>p{margin:0}img{width:auto !important;max-width:100%%;height:auto !important}</style></head>%@", __nm.content) baseURL:nil];
-             } else {
-                 [wv loadHTMLString:[APP htmlStyleString:__nm.content] baseURL:nil];
-             }
-         }
-         
-         
-         // webview 上下各一条线
-         UIView *topLineView = [cell viewWithTagString:@"topLineView"];
-         if (!topLineView) {
-             topLineView = [UIView new];
-             topLineView.backgroundColor = Skin1.navBarBgColor;
-             topLineView.tagString = @"topLineView";
-             [cell addSubview:topLineView];
-             
-             [topLineView mas_makeConstraints:^(MASConstraintMaker *make) {
-                 make.left.top.right.equalTo(cell);
-                 make.height.mas_equalTo(1);
-             }];
-         }
-         UIView *bottomLineView = [cell viewWithTagString:@"bottomLineView"];
-         if (!bottomLineView) {
-             bottomLineView = [UIView new];
-             bottomLineView.backgroundColor = Skin1.navBarBgColor;
-             bottomLineView.tagString = @"bottomLineView";
-             [cell addSubview:bottomLineView];
-             
-             [bottomLineView mas_makeConstraints:^(MASConstraintMaker *make) {
-                 make.left.bottom.right.equalTo(cell);
-                 make.height.mas_equalTo(1);
-             }];
-         }
-         return cell;
-    } else {
-         UITableViewCell *cell;
-             if ([@"c190" containsString:APP.SiteId]) {
-                    cell  = [tableView dequeueReusableCellWithIdentifier:@"cell190" forIndexPath:indexPath];
-                }
-                else{
-                    cell  = [tableView dequeueReusableCellWithIdentifier:@"cell1" forIndexPath:indexPath];
-                }
-                UGPromoteModel *pm = tableView.dataArray[indexPath.row];
-                FastSubViewCode(cell);
-                if ([@"c190" containsString:APP.SiteId]) {
-                    subView(@"StackView").cc_constraints.top.constant = pm.title.length ? 12 : 0;
-                    subView(@"StackView").cc_constraints.bottom.constant = 0;
-                }
-                if ([@"c199" containsString:APP.SiteId]) {
-                    subView(@"StackView").cc_constraints.top.constant = 0;
-                    subView(@"StackView").cc_constraints.left.constant = 0;
-                }
-                
-                subView(@"cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor : Skin1.homeContentColor;
-                subLabel(@"标题Label").textColor = Skin1.textColor1;
-                subLabel(@"标题Label").text = pm.title;
-                subLabel(@"标题Label").hidden = !pm.title.length;
-                
-                UIImageView *imgView = [cell viewWithTagString:@"图片ImageView"];
-            //    imgView.frame = cell.bounds;
-                NSURL *url = [NSURL URLWithString:pm.pic];
-                UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:url]];
-                if (image) {
-                    if ([@"c190" containsString:APP.SiteId]) {
-                        CGFloat w = APP.Width;
-                        CGFloat h = image.height/image.width * w;
-                        imgView.cc_constraints.height.constant = h;
-                    } else {
-                        CGFloat w = APP.Width - 48;
-                        CGFloat h = image.height/image.width * w;
-                        imgView.cc_constraints.height.constant = h;
-                        
-                    
-                    }
-                    [imgView sd_setImageWithURL:url];   // 由于要支持gif动图，还是用sd加载
-                } else {
-                    __weakSelf_(__self);
-                    __weak_Obj_(imgView, __imgView);
-                    imgView.cc_constraints.height.constant = 60;
-                    [imgView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"placeholder"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-                        if (image) {
-                            [__self.tableView reloadRowAtIndexPath:indexPath withRowAnimation:UITableViewRowAnimationNone];
-                        }
+        UGPromoteModel *nm = _tableView.dataArray[indexPath.section];
+        
+        // 加载html
+        {
+            static UGPromoteModel *__nm = nil;
+            __nm = nm;
+            
+            UIWebView *wv = [cell viewWithTagString:@"WebView"];
+            if (!wv) {
+                wv = [UIWebView new];
+                wv.backgroundColor = [UIColor clearColor];
+                wv.tagString = @"WebView";
+                [wv xw_addObserverBlockForKeyPath:@"scrollView.contentSize" block:^(id  _Nonnull obj, id  _Nonnull oldVal, id  _Nonnull newVal) {
+                    //                     NSLog(@"newH === %f",[newVal CGSizeValue].height);
+                    //                     NSLog(@"oldH === %f",[oldVal CGSizeValue].height);
+                    CGFloat h = __nm.webViewHeight = [newVal CGSizeValue].height;
+                    //                     NSLog(@"高度==========%f",h);
+                    [obj mas_updateConstraints:^(MASConstraintMaker *make) {
+                        make.height.mas_equalTo(h);
                     }];
+                    [self->_tableView beginUpdates];
+                    [self->_tableView endUpdates];
+                }];
+                [cell addSubview:wv];
+                
+                [wv mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.left.right.equalTo(cell).offset(-2);
+                    make.top.bottom.equalTo(cell).offset(2);
+                    make.height.mas_equalTo(60);
+                }];
+            }
+            
+            wv.scrollView.contentSize = CGSizeMake(100, __nm.webViewHeight);
+            if ([@"c200" containsString:APP.SiteId]) {
+                [wv loadHTMLString:_NSString(@"<head><style>p{margin:0}img{width:auto !important;max-width:100%%;height:auto !important}</style></head>%@", __nm.content) baseURL:nil];
+            } else {
+                [wv loadHTMLString:[APP htmlStyleString:__nm.content] baseURL:nil];
+            }
+        }
+        
+        
+        // webview 上下各一条线
+        UIView *topLineView = [cell viewWithTagString:@"topLineView"];
+        if (!topLineView) {
+            topLineView = [UIView new];
+            topLineView.backgroundColor = Skin1.navBarBgColor;
+            topLineView.tagString = @"topLineView";
+            [cell addSubview:topLineView];
+            
+            [topLineView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.top.right.equalTo(cell);
+                make.height.mas_equalTo(1);
+            }];
+        }
+        UIView *bottomLineView = [cell viewWithTagString:@"bottomLineView"];
+        if (!bottomLineView) {
+            bottomLineView = [UIView new];
+            bottomLineView.backgroundColor = Skin1.navBarBgColor;
+            bottomLineView.tagString = @"bottomLineView";
+            [cell addSubview:bottomLineView];
+            
+            [bottomLineView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.bottom.right.equalTo(cell);
+                make.height.mas_equalTo(1);
+            }];
+        }
+        return cell;
+    } else {
+        UITableViewCell *cell;
+        if ([@"c190" containsString:APP.SiteId]) {
+            cell  = [tableView dequeueReusableCellWithIdentifier:@"cell190" forIndexPath:indexPath];
+        }
+        else{
+            cell  = [tableView dequeueReusableCellWithIdentifier:@"cell1" forIndexPath:indexPath];
+        }
+        UGPromoteModel *pm = tableView.dataArray[indexPath.row];
+        FastSubViewCode(cell);
+        if ([@"c190" containsString:APP.SiteId]) {
+            subView(@"StackView").cc_constraints.top.constant = pm.title.length ? 12 : 0;
+            subView(@"StackView").cc_constraints.bottom.constant = 0;
+        }
+        if ([@"c199" containsString:APP.SiteId]) {
+            subView(@"StackView").cc_constraints.top.constant = 0;
+            subView(@"StackView").cc_constraints.left.constant = 0;
+        }
+        
+        subView(@"cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor : Skin1.homeContentColor;
+        subLabel(@"标题Label").textColor = Skin1.textColor1;
+        subLabel(@"标题Label").text = pm.title;
+        subLabel(@"标题Label").hidden = !pm.title.length;
+        
+        UIImageView *imgView = [cell viewWithTagString:@"图片ImageView"];
+        //    imgView.frame = cell.bounds;
+        NSURL *url = [NSURL URLWithString:pm.pic];
+        UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:url]];
+        if (image) {
+            if ([@"c190" containsString:APP.SiteId]) {
+                CGFloat w = APP.Width;
+                CGFloat h = image.height/image.width * w;
+                imgView.cc_constraints.height.constant = h;
+            } else {
+                CGFloat w = APP.Width - 48;
+                CGFloat h = image.height/image.width * w;
+                imgView.cc_constraints.height.constant = h;
+                
+                
+            }
+            [imgView sd_setImageWithURL:url];   // 由于要支持gif动图，还是用sd加载
+        } else {
+            __weakSelf_(__self);
+            __weak_Obj_(imgView, __imgView);
+            imgView.cc_constraints.height.constant = 60;
+            [imgView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"placeholder"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                if (image) {
+                    [__self.tableView reloadRowAtIndexPath:indexPath withRowAnimation:UITableViewRowAnimationNone];
                 }
-                return cell;
+            }];
+        }
+        return cell;
     }
-   
+    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -2001,23 +2001,23 @@
         }
         else if([pm.style isEqualToString:@"popup"]) {
             PromotePopView *popView = [[PromotePopView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - 160)];
-              popView.item = pm;
-              [popView show];
+            popView.item = pm;
+            [popView show];
         }
         else if([pm.style isEqualToString:@"page"]) {
             UGPromoteDetailController *detailVC = [[UGPromoteDetailController alloc] init];
             detailVC.item = pm;
             [NavController1 pushViewController:detailVC animated:YES];
         }
-
+        
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     if ([_style isEqualToString:@"slide"]) {
-         return 1;
+        return 0;
     } else {
-         return 0;
+        return 0;
     }
     
 }
@@ -2025,11 +2025,11 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if ([_style isEqualToString:@"slide"]) {
         UGPromoteModel *item = tableView.dataArray[section];
-//        NSLog(@"cellH = %f",item.headHeight);
+        //        NSLog(@"cellH = %f",item.headHeight);
         if (!item.headHeight) {
             return 150;
         } else {
-             return item.headHeight;
+            return item.headHeight;
         }
     } else {
         return 0;
@@ -2039,9 +2039,19 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     NSLog(@"section = %ld",(long)section);
     UIView *contentView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"header"];
+    [contentView setBackgroundColor:[UIColor clearColor]];
+    
+    
     UGCellHeaderView *headerView = [contentView viewWithTagString:@"headerView"];
     if (!headerView) {
-        headerView = _LoadView_from_nib_(@"UGCellHeaderView");
+        
+        if ([@"c190" containsString:APP.SiteId]) {
+             headerView = _LoadView_from_nib_(@"UGCell190HeaderView");
+         }
+         else{
+             headerView = _LoadView_from_nib_(@"UGCellHeaderView");
+         }
+       
         headerView.tagString = @"headerView";
         [contentView addSubview:headerView];
         [headerView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -2054,25 +2064,29 @@
     headerView.clickBllock = ^{
         
         BOOL ret = [NavController1 pushViewControllerWithLinkCategory:item.linkCategory linkPosition:item.linkPosition];
-          if (!ret) {
-              if ([item.style isEqualToString:@"slide"]) {
-                  // 去优惠详情
-                  item.selected = !item.selected;
-                  for (UGPromoteModel *pm in weakSelf.tableView.dataArray) {
-                      if (pm != item) {
-                          pm.selected = false;
-                      }
-                  }
-                  [weakSelf.tableView reloadData];
-              }
-          }
+        if (!ret) {
+            if ([item.style isEqualToString:@"slide"]) {
+                // 去优惠详情
+                item.selected = !item.selected;
+                for (UGPromoteModel *pm in weakSelf.tableView.dataArray) {
+                    if (pm != item) {
+                        pm.selected = false;
+                    }
+                }
+                [weakSelf.tableView reloadData];
+            }
+        }
     };
     return contentView;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
     UITableViewHeaderFooterView *headerView=(UITableViewHeaderFooterView *)view;
-    [headerView.backgroundView setBackgroundColor:[UIColor whiteColor]];
+    headerView.backgroundView = ({
+        UIView * view = [[UIView alloc] initWithFrame:headerView.bounds];
+        view.backgroundColor = [UIColor clearColor];
+        view;
+    });
 }
 
 

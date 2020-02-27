@@ -1891,6 +1891,8 @@
 		D4346B5E24053DB100D8FE7C /* UGCellHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4346B5D24053DB100D8FE7C /* UGCellHeaderView.m */; };
 		D4346B6024053DF800D8FE7C /* UGCellHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4346B5F24053DF800D8FE7C /* UGCellHeaderView.xib */; };
 		D4346B652406407C00D8FE7C /* UGMissionMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4346B642406407C00D8FE7C /* UGMissionMainViewController.m */; };
+		D4346B8E2407E5C900D8FE7C /* UGCell190HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4346B8D2407E5C900D8FE7C /* UGCell190HeaderView.m */; };
+		D4346B912407E5DA00D8FE7C /* UGCell190HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4346B902407E5DA00D8FE7C /* UGCell190HeaderView.xib */; };
 		D435F90423CEF940008648CE /* KMCGeigerCounterTick.aiff in Resources */ = {isa = PBXBuildFile; fileRef = D435F90023CEF940008648CE /* KMCGeigerCounterTick.aiff */; };
 		D435F90523CEF940008648CE /* KMCGeigerCounterTick.aiff in Resources */ = {isa = PBXBuildFile; fileRef = D435F90023CEF940008648CE /* KMCGeigerCounterTick.aiff */; };
 		D435F90623CEF940008648CE /* KMCGeigerCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = D435F90223CEF940008648CE /* KMCGeigerCounter.m */; };
@@ -3710,6 +3712,9 @@
 		D4346B5F24053DF800D8FE7C /* UGCellHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGCellHeaderView.xib; sourceTree = "<group>"; };
 		D4346B632406407C00D8FE7C /* UGMissionMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGMissionMainViewController.h; sourceTree = "<group>"; };
 		D4346B642406407C00D8FE7C /* UGMissionMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGMissionMainViewController.m; sourceTree = "<group>"; };
+		D4346B8C2407E5C900D8FE7C /* UGCell190HeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGCell190HeaderView.h; sourceTree = "<group>"; };
+		D4346B8D2407E5C900D8FE7C /* UGCell190HeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGCell190HeaderView.m; sourceTree = "<group>"; };
+		D4346B902407E5DA00D8FE7C /* UGCell190HeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGCell190HeaderView.xib; sourceTree = "<group>"; };
 		D435F90023CEF940008648CE /* KMCGeigerCounterTick.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = KMCGeigerCounterTick.aiff; sourceTree = "<group>"; };
 		D435F90123CEF940008648CE /* KMCGeigerCounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMCGeigerCounter.h; sourceTree = "<group>"; };
 		D435F90223CEF940008648CE /* KMCGeigerCounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMCGeigerCounter.m; sourceTree = "<group>"; };
@@ -7753,6 +7758,9 @@
 				D4346B5C24053DB100D8FE7C /* UGCellHeaderView.h */,
 				D4346B5D24053DB100D8FE7C /* UGCellHeaderView.m */,
 				D4346B5F24053DF800D8FE7C /* UGCellHeaderView.xib */,
+				D4346B8C2407E5C900D8FE7C /* UGCell190HeaderView.h */,
+				D4346B8D2407E5C900D8FE7C /* UGCell190HeaderView.m */,
+				D4346B902407E5DA00D8FE7C /* UGCell190HeaderView.xib */,
 			);
 			path = "折叠优惠HeaderView";
 			sourceTree = "<group>";
@@ -8531,6 +8539,7 @@
 				031E1E7E23BE812D00B0F813 /* UGBalanceTransferLogsCell.xib in Resources */,
 				D4C0A12F239156FB00B39358 /* hot_01.gif in Resources */,
 				CF475924239636D200966536 /* 104.gif in Resources */,
+				D4346B912407E5DA00D8FE7C /* UGCell190HeaderView.xib in Resources */,
 				CF4758B1239636D200966536 /* 57.gif in Resources */,
 				031E1A1A23BE812700B0F813 /* LoadingView1.xib in Resources */,
 				031E1C7E23BE812A00B0F813 /* UGDepositDetailsCollectionViewCell.xib in Resources */,
@@ -10005,6 +10014,7 @@
 				D417EFDB2330D24C0024F634 /* AppDelegate+HgBugly.m in Sources */,
 				03314FD923CDE2150070CB54 /* HSC_TitleView.m in Sources */,
 				031E1CF223BE812A00B0F813 /* SVIndefiniteAnimatedView.m in Sources */,
+				D4346B8E2407E5C900D8FE7C /* UGCell190HeaderView.m in Sources */,
 				031E1ADE23BE812800B0F813 /* SDCollectionViewCell.m in Sources */,
 				222A0AF723D29DED00A058B0 /* XBJ_HomeVC.m in Sources */,
 				031E1ACE23BE812800B0F813 /* TGWebViewController.m in Sources */,
