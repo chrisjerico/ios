@@ -664,9 +664,9 @@
     _contentScrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [__self getSystemConfig];     // APP配置信息
         [__self getBannerList];       // Banner图
-        if (__self.notiveView == nil) {
+//        if (__self.notiveView == nil) {
             [__self getNoticeList];   // 公告列表
-        }
+//        }
         [__self getUserInfo];         // 用户信息
         [__self getCheckinListData];  // 红包数据
         [__self systemOnlineCount];   // 在线人数
@@ -1169,11 +1169,7 @@
                 }
                 [self.leftwardMarqueeView reloadData];
                 if (self.popNoticeArray.count) {
-                    
-                    if (self.notiveView == nil) {
                         [self showPlatformNoticeView];
-                    }
-                    
                 }
             });
         } failure:nil];
@@ -1492,17 +1488,18 @@
 
 
 - (void)showPlatformNoticeView {
+     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     if (self.notiveView == nil) {
-        
-        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         if (!appDelegate.notiveViewHasShow) {
             self.notiveView = [[UGPlatformNoticeView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - 160)];
             self.notiveView.dataArray = self.popNoticeArray;
             [self.notiveView.bgView setBackgroundColor: Skin1.navBarBgColor];
-            [self.notiveView show];
+
         }
-        appDelegate.notiveViewHasShow = YES;
+       
     }
+    [self.notiveView show];
+    appDelegate.notiveViewHasShow = YES;
     
     
 }
