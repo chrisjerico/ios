@@ -68,6 +68,11 @@
 @property (nonatomic) BOOL isRedWhite;    /**<  下注界面新年红模板样式 红白配色*/
 @property (nonatomic) BOOL oldConversion;    /**<  老的转换界面*/
 @property (nonatomic) BOOL isParagraphSpacing;    /**<  首页公告详情段落有间距*/
+@property (nonatomic) BOOL isFireworks;    /**<  首页cell加烟花背景*/
+
+
+
+
 // 热更新相关字段
                                                    
 @property (nonatomic) BOOL Test;                        /**<   是否是测试环境 */

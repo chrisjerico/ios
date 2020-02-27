@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;        /**<   标题ImageView */
 @property (weak, nonatomic) IBOutlet UIImageView *hotImageView; /**<   热门ImageView */
 @property (nonatomic, strong) UIImageView *hasSubSign;          /**<   二级目录ImageView */
+@property (weak, nonatomic) IBOutlet FLAnimatedImageView *effImgView;/**<   烟花背景gif */
 
 @end
 
@@ -62,6 +63,17 @@
             __timer = nil;
         }
     }];
+    
+    
+    if (APP.isFireworks) {
+        [_effImgView setHidden:NO];
+        _effImgView.contentMode = UIViewContentModeScaleAspectFit;
+        _effImgView.userInteractionEnabled = true;
+        [_effImgView sd_setImageWithURL:[[NSBundle mainBundle] URLForResource:@"effects" withExtension:@"gif"]];
+    }
+   
+
+
     
     
     

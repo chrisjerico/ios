@@ -176,6 +176,9 @@
 
 #pragma mark - 定制样式
 
+- (BOOL)isFireworks {
+    return [@"c193" containsString:_SiteId];
+}
 
 - (BOOL)isParagraphSpacing {
     return [@"c134,c200,213" containsString:_SiteId];
