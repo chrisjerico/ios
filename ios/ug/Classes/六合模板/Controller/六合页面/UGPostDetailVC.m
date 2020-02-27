@@ -79,7 +79,7 @@
     self.image_list = [NSMutableArray array];
     __weakSelf_(__self);
     _topView.hidden = true;
-    
+    _photoCollectionView.cc_constraints.width.constant = ContentWidth;
     // 自适应高度
     {
         [__self.tableView.tableHeaderView.subviews.firstObject xw_addObserverBlockForKeyPath:@"contentSize" block:^(id  _Nonnull obj, id  _Nonnull oldVal, id  _Nonnull newVal) {
@@ -88,6 +88,9 @@
         }];
         [_photoCollectionView xw_addObserverBlockForKeyPath:@"contentSize" block:^(id  _Nonnull obj, id  _Nonnull oldVal, id  _Nonnull newVal) {
             ((UIScrollView *)obj).cc_constraints.height.constant = MAX([newVal CGSizeValue].height + 4, 20);
+//            [__self.photoCollectionView mas_updateConstraints:^(MASConstraintMaker *make) {
+//                make.height.mas_equalTo(600).offset(0);
+//            }];
         }];
     }
     
@@ -100,6 +103,7 @@
                 [LoadingStateView showWithSuperview:__self.view state:ZJLoadingStateFail];
             } else {
                 NSString  *link = __self.pm.link;
+                NSLog(@"data=%@",sm.responseObject[@"data"]);
                 __self.pm = [UGLHPostModel mj_objectWithKeyValues:sm.responseObject[@"data"]];
                 __self.pm.link = link;
                 [__self setupSSV];
@@ -257,17 +261,12 @@
                 content = [content stringByReplacingOccurrencesOfString:_NSString(@"[em_%@]", gifName) withString:_NSString(@"<img src=\"http://admintest10.6yc.com/images/arclist/%@.gif\"/>", gifName)];
             }
         }
-        NSString *head = @"<head><meta name='viewport' content='initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'><style>img{width:100%!important;max-width:100%;height:auto !important}</style><style>body{width:100%;word-break: break-all;word-wrap: break-word;vertical-align: middle;overflow: hidden;}</style></head>";
-        [wv loadHTMLString:[head stringByAppendingString:content] baseURL:nil];
-        //        NSString *str = _NSString(@"<head><style>body{margin:0}img{width:auto !important;max-width:100%%;height:auto !important}</style></head>%@", content);
         
-        //        dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        //
-        //            dispatch_async(dispatch_get_main_queue(), ^{
-        //                // 加载本地HTML字符串
-        //                [wv loadHTMLString:content baseURL:[[NSBundle mainBundle] bundleURL]];
-        //            });
-        //        });
+
+        NSString *head = @"<head><meta name='viewport' content='initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'><style>img{width:100%!important;max-width:100%;height:auto !important}</style><style>body{width:100%;word-break: break-all;word-wrap: break-word;vertical-align: middle;overflow: hidden;}</style></head>";
+
+        
+        [wv loadHTMLString:[head stringByAppendingString:content] baseURL:nil];
         wv.superview.hidden = !pm.content.length || [@"sixpic" containsString:pm.alias];
         
         _photoCollectionView.hidden = !pm.contentPic.count;
@@ -688,7 +687,7 @@
     //如果是跳转一个新页面
     if (navigationAction.targetFrame.request != nil) {
         NSString *selectedImgURL = navigationAction.request.URL.absoluteString;
-//        NSLog(@"selectedImgURL = %@",selectedImgURL);
+        NSLog(@"selectedImgURL = %@",selectedImgURL);
         NSMutableArray <NSString *>* urlArray = @[].mutableCopy;
         for (MediaModel *mm in self.image_list) {
             [urlArray addObject:[mm.imgUrl absoluteString]];

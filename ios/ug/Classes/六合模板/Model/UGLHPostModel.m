@@ -67,4 +67,6 @@
 - (void)setTopAdWap:(LHPostAdModel *)topAdWap { _topAdWap = topAdWap;}
 - (void)setBottomAdWap:(LHPostAdModel *)bottomAdWap { _bottomAdWap = bottomAdWap; }
 
+
+
 @end
