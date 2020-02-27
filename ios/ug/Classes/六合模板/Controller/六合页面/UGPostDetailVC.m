@@ -37,6 +37,9 @@
 @property (nonatomic, copy) NSString *opCustomerId; /**<    被回复者ID */
 @property (nonatomic, copy) NSString *opCommentId;  /**<    被回复的评论ID（有值表示回复评论，没值表示评论动态） */
 @property (nonatomic, copy) NSMutableDictionary *textBuffer;
+@property (nonatomic,strong)NSMutableArray <MediaModel *>*image_list;
+
+
 @end
 
 @implementation UGPostDetailVC
@@ -44,7 +47,7 @@
 - (BOOL)允许游客访问   { return true; }
 - (BOOL)允许未登录访问 { return true; }
 - (void)dealloc {
-
+    
     if (_lhPrizeView.timer) {
         if ([_lhPrizeView.timer isValid]) {
             [_lhPrizeView.timer invalidate];
@@ -73,7 +76,7 @@
     _textBuffer = [@{} mutableCopy];
     self.view.clipsToBounds = true;
     self.title = self.title.mutableCopy;    // 让导航条的标题显示出来
-    
+    self.image_list = [NSMutableArray array];
     __weakSelf_(__self);
     _topView.hidden = true;
     
@@ -106,15 +109,15 @@
     };
     lsv.didRefreshBtnClick();
     
-
+    
     NSLog(@"link = %@",self.pm.link);
     FastSubViewCode(self.view);
-
-    //fourUnlike  CvB3zABB rundog humorGuess
-//       subLabel(@"标题Label").hidden = [@"mystery,rule,sixpic,humorGuess,rundog,fourUnlike,sxbm,tjym,ptyx" containsString:pm.alias];
     
-
-//    [CMCommon showSystemTitle:self.pm.link];
+    //fourUnlike  CvB3zABB rundog humorGuess
+    //       subLabel(@"标题Label").hidden = [@"mystery,rule,sixpic,humorGuess,rundog,fourUnlike,sxbm,tjym,ptyx" containsString:pm.alias];
+    
+    
+    //    [CMCommon showSystemTitle:self.pm.link];
 }
 
 -(BOOL)hasShow{
@@ -192,7 +195,7 @@
         BOOL isHidden = NO;
         NSLog(@"alias = %@",self.pm.alias);
         if([@"mystery,rule,sixpic,humorGuess,rundog,fourUnlike,sxbm,tjym,ptyx,CvB3zABB,E9biHXEx,n0v3azC0,mT303M99" containsString:pm.alias]) {
-             isHidden = YES;
+            isHidden = YES;
         }
         else{
             if ([self.pm.link containsString: @"mystery/"]) {
@@ -203,15 +206,15 @@
             }
         }
         
-//        subLabel(@"标题Label").hidden = [@"mystery,rule,sixpic,humorGuess,rundog,fourUnlike,sxbm,tjym,ptyx,CvB3zABB," containsString:pm.alias];
+        //        subLabel(@"标题Label").hidden = [@"mystery,rule,sixpic,humorGuess,rundog,fourUnlike,sxbm,tjym,ptyx,CvB3zABB," containsString:pm.alias];
         
         [subLabel(@"标题Label") setHidden:isHidden];
         [_lhPrizeView setHidden:NO];
         
         if (APP.isShowHornView) {
-             [_lhHornView setHidden:NO];
+            [_lhHornView setHidden:NO];
         }
-
+        
         if ([@"l001" isEqualToString:APP.SiteId]) {
             subLabel(@"时间Label").text = @"本站备用网址一:www.889777.com";
             subLabel(@"时间Label2").text = @"本站备用网址二:www.668000.com";
@@ -223,9 +226,9 @@
         else{
             
         }
-//        subLabel(@"时间Label").text = _NSString(@"最后更新时间：%@", pm.createTime);
-
-//        subLabel(@"时间Label").hidden = [@"mystery,rule" containsString:pm.alias];
+        //        subLabel(@"时间Label").text = _NSString(@"最后更新时间：%@", pm.createTime);
+        
+        //        subLabel(@"时间Label").hidden = [@"mystery,rule" containsString:pm.alias];
         
         UIView *cView = subView(@"内容View");
         WKWebView *wv = [cView viewWithTagString:@"内容WebView"];
@@ -254,8 +257,17 @@
                 content = [content stringByReplacingOccurrencesOfString:_NSString(@"[em_%@]", gifName) withString:_NSString(@"<img src=\"http://admintest10.6yc.com/images/arclist/%@.gif\"/>", gifName)];
             }
         }
-        NSString *head = @"<head><meta name='viewport' content='initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'><style>img{width:auto !important;max-width:100%%;height:auto !important}</style><style>body{width:100%%;word-break: break-all;word-wrap: break-word;vertical-align: middle;overflow: hidden;}</style></head>";
+        NSString *head = @"<head><meta name='viewport' content='initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'><style>img{width:100%!important;max-width:100%;height:auto !important}</style><style>body{width:100%;word-break: break-all;word-wrap: break-word;vertical-align: middle;overflow: hidden;}</style></head>";
         [wv loadHTMLString:[head stringByAppendingString:content] baseURL:nil];
+        //        NSString *str = _NSString(@"<head><style>body{margin:0}img{width:auto !important;max-width:100%%;height:auto !important}</style></head>%@", content);
+        
+        //        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        //
+        //            dispatch_async(dispatch_get_main_queue(), ^{
+        //                // 加载本地HTML字符串
+        //                [wv loadHTMLString:content baseURL:[[NSBundle mainBundle] bundleURL]];
+        //            });
+        //        });
         wv.superview.hidden = !pm.content.length || [@"sixpic" containsString:pm.alias];
         
         _photoCollectionView.hidden = !pm.contentPic.count;
@@ -476,7 +488,7 @@
         subLabel(@"点赞次数Label").text = pcm.likeNum ? @(pcm.likeNum).stringValue : @"";
         subLabel(@"点赞次数Label").textColor = pcm.isLike ? Skin1.navBarBgColor : APP.TextColor3;
         subLabel(@"评论内容Label").text = pcm.content;
-   
+        
         subLabel(@"评论时间Label").text =  [CMTimeCommon formatTimeStr:pcm.actionTime];;
         [subButton(@"回复评论Button") setTitle:_NSString(@"%@回复", (pcm.replyCount ? [NSString stringWithFormat:@"%@ ", @(pcm.replyCount)] : @"")) forState:UIControlStateNormal];
         
@@ -566,7 +578,7 @@
     if (collectionView == _photoCollectionView) {
         UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
         UIImageView *imgView = [cell viewWithTagString:@"图片ImageView"];
-//        imgView.frame = cell.bounds;
+        //        imgView.frame = cell.bounds;
         NSURL *url = [NSURL URLWithString:_pm.contentPic[indexPath.item]];
         UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:url]];
         if (image) {
@@ -599,6 +611,8 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
     if (collectionView != _photoCollectionView) {
         return;
     }
@@ -638,6 +652,20 @@
     }));
 }
 
+-(void)showMediaView:(NSArray <MediaModel *>*)models   index:(NSUInteger )index{
+    MediaViewer *vpView = _LoadView_from_nib_(@"MediaViewer");
+    vpView.frame = APP.Bounds;
+    vpView.models = models;
+    vpView.index = index;
+    [TabBarController1.view addSubview:vpView];
+    {
+        // 入场动画
+        CGRect rect = CGRectMake(0, APP.Height - APP.Width, APP.Width, APP.Width);
+        [vpView showEnterAnimations:rect image:nil];
+    }
+}
+
+
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (collectionView == _photoCollectionView) {
         UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:_pm.contentPic[indexPath.item]]]];
@@ -653,38 +681,89 @@
 
 #pragma mark - WKUIDelegate
 
-//- (WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures {
-//    if (!navigationAction.targetFrame.isMainFrame) {
-//        SLWebViewController *vc = [SLWebViewController new];
-//        vc.urlStr = navigationAction.request.URL.absoluteString;
-//        [NavController1 pushViewController:vc animated:true];
-//    }
-//    return nil;
-//}
+
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
 {
-    
-    //    1.拦截请求
-//    NSString *urlString = [navigationAction.request.URL absoluteString];
-    
-    if (navigationAction.navigationType == WKNavigationTypeLinkActivated) {
-        //跳转别的应用如系统浏览器
-        // 对于跨域，需要手动跳转
-//       [[UIApplication sharedApplication] openURL:navigationAction.request.URL];
-        SLWebViewController *vc = [SLWebViewController new];
-        vc.urlStr = navigationAction.request.URL.absoluteString;
-        [NavController1 pushViewController:vc animated:true];
-        // 不允许web内跳转
+    //如果是跳转一个新页面
+    if (navigationAction.targetFrame.request != nil) {
+        NSString *selectedImgURL = navigationAction.request.URL.absoluteString;
+//        NSLog(@"selectedImgURL = %@",selectedImgURL);
+        NSMutableArray <NSString *>* urlArray = @[].mutableCopy;
+        for (MediaModel *mm in self.image_list) {
+            [urlArray addObject:[mm.imgUrl absoluteString]];
+        }
+        if ([urlArray containsObject:selectedImgURL]) {
+            NSUInteger index = [urlArray indexOfObject:selectedImgURL];
+            [self showMediaView:self.image_list index:index];
+        }
+        else{
+            if (navigationAction.navigationType == WKNavigationTypeLinkActivated) {
+                //跳转别的应用如系统浏览器
+                // 对于跨域，需要手动跳转
+                SLWebViewController *vc = [SLWebViewController new];
+                vc.urlStr = navigationAction.request.URL.absoluteString;
+                [NavController1 pushViewController:vc animated:true];
+                // 不允许web内跳转
+                decisionHandler(WKNavigationActionPolicyCancel);
+                
+            } else {
+                //应用的web内跳转
+                decisionHandler (WKNavigationActionPolicyAllow);
+                
+            }
+        }
+        
         decisionHandler(WKNavigationActionPolicyCancel);
-        
-    } else {
-        //应用的web内跳转
-        decisionHandler (WKNavigationActionPolicyAllow);
-        
+    }else{
+        decisionHandler(WKNavigationActionPolicyAllow);
     }
+    
     return ;//不添加会崩溃
     
 }
+
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+    
+    static  NSString * const imagesJS =
+    @"function getImages(){\
+    var objs = document.getElementsByTagName(\"img\");\
+    var imgScr = '';\
+    for(var i=0;i<objs.length;i++){\
+    imgScr = imgScr + objs[i].src + '+';\
+    };\
+    return imgScr;\
+    };";
+    
+    [webView evaluateJavaScript:imagesJS completionHandler:nil];
+    [webView evaluateJavaScript:@"getImages()" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+        NSArray *urlArray = [NSMutableArray arrayWithArray:[result componentsSeparatedByString:@"+"]];
+        //里面如果有空的需要过滤掉
+        if(self.image_list.count==0){
+            for (NSString *tempURL in urlArray) {
+                if(![CMCommon stringIsNull:tempURL]){
+                    NSLog(@"tempURL =%@",tempURL);
+                    
+                    MediaModel *mm = [MediaModel new];
+                    mm.imgUrl = [NSURL URLWithString:tempURL];
+                    [self.image_list addObject:mm];
+                }
+            }
+        }
+    }];
+    
+    [webView evaluateJavaScript:@"function registerImageClickAction(){\
+     var imgs = document.getElementsByTagName('img');\
+     for(var i=0;i<imgs.length;i++){\
+     imgs[i].customIndex = i;\
+     imgs[i].onclick=function(){\
+     window.location.href=''+this.src;\
+     }\
+     }\
+     }" completionHandler:nil];
+    
+    [webView evaluateJavaScript:@"registerImageClickAction();"completionHandler:nil];
+}
+
 
 @end
