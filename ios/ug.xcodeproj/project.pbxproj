@@ -1870,6 +1870,7 @@
 		D417EFDB2330D24C0024F634 /* AppDelegate+HgBugly.m in Sources */ = {isa = PBXBuildFile; fileRef = D417EFDA2330D24C0024F634 /* AppDelegate+HgBugly.m */; };
 		D422D67F22D9A766008E7065 /* address.json in Resources */ = {isa = PBXBuildFile; fileRef = D422D67E22D9A764008E7065 /* address.json */; };
 		D422E9302407F5AC00276E7A /* effects.gif in Resources */ = {isa = PBXBuildFile; fileRef = D422E92E2407F5AC00276E7A /* effects.gif */; };
+		D424D621240931F300339D89 /* redbag_act.gif in Resources */ = {isa = PBXBuildFile; fileRef = D424D61F240931F300339D89 /* redbag_act.gif */; };
 		D4250BF023F2650700ABA3C9 /* JYLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4250BEF23F2650700ABA3C9 /* JYLoginViewController.m */; };
 		D4250BF623F27BE700ABA3C9 /* JYRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4250BF523F27BE700ABA3C9 /* JYRegisterViewController.m */; };
 		D42752CF23EFFA31001E27A0 /* RedEnvelopeVCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D42752CE23EFFA31001E27A0 /* RedEnvelopeVCViewController.m */; };
@@ -3680,6 +3681,7 @@
 		D417EFDA2330D24C0024F634 /* AppDelegate+HgBugly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+HgBugly.m"; sourceTree = "<group>"; };
 		D422D67E22D9A764008E7065 /* address.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = address.json; sourceTree = "<group>"; };
 		D422E92E2407F5AC00276E7A /* effects.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = effects.gif; sourceTree = "<group>"; };
+		D424D61F240931F300339D89 /* redbag_act.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = redbag_act.gif; sourceTree = "<group>"; };
 		D4250BEE23F2650700ABA3C9 /* JYLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JYLoginViewController.h; sourceTree = "<group>"; };
 		D4250BEF23F2650700ABA3C9 /* JYLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JYLoginViewController.m; sourceTree = "<group>"; };
 		D4250BF423F27BE700ABA3C9 /* JYRegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JYRegisterViewController.h; sourceTree = "<group>"; };
@@ -7809,6 +7811,7 @@
 		D44258FB23E948C50067E981 /* git */ = {
 			isa = PBXGroup;
 			children = (
+				D424D61F240931F300339D89 /* redbag_act.gif */,
 				D422E92E2407F5AC00276E7A /* effects.gif */,
 				D44258FE23E948DF0067E981 /* LH_l001jt.gif */,
 				D44258FC23E948D80067E981 /* LH_laba.gif */,
@@ -8574,6 +8577,7 @@
 				D4346B592404EFC900D8FE7C /* PromotePopView.xib in Resources */,
 				CF475929239636D200966536 /* 105.gif in Resources */,
 				CF4758D8239636D200966536 /* 53.gif in Resources */,
+				D424D621240931F300339D89 /* redbag_act.gif in Resources */,
 				031E1E4C23BE812C00B0F813 /* UGMineSkinFirstCollectionHeadView.xib in Resources */,
 				CF8E242923DDBFD80054BF0F /* FontAwesome5_Solid.ttf in Resources */,
 				030A874423C5C2C00001EF82 /* JS_Mine.storyboard in Resources */,

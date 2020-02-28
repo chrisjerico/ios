@@ -32,44 +32,44 @@
 
 @property (nonatomic) BOOL isFish;
 
-@property (nonatomic) BOOL betOddsIsRed;    /**<   下注页面赔率显示为红色 */
-@property (nonatomic) BOOL betBgIsWhite;    /**<   下注页面背景白色 */
-@property (nonatomic) BOOL betSizeIsBig;    /**<   下注页面Cell大字体 */
-@property (nonatomic,readonly) UIFont *cellBigFont;     /**<   下注页面Cell大字体  [UIFont boldSystemFontOfSize:17];*/
-@property (nonatomic,readonly) UIFont *cellNormalFont;    /**<   下注页面Cel正常l字体  [UIFont systemFontOfSize:14];*/
-@property (nonatomic) float cellNormalFontSize;              /**<    下注页面Cel正常l字体  14] */
-@property (nonatomic) float borderWidthTimes;              /**<    下注页面Cel边框宽的倍数 */
-@property (nonatomic) BOOL lotteryHallCustomImgS;    /**<   彩票大厅自定义图标 */
-@property (nonatomic) BOOL addIcons;    /**<   投注页面开奖旁边添加 开奖直播 长龙助手 开奖网  */
-@property (nonatomic) BOOL isBA;    /**<   六合彩的特码A 和特码B 换一下位置 */
-@property (nonatomic) BOOL isShowLogo;    /**<  首页中间游戏导航需增加logo图标，游戏导航栏可进行滑动  有左右箭头*/
-@property (nonatomic) BOOL isShowArrow;    /**<  首页中间游戏导航需增加左右箭头 */
-@property (nonatomic) BOOL isShow4;    /**<  任务中心显示4个，不显示图片 */
-@property (nonatomic) BOOL isShowWZ;    /**<  将选填 这两个字更换为  如果没有，可不填写 */
-@property (nonatomic) BOOL isShowJinbei;    /**<  显示金杯 */
-@property (nonatomic) BOOL isHideText;    /**<  在线三方支付设置快捷金额后，隐藏掉输入金额那一栏 */
-@property (nonatomic) BOOL isWhite;    /**<  首页游戏cell加白边 */
-@property (nonatomic) BOOL isBall;    /**<  下注界面号码显示为球图 */
-@property (nonatomic) BOOL isBorderNavBarBgColor;    /**<  选中底色为navBarBgColor */
-@property (nonatomic) BOOL isShowHornView;    /**<  六合模板显示喇叭*/
-@property (nonatomic) BOOL isShowBorder;    /**< 下注上面显示边框*/
-@property (nonatomic) BOOL isSelectStyle;    /**< 下注六合彩 特码A|特码B 有选中效果*/
-@property (nonatomic) BOOL isGrey;    /**<  下注界面tableCell 背景为灰色*/
-@property (nonatomic) BOOL isYellow;    /**<  下注界面已选中数字为亮黄色*/
-@property (nonatomic) BOOL isBall6;    /**<  下注界面六合彩上面显示为球图*/
-@property (nonatomic) BOOL isLight;    /**<  下注界面背景色变淡*/
-@property (nonatomic) BOOL isCornerRadius;    /**<  首页广告View加圆角*/
-@property (nonatomic) BOOL isFontSystemSize;    /**<  首页导航文字不加粗*/
-@property (nonatomic) BOOL isChatWhite;    /**<  下注界面 投注区，聊天室标题文字为白色*/
-@property (nonatomic) BOOL isHideChat;    /**<  下注界面 投注区，聊天室图片隐藏  显示历史开奖几期*/
+@property (nonatomic) BOOL betOddsIsRed;                        /**<   下注页面赔率显示为红色 */
+@property (nonatomic) BOOL betBgIsWhite;                         /**<   下注页面背景白色 */
+@property (nonatomic) BOOL betSizeIsBig;                         /**<   下注页面Cell大字体 */
+@property (nonatomic,readonly) UIFont *cellBigFont;              /**<   下注页面Cell大字体  [UIFont boldSystemFontOfSize:17];*/
+@property (nonatomic,readonly) UIFont *cellNormalFont;           /**<   下注页面Cel正常l字体  [UIFont systemFontOfSize:14];*/
+@property (nonatomic) float cellNormalFontSize;                  /**<    下注页面Cel正常l字体  14] */
+@property (nonatomic) float borderWidthTimes;                    /**<    下注页面Cel边框宽的倍数 */
+@property (nonatomic) BOOL lotteryHallCustomImgS;                 /**<   彩票大厅自定义图标 */
+@property (nonatomic) BOOL addIcons;                             /**<   投注页面开奖旁边添加 开奖直播 长龙助手 开奖网  */
+@property (nonatomic) BOOL isBA;                                 /**<   六合彩的特码A 和特码B 换一下位置 */
+@property (nonatomic) BOOL isShowLogo;                           /**<  首页中间游戏导航需增加logo图标，游戏导航栏可进行滑动  有左右箭头*/
+@property (nonatomic) BOOL isShowArrow;                          /**<  首页中间游戏导航需增加左右箭头 */
+@property (nonatomic) BOOL isShow4;                              /**<  任务中心显示4个，不显示图片 */
+@property (nonatomic) BOOL isShowWZ;                             /**<  将选填 这两个字更换为  如果没有，可不填写 */
+@property (nonatomic) BOOL isShowJinbei;                         /**<  显示金杯 */
+@property (nonatomic) BOOL isHideText;                           /**<  在线三方支付设置快捷金额后，隐藏掉输入金额那一栏 */
+@property (nonatomic) BOOL isWhite;                              /**<  首页游戏cell加白边 */
+@property (nonatomic) BOOL isBall;                               /**<  下注界面号码显示为球图 */
+@property (nonatomic) BOOL isBorderNavBarBgColor;                /**<  选中底色为navBarBgColor */
+@property (nonatomic) BOOL isShowHornView;                       /**<  六合模板显示喇叭*/
+@property (nonatomic) BOOL isShowBorder;                         /**< 下注上面显示边框*/
+@property (nonatomic) BOOL isSelectStyle;                        /**< 下注六合彩 特码A|特码B 有选中效果*/
+@property (nonatomic) BOOL isGrey;                               /**<  下注界面tableCell 背景为灰色*/
+@property (nonatomic) BOOL isYellow;                             /**<  下注界面已选中数字为亮黄色*/
+@property (nonatomic) BOOL isBall6;                              /**<  下注界面六合彩上面显示为球图*/
+@property (nonatomic) BOOL isLight;                              /**<  下注界面背景色变淡*/
+@property (nonatomic) BOOL isCornerRadius;                       /**<  首页广告View加圆角*/
+@property (nonatomic) BOOL isFontSystemSize;                     /**<  首页导航文字不加粗*/
+@property (nonatomic) BOOL isChatWhite;                           /**<  下注界面 投注区，聊天室标题文字为白色*/
+@property (nonatomic) BOOL isHideChat;                            /**<  下注界面 投注区，聊天室图片隐藏  显示历史开奖几期*/
 
-@property (nonatomic) BOOL isYHShowTitle;    /**<  优惠详情现在titleLabel ,导航条显示：活动详情*/
-@property (nonatomic) BOOL isNoBorder;    /**<  首页优惠活动没有外面的View */
-@property (nonatomic) BOOL isRedWhite;    /**<  下注界面新年红模板样式 红白配色*/
-@property (nonatomic) BOOL oldConversion;    /**<  老的转换界面*/
-@property (nonatomic) BOOL isParagraphSpacing;    /**<  首页公告详情段落有间距*/
-@property (nonatomic) BOOL isFireworks;    /**<  首页cell加烟花背景*/
-
+@property (nonatomic) BOOL isYHShowTitle;                          /**<  优惠详情现在titleLabel ,导航条显示：活动详情*/
+@property (nonatomic) BOOL isNoBorder;                             /**<  首页优惠活动没有外面的View */
+@property (nonatomic) BOOL isRedWhite;                              /**<  下注界面新年红模板样式 红白配色*/
+@property (nonatomic) BOOL oldConversion;                           /**<  老的转换界面*/
+@property (nonatomic) BOOL isParagraphSpacing;                      /**<  首页公告详情段落有间距*/
+@property (nonatomic) BOOL isFireworks;                              /**<  首页cell加烟花背景*/
+@property (nonatomic) BOOL isTabHot;                                 /**< tab聊天室+红包动画*/
 
 
 

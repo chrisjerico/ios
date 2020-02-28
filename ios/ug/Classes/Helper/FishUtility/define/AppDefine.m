@@ -176,6 +176,11 @@
 
 #pragma mark - 定制样式
 
+
+- (BOOL)isTabHot {
+    return [@"c208" containsString:_SiteId];
+}
+
 - (BOOL)isFireworks {
     return [@"c193" containsString:_SiteId];
 }

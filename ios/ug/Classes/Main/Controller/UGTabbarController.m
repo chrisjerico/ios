@@ -30,6 +30,7 @@
 #import "UGBMLotteryHomeViewController.h"   // 黑色模板购彩大厅
 #import "UGYYLotteryHomeViewController.h"   // 购彩大厅
 #import "UGBMLoginViewController.h"         // 黑色模板登录页
+#import "LotteryBetAndChatVC.h"             // 聊天室
 //======================================================
 #import "UGLHMineViewController.h"         // 六合模板我的
 #import "UGSystemConfigModel.h"
@@ -38,7 +39,7 @@
 #import "cc_runtime_property.h"
 #import "UGMessageModel.h"
 
-
+#import "FLAnimatedImageView.h"
 
 
 @implementation UIViewController (CanPush)
@@ -201,7 +202,22 @@ static UGTabbarController *_tabBarVC = nil;
 				v.layer.borderWidth = 0.7;
 				v.layer.borderColor = APP.TextColor2.CGColor;
 				v.backgroundColor = [UIColor clearColor];
+                v.tagString = [NSString stringWithFormat:@"view_%d",i];
 				v.hidden = true;
+                {
+                    FLAnimatedImageView*  imgView = [[FLAnimatedImageView alloc] initWithFrame:v.bounds];
+                    imgView.contentMode = UIViewContentModeScaleAspectFit;
+                    imgView.tagString = [NSString stringWithFormat:@"ImageView_%d",i];
+                    [imgView sd_setImageWithURL:[[NSBundle mainBundle] URLForResource:@"redbag_act" withExtension:@"gif"]];
+                    [v addSubview:imgView];
+                    [imgView mas_makeConstraints:^(MASConstraintMaker *make) {
+                        make.right.equalTo(v.mas_right).with.offset(0);
+                        make.top.equalTo(v.mas_top).offset(0);
+                        make.width.mas_equalTo(30);
+                        make.height.mas_equalTo(16);
+                     }];
+                    [imgView setHidden:YES];
+                }
 				[sv addArrangedSubview:v];
 			}
 			sv.hidden = true;
@@ -214,11 +230,16 @@ static UGTabbarController *_tabBarVC = nil;
 			}
 		} error:nil];
 		[self xw_addNotificationForName:UGNotificationWithSkinSuccess block:^(NSNotification * _Nonnull noti) {
-			for (UIView *v in sv.arrangedSubviews) {
-				v.hidden = !([sv.arrangedSubviews indexOfObject:v] < TabBarController1.tabBar.items.count);
-			}
+	
 			BOOL black = Skin1.isBlack;
 			sv.hidden = !black;
+            for (UIView *v in sv.arrangedSubviews) {
+                v.hidden = !([sv.arrangedSubviews indexOfObject:v] < TabBarController1.tabBar.items.count);
+                if (APP.isTabHot&&!Skin1.isBlack) {
+                    v.layer.borderWidth = 0;
+                    sv.hidden = NO;
+                }
+            }
 			[TabBarController1 setTabbarHeight:black ? 53 : 50];
 		}];
 	}
@@ -299,40 +320,44 @@ static UGTabbarController *_tabBarVC = nil;
  *  添加子控制器
  */
 - (void)resetUpChildViewController:(NSArray<UGMobileMenu *> *)menus {
-	NSMutableArray <UIViewController *>*vcs = [NSMutableArray new];
-	NSMutableArray *mms = @[].mutableCopy;
-	for (UGMobileMenu *mm in menus) {
-		if (![[UGMobileMenu allMenus] objectWithValue:mm.path keyPath:@"path"]) {
-			continue;
-		}
-		
-		// 判断优惠活动展示在首页还是内页（c001显示在内页）
-		if ([mm.clsName isEqualToString:[UGPromotionsController className]] && SysConf.m_promote_pos && ![APP.SiteId isEqualToString:@"c001"] && !Skin1.isBlack)
-			continue;
-		
-		// 已存在的控制器不需要重新初始化
-		BOOL existed = false;
-		for (UINavigationController *nav in self.viewControllers) {
-			if ([nav.viewControllers.firstObject isKindOfClass:NSClassFromString(mm.clsName)]) {
-				[vcs addObject:nav];
-				[mms addObject:mm];
-				existed = true;
-				break;
-			}
-		}
-		if (existed)
-			continue;
-		
-		// 初始化控制器
-		// （这里加载了一个假的控制器，在 tabBarController:shouldSelectViewController: 函数才会加载真正的控制器）
-		UIViewController *vc = [UIViewController new];
+    NSMutableArray <UIViewController *>*vcs = [NSMutableArray new];
+    NSMutableArray *mms = @[].mutableCopy;
+    for (UGMobileMenu *mm in menus) {
+        if (![[UGMobileMenu allMenus] objectWithValue:mm.path keyPath:@"path"]) {
+            continue;
+        }
+        
+        // 判断优惠活动展示在首页还是内页（c001显示在内页）
+        if ([mm.clsName isEqualToString:[UGPromotionsController className]] && SysConf.m_promote_pos && ![APP.SiteId isEqualToString:@"c001"] && !Skin1.isBlack)
+            continue;
+        
+        
+        
+        // 已存在的控制器不需要重新初始化
+        BOOL existed = false;
+        for (UINavigationController *nav in self.viewControllers) {
+            if ([nav.viewControllers.firstObject isKindOfClass:NSClassFromString(mm.clsName)]) {
+                [vcs addObject:nav];
+                [mms addObject:mm];
+                existed = true;
+                break;
+            }
+        }
+        if (existed)
+            continue;
+        
+
+        
+        // 初始化控制器
+        // （这里加载了一个假的控制器，在 tabBarController:shouldSelectViewController: 函数才会加载真正的控制器）
+        UIViewController *vc = [UIViewController new];
         vc.title = mm.name;
-		UGNavigationController *nav = [[UGNavigationController alloc] initWithRootViewController:vc];
+        UGNavigationController *nav = [[UGNavigationController alloc] initWithRootViewController:vc];
         nav.view.backgroundColor = Skin1.bgColor;
         nav.tabBarItem.title = mm.name;
         nav.tabBarItem.image = [UIImage imageNamed:mm.defaultImgName];
         nav.tabBarItem.selectedImage = [[UIImage imageNamed:mm.defaultImgName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-//        NSLog(@"mm.defaultImgName = %@",mm.defaultImgName);
+        //        NSLog(@"mm.defaultImgName = %@",mm.defaultImgName);
         [[SDWebImageManager sharedManager] diskImageExistsForURL:[NSURL URLWithString:mm.icon] completion:^(BOOL isInCache) {
             if (isInCache) {
                 UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:mm.icon]]];
@@ -341,20 +366,34 @@ static UGTabbarController *_tabBarVC = nil;
                 nav.tabBarItem.selectedImage = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             }
         }];
-		[vcs addObject:nav];
-		[mms addObject:mm];
-	}
-	if (vcs.count > 2) {
-		self.viewControllers = vcs;
-		self.mms = mms;
-		[self setTabbarStyle];
-		[self tabBarController:self shouldSelectViewController:vcs.firstObject];
-	}
+        [vcs addObject:nav];
+        [mms addObject:mm];
+    }
+    if (vcs.count > 2) {
+        self.viewControllers = vcs;
+        self.mms = mms;
+        [self setTabbarStyle];
+        [self tabBarController:self shouldSelectViewController:vcs.firstObject];
+    }
+    
+    if (APP.isTabHot) {
+        for (int i = 0; i<mms.count; i++) {
+            UGMobileMenu *mm = [mms objectAtIndex:i];
+            if ([mm.clsName isEqualToString:[LotteryBetAndChatVC className]] ){
+                UIStackView *sv = [TabBarController1.tabBar viewWithTagString:@"描边StackView"];
+                NSString *tagStr = [NSString stringWithFormat:@"ImageView_%d",i];
+                FLAnimatedImageView*  imgView = (FLAnimatedImageView *)[sv viewWithTagString:tagStr];
+                [imgView setHidden:NO];
+                
+            }
+        }
+    }
+   
 }
 
 - (void)setSelectedIndex:(NSUInteger)selectedIndex {
-	if (selectedIndex < self.viewControllers.count) {
-		if ([self tabBarController:self shouldSelectViewController:self.viewControllers[selectedIndex]]) {
+    if (selectedIndex < self.viewControllers.count) {
+        if ([self tabBarController:self shouldSelectViewController:self.viewControllers[selectedIndex]]) {
             // 修复切换SelectedIndex后tabBar不显示bug
             UINavigationController *currentNav = self.selectedViewController;
             UINavigationController *nextNav = self.viewControllers[selectedIndex];
@@ -368,8 +407,8 @@ static UGTabbarController *_tabBarVC = nil;
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [super setSelectedIndex:selectedIndex];
             });
-		}
-	}
+        }
+    }
 }
 
 
@@ -407,6 +446,9 @@ static UGTabbarController *_tabBarVC = nil;
 			}];
 			nav.viewControllers = @[vc];
 			tabBarController.selectedViewController = nav;
+            
+
+           
 		}];
 		return false;
 	}

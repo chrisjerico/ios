@@ -1284,6 +1284,7 @@ static UGSkinManagers *__initSkin1 = nil;
 //	skitType = @"经典 1蓝色";
 //        skitType = @"石榴红";
 //        skitType = @"简约模板1";
+//            skitType = @"黑色模板";
 #endif
 	return [UGSkinManagers allSkin][skitType];
 
