@@ -113,7 +113,7 @@ static NSString *missionCellid = @"UGMissionTableViewCell";
 #pragma mark -- 网络请求
 
 
-//得到日期列表数据
+//得到列表数据
 - (void)getCenterData {
     if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
         return;

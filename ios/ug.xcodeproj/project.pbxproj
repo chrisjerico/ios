@@ -416,10 +416,6 @@
 		031E1AC723BE812800B0F813 /* WMTabControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E157123BE812300B0F813 /* WMTabControl.m */; };
 		031E1AC823BE812800B0F813 /* YLEdgeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E157223BE812300B0F813 /* YLEdgeLabel.m */; };
 		031E1AC923BE812800B0F813 /* YLEdgeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E157223BE812300B0F813 /* YLEdgeLabel.m */; };
-		031E1ACA23BE812800B0F813 /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E157623BE812300B0F813 /* HMSegmentedControl.m */; };
-		031E1ACB23BE812800B0F813 /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E157623BE812300B0F813 /* HMSegmentedControl.m */; };
-		031E1ACC23BE812800B0F813 /* XYYSegmentControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E157723BE812300B0F813 /* XYYSegmentControl.m */; };
-		031E1ACD23BE812800B0F813 /* XYYSegmentControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E157723BE812300B0F813 /* XYYSegmentControl.m */; };
 		031E1ACE23BE812800B0F813 /* TGWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E157E23BE812300B0F813 /* TGWebViewController.m */; };
 		031E1ACF23BE812800B0F813 /* TGWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E157E23BE812300B0F813 /* TGWebViewController.m */; };
 		031E1AD023BE812800B0F813 /* NSTimer+addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E157F23BE812300B0F813 /* NSTimer+addition.m */; };
@@ -2337,10 +2333,6 @@
 		031E157023BE812300B0F813 /* WMDropDownView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDropDownView.m; sourceTree = "<group>"; };
 		031E157123BE812300B0F813 /* WMTabControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMTabControl.m; sourceTree = "<group>"; };
 		031E157223BE812300B0F813 /* YLEdgeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLEdgeLabel.m; sourceTree = "<group>"; };
-		031E157423BE812300B0F813 /* HMSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMSegmentedControl.h; sourceTree = "<group>"; };
-		031E157523BE812300B0F813 /* XYYSegmentControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYYSegmentControl.h; sourceTree = "<group>"; };
-		031E157623BE812300B0F813 /* HMSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMSegmentedControl.m; sourceTree = "<group>"; };
-		031E157723BE812300B0F813 /* XYYSegmentControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYYSegmentControl.m; sourceTree = "<group>"; };
 		031E157823BE812300B0F813 /* CheckParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckParameter.h; sourceTree = "<group>"; };
 		031E157923BE812300B0F813 /* WKProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKProxy.h; sourceTree = "<group>"; };
 		031E157B23BE812300B0F813 /* NSTimer+addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+addition.h"; sourceTree = "<group>"; };
@@ -4021,7 +4013,6 @@
 				D435F8FF23CEF940008648CE /* KMCGeigerCounter */,
 				D4F0411423C868E20070D2B5 /* WHC_SqliteKit */,
 				031E155223BE812300B0F813 /* segmentListControl */,
-				031E157323BE812300B0F813 /* XYYSegmentControl */,
 				031E157A23BE812300B0F813 /* TGWebController */,
 				031E158123BE812300B0F813 /* SRActionSheet */,
 				031E158423BE812300B0F813 /* WSLWaterFlowLayout */,
@@ -4765,17 +4756,6 @@
 				031E157123BE812300B0F813 /* WMTabControl.m */,
 			);
 			path = UpList;
-			sourceTree = "<group>";
-		};
-		031E157323BE812300B0F813 /* XYYSegmentControl */ = {
-			isa = PBXGroup;
-			children = (
-				031E157423BE812300B0F813 /* HMSegmentedControl.h */,
-				031E157623BE812300B0F813 /* HMSegmentedControl.m */,
-				031E157523BE812300B0F813 /* XYYSegmentControl.h */,
-				031E157723BE812300B0F813 /* XYYSegmentControl.m */,
-			);
-			path = XYYSegmentControl;
 			sourceTree = "<group>";
 		};
 		031E157A23BE812300B0F813 /* TGWebController */ = {
@@ -8962,7 +8942,6 @@
 				031E1BC323BE812900B0F813 /* UGOnlineWithdrawalsView.m in Sources */,
 				031EF52F23BE7B4D00B0F813 /* FileDownloadAPI.swift in Sources */,
 				031E1E7B23BE812C00B0F813 /* UGCalenderAlertView.m in Sources */,
-				031E1ACD23BE812800B0F813 /* XYYSegmentControl.m in Sources */,
 				031E194F23BE812600B0F813 /* LHGalleryListVC2.m in Sources */,
 				031E19C123BE812700B0F813 /* NSObject+XWAdd.m in Sources */,
 				031EF52923BE7B4D00B0F813 /* UserApi.swift in Sources */,
@@ -9414,7 +9393,6 @@
 				031E1E8723BE812D00B0F813 /* UGYUbaoTitleView.m in Sources */,
 				031E1D0523BE812A00B0F813 /* JSONValueTransformer.m in Sources */,
 				031E1D6723BE812B00B0F813 /* UGgoBindViewController.m in Sources */,
-				031E1ACB23BE812800B0F813 /* HMSegmentedControl.m in Sources */,
 				031E1A2B23BE812700B0F813 /* UITableView+LSEmpty.m in Sources */,
 				031E1AA323BE812800B0F813 /* ZZCircleProgress.m in Sources */,
 				031E1CF123BE812A00B0F813 /* SVProgressHUD.m in Sources */,
@@ -9750,7 +9728,6 @@
 				031E1D1023BE812B00B0F813 /* JSONHTTPClient.m in Sources */,
 				031E1C4E23BE812A00B0F813 /* UGSegmentView.m in Sources */,
 				031E1C4823BE812900B0F813 /* UGTimeLotteryLeftTitleCell.m in Sources */,
-				031E1ACA23BE812800B0F813 /* HMSegmentedControl.m in Sources */,
 				031E1B5823BE812800B0F813 /* UGredEnvelopeView.m in Sources */,
 				03A5D38B23C051DB0055A998 /* JS_HomeGameColletionCell_1.m in Sources */,
 				031E1C5C23BE812A00B0F813 /* UGhomeRecommendCollectionViewCell.m in Sources */,
@@ -9824,7 +9801,6 @@
 				031E1B5E23BE812800B0F813 /* UGBackToastView.m in Sources */,
 				031E1C4223BE812900B0F813 /* UGPK10SubResultCollectionViewCell.m in Sources */,
 				031E1A5023BE812700B0F813 /* CMLabelCommon.m in Sources */,
-				031E1ACC23BE812800B0F813 /* XYYSegmentControl.m in Sources */,
 				031E1D0A23BE812A00B0F813 /* JSONModelError.m in Sources */,
 				031E195023BE812600B0F813 /* UGSearchPostVC.m in Sources */,
 				031E1C7623BE812A00B0F813 /* UGRechargeLogsModel.m in Sources */,
