@@ -4,14 +4,12 @@ ${BUILT_PRODUCTS_DIR}/BAWKWebView/BAWKWebView.framework
 ${BUILT_PRODUCTS_DIR}/BRPickerView/BRPickerView.framework
 ${BUILT_PRODUCTS_DIR}/DLPickerView/DLPickerView.framework
 ${BUILT_PRODUCTS_DIR}/DateTools/DateTools.framework
-${BUILT_PRODUCTS_DIR}/FLAnimatedImage/FLAnimatedImage.framework
 ${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework
 ${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework
 ${BUILT_PRODUCTS_DIR}/LEEAlert/LEEAlert.framework
 ${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework
 ${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework
 ${BUILT_PRODUCTS_DIR}/RegExCategories/RegExCategories.framework
-${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework
 ${BUILT_PRODUCTS_DIR}/SGBrowserView/SGBrowserView.framework
 ${BUILT_PRODUCTS_DIR}/SGQRCode/SGQRCode.framework
 ${BUILT_PRODUCTS_DIR}/STPickerView/STPickerView.framework

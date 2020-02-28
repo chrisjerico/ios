@@ -17,8 +17,8 @@
     
     // 热更新测试
 //    {
-//        Path.gitVersion = @"1.2.31";
-//        NSString *log = @"热更新发包测试，热更新发包测试，热更新发包测试，热更新发包测试，热更新发包测试31，";    // 更新日志
+//        Path.gitVersion = @"1.2.34";
+//        NSString *log = @"热更新发包测试，热更新发包测试，热更新发包测试，热更新发包测试，热更新发包测试34，";    // 更新日志
 //        [self login:^{
 //            [self postHotUpdate:log];
 //        }];
@@ -28,7 +28,7 @@
 
     BOOL isPack = ![NSUserName() isEqualToString:@"fish"];  // 0全站提交热更新，1批量打包上传APP后台
     NSLog(@"isPack = %d",isPack);
- 
+    isPack = 1;
     // 拉取最新代码
     [ShellHelper pullCode:Path.projectDir completion:^{
         Path.commitId = [[NSString stringWithContentsOfFile:Path.tempCommitId encoding:NSUTF8StringEncoding error:nil] stringByReplacingOccurrencesOfString:@"\n" withString:@""];

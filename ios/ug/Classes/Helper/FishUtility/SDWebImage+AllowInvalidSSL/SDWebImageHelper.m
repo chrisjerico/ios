@@ -16,15 +16,21 @@
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [UIImageView jr_swizzleMethod:@selector(sd_setImageWithURL:placeholderImage:options:progress:completed:) withMethod:@selector(cc_sd_setImageWithURL:placeholderImage:options:progress:completed:) error:nil];
+        [UIImageView jr_swizzleMethod:@selector(sd_setImageWithURL:placeholderImage:options:context:progress:completed:) withMethod:@selector(cc_sd_setImageWithURL:placeholderImage:options:context:progress:completed:) error:nil];
     });
 }
-- (void)cc_sd_setImageWithURL:(nullable NSURL *)url placeholderImage:(nullable UIImage *)placeholder options:(SDWebImageOptions)options progress:(nullable SDWebImageDownloaderProgressBlock)progressBlock completed:(nullable SDExternalCompletionBlock)completedBlock {
+
+- (void)cc_sd_setImageWithURL:(nullable NSURL *)url
+          placeholderImage:(nullable UIImage *)placeholder
+                   options:(SDWebImageOptions)options
+                   context:(nullable SDWebImageContext *)context
+                  progress:(nullable SDImageLoaderProgressBlock)progressBlock
+                 completed:(nullable SDExternalCompletionBlock)completedBlock {
     if (options) {
         options |= SDWebImageAllowInvalidSSLCertificates;
     } else {
         options = SDWebImageAllowInvalidSSLCertificates;
     }
-    [self cc_sd_setImageWithURL:url placeholderImage:placeholder options:options progress:progressBlock completed:completedBlock];
+    [self cc_sd_setImageWithURL:url placeholderImage:placeholder options:options context:context progress:progressBlock completed:completedBlock];
 }
 @end

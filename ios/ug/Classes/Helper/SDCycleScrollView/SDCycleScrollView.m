@@ -480,8 +480,7 @@ NSString * const ID = @"SDCycleScrollViewCell";
 + (void)clearImagesCache
 {
 //    [[[SDWebImageManager sharedManager] imageCache] clearWithCacheType:SDImageCacheTypeDisk completion:nil];
-    
-    [[[SDWebImageManager sharedManager] imageCache] clearDiskOnCompletion:nil];
+    [[SDImageCache sharedImageCache] clearDiskOnCompletion:nil];
 }
 
 #pragma mark - life circles

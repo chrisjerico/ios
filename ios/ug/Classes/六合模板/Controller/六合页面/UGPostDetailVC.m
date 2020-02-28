@@ -579,7 +579,7 @@
         UIImageView *imgView = [cell viewWithTagString:@"图片ImageView"];
         //        imgView.frame = cell.bounds;
         NSURL *url = [NSURL URLWithString:_pm.contentPic[indexPath.item]];
-        UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:url]];
+        UIImage *image = [[SDImageCache sharedImageCache] imageFromCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:url]];
         if (image) {
             imgView.hidden = false;
             [imgView sd_setImageWithURL:url];   // 由于要支持gif动图，还是用sd加载
@@ -667,7 +667,7 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (collectionView == _photoCollectionView) {
-        UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:_pm.contentPic[indexPath.item]]]];
+        UIImage *image = [[SDImageCache sharedImageCache] imageFromCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:_pm.contentPic[indexPath.item]]]];
         if (!image) {
             image = [UIImage imageNamed:@"err"];
         }

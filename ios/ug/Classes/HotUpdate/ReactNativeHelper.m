@@ -22,6 +22,47 @@
 #endif
 
 
+@interface OCSelectorModel : NSObject
+@property (nonatomic, strong) NSString *sel;
+@property (nonatomic, strong) NSString *var;
+@property (nonatomic, assign) BOOL ignoreReturnValue;
++ (OCSelectorModel *)sel:(NSString *)sel;
+@end
+@implementation OCSelectorModel
++ (OCSelectorModel *)sel:(NSString *)sel {
+    OCSelectorModel *sm = [OCSelectorModel new];
+    NSString *var = sm.var = [[sel componentsSeparatedByString:@"{"].lastObject componentsSeparatedByString:@"}"].firstObject;
+    sm.sel = [sel stringByReplacingOccurrencesOfString:_NSString(@"{%@}", var) withString:@""];
+    return nil;
+}
+@end
+
+
+@interface OCFuncModel : NSObject
+@property (nonatomic, strong) NSString *objKey;
+@property (nonatomic, strong) NSString *selectors;
+@property (nonatomic, strong) NSArray *args1;
+@property (nonatomic, strong) NSArray *args2;
+@property (nonatomic, strong) NSArray *args3;
+@property (nonatomic, strong) NSArray *args4;
+@property (nonatomic, strong) NSArray *args5;
+@property (nonatomic, strong) NSArray *args6;
+@property (nonatomic, strong) NSArray *args7;
+@property (nonatomic, strong) NSArray *args8;
+@property (nonatomic, strong) NSArray *args9;
+@property (nonatomic, readonly) NSArray <OCSelectorModel *> *sels;
+- (NSArray *)argsWithIndex:(unsigned int)idx;
+@end
+@implementation OCFuncModel
++ (NSDictionary *)mj_replacedKeyFromPropertyName {
+    return @{@"objKey":@"obj"};
+}
+- (NSArray *)argsWithIndex:(unsigned int)idx {
+    return idx < 9 ? [self valueForKey:_NSString(@"args%d", idx+1)] : nil;
+}
+@end
+
+
 
 @interface CodePushConfig (CodePushSetup)
 @end
@@ -172,38 +213,116 @@ RCT_EXPORT_METHOD(callback:(NSString *)key params:(id)params) {
 // 注册js函数 performSelectors:returnValue:
 RCT_EXPORT_METHOD(performSelectors:(NSArray <NSDictionary *>*)selectors resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
     dispatch_sync(dispatch_get_main_queue(), ^{
-        id (^invoke)(NSArray <NSDictionary *>*) = nil;
-        id (^__block __getArg)(NSArray <NSDictionary *>*) = invoke = ^id (NSArray <NSDictionary *>*selectors) {
-            
-            id ret = NSClassFromString(selectors.firstObject[@"class"]);
-            for (NSDictionary *dict in selectors) {
+        
+        // 保存函数链点返回值做为变量
+        NSMutableDictionary *varDict1 = @{}.mutableCopy;
+        
+        id (^__block __getArg)(OCFuncModel *) = nil;
+        
+        id (^convertArgs)(id) = nil;
+        id (^__block __sub)(id) = convertArgs = ^id (id obj) {
+            if ([obj isKindOfClass:[NSArray class]]) {
+                NSMutableArray *temp = @[].mutableCopy;
+                for (id ele in (NSArray *)obj) {
+                    [temp addObject:__sub(ele)];
+                }
+                return temp;
+            }
+            else if ([obj isKindOfClass:[NSDictionary class]]) {
+                NSMutableDictionary *temp = @{}.mutableCopy;
+                for (NSString *key in ((NSDictionary *)obj).allKeys) {
+                    temp[key] = __sub(obj[key]);
+                }
                 
-                // 参数是函数返回值的情况处理
-                NSMutableArray *argArray = [dict[@"args"] mutableCopy];
-                for (int i=0; i<argArray.count; i++) {
-                    id arg = argArray[i];
-                    if ([arg isKindOfClass:[NSDictionary class]] && dict[@"class"] && arg[@"selector"]) {
-                        argArray[i] = __getArg(@[arg]);
-                    } else if ([arg isKindOfClass:[NSArray class]] && [arg firstObject][@"class"] && [arg firstObject][@"selector"]) {
-                        argArray[i] = __getArg(arg);
+                // OCFuncModel->函数返回值
+                NSString *selector = temp[@"selectors"];
+                if (selector) {
+                    return __getArg([OCFuncModel mj_objectWithKeyValues:temp]);
+                }
+                // NSDictionary->Model
+                Class cls = NSClassFromString(temp[@"clsName"]);
+                if (cls) {
+                    return [cls mj_objectWithKeyValues:temp];
+                }
+                return temp;
+            }
+            else if ([obj isKindOfClass:[NSString class]]) {
+                return varDict1[obj] ? : obj;
+            }
+            return obj;
+        };
+        
+        
+        id (^invoke)(OCFuncModel *) = nil;
+        __getArg = invoke = ^id (OCFuncModel *fm) {
+            
+            // 保存用‘大括号’括起来的变量
+            NSMutableDictionary *varDict2 = @{}.mutableCopy;
+            int argsIndex = 0;
+            id lastRet = nil;
+            
+            // 用‘分号’拆分函数
+            NSArray *selectors = [fm.selectors componentsSeparatedByString:@";"];
+            for (NSString *selector in selectors) {
+                // 用‘点号’、‘中括号’进一步拆分函数
+                NSMutableArray <NSDictionary <NSString *, NSNumber *>*>*sels = @[].mutableCopy;
+                for (NSString *path in [selector componentsSeparatedByString:@"."]) {
+                    if (!path.length)
+                        continue;
+                    for (NSString *sel in [path componentsSeparatedByString:@"["]) {
+                        [sels addObject:@{[sel stringByReplacingOccurrencesOfString:@"]" withString:@""]:@([sel containsString:@"]"])}];
                     }
                 }
                 
-                // 调用函数
-                NSString *path = dict[@"selector"];
-                if ([path containsString:@"."]) {
-                    NSArray *paths = [path componentsSeparatedByString:@"."];
-                    for (int i=0; i<paths.count; i++) {
-                        ret = [ret performSelector:NSSelectorFromString(paths[i]) argArray:(i < paths.count - 1 ? nil : argArray)];
+                // 执行函数
+                id ret = nil;
+                if ([selector hasPrefix:@"."]) {
+                    ret = varDict1[fm.objKey];
+                }
+                
+                for (NSDictionary *dict in sels) {
+                    NSString *sel = dict.allKeys.firstObject;
+                    BOOL ignoreReturnValue = [dict[sel] boolValue];
+                    if (!ret) {
+                        ret = NSClassFromString(sel) ? : nil;
+                        ret = varDict2[sel] ? : ret;
+                        if (ret) {
+                            continue;
+                        } else {
+                            break;
+                        }
                     }
-                } else {
-                    ret = [ret performSelector:NSSelectorFromString(dict[@"selector"]) argArray:argArray];
+                    
+                    NSString *var = [sel containsString:@"{"] ? [[sel componentsSeparatedByString:@"{"].lastObject componentsSeparatedByString:@"}"].firstObject : nil;
+                    sel = [sel stringByReplacingOccurrencesOfString:_NSString(@"{%@}", var) withString:@""];
+                    NSArray *argArray = [sel containsString:@":"] ? [fm argsWithIndex:argsIndex++] : nil;
+                    
+                    // 转换参数：NSDictionary->Model、OCFuncModel->函数返回值
+                    argArray = convertArgs(argArray);
+                    
+                    id temp = [ret performSelector:NSSelectorFromString(sel) argArray:argArray];
+                    // 返回值
+                    if (!ignoreReturnValue) {
+                        lastRet = ret = temp;
+                    }
+                    // 保存变量
+                    if (var.length) {
+                        varDict2[ret] = temp;
+                    }
                 }
             }
-            return ret;
+            return lastRet;
         };
+        
+        // 遍历函数链（一条函数链能执行多个函数）
+        for (NSDictionary *d in selectors) {
+            NSString *varKey = _NSString(@"OCFuncVariable.%@", d.allKeys.firstObject);
+            OCFuncModel *fm = [OCFuncModel mj_objectWithKeyValues:d[d.allKeys.firstObject]];
+            varDict1[varKey] = invoke(fm);
+        }
+        
         // 开始执行函数，返回结果做数据转换(NSDictionary)
-        resolve([invoke(selectors) rn_keyValues]);
+        resolve([varDict1[@"OCFuncVariable.ret"] rn_keyValues]);
     });
 }
 

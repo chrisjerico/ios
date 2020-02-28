@@ -11,12 +11,13 @@ import HomePageVC from "./模板/默认/HomePageVC";
 import React, { Component } from "react";
 import { AppRegistry, View, Text } from "react-native";
 import { Button } from "react-native-elements";
-import UGSysConfModel from "./Model/六合/UGSysConfModel";
+import UGSysConfModel from "./Model/UGSysConfModel";
+import UGPromotionsController from "./模板/默认/UGPromotionsController";
 
 class Home2 extends Component {
   render() {
     return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <View style={{ flex: 1, alignItems: "center", justifyContent: "center"}}>
         <Button
           style={{ backgroundColor: "balck", height: 100, width: 100 }}
           title="3333"
@@ -54,12 +55,13 @@ class TabBarController extends Component<IProps> {
     var { navigation } = this.props;
     AppDefine.navController = navigation;
   }
+
   render() {
     return (
-      <Tab.Navigator initialRouteName="UpdateVersionVC" screenOptions={{}}>
+      <Tab.Navigator initialRouteName="UpdateVersionVC" screenOptions={{ tabBarVisible: false }}>
         <Tab.Screen name="Home3" component={HomePageVC} options={{}} />
         <Tab.Screen name="Home2" component={Home2} options={{}} />
-        <Tab.Screen name="UGPromoteDetailController" component={HomeScreen} options={{}} />
+        <Tab.Screen name="UGPromotionsController" component={UGPromotionsController} options={{}} />
         <Tab.Screen name="UpdateVersionVC" component={UpdateVersionVC} options={{}} />
       </Tab.Navigator>
     );
@@ -72,7 +74,7 @@ class Root extends Component {
     return (
       <NavigationContainer ref={AppDefine.navigationRef}>
         <Stack.Navigator headerMode="screen">
-          <Stack.Screen name="Tabbar" component={TabBarController} />
+          <Stack.Screen name="Tabbar" component={TabBarController} options={{ headerStyle: { backgroundColor: "#48A9D8" }, headerTintColor: "white" }} />
         </Stack.Navigator>
       </NavigationContainer>
     );
@@ -89,6 +91,11 @@ AppDefine.setup();
 AppDefine.ocBlocks["UGSystemConfigModel.currentConfig"] = sysConf => {
   if (sysConf) {
     UGSysConfModel.current = sysConf;
+    // 配置替换rn的页面
     AppDefine.setRnPageInfo();
+    // 设置主题色
+    AppDefine.ocCall("UGSkinManagers.currentSkin.navBarBgColor.hexString").then(color => {
+      AppDefine.themeColor = `#${color}`;
+    });
   }
 };

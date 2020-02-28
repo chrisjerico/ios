@@ -21,7 +21,9 @@
     #import "Aspects.h"                 // 方法交换
     #import "UIImageView+WebCache.h"    // SDWebImage
     #import "UIButton+WebCache.h"       // SDWebImage
-    #import "UIImage+GIF.h"             // SDWebImage
+    #import "SDImageCache.h"            // SDWebImage
+    #import "SDAnimatedImageView.h"     // SDWebImage
+    #import "UIImage+Metadata.h"        // SDWebImage
     #import "MJExtension.h"             // 字典转模型
     #import "DateTools.h"               // 日期
     #import "Masonry.h"                 // 约束

@@ -1,9 +1,7 @@
 // import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import React, { Component } from "react";
-import { Button } from 'react-native-elements';
+import { Button } from "react-native-elements";
 import { TouchableOpacity, Text } from "react-native";
-
-
 
 // 下划线
 export class UGLine extends Component {
@@ -12,8 +10,14 @@ export class UGLine extends Component {
   }
 }
 
+export class UGButton2 extends Component {
+  render() {
+    return <Button title="这是标题" />;
+  }
+}
+
 export function UGButton() {
-  return <Button></Button>;
+  return <Button title="这是标题" />;
 }
 // // label
 // export class UGLabel extends Component<{ text: string }> {
@@ -26,3 +30,6 @@ export function UGButton() {
 //     );
 //   }
 // }
+
+
+

@@ -101,7 +101,7 @@
     NSString *url = [CMCommon imgformat: SysConf.mobile_logo];
     [self.headerImageV sd_setImageWithURL:[NSURL URLWithString:url]];
     
-    UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:url]]];
+    UIImage *image = [[SDImageCache sharedImageCache] imageFromCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:url]]];
     if (image) {
           
                CGFloat w = APP.Width - 60;

@@ -1,5 +1,6 @@
 import CCSessionModel from "./CCSessionModel";
 import AppDefine from "../通用/AppDefine";
+import { UGPromoteListModel } from "../Model/常规/UGPromoteModel";
 
 export default class NetworkRequest1 {
   // 获取下一期开奖数据
@@ -9,7 +10,7 @@ export default class NetworkRequest1 {
 
   // 获取首页游戏列表
   static game_homeGames(): Promise<void> {
-    return CCSessionModel.req("c=game&a=homeGames", {}, false);
+    return CCSessionModel.req("c=game&a=homeGames");
   }
 
   // 获取帖子详情
@@ -25,6 +26,16 @@ export default class NetworkRequest1 {
     rows: number = AppDefine.pageCount // 每页条数
   ): Promise<void> {
     return CCSessionModel.req("c=lhcdoc&a=contentReplyList", { contentId: contentId, replyPId: replyPId, page: page, rows: rows }, false);
+  }
+
+  // 获取分类的优惠活动
+  static system_getPromotionsType() {
+    return CCSessionModel.req("c=system&a=getPromotionsType");
+  }
+
+  // 获取首页优惠活动
+  static systeam_promotions():Promise<UGPromoteListModel> {
+    return CCSessionModel.req('c=system&a=promotions');
   }
 
   // 游客登录

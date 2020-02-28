@@ -32,6 +32,7 @@ export default class UpdateVersionVC extends Component<IProps, IState> {
 
     // 必须在注册监听之后执行
     AppDefine.ocHelper.launchFinish();
+    // AppDefine.ocCall("UGNavigationController.current.popViewControllerAnimated:", [true]);
   }
 
   updateJspatch() {
@@ -40,7 +41,7 @@ export default class UpdateVersionVC extends Component<IProps, IState> {
       .then(localPackage => {
         console.log("rn版本号为：" + localPackage.description);
         // 开始更新jspatch
-        AppDefine.ocCall("JSPatchHelper", "updateVersion:progress:completion:", [localPackage.description]);
+        AppDefine.ocCall("JSPatchHelper.updateVersion:progress:completion:", [localPackage.description]);
         AppDefine.ocBlocks["jsp下载进度"] = (progress: number) => {
           this.setState({ jspProgress: progress });
         };
@@ -49,7 +50,7 @@ export default class UpdateVersionVC extends Component<IProps, IState> {
           if (ret) {
             console.log("更新成功，重启APP生效");
             // 弹框提示。。。
-            // AppDefine.ocCall("ReactNativeHelper", "exit");
+            // AppDefine.ocCall("ReactNativeHelper.exit");
           } else {
             console.log("jsp下载失败");
             // 弹框让用户去外部链接下载
