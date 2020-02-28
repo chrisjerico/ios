@@ -25,13 +25,15 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *missionName;    /**<   任务标题 */
 @property (nonatomic, strong) NSString *missionPlayed;
 @property (nonatomic, strong) NSString *missionReal;
-@property (nonatomic, assign) NSInteger missionType;    /**<   任务类型 */
+@property (nonatomic, assign) NSInteger missionType;        /**<   任务类型 */
+
 @property (nonatomic, strong) NSString *money;
 @property (nonatomic, strong) NSString *nums;
 @property (nonatomic, strong) NSString *odds;
 @property (nonatomic, strong) NSString *overTime;       /**<   截止时间 */
 @property (nonatomic, strong) NSString *rechargeId;
 @property (nonatomic, strong) NSString *sortId;         /**<   分类id */
+@property (nonatomic, strong) NSString *sortName;         /**<   分类Name */
 @property (nonatomic, strong) NSString *sorts;
 @property (nonatomic, strong) NSString *startTime;
 @property (nonatomic, strong) NSString* status;         /**<   0 待领任务 1 待完成 3 待领取奖励 2 已完成 */

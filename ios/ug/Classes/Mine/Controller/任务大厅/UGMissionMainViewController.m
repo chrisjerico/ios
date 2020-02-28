@@ -27,9 +27,10 @@
     _itemArray =[NSMutableArray new];
     _viewsArray = [NSMutableArray new];
     _disArray = [NSMutableArray new];
+    
     SysConf.homeTypeSelect = @"1";
     if ([SysConf.homeTypeSelect isEqualToString:@"1"]) {
-            [self getCenterData];
+        [self getCenterData];
     }
     else{
         UGMissionListController * realView  = [[UGMissionListController alloc] initWithStyle:UITableViewStyleGrouped];
@@ -45,19 +46,20 @@
     
 }
 
-
 //得到列表数据
 - (void)getCenterData {
     if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
         return;
     }
     NSDictionary *params = [NSDictionary new];
-
+    
     params = @{@"token":[UGUserModel currentUser].sessid,
                @"page":@"1",
                @"rows":@"1000",
                
     };
+    
+    
     [SVProgressHUD showWithStatus:nil];
     WeakSelf;
     [CMNetwork centerWithParams:params completion:^(CMResult<id> *model, NSError *err) {
@@ -66,43 +68,47 @@
             [SVProgressHUD dismiss];
             NSDictionary *data =  model.data;
             NSArray *list = [data objectForKey:@"list"];
-//            NSLog(@"list = %@",list);
-
+            NSLog(@"list = %@",list);
+            
             NSMutableArray * dataArray = [UGMissionModel arrayOfModelsFromDictionaries:list error:nil];
             
+            
             NSMutableArray *typeArray = [NSMutableArray new];
+            
+            //去除数组中重复sortId数据，得到多少任务类型
+            NSMutableArray *sortArray = [NSMutableArray new];
             for (UGMissionModel *object in dataArray) {
-                NSMutableDictionary *dic = [NSMutableDictionary new];
-                [dic setValue:object.sortId forKey:@"sortId"];
-                [dic setValue:object.sortId forKey:@"sortName"];
                 
-                [typeArray addObject:dic];
-            }
- 
-            for (NSMutableDictionary *dd in typeArray) {
-                NSMutableArray *typeDataArray = [NSMutableArray new];
-                if (![dd objectForKey:@"typeData"]) {
-                    [dd setValue:typeDataArray forKey:@"typeData"];
+                if (![sortArray containsObject:object.sortId]) {
+                    [sortArray addObject:object.sortId];
                 }
             }
             
+            for (NSString *sortStr in sortArray) {
+                NSMutableDictionary *dic = [NSMutableDictionary new];
+                [dic setValue:sortStr forKey:@"sortId"];
+                NSMutableArray *typeDataArray = [NSMutableArray new];
+                if (![dic objectForKey:@"typeData"]) {
+                    [dic setValue:typeDataArray forKey:@"typeData"];
+                }
+                [typeArray addObject:dic];
+            }
             
+            //全部数据组装
             for (UGMissionModel *object in dataArray) {
-                for (NSMutableDictionary *dd in typeArray) {
-                    NSString *sortid =  [dd objectForKey:@"sortId"];
-                    NSMutableArray *typeDataArray = [dd objectForKey:@"typeData"];
-                    
-                    if ([sortid isEqualToString:object.sortId]) {
-                        if (![typeDataArray containsObject:object]) {
-                              [typeDataArray addObject:object];
-                        }
+                
+                for (NSMutableDictionary *dic in typeArray) {
+                    if ([dic[@"sortId"] isEqualToString:object.sortId]) {
+                        [dic setValue:object.sortName forKey:@"sortName"];
+                        NSMutableArray *typeDataArray = dic[@"typeData"];
+                        [typeDataArray addObject:object];
                     }
                 }
             }
             
             for (NSMutableDictionary *dd in typeArray) {
-//                NSLog(@"name = %@",[dd objectForKey:@"name"]);
-//                NSLog(@"typeData = %@",[dd objectForKey:@"typeData"]);
+                NSLog(@"sortName = %@",[dd objectForKey:@"sortName"]);
+                NSLog(@"typeData = %@",[dd objectForKey:@"typeData"]);
                 if (![CMCommon arryIsNull:[dd objectForKey:@"typeData"]]) {
                     [weakSelf.disArray addObject:dd];
                 }
@@ -110,20 +116,24 @@
             
             if (![CMCommon arryIsNull:weakSelf.disArray]) {
                 for (NSMutableDictionary *dd in weakSelf.disArray) {
-                    [weakSelf.itemArray addObject:dd[@"sortName"] ];
+                    if (dd[@"sortName"]) {
+                        [weakSelf.itemArray addObject:dd[@"sortName"] ];
+                    } else {
+                        [weakSelf.itemArray addObject:dd[@"sortId"] ];
+                    }
                     UGMissionListController * realView  = [[UGMissionListController alloc] initWithStyle:UITableViewStyleGrouped]; ;
                     realView.typeid = dd[@"sortId"];
                     [weakSelf.viewsArray addObject:realView];
                 }
                 [weakSelf buildSegment];
             }
-
+            
         } failure:^(id msg) {
             
             [SVProgressHUD showErrorWithStatus:msg];
             
         }];
-
+        
     }];
 }
 
@@ -145,8 +155,7 @@
     //设置tab 背景颜色(可选)
     self.slideSwitchView.tabItemNormalBackgroundColor = [UIColor whiteColor];
     //设置tab 被选中的标识的颜色(可选)
-//    self.slideSwitchView.tabItemSelectionIndicatorColor = RGBA(203, 43, 37, 1.0) ;
-    self.slideSwitchView.tabItemSelectionIndicatorColor = Skin1.navBarBgColor;
+    self.slideSwitchView.tabItemSelectionIndicatorColor = RGBA(203, 43, 37, 1.0) ;
     //设置tab 被选中标识的风格
     self.slideSwitchView.tabSelectionStyle = XYYSegmentedControlSelectionStyleBox;
     
