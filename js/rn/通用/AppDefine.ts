@@ -56,15 +56,14 @@ export default class AppDefine {
     // 配置需要被替换的oc页面（替换成rn）
     var pages = [];
 
-    //
-    // if (1 || UGSysConfModel.current.allowMemberCancelBet) {
+    // 优惠活动列表页
     pages.push({
       vcName: "UGPromotionsController",
       fd_prefersNavigationBarHidden: true,
       允许游客访问: true,
       允许未登录访问: true
     });
-    // }
+
     AppDefine.ocCall("AppDefine.shared.setRnPageInfos:", [pages]);
   }
 
