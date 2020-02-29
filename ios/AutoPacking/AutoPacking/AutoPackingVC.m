@@ -92,7 +92,7 @@
 #pragma mark - 发布热更新
 
 - (void)postHotUpdate:(NSString *)log {
-    if (log.length < 20) {
+    if (log.length < 10) {
         NSLog(@"日志太短，请写详细点。");
         @throw [NSException exceptionWithName:@"日志太短，请写详细点。" reason:@"" userInfo:nil];
     }
