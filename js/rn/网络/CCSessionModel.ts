@@ -14,7 +14,6 @@ interface ResponseObject {
 }
 
 export default class CCSessionModel {
-  static host = AppDefine.host; // 接口域名
   static isEncrypt = true; // 参数是否加密
   static publicParams = {
     // 公共参数
@@ -35,7 +34,7 @@ export default class CCSessionModel {
 
   // 发起请求
   static req(path: string, params: object = {}, isPost: boolean = false): Promise<any> {
-    var url = `${this.host}/wjapp/api.php?${path}`;
+    var url = `${AppDefine.host}/wjapp/api.php?${path}`;
     return this.request(url, params, isPost);
   }
 

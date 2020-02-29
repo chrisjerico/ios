@@ -35,8 +35,8 @@ interface OCFuncModel {
 }
 
 export default class AppDefine {
-  static host = "http://test61f.fhptcdn.com/"; // 接口域名
-  static siteId = "test10";
+  static host = "http://接口域名"; // 接口域名
+  static siteId = "未知站点";
   static pageCount = 20;
   static width = Dimensions.get("window").width;
   static height = Dimensions.get("window").height;
@@ -100,6 +100,11 @@ export default class AppDefine {
       AppDefine.host = host;
     });
 
+    // 设置站点编号
+    AppDefine.ocCall("AppDefine.shared.SiteId").then(siteId => {
+      AppDefine.siteId = siteId;
+    });
+
     // 必须在注册监听之后执行
     // AppDefine.ocHelper.launchFinish();
   }
@@ -129,7 +134,6 @@ export default class AppDefine {
     return AppDefine.ocHelper.performSelectors(array);
   }
 }
-
 
 // OC结构体
 export class NSValue {
