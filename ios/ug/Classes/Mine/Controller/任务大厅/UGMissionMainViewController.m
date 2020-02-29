@@ -28,8 +28,8 @@
     _viewsArray = [NSMutableArray new];
     _disArray = [NSMutableArray new];
     
-    SysConf.homeTypeSelect = @"1";
-    if ([SysConf.homeTypeSelect isEqualToString:@"1"]) {
+  
+    if (1) {
         [self getCenterData];
     }
     else{
