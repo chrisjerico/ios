@@ -9,10 +9,10 @@
 #import "ReactNativeHelper.h"
 
 #import <React/RCTBridge.h>
+#import "RCTHTTPRequestHandler.h"
 
 #import "CodePush.h"
 #import "RSA.h"
-
 
 #define CodePushHost @"http://ec2-18-163-2-208.ap-east-1.compute.amazonaws.com:3000/"
 #ifdef APP_TEST
@@ -22,18 +22,16 @@
 #endif
 
 
-@interface OCSelectorModel : NSObject
-@property (nonatomic, strong) NSString *sel;
-@property (nonatomic, strong) NSString *var;
-@property (nonatomic, assign) BOOL ignoreReturnValue;
-+ (OCSelectorModel *)sel:(NSString *)sel;
+
+
+@interface RCTHTTPRequestHandler (RnHelper)
+
 @end
-@implementation OCSelectorModel
-+ (OCSelectorModel *)sel:(NSString *)sel {
-    OCSelectorModel *sm = [OCSelectorModel new];
-    NSString *var = sm.var = [[sel componentsSeparatedByString:@"{"].lastObject componentsSeparatedByString:@"}"].firstObject;
-    sm.sel = [sel stringByReplacingOccurrencesOfString:_NSString(@"{%@}", var) withString:@""];
-    return nil;
+
+@implementation RCTHTTPRequestHandler (RnHelper)
+
+- (void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential *credential))completionHandler {
+    completionHandler(NSURLSessionAuthChallengeUseCredential, [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust]);
 }
 @end
 
@@ -50,7 +48,6 @@
 @property (nonatomic, strong) NSArray *args7;
 @property (nonatomic, strong) NSArray *args8;
 @property (nonatomic, strong) NSArray *args9;
-@property (nonatomic, readonly) NSArray <OCSelectorModel *> *sels;
 - (NSArray *)argsWithIndex:(unsigned int)idx;
 @end
 @implementation OCFuncModel

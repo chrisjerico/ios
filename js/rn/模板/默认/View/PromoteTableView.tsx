@@ -25,7 +25,7 @@ export default class PromoteTableView extends Component<IProps, IState> {
       }
     } = props;
 
-    if ("c199".indexOf(AppDefine.siteId) != -1) {
+    if ("c190".indexOf(AppDefine.siteId) != -1) {
       this.style1 = "贴边";
     } else if ("c199".indexOf(AppDefine.siteId) != -1) {
       this.style1 = "外边框";

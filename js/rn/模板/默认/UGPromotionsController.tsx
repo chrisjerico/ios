@@ -64,14 +64,6 @@ export default class UGPromotionsController extends Component<IProps, IState> {
     });
   }
 
-  contentView({ route: { params } }) {
-    var list: Array<UGPromoteModel> = Object.values(params);
-    if (list.length) {
-      return <FlatList data={list} renderItem={data => this.renderCell(data.item, data.index)} keyExtractor={(pm, idx) => `key${idx}`} ListFooterComponent={<View style={{ height: 100 }} />} />;
-    }
-    return <Text style={{ marginTop: 50, textAlign: "center", color: "gray" }}>暂无</Text>;
-  }
-
   render() {
     if (this.state.dataArray.length == 0) {
       return null;

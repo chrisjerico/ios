@@ -85,7 +85,7 @@ export default class CCSessionModel {
       })
       .catch(err => {
         console.log("请求失败， err = ");
-        console.log(err.response);
+        console.log(err);
         // rejects(err);
       });
     return promise;
