@@ -40,7 +40,9 @@
 //        btn.backgroundColor = APP.NavigationBarColor;
 //        btn.frame = CGRectMake(100, 200, 200, 200);
 //        [btn addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
-//            [self presentViewController:[ReactNativeVC reactNativeWithRPM:[RnPageModel updateVersionPage] params:nil] animated:true completion:nil];
+//            RnPageModel *rpm = [RnPageModel new];
+//            rpm.vcName = @"UGPromotionsController";
+//            [self presentViewController:[ReactNativeVC reactNativeWithRPM:rpm params:nil] animated:true completion:nil];
 //        }];
 //        [self.view addSubview:btn];
 //        return;
@@ -64,7 +66,7 @@
             NSArray *pics = [launchPics valuesWithKeyPath:@"pic"];
             [[NSUserDefaults standardUserDefaults] setObject:pics forKey:@"LaunchPics"];
             for (NSString *pic in pics) {
-                [[SDWebImageManager sharedManager] diskImageExistsForURL:[NSURL URLWithString:pic] completion:nil];
+                [[SDWebImageManager sharedManager] loadImageWithURL:[NSURL URLWithString:pic] options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {}];
             }
         }
     }];
@@ -75,9 +77,11 @@
     __block BOOL __waitGif = false; // ⌛️等待gif播放完
     __block CGFloat __waitSecs = maxSecs;
     {
-        FLAnimatedImageView *imageView = [FLAnimatedImageView new];
+        SDAnimatedImageView *imageView = [SDAnimatedImageView new];
         imageView.backgroundColor = [UIColor whiteColor];
         imageView.contentMode = UIViewContentModeScaleAspectFill;
+        imageView.shouldCustomLoopCount = true; // 是否自定义循环次数
+        imageView.animationRepeatCount = 0;     // 不循环
         [self.view addSubview:imageView];
         [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self.view);
@@ -87,7 +91,7 @@
         NSMutableArray *pics = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] arrayForKey:@"LaunchPics"]];
         // 以防上次没下载完，这里继续下载（会缓存到本地）
         for (NSString *pic in pics) {
-            [[SDWebImageManager sharedManager] diskImageExistsForURL:[NSURL URLWithString:pic] completion:nil];
+            [[SDWebImageManager sharedManager] loadImageWithURL:[NSURL URLWithString:pic] options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {}];
         }
         
         // 加载图片
@@ -98,9 +102,9 @@
             [pics removeObject:pic];
             [__imageView sd_setImageWithURL:[NSURL URLWithString:pic] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
                 __waitSecs = MAX(__waitSecs, pics.count ? 2 : 1);// 图片加载成功后最少显示1秒
-                __waitGif = image.isGIF;    // 等待gif播放完
+                __waitGif = image.sd_isAnimated;    // 等待gif播放完
                 
-                if (pics.count && !image.isGIF) {
+                if (pics.count && !__waitGif) {
                     // 如果是静态图则1秒后显示下一张图片
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                         __nextPic();
@@ -108,13 +112,16 @@
                 }
             }];
         };
+        
         // 如果是gif图则播放完后显示下一张图片
-        imageView.loopCompletionBlock = ^(NSUInteger loopCountRemaining) {
-            __waitGif = false;
-            if (pics.count) {
-                __nextPic();
+        [__imageView xw_addObserverBlockForKeyPath:@"currentLoopCount" block:^(id  _Nonnull obj, id  _Nonnull oldVal, id  _Nonnull newVal) {
+            if ([newVal intValue] >= 1) {
+                __waitGif = false;
+                if (pics.count) {
+                    __nextPic();
+                }
             }
-        };
+        }];
         showPics();
     }
     

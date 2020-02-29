@@ -35,8 +35,8 @@ pod 'YYCategories'      # Category 类型工具库（YYKit 组件之一）
 pod 'DateTools'         # 日期工具
 pod 'MJExtension'       # 字典转数据模型库
 pod 'FSCalendar'        # 日历控件
-pod 'SDWebImage'        # 异步图片加载+缓存
-pod 'SDWebImage/GIF'    # 异步图片加载+缓存（GIF）
+#pod 'SDWebImage'        # 异步图片加载+缓存
+#pod 'SDWebImage/GIF'    # 异步图片加载+缓存（GIF）
 pod 'TZImagePickerController', '~> 3.2.8' # 相册浏览器
 pod 'YYText', '~> 1.0.7'# YY大神的富文本框架
 
@@ -127,8 +127,8 @@ pod 'RegExCategories'   # 正则表达式库
 pod 'DateTools'         # 日期工具
 pod 'MJExtension'       # 字典转数据模型库
 pod 'FSCalendar'        # 日历控件
-pod 'SDWebImage'        # 异步图片加载+缓存
-pod 'SDWebImage/GIF'    # 异步图片加载+缓存（GIF）
+#pod 'SDWebImage'        # 异步图片加载+缓存
+#pod 'SDWebImage/GIF'    # 异步图片加载+缓存（GIF）
 pod 'JPush', '3.2.2-noidfa'
 pod 'YYText', '~> 1.0.7'
 pod 'YYCategories'      # Category 类型工具库（YYKit 组件之一）

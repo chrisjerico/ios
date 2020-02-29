@@ -2,7 +2,6 @@ import { Dimensions } from "react-native";
 import { NativeEventEmitter, NativeModules } from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import React from "react";
-import UGSysConfModel from "../Model/六合/UGSysConfModel";
 
 type RootStackParamList = {
   Home: undefined;
@@ -12,22 +11,38 @@ type RootStackParamList = {
 
 export type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, "Profile">;
 
-interface CallFuncType {
-  class: string;
-  selector: string;
-  args: any | Array<CallFuncType>;
+class OCFuncVariable {
+  vc: string = "";
+  ret: string = "";
+
+  static init(): OCFuncVariable {
+    var obj: any = {};
+    for (var key in new OCFuncVariable()) {
+      obj[key] = `OCFuncVariable.${key}`;
+    }
+    return obj;
+  }
+}
+
+interface OCFuncModel {
+  obj?: string;
+  selectors: string;
+  args1?: Array<any | OCFuncModel>;
+  args2?: Array<any | OCFuncModel>;
+  args3?: Array<any | OCFuncModel>;
+  args4?: Array<any | OCFuncModel>;
+  args5?: Array<any | OCFuncModel>;
 }
 
 export default class AppDefine {
-  static host = "http://test06.6yc.com"; // 接口域名
+  static host = "http://test61f.fhptcdn.com/"; // 接口域名
   static siteId = "test10";
   static pageCount = 20;
   static width = Dimensions.get("window").width;
   static height = Dimensions.get("window").height;
   static statusBarHeight = 34;
   static bottomSafeHeight = 44;
-
-  static window = null;
+  static themeColor = "#609AC5";
 
   //
   static ocHelper = NativeModules.ReactNativeHelper; // oc助手
@@ -43,15 +58,14 @@ export default class AppDefine {
 
     //
     // if (1 || UGSysConfModel.current.allowMemberCancelBet) {
-    //   pages.push({
-    //     clsName: "UGPromoteDetailController",
-    //     fd_prefersNavigationBarHidden: true,
-    //     允许游客访问: true,
-    //     允许未登录访问: true
-    //   });
+    pages.push({
+      vcName: "UGPromotionsController",
+      fd_prefersNavigationBarHidden: true,
+      允许游客访问: true,
+      允许未登录访问: true
+    });
     // }
-
-    AppDefine.ocHelper.performSelectors([{ class: "AppDefine", selector: "shared.setRnPageInfos:", args: [pages] }]);
+    AppDefine.ocCall("AppDefine.shared.setRnPageInfos:", [pages]);
   }
 
   static setup() {
@@ -70,27 +84,89 @@ export default class AppDefine {
 
     // 跳转到指定页面
     AppDefine.ocEvent.addListener("SelectVC", params => {
-      // 退到root
-      AppDefine.navController?.canGoBack() && AppDefine.navController?.popToTop();
-      // 再push
-      AppDefine.tabController?.navigate(params.vcName);
-      // AppDefine.navigationRef?.current?.navigate(params.vcName);
+      if (params.vcName) {
+        // 退到root
+        AppDefine.navController?.canGoBack() && AppDefine.navController?.popToTop();
+        // 再push
+        AppDefine.tabController?.navigate(params.vcName);
+        AppDefine.navigationRef?.current?.navigate(params.vcName);
+      }
     });
 
     // 移除页面
     AppDefine.ocEvent.addListener("RemoveVC", params => {});
 
+    // 设置接口域名
+    AppDefine.ocCall("AppDefine.shared.Host").then(host => {
+      AppDefine.host = host;
+    });
+
     // 必须在注册监听之后执行
     // AppDefine.ocHelper.launchFinish();
   }
 
-  static ocCall(clsName: string, selector: string, args: Array<any | CallFuncType> = []): Promise<any> {
-    return AppDefine.ocHelper.performSelectors([
-      {
-        class: clsName,
-        selector: selector,
-        args: args
-      }
-    ]);
+  static ocCall(
+    selectors: string | ((vars: OCFuncVariable) => { [x: string]: OCFuncModel }),
+    args1: Array<any | OCFuncModel> = [],
+    args2: Array<any | OCFuncModel> = [],
+    args3: Array<any | OCFuncModel> = []
+  ): Promise<any> {
+    var array = [];
+    var temp: { [x: string]: OCFuncModel };
+    if (typeof selectors === "function") {
+      temp = selectors(OCFuncVariable.init());
+    } else {
+      var sel: OCFuncModel = { selectors: selectors };
+      args1.length && (sel["args1"] = args1);
+      args2.length && (sel["args2"] = args2);
+      args3.length && (sel["args3"] = args3);
+      temp = { ret: sel };
+    }
+    for (let [key, value] of Object.entries(temp)) {
+      var obj = {};
+      obj[key] = value;
+      array.push(obj);
+    }
+    return AppDefine.ocHelper.performSelectors(array);
+  }
+}
+
+
+// OC结构体
+export class NSValue {
+  valueType: string;
+  string: string;
+
+  constructor(valueType: "CGRect" | "CGPoint" | "CGSize" | "UIEdgeInsets" | "UIOffset" | "CGAffineTransform" | "CGVector", string: string) {
+    this.valueType = valueType;
+    this.string = string;
+  }
+
+  static CGRectMake(x: number, y: number, w: number, h: number): NSValue {
+    return new NSValue("CGRect", `{{${x}, ${y}}, {${w}, ${h}}}`);
+  }
+
+  static CGPointMake(x: number, y: number): NSValue {
+    return new NSValue("CGPoint", `{{${x}, ${y}}}`);
+  }
+
+  static CGSizeMake(w: number, h: number): NSValue {
+    return new NSValue("CGSize", `{{${w}, ${h}}}`);
+  }
+
+  static UIEdgeInsetsMake(top: number, left: number, bottom: number, right: number): NSValue {
+    return new NSValue("UIEdgeInsets", `{${top}, ${left}, ${bottom}, ${right}}`);
+  }
+
+  static UIOffsetMake(horizontal: number, vertical: number): NSValue {
+    return new NSValue("UIOffset", `{${horizontal}, ${vertical}}`);
+  }
+
+  static CGAffineTransformMake(a: number, b: number, c: number, d: number, tx: number, ty: number): NSValue {
+    return new NSValue("CGAffineTransform", `[${a}, ${b}, ${c}, ${d}, ${tx}, ${ty}]`);
+  }
+
+  static CGVectorMake(dx: number, dy: number): NSValue {
+    return new NSValue("CGVector", `{${dx}, ${dy}}`);
   }
 }

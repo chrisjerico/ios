@@ -7,6 +7,12 @@ interface Dictionary {
   [x: string]: any;
 }
 
+interface ResponseObject {
+  code: number;
+  msg: string;
+  data: any;
+}
+
 export default class CCSessionModel {
   static host = AppDefine.host; // 接口域名
   static isEncrypt = true; // 参数是否加密
@@ -24,16 +30,16 @@ export default class CCSessionModel {
     temp["checkSign"] = 1;
 
     console.log("开始加密");
-    return AppDefine.ocCall("CMNetwork", "encryptionCheckSign:", [temp]);
+    return AppDefine.ocCall("CMNetwork.encryptionCheckSign:", [temp]);
   }
 
   // 发起请求
-  static req(path: string, params: object, isPost: boolean): Promise<void> {
+  static req(path: string, params: object = {}, isPost: boolean = false): Promise<any> {
     var url = `${this.host}/wjapp/api.php?${path}`;
-    return this.req();
+    return this.request(url, params, isPost);
   }
 
-  static request(url: string, params: object, isPost: boolean): Promise<void> {
+  static request(url: string, params: object = {}, isPost: boolean = false): Promise<any> {
     // 添加公共参数
     params = Object.assign({}, this.publicParams, params);
 
@@ -61,18 +67,22 @@ export default class CCSessionModel {
           headers: new Headers({
             "Content-Type": "application/json"
           })
-        }).then(function(response) {
-          // 检查是否正常返回
-          if (response.ok) {
-            // 返回的是一个promise对象, 值就是后端返回的数据, 调用then()可以接收
-            console.log("req succ!");
-            return response.json();
-          }
-          const err = new Error(response.statusText);
-          err.response = response;
-          throw err;
-          return response;
-        });
+        })
+          .then(function(response) {
+            // 检查是否正常返回
+            if (response.ok) {
+              // 返回的是一个promise对象, 值就是后端返回的数据, 调用then()可以接收
+              console.log("req succ!");
+              return response.json();
+            }
+            throw new Error("请求失败：" + response.statusText);
+          })
+          .then((responseObject: ResponseObject) => {
+            if (responseObject.code != 0) {
+              throw new Error(responseObject.msg);
+            }
+            return Promise.resolve(responseObject.data);
+          });
       })
       .catch(err => {
         console.log("请求失败， err = ");

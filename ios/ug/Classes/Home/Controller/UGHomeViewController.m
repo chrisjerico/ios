@@ -336,7 +336,11 @@
             make.height.equalTo(@44);
         }];
         self.navigationItem.titleView = titleView;
-        
+//        Method;
+//        Func
+//        Invocation
+//        Selector
+//        IMP
     }
     if (Skin1.isJY) {
         _rollingView.backgroundColor = RGBA(249, 249, 249, 1);
@@ -1103,7 +1107,7 @@
 
 // 获取优惠图片分类信息
 - (void)getPromotionsType {
-    return;
+//    return;
     [CMNetwork getPromotionsTypeWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         
         [CMResult processWithResult:model success:^{
@@ -2009,7 +2013,6 @@
             detailVC.item = pm;
             [NavController1 pushViewController:detailVC animated:YES];
         }
-        
     }
 }
 

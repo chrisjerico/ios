@@ -355,17 +355,16 @@ static UGTabbarController *_tabBarVC = nil;
         UGNavigationController *nav = [[UGNavigationController alloc] initWithRootViewController:vc];
         nav.view.backgroundColor = Skin1.bgColor;
         nav.tabBarItem.title = mm.name;
-        nav.tabBarItem.image = [UIImage imageNamed:mm.defaultImgName];
-        nav.tabBarItem.selectedImage = [[UIImage imageNamed:mm.defaultImgName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        //        NSLog(@"mm.defaultImgName = %@",mm.defaultImgName);
-        [[SDWebImageManager sharedManager] diskImageExistsForURL:[NSURL URLWithString:mm.icon] completion:^(BOOL isInCache) {
-            if (isInCache) {
-                UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:mm.icon]]];
-                nav.tabBarItem.image = image;
-                NSLog(@"mm.icon = %@",mm.icon);
-                nav.tabBarItem.selectedImage = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-            }
-        }];
+        //
+        NSString *key = [[SDWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:mm.icon]];
+        if ([[SDImageCache sharedImageCache] diskImageDataExistsWithKey:key]) {
+            UIImage *image = [[SDImageCache sharedImageCache] imageFromCacheForKey:key];
+            nav.tabBarItem.image = image;
+            nav.tabBarItem.selectedImage = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        } else {
+            nav.tabBarItem.image = [UIImage imageNamed:mm.defaultImgName];
+            nav.tabBarItem.selectedImage = [[UIImage imageNamed:mm.defaultImgName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        }
         [vcs addObject:nav];
         [mms addObject:mm];
     }
@@ -388,7 +387,6 @@ static UGTabbarController *_tabBarVC = nil;
             }
         }
     }
-   
 }
 
 - (void)setSelectedIndex:(NSUInteger)selectedIndex {
@@ -433,17 +431,16 @@ static UGTabbarController *_tabBarVC = nil;
             UINavigationController *nav = (UINavigationController *)viewController;
 			nav.title = mm.name;
 			nav.tabBarItem.title = mm.name;
-			nav.tabBarItem.image = [UIImage imageNamed:mm.defaultImgName];
-//            NSLog(@"mm.defaultImgName = %@",mm.defaultImgName);
-			nav.tabBarItem.selectedImage = [[UIImage imageNamed:mm.defaultImgName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-			[[SDWebImageManager sharedManager] diskImageExistsForURL:[NSURL URLWithString:mm.icon] completion:^(BOOL isInCache) {
-				if (isInCache) {
-                    NSLog(@"mm.icon = %@",mm.icon);
-					UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:mm.icon]]];
-					nav.tabBarItem.image = image;
-					nav.tabBarItem.selectedImage = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-				}
-			}];
+            //
+            NSString *key = [[SDWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:mm.icon]];
+            if ([[SDImageCache sharedImageCache] diskImageDataExistsWithKey:key]) {
+                UIImage *image = [[SDImageCache sharedImageCache] imageFromCacheForKey:key];
+                nav.tabBarItem.image = image;
+                nav.tabBarItem.selectedImage = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            } else {
+                nav.tabBarItem.image = [UIImage imageNamed:mm.defaultImgName];
+                nav.tabBarItem.selectedImage = [[UIImage imageNamed:mm.defaultImgName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            }
 			nav.viewControllers = @[vc];
 			tabBarController.selectedViewController = nav;
             

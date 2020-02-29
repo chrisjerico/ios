@@ -154,7 +154,7 @@
     UIImageView *imgView = [cell viewWithTagString:@"图片ImageView"];
 //    imgView.frame = cell.bounds;
     NSURL *url = [NSURL URLWithString:pm.pic];
-    UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:url]];
+    UIImage *image = [[SDImageCache sharedImageCache] imageFromCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:url]];
     if (image) {
         if ([@"c190" containsString:APP.SiteId]) {
             CGFloat w = APP.Width;

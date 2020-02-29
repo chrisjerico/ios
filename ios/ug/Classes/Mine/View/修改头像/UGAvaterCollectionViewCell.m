@@ -9,7 +9,7 @@
 #import "UGAvaterCollectionViewCell.h"
 #import "UGAvatarModel.h"
 //#import "UIImageView+WebCache.h"
-#import "FLAnimatedImageView+WebCache.h"
+//#import "FLAnimatedImageView+WebCache.h"
 @interface UGAvaterCollectionViewCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @end

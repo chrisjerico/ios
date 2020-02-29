@@ -17,7 +17,7 @@
 - (void)setItem:(GameModel *)item {
     _item = item;
     NSLog(@"icon = %@",item.icon);
-    UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:item.icon]]];
+    UIImage *image = [[SDImageCache sharedImageCache] imageFromCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:item.icon]]];
     if (image) {
           
                CGFloat w = APP.Width - 16;
