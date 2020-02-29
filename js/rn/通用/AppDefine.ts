@@ -84,15 +84,13 @@ export default class AppDefine {
 
     // 跳转到指定页面
     AppDefine.ocEvent.addListener("SelectVC", params => {
-      // 退到root
-      console.log("AppDefine.navController = ")
-      console.log(AppDefine.navController)
-      console.log(AppDefine.navController?.canGoBack());
-      AppDefine.navController?.canGoBack() && AppDefine.navController?.popToTop();
-      // 再push
-      console.log(AppDefine.tabController?.navigate);
-      AppDefine.tabController?.navigate(params.vcName);
-      // AppDefine.navigationRef?.current?.navigate(params.vcName);
+      if (params.vcName) {
+        // 退到root
+        AppDefine.navController?.canGoBack() && AppDefine.navController?.popToTop();
+        // 再push
+        AppDefine.tabController?.navigate(params.vcName);
+        AppDefine.navigationRef?.current?.navigate(params.vcName);
+      }
     });
 
     // 移除页面
@@ -130,5 +128,45 @@ export default class AppDefine {
       array.push(obj);
     }
     return AppDefine.ocHelper.performSelectors(array);
+  }
+}
+
+
+// OC结构体
+export class NSValue {
+  valueType: string;
+  string: string;
+
+  constructor(valueType: "CGRect" | "CGPoint" | "CGSize" | "UIEdgeInsets" | "UIOffset" | "CGAffineTransform" | "CGVector", string: string) {
+    this.valueType = valueType;
+    this.string = string;
+  }
+
+  static CGRectMake(x: number, y: number, w: number, h: number): NSValue {
+    return new NSValue("CGRect", `{{${x}, ${y}}, {${w}, ${h}}}`);
+  }
+
+  static CGPointMake(x: number, y: number): NSValue {
+    return new NSValue("CGPoint", `{{${x}, ${y}}}`);
+  }
+
+  static CGSizeMake(w: number, h: number): NSValue {
+    return new NSValue("CGSize", `{{${w}, ${h}}}`);
+  }
+
+  static UIEdgeInsetsMake(top: number, left: number, bottom: number, right: number): NSValue {
+    return new NSValue("UIEdgeInsets", `{${top}, ${left}, ${bottom}, ${right}}`);
+  }
+
+  static UIOffsetMake(horizontal: number, vertical: number): NSValue {
+    return new NSValue("UIOffset", `{${horizontal}, ${vertical}}`);
+  }
+
+  static CGAffineTransformMake(a: number, b: number, c: number, d: number, tx: number, ty: number): NSValue {
+    return new NSValue("CGAffineTransform", `[${a}, ${b}, ${c}, ${d}, ${tx}, ${ty}]`);
+  }
+
+  static CGVectorMake(dx: number, dy: number): NSValue {
+    return new NSValue("CGVector", `{${dx}, ${dy}}`);
   }
 }

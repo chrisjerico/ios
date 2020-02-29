@@ -18,4 +18,5 @@ export class UGPromoteModel {
 
   // 自定义属性
   picHeight?: number;
+  webViewHeight?: number;
 }

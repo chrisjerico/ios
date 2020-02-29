@@ -213,7 +213,6 @@ RCT_EXPORT_METHOD(callback:(NSString *)key params:(id)params) {
 // 注册js函数 performSelectors:returnValue:
 RCT_EXPORT_METHOD(performSelectors:(NSArray <NSDictionary *>*)selectors resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
     dispatch_sync(dispatch_get_main_queue(), ^{
-        
         // 保存函数链点返回值做为变量
         NSMutableDictionary *varDict1 = @{}.mutableCopy;
         
@@ -243,6 +242,31 @@ RCT_EXPORT_METHOD(performSelectors:(NSArray <NSDictionary *>*)selectors resolver
                 Class cls = NSClassFromString(temp[@"clsName"]);
                 if (cls) {
                     return [cls mj_objectWithKeyValues:temp];
+                }
+                // NSDictionary->NSValue
+                NSString *valueType = temp[@"valueType"];
+                if (valueType.length) {
+                    if ([valueType isEqualToString:@"CGPoint"]) {
+                        return [NSValue valueWithCGPoint:CGPointFromString(temp[@"string"])];
+                    }
+                    else if ([valueType isEqualToString:@"CGVector"]) {
+                        return [NSValue valueWithCGVector:CGVectorFromString(temp[@"string"])];
+                    }
+                    else if ([valueType isEqualToString:@"CGSize"]) {
+                        return [NSValue valueWithCGSize:CGSizeFromString(temp[@"string"])];
+                    }
+                    else if ([valueType isEqualToString:@"CGRect"]) {
+                        return [NSValue valueWithCGRect:CGRectFromString(temp[@"string"])];
+                    }
+                    else if ([valueType isEqualToString:@"CGAffineTransform"]) {
+                        return [NSValue valueWithCGAffineTransform:CGAffineTransformFromString(temp[@"string"])];
+                    }
+                    else if ([valueType isEqualToString:@"UIEdgeInsets"]) {
+                        return [NSValue valueWithUIEdgeInsets:UIEdgeInsetsFromString(temp[@"string"])];
+                    }
+                    else if ([valueType isEqualToString:@"UIOffset"]) {
+                        return [NSValue valueWithUIOffset:UIOffsetFromString(temp[@"string"])];
+                    }
                 }
                 return temp;
             }

@@ -2013,10 +2013,6 @@
             detailVC.item = pm;
             [NavController1 pushViewController:detailVC animated:YES];
         }
-        NSStringFromCGRect(CGRectMake(0, 0, 0, 0));
-        NSValue *v;
-        id obj;
-        [obj CGRectValue];
     }
 }
 

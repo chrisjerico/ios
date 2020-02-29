@@ -17,7 +17,7 @@ import UGPromotionsController from "./模板/默认/UGPromotionsController";
 class Home2 extends Component {
   render() {
     return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center"}}>
+      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
         <Button
           style={{ backgroundColor: "balck", height: 100, width: 100 }}
           title="3333"
@@ -57,6 +57,9 @@ class TabBarController extends Component<IProps> {
   }
 
   render() {
+    var { navigation } = this.props;
+    AppDefine.navController = navigation;
+
     return (
       <Tab.Navigator initialRouteName="UpdateVersionVC" screenOptions={{ tabBarVisible: false }}>
         <Tab.Screen name="Home3" component={HomePageVC} options={{}} />
@@ -88,7 +91,7 @@ AppRegistry.registerComponent("Main", () => Root);
 AppDefine.setup();
 
 // 获得系统配置信息
-AppDefine.ocBlocks["UGSystemConfigModel.currentConfig"] = sysConf => {
+AppDefine.ocBlocks["UGSystemConfigModel.currentConfig"] = (sysConf: UGSysConfModel) => {
   if (sysConf) {
     UGSysConfModel.current = sysConf;
     // 配置替换rn的页面
