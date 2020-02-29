@@ -81,6 +81,7 @@
     
     NSMutableDictionary *imgDict = @{
         @"wechat_online"            :@"wechat_online",  // 微信在线支付
+        @"wxzsm_transfer"           :@"wechat_online",  // 微信
         @"wechat_transfer"          :@"wechat_online",  // 微信转账
         @"wxsm_transfer"            :@"wechat_online",  // 微信扫码
         

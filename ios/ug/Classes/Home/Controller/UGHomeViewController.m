@@ -1962,11 +1962,11 @@
         UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:url]];
         if (image) {
             if ([@"c190" containsString:APP.SiteId]) {
-                CGFloat w = APP.Width;
+                CGFloat w = APP.Width-48;
                 CGFloat h = image.height/image.width * w;
                 imgView.cc_constraints.height.constant = h;
             } else {
-                CGFloat w = APP.Width - 48;
+                CGFloat w = APP.Width - 88;
                 CGFloat h = image.height/image.width * w;
                 imgView.cc_constraints.height.constant = h;
                 
