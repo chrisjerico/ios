@@ -18,7 +18,8 @@
 #import "UGgoBindViewController.h"
 @interface UGSecurityCenterViewController ()<XYYSegmentControlDelegate>
 @property (nonatomic, strong) XYYSegmentControl *slideSwitchView;
-@property (nonatomic,strong)   NSMutableArray <NSString *> *itemArray;
+@property (nonatomic, strong) NSMutableArray <NSString *> *itemArray;
+@property (nonatomic, strong) NSArray *vcs;
 @end
 
 @implementation UGSecurityCenterViewController
@@ -36,6 +37,7 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"安全中心";
+    self.view.backgroundColor = Skin1.bgColor;
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         [self skin];
     });
@@ -129,31 +131,14 @@
 
 ///待加载的控制器
 - (UIViewController *)slideSwitchView:(XYYSegmentControl *)view viewOfTab:(NSUInteger)number {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGSafety" bundle:nil];
-    if (number == 0) {
-        UGModifyLoginPwdController *PwdVC = [storyboard instantiateViewControllerWithIdentifier:@"UGModifyLoginPwdController"];
-        return PwdVC;
+    if (!_vcs.count) {
+        _vcs = @[_LoadVC_from_storyboard_(@"UGModifyLoginPwdController"),   // 登录密码
+                 UserI.hasFundPwd ? _LoadVC_from_storyboard_(@"UGModifyPayPwdController") : [UGgoBindViewController new],   // 取款密码
+                 SysConf.oftenLoginArea.intValue ? nil : _LoadVC_from_storyboard_(@"UGModifyLoginPlaceController"), // 常用登录地
+                 [UGGoogleAuthenticationFirstViewController new],   // 二次验证
+        ];
     }
-    if (number == 1) {
-        UGUserModel *user = [UGUserModel currentUser];
-        NSLog(@"user= %@",user);
-        if (user.hasFundPwd) {
-
-            UGModifyPayPwdController *payVC = [storyboard instantiateViewControllerWithIdentifier:@"UGModifyPayPwdController"];
-            return payVC;
-        }else {
-
-            UGgoBindViewController *vc = [UGgoBindViewController new];
-            return vc;
-        }
-       
-    }
-    if (number == 2 && [[UGSystemConfigModel currentConfig].oftenLoginArea isEqualToString:@"0"]) {
-        UGModifyLoginPlaceController *loginPlaceVC = [storyboard instantiateViewControllerWithIdentifier:@"UGModifyLoginPlaceController"];
-        return loginPlaceVC;
-    }
-    UGGoogleAuthenticationFirstViewController *gafVC = [[UGGoogleAuthenticationFirstViewController alloc] init];
-    return gafVC;
+    return _vcs[number] ? : _vcs.lastObject;
 }
 
 - (void)slideSwitchView:(XYYSegmentControl *)view didselectTab:(NSUInteger)number {

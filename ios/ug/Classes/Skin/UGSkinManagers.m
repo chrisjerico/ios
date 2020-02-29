@@ -411,6 +411,7 @@ static UGSkinManagers *__initSkin1 = nil;
 				sm.textColor1               = color(@"111111");
 				sm.textColor2               = color(@"555555");
 				sm.textColor3               = color(@"C1C1C1");
+                sm.textColor4               = color(@"FFFFFF");
                 sm.conversionCellColor      = color(@"7BA2C2");
                 sm.intoViewColor            = color(@"7BA2C2");
                 sm.moneyCellColor           = color(@"9BB8CB");
