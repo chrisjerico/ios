@@ -2025,12 +2025,13 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if ([_style isEqualToString:@"slide"]) {
         UGPromoteModel *item = tableView.dataArray[section];
-        //        NSLog(@"cellH = %f",item.headHeight);
-        if (!item.headHeight) {
-            return 150;
-        } else {
-            return item.headHeight;
-        }
+        if ([@"c190" containsString:APP.SiteId]) {
+               return [UGCell190HeaderView heightWithModel:item];
+          }
+          else{
+               return [UGCellHeaderView heightWithModel:item];
+          }
+       
     } else {
         return 0;
     }
@@ -2076,6 +2077,9 @@
                 [weakSelf.tableView reloadData];
             }
         }
+    };
+    headerView.hBllock = ^{
+        [weakSelf.tableView reloadSection:section withRowAnimation:(UITableViewRowAnimationNone)];
     };
     return contentView;
 }

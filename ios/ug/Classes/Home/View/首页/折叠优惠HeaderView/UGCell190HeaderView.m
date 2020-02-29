@@ -16,10 +16,31 @@
 
 @end
 @implementation UGCell190HeaderView
+static CGFloat _contentWidth = 0;
+
++ (CGFloat)heightWithModel:(UGPromoteModel *)item {
+    CGFloat textH = item.title.length ? [item.title heightForFont:[UIFont boldSystemFontOfSize:16] width:_contentWidth] : 0;
+    textH += 20;
+    UIImage *image = [[SDImageCache sharedImageCache] imageFromCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:item.pic]]];
+    CGFloat imageH = _contentWidth/image.width * image.height;
+    CGFloat otherH = 16 + !!item.title.length * 8;
+    if (!image) {
+        return 150;
+    }
+    return textH + imageH + otherH;
+}
 
 - (void)awakeFromNib {
     [super awakeFromNib];
 
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    if (!_contentWidth && _hBllock) {
+        _contentWidth = self.width - 20;
+        _hBllock();
+    }
 }
 
 -(void)setItem:(UGPromoteModel *)item{
@@ -40,39 +61,14 @@
     _titleLabel.hidden = !_item.title.length;
     
     UIImageView *imgView = _imageView;
-    //    imgView.frame = cell.bounds;
     NSURL *url = [NSURL URLWithString:_item.pic];
-    UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:url]];
-    if (image) {
-        if ([@"c190" containsString:APP.SiteId]) {
-            CGFloat w = APP.Width;
-            CGFloat h = image.height/image.width * w;
-            imgView.cc_constraints.height.constant = h;
-        } else {
-            CGFloat w = APP.Width - 48;
-            CGFloat h = image.height/image.width * w;
-            imgView.cc_constraints.height.constant = h;
-            
-            
+    __weakSelf_(__self);
+    [imgView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"placeholder"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        if (image && __self.hBllock) {
+            __self.hBllock();
         }
-        [imgView sd_setImageWithURL:url];   // 由于要支持gif动图，还是用sd加载
-         self.cc_constraints.height.constant = subView(@"cell背景View").size.height + 20;
-        _item.headHeight = subView(@"cell背景View").size.height + 20;
-    } else {
-
-        imgView.cc_constraints.height.constant = 60;
-        [imgView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"placeholder"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-            if (image) {
-
-            }
-        }];
-         self.cc_constraints.height.constant = subView(@"cell背景View").size.height + 20;
-        _item.headHeight = subView(@"cell背景View").size.height + 20;
-    }
-
+    }];
 }
-
-
 
 - (IBAction)showDetail:(id)sender {
     
