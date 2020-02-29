@@ -111,7 +111,7 @@
 #import "CMAudioPlayer.h"
 #import "JS_HomePromoteContainerView.h"
 #import "HSC_TitleView.h"
-
+#import "UIColor+RGBValues.h"
 #import "BetFormViewModel.h"
 #import "HSC_BetFormCell.h"
 
@@ -467,6 +467,7 @@
         
         if (APP.isWhite) {
             subView(@"优惠活动外View").layer.borderWidth = 0;
+            subView(@"优惠活动外View").backgroundColor = [UIColor clearColor];
             _gameNavigationView.layer.borderWidth = 1;
             _gameNavigationView.layer.borderColor = [[UIColor whiteColor] CGColor];
         }
@@ -486,6 +487,11 @@
             subView(@"优惠活动外View").layer.cornerRadius = 5;
             subView(@"优惠活动外View").layer.masksToBounds = YES;
             
+        }
+        
+        if (Skin1.isJY) {
+            _promotionsStackView.cc_constraints.top.constant = 0;
+            _promotionsStackView.cc_constraints.left.constant = 0;
         }
         
         
@@ -1950,8 +1956,14 @@
             subView(@"StackView").cc_constraints.top.constant = 0;
             subView(@"StackView").cc_constraints.left.constant = 0;
         }
-        
-        subView(@"cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor : Skin1.homeContentColor;
+        if (Skin1.isJY) {
+             subView(@"cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor :  RGBA(242, 242, 242, 1);
+        }
+        else{
+             subView(@"cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor : Skin1.homeContentColor;
+        }
+               
+       
         subLabel(@"标题Label").textColor = Skin1.textColor1;
         subLabel(@"标题Label").text = pm.title;
         subLabel(@"标题Label").hidden = !pm.title.length;

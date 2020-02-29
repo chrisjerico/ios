@@ -173,10 +173,10 @@
         
         //        [_titleLabel setBackgroundColor:[UIColor redColor]];
         if (APP.isFontSystemSize) {
-             _titleLabel.font = [UIFont systemFontOfSize:16];
+             _titleLabel.font = [UIFont systemFontOfSize:15];
              _titleLabel.textColor = RGBA(117, 117, 117, 1);
         } else {
-             _titleLabel.font = [UIFont boldSystemFontOfSize:16];
+             _titleLabel.font = [UIFont boldSystemFontOfSize:15];
              _titleLabel.textColor = Skin1.textColor1;
         }
        
