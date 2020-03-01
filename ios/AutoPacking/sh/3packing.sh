@@ -25,9 +25,9 @@ else
 fi
 
 # 项目名称
-__BUILD_TARGET="ug"
-__SCHEME_NAME="ug"
-__PROJECT_NAME="ug"
+__BUILD_TARGET="UGBWApp"
+__SCHEME_NAME="UGBWApp"
+__PROJECT_NAME="UGBWApp"
 
 # 打包类型 Release Or Debug
 __BUILD_CONFIGURATION="Release"

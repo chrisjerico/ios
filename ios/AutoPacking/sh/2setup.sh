@@ -28,7 +28,7 @@ mv tmp.txt ug/Classes/Helper/FishUtility/define/AppDefine.m
 
 # 替换BundleId（修改project.pbxproj文件）
 sed "s/PRODUCT_BUNDLE_IDENTIFIER.*$/PRODUCT_BUNDLE_IDENTIFIER = $__BundleId;/g" ug.xcodeproj/project.pbxproj > tmp.txt
-mv tmp.txt ug.xcodeproj/project.pbxproj
+mv tmp.txt UGBWApp.xcodeproj/project.pbxproj
 
 # 替换AppIcon
 rm -rf ug/Classes/Resources/Assets.xcassets/AppIcon.appiconset
