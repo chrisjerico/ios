@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "031EF3FD23BE7A9400B0F813"
-               BuildableName = "chat.app"
-               BlueprintName = "chat"
-               ReferencedContainer = "container:ug.xcodeproj">
+               BlueprintIdentifier = "D4B75E082278025E0007047C"
+               BuildableName = "UGBWApp.app"
+               BlueprintName = "UGBWApp"
+               ReferencedContainer = "container:UGBWApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -44,10 +44,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "031EF3FD23BE7A9400B0F813"
-            BuildableName = "chat.app"
-            BlueprintName = "chat"
-            ReferencedContainer = "container:ug.xcodeproj">
+            BlueprintIdentifier = "D4B75E082278025E0007047C"
+            BuildableName = "UGBWApp.app"
+            BlueprintName = "UGBWApp"
+            ReferencedContainer = "container:UGBWApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -61,10 +61,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "031EF3FD23BE7A9400B0F813"
-            BuildableName = "chat.app"
-            BlueprintName = "chat"
-            ReferencedContainer = "container:ug.xcodeproj">
+            BlueprintIdentifier = "D4B75E082278025E0007047C"
+            BuildableName = "UGBWApp.app"
+            BlueprintName = "UGBWApp"
+            ReferencedContainer = "container:UGBWApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

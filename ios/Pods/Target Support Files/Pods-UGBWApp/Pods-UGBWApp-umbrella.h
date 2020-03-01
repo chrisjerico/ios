@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_ugVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_ugVersionString[];
+FOUNDATION_EXPORT double Pods_UGBWAppVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_UGBWAppVersionString[];
 

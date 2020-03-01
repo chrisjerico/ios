@@ -1641,6 +1641,7 @@
 		03E41B2F23C09055004AB7C6 /* JS_HomePromoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03E41B2E23C09055004AB7C6 /* JS_HomePromoteView.xib */; };
 		03E41B3223C09363004AB7C6 /* JS_HomePromoteContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E41B3123C09363004AB7C6 /* JS_HomePromoteContainerView.m */; };
 		03E4228423C1E5B8004AB7C6 /* LotteryBetAndChatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE074D023C0BBBF0083EA7E /* LotteryBetAndChatVC.m */; };
+		21C23BE623A79DB2565145FB /* Pods_UGBWApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E79CE20D619A7BDF62E7B77 /* Pods_UGBWApp.framework */; };
 		222A0AF723D29DED00A058B0 /* XBJ_HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 222A0AF523D29DED00A058B0 /* XBJ_HomeVC.m */; };
 		222A0AF823D29DED00A058B0 /* XBJ_HomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 222A0AF623D29DED00A058B0 /* XBJ_HomeVC.xib */; };
 		226CA20F23D2E37400E4D921 /* HSC_BetFormCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 226CA20D23D2E37400E4D921 /* HSC_BetFormCell.m */; };
@@ -1654,7 +1655,6 @@
 		22FAD04A23D471630002EA1D /* LotteryTrendContentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22FAD04623D471630002EA1D /* LotteryTrendContentCell.xib */; };
 		22FAD04F23D472EF0002EA1D /* LotteryContentCollectionVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 22FAD04E23D472EF0002EA1D /* LotteryContentCollectionVM.m */; };
 		22FAD05023D472EF0002EA1D /* LotteryContentCollectionVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 22FAD04E23D472EF0002EA1D /* LotteryContentCollectionVM.m */; };
-		A0C64CB6AEB0CF1B2031BBB8 /* Pods_ug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6486EFF4C273BEA0AE8994DD /* Pods_ug.framework */; };
 		CF475880239636D200966536 /* 21.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D4239636D100966536 /* 21.gif */; };
 		CF475881239636D200966536 /* 35.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D5239636D100966536 /* 35.gif */; };
 		CF475882239636D200966536 /* 108.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D6239636D100966536 /* 108.gif */; };
@@ -3434,6 +3434,7 @@
 		03E41B2E23C09055004AB7C6 /* JS_HomePromoteView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JS_HomePromoteView.xib; sourceTree = "<group>"; };
 		03E41B3023C09363004AB7C6 /* JS_HomePromoteContainerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JS_HomePromoteContainerView.h; sourceTree = "<group>"; };
 		03E41B3123C09363004AB7C6 /* JS_HomePromoteContainerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JS_HomePromoteContainerView.m; sourceTree = "<group>"; };
+		073F062821635829AF986F13 /* Pods-UGBWApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UGBWApp.debug.xcconfig"; path = "Target Support Files/Pods-UGBWApp/Pods-UGBWApp.debug.xcconfig"; sourceTree = "<group>"; };
 		09180447B2D6D470EA76AFD9 /* Pods-chat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chat.release.xcconfig"; path = "Target Support Files/Pods-chat/Pods-chat.release.xcconfig"; sourceTree = "<group>"; };
 		222A0AF423D29DED00A058B0 /* XBJ_HomeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XBJ_HomeVC.h; sourceTree = "<group>"; };
 		222A0AF523D29DED00A058B0 /* XBJ_HomeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XBJ_HomeVC.m; sourceTree = "<group>"; };
@@ -3451,9 +3452,10 @@
 		22FAD04623D471630002EA1D /* LotteryTrendContentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LotteryTrendContentCell.xib; sourceTree = "<group>"; };
 		22FAD04D23D472EF0002EA1D /* LotteryContentCollectionVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LotteryContentCollectionVM.h; sourceTree = "<group>"; };
 		22FAD04E23D472EF0002EA1D /* LotteryContentCollectionVM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LotteryContentCollectionVM.m; sourceTree = "<group>"; };
+		2D592F2EB7E053E2686FCA3C /* Pods-UGBWApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UGBWApp.release.xcconfig"; path = "Target Support Files/Pods-UGBWApp/Pods-UGBWApp.release.xcconfig"; sourceTree = "<group>"; };
+		2E79CE20D619A7BDF62E7B77 /* Pods_UGBWApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UGBWApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		30193B1626262AA87797C0E9 /* Pods_chat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_chat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		443C93C1135A8C900E47477A /* Pods-ug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ug.release.xcconfig"; path = "Target Support Files/Pods-ug/Pods-ug.release.xcconfig"; sourceTree = "<group>"; };
-		6486EFF4C273BEA0AE8994DD /* Pods_ug.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ug.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		69F06AC914C3660A83652620 /* Pods-chat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chat.debug.xcconfig"; path = "Target Support Files/Pods-chat/Pods-chat.debug.xcconfig"; sourceTree = "<group>"; };
 		CF4757D4239636D100966536 /* 21.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 21.gif; sourceTree = "<group>"; };
 		CF4757D5239636D100966536 /* 35.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 35.gif; sourceTree = "<group>"; };
@@ -3772,7 +3774,7 @@
 		D4773ACC23FD628800D38D60 /* LineMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LineMainViewController.h; sourceTree = "<group>"; };
 		D4773ACD23FD628800D38D60 /* LineMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LineMainViewController.m; sourceTree = "<group>"; };
 		D4AE1C0922C0FCC300C142FE /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		D4B75E092278025E0007047C /* ug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ug.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4B75E092278025E0007047C /* UGBWApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UGBWApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4B75E0C2278025E0007047C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D4B75E15227802600007047C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4B75E18227802600007047C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -3826,7 +3828,7 @@
 				D4463AB623A773C5008EF03D /* CoreTelephony.framework in Frameworks */,
 				D4463AB423A773B9008EF03D /* CoreFoundation.framework in Frameworks */,
 				D4463AB223A773AF008EF03D /* CFNetwork.framework in Frameworks */,
-				A0C64CB6AEB0CF1B2031BBB8 /* Pods_ug.framework in Frameworks */,
+				21C23BE623A79DB2565145FB /* Pods_UGBWApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7380,6 +7382,8 @@
 				443C93C1135A8C900E47477A /* Pods-ug.release.xcconfig */,
 				69F06AC914C3660A83652620 /* Pods-chat.debug.xcconfig */,
 				09180447B2D6D470EA76AFD9 /* Pods-chat.release.xcconfig */,
+				073F062821635829AF986F13 /* Pods-UGBWApp.debug.xcconfig */,
+				2D592F2EB7E053E2686FCA3C /* Pods-UGBWApp.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -7399,8 +7403,8 @@
 				D4463AB523A773C4008EF03D /* CoreTelephony.framework */,
 				D4463AB323A773B9008EF03D /* CoreFoundation.framework */,
 				D4463AB123A773AF008EF03D /* CFNetwork.framework */,
-				6486EFF4C273BEA0AE8994DD /* Pods_ug.framework */,
 				30193B1626262AA87797C0E9 /* Pods_chat.framework */,
+				2E79CE20D619A7BDF62E7B77 /* Pods_UGBWApp.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -7922,7 +7926,7 @@
 		D4B75E0A2278025E0007047C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D4B75E092278025E0007047C /* ug.app */,
+				D4B75E092278025E0007047C /* UGBWApp.app */,
 				031EF3FE23BE7A9400B0F813 /* chat.app */,
 			);
 			name = Products;
@@ -8039,9 +8043,9 @@
 			productReference = 031EF3FE23BE7A9400B0F813 /* chat.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D4B75E082278025E0007047C /* ug */ = {
+		D4B75E082278025E0007047C /* UGBWApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D4B75E1F227802600007047C /* Build configuration list for PBXNativeTarget "ug" */;
+			buildConfigurationList = D4B75E1F227802600007047C /* Build configuration list for PBXNativeTarget "UGBWApp" */;
 			buildPhases = (
 				8B808422CD07BA86ABBD013F /* [CP] Check Pods Manifest.lock */,
 				D4B75E052278025E0007047C /* Sources */,
@@ -8053,9 +8057,9 @@
 			);
 			dependencies = (
 			);
-			name = ug;
+			name = UGBWApp;
 			productName = ug;
-			productReference = D4B75E092278025E0007047C /* ug.app */;
+			productReference = D4B75E092278025E0007047C /* UGBWApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -8081,7 +8085,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D4B75E042278025E0007047C /* Build configuration list for PBXProject "ug" */;
+			buildConfigurationList = D4B75E042278025E0007047C /* Build configuration list for PBXProject "UGBWApp" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -8101,7 +8105,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				D4B75E082278025E0007047C /* ug */,
+				D4B75E082278025E0007047C /* UGBWApp */,
 				031EF3FD23BE7A9400B0F813 /* chat */,
 			);
 		};
@@ -8877,7 +8881,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ug-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-UGBWApp-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -8890,15 +8894,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ug/Pods-ug-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-UGBWApp/Pods-UGBWApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ug/Pods-ug-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-UGBWApp/Pods-UGBWApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ug/Pods-ug-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-UGBWApp/Pods-UGBWApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -10357,7 +10361,7 @@
 		};
 		D4B75E20227802600007047C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E98695D8DC0D2512B92A7C32 /* Pods-ug.debug.xcconfig */;
+			baseConfigurationReference = 073F062821635829AF986F13 /* Pods-UGBWApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ug/ug.entitlements;
@@ -10376,7 +10380,7 @@
 				MARKETING_VERSION = 1.1.1;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.fhpt.H5DBF1426-a";
-				PRODUCT_NAME = ug;
+				PRODUCT_NAME = UGBWApp;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -10384,7 +10388,7 @@
 		};
 		D4B75E21227802600007047C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 443C93C1135A8C900E47477A /* Pods-ug.release.xcconfig */;
+			baseConfigurationReference = 2D592F2EB7E053E2686FCA3C /* Pods-UGBWApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ug/ug.entitlements;
@@ -10402,7 +10406,7 @@
 				);
 				MARKETING_VERSION = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.fhpt.H5DBF1426-a";
-				PRODUCT_NAME = ug;
+				PRODUCT_NAME = UGBWApp;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -10420,7 +10424,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D4B75E042278025E0007047C /* Build configuration list for PBXProject "ug" */ = {
+		D4B75E042278025E0007047C /* Build configuration list for PBXProject "UGBWApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D4B75E1D227802600007047C /* Debug */,
@@ -10429,7 +10433,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D4B75E1F227802600007047C /* Build configuration list for PBXNativeTarget "ug" */ = {
+		D4B75E1F227802600007047C /* Build configuration list for PBXNativeTarget "UGBWApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D4B75E20227802600007047C /* Debug */,

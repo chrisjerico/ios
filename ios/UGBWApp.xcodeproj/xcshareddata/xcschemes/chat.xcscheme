@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D4B75E082278025E0007047C"
-               BuildableName = "ug.app"
-               BlueprintName = "ug"
-               ReferencedContainer = "container:ug.xcodeproj">
+               BlueprintIdentifier = "031EF3FD23BE7A9400B0F813"
+               BuildableName = "chat.app"
+               BlueprintName = "chat"
+               ReferencedContainer = "container:UGBWApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -27,15 +27,6 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D4B75E082278025E0007047C"
-            BuildableName = "ug.app"
-            BlueprintName = "ug"
-            ReferencedContainer = "container:ug.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <Testables>
       </Testables>
    </TestAction>
@@ -53,10 +44,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D4B75E082278025E0007047C"
-            BuildableName = "ug.app"
-            BlueprintName = "ug"
-            ReferencedContainer = "container:ug.xcodeproj">
+            BlueprintIdentifier = "031EF3FD23BE7A9400B0F813"
+            BuildableName = "chat.app"
+            BlueprintName = "chat"
+            ReferencedContainer = "container:UGBWApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -70,10 +61,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D4B75E082278025E0007047C"
-            BuildableName = "ug.app"
-            BlueprintName = "ug"
-            ReferencedContainer = "container:ug.xcodeproj">
+            BlueprintIdentifier = "031EF3FD23BE7A9400B0F813"
+            BuildableName = "chat.app"
+            BlueprintName = "chat"
+            ReferencedContainer = "container:UGBWApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

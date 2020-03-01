@@ -1,4 +1,4 @@
-${PODS_ROOT}/Target Support Files/Pods-ug/Pods-ug-frameworks.sh
+${PODS_ROOT}/Target Support Files/Pods-UGBWApp/Pods-UGBWApp-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/AvoidCrash/AvoidCrash.framework
 ${BUILT_PRODUCTS_DIR}/BAWKWebView/BAWKWebView.framework
 ${BUILT_PRODUCTS_DIR}/BRPickerView/BRPickerView.framework
