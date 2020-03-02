@@ -49,13 +49,14 @@
     _moneyTxt.delegate = self;
     self.lineCollection.dataSource = self;
     self.lineCollection.delegate = self;
+    self.lineCollection.bounces = NO;
     
     [self.lineCollection registerNib:[UINib nibWithNibName:@"LineMainListCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"LineMainListCollectionViewCell"];
     
     [self.lineCollection reloadData];
     
     float height =   self.lineCollection.collectionViewLayout.collectionViewContentSize.height;
-    self.lineCollection.cc_constraints.height.constant = height;
+    self.lineCollection.cc_constraints.height.constant = height + 5;
     
 }
 
