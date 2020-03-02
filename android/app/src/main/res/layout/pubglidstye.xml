@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="@dimen/dp_44"
+android:orientation="horizontal"
+      android:id="@+id/main_lin"
+    >
+
+    <RelativeLayout
+        android:id="@+id/vip_lin"
+        android:layout_width="@dimen/dp_0"
+        android:layout_weight="1.5"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        >
+
+    <TextView
+        android:paddingRight="@dimen/dp_3"
+        android:id="@+id/vip_tex"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp_16"
+        android:layout_marginLeft="@dimen/dp_8"
+        android:layout_gravity="center"
+        android:gravity="right|center_vertical"
+        android:textSize="@dimen/sp_9"
+        android:layout_centerInParent="true"
+        />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/name_text1"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="match_parent"
+        android:textSize="@dimen/sp_14"
+        android:layout_weight="1.5"
+        android:visibility="gone"
+        android:ellipsize="end"
+        />
+<TextView
+    android:id="@+id/name_tex"
+    android:layout_width="@dimen/dp_0"
+    android:layout_weight="1.5"
+    android:layout_height="match_parent"
+    android:textSize="@dimen/sp_14"
+    style="@style/pub_tex"
+    />
+<TextView
+    android:id="@+id/name_tex_lin"
+    android:layout_width="@dimen/dp_1"
+    android:layout_height="match_parent"
+    android:textSize="@dimen/sp_14"
+    android:background="@color/my_line"/>
+
+    <TextView
+        android:id="@+id/happiness_tex"
+        style="@style/pub_tex"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="match_parent"
+        android:textSize="@dimen/sp_14"
+        android:layout_weight="1.5"
+        />
+
+    <TextView
+        android:id="@+id/happiness_tex0"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="match_parent"
+        android:textSize="@dimen/sp_14"
+        android:layout_weight="1.5"
+        android:visibility="gone"
+        />
+
+<TextView
+    android:id="@+id/happiness_tex_lin"
+    android:layout_width="@dimen/dp_1"
+    android:textSize="@dimen/sp_14"
+    android:layout_height="match_parent"
+    android:background="@color/my_line"/>
+<TextView
+    android:id="@+id/happy_balance_tex"
+    android:layout_width="@dimen/dp_0"
+    android:layout_weight="1.5"
+    android:layout_height="match_parent"
+    android:textSize="@dimen/sp_14"
+    style="@style/pub_tex"
+    />
+
+
+
+<TextView
+    android:id="@+id/happy_balance_tex_lin"
+    android:layout_width="@dimen/dp_1"
+    android:layout_height="match_parent"
+    android:textSize="@dimen/sp_14"
+    android:background="@color/my_line"/>
+    <LinearLayout
+        android:id="@+id/full_date_lin"
+        android:layout_width="@dimen/dp_0"
+        android:layout_weight="2.5"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+     <TextView
+    android:id="@+id/full_date_tex"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    style="@style/pub_tex"
+         android:drawablePadding="@dimen/dp_5"
+         android:textSize="@dimen/sp_14"
+    />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/happiness_tex_lin5"
+        android:layout_width="@dimen/dp_1"
+        android:textSize="@dimen/sp_14"
+        android:layout_height="match_parent"
+        android:background="@color/my_line"
+        android:visibility="gone"
+        />
+    <TextView
+        android:id="@+id/happiness_tex_5"
+        android:layout_width="@dimen/dp_0"
+        android:layout_weight="1.5"
+        android:layout_height="match_parent"
+        android:textSize="@dimen/sp_14"
+        style="@style/pub_tex"
+        android:visibility="gone"
+        />
+
+</LinearLayout>

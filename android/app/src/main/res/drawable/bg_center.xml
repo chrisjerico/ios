@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+    <!-- android:radius 弧形的半径 -->
+    <solid android:color="@color/bgColor_content_center"/>
+    <corners android:radius="@dimen/radius_content"/>
+</shape>
+<!--弹出框-->

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+<!--<RelativeLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:paddingBottom="@dimen/dp_5"-->
+    <!--android:orientation="vertical">-->
+    <!--<ImageView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:background="@mipmap/hot"-->
+        <!--android:visibility="gone"-->
+        <!--android:id="@+id/iv_hot"-->
+        <!--android:layout_alignParentRight="true" />-->
+
+    <!--<ImageView-->
+        <!--android:id="@+id/iv_ticket_icon"-->
+        <!--android:layout_width="@dimen/dp_50"-->
+        <!--android:layout_height="@dimen/dp_50"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginTop="@dimen/dp_5"-->
+        <!--tools:src="@drawable/ticket_3d" />-->
+
+    <!--<TextView-->
+        <!--android:id="@+id/tv_name"-->
+        <!--style="@style/TextStyle_15_3"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/iv_ticket_icon"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginTop="@dimen/dp_5"-->
+        <!--android:text="北京赛车" />-->
+<!--</RelativeLayout>-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_onelevel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ll_twolevel">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_twolevel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+</LinearLayout>

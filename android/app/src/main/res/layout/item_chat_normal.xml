@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground">
+
+    <ImageView
+        android:id="@+id/iv_icon"
+        android:layout_width="44pt"
+        android:layout_height="44pt"
+        android:layout_marginStart="16pt"
+        android:layout_marginTop="8pt"
+        android:layout_marginBottom="8pt"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="#000000" />
+
+    <TextView
+        android:id="@+id/tv_unread_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_unread"
+        android:gravity="center"
+        android:minWidth="16pt"
+        android:paddingStart="3pt"
+        android:paddingEnd="3pt"
+        android:textColor="@color/cr_FFFFFF"
+        android:textSize="12pt"
+        app:layout_constraintCircle="@+id/iv_icon"
+        app:layout_constraintCircleAngle="45"
+        app:layout_constraintCircleRadius="20pt"
+        app:layout_constraintRight_toRightOf="@+id/iv_icon"
+        app:layout_constraintTop_toTopOf="@+id/iv_icon"
+        tools:text="123" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8pt"
+        android:textColor="@color/cr_292B2E"
+        android:textSize="16pt"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tv_last_message"
+        app:layout_constraintLeft_toRightOf="@+id/iv_icon"
+        app:layout_constraintTop_toTopOf="@+id/iv_icon"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="NameName" />
+
+    <com.sunhapper.x.spedit.view.SpXTextView
+        android:id="@+id/tv_last_message"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8pt"
+        android:layout_marginTop="4pt"
+        android:layout_marginEnd="16pt"
+        android:ellipsize="end"
+        android:lines="1"
+        android:textColor="@color/cr_909399"
+        android:textSize="12pt"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_icon"
+        app:layout_constraintLeft_toRightOf="@+id/iv_icon"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name"
+        tools:text="LaseMessageLaseMessageLaseMessage" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16pt"
+        android:textColor="@color/cr_909399"
+        android:textSize="12pt"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="12:00:00" />
+</androidx.constraintlayout.widget.ConstraintLayout>

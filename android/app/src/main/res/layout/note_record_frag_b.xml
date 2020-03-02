@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    >
+
+    <include layout="@layout/pub_telete_lay"/>
+
+    <!-- 顶部导航栏 -->
+    <LinearLayout
+        android:id="@+id/navigation_bar_lin"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_44"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv01"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/has_won__prize"
+            android:textColor="@color/fount1"
+            android:textSize="@dimen/sp_14" />
+
+        <TextView
+            android:id="@+id/tv02"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/not_won__prize"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/sp_14" />
+
+        <TextView
+            android:id="@+id/tv03"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/waiting_won__prize"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/sp_14" />
+
+        <TextView
+            android:id="@+id/tv04"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/withdrawal"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/sp_14" />
+
+        <TextView
+            android:id="@+id/tv05"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="注单统计"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/sp_14"
+            android:visibility="gone"
+            />
+    </LinearLayout>
+
+    <!-- Tab底部下划线 -->
+
+    <LinearLayout
+        android:id="@+id/iv_tab_bottom_lin"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_2"
+        android:orientation="vertical"
+        android:background="#66DDDDDD"
+        >
+    <TextView
+        android:id="@+id/iv_tab_bottom_img"
+        android:layout_width="wrap_content"
+        android:layout_height="2dp"
+        android:background="@color/fount1"
+        />
+    </LinearLayout>
+
+    <include layout="@layout/pubglidstye_b"
+        />
+
+    <include layout="@layout/line"
+        android:id="@+id/line_view"
+        />
+
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_0"
+        android:layout_weight="1"
+        android:id="@+id/note_record_refresh"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/note_record_rec"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/note_record_rec1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/no_more_records_tex"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_40"
+                style="@style/pub_tex1"
+                android:textSize="@dimen/sp_18"
+                android:text="@string/no_more_records"
+                />
+
+
+        </LinearLayout>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        android:orientation="horizontal"
+        android:layout_gravity="bottom"
+        android:paddingLeft="@dimen/dp_16"
+        android:paddingRight="@dimen/dp_16"
+        android:background="?attr/colorAccent"
+        >
+
+        <TextView
+            android:id="@+id/left_texaa"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            style="@style/pub_tex"
+            android:text="@string/down_amount"
+            android:textColor="@color/color_white"
+            />
+
+        <TextView
+            android:id="@+id/total_money_tex"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            style="@style/pub_tex"
+            android:text="@string/not_amount"
+            android:textColor="@color/color_ffbc2e"
+            />
+
+        <TextView
+            android:layout_width="@dimen/dp_4"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            />
+
+        <LinearLayout
+            android:id="@+id/win_lose_lin"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            >
+        <TextView
+            android:id="@+id/right_tex"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            style="@style/pub_tex"
+            android:text="@string/win_lose_amount"
+            android:textColor="@color/color_white"
+            />
+
+        <TextView
+            android:id="@+id/win_lose_tex"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            style="@style/pub_tex"
+            android:text="@string/not_amount"
+            android:textColor="@color/color_white"
+            />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

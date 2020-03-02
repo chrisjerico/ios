@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tl="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true"
+    android:layout_width="match_parent"
+    android:background="@color/color_white"
+    android:layout_height="match_parent">
+
+    <com.phoenix.lotterys.view.CustomTitleBar
+        android:id="@+id/titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorAccent"
+        app:left="0x00000000"
+        app:left_icon="@drawable/finish"
+        app:right_icon="@drawable/finish"
+        app:right_text=""
+        app:title="@string/pay_deposit"
+        app:titlebar_type="13">
+    </com.phoenix.lotterys.view.CustomTitleBar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/titlebar"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:orientation="horizontal">
+            <com.flyco.tablayout.SlidingTabLayout
+                android:id="@+id/tab_title"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_40"
+                android:layout_weight="1"
+                tl:tl_indicator_anim_duration="1"
+                tl:tl_indicator_color="?attr/colorAccent"
+                tl:tl_indicator_width_equal_title="true"
+                tl:tl_textSelectColor="?attr/colorAccent"
+                tl:tl_textUnselectColor="@color/bgColor_overlay"
+                tl:tl_tab_space_equal = "true"
+                tl:tl_textsize="@dimen/dp_14" />
+        </LinearLayout>
+
+        <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0.5dp"-->
+            <!--android:id="@+id/view1"-->
+            <!--android:visibility="gone"-->
+            <!--android:background="@color/textColor_downSheet_title"/>-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:visibility="gone"
+            android:id="@+id/ll_fund"
+            android:background="@color/color_212121"
+            android:layout_height="@dimen/dp_40">
+
+            <TextView
+                android:layout_width="0dp"
+                android:id="@+id/tv_finance"
+                android:layout_height="@dimen/dp_38"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="存款" />
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_marginTop="@dimen/dp_8"
+                android:layout_marginBottom="@dimen/dp_8"
+                android:layout_height="match_parent"
+                android:background="@color/textColor_downSheet_title">
+
+            </View>
+
+            <TextView
+                android:layout_width="0dp"
+                android:id="@+id/tv_draw"
+                android:layout_height="@dimen/dp_38"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="取款" />
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_marginTop="@dimen/dp_8"
+                android:layout_marginBottom="@dimen/dp_8"
+                android:layout_height="match_parent"
+                android:background="@color/textColor_downSheet_title">
+
+            </View>
+
+            <TextView
+                android:layout_width="0dp"
+                android:id="@+id/tv_finance_record"
+                android:layout_height="@dimen/dp_38"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="存款记录" />
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_marginTop="@dimen/dp_8"
+                android:layout_marginBottom="@dimen/dp_8"
+                android:layout_height="match_parent"
+                android:background="@color/textColor_downSheet_title">
+
+            </View>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_38"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:id="@+id/tv_draw_record"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="取款记录" />
+            <View
+                android:layout_width="0.5dp"
+                android:layout_marginTop="@dimen/dp_8"
+                android:layout_marginBottom="@dimen/dp_8"
+                android:layout_height="match_parent"
+                android:background="@color/textColor_downSheet_title">
+            </View>
+
+            <TextView
+                android:layout_width="0dp"
+                android:id="@+id/tv_detail"
+                android:layout_height="@dimen/dp_38"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="资金明细" />
+        </LinearLayout>
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/vp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#11000000" />
+    </LinearLayout>
+</RelativeLayout>

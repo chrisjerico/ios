@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="@dimen/dp_300"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/downSheet_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.0"
+        android:background="@drawable/bg_center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/downSheet_title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_downSheet_title"
+            android:gravity="center"
+            android:text="标题"
+            android:textColor="@color/textColor_downSheet_title"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/downSheet_msg_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/marginBottom_downSheet_msg"
+            android:gravity="center"
+            android:text="内容"
+            android:textColor="@color/textColor_downSheet_msg"
+            android:textSize="@dimen/textSize_downSheet_msg"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/downSheet_content_rv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </androidx.recyclerview.widget.RecyclerView>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/downSheet_Cancel_tv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_item_content"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="@dimen/margin_downSheet_left_right"
+        android:background="@drawable/bg_downsheet_footer"
+        android:clickable="true"
+        android:gravity="center"
+        android:textColor="?attr/colorAccent"
+        android:textSize="@dimen/textSize_item_content"
+        android:textStyle="bold"/>
+</LinearLayout>
+
+    <!--弹出框-->

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <com.phoenix.lotterys.view.CustomTitleBar
+        android:id="@+id/titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorAccent"
+        app:left="0x00000008"
+        app:right_icon="@drawable/more"
+        app:right_text=""
+        app:title="真人视讯"
+        app:titlebar_type="12">
+    </com.phoenix.lotterys.view.CustomTitleBar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        >
+
+        <ImageView
+            android:layout_width="@dimen/dp_120"
+            android:adjustViewBounds="true"
+            android:layout_height="wrap_content"
+            style="@style/pub_tex"
+            android:src="@drawable/staywait"
+            />
+
+        <TextView
+            android:layout_marginTop="@dimen/dp_12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/pub_tex"
+            android:textSize="@dimen/sp_18"
+            android:text="页面正在建设中"
+            />
+
+
+        <TextView
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/pub_tex"
+            android:textSize="@dimen/sp_14"
+            android:text="敬请期待..."
+            />
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

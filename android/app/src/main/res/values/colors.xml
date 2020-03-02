@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#C3C6C8</color>
+    <color name="colorPrimaryDark">#ffffff</color>
+    <color name="colorAccent">#2F9CF3</color>
+
+    <color name="color_5784ff">#333333</color>
+    <color name="color_333333">#333333</color>
+    <color name="color_f4f4f4">#f4f4f4</color>
+    <color name="color_32CD32">#32CD32</color>
+    <!--<color name="color_22a6ec">#22a6ec</color>-->
+
+
+    <color name="message_text_color">#FFC950</color>
+    <color name="transparent">#00000000</color>
+    <color name="black">#FF000000</color>
+    <color name="black1">#212121</color>
+    <color name="black3c">#3c3c3c</color>
+    <color name="black_9E">#9C000000</color>
+    <color name="my_backgroup">#F4F4F4</color>
+    <color name="my_line">#DDDDDD</color>
+    <color name="my_line1">#a6DDDDDD</color>
+    <color name="title_backgroup">#2F9CF3</color>
+    <color name="fount1">#FB594B</color>
+    <color name="fount2">#757575</color>
+
+    <color name="color_0000FF">#0000FF</color>
+    <color name="color_008000">#008000</color>
+    <color name="color_FF00001">#FF0000</color>
+    <color name="color_B8F9FF">#B8F9FF</color>
+
+
+
+<!--弹出框-->
+    <!--覆盖颜色-->
+    <color name="bgColor_overlay">#60000000</color>
+    <!--窗口背景颜色-->
+    <color name="bgColor_content_center">#fffefe</color>
+    <!--标题颜色-->
+    <color name="textColor_center_title">#000000</color>
+    <color name="textColor_downSheet_title">#8f8f8f</color>
+    <!--消息颜色-->
+    <color name="textColor_center_msg">#000000</color>
+    <color name="textColor_downSheet_msg">#8f8f8f</color>
+    <!--线条颜色-->
+    <color name="bgColor_divier">#d7d7db</color>
+    <!--取消按钮颜色-->
+    <color name="textColor_alert_button_cancel">#007aff</color>
+    <!--普通按钮文字颜色-->
+    <color name="textColor_alert_button_others">#007aff</color>
+    <!--点击颜色-->
+    <color name="bgColor_item_press">#e9e6e6</color>
+
+
+    <color name="fount_ash">#b2b2b2</color>
+    <color name="bac_ash">#dddddd</color>
+
+    <!--北京赛车-->
+    <color name="color_7">#AEA6A6</color>
+    <color name="color_2">#008BF9</color>
+    <color name="color_9">#770100</color>
+    <color name="color_3">#4C4D51</color>
+    <color name="color_6">#420AFF</color>
+    <color name="color_10">#2BC610</color>
+    <color name="color_5">#63D2D2</color>
+    <color name="color_8">#FF0400</color>
+    <color name="color_1">#E1D463</color>
+    <color name="color_4">#F47A00</color>
+    <color name="ad5700">#ad5700</color>
+
+    <color name="color_FE63534">#E63534</color>
+    <color name="color_34E64B">#34E64B</color>
+    <color name="color_34E5E6">#34B5E6</color>
+    <color name="color_999999">#999999</color>
+    <color name="color_BDBDBD">#BDBDBD</color>
+
+    <!--虚线-->
+    <color name="color_E2E2E2">#E2E2E2</color>
+
+    <color name="color_FE7A32">#FE7A32</color>
+    <color name="color_212121">#212121</color>
+    <color name="color_FDE026">#FDE026</color>
+    <color name="color_DA221A">#DA221A</color>
+    <color name="color_525252">#525252</color>
+    <color name="color_848484">#848484</color>
+    <color name="color_4D4D4D">#4D4D4D</color>
+    <color name="color_1993D6">#1993D6</color>
+    <color name="color_e1A2e2e2">#1Ae2e2e2</color>
+    <color name="color_e4D2e2e2">#4De2e2e2</color>
+    <color name="color_101010">#2A2A2A</color>
+    <color name="color_FF6880">#FF6880</color>
+    <color name="color_666666">#666666</color>
+    <color name="color_ECECEC">#ECECEC</color>
+    <color name="color_E3E3E3">#E3E3E3</color>
+    <color name="color_FBC506">#FBC506</color>
+    <color name="color_6889AD">#6889AD</color>
+    <color name="color_33FFF">#33FFFFFF</color>
+    <color name="color_F9F9F9">#F9F9F9</color>
+
+    <color name="cr_FF9900">#FF9900</color>
+    <color name="cr_F6F6F6">#F6F6F6</color>
+    <color name="cr_3880E5">#3880E5</color>
+    <color name="cr_666666">#666666</color>
+    <color name="cr_E00013">#E00013</color>
+    <color name="cr_FF0000">#FFFF00</color>
+    <color name="color_1AFFF">#1AFFFFFF</color>
+<!--    <color name="cr_BCC0CC">#BCC0CC</color>-->
+<!--    <color name="cr_4882FF">#4882FF</color>-->
+<!--    <color name="cr_000000">#000000</color>-->
+<!--    <color name="cr_F10000">#F10000</color>-->
+
+
+
+
+</resources>

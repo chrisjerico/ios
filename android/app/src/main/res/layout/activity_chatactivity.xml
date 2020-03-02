@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:fitsSystemWindows="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent">
+
+
+    <com.phoenix.lotterys.view.CustomTitleBar
+        android:id="@+id/titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorAccent"
+        app:left="0x00000000"
+        app:left_icon="@drawable/finish"
+        app:right_icon="@drawable/finish"
+        app:right_text=""
+        app:title="红包"
+        app:titlebar_type="13">
+    </com.phoenix.lotterys.view.CustomTitleBar>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_below="@+id/titlebar"
+        android:paddingTop="@dimen/dp_8"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/chat_recy"
+        android:paddingBottom="@dimen/dp_8"
+        android:layout_above="@+id/chat_lay"
+        >
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#B2B2B2"
+        android:layout_above="@+id/chat_lay"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:background="#F9F9F9"
+        android:gravity="center_vertical"
+        android:padding="3dp"
+        android:id="@+id/chat_lay">
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/close"
+            android:layout_weight="1"
+            android:id="@+id/img_add"/>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="8"
+            android:layout_margin="@dimen/dp_6"
+            android:background="@color/color_white"
+            android:gravity="center">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:padding="@dimen/dp_3"
+                android:textSize="@dimen/sp_14"
+                android:id="@+id/edit_context"
+                android:maxLines="3"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="发送"
+            android:layout_weight="1.5"
+            android:textSize="@dimen/sp_18"
+            android:gravity="center"
+            android:id="@+id/txt_send"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+</RelativeLayout>

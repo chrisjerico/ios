@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:id="@+id/explain_tex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dp_24"
+        android:layout_marginBottom="@dimen/dp_24"
+        android:text="10.0000 开心乐：1 元人民币"
+        android:textSize="@dimen/sp_16"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_44"
+        android:orientation="horizontal"
+        android:layout_marginLeft="@dimen/dp_12"
+        android:layout_marginRight="@dimen/dp_12"
+
+        android:background="@drawable/shape_home_ticket_bg"
+        >
+
+        <EditText
+            android:id="@+id/edit"
+            style="@style/pub_tex"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp_5"
+            android:layout_weight="1"
+            android:descendantFocusability="afterDescendants"
+            android:background="@null"
+            android:hint="请输入开心乐"
+            android:inputType="numberDecimal" />
+
+        <ImageView
+            android:layout_marginRight="@dimen/dp_5"
+            android:layout_marginLeft="@dimen/dp_5"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:src="@mipmap/edzh"
+            />
+
+
+        <TextView
+            android:id="@+id/money_tex"
+            android:layout_marginLeft="@dimen/dp_5"
+            android:layout_width="@dimen/dp_0"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            style="@style/pub_tex"
+            android:hint="获得人民币"
+            android:textColorHint="@color/fount2"
+            />
+    </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/commit_tex"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_44"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dp_16"
+            android:background="?attr/colorAccent"
+            style="@style/pub_tex"
+            android:textColor="@color/color_white"
+            android:text="确认兑换"
+            android:textSize="@dimen/sp_18"
+            android:paddingLeft="@dimen/dp_12"
+            android:paddingRight="@dimen/dp_12"
+            />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_44"
+        android:orientation="horizontal"
+        android:layout_margin="@dimen/dp_12"
+        >
+
+        <TextView
+            android:id="@+id/tex1"
+            android:layout_width="@dimen/dp_0"
+            android:layout_weight="1"
+            android:background="@drawable/shape_home_ticket_bg"
+            android:layout_height="match_parent"
+            style="@style/pub_tex"
+            android:textSize="@dimen/sp_12"
+            android:text="10.0000"
+            />
+
+        <TextView
+            android:id="@+id/tex2"
+            android:layout_marginLeft="@dimen/dp_7"
+            android:layout_width="@dimen/dp_0"
+            android:layout_weight="1"
+            android:background="@drawable/shape_home_ticket_bg"
+            android:layout_height="match_parent"
+            style="@style/pub_tex"
+            android:textSize="@dimen/sp_12"
+            android:text="50.0000"
+            />
+
+        <TextView
+            android:id="@+id/tex3"
+            android:layout_marginLeft="@dimen/dp_7"
+            android:layout_width="@dimen/dp_0"
+            android:layout_weight="1"
+            android:background="@drawable/shape_home_ticket_bg"
+            android:layout_height="match_parent"
+            style="@style/pub_tex"
+            android:textSize="@dimen/sp_12"
+            android:text="100.0000"
+            />
+        <TextView
+            android:id="@+id/tex4"
+            android:layout_marginLeft="@dimen/dp_7"
+            android:layout_width="@dimen/dp_0"
+            android:layout_weight="1"
+            android:background="@drawable/shape_home_ticket_bg"
+            android:layout_height="match_parent"
+            style="@style/pub_tex"
+            android:textSize="@dimen/sp_12"
+            android:text="500.0000"
+            />
+        <TextView
+            android:id="@+id/tex5"
+            android:layout_marginLeft="@dimen/dp_7"
+            android:layout_width="@dimen/dp_0"
+            android:layout_weight="1"
+            android:background="@drawable/shape_home_ticket_bg"
+            android:layout_height="match_parent"
+            style="@style/pub_tex"
+            android:textSize="@dimen/sp_12"
+            android:text="全部兑换"
+            />
+
+    </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</LinearLayout>

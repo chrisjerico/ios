@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tl="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true"
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent">
+
+    <com.phoenix.lotterys.view.CustomTitleBar
+        android:id="@+id/titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorAccent"
+        app:left="0x00000000"
+        app:left_icon="@drawable/finish"
+        app:right_icon="@drawable/finish"
+        app:right_text=""
+        app:title=""
+        app:titlebar_type="13">
+    </com.phoenix.lotterys.view.CustomTitleBar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/titlebar"
+        android:orientation="vertical">
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@color/colorPrimaryDark"-->
+            <!--android:orientation="horizontal">-->
+
+            <com.flyco.tablayout.SegmentTabLayout
+                android:id="@+id/tab_seg"
+                android:layout_marginLeft="@dimen/dp_65"
+                android:layout_marginRight="@dimen/dp_65"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                tl:tl_bar_color="#ffffff"
+                tl:tl_indicator_color="@color/fount1"
+
+                tl:tl_indicator_corner_radius="8dp"
+                tl:tl_tab_padding="20dp"/>
+
+        <!--</LinearLayout>-->
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/vp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#11000000" />
+    </LinearLayout>
+</RelativeLayout>

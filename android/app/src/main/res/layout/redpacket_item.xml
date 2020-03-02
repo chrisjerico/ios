@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/color_white_B3"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/iv_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_17"
+            android:layout_marginLeft="@dimen/dp_17"
+            android:background="@mipmap/duihua"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_marginLeft="@dimen/dp_5"
+            android:layout_weight="1"
+            android:gravity="center|left"
+            android:text="红包群"
+            android:textSize="@dimen/sp_14" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp_34"
+            android:layout_marginRight="@dimen/dp_34"
+            android:gravity="center"
+            android:rotation="180"
+            android:src="@drawable/finish"
+            android:tint="@color/my_line" />
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:layout_marginStart="@dimen/dp_17"
+        android:layout_marginLeft="@dimen/dp_17"
+        android:layout_marginEnd="@dimen/dp_17"
+        android:layout_marginRight="@dimen/dp_17"
+        android:background="@color/color_white">
+
+    </View>
+</LinearLayout>

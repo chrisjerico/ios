@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:background="@color/color_white"
+    >
+
+    <include layout="@layout/pub_telete_lay"/>
+
+    <LinearLayout
+        android:id="@+id/information_lin"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_80"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dp_16"
+        android:paddingRight="@dimen/dp_16"
+        >
+
+        <ImageView
+            android:id="@+id/portrait_img"
+            android:layout_width="@dimen/dp_36"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            />
+        
+        <LinearLayout
+            android:layout_marginLeft="@dimen/dp_16"
+            android:layout_width="@dimen/dp_0"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            
+            <TextView
+                android:id="@+id/name_tex"
+                style="@style/pub_tex"
+                android:layout_gravity="left"
+                android:gravity="bottom"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="@dimen/dp_0"
+                android:textSize="@dimen/sp_16"
+                />
+            <TextView
+                android:layout_marginTop="@dimen/dp_3"
+                android:id="@+id/time_tex"
+                style="@style/pub_tex"
+                android:layout_gravity="left"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="@dimen/dp_0"
+                android:gravity="top"
+                android:textSize="@dimen/sp_14"
+                />
+            
+        </LinearLayout>
+    </LinearLayout>
+        <FrameLayout
+            android:id="@+id/weather_fra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:orientation="vertical"
+                android:padding="@dimen/dp_16"
+                android:background="#80000000"
+                >
+
+                <TextView
+                    android:id="@+id/weather_tex"
+                    android:layout_gravity="left"
+                    android:gravity="bottom"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="@dimen/dp_0"
+                    android:textSize="@dimen/sp_18"
+                    android:textColor="@color/color_white"
+                    />
+                <TextView
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:id="@+id/weather_name_tex"
+                    style="@style/pub_tex"
+                    android:layout_gravity="left"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="@dimen/dp_0"
+                    android:gravity="top"
+                    android:textSize="@dimen/sp_14"
+                    android:textColor="@color/colorPrimary"
+                    />
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="@dimen/dp_12"
+        android:layout_marginRight="@dimen/dp_12"
+        >
+
+        <TextView
+            android:paddingLeft="@dimen/dp_16"
+            android:paddingRight="@dimen/dp_16"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_40"
+            style="@style/pub_tex"
+            android:text="@string/my_information"
+            android:gravity="left|center_vertical"
+            android:textSize="@dimen/sp_18"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            />
+
+
+        //账号
+    <include layout="@layout/pub_title_lay"
+        android:id="@+id/account_number_lin"/>
+
+    <include layout="@layout/line_16"/>
+
+    //真实姓名
+    <include layout="@layout/pub_title_lay"
+        android:id="@+id/name_lin"/>
+
+    <include layout="@layout/line_16"/>
+
+    //QQ
+    <include layout="@layout/pub_title_lay"
+        android:id="@+id/qq_lin"/>
+
+    <include layout="@layout/line_16"/>
+
+    //手机
+    <include layout="@layout/pub_title_lay"
+        android:id="@+id/mobile_phone_lin"/>
+
+    <include layout="@layout/line_16"/>
+
+    //邮箱
+    <include layout="@layout/pub_title_lay"
+        android:id="@+id/mailbox_lin"/>
+
+    <include layout="@layout/line_16"/>
+
+    //币别
+    <include layout="@layout/pub_title_lay"
+        android:id="@+id/currency_lin"/>
+
+    </LinearLayout>
+
+</LinearLayout>

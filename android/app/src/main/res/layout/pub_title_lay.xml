@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp_44"
+    android:orientation="horizontal"
+    android:id="@+id/title_lin"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/dp_16"
+        android:paddingRight="@dimen/dp_16"
+        >
+
+        <TextView
+            android:id="@+id/left_tex"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            style="@style/pub_tex"
+            android:layout_alignParentLeft="true"
+            android:textSize="@dimen/sp_14"
+            android:visibility="gone"
+            />
+
+        <ImageView
+            android:id="@+id/left_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:visibility="gone"
+            />
+
+        <TextView
+            android:id="@+id/title_tex"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="@dimen/sp_18"
+            style="@style/pub_tex"
+            android:visibility="gone"
+            />
+
+        <TextView
+            android:id="@+id/rigt_tex"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:textSize="@dimen/sp_14"
+            style="@style/pub_tex"
+            android:visibility="gone"
+            />
+
+        <ImageView
+            android:id="@+id/rigt_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:visibility="gone"
+            />
+
+
+    </RelativeLayout>
+
+</LinearLayout>

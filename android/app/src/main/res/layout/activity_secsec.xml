@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:padding="@dimen/dp_10">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:src="@mipmap/mmcbackpi" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/white"
+        android:layout_marginTop="@dimen/dp_105"
+        android:id="@+id/tv_countDown"
+        android:visibility="gone"
+        android:text="倒计时" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:id="@+id/iv_bunko"
+        android:background="@mipmap/mmczjl" />
+
+
+    <CheckBox
+        android:id="@+id/cb_auto"
+        style="@style/CustomCheckTheme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv_bunko"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/dp_95"
+        android:layout_marginEnd="@dimen/dp_15"
+        android:layout_marginRight="@dimen/dp_15"
+        android:checked="false" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv_bunko"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dp_95"
+        android:text="再接再厉"
+        android:id="@+id/tv_bonus"
+        android:textStyle="bold"
+        android:textColor="@color/color_1"
+        android:textSize="@dimen/sp_15" />
+    <ImageView
+        android:id="@+id/iv_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/dp_190"
+        android:layout_marginRight="@dimen/dp_70"
+        android:src="@drawable/dialog_close" />
+    <RelativeLayout
+        android:id="@+id/recycler_view_container"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/iv_bunko"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dp_21"
+        android:layout_height="wrap_content">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_win_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dp_60"
+            android:layout_marginLeft="@dimen/dp_60" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_niu_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rv_win_number"
+            android:layout_marginRight="@dimen/dp_60"
+            android:layout_marginLeft="@dimen/dp_60"
+            android:scrollbars="none" />
+
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:background="@color/color_white"
+    >
+
+    <include layout="@layout/pub_telete_lay"/>
+
+    <LinearLayout
+        android:paddingRight="@dimen/dp_16"
+        android:paddingLeft="@dimen/dp_16"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/dp_12"
+        >
+
+        <LinearLayout
+            android:id="@+id/time_hoice_lin"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+        <TextView
+            android:id="@+id/time_hoice_tex"
+            android:paddingRight="@dimen/dp_8"
+            android:layout_width="@dimen/dp_120"
+            android:layout_height="@dimen/dp_39"
+            style="@style/pub_tex"
+            android:gravity="left|center_vertical"
+            android:drawableRight="@drawable/lower_triangle_ash_sele"
+            />
+
+        <include
+            layout="@layout/line"
+            android:id="@+id/time_hoice_li"
+            />
+
+    </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/type_lin"
+                android:layout_marginLeft="@dimen/dp_12"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+
+
+
+                <TextView
+                    android:id="@+id/type_sele_tex"
+                    android:paddingRight="@dimen/dp_8"
+                    android:layout_width="@dimen/dp_120"
+                    android:layout_height="@dimen/dp_39"
+                    style="@style/pub_tex"
+                    android:gravity="left|center_vertical"
+                    android:drawableRight="@drawable/lower_triangle_ash_sele"
+                    android:drawablePadding="@dimen/dp_4"
+                    />
+
+
+                <include
+                    android:id="@+id/type_li"
+                    layout="@layout/line" />
+
+            </LinearLayout>
+
+    </LinearLayout>
+
+       <include
+           layout="@layout/feedback_record_adapter"
+           />
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:layout_width="match_parent"
+        android:id="@+id/feedback_record_refresh"
+        android:layout_height="match_parent">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/feedback_record_rec"
+        />
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+</LinearLayout>

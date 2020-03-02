@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp_60"
+    android:id="@+id/ll_main"
+    android:orientation="vertical">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="@dimen/dp_60">
+
+
+    <ImageView
+        android:id="@+id/iv_img"
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_40"
+        android:layout_centerVertical="true"
+
+        android:layout_marginLeft="@dimen/dp_8"
+        />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/dp_30"
+        android:textSize="@dimen/sp_12"
+        android:textColor="@color/title_backgroup"
+        android:layout_toRightOf="@+id/iv_img"
+        android:text="VR彩票" />
+
+    <TextView
+        android:id="@+id/tv_money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/dp_20"
+        android:textColor="@color/fount1"
+        android:layout_toLeftOf="@+id/iv_refresh"
+        android:text="¥ ******" />
+
+    <ImageView
+        android:id="@+id/iv_refresh"
+        android:tint="@color/fount2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/dp_18"
+        android:layout_marginRight="@dimen/dp_18"
+        android:src="@mipmap/refresh"
+         />
+</RelativeLayout>
+</LinearLayout>

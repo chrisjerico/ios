@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <View
+        android:layout_width="match_parent"
+        android:background="@color/bgColor_divier"
+        android:layout_height="@dimen/size_divider_line"/>
+    <TextView
+        android:id="@+id/dialog_item_tv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_48"
+        android:gravity="center"
+        android:textColor="?attr/colorAccent"
+        android:textSize="@dimen/sp_14" />
+
+    <TextView
+        android:id="@+id/dialog_item_tv1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_48"
+        android:gravity="center"
+        android:textColor="@color/fount1"
+        android:visibility="gone"
+        android:textSize="@dimen/sp_14"
+        />
+</LinearLayout>
+
+    <!--弹出框-->

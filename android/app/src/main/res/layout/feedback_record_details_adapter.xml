@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/shape_ticket_name_grayt"
+    android:layout_marginTop="@dimen/dp_12"
+    android:layout_marginLeft="@dimen/dp_12"
+    android:layout_marginRight="@dimen/dp_12"
+    >
+
+    <TextView
+        android:id="@+id/title_tex"
+        android:layout_marginTop="@dimen/dp_6"
+        android:layout_marginLeft="@dimen/dp_12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/pub_tex"
+        android:text="类型: 我要投诉"
+        android:gravity="left|center_vertical"
+        />
+    <TextView
+        android:layout_marginTop="@dimen/dp_6"
+        android:id="@+id/context_tex"
+        android:layout_marginLeft="@dimen/dp_12"
+        android:layout_marginRight="@dimen/dp_12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/pub_tex"
+        android:singleLine="false"
+        android:gravity="left|center_vertical"
+        android:textColor="@color/color_ffbc2e"
+        />
+    <TextView
+        android:layout_marginTop="@dimen/dp_6"
+        android:id="@+id/time_tex"
+        android:layout_marginRight="@dimen/dp_12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/pub_tex"
+        android:gravity="right|center_vertical"
+        android:layout_marginBottom="@dimen/dp_6"
+        />
+
+
+
+
+</LinearLayout>

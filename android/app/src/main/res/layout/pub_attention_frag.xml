@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/my_line"
+    >
+
+    <include layout="@layout/pub_telete_lay"/>
+
+
+    <LinearLayout
+        android:id="@+id/option_lin"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dp_16"
+        android:paddingRight="@dimen/dp_16"
+        android:background="@color/color_white"
+        >
+
+        <TextView
+            android:id="@+id/attention_left_tex"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="@dimen/dp_36"
+            style="@style/pub_tex"
+            android:layout_weight="1"
+            android:background="@drawable/attention_left_sele"
+            android:textColor="@color/attention_text_sele"
+            />
+
+        <TextView
+            android:id="@+id/attention_right_tex"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="@dimen/dp_36"
+            style="@style/pub_tex"
+            android:layout_weight="1"
+            android:background="@drawable/attention_right_sele"
+            android:textColor="@color/attention_text_sele"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/framnent_lin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+    </LinearLayout>
+
+    <!--<com.scwang.smartrefresh.layout.SmartRefreshLayout-->
+        <!--android:id="@+id/smart_refresh_layout"-->
+        <!--android:layout_marginTop="@dimen/dp_5"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
+    <!--<android.support.v7.widget.RecyclerView-->
+        <!--android:id="@+id/mail_rec"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--/>-->
+    <!--</com.scwang.smartrefresh.layout.SmartRefreshLayout>-->
+
+</LinearLayout>

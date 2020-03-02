@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="divider_height">1dp</dimen>
+
+    <dimen name="divider_height_0">0dp</dimen>
+    <!--弹出框-->
+    <!--标题文字大小-->
+    <dimen name="textSize_center_title">16sp</dimen>
+    <dimen name="textSize_downSheet_title">14sp</dimen>
+    <!--标题文字高度-->
+    <dimen name="height_center_title">50dp</dimen>
+    <dimen name="height_downSheet_title">35dp</dimen>
+    <!--消息文字大小-->
+    <dimen name="textSize_center_msg">13sp</dimen>
+    <dimen name="textSize_downSheet_msg">12sp</dimen>
+    <!--消息距离底部间距-->
+    <dimen name="marginBottom_center_msg">25dp</dimen>
+    <dimen name="marginBottom_downSheet_msg">14dp</dimen>
+    <!--窗口模式左右两边到屏幕的间距-->
+    <dimen name="margin_center_left_right">40dp</dimen>
+    <dimen name="margin_downSheet_left_right">10dp</dimen>
+    <!--线条粗细-->
+    <dimen name="size_divider_line">1dp</dimen>
+    <!--按钮的高度-->
+    <dimen name="height_item_content">40dp</dimen>
+    <!--按钮文字大小-->
+    <dimen name="textSize_item_content">12sp</dimen>
+    <!--圆角-->
+    <dimen name="radius_content">15px</dimen>
+</resources>

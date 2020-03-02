@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <com.phoenix.lotterys.view.CustomTitleBar
+        android:id="@+id/titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorAccent"
+        app:left="0x00000000"
+        app:left_icon="@drawable/finish"
+        app:right_icon="@drawable/more"
+        app:right_text=""
+        app:title="购彩大厅"
+        app:titlebar_type="13"></com.phoenix.lotterys.view.CustomTitleBar>
+
+    <fragment
+        android:id="@+id/hall_fgt"
+        android:name="com.phoenix.lotterys.buyhall.BuyHallTypeFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+</LinearLayout>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_70"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/dp_10"
+        android:paddingRight="@dimen/dp_16"
+        android:paddingLeft="@dimen/dp_16"
+        android:paddingBottom="@dimen/dp_10"
+        android:id="@+id/user_lin"
+        >
+
+        <ImageView
+            android:id="@+id/head_img"
+            android:layout_width="@dimen/dp_50"
+            android:layout_height="wrap_content"
+            style="@style/pub_tex"
+            android:adjustViewBounds="true"
+            />
+
+        <LinearLayout
+            android:layout_width="@dimen/dp_0"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/name_tex"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_0"
+                android:layout_weight="1"
+                style="@style/pub_tex"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_16"
+                android:layout_gravity="left"
+                android:drawablePadding="@dimen/dp_3"
+                />
+
+
+            <TextView
+                android:id="@+id/time_tex"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_0"
+                android:layout_weight="1"
+                style="@style/pub_tex"
+                android:textSize="@dimen/sp_12"
+                android:layout_gravity="left"
+                />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/unfriended_tex"
+            android:layout_marginLeft="@dimen/dp_12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/pub_tex"
+            android:textColor="@color/color_white"
+            android:text="取消关注"
+            android:paddingLeft="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_5"
+            android:paddingBottom="@dimen/dp_5"
+            android:background="@drawable/attention_red"
+            android:visibility="gone"
+            />
+
+    </LinearLayout>
+

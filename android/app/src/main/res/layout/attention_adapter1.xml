@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp_50"
+    android:orientation="horizontal"
+    android:background="@color/white"
+    android:paddingRight="@dimen/dp_12"
+    android:paddingLeft="@dimen/dp_12"
+    >
+
+    <ImageView
+        android:layout_marginTop="@dimen/dp_5"
+        android:layout_marginBottom="@dimen/dp_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        style="@style/pub_tex"
+        android:src="@drawable/head"
+        />
+
+    <TextView
+        android:layout_marginLeft="@dimen/dp_12"
+        android:layout_width="@dimen/dp_0"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        style="@style/pub_tex"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        style="@style/pub_tex"
+        android:text="取消关注"
+        android:background="@drawable/lottery_bck_16"
+        android:paddingLeft="@dimen/dp_10"
+        android:paddingRight="@dimen/dp_10"
+        android:paddingBottom="@dimen/dp_5"
+        android:paddingTop="@dimen/dp_5"
+        />
+
+</LinearLayout>

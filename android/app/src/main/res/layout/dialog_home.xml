@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/dp_320"
+    android:layout_height="wrap_content"
+    android:background="@color/color_white">
+
+    <RelativeLayout
+        android:id="@+id/rl_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/notice_bg"
+        android:padding="@dimen/dp_4">
+
+
+        <LinearLayout
+            android:id="@+id/ll_notice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/title_tex"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_55"
+                android:background="?attr/colorAccent"
+                android:gravity="center"
+                android:text="平台公告"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/sp_19"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_home"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_1"
+                android:layout_below="@+id/ll_notice"
+                android:background="@color/my_line"></View>
+
+            <TextView
+                android:id="@+id/tv_close"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_40"
+                android:layout_below="@+id/view"
+                android:background="@color/white"
+                android:gravity="center"
+                android:text="知道了"
+                android:textColor="?attr/colorAccent" />
+
+        </LinearLayout>
+        <!--    <ImageView-->
+        <!--        android:layout_width="@dimen/dp_40"-->
+        <!--        android:layout_height="@dimen/dp_40"-->
+        <!--        android:src="@drawable/dialog_notice" />-->
+
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/dp_17"
+            android:src="@drawable/dialog_close" />
+    </RelativeLayout>
+</FrameLayout>

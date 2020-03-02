@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:id="@+id/ma_lin"
+    android:orientation="vertical">
+
+        <com.phoenix.lotterys.view.CustomTitleBar
+            android:id="@+id/titlebar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorAccent"
+            app:left="0x00000008"
+            app:right_icon="@mipmap/menu"
+            app:right_text=""
+            app:title="我的"
+            android:layout_marginBottom="@dimen/dp_10"
+            app:titlebar_type="11"/>
+       <!--<include layout="@layout/myf_heard2"/>-->
+        <com.phoenix.lotterys.view.MyNestedScrollView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:descendantFocusability="blocksDescendants"
+        android:orientation="vertical">
+
+
+        <include layout="@layout/myf_heard4"/>
+
+        <TextView
+            android:id="@+id/lin_tex"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:background="@color/my_line"
+            android:visibility="gone"
+            />
+
+        <LinearLayout
+            android:id="@+id/record_tab_lin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="@dimen/dp_32"
+            android:layout_marginRight="@dimen/dp_32"
+            android:layout_marginTop="@dimen/dp_10"
+            >
+
+            <TextView
+                android:id="@+id/my_interest_tex"
+                style="@style/pub_tex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_6"
+                android:layout_marginBottom="@dimen/dp_6"
+                android:drawableTop="@drawable/invi"
+                android:drawablePadding="@dimen/dp_5"
+                android:text="我的关注" />
+
+            <TextView
+                android:layout_width="@dimen/dp_0"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/my_dynamic_tex"
+                style="@style/pub_tex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_6"
+                android:layout_marginBottom="@dimen/dp_6"
+                android:drawableTop="@drawable/friend"
+                android:drawablePadding="@dimen/dp_5"
+                android:text="我的动态" />
+
+            <TextView
+                android:layout_width="@dimen/dp_0"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/my_fans_tex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/pub_tex"
+                android:layout_marginTop="@dimen/dp_6"
+                android:layout_marginBottom="@dimen/dp_6"
+                android:drawableTop="@drawable/fans"
+                android:drawablePadding="@dimen/dp_5"
+                android:text="我的粉丝"
+                />
+
+            <TextView
+                android:layout_width="@dimen/dp_0"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:visibility="gone"/>
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/pub_tex"
+                android:layout_marginTop="@dimen/dp_6"
+                android:layout_marginBottom="@dimen/dp_6"
+                android:drawableTop="@drawable/yhhd"
+                android:drawablePadding="@dimen/dp_5"
+                android:text="联系客服"
+                android:visibility="gone"
+                />
+
+
+        </LinearLayout>
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_12"
+            android:background="@color/my_line"
+            />
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="@dimen/dp_16"
+            android:layout_marginRight="@dimen/dp_16"
+            android:layout_marginTop="@dimen/dp_10"
+            >
+
+            <TextView
+                android:id="@+id/deposit_tex1"
+                style="@style/pub_tex"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_6"
+                android:layout_marginBottom="@dimen/dp_6"
+                android:drawableTop="@drawable/menu_cz"
+                android:drawablePadding="@dimen/dp_5"
+                android:text="存 款" />
+
+            <TextView
+                android:layout_width="@dimen/dp_0"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/withdrawal_tex"
+                style="@style/pub_tex"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_6"
+                android:layout_marginBottom="@dimen/dp_6"
+                android:drawableTop="@drawable/menu_qk"
+                android:drawablePadding="@dimen/dp_5"
+                android:text="取 款" />
+
+            <TextView
+                android:layout_width="@dimen/dp_0"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/line_conversion_tex1"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="wrap_content"
+                style="@style/pub_tex"
+                android:layout_marginTop="@dimen/dp_6"
+                android:layout_marginBottom="@dimen/dp_6"
+                android:drawableTop="@drawable/menu_edzh"
+                android:drawablePadding="@dimen/dp_5"
+                android:text="额度转换"
+                />
+
+            <TextView
+                android:id="@+id/interest_expense_tex1"
+                android:layout_width="@dimen/dp_0"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/interest_expense_tex"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="wrap_content"
+                style="@style/pub_tex"
+                android:layout_marginTop="@dimen/dp_6"
+                android:layout_marginBottom="@dimen/dp_6"
+                android:drawableTop="@drawable/syb3"
+                android:drawablePadding="@dimen/dp_5"
+                android:text="利息宝"
+                />
+
+        </LinearLayout>
+
+
+
+
+
+
+
+
+
+        <TextView
+            android:id="@+id/lin_tex0"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:background="@color/my_line"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="@dimen/dp_16"
+            android:layout_marginRight="@dimen/dp_16"
+            android:layout_marginTop="@dimen/dp_10"
+            >
+
+            <TextView
+                android:id="@+id/recharge_record_tex"
+                style="@style/pub_tex"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_6"
+                android:layout_marginBottom="@dimen/dp_6"
+                android:drawableTop="@drawable/menu_record"
+                android:drawablePadding="@dimen/dp_5"
+                android:text="充值记录" />
+
+            <TextView
+                android:layout_width="@dimen/dp_0"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/withdrawal_record_tex"
+                style="@style/pub_tex"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_6"
+                android:layout_marginBottom="@dimen/dp_6"
+                android:drawableTop="@drawable/menu_cash"
+                android:drawablePadding="@dimen/dp_5"
+                android:text="提现记录" />
+
+            <TextView
+                android:layout_width="@dimen/dp_0"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/betting_record_tex"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="wrap_content"
+                style="@style/pub_tex"
+                android:layout_marginTop="@dimen/dp_6"
+                android:layout_marginBottom="@dimen/dp_6"
+                android:drawableTop="@drawable/menu_betting"
+                android:drawablePadding="@dimen/dp_5"
+                android:text="投注记录"
+                />
+
+            <TextView
+                android:layout_width="@dimen/dp_0"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                android:id="@+id/customer_tex"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="wrap_content"
+                style="@style/pub_tex"
+                android:layout_marginTop="@dimen/dp_6"
+                android:layout_marginBottom="@dimen/dp_6"
+                android:drawableTop="@drawable/menu_message"
+                android:drawablePadding="@dimen/dp_5"
+                android:text="联系客服"
+                />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_12"
+            android:background="@color/my_line"
+            />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/dp_10"
+            android:layout_marginLeft="@dimen/dp_10"
+            />
+    </LinearLayout>
+</com.phoenix.lotterys.view.MyNestedScrollView>
+</LinearLayout>

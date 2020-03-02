@@ -1,0 +1,737 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="accounting_ecent_time">
+        <item>全部日期</item>
+        <item>最近一天</item>
+        <item>最近七天</item>
+        <item>最近一个月</item>
+    </string-array>
+
+
+    <string-array name="recent_time">
+        <item>今天</item>
+        <item>最近三天</item>
+        <item>最近一周</item>
+        <item>最近一月</item>
+    </string-array>
+
+    <string-array name="note_list">
+        <item>彩票注单</item>
+        <item>真人注单</item>
+        <item>电子注单</item>
+        <item>棋牌注单</item>
+        <item>体育注单</item>
+        <item>捕鱼注单</item>
+    </string-array>
+
+    <string-array name="note_list_v">
+        <item>lottery</item>
+        <item>real</item>
+        <item>game</item>
+        <item>card</item>
+        <item>sport</item>
+        <item>fish</item>
+    </string-array>
+
+    <string-array name="titlerecord_list">
+        <item>存款</item>
+        <item>取款</item>
+        <item>存款记录</item>
+        <item>取款记录</item>
+        <item>资金明细</item>
+    </string-array>
+
+    <string-array name="affirm_list">
+        <item>不需要，立即游戏</item>
+        <item>确认转入</item>
+    </string-array>
+    <string-array name="hint_list">
+        <item>温馨提示</item>
+        <item>您需要为 </item>
+        <item>转入金额吗？</item>
+    </string-array>
+
+
+    <!--利息宝位置如果改变需要改代码-->
+    <string-array name="sliding_list">
+        <item>返回首页</item>
+        <item>即时注单(0.00)</item>
+        <item>今日输赢(0.00)</item>
+        <item>投注记录</item>
+        <item>开奖记录</item>
+        <item>彩种规则</item>
+        <item>利息宝 </item>
+        <item>长龙助手</item>
+        <item>红包记录</item>
+        <item>扫雷记录</item>
+        <item>任务中心</item>
+        <item>站内信</item>
+        <!--<item>清理缓存</item>-->
+        <!--<item>担</item>-->
+        <item>退出登录</item>
+        <item>检</item>
+    </string-array>
+    <string-array name="sliding_list_alias">
+        <item>fhsy</item>
+        <item>gszd</item>
+        <item>grse</item>
+        <item>tzjl</item>
+        <item>kjjl</item>
+        <item>czgz</item>
+        <item>lxb </item>
+        <item>clzs</item>
+        <item>hbjl</item>
+        <item>sljl</item>
+        <item>rwzx</item>
+        <item>zndx</item>
+        <item>tcdl</item>
+        <item>jcxbb</item>
+    </string-array>
+
+    <integer-array name="img_list">
+        <item>@mipmap/home</item>
+        <item>@mipmap/gw</item>
+        <item>@mipmap/qk1</item>
+        <item>@mipmap/tzjl</item>
+        <item>@mipmap/kjjg</item>
+        <item>@mipmap/name</item>
+        <item>@mipmap/lxb_sele</item>
+        <item>@mipmap/clzs</item>
+        <item>@mipmap/hbjl</item>
+        <item>@mipmap/sljl</item>
+        <item>@mipmap/rwzx_2</item>
+        <item>@mipmap/znx_1</item>
+        <item>@mipmap/fhsy</item>
+        <item>@mipmap/versions</item>
+    </integer-array>
+
+    <string-array name="my_list0">
+        <item>利息宝</item>
+        <item>活动彩金</item>
+        <item>任务中心</item>
+        <item>收益推荐</item>
+        <item>站内信</item>
+        <item>资金管理</item>
+        <item>个人信息</item>
+        <item>安全中心</item>
+        <item>银行卡管理</item>
+        <item>彩票注单记录</item>
+        <item>其它注单记录</item>
+        <item>额度转换</item>
+        <item>建议反馈</item>
+        <item>在线客服</item>
+    </string-array>
+    <string-array name="my_list">
+        <item>存款</item>
+        <item>取款 </item>
+        <item>利息宝</item>
+        <item>在线客服</item>
+        <item>银行卡管理</item>
+        <item>彩票注单记录</item>
+        <item>其它注单记录</item>
+        <item>额度转换</item>
+        <item>长龙助手</item>
+        <item>收益推荐</item>
+        <item>安全中心</item>
+        <item>站内信</item>
+        <item>个人信息</item>
+        <item>建议反馈</item>
+        <item>活动彩金</item>
+        <!--12 <item>任务中心</item>-->
+    </string-array>
+
+    <string-array name="my_list_alias0">
+        <item>lxb</item>
+        <item>hdsg</item>
+        <item>rwzx</item>
+        <item>sytj</item>
+        <item>znx</item>
+        <item>ck</item>
+        <item>grxx</item>
+        <item>aqzx</item>
+        <item>yhkgl</item>
+        <item>cpzdjl</item>
+        <item>qtzdjl</item>
+        <item>edzh</item>
+        <item>jyfk</item>
+        <item>zxkf</item>
+    </string-array>
+    <string-array name="my_list_alias">
+        <item>ck</item>
+        <item>qk </item>
+        <item>lxb</item>
+        <item>zxkf</item>
+        <item>yhkgl</item>
+        <item>cpzdjl</item>
+        <item>qtzdjl</item>
+        <item>edzh</item>
+        <item>clzs</item>
+        <item>sytj</item>
+        <item>aqzx</item>
+        <item>znx</item>
+        <item>grxx</item>
+        <item>jyfk</item>
+        <item>hdsg</item>
+        <!--12 <item>rwzx</item>-->
+    </string-array>
+
+
+    <integer-array name="my_img_list0">
+        <item>@mipmap/lxb_sele</item>
+        <item>@mipmap/handsel</item>
+        <item>@mipmap/rwzx</item>
+        <item>@mipmap/tjsy</item>
+        <item>@mipmap/znx</item>
+        <item>@mipmap/ck</item>
+        <item>@mipmap/userinfo</item>
+        <item>@mipmap/aqzx</item>
+        <item>@mipmap/yhkgl</item>
+        <item>@mipmap/zdjl</item>
+        <item>@mipmap/zdjl</item>
+        <item>@mipmap/edzh</item>
+        <item>@mipmap/jyfk</item>
+        <item>@mipmap/zxkf</item>
+    </integer-array>
+    <integer-array name="my_img_list">
+        <item>@mipmap/ck</item>
+        <item>@mipmap/qk</item>
+        <item>@mipmap/lxb_sele</item>
+        <item>@mipmap/zxkf</item>
+        <item>@mipmap/yhkgl</item>
+        <item>@mipmap/zdjl</item>
+        <item>@mipmap/zdjl</item>
+        <item>@mipmap/edzh</item>
+        <item>@mipmap/clzs</item>
+        <item>@mipmap/tjsy</item>
+        <item>@mipmap/aqzx</item>
+        <item>@mipmap/znx</item>
+        <item>@mipmap/userinfo</item>
+        <item>@mipmap/jyfk</item>
+        <item>@mipmap/handsel</item>
+
+        <!--12  <item>@mipmap/rwzx</item>-->
+    </integer-array>
+
+
+    <string-array name="lottery_pop_list">
+        <item>彩票1</item>
+        <item>彩票2</item>
+        <item>彩票3</item>
+        <item>彩票4</item>
+        <item>彩票5</item>
+        <item>彩票6</item>
+        <item>彩票7</item>
+        <item>彩票8</item>
+        <item>彩票9</item>
+        <item>彩票10</item>
+        <item>彩票11</item>
+        <item>彩票12</item>
+        <item>彩票13</item>
+        <item>彩票14</item>
+    </string-array>
+
+    <string-array name="server">
+        <item>取消</item>
+        <item>联系客服</item>
+    </string-array>
+
+    <string-array name="affirm_change">
+        <item>取消</item>
+        <item>确认</item>
+    </string-array>
+
+    <string-array name="recommend_benefig">
+        <item>推荐信息</item>
+        <item>会员管理</item>
+        <item>投注报表</item>
+        <item>投注记录</item>
+        <item>域名绑定</item>
+        <item>存款报表</item>
+        <item>存款记录</item>
+        <item>提款报表</item>
+        <item>提款记录</item>
+        <item>真人报表</item>
+        <item>真人记录</item>
+    </string-array>
+
+
+    <string-array name="myf_theme_1">
+        <item>利息宝</item>
+        <item>收益推荐</item>
+        <item>活动彩金</item>
+        <item>在线客服</item>
+    </string-array>
+    <string-array name="myf_theme_img_1">
+        <item>@mipmap/lxb_sele</item>
+        <item>@mipmap/tjsy</item>
+        <item>@mipmap/handsel</item>
+        <item>@mipmap/zxkf</item>
+    </string-array>
+    <string-array name="myf_theme_alias_1">
+        <item>lxb</item>
+        <item>sytj</item>
+        <item>hdsg</item>
+        <item>zxkf</item>
+    </string-array>
+
+    <string-array name="myf_theme_2">
+        <item>任务中心</item>
+        <item>额度转换</item>
+        <item>存款记录</item>
+    </string-array>
+    <string-array name="myf_theme_img_2">
+        <item>@mipmap/rwzx</item>
+        <item>@mipmap/edzh</item>
+        <item>@mipmap/rwzx</item>
+    </string-array>
+    <string-array name="myf_theme_alias_2">
+        <item>rwzx</item>
+        <item>edzh</item>
+        <item>ck</item>
+    </string-array>
+
+    <string-array name="myf_theme_3">
+        <item>彩票注单</item>
+        <item>其它注单</item>
+    </string-array>
+    <string-array name="myf_theme_img_3">
+        <item>@mipmap/zdjl</item>
+        <item>@mipmap/zdjl</item>
+    </string-array>
+    <string-array name="myf_theme_alias_3">
+        <item>cpzdjl</item>
+        <item>qtzdjl</item>
+    </string-array>
+
+    <string-array name="myf_theme_4">
+        <item>银行卡</item>
+        <item>安全中心</item>
+        <item>个人信息</item>
+    </string-array>
+    <string-array name="myf_theme_img_4">
+        <item>@mipmap/yhkgl</item>
+        <item>@mipmap/aqzx</item>
+        <item>@mipmap/userinfo</item>
+
+
+    </string-array>
+    <string-array name="myf_theme_alias_4">
+        <item>yhkgl</item>
+        <item>aqzx</item>
+        <item>grxx</item>
+
+    </string-array>
+
+    <string-array name="myf_theme_5">
+        <item>建议反馈</item>
+        <item>站内信</item>
+    </string-array>
+    <string-array name="myf_theme_img_5">
+        <item>@mipmap/jyfk</item>
+        <item>@mipmap/znx</item>
+    </string-array>
+    <string-array name="myf_theme_alias_5">
+        <item>jyfk</item>
+        <item>znx</item>
+    </string-array>
+
+
+    <string-array name="color1">
+        <item>#e04b6e</item>
+        <item>#eb805f</item>
+        <item>#019cf3</item>
+        <item>#d97b4e</item>
+        <item>#099dee</item>
+        <item>#04a398</item>
+        <item>#f65c27</item>
+        <item>#129133</item>
+        <item>#099dee</item>
+        <item>#eb805f</item>
+        <item>#36adab</item>
+        <item>#e04b6e</item>
+        <item>#059aef</item>
+        <item>#c98d77</item>
+        <item>#099dee</item>
+        <item>#079954</item>
+        <item>#f17414</item>
+        <item>#e04b6e</item>
+    </string-array>
+
+    <string-array name="coloAlias2">
+        <item>lxb</item>
+        <item>sytj</item>
+        <item>hdsg</item>
+        <item>zxkf</item>
+        <item>rwzx</item>
+        <item>edzh</item>
+        <item>ck</item>
+        <item>cpzdjl</item>
+        <item>qtzdjl</item>
+        <item>yhkgl</item>
+        <item>aqzx</item>
+        <item>grxx</item>
+        <item>jyfk</item>
+        <item>znx</item>
+    </string-array>
+
+    <string-array name="color2">
+        <item>#62dcb1</item>
+        <item>#e24144</item>
+        <item>#fab362</item>
+        <item>#62dcb1</item>
+        <item>#f9dd90</item> //任务中心
+        <item>#e24144</item> //额度转换
+        <item>#2db4e6</item>  //存款记录
+        <item>#e24144</item>
+        <item>#fab362</item>
+        <item>#47d19c</item>
+        <item>#e76369</item>
+        <item>#f9dd90</item>
+        <item>#2db5e9</item>
+        <item>#eed45e</item>
+    </string-array>
+
+    <string-array name="color3">
+        <item>#e04b6e</item>  //存款
+        <item>#56dde3 </item>  //取款
+        <item>#fb7145</item>
+        <item>#da495c</item>
+        <item>#2ae875</item>
+        <item>#56dde3</item>
+        <item>#f3de55</item>
+        <item>#da495c</item>
+        <item>#36dbc8</item>
+        <item>#2ae875</item>  //额度转换
+        <item>#e2b460</item>
+        <item>#60c1ed</item>
+        <item>#fb7145</item>  //任务中心
+        <item>#8be2f8</item>
+        <item>#2ae875</item>
+        <item>#3ebae5</item>
+        <item>#f3de55</item>
+    </string-array>
+    <string-array name="long_queue">
+        <item>最新长龙</item>
+        <item>我的投注</item>
+    </string-array>
+    <string-array name="task_list">
+        <item>任务大厅</item>
+        <item>积分兑换</item>
+        <item>积分账变</item>
+        <item>VIP等级</item>
+    </string-array>
+
+
+
+    <string-array name="six_list_title">
+        <item>高手论坛</item>
+        <item>极品专贴</item>
+        <item>每期资料</item>
+        <item>公式规律</item>
+        <item>六合图库</item>
+        <item>幽默猜测</item>
+        <item>跑狗玄机</item>
+        <item>四不像</item>
+        <item>老黃历</item>
+        <item>公式规律</item>
+    </string-array>
+    <string-array name="six_list_content">
+        <item>高手心水汇总</item>
+        <item>超准资料免费转</item>
+        <item>六合玄机破解</item>
+        <item>公式规律大全</item>
+        <item>六合图库免費看</item>
+        <item>猜一猜找特码</item>
+        <item>新老跑狗交流分享</item>
+        <item>香港挂牌竞猜</item>
+        <item>公式规律大全</item>
+        <item>六合每期吉数黃历</item>
+    </string-array>
+
+
+    <integer-array name="six_list_img">
+        <item>@mipmap/icon_forum</item>
+        <item>@mipmap/icon_gourmet</item>
+        <item>@mipmap/icon_mystery</item>
+        <item>@mipmap/icon_rule</item>
+        <item>@mipmap/icon_sixpic</item>
+        <item>@mipmap/icon_humorguess</item>
+        <item>@mipmap/icon_rundog</item>
+        <item>@mipmap/icon_fourunlike</item>
+        <item>@mipmap/icon_yellowcale</item>
+        <item>@mipmap/icon_inquire</item>
+
+    </integer-array>
+
+    //
+    <string-array name="black_sliding_list_alias">
+        <item>fhsy</item>
+        <item>lxb </item>
+        <item>znx</item>
+        <item>xgmm</item>
+        <item>xgqkmm</item>
+        <item>zxkf</item>
+        <item>tzjl</item>
+        <item>hdsg</item>
+        <item>sytj</item>
+        <item>ck</item>
+        <item>qk</item>
+        <item>edzh</item>
+        <item>jcxbb</item>
+        <item>tcdl</item>
+    </string-array>
+    <string-array name="black_sliding_list">
+        <item>返回首页</item>
+        <item>利息宝 </item>
+        <item>站内信</item>
+        <item>修改密码</item>
+        <item>修改取款密码</item>
+        <item>在线客服</item>
+        <item>投注记录</item>
+        <item>优惠申请大厅</item>
+        <item>代理注册</item>
+        <item>线下充值</item>
+        <item>线上取款</item>
+        <item>额度转换</item>
+        <item>检查更新</item>
+        <item>退出登录</item>
+    </string-array>
+    <integer-array name="black_img_list">
+        <item>@mipmap/home</item>
+        <item>@mipmap/lxb_sele</item>
+        <item>@mipmap/znx_1</item>
+        <item>@mipmap/znx_1</item>
+        <item>@mipmap/znx_1</item>
+        <item>@mipmap/zxkf</item>
+        <item>@mipmap/tzjl</item>
+        <item>@mipmap/handsel</item>
+        <item>@mipmap/tjsy</item>
+        <item>@mipmap/ck</item>
+        <item>@mipmap/qk</item>
+        <item>@mipmap/edzh</item>
+        <item>@mipmap/versions</item>
+        <item>@mipmap/fhsy</item>
+    </integer-array>
+    ///
+
+   ///**
+    <string-array name="my_frag3_list">
+        <item>线上存款</item>
+        <item>线上取款 </item>
+        <item>站内信件</item>
+        <item>钱包管理</item>
+        <item>投注记录</item>
+        <item>交易记录</item>
+        <item>活动专区</item>
+        <item>我的最爱</item>
+        <item>用户安全</item>
+    </string-array>
+    <string-array name="my_frag3__alias">
+        <item>ck</item>
+        <item>qk </item>
+        <item>znx</item>
+        <item>yhkgl</item>
+        <item>cpzdjl</item>
+        <item>jegl</item>
+        <item>hdsg</item>
+        <item>odzl</item>
+        <item>grxx</item>
+    </string-array>
+    <integer-array name="my_frag3_img_list">
+        <item>@mipmap/ck</item>
+        <item>@mipmap/qk</item>
+        <item>@mipmap/znx</item>
+        <item>@mipmap/yhkgl</item>
+        <item>@mipmap/zdjl</item>
+        <item>@mipmap/zdjl</item>
+        <item>@mipmap/handsel</item>
+        <item>@mipmap/zdjl</item>
+        <item>@mipmap/userinfo</item>
+    </integer-array>
+//***/
+
+/*****
+    <string-array name="my_list4">
+        <item>存款</item>
+        <item>取款 </item>
+        <item>利息宝</item>
+        <item>在线客服</item>
+        <item>银行卡管理</item>
+        <item>彩票注单记录</item>
+        <item>其它注单记录</item>
+        <item>额度转换</item>
+        <item>长龙助手</item>
+        <item>收益推荐</item>
+        <item>安全中心</item>
+        <item>站内信</item>
+        <item>个人信息</item>
+        <item>建议反馈</item>
+        <item>活动彩金</item>
+         <item>任务中心</item>
+    </string-array>
+    <string-array name="my_list_alias4">
+        <item>ck</item>
+        <item>qk </item>
+        <item>lxb</item>
+        <item>zxkf</item>
+        <item>yhkgl</item>
+        <item>cpzdjl</item>
+        <item>qtzdjl</item>
+        <item>edzh</item>
+        <item>clzs</item>
+        <item>sytj</item>
+        <item>aqzx</item>
+        <item>znx</item>
+        <item>grxx</item>
+        <item>jyfk</item>
+        <item>hdsg</item>
+         <item>rwzx</item>
+    </string-array>
+    <integer-array name="my_img_list4">
+        <item>@mipmap/ck</item>
+        <item>@mipmap/qk</item>
+        <item>@mipmap/lxb_sele</item>
+        <item>@mipmap/zxkf</item>
+        <item>@mipmap/yhkgl</item>
+        <item>@mipmap/zdjl</item>
+        <item>@mipmap/zdjl</item>
+        <item>@mipmap/edzh</item>
+        <item>@mipmap/clzs</item>
+        <item>@mipmap/tjsy</item>
+        <item>@mipmap/aqzx</item>
+        <item>@mipmap/znx</item>
+        <item>@mipmap/userinfo</item>
+        <item>@mipmap/jyfk</item>
+        <item>@mipmap/handsel</item>
+
+          <item>@mipmap/rwzx</item>
+    </integer-array>
+    ******/
+
+
+    <string-array name="sixThemeBetter">
+        <item>综合</item>
+        <item>精华帖 </item>
+        <item>最新</item>
+    </string-array>
+    <string-array name="sixThemeUserList">
+        <item>高手论坛</item>
+        <item>极品发帖 </item>
+    </string-array>
+
+    <string-array name="my_list2">
+        <item>每日签到</item>
+        <item>收益推荐</item>
+        <item>安全中心</item>
+        <item>我的银行卡</item>
+        <item>站内信</item>
+        <item>资金管理</item>
+        <item>彩票注单</item>
+        <item>其它注单</item>
+        <item>额度转换</item>
+        <item>建议反馈</item>
+        <item>任务中心</item>
+        <item>活动彩金</item>
+    </string-array>
+    <string-array name="my_list_alias2">
+        <item>mzqd</item>
+        <item>sytj</item>
+        <item>aqzx</item>
+        <item>yhkgl</item>
+        <item>znx</item>
+        <item>ck</item>
+        <item>cpzdjl</item>
+        <item>qtzdjl</item>
+        <item>edzh</item>
+        <item>jyfk</item>
+        <item>rwzx</item>
+        <item>hdsg</item>
+    </string-array>
+    <integer-array name="my_img_list2">
+        <item>@drawable/menu_betting0</item>
+        <item>@drawable/menu_myreco</item>
+        <item>@drawable/menu_password</item>
+        <item>@drawable/bank0</item>
+        <item>@drawable/menu_notice</item>
+        <item>@drawable/money00</item>
+        <item>@drawable/menu_rule_1</item>
+        <item>@drawable/menu_rule</item>
+        <item>@drawable/menu_transfer</item>
+        <item>@drawable/menu_feedback</item>
+        <item>@drawable/task1</item>
+        <item>@mipmap/handsel</item>
+    </integer-array>
+
+
+    <string-array name="affirm_pay">
+        <item>取消</item>
+        <item>立即支付</item>
+    </string-array>
+
+
+
+
+
+
+
+
+
+
+    <string-array name="date_six">
+        <item>裘豆豆</item>
+        <item>B李莎</item>
+        <item>jb</item>
+        <item>Jobs</item>
+        <item>动力火车</item>
+        <item>伍佰</item>
+        <item>#蔡依林</item>
+        <item>$797835344$</item>
+        <item>Jack</item>
+        <item>9527</item>
+        <item>戚薇</item>
+        <item>齐期浩二</item>
+        <item>齐天大圣</item>
+        <item>品冠</item>
+        <item>吴克群</item>
+        <item>贲素琴</item>
+        <item>缪丝</item>
+        <item>成龙</item>
+        <item>王力宏</item>
+        <item>汪峰</item>
+        <item>王菲</item>
+        <item>那英</item>
+        <item>张伟</item>
+        <item>~夏先生</item>
+        <item>阿aaa</item>
+        <item>阿李珊</item>
+        <item>陈奕迅</item>
+        <item>周杰伦</item>
+        <item>曾一鸣</item>
+        <item>哈林</item>
+        <item>高进</item>
+        <item>高雷</item>
+        <item>阮金天</item>
+        <item>龚琳娜</item>
+        <item>苏醒</item>
+        <item>苏永康</item>
+        <item>陶喆</item>
+        <item>沙宝亮</item>
+        <item>宋冬野</item>
+        <item>宋伟</item>
+        <item>袁成杰</item>
+        <item>张学友</item>
+        <item>李德华</item>
+        <item>郑源</item>
+        <item>白山水</item>
+        <item>白亮</item>
+        <item>陈龙</item>
+        <item>陈丽丽</item>
+    </string-array>
+
+
+
+
+
+
+</resources>

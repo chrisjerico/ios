@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_white"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <com.phoenix.lotterys.view.CustomTitleBar
+        android:id="@+id/titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorAccent"
+        app:left="0x00000000"
+        app:left_icon="@drawable/finish"
+        app:right_icon="@drawable/finish"
+        app:right_text=""
+        app:title="@string/bank"
+        app:titlebar_type="13"></com.phoenix.lotterys.view.CustomTitleBar>
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ll_pay_pw"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tv_title_draw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:text="@string/setpaypw"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/dp_16" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:layout_marginRight="@dimen/dp_5"
+                    android:background="@color/my_line"></View>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_15">
+
+                    <TextView
+                        android:id="@+id/tv_title_loginpw"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:text="@string/loginpw" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/dp_80"
+                        android:layout_marginLeft="@dimen/dp_80"
+                        android:layout_marginEnd="@dimen/dp_20"
+                        android:layout_marginRight="@dimen/dp_20"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/et_loginpw"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:hint="@string/inputloginpw"
+                                android:inputType="textPassword"
+                                android:lines="1"
+                                android:maxLength="16"
+                                android:textCursorDrawable="@null"
+                                android:singleLine="true"
+                                android:textColorHint="@color/colorPrimary"
+                                android:textSize="@dimen/sp_12" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_15">
+
+                    <TextView
+                        android:id="@+id/tv_title_depositpw"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:text="@string/paypw" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/dp_80"
+                        android:layout_marginLeft="@dimen/dp_80"
+                        android:layout_marginEnd="@dimen/dp_20"
+                        android:layout_marginRight="@dimen/dp_20"
+                        android:orientation="vertical">
+
+                        <EditText
+                            android:id="@+id/et_paypwd"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:digits="1234567890"
+                            android:hint="@string/inputpaypw"
+                            android:inputType="textPassword"
+                            android:lines="1"
+                            android:maxLength="4"
+                            android:singleLine="true"
+                            android:textColorHint="@color/colorPrimary"
+                            android:textCursorDrawable="@null"
+                            android:textSize="@dimen/sp_12" />
+
+                    </LinearLayout>
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_15">
+
+                    <TextView
+                        android:id="@+id/tv_title_affirmpw"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:text="@string/paypw1" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/dp_80"
+                        android:layout_marginLeft="@dimen/dp_80"
+                        android:layout_marginEnd="@dimen/dp_20"
+                        android:layout_marginRight="@dimen/dp_20"
+                        android:orientation="vertical">
+
+                        <EditText
+                            android:id="@+id/et_paypwd2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:digits="1234567890"
+                            android:hint="@string/paypwqr"
+                            android:inputType="textPassword"
+                            android:lines="1"
+                            android:maxLength="4"
+                            android:singleLine="true"
+                            android:textColorHint="@color/colorPrimary"
+                            android:textCursorDrawable="@null"
+                            android:textSize="@dimen/sp_12" />
+
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <Button
+                    android:id="@+id/bt_subpw"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_30"
+                    android:layout_marginLeft="@dimen/dp_30"
+                    android:layout_marginTop="@dimen/dp_40"
+                    android:layout_marginRight="@dimen/dp_30"
+                    android:background="@drawable/lottery_bck_14"
+                    android:text="@string/sub"
+                    android:textColor="@color/color_f4f4f4" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/ll_bank"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tv_title_bankinfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:text="@string/bank_manage"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/dp_16" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:layout_marginRight="@dimen/dp_5"
+                    android:background="@color/my_line"></View>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_15">
+
+                    <TextView
+                        android:id="@+id/tv_title_openbank"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:text="@string/open_bank" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/dp_80"
+                        android:layout_marginLeft="@dimen/dp_80"
+                        android:layout_marginEnd="@dimen/dp_20"
+                        android:layout_marginRight="@dimen/dp_20"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/et_open_bank"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:hint="@string/bank_select"
+                                android:lines="1"
+                                android:maxLength="16"
+                                android:singleLine="true"
+                                android:textColorHint="@color/colorPrimary"
+                                android:textCursorDrawable="@null"
+                                android:textSize="@dimen/sp_12" />
+
+                            <!--<CheckBox-->
+                            <!--android:id="@+id/cb_show"-->
+                            <!--style="@style/CustomCheckBoxTheme"-->
+                            <!--android:checked="false"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_gravity="center" />-->
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:id="@+id/tv_password"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dp_3"
+                            android:layout_marginLeft="@dimen/dp_3"
+                            android:layout_marginTop="-8dp"
+                            android:text="@string/mustputpsw"
+                            android:textColor="@color/fount1"
+                            android:textSize="@dimen/sp_9"
+                            android:visibility="gone" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_15">
+
+                    <TextView
+                        android:id="@+id/tv_title_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:text="@string/open_bank_address" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/dp_80"
+                        android:layout_marginLeft="@dimen/dp_80"
+                        android:layout_marginEnd="@dimen/dp_20"
+                        android:layout_marginRight="@dimen/dp_20"
+
+                        android:orientation="vertical">
+
+                        <EditText
+                            android:id="@+id/et_address"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/bank_input_address"
+                            android:lines="1"
+                            android:maxLength="50"
+                            android:singleLine="true"
+                            android:textColorHint="@color/colorPrimary"
+                            android:textCursorDrawable="@null"
+                            android:textSize="@dimen/sp_12" />
+
+                        <TextView
+                            android:id="@+id/tv_user"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dp_3"
+                            android:layout_marginLeft="@dimen/dp_3"
+                            android:layout_marginTop="-8dp"
+                            android:text="@string/mustputuser"
+                            android:textColor="@color/fount1"
+                            android:textSize="@dimen/sp_9"
+                            android:visibility="gone" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_15">
+
+                    <TextView
+                        android:id="@+id/tv_title_bankcard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:text="@string/bank_card" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/dp_80"
+                        android:layout_marginLeft="@dimen/dp_80"
+                        android:layout_marginEnd="@dimen/dp_20"
+                        android:layout_marginRight="@dimen/dp_20"
+                        android:inputType="phone"
+                        android:orientation="vertical">
+
+                        <EditText
+                            android:id="@+id/et_bank_num"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:digits="1234567890"
+                            android:hint="@string/bank_input_card"
+                            android:inputType="number"
+                            android:lines="1"
+                            android:maxLength="20"
+                            android:singleLine="true"
+                            android:textColorHint="@color/colorPrimary"
+                            android:textCursorDrawable="@null"
+                            android:textSize="@dimen/sp_12" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dp_3"
+                            android:layout_marginLeft="@dimen/dp_3"
+                            android:layout_marginTop="-8dp"
+                            android:text="@string/mustputuser"
+                            android:textColor="@color/fount1"
+                            android:textSize="@dimen/sp_9"
+                            android:visibility="gone" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_15">
+
+                    <TextView
+                        android:id="@+id/tv_title_cardname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:text="@string/bank_name" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/dp_80"
+                        android:layout_marginLeft="@dimen/dp_80"
+                        android:layout_marginEnd="@dimen/dp_20"
+                        android:layout_marginRight="@dimen/dp_20"
+                        android:orientation="vertical">
+
+                        <EditText
+                            android:id="@+id/et_bank_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/bank_input_name"
+                            android:lines="1"
+                            android:maxLength="10"
+                            android:singleLine="true"
+                            android:textColorHint="@color/colorPrimary"
+                            android:textCursorDrawable="@null"
+                            android:textSize="@dimen/sp_12" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dp_3"
+                            android:layout_marginLeft="@dimen/dp_3"
+                            android:layout_marginTop="-8dp"
+                            android:text="@string/mustputuser"
+                            android:textColor="@color/fount1"
+                            android:textSize="@dimen/sp_9"
+                            android:visibility="gone" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <Button
+                    android:id="@+id/bt_sub"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_30"
+                    android:layout_marginLeft="@dimen/dp_30"
+                    android:layout_marginTop="@dimen/dp_40"
+                    android:layout_marginRight="@dimen/dp_30"
+                    android:background="@drawable/lottery_bck_14"
+                    android:text="@string/sub"
+                    android:textColor="@color/color_f4f4f4" />
+            </LinearLayout>
+        </LinearLayout>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+</LinearLayout>

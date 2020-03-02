@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.phoenix.lotterys.view.MyNestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/ma_lin"
+    android:layout_marginBottom="@dimen/dp_40"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:descendantFocusability="blocksDescendants"
+        android:orientation="vertical"
+
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <include layout="@layout/line1" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_60"
+                style="@style/pub_tex1"
+                android:text="会员中心"
+                android:textSize="@dimen/sp_20"
+                />
+
+            <include layout="@layout/line1" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:layout_width="@dimen/dp_0"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    />
+
+                <TextView
+                    android:id="@+id/money_tex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/pub_tex1"
+                    android:text="帐户余额 $ 3"
+                    android:textSize="@dimen/sp_16"
+                    />
+
+                <ImageView
+                    android:id="@+id/refresh_img"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/pub_tex"
+                    android:src="@drawable/refresh"
+                    />
+
+                <TextView
+                    android:layout_width="@dimen/dp_0"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_1"
+                android:layout_marginLeft="@dimen/dp_16"
+                android:layout_marginRight="@dimen/dp_16"
+                android:background="@color/my_line"
+                />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            >
+
+
+        <com.phoenix.lotterys.view.CustomTitleBar
+            android:id="@+id/titlebar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorAccent"
+            app:left="0x00000008"
+            app:right_icon="@mipmap/menu"
+            app:right_text=""
+            app:title="我的"
+            app:titlebar_type="11">
+        </com.phoenix.lotterys.view.CustomTitleBar>
+       <!--<include layout="@layout/myf_heard2"/>-->
+        <include layout="@layout/myf_heard3"/>
+
+        <TextView
+            android:id="@+id/lin_tex"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:background="@color/my_line"
+            android:visibility="gone"
+            />
+
+        <LinearLayout
+            android:id="@+id/record_tab_lin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="@dimen/dp_16"
+            android:layout_marginRight="@dimen/dp_16"
+            >
+
+            <TextView
+                android:id="@+id/recharge_record_tex"
+                style="@style/pub_tex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/menu_record"
+                android:textSize="@dimen/sp_12"
+                android:paddingBottom="@dimen/dp_2"
+                android:text="充值记录" />
+
+            <TextView
+                android:layout_width="@dimen/dp_0"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/withdrawal_record_tex"
+                style="@style/pub_tex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/menu_cash"
+                android:textSize="@dimen/sp_12"
+                android:paddingBottom="@dimen/dp_2"
+                android:text="提现记录" />
+
+            <TextView
+                android:layout_width="@dimen/dp_0"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/betting_record_tex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/pub_tex"
+                android:drawableTop="@drawable/menu_betting"
+                android:textSize="@dimen/sp_12"
+                android:paddingBottom="@dimen/dp_2"
+                android:text="投注记录"
+                />
+
+            <TextView
+                android:layout_width="@dimen/dp_0"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/customer_tex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/pub_tex"
+                android:drawableTop="@drawable/menu_message"
+                android:textSize="@dimen/sp_12"
+                android:paddingBottom="@dimen/dp_2"
+                android:text="联系客服"
+                />
+
+
+        </LinearLayout>
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/dp_10"
+            android:layout_marginLeft="@dimen/dp_10"
+
+            />
+    </LinearLayout>
+</com.phoenix.lotterys.view.MyNestedScrollView>

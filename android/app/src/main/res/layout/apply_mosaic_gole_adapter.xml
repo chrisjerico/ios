@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:id="@+id/apply_gold_lin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            >
+
+    <ImageView
+        android:id="@+id/apply_img"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        />
+
+            <TextView
+                android:id="@+id/title_tex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/pub_tex"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/sp_18"
+                />
+
+        </FrameLayout>
+
+    <TextView
+        android:layout_marginTop="@dimen/dp_3"
+        android:id="@+id/apply_tex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingRight="@dimen/dp_10"
+        android:paddingLeft="@dimen/dp_10"
+        android:paddingTop="@dimen/dp_5"
+        android:paddingBottom="@dimen/dp_5"
+        style="@style/pub_tex"
+        android:background="@drawable/lottery_bck_14"
+        android:textColor="@color/color_white"
+        android:text="点击申请"
+        />
+
+    </LinearLayout>
+
+    <include layout="@layout/apply_pub_adapger"/>
+
+</LinearLayout>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_0"
+        android:layout_weight="1"
+        android:id="@+id/dragon_assistant_rec"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50"
+        android:orientation="horizontal"
+        android:background="#333"
+        >
+
+        <TextView
+            android:id="@+id/claern_tex"
+            android:layout_width="@dimen/dp_0"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            style="@style/pub_tex"
+            android:text="清空"
+            android:textColor="#ffaf36"
+            android:textSize="@dimen/sp_16"
+            />
+
+        <ImageView
+            android:layout_width="@dimen/dp_2"
+            android:layout_height="match_parent"
+            android:background="@color/textColor_downSheet_title"
+            />
+
+        <LinearLayout
+            android:layout_width="@dimen/dp_0"
+            android:layout_weight="2"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/dp_6"
+            android:paddingRight="@dimen/dp_6"
+            >
+            <TextView
+                android:id="@+id/injection_number_tex"
+                android:layout_height="@dimen/dp_0"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                style="@style/pub_tex"
+                android:text="共 0 注"
+                android:gravity="left|center_vertical"
+                android:textColor="@color/color_white"
+                />
+
+            <TextView
+                android:id="@+id/amount_of_money_tex"
+                android:layout_height="@dimen/dp_0"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                style="@style/pub_tex"
+                android:text="共 0 元"
+                android:gravity="left|center_vertical"
+                android:textColor="@color/color_white"
+                android:visibility="gone"
+                />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/in_put_money_edit"
+            android:layout_width="@dimen/dp_0"
+            android:layout_weight="1.5"
+            android:layout_height="match_parent"
+            android:background="@drawable/ba_wr_5"
+            android:layout_marginTop="@dimen/dp_12"
+            android:layout_marginBottom="@dimen/dp_12"
+            android:layout_marginLeft="@dimen/dp_12"
+            android:layout_marginRight="@dimen/dp_8"
+            android:paddingLeft="@dimen/dp_4"
+            style="@style/pub_tex"
+            android:maxLength="8"
+            android:gravity="center_vertical|left"
+            android:hint="投注金额"
+            android:inputType="numberDecimal"
+            android:textSize="@dimen/sp_14"
+            />
+
+        <TextView
+            android:id="@+id/bet_right_away_tex"
+            android:layout_width="@dimen/dp_0"
+            android:layout_weight="1.5"
+            android:layout_height="match_parent"
+            style="@style/pub_tex"
+            android:text="马上投注"
+            android:textSize="@dimen/sp_18"
+            android:textColor="?attr/colorAccent"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

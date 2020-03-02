@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginLeft="@dimen/dp_16"
+    android:layout_marginRight="@dimen/dp_16"
+    >
+
+    <include layout="@layout/recommend_subpage"
+        android:id="@+id/recommend_ada_view1"
+        />
+
+    <include layout="@layout/recommend_subpage"
+        android:id="@+id/recommend_ada_view2"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp_40"
+        style="@style/pub_tex"
+        android:text="佣金比例:"
+        android:layout_gravity="left"
+        />
+
+    <TextView
+        android:id="@+id/commission_rate_tex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:textColor="#f44336"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_width="@dimen/dp_0"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="本月推荐收益:"
+            style="@style/pub_tex"
+            android:gravity="left|center_vertical"
+            />
+
+        <TextView
+            android:id="@+id/money_tex"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="@dimen/dp_12"
+            android:layout_height="match_parent"
+            android:text="¥7.26"
+            style="@style/pub_tex"
+            android:textColor="#2196f3"
+            />
+
+    </LinearLayout>
+
+    <include layout="@layout/line" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="本月推荐会员:"
+            />
+
+        <TextView
+            android:id="@+id/recommended_members_tex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+    </LinearLayout>
+
+
+
+    <include layout="@layout/line" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="推荐会员总计:"
+            />
+
+        <TextView
+            android:id="@+id/recommended_members_tex1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+    </LinearLayout>
+
+    <include layout="@layout/line" />
+
+    <TextView
+        android:layout_marginTop="@dimen/dp_16"
+        android:layout_marginBottom="@dimen/dp_16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:lineSpacingExtra="@dimen/dp_5"
+        android:id="@+id/tv_sample"
+        android:text="您推荐的会员在下注结算后,佣金会自动按照比例加到您的资金账户上。例如:您所推荐的会员下注1000元,您的收益=1000元*0.40%=4元。"
+        android:textColor="#f44336"
+        />
+
+
+</LinearLayout>

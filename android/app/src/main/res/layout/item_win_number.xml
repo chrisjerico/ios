@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/dp_1"
+    android:paddingBottom="@dimen/dp_5"
+    android:paddingTop="@dimen/dp_5"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="@dimen/dp_26"
+        android:layout_height="@dimen/dp_26">
+        <TextView
+            android:id="@+id/tv_win_number"
+            android:layout_width="@dimen/dp_26"
+            android:layout_height="@dimen/dp_26"
+            tools:text="100"
+            android:background="@drawable/shape_win_number"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/sp_14" />
+        <TextView
+            android:layout_width="@dimen/dp_20"
+            android:gravity="center"
+            tools:text="100"
+            android:layout_centerInParent="true"
+            android:id="@+id/tv_ballnum"
+            android:textColor="@color/black"
+            android:layout_height="@dimen/dp_20">
+
+        </TextView>
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/tv_number_desc"
+        android:layout_width="@dimen/dp_26"
+        android:layout_height="@dimen/dp_26"
+        android:background="@drawable/shape_win_number_desc"
+        android:gravity="center"
+        android:text="单双"
+        android:shadowColor="@color/black"
+        android:shadowDx="0.0"
+        android:shadowDy="0.0"
+        android:shadowRadius="1.0"
+        android:textColor="@color/color_008000"
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/dp_5"
+        android:textSize="@dimen/sp_12" />
+
+</LinearLayout>

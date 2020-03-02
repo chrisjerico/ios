@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/feedback_lin"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dp_16"
+        android:paddingRight="@dimen/dp_16"
+        >
+
+        <TextView
+            android:id="@+id/type_tex"
+            android:layout_width="@dimen/dp_0"
+            android:layout_weight="1"
+            android:layout_height="@dimen/dp_44"
+            style="@style/pub_tex"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:layout_width="@dimen/dp_1"
+            android:layout_height="match_parent"
+            android:background="@color/my_line"
+            />
+        <TextView
+            android:id="@+id/statre_tex"
+            android:layout_width="@dimen/dp_0"
+            android:layout_weight="1"
+            android:layout_height="@dimen/dp_44"
+            style="@style/pub_tex"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:layout_width="@dimen/dp_1"
+            android:layout_height="match_parent"
+            android:background="@color/my_line"
+            />
+        <TextView
+            android:id="@+id/context_tex"
+            android:layout_width="@dimen/dp_0"
+            android:layout_weight="3"
+            android:layout_height="@dimen/dp_44"
+            style="@style/pub_tex"
+            android:textColor="@color/black"
+            />
+
+    </LinearLayout>
+
+    <include layout="@layout/line"/>
+
+
+</LinearLayout>

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginLeft="@dimen/dp_12"
+    android:paddingRight="@dimen/dp_12"
+    android:paddingTop="@dimen/dp_8"
+    android:paddingBottom="@dimen/dp_8"
+    android:paddingLeft="@dimen/dp_10"
+    android:layout_marginTop="@dimen/dp_10"
+    android:background="@drawable/ba_left_wh_5"
+    android:id="@+id/latest_adapter_main_lin"
+    >
+
+    <ImageView
+        android:id="@+id/head_img"
+        android:layout_width="@dimen/dp_50"
+        android:layout_height="@dimen/dp_50"
+        android:layout_gravity="center"
+        />
+
+    <LinearLayout
+        android:layout_marginLeft="@dimen/dp_12"
+        android:layout_width="@dimen/dp_0"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        >
+        
+        <TextView
+            android:id="@+id/title_tex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/pub_tex"
+            android:layout_gravity="left|center_vertical"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_2"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/num_tex"
+                style="@style/pub_tex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center_vertical" />
+
+            <TextView
+                android:id="@+id/time_tex"
+                style="@style/pub_tex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center_vertical"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:textColor="@color/color_fe594b" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/dp_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+        <TextView
+            android:id="@+id/text1"
+            android:paddingBottom="@dimen/dp_2"
+            android:paddingTop="@dimen/dp_2"
+            android:paddingRight="@dimen/dp_5"
+            android:paddingLeft="@dimen/dp_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/pub_tex"
+            android:layout_gravity="left|center_vertical"
+            android:background="@drawable/lottery_bck_7"
+            android:textColor="@color/color_white"
+            />
+
+            <TextView
+                android:id="@+id/text2"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:paddingBottom="@dimen/dp_2"
+                android:paddingTop="@dimen/dp_2"
+                android:paddingRight="@dimen/dp_5"
+                android:paddingLeft="@dimen/dp_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/pub_tex"
+                android:layout_gravity="left|center_vertical"
+                android:textColor="@color/color_white"
+                />
+
+            <TextView
+                android:id="@+id/text3"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:paddingBottom="@dimen/dp_2"
+                android:paddingTop="@dimen/dp_2"
+                android:paddingRight="@dimen/dp_5"
+                android:paddingLeft="@dimen/dp_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/pub_tex"
+                android:layout_gravity="left|center_vertical"
+                android:background="@drawable/lottery_bck_8"
+                android:textColor="@color/color_white"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/front_lin"
+            android:layout_width="@dimen/dp_50"
+            android:layout_height="@dimen/dp_50"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:background="@drawable/ba_blue_wr_5_sele"
+            >
+
+            <TextView
+                android:id="@+id/front_name_tex"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_0"
+                android:layout_weight="1"
+                style="@style/pub_tex"
+                android:textColor="@drawable/ach_wt_text_select"
+                />
+            <TextView
+                android:id="@+id/front_num_tex"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_0"
+                android:layout_weight="1"
+                style="@style/pub_tex"
+                android:gravity="top|center_vertical"
+                android:textColor="@drawable/ach_wt_text_select"
+                />
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/after_lin"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_width="@dimen/dp_50"
+        android:layout_height="@dimen/dp_50"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:background="@drawable/ba_blue_wr_5_sele"
+        >
+
+        <TextView
+            android:id="@+id/after_name_tex"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_0"
+            android:layout_weight="1"
+            style="@style/pub_tex"
+            android:textColor="@drawable/ach_wt_text_select"
+            />
+        <TextView
+            android:id="@+id/after_num_tex"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_0"
+            android:layout_weight="1"
+            style="@style/pub_tex"
+            android:gravity="top|center_vertical"
+            android:textColor="@drawable/ach_wt_text_select"
+            />
+
+    </LinearLayout>
+
+
+</LinearLayout>

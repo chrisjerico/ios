@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_15">
+
+            <ImageView
+                android:id="@+id/tv_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dp_20"
+                android:background="@mipmap/yonghu_xianxing" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/dp_10"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_marginEnd="@dimen/dp_10"
+                android:layout_marginRight="@dimen/dp_10"
+                android:layout_toRightOf="@+id/tv_img"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/et_user"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/inputuser"
+                    android:inputType="text"
+                    android:lines="1"
+                    android:maxLength="15"
+                    android:singleLine="true"
+                    android:textColorHint="@color/colorPrimary"
+                    android:textCursorDrawable="@drawable/color_cursor"
+                    android:textSize="@dimen/sp_12" />
+
+                <TextView
+                    android:id="@+id/tv_user"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_3"
+                    android:layout_marginLeft="@dimen/dp_3"
+                    android:layout_marginTop="-8dp"
+                    android:text="@string/mustputuser"
+                    android:textColor="@color/fount1"
+                    android:textSize="@dimen/sp_9"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/tv_img1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dp_20"
+                android:background="@mipmap/suo" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/dp_10"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_marginEnd="@dimen/dp_10"
+                android:layout_marginRight="@dimen/dp_10"
+                android:layout_toRightOf="@+id/tv_img1"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/et_password"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="@string/inputpwd"
+                        android:inputType="textPassword"
+                        android:lines="1"
+                        android:maxLength="16"
+                        android:singleLine="true"
+                        android:textColorHint="@color/colorPrimary"
+                        android:textCursorDrawable="@drawable/color_cursor"
+                        android:textSize="@dimen/sp_12" />
+
+                    <CheckBox
+                        android:id="@+id/cb_show"
+                        style="@style/CustomCheckBoxTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:checked="false" />
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/tv_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_3"
+                    android:layout_marginLeft="@dimen/dp_3"
+                    android:layout_marginTop="-8dp"
+                    android:text="@string/mustputpsw"
+                    android:textColor="@color/fount1"
+                    android:textSize="@dimen/sp_9"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <im.delight.android.webview.AdvancedWebView
+            android:id="@+id/web"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-5dp"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/bt_login"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_30"
+            android:layout_marginLeft="@dimen/dp_30"
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_marginRight="@dimen/dp_30"
+            android:background="@drawable/lottery_reg"
+            android:text="@string/login"
+            android:textColor="@color/color_f4f4f4" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10">
+
+            <CheckBox
+                android:id="@+id/cb_pw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_30"
+                android:checked="true"
+                android:text="@string/mind_psw"
+                android:textSize="@dimen/sp_10"
+                android:theme="@style/My_CheckBox" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1">
+
+            </View>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dp_30"
+                android:drawableLeft="@mipmap/kf"
+                android:textSize="@dimen/sp_10"
+                android:text="在线客服"></TextView>
+        </LinearLayout>
+
+<!--        <Button-->
+<!--            android:id="@+id/bt_regedit"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="@dimen/dp_30"-->
+<!--            android:layout_marginLeft="@dimen/dp_10"-->
+<!--            android:layout_marginTop="@dimen/dp_10"-->
+<!--            android:layout_marginRight="@dimen/dp_10"-->
+<!--            android:background="@drawable/bt_backgroup1"-->
+<!--            android:text="@string/regedit"-->
+<!--            android:textColor="?attr/colorAccent" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/bt_playgame"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="@dimen/dp_30"-->
+<!--            android:layout_marginLeft="@dimen/dp_10"-->
+<!--            android:layout_marginTop="@dimen/dp_10"-->
+<!--            android:layout_marginRight="@dimen/dp_10"-->
+<!--            android:background="@drawable/bt_backgroup1"-->
+<!--            android:text="@string/playgame"-->
+<!--            android:textColor="?attr/colorAccent" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/bt_online_service"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="@dimen/dp_30"-->
+<!--            android:layout_marginLeft="@dimen/dp_10"-->
+<!--            android:layout_marginTop="@dimen/dp_10"-->
+<!--            android:layout_marginRight="@dimen/dp_10"-->
+<!--            android:background="@drawable/bt_backgroup1"-->
+<!--            android:text="@string/online_service"-->
+<!--            android:textColor="?attr/colorAccent"-->
+<!--            android:visibility="gone" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/bt_gotohome"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="@dimen/dp_30"-->
+<!--            android:layout_marginLeft="@dimen/dp_10"-->
+<!--            android:layout_marginTop="@dimen/dp_10"-->
+<!--            android:layout_marginRight="@dimen/dp_10"-->
+<!--            android:layout_marginBottom="@dimen/dp_20"-->
+<!--            android:background="@drawable/bt_backgroup1"-->
+<!--            android:text="@string/gotohome"-->
+<!--            android:textColor="?attr/colorAccent" />-->
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/dp_30"
+            android:layout_marginRight="@dimen/dp_30"
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_height="wrap_content">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@color/fount2">
+            </View>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_5"
+                android:layout_marginRight="@dimen/dp_5"
+                android:text="其他">
+            </TextView>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@color/fount2">
+            </View>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:id="@+id/tv_regedit"
+                android:drawableTop="@mipmap/register"
+                android:text="@string/regedit"
+                android:gravity="center"
+                android:layout_height="wrap_content">
+            </TextView>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:id="@+id/tv_playgame"
+                android:drawableTop="@mipmap/mfsw"
+                android:text="@string/playgame"
+                android:gravity="center"
+                android:layout_height="wrap_content">
+            </TextView>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:id="@+id/tv_pc"
+                android:drawableTop="@mipmap/dnb"
+                android:text="电脑版"
+                android:gravity="center"
+                android:layout_height="wrap_content">
+            </TextView>
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

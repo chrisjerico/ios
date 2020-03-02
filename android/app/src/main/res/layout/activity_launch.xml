@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:fitsSystemWindows="false"
+    android:background="@color/my_line"
+    android:layout_height="match_parent"
+    >
+<ImageView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/iv_img"
+android:background="@color/my_line"
+    android:adjustViewBounds="true"
+    android:scaleType="fitXY" />
+    <!--  android:background="@drawable/launch"-->
+
+  <Button
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentRight="true"
+      android:layout_marginRight="@dimen/dp_16"
+      android:layout_marginTop="@dimen/dp_16"
+      android:id="@+id/skip_bot"
+      android:visibility="gone"
+      android:text="点击进入"
+      android:textColor="@color/white"
+      android:background="@drawable/lottery_bck_14"
+      />
+
+  <Button
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentRight="true"
+      android:layout_marginRight="@dimen/dp_16"
+      android:layout_marginTop="@dimen/dp_100"
+      android:id="@+id/skip_bot1"
+      android:visibility="gone"
+      android:text="换服务器"
+      android:textColor="@color/white"
+      android:background="@drawable/lottery_bck_14"
+      />
+
+</RelativeLayout>

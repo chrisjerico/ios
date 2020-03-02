@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:id="@+id/main_rel"
+    android:fitsSystemWindows="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_44"
+        android:id="@+id/rl_title"
+        android:background="?attr/colorAccent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/ll_left"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="?android:attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dp_15"
+            android:paddingRight="@dimen/dp_15">
+
+            <ImageView
+                android:id="@+id/iv_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp_5"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:src="@drawable/finish" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp_5"
+            android:layout_toRightOf="@id/ll_left"
+            android:drawableRight="@drawable/white_down"
+            android:gravity="center_vertical"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/sp_14" />
+
+
+    </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:layout_below="@+id/rl_title"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ll_num"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:orientation="horizontal"
+
+                android:paddingLeft="@dimen/dp_5"
+                android:paddingRight="@dimen/dp_5">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_ticket_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/dp_10"
+                        android:text="2019056期"
+                        android:textColor="@color/color_333333"
+                        android:textSize="@dimen/sp_11" />
+
+                    <ImageView
+                        android:id="@+id/iv_chat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_ticket_number"
+                        android:layout_centerHorizontal="true"
+                        android:background="@mipmap/chat"
+                        android:paddingTop="@dimen/dp_15" />
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/recycler_view_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_70"
+                    android:layout_marginTop="@dimen/dp_2">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_win_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_10" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_niu_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/rv_win_number"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:scrollbars="none" />
+
+                </RelativeLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_1"
+                android:background="@color/my_line">
+
+            </View>
+
+            <LinearLayout
+                android:id="@+id/ll_countdown"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50"
+                android:layout_marginTop="@dimen/dp_1"
+
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/dp_5"
+                android:paddingRight="@dimen/dp_5">
+
+                <TextView
+                    android:id="@+id/tv_ticket_number_next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2019057期"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/sp_11" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_15"
+                    android:text="封盘："
+                    android:id="@+id/tv_titleclose"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/sp_12" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_close"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/back_close"
+                        android:textColor="@color/color_fe594b"
+                        android:textSize="@dimen/sp_14"
+                        android:visibility="gone" />
+
+                    <cn.iwgang.countdownview.CountdownView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/tv_close_count_down"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dp_30"
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/sp_12"
+                        app:isShowHour="true"
+                        app:isShowMinute="true"
+                        app:isShowSecond="true"
+                        app:suffixDay="天"
+                        app:suffixHour=":"
+                        app:suffixMinute=":"
+                        app:suffixSecond=""
+                        app:timeTextSize="@dimen/sp_14"
+                        app:suffixTextColor="@color/color_fe594b"
+                        app:timeTextColor="@color/color_fe594b" />
+
+                </RelativeLayout>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_15"
+                    android:text="开奖："
+                    android:id="@+id/tv_titleopen"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/sp_12" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_opening"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="开奖中"
+                        android:textColor="@color/color_22a6ec"
+                        android:textSize="@dimen/sp_14"
+                        android:visibility="gone" />
+
+                    <cn.iwgang.countdownview.CountdownView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/tv_open_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dp_30"
+                        android:text="04:30:37"
+                        android:textColor="@color/color_22a6ec"
+                        android:textSize="@dimen/sp_11"
+                        app:isShowHour="true"
+                        app:isShowMinute="true"
+                        app:isShowSecond="true"
+                        app:suffixDay="天"
+                        app:suffixHour=":"
+                        app:suffixMinute=":"
+                        app:suffixSecond=""
+                        app:timeTextSize="@dimen/sp_14"
+                        app:suffixTextColor="@color/color_22a6ec"
+                        app:timeTextColor="@color/color_22a6ec" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_40"
+                android:id="@+id/ll_titleseek"
+                android:background="@color/bac_ash"
+                >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="@dimen/dp_10"
+                    android:layout_marginLeft="@dimen/dp_3"
+                    android:layout_marginRight="@dimen/dp_3"
+                    android:src="@mipmap/search"
+                    android:id="@+id/iv_search"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_40"
+                    android:id="@+id/ll_titlebg"
+                    android:background="@color/bgColor_item_press">
+
+                    <EditText
+                        android:id="@+id/et_search"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:background="@null"
+                        android:textCursorDrawable="@null"
+                        android:gravity="center|left"
+                        android:hint="@string/search"
+                        android:inputType="text"
+                        android:lines="1"
+                        android:singleLine="true" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_1"
+                android:background="@color/my_line">
+            </View>
+            <com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/refreshLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_info"
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+            <TextView
+                android:id="@+id/tv_data"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/noData"
+                android:visibility="gone" />
+        </LinearLayout>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+        </LinearLayout>
+
+</RelativeLayout>

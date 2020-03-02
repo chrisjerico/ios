@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/ba_wr_5"
+    android:layout_margin="@dimen/dp_10"
+    >
+
+    <include layout="@layout/attention_pub_title_lay" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dp_15"
+        android:paddingRight="@dimen/dp_10"
+        >
+
+        <TextView
+            android:id="@+id/name_bottom_tex"
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="wrap_content"
+            style="@style/pub_tex"
+            android:background="@drawable/lottery_bck_14"
+            android:paddingRight="@dimen/dp_5"
+            android:paddingLeft="@dimen/dp_5"
+            android:paddingBottom="@dimen/dp_3"
+            android:paddingTop="@dimen/dp_3"
+            android:textColor="@color/color_white"
+            />
+
+        <TextView
+            android:id="@+id/context_title_tex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_15"
+            style="@style/pub_tex"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_18"
+            android:gravity="left"
+            />
+
+    </LinearLayout>
+
+    <!--<TextView-->
+        <!--android:id="@+id/context_tex"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:gravity="center"-->
+        <!--android:layout_margin="@dimen/dp_10"-->
+        <!--android:lineSpacingExtra="@dimen/dp_5"-->
+        <!--android:textSize="@dimen/sp_14"-->
+        <!--/>-->
+
+
+    <LinearLayout
+        android:id="@+id/ll_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_5"
+        android:layout_marginRight="@dimen/dp_5"
+        android:orientation="vertical">
+
+        <!--<WebView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/webviews">-->
+        <!--</WebView>-->
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_img"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/iv_img1"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_90"
+            android:layout_weight="1"
+            android:padding="@dimen/dp_4" />
+
+        <ImageView
+            android:id="@+id/iv_img2"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_90"
+            android:layout_weight="1"
+            android:padding="@dimen/dp_4" />
+
+        <ImageView
+            android:id="@+id/iv_img3"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_90"
+            android:layout_weight="1"
+            android:padding="@dimen/dp_4" />
+    </LinearLayout>
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:background="@color/my_line"
+        android:layout_marginTop="@dimen/dp_11"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:id="@+id/like_tex1"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            />
+
+        <TextView
+            android:id="@+id/like_tex"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            style="@style/pub_tex"
+            android:drawableLeft="@drawable/like_sele"
+            android:drawablePadding="@dimen/dp_5"
+            android:textColor="@color/attention_red_we_sele"
+            />
+
+        <TextView
+            android:id="@+id/like_tex2"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            />
+
+
+        <TextView
+            android:layout_width="@dimen/dp_1"
+            android:layout_height="match_parent"
+            android:background="@color/my_line"
+            />
+
+        <TextView
+            android:layout_width="@dimen/dp_1"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            />
+        <TextView
+            android:id="@+id/view_count_tex"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            style="@style/pub_tex"
+            android:drawableLeft="@drawable/watch"
+            android:drawablePadding="@dimen/dp_5"
+            />
+
+        <TextView
+            android:layout_width="@dimen/dp_1"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            />
+
+        <TextView
+            android:layout_width="@dimen/dp_1"
+            android:layout_height="match_parent"
+            android:background="@color/my_line"
+            />
+
+        <TextView
+            android:layout_width="@dimen/dp_1"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            />
+        <TextView
+            android:id="@+id/relation_tex"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            style="@style/pub_tex"
+            android:drawableLeft="@drawable/replay"
+            android:drawablePadding="@dimen/dp_5"
+            />
+
+
+        <TextView
+            android:layout_width="@dimen/dp_1"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            />
+
+    </LinearLayout>
+
+
+</LinearLayout>

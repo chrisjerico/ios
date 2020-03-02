@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_marginTop="@dimen/dp_12"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_45"
+        android:orientation="horizontal"
+        android:background="@color/my_line"
+        android:paddingLeft="@dimen/dp_16"
+        android:paddingRight="@dimen/dp_16"
+        android:id="@+id/go_comm"
+        >
+
+        <ImageView
+            android:layout_marginTop="@dimen/dp_3"
+            android:layout_marginBottom="@dimen/dp_3"
+            android:layout_height="@dimen/dp_35"
+            android:layout_width="wrap_content"
+            style="@style/pub_tex"
+            android:adjustViewBounds="true"
+            android:src="@drawable/yhj"
+            />
+
+        <TextView
+            android:id="@+id/go_essayist_tex"
+            android:layout_marginLeft="@dimen/dp_12"
+            android:layout_width="@dimen/dp_0"
+            android:layout_weight="1"
+            android:layout_height="@dimen/dp_30"
+            style="@style/pub_tex"
+            android:background="@drawable/ba_esh2_50"
+            android:textSize="@dimen/sp_14"
+            android:paddingLeft="@dimen/dp_5"
+            android:paddingRight="@dimen/dp_5"
+            android:hint="   说点什么..."
+            android:gravity="left|center_vertical"
+            />
+
+        <TextView
+            android:id="@+id/like_tex"
+            android:layout_width="@dimen/dp_20"
+            android:layout_height="@dimen/dp_20"
+            android:background="@drawable/like_sele"
+            style="@style/pub_tex"
+            android:layout_marginLeft="@dimen/dp_16"
+            />
+
+
+        <TextView
+            android:id="@+id/go_essayist_tex1"
+            android:layout_width="@dimen/dp_20"
+            android:layout_height="@dimen/dp_20"
+            android:background="@drawable/ly"
+            style="@style/pub_tex"
+            android:layout_marginLeft="@dimen/dp_16"
+            />
+
+        <TextView
+            android:id="@+id/attention_tex"
+            android:layout_width="@dimen/dp_20"
+            android:layout_height="@dimen/dp_20"
+            android:background="@drawable/attention_sele"
+            style="@style/pub_tex"
+            android:layout_marginLeft="@dimen/dp_16"
+            />
+
+
+</LinearLayout>
