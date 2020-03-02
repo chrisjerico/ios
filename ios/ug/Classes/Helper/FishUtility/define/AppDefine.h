@@ -65,11 +65,11 @@
 
 @property (nonatomic) BOOL isYHShowTitle;                          /**<  优惠详情现在titleLabel ,导航条显示：活动详情*/
 @property (nonatomic) BOOL isNoBorder;                             /**<  首页优惠活动没有外面的View */
-@property (nonatomic) BOOL isRedWhite;                              /**<  下注界面新年红模板样式 红白配色*/
-@property (nonatomic) BOOL oldConversion;                           /**<  老的转换界面*/
-@property (nonatomic) BOOL isParagraphSpacing;                      /**<  首页公告详情段落有间距*/
-@property (nonatomic) BOOL isFireworks;                              /**<  首页cell加烟花背景*/
-@property (nonatomic) BOOL isTabHot;                                 /**< tab聊天室+红包动画*/
+@property (nonatomic) BOOL isRedWhite;                             /**<  下注界面新年红模板样式 红白配色*/
+@property (nonatomic) BOOL oldConversion;                          /**<  老的转换界面*/
+@property (nonatomic) BOOL isParagraphSpacing;                     /**<  首页公告详情段落有间距*/
+@property (nonatomic) BOOL isFireworks;                            /**<  首页cell加烟花背景*/
+@property (nonatomic) BOOL isTabHot;                               /**< tab聊天室+红包动画*/
 
 
 
