@@ -148,7 +148,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         vc.roomId = @(model.subId).stringValue;
         vc.showChangeRoomTitle = true;
         vc.hideHead = true;
-        vc.title = model.name.length ? model.name : model.title;
+        vc.title = model.title.length ? model.title : model.name;
         [NavController1 pushViewController:vc animated:true];
         return true;
     }
