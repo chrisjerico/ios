@@ -49,7 +49,7 @@
     _moneyTxt.delegate = self;
     self.lineCollection.dataSource = self;
     self.lineCollection.delegate = self;
-//    self.lineCollection.bounces = NO;
+    //    self.lineCollection.bounces = NO;
     
     [self.lineCollection registerNib:[UINib nibWithNibName:@"LineMainListCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"LineMainListCollectionViewCell"];
     
@@ -95,8 +95,8 @@
         WeakSelf
         cell.refreshBlock = ^{
             model.refreshing = YES;
-            [weakSelf checkRealBalance:model];
-            [weakSelf.lineCollection reloadData];
+            [weakSelf checkRealBalance:model indexs:indexPath];
+            
         };
         return cell;
     }
@@ -244,21 +244,45 @@
     });
 }
 
-- (void)checkRealBalance:(UGPlatformGameModel *)game {
+- (void)checkRealBalance:(UGPlatformGameModel *)game   indexs:(NSIndexPath *)index{
     NSDictionary *parmas = @{@"id":game.gameId,
                              @"token":[UGUserModel currentUser].sessid
     };
+    
+    LineMainListCollectionViewCell *cell =  (LineMainListCollectionViewCell *)[self.lineCollection cellForItemAtIndexPath:index];
+   
+    dispatch_async(dispatch_get_main_queue(), ^{
+       // UI更新代码
+       [cell animationFunction ];
+    });
     [CMNetwork checkRealBalanceWithParams:parmas completion:^(CMResult<id> *model, NSError *err) {
         
         [CMResult processWithResult:model success:^{
             NSDictionary *dict = (NSDictionary *)model.data;
             game.balance = dict[@"balance"];
             
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // UI更新代码
+                game.refreshing = NO;
+                [cell animationFunction ];
+                NSMutableArray *indexPaths = [NSMutableArray array];
+                [indexPaths addObject:index];
+                [self.lineCollection reloadItemsAtIndexPaths:indexPaths];
+            });
+ 
+
         } failure:^(id msg) {
             [SVProgressHUD dismiss];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // UI更新代码
+                game.refreshing = NO;
+                [cell animationFunction ];
+                NSMutableArray *indexPaths = [NSMutableArray array];
+                [indexPaths addObject:index];
+                [self.lineCollection reloadItemsAtIndexPaths:indexPaths];
+            });
         }];
-        game.refreshing = NO;
-        [self.lineCollection reloadData];
+     
     }];
     
 }

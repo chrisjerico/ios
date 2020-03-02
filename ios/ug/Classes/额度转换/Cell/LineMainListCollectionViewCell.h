@@ -15,7 +15,7 @@ typedef void(^LineMainListBlock)(void);
 @property (nonatomic, strong) UGPlatformGameModel *item;
 @property (nonatomic, copy) LineMainListBlock refreshBlock;   /**<   刷新按钮被点击 */
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-
+-(void)animationFunction;
 @end
 
 NS_ASSUME_NONNULL_END

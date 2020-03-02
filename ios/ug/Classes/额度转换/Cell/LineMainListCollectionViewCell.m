@@ -34,16 +34,20 @@
         self.balanceLabel.text = @"加载失败";
         [_refreshButton setHidden:NO];
     }
-    if (item.refreshing) {
-        [self startAnimation];
-    } else {
-        [self.refreshButton.layer removeAllAnimations];
-    }
+
 }
 
 - (IBAction)refreshClick:(id)sender {
     if (self.refreshBlock) {
         self.refreshBlock();
+    }
+}
+
+-(void)animationFunction{
+    if (_item.refreshing) {
+        [self startAnimation];
+    } else {
+        [self.refreshButton.layer removeAllAnimations];
     }
 }
 
