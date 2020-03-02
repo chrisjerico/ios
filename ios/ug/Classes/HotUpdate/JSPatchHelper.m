@@ -129,7 +129,7 @@
                     } else {
                         NSLog(@"发现jsp新版本：%@", hvm.version);
                         [newVersions addObject:hvm];
-                        break;
+                        continue;
                     }
                 } else {
                     // 发现比自己低的版本，结束查找
