@@ -105,7 +105,7 @@
 - (void)buildSegment
 {
     
-    self.itemArray = @[@"视讯",@"棋牌",@"电子",@"电竞",@"体育"];
+    self.itemArray = @[@"视讯",@"棋牌",@"电子",@"电竞",@"捕鱼",@"体育"];
     if (Skin1.isBlack) {
         [self creatView];
         self.slideSwitchView = [[XYYSegmentControl alloc] initWithFrame:CGRectMake(0 , headView.frame.size.height+headView.frame.origin.y, self.view.width, self.view.height) channelName:self.itemArray source:self];

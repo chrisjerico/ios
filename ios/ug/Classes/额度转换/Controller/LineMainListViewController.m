@@ -49,7 +49,7 @@
     _moneyTxt.delegate = self;
     self.lineCollection.dataSource = self;
     self.lineCollection.delegate = self;
-    self.lineCollection.bounces = NO;
+//    self.lineCollection.bounces = NO;
     
     [self.lineCollection registerNib:[UINib nibWithNibName:@"LineMainListCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"LineMainListCollectionViewCell"];
     
