@@ -49,6 +49,7 @@ ${BUILT_PRODUCTS_DIR}/SSZipArchive/SSZipArchive.framework
 ${BUILT_PRODUCTS_DIR}/STPickerView/STPickerView.framework
 ${BUILT_PRODUCTS_DIR}/TZImagePickerController/TZImagePickerController.framework
 ${BUILT_PRODUCTS_DIR}/Toast/Toast.framework
+${BUILT_PRODUCTS_DIR}/XYYSegmentControl/XYYSegmentControl.framework
 ${BUILT_PRODUCTS_DIR}/YYCache/YYCache.framework
 ${BUILT_PRODUCTS_DIR}/YYCategories/YYCategories.framework
 ${BUILT_PRODUCTS_DIR}/YYImage/YYImage.framework

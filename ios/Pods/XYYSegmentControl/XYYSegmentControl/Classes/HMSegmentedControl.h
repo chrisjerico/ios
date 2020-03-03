@@ -188,7 +188,7 @@ typedef NS_ENUM(NSInteger, HMSegmentedControlType) {
 /**
  Height of the selection indicator. Only effective when `HMSegmentedControlSelectionStyle` is either `HMSegmentedControlSelectionStyleTextWidthStripe` or `HMSegmentedControlSelectionStyleFullWidthStripe`.
  
- Default is 2.0
+ Default is 5.0
  */
 @property (nonatomic, readwrite) CGFloat selectionIndicatorHeight;
 

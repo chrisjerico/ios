@@ -236,10 +236,10 @@ static const CGFloat kImagesHeightOfTopScrollView = 54.0f;
 /**
  *创建根视图
  */
-- (void)createRootView
+-(void)createRootView
 {
     //创建主滚动视图
-    _rootScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, kHeightOfTopScrollView, self.bounds.size.width, self.bounds.size.height - kHeightOfTopScrollView)];
+    _rootScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, kHeightOfTopScrollView , self.bounds.size.width, self.bounds.size.height - kHeightOfTopScrollView)];
     _rootScrollView.delegate = self;
     _rootScrollView.pagingEnabled = YES;
     _rootScrollView.userInteractionEnabled = YES;
@@ -347,8 +347,8 @@ static const CGFloat kImagesHeightOfTopScrollView = 54.0f;
 }
 
 //当横竖屏切换时可通过此方法调整布局
-- (void)layoutSubviews {
-    [super layoutSubviews];
+- (void)layoutSubviews
+{
     //创建完子视图UI才需要调整布局
     if (_isBuildUI) {
         //更新主视图的总宽度

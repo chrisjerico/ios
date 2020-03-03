@@ -136,7 +136,7 @@
     
     self.selectedSegmentIndex = 0;
     self.segmentEdgeInset = UIEdgeInsetsMake(0, 5, 0, 5);
-    self.selectionIndicatorHeight = 2.0f;
+    self.selectionIndicatorHeight = 5.0f;
     self.selectionIndicatorEdgeInsets = UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f);
     self.selectionStyle = HMSegmentedControlSelectionStyleTextWidthStripe;
     self.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationUp;
