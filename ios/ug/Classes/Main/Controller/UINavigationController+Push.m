@@ -153,6 +153,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         return true;
     }
     
+
     // 去彩票下注页、或第三方游戏页、或功能页
     BOOL ret = [NavController1 pushViewControllerWithLinkCategory:model.seriesId linkPosition:model.subId];
     
@@ -484,6 +485,12 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             // 游戏大厅
             UGYYLotteryHomeViewController*vc = [[UGYYLotteryHomeViewController alloc] init];
             [NavController1 pushViewController:vc animated:YES];
+            break;
+        }
+        case 20: {
+            //会员中心
+            UGMineSkinViewController *vc = [UGMineSkinViewController new];
+            [NavController1 pushViewController:vc animated:true];
             break;
         }
         default: {

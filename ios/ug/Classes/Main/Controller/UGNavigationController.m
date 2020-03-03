@@ -239,7 +239,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
                     [NavController1 popToViewController:vc animated:false];
                     return;
                 }
-                viewController = _LoadVC_from_storyboard_(@"UGMineSkinViewController");
+                viewController =  [UGMineSkinViewController new];
             }
         }
         
