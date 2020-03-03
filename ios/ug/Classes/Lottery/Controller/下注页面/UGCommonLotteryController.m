@@ -12,6 +12,8 @@
 // View
 #import "STBarButtonItem.h"
 #import "CMTimeCommon.h"
+
+#import "category.h"
 @interface UGCommonLotteryController (CC)
 @property (nonatomic) UITableView *tableView;
 @property (nonatomic) UIView *bottomView;
@@ -128,10 +130,16 @@
         [subButton(@"金杯btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
             [CMCommon goSLWebUrl:lotteryUrl];
         }];
+ 
+        if (SysConf.betAmountIsDecimal  == 1) {//betAmountIsDecimal  1=允许小数点，0=不允许，以前默认是允许投注金额带小数点的，默认为1
+            [subTextView(@"下注TxtF") set仅数字:false];
+            [subTextView(@"下注TxtF") set仅数字含小数:true];
+        } else {
+            [subTextView(@"下注TxtF") set仅数字:true];
+        }
+
         
-        
-        
-       
+
         
         
         

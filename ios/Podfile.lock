@@ -342,6 +342,7 @@ PODS:
   - SwiftyJSON (5.0.0)
   - Toast (4.0.0)
   - TZImagePickerController (3.2.8)
+  - XYYSegmentControl (1.4.0)
   - Yoga (1.14.0)
   - YYCache (1.0.4)
   - YYCategories (1.0.4):
@@ -438,6 +439,7 @@ DEPENDENCIES:
   - SwiftyJSON (~> 5.0.0)
   - Toast (~> 4.0.0)
   - TZImagePickerController (~> 3.2.8)
+  - XYYSegmentControl (~> 1.4.0)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
   - YYCategories
   - YYText (~> 1.0.7)
@@ -500,6 +502,7 @@ SPEC REPOS:
     - SwiftyJSON
     - Toast
     - TZImagePickerController
+    - XYYSegmentControl
     - YYCache
     - YYCategories
     - YYImage
@@ -671,6 +674,7 @@ SPEC CHECKSUMS:
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
   TZImagePickerController: 4b0a5d3abe6351b6c9ec52c7be0fa9a5bbca23f6
+  XYYSegmentControl: 3c985dd1d41d9b53eb6665e92e505ea841d3990c
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   YYCategories: 6bcd4314c6661a561410dce4a793379ebd306abd
@@ -678,6 +682,6 @@ SPEC CHECKSUMS:
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
 
-PODFILE CHECKSUM: 40c55c70e5a9bb7c255c2b4ce055e5faab95e15e
+PODFILE CHECKSUM: 21234d5242c72cadcc0fdb71dc622eefb72023d8
 
 COCOAPODS: 1.8.4
