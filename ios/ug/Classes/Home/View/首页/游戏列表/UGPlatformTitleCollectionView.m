@@ -227,12 +227,7 @@
     GameCategoryModel *gcm = _gameTypeArray[row];
     CGFloat w = [gcm.name widthForFont:[UIFont systemFontOfSize:18]] + space;
     if (APP.isShowLogo) {
-        if (Skin1.isJY) {
-//             return  MAX(70, w);
-             return 92.0;
-        } else {
-             return 92.0;
-        }
+        return 92.0;
     } else {
         return w;
     }
@@ -242,7 +237,19 @@
     if (_isBlack) {
         return CGSizeMake(92, 140);
     }
-    CGFloat w = [self collectionViewCellWith:indexPath.row];
+    CGFloat w = 0;
+    
+    if (Skin1.isJY) {
+        if (self.gameTypeArray.count >=7) {
+            w = CollectionViewW/7;
+        }
+        else{
+            w = CollectionViewW/self.gameTypeArray.count;
+        }
+    }
+    else{
+        w = [self collectionViewCellWith:indexPath.row];
+    }
     
     return CGSizeMake(w, APP.isShowLogo ? 80 : 55);
 }

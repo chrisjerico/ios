@@ -100,7 +100,12 @@
         subView(@"StackView").cc_constraints.left.constant = 0;
     }
     
-    subView(@"cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor : Skin1.homeContentColor;
+    if (Skin1.isJY) {
+         subView(@"cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor : RGBA(242, 242, 242, 1);
+    }
+    else{
+         subView(@"cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor : Skin1.homeContentColor;
+    }
     subLabel(@"标题Label").textColor = Skin1.textColor1;
     subLabel(@"标题Label").text = pm.title;
     subLabel(@"标题Label").hidden = !pm.title.length;

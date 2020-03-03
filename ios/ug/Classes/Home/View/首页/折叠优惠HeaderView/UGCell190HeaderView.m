@@ -55,7 +55,12 @@ static CGFloat _contentWidth = 0;
         _stackView.cc_constraints.left.constant = 0;
     }
     
-    subView(@"cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor : Skin1.homeContentColor;
+    if (Skin1.isJY) {
+         subView(@"cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor :  RGBA(242, 242, 242, 1);
+    }
+    else{
+         subView(@"cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor : Skin1.homeContentColor;
+    }
     _titleLabel.textColor = Skin1.textColor1;
     _titleLabel.text = _item.title;
     _titleLabel.hidden = !_item.title.length;
