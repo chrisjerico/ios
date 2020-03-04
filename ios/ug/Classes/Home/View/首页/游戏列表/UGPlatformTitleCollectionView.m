@@ -251,7 +251,7 @@
         w = [self collectionViewCellWith:indexPath.row];
     }
     
-    return CGSizeMake(w, APP.isShowLogo ? 80 : 55);
+    return CGSizeMake(w, APP.isShowLogo ? 60 : 50);
 }
 //(IOS)监听scrollView是否滚动到了顶部／底部
 -(void)scrollViewDidScroll: (UIScrollView*)scrollView

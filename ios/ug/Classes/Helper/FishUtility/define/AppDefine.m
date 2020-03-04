@@ -337,7 +337,7 @@
 
 - (BOOL)isFontSystemSize {
     if (Skin1.isJY) {
-        return YES;
+        return NO;
     } else {
         return NO;
     }

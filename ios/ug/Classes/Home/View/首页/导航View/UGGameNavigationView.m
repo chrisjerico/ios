@@ -8,7 +8,7 @@
 
 #import "UGGameNavigationView.h"
 #import "YYWebImage.h"
-
+#import "FLAnimatedImageView.h"
 @interface UGGameNavigationView()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 @property(nonatomic, strong)UIButton * scrollRightButton;
 @end
@@ -98,8 +98,9 @@
     
     [super awakeFromNib];
     
-    CGRect frame = CGRectMake(0, 0, UGScreenW, 100);
+    CGRect frame = CGRectMake(0, 0, UGScreenW, 60);
     [self initWithFrame:frame];
+    self.backgroundColor = [UIColor redColor];
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -139,7 +140,7 @@
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(5, 0, 0, 4);
+    return UIEdgeInsetsMake(0, 0, 0, 4);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
@@ -157,7 +158,7 @@
 {
     YYAnimatedImageView * _iconImage;
     UILabel * _titleLabel;
-    UIImageView * _hotImage;
+    FLAnimatedImageView * _hotImage;
     UILabel *_unreadLabel;
 }
 
@@ -169,34 +170,32 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        _hotImage = [UIImageView new];
+        _hotImage = [FLAnimatedImageView new];
+        _hotImage.contentMode = UIViewContentModeScaleAspectFit;
         _iconImage = [YYAnimatedImageView new];
         _iconImage.contentMode = UIViewContentModeScaleAspectFit;
         _titleLabel = [UILabel new];
 
+        [self setBackgroundColor:[UIColor clearColor]];
         
         //        [_titleLabel setBackgroundColor:[UIColor redColor]];
         if (APP.isFontSystemSize) {
-             _titleLabel.font = [UIFont systemFontOfSize:15];
+             _titleLabel.font = [UIFont systemFontOfSize:13];
              _titleLabel.textColor = RGBA(117, 117, 117, 1);
         } else {
-             _titleLabel.font = [UIFont boldSystemFontOfSize:15];
+             _titleLabel.font = [UIFont boldSystemFontOfSize:13];
              _titleLabel.textColor = Skin1.textColor1;
         }
        
         [self addSubview:_iconImage];
         [_iconImage mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self).offset(5);
+            make.top.equalTo(self).offset(10);
             make.centerX.equalTo(self);
             make.width.height.equalTo(@37);
         }];
-        
-        //        _iconImage.layer.cornerRadius = 20;
-        //        _iconImage.layer.masksToBounds = YES;
         [self addSubview:_hotImage];
-        _hotImage.contentMode = UIViewContentModeScaleAspectFit;
         [_hotImage mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self);
+            make.top.equalTo(self).offset(8);;
             make.right.equalTo(self);
             make.width.height.mas_equalTo(27);
         }];
@@ -245,7 +244,7 @@
     _hotImage.hidden = !model.tipFlag;
     [_hotImage sd_setImageWithURL:[NSURL URLWithString:model.hotIcon] placeholderImage:[UIImage imageNamed:@"icon_remen"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         if (error)
-            __hotImageView.image = [UIImage imageNamed:@"icon_remen"];
+           [__hotImageView sd_setImageWithURL:[[NSBundle mainBundle] URLForResource:@"hot_act" withExtension:@"gif"]];
     }];
     
     [_iconImage yy_setImageWithURL:[NSURL URLWithString:model.icon] placeholder:[UIImage imageNamed:@"zwt"]];

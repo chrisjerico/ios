@@ -35,7 +35,7 @@
     if (Skin1.isJY) {
         _title2Label.textColor = RGBA(117, 117, 117, 1);
         [self setBackgroundColor: [UIColor whiteColor]];
-        [_title2Label setFont:[UIFont systemFontOfSize:16]];
+        [_title2Label setFont:[UIFont systemFontOfSize:13]];
 
     }
 }
