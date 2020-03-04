@@ -317,6 +317,10 @@
    
 }
 
+- (IBAction)goKefu:(id)sender {
+    // 在线客服
+     [NavController1 pushVCWithUserCenterItemType:UCI_在线客服];
+}
 
 - (IBAction)pwdTextSwitch:(UIButton *)sender {
     

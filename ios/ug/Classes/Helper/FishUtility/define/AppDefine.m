@@ -186,11 +186,11 @@
 }
 
 - (BOOL)isParagraphSpacing {
-    return [@"c134,c200,c213" containsString:_SiteId];
+    return [@"c134,c200,c213,a002" containsString:_SiteId];
 }
 
 - (BOOL)oldConversion {
-    return [@"c200" containsString:_SiteId];
+    return [@"c200,a002" containsString:_SiteId];
 }
 
 
@@ -204,11 +204,11 @@
 }
 
 - (BOOL)isShow4 {
-    return [@"c200,c213" containsString:_SiteId];
+    return [@"c200,c213,a002" containsString:_SiteId];
 }
 
 - (BOOL)isNoBorder {
-    return [@"c200,c208,c213" containsString:_SiteId];
+    return [@"c200,c208,c213,a002" containsString:_SiteId];
 }
 
 - (BOOL)isYHShowTitle {
@@ -243,22 +243,22 @@
     if (Skin1.isSLH) {
         return YES;
     } else {
-        return [@"c134,c200,c208,c213" containsString:_SiteId];
+        return [@"c134,c200,c208,c213,a002" containsString:_SiteId];
     }
 }
 
 - (BOOL)isYellow {
-    return [@"c085,c134,c200,c208,c213,c212" containsString:_SiteId];
+    return [@"c085,c134,c200,c208,c213,c212,a002" containsString:_SiteId];
 }
 
 - (BOOL)isSelectStyle {
-    return [@"c212,c208,c134,c200,c213" containsString:_SiteId];
+    return [@"c212,c208,c134,c200,c213,a002" containsString:_SiteId];
 }
 
 
 - (BOOL)isShowBorder {
     
-    return [@"c212,c208,c134,c200,c213" containsString:_SiteId];
+    return [@"c212,c208,c134,c200,c213,a002" containsString:_SiteId];
     
 }
 
@@ -267,7 +267,7 @@
 }
 
 - (BOOL)isGrey {
-    return [@"c212,c208,c134,c200,c213" containsString:_SiteId];
+    return [@"c212,c208,c134,c200,c213,a002" containsString:_SiteId];
 }
 
 - (BOOL)isBorderNavBarBgColor {
@@ -283,7 +283,7 @@
     if (Skin1.isSLH) {
         return YES;
     } else {
-        return [@"c212,c085,c208,c134,c200,c208,c213" containsString:_SiteId];
+        return [@"c212,c085,c208,c134,c200,c208,c213,a002" containsString:_SiteId];
     }
     
 }
@@ -292,7 +292,7 @@
     if (Skin1.isBlack) {
         return NO;
     } else {
-        return [@"cc213" containsString:_SiteId];
+        return [@"c213" containsString:_SiteId];
     }
 }
 
@@ -301,7 +301,7 @@
 }
 
 - (BOOL)isShowJinbei {
-    return [@"c085,c208,c212,c200,c213" containsString:_SiteId];
+    return [@"c085,c208,c212,c200,c213,a002" containsString:_SiteId];
 }
 
 - (BOOL)isShowWZ {
