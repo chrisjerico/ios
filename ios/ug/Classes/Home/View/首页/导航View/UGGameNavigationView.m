@@ -130,6 +130,10 @@
         oneLineCnt = 4;
     }
     
+    if (Skin1.isJY) {
+         oneLineCnt = 5;
+    }
+    
     return (CGSize){(UGScreenW - 40)/MIN(oneLineCnt, self.sourceData.count), 75};
     
 }

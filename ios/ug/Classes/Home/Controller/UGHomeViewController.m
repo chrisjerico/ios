@@ -309,7 +309,11 @@
         _rankingView.backgroundColor = isBlack ? Skin1.bgColor : Skin1.navBarBgColor;
     }
     
-    _gameTypeView.cc_constraints.top.constant = isBlack ? 0 : 10;
+
+//    _gameTypeView.cc_constraints.top.constant = isBlack ? 0 : 10;
+//    if (Skin1.isJY) {
+        _gameTypeView.cc_constraints.top.constant = isBlack||Skin1.isJY ? 0 : 10;
+//    }
     _headerView.hidden = !isBlack;
     self.fd_prefersNavigationBarHidden = isBlack;
     if (NavController1.topViewController == self) {
@@ -1950,6 +1954,7 @@
         else{
             cell  = [tableView dequeueReusableCellWithIdentifier:@"cell1" forIndexPath:indexPath];
         }
+     
         UGPromoteModel *pm = tableView.dataArray[indexPath.row];
         FastSubViewCode(cell);
         if ([@"c190" containsString:APP.SiteId]) {
@@ -1966,7 +1971,6 @@
         else{
              subView(@"cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor : Skin1.homeContentColor;
         }
-               
        
         subLabel(@"标题Label").textColor = Skin1.textColor1;
         subLabel(@"标题Label").text = pm.title;
@@ -2056,7 +2060,6 @@
     NSLog(@"section = %ld",(long)section);
     UIView *contentView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"header"];
     [contentView setBackgroundColor:[UIColor clearColor]];
-    
     
     UGCellHeaderView *headerView = [contentView viewWithTagString:@"headerView"];
     if (!headerView) {

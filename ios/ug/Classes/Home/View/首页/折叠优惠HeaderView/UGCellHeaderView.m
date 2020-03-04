@@ -24,7 +24,7 @@ static CGFloat _contentWidth = 0;
     textH += 20;
     UIImage *image = [[SDImageCache sharedImageCache] imageFromCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:item.pic]]];
     CGFloat imageH = _contentWidth/image.width * image.height;
-    CGFloat otherH = 16 + !!item.title.length * 8;
+    CGFloat otherH = 16+ !!item.title.length * 8 ;
     if (!image) {
         return 150;
     }
@@ -33,6 +33,8 @@ static CGFloat _contentWidth = 0;
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    
+    self.backgroundColor = [UIColor redColor];
 }
 
 - (void)layoutSubviews {
@@ -61,6 +63,7 @@ static CGFloat _contentWidth = 0;
     else{
          subView(@"cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor : Skin1.homeContentColor;
     }
+    
     _titleLabel.textColor = Skin1.textColor1;
     _titleLabel.text = _item.title;
     _titleLabel.hidden = !_item.title.length;

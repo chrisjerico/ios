@@ -331,7 +331,8 @@
 
 
 - (BOOL)isCornerRadius {
-    return [@"c193" containsString:_SiteId];
+    return YES;
+//    return [@"c193" containsString:_SiteId];
 }
 
 - (BOOL)isFontSystemSize {

@@ -358,7 +358,7 @@ static NSString *const footerId = @"footerId";
         if (self.style.intValue == 0) {
              return UIEdgeInsetsMake(0, 0, 0, 0);
         } else {
-            return UIEdgeInsetsMake(6, 5, 0, 5);
+            return UIEdgeInsetsMake(0, 0, 0, 0);
         }
        
     }
