@@ -1054,7 +1054,7 @@
                             weakSelf.gameNavigationViewHeight.constant = 60;
                             weakSelf.gameNavigationView.showsVerticalScrollIndicator = NO;
                         } else {
-                            weakSelf.gameNavigationViewHeight.constant = ((sourceData.count - 1)/5 + 1)*60;
+                            weakSelf.gameNavigationViewHeight.constant = ((sourceData.count - 1)/5 + 1)*80;
                             
                         }
                         [weakSelf.view layoutIfNeeded];
