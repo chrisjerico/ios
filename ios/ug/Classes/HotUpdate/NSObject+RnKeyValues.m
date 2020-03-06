@@ -115,10 +115,12 @@
             if (!value) return;
             
             // fish:新增过滤规则
-            if ([value isKindOfClass:[UIResponder class]]) return;
-            if ([property srcClass] == [UIResponder class]) return;
-            if ([property srcClass] == [UIView class]) return;
-            if ([property srcClass] == [UIViewController class]) return;
+            if (![value classIsCustom] && [value isKindOfClass:[UIResponder class]]) return;
+            if (![value classIsCustom] && [value isKindOfClass:[UIView class]]) return;
+            if (![value classIsCustom] && [value isKindOfClass:[UIViewController class]]) return;
+            if (([NSBundle bundleForClass:[property srcClass]] != NSBundle.mainBundle) && [[property srcClass] isSubclassOfClass:[UIResponder class]]) return;
+            if (([NSBundle bundleForClass:[property srcClass]] != NSBundle.mainBundle) && [[property srcClass] isSubclassOfClass:[UIView class]]) return;
+            if (([NSBundle bundleForClass:[property srcClass]] != NSBundle.mainBundle) && [[property srcClass] isSubclassOfClass:[UIViewController class]]) return;
             
             // 2.如果是模型属性
             MJPropertyType *type = property.type;

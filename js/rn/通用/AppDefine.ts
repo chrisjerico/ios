@@ -175,8 +175,10 @@ export class NSValue {
   }
 }
 
-
 Array.prototype.objectWithValue = function(value: any, keyPath: string) {
+  if (!value) {
+    return null;
+  }
   for (var idx in this) {
     var ele = this[idx];
     if (objectPath.get(ele, keyPath) === value) {
