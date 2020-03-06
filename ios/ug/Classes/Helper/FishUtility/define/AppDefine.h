@@ -70,7 +70,7 @@
 @property (nonatomic) BOOL isParagraphSpacing;                     /**<  首页公告详情段落有间距*/
 @property (nonatomic) BOOL isFireworks;                            /**<  首页cell加烟花背景*/
 @property (nonatomic) BOOL isTabHot;                               /**< tab聊天室+红包动画*/
-
+@property (nonatomic) BOOL isTabMassageBadge;                      /**< 底部导航栏【站内信】收到新的站内信时，添加提示功能 */
 
 
 // 热更新相关字段

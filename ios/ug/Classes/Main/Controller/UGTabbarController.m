@@ -40,6 +40,8 @@
 #import "UGMessageModel.h"
 
 #import "FLAnimatedImageView.h"
+#import "UITabBar+CustomBadge.h"
+#import "UGUserModel.h"
 
 
 @implementation UIViewController (CanPush)
@@ -116,6 +118,10 @@ static UGTabbarController *_tabBarVC = nil;
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	_tabBarVC = self;
+    
+    //通过这两个参数来调整badge位置
+    [_tabBarVC.tabBar setTabIconWidth:29];
+    [_tabBarVC.tabBar setBadgeTop:9];
 	[self beginMessageRequest];
 	self.delegate = self;
 	
@@ -332,7 +338,6 @@ static UGTabbarController *_tabBarVC = nil;
             continue;
         
         
-        
         // 已存在的控制器不需要重新初始化
         BOOL existed = false;
         for (UINavigationController *nav in self.viewControllers) {
@@ -387,6 +392,56 @@ static UGTabbarController *_tabBarVC = nil;
             }
         }
     }
+    
+
+
+}
+
+-(void)setUGMailBoxTableViewControllerBadge{
+    
+    if (!APP.isTabMassageBadge) {
+        return;
+    }
+    
+    NSArray *arrControllers = TabBarController1.viewControllers;
+    
+    for (int i = 0; i<arrControllers.count; i++) {
+        UIViewController * viewController  = [arrControllers objectAtIndex:i];
+        if([viewController isKindOfClass:[UINavigationController class]])
+        {
+            UINavigationController *navCtrl = (UINavigationController *)viewController;
+            NSLog(@"%@",navCtrl.viewControllers);
+            if ([navCtrl.tabBarItem.title isEqualToString:@"站内信"] ){//UGMailBoxTableViewController
+                [self setTabBadgeIndex:i];
+            }
+        }
+        else
+        {
+            // view controller
+            if([viewController isKindOfClass:[UGMailBoxTableViewController class]])
+            {
+                //UGMailBoxTableViewController
+                [self setTabBadgeIndex:i];
+                
+            }
+            
+        }
+    }
+    
+}
+
+-(void)setTabBadgeIndex:(NSInteger )index{
+
+      NSInteger number = [UGUserModel currentUser].unreadMsg ? [UGUserModel currentUser].unreadMsg : 0;
+      CustomBadgeType type;
+      if (number == 0) {
+          type = kCustomBadgeStyleNone;
+      } else if (number > 0 && number < 100) {
+          type = kCustomBadgeStyleNumber;
+      } else {
+          type = kCustomBadgeStyleRedDot;
+      }
+      [TabBarController1.tabBar setBadgeStyle:type value:number atIndex:index];
 }
 
 - (void)setSelectedIndex:(NSUInteger)selectedIndex {

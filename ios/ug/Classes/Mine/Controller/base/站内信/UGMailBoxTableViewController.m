@@ -64,7 +64,7 @@ static NSString *messageCellid = @"UGMessageTableViewCell";
                              @"rows":@(self.pageSize),
                              @"token":[UGUserModel currentUser].sessid,
                              @"type":@""
-                             };
+    };
     
     [CMNetwork getMessageListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
@@ -107,7 +107,7 @@ static NSString *messageCellid = @"UGMessageTableViewCell";
     }
     NSDictionary *params = @{@"id":item.messageId,
                              @"token":[UGUserModel currentUser].sessid,
-                             };
+    };
     [CMNetwork modifyMessageStateWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             item.isRead = YES;
@@ -124,14 +124,14 @@ static NSString *messageCellid = @"UGMessageTableViewCell";
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
+    
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
+    
     return self.dataArray.count;
-
+    
 }
 
 
@@ -153,15 +153,16 @@ static NSString *messageCellid = @"UGMessageTableViewCell";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     UGMessageModel *model = self.dataArray[indexPath.row];
     //    [QDAlertView showWithTitle:model.title message:model.content];
-
+    
     
     if (Skin1.isBlack) {
         [LEEAlert alert].config
-         .LeeAddTitle(^(UILabel *label) {
-                label.text = model.title;
-                label.textColor = [UIColor whiteColor];
+        .LeeAddTitle(^(UILabel *label) {
+            label.text = model.title;
+            label.textColor = [UIColor whiteColor];
         })
         .LeeAddContent(^(UILabel *label) {
+            
             NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithData:[model.content dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
             NSMutableParagraphStyle *ps = [NSMutableParagraphStyle new];
             ps.lineSpacing = 5;
@@ -178,37 +179,53 @@ static NSString *messageCellid = @"UGMessageTableViewCell";
                     [mas addAttributes:dict range:NSMakeRange(i, 1)];
                 }
             }
-           
+            
             dispatch_async(dispatch_get_main_queue(), ^{
                 label.attributedText = mas;
             });
             
-         })
+        })
         .LeeHeaderColor(Skin1.bgColor)
-        .LeeAction(@"确定", nil)
+        .LeeAction(@"确定", ^{//站内信已读
+            [self readMsg:model.messageId];
+        })
         .LeeShow(); // 设置完成后 别忘记调用Show来显示
     } else {
         [LEEAlert alert].config
         .LeeTitle(model.title)
         .LeeAddContent(^(UILabel *label) {
-             
-             label.attributedText = [[NSAttributedString alloc] initWithData:[model.content dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
-         })
-         .LeeAction(@"确定", nil)
-         .LeeShow(); // 设置完成后 别忘记调用Show来显示
+            
+            label.attributedText = [[NSAttributedString alloc] initWithData:[model.content dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+        })
+        .LeeAction(@"确定", ^{//站内信已读
+            
+            [self readMsg:model.messageId];
+        })
+        .LeeShow(); // 设置完成后 别忘记调用Show来显示
     }
-
+    
     if (model.isRead == 0) {
         
         [self modifyMessageState:model];
     }
+    
+}
 
+-(void)readMsg:(NSString *)messageId{
+    
+    NSDictionary *params = @{@"id":messageId,
+                             @"token":[UGUserModel currentUser].sessid,
+    };
+    [CMNetwork modifyMessageStateWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+        } failure:^(id msg) {}];
+    }];
 }
 
 - (NSMutableArray<UGMessageModel *> *)dataArray {
     if (_dataArray == nil) {
         _dataArray = [NSMutableArray array];
-
+        
     }
     
     return _dataArray;

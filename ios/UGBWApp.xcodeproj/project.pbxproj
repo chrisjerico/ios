@@ -1922,6 +1922,7 @@
 		D4564A4623E3E3A800A1A8C6 /* UIView+shadowPath.m in Sources */ = {isa = PBXBuildFile; fileRef = D4564A4423E3E3A800A1A8C6 /* UIView+shadowPath.m */; };
 		D4564A4723E3FA9600A1A8C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4B75E15227802600007047C /* Assets.xcassets */; };
 		D458ED7F240F9EF100575C3F /* hot_act.gif in Resources */ = {isa = PBXBuildFile; fileRef = D458ED7D240F9EF100575C3F /* hot_act.gif */; };
+		D458ED8E2412417A00575C3F /* UITabBar+CustomBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = D458ED8D2412417A00575C3F /* UITabBar+CustomBadge.m */; };
 		D4593B0623FFA6C1008396BE /* LineMainListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4593B0523FFA6C1008396BE /* LineMainListViewController.m */; };
 		D4593B0B23FFB646008396BE /* LineMainListCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4593B0923FFB646008396BE /* LineMainListCollectionViewCell.m */; };
 		D4593B0C23FFB646008396BE /* LineMainListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4593B0A23FFB646008396BE /* LineMainListCollectionViewCell.xib */; };
@@ -3750,6 +3751,8 @@
 		D4564A4323E3E3A800A1A8C6 /* UIView+shadowPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+shadowPath.h"; sourceTree = "<group>"; };
 		D4564A4423E3E3A800A1A8C6 /* UIView+shadowPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+shadowPath.m"; sourceTree = "<group>"; };
 		D458ED7D240F9EF100575C3F /* hot_act.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = hot_act.gif; sourceTree = "<group>"; };
+		D458ED8C2412417A00575C3F /* UITabBar+CustomBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBar+CustomBadge.h"; sourceTree = "<group>"; };
+		D458ED8D2412417A00575C3F /* UITabBar+CustomBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBar+CustomBadge.m"; sourceTree = "<group>"; };
 		D4593B0423FFA6C1008396BE /* LineMainListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LineMainListViewController.h; sourceTree = "<group>"; };
 		D4593B0523FFA6C1008396BE /* LineMainListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LineMainListViewController.m; sourceTree = "<group>"; };
 		D4593B0823FFB646008396BE /* LineMainListCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LineMainListCollectionViewCell.h; sourceTree = "<group>"; };
@@ -4019,6 +4022,7 @@
 				CF9A93BF2407F2C200D6E4F3 /* FLAnimatedImage */,
 				031E14E523BE812300B0F813 /* CMCommon */,
 				031E14C223BE812300B0F813 /* CMNetwork */,
+				D458ED8A2412411C00575C3F /* 给tab加badge分类 */,
 				D433EBF323D4939000D31008 /* 截屏UIImage分类 */,
 				D4DB5D3E23FBB48D001C6D8F /* 可以画心的UIView分类 */,
 				D4326F1723FA815B00BEEA1B /* UIColor十六转UIColor分类 */,
@@ -7843,6 +7847,15 @@
 			path = "View带阴影分类";
 			sourceTree = "<group>";
 		};
+		D458ED8A2412411C00575C3F /* 给tab加badge分类 */ = {
+			isa = PBXGroup;
+			children = (
+				D458ED8C2412417A00575C3F /* UITabBar+CustomBadge.h */,
+				D458ED8D2412417A00575C3F /* UITabBar+CustomBadge.m */,
+			);
+			path = "给tab加badge分类";
+			sourceTree = "<group>";
+		};
 		D476E5E7240166C600BA0EA9 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -9758,6 +9771,7 @@
 				031E1D1023BE812B00B0F813 /* JSONHTTPClient.m in Sources */,
 				031E1C4E23BE812A00B0F813 /* UGSegmentView.m in Sources */,
 				031E1C4823BE812900B0F813 /* UGTimeLotteryLeftTitleCell.m in Sources */,
+				D458ED8E2412417A00575C3F /* UITabBar+CustomBadge.m in Sources */,
 				031E1B5823BE812800B0F813 /* UGredEnvelopeView.m in Sources */,
 				03A5D38B23C051DB0055A998 /* JS_HomeGameColletionCell_1.m in Sources */,
 				031E1C5C23BE812A00B0F813 /* UGhomeRecommendCollectionViewCell.m in Sources */,

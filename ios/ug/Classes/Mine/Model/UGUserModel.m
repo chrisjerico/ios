@@ -53,6 +53,10 @@ MJExtensionCodingImplementation
     } else {
         g_currentUser = user;
     }
+    
+    if (TabBarController1) {
+        [TabBarController1 setUGMailBoxTableViewControllerBadge];
+    }
     //归档
     [NSKeyedArchiver archiveRootObject:user toFile:filePath];
 }
