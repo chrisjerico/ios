@@ -58,6 +58,9 @@ export default class UGPromotionsController extends Component<IProps, IState> {
         dataArray.push({category: '0', title: '全部', list: data.list});
         for (var k in temp) {
           var title = data.categories[k];
+          if (!title) {
+            continue;
+          }
           var obj = dataArray.objectWithValue(title, 'title');
           if (obj) {
             obj.list = obj.list.concat(temp[k]);

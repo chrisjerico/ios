@@ -84,6 +84,8 @@ export default class AppDefine {
 
     // 跳转到指定页面
     AppDefine.ocEvent.addListener('SelectVC', params => {
+      console.log('跳转到rn页面：');
+      console.log(params.vcName);
       if (params.vcName) {
         // 退到root
         AppDefine.navController?.canGoBack() && AppDefine.navController?.popToTop();
