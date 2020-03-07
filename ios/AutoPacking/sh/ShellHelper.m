@@ -261,7 +261,7 @@
         NSLog(@"Path.projectDir = %@",Path.projectDir);
         NSTask *task = [[NSTask alloc] init];
         task.launchPath = [[NSBundle mainBundle] pathForResource:@"2setup" ofType:@"sh"];;
-        task.arguments = @[__sm.siteId, __sm.appName, APPVersion, __sm.appId, Path.projectDir, ];
+        task.arguments = @[__sm.siteId, __sm.appName, Path.gitVersion, __sm.appId, Path.projectDir, ];
         task.terminationHandler = ^(NSTask *ts) {
             [ts terminate];
             
