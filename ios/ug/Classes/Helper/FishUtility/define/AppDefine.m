@@ -159,6 +159,10 @@
         
         [self setupSystem];
         [self setupColor];
+        
+        if (!_jspVersion.length) {
+            _jspVersion = _Version;
+        }
     }
     return self;
 }
