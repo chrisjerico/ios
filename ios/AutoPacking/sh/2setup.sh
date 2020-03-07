@@ -39,5 +39,6 @@ cp -rf "AutoPacking/打包文件/各站点AppIcon（拷贝出来使用）/$__Sit
 
 # ————————————————————
 #【Bundle打包】
+export PATH=/usr/local/bin:$PATH
 react-native bundle --entry-file index.ios.js --bundle-output ./bundle/main.jsbundle --platform ios --assets-dest ./bundle --dev false > rn打包结果.txt
 
