@@ -82,6 +82,8 @@ https://app.pindanduo.cn/ipa/c085/c085_1577104817.ipa
 超级签名网址：
 -——————————————————————
     上传超级签名 原生的加hy，还需要一张启动图
+    问客服要站点名称，站点启动图
+    https://c105bhy.app2.xin
     描叙：凤凰控制台 ==》站点的前台==》复制关于我们头一段文字
     给后端发条消息
     https://baidujump.app/eipeyipeyi/jump-167.html     ==》167 是你在App管理平台建的hy 的编号，要换
