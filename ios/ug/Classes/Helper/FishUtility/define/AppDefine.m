@@ -177,7 +177,7 @@
 #pragma mark - 定制样式
 
 - (BOOL)isTabMassageBadge {
-    return [@"c175" containsString:_SiteId];
+    return YES;
 }
 
 
