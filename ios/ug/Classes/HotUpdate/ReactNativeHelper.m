@@ -175,27 +175,6 @@ static NSMutableDictionary *_blockDict = nil;
 // 注册js模块
 RCT_EXPORT_MODULE()
 
-// 注册 push
-RCT_EXPORT_METHOD(push:(NSString *)page params:(NSDictionary *)params) {
-    dispatch_sync(dispatch_get_main_queue(), ^{
-        UIViewController *vc = _LoadVC_from_storyboard_(page);
-        if (!vc) {
-            vc = [NSClassFromString(page) new];
-        }
-        for (NSString *key in params.allKeys) {
-            [vc setValue:[params[key] rn_models] forKey:key];
-        }
-        [NavController1 pushViewController:vc animated:true];
-    });
-}
-
-// 注册 pop
-RCT_EXPORT_METHOD(pop) {
-    dispatch_sync(dispatch_get_main_queue(), ^{
-        [NavController1 popViewControllerAnimated:true];
-    });
-}
-
 // 注册 callblack
 RCT_EXPORT_METHOD(callback:(NSString *)key params:(id)params) {
     dispatch_sync(dispatch_get_main_queue(), ^{

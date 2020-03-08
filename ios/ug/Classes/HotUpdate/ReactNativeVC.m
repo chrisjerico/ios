@@ -23,6 +23,7 @@
     rpm.允许未登录访问 = true;
     return rpm;
 }
+- (NSString *)rnName { return _rnName.length ? _rnName : _vcName; }
 @end
 
 
@@ -41,12 +42,12 @@ static RCTRootView *_rnView;
 - (void)dealloc {
     RnPageModel *rpm = _rpm;
     [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
-        [ReactNativeHelper removeVC:rpm.vcName];
+        [ReactNativeHelper removeVC:rpm.rnName];
     }];
 }
 
 + (instancetype)reactNativeWithRPM:(RnPageModel *)rpm params:(NSDictionary<NSString *,id> *)params {
-    if (!rpm.vcName.stringByTrim.length) {
+    if (!rpm.rnName.stringByTrim.length) {
         return nil;
     }
     ReactNativeVC *vc = [ReactNativeVC new];
@@ -86,7 +87,7 @@ static RCTRootView *_rnView;
         
         __weakSelf_(__self);
         [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
-            [ReactNativeHelper selectVC:__self.rpm.vcName params:__self.params];
+            [ReactNativeHelper selectVC:__self.rpm.rnName params:__self.params];
         }];
     }
 }

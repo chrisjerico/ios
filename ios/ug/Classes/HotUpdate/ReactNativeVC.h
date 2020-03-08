@@ -19,7 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RnPageModel : NSObject
 
 // 替换oc页面
-@property (nonatomic, strong) NSString *vcName;    /**<   页面类名 */
+@property (nonatomic, strong) NSString *vcName;     /**<   oc页面类名 */
+@property (nonatomic, strong) NSString *rnName;     /**<   rn页面类名 */
 @property (nonatomic, assign) BOOL fd_prefersNavigationBarHidden;   /**<   是否隐藏导航条 */
 @property (nonatomic, assign) BOOL 允许游客访问;
 @property (nonatomic, assign) BOOL 允许未登录访问;
