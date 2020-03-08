@@ -110,17 +110,23 @@
             if (keys.count && ![keys containsObject:property.name]) return;
             if ([ignoredKeys containsObject:property.name]) return;
             
+            // fish:新增过滤规则
+            for (Class cls1 in @[property.type.typeClass, property.srcClass]) {
+                if ([cls1 classIsCustom]) continue;
+                if ([cls1 isSubclassOfClass:[UIResponder class]]) return;
+                BOOL ok = false;
+                for (Class cls2 in @[NSNull.class, NSString.class, NSNumber.class, NSArray.class, NSDictionary.class, NSIndexPath.class, NSDate.class, NSError.class, NSSet.class, NSURL.class, NSValue.class]) {
+                    if ([[cls1 class] isSubclassOfClass:cls2]) {
+                        ok = true;
+                        break;
+                    }
+                }
+                if (!ok) return;
+            }
+            
             // 1.取出属性值
             id value = [property valueForObject:self];
             if (!value) return;
-            
-            // fish:新增过滤规则
-            if (![value classIsCustom] && [value isKindOfClass:[UIResponder class]]) return;
-            if (![value classIsCustom] && [value isKindOfClass:[UIView class]]) return;
-            if (![value classIsCustom] && [value isKindOfClass:[UIViewController class]]) return;
-            if (([NSBundle bundleForClass:[property srcClass]] != NSBundle.mainBundle) && [[property srcClass] isSubclassOfClass:[UIResponder class]]) return;
-            if (([NSBundle bundleForClass:[property srcClass]] != NSBundle.mainBundle) && [[property srcClass] isSubclassOfClass:[UIView class]]) return;
-            if (([NSBundle bundleForClass:[property srcClass]] != NSBundle.mainBundle) && [[property srcClass] isSubclassOfClass:[UIViewController class]]) return;
             
             // 2.如果是模型属性
             MJPropertyType *type = property.type;

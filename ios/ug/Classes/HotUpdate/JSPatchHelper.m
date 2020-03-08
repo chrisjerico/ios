@@ -81,7 +81,7 @@
     void (^didFindEnd)(void) = ^{
         HotVersionModel *hvm = newVersions.firstObject; // 最新版本
         // 新版本中只要存在强制更新的版本，就要强制更新
-        hvm.is_force_update = [newVersions objectWithValue:@true keyPath:@"is_force_update"];
+        hvm.is_force_update = [newVersions containsValue:@true keyPath:@"is_force_update"];
         if (completion) {
             if ([JSPatchHelper compareVersion:hvm.version newerThanVersion:APP.jspVersion]) {
                 NSLog(@"%@", hvm.is_force_update ? @"强制更新" : @"静默更新");
