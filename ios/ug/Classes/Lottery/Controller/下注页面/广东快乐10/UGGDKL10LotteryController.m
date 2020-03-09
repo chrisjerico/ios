@@ -860,6 +860,9 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 }
 
 - (void)updateCloseLabel {
+    if (APP.isTextWhite) {
+        return;
+    }
     if (self.closeTimeLabel.text.length) {
         
         NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.closeTimeLabel.text];

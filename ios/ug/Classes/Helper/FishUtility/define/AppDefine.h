@@ -71,7 +71,7 @@
 @property (nonatomic) BOOL isFireworks;                            /**<  首页cell加烟花背景*/
 @property (nonatomic) BOOL isTabHot;                               /**< tab聊天室+红包动画*/
 @property (nonatomic) BOOL isTabMassageBadge;                      /**< 底部导航栏【站内信】收到新的站内信时，添加提示功能 */
-
+@property (nonatomic) BOOL isTextWhite;                            /**< 投注页面封盘时间字体颜色需要调整为白色 */
 
 // 热更新相关字段
                                                    

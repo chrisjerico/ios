@@ -180,6 +180,11 @@
 
 #pragma mark - 定制样式
 
+
+- (BOOL)isTextWhite {
+     return [@"a002" containsString:_SiteId];
+}
+
 - (BOOL)isTabMassageBadge {
     return YES;
 }

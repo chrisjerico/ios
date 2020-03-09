@@ -130,6 +130,10 @@
         [subButton(@"金杯btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
             [CMCommon goSLWebUrl:lotteryUrl];
         }];
+        
+        if (APP.isTextWhite) {
+             [subLabel(@"封盘Label") setTextColor:[UIColor whiteColor]];
+        }
  
 
 

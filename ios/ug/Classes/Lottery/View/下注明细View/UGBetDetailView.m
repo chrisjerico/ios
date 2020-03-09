@@ -693,10 +693,15 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 }
 
 - (void)updateCloseLabel {
-	NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.closeTimeLabel.text];
-	[abStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(5,self.closeTimeLabel.text.length - 5)];
-	
-	self.closeTimeLabel.attributedText = abStr;
+    if (APP.isTextWhite) {
+        return;
+    }
+    if (self.closeTimeLabel.text.length) {
+        
+        NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.closeTimeLabel.text];
+        [abStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(3, self.closeTimeLabel.text.length - 3)];
+        self.closeTimeLabel.attributedText = abStr;
+    }
 }
 
 - (void)updateTotalLabelText {
