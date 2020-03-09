@@ -16,7 +16,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    if (Skin1.isBlack) {
+    if (Skin1.isBlack||Skin1.is23) {
          self.titleLabel.textColor = [UIColor whiteColor];
     } else {
          self.titleLabel.textColor = Skin1.textColor1;
@@ -28,7 +28,7 @@
 - (void)setLeftTitle:(BOOL)leftTitle {
     _leftTitle = leftTitle;
     if (leftTitle) {
-        if (Skin1.isBlack) {
+        if (Skin1.isBlack||Skin1.is23) {
              self.titleLabel.textColor = [UIColor whiteColor];
         } else {
              self.titleLabel.textColor = Skin1.textColor1;
@@ -38,7 +38,7 @@
             make.left.mas_equalTo(self.left).offset(15);
         }];
     }else {
-        if (Skin1.isBlack) {
+        if (Skin1.isBlack||Skin1.is23) {
              self.titleLabel.textColor = [UIColor whiteColor];
         } else {
              self.titleLabel.textColor = Skin1.textColor2;

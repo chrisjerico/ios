@@ -23,7 +23,7 @@
     self.bottomLine.hidden = YES;
     self.leftPoint.layer.cornerRadius = self.leftPoint.width / 2;
     self.leftPoint.layer.masksToBounds = YES;
-    self.bottomLine.backgroundColor = Skin1.isBlack ? Skin1.textColor2 : (APP.betBgIsWhite ? Skin1.navBarBgColor : [UIColor whiteColor]);
+    self.bottomLine.backgroundColor = Skin1.isBlack||Skin1.is23 ? Skin1.textColor2 : (APP.betBgIsWhite ? Skin1.navBarBgColor : [UIColor whiteColor]);
    
     if (APP.isRedWhite) {
         self.bottomLine.backgroundColor = RGBA(231, 213, 231, 1.0);
@@ -52,7 +52,7 @@
     self.titleLabel.font = selected ? [UIFont boldSystemFontOfSize:15] : [UIFont systemFontOfSize:14];
     self.layer.borderWidth = selected * APP.borderWidthTimes;
     
-    if (Skin1.isBlack) {
+    if (Skin1.isBlack||Skin1.is23) {
         self.titleLabel.textColor = selected ? [UIColor whiteColor] : RGBA(159, 166, 173, 1);
         self.leftPoint.backgroundColor = selected ? [UIColor whiteColor] : Skin1.navBarBgColor;
         self.layer.borderColor = [UIColor whiteColor].CGColor;

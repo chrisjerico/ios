@@ -471,10 +471,10 @@ static UGTabbarController *_tabBarVC = nil;
 //	NSLog(@"viewController = %@",viewController);
 //	NSLog(@"_mms = %@",_mms);
 	UGMobileMenu *mm = _mms[[tabBarController.viewControllers indexOfObject:viewController]];
-//	NSLog(@"mm = %@",mm);
+	NSLog(@"mm = %@",mm);
 	// 由 UGMobileMenu控制显示的ViewController
 	UIViewController *vc = ((UINavigationController *)viewController).viewControllers.firstObject;
-//	NSLog(@"vc = %@",vc);
+	NSLog(@"vc = %@",vc);
     
 	// 控制器需要重新加载
 	if (![vc.className isEqualToString:mm.clsName]) {

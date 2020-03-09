@@ -49,6 +49,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)isJY;       /**<   是否是简约模板 */
 - (BOOL)isSLH;       /**<   是否是石榴红模板 */
 
+- (BOOL)is23;       /**<   是否是经典黑色 */
+
 //-(UIColor *)navBarBgColor;
 
 

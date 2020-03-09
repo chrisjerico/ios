@@ -287,8 +287,12 @@
                 else{
                     cell.backgroundColor = selected ? [[UIColor whiteColor] colorWithAlphaComponent:0.25] : [UIColor clearColor];
                 }
+     
+                NSLog(@"Skin1.skitString = %@",Skin1.skitString);
                 
-                __ssv1.titleBar.backgroundColor = Skin1.isBlack || idx || !APP.betBgIsWhite ? Skin1.navBarBgColor : [UIColor whiteColor];
+                NSLog(@"Skin1.is23 = %d",Skin1.is23);
+                
+                __ssv1.titleBar.backgroundColor = Skin1.isBlack||Skin1.is23 || idx || !APP.betBgIsWhite ? Skin1.navBarBgColor : [UIColor whiteColor];
             }
             
             
@@ -373,7 +377,8 @@
             make.left.right.bottom.equalTo(self.view);
         }];
         [self.view layoutIfNeeded];
-        ssv1.selectedIndex = 0;
+        ssv1.selectedIndex = self.selectChat;
+       
     }
 }
 

@@ -42,7 +42,7 @@
 
     self.layer.borderWidth = item.select ? APP.borderWidthTimes * 1 : APP.borderWidthTimes * 0.5;
     
-    if (Skin1.isBlack) {
+    if (Skin1.isBlack||Skin1.is23) {
         self.leftLabel.textColor = Skin1.textColor1;
         self.backgroundColor = item.select ? Skin1.homeContentSubColor : UIColorHex(101010);
         self.layer.borderColor = (item.select ? [UIColor whiteColor] : Skin1.textColor3).CGColor;

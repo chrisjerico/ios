@@ -88,7 +88,7 @@
     if (showAdd) {
         [self.ballImg setHidden:YES];
         self.backgroundColor = [UIColor clearColor];
-        if (Skin1.isBlack) {
+        if (Skin1.isBlack||Skin1.is23) {
             self.titleLabel.textColor = [UIColor whiteColor];
             
         } else {

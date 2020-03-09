@@ -27,7 +27,7 @@
 #import "UGBalanceConversionController.h"   // 额度转换
 #import "UGAgentViewController.h"           // 申请代理
 #import "LineConversionHeaderVC.h"          // 额度转换 1
-#import "LotteryBetAndChatVC.h"
+#import "LotteryBetAndChatVC.h"             // 聊天室
 #import "UGYYLotterySecondHomeViewController.h"
 #import "UGBMMemberCenterViewController.h"  //
 #import "UGLHMineViewController.h"  //
@@ -331,6 +331,11 @@ UGSystemConfigModel *currentConfig = nil;
         UIViewController *vc = _LoadVC_from_storyboard_(self.clsName);
         if (!vc) {
             vc = [NSClassFromString(self.clsName) new];
+        }
+        
+        if ([self.clsName isEqualToString:@"LotteryBetAndChatVC"]) {
+            LotteryBetAndChatVC * chat = (LotteryBetAndChatVC *)vc  ;
+            chat.selectChat = YES;
         }
         completion(vc);
     }

@@ -741,7 +741,32 @@ static UGSkinManagers *__initSkin1 = nil;
                 sm.intoViewColor            = color(@"7BA2C2");
                 sm.moneyCellColor           = color(@"9BB8CB");
 				sm;
-			}),
+            }),
+            //经典 21经典黑色
+            @"23":({
+                UGSkinManagers *sm = [UGSkinManagers new];
+                sm.skitType                 = @"经典";
+                sm.skitString               = @"经典 21黑色";
+                sm.bgColor                  = color(@"0D0D0D");
+                sm.navBarBgColor            = color(@"101010");
+                sm.tabBarBgColor            = color(@"313131");
+                sm.tabNoSelectColor         = color(@"999999");
+                sm.tabSelectedColor         = color(@"FFFFFF");
+                sm.progressBgColor          = color(@"d80000,fb5959");
+                sm.homeContentColor         = color(@"747474");
+                sm.homeContentSubColor      = color(@"757575");
+                sm.cellBgColor              = color(@"181818");
+                sm.CLBgColor                = color(@"202122");
+                sm.menuHeadViewColor        = color(@"323232");
+                sm.textColor1               = color(@"FEFEFE");
+                sm.textColor2               = color(@"C1C1C1");
+                sm.textColor3               = color(@"555555");
+                sm.textColor4               = color(@"000000");
+                sm.conversionCellColor      = color(@"7BA2C2");
+                sm.intoViewColor            = color(@"7BA2C2");
+                sm.moneyCellColor           = color(@"9BB8CB");
+                sm;
+            }),
 			//六合资料
 			@"六合资料0":({
 				UGSkinManagers *sm = [UGSkinManagers new];
@@ -1282,7 +1307,7 @@ static UGSkinManagers *__initSkin1 = nil;
     
 #if DEBUG
 	NSLog(@"============================skitType=%@",skitType);
-//	skitType = @"经典 1蓝色";
+	skitType = @"23";
 //        skitType = @"石榴红";
 //        skitType = @"简约模板1";
 //            skitType = @"黑色模板";
@@ -1326,6 +1351,10 @@ static UGSkinManagers *__initSkin1 = nil;
 
 - (BOOL)isJY{
     return [_skitType containsString:@"简约模板"];
+}
+
+- (BOOL)is23 {
+    return [_skitString containsString:@"经典 21黑色"];
 }
 
 - (BOOL)isSLH {
