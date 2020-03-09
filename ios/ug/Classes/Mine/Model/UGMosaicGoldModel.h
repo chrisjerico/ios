@@ -39,8 +39,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 @interface UGMosaicGoldModel : UGModel<UGMosaicGoldModel>
-@property (nonatomic, strong) NSString *mid;    /**<   id */
-@property (nonatomic, strong) NSString *name;   /**<   标题 */
+@property (nonatomic, strong) NSString *mid;            /**<   id */
+@property (nonatomic, strong) NSString *name;           /**<   标题 */
+@property (nonatomic, strong) NSString *category;       /**<   类别id */
+@property (nonatomic, strong) NSString *categoryName;   /**<   类别标题 */
 
 @property (nonatomic, strong) UGMosaicGoldParamModel *param;//
 @end

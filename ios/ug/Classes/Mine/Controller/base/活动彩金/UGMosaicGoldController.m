@@ -22,36 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    UGMosaicGoldModel *model = [UGMosaicGoldModel new];
-//    model.param.showWinAmount = YES;
-//    model.param.quickAmount1 = @"20";
-//    model.param.quickAmount2 = @"200";
-//    model.param.quickAmount3 = @"30";
-//    model.param.quickAmount4 = @"40";
-//    model.param.quickAmount5 = @"50";
-//    model.param.quickAmount6 = @"600000";
-//    model.param.quickAmount7 = @"50000";
-//    model.param.quickAmount8 = @"80";
-//    model.param.quickAmount9 = @"90";
-//    model.param.quickAmount10 = @"1000";
-//    model.param.quickAmount11 = @"11000";
-//    model.param.win_apply_content= @"<p><img src=\"https://cdn01.heziweb.net/upload/a002/customise/ueditor/php/upload/20190909/15680447042539.png\" style=\"white-space: normal;\"/></p>";
-//    UGMosaicGoldFinishView *view = [[UGMosaicGoldFinishView alloc] initWithFrame:CGRectMake(0, 0, 300, 500)];
-//    view.item = model.param;
-//    
-//    view.closeBlock = ^{
-//        
-//        [LEEAlert closeWithCompletionBlock:nil];
-//    };
-//    
-//    [LEEAlert alert].config
-//    .LeeTitle(@"标题")
-//    .LeeCustomView(view)
-//    //        .LeeHeaderInsets(UIEdgeInsetsMake(0, 0, 0, 0))
-//    //        .LeeHeaderColor([UIColor clearColor])
-//    .LeeAction(@"确认", nil)
-//    .LeeCancelAction(@"取消", nil)
-//    .LeeShow();
+
     
     self.tableView.backgroundColor = Skin1.textColor4;
     self.tableView.estimatedRowHeight = 0;
@@ -72,7 +43,17 @@
 
 - (void)activityWinApplyList {
     
-    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
+    
+    NSDictionary *params = [NSDictionary new];
+       if (![CMCommon stringIsNull:_typeid]) {
+
+           params = @{@"token":[UGUserModel currentUser].sessid,
+                      @"category":_typeid
+           };
+       }
+       else{
+           params = @{@"token":[UGUserModel currentUser].sessid};
+       }
     
     [CMNetwork activityWinApplyListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [self.tableView.mj_header endRefreshing];

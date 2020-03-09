@@ -201,6 +201,7 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 //优惠图片分类信息
 @property (nonatomic, strong) NSDictionary *typyArr;/**<   优惠图片分类信息*/
 @property (nonatomic) NSInteger typeIsShow;           /**<    1 有分类 0没有分类 */
+@property (nonatomic) BOOL switchShowActivityCategory;            /**<   前台申请彩金按分类显示 */
 @end
 
 NS_ASSUME_NONNULL_END

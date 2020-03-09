@@ -1899,6 +1899,7 @@
 		D435F90723CEF940008648CE /* KMCGeigerCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = D435F90223CEF940008648CE /* KMCGeigerCounter.m */; };
 		D435F90923CEF996008648CE /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D435F90823CEF996008648CE /* AudioToolbox.framework */; };
 		D43A785523EFEFED00F75B0C /* RedEnvelope.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D43A785423EFEFED00F75B0C /* RedEnvelope.storyboard */; };
+		D44258462413BAE800601D70 /* UGMosaicGoldMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D44258452413BAE800601D70 /* UGMosaicGoldMainViewController.m */; };
 		D44258FD23E948D80067E981 /* LH_laba.gif in Resources */ = {isa = PBXBuildFile; fileRef = D44258FC23E948D80067E981 /* LH_laba.gif */; };
 		D44258FF23E948E00067E981 /* LH_l001jt.gif in Resources */ = {isa = PBXBuildFile; fileRef = D44258FE23E948DF0067E981 /* LH_l001jt.gif */; };
 		D442590323E949600067E981 /* LHHornView.m in Sources */ = {isa = PBXBuildFile; fileRef = D442590223E949600067E981 /* LHHornView.m */; };
@@ -3726,6 +3727,8 @@
 		D435F90223CEF940008648CE /* KMCGeigerCounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMCGeigerCounter.m; sourceTree = "<group>"; };
 		D435F90823CEF996008648CE /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		D43A785423EFEFED00F75B0C /* RedEnvelope.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RedEnvelope.storyboard; sourceTree = "<group>"; };
+		D44258442413BAE800601D70 /* UGMosaicGoldMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGMosaicGoldMainViewController.h; sourceTree = "<group>"; };
+		D44258452413BAE800601D70 /* UGMosaicGoldMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGMosaicGoldMainViewController.m; sourceTree = "<group>"; };
 		D44258FC23E948D80067E981 /* LH_laba.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = LH_laba.gif; sourceTree = "<group>"; };
 		D44258FE23E948DF0067E981 /* LH_l001jt.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = LH_l001jt.gif; sourceTree = "<group>"; };
 		D442590123E949600067E981 /* LHHornView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LHHornView.h; sourceTree = "<group>"; };
@@ -6313,6 +6316,8 @@
 				031E183523BE812600B0F813 /* UGMosaicGoldController.m */,
 				031E183323BE812600B0F813 /* UGMosaicGoldViewController.h */,
 				031E183723BE812600B0F813 /* UGMosaicGoldViewController.m */,
+				D44258442413BAE800601D70 /* UGMosaicGoldMainViewController.h */,
+				D44258452413BAE800601D70 /* UGMosaicGoldMainViewController.m */,
 			);
 			path = "活动彩金";
 			sourceTree = "<group>";
@@ -9809,6 +9814,7 @@
 				03D6927723C32E0B003D9C12 /* C001BetErrorCustomView.m in Sources */,
 				031E1C7423BE812A00B0F813 /* UGFundDetailsTableViewController.m in Sources */,
 				031E195823BE812600B0F813 /* LHUserInfoVC.m in Sources */,
+				D44258462413BAE800601D70 /* UGMosaicGoldMainViewController.m in Sources */,
 				031E1CCC23BE812A00B0F813 /* NSBundle+MJRefresh.m in Sources */,
 				031E1C5623BE812A00B0F813 /* UGBetDetailTableViewCell.m in Sources */,
 				031E1A7623BE812700B0F813 /* UGEncryptUtil.m in Sources */,

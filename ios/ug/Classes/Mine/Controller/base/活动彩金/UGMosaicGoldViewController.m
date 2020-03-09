@@ -9,8 +9,7 @@
 #import "UGMosaicGoldViewController.h"
 #import "XYYSegmentControl.h"
 #import "UGActivityGoldTableViewController.h"
-#import "UGMosaicGoldController.h"
-
+#import "UGMosaicGoldMainViewController.h"
 @interface UGMosaicGoldViewController ()<XYYSegmentControlDelegate>
 @property (nonatomic, strong) XYYSegmentControl *slideSwitchView;
 @property (nonatomic,strong)  NSArray <NSString *> *itemArray;
@@ -66,13 +65,12 @@
 
 ///待加载的控制器
 - (UIViewController *)slideSwitchView:(XYYSegmentControl *)view viewOfTab:(NSUInteger)number {
-    return number ? [UGActivityGoldTableViewController new] : [UGMosaicGoldController new];
+    return number ? [UGActivityGoldTableViewController new] : [UGMosaicGoldMainViewController new];
 }
 
 - (void)slideSwitchView:(XYYSegmentControl *)view didselectTab:(NSUInteger)number {
     if (number == 0) {
-        UGMosaicGoldController *vc  = (UGMosaicGoldController *) view.viewArray[number];
-        [vc rootLoadData];
+        UGMosaicGoldMainViewController *vc  = (UGMosaicGoldMainViewController *) view.viewArray[number];
     }
     else {
         UGActivityGoldTableViewController *vc  = (UGActivityGoldTableViewController *) view.viewArray[number];
