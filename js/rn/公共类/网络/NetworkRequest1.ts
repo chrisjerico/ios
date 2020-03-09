@@ -1,6 +1,6 @@
 import CCSessionModel from "./CCSessionModel";
-import AppDefine from "../通用/AppDefine";
-import { UGPromoteListModel } from "../Model/常规/UGPromoteModel";
+import AppDefine from "../AppDefine";
+import { UGPromoteListModel } from "../../Model/常规/UGPromoteModel";
 
 export default class NetworkRequest1 {
   // 获取下一期开奖数据

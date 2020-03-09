@@ -3,7 +3,7 @@ import { UGPromoteModel } from "../../../Model/常规/UGPromoteModel";
 import { FlatList, TouchableOpacity } from "react-native-gesture-handler";
 import { View } from "react-native";
 import { Button, Text, Icon, Card } from "react-native-elements";
-import AppDefine, { NSValue } from "../../../通用/AppDefine";
+import AppDefine, { NSValue } from "../../../公共类/AppDefine";
 import FastImage from "react-native-fast-image";
 import WebView from "react-native-webview";
 

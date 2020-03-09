@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import {View, FlatList} from 'react-native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import NetworkRequest1 from '../../网络/NetworkRequest1';
+import NetworkRequest1 from '../../公共类/网络/NetworkRequest1';
 import {UGPromoteModel} from '../../Model/常规/UGPromoteModel';
-import AppDefine from '../../通用/AppDefine';
+import AppDefine from '../../公共类/AppDefine';
 import {Button, Text} from 'react-native-elements';
 import PromoteTableView from './View/PromoteTableView';
 import objectPath from 'object-path';
+import { Skin1 } from '../../公共类/UGSkinManagers';
 
 interface IProps {}
 interface IState {
@@ -27,7 +28,7 @@ export default class UGPromotionsController extends Component<IProps, IState> {
   componentDidMount() {
     AppDefine.navController?.setOptions({
       title: '优惠活动',
-      headerStyle: {backgroundColor: AppDefine.themeColor},
+      headerStyle: {backgroundColor: Skin1.navBarBgColor},
       headerLeft: () => (
         <Button
           icon={{name: 'chevron-left', size: 32, color: 'white'}}
@@ -90,7 +91,7 @@ export default class UGPromotionsController extends Component<IProps, IState> {
           labelStyle: {fontSize: 15},
           tabStyle: {width: 60},
           scrollEnabled: true,
-          indicatorStyle: {marginBottom: 12, marginLeft: 10, height: 26, width: 42, borderRadius: 2, backgroundColor: AppDefine.themeColor},
+          indicatorStyle: {marginBottom: 12, marginLeft: 10, height: 26, width: 42, borderRadius: 2, backgroundColor: Skin1.navBarBgColor},
           inactiveTintColor: '#555',
           activeTintColor: 'white',
         }}>

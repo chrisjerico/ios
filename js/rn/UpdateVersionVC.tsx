@@ -1,12 +1,12 @@
 import CodePush, {RemotePackage} from 'react-native-code-push';
 import React, {Component} from 'react';
 import {View, Text, Image} from 'react-native';
-import AppDefine, {ProfileScreenNavigationProp} from './通用/AppDefine';
+import AppDefine, {ProfileScreenNavigationProp} from './公共类/AppDefine';
 import {Button, Card} from 'react-native-elements';
 import * as Progress from 'react-native-progress';
 import LinearGradient from 'react-native-linear-gradient';
 import {number} from 'prop-types';
-import NetworkRequest1 from './网络/NetworkRequest1';
+import NetworkRequest1 from './公共类/网络/NetworkRequest1';
 
 interface IProps {
   navigation?: ProfileScreenNavigationProp;
