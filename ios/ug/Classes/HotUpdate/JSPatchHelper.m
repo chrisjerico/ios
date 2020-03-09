@@ -95,6 +95,7 @@
     
     
     // 获取版本列表
+    NSLog(@"当前rn版本：%@", rnVersion);
     NSLog(@"当前jsp版本：%@", APP.jspVersion);
     NSLog(@"正在查找jsp可用的更新");
     void (^findNewVersions)(NSInteger) = nil;

@@ -5,8 +5,8 @@ import WebView from "react-native-webview";
 
 import { LHPostCommentModel } from "../../Model/LHPostCommentModel";
 import { LHPostModel } from "../../Model/LHPostModel";
-import NetworkRequest1 from "../../网络/NetworkRequest1";
-import AppDefine from "../../通用/AppDefine";
+import NetworkRequest1 from "../../公共类/网络/NetworkRequest1";
+import AppDefine from "../../公共类/AppDefine";
 
 interface IProps {
   navigation: NavigationHelpersCommon;

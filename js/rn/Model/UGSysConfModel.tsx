@@ -1,3 +1,4 @@
+
 // 底部Tab按钮
 export class UGTabbarItem {}
 
@@ -7,8 +8,9 @@ export class UGUserCenterItem {}
 // 六合发帖价格范围
 export class LHPriceModel {}
 
+// 系统配置Model
 export default class UGSysConfModel {
-  static current: UGSysConfModel;
+  static current: UGSysConfModel = new UGSysConfModel();
 
   zxkfUrl2: string; // 在线客服2
   zxkfUrl: string; // 在线客服
@@ -74,3 +76,5 @@ export default class UGSysConfModel {
   mobileMenu: Array<UGTabbarItem>; // 底部Tab按钮
   userCenter: Array<UGUserCenterItem>; // 我的页功能按钮
 }
+
+export var SysConf1 = UGSysConfModel.current;

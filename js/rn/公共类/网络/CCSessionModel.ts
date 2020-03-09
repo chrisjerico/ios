@@ -1,7 +1,7 @@
 import { NativeModules } from "react-native";
 import { object } from "prop-types";
 import { promises, Resolver } from "dns";
-import AppDefine from "../通用/AppDefine";
+import AppDefine from "../AppDefine";
 
 interface Dictionary {
   [x: string]: any;

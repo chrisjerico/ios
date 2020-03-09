@@ -1,7 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import AppDefine, { ProfileScreenNavigationProp } from "./通用/AppDefine";
+import AppDefine, { ProfileScreenNavigationProp } from "./公共类/AppDefine";
 
 // 页面
 import UpdateVersionVC from "./UpdateVersionVC";
@@ -13,6 +13,8 @@ import { AppRegistry, View, Text } from "react-native";
 import { Button } from "react-native-elements";
 import UGSysConfModel from "./Model/UGSysConfModel";
 import UGPromotionsController from "./模板/默认/UGPromotionsController";
+import MGJMyVC from "./模板/玫瑰金/MGJMyVC";
+import UGSkinManagers, { Skin1 } from "./公共类/UGSkinManagers";
 
 class Home2 extends Component {
   render() {
@@ -63,7 +65,7 @@ class TabBarController extends Component<IProps> {
     return (
       <Tab.Navigator initialRouteName="UpdateVersionVC" screenOptions={{ tabBarVisible: false }}>
         <Tab.Screen name="Home3" component={HomePageVC} options={{}} />
-        <Tab.Screen name="Home2" component={Home2} options={{}} />
+        <Tab.Screen name="MGJMyVC" component={MGJMyVC} options={{}} />
         <Tab.Screen name="UGPromotionsController" component={UGPromotionsController} options={{}} />
         <Tab.Screen name="UpdateVersionVC" component={UpdateVersionVC} options={{}} />
       </Tab.Navigator>
@@ -93,12 +95,11 @@ AppDefine.setup();
 // 获得系统配置信息
 AppDefine.ocBlocks["UGSystemConfigModel.currentConfig"] = (sysConf: UGSysConfModel) => {
   if (sysConf) {
-    UGSysConfModel.current = sysConf;
+    // 设置当前配置
+    Object.assign(UGSysConfModel.current, sysConf);
     // 配置替换rn的页面
     AppDefine.setRnPageInfo();
-    // 设置主题色
-    AppDefine.ocCall("UGSkinManagers.currentSkin.navBarBgColor.hexString").then(color => {
-      AppDefine.themeColor = `#${color}`;
-    });
+    // 设置皮肤
+    Object.assign(Skin1, UGSkinManagers.sysConf());
   }
 };
