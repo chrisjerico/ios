@@ -7,6 +7,8 @@ import * as Progress from 'react-native-progress';
 import LinearGradient from 'react-native-linear-gradient';
 import {number} from 'prop-types';
 import NetworkRequest1 from './公共类/网络/NetworkRequest1';
+import { Skin1 } from './公共类/UGSkinManagers';
+import FastImage from 'react-native-fast-image';
 
 interface IProps {
   navigation?: ProfileScreenNavigationProp;
@@ -136,9 +138,9 @@ export default class UpdateVersionVC extends Component<IProps, IState> {
     return (
       <View style={{flex: 1}}>
         {/* 7F9493 , 5389B3 */}
-        <LinearGradient colors={['#48A9D8', '#5CC2EC']} start={{x: 0, y: 1}} end={{x: 1, y: 1}} style={{flex: 1, padding: 25, justifyContent: 'center'}}>
+        <LinearGradient colors={Skin1.bgColor} start={{x: 0, y: 1}} end={{x: 1, y: 1}} style={{flex: 1, padding: 25, justifyContent: 'center'}}>
           <Card containerStyle={{borderWidth: 8, borderRadius: 12}}>
-            <Image source={{uri: 'https://i.ibb.co/0jFrhHw/1.png'}} resizeMode="stretch" style={{marginLeft: -16, marginRight: -16, marginTop: -51, height: 140}} />
+            <FastImage source={{uri: 'https://i.ibb.co/0jFrhHw/1.png'}} resizeMode="stretch" style={{marginLeft: -16, marginRight: -16, marginTop: -51, height: 140}} />
             <View>
               <Text style={{margin: 10, fontSize: 15}}>更新内容：</Text>
               <Text style={{margin: 10, marginTop: 5, fontSize: 15, color: '#222'}}>1. 更新了太多人吐槽的界面。</Text>

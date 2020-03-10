@@ -30,6 +30,7 @@
 @interface ReactNativeVC ()
 @property (nonatomic, strong) RnPageModel *rpm;
 @property (nonatomic, strong) NSDictionary<NSString *,id> *params;
+@property (nonatomic, assign) BOOL navigationBarHidden;
 @end
 
 @implementation ReactNativeVC
@@ -82,6 +83,8 @@ static RCTRootView *_rnView;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    _navigationBarHidden = self.navigationController.navigationBarHidden;
+    self.navigationController.navigationBarHidden = _rpm.fd_prefersNavigationBarHidden;
     {
         [self.view addSubview:_rnView];
         
@@ -102,6 +105,7 @@ static RCTRootView *_rnView;
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [self setStateViewHidden:false];
+    self.navigationController.navigationBarHidden = _navigationBarHidden;
 }
 
 - (void)viewDidLayoutSubviews {

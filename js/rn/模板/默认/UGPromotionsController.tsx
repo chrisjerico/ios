@@ -28,7 +28,7 @@ export default class UGPromotionsController extends Component<IProps, IState> {
   componentDidMount() {
     AppDefine.navController?.setOptions({
       title: '优惠活动',
-      headerStyle: {backgroundColor: Skin1.navBarBgColor},
+      headerStyle: {backgroundColor: Skin1.navBarBgColor[0]},
       headerLeft: () => (
         <Button
           icon={{name: 'chevron-left', size: 32, color: 'white'}}
@@ -91,7 +91,7 @@ export default class UGPromotionsController extends Component<IProps, IState> {
           labelStyle: {fontSize: 15},
           tabStyle: {width: 60},
           scrollEnabled: true,
-          indicatorStyle: {marginBottom: 12, marginLeft: 10, height: 26, width: 42, borderRadius: 2, backgroundColor: Skin1.navBarBgColor},
+          indicatorStyle: {marginBottom: 12, marginLeft: 10, height: 26, width: 42, borderRadius: 2, backgroundColor: Skin1.navBarBgColor[0]},
           inactiveTintColor: '#555',
           activeTintColor: 'white',
         }}>

@@ -1,9 +1,204 @@
+import AppDefine from '../公共类/AppDefine';
+import {func} from 'prop-types';
+import useFloatingHeaderHeight from '@react-navigation/stack/lib/typescript/src/utils/useHeaderHeight';
+import NetworkRequest1 from '../公共类/网络/NetworkRequest1';
+import {Alert, AlertButton} from 'react-native';
+import {color} from 'react-native-reanimated';
+
+// 代理申请信息
+export interface UGAgentApplyInfo {
+  username: string; // 用户名
+  qq: string; // qq
+  mobile: string; // 手机号
+  applyReason: string; // 申请理由
+  reviewResult: string; // 拒绝的理由
+  reviewStatus: number; // 0 未提交  1 待审核  2 审核通过 3 审核拒绝
+  isAgent: boolean; // 是否是代理  true 是   false 否
+}
 
 // 底部Tab按钮
 export class UGTabbarItem {}
 
 // 我的页功能按钮
-export class UGUserCenterItem {}
+export class UGUserCenterItem {
+  code: number;
+  logo?: string;
+  name?: string;
+
+  constructor(props: UGUserCenterItem) {
+    Object.assign(this, props);
+  }
+
+  static pushViewController(code: number) {
+    new UGUserCenterItem({code:code}).pushViewController();
+  }
+
+  pushViewController?() {
+    switch (this.code) {
+      case 1: {
+        // 存款
+        AppDefine.ocCall('UGNavigationController.current.pushViewController:animated:', [{selectors: 'UGFundsViewController.new[setSelectIndex:]', args1: [0]}, true]);
+        break;
+      }
+      case 2: {
+        // 取款
+        AppDefine.ocCall('UGNavigationController.current.pushViewController:animated:', [{selectors: 'UGFundsViewController.new[setSelectIndex:]', args1: [1]}, true]);
+        break;
+      }
+      case 3: {
+        // 银行卡管理
+        async function func1() {
+          let hasBankCard: boolean = await AppDefine.ocCall('UGUserModel.currentUser.hasBankCard');
+          let hasFundPwd: boolean = await AppDefine.ocCall('UGUserModel.currentUser.hasFundPwd');
+          var vcName = hasBankCard ? 'UGBankCardInfoController' : hasFundPwd ? 'UGBindCardViewController' : 'UGSetupPayPwdController';
+          AppDefine.ocCall('UGNavigationController.current.pushViewController:animated:', [{selectors: 'AppDefine.viewControllerWithStoryboardID:', args1: [vcName]}, true]);
+        }
+        func1();
+        break;
+      }
+      case 4: {
+        // 利息宝
+        AppDefine.ocCall('UGNavigationController.current.pushViewController:animated:', [{selectors: 'AppDefine.viewControllerWithStoryboardID:', args1: ['UGYubaoViewController']}, true]);
+        break;
+      }
+      case 5: {
+        // 推荐收益
+        async function func1() {
+          let isTest: boolean = await AppDefine.ocCall('UGUserModel.currentUser.isTest');
+          if (isTest) {
+            // 试玩账号去阉割版的推荐收益页
+            AppDefine.ocCall('UGNavigationController.current.pushViewController:animated:', [{selectors: 'UGPromotionIncomeController.new'}, true]);
+          } else {
+            // ShowLoading
+            AppDefine.ocCall('SVProgressHUD.showWithStatus:');
+
+            var info: UGAgentApplyInfo = await NetworkRequest1.team_agentApplyInfo();
+            if (info.reviewStatus === 2) {
+              // 去推荐收益页
+              AppDefine.ocCall('UGNavigationController.current.pushViewController:animated:', [{selectors: 'UGPromotionIncomeController.new'}, true]);
+            } else {
+              let agent_m_apply = await AppDefine.ocCall('UGSystemConfigModel.currentConfig.agent_m_apply');
+              if (parseInt(agent_m_apply) === 1) {
+                AppDefine.ocCall('HUDHelper.showMsg:', ['在线注册代理已关闭']);
+              } else {
+                // 去申请代理
+                info = Object.assign({clsName: 'UGagentApplyInfo'}, info);
+                AppDefine.ocCall('UGNavigationController.current.pushViewController:animated:', [{selectors: 'UGAgentViewController.new[setItem:]', args1: []}, true]);
+              }
+            }
+            // HideLoading
+            AppDefine.ocCall('SVProgressHUD.dismiss');
+          }
+        }
+        func1();
+        break;
+      }
+      case 6: {
+        // 彩票注单记录
+        AppDefine.ocCall('UGNavigationController.current.pushViewController:animated:', [{selectors: 'UGBetRecordViewController.new'}, true]);
+        break;
+      }
+      case 7: {
+        // 其他注单记录
+        AppDefine.ocCall('UGNavigationController.current.pushViewController:animated:', [
+          {selectors: 'AppDefine.viewControllerWithStoryboardID:[setGameType:]', args1: ['UGRealBetRecordViewController', 'real']},
+          true,
+        ]);
+        break;
+      }
+      case 8: {
+        // 额度转换
+        AppDefine.ocCall('UGNavigationController.current.pushViewController:animated:', [{selectors: 'AppDefine.viewControllerWithStoryboardID:', args1: ['UGBalanceConversionController']}, true]);
+        break;
+      }
+      case 9: {
+        // 站内信
+        AppDefine.ocCall('UGNavigationController.current.pushViewController:animated:', [{selectors: 'UGMailBoxTableViewController.new'}, true]);
+        break;
+      }
+      case 10: {
+        // 安全中心
+        AppDefine.ocCall('UGNavigationController.current.pushViewController:animated:', [{selectors: 'UGSecurityCenterViewController.new'}, true]);
+        break;
+      }
+      case 11: {
+        // 任务中心
+        AppDefine.ocCall('UGNavigationController.current.pushViewController:animated:', [{selectors: 'AppDefine.viewControllerWithStoryboardID:', args1: ['UGMissionCenterViewController']}, true]);
+        break;
+      }
+      case 12: {
+        // 个人信息
+        AppDefine.ocCall('UGNavigationController.current.pushViewController:animated:', [{selectors: 'AppDefine.viewControllerWithStoryboardID:', args1: ['UGUserInfoViewController']}, true]);
+        break;
+      }
+      case 13: {
+        // 建议反馈
+        AppDefine.ocCall('UGNavigationController.current.pushViewController:animated:', [{selectors: 'AppDefine.viewControllerWithStoryboardID:', args1: ['UGFeedBackController']}, true]);
+        break;
+      }
+      case 14: {
+        // 在线客服
+        async function func1() {
+          let urlStr: string = await AppDefine.ocCall('UGSystemConfigModel.currentConfig.zxkfUrl.stringByTrim');
+          if (!urlStr.length) return;
+          let hasHost = await AppDefine.ocCall('NSURL.URLWithString:.host.length', [urlStr]);
+          let hasScheme = await AppDefine.ocCall('NSURL.URLWithString:.scheme.length', [urlStr]);
+          // 补全URL
+          if (!hasHost) {
+            urlStr = AppDefine.host + urlStr;
+          } else if (!hasScheme) {
+            urlStr = 'http://' + urlStr;
+          }
+          AppDefine.ocCall('UGNavigationController.current.pushViewController:animated:', [{selectors: 'SLWebViewController.new[setUrlStr:]', args1: [urlStr]}, true]);
+        }
+        func1();
+        break;
+      }
+      case 15: {
+        // 活动彩金
+        AppDefine.ocCall('UGNavigationController.current.pushViewController:animated:', [{selectors: 'UGMosaicGoldViewController.new'}, true]);
+        break;
+      }
+      case 16: {
+        // 长龙助手
+        AppDefine.ocCall('UGNavigationController.current.pushViewController:animated:', [{selectors: 'UGChangLongController.new'}, true]);
+        break;
+      }
+      case 17: {
+        // 全民竞猜
+        AppDefine.ocCall('HUDHelper.showMsg:', ['敬请期待']);
+        break;
+      }
+      case 18: {
+        // 开奖走势
+        AppDefine.ocCall('HUDHelper.showMsg:', ['敬请期待']);
+        break;
+      }
+      case 19: {
+        // QQ客服
+        AppDefine.ocCall('UGSystemConfigModel.currentConfig.qqs').then((qqs: Array<string> = []) => {
+          if (!qqs.length) {
+            AppDefine.ocCall('HUDHelper.showMsg:', ['敬请期待']);
+          } else {
+            var btns: Array<AlertButton> = qqs.map(
+              (qq: string, idx: number): AlertButton => {
+                return {
+                  text: `QQ客服${idx + 1}：${parseInt(qq)}`,
+                  onPress: () => {
+                    AppDefine.ocCall('CMCommon.goQQ:', [qq]);
+                  },
+                };
+              },
+            );
+            btns.push({text: '取消', style: 'cancel'});
+            Alert.alert('请选择QQ客服', null, btns);
+          }
+        });
+        break;
+      }
+    }
+  }
+}
 
 // 六合发帖价格范围
 export class LHPriceModel {}

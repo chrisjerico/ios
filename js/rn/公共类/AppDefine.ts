@@ -69,6 +69,7 @@ export default class AppDefine {
   static height = Dimensions.get('window').height;
   static statusBarHeight = 34;
   static bottomSafeHeight = 44;
+  static isFish: boolean = false;
 
   //
   static ocHelper = NativeModules.ReactNativeHelper; // oc助手
@@ -91,24 +92,24 @@ export default class AppDefine {
       允许未登录访问: true,
     });
 
-    // 我的页（玫瑰金模板）
-    // pages.push({
-    //   vcName: 'UGPromotionsController',
-    //   rnName: 'UGPromotionsController',
-    //   fd_prefersNavigationBarHidden: true,
-    //   允许游客访问: true,
-    //   允许未登录访问: true,
-    // });
+    if (AppDefine.isFish) {
+      // 我的页（香槟金模板）
+      pages.push({
+        vcName: 'UGYYLotteryHomeViewController',
+        rnName: 'XBJMyVC',
+        tabbarItemPath: '/lotteryList',
+        fd_prefersNavigationBarHidden: true,
+        允许游客访问: true,
+        允许未登录访问: true,
+      });
+    }
 
     AppDefine.ocCall('AppDefine.shared.setRnPageInfos:', [pages]);
   }
 
   static setup() {
-    // 配置需要被替换的oc页面（替换成rn）
-    this.setRnPageInfo();
-
     // 监听原生发过来的事件通知
-    AppDefine.ocEvent.addListener('EventReminder', params => {
+    AppDefine.ocEvent.addListener('EventReminder', (params: {_EventName: string; params: any}) => {
       console.log('rn收到oc通知：');
       console.log(params);
       var block = AppDefine.ocBlocks[params._EventName];
@@ -118,7 +119,7 @@ export default class AppDefine {
     });
 
     // 跳转到指定页面
-    AppDefine.ocEvent.addListener('SelectVC', params => {
+    AppDefine.ocEvent.addListener('SelectVC', (params: {vcName: string}) => {
       console.log('跳转到rn页面：');
       console.log(params.vcName);
       if (params.vcName) {
@@ -134,13 +135,20 @@ export default class AppDefine {
     AppDefine.ocEvent.addListener('RemoveVC', params => {});
 
     // 设置接口域名
-    AppDefine.ocCall('AppDefine.shared.Host').then(host => {
+    AppDefine.ocCall('AppDefine.shared.Host').then((host: string) => {
       AppDefine.host = host;
     });
 
-    // 设置站点编号
-    AppDefine.ocCall('AppDefine.shared.SiteId').then(siteId => {
+    // 设置站点编号
+    AppDefine.ocCall('AppDefine.shared.SiteId').then((siteId: string) => {
       AppDefine.siteId = siteId;
+    });
+
+    // isFish
+    AppDefine.ocCall('AppDefine.shared.isFish').then((isFish: boolean) => {
+      AppDefine.isFish = isFish;
+      // 配置需要被替换的oc页面（替换成rn）
+      AppDefine.setRnPageInfo();
     });
 
     // 必须在注册监听之后执行

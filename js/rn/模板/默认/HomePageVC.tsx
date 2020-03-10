@@ -7,6 +7,7 @@ import { LHPostCommentModel } from "../../Model/LHPostCommentModel";
 import { LHPostModel } from "../../Model/LHPostModel";
 import NetworkRequest1 from "../../公共类/网络/NetworkRequest1";
 import AppDefine from "../../公共类/AppDefine";
+import FastImage from "react-native-fast-image";
 
 interface IProps {
   navigation: NavigationHelpersCommon;
@@ -30,6 +31,7 @@ export default class HomePageVC extends Component<IProps, IState> {
   }
 
   componentDidMount() {
+    
     console.log("this.props = ");
     console.log(this.props);
 
@@ -70,7 +72,7 @@ export default class HomePageVC extends Component<IProps, IState> {
     // console.log(secReplyList);
     return [
       <View style={{ flexDirection: "row" }}>
-        <Image
+        <FastImage
           style={{ marginLeft: 10, marginTop: 15, marginRight: 10, height: 40, width: 40, backgroundColor: "#EEE" }}
           source={{
             uri: data.headImg
@@ -99,7 +101,7 @@ export default class HomePageVC extends Component<IProps, IState> {
                 var marginTop = index == 0 ? 0 : 6;
                 return (
                   <View style={{ flexDirection: "row", marginTop: marginTop }}>
-                    <Image
+                    <FastImage
                       style={{ height: 25, width: 25, backgroundColor: "#EEE" }}
                       source={{
                         uri: item.headImg
@@ -132,7 +134,7 @@ export default class HomePageVC extends Component<IProps, IState> {
           {/* 顶部广告 */
           pm.topAdWap && (
             <TouchableOpacity>
-              <Image style={{ height: 100, backgroundColor: "#EEE" }} source={{ uri: pm.topAdWap.pic }} />
+              <FastImage style={{ height: 100, backgroundColor: "#EEE" }} source={{ uri: pm.topAdWap.pic }} />
             </TouchableOpacity>
           )}
 
@@ -173,7 +175,7 @@ export default class HomePageVC extends Component<IProps, IState> {
               if (imgSizeArray[idx]) {
                 var h = (w / imgSizeArray[idx].w) * imgSizeArray[idx].h;
               }
-              return <Image style={{ height: h, backgroundColor: "#EEE", marginBottom: 10 }} source={{ uri: ele }} />;
+              return <FastImage style={{ height: h, backgroundColor: "#EEE", marginBottom: 10 }} source={{ uri: ele }} />;
             })}
 
           {/* 备用网址 */}
@@ -184,7 +186,7 @@ export default class HomePageVC extends Component<IProps, IState> {
           {/* 底部广告 */
           pm.bottomAdWap && (
             <TouchableOpacity>
-              <Image style={{ height: 100, backgroundColor: "#EEE" }} source={{ uri: pm.bottomAdWap.pic }} />
+              <FastImage style={{ height: 100, backgroundColor: "#EEE" }} source={{ uri: pm.bottomAdWap.pic }} />
             </TouchableOpacity>
           )}
           {/* 全部评论 */}
@@ -203,7 +205,7 @@ export default class HomePageVC extends Component<IProps, IState> {
       <View>
         {/* 顶部作者信息 */}
         <View style={styles.作者信息View}>
-          <Image style={styles.作者头像} source={{ uri: this.state.pm.headImg }} />
+          <FastImage style={styles.作者头像} source={{ uri: this.state.pm.headImg }} />
           <View style={{ flex: 1 }}>
             <Text numberOfLines={1} style={{ marginLeft: 10, top: 9 }}>
               {this.state.pm.nickname}
@@ -213,7 +215,7 @@ export default class HomePageVC extends Component<IProps, IState> {
             </Text>
           </View>
           <TouchableOpacity onPress={() => null}>
-            <Image style={{ height: 50, width: 50, marginTop: 8, marginRight: 10 }} source={{ uri: "https://i.ibb.co/JdsQGpn/redBag.png" }} />
+            <FastImage style={{ height: 50, width: 50, marginTop: 8, marginRight: 10 }} source={{ uri: "https://i.ibb.co/JdsQGpn/redBag.png" }} />
           </TouchableOpacity>
           <Button title="关注楼主" buttonStyle={styles.关注按钮} titleStyle={{ fontSize: 15 }} />
         </View>
