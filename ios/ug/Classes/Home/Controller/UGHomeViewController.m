@@ -299,6 +299,11 @@
         [self.preferentialBtn setHidden:NO];
     }
     
+    if (Skin1.is23) {
+        [self.bottomTitle setTextColor:[UIColor whiteColor]];
+         [self.bottomLabel setTextColor:[UIColor whiteColor]];
+    }
+    
     
     // 黑色模板的UI调整
     BOOL isBlack = Skin1.isBlack;
