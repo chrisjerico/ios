@@ -1,4 +1,5 @@
 import {SysConf1} from '../Model/UGSysConfModel';
+import AppDefine from './AppDefine';
 
 export default class UGSkinManagers {
   skitType: string; // 皮肤类型
@@ -49,7 +50,9 @@ export default class UGSkinManagers {
       9: `简约模板${SysConf1.mobileTemplateStyle}`,
     };
     var key = dict[SysConf1.mobileTemplateCategory];
-    key = '香槟金2';
+    if (AppDefine.isFish) {
+      key = '香槟金2';
+    }
     var skin = UGSkinManagers.all[key] ?? UGSkinManagers.all.经典1;
     console.log('当前皮肤为：' + skin.skitString);
     return skin;

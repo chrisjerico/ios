@@ -73,7 +73,9 @@ static RCTRootView *_rnView;
     if (!_rnView) {
         NSURL *bundleURL = [CodePush bundleURL];
 #ifdef DEBUG
-        bundleURL = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+        if (TARGET_IPHONE_SIMULATOR) {
+            bundleURL = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+        }
 #endif
         //    NSLog(@"当前rn版本：%@", APP.)
         _rnView = [[RCTRootView alloc] initWithBundleURL:bundleURL moduleName:@"Main" initialProperties:nil launchOptions:nil];
