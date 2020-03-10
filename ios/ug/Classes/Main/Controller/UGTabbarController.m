@@ -64,262 +64,262 @@ _CCRuntimeProperty_Assign(BOOL, 允许游客访问, set允许游客访问)
 static UGTabbarController *_tabBarVC = nil;
 
 + (instancetype)shared {
-	return _tabBarVC;
+    return _tabBarVC;
 }
 
 + (BOOL)canPushToViewController:(UIViewController *)vc {
-	UGUserModel *user = [UGUserModel currentUser];
-	BOOL isLogin = UGLoginIsAuthorized();
-	
-	// 未登录禁止访问
-	if (!isLogin && !vc.允许未登录访问) {
-		NSLog(@"未登录禁止访问：%@", vc);
-		[NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLoginViewController") animated:true];
-		return false;
-	}
-	
-	// 游客禁止访问
-	if (user.isTest && !vc.允许游客访问) {
-		NSLog(@"游客禁止访问：%@", vc);
-		UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"请先登录您的正式账号" btnTitles:@[@"取消", @"马上登录"]];
-		[ac setActionAtTitle:@"马上登录" handler:^(UIAlertAction *aa) {
-			SANotificationEventPost(UGNotificationShowLoginView, nil);
-		}];
-		return false;
-	}
-	
-	if (user) {
-		// 聊天室
-		if ([vc isKindOfClass:[UGChatViewController class]] && !user.chatRoomSwitch) {
-			[AlertHelper showAlertView:@"温馨提示" msg:@"聊天室已关闭" btnTitles:@[@"确定"]];
-			return false;
-		}
-		
-		// 任务中心
-		else if ([vc isKindOfClass:[UGMissionCenterViewController class]] && [SysConf.missionSwitch isEqualToString:@"1"]) {
-			[AlertHelper showAlertView:@"温馨提示" msg:@"任务中心已关闭" btnTitles:@[@"确定"]];
-			return false;
-		}
-		// 利息宝
-		else if ([vc isKindOfClass:[UGYubaoViewController class]] && !user.yuebaoSwitch) {
-			[AlertHelper showAlertView:@"温馨提示" msg:@"利息宝已关闭" btnTitles:@[@"确定"]];
-			return false;
-		}
-		// 每日签到
-		else if ([vc isKindOfClass:[UGSigInCodeViewController class]] && [SysConf.checkinSwitch isEqualToString:@"0"]) {
-			[AlertHelper showAlertView:@"温馨提示" msg:@"每日签到已关闭" btnTitles:@[@"确定"]];
-			return false;
-		}
-	}
-	
-	return true;
+    UGUserModel *user = [UGUserModel currentUser];
+    BOOL isLogin = UGLoginIsAuthorized();
+    
+    // 未登录禁止访问
+    if (!isLogin && !vc.允许未登录访问) {
+        NSLog(@"未登录禁止访问：%@", vc);
+        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLoginViewController") animated:true];
+        return false;
+    }
+    
+    // 游客禁止访问
+    if (user.isTest && !vc.允许游客访问) {
+        NSLog(@"游客禁止访问：%@", vc);
+        UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"请先登录您的正式账号" btnTitles:@[@"取消", @"马上登录"]];
+        [ac setActionAtTitle:@"马上登录" handler:^(UIAlertAction *aa) {
+            SANotificationEventPost(UGNotificationShowLoginView, nil);
+        }];
+        return false;
+    }
+    
+    if (user) {
+        // 聊天室
+        if ([vc isKindOfClass:[UGChatViewController class]] && !user.chatRoomSwitch) {
+            [AlertHelper showAlertView:@"温馨提示" msg:@"聊天室已关闭" btnTitles:@[@"确定"]];
+            return false;
+        }
+        
+        // 任务中心
+        else if ([vc isKindOfClass:[UGMissionCenterViewController class]] && [SysConf.missionSwitch isEqualToString:@"1"]) {
+            [AlertHelper showAlertView:@"温馨提示" msg:@"任务中心已关闭" btnTitles:@[@"确定"]];
+            return false;
+        }
+        // 利息宝
+        else if ([vc isKindOfClass:[UGYubaoViewController class]] && !user.yuebaoSwitch) {
+            [AlertHelper showAlertView:@"温馨提示" msg:@"利息宝已关闭" btnTitles:@[@"确定"]];
+            return false;
+        }
+        // 每日签到
+        else if ([vc isKindOfClass:[UGSigInCodeViewController class]] && [SysConf.checkinSwitch isEqualToString:@"0"]) {
+            [AlertHelper showAlertView:@"温馨提示" msg:@"每日签到已关闭" btnTitles:@[@"确定"]];
+            return false;
+        }
+    }
+    
+    return true;
 }
 
 - (void)viewDidLoad {
-	[super viewDidLoad];
-	_tabBarVC = self;
+    [super viewDidLoad];
+    _tabBarVC = self;
     
     //通过这两个参数来调整badge位置
     [_tabBarVC.tabBar setTabIconWidth:29];
     [_tabBarVC.tabBar setBadgeTop:9];
-	[self beginMessageRequest];
-	self.delegate = self;
-	
-	
-	[[UGSkinManagers skinWithSysConf] useSkin];
-	
-	{
-		NSArray<UGMobileMenu *> *menus = [[UGMobileMenu arrayOfModelsFromDictionaries:SysConf.mobileMenu error:nil] sortedArrayUsingComparator:^NSComparisonResult(UGMobileMenu *obj1, UGMobileMenu *obj2) {
-			return obj1.sort > obj2.sort;
-		}];
-		NSArray<UGMobileMenu *> *smallmenus;
-		if (menus.count > 5) {
-			smallmenus =  [menus subarrayWithRange:NSMakeRange(0, 5)];
-		}
-		else{
-			smallmenus = menus;
-		}
-//		NSLog(@"menus = %@",smallmenus);
-		if (smallmenus.count > 3) {
-			// 后台配置的页面
-			[self resetUpChildViewController:smallmenus];
-		} else {
-			// 默认加载的页面
-			NSMutableArray *temp = @[].mutableCopy;
-			for (UGMobileMenu *mm in UGMobileMenu.allMenus) {
-				if ([@"/home,/lotteryList,/chatRoomList,/activity,/user" containsString:mm.path]) {
-					[temp addObject:mm];
-				}
-			}
-			[self resetUpChildViewController:temp];
-		}
-	}
-	
-	SANotificationEventSubscribe(UGNotificationGetSystemConfigComplete, self, ^(typeof (self) self, id obj) {
+    [self beginMessageRequest];
+    self.delegate = self;
+    
+    
+    [[UGSkinManagers skinWithSysConf] useSkin];
+    
+    {
+        NSArray<UGMobileMenu *> *menus = [[UGMobileMenu arrayOfModelsFromDictionaries:SysConf.mobileMenu error:nil] sortedArrayUsingComparator:^NSComparisonResult(UGMobileMenu *obj1, UGMobileMenu *obj2) {
+            return obj1.sort > obj2.sort;
+        }];
+        NSArray<UGMobileMenu *> *smallmenus;
+        if (menus.count > 5) {
+            smallmenus =  [menus subarrayWithRange:NSMakeRange(0, 5)];
+        }
+        else{
+            smallmenus = menus;
+        }
+        //		NSLog(@"menus = %@",smallmenus);
+        if (smallmenus.count > 3) {
+            // 后台配置的页面
+            [self resetUpChildViewController:smallmenus];
+        } else {
+            // 默认加载的页面
+            NSMutableArray *temp = @[].mutableCopy;
+            for (UGMobileMenu *mm in UGMobileMenu.allMenus) {
+                if ([@"/home,/lotteryList,/chatRoomList,/activity,/user" containsString:mm.path]) {
+                    [temp addObject:mm];
+                }
+            }
+            [self resetUpChildViewController:temp];
+        }
+    }
+    
+    SANotificationEventSubscribe(UGNotificationGetSystemConfigComplete, self, ^(typeof (self) self, id obj) {
         [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
             [ReactNativeHelper sendEvent:@"UGSystemConfigModel.currentConfig" params:[UGSystemConfigModel currentConfig]];
         }];
         
-		if (OBJOnceToken(TabBarController1)) {
-			NSArray<UGMobileMenu *> *menus = [[UGMobileMenu arrayOfModelsFromDictionaries:SysConf.mobileMenu error:nil] sortedArrayUsingComparator:^NSComparisonResult(UGMobileMenu *obj1, UGMobileMenu *obj2) {
-				return obj1.sort > obj2.sort;
-			}];
-			NSArray<UGMobileMenu *> *smallmenus;
-			if (menus.count > 5) {
-				smallmenus =  [menus subarrayWithRange:NSMakeRange(0, 5)];
-			}
-			else{
-				smallmenus = menus;
-			}
-			NSLog(@"menus = %@",smallmenus);
-			if (smallmenus.count > 3) {
-				// 后台配置的页面
-				[TabBarController1 resetUpChildViewController:smallmenus];
-			} else {
-				// 默认加载的页面
-				NSMutableArray *temp = @[].mutableCopy;
-				for (UGMobileMenu *mm in UGMobileMenu.allMenus) {
-					if ([@"/home,/lotteryList,/chatRoomList,/activity,/user" containsString:mm.path]) {
-						[temp addObject:mm];
-					}
-				}
-				[TabBarController1 resetUpChildViewController:temp];
-			}
-			[[UGSkinManagers skinWithSysConf] useSkin];
-		}
-	});
-	
-	//    版本更新
-	[[UGAppVersionManager shareInstance] updateVersionApi:false];
-	[self setTabbarStyle];
-	
-	
-	// 更新黑色模板状态栏
-	{
-		UIStackView *sv = [TabBarController1.tabBar viewWithTagString:@"描边StackView"];
-		if (!sv) {
-			sv = [[UIStackView alloc] initWithFrame:CGRectMake(0, 0, APP.Width, 65)];
-			sv.axis = UILayoutConstraintAxisHorizontal;
-			sv.distribution = UIStackViewDistributionFillEqually;
-			sv.spacing = -0.75;
-			sv.tagString = @"描边StackView";
-			for (int i=0; i<5; i++) {
-				UIView *v = [UIView new];
-				v.layer.borderWidth = 0.7;
-				v.layer.borderColor = APP.TextColor2.CGColor;
-				v.backgroundColor = [UIColor clearColor];
+        if (OBJOnceToken(TabBarController1)) {
+            NSArray<UGMobileMenu *> *menus = [[UGMobileMenu arrayOfModelsFromDictionaries:SysConf.mobileMenu error:nil] sortedArrayUsingComparator:^NSComparisonResult(UGMobileMenu *obj1, UGMobileMenu *obj2) {
+                return obj1.sort > obj2.sort;
+            }];
+            NSArray<UGMobileMenu *> *smallmenus;
+            if (menus.count > 5) {
+                smallmenus =  [menus subarrayWithRange:NSMakeRange(0, 5)];
+            }
+            else{
+                smallmenus = menus;
+            }
+            NSLog(@"menus = %@",smallmenus);
+            if (smallmenus.count > 3) {
+                // 后台配置的页面
+                [TabBarController1 resetUpChildViewController:smallmenus];
+            } else {
+                // 默认加载的页面
+                NSMutableArray *temp = @[].mutableCopy;
+                for (UGMobileMenu *mm in UGMobileMenu.allMenus) {
+                    if ([@"/home,/lotteryList,/chatRoomList,/activity,/user" containsString:mm.path]) {
+                        [temp addObject:mm];
+                    }
+                }
+                [TabBarController1 resetUpChildViewController:temp];
+            }
+            [[UGSkinManagers skinWithSysConf] useSkin];
+        }
+    });
+    
+    //    版本更新
+    [[UGAppVersionManager shareInstance] updateVersionApi:false];
+    [self setTabbarStyle];
+    
+    
+    // 更新黑色模板状态栏
+    {
+        UIStackView *sv = [TabBarController1.tabBar viewWithTagString:@"描边StackView"];
+        if (!sv) {
+            sv = [[UIStackView alloc] initWithFrame:CGRectMake(0, 0, APP.Width, 65)];
+            sv.axis = UILayoutConstraintAxisHorizontal;
+            sv.distribution = UIStackViewDistributionFillEqually;
+            sv.spacing = -0.75;
+            sv.tagString = @"描边StackView";
+            for (int i=0; i<5; i++) {
+                UIView *v = [UIView new];
+                v.layer.borderWidth = 0.7;
+                v.layer.borderColor = APP.TextColor2.CGColor;
+                v.backgroundColor = [UIColor clearColor];
                 v.tagString = [NSString stringWithFormat:@"view_%d",i];
-				v.hidden = true;
+                v.hidden = true;
                 {
                     FLAnimatedImageView*  imgView = [[FLAnimatedImageView alloc] initWithFrame:v.bounds];
                     imgView.contentMode = UIViewContentModeScaleAspectFit;
                     imgView.tagString = [NSString stringWithFormat:@"ImageView_%d",i];
-                    [imgView sd_setImageWithURL:[[NSBundle mainBundle] URLForResource:@"redbag_act" withExtension:@"gif"]];
+                    [imgView sd_setImageWithURL:[[NSBundle mainBundle] URLForResource:@"hot_act" withExtension:@"gif"]];
                     [v addSubview:imgView];
                     [imgView mas_makeConstraints:^(MASConstraintMaker *make) {
                         make.right.equalTo(v.mas_right).with.offset(1);
                         make.top.equalTo(v.mas_top).offset(1);
                         make.width.mas_equalTo(30);
                         make.height.mas_equalTo(16);
-                     }];
+                    }];
                     [imgView setHidden:YES];
                 }
-				[sv addArrangedSubview:v];
-			}
-			sv.hidden = true;
-			sv.userInteractionEnabled = false;
-			[TabBarController1.tabBar addSubview:sv];
-		}
-		[self cc_hookSelector:@selector(setViewControllers:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
-			for (UIView *v in sv.arrangedSubviews) {
-				v.hidden = !([sv.arrangedSubviews indexOfObject:v] < TabBarController1.tabBar.items.count);
-			}
-		} error:nil];
-		[self xw_addNotificationForName:UGNotificationWithSkinSuccess block:^(NSNotification * _Nonnull noti) {
-	
-			BOOL black = Skin1.isBlack;
-			sv.hidden = !black;
+                [sv addArrangedSubview:v];
+            }
+            sv.hidden = true;
+            sv.userInteractionEnabled = false;
+            [TabBarController1.tabBar addSubview:sv];
+        }
+        [self cc_hookSelector:@selector(setViewControllers:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
             for (UIView *v in sv.arrangedSubviews) {
                 v.hidden = !([sv.arrangedSubviews indexOfObject:v] < TabBarController1.tabBar.items.count);
-                if (APP.isTabHot&&!Skin1.isBlack) {
+            }
+        } error:nil];
+        [self xw_addNotificationForName:UGNotificationWithSkinSuccess block:^(NSNotification * _Nonnull noti) {
+            
+            BOOL black = Skin1.isBlack;
+            sv.hidden = !black;
+            for (UIView *v in sv.arrangedSubviews) {
+                v.hidden = !([sv.arrangedSubviews indexOfObject:v] < TabBarController1.tabBar.items.count);
+                if (!Skin1.isBlack) {
                     v.layer.borderWidth = 0;
                     sv.hidden = NO;
                 }
             }
-			[TabBarController1 setTabbarHeight:black ? 53 : 50];
-		}];
-	}
+            [TabBarController1 setTabbarHeight:black ? 53 : 50];
+        }];
+    }
 }
 
 - (void)setTabbarStyle {
-	void (^block1)(NSNotification *) = ^(NSNotification *noti) {
-		[TabBarController1.tabBar setBackgroundImage:[UIImage imageWithColor:Skin1.tabBarBgColor]];
-		[[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:Skin1.tabBarBgColor]];
-		[[UINavigationBar appearance] setBackgroundImage:[UIImage imageWithColor:Skin1.navBarBgColor size:APP.Size] forBarMetrics:UIBarMetricsDefault];
-		
-		for (UGNavigationController *nav in TabBarController1.viewControllers) {
-			[nav.navigationBar setBackgroundImage:[UIImage imageWithColor:Skin1.navBarBgColor size:APP.Size] forBarMetrics:UIBarMetricsDefault];
-		}
-	};
-	if (OBJOnceToken(self)) {
-		[self xw_addNotificationForName:UGNotificationWithSkinSuccess block:block1];
-	}
-	block1(nil);
-	
-	[self.tabBar setSelectedImageTintColor: Skin1.tabSelectedColor];
-	[self.tabBar setUnselectedItemTintColor:Skin1.tabNoSelectColor];
-	[[UITabBar appearance] setSelectedImageTintColor: Skin1.tabSelectedColor];
-	[[UITabBar appearance] setUnselectedItemTintColor:Skin1.tabNoSelectColor];
-	[[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:Skin1.tabNoSelectColor} forState:UIControlStateNormal];
-	[[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:Skin1.tabSelectedColor} forState:UIControlStateSelected];
-	for (UIBarItem *item in self.tabBar.items) {
-		[item setTitleTextAttributes:@{NSForegroundColorAttributeName:Skin1.tabNoSelectColor} forState:UIControlStateNormal];
-		[item setTitleTextAttributes:@{NSForegroundColorAttributeName:Skin1.tabSelectedColor} forState:UIControlStateSelected];
-	}
-	
-	{
-		static UIView *__stateView = nil;
-		static dispatch_once_t onceToken;
-		dispatch_once(&onceToken, ^{
-			__stateView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APP.Width, APP.StatusBarHeight)];
-			__stateView.backgroundColor = Skin1.navBarBgColor;
+    void (^block1)(NSNotification *) = ^(NSNotification *noti) {
+        [TabBarController1.tabBar setBackgroundImage:[UIImage imageWithColor:Skin1.tabBarBgColor]];
+        [[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:Skin1.tabBarBgColor]];
+        [[UINavigationBar appearance] setBackgroundImage:[UIImage imageWithColor:Skin1.navBarBgColor size:APP.Size] forBarMetrics:UIBarMetricsDefault];
+        
+        for (UGNavigationController *nav in TabBarController1.viewControllers) {
+            [nav.navigationBar setBackgroundImage:[UIImage imageWithColor:Skin1.navBarBgColor size:APP.Size] forBarMetrics:UIBarMetricsDefault];
+        }
+    };
+    if (OBJOnceToken(self)) {
+        [self xw_addNotificationForName:UGNotificationWithSkinSuccess block:block1];
+    }
+    block1(nil);
+    
+    [self.tabBar setSelectedImageTintColor: Skin1.tabSelectedColor];
+    [self.tabBar setUnselectedItemTintColor:Skin1.tabNoSelectColor];
+    [[UITabBar appearance] setSelectedImageTintColor: Skin1.tabSelectedColor];
+    [[UITabBar appearance] setUnselectedItemTintColor:Skin1.tabNoSelectColor];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:Skin1.tabNoSelectColor} forState:UIControlStateNormal];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:Skin1.tabSelectedColor} forState:UIControlStateSelected];
+    for (UIBarItem *item in self.tabBar.items) {
+        [item setTitleTextAttributes:@{NSForegroundColorAttributeName:Skin1.tabNoSelectColor} forState:UIControlStateNormal];
+        [item setTitleTextAttributes:@{NSForegroundColorAttributeName:Skin1.tabSelectedColor} forState:UIControlStateSelected];
+    }
+    
+    {
+        static UIView *__stateView = nil;
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            __stateView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APP.Width, APP.StatusBarHeight)];
+            __stateView.backgroundColor = Skin1.navBarBgColor;
             __stateView.tagString = @"状态栏背景View";
-			[self.view addSubview:__stateView];
-			for (Class cls in @[QDWebViewController.class, UGBMLoginViewController.class]) {
-				[cls cc_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
-					__stateView.hidden = true;
-				} error:nil];
-				[cls cc_hookSelector:@selector(viewWillDisappear:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
-					__stateView.hidden = false;
-				} error:nil];
-			}
-		});
-	}
+            [self.view addSubview:__stateView];
+            for (Class cls in @[QDWebViewController.class, UGBMLoginViewController.class]) {
+                [cls cc_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
+                    __stateView.hidden = true;
+                } error:nil];
+                [cls cc_hookSelector:@selector(viewWillDisappear:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
+                    __stateView.hidden = false;
+                } error:nil];
+            }
+        });
+    }
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
-	return UIStatusBarStyleDefault;
-	//UIStatusBarStyleDefault = 0 黑色文字，浅色背景时使用
-	//   return UIStatusBarStyleLightContent = 1 //白色文字，深色背景时使用
+    return UIStatusBarStyleDefault;
+    //UIStatusBarStyleDefault = 0 黑色文字，浅色背景时使用
+    //   return UIStatusBarStyleLightContent = 1 //白色文字，深色背景时使用
 }
 
 - (void)setTabbarHeight:(CGFloat)height {
-//	if (@available(iOS 11.0, *) && ![UIDevice currentDevice].isSimulator) {
-	if ((@available(iOS 11.0, *)) && !(TARGET_IPHONE_SIMULATOR == 1 && TARGET_OS_IPHONE == 1)) {
-
-		static dispatch_once_t onceToken;
-		dispatch_once(&onceToken, ^{
-			[UITabBar cc_hookSelector:@selector(sizeThatFits:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> ai) {
-				CGSize size = CGSizeZero;
-				[ai.originalInvocation invoke];
-				[ai.originalInvocation getReturnValue:&size];
-				size.height = 50 + APP.BottomSafeHeight;
-				[ai.originalInvocation setReturnValue:&size];
-			} error:nil];
-		});
-		[self.view layoutSubviews];
-		[self.selectedViewController.view layoutSubviews];
-	}
+    //	if (@available(iOS 11.0, *) && ![UIDevice currentDevice].isSimulator) {
+    if ((@available(iOS 11.0, *)) && !(TARGET_IPHONE_SIMULATOR == 1 && TARGET_OS_IPHONE == 1)) {
+        
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            [UITabBar cc_hookSelector:@selector(sizeThatFits:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> ai) {
+                CGSize size = CGSizeZero;
+                [ai.originalInvocation invoke];
+                [ai.originalInvocation getReturnValue:&size];
+                size.height = 50 + APP.BottomSafeHeight;
+                [ai.originalInvocation setReturnValue:&size];
+            } error:nil];
+        });
+        [self.view layoutSubviews];
+        [self.selectedViewController.view layoutSubviews];
+    }
 }
 
 /**
@@ -351,7 +351,7 @@ static UGTabbarController *_tabBarVC = nil;
         if (existed)
             continue;
         
-
+        
         
         // 初始化控制器
         // （这里加载了一个假的控制器，在 tabBarController:shouldSelectViewController: 函数才会加载真正的控制器）
@@ -380,21 +380,56 @@ static UGTabbarController *_tabBarVC = nil;
         [self tabBarController:self shouldSelectViewController:vcs.firstObject];
     }
     
+    for (int i = 0; i<mms.count; i++) {
+        UGMobileMenu *mm = [mms objectAtIndex:i];
+        UIStackView *sv = [TabBarController1.tabBar viewWithTagString:@"描边StackView"];
+        sv.hidden = NO;
+        NSString *tagStr = [NSString stringWithFormat:@"view_%d",i];
+        UIView *v = (UIView *)[sv viewWithTagString:tagStr];
+        
+        if (!Skin1.isBlack) {
+            v.layer.borderWidth = 0;
+        }
+        
+        if (mm.isHot == 1 ){
+            NSString *tagStr = [NSString stringWithFormat:@"ImageView_%d",i];
+            FLAnimatedImageView*  imgView = (FLAnimatedImageView *)[sv viewWithTagString:tagStr];
+            [imgView setHidden:NO];
+            
+            if (mm.icon_hot.length) {
+                NSURL *url = [NSURL URLWithString:mm.icon_hot];
+                [imgView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"placeholder"] completed:nil];
+            }
+            
+        }
+    }
+    
+    
     if (APP.isTabHot) {
+        
+        UIStackView *sv = [TabBarController1.tabBar viewWithTagString:@"描边StackView"];
+        sv.hidden = NO;
+
         for (int i = 0; i<mms.count; i++) {
+            NSString *tagStr = [NSString stringWithFormat:@"view_%d",i];
+            UIView *v = (UIView *)[sv viewWithTagString:tagStr];
+            if (!Skin1.isBlack) {
+                v.layer.borderWidth = 0;
+            }
             UGMobileMenu *mm = [mms objectAtIndex:i];
             if ([mm.clsName isEqualToString:[LotteryBetAndChatVC className]] ){
-                UIStackView *sv = [TabBarController1.tabBar viewWithTagString:@"描边StackView"];
+                
                 NSString *tagStr = [NSString stringWithFormat:@"ImageView_%d",i];
                 FLAnimatedImageView*  imgView = (FLAnimatedImageView *)[sv viewWithTagString:tagStr];
+                [imgView sd_setImageWithURL:[[NSBundle mainBundle] URLForResource:@"redbag_act" withExtension:@"gif"]];
                 [imgView setHidden:NO];
                 
             }
         }
     }
     
-
-
+    
+    
 }
 
 -(void)setUGMailBoxTableViewControllerBadge{
@@ -431,17 +466,17 @@ static UGTabbarController *_tabBarVC = nil;
 }
 
 -(void)setTabBadgeIndex:(NSInteger )index{
-
-      NSInteger number = [UGUserModel currentUser].unreadMsg ? [UGUserModel currentUser].unreadMsg : 0;
-      CustomBadgeType type;
-      if (number == 0) {
-          type = kCustomBadgeStyleNone;
-      } else if (number > 0 && number < 100) {
-          type = kCustomBadgeStyleNumber;
-      } else {
-          type = kCustomBadgeStyleRedDot;
-      }
-      [TabBarController1.tabBar setBadgeStyle:type value:number atIndex:index];
+    
+    NSInteger number = [UGUserModel currentUser].unreadMsg ? [UGUserModel currentUser].unreadMsg : 0;
+    CustomBadgeType type;
+    if (number == 0) {
+        type = kCustomBadgeStyleNone;
+    } else if (number > 0 && number < 100) {
+        type = kCustomBadgeStyleNumber;
+    } else {
+        type = kCustomBadgeStyleRedDot;
+    }
+    [TabBarController1.tabBar setBadgeStyle:type value:number atIndex:index];
 }
 
 - (void)setSelectedIndex:(NSUInteger)selectedIndex {
@@ -468,24 +503,24 @@ static UGTabbarController *_tabBarVC = nil;
 #pragma mark - UITabBarControllerDelegate
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
-//	NSLog(@"viewController = %@",viewController);
-//	NSLog(@"_mms = %@",_mms);
-	UGMobileMenu *mm = _mms[[tabBarController.viewControllers indexOfObject:viewController]];
-	NSLog(@"mm = %@",mm);
-	// 由 UGMobileMenu控制显示的ViewController
-	UIViewController *vc = ((UINavigationController *)viewController).viewControllers.firstObject;
-	NSLog(@"vc = %@",vc);
+    //	NSLog(@"viewController = %@",viewController);
+    //	NSLog(@"_mms = %@",_mms);
+    UGMobileMenu *mm = _mms[[tabBarController.viewControllers indexOfObject:viewController]];
+    NSLog(@"mm = %@",mm);
+    // 由 UGMobileMenu控制显示的ViewController
+    UIViewController *vc = ((UINavigationController *)viewController).viewControllers.firstObject;
+    NSLog(@"vc = %@",vc);
     
-	// 控制器需要重新加载
-	if (![vc.className isEqualToString:mm.clsName]) {
-		[mm createViewController:^(__kindof UIViewController * _Nonnull vc) {
-			if (![UGTabbarController canPushToViewController:vc]) {
-				return ;
-			}
+    // 控制器需要重新加载
+    if (![vc.className isEqualToString:mm.clsName]) {
+        [mm createViewController:^(__kindof UIViewController * _Nonnull vc) {
+            if (![UGTabbarController canPushToViewController:vc]) {
+                return ;
+            }
             vc.title = mm.name;
             UINavigationController *nav = (UINavigationController *)viewController;
-			nav.title = mm.name;
-			nav.tabBarItem.title = mm.name;
+            nav.title = mm.name;
+            nav.tabBarItem.title = mm.name;
             //
             NSString *key = [[SDWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:mm.icon]];
             if ([[SDImageCache sharedImageCache] diskImageDataExistsWithKey:key]) {
@@ -496,48 +531,48 @@ static UGTabbarController *_tabBarVC = nil;
                 nav.tabBarItem.image = [UIImage imageNamed:mm.defaultImgName];
                 nav.tabBarItem.selectedImage = [[UIImage imageNamed:mm.defaultImgName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             }
-			nav.viewControllers = @[vc];
-			tabBarController.selectedViewController = nav;
+            nav.viewControllers = @[vc];
+            tabBarController.selectedViewController = nav;
             
-
-           
-		}];
-		return false;
-	}
-	
-	// push权限判断
-	return [UGTabbarController canPushToViewController:vc];
+            
+            
+        }];
+        return false;
+    }
+    
+    // push权限判断
+    return [UGTabbarController canPushToViewController:vc];
 }
 
 
 #pragma mark - 每90秒获取一次站内信
 
 - (void)loadMessageList {
-	if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
-		return;
-	}
-	NSDictionary *params = @{@"page":@(1),
-							 @"rows":@(20),
-							 @"token":[UGUserModel currentUser].sessid,
-							 @"type":@""
-	};
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
+    NSDictionary *params = @{@"page":@(1),
+                             @"rows":@(20),
+                             @"token":[UGUserModel currentUser].sessid,
+                             @"type":@""
+    };
     
     void (^readMessage)(UGMessageModel *) = ^(UGMessageModel *mm) {
         NSDictionary *params = @{@"id":mm.messageId,
                                  @"token":[UGUserModel currentUser].sessid,
-                                 };
+        };
         [CMNetwork modifyMessageStateWithParams:params completion:^(CMResult<id> *model, NSError *err) {
             [CMResult processWithResult:model success:^{
                 mm.isRead = YES;
             } failure:^(id msg) {}];
         }];
     };
-	dispatch_suspend(APP.messageRequestTimer);
-	[CMNetwork getMessageListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
-		[CMResult processWithResult:model success:^{
+    dispatch_suspend(APP.messageRequestTimer);
+    [CMNetwork getMessageListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
             NSDate *lastDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"最新站内信的创建时间"];
-			UGMessageListModel *mlm = model.data;
-			NSArray <UGMessageModel *>*unreadArray = [mlm.list filteredArrayUsingPredicate: [NSPredicate predicateWithBlock:^BOOL(UGMessageModel *mm, NSDictionary<NSString *,id> * _Nullable bindings) {
+            UGMessageListModel *mlm = model.data;
+            NSArray <UGMessageModel *>*unreadArray = [mlm.list filteredArrayUsingPredicate: [NSPredicate predicateWithBlock:^BOOL(UGMessageModel *mm, NSDictionary<NSString *,id> * _Nullable bindings) {
                 NSDate *date = [mm.updateTime dateWithFormat:@"yyyy-MM-dd HH:mm:ss"];
                 if ([date isLaterThan:lastDate]) {
                     [[NSUserDefaults standardUserDefaults] setObject:date forKey:@"最新站内信的创建时间"];
@@ -546,8 +581,8 @@ static UGTabbarController *_tabBarVC = nil;
                 return false;
             }]];
             
-			if (unreadArray.count > 0) {
-				for (UGMessageModel *model in [unreadArray reverseObjectEnumerator]) {
+            if (unreadArray.count > 0) {
+                for (UGMessageModel *model in [unreadArray reverseObjectEnumerator]) {
                     if (Skin1.isBlack) {
                         [LEEAlert alert].config
                         .LeeAddTitle(^(UILabel *label) {
@@ -595,25 +630,25 @@ static UGTabbarController *_tabBarVC = nil;
                         .LeeShow(); // 设置完成后 别忘记调用Show来显示
                     }
                 }
-			} else {
-				dispatch_resume(APP.messageRequestTimer);
-			}
-			
-		} failure:^(id msg) {
-			dispatch_resume(APP.messageRequestTimer);
-		}];
-	}];
+            } else {
+                dispatch_resume(APP.messageRequestTimer);
+            }
+            
+        } failure:^(id msg) {
+            dispatch_resume(APP.messageRequestTimer);
+        }];
+    }];
 }
 
 - (void)beginMessageRequest {
-	WeakSelf;
-	dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0));
-	dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, 90 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
-	dispatch_source_set_event_handler(timer, ^{
-		[weakSelf loadMessageList];
-	});
-	dispatch_resume(timer);
-	APP.messageRequestTimer = timer;
+    WeakSelf;
+    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0));
+    dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, 90 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
+    dispatch_source_set_event_handler(timer, ^{
+        [weakSelf loadMessageList];
+    });
+    dispatch_resume(timer);
+    APP.messageRequestTimer = timer;
 }
 
 @end
