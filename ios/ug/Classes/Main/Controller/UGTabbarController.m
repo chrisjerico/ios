@@ -217,10 +217,10 @@ static UGTabbarController *_tabBarVC = nil;
                     [imgView sd_setImageWithURL:[[NSBundle mainBundle] URLForResource:@"hot_act" withExtension:@"gif"]];
                     [v addSubview:imgView];
                     [imgView mas_makeConstraints:^(MASConstraintMaker *make) {
-                        make.right.equalTo(v.mas_right).with.offset(1);
+                        make.right.equalTo(v.mas_right).with.offset(-2);
                         make.top.equalTo(v.mas_top).offset(1);
-                        make.width.mas_equalTo(30);
-                        make.height.mas_equalTo(16);
+                        make.width.mas_equalTo(26);
+                        make.height.mas_equalTo(14);
                     }];
                     [imgView setHidden:YES];
                 }
