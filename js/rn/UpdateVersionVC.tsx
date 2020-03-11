@@ -7,7 +7,7 @@ import * as Progress from 'react-native-progress';
 import LinearGradient from 'react-native-linear-gradient';
 import {number} from 'prop-types';
 import NetworkRequest1 from './公共类/网络/NetworkRequest1';
-import { Skin1 } from './公共类/UGSkinManagers';
+import {Skin1} from './公共类/UGSkinManagers';
 import FastImage from 'react-native-fast-image';
 
 interface IProps {

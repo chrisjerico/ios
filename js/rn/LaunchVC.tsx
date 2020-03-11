@@ -7,12 +7,12 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 // 页面
 import UpdateVersionVC from './UpdateVersionVC';
 import HomePageVC from './模板/默认/HomePageVC';
-import XBJMyVC from './模板/香槟金/XBJMyVC';
+import XBJMineVC from './模板/香槟金/XBJMineVC';
 import UGPromotionsController from './模板/默认/UGPromotionsController';
 
 // Tools
 import AppDefine, {ProfileScreenNavigationProp} from './公共类/AppDefine';
-import UGSysConfModel from './Model/UGSysConfModel';
+import UGSysConfModel from './Model/全局/UGSysConfModel';
 import UGSkinManagers, {Skin1} from './公共类/UGSkinManagers';
 
 const Stack = createStackNavigator();
@@ -32,7 +32,7 @@ class TabBarController extends Component<{navigation?: ProfileScreenNavigationPr
     return (
       <Tab.Navigator initialRouteName="UpdateVersionVC" screenOptions={{tabBarVisible: false}}>
         <Tab.Screen name="Home3" component={HomePageVC} options={{}} />
-        <Tab.Screen name="XBJMyVC" component={XBJMyVC} options={{}} />
+        <Tab.Screen name="XBJMineVC" component={XBJMineVC} options={{}} />
         <Tab.Screen name="UGPromotionsController" component={UGPromotionsController} options={{}} />
         <Tab.Screen name="UpdateVersionVC" component={UpdateVersionVC} options={{}} />
       </Tab.Navigator>

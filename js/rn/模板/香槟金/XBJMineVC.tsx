@@ -1,14 +1,16 @@
 import React, {Component} from 'react';
-import {View, Image} from 'react-native';
+import {View, Image, Alert, AlertButton} from 'react-native';
 import {Skin1} from '../../公共类/UGSkinManagers';
 import AppDefine from '../../公共类/AppDefine';
 import {Button, Card, Text, Avatar} from 'react-native-elements';
 import LinearGradient from 'react-native-linear-gradient';
 import {TouchableOpacity, ScrollView} from 'react-native-gesture-handler';
 import FastImage from 'react-native-fast-image';
-import {UGUserCenterItem} from '../../Model/UGSysConfModel';
+import {UGUserCenterItem} from '../../Model/全局/UGSysConfModel';
+import NetworkRequest1 from '../../公共类/网络/NetworkRequest1';
+import {UserI} from '../../Model/全局/UGUserModel';
 
-export default class XBJMyVC extends Component {
+export default class XBJMineVC extends Component {
   dataArray: Array<UGUserCenterItem> = [];
 
   componentDidMount() {
@@ -29,6 +31,13 @@ export default class XBJMyVC extends Component {
     // 获取功能按钮列表
     AppDefine.ocCall('UGSystemConfigModel.currentConfig.userCenter').then((list: Array<UGUserCenterItem>) => {
       this.dataArray = list.map(item => new UGUserCenterItem(item));
+      this.setState({});
+    });
+
+    NetworkRequest1.user_info().then(user => {
+      console.log('获取用户信息');
+      console.log(user);
+      Object.assign(UserI, user);
       this.setState({});
     });
   }
@@ -54,19 +63,17 @@ export default class XBJMyVC extends Component {
         <ScrollView style={{flex: 1, padding: 16}}>
           <View style={{padding: 16, borderRadius: 4, backgroundColor: Skin1.homeContentColor}}>
             <View style={{flexDirection: 'row'}}>
-              <Avatar
-                source={{uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg'}}
-                containerStyle={{width: 56, height: 56, backgroundColor: Skin1.placeholderColor}}
-                onPress={() => {}}
-              />
+              <Avatar source={{uri: UserI.avatar}} containerStyle={{width: 56, height: 56, backgroundColor: Skin1.placeholderColor}} onPress={() => {}} />
               <View style={{marginLeft: 16}}>
                 <View style={{marginTop: 4, flexDirection: 'row'}}>
-                  <Text style={{fontWeight: '500', fontSize: 16}}>Adam</Text>
-                  <FastImage source={{uri: ''}} resizeMode="stretch" style={{marginLeft: 8, marginTop: 1, width: 42, height: 17, backgroundColor: Skin1.placeholderColor}} />
+                  <Text style={{fontWeight: '500', fontSize: 16}}>{UserI.usr}</Text>
+                  <LinearGradient colors={['#FFEAC3', '#FFE09A']} start={{x: 0, y: 1}} end={{x: 1, y: 1}} style={{marginLeft: 8, marginTop: 1, borderRadius: 3, width: 42, height: 17}}>
+                    <Text style={{marginTop: 0.5, textAlign: 'center', color: '#8F6832', fontStyle: 'italic', fontWeight: '600', fontSize: 13}}>{UserI.curLevelGrade}</Text>
+                  </LinearGradient>
                 </View>
                 <View style={{marginTop: 10, flexDirection: 'row'}}>
                   <Text style={{fontSize: 12}}>头衔：</Text>
-                  <Text style={{fontSize: 12, color: Skin1.redColor}}>初行者</Text>
+                  <Text style={{fontSize: 12, color: Skin1.redColor}}>{UserI.curLevelTitle}</Text>
                 </View>
               </View>
             </View>
@@ -104,7 +111,7 @@ export default class XBJMyVC extends Component {
                 <Text style={{marginTop: 11, fontSize: 12}}>资金管理</Text>
               </TouchableOpacity>
               <TouchableOpacity style={{alignItems: 'center', borderRadius: 100}}>
-                <Text style={{marginTop: 4, color: Skin1.redColor}}>¥0.00</Text>
+                <Text style={{marginTop: 4, fontWeight: '500', color: Skin1.redColor}}>{'¥' + UserI.balance}</Text>
                 <Text style={{marginTop: 11, fontSize: 12}}>中心钱包</Text>
               </TouchableOpacity>
             </View>
@@ -144,7 +151,19 @@ export default class XBJMyVC extends Component {
             style={{marginTop: 12}}
             buttonStyle={{backgroundColor: Skin1.homeContentColor, borderRadius: 4, height: 48}}
             titleStyle={{color: Skin1.redColor}}
-            onPress={() => {}}
+            onPress={() => {
+              Alert.alert('温馨提示', '确定退出账号', [
+                {text: '取消', style: 'cancel'},
+                {
+                  text: '确定',
+                  onPress: () => {
+                    NetworkRequest1.user_logout();
+                    AppDefine.ocCall('UGUserModel.setCurrentUser:', [null]);
+                    AppDefine.ocCall('NSNotificationCenter.defaultCenter.postNotificationName:object:', ['UGNotificationUserLogout']);
+                  },
+                },
+              ]);
+            }}
           />
           <View style={{height: 150}} />
         </ScrollView>
