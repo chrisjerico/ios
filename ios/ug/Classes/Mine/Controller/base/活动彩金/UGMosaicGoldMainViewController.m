@@ -25,12 +25,16 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
       self.view.backgroundColor = Skin1.bgColor;
-      _itemArray =[NSMutableArray new];
-      _viewsArray = [NSMutableArray new];
-      _disArray = [NSMutableArray new];
-      
+
+    [self dataArryInit];
     [self getSystemConfig];
      
+}
+
+-(void)dataArryInit{
+    _itemArray =[NSMutableArray new];
+    _viewsArray = [NSMutableArray new];
+    _disArray = [NSMutableArray new];
 }
 
 - (void)rootLoadData {
@@ -142,6 +146,12 @@
             }
             
             if (![CMCommon arryIsNull:weakSelf.disArray]) {
+//                 [weakSelf.itemArray addObject:@"全部"];
+//                UGMosaicGoldController * realView  = [[UGMosaicGoldController alloc] initWithStyle:UITableViewStyleGrouped]; ;
+//                realView.typeid = @"";
+//                [weakSelf.viewsArray addObject:realView];
+                
+
                 for (NSMutableDictionary *dd in weakSelf.disArray) {
                     if (dd[@"categoryName"]) {
                         [weakSelf.itemArray addObject:dd[@"categoryName"] ];
@@ -167,6 +177,7 @@
 
 - (void)buildSegment
 {
+
     
     self.slideSwitchView = [[XYYSegmentControl alloc] initWithFrame:CGRectMake(0 , 0, self.view.width, self.view.height) channelName:self.itemArray source:self];
     [self.view addSubview:self.slideSwitchView];
@@ -180,7 +191,7 @@
     //设置tab 被选中的颜色(可选)
     self.slideSwitchView.tabItemSelectedColor = RGBA(203, 43, 37, 1.0) ;
     //设置tab 背景颜色(可选)
-    self.slideSwitchView.tabItemNormalBackgroundColor = [UIColor whiteColor];
+    self.slideSwitchView.tabItemNormalBackgroundColor = Skin1.isBlack||Skin1.is23 ? Skin1.textColor4:[UIColor whiteColor];
     //设置tab 被选中的标识的颜色(可选)
     self.slideSwitchView.tabItemSelectionIndicatorColor = RGBA(203, 43, 37, 1.0) ;
     //设置tab 被选中标识的风格

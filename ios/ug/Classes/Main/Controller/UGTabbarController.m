@@ -56,7 +56,7 @@ _CCRuntimeProperty_Assign(BOOL, 允许游客访问, set允许游客访问)
 
 @interface UGTabbarController ()<UITabBarControllerDelegate>
 
-@property (nonatomic, copy) NSArray<UGMobileMenu *> *mms;
+@property (nonatomic, copy) NSMutableArray<UGMobileMenu *> *mms;
 @end
 
 @implementation UGTabbarController
@@ -187,13 +187,15 @@ static UGTabbarController *_tabBarVC = nil;
             }
             [[UGSkinManagers skinWithSysConf] useSkin];
         }
+        
+
+        [self setHotImg];
     });
     
     //    版本更新
     [[UGAppVersionManager shareInstance] updateVersionApi:false];
     [self setTabbarStyle];
-    
-    
+
     // 更新黑色模板状态栏
     {
         UIStackView *sv = [TabBarController1.tabBar viewWithTagString:@"描边StackView"];
@@ -379,9 +381,35 @@ static UGTabbarController *_tabBarVC = nil;
         [self setTabbarStyle];
         [self tabBarController:self shouldSelectViewController:vcs.firstObject];
     }
+
+    [self setHotImg];
+   
+}
+
+-(void)setHotImg{
     
-    for (int i = 0; i<mms.count; i++) {
-        UGMobileMenu *mm = [mms objectAtIndex:i];
+    NSArray<UGMobileMenu *> *menus = [[UGMobileMenu arrayOfModelsFromDictionaries:SysConf.mobileMenu error:nil] sortedArrayUsingComparator:^NSComparisonResult(UGMobileMenu *obj1, UGMobileMenu *obj2) {
+         return obj1.sort > obj2.sort;
+     }];
+     NSArray<UGMobileMenu *> *smallmenus;
+     if (menus.count > 5) {
+         smallmenus =  [menus subarrayWithRange:NSMakeRange(0, 5)];
+     }
+     else{
+         smallmenus = menus;
+     }
+     NSLog(@"smallmenus = %@",smallmenus );
+     if (smallmenus.count > 3) {
+         // 后台配置的页面
+         self.mms = [[NSMutableArray alloc] initWithArray:smallmenus];
+     }
+    
+    if (self.mms.count <= 2) {
+        return;
+    }
+    
+    for (int i = 0; i<self.mms .count; i++) {
+        UGMobileMenu *mm = [self.mms  objectAtIndex:i];
         UIStackView *sv = [TabBarController1.tabBar viewWithTagString:@"描边StackView"];
         sv.hidden = NO;
         NSString *tagStr = [NSString stringWithFormat:@"view_%d",i];
@@ -391,32 +419,40 @@ static UGTabbarController *_tabBarVC = nil;
             v.layer.borderWidth = 0;
         }
         
-        if (mm.isHot == 1 ){
+        {
             NSString *tagStr = [NSString stringWithFormat:@"ImageView_%d",i];
             FLAnimatedImageView*  imgView = (FLAnimatedImageView *)[sv viewWithTagString:tagStr];
-            [imgView setHidden:NO];
+  
             
-            if (mm.icon_hot.length) {
-                NSURL *url = [NSURL URLWithString:mm.icon_hot];
-                [imgView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"placeholder"] completed:nil];
+            if (mm.isHot == 1) {
+                [imgView setHidden:NO];
+                if (mm.icon_hot.length) {
+                    NSURL *url = [NSURL URLWithString:mm.icon_hot];
+                    [imgView sd_setImageWithURL:url placeholderImage:nil completed:nil];
+                }
+                else{
+                     [imgView sd_setImageWithURL:[[NSBundle mainBundle] URLForResource:@"hot_act" withExtension:@"gif"]];
+                }
+            } else {
+                [imgView setHidden:YES];
+                [imgView sd_setImageWithURL:nil placeholderImage:nil completed:nil];
             }
             
         }
     }
     
-    
     if (APP.isTabHot) {
         
         UIStackView *sv = [TabBarController1.tabBar viewWithTagString:@"描边StackView"];
         sv.hidden = NO;
-
-        for (int i = 0; i<mms.count; i++) {
+        
+        for (int i = 0; i<self.mms.count; i++) {
             NSString *tagStr = [NSString stringWithFormat:@"view_%d",i];
             UIView *v = (UIView *)[sv viewWithTagString:tagStr];
             if (!Skin1.isBlack) {
                 v.layer.borderWidth = 0;
             }
-            UGMobileMenu *mm = [mms objectAtIndex:i];
+            UGMobileMenu *mm = [self.mms objectAtIndex:i];
             if ([mm.clsName isEqualToString:[LotteryBetAndChatVC className]] ){
                 
                 NSString *tagStr = [NSString stringWithFormat:@"ImageView_%d",i];
@@ -427,9 +463,6 @@ static UGTabbarController *_tabBarVC = nil;
             }
         }
     }
-    
-    
-    
 }
 
 -(void)setUGMailBoxTableViewControllerBadge{
@@ -462,6 +495,8 @@ static UGTabbarController *_tabBarVC = nil;
             
         }
     }
+    
+    
     
 }
 
