@@ -136,7 +136,7 @@
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-    if (Skin1.isBlack) {
+    if (Skin1.isBlack||Skin1.is23) {
         // body.style默认字体色
         [webView stringByEvaluatingJavaScriptFromString:@"document.body.style.color='#DDD'"];
         // body.style背景色
