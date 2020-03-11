@@ -299,7 +299,7 @@
         [self.preferentialBtn setHidden:NO];
     }
     
-    if (Skin1.is23) {
+    if (Skin1.is23||Skin1.isBlack) {
         [self.bottomTitle setTextColor:[UIColor whiteColor]];
          [self.bottomLabel setTextColor:[UIColor whiteColor]];
     }
@@ -371,9 +371,9 @@
     if (_lhPrizeView.timer) {
         [_lhPrizeView.timer setFireDate:[NSDate date]];
     }
-    if (NavController1.topViewController == self) {
-        self.navigationController.navigationBarHidden = [Skin1 isBlack];
-    }
+
+    self.navigationController.navigationBarHidden = [Skin1 isBlack];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
