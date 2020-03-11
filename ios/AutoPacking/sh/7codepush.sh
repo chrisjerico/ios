@@ -16,7 +16,7 @@ fi
 
 
 # 随便改点东西（要是跟上个包一摸一样会提交不成功）
-echo "console.log('123');AppDefine.ocHelper.CodePushKey;AppDefine.ocHelper.CodePushKey;" >> js/rn/tmp.js
+echo "console.log($RANDOM);" >> js/rn/tmp.js
 
 
 #echo $PATH

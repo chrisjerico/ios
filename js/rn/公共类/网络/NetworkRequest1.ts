@@ -2,7 +2,8 @@ import CCSessionModel from './CCSessionModel';
 import AppDefine from '../AppDefine';
 import {UGPromoteListModel} from '../../Model/常规/UGPromoteModel';
 import {ParserOptions} from '@babel/core';
-import { UGAgentApplyInfo } from '../../Model/UGSysConfModel';
+import {UGAgentApplyInfo} from '../../Model/全局/UGSysConfModel';
+import UGUserModel, {UGLoginModel} from '../../Model/全局/UGUserModel';
 
 export default class NetworkRequest1 {
   // 获取下一期开奖数据
@@ -40,12 +41,27 @@ export default class NetworkRequest1 {
     return CCSessionModel.req('c=system&a=promotions');
   }
 
-  // 获取代理申请信息
+  // 获取代理申请信息（推荐收益）
   static team_agentApplyInfo(): Promise<UGAgentApplyInfo> {
     return CCSessionModel.req('c=team&a=agentApplyInfo');
   }
 
-  // 游客登录
+  // 获取用户信息（我的页）
+  static user_info(): Promise<UGUserModel> {
+    return CCSessionModel.req('c=user&a=info');
+  }
+
+  // 登录
+  static user_login(uname: string, pwd: string, googleCode?: string, ): Promise<UGLoginModel> {
+    return CCSessionModel.req('c=user&a=login', {usr: uname, pwd: pwd, ggCode: googleCode}, true);
+  }
+
+  // 退出登录
+  static user_logout(): Promise<void> {
+    return CCSessionModel.req('c=user&a=logout');
+  }
+
+  // 登录试玩账号
   static user_guestLogin(): Promise<void> {
     return CCSessionModel.req(
       'c=user&a=guestLogin',

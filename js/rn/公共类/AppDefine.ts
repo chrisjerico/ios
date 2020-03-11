@@ -96,7 +96,7 @@ export default class AppDefine {
       // 我的页（香槟金模板）
       pages.push({
         vcName: 'UGYYLotteryHomeViewController',
-        rnName: 'XBJMyVC',
+        rnName: 'XBJMineVC',
         tabbarItemPath: '/lotteryList',
         fd_prefersNavigationBarHidden: true,
         允许游客访问: true,

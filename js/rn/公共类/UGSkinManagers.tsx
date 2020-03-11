@@ -1,4 +1,4 @@
-import {SysConf1} from '../Model/UGSysConfModel';
+import {SysConf1} from '../Model/全局/UGSysConfModel';
 import AppDefine from './AppDefine';
 
 export default class UGSkinManagers {
