@@ -25,6 +25,7 @@ mv tmp.txt ug/Classes/Helper/FishUtility/define/AppDefine.m
 
 # 替换版本号
 /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $__Version" ug/Classes/Other/Info.plist
+/usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $__Version" ug/Classes/Other/Info.plist
 
 # 替换BundleId（修改project.pbxproj文件）
 sed "s/PRODUCT_BUNDLE_IDENTIFIER.*$/PRODUCT_BUNDLE_IDENTIFIER = $__BundleId;/g" UGBWApp.xcodeproj/project.pbxproj > tmp.txt
