@@ -1915,6 +1915,7 @@
 		D4463AC223A773F9008EF03D /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D4463AC123A773F9008EF03D /* libz.tbd */; };
 		D4463AC423A77404008EF03D /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4463AC323A77404008EF03D /* UserNotifications.framework */; };
 		D4463AC623A7740E008EF03D /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D4463AC523A7740E008EF03D /* libresolv.tbd */; };
+		D4486C1E241A545A00E5CCEA /* RoomChatModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4486C1D241A545A00E5CCEA /* RoomChatModel.m */; };
 		D451A46623F538B000CD0E36 /* JYGameCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D451A46523F538B000CD0E36 /* JYGameCollectionViewCell.m */; };
 		D451A46923F538D800CD0E36 /* JYGameCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D451A46823F538D700CD0E36 /* JYGameCollectionViewCell.xib */; };
 		D451A47C23F6667E00CD0E36 /* JYMineCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D451A47B23F6667E00CD0E36 /* JYMineCollectionViewCell.m */; };
@@ -3745,6 +3746,8 @@
 		D4463AC123A773F9008EF03D /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		D4463AC323A77404008EF03D /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		D4463AC523A7740E008EF03D /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
+		D4486C1C241A545A00E5CCEA /* RoomChatModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomChatModel.h; sourceTree = "<group>"; };
+		D4486C1D241A545A00E5CCEA /* RoomChatModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomChatModel.m; sourceTree = "<group>"; };
 		D451A46423F538B000CD0E36 /* JYGameCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JYGameCollectionViewCell.h; sourceTree = "<group>"; };
 		D451A46523F538B000CD0E36 /* JYGameCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JYGameCollectionViewCell.m; sourceTree = "<group>"; };
 		D451A46823F538D700CD0E36 /* JYGameCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JYGameCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -5894,6 +5897,8 @@
 				031E177923BE812500B0F813 /* UGChatViewController.m */,
 				D4F0411823C86A6A0070D2B5 /* RememberPass.h */,
 				D4F0411923C86A6A0070D2B5 /* RememberPass.m */,
+				D4486C1C241A545A00E5CCEA /* RoomChatModel.h */,
+				D4486C1D241A545A00E5CCEA /* RoomChatModel.m */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -9622,6 +9627,7 @@
 				031E1CFC23BE812A00B0F813 /* AFURLRequestSerialization.m in Sources */,
 				031E1C0023BE812900B0F813 /* UGYYLotterySecondHomeViewController.m in Sources */,
 				031E1AFC23BE812800B0F813 /* UIView+Extension.m in Sources */,
+				D4486C1E241A545A00E5CCEA /* RoomChatModel.m in Sources */,
 				031E1BDE23BE812900B0F813 /* UGLotterySelectController.m in Sources */,
 				031E1B1023BE812800B0F813 /* UGLotteryRecordController.m in Sources */,
 				D4F0411723C868E20070D2B5 /* WHC_ModelSqlite.m in Sources */,

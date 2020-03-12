@@ -19,6 +19,7 @@
 #import "UGbetModel.h"
 
 #import "RememberPass.h"
+#import "RoomChatModel.h"
 #import "WHC_ModelSqlite.h"
 
 @interface UGCommonLotteryController ()
@@ -41,7 +42,7 @@
 
 @property (nonatomic, strong) UILabel *mLabel;                  /**<    */
 
-@property (nonatomic, strong) NSMutableArray *chatAry ;         /**<   聊天室数据*/
+@property (nonatomic, strong) NSArray *chatAry ;         /**<   聊天室数据*/
 
 @property (nonatomic, strong) NSMutableDictionary *jsDic ;         /**<   分享数据*/
 @end
@@ -287,7 +288,7 @@
                 else{
                     cell.backgroundColor = selected ? [[UIColor whiteColor] colorWithAlphaComponent:0.25] : [UIColor clearColor];
                 }
-     
+                
                 NSLog(@"Skin1.skitString = %@",Skin1.skitString);
                 
                 NSLog(@"Skin1.is23 = %d",Skin1.is23);
@@ -308,11 +309,19 @@
                         NSMutableArray *chatIdAry = [NSMutableArray new];
                         NSMutableArray *typeIdAry = [NSMutableArray new];
                         NSMutableArray<UGChatRoomModel *> *chatRoomAry = [NSMutableArray new];
-                        NSArray * chatAry = [data objectForKey:@"chatAry"];
+                        
+                        NSArray * roomAry =[RoomChatModel mj_objectArrayWithKeyValuesArray:[data objectForKey:@"chatAry"]];
+                        
+                        NSArray *chatAry = [roomAry sortedArrayUsingComparator:^NSComparisonResult(RoomChatModel *p1, RoomChatModel *p2){
+                            //对数组进行排序（升序）
+                            return p1.sortId > p2.sortId;
+                            //对数组进行排序（降序）
+                            // return [p2.dateOfBirth compare:p1.dateOfBirth];
+                        }];
                         for (int i = 0; i< chatAry.count; i++) {
-                            NSDictionary *dic =  [chatAry objectAtIndex:i];
-                            [chatIdAry addObject:[dic objectForKey:@"roomId"]];
-                            [typeIdAry addObject:[dic objectForKey:@"typeId"]];
+                            RoomChatModel *dic =  [chatAry objectAtIndex:i];
+                            [chatIdAry addObject:dic.roomId];
+                            [typeIdAry addObject:dic.typeId];
                             [chatRoomAry addObject: [UGChatRoomModel mj_objectWithKeyValues:dic]];
                             
                         }
@@ -378,7 +387,7 @@
         }];
         [self.view layoutIfNeeded];
         ssv1.selectedIndex = self.selectChat;
-       
+        
     }
 }
 
@@ -399,14 +408,24 @@
             NSMutableArray *chatTitleAry = [NSMutableArray new];
             NSMutableArray *typeIdAry = [NSMutableArray new];
             NSMutableArray<UGChatRoomModel *> *chatRoomAry = [NSMutableArray new];
-            __self.chatAry = [data objectForKey:@"chatAry"];
+            //            __self.chatAry = [data objectForKey:@"chatAry"];
+            NSArray * roomAry =[RoomChatModel mj_objectArrayWithKeyValuesArray:[data objectForKey:@"chatAry"]];
+            
+            __self.chatAry = [roomAry sortedArrayUsingComparator:^NSComparisonResult(RoomChatModel *p1, RoomChatModel *p2){
+                //对数组进行排序（升序）
+                return p1.sortId > p2.sortId;
+                //对数组进行排序（降序）
+                // return [p2.dateOfBirth compare:p1.dateOfBirth];
+            }];
             for (int i = 0; i< __self.chatAry.count; i++) {
-                NSDictionary *dic =  [__self.chatAry objectAtIndex:i];
-                [chatIdAry addObject:[dic objectForKey:@"roomId"]];
-                [chatTitleAry addObject:[dic objectForKey:@"roomName"]];
-                [typeIdAry addObject:[dic objectForKey:@"typeId"]];
+                RoomChatModel *dic =  [__self.chatAry objectAtIndex:i];
+                [chatIdAry addObject:dic.roomId];
+                [chatTitleAry addObject:dic.roomName];
+                [typeIdAry addObject:dic.typeId];
                 [chatRoomAry addObject: [UGChatRoomModel mj_objectWithKeyValues:dic]];
             }
+            
+            NSArray *chat2Ary = [RoomChatModel mj_keyValuesArrayWithObjectArray:__self.chatAry];
             //                             NSLog(@"chatIdAry = %@",chatIdAry);
             SysConf.typeIdAry = typeIdAry;
             SysConf.chatRoomAry = chatRoomAry;
@@ -417,7 +436,7 @@
             for (NSString *key in chatTitleAry) {
                 [ac setActionAtTitle:key handler:^(UIAlertAction *aa) {
                     
-                    NSDictionary *dic = [__self.chatAry objectWithValue:key keyPath:@"roomName"];
+                    NSDictionary *dic = [chat2Ary objectWithValue:key keyPath:@"roomName"];
                     NSString *pass =  [dic objectForKey:@"password"];
                     NSString *chatId = [dic objectForKey:@"roomId"];
                     if ([CMCommon stringIsNull:chatId]) {

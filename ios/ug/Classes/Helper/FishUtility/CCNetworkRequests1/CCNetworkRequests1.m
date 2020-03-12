@@ -101,6 +101,7 @@
 - (CCSessionModel *)req:(NSString *)pathComponent :(NSDictionary *)params :(BOOL)isPOST {
     NSString *host = APP.Host;
     NSString *string = [host stringByAppendingPathComponent:pathComponent];
+    NSLog(@"token = %@",UserI.sessid);
 
     return [self sendRequest:string params:params isPOST:isPOST];
 }

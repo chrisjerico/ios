@@ -96,7 +96,7 @@
 #import "UGYYPlatformGames.h"
 #import "UGhomeAdsModel.h"
 #import "UGChatRoomModel.h"
-
+ #import "RoomChatModel.h"
 // Tools
 #import "UIImageView+WebCache.h"
 #import "CMCommon.h"
@@ -1288,7 +1288,10 @@
 - (void)chatgetToken {
     
     {//得到线上配置的聊天室
-        NSDictionary *params = @{@"t":[NSString stringWithFormat:@"%ld",(long)[CMTimeCommon getNowTimestamp]]};
+        NSDictionary *params = @{@"t":[NSString stringWithFormat:@"%ld",(long)[CMTimeCommon getNowTimestamp]],
+                                 @"token":[UGUserModel currentUser].sessid
+        };
+        NSLog(@"token = %@",[UGUserModel currentUser].sessid);
         [CMNetwork chatgetTokenWithParams:params completion:^(CMResult<id> *model, NSError *err) {
             [CMResult processWithResult:model success:^{
                 NSLog(@"model.data = %@",model.data);
@@ -1296,11 +1299,21 @@
                 NSMutableArray *chatIdAry = [NSMutableArray new];
                 NSMutableArray *typeIdAry = [NSMutableArray new];
                 NSMutableArray<UGChatRoomModel *> *chatRoomAry = [NSMutableArray new];
-                NSArray * chatAry = [data objectForKey:@"chatAry"];
+//                NSArray * chatAry = [data objectForKey:@"chatAry"];
+                
+                NSArray * roomAry =[RoomChatModel mj_objectArrayWithKeyValuesArray:[data objectForKey:@"chatAry"]];
+                
+                NSArray *chatAry = [roomAry sortedArrayUsingComparator:^NSComparisonResult(RoomChatModel *p1, RoomChatModel *p2){
+                //对数组进行排序（升序）
+                    return p1.sortId > p2.sortId;
+                //对数组进行排序（降序）
+                // return [p2.dateOfBirth compare:p1.dateOfBirth];
+                }];
+                
                 for (int i = 0; i< chatAry.count; i++) {
-                    NSDictionary *dic =  [chatAry objectAtIndex:i];
-                    [chatIdAry addObject:[dic objectForKey:@"roomId"]];
-                    [typeIdAry addObject:[dic objectForKey:@"typeId"]];
+                    RoomChatModel *dic =  [chatAry objectAtIndex:i];
+                    [chatIdAry addObject:dic.roomId];
+                    [typeIdAry addObject:dic.typeId];
                     [chatRoomAry addObject: [UGChatRoomModel mj_objectWithKeyValues:dic]];
                     
                 }

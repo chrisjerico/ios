@@ -12,7 +12,7 @@
 #import "CCNetworkRequests1+UG.h"
 #import "RememberPass.h"
 #import "WHC_ModelSqlite.h"
-
+#import "RoomChatModel.h"
 @interface UGChatViewController ()
 @property (nonatomic) UIButton *closeBtn;
 @end
@@ -234,17 +234,25 @@
         if (!sm.error) {
             NSLog(@"model.data = %@",sm.responseObject[@"data"]);
             NSDictionary *data = (NSDictionary *)sm.responseObject[@"data"];
-            NSMutableArray *chatAry = [NSMutableArray new];
+            NSArray *chatAry = [NSArray new];
             NSMutableArray *chatIdAry = [NSMutableArray new];
             NSMutableArray *chatTitleAry = [NSMutableArray new];
             NSMutableArray *typeIdAry = [NSMutableArray new];
             NSMutableArray<UGChatRoomModel *> *chatRoomAry = [NSMutableArray new];
-            chatAry = [data objectForKey:@"chatAry"];
+//            chatAry = [data objectForKey:@"chatAry"];
+            NSArray * roomAry =[RoomChatModel mj_objectArrayWithKeyValuesArray:[data objectForKey:@"chatAry"]];
+            
+            chatAry = [roomAry sortedArrayUsingComparator:^NSComparisonResult(RoomChatModel *p1, RoomChatModel *p2){
+                //对数组进行排序（升序）
+                return p1.sortId > p2.sortId;
+                //对数组进行排序（降序）
+                // return [p2.dateOfBirth compare:p1.dateOfBirth];
+            }];
             for (int i = 0; i< chatAry.count; i++) {
-                NSDictionary *dic =  [chatAry objectAtIndex:i];
-                [chatIdAry addObject:[dic objectForKey:@"roomId"]];
-                [chatTitleAry addObject:[dic objectForKey:@"roomName"]];
-                [typeIdAry addObject:[dic objectForKey:@"typeId"]];
+                RoomChatModel *dic =  [chatAry objectAtIndex:i];
+                [chatIdAry addObject:dic.roomId];
+                [chatTitleAry addObject:dic.roomName];
+                [typeIdAry addObject:dic.typeId];
                 [chatRoomAry addObject: [UGChatRoomModel mj_objectWithKeyValues:dic]];
             }
             //                             NSLog(@"chatIdAry = %@",chatIdAry);
@@ -253,11 +261,12 @@
             NSLog(@"SysConf.chatRoomAry = %@",SysConf.chatRoomAry);
             //            SysConf.chatRoomAry = chatAry;
             
+            NSArray *chat2Ary = [RoomChatModel mj_keyValuesArrayWithObjectArray:chatAry];
             UIAlertController *ac = [AlertHelper showAlertView:nil msg:@"请选择要切换的聊天室" btnTitles:[chatTitleAry arrayByAddingObject:@"取消"]];
             for (NSString *key in chatTitleAry) {
                 [ac setActionAtTitle:key handler:^(UIAlertAction *aa) {
                     
-                    NSDictionary *dic = [chatAry objectWithValue:key keyPath:@"roomName"];
+                    NSDictionary *dic = [chat2Ary objectWithValue:key keyPath:@"roomName"];
                     NSString *pass =  [dic objectForKey:@"password"];
                     NSString *chatId = [dic objectForKey:@"roomId"];
                     if ([CMCommon stringIsNull:chatId]) {
