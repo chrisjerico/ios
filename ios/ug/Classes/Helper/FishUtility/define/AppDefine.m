@@ -375,7 +375,7 @@
 }
 
 - (BOOL)addIcons {
-    return [@"c190" containsString:_SiteId];
+    return [@"c190,c134" containsString:_SiteId];
 }
 
 - (BOOL)lotteryHallCustomImgS {
