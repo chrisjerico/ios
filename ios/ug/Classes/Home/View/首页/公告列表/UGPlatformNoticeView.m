@@ -158,8 +158,10 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
         }
 
         wv.scrollView.contentSize = CGSizeMake(100, __nm.cellHeight);
-        if ([@"c200" containsString:APP.SiteId]) {
-            [wv loadHTMLString:_NSString(@"<head><style>p{margin:0}img{width:auto !important;max-width:100%%;height:auto !important}</style></head>%@", __nm.content) baseURL:nil];
+        if ([@"c200,c190" containsString:APP.SiteId]) {
+            [wv loadHTMLString:_NSString(@"<head><style>p{margin:0;padding:0}img{width:auto !important;max-width:100%%;height:auto !important}</style></head>%@", __nm.content) baseURL:nil];
+            
+            NSLog(@"__nm.content =%@",__nm.content);
         } else {
             [wv loadHTMLString:[APP htmlStyleString:__nm.content] baseURL:nil];
         }
