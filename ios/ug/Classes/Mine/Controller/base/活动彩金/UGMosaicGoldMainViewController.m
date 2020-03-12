@@ -83,6 +83,7 @@
     params = @{@"token":[UGUserModel currentUser].sessid,
                @"page":@"1",
                @"rows":@"1000",
+               @"category":@"0",//0 那就是 筛选除了未分类的其他所有数据
                
     };
     
@@ -148,7 +149,7 @@
             if (![CMCommon arryIsNull:weakSelf.disArray]) {
                  [weakSelf.itemArray addObject:@"全部"];
                 UGMosaicGoldController * realView  = [[UGMosaicGoldController alloc] initWithStyle:UITableViewStyleGrouped]; ;
-                realView.typeid = @"0";
+                realView.typeid = @"";
                 [weakSelf.viewsArray addObject:realView];
                 
 

@@ -532,6 +532,9 @@
         self.gameTypeView.gameItemSelectBlock = ^(GameModel * _Nonnull game) {
             [NavController1 pushViewControllerWithGameModel:game];
         };
+        
+        [self.bottomView setHidden:APP.isHideFoot];
+        
     }
     
     // 红包事件

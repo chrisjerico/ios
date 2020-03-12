@@ -181,6 +181,17 @@
 #pragma mark - 定制样式
 
 
+- (BOOL)isGPKDeposit {
+     return [@"c105b" containsString:_SiteId];
+}
+
+- (BOOL)isHideFoot {
+    if (Skin1.isBlack) {
+         return [@"c105b" containsString:_SiteId];
+    }
+    return false;
+}
+
 - (BOOL)isTextWhite {
      return [@"a002" containsString:_SiteId];
 }

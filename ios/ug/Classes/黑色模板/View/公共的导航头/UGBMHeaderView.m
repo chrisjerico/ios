@@ -12,7 +12,7 @@
 #import "UGBMLoginViewController.h"
 #import "UGBMRegisterViewController.h"
 #import "UGBMBrowseViewController.h"
-
+#import "UGFundsViewController.h"
 @interface UGBMHeaderView ()<UUMarqueeViewDelegate>
 
 @end
@@ -105,7 +105,11 @@
     FastSubViewCode(self);
     if (UGLoginIsAuthorized()) {//已经登录
         [subButton(@"按钮1") setTitle:@"会员中心" forState:(UIControlStateNormal)];
-        [subButton(@"按钮2") setTitle:@"最近浏览" forState:(UIControlStateNormal)];
+        if (APP.isGPKDeposit) {
+             [subButton(@"按钮2") setTitle:@"存取款" forState:(UIControlStateNormal)];
+        } else {
+             [subButton(@"按钮2") setTitle:@"最近浏览" forState:(UIControlStateNormal)];
+        }
         [subButton(@"按钮1") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
         [subButton(@"按钮1") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
             // 会员中心
@@ -118,13 +122,25 @@
         }];
         [subButton(@"按钮2") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
         [subButton(@"按钮2") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-            //最近浏览
-            UIViewController *vc = [NavController1.viewControllers objectWithValue:UGBMBrowseViewController.class keyPath:@"class"];
-            if (vc) {
-                [NavController1 popToViewController:vc animated:false];
+
+            if (APP.isGPKDeposit) {
+                //资金管理
+                UIViewController *vc = [NavController1.viewControllers objectWithValue:UGFundsViewController.class keyPath:@"class"];
+                if (vc) {
+                    [NavController1 popToViewController:vc animated:false];
+                } else {
+                    [NavController1 pushViewController:[UGFundsViewController new] animated:false];
+                }
             } else {
-                [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGBMBrowseViewController") animated:false];
+                //最近浏览
+                UIViewController *vc = [NavController1.viewControllers objectWithValue:UGBMBrowseViewController.class keyPath:@"class"];
+                if (vc) {
+                    [NavController1 popToViewController:vc animated:false];
+                } else {
+                    [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGBMBrowseViewController") animated:false];
+                }
             }
+           
         }];
     }
     else{

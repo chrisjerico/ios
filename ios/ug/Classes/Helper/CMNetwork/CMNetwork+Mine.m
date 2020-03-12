@@ -980,6 +980,7 @@
 
 
 //获取申请活动彩金记录 http://test10.6yc.com/wjapp/api.php?c=activity&a=applyWinLog&token=2OMm3aqQ46wX84Axb9o7wb29
+//category 这个参数 你传了id 那就是 某个类型筛选; 传了0 那就是 筛选除了未分类的其他所有数据 ;不传 那就是全部数据包括未分类
 + (void)activityApplyWinLogWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
     CMMETHOD_BEGIN;
     [self.manager requestInMainThreadWithMethod:[activityApplyWinLogUrl stringToRestfulUrlWithFlag:RESTFUL]

@@ -72,7 +72,8 @@
 @property (nonatomic) BOOL isTabHot;                               /**< tab聊天室+红包动画*/
 @property (nonatomic) BOOL isTabMassageBadge;                      /**< 底部导航栏【站内信】收到新的站内信时，添加提示功能 */
 @property (nonatomic) BOOL isTextWhite;                            /**< 投注页面封盘时间字体颜色需要调整为白色 */
-
+@property (nonatomic) BOOL isHideFoot;                             /**< 首页面手机端标记处去除  */
+@property (nonatomic) BOOL isGPKDeposit;                            /**< GPK版右上角最近浏览改为 存取款  */
 // 热更新相关字段
                                                    
 @property (nonatomic) BOOL Test;                        /**<   是否是测试环境 */
