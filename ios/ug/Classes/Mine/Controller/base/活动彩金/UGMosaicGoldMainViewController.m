@@ -146,10 +146,10 @@
             }
             
             if (![CMCommon arryIsNull:weakSelf.disArray]) {
-//                 [weakSelf.itemArray addObject:@"全部"];
-//                UGMosaicGoldController * realView  = [[UGMosaicGoldController alloc] initWithStyle:UITableViewStyleGrouped]; ;
-//                realView.typeid = @"";
-//                [weakSelf.viewsArray addObject:realView];
+                 [weakSelf.itemArray addObject:@"全部"];
+                UGMosaicGoldController * realView  = [[UGMosaicGoldController alloc] initWithStyle:UITableViewStyleGrouped]; ;
+                realView.typeid = @"0";
+                [weakSelf.viewsArray addObject:realView];
                 
 
                 for (NSMutableDictionary *dd in weakSelf.disArray) {
