@@ -22,7 +22,8 @@
 	if (Skin1.isBlack) {
 		[self.contentView setBackgroundColor:Skin1.bgColor];
 		[self.titleLabel setTextColor:Skin1.textColor1];
-	} else {
+	}
+    else {
 		[self.contentView setBackgroundColor:[UIColor whiteColor]];
 		[self.titleLabel setTextColor:[UIColor blackColor]];
 	}

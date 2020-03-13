@@ -94,7 +94,7 @@ static NSString *__title = nil;
     self.fd_prefersNavigationBarHidden = NO;
     self.navigationItem.title = __title.length ? __title : @"任务中心";
 
-    self.userInfoView.backgroundColor = Skin1.navBarBgColor;
+    self.userInfoView.backgroundColor = Skin1.is23 ? RGBA(111, 111, 111, 1) : Skin1.navBarBgColor;
     self.avaterImageView.layer.cornerRadius = self.avaterImageView.height / 2 ;
     self.avaterImageView.layer.masksToBounds = YES;
     self.levelNameLabel.layer.cornerRadius = self.levelNameLabel.height / 2;
@@ -117,7 +117,8 @@ static NSString *__title = nil;
     if (Skin1.isBlack) {
         [_waveUImageV setHidden:YES];
         self.view.backgroundColor = Skin1.bgColor;
-    } else {
+    }
+    else {
         [_waveUImageV setHidden:NO];
         self.view.backgroundColor = [UIColor whiteColor];
     }

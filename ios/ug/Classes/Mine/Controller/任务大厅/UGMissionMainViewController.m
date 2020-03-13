@@ -23,7 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = Skin1.bgColor;
+    self.view.backgroundColor = Skin1.is23 ? RGBA(135 , 135 ,135, 1) : Skin1.bgColor;
     _itemArray =[NSMutableArray new];
     _viewsArray = [NSMutableArray new];
     _disArray = [NSMutableArray new];
@@ -148,7 +148,7 @@
     [self.slideSwitchView setUserInteractionEnabled:YES];
     self.slideSwitchView.segmentControlDelegate = self;
     //设置tab 颜色(可选)
-    self.slideSwitchView.tabItemNormalColor = Skin1.textColor1;
+    self.slideSwitchView.tabItemNormalColor = [UIColor blackColor];
     self.slideSwitchView.tabItemNormalFont = 13;
     //设置tab 被选中的颜色(可选)
     self.slideSwitchView.tabItemSelectedColor = RGBA(203, 43, 37, 1.0) ;

@@ -85,9 +85,11 @@
 @implementation UGMineSkinViewController
 
 - (void)skin {
-    [self.userInfoView setBackgroundColor: Skin1.navBarBgColor];
+   
+    [self.userInfoView setBackgroundColor:  Skin1.is23 ? RGBA(111, 111, 111, 1) : Skin1.navBarBgColor];
+   
     
-    [self.view setBackgroundColor: Skin1.bgColor];
+    [self.view setBackgroundColor: Skin1.is23 ? RGBA(135 , 135 ,135, 1) : Skin1.bgColor];
     
     [self.myCollectionView setBackgroundColor: Skin1.bgColor];
     _progressLayer.strokeColor = Skin1.progressBgColor.CGColor;
@@ -188,8 +190,8 @@
     
     
     //设置皮肤
-    [self.view setBackgroundColor:Skin1.bgColor];
-    [self.userInfoView setBackgroundColor: Skin1.navBarBgColor];
+    [self.view setBackgroundColor: Skin1.is23 ? RGBA(135 , 135 ,135, 1) : Skin1.bgColor];
+    [self.userInfoView setBackgroundColor: Skin1.is23 ? RGBA(111, 111, 111, 1) : Skin1.navBarBgColor];
     [self.topupView setBackgroundColor:Skin1.bgColor];
     
     skitType = Skin1.skitType;
@@ -336,8 +338,8 @@ BOOL isOk = NO;
         layout;
         
     });
-    
-    self.myCollectionView.backgroundColor = Skin1.bgColor;
+ 
+    self.myCollectionView.backgroundColor =    Skin1.is23 ? RGBA(135, 135, 135, 1) : Skin1.bgColor;
     self.myCollectionView.dataSource = self;
     self.myCollectionView.delegate = self;
     [self.myCollectionView registerNib:[UINib nibWithNibName:@"UGMineMenuCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UGMineMenuCollectionViewCell"];

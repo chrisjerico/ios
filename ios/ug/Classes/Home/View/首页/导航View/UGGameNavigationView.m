@@ -177,15 +177,14 @@
         _titleLabel = [UILabel new];
 
         [self setBackgroundColor:[UIColor clearColor]];
-        
         //        [_titleLabel setBackgroundColor:[UIColor redColor]];
         if (APP.isFontSystemSize) {
              _titleLabel.font = [UIFont systemFontOfSize:13];
-             _titleLabel.textColor = RGBA(117, 117, 117, 1);
         } else {
              _titleLabel.font = [UIFont boldSystemFontOfSize:13];
-             _titleLabel.textColor = Skin1.textColor1;
         }
+        
+         _titleLabel.textColor = Skin1.is23 ? [UIColor blackColor] : Skin1.textColor1;
        
         [self addSubview:_iconImage];
         [_iconImage mas_makeConstraints:^(MASConstraintMaker *make) {

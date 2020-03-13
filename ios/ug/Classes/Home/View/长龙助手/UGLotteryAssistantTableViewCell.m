@@ -50,7 +50,7 @@
     self.betView2.layer.borderColor = Skin1.textColor1.CGColor;
     self.betView2.layer.borderWidth = 0.7;
     
-    [_bgView setBackgroundColor:Skin1.textColor4];
+    [_bgView setBackgroundColor:Skin1.is23 ?RGBA(135 , 135 ,135, 1): Skin1.textColor4];
     _titleLabel.textColor = Skin1.textColor1;
     _issueLabel.textColor = Skin1.textColor1;
     _playNameLabel1.textColor = Skin1.textColor1;

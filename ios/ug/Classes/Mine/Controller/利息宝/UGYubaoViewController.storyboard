@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jz7-Dd-k0M">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jz7-Dd-k0M">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -458,6 +458,9 @@
                         <outlet property="animatedImageView" destination="p5V-IT-BwA" id="qNa-tj-gQS"/>
                         <outlet property="annualizedRateLabel" destination="RuL-Qv-0rn" id="9kJ-ZT-p1o"/>
                         <outlet property="balanceLabel" destination="yUb-NE-NXD" id="Ql5-Gx-lku"/>
+                        <outlet property="bg1View" destination="4hM-03-XTg" id="xlZ-ox-adn"/>
+                        <outlet property="bg2View" destination="0jT-SF-PnF" id="R88-xl-CM8"/>
+                        <outlet property="bg3View" destination="SMC-fp-jEA" id="sZc-o8-MNx"/>
                         <outlet property="bgView" destination="red-Xe-Qmb" id="Pq2-tV-xSM"/>
                         <outlet property="giftBalanceLabel" destination="LVP-4l-7uk" id="Hxf-Hx-Ymd"/>
                         <outlet property="imgButton" destination="qaY-mO-peB" id="ePn-70-keN"/>

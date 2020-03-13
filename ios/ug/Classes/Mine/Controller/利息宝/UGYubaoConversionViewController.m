@@ -50,8 +50,8 @@ static NSString *convertCellid = @"UGConvertCollectionViewCell";
 @implementation UGYubaoConversionViewController
 -(void)skin {
 	FastSubViewCode(self.view)
-	if (Skin1.isBlack) {
-		[self.view setBackgroundColor:Skin1.bgColor];
+    if (Skin1.isBlack||Skin1.is23) {
+        [self.view setBackgroundColor:Skin1.is23 ?RGBA(135 , 135 ,135, 1):Skin1.bgColor];
 		[subLabel(@"余额label") setTextColor:[UIColor lightGrayColor]];
 		[subLabel(@"利息宝余额label") setTextColor:[UIColor lightGrayColor]];
 		[subLabel(@"￥label") setTextColor:[UIColor whiteColor]];
@@ -104,6 +104,11 @@ static NSString *convertCellid = @"UGConvertCollectionViewCell";
         self.waveBotomView.backgroundColor =  Skin1.navBarBgColor;
         self.waveView.realWaveColor =  Skin1.navBarBgColor;
     }
+    else if(Skin1.is23) {
+        [_yyBgView setBackgroundColor:RGBA(111, 111, 111, 1)];
+        self.waveBotomView.backgroundColor =  RGBA(135 , 135 ,135, 1);
+        self.waveView.realWaveColor = RGBA(135 , 135 ,135, 1);
+    }
     else  {
         [_yyBgView setBackgroundColor:Skin1.bgColor];
         self.waveBotomView.backgroundColor =  Skin1.bgColor;
@@ -118,10 +123,7 @@ static NSString *convertCellid = @"UGConvertCollectionViewCell";
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-		[self skin];
-	});
-	[self skin];
+
 	self.title = @"利息宝";
 	self.submitButton.layer.cornerRadius = 5;
 	self.submitButton.layer.masksToBounds = YES;
@@ -143,6 +145,7 @@ static NSString *convertCellid = @"UGConvertCollectionViewCell";
 	[self.waveView startWaveAnimation];
 	
 	
+    [self skin];
 	[self setYyBgViewBgColor];
 	
 	

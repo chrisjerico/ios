@@ -44,6 +44,7 @@
 @property (nonatomic, strong) UGYuebaoInfoModel *infoModel;
 @property (weak, nonatomic) IBOutlet UIView *yyBgView;
 
+
 @end
 
 @implementation UGYubaoViewController
@@ -55,8 +56,8 @@
 	self.waveBotomView.backgroundColor =  Skin1.navBarBgColor;
 	self.waveView.realWaveColor =  Skin1.navBarBgColor;
 	FastSubViewCode(self.view)
-	if (Skin1.isBlack) {
-		[self.view setBackgroundColor:Skin1.bgColor];
+	if (Skin1.isBlack||Skin1.is23) {
+        [self.view setBackgroundColor:Skin1.is23 ?RGBA(135 , 135 ,135, 1):Skin1.bgColor];
 		[subLabel(@"本周收益label") setTextColor:[UIColor whiteColor]];
 		[subLabel(@"本月收益label") setTextColor:[UIColor whiteColor]];
 		[subLabel(@"总收益label") setTextColor:[UIColor whiteColor]];
@@ -106,7 +107,13 @@
 		[_yyBgView setBackgroundColor:Skin1.navBarBgColor];
 		self.waveBotomView.backgroundColor =  Skin1.navBarBgColor;
 		self.waveView.realWaveColor =  Skin1.navBarBgColor;
-	} else {
+	}
+    else if(Skin1.is23) {
+        [_yyBgView setBackgroundColor:RGBA(111, 111, 111, 1)];
+        self.waveBotomView.backgroundColor =  RGBA(135 , 135 ,135, 1);
+        self.waveView.realWaveColor = RGBA(135 , 135 ,135, 1);
+    }
+    else {
 		[_yyBgView setBackgroundColor:Skin1.bgColor];
 		self.waveBotomView.backgroundColor =  Skin1.bgColor;
 		self.waveView.realWaveColor =  Skin1.bgColor;
@@ -115,7 +122,7 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	//    self.fd_prefersNavigationBarHidden = YES;
-	[self skin];
+	
 	self.navigationItem.title = @"利息宝";
 	self.waveView = [[WavesView alloc] initWithFrame:self.waveBgView.bounds];
 	[self.waveBgView addSubview:self.waveView];
@@ -131,7 +138,7 @@
 	FLAnimatedImage *bgAnimateImage = [[FLAnimatedImage alloc] initWithAnimatedGIFData:gifData];
 	self.animatedImageView.animatedImage = bgAnimateImage;
 	self.animatedImageView.hidden = YES;
-	
+	[self skin];
 	[self setYYBgViewBgColor];
 	
 	

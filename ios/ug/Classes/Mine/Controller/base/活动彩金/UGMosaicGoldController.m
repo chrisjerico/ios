@@ -24,7 +24,7 @@
     [super viewDidLoad];
 
     
-    self.tableView.backgroundColor = Skin1.textColor4;
+    self.tableView.backgroundColor = Skin1.is23 ? RGBA(135 , 135 ,135, 1) :Skin1.textColor4;
     self.tableView.estimatedRowHeight = 0;
     self.tableView.estimatedSectionHeaderHeight = 0;
     self.tableView.estimatedSectionFooterHeight = 0;

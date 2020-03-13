@@ -24,7 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-      self.view.backgroundColor = Skin1.bgColor;
+      self.view.backgroundColor = Skin1.is23 ? RGBA(135 , 135 ,135, 1) : Skin1.bgColor;
 
     [self dataArryInit];
     [self getSystemConfig];
@@ -40,6 +40,7 @@
 - (void)rootLoadData {
 
     NSLog(@"switchShowActivityCategory =%d",SysConf.switchShowActivityCategory);
+//    SysConf.switchShowActivityCategory = 1;
     if (SysConf.switchShowActivityCategory) {
              [self getCenterData];
          }
@@ -192,7 +193,18 @@
     //设置tab 被选中的颜色(可选)
     self.slideSwitchView.tabItemSelectedColor = RGBA(203, 43, 37, 1.0) ;
     //设置tab 背景颜色(可选)
-    self.slideSwitchView.tabItemNormalBackgroundColor = Skin1.isBlack||Skin1.is23 ? Skin1.textColor4:[UIColor whiteColor];
+    UIColor *bg;
+    if (Skin1.isBlack) {
+        bg = Skin1.textColor4;
+    }
+    else if(Skin1.is23){
+         bg = RGBA(135 , 135 ,135, 1);
+    }
+    else {
+        bg = [UIColor whiteColor];
+    }
+
+    self.slideSwitchView.tabItemNormalBackgroundColor = bg;
     //设置tab 被选中的标识的颜色(可选)
     self.slideSwitchView.tabItemSelectionIndicatorColor = RGBA(203, 43, 37, 1.0) ;
     //设置tab 被选中标识的风格

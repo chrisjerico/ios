@@ -38,6 +38,9 @@
         [_title2Label setFont:[UIFont systemFontOfSize:13]];
 
     }
+    if (Skin1.is23) {
+         _titleLabel.textColor = [UIColor blackColor];
+    }
 }
 
 - (void)setItem:(GameCategoryModel *)item {
@@ -68,6 +71,10 @@
              [CMCommon setBorderWithView:self top:NO left:NO bottom:YES right:NO borderColor:UIColor.whiteColor  borderWidth:1];
         }
        
+    }
+    if (Skin1.is23) {
+        _titleLabel.textColor = selected ?  UIColor.redColor : [UIColor blackColor];
+
     }
 }
 

@@ -46,7 +46,8 @@ static NSString *missionCellid = @"missionCellid";
         
         if (Skin1.isBlack) {
             [self setBackgroundColor: [UIColor clearColor]];
-        } else {
+        }
+        else {
             [self setBackgroundColor: [UIColor whiteColor]];
         }
 

@@ -34,7 +34,7 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"长龙助手";
-    self.view.backgroundColor = Skin1.bgColor;
+    self.view.backgroundColor = Skin1.is23 ? RGBA(135 , 135 ,135, 1) : Skin1.bgColor;
     
     SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
         STButton *button = (STButton *)self.rightItem1.customView;
@@ -79,7 +79,7 @@
     //设置tab 被选中的颜色(可选)
     self.slideSwitchView.tabItemSelectedColor = Skin1.textColor1;
     //设置tab 背景颜色(可选)
-    self.slideSwitchView.tabItemNormalBackgroundColor = Skin1.textColor4;
+    self.slideSwitchView.tabItemNormalBackgroundColor = Skin1.is23 ? RGBA(111, 111, 111, 1) :Skin1.textColor4;
     //设置tab 被选中的标识的颜色(可选)
     self.slideSwitchView.tabItemSelectionIndicatorColor = Skin1.textColor1;
     [self.view addSubview:self.slideSwitchView];

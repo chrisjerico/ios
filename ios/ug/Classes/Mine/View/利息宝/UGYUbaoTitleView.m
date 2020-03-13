@@ -24,7 +24,7 @@
        self.progressView.pathFillColor = UGRGBColor(255, 255, 255);
        self.progressView.progress = 1;
        self.progressView.progressLabel.text = @"60";
-       self.progressView.progressLabel.textColor = [UIColor blackColor];
+       self.progressView.progressLabel.textColor = Skin1.textColor1;
        self.progressView.duration = 0;
        self.progressView.increaseFromLast = YES;
   
