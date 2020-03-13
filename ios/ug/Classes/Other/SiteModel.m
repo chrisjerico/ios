@@ -167,7 +167,7 @@
             site(@"c197",        @"c197hy",     @"175",     @"io.fhpt.H52622B1F",       @"https://tycgw3.com",                          @"企业包",     @"太阳城官⽹"),
             site(@"c198",        @"c198hy",     @"185",     @"io.fhpt.H53E43223",       @"https://2909tycjt.com",                       @"企业包",     @"太阳城集团"),
             site(@"h003a",       @"",           @"",        @"io.fhpt.H554013D2",       @"",                                            @"企业包",     @"澳⻔威尼斯⼈"),
-            site(@"c008",        @"c008hy",     @"217",     @"io.fhpt.YSFC008",         @"https://888123app.com",                       @"越狱包",     @"888"),//极光 bghguiyg@163.com qwe5794124A
+            site(@"c008",        @"c008hy",     @"217",     @"io.fhpt.YSFC008",         @"https://888123app.com",                       @"企业包",     @"888"),//极光 bghguiyg@163.com qwe5794124A
             site(@"c130",        @"",           @"",        @"io.fhpt.H5A94011E",       @"",                                            @"企业包",     @"必发彩票"),
             site(@"c136",        @"",           @"",        @"io.fhpt.H5F60C8D2",       @"",                                            @"企业包",     @"⻓诚彩票"),
             site(@"c199",        @"c199hy",     @"220",     @"io.fhpt.YSAC199",         @"https://yhfhapp.com",                         @"企业包",     @"银河贵宾会"),//https://9587zz.com
