@@ -90,23 +90,23 @@
         || [paymentid isEqualToString:@"xlsm_transfer"]
         || [paymentid isEqualToString:@"zhifubao_transfer"]
         || [paymentid isEqualToString:@"wechat_transfer"]) {
-         self.name1Label.text = @"收款姓名：";
+         self.name1Label.text = @"银行名称：";
          self.name2Label.text = @"收款账号：";
-         self.name3Label.text = @"银行名称：";
+         self.name3Label.text = @"收款姓名：";
          self.name4Label.text = @"支行名称：";
-         self.remark1Label.text = item.domain;
+         self.remark1Label.text = item.address;
          self.remark2Label.text = item.account;
-         self.remark3Label.text = item.address;
+         self.remark3Label.text = item.domain;
          self.remark4Label.text = item.branchAddress;
     }
     else {
-        self.name1Label.text = @"收款姓名：";
+        self.name1Label.text = @"银行名称：";
         self.name2Label.text = @"银行账户：";
-        self.name3Label.text = @"银行名称：";
+        self.name3Label.text = @"收款姓名：";
         self.name4Label.text = @"开户地址：";
-        self.remark1Label.text = item.domain;
+        self.remark1Label.text = item.address;
         self.remark2Label.text = item.account;
-        self.remark3Label.text = item.address;
+        self.remark3Label.text = item.domain;
         self.remark4Label.text = item.branchAddress;
     }
 }
