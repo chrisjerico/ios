@@ -288,14 +288,14 @@
             <objects>
                 <viewController storyboardIdentifier="UGRegisterViewController" id="blf-Ei-b2L" customClass="UGRegisterViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="he4-LA-LLa">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1500"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="1100"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PzT-tK-eCK">
-                                <rect key="frame" x="0.0" y="94" width="414" height="1372"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PzT-tK-eCK">
+                                <rect key="frame" x="0.0" y="94" width="414" height="1000"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bzD-qo-3Cd">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1380"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dm8-aM-Nvq">
                                                 <rect key="frame" x="20" y="10" width="374" height="50"/>
@@ -936,7 +936,7 @@
                                             <constraint firstItem="dm8-aM-Nvq" firstAttribute="top" secondItem="bzD-qo-3Cd" secondAttribute="top" constant="10" id="g6I-Sm-4Yd"/>
                                             <constraint firstItem="09s-xF-Lfa" firstAttribute="trailing" secondItem="dm8-aM-Nvq" secondAttribute="trailing" id="g6w-2r-OBm"/>
                                             <constraint firstAttribute="trailing" secondItem="Eti-fw-WHI" secondAttribute="trailing" constant="30" id="gbj-Xl-EVf"/>
-                                            <constraint firstAttribute="height" constant="1380" id="gzd-9L-BZi"/>
+                                            <constraint firstAttribute="height" constant="1000" id="gzd-9L-BZi"/>
                                             <constraint firstItem="G6e-aH-9Zt" firstAttribute="trailing" secondItem="dm8-aM-Nvq" secondAttribute="trailing" id="jhf-u1-IeM"/>
                                             <constraint firstAttribute="trailing" secondItem="dm8-aM-Nvq" secondAttribute="trailing" constant="20" id="k4W-8y-Abg"/>
                                             <constraint firstItem="0iL-pK-9eb" firstAttribute="top" secondItem="GFK-I5-qgq" secondAttribute="bottom" constant="14" id="kEU-Df-bYw"/>
@@ -988,7 +988,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="47U-AO-Jqj"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="414" height="1500"/>
+                    <size key="freeformSize" width="414" height="1100"/>
                     <connections>
                         <outlet property="QQTextF" destination="Cu6-Z8-XBS" id="tLJ-JO-jQD"/>
                         <outlet property="btn_c49goHome" destination="kLL-w7-OVs" id="EnQ-5O-ydx"/>
