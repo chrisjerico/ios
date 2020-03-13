@@ -67,7 +67,16 @@
             oc.name = @"jslhc";
             oc.title = @"分分六合彩";
             _nim = oc;
-        } else {
+        }
+       else if ([@"c208" containsString:APP.SiteId]) {
+                UGNextIssueModel * oc = [UGNextIssueModel new];
+                oc.gameId = @"78";
+                oc.gameType = @"lhc";
+                oc.name = @"lhc";
+                oc.title = @"一分六合彩";
+                _nim = oc;
+        }
+        else {
             UGNextIssueModel * oc = [UGNextIssueModel new];
             oc.gameId = @"70";
             oc.gameType = @"lhc";
