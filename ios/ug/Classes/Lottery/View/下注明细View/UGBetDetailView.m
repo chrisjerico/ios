@@ -83,6 +83,8 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 			[self hiddenSelf];
 		});
         
+        [self getSystemConfig];     // APP配置信息
+        
         #pragma mark -键盘弹出添加监听事件
         // 键盘出现的通知
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
@@ -90,6 +92,27 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHiden:) name:UIKeyboardWillHideNotification object:nil];
 	}
 	return self;
+}
+
+// 获取系统配置
+- (void)getSystemConfig {
+    [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            
+            NSLog(@"model = %@",model);
+            FastSubViewCode(self);
+            UGSystemConfigModel *config = model.data;
+            UGSystemConfigModel.currentConfig = config;
+            if (SysConf.betAmountIsDecimal  == 1) {//betAmountIsDecimal  1=允许小数点，0=不允许，以前默认是允许投注金额带小数点的，默认为1
+                [subTextView(@"下注TxtF") set仅数字:false];
+                [subTextView(@"下注TxtF") set仅数字含小数:true];
+            } else {
+                [subTextView(@"下注TxtF") set仅数字:true];
+            }
+        } failure:^(id msg) {
+            [SVProgressHUD showErrorWithStatus:msg];
+        }];
+    }];
 }
 
 - (IBAction)cancelClick:(id)sender {

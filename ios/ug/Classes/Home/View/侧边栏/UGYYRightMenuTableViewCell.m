@@ -41,7 +41,7 @@
 
     UIImage *image = [UIImage imageNamed:imageName];
     UIImage *afterImage;
-    if (Skin1.isBlack) {
+    if (Skin1.isBlack||Skin1.is23) {
         afterImage = [image qmui_imageWithTintColor:Skin1.textColor1];
     } else {
         afterImage = [image qmui_imageWithTintColor:Skin1.navBarBgColor];

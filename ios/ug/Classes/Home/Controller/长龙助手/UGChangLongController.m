@@ -36,6 +36,8 @@
     self.navigationItem.title = @"长龙助手";
     self.view.backgroundColor = Skin1.is23 ? RGBA(135 , 135 ,135, 1) : Skin1.bgColor;
     
+    [self getSystemConfig];     // APP配置信息
+    
     SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
         STButton *button = (STButton *)self.rightItem1.customView;
         [button.imageView.layer removeAllAnimations];
@@ -56,6 +58,27 @@
     [super viewDidLayoutSubviews];
     if (OBJOnceToken(self))
         [self buildSegment];
+}
+
+// 获取系统配置
+- (void)getSystemConfig {
+    [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            
+            NSLog(@"model = %@",model);
+            FastSubViewCode(self.view);
+            UGSystemConfigModel *config = model.data;
+            UGSystemConfigModel.currentConfig = config;
+            if (SysConf.betAmountIsDecimal  == 1) {//betAmountIsDecimal  1=允许小数点，0=不允许，以前默认是允许投注金额带小数点的，默认为1
+                [subTextView(@"下注TxtF") set仅数字:false];
+                [subTextView(@"下注TxtF") set仅数字含小数:true];
+            } else {
+                [subTextView(@"下注TxtF") set仅数字:true];
+            }
+        } failure:^(id msg) {
+            [SVProgressHUD showErrorWithStatus:msg];
+        }];
+    }];
 }
 
 

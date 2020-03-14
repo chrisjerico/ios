@@ -33,6 +33,13 @@
 	label.text = @" 元 ";
 	self.amountField.rightView = label;
 	self.amountField.rightViewMode = UITextFieldViewModeAlways;
+    
+    if (SysConf.betAmountIsDecimal  == 1) {//betAmountIsDecimal  1=允许小数点，0=不允许，以前默认是允许投注金额带小数点的，默认为1
+        [self.amountField set仅数字:false];
+        [self.amountField set仅数字含小数:true];
+    } else {
+        [self.amountField set仅数字:true];
+    }
 }
 
 - (IBAction)delectClick:(id)sender {

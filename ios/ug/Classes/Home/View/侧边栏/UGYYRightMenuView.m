@@ -373,7 +373,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
 }
 
 - (void)show {
-    if (Skin1.isBlack) {
+    if (Skin1.isBlack||Skin1.is23) {
         [self.rechargeView setBackgroundColor:Skin1.textColor1];
         [self.withdrawlView setBackgroundColor:Skin1.textColor1];
         self.rechargeView.layer.borderColor = Skin1.menuHeadViewColor.CGColor;
