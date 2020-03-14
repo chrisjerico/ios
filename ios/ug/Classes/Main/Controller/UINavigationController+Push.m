@@ -426,7 +426,8 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
                 [APP.Window addSubview:__v];
             }
             else {
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_NSString(@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web", SysConf.serviceQQ1)]];
+//                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_NSString(@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web", SysConf.serviceQQ1)]];
+                [CMCommon goQQ: SysConf.serviceQQ1];
             }
             break;
         }

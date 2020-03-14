@@ -115,7 +115,7 @@
         @"ddhb_transfer"            :@"dingding",       // 钉钉红包
         @"dshb_transfer"            :@"duosan",         // 多闪红包
         @"xlsm_transfer"            :@"xlsm",           // 闲聊扫码
-        
+        @"yxsm_transfer"            :@"yxsm_transfer_icon",           // 易信扫码
     }.mutableCopy;
     
     [self setHeaderImageStr:imgDict[item.pid]];
