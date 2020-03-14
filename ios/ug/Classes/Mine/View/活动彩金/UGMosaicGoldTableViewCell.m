@@ -25,7 +25,7 @@
     _myButton.layer.masksToBounds = YES;
     _myButton.layer.borderColor = [UIColor whiteColor].CGColor;
     _myButton.layer.borderWidth = 1;
-    _myButton.backgroundColor = Skin1.navBarBgColor;
+    _myButton.backgroundColor = Skin1.is23 ? RGBA(135 , 135 ,135, 1) :Skin1.navBarBgColor;
 }
 
 - (void)setItem:(UGMosaicGoldModel *)item {

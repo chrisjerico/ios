@@ -40,7 +40,7 @@
 - (void)rootLoadData {
 
     NSLog(@"switchShowActivityCategory =%d",SysConf.switchShowActivityCategory);
-//    SysConf.switchShowActivityCategory = 1;
+    SysConf.switchShowActivityCategory = 1;
     if (SysConf.switchShowActivityCategory) {
              [self getCenterData];
          }

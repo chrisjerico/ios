@@ -1333,7 +1333,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 
 - (void)updateSelectLabelWithCount:(NSInteger)count {
     self.selectLabel.text = [NSString stringWithFormat:@"已选中 %ld 注",count];
-    if (Skin1.isBlack) {
+    if (Skin1.isBlack||Skin1.is23) {
         NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.selectLabel.text];
         [abStr addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(3, self.selectLabel.text.length - 4)];
         self.selectLabel.attributedText = abStr;

@@ -196,6 +196,8 @@
 	[CMNetwork getDocumnetDetailWithParams:@{@"id": document.articleID, @"token": token} completion:^(CMResult<id> *model, NSError *err) {
 		[CMResult processWithResult:model success:^{
 			[SVProgressHUD dismiss];
+            
+            NSLog(@"返回结果：");
 			UGDocumentDetailData * documentDetailModel = model.data;
             UIColor *blueColor = [UIColor colorWithRed:90/255.0f green:154/255.0f blue:239/255.0f alpha:1.0f];
 			if (documentDetailModel.canRead) {

@@ -1166,6 +1166,7 @@
                         [mutArr addObject:banner.pic];
                     }
                     self.bannerView.imageURLStringsGroup = mutArr.mutableCopy;
+                    NSLog(@"轮播时间：%f",((UGBannerModel*)model.data).interval.floatValue);
                     self.bannerView.autoScrollTimeInterval = ((UGBannerModel*)model.data).interval.floatValue;
                 }
             });

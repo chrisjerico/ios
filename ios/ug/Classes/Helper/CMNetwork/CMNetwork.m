@@ -419,7 +419,8 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
     if ([method containsString:@"a=login"]) {
         [params setValue:nil forKey:@"token"];
     }
-    
+    NSLog(@"method   =%@",method);
+    NSLog(@"params   =%@",params);
     if (isPost) {
         [self postWithMethod:method params:params  model:model retryCount:0 completion:completion];
     } else {

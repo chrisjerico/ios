@@ -272,6 +272,7 @@
 }
 
 - (BOOL)isYellow {
+    
     return [@"c085,c134,c200,c208,c213,c212,a002" containsString:_SiteId];
 }
 
