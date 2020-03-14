@@ -28,6 +28,7 @@
 #import "UGAgentViewController.h"           // 申请代理
 #import "LineConversionHeaderVC.h"          // 额度转换 1
 #import "LotteryBetAndChatVC.h"             // 聊天室
+#import "OnlineServiceViewController.h"     // 在线客服
 #import "UGYYLotterySecondHomeViewController.h"
 #import "UGBMMemberCenterViewController.h"  //
 #import "UGLHMineViewController.h"  //
@@ -157,6 +158,7 @@ UGSystemConfigModel *currentConfig = nil;
             item(@"/funds",             @"jinlingyingcaiwangtubiao",    UGFundsViewController.className,                MM_资金管理,        @"资金管理"), 
             item(@"/banks",             @"yinhangqia",                  UGBindCardViewController.className,             MM_银行卡,         @"银行卡"),
             item(@"/yuebao",            @"lixibao",                     UGYubaoViewController.className,                MM_利息宝,         @"利息宝"),
+            item(@"/customerService",   @"zaixiankefu",                 OnlineServiceViewController.className,                MM_利息宝,         @"在线客服"),
         ].mutableCopy;
         
         UGMobileMenu * itemLine;

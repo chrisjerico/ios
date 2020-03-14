@@ -8,7 +8,7 @@
 #import <WebKit/WebKit.h>
 #import "SLPrefixHeader.pch"
 #import "STBarButtonItem.h"
-
+#import "OnlineServiceViewController.h"
 // WKWebView 内存不释放的问题解决
 @interface WeakWebViewScriptMessageDelegate : NSObject<WKScriptMessageHandler>
     
@@ -364,10 +364,16 @@
     [self getCookie];
     
     if ([self.webView canGoBack]) {
+        
         self.navigationItem.leftBarButtonItems = @[self.backBtn,self.closeBtn];
         self.navigationItem.rightBarButtonItem = self.homeBtn;
     }else {
-        self.navigationItem.leftBarButtonItems = @[self.backBtn];
+        if ([self isKindOfClass:[OnlineServiceViewController class]]) {
+            self.navigationItem.leftBarButtonItems = nil;
+        }
+        else{
+            self.navigationItem.leftBarButtonItems = @[self.backBtn];
+        }
         self.navigationItem.rightBarButtonItem = nil;
         
     }

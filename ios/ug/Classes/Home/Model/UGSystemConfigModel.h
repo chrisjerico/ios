@@ -66,6 +66,7 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
     MM_额度转换,
     MM_银行卡,
     MM_利息宝,
+    MM_在线客服,
 };
 
 
