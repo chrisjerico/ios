@@ -4,16 +4,22 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-// 页面
-import UpdateVersionVC from './UpdateVersionVC';
-import HomePageVC from './模板/默认/HomePageVC';
-import XBJMineVC from './模板/香槟金/XBJMineVC';
-import UGPromotionsController from './模板/默认/UGPromotionsController';
-
 // Tools
 import AppDefine, {ProfileScreenNavigationProp} from './公共类/AppDefine';
 import UGSysConfModel from './Model/全局/UGSysConfModel';
 import UGSkinManagers, {Skin1} from './公共类/UGSkinManagers';
+
+// 页面
+import UpdateVersionVC from './UpdateVersionVC';
+import HomePageVC from './模板/默认/HomePageVC';
+import XBJMineVC from './模板/香槟金/XBJMineVC';
+import XBJLoginVC from './模板/香槟金/XBJLoginVC';
+import UGPromotionsController from './模板/默认/UGPromotionsController';
+import XBJRegisterVC from './模板/香槟金/XBJRegisterVC';
+import FPrototypes from './公共类/FPrototypes';
+
+// 配置fish拓展方法
+FPrototypes.setupAll();
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -31,7 +37,8 @@ class TabBarController extends Component<{navigation?: ProfileScreenNavigationPr
 
     return (
       <Tab.Navigator initialRouteName="UpdateVersionVC" screenOptions={{tabBarVisible: false}}>
-        <Tab.Screen name="Home3" component={HomePageVC} options={{}} />
+        <Tab.Screen name="XBJLoginVC" component={XBJLoginVC} options={{}} />
+        <Tab.Screen name="XBJRegisterVC" component={XBJRegisterVC} options={{}} />
         <Tab.Screen name="XBJMineVC" component={XBJMineVC} options={{}} />
         <Tab.Screen name="UGPromotionsController" component={UGPromotionsController} options={{}} />
         <Tab.Screen name="UpdateVersionVC" component={UpdateVersionVC} options={{}} />

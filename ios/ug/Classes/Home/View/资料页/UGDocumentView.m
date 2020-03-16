@@ -141,6 +141,9 @@ static UGDocumentView *_singleInstance = nil;
              NSRange r = NSMakeRange(0, as.length);
              NSMutableDictionary *dict = [as attributesAtIndex:i effectiveRange:&r].mutableCopy;
              UIColor *c = dict[NSForegroundColorAttributeName];
+             if (dict[NSLinkAttributeName]) {
+                 [mas addAttributes:@{NSStrokeColorAttributeName:c, NSStrokeWidthAttributeName:@(5)} range:NSMakeRange(i, 1)];
+             }
              if (fabs(c.red - c.green) < 0.05 && fabs(c.green - c.blue) < 0.05) {
                  dict[NSForegroundColorAttributeName] = Skin1.textColor2;
                  [mas addAttributes:dict range:NSMakeRange(i, 1)];

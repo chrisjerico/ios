@@ -92,18 +92,6 @@ export default class AppDefine {
       允许未登录访问: true,
     });
 
-    if (AppDefine.isFish) {
-      // 我的页（香槟金模板）
-      pages.push({
-        vcName: 'UGYYLotteryHomeViewController',
-        rnName: 'XBJMineVC',
-        tabbarItemPath: '/lotteryList',
-        fd_prefersNavigationBarHidden: true,
-        允许游客访问: true,
-        允许未登录访问: true,
-      });
-    }
-
     AppDefine.ocCall('AppDefine.shared.setRnPageInfos:', [pages]);
   }
 
@@ -219,16 +207,3 @@ export class NSValue {
     return new NSValue('CGVector', `{${dx}, ${dy}}`);
   }
 }
-
-Array.prototype.objectWithValue = function(value: any, keyPath: string) {
-  if (!value) {
-    return null;
-  }
-  for (var idx in this) {
-    var ele = this[idx];
-    if (objectPath.get(ele, keyPath) === value) {
-      return ele;
-    }
-  }
-  return null;
-};

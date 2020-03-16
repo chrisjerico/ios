@@ -12,27 +12,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGDocumentVC : UGViewController
 
-- (instancetype)initWithModel: (GameModel *)model;
-
-@end
-
-
-@interface IssueView : UIView
-@property (nonatomic, strong) UGNextIssueModel *nextIssueModel;
-@property (nonatomic, strong) void(^searchBlock)(NSString * text);
-@property (nonatomic, strong) UITextField * searchField;
-@property (nonatomic, strong) NSString * preText;
-
-
-@end
-
+// 资料页的数据模型
 @protocol DocumentModel <NSObject>
-
 @end
-@interface DocumentModel : UGModel
 
+@interface DocumentModel : UGModel
 @property(nonatomic, strong) NSString * title;
 @property(nonatomic, strong) NSString * articleID;
 @property(nonatomic, strong) NSString * title_color;
@@ -44,33 +29,20 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) NSString * belongDate;
 @property(nonatomic, strong) NSString * createTime;
 @property(nonatomic, strong) NSString * updateTime;
-
-
-
 @end
 
 @interface DocumentListModel : UGModel
-
 @property(nonatomic, strong) NSArray<DocumentModel> *list;
-
 @end
 
-@interface DocumentCell : UITableViewCell
+// ————————————————————————————————————————————————
 
+
+
+// 资料页
+@interface UGDocumentVC : UGViewController
+
+- (instancetype)initWithModel: (GameModel *)model;
 @end
 
-@interface DocumentTypeList : UIView
-@property(nonatomic, assign)int selectedIndex;
-+(NSArray<GameModel *> *) allGames;
-+(void)setAllGames:(NSArray<GameModel *> *) allGames;
-+(void)showIn: (UIView *)supperView
-completionHandle: (void(^)(GameModel * model)) block;
-@property(nonatomic, strong) void(^completionHandle)(GameModel * selectedModel);
-
-@end
-
-@interface DocumentTypeListCell : UICollectionViewCell
-@property(nonatomic, strong)UILabel * titleLabel;
-
-@end
 NS_ASSUME_NONNULL_END

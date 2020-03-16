@@ -50,9 +50,7 @@ export default class UGSkinManagers {
       9: `简约模板${SysConf1.mobileTemplateStyle}`,
     };
     var key = dict[SysConf1.mobileTemplateCategory];
-    if (AppDefine.isFish) {
-      key = '香槟金2';
-    }
+    // key = '香槟金2';
     var skin = UGSkinManagers.all[key] ?? UGSkinManagers.all.经典1;
     console.log('当前皮肤为：' + skin.skitString);
     return skin;

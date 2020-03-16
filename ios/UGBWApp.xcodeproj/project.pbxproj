@@ -555,7 +555,6 @@
 		031E1B5E23BE812800B0F813 /* UGBackToastView.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E161923BE812400B0F813 /* UGBackToastView.m */; };
 		031E1B5F23BE812800B0F813 /* UGBackToastView.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E161923BE812400B0F813 /* UGBackToastView.m */; };
 		031E1B6023BE812800B0F813 /* UGDocumentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E161C23BE812400B0F813 /* UGDocumentView.m */; };
-		031E1B6123BE812800B0F813 /* UGDocumentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E161C23BE812400B0F813 /* UGDocumentView.m */; };
 		031E1B6223BE812800B0F813 /* UGHomeTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031E161F23BE812400B0F813 /* UGHomeTitleView.xib */; };
 		031E1B6323BE812800B0F813 /* UGHomeTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031E161F23BE812400B0F813 /* UGHomeTitleView.xib */; };
 		031E1B6423BE812800B0F813 /* UGHomeTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E162123BE812400B0F813 /* UGHomeTitleView.m */; };
@@ -1858,6 +1857,8 @@
 		CFDB113823A3B1E10040DE2B /* SiteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDB113723A3B1E10040DE2B /* SiteModel.m */; };
 		CFE074D123C0BBBF0083EA7E /* LotteryBetAndChatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE074D023C0BBBF0083EA7E /* LotteryBetAndChatVC.m */; };
 		CFE074DD23C0E7840083EA7E /* UGNotDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE074DA23C0E7840083EA7E /* UGNotDetailViewController.m */; };
+		CFF11A31241E76AF00C7E3A3 /* IssueView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF11A30241E76AF00C7E3A3 /* IssueView.m */; };
+		CFF11A34241E776600C7E3A3 /* DocumentTypeList.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF11A33241E776600C7E3A3 /* DocumentTypeList.m */; };
 		CFF1254D239FD5290000B731 /* 点击查看更多.gif in Resources */ = {isa = PBXBuildFile; fileRef = CFF1254C239FD5290000B731 /* 点击查看更多.gif */; };
 		CFFAB58B237315C2009593AF /* event.gif in Resources */ = {isa = PBXBuildFile; fileRef = CFFAB58A237315C2009593AF /* event.gif */; };
 		CFFAB58D23755569009593AF /* lxb.gif in Resources */ = {isa = PBXBuildFile; fileRef = CFFAB58C23755569009593AF /* lxb.gif */; };
@@ -3670,6 +3671,10 @@
 		CFE074D023C0BBBF0083EA7E /* LotteryBetAndChatVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LotteryBetAndChatVC.m; sourceTree = "<group>"; };
 		CFE074DA23C0E7840083EA7E /* UGNotDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGNotDetailViewController.m; sourceTree = "<group>"; };
 		CFE074DB23C0E7840083EA7E /* UGNotDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGNotDetailViewController.h; sourceTree = "<group>"; };
+		CFF11A2F241E76AF00C7E3A3 /* IssueView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IssueView.h; sourceTree = "<group>"; };
+		CFF11A30241E76AF00C7E3A3 /* IssueView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IssueView.m; sourceTree = "<group>"; };
+		CFF11A32241E776600C7E3A3 /* DocumentTypeList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DocumentTypeList.h; sourceTree = "<group>"; };
+		CFF11A33241E776600C7E3A3 /* DocumentTypeList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DocumentTypeList.m; sourceTree = "<group>"; };
 		CFF1254C239FD5290000B731 /* 点击查看更多.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "点击查看更多.gif"; sourceTree = "<group>"; };
 		CFFAB58A237315C2009593AF /* event.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = event.gif; sourceTree = "<group>"; };
 		CFFAB58C23755569009593AF /* lxb.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = lxb.gif; sourceTree = "<group>"; };
@@ -5054,6 +5059,7 @@
 		031E160723BE812400B0F813 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CFF11A2D241E768700C7E3A3 /* 资料页 */,
 				03314FD623CDE0B10070CB54 /* 火山橙 */,
 				03A5D37F23BFA4480055A998 /* 金沙主题 */,
 				031E164723BE812400B0F813 /* 六合板块 */,
@@ -5090,7 +5096,6 @@
 				D4346B5B24053D2000D8FE7C /* 折叠优惠HeaderView */,
 				031E161023BE812400B0F813 /* 红包弹框 */,
 				031E161723BE812400B0F813 /* H5的返回弹框 */,
-				031E161B23BE812400B0F813 /* 资料弹框 */,
 				031E161E23BE812400B0F813 /* 定制导航栏 */,
 				031E162223BE812400B0F813 /* 游戏列表 */,
 				031E163423BE812400B0F813 /* 导航View */,
@@ -5121,15 +5126,6 @@
 				031E161823BE812400B0F813 /* UGBackToastView.xib */,
 			);
 			path = "H5的返回弹框";
-			sourceTree = "<group>";
-		};
-		031E161B23BE812400B0F813 /* 资料弹框 */ = {
-			isa = PBXGroup;
-			children = (
-				031E161D23BE812400B0F813 /* UGDocumentView.h */,
-				031E161C23BE812400B0F813 /* UGDocumentView.m */,
-			);
-			path = "资料弹框";
 			sourceTree = "<group>";
 		};
 		031E161E23BE812400B0F813 /* 定制导航栏 */ = {
@@ -7663,6 +7659,19 @@
 			path = "注单明细";
 			sourceTree = "<group>";
 		};
+		CFF11A2D241E768700C7E3A3 /* 资料页 */ = {
+			isa = PBXGroup;
+			children = (
+				031E161D23BE812400B0F813 /* UGDocumentView.h */,
+				031E161C23BE812400B0F813 /* UGDocumentView.m */,
+				CFF11A2F241E76AF00C7E3A3 /* IssueView.h */,
+				CFF11A30241E76AF00C7E3A3 /* IssueView.m */,
+				CFF11A32241E776600C7E3A3 /* DocumentTypeList.h */,
+				CFF11A33241E776600C7E3A3 /* DocumentTypeList.m */,
+			);
+			path = "资料页";
+			sourceTree = "<group>";
+		};
 		D4000C0E232E2CCB000705B1 /* AppDelegate+ */ = {
 			isa = PBXGroup;
 			children = (
@@ -9177,7 +9186,6 @@
 				031EF5F123BE7B4E00B0F813 /* NSObject+HasDisposeBag.swift in Sources */,
 				031EF55D23BE7B4D00B0F813 /* GCD.swift in Sources */,
 				031EF5CA23BE7B4E00B0F813 /* RedpacketGrabListVC.swift in Sources */,
-				031E1B6123BE812800B0F813 /* UGDocumentView.m in Sources */,
 				03A5D38523C0445B0055A998 /* JS_HomeGameCollectionCell.m in Sources */,
 				031E1D5323BE812B00B0F813 /* UGModifyPayPwdController.m in Sources */,
 				031E1AC723BE812800B0F813 /* WMTabControl.m in Sources */,
@@ -9884,6 +9892,7 @@
 				031E1D8423BE812B00B0F813 /* UGBetRecordTableViewController.m in Sources */,
 				031E1AEA23BE812800B0F813 /* LeeTagItem.m in Sources */,
 				031E19E823BE812700B0F813 /* UITableView+Refresh.m in Sources */,
+				CFF11A31241E76AF00C7E3A3 /* IssueView.m in Sources */,
 				031E1ADC23BE812800B0F813 /* UIView+SDExtension.m in Sources */,
 				031E1E6A23BE812C00B0F813 /* UGRecordFilterCollectionViewCell.m in Sources */,
 				031E1BB623BE812900B0F813 /* UGBMUnderMenuView.m in Sources */,
@@ -10071,6 +10080,7 @@
 				031E1ACE23BE812800B0F813 /* TGWebViewController.m in Sources */,
 				031E1A4E23BE812700B0F813 /* CMCommonHook.m in Sources */,
 				031E1B2423BE812800B0F813 /* UGChangLongController.m in Sources */,
+				CFF11A34241E776600C7E3A3 /* DocumentTypeList.m in Sources */,
 				031E197823BE812600B0F813 /* UGLHFocusUserModel.m in Sources */,
 				D4593B0623FFA6C1008396BE /* LineMainListViewController.m in Sources */,
 				031E1BA623BE812900B0F813 /* UGBMpreferentialViewController.m in Sources */,

@@ -15,6 +15,7 @@
 #import "HSC_HomeGameCollectionCell.h"
 #import "JYLotteryTitleCollectionView.h"
 #import "JYGameCollectionViewCell.h"
+#import "DocumentTypeList.h"
 
 @interface UGPlatformCollectionView()<UICollectionViewDelegate, UICollectionViewDataSource,WSLWaterFlowLayoutDelegate>
 {
@@ -216,9 +217,13 @@ static NSString *const footerId = @"footerId";
         }
     }
     
-    
-    NSMutableArray * documentArray = [NSMutableArray array];
-    for (GameModel * model in dataArray) {
+    NSMutableArray *documentArray = [NSMutableArray array];
+    for (GameModel *model in dataArray) {
+        for (GameSubModel *sub in model.subType) {
+            if ([sub.docType isEqualToString:@"1"]) {
+                [documentArray addObject:sub];
+            }
+        }
         if ([model.docType isEqualToString:@"1"]) {
             [documentArray addObject:model];
         }

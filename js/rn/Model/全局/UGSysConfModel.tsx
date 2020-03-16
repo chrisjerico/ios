@@ -19,9 +19,31 @@ export interface UGAgentApplyInfo {
 // 底部Tab按钮
 export class UGTabbarItem {}
 
+export enum UGUserCenterType {
+  存款 = 1,
+  取款 = 2,
+  银行卡管理 = 3,
+  利息宝 = 4,
+  推荐收益 = 5,
+  彩票注单记录 = 6,
+  其他注单记录 = 7,
+  额度转换 = 8,
+  站内信 = 9,
+  安全中心 = 10,
+  任务中心 = 11,
+  个人信息 = 12,
+  建议反馈 = 13,
+  在线客服 = 14,
+  活动彩金 = 15,
+  长龙助手 = 16,
+  全民竞猜 = 17,
+  开奖走势 = 18,
+  QQ客服 = 19,
+}
+
 // 我的页功能按钮
 export class UGUserCenterItem {
-  code: number;
+  code: UGUserCenterType;
   logo?: string;
   name?: string;
 
@@ -56,24 +78,17 @@ export class UGUserCenterItem {
     }
   }
 
-  static pushViewController(code: number) {
-    new UGUserCenterItem({code: code}).pushViewController();
-  }
-
-  pushViewController?() {
-    switch (this.code) {
-      case 1: {
-        // 存款
+  static pushViewController(code: UGUserCenterType) {
+    switch (code) {
+      case UGUserCenterType.存款: {
         AppDefine.ocCall('UGNavigationController.current.pushViewController:animated:', [{selectors: 'UGFundsViewController.new[setSelectIndex:]', args1: [0]}, true]);
         break;
       }
-      case 2: {
-        // 取款
+      case UGUserCenterType.取款: {
         AppDefine.ocCall('UGNavigationController.current.pushViewController:animated:', [{selectors: 'UGFundsViewController.new[setSelectIndex:]', args1: [1]}, true]);
         break;
       }
-      case 3: {
-        // 银行卡管理
+      case UGUserCenterType.银行卡管理: {
         async function func1() {
           let hasBankCard: boolean = await AppDefine.ocCall('UGUserModel.currentUser.hasBankCard');
           let hasFundPwd: boolean = await AppDefine.ocCall('UGUserModel.currentUser.hasFundPwd');
@@ -83,13 +98,11 @@ export class UGUserCenterItem {
         func1();
         break;
       }
-      case 4: {
-        // 利息宝
+      case UGUserCenterType.利息宝: {
         AppDefine.ocCall('UGNavigationController.current.pushViewController:animated:', [{selectors: 'AppDefine.viewControllerWithStoryboardID:', args1: ['UGYubaoViewController']}, true]);
         break;
       }
-      case 5: {
-        // 推荐收益
+      case UGUserCenterType.推荐收益: {
         async function func1() {
           let isTest: boolean = await AppDefine.ocCall('UGUserModel.currentUser.isTest');
           if (isTest) {
@@ -120,51 +133,42 @@ export class UGUserCenterItem {
         func1();
         break;
       }
-      case 6: {
-        // 彩票注单记录
+      case UGUserCenterType.彩票注单记录: {
         AppDefine.ocCall('UGNavigationController.current.pushViewController:animated:', [{selectors: 'UGBetRecordViewController.new'}, true]);
         break;
       }
-      case 7: {
-        // 其他注单记录
+      case UGUserCenterType.其他注单记录: {
         AppDefine.ocCall('UGNavigationController.current.pushViewController:animated:', [
           {selectors: 'AppDefine.viewControllerWithStoryboardID:[setGameType:]', args1: ['UGRealBetRecordViewController', 'real']},
           true,
         ]);
         break;
       }
-      case 8: {
-        // 额度转换
+      case UGUserCenterType.额度转换: {
         AppDefine.ocCall('UGNavigationController.current.pushViewController:animated:', [{selectors: 'AppDefine.viewControllerWithStoryboardID:', args1: ['UGBalanceConversionController']}, true]);
         break;
       }
-      case 9: {
-        // 站内信
+      case UGUserCenterType.站内信: {
         AppDefine.ocCall('UGNavigationController.current.pushViewController:animated:', [{selectors: 'UGMailBoxTableViewController.new'}, true]);
         break;
       }
-      case 10: {
-        // 安全中心
+      case UGUserCenterType.安全中心: {
         AppDefine.ocCall('UGNavigationController.current.pushViewController:animated:', [{selectors: 'UGSecurityCenterViewController.new'}, true]);
         break;
       }
-      case 11: {
-        // 任务中心
+      case UGUserCenterType.任务中心: {
         AppDefine.ocCall('UGNavigationController.current.pushViewController:animated:', [{selectors: 'AppDefine.viewControllerWithStoryboardID:', args1: ['UGMissionCenterViewController']}, true]);
         break;
       }
-      case 12: {
-        // 个人信息
+      case UGUserCenterType.个人信息: {
         AppDefine.ocCall('UGNavigationController.current.pushViewController:animated:', [{selectors: 'AppDefine.viewControllerWithStoryboardID:', args1: ['UGUserInfoViewController']}, true]);
         break;
       }
-      case 13: {
-        // 建议反馈
+      case UGUserCenterType.建议反馈: {
         AppDefine.ocCall('UGNavigationController.current.pushViewController:animated:', [{selectors: 'AppDefine.viewControllerWithStoryboardID:', args1: ['UGFeedBackController']}, true]);
         break;
       }
-      case 14: {
-        // 在线客服
+      case UGUserCenterType.在线客服: {
         async function func1() {
           let urlStr: string = await AppDefine.ocCall('UGSystemConfigModel.currentConfig.zxkfUrl.stringByTrim');
           if (!urlStr.length) return;
@@ -181,28 +185,23 @@ export class UGUserCenterItem {
         func1();
         break;
       }
-      case 15: {
-        // 活动彩金
+      case UGUserCenterType.活动彩金: {
         AppDefine.ocCall('UGNavigationController.current.pushViewController:animated:', [{selectors: 'UGMosaicGoldViewController.new'}, true]);
         break;
       }
-      case 16: {
-        // 长龙助手
+      case UGUserCenterType.长龙助手: {
         AppDefine.ocCall('UGNavigationController.current.pushViewController:animated:', [{selectors: 'UGChangLongController.new'}, true]);
         break;
       }
-      case 17: {
-        // 全民竞猜
+      case UGUserCenterType.全民竞猜: {
         AppDefine.ocCall('HUDHelper.showMsg:', ['敬请期待']);
         break;
       }
-      case 18: {
-        // 开奖走势
+      case UGUserCenterType.开奖走势: {
         AppDefine.ocCall('HUDHelper.showMsg:', ['敬请期待']);
         break;
       }
-      case 19: {
-        // QQ客服
+      case UGUserCenterType.QQ客服: {
         AppDefine.ocCall('UGSystemConfigModel.currentConfig.qqs').then((qqs: Array<string> = []) => {
           if (!qqs.length) {
             AppDefine.ocCall('HUDHelper.showMsg:', ['敬请期待']);
@@ -224,6 +223,10 @@ export class UGUserCenterItem {
         break;
       }
     }
+  }
+
+  pushViewController?() {
+    UGUserCenterItem.pushViewController(this.code);
   }
 }
 

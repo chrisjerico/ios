@@ -63,7 +63,7 @@ export default class XBJMineVC extends Component {
         <ScrollView style={{flex: 1, padding: 16}}>
           <View style={{padding: 16, borderRadius: 4, backgroundColor: Skin1.homeContentColor}}>
             <View style={{flexDirection: 'row'}}>
-              <Avatar source={{uri: UserI.avatar}} containerStyle={{width: 56, height: 56, backgroundColor: Skin1.placeholderColor}} onPress={() => {}} />
+              <Avatar source={{uri: UserI.avatar}} rounded showEditButton size={56} onPress={() => {}} />
               <View style={{marginLeft: 16}}>
                 <View style={{marginTop: 4, flexDirection: 'row'}}>
                   <Text style={{fontWeight: '500', fontSize: 16}}>{UserI.usr}</Text>
