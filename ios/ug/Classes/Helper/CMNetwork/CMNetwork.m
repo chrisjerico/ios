@@ -320,7 +320,6 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
         
         NSArray*array = [url componentsSeparatedByString:@"?"];//从字符A中分隔成2个元素的数组
         
-        
         NSMutableString* methodUrl = [NSMutableString stringWithFormat:@"%@?checkSign=1",[array firstObject]];
         
         NSArray *noChenkSignArr = [noChenkSignDic allKeys];

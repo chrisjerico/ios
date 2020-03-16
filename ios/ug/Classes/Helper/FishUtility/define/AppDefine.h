@@ -74,6 +74,7 @@
 @property (nonatomic) BOOL isTextWhite;                            /**< 投注页面封盘时间字体颜色需要调整为白色 */
 @property (nonatomic) BOOL isHideFoot;                             /**< 首页面手机端标记处去除  */
 @property (nonatomic) BOOL isGPKDeposit;                            /**< GPK版右上角最近浏览改为 存取款  */
+@property (nonatomic) BOOL isTitleWhite;                            /**< 游戏大厅绿色字体改为白色字体 */
 // 热更新相关字段
                                                    
 @property (nonatomic) BOOL Test;                        /**<   是否是测试环境 */

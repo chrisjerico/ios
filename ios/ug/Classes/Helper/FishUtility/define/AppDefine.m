@@ -181,6 +181,10 @@
 #pragma mark - 定制样式
 
 
+- (BOOL)isTitleWhite {
+     return [@"a002" containsString:_SiteId];
+}
+ 
 - (BOOL)isGPKDeposit {
      return [@"c105b" containsString:_SiteId];
 }
