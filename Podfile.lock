@@ -22,7 +22,7 @@ PODS:
   - CocoaLumberjack (3.6.0):
     - CocoaLumberjack/Core (= 3.6.0)
   - CocoaLumberjack/Core (3.6.0)
-  - CodePush (6.0.0):
+  - CodePush (6.1.0):
     - Base64 (~> 1.1)
     - JWT (~> 3.0.0-beta.7)
     - React
@@ -256,7 +256,7 @@ PODS:
   - React-jsinspector (0.61.5)
   - react-native-safe-area-context (0.7.3):
     - React
-  - react-native-webview (8.0.6):
+  - react-native-webview (8.1.2):
     - React
   - React-RCTActionSheet (0.61.5):
     - React-Core/RCTActionSheetHeaders (= 0.61.5)
@@ -304,7 +304,7 @@ PODS:
     - React
   - RNReanimated (1.7.0):
     - React
-  - RNScreens (2.0.0-beta.4):
+  - RNScreens (2.2.0):
     - React
   - RNVectorIcons (6.6.0):
     - React
@@ -593,7 +593,7 @@ SPEC CHECKSUMS:
   BRPickerView: c51b8d27cd053baf282e75a19d7dfcefbbaf42c2
   BVLinearGradient: e3aad03778a456d77928f594a649e96995f1c872
   CocoaLumberjack: 78b0c238666f4f58db069738ec176f4519557516
-  CodePush: 67f488101c41e13e594e9c2714b95dd8bffa6cb4
+  CodePush: 559674670649e390ba1df2d71ad7652e03d679e8
   CryptoSwift: 6b6e488df0598b3e9fa49254ed1a65e8c1b1e10b
   DateTools: 933ac9c490f21f92127cf690ccd8c397e0126caf
   DeviceKit: da103891aa928d89f64ea8dd8aca738c5f3d8ac0
@@ -636,7 +636,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: d5525f9ed5f782fdbacb64b9b01a43a9323d2386
   React-jsinspector: fa0ecc501688c3c4c34f28834a76302233e29dc0
   react-native-safe-area-context: 8260e5157617df4b72865f44006797f895b2ada7
-  react-native-webview: e11b5d7da61ac3acee13f3ae3184d417f773c5d5
+  react-native-webview: 055c7110f17c2f19c971f655064ee480638db668
   React-RCTActionSheet: 600b4d10e3aea0913b5a92256d2719c0cdd26d76
   React-RCTAnimation: 791a87558389c80908ed06cc5dfc5e7920dfa360
   React-RCTBlob: d89293cc0236d9cb0933d85e430b0bbe81ad1d72
@@ -652,7 +652,7 @@ SPEC CHECKSUMS:
   RNFastImage: 9b0c22643872bb7494c8d87bbbb66cc4c0d9e7a2
   RNGestureHandler: dde546180bf24af0b5f737c8ad04b6f3fa51609a
   RNReanimated: 031fe8d9ea93c2bd689a40f05320ef9d96f74d7f
-  RNScreens: 6053a007667bea81a69087caadf103bba04c032e
+  RNScreens: 812b79d384e2bea7eebc4ec981469160d4948fd5
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   RxAlertController: ef75925a2a002f0f1fd03378ddeceaa9c1c5558f
   RxCocoa: e741b9749968e8a143e2b787f1dfbff2b63d0a5c
