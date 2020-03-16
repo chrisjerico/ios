@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -1294,6 +1294,8 @@
                         <outlet property="smsVcodeButton" destination="Ifw-pD-m8u" id="MCp-9V-oxY"/>
                         <outlet property="smsVcodeTextF" destination="Enc-ra-b7L" id="mIf-au-Vax"/>
                         <outlet property="smsVcodeView" destination="gl3-OQ-2O2" id="o46-n7-5Ry"/>
+                        <outlet property="titleLineView" destination="0vE-Kt-Nh6" id="kpt-Pg-Gxj"/>
+                        <outlet property="titleView" destination="7gg-hl-1eT" id="08F-Cd-Dbg"/>
                         <outlet property="userNameDisabledNotice" destination="jG2-bT-uF1" id="AtP-ez-V3r"/>
                         <outlet property="userNameTextF" destination="o7a-d4-HeZ" id="LWm-GD-kaz"/>
                         <outlet property="webBgView" destination="qU3-PG-E6f" id="dke-A7-pEl"/>

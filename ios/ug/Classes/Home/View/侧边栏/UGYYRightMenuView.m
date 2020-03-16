@@ -403,7 +403,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         self.bgViewHeightConstraint.constant = 180;
     }
     
-    self.backgroundColor = Skin1.textColor4;
+    self.backgroundColor = Skin1.navBarBgColor;
     [self.bgView setBackgroundColor:Skin1.menuHeadViewColor];
     
     if (Skin1.isJY) {

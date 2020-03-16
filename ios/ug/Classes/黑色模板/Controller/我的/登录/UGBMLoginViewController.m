@@ -39,6 +39,7 @@
     self.fd_prefersNavigationBarHidden = YES;
     
     FastSubViewCode(self.view);
+    [self.view setBackgroundColor:Skin1.bgColor];
     subTextField(@"密码txt").delegate = self;
     subTextField(@"账号txt").delegate = self;
     self.navigationController.delegate = self;

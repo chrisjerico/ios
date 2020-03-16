@@ -300,6 +300,11 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
                     QDWebViewController *qdwebVC = [[QDWebViewController alloc] init];
                     NSLog(@"网络链接：model.data = %@", model.data);
                     qdwebVC.urlString = [CMNetwork encryptionCheckSignForURL:model.data];
+                    
+                   
+//                    qdwebVC.urlString = [qdwebVC.urlString stringByReplacingOccurrencesOfString:@"http://2044953.com" withString:@"https://2044953.com:8888"];
+                    NSLog(@"网络链接：model.data = %@", qdwebVC.urlString);
+    
                     qdwebVC.enterGame = YES;
                     [NavController1 pushViewController:qdwebVC animated:YES];
                 });

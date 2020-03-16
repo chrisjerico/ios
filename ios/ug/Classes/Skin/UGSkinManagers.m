@@ -1118,30 +1118,54 @@ static UGSkinManagers *__initSkin1 = nil;
 			
 			
 			//黑色模板
-			@"黑色模板":({
-				UGSkinManagers *sm = [UGSkinManagers new];
-				sm.skitType                 = @"黑色模板";
-				sm.skitString               = @"黑色模板";
-				sm.bgColor                  = color(@"171717");
-				sm.navBarBgColor            = color(@"333333");
-				sm.tabBarBgColor            = color(@"313131");
-				sm.tabNoSelectColor         = color(@"999999");
-				sm.tabSelectedColor         = color(@"FFFFFF");
-				sm.progressBgColor          = color(@"d80000,fb5959");
-				sm.homeContentColor         = color(@"343434");
-				sm.homeContentSubColor      = color(@"353535");
-				sm.cellBgColor              = color(@"181818");
-				sm.CLBgColor                = color(@"202122");
-				sm.menuHeadViewColor        = color(@"323232");
-				sm.textColor1               = color(@"FEFEFE");
-				sm.textColor2               = color(@"C1C1C1");
-				sm.textColor3               = color(@"555555");
-				sm.textColor4               = color(@"000000");
+//			@"黑色模板0":({
+//				UGSkinManagers *sm = [UGSkinManagers new];
+//				sm.skitType                 = @"黑色模板";
+//				sm.skitString               = @"黑色模板";
+//				sm.bgColor                  = color(@"171717");
+//				sm.navBarBgColor            = color(@"333333");
+//				sm.tabBarBgColor            = color(@"313131");
+//				sm.tabNoSelectColor         = color(@"999999");
+//				sm.tabSelectedColor         = color(@"FFFFFF");
+//				sm.progressBgColor          = color(@"d80000,fb5959");
+//				sm.homeContentColor         = color(@"343434");
+//				sm.homeContentSubColor      = color(@"353535");
+//				sm.cellBgColor              = color(@"181818");
+//				sm.CLBgColor                = color(@"202122");
+//				sm.menuHeadViewColor        = color(@"323232");
+//				sm.textColor1               = color(@"FEFEFE");
+//				sm.textColor2               = color(@"C1C1C1");
+//				sm.textColor3               = color(@"555555");
+//				sm.textColor4               = color(@"000000");
+//                sm.conversionCellColor      = color(@"7BA2C2");
+//                sm.intoViewColor            = color(@"7BA2C2");
+//                sm.moneyCellColor           = color(@"9BB8CB");
+//				sm;
+//			}),
+            @"黑色模板":({
+                UGSkinManagers *sm = [UGSkinManagers new];
+                sm.skitType                 = @"黑色模板";
+                sm.skitString               = @"黑色模板";
+                sm.bgColor                  = color(@"5B4435");
+                sm.navBarBgColor            = color(@"9C745A");
+                sm.tabBarBgColor            = color(@"9C745A");
+                sm.tabNoSelectColor         = color(@"999999");
+                sm.tabSelectedColor         = color(@"FFFFFF");
+                sm.progressBgColor          = color(@"d80000,fb5959");
+                sm.homeContentColor         = color(@"343434");
+                sm.homeContentSubColor      = color(@"353535");
+                sm.cellBgColor              = color(@"181818");
+                sm.CLBgColor                = color(@"202122");
+                sm.menuHeadViewColor        = color(@"9C745A");
+                sm.textColor1               = color(@"FEFEFE");
+                sm.textColor2               = color(@"C1C1C1");
+                sm.textColor3               = color(@"555555");
+                sm.textColor4               = color(@"000000");
                 sm.conversionCellColor      = color(@"7BA2C2");
                 sm.intoViewColor            = color(@"7BA2C2");
                 sm.moneyCellColor           = color(@"9BB8CB");
-				sm;
-			}),
+                sm;
+            }),
 			//金沙模板
 			@"金沙主题":({
 				UGSkinManagers *sm = [UGSkinManagers new];

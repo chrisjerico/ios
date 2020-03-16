@@ -22,6 +22,10 @@
      UGBMHeaderView *headView;                /**<   导航头 */
 }
 
+@property (weak, nonatomic) IBOutlet UIView *titleView;                 /**<   账号注册View*/
+@property (weak, nonatomic) IBOutlet UIView *titleLineView;              /**<   账号注册下面的线 */
+
+
 @property (weak, nonatomic) IBOutlet UISegmentedControl *mySegmentCV;                        /**<   */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *mySegmentHightConstraint;           /**<    */
 
@@ -108,6 +112,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = Skin1.bgColor;
+    NSMutableArray <UIColor *> *colors = @[].mutableCopy;
+    [colors addObject:Skin1.navBarBgColor];
+    [colors addObject:Skin1.bgColor];
+    self.titleView.backgroundColor =  [UIColor colorWithPatternImage:[UIImage gradientImageWithBounds:self.titleView.bounds andColors:colors andGradientType:GradientDirectionTopToBottom]];
+    
     self.fd_prefersNavigationBarHidden = YES;
     // 禁用侧滑返回
     self.fd_interactivePopDisabled = true;

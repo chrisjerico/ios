@@ -14,6 +14,7 @@
 #import "UGBMBrowseViewController.h"
 #import "UGFundsViewController.h"
 @interface UGBMHeaderView ()<UUMarqueeViewDelegate>
+@property (weak, nonatomic) IBOutlet UIView *hornBgView;
 
 @end
 @implementation UGBMHeaderView
@@ -63,7 +64,12 @@
             NSLog(@"收到退出通知1：%@", notification.userInfo);
             [__self refreshUI];
         }];
+        FastSubViewCode(self);
         [self setBackgroundColor:Skin1.navBarBgColor];
+        [self.hornBgView setBackgroundColor:Skin1.bgColor];
+        [self.leftwardMarqueeView setBackgroundColor:Skin1.bgColor];
+        [subView(@"上线View") setBackgroundColor:Skin1.bgColor];
+        [subView(@"下线View") setBackgroundColor:Skin1.bgColor];
         self.leftwardMarqueeView.direction = UUMarqueeViewDirectionLeftward;
         self.leftwardMarqueeView.delegate = self;
         self.leftwardMarqueeView.timeIntervalPerScroll = 0.5f;
@@ -72,8 +78,7 @@
         self.leftwardMarqueeView.touchEnabled = YES;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showNoticeInfo)];
         [self.leftwardMarqueeView addGestureRecognizer:tap];
-        
-        FastSubViewCode(self);
+
         [subImageView(@"Logo图片") sd_setImageWithURL:[NSURL URLWithString:SysConf.mobile_logo] placeholderImage:nil];
         subLabel(@"网址").text = SysConf.easyRememberDomain;
         [self xw_addNotificationForName:UGNotificationGetSystemConfigComplete block:^(NSNotification * _Nonnull noti) {

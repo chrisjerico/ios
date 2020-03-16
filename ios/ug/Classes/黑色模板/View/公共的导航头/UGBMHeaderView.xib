@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -219,6 +219,9 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="Dg1-JQ-Aso"/>
                             </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="上线View"/>
+                            </userDefinedRuntimeAttributes>
                         </view>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BM_horn" translatesAutoresizingMaskIntoConstraints="NO" id="d8r-lG-yGw">
                             <rect key="frame" x="8" y="10" width="20" height="20"/>
@@ -238,6 +241,9 @@
                                 <constraint firstAttribute="height" constant="1" id="06A-F5-iaI"/>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" id="N0A-Xl-hLC"/>
                             </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="下线View"/>
+                            </userDefinedRuntimeAttributes>
                         </view>
                     </subviews>
                     <color key="backgroundColor" red="0.066667437553405762" green="0.066665269434452057" blue="0.066666752099990845" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -270,6 +276,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
+                <outlet property="hornBgView" destination="O3H-EL-0U7" id="7Yu-wZ-mT8"/>
                 <outlet property="leftwardMarqueeView" destination="Wnj-sr-eZV" id="wwa-50-Znr"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="135.9375"/>
