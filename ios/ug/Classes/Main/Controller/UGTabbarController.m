@@ -549,6 +549,10 @@ static UGTabbarController *_tabBarVC = nil;
     // 控制器需要重新加载
     if (![vc.className isEqualToString:mm.clsName]) {
         [mm createViewController:^(__kindof UIViewController * _Nonnull vc) {
+            RnPageModel *rpm = [APP.rnPageInfos objectWithValue:vc.className keyPath:@"vcName"];
+            if (rpm) {
+                vc = [ReactNativeVC reactNativeWithRPM:rpm params:[vc rn_keyValues]];
+            }
             if (![UGTabbarController canPushToViewController:vc]) {
                 return ;
             }
