@@ -202,6 +202,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/React-jsiexecutor/jsireact.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/React-jsinspector/jsinspector.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ReactCommon/ReactCommon.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ReactNativeART/ReactNativeART.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RegExCategories/RegExCategories.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SDWebImageWebPCoder/SDWebImageWebPCoder.framework"
@@ -221,6 +222,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/glog/glog.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/libwebp/libwebp.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/react-native-safe-area-context/react_native_safe_area_context.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/react-native-viewpager/react_native_viewpager.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/react-native-webview/react_native_webview.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -265,6 +267,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/React-jsiexecutor/jsireact.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/React-jsinspector/jsinspector.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ReactCommon/ReactCommon.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ReactNativeART/ReactNativeART.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RegExCategories/RegExCategories.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SDWebImageWebPCoder/SDWebImageWebPCoder.framework"
@@ -284,6 +287,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/glog/glog.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/libwebp/libwebp.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/react-native-safe-area-context/react_native_safe_area_context.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/react-native-viewpager/react_native_viewpager.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/react-native-webview/react_native_webview.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
