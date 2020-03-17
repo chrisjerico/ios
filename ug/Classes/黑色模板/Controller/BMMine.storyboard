@@ -1450,6 +1450,11 @@
                     <connections>
                         <outlet property="myCollectionView" destination="Icy-2K-HAF" id="k2N-gX-yYe"/>
                         <outlet property="refreshFirstButton" destination="ZLv-nl-FlJ" id="beD-98-ONH"/>
+                        <outlet property="title2LineView" destination="kgO-1c-Rvl" id="q1e-Yh-Cpu"/>
+                        <outlet property="title2View" destination="FuN-MI-MUy" id="NTl-rT-Hov"/>
+                        <outlet property="titleLineView" destination="3lb-rl-5Wo" id="09U-XO-eyB"/>
+                        <outlet property="titleUpLineView" destination="wMB-XF-hE0" id="kMK-YV-LlF"/>
+                        <outlet property="titleView" destination="2uZ-FM-Hd7" id="Odc-rF-SIq"/>
                         <outlet property="userMoneyLabel" destination="jpd-U2-Ar8" id="d6F-ZA-tOr"/>
                     </connections>
                 </viewController>
@@ -1653,6 +1658,9 @@
                         <outlet property="myCollectionView" destination="gg6-ah-AMw" id="abz-ZT-kG2"/>
                         <outlet property="segmentedControl" destination="SVD-zI-ZzB" id="VQa-bM-UP7"/>
                         <outlet property="tableView" destination="3Vo-sw-Q5B" id="ydE-lV-d67"/>
+                        <outlet property="titleLineView" destination="kzO-cI-oAG" id="KjP-x4-pm4"/>
+                        <outlet property="titleUpLineView" destination="hUZ-Nq-6zl" id="VgH-Xn-cUq"/>
+                        <outlet property="titleView" destination="p78-pM-K7b" id="oRR-52-25L"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="odh-8P-TrI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

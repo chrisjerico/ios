@@ -31,6 +31,7 @@
 #import "UGYYLotteryHomeViewController.h"   // 购彩大厅
 #import "UGBMLoginViewController.h"         // 黑色模板登录页
 #import "LotteryBetAndChatVC.h"             // 聊天室
+#import "UGBetRecordViewController.h"       // 投注记录
 //======================================================
 #import "UGLHMineViewController.h"         // 六合模板我的
 #import "UGSystemConfigModel.h"

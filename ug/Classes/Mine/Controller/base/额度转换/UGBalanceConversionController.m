@@ -177,26 +177,48 @@ static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
 	}
 	
 	__weakSelf_(__self);
-	__block NSInteger __cnt = 0;
+	
 	[SVProgressHUD show];
-	for (UGPlatformGameModel *pgm in __self.dataArray) {
-		// 快速转出游戏余额
-		[CMNetwork quickTransferOutWithParams:@{@"token":UserI.sessid, @"id":pgm.gameId} completion:^(CMResult<id> *model, NSError *err) {
-			__cnt++;
-			if (__cnt == __self.dataArray.count) {
-				[SVProgressHUD showSuccessWithStatus:@"一键提取成功"];
-				// 刷新余额并刷新UI
-				SANotificationEventPost(UGNotificationGetUserInfo, nil);
-				for (UGPlatformGameModel *pgm in __self.dataArray) {
-					pgm.balance = @"0.00";
-				}
-				__self.transferOutLabel.text = nil;
-				__self.transferInLabel.text = nil;
-				__self.amountTextF.text = nil;
-				[__self.tableView reloadData];
-			}
-		}];
-	}
+    
+    [CMNetwork oneKeyTransferOutWithParams:@{@"token":UserI.sessid} completion:^(CMResult<id> *model, NSError *err) {
+   
+        if (model.code == 0) {
+            
+            __block NSInteger __cnt = 0;
+            NSArray<UGPlatformGameModel *> * arry =   [UGPlatformGameModel arrayOfModelsFromDictionaries:[model.data objectForKey:@"games"] error:nil];
+            
+            for (UGPlatformGameModel *pgm in arry) {
+                NSLog(@"pgm =%@",pgm.gameId);
+                // 快速转出游戏余额
+                [CMNetwork quickTransferOutWithParams:@{@"token":UserI.sessid, @"id":pgm.gameId} completion:^(CMResult<id> *model, NSError *err) {
+                    
+//                   UGPlatformGameModel *obj = [__self.dataArray objectWithValue:pgm.gameId keyPath:@"gameId"];
+//                    obj.balance = @"0.00";
+                    
+                    __cnt++;
+                    if (__cnt == arry.count) {
+                        [SVProgressHUD showSuccessWithStatus:@"一键提取成功"];
+                        // 刷新余额并刷新UI
+                        SANotificationEventPost(UGNotificationGetUserInfo, nil);
+                        for (UGPlatformGameModel *pgm in __self.dataArray) {
+                                 pgm.balance = @"￥*****";
+                        }
+                        __self.transferOutLabel.text = nil;
+                        __self.transferInLabel.text = nil;
+                        __self.amountTextF.text = nil;
+                        [__self.tableView reloadData];
+                    }
+                }];
+            }
+        }
+        
+        
+        
+     
+    }];
+    
+    
+
 }
 
 - (void)getRealGames {

@@ -66,8 +66,8 @@
         }];
         FastSubViewCode(self);
         [self setBackgroundColor:Skin1.navBarBgColor];
-        [self.hornBgView setBackgroundColor:Skin1.bgColor];
-        [self.leftwardMarqueeView setBackgroundColor:Skin1.bgColor];
+        [self.hornBgView setBackgroundColor:Skin1.CLBgColor];
+        [self.leftwardMarqueeView setBackgroundColor:Skin1.CLBgColor];
         [subView(@"上线View") setBackgroundColor:Skin1.bgColor];
         [subView(@"下线View") setBackgroundColor:Skin1.bgColor];
         self.leftwardMarqueeView.direction = UUMarqueeViewDirectionLeftward;

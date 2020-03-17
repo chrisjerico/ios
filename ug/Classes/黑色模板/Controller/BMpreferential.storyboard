@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,35 +14,35 @@
             <objects>
                 <viewController storyboardIdentifier="UGBMpreferentialViewController" title="优惠中心" id="wgN-q5-c8F" customClass="UGBMpreferentialViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zCJ-kO-hyQ">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ee0-K7-64Z">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="110"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="110"/>
                                 <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="110" id="ijb-vJ-tjS"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Cg-od-Lw7">
-                                <rect key="frame" x="0.0" y="110" width="600" height="60"/>
+                                <rect key="frame" x="0.0" y="154" width="414" height="60"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tzU-6J-mDF">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="1"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
                                         <color key="backgroundColor" red="0.28627666831016541" green="0.2862706184387207" blue="0.28627473115921021" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="qde-jM-AA1"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wyf-q7-py8">
-                                        <rect key="frame" x="0.0" y="58.5" width="600" height="1.5"/>
+                                        <rect key="frame" x="0.0" y="58.5" width="414" height="1.5"/>
                                         <color key="backgroundColor" red="0.28627666829999998" green="0.28627061840000001" blue="0.28627473120000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1.5" id="4GG-qt-tMU"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="优惠专区" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MZG-lM-5wI">
-                                        <rect key="frame" x="263.5" y="19.5" width="73.5" height="21.5"/>
+                                        <rect key="frame" x="170.5" y="19.5" width="73.5" height="21.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -60,30 +62,30 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="xNR-NS-Gzc">
-                                <rect key="frame" x="0.0" y="170" width="600" height="430"/>
+                                <rect key="frame" x="0.0" y="214" width="414" height="648"/>
                                 <subviews>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f66-19-QfK" customClass="LeeTagView">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
                                         <color key="backgroundColor" red="0.10196178406476974" green="0.10195901244878769" blue="0.10196090489625931" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GPw-EB-XJK">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="430"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="648"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <view key="tableFooterView" contentMode="scaleToFill" id="3D7-bD-DLR">
-                                            <rect key="frame" x="0.0" y="163" width="600" height="24"/>
+                                            <rect key="frame" x="0.0" y="163" width="414" height="24"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </view>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" id="f6p-Ys-7We">
-                                                <rect key="frame" x="0.0" y="28" width="600" height="107"/>
+                                                <rect key="frame" x="0.0" y="28" width="414" height="107"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="f6p-Ys-7We" id="tg5-yv-u9y">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="107"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="107"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EWJ-vv-wbS">
-                                                            <rect key="frame" x="12" y="12" width="576" height="18"/>
+                                                            <rect key="frame" x="12" y="12" width="390" height="18"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -92,7 +94,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fXV-vE-Jrj" customClass="IBImageView">
-                                                            <rect key="frame" x="12" y="42" width="576" height="60"/>
+                                                            <rect key="frame" x="12" y="42" width="390" height="60"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="60" id="SAB-GY-R9h"/>
                                                             </constraints>
@@ -128,7 +130,7 @@
                                 </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oLh-4T-fXc">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="0.0"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                 <color key="backgroundColor" red="0.12941294910000001" green="0.12940964099999999" blue="0.12941190599999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="状态栏背景色View"/>
@@ -158,6 +160,9 @@
                     <connections>
                         <outlet property="radioTagView" destination="f66-19-QfK" id="vlW-pA-8AU"/>
                         <outlet property="tableView" destination="GPw-EB-XJK" id="jf9-Oh-GMW"/>
+                        <outlet property="titleLineView" destination="tzU-6J-mDF" id="WLx-AV-8N8"/>
+                        <outlet property="titleUpLineView" destination="wyf-q7-py8" id="oGj-9b-Vrp"/>
+                        <outlet property="titleView" destination="0Cg-od-Lw7" id="dCe-Wc-dpM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZG4-E9-kxT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -169,38 +174,38 @@
             <objects>
                 <viewController storyboardIdentifier="UGBMLotteryHomeViewController" title="购彩大厅" id="DWs-cd-gC8" customClass="UGBMLotteryHomeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vq2-H2-nI1">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="JAl-Nn-V0Z">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R2Z-Ep-6Gf">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="110"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="110"/>
                                         <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="110" id="PD2-JM-CzG"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gh6-5H-WVp">
-                                        <rect key="frame" x="0.0" y="110" width="600" height="60"/>
+                                        <rect key="frame" x="0.0" y="110" width="414" height="60"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qca-n6-Iew">
-                                                <rect key="frame" x="0.0" y="0.0" width="600" height="1"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
                                                 <color key="backgroundColor" red="0.28627666829999998" green="0.28627061840000001" blue="0.28627473120000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="6LX-iC-ZJM"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6SP-50-cFx">
-                                                <rect key="frame" x="0.0" y="58.5" width="600" height="1.5"/>
+                                                <rect key="frame" x="0.0" y="58.5" width="414" height="1.5"/>
                                                 <color key="backgroundColor" red="0.28627666829999998" green="0.28627061840000001" blue="0.28627473120000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1.5" id="Ges-pH-EHW"/>
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="购彩大厅" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NSO-JV-alX">
-                                                <rect key="frame" x="263.5" y="19.5" width="73.5" height="21.5"/>
+                                                <rect key="frame" x="170.5" y="19.5" width="73.5" height="21.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -220,7 +225,7 @@
                                         </constraints>
                                     </view>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cir-Xi-YNh">
-                                        <rect key="frame" x="0.0" y="170" width="600" height="430"/>
+                                        <rect key="frame" x="0.0" y="170" width="414" height="648"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="0ja-Aq-hZA">
                                             <size key="itemSize" width="50" height="50"/>
@@ -242,7 +247,7 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cdL-Ko-6Ne">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="0.0"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                 <color key="backgroundColor" red="0.1294129490852356" green="0.12940964102745056" blue="0.12941190600395203" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="状态栏背景色View"/>
@@ -264,6 +269,9 @@
                     </view>
                     <connections>
                         <outlet property="myCollectionView" destination="cir-Xi-YNh" id="qum-xW-YWL"/>
+                        <outlet property="titleLineView" destination="6SP-50-cFx" id="nET-0I-2Er"/>
+                        <outlet property="titleUpLineView" destination="Qca-n6-Iew" id="LsG-WY-gq4"/>
+                        <outlet property="titleView" destination="Gh6-5H-WVp" id="FKh-as-FwW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OmO-xg-g27" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

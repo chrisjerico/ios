@@ -16,6 +16,9 @@
 {
      UGBMHeaderView *headView;                /**<   导航头 */
 }
+@property (weak, nonatomic) IBOutlet UIView *titleView;                 /**<   会员View*/
+@property (weak, nonatomic) IBOutlet UIView *titleLineView;              /**<   会员下面的线 */
+@property (weak, nonatomic) IBOutlet UIView *titleUpLineView;              /**<  会员上面的线 */
 @property (weak, nonatomic) IBOutlet UICollectionView *myCollectionView;   /**<   */
 @property (nonatomic, strong) NSMutableArray *dataArray;                    /**<  数据源*/
 @end
@@ -41,6 +44,15 @@
     self.navigationItem.title = @"购彩大厅";
     self.fd_prefersNavigationBarHidden = YES;
     [self.view setBackgroundColor: Skin1.bgColor];
+    if ([Skin1.skitString isEqualToString:@"黑色模板香槟金"]) {
+        _titleLineView.backgroundColor = Skin1.bgColor;
+        _titleUpLineView.backgroundColor = Skin1.bgColor;
+       
+    }
+    NSMutableArray <UIColor *> *colors = @[].mutableCopy;
+    [colors addObject:Skin1.navBarBgColor];
+    [colors addObject:Skin1.bgColor];
+    self.titleView.backgroundColor =  [UIColor colorWithPatternImage:[UIImage gradientImageWithBounds:self.titleView.bounds andColors:colors andGradientType:GradientDirectionTopToBottom]];
     [self creatView];
     _dataArray = [NSMutableArray array];
     //初始化

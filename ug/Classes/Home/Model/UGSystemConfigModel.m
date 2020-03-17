@@ -29,6 +29,7 @@
 #import "LineConversionHeaderVC.h"          // 额度转换 1
 #import "LotteryBetAndChatVC.h"             // 聊天室
 #import "OnlineServiceViewController.h"     // 在线客服
+#import "UGBetRecordViewController.h"       // 未结算
 #import "UGYYLotterySecondHomeViewController.h"
 #import "UGBMMemberCenterViewController.h"  //
 #import "UGLHMineViewController.h"  //
@@ -140,25 +141,26 @@ UGSystemConfigModel *currentConfig = nil;
             return mm;
         };
         _items =@[
-            item(@"/home",              @"shouye",                      UGHomeViewController.className,                 MM_首页,           @"首页"),
-            item(@"/changLong",         @"changlong",                   UGChangLongController.className,                MM_长龙助手,        @"长龙助手"),
-            item(@"/lotteryList",       @"dating",                      UGYYLotteryHomeViewController.className,        MM_购彩大厅_默认,    @"购彩大厅"),
-            item(@"/lotteryRecord",     @"zdgl",                        UGLotteryRecordController.className,            MM_开奖记录,        @"开奖记录"),
-            item(@"/zrsx",              @"real_video1",                 UGYYLotterySecondHomeViewController.className,  MM_真人视讯,        @"真人视讯"),
-            item(@"/qpdz",              @"chess_electronic1",           UGYYLotterySecondHomeViewController.className,  MM_棋牌电子,        @"棋牌电子"),
-            item(@"/gameHall",          @"gcdt",                        UGLotteryHomeController.className,              MM_彩票大厅,        @"彩票大厅"),
-            item(@"/user",              @"wode",                        UGMineSkinViewController.className,             MM_我的_默认,       @"我的"),
-            item(@"/task",              @"renwu",                       UGMissionCenterViewController.className,        MM_任务中心,        @"任务中心"),
-            item(@"/Sign",              @"qiandao",                     UGSigInCodeViewController.className,            MM_签到,           @"签到"),
-            item(@"/message",           @"zhanneixin",                  UGMailBoxTableViewController.className,         MM_站内信,          @"站内信"),
-            item(@"/activity",          @"youhui1",                     UGPromotionsController.className,               MM_优惠活动_默认,    @"优惠活动"),
-            item(@"/chatRoomList",      @"liaotian",                    LotteryBetAndChatVC.className,                  MM_聊天室,         @"聊天室"),
-            item(@"/referrer",          @"shouyi1",                     UGPromotionIncomeController.className,          MM_推广收益,        @"推广收益"),
-            item(@"/securityCenter",    @"ziyuan",                      UGSecurityCenterViewController.className,       MM_安全中心,        @"安全中心"),
-            item(@"/funds",             @"jinlingyingcaiwangtubiao",    UGFundsViewController.className,                MM_资金管理,        @"资金管理"), 
-            item(@"/banks",             @"yinhangqia",                  UGBindCardViewController.className,             MM_银行卡,         @"银行卡"),
-            item(@"/yuebao",            @"lixibao",                     UGYubaoViewController.className,                MM_利息宝,         @"利息宝"),
-            item(@"/customerService",   @"zaixiankefu",                 OnlineServiceViewController.className,                MM_利息宝,         @"在线客服"),
+            item(@"/home",              @"shouye",                      UGHomeViewController.className,                 MM_首页,            @"首页"),
+            item(@"/changLong",         @"changlong",                   UGChangLongController.className,                MM_长龙助手,         @"长龙助手"),
+            item(@"/lotteryList",       @"dating",                      UGYYLotteryHomeViewController.className,        MM_购彩大厅_默认,     @"购彩大厅"),
+            item(@"/lotteryRecord",     @"zdgl",                        UGLotteryRecordController.className,            MM_开奖记录,         @"开奖记录"),
+            item(@"/zrsx",              @"real_video1",                 UGYYLotterySecondHomeViewController.className,  MM_真人视讯,         @"真人视讯"),
+            item(@"/qpdz",              @"chess_electronic1",           UGYYLotterySecondHomeViewController.className,  MM_棋牌电子,         @"棋牌电子"),
+            item(@"/gameHall",          @"gcdt",                        UGLotteryHomeController.className,              MM_彩票大厅,         @"彩票大厅"),
+            item(@"/user",              @"wode",                        UGMineSkinViewController.className,             MM_我的_默认,        @"我的"),
+            item(@"/task",              @"renwu",                       UGMissionCenterViewController.className,        MM_任务中心,         @"任务中心"),
+            item(@"/Sign",              @"qiandao",                     UGSigInCodeViewController.className,            MM_签到,            @"签到"),
+            item(@"/message",           @"zhanneixin",                  UGMailBoxTableViewController.className,         MM_站内信,           @"站内信"),
+            item(@"/activity",          @"youhui1",                     UGPromotionsController.className,               MM_优惠活动_默认,     @"优惠活动"),
+            item(@"/chatRoomList",      @"liaotian",                    LotteryBetAndChatVC.className,                  MM_聊天室,           @"聊天室"),
+            item(@"/referrer",          @"shouyi1",                     UGPromotionIncomeController.className,          MM_推广收益,         @"推广收益"),
+            item(@"/securityCenter",    @"ziyuan",                      UGSecurityCenterViewController.className,       MM_安全中心,         @"安全中心"),
+            item(@"/funds",             @"jinlingyingcaiwangtubiao",    UGFundsViewController.className,                MM_资金管理,         @"资金管理"),
+            item(@"/banks",             @"yinhangqia",                  UGBindCardViewController.className,             MM_银行卡,           @"银行卡"),
+            item(@"/yuebao",            @"lixibao",                     UGYubaoViewController.className,                MM_利息宝,           @"利息宝"),
+            item(@"/customerService",   @"zaixiankefu",                 OnlineServiceViewController.className,          MM_在线客服,          @"在线客服"),
+            item(@"/notSettle",         @"tzjl",                        UGBetRecordViewController.className,            MM_未结算,            @"未结算"),
         ].mutableCopy;
         
         UGMobileMenu * itemLine;

@@ -62,22 +62,26 @@
             mas;
         });
     } else {
-
-            if (item.enable && item.gameEnable) {
-                if ([item.typeName isEqualToString:@"合肖"]) {
-                     self.leftTitleLabel.text = _item.name;
-                } else {
-                     self.leftTitleLabel.text = _NSString(@"%@ %@",item.name, [item.odds removeFloatAllZero]);
-                }
-               
+        
+        if (item.enable && item.gameEnable) {
+            if ([item.typeName isEqualToString:@"合肖"]) {
+                self.leftTitleLabel.text = _item.name;
             } else {
-                self.leftTitleLabel.text = _NSString(@"%@ --",item.name);
+                self.leftTitleLabel.text = _NSString(@"%@ %@",item.name, [item.odds removeFloatAllZero]);
             }
-
+            
+        } else {
+            self.leftTitleLabel.text = _NSString(@"%@ --",item.name);
+        }
+        
         
     }
     if (Skin1.isBlack||Skin1.is23) {
-        self.backgroundColor = item.select ? Skin1.homeContentSubColor : UIColorHex(101010);
+        if ([Skin1.skitString isEqualToString:@"黑色模板香槟金"]) {
+            self.backgroundColor = item.select ? RGBA(72, 146, 209, 1):  Skin1.homeContentSubColor;
+        } else {
+            self.backgroundColor = item.select ? Skin1.homeContentSubColor : UIColorHex(101010);
+        }
         self.layer.borderColor = (item.select ? [UIColor whiteColor] : Skin1.textColor3).CGColor;
         
         if (!APP.betOddsIsRed) {
@@ -203,7 +207,7 @@
     }
     else {
         
-
+        
         [self.ballImg0 setHidden:YES];
         [self.ballImg1 setHidden:YES];
         [self.ballImg2 setHidden:YES];

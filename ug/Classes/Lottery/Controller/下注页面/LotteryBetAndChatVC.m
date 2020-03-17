@@ -240,7 +240,7 @@
         for (UIView *v in ssv1.contentViews) {
             [v mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.width.mas_equalTo(ssv1.width);
-                make.height.mas_equalTo(self.view.height - NavController1.navigationBar.by - 40);
+                make.height.mas_equalTo(self.view.height - APP.StatusBarHeight - k_Height_NavBar - 40+2);
             }];
         }
         

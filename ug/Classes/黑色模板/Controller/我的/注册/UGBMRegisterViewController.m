@@ -111,6 +111,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSLog(@"skitType= %@",Skin1.skitType);
+    NSLog(@"skitString= %@",Skin1.skitString);
+    
+    if ([Skin1.skitString isEqualToString:@"黑色模板香槟金"]) {
+        _titleLineView.backgroundColor = Skin1.bgColor;
+    }
+        
     self.view.backgroundColor = Skin1.bgColor;
     NSMutableArray <UIColor *> *colors = @[].mutableCopy;
     [colors addObject:Skin1.navBarBgColor];

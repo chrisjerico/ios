@@ -52,6 +52,12 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *myCollectionView;
 @property (weak, nonatomic) IBOutlet UILabel *userMoneyLabel;    /**<  显示余额 */
 @property (weak, nonatomic) IBOutlet UIButton *refreshFirstButton; /**<  刷新按钮 */
+
+@property (weak, nonatomic) IBOutlet UIView *titleView;                 /**<   会员View*/
+@property (weak, nonatomic) IBOutlet UIView *titleLineView;              /**<   会员下面的线 */
+@property (weak, nonatomic) IBOutlet UIView *titleUpLineView;              /**<  会员上面的线 */
+@property (weak, nonatomic) IBOutlet UIView *title2View;                 /**<   账户余额View*/
+@property (weak, nonatomic) IBOutlet UIView *title2LineView;              /**<   账户余额下面的线 */
 //===================================================
 @property (nonatomic, strong) NSMutableArray <UGUserCenterItem *> *menuNameArray;
 
@@ -116,6 +122,18 @@
     self.navigationItem.title = @"会员中心";
     self.fd_prefersNavigationBarHidden = YES;
     [self.view setBackgroundColor: Skin1.bgColor];
+    
+    
+    if ([Skin1.skitString isEqualToString:@"黑色模板香槟金"]) {
+        _titleLineView.backgroundColor = Skin1.bgColor;
+        _titleUpLineView.backgroundColor = Skin1.bgColor;
+        _title2LineView.backgroundColor = Skin1.bgColor;
+    }
+    _title2View.backgroundColor = Skin1.bgColor;
+    NSMutableArray <UIColor *> *colors = @[].mutableCopy;
+    [colors addObject:Skin1.navBarBgColor];
+    [colors addObject:Skin1.bgColor];
+    self.titleView.backgroundColor =  [UIColor colorWithPatternImage:[UIImage gradientImageWithBounds:self.titleView.bounds andColors:colors andGradientType:GradientDirectionTopToBottom]];
     [self creatView];
 
     //初始化

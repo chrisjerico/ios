@@ -40,16 +40,37 @@
 
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    if (Skin1.isBlack) {
+       
+    }
+    
+    if (self.shoulHideHeader) {
+        [self hideHeader];
+    }
+    [self getSystemConfig];     // APP配置信息
+    
+
+}
 - (BOOL)允许游客访问 { return true; }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupTitleView];
+
+    
     
     FastSubViewCode(self.view);
     {
         // 背景色
-        self.view.backgroundColor = Skin1.textColor4;
+//        if ([Skin1.skitString isEqualToString:@"黑色模板香槟金"]) {
+//             self.view.backgroundColor = Skin1.bgColor;
+//        } else {
+             self.view.backgroundColor = Skin1.textColor4;
+//        }
+       
         if (!APP.betBgIsWhite) {
             [self.view insertSubview:({
                 UIView *bgView = [[UIView alloc] initWithFrame:APP.Bounds];
@@ -168,16 +189,6 @@
     }];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    if (self.shoulHideHeader) {
-        [self hideHeader];
-    }
-    [self getSystemConfig];     // APP配置信息
-    
-
-}
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];

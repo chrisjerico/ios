@@ -23,6 +23,11 @@
 {
      UGBMHeaderView *headView;                /**<   导航头 */
 }
+
+@property (weak, nonatomic) IBOutlet UIView *titleView;                 /**<   浏览View*/
+@property (weak, nonatomic) IBOutlet UIView *titleLineView;              /**<   浏览下面的线 */
+@property (weak, nonatomic) IBOutlet UIView *titleUpLineView;              /**< 浏览上面的线 */
+
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UICollectionView *myCollectionView;
@@ -46,6 +51,15 @@
     self.fd_prefersNavigationBarHidden = YES;
     self.fd_interactivePopDisabled = true;
     [self.view setBackgroundColor:Skin1.bgColor];
+    
+    if ([Skin1.skitString isEqualToString:@"黑色模板香槟金"]) {
+        _titleLineView.backgroundColor = Skin1.bgColor;
+        _titleUpLineView.backgroundColor = Skin1.bgColor;
+    }
+    NSMutableArray <UIColor *> *colors = @[].mutableCopy;
+    [colors addObject:Skin1.navBarBgColor];
+    [colors addObject:Skin1.bgColor];
+    self.titleView.backgroundColor =  [UIColor colorWithPatternImage:[UIImage gradientImageWithBounds:self.titleView.bounds andColors:colors andGradientType:GradientDirectionTopToBottom]];
     [self creatView];
 
     // CollectionView

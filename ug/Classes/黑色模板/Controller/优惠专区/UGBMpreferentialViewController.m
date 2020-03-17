@@ -16,6 +16,11 @@
 {
      UGBMHeaderView *headView;                /**<   导航头 */
 }
+
+@property (weak, nonatomic) IBOutlet UIView *titleView;                 /**<   会员View*/
+@property (weak, nonatomic) IBOutlet UIView *titleLineView;              /**<   会员下面的线 */
+@property (weak, nonatomic) IBOutlet UIView *titleUpLineView;              /**<  会员上面的线 */
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet LeeTagView *radioTagView; /**<   单选标签组 */
 
@@ -47,6 +52,16 @@
     self.tableView.dataSource = self;
     self.view.backgroundColor = Skin1.bgColor;
     self.tableView.backgroundColor = Skin1.bgColor;
+    
+    if ([Skin1.skitString isEqualToString:@"黑色模板香槟金"]) {
+        _titleLineView.backgroundColor = Skin1.bgColor;
+        _titleUpLineView.backgroundColor = Skin1.bgColor;
+       
+    }
+    NSMutableArray <UIColor *> *colors = @[].mutableCopy;
+    [colors addObject:Skin1.navBarBgColor];
+    [colors addObject:Skin1.bgColor];
+    self.titleView.backgroundColor =  [UIColor colorWithPatternImage:[UIImage gradientImageWithBounds:self.titleView.bounds andColors:colors andGradientType:GradientDirectionTopToBottom]];
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self getPromoteList];

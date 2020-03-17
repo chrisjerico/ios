@@ -39,7 +39,7 @@
 #import "UGYYLotteryHomeViewController.h"     //  游戏大厅
 #import "MyPromotionVC.h"
 
-
+#import "UGHomeViewController.h"
 
 // Tools
 #import "UGAppVersionManager.h"
@@ -196,14 +196,16 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     // 去（彩票下注+聊天室）集合页
     {
         LotteryBetAndChatVC *vc = [LotteryBetAndChatVC new];
+
+       
         vc.nim = model;
-        if (vc.navigationController.viewControllers.count > 1){
+//        if (vc.navigationController.viewControllers.count > 1){
                   // 隐藏底部条
             vc.hidesBottomBarWhenPushed = YES;
-        }
-        else{
-            vc.hidesBottomBarWhenPushed = NO;
-        }
+//        }
+//        else{
+//            vc.hidesBottomBarWhenPushed = NO;
+//        }
         // Push
         if ([UGTabbarController canPushToViewController:vc]) {
             [NavController1 setViewControllers:({

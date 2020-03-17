@@ -1118,49 +1118,49 @@ static UGSkinManagers *__initSkin1 = nil;
 			
 			
 			//黑色模板
-//			@"黑色模板0":({
-//				UGSkinManagers *sm = [UGSkinManagers new];
-//				sm.skitType                 = @"黑色模板";
-//				sm.skitString               = @"黑色模板";
-//				sm.bgColor                  = color(@"171717");
-//				sm.navBarBgColor            = color(@"333333");
-//				sm.tabBarBgColor            = color(@"313131");
-//				sm.tabNoSelectColor         = color(@"999999");
-//				sm.tabSelectedColor         = color(@"FFFFFF");
-//				sm.progressBgColor          = color(@"d80000,fb5959");
-//				sm.homeContentColor         = color(@"343434");
-//				sm.homeContentSubColor      = color(@"353535");
-//				sm.cellBgColor              = color(@"181818");
-//				sm.CLBgColor                = color(@"202122");
-//				sm.menuHeadViewColor        = color(@"323232");
-//				sm.textColor1               = color(@"FEFEFE");
-//				sm.textColor2               = color(@"C1C1C1");
-//				sm.textColor3               = color(@"555555");
-//				sm.textColor4               = color(@"000000");
-//                sm.conversionCellColor      = color(@"7BA2C2");
-//                sm.intoViewColor            = color(@"7BA2C2");
-//                sm.moneyCellColor           = color(@"9BB8CB");
-//				sm;
-//			}),
-            @"黑色模板":({
+			@"黑色模板0":({
+				UGSkinManagers *sm = [UGSkinManagers new];
+				sm.skitType                 = @"黑色模板";
+				sm.skitString               = @"黑色模板";
+				sm.bgColor                  = color(@"171717");
+				sm.navBarBgColor            = color(@"333333");
+				sm.tabBarBgColor            = color(@"313131");
+				sm.tabNoSelectColor         = color(@"999999");
+				sm.tabSelectedColor         = color(@"FFFFFF");
+				sm.progressBgColor          = color(@"d80000,fb5959");
+				sm.homeContentColor         = color(@"343434");
+				sm.homeContentSubColor      = color(@"353535");
+				sm.cellBgColor              = color(@"181818");
+				sm.CLBgColor                = color(@"202122");
+				sm.menuHeadViewColor        = color(@"323232");
+				sm.textColor1               = color(@"FEFEFE");
+				sm.textColor2               = color(@"C1C1C1");
+				sm.textColor3               = color(@"555555");
+				sm.textColor4               = color(@"000000");
+                sm.conversionCellColor      = color(@"7BA2C2");
+                sm.intoViewColor            = color(@"7BA2C2");
+                sm.moneyCellColor           = color(@"9BB8CB");
+				sm;
+			}),
+            @"黑色模板1":({
                 UGSkinManagers *sm = [UGSkinManagers new];
                 sm.skitType                 = @"黑色模板";
-                sm.skitString               = @"黑色模板";
+                sm.skitString               = @"黑色模板香槟金";
                 sm.bgColor                  = color(@"5B4435");
                 sm.navBarBgColor            = color(@"9C745A");
-                sm.tabBarBgColor            = color(@"9C745A");
+                sm.tabBarBgColor            = color(@"9B735A");
                 sm.tabNoSelectColor         = color(@"999999");
                 sm.tabSelectedColor         = color(@"FFFFFF");
                 sm.progressBgColor          = color(@"d80000,fb5959");
-                sm.homeContentColor         = color(@"343434");
-                sm.homeContentSubColor      = color(@"353535");
-                sm.cellBgColor              = color(@"181818");
-                sm.CLBgColor                = color(@"202122");
+                sm.homeContentColor         = color(@"5B4435");
+                sm.homeContentSubColor      = color(@"5C4536");
+                sm.cellBgColor              = color(@"5B4435");
+                sm.CLBgColor                = color(@"7F5B45");
                 sm.menuHeadViewColor        = color(@"9C745A");
                 sm.textColor1               = color(@"FEFEFE");
                 sm.textColor2               = color(@"C1C1C1");
                 sm.textColor3               = color(@"555555");
-                sm.textColor4               = color(@"000000");
+                sm.textColor4               = color(@"5B4435");
                 sm.conversionCellColor      = color(@"7BA2C2");
                 sm.intoViewColor            = color(@"7BA2C2");
                 sm.moneyCellColor           = color(@"9BB8CB");
@@ -1307,11 +1307,13 @@ static UGSkinManagers *__initSkin1 = nil;
 #pragma mark - 对外开放的函数
 
 + (UGSkinManagers *)skinWithSysConf {
+//    SysConf.mobileTemplateCategory =  @"5";
+//    SysConf.mobileTemplateBackground =  @"1";
 	NSDictionary *dict = @{@"0":SysConf.mobileTemplateBackground,
 						   @"2":[NSString stringWithFormat:@"新年红%@",SysConf.mobileTemplateStyle],
 						   @"3":@"石榴红",
 						   @"4":[NSString stringWithFormat:@"六合资料%@",SysConf.mobileTemplateLhcStyle],
-						   @"5":@"黑色模板",
+						   @"5":[NSString stringWithFormat:@"黑色模板%@",SysConf.mobileTemplateBackground],
 						   @"6":@"金沙主题",
 						   @"7":@"火山橙",
                            @"8":@"香槟金",
@@ -1319,7 +1321,13 @@ static UGSkinManagers *__initSkin1 = nil;
 
 	};
 	
-	NSLog(@"============================SysConf.mobileTemplateCategory=%@",SysConf.mobileTemplateStyle);
+
+    
+        NSLog(@"============================SysConf.mobileTemplateCategory=%@",SysConf.mobileTemplateCategory);
+    
+            NSLog(@"============================SysConf.mobileTemplateBackground=%@",SysConf.mobileTemplateBackground);
+    
+    
 	
     NSString *skitType = dict[SysConf.mobileTemplateCategory];;
     
