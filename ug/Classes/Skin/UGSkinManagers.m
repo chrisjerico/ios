@@ -1325,7 +1325,7 @@ static UGSkinManagers *__initSkin1 = nil;
     
         NSLog(@"============================SysConf.mobileTemplateCategory=%@",SysConf.mobileTemplateCategory);
     
-            NSLog(@"============================SysConf.mobileTemplateBackground=%@",SysConf.mobileTemplateBackground);
+            NSLog(@"============================SysConf.mobileTemplateGpkStyle=%@",SysConf.mobileTemplateGpkStyle);
     
     
 	
