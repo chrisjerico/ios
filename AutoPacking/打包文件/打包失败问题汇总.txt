@@ -1,0 +1,12 @@
+
+- 报Pods错误：
+
+原因：一般是因为打包项目的node_modules文件夹不是最新的。
+解决：更新 package.json，然后重新sudo npm install
+
+
+
+
+
+
+
