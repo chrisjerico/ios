@@ -683,7 +683,13 @@
 - (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential *__nullable credential))completionHandler {
     
     completionHandler(NSURLSessionAuthChallengePerformDefaultHandling, nil);
-    [_webView evaluateJavaScript:@"document.body.style.backgroundColor=\"#171717\"" completionHandler:nil];
+    
+    if ([Skin1.skitString isEqualToString:@"黑色模板香槟金"]) {
+            [_webView evaluateJavaScript:@"document.body.style.backgroundColor=\"#483428\"" completionHandler:nil];
+    } else {
+            [_webView evaluateJavaScript:@"document.body.style.backgroundColor=\"#171717\"" completionHandler:nil];
+    }
+
 }
 
 - (WKWebView *)webView {

@@ -352,8 +352,8 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="回到首页"/>
                                         </userDefinedRuntimeAttributes>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COPYRIGHT © test20-朗 RESERVED" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f6E-aF-skQ">
-                                        <rect key="frame" x="89" y="662" width="236" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f6E-aF-skQ">
+                                        <rect key="frame" x="203" y="662" width="8" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="2PU-2b-A7N"/>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="xds-U0-2Jc"/>
@@ -1157,7 +1157,7 @@
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qU3-PG-E6f">
                                         <rect key="frame" x="5" y="874" width="369" height="80"/>
-                                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="80" id="elQ-K5-uqv"/>
                                         </constraints>

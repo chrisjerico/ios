@@ -283,7 +283,7 @@
                     label.textColor = [UIColor whiteColor];
                 }
             }
-            
+
             label.font = selected ? [UIFont boldSystemFontOfSize:16] : [UIFont systemFontOfSize:14];
             
             if (APP.isRedWhite) {
@@ -304,6 +304,11 @@
                 
                 __ssv1.titleBar.backgroundColor = Skin1.isBlack||Skin1.is23 || idx || !APP.betBgIsWhite ? Skin1.navBarBgColor : [UIColor whiteColor];
             }
+            
+            if ([Skin1.skitString isEqualToString:@"黑色模板香槟金"]) {
+                 label.textColor = [UIColor whiteColor];
+            }
+            
             
             
         };

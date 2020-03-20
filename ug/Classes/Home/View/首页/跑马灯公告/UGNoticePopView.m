@@ -22,9 +22,10 @@
         self.layer.cornerRadius = 10;
         self.layer.masksToBounds = YES;
         self.contentTextV.editable = NO;
+        
         if (Skin1.isBlack) {
              self.backgroundColor = Skin1.bgColor;
-            _titleLabel.textColor = Skin1.textColor1;
+            _titleLabel.textColor = Skin1.textColor4;
         } else {
              self.backgroundColor = [UIColor whiteColor];
             _titleLabel.textColor = Skin1.textColor1;

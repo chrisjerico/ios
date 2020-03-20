@@ -94,6 +94,11 @@
         [label mas_makeConstraints:^(MASConstraintMaker *make) {
             make.center.equalTo(cell);
         }];
+        
+        if ([Skin1.skitString isEqualToString:@"黑色模板香槟金"]) {
+             label.textColor = [UIColor whiteColor];
+        }
+        
     }
     
     if (_updateCellForItemAtIndex) {
