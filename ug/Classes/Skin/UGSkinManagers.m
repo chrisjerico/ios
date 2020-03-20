@@ -1313,7 +1313,7 @@ static UGSkinManagers *__initSkin1 = nil;
 						   @"2":[NSString stringWithFormat:@"新年红%@",SysConf.mobileTemplateStyle],
 						   @"3":@"石榴红",
 						   @"4":[NSString stringWithFormat:@"六合资料%@",SysConf.mobileTemplateLhcStyle],
-						   @"5":[NSString stringWithFormat:@"黑色模板%@",SysConf.mobileTemplateBackground],
+						   @"5":[NSString stringWithFormat:@"黑色模板%@",SysConf.mobileTemplateGpkStyle],
 						   @"6":@"金沙主题",
 						   @"7":@"火山橙",
                            @"8":@"香槟金",

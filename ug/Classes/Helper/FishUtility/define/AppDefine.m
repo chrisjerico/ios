@@ -206,7 +206,7 @@
 
 
 - (BOOL)isTabHot {
-    return [@"c208" containsString:_SiteId];
+    return [@"c208,c211" containsString:_SiteId];
 }
 
 - (BOOL)isFireworks {
@@ -236,7 +236,7 @@
 }
 
 - (BOOL)isNoBorder {
-    return [@"c200,c208,c213,a002" containsString:_SiteId];
+    return [@"c200,c208,c211,c213,a002" containsString:_SiteId];
 }
 
 - (BOOL)isYHShowTitle {
@@ -260,7 +260,7 @@
 }
 
 - (BOOL)isHideChat {
-    return [@"c212,c208" containsString:_SiteId];
+    return [@"c212,c208,c211" containsString:_SiteId];
 }
 
 - (BOOL)isLight {
@@ -271,23 +271,23 @@
     if (Skin1.isSLH) {
         return YES;
     } else {
-        return [@"c134,c200,c208,c213,a002" containsString:_SiteId];
+        return [@"c134,c200,c208,c213,a002,c211" containsString:_SiteId];
     }
 }
 
 - (BOOL)isYellow {
     
-    return [@"c085,c134,c200,c208,c213,c212,a002" containsString:_SiteId];
+    return [@"c085,c134,c200,c208,c213,c212,a002,c211" containsString:_SiteId];
 }
 
 - (BOOL)isSelectStyle {
-    return [@"c212,c208,c134,c200,c213,a002" containsString:_SiteId];
+    return [@"c212,c208,c134,c200,c213,a002,c211" containsString:_SiteId];
 }
 
 
 - (BOOL)isShowBorder {
     
-    return [@"c212,c208,c134,c200,c213,a002" containsString:_SiteId];
+    return [@"c212,c208,c134,c200,c213,a002,c211" containsString:_SiteId];
     
 }
 
@@ -296,7 +296,7 @@
 }
 
 - (BOOL)isGrey {
-    return [@"c212,c208,c134,c200,c213,a002" containsString:_SiteId];
+    return [@"c212,c208,c134,c200,c213,a002,c211" containsString:_SiteId];
 }
 
 - (BOOL)isBorderNavBarBgColor {
@@ -304,7 +304,7 @@
         return NO;
     }
     else {
-        return [@"c085,c212,c208,c134" containsString:_SiteId]||[@"石榴红" containsString:Skin1.skitType];
+        return [@"c085,c212,c208,c134,c211" containsString:_SiteId]||[@"石榴红" containsString:Skin1.skitType];
     }
 }
 
@@ -312,7 +312,7 @@
     if (Skin1.isSLH) {
         return YES;
     } else {
-        return [@"c212,c085,c208,c134,c200,c208,c213,a002" containsString:_SiteId];
+        return [@"c212,c085,c208,c134,c200,c208,c213,a002,c211" containsString:_SiteId];
     }
     
 }
@@ -330,7 +330,7 @@
 }
 
 - (BOOL)isShowJinbei {
-    return [@"c085,c208,c212,c200,c213,a002" containsString:_SiteId];
+    return [@"c085,c208,c212,c200,c213,a002,c211" containsString:_SiteId];
 }
 
 - (BOOL)isShowWZ {
@@ -376,7 +376,7 @@
 
 
 - (BOOL)isBA {
-    return [@"c001,c085,c208,a002,c054,c212,c200,c213" containsString:_SiteId];
+    return [@"c001,c085,c208,a002,c054,c212,c200,c213,c211" containsString:_SiteId];
 }
 
 - (BOOL)addIcons {
@@ -393,7 +393,7 @@
 
 - (BOOL)betBgIsWhite {
     
-    return ![@"c175,c085,c073,c169,a002,c190,c048,c200,c001,c208,c202,c212,c134,t032,c213" containsString:_SiteId] || [@"新年红,石榴红" containsString:Skin1.skitType]||Skin1.isJY;
+    return ![@"c175,c085,c073,c169,a002,c190,c048,c200,c001,c208,c202,c212,c134,t032,c213,c211" containsString:_SiteId] || [@"新年红,石榴红" containsString:Skin1.skitType]||Skin1.isJY;
     
 }
 
