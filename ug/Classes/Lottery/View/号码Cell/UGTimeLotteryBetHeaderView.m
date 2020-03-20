@@ -22,6 +22,10 @@
          self.titleLabel.textColor = Skin1.textColor1;
     }
     
+    if (APP.isSectionWhite) {
+         self.titleLabel.textColor = [UIColor whiteColor];
+    }
+    
 
 }
 
@@ -47,6 +51,10 @@
         [self.titleLabel mas_updateConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.left).offset(0);
         }];
+    }
+    
+    if (APP.isSectionWhite) {
+         self.titleLabel.textColor = [UIColor whiteColor];
     }
 }
 @end

@@ -181,6 +181,11 @@
 #pragma mark - 定制样式
 
 
+
+- (BOOL)isSectionWhite {
+     return [@"a002" containsString:_SiteId];
+}
+
 - (BOOL)isTitleWhite {
      return [@"a002" containsString:_SiteId];
 }

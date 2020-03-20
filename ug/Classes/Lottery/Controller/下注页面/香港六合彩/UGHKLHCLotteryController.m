@@ -880,7 +880,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         
         
         // 如果显示的是赔率，则把赔率标红
-        headerView.titleLabel.textColor = Skin1.textColor1;
+//        headerView.titleLabel.textColor = Skin1.textColor1;
         if (APP.betOddsIsRed && [headerView.titleLabel.text containsString:@"赔率："]) {
             headerView.titleLabel.attributedText = ({
                 NSMutableAttributedString *mas = headerView.titleLabel.attributedText.mutableCopy;
