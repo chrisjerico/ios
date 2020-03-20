@@ -10,7 +10,8 @@
 
 @interface UGDocumentView()
 @property (nonatomic) UILabel *titleLabel;
-@property (nonatomic) UITextView *textView;
+//@property (nonatomic) UITextView *textView;
+@property (nonatomic) UIWebView *webView;
 @property (nonatomic) UIButton *confirmButton;
 @property (nonatomic, strong) UIActivityIndicatorView *activity;
 @end
@@ -85,11 +86,10 @@ static UGDocumentView *_singleInstance = nil;
 		}];
         
         // TextView
-        _textView = [[UITextView alloc] init];
-        _textView.editable = false;
-        _textView.backgroundColor = [UIColor clearColor];
-		[contentView addSubview:_textView];
-		[_textView mas_makeConstraints:^(MASConstraintMaker *make) {
+        _webView = [[UIWebView alloc] init];
+        _webView.backgroundColor = [UIColor clearColor];
+		[contentView addSubview:_webView];
+		[_webView mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.left.right.equalTo(contentView);
 			make.top.equalTo(line.mas_bottom);
 		}];
@@ -97,7 +97,7 @@ static UGDocumentView *_singleInstance = nil;
         
         // 确定Button
 		[self.confirmButton mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.top.equalTo(self.textView.mas_bottom);
+			make.top.equalTo(self.webView.mas_bottom);
 			make.bottom.equalTo(contentView);
 			make.left.right.equalTo(contentView);
 			make.height.equalTo(@45);
@@ -151,7 +151,7 @@ static UGDocumentView *_singleInstance = nil;
          }
          dispatch_async(dispatch_get_main_queue(), ^{
             [self.activity stopAnimating];
-             __self.textView.attributedText = mas;
+             [__self.webView loadHTMLString:[APP htmlStyleString:str] baseURL:nil];
          });
     });
 }
