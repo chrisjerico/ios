@@ -40,7 +40,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString* type;           /**<   类型 0一次性任务 1日常任务 */
 
 
-
+@property (nonatomic, strong) NSString *sortName2;         /**<   二级分类"Name */
+//自定义参数
+@property (nonatomic, strong) NSArray<UGMissionModel *> *sortName2Array;    /**<   二级分类数据数组 */
+@property (nonatomic, assign) BOOL isShowCell;                               /**<   二级分类数据是否展示*/
 @end
 
 NS_ASSUME_NONNULL_END
