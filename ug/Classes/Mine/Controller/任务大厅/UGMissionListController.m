@@ -97,6 +97,20 @@ static NSString *missionCellid = @"UGMissionTableViewCell";
             //            [self.goButton setTitle:@"已完成" forState:UIControlStateNormal];
         }
     };
+    
+    cell.receiveBlock = ^(UGMissionTableViewCell *sender){
+             
+              UGMissionModel *model = sender.item;
+              
+              [LEEAlert alert].config
+              .LeeTitle(@"任务详情")
+              .LeeContent(model.missionDesc)
+              .LeeAction(@"确认", ^{
+                  
+                  // 确认点击事件Block
+              })
+              .LeeShow(); // 设置完成后 别忘记调用Show来显示
+          };
     return cell;
 }
 
@@ -127,6 +141,20 @@ static NSString *missionCellid = @"UGMissionTableViewCell";
                 //已完成
                 //            [self.goButton setTitle:@"已完成" forState:UIControlStateNormal];
             }
+        };
+        
+        cell.receiveBlock = ^(UGMissionTableViewCell *sender){
+           
+            UGMissionModel *model = sender.item;
+            
+            [LEEAlert alert].config
+            .LeeTitle(@"任务详情")
+            .LeeContent(model.missionDesc)
+            .LeeAction(@"确认", ^{
+                
+                // 确认点击事件Block
+            })
+            .LeeShow(); // 设置完成后 别忘记调用Show来显示
         };
         [view addSubview:cell];
         [cell setFrame:CGRectMake(0, 0, APP.Width, 80)];
@@ -207,19 +235,19 @@ static NSString *missionCellid = @"UGMissionTableViewCell";
     return 0.001f;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    UGMissionModel *model = self.dataArray[indexPath.row];
-    
-    [LEEAlert alert].config
-    .LeeTitle(@"任务详情")
-    .LeeContent(model.missionDesc)
-    .LeeAction(@"确认", ^{
-        
-        // 确认点击事件Block
-    })
-    .LeeShow(); // 设置完成后 别忘记调用Show来显示
-}
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//    UGMissionModel*obj = [self.dataArray objectAtIndex:indexPath.section];
+//    UGMissionModel *model = obj.sortName2Array[indexPath.row];
+//    
+//    [LEEAlert alert].config
+//    .LeeTitle(@"任务详情")
+//    .LeeContent(model.missionDesc)
+//    .LeeAction(@"确认", ^{
+//        
+//        // 确认点击事件Block
+//    })
+//    .LeeShow(); // 设置完成后 别忘记调用Show来显示
+//}
 
 #pragma mark -- 网络请求
 

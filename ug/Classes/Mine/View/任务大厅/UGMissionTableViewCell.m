@@ -47,6 +47,11 @@
         self.receiveMissionBlock(self);
 }
 
+- (IBAction)cellButtonClick:(id)sender {
+    if (self.receiveBlock)
+        self.receiveBlock(self);
+}
+
 -(void)setItem:(UGMissionModel *)item {
     _item = item;
     self.headerImageVeiw.hidden = YES;
