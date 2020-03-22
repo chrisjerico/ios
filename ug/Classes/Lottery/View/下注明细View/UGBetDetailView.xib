@@ -275,9 +275,12 @@
                 <outlet property="allUpText" destination="bJ0-8f-0Ef" id="NxL-B6-HiO"/>
                 <outlet property="cancelButton" destination="crz-6L-PhD" id="1vA-OJ-CHQ"/>
                 <outlet property="closeTimeLabel" destination="T80-4n-3z9" id="DBq-BX-LTH"/>
+                <outlet property="plTitleLab" destination="m94-7m-7cX" id="xL9-Pr-OEJ"/>
+                <outlet property="plView" destination="fwS-UI-xQZ" id="bCg-RR-SCd"/>
                 <outlet property="submitButton" destination="HBw-Zv-Kcj" id="KRB-EC-bN0"/>
                 <outlet property="titleLabel" destination="Cxy-Er-f7z" id="ZWH-QO-O5r"/>
                 <outlet property="totalAmountLabel" destination="3Py-VQ-LIU" id="oLi-lM-tSN"/>
+                <outlet property="totalLabel" destination="3Py-VQ-LIU" id="AFd-B8-sxD"/>
             </connections>
             <point key="canvasLocation" x="141.30434782608697" y="126.22767857142857"/>
         </view>
