@@ -38,9 +38,9 @@
         self.frame = frame;
         self.layer.cornerRadius = 10;
         self.layer.masksToBounds = YES;
-        if (Skin1.isBlack) {
+        if (Skin1.isBlack||Skin1.is23) {
              self.backgroundColor = Skin1.bgColor;
-            _titleLabel.textColor = Skin1.textColor1;
+            _titleLabel.textColor = Skin1.textColor4;
         } else {
              self.backgroundColor = [UIColor whiteColor];
             _titleLabel.textColor = Skin1.textColor1;

@@ -32,7 +32,7 @@
 
 -(void)selectTextColor:(BOOL)selected{
     self.titleLabel.font = selected ? [UIFont boldSystemFontOfSize:14] : [UIFont systemFontOfSize:14];
-    if (Skin1.isBlack) {
+    if (Skin1.isBlack||Skin1.is23) {
         self.titleLabel.textColor = selected ? [UIColor whiteColor] : RGBA(159, 166, 173, 1);
         if (APP.isSelectStyle) {
              self.backgroundColor = selected ? [RGBA(159, 166, 173, 1) colorWithAlphaComponent:0.2] : RGBA(159, 166, 173, 1);

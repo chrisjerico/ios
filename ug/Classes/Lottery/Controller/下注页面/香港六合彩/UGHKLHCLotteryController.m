@@ -1598,7 +1598,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             btn.titleLabel.font = [UIFont systemFontOfSize:13];
             btn.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
             [btn setTitle:titles[i] forState:UIControlStateNormal];
-            if (Skin1.isBlack) {
+            if (Skin1.isBlack||Skin1.is23) {
                 [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             } else {
                 [btn setTitleColor:APP.TextColor1 forState:UIControlStateNormal];

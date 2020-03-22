@@ -43,9 +43,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    if (Skin1.isBlack) {
-       
-    }
+
     
     if (self.shoulHideHeader) {
         [self hideHeader];

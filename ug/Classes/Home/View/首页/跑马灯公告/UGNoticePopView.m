@@ -23,7 +23,7 @@
         self.layer.masksToBounds = YES;
         self.contentTextV.editable = NO;
         
-        if (Skin1.isBlack) {
+        if (Skin1.isBlack||Skin1.is23) {
              self.backgroundColor = Skin1.bgColor;
             _titleLabel.textColor = Skin1.textColor4;
         } else {
