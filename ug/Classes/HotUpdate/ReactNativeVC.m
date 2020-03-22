@@ -99,6 +99,7 @@ static RCTRootView *_rnView;
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    self.fd_interactivePopDisabled = _rpm.fd_interactivePopDisabled;
     if (_rpm.fd_prefersNavigationBarHidden) {
         [self setStateViewHidden:true];
     }

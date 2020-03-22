@@ -155,14 +155,14 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 
 @property (nonatomic, copy) NSArray<UGMobileMenu *> *mobileMenu;
 
-@property (nonatomic) NSInteger hide_reco;          /**<   代理人 */
+@property (nonatomic) NSInteger hide_reco;          /**<   代理人 0不填，1选填，2必填 */
 
-@property (nonatomic) NSInteger reg_name;           /**<   真实姓名 */
-@property (nonatomic) NSInteger reg_fundpwd;        /**<   取款密码 */
-@property (nonatomic) NSInteger reg_qq;             /**<   QQ */
-@property (nonatomic) NSInteger reg_wx;             /**<   微信 */
-@property (nonatomic) NSInteger reg_phone;          /**<   手机 */
-@property (nonatomic) NSInteger reg_email;          /**<   邮箱 */
+@property (nonatomic) NSInteger reg_name;           /**<   真实姓名  0不填，1选填，2必填 */
+@property (nonatomic) NSInteger reg_fundpwd;        /**<   取款密码  0不填，1选填，2必填 */
+@property (nonatomic) NSInteger reg_qq;             /**<   QQ  0不填，1选填，2必填 */
+@property (nonatomic) NSInteger reg_wx;             /**<   微信  0不填，1选填，2必填 */
+@property (nonatomic) NSInteger reg_phone;          /**<   手机  0不填，1选填，2必填 */
+@property (nonatomic) NSInteger reg_email;          /**<   邮箱  0不填，1选填，2必填 */
 @property (nonatomic) NSInteger reg_vcode;          /**<   0无验证码，1图形验证码 3点击显示图形验证码 2滑块验证码 */
 @property (nonatomic) NSInteger pass_limit;         /**<   注册密码强度，0、不限制；1、数字字母；2、数字字母符合 */
 @property (nonatomic) NSInteger pass_length_min;    /**<   注册密码最小长度 */
