@@ -1637,8 +1637,6 @@
 		03E41B3223C09363004AB7C6 /* JS_HomePromoteContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E41B3123C09363004AB7C6 /* JS_HomePromoteContainerView.m */; };
 		03E4228423C1E5B8004AB7C6 /* LotteryBetAndChatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE074D023C0BBBF0083EA7E /* LotteryBetAndChatVC.m */; };
 		21C23BE623A79DB2565145FB /* Pods_UGBWApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E79CE20D619A7BDF62E7B77 /* Pods_UGBWApp.framework */; };
-		222A0AF723D29DED00A058B0 /* XBJ_HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 222A0AF523D29DED00A058B0 /* XBJ_HomeVC.m */; };
-		222A0AF823D29DED00A058B0 /* XBJ_HomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 222A0AF623D29DED00A058B0 /* XBJ_HomeVC.xib */; };
 		226CA20F23D2E37400E4D921 /* HSC_BetFormCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 226CA20D23D2E37400E4D921 /* HSC_BetFormCell.m */; };
 		226CA21023D2E37400E4D921 /* HSC_BetFormCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 226CA20E23D2E37400E4D921 /* HSC_BetFormCell.xib */; };
 		226CA21423D2F21800E4D921 /* BetFormViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 226CA21323D2F21800E4D921 /* BetFormViewModel.m */; };
@@ -1822,8 +1820,6 @@
 		CF475929239636D200966536 /* 105.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF47587D239636D100966536 /* 105.gif */; };
 		CF47592A239636D200966536 /* 10.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF47587E239636D100966536 /* 10.gif */; };
 		CF47592B239636D200966536 /* 38.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF47587F239636D100966536 /* 38.gif */; };
-		CF5B5D1A23E30812007CBEE0 /* XBJ_HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 222A0AF523D29DED00A058B0 /* XBJ_HomeVC.m */; };
-		CF5B5D1B23E30831007CBEE0 /* XBJ_HomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 222A0AF623D29DED00A058B0 /* XBJ_HomeVC.xib */; };
 		CF5B5D1C23E30854007CBEE0 /* BetFormViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 226CA21323D2F21800E4D921 /* BetFormViewModel.m */; };
 		CF5B5D1D23E3087A007CBEE0 /* RememberPass.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F0411923C86A6A0070D2B5 /* RememberPass.m */; };
 		CF5B5D1E23E30892007CBEE0 /* WHC_ModelSqlite.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F0411623C868E20070D2B5 /* WHC_ModelSqlite.m */; };
@@ -3434,9 +3430,6 @@
 		03E41B3123C09363004AB7C6 /* JS_HomePromoteContainerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JS_HomePromoteContainerView.m; sourceTree = "<group>"; };
 		073F062821635829AF986F13 /* Pods-UGBWApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UGBWApp.debug.xcconfig"; path = "Target Support Files/Pods-UGBWApp/Pods-UGBWApp.debug.xcconfig"; sourceTree = "<group>"; };
 		09180447B2D6D470EA76AFD9 /* Pods-chat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chat.release.xcconfig"; path = "Target Support Files/Pods-chat/Pods-chat.release.xcconfig"; sourceTree = "<group>"; };
-		222A0AF423D29DED00A058B0 /* XBJ_HomeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XBJ_HomeVC.h; sourceTree = "<group>"; };
-		222A0AF523D29DED00A058B0 /* XBJ_HomeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XBJ_HomeVC.m; sourceTree = "<group>"; };
-		222A0AF623D29DED00A058B0 /* XBJ_HomeVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = XBJ_HomeVC.xib; sourceTree = "<group>"; };
 		226CA20C23D2E37400E4D921 /* HSC_BetFormCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HSC_BetFormCell.h; sourceTree = "<group>"; };
 		226CA20D23D2E37400E4D921 /* HSC_BetFormCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HSC_BetFormCell.m; sourceTree = "<group>"; };
 		226CA20E23D2E37400E4D921 /* HSC_BetFormCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HSC_BetFormCell.xib; sourceTree = "<group>"; };
@@ -7332,9 +7325,6 @@
 		222A0AF323D29DBE00A058B0 /* 香槟金模板 */ = {
 			isa = PBXGroup;
 			children = (
-				222A0AF423D29DED00A058B0 /* XBJ_HomeVC.h */,
-				222A0AF523D29DED00A058B0 /* XBJ_HomeVC.m */,
-				222A0AF623D29DED00A058B0 /* XBJ_HomeVC.xib */,
 			);
 			path = "香槟金模板";
 			sourceTree = "<group>";
@@ -8349,7 +8339,6 @@
 				D435F90523CEF940008648CE /* KMCGeigerCounterTick.aiff in Resources */,
 				031EF58523BE7B4D00B0F813 /* wode.svg in Resources */,
 				031E19EB23BE812700B0F813 /* IndexesView.xib in Resources */,
-				CF5B5D1B23E30831007CBEE0 /* XBJ_HomeVC.xib in Resources */,
 				031EF57423BE7B4D00B0F813 /* xiaoxi.svg in Resources */,
 				031EF5C823BE7B4E00B0F813 /* PublicMomentsVC.xib in Resources */,
 				031EF5CC23BE7B4E00B0F813 /* BetFollowView.xib in Resources */,
@@ -8759,7 +8748,6 @@
 				CF4758AD239636D200966536 /* 156.gif in Resources */,
 				CF4758D9239636D200966536 /* 146.gif in Resources */,
 				031E1C6423BE812A00B0F813 /* UGLotteryCollectionViewCell.xib in Resources */,
-				222A0AF823D29DED00A058B0 /* XBJ_HomeVC.xib in Resources */,
 				03AFD93C23CEFC27003914A6 /* HSC_TitleView.xib in Resources */,
 				CF4758A2239636D200966536 /* 124.gif in Resources */,
 				031E1DEA23BE812C00B0F813 /* UGMissionTableViewCell.xib in Resources */,
@@ -9058,7 +9046,6 @@
 				031E1CCB23BE812A00B0F813 /* UIScrollView+MJExtension.m in Sources */,
 				031A781E23D35A9C00FF2FFA /* LotteryTrendVC.m in Sources */,
 				031E1D7123BE812B00B0F813 /* UGFeedBackRecordController.m in Sources */,
-				CF5B5D1A23E30812007CBEE0 /* XBJ_HomeVC.m in Sources */,
 				031EF5AF23BE7B4D00B0F813 /* MomentsCell.swift in Sources */,
 				031EF5F423BE7B4E00B0F813 /* UGConversationVC.swift in Sources */,
 				031E1E0F23BE812C00B0F813 /* UGSignInCollectionViewCell.m in Sources */,
@@ -10076,7 +10063,6 @@
 				031E1CF223BE812A00B0F813 /* SVIndefiniteAnimatedView.m in Sources */,
 				D4346B8E2407E5C900D8FE7C /* UGCell190HeaderView.m in Sources */,
 				031E1ADE23BE812800B0F813 /* SDCollectionViewCell.m in Sources */,
-				222A0AF723D29DED00A058B0 /* XBJ_HomeVC.m in Sources */,
 				031E1ACE23BE812800B0F813 /* TGWebViewController.m in Sources */,
 				031E1A4E23BE812700B0F813 /* CMCommonHook.m in Sources */,
 				031E1B2423BE812800B0F813 /* UGChangLongController.m in Sources */,

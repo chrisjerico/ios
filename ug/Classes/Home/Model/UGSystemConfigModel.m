@@ -37,7 +37,7 @@
 #import "UGBMLotteryHomeViewController.h"
 #import "JS_MineVC.h"
 #import "HSC_MineVC.h"
-#import "XBJ_HomeVC.h"
+//#import "XBJ_HomeVC.h"
 
 
 #define filePath  [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]stringByAppendingPathComponent:@"UGSystemConfigModel"]
@@ -216,10 +216,7 @@ UGSystemConfigModel *currentConfig = nil;
     if (_type == MM_购彩大厅_默认 && Skin1.isBlack) {
         return MM_购彩大厅_亮黑;
     }
-    
-    if (_type == MM_首页 && [Skin1.skitType isEqualToString:@"香槟金"]) {
-        return MM_首页_香槟金;
-    }
+
     return _type;
 }
 - (NSString *)clsName {
@@ -250,9 +247,7 @@ UGSystemConfigModel *currentConfig = nil;
     if (self.type == MM_聊天室 && [@"h005" containsString:APP.SiteId]) {
         return UGChatViewController.className;
     }
-    if (self.type == MM_首页_香槟金) {
-        return XBJ_HomeVC.className;
-    }
+   
     return _clsName;
 }
 - (void)createViewController:(void (^)(__kindof UIViewController * _Nonnull))completion {
@@ -328,10 +323,8 @@ UGSystemConfigModel *currentConfig = nil;
 		HSC_MineVC * vc = [[UIStoryboard storyboardWithName:@"HSC_Mine" bundle:nil] instantiateInitialViewController];
         completion(vc);
 
-    }else if (self.type == MM_首页_香槟金) {
-        XBJ_HomeVC * vc = [[XBJ_HomeVC alloc] init];
-        completion(vc);
-    } else {
+    }
+    else {
         UIViewController *vc = _LoadVC_from_storyboard_(self.clsName);
         if (!vc) {
             vc = [NSClassFromString(self.clsName) new];

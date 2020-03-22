@@ -8,7 +8,7 @@
 
 #import "UGViewController.h"
 #import "JS_MineVC.h"
-#import "XBJ_HomeVC.h"
+//#import "XBJ_HomeVC.h"
 
 @interface UGViewController ()
 
@@ -35,12 +35,12 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-	NSArray * navigationBarHidenSet = @[[XBJ_HomeVC class]];
-    if ([navigationBarHidenSet containsValue:self.class]) {
-        [self.navigationController setNavigationBarHidden:true];
-    } else {
-        [self.navigationController setNavigationBarHidden:false];
-    }
+//	NSArray * navigationBarHidenSet = @[[XBJ_HomeVC class]];
+//    if ([navigationBarHidenSet containsValue:self.class]) {
+//        [self.navigationController setNavigationBarHidden:true];
+//    } else {
+//        [self.navigationController setNavigationBarHidden:false];
+//    }
     
 //	if ([typeSet containsValue:self.class]) {
 //		[self.navigationController.navigationBar setTranslucent:true];
