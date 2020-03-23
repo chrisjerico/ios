@@ -240,7 +240,7 @@
         for (UIView *v in ssv1.contentViews) {
             [v mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.width.mas_equalTo(ssv1.width);
-                make.height.mas_equalTo(self.view.height - APP.StatusBarHeight - k_Height_NavBar - IPHONE_SAFEBOTTOMAREA_HEIGHT);
+                make.height.mas_equalTo(UGScerrnH - 20-k_Height_NavBar - IPHONE_SAFEBOTTOMAREA_HEIGHT -40+22);
             }];
         }
         
