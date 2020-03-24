@@ -27,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString * game_id;     /**<   DOC ID */
 @property (nonatomic, strong) NSString * icon;        /**<   DOC logo */
 @property (nonatomic, strong) NSString * name;        /**<   DOC name */
+@property (nonatomic, strong) NSString * subtitle;    /**<   2级标题 */
 @property (nonatomic, strong) NSString * url;         /**<   DOC链接 */
 @property (nonatomic, strong) NSString * levelType;   /**<   分类层级：1 无子类 2 有子类一级分类 3 子类 */
 @property (nonatomic, strong) NSString * category;    /**<   图标分类 */

@@ -14,6 +14,7 @@
 @interface UGGameTypeColletionViewCell ()
 @property (weak, nonatomic) IBOutlet FLAnimatedImageView *imgView;      /**<   图片ImageView */
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;        /**<   标题ImageView */
+@property (weak, nonatomic) IBOutlet UILabel *name2Label;        /**<   标题ImageView */
 @property (weak, nonatomic) IBOutlet UIImageView *hotImageView; /**<   热门ImageView */
 @property (nonatomic, strong) UIImageView *hasSubSign;          /**<   二级目录ImageView */
 @property (weak, nonatomic) IBOutlet FLAnimatedImageView *effImgView;/**<   烟花背景gif */
@@ -83,6 +84,7 @@
     _item = item;
    
 	self.nameLabel.text =  [CMCommon stringIsNull:item.name] ? item.title : item.name;
+    self.name2Label.text =  [CMCommon stringIsNull:item.subtitle] ? @"" : item.subtitle;
 	[self.hasSubSign setHidden: (item.subType.count > 0 ? false : true)];
     [self.imgView sd_setImageWithURL:[NSURL URLWithString:item.icon] placeholderImage:[UIImage imageNamed:@"loading"]];
     
