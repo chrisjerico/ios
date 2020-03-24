@@ -126,7 +126,10 @@
             site(@"c092",        @"c092hy",     @"156",     @"io.fhpt.H57B34489",       @"https://4681kkk.com",                         @"企业包",     @"2013彩票"),
             site(@"c115",        @"",           @"",        @"io.fhpt.H59BD7AE3",       @"",                                            @"企业包",     @"中彩⽹"),
             site(@"c116",        @"c116hy",     @"139",     @"io.fhpt.H50A85511",       @"https://13531995.com",                        @"企业包",     @"1353彩世界"),
-            site(@"c126",        @"",           @"",        @"io.fhpt.H5FD4D963",       @"",                                            @"企业包",     @"758彩票"),
+            site(@"c126",        @"c126hy",     @"277",     @"io.fhpt.H5FD4D963",       @"https://758cpapp.com",                        @"企业包",     @"758彩票"),
+        
+            
+            
             site(@"c129",        @"c129hy",     @"141",     @"io.fhpt.H58AE4F87",       @"https://7803000.com",                         @"企业包",     @"万豪彩票"),
             site(@"c601",        @"",           @"",        @"io.fhpt.H5D5F880F",       @"",                                            @"企业包",     @"六合宝典"),
             site(@"h003",        @"",           @"",        @"io.fhpt.H591E28D0",       @"",                                            @"企业包",     @"华为彩票"),
@@ -178,7 +181,7 @@
             site(@"c216",        @"c216hy",     @"250",     @"io.fhpt.YSAC216",         @"https://www.6510086.com/",                    @"企业包",     @"凤凰娱乐"),//
             site(@"c217",        @"c217hy",     @"255",     @"io.fhpt.YSFC217",         @"https://9999app-sdg23kkl4iubjnbk76jn3hhj6jkn7knkn-app.com",   @"企业包",     @"澳门贵宾厅"),//
             site(@"c211",        @"c211hy",     @"259",     @"io.fhpt.YSFC211",         @"https://310310app.com",                       @"企业包",     @"葡京娱乐城"),
-            
+      
             
             site(@"test103",     @"test103",    @"222",     @"com.UGGame.cp",           @"http://103.9.230.243",                        @"内测包",     @"test103"),
             site(@"test10",      @"88",         @"125",     @"com.UGGame.cp",           @"http://test10.6yc.com",                       @"内测包",     @"test10"),
