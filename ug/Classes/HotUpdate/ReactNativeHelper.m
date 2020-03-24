@@ -171,6 +171,20 @@ static NSMutableDictionary *_blockDict = nil;
 
 
 #pragma mark - 注册JS函数
+//https://blog.csdn.net/future_challenger/article/details/53506779
+//宏RCT_EXPORT_METHOD的参数就是这个方法的声明部分，方法体在外面。RCT_EXPORT_METHOD(someMethod:(NSString*)stringParameter)这样的，然后外面写方法体。
+//暴露给RN的方法是不能直接返回任何东西的。因为RN的调用时异步的，所以只能使用回调的方式，或者触发事件的方式实现返回值
+//因为笔者的项目已经上了async/await了，回调就显得没啥必要了。而且，文档显示。RN也提供了暴露接口返回Promise的支持。只需要在方法里接受两个参数，一个resolver，一个rejecter：
+//基本上在项目里如何暴露一个native方法给RN的js调用非常简单，就如上面所述一样。
+//1. 在头文件里继承了RCTBridgeModule协议。
+//2. 在源文件里使用RCT_EXPORT_MODULE();宏。
+//3. 使用宏RCT_EXPORT_METHOD暴露方法。
+//通过方法- (dispatch_queue_t)methodQueue来指定。
+//https://www.jianshu.com/p/1e75bd387aa0
+//async/await特点
+//async/await更加语义化，async 是“异步”的简写，async function 用于申明一个 function 是异步的； await，可以认为是async wait的简写， 用于等待一个异步方法执行完成；
+//async/await是一个用同步思维解决异步问题的方案（等结果出来之后，代码才会继续往下执行）
+//可以通过多层 async function 的同步写法代替传统的callback嵌套
 
 // 注册js模块
 RCT_EXPORT_MODULE()
