@@ -42,6 +42,8 @@
 #import "UGPK10NNLotteryController.h"
 
 #import "UGYYRightMenuView.h"
+//官方玩法 --View
+#import "UGSegmentView.h"
 
 @interface UGBJPK10LotteryController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,YBPopupMenuDelegate,WSLWaterFlowLayoutDelegate,UITextFieldDelegate>
 
@@ -80,6 +82,12 @@
 
 @property (strong, nonatomic)UGYYRightMenuView *yymenuView;
 
+//======================================官方玩法=========
+@property (nonatomic, strong) UGSegmentView *segmentView;
+@property (nonatomic, assign) NSInteger segmentIndex;
+@property (nonatomic, strong) NSMutableArray <NSString *> *lmgmentTitleArray;
+//===============================================
+
 @end
 
 static NSString *leftTitleCellid = @"UGTimeLotteryLeftTitleCell";
@@ -106,6 +114,19 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     [self initBetCollectionView];
     [self initHeaderCollectionView];
     
+    
+    //官方玩法
+    [self.view addSubview:self.segmentView];
+    WeakSelf
+    self.segmentIndex = 0;
+    self.segmentView.segmentIndexBlock = ^(NSInteger row) {
+        weakSelf.segmentIndex = row;
+        [weakSelf.betCollectionView reloadData];
+        [weakSelf resetClick:nil];
+    };
+    self.lmgmentTitleArray = [NSMutableArray new];
+    
+    
     self.typeIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     self.itemIndexPath = nil;
     
@@ -130,23 +151,22 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     [self updateOpenLabel];
     [self getGameDatas];
     [self getNextIssueData];
-       WeakSelf
     // 轮循刷新封盘时间、开奖时间
     if (OBJOnceToken(self)) {
-            self.timer = [NSTimer scheduledTimerWithInterval:1 repeats:true block:^(NSTimer *timer) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                   // UI更新代码
-                   [weakSelf updateCloseLabelText];
-                   [weakSelf updateOpenLabelText];
-                });
-
+        self.timer = [NSTimer scheduledTimerWithInterval:1 repeats:true block:^(NSTimer *timer) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // UI更新代码
+                [weakSelf updateCloseLabelText];
+                [weakSelf updateOpenLabelText];
+            });
+            
             if (!weakSelf) {
                 [timer invalidate];
                 timer = nil;
             }
         }];
     }
-
+    
     if (OBJOnceToken(self)) {
         // 轮循请求下期数据
         [self.nextIssueCountDown countDownWithSec:NextIssueSec PER_SECBlock:^{
@@ -163,7 +183,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     [super viewWillAppear:animated];
     [self.view bringSubviewToFront:self.bottomView];
     
-   
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -222,6 +242,21 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                         [self.gameDataArray removeObject:gm];
                 }
             }
+            
+            //连码
+            for (UGGameplayModel *model in self.gameDataArray) {
+                if ([@"官方玩法" isEqualToString:model.name]) {
+                    NSLog(@"model.list= %@",model.list);
+                    for (UGGameplaySectionModel *type in model.list) {
+                        NSLog(@"type.alias= %@",type.alias);
+                        [self.lmgmentTitleArray addObject:type.alias];
+                        
+                    }
+                }
+            }
+            [self handleData];
+            self.segmentView.dataArray = self.lmgmentTitleArray;
+            
             [self.tableView reloadData];
             [self.betCollectionView reloadData];
             [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
@@ -232,6 +267,31 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     }];
 }
 
+//官方玩法数据处理
+- (void)handleData {
+    
+    for (UGGameplayModel *model in self.gameDataArray) {
+        if ([@"官方玩法" isEqualToString:model.name]) {
+            for (UGGameplaySectionModel *group in model.list) {
+                if (group.list.count) {
+                    UGGameBetModel *play = group.list.firstObject;
+                    NSMutableArray *array = [NSMutableArray array];
+                    for (int i = 0; i < 11; i++) {
+                        UGGameBetModel *bet = [[UGGameBetModel alloc] init];
+                        [bet setValuesForKeysWithDictionary:play.mj_keyValues];
+                        bet.alias = bet.name;
+                        bet.typeName = group.name;
+                        bet.name = [NSString stringWithFormat:@"%d",i + 1];
+                        [array addObject:bet];
+                    }
+                    group.list = array.copy;
+                }
+            }
+        }
+        
+    }
+}
+
 - (void)setNextIssueModel:(UGNextIssueModel *)nextIssueModel {
     [super setNextIssueModel:nextIssueModel];
     self.preNumArray = [nextIssueModel.preNum componentsSeparatedByString:@","];
@@ -239,14 +299,14 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         self.preNumSxArray = [nextIssueModel.preNumSx componentsSeparatedByString:@","];
     }
     self.navigationItem.title = nextIssueModel.title;
-   
+    
 }
 
 - (void)showRightMenueView {
-	if ([Skin1.skitType isEqualToString:@"金沙主题"]) {
-		[JS_Sidebar show];
-		return;
-	}
+    if ([Skin1.skitType isEqualToString:@"金沙主题"]) {
+        [JS_Sidebar show];
+        return;
+    }
     self.yymenuView = [[UGYYRightMenuView alloc] initWithFrame:CGRectMake(UGScreenW /2 , 0, UGScreenW / 2, UGScerrnH)];
     self.yymenuView.titleType = @"2";
     self.yymenuView.gameId = self.gameId;
@@ -395,6 +455,27 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     self.typeIndexPath = indexPath;
+    
+    UGGameplayModel *model = self.gameDataArray[indexPath.row];
+    if ([@"官方玩法" isEqualToString:model.name]) {
+        self.segmentView.dataArray = self.lmgmentTitleArray;
+        if (self.segmentView.hidden) {
+            
+            self.betCollectionView.y += self.segmentView.height;
+            self.betCollectionView.height -= self.segmentView.height;
+        }
+        self.segmentView.hidden = NO;
+        [self resetClick:nil];
+    }
+    else {
+        if (!self.segmentView.hidden) {
+            
+            self.betCollectionView.y -= self.segmentView.height;
+            self.betCollectionView.height += self.segmentView.height;
+        }
+        self.segmentView.hidden = YES;
+        
+    }
     [self.betCollectionView reloadData];
     [self.betCollectionView setContentOffset:CGPointMake(0, 0) animated:YES];
 }
@@ -406,8 +487,14 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         if (self.gameDataArray.count) {
             
             UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
-            return model.list.count;
+            if ([@"官方玩法" isEqualToString:model.name]) {
+                return 1;
+            } else {
+                return model.list.count;
+            }
+            
         }
+        
         return 0;
         
     }
@@ -417,8 +504,13 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     if (collectionView == self.betCollectionView) {
         UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
-        UGGameplaySectionModel *type = model.list[section];
-        return type.list.count;
+        if ([@"官方玩法" isEqualToString:model.name]) {
+            return 10;
+        } else {
+            UGGameplaySectionModel *type = model.list[section];
+            return type.list.count;
+        }
+
     }else {
         if (section == 0) {
             return self.preNumArray.count;
@@ -430,8 +522,16 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (collectionView == self.betCollectionView) {
         UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
-        UGGameplaySectionModel *type = model.list[indexPath.section];
+        
+        UGGameplaySectionModel *type;
+        if ([@"官方玩法" isEqualToString:model.name]) {
+            type = model.list[self.segmentIndex];
+        } else {
+           type = model.list[indexPath.section];
+        }
+        
         UGGameBetModel *game = type.list[indexPath.row];
+
         if ([@"冠军" isEqualToString:model.name] ||
             [@"亚军" isEqualToString:model.name] ||
             [@"第三名" isEqualToString:model.name] ||
@@ -454,6 +554,16 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                 cell.nameCornerRadius = 5;
                 return cell;
             }
+        }
+        else if ( [@"官方玩法" isEqualToString:model.name]){
+
+            UGSSCBetItem1Cell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:sscBetItem1CellId forIndexPath:indexPath];
+            game.name = [NSString stringWithFormat:@"%ld",(long)indexPath.row+1];
+            cell.item = game;
+            cell.nameColor = [CMCommon getPreNumColor:game.name];
+            cell.nameCornerRadius = 5;
+            return cell;
+            
         }
         UGTimeLotteryBetCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:lottryBetCellid forIndexPath:indexPath];
         cell.item = game;
@@ -483,7 +593,16 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         if (collectionView == self.betCollectionView) {
             UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
             UGGameplaySectionModel *type = model.list[indexPath.section];
-            headerView.titleLabel.text = type.name;
+            if ([@"官方玩法" isEqualToString:model.name]) {
+                if (model.list.count) {
+                    type = model.list[self.segmentIndex];
+                    headerView.titleLabel.text = type.alias;
+                }
+            }
+            else {
+                
+                headerView.titleLabel.text = type.name;
+            }
         }else {
             
             headerView.titleLabel.text = @"";
@@ -504,12 +623,67 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             return;
         }
         UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
-        UGGameplaySectionModel *type = model.list[indexPath.section];
+        UGGameplaySectionModel *type = nil;
+        if ([@"官方玩法" isEqualToString:model.name]) {
+            type = model.list[self.segmentIndex];
+        }else {
+            type = model.list[indexPath.section];
+        }
+        
         UGGameBetModel *game = type.list[indexPath.row];
         if (!(game.gameEnable && game.enable)) {
-             return;
+            return;
         }
-        game.select = !game.select;
+        if ([@"官方玩法" isEqualToString:model.name]) {
+            NSInteger count = 0;
+            for (UGGameBetModel *bet in type.list) {
+                if (bet.select) {
+                    count ++;
+                }
+            }
+            NSString *title = self.lmgmentTitleArray[self.segmentIndex];
+            
+#pragma mark ----要改的地方
+            
+            if ([@"猜冠军" isEqualToString:title]) {
+                
+                if (count == 1 && !game.select) {
+                    [SVProgressHUD showInfoWithStatus:@"不允许超过1个选项"];
+                }else {
+                    game.select = !game.select;
+                }
+            }else if ([@"猜前二" isEqualToString:title]) {
+                if (count == 2 && !game.select) {
+                    [SVProgressHUD showInfoWithStatus:@"不允许超过2个选项"];
+                }else {
+                    game.select = !game.select;
+                }
+            }else if ([@"猜前三" isEqualToString:title]) {
+                if (count == 3 && !game.select) {
+                    [SVProgressHUD showInfoWithStatus:@"不允许超过3个选项"];
+                }else {
+                    game.select = !game.select;
+                }
+            }else if ([@"猜前四" isEqualToString:title]) {
+                if (count == 4 && !game.select) {
+                    [SVProgressHUD showInfoWithStatus:@"不允许超过4个选项"];
+                }else {
+                    game.select = !game.select;
+                }
+            }else if ([@"猜前五" isEqualToString:title]) {
+                if (count == 5 && !game.select) {
+                    [SVProgressHUD showInfoWithStatus:@"不允许超过5个选项"];
+                }else {
+                    game.select = !game.select;
+                }
+            }else {
+                
+            }
+            
+        }else {
+            
+            game.select = !game.select;
+        }
         [self.betCollectionView reloadData];
         
         NSInteger number = 0;
@@ -526,12 +700,59 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         
         NSInteger count = 0;
         for (UGGameplayModel *model in self.gameDataArray) {
+            if (!model.select) {
+                continue;
+            }
             for (UGGameplaySectionModel *type in model.list) {
-                for (UGGameBetModel *game in type.list) {
-                    if (game.select) {
-                        count ++;
+#pragma mark ------------------------- 要改的
+                if ([@"官方玩法" isEqualToString:model.name]) {
+                    NSInteger num = 0;
+                    for (UGGameBetModel *bet in type.list) {
+                        if (bet.select) {
+                            num ++;
+                        }
+                    }
+                    NSString *title = self.lmgmentTitleArray[self.segmentIndex];
+                    if ([@"猜冠军" isEqualToString:title]) {
+                        if (num == 1) {
+                            count += num;
+                        }
+                        
+                    }else if ([@"猜前二" isEqualToString:title]) {
+                        if (num == 2) {
+                            count += 1;
+                        }
+                        
+                    }else if ([@"猜前三" isEqualToString:title]) {
+                        if (num == 3) {
+                            count += 1;
+                        }
+                        
+                    }else if ([@"猜前四" isEqualToString:title]) {
+                        if (num == 4) {
+                            count += 1;
+                        }
+                        
+                    }else if ([@"猜前五" isEqualToString:title]) {
+                        if (num == 5) {
+                            count += 1;
+                        }
+                        
+                    }
+                    else {
+                        
+                    }
+                    
+                    continue;
+                } else{
+                    
+                    for (UGGameBetModel *game in type.list) {
+                        if (game.select) {
+                            count ++;
+                        }
                     }
                 }
+                
             }
         }
         [self updateSelectLabelWithCount:count];
@@ -568,11 +789,11 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 /** 边缘之间的间距*/
 -(UIEdgeInsets)edgeInsetInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout {
     
-//    if (self.typeIndexPath.row == 17) {
-//        self.betCollectionView.backgroundColor = [UIColor whiteColor];
-//        return UIEdgeInsetsMake(1, 10, 1, 1);
-//    }
-//    self.betCollectionView.backgroundColor = [UIColor clearColor];
+    //    if (self.typeIndexPath.row == 17) {
+    //        self.betCollectionView.backgroundColor = [UIColor whiteColor];
+    //        return UIEdgeInsetsMake(1, 10, 1, 1);
+    //    }
+    //    self.betCollectionView.backgroundColor = [UIColor clearColor];
     return UIEdgeInsetsMake(1, 1, 1, 1);
 }
 
@@ -753,11 +974,11 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         _tableView.estimatedSectionFooterHeight = 0;
         _tableView.rowHeight = 40;
         _tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
-//        if (Skin1.isBlack) {
-//            [_tableView setBackgroundColor:[UIColor clearColor]];
-//        } else {
-//            [_tableView setBackgroundColor:[UIColor whiteColor]];
-//        }
+        //        if (Skin1.isBlack) {
+        //            [_tableView setBackgroundColor:[UIColor clearColor]];
+        //        } else {
+        //            [_tableView setBackgroundColor:[UIColor whiteColor]];
+        //        }
         
     }
     return _tableView;
@@ -771,6 +992,15 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     return _gameDataArray;
 }
 
-
+//官方玩法
+- (UGSegmentView *)segmentView {
+    if (_segmentView == nil) {
+        _segmentView = [[UGSegmentView alloc] initWithFrame:CGRectMake(UGScreenW / 4, 114, UGScreenW /4 * 3, 50) titleArray:self.lmgmentTitleArray];
+        _segmentView.hidden = YES;
+        
+    }
+    return _segmentView;
+    
+}
 @end
 

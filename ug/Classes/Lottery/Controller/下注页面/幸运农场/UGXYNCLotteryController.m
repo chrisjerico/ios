@@ -703,8 +703,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                         }
                     }
                 }
-                
-                
+ 
             }
         }
         [self updateSelectLabelWithCount:count];
