@@ -170,7 +170,7 @@
                  make.top.equalTo(self.mUIScrollView.mas_bottom).offset(0);
                  
              }];
-            self.collectionView.height = height;
+            self.collectionView.height = height+10;
             
             //==============================================================
             [self.label  mas_remakeConstraints:^(MASConstraintMaker *make)
@@ -321,7 +321,8 @@
     
     if (self.label == nil) {
         self.bg_label = [UIView new];
-        [self.view addSubview:self.bg_label];
+//        [_bg_label setBackgroundColor:UIColor.redColor];
+        [self.mUIScrollView addSubview:self.bg_label];
         
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(100, 100, 0, 0)];
         label.textAlignment = NSTextAlignmentLeft;
