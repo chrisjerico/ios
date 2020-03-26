@@ -568,6 +568,9 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
         if ([@"自选不中" isEqualToString:model.title]) {
             bet.betInfo = model.name;
         }
+        if ([@"官方玩法" isEqualToString:model.title]) {
+            bet.betInfo = model.name;
+        }
         [array addObject:bet];
     }
     
