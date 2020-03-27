@@ -33,7 +33,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"长龙助手";
+//    self.navigationItem.title = @"长龙助手";
+    if (!self.title) {
+        self.title = @"长龙助手";
+    }
+    
     self.view.backgroundColor = Skin1.is23 ? RGBA(135 , 135 ,135, 1) : Skin1.bgColor;
     
     [self getSystemConfig];     // APP配置信息

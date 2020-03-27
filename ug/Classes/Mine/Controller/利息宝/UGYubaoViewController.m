@@ -122,8 +122,10 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	//    self.fd_prefersNavigationBarHidden = YES;
-	
-	self.navigationItem.title = @"利息宝";
+
+    if (!self.title) {
+        self.title = @"利息宝";
+    }
 	self.waveView = [[WavesView alloc] initWithFrame:self.waveBgView.bounds];
 	[self.waveBgView addSubview:self.waveView];
 	self.waveView.backgroundColor = [UIColor clearColor];

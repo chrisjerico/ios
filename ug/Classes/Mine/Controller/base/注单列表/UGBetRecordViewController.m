@@ -45,7 +45,9 @@ static NSString *recordFilterCellid = @"UGRecordFilterCollectionViewCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.title = @"投注记录";
+    if (!self.title) {
+        self.title = @"投注记录";
+    }
     [self.view setBackgroundColor: Skin1.bgColor];
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         

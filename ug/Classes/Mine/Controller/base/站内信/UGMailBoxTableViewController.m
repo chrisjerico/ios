@@ -28,7 +28,10 @@ static NSString *messageCellid = @"UGMessageTableViewCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"站内信";
+    
+    if (!self.title) {
+        self.title = @"站内信";
+    }
     self.pageSize = size;
     self.pageNumber = page;
     self.view.backgroundColor = Skin1.textColor4;

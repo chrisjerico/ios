@@ -479,6 +479,14 @@ static UGTabbarController *_tabBarVC = nil;
         if([viewController isKindOfClass:[UINavigationController class]])
         {
             UINavigationController *navCtrl = (UINavigationController *)viewController;
+            
+            UIViewController * viewController  = navCtrl.firstVC;
+            if([viewController isKindOfClass:[UGMailBoxTableViewController class]])
+            {
+                //UGMailBoxTableViewController
+                [self setTabBadgeIndex:i];
+                
+            }
             NSLog(@"%@",navCtrl.viewControllers);
             if ([navCtrl.tabBarItem.title isEqualToString:@"站内信"] ){//UGMailBoxTableViewController
                 [self setTabBadgeIndex:i];

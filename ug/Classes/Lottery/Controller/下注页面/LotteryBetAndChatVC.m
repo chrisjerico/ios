@@ -57,7 +57,11 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"聊天室";
+//    self.title = @"聊天室";
+    
+    if (!self.title) {
+        self.title = @"聊天室";;
+    }
     if (!_nim) {
         
         if ([@"c084" containsString:APP.SiteId]) {

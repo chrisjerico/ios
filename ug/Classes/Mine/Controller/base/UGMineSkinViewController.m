@@ -166,7 +166,10 @@
     SANotificationEventSubscribe(UGNotificationUserAvatarChanged, self, ^(typeof (self) self, id obj) {
         [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[UGUserModel currentUser].avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
     });
-    self.navigationItem.title = @"我的";
+
+    if (!self.title) {
+        self.title = @"我的";
+    }
     self.headImageView.layer.cornerRadius = self.headImageView.height / 2 ;
     self.headImageView.layer.masksToBounds = YES;
     self.headImageView.userInteractionEnabled = YES;

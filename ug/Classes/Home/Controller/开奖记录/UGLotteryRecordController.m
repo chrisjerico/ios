@@ -78,7 +78,10 @@ static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
         [subLabel(@"期数label") setTextColor:[UIColor blackColor]];
     }
     
-    self.navigationItem.title = @"开奖记录";
+    if (!self.title) {
+        self.title = @"开奖记录";
+    }
+    
     [self.tableView setBackgroundColor:[UIColor clearColor]];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;

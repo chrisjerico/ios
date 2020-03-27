@@ -21,7 +21,6 @@
 #import "GameCategoryDataModel.h"
 
 
-
 @interface UGPromotionsController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -38,7 +37,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"优惠活动";
+    if (!self.title) {
+        self.title = @"优惠活动";
+    }
     self.view.backgroundColor = Skin1.bgColor;
     self.tableView.backgroundColor = Skin1.bgColor;
     

@@ -204,7 +204,7 @@
             site(@"test36",      @"test36",     @"",        @"com.UGGame.cp",           @"http://test36.6yc.com",                       @"内测包",     @"test36"),//Michael
             site(@"l001gbhy",    @"l001gbhy",   @"252",     @"com.UGGame.cp",           @"https://demo.gbbet.com/",                     @"内测包",     @"港博"),//
             site(@"test60f",     @"test60f",    @"275",     @"com.UGGame.cp",           @"http://test60f.fhptcdn.com",                  @"内测包",     @"test60f"),//
-            site(@"test61f",     @"test61f",    @"276",        @"com.UGGame.cp",           @"http://test61f.fhptcdn.com",                  @"内测包",     @"test61f"),//
+            site(@"test61f",     @"test61f",    @"276",     @"com.UGGame.cp",           @"http://test61f.fhptcdn.com",                  @"内测包",     @"test61f"),//
             site(@"test58f",     @"test58f",    @"",        @"com.UGGame.cp",           @"http://test58f.ccpt.site",                    @"内测包",     @"test58f"),//
             site(@"test5801",     @"test5801",    @"",      @"com.UGGame.cp",           @"http://test5801.ccpt.site",                    @"内测包",     @"test5801"),//
             site(@"test5802",     @"test5802",    @"",      @"com.UGGame.cp",           @"http://test5802.ccpt.site",                    @"内测包",     @"test5802"),//

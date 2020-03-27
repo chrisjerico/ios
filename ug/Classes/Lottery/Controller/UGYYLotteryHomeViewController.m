@@ -30,8 +30,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.title =@"游戏大厅";
+
+    if (!self.title) {
+        self.title =@"游戏大厅";
+    }
     _dataArray = [NSMutableArray array];
     [self.view setBackgroundColor: Skin1.bgColor];
     
