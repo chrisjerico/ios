@@ -67,6 +67,7 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
     MM_利息宝,
     MM_在线客服,
     MM_未结算,
+    MM_优惠申请,
 };
 
 

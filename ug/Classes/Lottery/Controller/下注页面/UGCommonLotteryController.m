@@ -37,7 +37,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-
+    _hormIsOpen = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -198,9 +198,7 @@
 }
 
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
+
 
 - (void)hideHeader {
     UIImageView * mmcHeader = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mmcbg" ]];

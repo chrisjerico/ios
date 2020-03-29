@@ -24,7 +24,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.title = @"活动彩金";
+    if (!self.title) {
+           self.title = @"活动彩金";
+    }
+ 
     [self.view setBackgroundColor: [UIColor whiteColor]];
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         

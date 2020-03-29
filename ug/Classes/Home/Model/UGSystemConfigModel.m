@@ -30,6 +30,8 @@
 #import "LotteryBetAndChatVC.h"             // 聊天室
 #import "OnlineServiceViewController.h"     // 在线客服
 #import "UGBetRecordViewController.h"       // 未结算
+#import "UGMosaicGoldViewController.h"      // 活动彩金
+
 #import "UGYYLotterySecondHomeViewController.h"
 #import "UGBMMemberCenterViewController.h"  //
 #import "UGLHMineViewController.h"  //
@@ -161,6 +163,7 @@ UGSystemConfigModel *currentConfig = nil;
             item(@"/yuebao",            @"lixibao",                     UGYubaoViewController.className,                MM_利息宝,           @"利息宝"),
             item(@"/customerService",   @"zaixiankefu",                 OnlineServiceViewController.className,          MM_在线客服,          @"在线客服"),
             item(@"/notSettle",         @"tzjl",                        UGBetRecordViewController.className,            MM_未结算,            @"未结算"),
+            item(@"/winApply",         @"shenqing",                     UGMosaicGoldViewController.className,            MM_优惠申请,            @"优惠申请"),
         ].mutableCopy;
         
         UGMobileMenu * itemLine;
