@@ -325,6 +325,8 @@
         };
         ssv1.didSelectedIndex = ^(NSUInteger idx) {
             if (idx) {
+                
+                __self.vc1.hormIsOpen = NO;
                 [__self.downBtn setHidden:NO];
                 //得到线上配置的聊天室
                 [NetworkManager1 chat_getToken].completionBlock = ^(CCSessionModel *sm) {
@@ -396,6 +398,7 @@
                 
             }
             else{
+                __self.vc1.hormIsOpen = YES;
                 [__self.downBtn setHidden:YES];
                 if ([__self.mLabel.text containsString:@"▼"]) {
                     NSString *text = __self.mLabel.text;
