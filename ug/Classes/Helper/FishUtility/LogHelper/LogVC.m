@@ -9,7 +9,7 @@
 #ifdef APP_TEST
 
 #import "LogVC.h"
-
+#import "CMAudioPlayer.h"
 #import "TextFieldAlertView.h"
 
 #import "AFHTTPSessionManager.h"
@@ -145,7 +145,7 @@ static LogVC *_logVC = nil;
     
     {//切换按钮六合
         NSMutableArray *titles = @[].mutableCopy;
-        [titles addObject:@"聊天室TG"];
+        [titles addObject:@"播音"];
         [titles addObject:@"聊天室"];
         [titles addObject:@"优惠活动"];
         UIAlertController *ac = [AlertHelper showAlertView:nil msg:@"请选择操作" btnTitles:[titles arrayByAddingObject:@"取消"]];
@@ -158,11 +158,13 @@ static LogVC *_logVC = nil;
                    
                 });
         }];
-        [ac setActionAtTitle:@"聊天室TG" handler:^(UIAlertAction *aa) {
+        [ac setActionAtTitle:@"播音" handler:^(UIAlertAction *aa) {
                 dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                     // 需要在主线程执行的代码
-            
-                    [CMCommon goTGWebUrl:@"http://rwmenpc200yzvjjmx.ptplayyy.com/h5chat/#/chatRoom?roomId=1&roomName=%E6%89%AB%E9%9B%B710%E5%8C%851%E7%82%B91%E5%80%8D&password&isChatBan=false&isShareBet=false&typeId=0&sortId=1&chatRedBagSetting=%5Bobject%20Object%5D&isMine=1&minAmount=10.00&maxAmount=1000.00&oddsRate=1.10&quantity=10" title:nil];
+                    [CMCommon startWinPlayerFileName:@"lottery" Type:@"wav"];
+//                    CMAudioPlayer *play = [[CMAudioPlayer alloc] init];
+//                    [play playerFileName:@"lottery" Type:@"wav"];
+                    
                 });
         }];
         [ac setActionAtTitle:@"聊天室" handler:^(UIAlertAction *aa) {

@@ -59,7 +59,7 @@
     [self setupTitleView];
 
     
-    
+    _hormIsOpen = YES;
     FastSubViewCode(self.view);
     {
         // 背景色
@@ -155,7 +155,17 @@
         }
  
 
-
+        [subButton(@"声音按钮") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+            sender.selected = !sender.selected;
+            
+            if (sender.selected) { // 按下去了就不开启
+                [subImageView(@"开奖喇叭ImgV")setImage:[UIImage imageNamed:@"icon_sound02"]];
+                self->_hormIsOpen = NO;
+            } else { // 默认开启
+                [subImageView(@"开奖喇叭ImgV") setImage:[UIImage imageNamed:@"icon_sound01"]];
+                self->_hormIsOpen = YES;
+            }
+        }];
         
 
         

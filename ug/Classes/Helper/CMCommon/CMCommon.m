@@ -5,6 +5,9 @@
 #import <objc/runtime.h>
 #import <SafariServices/SafariServices.h>
 #import "SLWebViewController.h"
+#import <AudioToolbox/AudioToolbox.h>
+
+
 @implementation CMCommon
 /******************************************************************************
  函数名称 : + (BOOL)verifyPhoneNum:(NSString *)numStr
@@ -1234,4 +1237,20 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
     NSLog(@"str = %@", string);
     return string;
 }
+
+
+/**
+ *   播放系统wav格式的音乐
+ *  入参：fName ：文件名   tName 文件类型
+ * ：win.wav  https://www.jianshu.com/p/5332823c4674
+ */
++(void)startWinPlayerFileName:(NSString *)fName Type:tNmae{
+    static SystemSoundID soundIDTest = 0;//当soundIDTest == kSystemSoundID_Vibrate的时候为震动
+    NSString * path = [[NSBundle mainBundle] pathForResource:fName ofType:tNmae];
+    if (path) {
+         AudioServicesCreateSystemSoundID( (__bridge CFURLRef)[NSURL fileURLWithPath:path], &soundIDTest );
+    }
+    AudioServicesPlaySystemSound( soundIDTest );
+}
+
 @end

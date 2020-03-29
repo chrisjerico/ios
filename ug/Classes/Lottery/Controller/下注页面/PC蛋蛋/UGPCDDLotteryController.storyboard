@@ -122,6 +122,31 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o3I-f8-kAo">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
                                 <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_sound01" translatesAutoresizingMaskIntoConstraints="NO" id="Vsb-Wl-sC0">
+                                        <rect key="frame" x="10" y="50" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="5YW-F1-I6Q"/>
+                                            <constraint firstAttribute="height" constant="20" id="tAD-tV-dpm"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="开奖喇叭ImgV"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nHi-AN-CpD">
+                                        <rect key="frame" x="0.0" y="39" width="60" height="44"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="ha8-7K-7ma"/>
+                                            <constraint firstAttribute="height" constant="44" id="rEF-tv-1Xe"/>
+                                        </constraints>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal">
+                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="声音按钮"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20190511045期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Jk-4I-1RQ">
                                         <rect key="frame" x="5" y="10" width="102.5" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -155,7 +180,11 @@
                                     <constraint firstItem="8Jk-4I-1RQ" firstAttribute="leading" secondItem="o3I-f8-kAo" secondAttribute="leading" constant="5" id="5Ex-us-es0"/>
                                     <constraint firstAttribute="height" constant="70" id="CzB-iZ-leg"/>
                                     <constraint firstItem="tDX-6R-vTv" firstAttribute="leading" secondItem="8Jk-4I-1RQ" secondAttribute="trailing" constant="5" id="FCj-V9-fxP"/>
+                                    <constraint firstItem="Vsb-Wl-sC0" firstAttribute="leading" secondItem="o3I-f8-kAo" secondAttribute="leading" constant="10" id="Gba-Lp-lNM"/>
                                     <constraint firstAttribute="trailing" secondItem="tDX-6R-vTv" secondAttribute="trailing" constant="5" id="Gjf-xu-GNo"/>
+                                    <constraint firstItem="nHi-AN-CpD" firstAttribute="leading" secondItem="o3I-f8-kAo" secondAttribute="leading" id="RJx-pD-5mJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="Vsb-Wl-sC0" secondAttribute="bottom" id="T11-Ou-a2d"/>
+                                    <constraint firstItem="nHi-AN-CpD" firstAttribute="top" secondItem="8Jk-4I-1RQ" secondAttribute="bottom" constant="12" id="XPq-7v-Tdy"/>
                                     <constraint firstItem="8Jk-4I-1RQ" firstAttribute="top" secondItem="o3I-f8-kAo" secondAttribute="top" constant="10" id="ZvU-58-Pss"/>
                                     <constraint firstAttribute="bottom" secondItem="le1-8m-YTC" secondAttribute="bottom" id="eOt-Gp-Udn"/>
                                     <constraint firstAttribute="bottom" secondItem="tDX-6R-vTv" secondAttribute="bottom" constant="10" id="jCk-up-J1f"/>
@@ -296,6 +325,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="icon_sound01" width="34" height="34"/>
         <image name="xz_icon_cl" width="100" height="100"/>
         <image name="xz_icon_kj" width="100" height="100"/>
         <image name="xz_icon_zb" width="100" height="100"/>

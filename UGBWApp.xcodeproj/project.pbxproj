@@ -1927,6 +1927,8 @@
 		D4593B0623FFA6C1008396BE /* LineMainListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4593B0523FFA6C1008396BE /* LineMainListViewController.m */; };
 		D4593B0B23FFB646008396BE /* LineMainListCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4593B0923FFB646008396BE /* LineMainListCollectionViewCell.m */; };
 		D4593B0C23FFB646008396BE /* LineMainListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4593B0A23FFB646008396BE /* LineMainListCollectionViewCell.xib */; };
+		D466533A24305FAE000D5377 /* lottery.wav in Resources */ = {isa = PBXBuildFile; fileRef = D466533924305FAE000D5377 /* lottery.wav */; };
+		D466533B24305FAE000D5377 /* lottery.wav in Resources */ = {isa = PBXBuildFile; fileRef = D466533924305FAE000D5377 /* lottery.wav */; };
 		D476E5E524014B2300BA0EA9 /* PromoteMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D476E5E424014B2300BA0EA9 /* PromoteMainViewController.m */; };
 		D476E5EB2401671000BA0EA9 /* PromoteTitleCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D476E5E92401671000BA0EA9 /* PromoteTitleCollectionViewCell.m */; };
 		D476E5EC2401671000BA0EA9 /* PromoteTitleCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D476E5EA2401671000BA0EA9 /* PromoteTitleCollectionViewCell.xib */; };
@@ -3768,6 +3770,7 @@
 		D4593B0823FFB646008396BE /* LineMainListCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LineMainListCollectionViewCell.h; sourceTree = "<group>"; };
 		D4593B0923FFB646008396BE /* LineMainListCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LineMainListCollectionViewCell.m; sourceTree = "<group>"; };
 		D4593B0A23FFB646008396BE /* LineMainListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LineMainListCollectionViewCell.xib; sourceTree = "<group>"; };
+		D466533924305FAE000D5377 /* lottery.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = lottery.wav; sourceTree = "<group>"; };
 		D476E5E324014B2300BA0EA9 /* PromoteMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PromoteMainViewController.h; sourceTree = "<group>"; };
 		D476E5E424014B2300BA0EA9 /* PromoteMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PromoteMainViewController.m; sourceTree = "<group>"; };
 		D476E5E82401671000BA0EA9 /* PromoteTitleCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PromoteTitleCollectionViewCell.h; sourceTree = "<group>"; };
@@ -7678,6 +7681,7 @@
 		D424785C22DDF5860062A6D4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D466533924305FAE000D5377 /* lottery.wav */,
 				D44258FB23E948C50067E981 /* git */,
 				CF8E240F23DDBFD80054BF0F /* Fonts */,
 				CFCF6DDA23C8403F0039588D /* main.jsbundle */,
@@ -8294,6 +8298,7 @@
 				031E19D923BE812700B0F813 /* BankCardList.plist in Resources */,
 				031E19FD23BE812700B0F813 /* Image_loading_failed.jpeg in Resources */,
 				031E1C9B23BE812A00B0F813 /* UGFunds2microcodeView.xib in Resources */,
+				D466533B24305FAE000D5377 /* lottery.wav in Resources */,
 				031E1B9523BE812900B0F813 /* UGLotteryRulesView.xib in Resources */,
 				031E1B9D23BE812900B0F813 /* UGChanglongBetRecrodCell.xib in Resources */,
 				031E1E8123BE812D00B0F813 /* UGPlatformBalanceTableViewCell.xib in Resources */,
@@ -8746,6 +8751,7 @@
 				CF4758DF239636D200966536 /* 153.gif in Resources */,
 				CF47590E239636D200966536 /* 129.gif in Resources */,
 				CF47589F239636D200966536 /* 119.gif in Resources */,
+				D466533A24305FAE000D5377 /* lottery.wav in Resources */,
 				031E1C9423BE812A00B0F813 /* UGFundsTransferView.xib in Resources */,
 				031E1BB823BE812900B0F813 /* UGOnlineWithdrawalsView.xib in Resources */,
 				226CA21023D2E37400E4D921 /* HSC_BetFormCell.xib in Resources */,

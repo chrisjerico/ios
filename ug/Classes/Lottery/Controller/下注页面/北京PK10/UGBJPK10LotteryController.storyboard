@@ -122,6 +122,31 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OHO-OK-3VA">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
                                 <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_sound01" translatesAutoresizingMaskIntoConstraints="NO" id="EtU-hA-5LP">
+                                        <rect key="frame" x="10" y="50" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="K9d-vd-7Oc"/>
+                                            <constraint firstAttribute="width" constant="20" id="RKD-Ju-YTY"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="开奖喇叭ImgV"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rqR-4Q-iZQ">
+                                        <rect key="frame" x="0.0" y="40" width="60" height="44"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="U1n-CD-0fe"/>
+                                            <constraint firstAttribute="height" constant="44" id="sLf-rA-dyd"/>
+                                        </constraints>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal">
+                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="声音按钮"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="734045期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rsc-z2-cvm">
                                         <rect key="frame" x="5" y="10" width="65.5" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -151,14 +176,18 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="rqR-4Q-iZQ" firstAttribute="top" secondItem="rsc-z2-cvm" secondAttribute="bottom" constant="13" id="39j-Ab-P4r"/>
+                                    <constraint firstItem="EtU-hA-5LP" firstAttribute="leading" secondItem="OHO-OK-3VA" secondAttribute="leading" constant="10" id="Izg-Te-pWz"/>
                                     <constraint firstAttribute="bottom" secondItem="8LJ-Yy-AQJ" secondAttribute="bottom" id="MtJ-2R-cM0"/>
                                     <constraint firstItem="rsc-z2-cvm" firstAttribute="leading" secondItem="OHO-OK-3VA" secondAttribute="leading" constant="5" id="NDC-sK-cGL"/>
                                     <constraint firstAttribute="trailing" secondItem="JEr-gI-w8w" secondAttribute="trailing" constant="5" id="R3B-EQ-lK6"/>
                                     <constraint firstAttribute="bottom" secondItem="JEr-gI-w8w" secondAttribute="bottom" constant="10" id="SgR-id-3Sf"/>
                                     <constraint firstItem="JEr-gI-w8w" firstAttribute="leading" secondItem="rsc-z2-cvm" secondAttribute="trailing" constant="5" id="aVC-qf-pkb"/>
+                                    <constraint firstAttribute="bottom" secondItem="EtU-hA-5LP" secondAttribute="bottom" id="eSW-IV-0xP"/>
                                     <constraint firstItem="JEr-gI-w8w" firstAttribute="top" secondItem="OHO-OK-3VA" secondAttribute="top" constant="5" id="klS-zq-wPH"/>
                                     <constraint firstAttribute="height" constant="70" id="mNg-Ph-UoZ"/>
                                     <constraint firstAttribute="trailing" secondItem="8LJ-Yy-AQJ" secondAttribute="trailing" id="mxc-fR-Hz2"/>
+                                    <constraint firstItem="rqR-4Q-iZQ" firstAttribute="leading" secondItem="OHO-OK-3VA" secondAttribute="leading" id="oW8-ZC-bo8"/>
                                     <constraint firstItem="8LJ-Yy-AQJ" firstAttribute="leading" secondItem="OHO-OK-3VA" secondAttribute="leading" id="par-7c-l4V"/>
                                     <constraint firstItem="rsc-z2-cvm" firstAttribute="top" secondItem="OHO-OK-3VA" secondAttribute="top" constant="10" id="srt-92-5GD"/>
                                 </constraints>
@@ -296,6 +325,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="icon_sound01" width="34" height="34"/>
         <image name="xz_icon_cl" width="100" height="100"/>
         <image name="xz_icon_kj" width="100" height="100"/>
         <image name="xz_icon_zb" width="100" height="100"/>
