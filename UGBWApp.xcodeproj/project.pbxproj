@@ -1929,6 +1929,7 @@
 		D4593B0C23FFB646008396BE /* LineMainListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4593B0A23FFB646008396BE /* LineMainListCollectionViewCell.xib */; };
 		D466533A24305FAE000D5377 /* lottery.wav in Resources */ = {isa = PBXBuildFile; fileRef = D466533924305FAE000D5377 /* lottery.wav */; };
 		D466533B24305FAE000D5377 /* lottery.wav in Resources */ = {isa = PBXBuildFile; fileRef = D466533924305FAE000D5377 /* lottery.wav */; };
+		D46653412430CD38000D5377 /* otherLotter.wav in Resources */ = {isa = PBXBuildFile; fileRef = D466533F2430CD38000D5377 /* otherLotter.wav */; };
 		D476E5E524014B2300BA0EA9 /* PromoteMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D476E5E424014B2300BA0EA9 /* PromoteMainViewController.m */; };
 		D476E5EB2401671000BA0EA9 /* PromoteTitleCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D476E5E92401671000BA0EA9 /* PromoteTitleCollectionViewCell.m */; };
 		D476E5EC2401671000BA0EA9 /* PromoteTitleCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D476E5EA2401671000BA0EA9 /* PromoteTitleCollectionViewCell.xib */; };
@@ -3771,6 +3772,7 @@
 		D4593B0923FFB646008396BE /* LineMainListCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LineMainListCollectionViewCell.m; sourceTree = "<group>"; };
 		D4593B0A23FFB646008396BE /* LineMainListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LineMainListCollectionViewCell.xib; sourceTree = "<group>"; };
 		D466533924305FAE000D5377 /* lottery.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = lottery.wav; sourceTree = "<group>"; };
+		D466533F2430CD38000D5377 /* otherLotter.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = otherLotter.wav; sourceTree = "<group>"; };
 		D476E5E324014B2300BA0EA9 /* PromoteMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PromoteMainViewController.h; sourceTree = "<group>"; };
 		D476E5E424014B2300BA0EA9 /* PromoteMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PromoteMainViewController.m; sourceTree = "<group>"; };
 		D476E5E82401671000BA0EA9 /* PromoteTitleCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PromoteTitleCollectionViewCell.h; sourceTree = "<group>"; };
@@ -7681,6 +7683,7 @@
 		D424785C22DDF5860062A6D4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D466533F2430CD38000D5377 /* otherLotter.wav */,
 				D466533924305FAE000D5377 /* lottery.wav */,
 				D44258FB23E948C50067E981 /* git */,
 				CF8E240F23DDBFD80054BF0F /* Fonts */,
@@ -8726,6 +8729,7 @@
 				CF4758E5239636D200966536 /* 162.gif in Resources */,
 				CF47590F239636D200966536 /* 101.gif in Resources */,
 				CFCF6DDC23C8403F0039588D /* main.jsbundle in Resources */,
+				D46653412430CD38000D5377 /* otherLotter.wav in Resources */,
 				CF4758C8239636D200966536 /* 2.gif in Resources */,
 				031E1C5823BE812A00B0F813 /* UGBetDetailTableViewCell.xib in Resources */,
 				CF475892239636D200966536 /* 33.gif in Resources */,

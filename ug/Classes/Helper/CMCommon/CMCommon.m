@@ -1253,4 +1253,17 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
     AudioServicesPlaySystemSound( soundIDTest );
 }
 
+/**
+ *   播放开奖提示
+ *
+ *
+ */
++(void)playerLotterySound{
+    if ([@"126" containsString:APP.SiteId]) {
+          [CMCommon startWinPlayerFileName:@"lottery" Type:@"wav"];
+    } else {
+        [CMCommon startWinPlayerFileName:@"otherLotter" Type:@"wav"];
+    }
+}
+
 @end

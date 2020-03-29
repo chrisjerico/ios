@@ -370,4 +370,11 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
 * ：win.wav
 */
 +(void)startWinPlayerFileName:(NSString *)fName Type:tNmae;
+
+/**
+ *   播放开奖提示
+ *
+ *
+ */
++(void)playerLotterySound;
 @end
