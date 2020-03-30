@@ -177,7 +177,7 @@
             }
         }];
         
-
+        [subImageView(@"开奖喇叭ImgV") setHidden:YES];
         
         
         

@@ -161,7 +161,7 @@ static LogVC *_logVC = nil;
         [ac setActionAtTitle:@"播音" handler:^(UIAlertAction *aa) {
                 dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                     // 需要在主线程执行的代码
-                     [CMCommon playerLotterySound];
+
 //                    CMAudioPlayer *play = [[CMAudioPlayer alloc] init];
 //                    [play playerFileName:@"lottery" Type:@"wav"];
                     
