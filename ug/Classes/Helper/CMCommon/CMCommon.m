@@ -1262,7 +1262,7 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
     if ([@"126" containsString:APP.SiteId]) {
           [CMCommon startWinPlayerFileName:@"lottery" Type:@"wav"];
     } else {
-        [CMCommon startWinPlayerFileName:@"otherLotter" Type:@"wav"];
+//        [CMCommon startWinPlayerFileName:@"otherLotter" Type:@"wav"];
     }
 }
 

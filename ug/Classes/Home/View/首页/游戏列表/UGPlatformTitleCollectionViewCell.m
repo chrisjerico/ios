@@ -47,6 +47,7 @@
     _item = item;
     self.titleLabel.text = item.name;
     self.title2Label.text = item.name;
+    NSLog(@"item.logo = %@",item.logo);
     [self.imageView sd_setImageWithURL:[NSURL URLWithString:item.logo] placeholderImage:[UIImage imageNamed:@"loading"]];
 }
 

@@ -276,7 +276,8 @@
     if ([@"c126" containsString:APP.SiteId]) {
           [self startWinPlayerFileName:@"lottery" Type:@"wav"];
     } else {
-        [self startWinPlayerFileName:@"otherLotter" Type:@"wav"];
+//        [self startWinPlayerFileName:@"otherLotter" Type:@"wav"];
+        
     }
 }
 
