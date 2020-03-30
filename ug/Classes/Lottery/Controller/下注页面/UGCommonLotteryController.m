@@ -273,7 +273,7 @@
 
 
 -(void)playerLotterySound{
-    if ([@"126" containsString:APP.SiteId]) {
+    if ([@"c126" containsString:APP.SiteId]) {
           [self startWinPlayerFileName:@"lottery" Type:@"wav"];
     } else {
         [self startWinPlayerFileName:@"otherLotter" Type:@"wav"];
