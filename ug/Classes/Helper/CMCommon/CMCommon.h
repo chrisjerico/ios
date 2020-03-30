@@ -364,17 +364,5 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
 */
 +(NSString * )switchNumber:(int )number;
 
-/**
-*   播放系统wav格式的音乐
-*  入参：fName ：文件名   tName 文件类型
-* ：win.wav
-*/
-+(void)startWinPlayerFileName:(NSString *)fName Type:tNmae;
 
-/**
- *   播放开奖提示
- *
- *
- */
-+(void)playerLotterySound;
 @end
