@@ -20,6 +20,9 @@
 @property (nonatomic) IBOutlet UILabel *nextIssueLabel;
 @property (nonatomic) IBOutlet UILabel *closeTimeLabel;
 @property (nonatomic) IBOutlet UILabel *openTimeLabel;
+
+
+
 @end
 
 
@@ -33,11 +36,13 @@
             _timer = nil;
         }
     }
+    if (_path) {
+        _path = nil;
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    _hormIsOpen = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -59,7 +64,7 @@
     [self setupTitleView];
 
     
-    _hormIsOpen = YES;
+
     FastSubViewCode(self.view);
     {
         // 背景色
@@ -154,16 +159,21 @@
              [subLabel(@"封盘Label") setTextColor:[UIColor whiteColor]];
         }
  
+        if ([[NSUserDefaults standardUserDefaults]boolForKey:@"lotteryHormIsOpen"]) {
+            [subImageView(@"开奖喇叭ImgV") setImage:[UIImage imageNamed:@"icon_sound01"]];
+        } else {
+            [subImageView(@"开奖喇叭ImgV")setImage:[UIImage imageNamed:@"icon_sound02"]];
+        }
 
         [subButton(@"声音按钮") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
             sender.selected = !sender.selected;
             
             if (sender.selected) { // 按下去了就不开启
                 [subImageView(@"开奖喇叭ImgV")setImage:[UIImage imageNamed:@"icon_sound02"]];
-                self->_hormIsOpen = NO;
+                [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"lotteryHormIsOpen"];//下注界面喇叭
             } else { // 默认开启
                 [subImageView(@"开奖喇叭ImgV") setImage:[UIImage imageNamed:@"icon_sound01"]];
-                self->_hormIsOpen = YES;
+                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"lotteryHormIsOpen"];//下注界面喇叭
             }
         }];
         
@@ -259,6 +269,29 @@
     };
     UGNavigationController * nav = [[UGNavigationController alloc] initWithRootViewController:vc];
     [self presentViewController:nav animated:true completion:nil];
+}
+
+
+-(void)playerLotterySound{
+    if ([@"126" containsString:APP.SiteId]) {
+          [self startWinPlayerFileName:@"lottery" Type:@"wav"];
+    } else {
+        [self startWinPlayerFileName:@"otherLotter" Type:@"wav"];
+    }
+}
+
+/**
+ *   播放系统wav格式的音乐
+ *  入参：fName ：文件名   tName 文件类型s
+ * ：win.wav  https://www.jianshu.com/p/5332823c4674
+ */
+-(void)startWinPlayerFileName:(NSString *)fName Type:tNmae{
+    static SystemSoundID soundIDTest = 0;//当soundIDTest == kSystemSoundID_Vibrate的时候为震动
+    self.path = [[NSBundle mainBundle] pathForResource:fName ofType:tNmae];
+    if (self.path) {
+         AudioServicesCreateSystemSoundID( (__bridge CFURLRef)[NSURL fileURLWithPath:self.path], &soundIDTest );
+    }
+    AudioServicesPlaySystemSound( soundIDTest );
 }
 
 @end

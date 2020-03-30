@@ -74,6 +74,8 @@
     NSLog(@"dict[APP.SiteId] = %@",dict[APP.SiteId]);
     NSString *appKey = dict[APP.SiteId] ? dict[APP.SiteId] : @"21d1b87f65b557d2946af463";
     
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"lotteryHormIsOpen"];//下注界面默认喇叭开启
+    
 #ifdef DEBUG
     [JPUSHService setupWithOption:launchOptions appKey:appKey channel:@"develop" apsForProduction:0 advertisingIdentifier:nil];
     [KMCGeigerCounter sharedGeigerCounter].enabled = NO;

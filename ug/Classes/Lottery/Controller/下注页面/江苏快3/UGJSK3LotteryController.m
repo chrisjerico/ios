@@ -682,8 +682,8 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         
     }
     self.openTimeLabel.text = [NSString stringWithFormat:@"开奖:%@",timeStr];
-    if ([timeStr isEqualToString:@"00:01"]&& self.hormIsOpen) {
-         [CMCommon playerLotterySound];
+    if ([timeStr isEqualToString:@"00:01"]&& [[NSUserDefaults standardUserDefaults]boolForKey:@"lotteryHormIsOpen"]) {
+        [self  playerLotterySound];
     }
     [self updateOpenLabel];
     
